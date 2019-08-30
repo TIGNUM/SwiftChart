@@ -26,7 +26,7 @@ protocol ProfileSettingsInteractorInterface: Interactor {
     func numberOfItemsInSection(in section: Int) -> Int
     func row(at indexPath: IndexPath) -> SettingsRow
     func headerTitle(in section: Int) -> String
-    func updateUser(_ profile: QDMUser)
+    func updateUser(_ profile: QDMUser, _ completion: @escaping () -> Void)
     func showUpdateConfirmationScreen()
     var profile: QDMUser? { get set }
 }

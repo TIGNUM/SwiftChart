@@ -22,7 +22,6 @@ final class ProfileSettingsWorker {
     private var contactTxt = ""
     private var nameTxt = ""
     private var surnameTxt = ""
-    private var genderTxt = ""
     private var dateOfBirthTxt = ""
     private var companyTxt = ""
     private var emailTxt = ""
@@ -52,7 +51,6 @@ final class ProfileSettingsWorker {
         contactTitle()
         nameTitle()
         surnameTitle()
-        genderTitle()
         dateOfBirthTitle()
         companyTitle()
         emailTitle()
@@ -72,9 +70,11 @@ final class ProfileSettingsWorker {
         })
     }
 
-    func update(user: QDMUser?) {
+    func update(user: QDMUser?, _ completion: @escaping () -> Void) {
         guard let userData = user else { return }
-        qot_dal.UserService.main.updateUserData(userData) { _ in }
+        qot_dal.UserService.main.updateUserData(userData) { _ in
+            completion()
+        }
     }
 }
 
@@ -151,17 +151,9 @@ private extension ProfileSettingsWorker {
         }
     }
 
-    func genderTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.gender.predicate) {[weak self] (contentItem) in
-            self?.genderTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
     func dateOfBirthTitle() {
         dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.dateOfBirth.predicate) {[weak self] (contentItem) in
+        contentService.getContentItemByPredicate(ContentService.EditAccount.yearOfBirth.predicate) {[weak self] (contentItem) in
             self?.dateOfBirthTxt = contentItem?.valueText ?? ""
             self?.dispatchGroup.leave()
         }
@@ -210,18 +202,12 @@ private extension ProfileSettingsWorker {
 
     private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         guard let user = user else { return [] }
-        var date = Date()
-        date = DateFormatter.settingsUser.date(from: user.dateOfBirth) ?? Date()
-        let selectedGenderIndex = Gender(rawValue: user.gender)?.selectedIndex ?? 0
+        let date = DateFormatter.yyyyMMdd.date(from: user.dateOfBirth) ?? Date()
         return [
             .textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
             .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
-            .stringPicker(title: genderTxt,
-                          pickerItems: Gender.allValues.compactMap { $0.dsiplayValue },
-                          selectedIndex: selectedGenderIndex,
-                          settingsType: .gender),
             .datePicker(title: dateOfBirthTxt,
-                        selectedDate: date,
+                        yearOfBirth: String(date.year()),
                         settingsType: .dateOfBirth)
         ]
     }

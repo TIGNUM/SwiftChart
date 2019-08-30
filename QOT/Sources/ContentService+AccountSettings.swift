@@ -18,7 +18,7 @@ extension ContentService {
             case company = "account_settings_company"
             case phone = "account_settings_phone"
             case gender = "account_settings_gender"
-            case dateOfBirth = "account_settings_dateOfBirth"
+            case yearOfBirth = "account_settings_year_of_birth"
             case personalData = "account_settings_personal_data"
             case height = "account_settings_height"
             case weight = "account_settings_weight"

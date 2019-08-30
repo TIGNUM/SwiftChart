@@ -9,7 +9,6 @@
 import Foundation
 
 struct ProfileSettingsModel: Equatable {
-
     var imageURL: URL?
     var givenName: String?
     var familyName: String?

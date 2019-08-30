@@ -418,7 +418,7 @@ enum SettingsRow {
 
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index, settingsType: SettingsType)
-    case datePicker(title: String, selectedDate: Date, settingsType: SettingsType)
+    case datePicker(title: String, yearOfBirth: String, settingsType: SettingsType)
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
@@ -480,8 +480,7 @@ private func accountRows(for user: QDMUser?) -> [SettingsRow] {
 
 private func personalRows(for user: QDMUser?) -> [SettingsRow] {
     guard let user = user else { return [] }
-    var date = Date()
-    date = DateFormatter.settingsUser.date(from: user.dateOfBirth) ?? Date()
+    let date = DateFormatter.yyyyMMdd.date(from: user.dateOfBirth) ?? Date()
     let heightItems = user.heightPickerItems
     let weightItems = user.weightPickerItems
     let selectedHeightIndex = heightItems.valueIndex
@@ -504,7 +503,7 @@ private func personalRows(for user: QDMUser?) -> [SettingsRow] {
                       selectedIndex: selectedGenderIndex,
                       settingsType: .gender),
         .datePicker(title: SettingsType.dateOfBirth.title,
-                    selectedDate: date,
+                    yearOfBirth: String(date.year()),
                     settingsType: .dateOfBirth),
         .multipleStringPicker(title: SettingsType.height.title.components(separatedBy: ".")[0],
                               rows: user.heightPickerItems,

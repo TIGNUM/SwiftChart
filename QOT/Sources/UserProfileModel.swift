@@ -43,7 +43,6 @@ struct UserProfileModel: Equatable {
 }
 
 extension UserProfileModel {
-
     var userWeight: String {
         return String(weight) + weightUnit
     }
@@ -56,5 +55,10 @@ extension UserProfileModel {
         let firstName = givenName?.capitalized ?? ""
         let lastName = familyName?.capitalized ?? ""
         return  firstName + " " + lastName
+    }
+
+    var yearOfBirth: String {
+        let dateOfBrith = DateFormatter.yyyyMMdd.date(from: birthday)
+        return String(dateOfBrith?.year() ?? 0)
     }
 }

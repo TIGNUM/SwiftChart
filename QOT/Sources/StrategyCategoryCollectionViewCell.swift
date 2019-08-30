@@ -11,7 +11,6 @@ import UIKit
 class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
     // MARK: - Properties
-
     @IBOutlet private weak var performanceLabel: UILabel!
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     @IBOutlet private weak var progressLabel: UILabel!
@@ -19,10 +18,8 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
     func configure(categoryTitle: String, viewCount: Int, itemCount: Int) {
         ThemeText.performanceStaticTitle.apply("PERFORMANCE", to: performanceLabel)
-
         let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
         ThemeText.linkMenuItem.apply(title.uppercased(), to: categoryTitleLabel)
-
         let progress = String(format: "%d Seen of %d", viewCount, itemCount)
         ThemeText.datestamp.apply(progress, to: progressLabel)
     }

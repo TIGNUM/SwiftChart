@@ -24,6 +24,14 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
     // MARK: - Properties
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
+    private var selectedCell: SettingsTableViewCell?
+    private var pickerItems: UserMeasurement?
+    private var pickerViewHeight: NSLayoutConstraint?
+    private var pickerInitialSelection = [Index]()
+    private var pickerIndexPath = IndexPath(item: 0, section: 0)
+    var interactor: ProfileSettingsInteractorInterface?
+    var networkManager: NetworkManager!
+    var launchOptions: [LaunchOption: String?]?
 
     var shouldAllowSave: Bool = false {
         willSet {
@@ -31,16 +39,19 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
-    private var selectedCell: SettingsTableViewCell?
-    private var genderPickerItems: [String] = []
-    private var pickerItems: UserMeasurement?
-    private var pickerViewHeight: NSLayoutConstraint?
-    private var pickerInitialSelection = [Index]()
-    private var pickerIndexPath = IndexPath(item: 0, section: 0)
+    private lazy var yearPickerItems: [String] = {
+        var items = [String]()
+        let minYear = Date().minimumDateOfBirth.year()
+        let maxYear = Date().maximumDateOfBirth.year()
 
-    var interactor: ProfileSettingsInteractorInterface?
-    var networkManager: NetworkManager!
-    var launchOptions: [LaunchOption: String?]?
+        for year in minYear...maxYear {
+            items.append(String(year))
+        }
+
+        items.reverse()
+        items.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
+        return items
+    }()
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -75,6 +86,7 @@ private extension ProfileSettingsViewController {
     }
 
     func setupView() {
+        tableView.tableFooterView = UIView()
         registerCells()
         interactor?.editAccountTitle({[weak self] (text) in
             self?.headerTitle.text = text
@@ -100,40 +112,26 @@ private extension ProfileSettingsViewController {
 extension ProfileSettingsViewController {
     @objc func dateChanged(_ sender: UIDatePicker) {
         shouldAllowSave = true
-        let dateOfBirth = DateFormatter.settingsUser.string(from: sender.date)
+        let dateOfBirth = DateFormatter.yyyyMMdd.string(from: sender.date)
         interactor?.profile?.dateOfBirth = dateOfBirth
         selectedCell?.textField.text = dateOfBirth
     }
 
-    func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
+    func showDatePicker(title: String, selectedYear: String, indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
             return
         }
         selectedCell = cell
-        let datePicker = UIDatePicker()
-        datePicker.backgroundColor = .carbonDark
-        datePicker.setValue(UIColor.sand, forKeyPath: "textColor")
-        datePicker.datePickerMode = .date
-        datePicker.setDate(selectedDate, animated: true)
-        datePicker.minimumDate = Date().minimumDateOfBirth
-        datePicker.maximumDate = Date().maximumDateOfBirth
-        datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
-        cell.textField.inputView = datePicker
+        let yearPicker = UIPickerView()
+        yearPicker.backgroundColor = .carbonDark
+        yearPicker.setValue(UIColor.sand, forKeyPath: "textColor")
+        yearPicker.dataSource = self
+        yearPicker.delegate = self
+        let row = (yearPickerItems.index(of: selectedYear) ?? 0)
+        yearPicker.selectRow(row, inComponent: 0, animated: true)
+        cell.textField.inputView = yearPicker
         cell.textField.becomeFirstResponder()
     }
-
-	func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
-        guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
-            return
-        }
-        genderPickerItems = items
-        selectedCell = cell
-        let picker = UIPickerView()
-        picker.delegate = self
-        picker.backgroundColor = .carbonDark
-        cell.textField.inputView = picker
-        cell.textField.becomeFirstResponder()
-	}
 
     func updateUserHeightWeight() {
         guard let userMeasurement = pickerItems, var interactor = self.interactor else { return }
@@ -211,12 +209,8 @@ extension ProfileSettingsViewController {
                 QOTAlert.show(title: nil, message: R.string.localized.settingsChangePasswordTitle(), bottomItems: [cancel, change])
             default: return
             }
-        case .datePicker(let title, let selectedDate, _):
-            showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
-        case .stringPicker(let title, let pickerItems, let selectedIndex, _):
-            showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker:
-            break
+        case .datePicker(let title, let selectedYear, _):
+            showDatePicker(title: title, selectedYear: selectedYear, indexPath: indexPath)
         default:
             break
         }
@@ -332,20 +326,23 @@ extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return genderPickerItems.count
+        return yearPickerItems.count
     }
 
    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let title =  genderPickerItems[row]
+        let title =  yearPickerItems[row]
         let myTitle = NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.sand])
         return myTitle
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedValue = genderPickerItems[row]
-        selectedCell?.textField.text = selectedValue
-        interactor?.profile?.gender = selectedValue
-        shouldAllowSave = true
+        let selectedValue = yearPickerItems[row]
+        if selectedValue != R.string.localized.yearPickerTitleSelect() {
+            selectedCell?.textField.text = selectedValue
+            let selectedDate = DateFormatter.yyyyMMdd.date(from: selectedValue+"-01-02")
+            interactor?.profile?.dateOfBirth = DateFormatter.yyyyMMdd.string(from: selectedDate ?? Date())
+            shouldAllowSave = true
+        }
     }
 }
 
@@ -362,8 +359,9 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
     @objc func didSave() {
         guard let profile = interactor?.profile, shouldAllowSave else { return }
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.updateUser(profile)
-        dismiss()
+        interactor?.updateUser(profile) { [weak self] in
+            self?.dismiss()
+        }
     }
 
     func dismiss() {

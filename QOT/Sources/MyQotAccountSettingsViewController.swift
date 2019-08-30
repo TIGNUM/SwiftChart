@@ -27,7 +27,6 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
     @IBOutlet private weak var userNameLabel: UILabel!
     @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
-    @IBOutlet private weak var userGenderLabel: UILabel!
     @IBOutlet private weak var userDobLabel: UILabel!
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var headerLine: UIView!
@@ -128,11 +127,8 @@ private extension MyQotAccountSettingsViewController {
         interactor?.emailText({[weak self] (text) in
             ThemeText.accountHeader.apply(text, to: self?.emailHeaderLabel)
         })
-        interactor?.genderText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.genderHeaderLabel)
-        })
-        interactor?.dateOfBirthText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.dobHeaderLabel)
+        interactor?.userAgeText({[weak self] (text) in
+            self?.dobHeaderLabel.text = text
         })
         interactor?.companyText({[weak self] (text) in
             ThemeText.accountHeader.apply(text, to: self?.companyHeaderLabel)
@@ -161,8 +157,7 @@ private extension MyQotAccountSettingsViewController {
         interactor?.userProfile({[weak self] (profile) in
             ThemeText.accountDetail.apply(profile?.email, to: self?.userEmailLabel)
             ThemeText.accountDetail.apply(profile?.company, to: self?.userCompanyLabel)
-            ThemeText.accountDetail.apply(profile?.gender, to: self?.userGenderLabel)
-            ThemeText.accountDetail.apply(profile?.birthday, to: self?.userDobLabel)
+            ThemeText.accountDetail.apply(profile?.yearOfBirth, to: self?.userDobLabel)
             ThemeText.accountDetail.apply(profile?.name, to: self?.userNameLabel)
         })
     }

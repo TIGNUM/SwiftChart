@@ -151,6 +151,10 @@ extension Date {
         return dayOfWeek - daysFromNow >= 0
     }
 
+    func year() -> Int {
+        return Calendar.sharedUTC.dateComponents([.year], from: self).year ?? 0
+    }
+
     func years(to date: Date) -> Int {
         return Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
     }

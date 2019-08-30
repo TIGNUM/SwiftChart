@@ -376,6 +376,7 @@
 "ImagePicker.Options.Button.Photo" = "Choose Photo";
 "ImagePicker.Options.Button.Delete" = "Delete Photo";
 "ImagePicker.Options.Button.Cancel" = "Cancel";
+"YearPicker.Title.Select" = "Select";
 
 "MorningController.titleLabel" = "DAILY PREP MINUTE";
 "MorningController.previousButton" = "PREVIOUS";

@@ -11,7 +11,6 @@ import UIKit
 final class FoundationTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var previewImageView: UIImageView!
@@ -20,10 +19,8 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         ThemeView.level2.apply(self)
         contentView.backgroundColor = .clear
-
         selectionStyle = .gray
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
@@ -31,9 +28,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, timeToWatch: String, imageURL: URL?) {
-        let editedTitle = title.replacingOccurrences(of: "PERFORMANCE ", with: "")
-
-        ThemeText.articleRelatedTitle.apply(editedTitle, to: titleLabel)
+        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
         ThemeText.articleRelatedDetail.apply(timeToWatch, to: detailLabel)
         previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         previewPlayImageView.backgroundColor = UIColor.sand08

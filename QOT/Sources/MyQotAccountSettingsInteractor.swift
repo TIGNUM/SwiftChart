@@ -11,13 +11,11 @@ import Foundation
 final class MyQotAccountSettingsInteractor {
 
     // MARK: - Properties
-
     private let worker: MyQotAccountSettingsWorker
     private let presenter: MyQotAccountSettingsPresenterInterface
     private let router: MyQotAccountSettingsRouterInterface
 
     // MARK: - Init
-
     init(worker: MyQotAccountSettingsWorker,
          presenter: MyQotAccountSettingsPresenterInterface,
          router: MyQotAccountSettingsRouterInterface) {
@@ -27,14 +25,12 @@ final class MyQotAccountSettingsInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 }
 
 // MARK: - MyQotAccountSettingsInteractorInterface
-
 extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterface {
 
     func userProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
@@ -61,13 +57,7 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         }
     }
 
-    func genderText(_ completion: @escaping(String) -> Void) {
-        worker.genderText { (text) in
-            completion(text)
-        }
-    }
-
-    func dateOfBirthText(_ completion: @escaping(String) -> Void) {
+    func userAgeText(_ completion: @escaping(String) -> Void) {
         worker.dateOfBirthText { (text) in
             completion(text)
         }

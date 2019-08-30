@@ -4578,12 +4578,12 @@
 			isa = PBXGroup;
 			children = (
 				5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */,
-				5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */,
-				5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */,
 				5F57F9F022831768003A9EDF /* MyQotAccountSettingsInteractor.swift */,
 				5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */,
+				5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */,
 				5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */,
 				5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */,
+				5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";

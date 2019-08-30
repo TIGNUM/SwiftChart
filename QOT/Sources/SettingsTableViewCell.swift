@@ -70,9 +70,9 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupControlCell(title: title, source: source, isOn: enabled)
             setupControls(isSyncFinished: isSyncFinished)
-        case .datePicker(let title, let selectedDate, let settingsType):
+        case .datePicker(let title, let selectedYear, let settingsType):
             self.settingsType = settingsType
-            setupDateCell(title: title, selectedDate: selectedDate, settingsType: settingsType)
+            setupDateCell(title: title, selectedYear: selectedYear, settingsType: settingsType)
         case .label(let title, let value, let settingsType):
             if settingsType == .dateOfBirth,
                 settingsType == .height,
@@ -143,9 +143,8 @@ private extension SettingsTableViewCell {
         setValue(value: source, alignment: .left)
     }
 
-    func setupDateCell(title: String, selectedDate: Date, settingsType: SettingsType) {
-        let date = DateFormatter.settingsUser.string(from: selectedDate)
-        setupTextFieldCell(title: title, value: date, settingsType: settingsType)
+    func setupDateCell(title: String, selectedYear: String, settingsType: SettingsType) {
+        setupTextFieldCell(title: title, value: selectedYear, settingsType: settingsType)
     }
 
     func setupLabelCell(title: String, value: String?) {

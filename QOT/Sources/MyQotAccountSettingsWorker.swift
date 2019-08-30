@@ -84,14 +84,8 @@ extension MyQotAccountSettingsWorker {
         }
     }
 
-    func genderText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.gender.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
-    }
-
     func dateOfBirthText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.dateOfBirth.predicate) {(contentItem) in
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.yearOfBirth.predicate) {(contentItem) in
             completion(contentItem?.valueText ?? "")
         }
     }

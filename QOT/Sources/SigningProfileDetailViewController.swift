@@ -48,7 +48,7 @@ final class SigningProfileDetailViewController: AbstractFormViewController {
     }
 
     @objc func didSelectDateOfBirth(_ date: Date) {
-        let dateOfBirth = DateFormatter.settingsUser.string(from: date)
+        let dateOfBirth = DateFormatter.yyyyMMdd.string(from: date)
         self.interactor?.updateWorkerValue(for: .dateOfBirth(dateOfBirth))
         self.dateOfBirthFormView?.configure(formType: .dateOfBirth(dateOfBirth))
         self.endEditing()

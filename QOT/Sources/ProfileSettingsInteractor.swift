@@ -67,8 +67,8 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
         }
     }
 
-    func updateUser(_ profile: QDMUser) {
-        worker.update(user: profile)
+    func updateUser(_ profile: QDMUser, _ completion: @escaping () -> Void) {
+        worker.update(user: profile, completion)
     }
 
     func numberOfSections() -> Int {
