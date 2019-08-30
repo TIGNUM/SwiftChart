@@ -16,7 +16,10 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var lowerValueLabel: UILabel!
     @IBOutlet private weak var noDataLabel: UILabel!
     @IBOutlet private weak var chartViewBottomConstraint: NSLayoutConstraint!
-    private var pointViews: [UIView] = []
+    private var addedViews: [UIView] = []
+    private let largePointSize: CGFloat = 10.0
+    private let normalPointSize: CGFloat = 5.0
+    private let largeGraphWidth: CGFloat = 4.0
 
     // MARK: Lifecycle
 
@@ -41,7 +44,8 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.maxY = Double(maxString)
         chartView.minX = 0
         chartView.maxX = 6
-
+        chartView.showYGridDashed = false
+        chartView.showXGridDashed = false
         chartView.showXLabelsAndGrid = false
         chartView.showYLabelsAndGrid = true
     }
@@ -52,10 +56,10 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: Public
 
-    func configure(withModels: [Date: MyDataDailyCheckInModel], selectionModel: MyDataSelectionModel, average: Double = 70) {
+    func configure(withModels: [Date: MyDataDailyCheckInModel], selectionModel: MyDataSelectionModel) {
         //initial reset after reuse
         chartView.removeAllSeries()
-        for view in pointViews {
+        for view in addedViews {
             view.removeFromSuperview()
         }
         let hasData: Bool = withModels.count > 0
@@ -66,7 +70,9 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         guard let firstModelDate = withModels.first?.key else {
             return
         }
-        chartView.yLabels = [0, average/2, average, 100]
+        let average = withModels.first?.value.averageUsersImpactReadiness ?? 70
+        let futureLoad = withModels.first?.value.tenDaysFutureLoad
+        chartView.yLabels = [33, 67]
         //chartSeries creation
         var sqlData: [(x: Double, y: Double)] = []
         var sqnData: [(x: Double, y: Double)] = []
@@ -75,6 +81,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         var fiveDRLdata: [(x: Double, y: Double)] = []
         var fiveDIRdata: [(x: Double, y: Double)] = []
         var irData: [(x: Double, y: Double)] = []
+        var averageData: [(x: Double, y: Double)] = []
         let datesOfCurrentWeek = datesOfTheWeek(thatContains: firstModelDate)
         for (index, day) in datesOfCurrentWeek.enumerated() {
             if let model = withModels[day] {
@@ -93,13 +100,14 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 for noDataView in noDataViewsCollection where noDataView.tag == index {
                     noDataView.alpha = 1.0
                 }
-                irData.append((x: Double(index), y: average))
             }
+            averageData.append((x: Double(index), y: average))
         }
-        let SQL = ChartSeries(data: sqlData)
-        SQL.color = .sleepQuality
-        let SQN = ChartSeries(data: sqnData)
-        SQN.color = .sleepQuantity
+
+        let sql = ChartSeries(data: sqlData)
+        sql.color = .sleepQuality
+        let sqn = ChartSeries(data: sqnData)
+        sqn.color = .sleepQuantity
         let tenDL = ChartSeries(data: tenDLdata)
         tenDL.color = .tenDayLoad
         let fiveDRR = ChartSeries(data: fiveDRRdata)
@@ -108,9 +116,13 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         fiveDRL.color = .fiveDayLoad
         let fiveDIR = ChartSeries(data: fiveDIRdata)
         fiveDIR.color = .fiveDayImpactReadiness
-        let IR = ChartSeries(data: irData)
-        IR.color = .sand
-        IR.width = 4.0
+        let ir = ChartSeries(data: irData)
+        ir.color = .sand
+        ir.width = largeGraphWidth
+        let averageSeries = ChartSeries(data: averageData)
+        averageSeries.color = .sand40
+        averageSeries.dashed = true
+
         //HERE handle single points drawing (i.e. first use case)
         drawRectangles(forIsolatedPoints: findIsolatedValues(inModels: withModels))
         //selected chart display logic
@@ -124,15 +136,34 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 chartView.add(fiveDRR)
             case .tenDL:
                 chartView.add(tenDL)
+                if let tenDayFutureLoad = futureLoad,
+                   tenDLdata.count < 7 && tenDLdata.count > 0,
+                   let lastValue = tenDLdata.last {
+                   let futureData: [(x: Double, y: Double)] = [(x: lastValue.x, y: lastValue.y), (x: Double(6), y: Double(tenDayFutureLoad))]
+                   let futureSeries = ChartSeries(data: futureData)
+                    futureSeries.color = .tenDayLoad
+                    futureSeries.dashed = true
+                    chartView.add(futureSeries)
+                }
             case .SQN:
-                chartView.add(SQN)
+                chartView.add(sqn)
             case .SQL:
-                chartView.add(SQL)
+                chartView.add(sql)
             default:
                 break
             }
         }
-        chartView.add(IR)
+        chartView.add(ir)
+        chartView.add(averageSeries)
+        let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+        irAverageLabel.text = "IR Average"
+        irAverageLabel.font = .sfProtextSemibold(ofSize: 12)
+        irAverageLabel.textColor = .sand40
+        addSubview(irAverageLabel)
+        addedViews.append(irAverageLabel)
+        for view in noDataViewsCollection where view.tag == 1 {
+            createPositionConstraints(forView: irAverageLabel, and: view, with: calculateBottomConstraintDifference(for: average) - 10.0, centeredCompensation: false)
+        }
     }
 
     func datesOfTheWeek(thatContains date: Date) -> [Date] {
@@ -186,12 +217,13 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                     pointView.backgroundColor = MyDataExplanationModel.color(for: parameter)
                     addSubview(pointView)
                     bringSubview(toFront: pointView)
-                    pointViews.append(pointView)
+                    addedViews.append(pointView)
                     var alignmentView: UIImageView = UIImageView()
                     for view in noDataViewsCollection where view.tag == Int(point.x) {
                         alignmentView = view
                     }
-                    let width: CGFloat = parameter == .IR ? 10.0 : 5.0
+                    let width: CGFloat = parameter == .IR ? largePointSize: normalPointSize
+                    pointView.frame = CGRect(x: 0, y: 0, width: width, height: width)
                     createPositionConstraints(for: pointView,
                                               andPointViewWidth: width,
                                               and: alignmentView,
@@ -220,21 +252,29 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                       attribute: .notAnAttribute,
                                                       multiplier: 1,
                                                       constant: width)
-        let leadingConstraint = NSLayoutConstraint.init(item: pointView,
+        pointView.addConstraints([heightConstraint, widthConstraint])
+        createPositionConstraints(forView: pointView, and: alignmentView, with: bottomConstant, centeredCompensation: true)
+    }
+
+    func createPositionConstraints(forView: UIView,
+                                   and alignmentView: UIView,
+                                   with bottomConstant: CGFloat,
+                                   centeredCompensation: Bool) {
+        forView.translatesAutoresizingMaskIntoConstraints = false
+        let leadingConstraint = NSLayoutConstraint.init(item: forView,
                                                         attribute: .leading,
                                                         relatedBy: .equal,
                                                         toItem: alignmentView,
                                                         attribute: .leading,
                                                         multiplier: 1,
-                                                        constant: -(width / 2))
-        let bottomConstraint = NSLayoutConstraint.init(item: pointView,
+                                                        constant: centeredCompensation ? -(forView.frame.size.width / 2) : 0)
+        let bottomConstraint = NSLayoutConstraint.init(item: forView,
                                                        attribute: .bottom,
                                                        relatedBy: .equal,
                                                        toItem: self,
                                                        attribute: .bottom,
                                                        multiplier: 1,
-                                                       constant: bottomConstant + (width / 2))
-        pointView.addConstraints([heightConstraint, widthConstraint])
+                                                       constant: centeredCompensation ? bottomConstant + (forView.frame.size.height / 2) : bottomConstant)
         self.addConstraints([leadingConstraint, bottomConstraint])
     }
 

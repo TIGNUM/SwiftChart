@@ -29,6 +29,7 @@ struct MyDataDailyCheckInModel: Codable {
     var tenDayLoad: Double?
     var fiveDayImpactReadiness: Double?
     var averageUsersImpactReadiness: Double?
+    var tenDaysFutureLoad: Double? // max 10
 
     init(withDailyCheckInResult: QDMDailyCheckInResult) {
         date = withDailyCheckInResult.date
