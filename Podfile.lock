@@ -101,7 +101,7 @@ CHECKOUT OPTIONS:
     :commit: 0a872235de6567d61f7529750abbde5c0a462d06
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
-    :commit: 74be1bf61d50fb62c968b144236655e1b56754c0
+    :commit: 228938d695960e60dcb2df1d55fc687d5be7f4d6
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 SPEC CHECKSUMS:
