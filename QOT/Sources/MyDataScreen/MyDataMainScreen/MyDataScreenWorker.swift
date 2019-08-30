@@ -21,6 +21,7 @@ final class MyDataScreenWorker {
     var selectedHeatMapMode: HeatMapMode = .dailyIR
     var graphFirstWeekdaysDatasource: [Date] = []
     var impactReadinessDatasource: [Date: MyDataDailyCheckInModel] = [:]
+    var visibleGraphHasData: Bool = false
 
     // MARK: - Init
 

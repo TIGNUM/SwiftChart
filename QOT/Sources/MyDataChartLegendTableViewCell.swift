@@ -29,7 +29,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     }
 
     func configure(selectionModel: MyDataSelectionModel?) {
-        var attributedString: NSMutableAttributedString = NSMutableAttributedString()
+        let attributedString: NSMutableAttributedString = NSMutableAttributedString()
         guard let model = selectionModel else {
             label.attributedText = attributedString
             return

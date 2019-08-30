@@ -18,10 +18,9 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
             self.setupForSelected(selected: showSelected)
         }
     }
-/*
-func configure(forExplanationItem: MyDataExplanationModel.ExplanationItem?) {
- */
+
     func configure(forSelectionItem: MyDataSelectionModel.SelectionItem?) {
+        self.selectionStyle = .none
         guard let selectionItem = forSelectionItem,
               let title = selectionItem.title else {
             return

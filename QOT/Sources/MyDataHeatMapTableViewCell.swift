@@ -39,7 +39,7 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Private
 
     // MARK: Helpers
-    func setupCalendarView() {
+    private func setupCalendarView() {
         let startDateForCalendar = Date()
         //general setup of CalendarView
         self.calendarView.registerDequeueable(MyDataHeatMapDateCell.self)

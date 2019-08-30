@@ -9,8 +9,9 @@
 import Foundation
 
 final class MyDataHeatMapDetailView: UIView {
-    let animationTimeInterval = 0.2
-    let backgroundAlphaValue: CGFloat = 1.0
+    private let animationTimeInterval = 0.2
+    private let backgroundAlphaValue: CGFloat = 1.0
+
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
 

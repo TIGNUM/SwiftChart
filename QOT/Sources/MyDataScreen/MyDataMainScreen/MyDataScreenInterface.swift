@@ -34,7 +34,7 @@ protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSou
     func initialDataSelectionSections() -> MyDataSelectionModel
     func setOldestAvailableDate(date: Date)
     func getFirstLoad() -> Bool
-    func setFirstLoad(firstLoad: Bool)
+    func getVisibleGraphHasData() -> Bool
     func getFirstWeekdaysDatasource() -> [Date]
     func getDailyResults(around date: Date,
                          withMonthsBefore: Int,

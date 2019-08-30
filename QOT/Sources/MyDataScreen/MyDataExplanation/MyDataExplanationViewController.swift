@@ -63,11 +63,6 @@ private extension MyDataExplanationViewController {
     }
 }
 
-// MARK: - Actions
-private extension MyDataExplanationViewController {
-
-}
-
 // MARK: - MyDataExplanationViewControllerInterface
 extension MyDataExplanationViewController: MyDataExplanationViewControllerInterface {
     func setupView() {

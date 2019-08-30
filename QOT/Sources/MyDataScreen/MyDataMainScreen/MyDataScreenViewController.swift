@@ -23,11 +23,21 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
     // MARK: - Properties
     var interactor: MyDataScreenInteractorInterface?
     var router: MyDataScreenRouterInterface?
-    @IBOutlet private weak var tableView: UITableView!
     private var myDataScreenModel: MyDataScreenModel?
+    @IBOutlet private weak var tableView: UITableView!
+
+    //HeatMap properties
     private lazy var heatMapDetailView = R.nib.myDataHeatMapDetailView.firstView(owner: self)
-    let calendarPanGestureRecognizer = UIPanGestureRecognizer.init(target: self,
+    private let calendarPanGestureRecognizer = UIPanGestureRecognizer.init(target: self,
                                                                    action: #selector(didPanOrLongPressCalendarView(gesture:)))
+    //Graph helper views and constants
+    private var chartSnapshot = UIImageView.init(frame: .zero)
+    private var originalCenter: CGPoint?
+    private var isZooming = false
+    private let zoomBackAnimationDuration = 0.3
+    private let maxZoomScale: CGFloat = 5.0
+    private let minZoomScale: CGFloat = 1.0
+    private let scaleStepForTableViewAlpha: CGFloat = 1.5
 
     // MARK: - Init
     init(configure: Configurator<MyDataScreenViewController>) {
@@ -45,7 +55,8 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         initialSetupForHeatMapDetailView()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myDataGraph, .twoLinesAndTag])
+        showLoadingSkeleton(with: [.oneLineHeading, .myDataGraph, .twoLinesAndTag])
+        setupZoomingGestureRecognizers()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -147,8 +158,104 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
 }
-// MARK: Custom Delegates
+
+extension MyDataScreenViewController: UIGestureRecognizerDelegate {
+
+    // MARK: Pinch to zoom and pan functionality
+
+    func setupZoomingGestureRecognizers() {
+        let pinch = UIPinchGestureRecognizer(target: self, action: #selector(pinch(sender:)))
+        pinch.delegate = self
+        view.addGestureRecognizer(pinch)
+        let pan = UIPanGestureRecognizer(target: self, action: #selector(pan(sender:)))
+        pan.delegate = self
+        view.addGestureRecognizer(pan)
+        self.chartSnapshot.isUserInteractionEnabled = false
+    }
+
+    @objc func pinch(sender: UIPinchGestureRecognizer) {
+        guard let chartCell = getChartCell() else {
+            return
+        }
+        let location = sender.location(in: tableView)
+        if tableView.indexPathForRow(at: location) != IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0) ||
+            !(interactor?.getVisibleGraphHasData() ?? false) {
+            return
+        }
+        switch sender.state {
+        case .began:
+            chartSnapshot.image = chartCell.takeSnapshot()
+            chartSnapshot.backgroundColor = ThemeView.level2.color
+            chartSnapshot.frame = tableView.convert(chartCell.frame, to: view)
+            view.addSubview(chartSnapshot)
+            self.originalCenter = chartSnapshot.center
+            isZooming = true
+            setupInteractionFor(zooming: isZooming)
+        case .changed:
+            let currentScale = self.chartSnapshot.frame.size.width / self.chartSnapshot.bounds.size.width
+            var newScale = currentScale * sender.scale
+            if newScale < minZoomScale {
+                newScale = minZoomScale
+            }
+            if newScale > maxZoomScale {
+                newScale = maxZoomScale
+            }
+            tableView.alpha = scaleStepForTableViewAlpha - newScale
+            let transform = CGAffineTransform(scaleX: newScale, y: newScale)
+            self.chartSnapshot.transform = transform
+            sender.scale = 1
+        default:
+            guard let center = self.originalCenter else { return }
+            self.isZooming = false
+            setupInteractionFor(zooming: isZooming)
+            performZoomBackAnimation(forOriginalCenter: center)
+        }
+    }
+
+    @objc func pan(sender: UIPanGestureRecognizer) {
+        if self.isZooming && sender.state == .began {
+            self.originalCenter = chartSnapshot.center
+        } else if self.isZooming && sender.state == .changed {
+            let translation = sender.translation(in: self.view)
+                chartSnapshot.center = CGPoint(x: chartSnapshot.center.x + translation.x,
+                                               y: chartSnapshot.center.y + translation.y)
+            sender.setTranslation(CGPoint.zero, in: chartSnapshot.superview)
+        } else if self.isZooming && (sender.state == .ended || sender.state == .failed || sender.state == .cancelled) {
+            guard let center = self.originalCenter else { return }
+            self.isZooming = false
+            setupInteractionFor(zooming: isZooming)
+            performZoomBackAnimation(forOriginalCenter: center)
+        }
+    }
+
+    // MARK: Gesture recognizer Delegate
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    // MARK: Gesture recognizer Helpers
+
+    func performZoomBackAnimation(forOriginalCenter: CGPoint) {
+        UIView.animate(withDuration: zoomBackAnimationDuration, animations: { [weak self] in
+            self?.chartSnapshot.transform = CGAffineTransform.identity
+            self?.chartSnapshot.center = forOriginalCenter
+            self?.tableView.alpha = 1.0
+            }, completion: { [weak self] _ in
+                self?.chartSnapshot.removeFromSuperview()
+        })
+    }
+
+    func setupInteractionFor(zooming: Bool) {
+        tableView.isScrollEnabled = !zooming
+        getChartCell()?.graphCollectionView.isScrollEnabled = !zooming
+    }
+}
+
 extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataChartLegendTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
+
+    // MARK: Custom Delegates
+
     func didTapAddButton() {
         router?.presentMyDataSelection()
     }

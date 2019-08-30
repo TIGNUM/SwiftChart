@@ -273,3 +273,18 @@ extension UIView {
         layer.addSublayer(gradient)
     }
 }
+
+extension UIView {
+
+    func takeSnapshot() -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(self.bounds.size, false, UIScreen.main.scale)
+        drawHierarchy(in: self.bounds, afterScreenUpdates: true)
+
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        if (image != nil) {
+            return image!
+        }
+        return UIImage()
+    }
+}

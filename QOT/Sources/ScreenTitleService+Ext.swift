@@ -209,6 +209,10 @@ extension ScreenTitleService {
             return localizedString(for: .myDataHeatmapSectionSubtitle)
         }
     }
+
+    func myDataGraphNoDataTitle() -> String? {
+        return localizedString(for: .myDataNoDataGraphTitle)
+    }
 }
 
 extension ScreenTitleService {

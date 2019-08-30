@@ -18,7 +18,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
     weak var delegate: MyDataInfoTableViewCellDelegate?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
-    let infoText = " ⓘ"
+    private let infoText = " ⓘ"
 
     func configure(title: String?, subtitle: String?) {
         guard let title = title, let subtitle = subtitle else {
@@ -40,7 +40,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
     }
 
     // MARK: Add the circle info charcter with tap action
-    func addInfoLink() {
+    private func addInfoLink() {
         guard let subtitle = subtitleLabel.attributedText else {
             return
         }
@@ -58,7 +58,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         subtitleLabel.attributedText = subtitleMutable
     }
 
-    @objc func handleInfoTapped(gesture: UITapGestureRecognizer) {
+    @objc private func handleInfoTapped(gesture: UITapGestureRecognizer) {
         guard let subtitleString = subtitleLabel.text else {
             return
         }
@@ -73,7 +73,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         }
     }
 
-    func checkRange(_ range: NSRange, contain index: Int) -> Bool {
+    private func checkRange(_ range: NSRange, contain index: Int) -> Bool {
         return index > range.location && index < range.location + range.length
     }
 }

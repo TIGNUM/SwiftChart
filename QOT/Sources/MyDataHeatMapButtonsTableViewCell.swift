@@ -22,7 +22,7 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
     @IBOutlet weak var dailyIRButton: UIButton!
     @IBOutlet weak var fiveDaysRollingIRButton: UIButton!
     @IBOutlet var allButtons: [UIButton]!
-    var heatMapMode: HeatMapMode = .dailyIR
+    private var heatMapMode: HeatMapMode = .dailyIR
 
     weak var delegate: MyDataHeatMapButtonsTableViewCellDelegate?
 
@@ -35,7 +35,7 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: UI Setup
 
-    func setupButtons() {
+    private func setupButtons() {
         dailyIRButton.layer.cornerRadius = 20.0
         dailyIRButton.layer.borderWidth = 1.0
         dailyIRButton.layer.borderColor = UIColor.accent40.cgColor

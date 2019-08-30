@@ -78,8 +78,8 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
         return worker.graphFirstWeekdaysDatasource
     }
 
-    func setFirstLoad(firstLoad: Bool) {
-        worker.firstLoad = firstLoad
+    func getVisibleGraphHasData() -> Bool {
+        return worker.visibleGraphHasData
     }
 
     func getFirstLoad() -> Bool {
@@ -206,12 +206,10 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
 
 extension MyDataScreenInteractor: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let collectionView = scrollView as? UICollectionView {
-            let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
-            let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
-            if let visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) {
+        if let collectionView = scrollView as? UICollectionView,
+           let visibleIndexPath = visibleIndexPath(for: collectionView) {
                 updateGraphHeader(forIndexPath: visibleIndexPath)
-            }
+                worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
         }
     }
 
@@ -221,6 +219,8 @@ extension MyDataScreenInteractor: UICollectionViewDelegate {
         presenter.updateHeaderDateLabel(forSection: .dailyImpact, withFirstDay: firstDay, andLastDay: lastDay)
     }
 
+    // MARK: Helpers
+
     func datesOfTheWeek(forIndexPath: IndexPath) -> [Date] {
         var dates: [Date] = []
         let firstDay = worker.graphFirstWeekdaysDatasource[forIndexPath.row]
@@ -229,19 +229,34 @@ extension MyDataScreenInteractor: UICollectionViewDelegate {
         }
         return dates
     }
-}
 
-extension MyDataScreenInteractor: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: MyDataChartCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+    func modelsFor(indexPath: IndexPath) -> [Date: MyDataDailyCheckInModel] {
         var existingModelsForDisplayedDates: [Date: MyDataDailyCheckInModel] = [:]
         for date in datesOfTheWeek(forIndexPath: indexPath) {
             if let model = worker.impactReadinessDatasource[date] {
                 existingModelsForDisplayedDates[date] = model
             }
         }
-        cell.configure(withModels: existingModelsForDisplayedDates,
+        return existingModelsForDisplayedDates
+    }
+
+    func visibleIndexPath(for collectionView: UICollectionView) -> IndexPath? {
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        return collectionView.indexPathForItem(at: visiblePoint)
+    }
+}
+
+extension MyDataScreenInteractor: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: MyDataChartCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(withModels: modelsFor(indexPath: indexPath),
                        selectionModel: worker.myDataSelectionSections())
+        if let visibleIndexPath = visibleIndexPath(for: collectionView),
+           visibleIndexPath == indexPath {
+            updateGraphHeader(forIndexPath: visibleIndexPath)
+            worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
+        }
         return cell
     }
 

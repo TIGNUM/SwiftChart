@@ -14,11 +14,11 @@ class MyDataBaseTableViewCollectionViewCell: MyDataBaseTableViewCell {
 
     // MARK: - Public
 
-    public func setMonthAndYear(text: String) {
+    func setMonthAndYear(text: String) {
         self.monthYearLabel.text = text
     }
 
-    public func showTodaysWeekdayLabel(asHighlighted: Bool) {
+    func showTodaysWeekdayLabel(asHighlighted: Bool) {
         if asHighlighted {
             let weekday = (Calendar.current.component(.weekday, from: Date()) - (Calendar.current.firstWeekday - 1))
             for label in self.weekDaysLabelsCollection {

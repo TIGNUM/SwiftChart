@@ -98,7 +98,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 85e4731c796a6738b9e9d0cb79910bc1b8e0eceb
+    :commit: 8fbc69174d4fa7599b70f4f1154d6bac4fd39e23
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: 74be1bf61d50fb62c968b144236655e1b56754c0

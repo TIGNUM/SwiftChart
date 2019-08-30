@@ -15,11 +15,12 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
     @IBOutlet weak var collectionViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackViewLeadingConstraint: NSLayoutConstraint!
+
     let screenWidth = UIScreen.main.bounds.width
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setupGraphCollectionView()
+        setupGraphCollectionView()
     }
 
     override func prepareForReuse() {
@@ -41,7 +42,7 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
     }
 
     // MARK: - Private
-    func setupGraphCollectionView() {
+    private func setupGraphCollectionView() {
         //general setup of GraphCollectionView
         let collectionViewWidth = screenWidth - (collectionViewLeadingConstraint.constant + collectionViewTrailingConstraint.constant)
         let height = self.graphCollectionView.frame.size.height

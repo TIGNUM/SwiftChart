@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftChart
+import qot_dal
 
 final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var graphView: UIView!
@@ -17,12 +18,17 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var lowerValueLabel: UILabel!
     @IBOutlet weak var noDataLabel: UILabel!
 
+    // MARK: Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
         setupChart()
+        setupView()
     }
 
-    func setupChart() {
+    // MARK: Private
+
+    private func setupChart() {
         chartView.axesColor = .sand20
         chartView.gridColor = .sand20
         chartView.labelColor = .clear
@@ -32,11 +38,26 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         let maxString = upperValueLabel.text ?? "100"
         let minString = lowerValueLabel.text ?? "0"
         chartView.maxY = Double(maxString)
-        chartView.minX = Double(minString) 
+        chartView.minX = Double(minString)
         chartView.maxX = 6
         chartView.showXLabelsAndGrid = false
         chartView.showYLabelsAndGrid = true
     }
+
+    private func setupView() {
+        ThemeText.sectionHeader.apply(ScreenTitleService.main.myDataGraphNoDataTitle(), to: noDataLabel)
+    }
+
+    private func datesOfTheWeek(thatContains date: Date) -> [Date] {
+        var dates: [Date] = []
+        let firstDay = date.firstDayOfWeek()
+        for dayIndex in 0...6 {
+            dates.append(firstDay.dateAfterDays(dayIndex))
+        }
+        return dates
+    }
+
+    // MARK: Public
 
     func configure(withModels: [Date: MyDataDailyCheckInModel], selectionModel: MyDataSelectionModel, average: Double = 70) {
 
@@ -123,14 +144,5 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
             }
         }
         chartView.add(IR)
-    }
-    
-    func datesOfTheWeek(thatContains date: Date) -> [Date] {
-        var dates: [Date] = []
-        let firstDay = date.firstDayOfWeek()
-        for dayIndex in 0...6 {
-            dates.append(firstDay.dateAfterDays(dayIndex))
-        }
-        return dates
     }
 }

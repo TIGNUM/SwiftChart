@@ -91,11 +91,6 @@ private extension MyDataSelectionViewController {
     }
 }
 
-// MARK: - Actions
-private extension MyDataSelectionViewController {
-
-}
-
 // MARK: - MyDataSelectionViewControllerInterface
 extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface {
     func setupView() {
