@@ -54,7 +54,7 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
 
     func updateLabel() {
         ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
-        ThemeText.articleTitleNotScaled.apply(media?.title, to: titleLabel)
+        ThemeText.articleTitleNotScaled.apply((media?.title ?? "").uppercased(), to: titleLabel)
     }
 
     func updatePlayButton(_ isPlaying: Bool) {

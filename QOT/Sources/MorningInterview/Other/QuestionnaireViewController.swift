@@ -202,7 +202,9 @@ extension QuestionnaireViewController {
             topConstraint.constant = 50
             labelCustomizeView.isHidden = false
             customizeTargetTitle.isHidden = false
-            view.backgroundColor = .carbon
+            ThemeText.tbvVisionHeader.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
+            ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
+            ThemeView.level3.apply(view)
         default:
             return
         }

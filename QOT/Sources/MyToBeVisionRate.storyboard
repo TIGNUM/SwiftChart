@@ -103,6 +103,8 @@
                         <viewLayoutGuide key="safeArea" id="9iU-sJ-8VM"/>
                     </view>
                     <connections>
+                        <outlet property="dontShowAgainLabel" destination="b5O-gB-HAb" id="Z20-EC-Ba0"/>
+                        <outlet property="readyToStartLabel" destination="bR8-PS-ciW" id="ODO-4Q-dHz"/>
                         <outlet property="skipSwitch" destination="aWW-rs-ffL" id="xXW-1u-J9l"/>
                         <outlet property="topCounterLabel" destination="ktH-bK-bnQ" id="ne8-mD-IKS"/>
                     </connections>

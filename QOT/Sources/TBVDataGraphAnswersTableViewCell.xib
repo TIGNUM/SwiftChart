@@ -160,6 +160,7 @@
                 <outlet property="firstDot" destination="tfB-S7-2qz" id="smV-6l-MNc"/>
                 <outlet property="firstRating" destination="xyO-3k-rCc" id="Z2y-jB-WRQ"/>
                 <outlet property="firstRatingContainerView" destination="h1d-0U-QHv" id="vkv-Yp-Ycd"/>
+                <outlet property="lastRatingLabel" destination="IeS-oz-Y6f" id="ySA-Sz-eF5"/>
                 <outlet property="secondDot" destination="2RE-Lm-IM1" id="7yA-2D-h3I"/>
                 <outlet property="secondRating" destination="Uff-jI-lDc" id="Jd7-e9-xCd"/>
                 <outlet property="secondRatingContainerView" destination="4sh-OP-IPm" id="MKN-GN-AWx"/>

@@ -17,7 +17,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
     @IBOutlet private weak var bottomSeperator: UIView!
 
     func configure(categoryTitle: String, viewCount: Int, itemCount: Int) {
-        ThemeText.performanceStaticTitle.apply("PERFORMANCE", to: performanceLabel)
+        ThemeText.performanceStaticTitle.apply(R.string.localized.strategyPerformanceTitle(), to: performanceLabel)
         let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
         ThemeText.linkMenuItem.apply(title.uppercased(), to: categoryTitleLabel)
         let progress = String(format: "%d Seen of %d", viewCount, itemCount)

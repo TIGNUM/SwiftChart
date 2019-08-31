@@ -17,6 +17,8 @@ final class MyToBeVisionCountDownViewController: UIViewController, ScreenZLevel3
 
     @IBOutlet weak var skipSwitch: UISwitch!
     @IBOutlet weak var topCounterLabel: UILabel!
+    @IBOutlet weak var readyToStartLabel: UILabel!
+    @IBOutlet weak var dontShowAgainLabel: UILabel!
 
     var interactor: MyToBeVisionCountDownInteractorInterface?
 
@@ -40,7 +42,10 @@ final class MyToBeVisionCountDownViewController: UIViewController, ScreenZLevel3
 extension MyToBeVisionCountDownViewController: MyToBeVisionCountDownViewControllerInterface {
 
     func setupView(with timerValue: String) {
-        topCounterLabel.text = timerValue
+        ThemeView.level3.apply(view)
+        ThemeText.tbvBody.apply(R.string.localized.tbvCounterReady(), to: readyToStartLabel)
+        ThemeText.tbvBody.apply(R.string.localized.tbvCounterDontShow(), to: dontShowAgainLabel)
+        ThemeText.tvbCounter.apply(timerValue, to: topCounterLabel)
         setupSkipSwitch()
         startTimer()
     }
@@ -50,7 +55,7 @@ extension MyToBeVisionCountDownViewController: MyToBeVisionCountDownViewControll
             invalidateTimer()
             interactor?.shouldSkip()
         }
-        topCounterLabel.text = value
+        ThemeText.tvbCounter.apply(value, to: topCounterLabel)
         startAnimating()
     }
 }

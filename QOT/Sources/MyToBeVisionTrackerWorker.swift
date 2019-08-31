@@ -158,22 +158,4 @@ final class MyToBeVisionTrackerWorker {
             self?.dispatchGroup.leave()
         }
     }
-
-    func formattedHeaderView(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title.uppercased(),
-                                  letterSpacing: 0.4,
-                                  font: .sfProDisplayLight(ofSize: 24),
-                                  lineSpacing: 7,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
-    }
-
-    func formattedSubHeading(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title,
-                                  letterSpacing: 0.2,
-                                  font: .sfProtextLight(ofSize: 16) ,
-                                  lineSpacing: 3,
-                                  textColor: .sand70,
-                                  lineBreakMode: .byTruncatingTail)
-    }
 }

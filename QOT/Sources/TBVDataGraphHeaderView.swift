@@ -12,7 +12,7 @@ final class TBVDataGraphHeaderView: UITableViewHeaderFooterView, Dequeueable {
 
     @IBOutlet private weak var title: UILabel!
 
-    func configure(title: NSAttributedString?) {
-        self.title.attributedText = title
+    func configure(title: String) {
+        ThemeText.tbvTrackerHeader.apply(title.uppercased(), to: self.title)
     }
 }

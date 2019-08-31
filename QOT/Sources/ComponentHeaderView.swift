@@ -19,8 +19,8 @@ class ComponentHeaderView: UICollectionReusableView {
         guard let title = title, let subtitle = subtitle else { return }
 
         let theme = secondary ? ThemeView.level1Secondary : ThemeView.level1
-        ThemeText.strategyHeader.apply(title, to: titleLabel)
+        ThemeText.strategyHeader.apply(title.uppercased(), to: titleLabel)
         ThemeText.strategySubHeader.apply(subtitle, to: subtitleLabel)
-        ThemeView.level1.apply(self)
+        theme.apply(self)
     }
 }

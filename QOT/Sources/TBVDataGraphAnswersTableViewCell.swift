@@ -11,14 +11,15 @@ import UIKit
 final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var answerLabel: UILabel!
-    @IBOutlet private weak var thirdRatingContainerView: UIView!
-    @IBOutlet private weak var secondRatingContainerView: UIView!
+    @IBOutlet private weak var lastRatingLabel: UILabel!
     @IBOutlet private weak var firstRatingContainerView: UIView!
-    @IBOutlet private weak var thirdRating: UILabel!
-    @IBOutlet private weak var secondRating: UILabel!
+    @IBOutlet private weak var secondRatingContainerView: UIView!
+    @IBOutlet private weak var thirdRatingContainerView: UIView!
     @IBOutlet private weak var firstRating: UILabel!
-    @IBOutlet weak var secondDot: UILabel!
+    @IBOutlet private weak var secondRating: UILabel!
+    @IBOutlet private weak var thirdRating: UILabel!
     @IBOutlet weak var firstDot: UILabel!
+    @IBOutlet weak var secondDot: UILabel!
 
     func configure(answer: MYTBVDataAnswer?) {
         removeAllLayers()
@@ -43,24 +44,18 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         if badRange.contains(firstRate) {
             firstRatingContainerView?.corner(radius: radius, borderColor: .redOrange40)
         }
-        answerLabel.attributedText = formatted(title: answer.answer ?? "")
-        thirdRating.text = thirdRate == 0 ? "-" : String(describing: thirdRate)
-        secondRating.text = secondRate == 0 ? "-" : String(describing: secondRate)
-        firstRating.text = firstRate == 0 ? "-" : String(describing: firstRate)
-        thirdRating.font = fontForRatingNumber(selected: isThirdSelected)
-        secondRating.font = fontForRatingNumber(selected: isSecondSelected)
-        firstRating.font = fontForRatingNumber(selected: isFirstSelected)
-        thirdRating.textColor = textColorForRatingNumber(selected: isThirdSelected)
-        secondRating.textColor = textColorForRatingNumber(selected: isSecondSelected)
-        firstRating.textColor = textColorForRatingNumber(selected: isFirstSelected)
-    }
 
-    func textColorForRatingNumber(selected: Bool) -> UIColor {
-        return selected ? .sand : .sand40
-    }
+        ThemeText.tbvTrackerAnswer.apply(answer.answer, to: answerLabel)
+        ThemeText.tbvTrackerRating.apply(R.string.localized.tbvTrackerLastRating(), to: lastRatingLabel)
 
-    func fontForRatingNumber(selected: Bool) -> UIFont {
-        return selected ? .sfProtextMedium(ofSize: 14) : . sfProtextRegular(ofSize: 14)
+        let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        theme1.apply(firstRate == 0 ? "-" : String(describing: firstRate), to: firstRating)
+
+        let theme2: ThemeText = isSecondSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        theme2.apply(secondRate == 0 ? "-" : String(describing: secondRate), to: secondRating)
+
+        let theme3: ThemeText = isThirdSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        theme3.apply(thirdRate == 0 ? "-" : String(describing: thirdRate), to: thirdRating)
     }
 
     private func setView(for answer: MYTBVDataAnswer?) {
@@ -84,14 +79,5 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         thirdRatingContainerView.corner(radius: 0, borderColor: .clear)
         secondRatingContainerView.corner(radius: 0, borderColor: .clear)
         firstRatingContainerView.corner(radius: 0, borderColor: .clear)
-    }
-
-    private func formatted(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title,
-                                  letterSpacing: 0.2,
-                                  font: .sfProtextLight(ofSize: 16) ,
-                                  lineSpacing: 3,
-                                  textColor: .sand70,
-                                  lineBreakMode: .byTruncatingTail)
     }
 }

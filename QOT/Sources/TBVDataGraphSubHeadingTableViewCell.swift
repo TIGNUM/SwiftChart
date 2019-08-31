@@ -21,38 +21,39 @@ final class TBVDataGraphSubHeadingTableViewCell: UITableViewCell, Dequeueable {
     var callback: ((Bool) -> Void)?
     weak var delegate: TBVDataGraphSubHeadingTableViewCellProtocol?
 
-    var isShowMoreClicked: Bool = false
+    private var isShowMoreClicked: Bool = false
+    private var numberOfLines = 0
 
     @IBAction func showMoreAction(_ sender: Any) {
         isShowMoreClicked = !isShowMoreClicked
         callback?(isShowMoreClicked)
     }
 
-    func configure(subHeading: NSAttributedString?) {
-        title.attributedText = subHeading
-        let numberOflines = title.maxLines(for: .sfProtextLight(ofSize: 16))
-        heightConstraintForView.constant = numberOflines < 4 ? 0 : 60
-        if numberOflines > 3 {
+    func configure(subHeading: String?, isShowMoreClicked: Bool) {
+        self.isShowMoreClicked = isShowMoreClicked
+        ThemeText.tbvTrackerBody.apply(subHeading, to: title)
+        numberOfLines = title.maxLines(for: .sfProtextLight(ofSize: 16))
+        heightConstraintForView.constant = numberOfLines < 4 ? 0 : 60
+        if numberOfLines > 3 {
             if isShowMoreClicked {
                 showLess()
             } else {
                 showMore()
             }
         } else {
-            title.numberOfLines = numberOflines
+            title.numberOfLines = numberOfLines
         }
     }
 
     private func showMore() {
         delegate?.showMore()
-        showMoreLabel.text = "Show more"
+        ThemeText.tbvButton.apply(R.string.localized.tbvShowMore(), to: showMoreLabel)
         title.numberOfLines = 3
     }
 
     private func showLess() {
         delegate?.showLess()
-        showMoreLabel.text = "Show less"
-        let numberOflines = title.maxLines(for: .sfProtextLight(ofSize: 16))
-        title.numberOfLines = numberOflines
+        ThemeText.tbvButton.apply(R.string.localized.tbvShowLess(), to: showMoreLabel)
+        title.numberOfLines = numberOfLines
     }
 }

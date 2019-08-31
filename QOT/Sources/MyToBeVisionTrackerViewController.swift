@@ -18,7 +18,7 @@ final class MyToBeVisionTrackerViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         interactor?.viewDidLoad()
     }
 
@@ -93,9 +93,9 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         case .header:
             let cell: TBVDataGraphSubHeadingTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
-            cell.isShowMoreClicked = viewModel?.subHeading?.isSelected ?? false
-            let subHeading = interactor?.formattedSubHeading(title: viewModel?.subHeading?.title ?? "")
-            cell.configure(subHeading: subHeading)
+            let isShowMoreClicked = viewModel?.subHeading?.isSelected ?? false
+            let subHeading = viewModel?.subHeading?.title ?? ""
+            cell.configure(subHeading: subHeading, isShowMoreClicked: isShowMoreClicked)
             cell.callback = {[weak self] newValue in
                 self?.viewModel?.subHeading?.isSelected = newValue
                 self?.reloadSubHeadingSection()
@@ -133,7 +133,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch MYTBVDataViewModel.Section.allCases[section] {
         case .header:
             let headerView: TBVDataGraphHeaderView = tableView.dequeueHeaderFooter()
-            let title = interactor?.formattedHeaderView(title: viewModel?.title ?? "")
+            let title = viewModel?.title ?? ""
             headerView.configure(title: title)
             return headerView
         case .sentence:

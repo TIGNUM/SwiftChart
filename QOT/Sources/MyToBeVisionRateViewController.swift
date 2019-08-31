@@ -205,6 +205,8 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
     }
 
     func setupView(questions: [RatingQuestionViewModel.Question]) {
+        ThemeView.level3.apply(view)
+        
         self.tracks = questions
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)

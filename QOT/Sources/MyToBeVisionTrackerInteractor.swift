@@ -42,12 +42,4 @@ extension MyToBeVisionTrackerInteractor: MyToBeVisionTrackerInteractorInterface 
             self?.presenter.setupView(with: model)
         }
     }
-
-    func formattedHeaderView(title: String) -> NSAttributedString? {
-        return worker.formattedHeaderView(title: title)
-    }
-
-    func formattedSubHeading(title: String) -> NSAttributedString? {
-        return worker.formattedSubHeading(title: title)
-    }
 }

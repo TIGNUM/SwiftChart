@@ -129,6 +129,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
             vision.modifiedAt = Date()
             vision.profileImageResource = nil
         }
+
         worker.updateMyToBeVision(vision) {[weak self] in
             let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
             self?.presenter.load(vision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)

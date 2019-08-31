@@ -24,6 +24,6 @@ final class StrategyListHeaderView: UIView {
 
     func configure(title: String, theme: ThemeView) {
         theme.apply(self)
-        ThemeText.strategyHeader.apply(title, to: titleLabel)
+        ThemeText.strategyHeader.apply(title.uppercased(), to: titleLabel)
     }
 }

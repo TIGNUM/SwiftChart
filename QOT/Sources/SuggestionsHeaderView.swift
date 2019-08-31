@@ -17,7 +17,7 @@ final class SuggestionsHeaderView: UIView {
     // MARK: - Config
 
     func configure(title: String) {
-        ThemeText.searchSuggestionHeader.apply(title, to: titleLabel)
+        ThemeText.searchSuggestionHeader.apply(title.uppercased(), to: titleLabel)
     }
 
     static func instantiateFromNib() -> SuggestionsHeaderView {

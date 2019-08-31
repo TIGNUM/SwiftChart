@@ -768,3 +768,15 @@
 "TBV.Button.MyTBVData" = "My TBV data";
 "TBV.Button.AutoGenerate" = "Auto generate";
 "TBV.Button.Write" = "Write";
+"TBV.Last.Updated.Comment" = "Since the last update";
+"TBV.Last.Rated.Comment" = "Since you rated yourself";
+"TBV.Counter.Ready" = "Ready to start in";
+"TBV.Counter.Dont.Show" = "Don't show this again";
+"TBV.Show.More" = "Show more";
+"TBV.Show.Less" = "Show less";
+"TBV.Tracker.Last.Rating" = "Your last ratings:";
+"TBV.Customize.Target" = "CUSTOMIZE TARGET";
+"TBV.Customize.Body" = "Customize your benchmark value for your sleep quantity here according to time amount you want to reach.";
+
+"Strategy.Performance.Title" = "PERFORMANCE";
+

@@ -61,7 +61,7 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
         setStatusBar(colorMode: ColorMode.dark)
-        setAllControl(alpha: 1.0)
+        setAllControl(newAlpha: 1.0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -338,13 +338,14 @@ private extension SearchViewController {
         if suggestionsTableView.isHidden == suggestionShouldHide { return }
 
         let alpha: CGFloat = suggestionShouldHide ? 0.0 : 1.0
-        setAllControl(alpha: 1 - alpha)
+        let reverseAlpha = 1 - alpha
+        setAllControl(newAlpha: reverseAlpha)
 
         UIView.animate(withDuration: 0.25, animations: {
             self.suggestionsTableView.alpha = alpha
-            self.tableView.alpha = 1 - alpha
-            self.indicatorView.alpha = 1 - alpha
-            self.segmentedControl.alpha = 1 - alpha
+            self.tableView.alpha = reverseAlpha
+            self.indicatorView.alpha = reverseAlpha
+            self.segmentedControl.alpha = reverseAlpha
         }, completion: { (_) in
             self.suggestionsTableView.isHidden = suggestionShouldHide
             self.tableView.isHidden = !suggestionShouldHide
@@ -353,11 +354,12 @@ private extension SearchViewController {
         })
     }
 
-    func setAllControl(alpha: CGFloat) {
-        suggestionsTableView.alpha = alpha
-        tableView.alpha = 1 - alpha
-        indicatorView.alpha = 1 - alpha
-        segmentedControl.alpha = 1 - alpha
+    func setAllControl(newAlpha: CGFloat) {
+        suggestionsTableView.alpha = newAlpha
+        let reverseAlpha = 1 - newAlpha
+        tableView.alpha = reverseAlpha
+        indicatorView.alpha = reverseAlpha
+        segmentedControl.alpha = reverseAlpha
         suggestionsTableView.isHidden = false
         tableView.isHidden = false
         indicatorView.isHidden = false

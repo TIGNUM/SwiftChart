@@ -19,8 +19,6 @@ protocol MyToBeVisionTrackerPresenterInterface {
 protocol MyToBeVisionTrackerInteractorInterface: Interactor {
     var controllerType: MyToBeVisionTrackerWorker.ControllerType { get }
     func setSelection(for date: Date?) -> MYTBVDataViewModel?
-    func formattedHeaderView(title: String) -> NSAttributedString?
-    func formattedSubHeading(title: String) -> NSAttributedString?
 }
 
 protocol MyToBeVisionTrackerRouterInterface {}

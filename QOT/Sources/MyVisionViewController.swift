@@ -32,7 +32,9 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRateButton: UIButton!
     @IBOutlet private weak var updateButton: UIButton!
     @IBOutlet private weak var lastUpdatedLabel: UILabel!
+    @IBOutlet private weak var lastUpdatedComment: UILabel!
     @IBOutlet private weak var lastRatedLabel: UILabel!
+    @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var topGradientView: UIView!
     @IBOutlet private weak var detailTextView: UITextView!
@@ -130,7 +132,7 @@ private extension MyVisionViewController {
 
 // MARK: - Observer
 private extension MyVisionViewController {
-    func saveToBeVisionImage() {
+    func saveToBeVisionImageAndData() {
         guard var toBeVision = interactor?.myVision else { return }
         toBeVision.modifiedAt = Date()
         interactor?.saveToBeVision(image: tempImage, toBeVision: toBeVision)
@@ -162,23 +164,6 @@ private extension MyVisionViewController {
         UIView.animate(withDuration: 0.5) {
             self.view.layoutIfNeeded()
         }
-    }
-
-    func formatted(headline: String) -> NSAttributedString? {
-        return NSAttributedString(string: headline.uppercased(),
-                                  letterSpacing: 0.2,
-                                  font: .sfProDisplayLight(ofSize: 34) ,
-                                  lineSpacing: 3,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
-    }
-
-    func formatted(vision: String) -> NSAttributedString? {
-        return NSAttributedString(string: vision,
-                                  letterSpacing: 0.5,
-                                  font: .sfProtextRegular(ofSize: 16) ,
-                                  lineSpacing: 10.0,
-                                  textColor: .sand)
     }
 }
 
@@ -234,24 +219,28 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
             interactor?.showNullState(with: interactor?.nullStateTitle ?? "", message: interactor?.nullStateSubtitle ?? "")
             return
         }
-        rateButton.isEnabled = myVision?.remoteID != nil
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
-        headerLabel.attributedText = formatted(headline: myVision?.headline ?? "")
-        detailTextView.attributedText = formatted(vision: myVision?.text ?? "")
+
+        ThemeText.tbvVisionHeader.apply(myVision?.headline, to: headerLabel)
+        detailTextView.attributedText = ThemeText.tbvVision.attributedString(myVision?.text)
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
         userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
-
         imageOverLapView.isHidden = tempImageURL == nil
+
         removeGradients()
         addGradients(for: myVision)
-        lastRatedLabel.text = rateText
+
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
+        ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
+        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
+        ThemeText.datestamp.apply(R.string.localized.tbvLastUpdatedComment(), to: lastUpdatedComment)
+        ThemeText.datestamp.apply(R.string.localized.tbvLastRatedComment(), to: lastRatedComment)
+
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
-        singleMessageRatingLabel.text = rateText
-        lastUpdatedLabel.text = interactor?.lastUpdatedVision()
         singleMessageRatingView.isHidden = !shouldShowSingleMessage
         doubleMessageRatingView.isHidden = shouldShowSingleMessage
         guard let shouldShowWarningIcon = interactor?.shouldShowWarningIcon() else { return }
@@ -301,7 +290,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
     func deleteImage() {
         tempImage = nil
         tempImageURL = nil
-        saveToBeVisionImage()
+        saveToBeVisionImageAndData()
         userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
@@ -315,7 +304,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
         userImageView.image = tempImage
-        saveToBeVisionImage()
+        saveToBeVisionImageAndData()
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }

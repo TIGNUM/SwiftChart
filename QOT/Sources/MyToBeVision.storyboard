@@ -651,7 +651,9 @@
                         <outlet property="headerLabel" destination="Tse-4U-RWD" id="cId-aW-gV8"/>
                         <outlet property="imageContainerView" destination="HJG-NY-ISU" id="8Fi-1D-ivq"/>
                         <outlet property="imageOverLapView" destination="ua4-gk-dxP" id="beQ-ZJ-XEt"/>
+                        <outlet property="lastRatedComment" destination="b2Y-Vo-oXG" id="jCN-vp-h3z"/>
                         <outlet property="lastRatedLabel" destination="D4g-ld-CRZ" id="qKi-7N-NuG"/>
+                        <outlet property="lastUpdatedComment" destination="Cqu-Cl-QGK" id="xMY-Xk-seU"/>
                         <outlet property="lastUpdatedLabel" destination="YA4-YQ-U3h" id="lnk-xE-AdP"/>
                         <outlet property="loaderView" destination="OzX-FG-x42" id="hsb-Uw-15j"/>
                         <outlet property="middleGradientView" destination="fGO-hr-fcf" id="v74-W6-CLc"/>
