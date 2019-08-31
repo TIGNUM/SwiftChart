@@ -331,7 +331,7 @@ extension UIViewController {
         }
         CoachConfigurator.make(viewController: coachViewController)
         let navi = UINavigationController(rootViewController: coachViewController)
-        navi.modalTransitionStyle = .crossDissolve
+        navi.modalTransitionStyle = .coverVertical
         navi.isNavigationBarHidden = true
         navi.isToolbarHidden = true
         navi.view.backgroundColor = .clear
