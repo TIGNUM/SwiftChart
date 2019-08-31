@@ -30,7 +30,6 @@ final class MyVisionWorker {
         }
     }
 
-    private let dispatchGroup = DispatchGroup()
     var nullStateSubtitle: String?
     var nullStateTitle: String?
     private var notRatedText: String? = ""
@@ -96,10 +95,11 @@ final class MyVisionWorker {
     }
 
     func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
-        myToBeVision()
-        getRatingReport()
-        getSyncingText()
-        getNotRatedText()
+        let dispatchGroup = DispatchGroup()
+        myToBeVision(dispatchGroup)
+        getRatingReport(dispatchGroup)
+        getSyncingText(dispatchGroup)
+        getNotRatedText(dispatchGroup)
         dispatchGroup.notify(queue: .main) {[weak self] in
             self?.getVisionTracks {
                 completion(self?.isMyVisionInitialized ?? false)
@@ -107,20 +107,20 @@ final class MyVisionWorker {
         }
     }
 
-    private func myToBeVision() {
+    private func myToBeVision(_ dispatchGroup: DispatchGroup) {
         dispatchGroup.enter()
         userService.getMyToBeVision({ [weak self] (vision, initialized, error) in
             self?.toBeVision = vision
             self?.isMyVisionInitialized = initialized
-            self?.dispatchGroup.leave()
+            dispatchGroup.leave()
         })
     }
 
-    private func getRatingReport() {
+    private func getRatingReport(_ dispatchGroup: DispatchGroup) {
         dispatchGroup.enter()
         userService.getToBeVisionTrackingReport(last: 1) {[weak self] (report) in
             self?.report = report
-            self?.dispatchGroup.leave()
+            dispatchGroup.leave()
         }
     }
 
@@ -169,19 +169,19 @@ final class MyVisionWorker {
         widgetDataManager.update(.toBeVision)
     }
 
-    func getSyncingText() {
+    func getSyncingText(_ dispatchGroup: DispatchGroup) {
         dispatchGroup.enter()
         contentService.getContentItemByPredicate(ContentService.MyVision.syncingtext.predicate) {[weak self] (contentItem) in
             self?.syncingText = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
+            dispatchGroup.leave()
         }
     }
 
-    func getNotRatedText() {
+    func getNotRatedText(_ dispatchGroup: DispatchGroup) {
         dispatchGroup.enter()
         contentService.getContentItemByPredicate(ContentService.MyVision.notRatedText.predicate) {[weak self] (contentItem) in
             self?.notRatedText = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
+            dispatchGroup.leave()
         }
     }
 

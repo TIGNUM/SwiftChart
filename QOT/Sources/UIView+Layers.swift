@@ -282,7 +282,7 @@ extension UIView {
 
         let image = UIGraphicsGetImageFromCurrentImageContext()
         UIGraphicsEndImageContext()
-        if (image != nil) {
+        if image != nil {
             return image!
         }
         return UIImage()

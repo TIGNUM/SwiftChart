@@ -8,12 +8,21 @@
 
 import UIKit
 import SafariServices
+import RSKImageCropper
 
 extension SFSafariViewController: ScreenZLevelOverlay {
 
 }
 
 extension UIActivityViewController: ScreenZLevelOverlay {
+
+}
+
+extension UIImagePickerController: ScreenZLevelOverlay {
+
+}
+
+extension RSKImageCropViewController: ScreenZLevelOverlay {
 
 }
 

@@ -54,35 +54,20 @@ extension DecisionTreeWorker {
                 }
             }
         }
-        string(from: workSelections) { (workVision) in
-            self.string(from: homeSelections) { (homeVision) in
-                let vision = [workVision, homeVision].joined(separator: "\n\n")
-                self.updateVisionText(vision)
-                self.createdTBV = (vision, workSelections.compactMap { $0.subtitle }, homeSelections.compactMap { $0.subtitle })
-                completion(vision)
-            }
-        }
-    }
 
-    func string(from answers: [QDMAnswer], completion: @escaping (String) -> Void) {
-        var visionList: [String] = []
-        let targetIDs = answers.compactMap { $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetTypeId }
-        qot_dal.UserService.main.getUserData { (user) in
-            qot_dal.ContentService.main.getContentCollectionsByIds(targetIDs) { (contentCollections) in
-                contentCollections?.forEach { (contentCollection) in
-                    let userGender = user?.gender.uppercased() ?? "NEUTRAL"
-                    let genderQueryNeutral = "GENDER_NEUTRAL"
-                    let genderQuery = String(format: "GENDER_%@", userGender)
-                    let filteredItems = contentCollection.contentItems.filter {
-                        $0.searchTags.contains(genderQuery) || $0.searchTags.contains(genderQueryNeutral)
-                    }
-                    if filteredItems.isEmpty == false {
-                        let randomItemText = filteredItems[filteredItems.randomIndex].valueText
-                        visionList.append(randomItemText)
-                    }
-                }
-                completion(visionList.joined(separator: " "))
+        let workKeywordIds = workSelections.compactMap {
+            $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetTypeId
+        }
+        let homeKeywordIds = homeSelections.compactMap {
+            $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetTypeId
+        }
+
+        qot_dal.UserService.main.generateToBeVisionWith(homeKeywordIds, workKeywordIds) { (vision, error) in
+            if qot_dal.SessionService.main.getCurrentSession() != nil,
+                let newVision = vision {
+                qot_dal.UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
             }
+            completion(vision?.text ?? "")
         }
     }
 

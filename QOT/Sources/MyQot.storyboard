@@ -1224,6 +1224,7 @@
                         <outlet property="dobHeaderLabel" destination="7ef-Qd-UBE" id="d05-dU-oLb"/>
                         <outlet property="editButton" destination="F3h-dp-pkH" id="427-7j-d4e"/>
                         <outlet property="emailHeaderLabel" destination="vKs-Fs-oSu" id="sfa-nn-htg"/>
+                        <outlet property="headerLine" destination="FWv-L7-rss" id="rzz-Qr-R19"/>
                         <outlet property="headerTitle" destination="So5-o3-CGf" id="sA9-cu-osF"/>
                         <outlet property="headerView" destination="Pih-zv-4AU" id="pLU-JM-KBV"/>
                         <outlet property="logoutQotHeaderLabel" destination="PAJ-7f-Eci" id="gcC-uC-8yu"/>

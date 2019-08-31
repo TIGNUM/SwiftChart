@@ -121,7 +121,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .MY_PEAK_PERFORMANCE?:
                     sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: self.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
                 case .SPRINT_CHALLENGE?:
-                    if let sprint = bucket.sprint {
+                    if bucket.sprint != nil {
                         sectionDataList.append(ArraySection(model: .sprint, elements: self.createSprintChallenge(bucket: bucket)))
                     }
                 case .ABOUT_ME?:
@@ -131,8 +131,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //               case .GUIDED_TRACK?:
 //                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
-                    print(bucket.bucketName)
-                    print("Default")
+                    print("Default : \(bucket.bucketName ?? "" )")
                 }
             }
             let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
@@ -451,6 +450,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var readinessIntro: String? = ""
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
         let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
+        let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
             readinessIntro = impactReadiness.bucketText?.contentItems.filter {$0.format == .paragraph}.first?.valueText
         } else { readinessIntro = impactReadiness.contentCollections?.filter {$0.searchTags.contains("impact_readiness_score")}
@@ -460,7 +460,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         guard impactReadiness.dailyCheckInResult != nil else {
             expendImpactReadiness = false
             impactReadinessList.append(ImpactReadinessCellViewModel(title: "",
-                                                                    dailyCheckImageView: URL(string: ""),
+                                                                    dailyCheckImageURL: impactReadinessImageURL,
                                                                     readinessScore: 0, readinessIntro: readinessIntro,
                                                                     domainModel: impactReadiness))
             return impactReadinessList
@@ -468,10 +468,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
-        let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
         let readinessscore = Int(round(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0) * 10)
 
-        impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle, dailyCheckImageView: impactReadinessImage, readinessScore: readinessscore, readinessIntro: readinessIntro, domainModel: impactReadiness))
+        impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
+                                                                     dailyCheckImageURL: impactReadinessImageURL,
+                                                                     readinessScore: readinessscore,
+                                                                     readinessIntro: readinessIntro,
+                                                                     domainModel: impactReadiness))
 
         guard expendImpactReadiness == true else {
             return impactReadinessList

@@ -231,7 +231,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     }
 
     func textFieldDidEndEditing(_ textField: UITextField) {
-        sendCodeIfPossible()
+        // it's called several times.
     }
 
     func textField(_ textField: UITextField,
@@ -263,7 +263,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
             let nextTextField = digitTextFields[index + 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         } else {
-            textField.resignFirstResponder()
+            sendCodeIfPossible()
         }
     }
 }

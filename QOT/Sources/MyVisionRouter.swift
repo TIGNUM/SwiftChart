@@ -29,12 +29,11 @@ extension MyVisionRouter: MyVisionRouterInterface {
         guard
             let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
             let visionController = self.viewController else { return }
-        MyVisionEditDetailsConfigurator.configure(originViewController: visionController,
-                                                  viewController: controller,
+        MyVisionEditDetailsConfigurator.configure(viewController: controller,
                                                   title: title,
                                                   vision: vision,
                                                   isFromNullState: isFromNullState)
-        viewController?.present(controller, animated: true, completion: nil)
+        visionController.present(controller, animated: true, completion: nil)
     }
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
@@ -65,7 +64,6 @@ extension MyVisionRouter: MyVisionRouterInterface {
     func openToBeVisionGenerator() {
         let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator)
         let decisonTreeViewController = DecisionTreeViewController(configure: configurator)
-        decisonTreeViewController.delegate = viewController
         viewController?.present(decisonTreeViewController, animated: true, completion: nil)
     }
 }

@@ -13,7 +13,7 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionTitle();
+        return R.string.localized.onboardingRegistrationTrackSelectionTitle()
     }()
 
     lazy var descriptionText: String = {

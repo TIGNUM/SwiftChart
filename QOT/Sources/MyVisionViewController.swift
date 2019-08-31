@@ -9,6 +9,7 @@
 import UIKit
 import qot_dal
 import AMScrollingNavbar
+import Kingfisher
 
 final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
@@ -48,7 +49,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     private let lowerBoundAlpha: CGFloat = 0.6
     private let upperBoundAlpha: CGFloat = 1.1
 
-    private var myVisionDidChange = false
     private var lastContentOffset: CGFloat = 0
     private var tempImage: UIImage?
     private var tempImageURL: URL?
@@ -63,10 +63,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if myVisionDidChange {
-            interactor?.viewDidLoad()
-            myVisionDidChange = false
-        }
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
         QuestionnaireViewController.hasArrowsAnimated = false
     }
@@ -227,7 +223,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
+        userImageView.setImage(url: tempImageURL, placeholder: R.image.circlesWarning())
         imageOverLapView.isHidden = tempImageURL == nil
 
         removeGradients()
@@ -303,7 +299,6 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
-        userImageView.image = tempImage
         saveToBeVisionImageAndData()
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
@@ -315,22 +310,6 @@ extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
         trackUserEvent(.SHARE, action: .TAP)
         interactor?.shareMyToBeVision()
     }
-}
-
-extension MyVisionViewController: MyVisionEditDetailsViewControllerProtocol {
-    func didSave(_ saved: Bool) {
-        if saved == true {
-            interactor?.viewDidLoad()
-        }
-    }
-}
-
-extension MyVisionViewController: DecisionTreeViewControllerDelegate {
-    func toBeVisionDidChange() {
-        myVisionDidChange = true
-    }
-
-    func didDismiss() {}
 }
 
 extension MyVisionViewController: MyVisionNullStateViewProtocol {
@@ -355,7 +334,6 @@ extension MyVisionViewController {
 extension MyVisionViewController: MyToBeVisionRateViewControllerProtocol {
     func doneAction() {
         interactor?.showTracker()
-        myVisionDidChange = true
     }
 }
 

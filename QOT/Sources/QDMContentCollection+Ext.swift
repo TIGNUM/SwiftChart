@@ -61,8 +61,6 @@ extension QDMContentCollection {
         }
     }
 
-
-
     var hasVideoOnly: Bool {
         get { return contentItems.filter { $0.format == ContentFormat.video }.count == contentItems.count }
     }

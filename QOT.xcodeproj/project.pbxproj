@@ -1631,6 +1631,7 @@
 		DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */; };
 		DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680594218210E700C2FC69 /* MorningQuestion.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
+		DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
 		DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
@@ -1662,7 +1663,6 @@
 		F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
-		F906A4DE2316B0F500351CAC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
 		F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */; };
 		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
@@ -3474,6 +3474,7 @@
 		DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireProtocols.swift; sourceTree = "<group>"; };
 		DB680594218210E700C2FC69 /* MorningQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningQuestion.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
@@ -7339,6 +7340,7 @@
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
+				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -9664,6 +9666,7 @@
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
 				5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */,
+				DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */,
 				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
 				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
@@ -10594,7 +10597,6 @@
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
-				F906A4DE2316B0F500351CAC /* SolveReminderCell.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */,
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,

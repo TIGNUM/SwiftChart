@@ -15,6 +15,8 @@ final class MyVisionInteractor {
     let presenter: MyVisionPresenterInterface
     let worker: MyVisionWorker
     let router: MyVisionRouter
+    private var downSyncObserver: NSObjectProtocol?
+    private var upSyncObserver: NSObjectProtocol?
 
     init(presenter: MyVisionPresenterInterface,
          worker: MyVisionWorker,
@@ -22,23 +24,44 @@ final class MyVisionInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
-            guard let strongSelf = self else {
-                return
-            }
-            guard let syncResult = notification.object as? SyncResultContext else { return }
-            if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
-                strongSelf.initialisationComplete()
-            }
+    }
+
+    deinit {
+        if let observer = downSyncObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
+
+        if let observer = upSyncObserver {
+            NotificationCenter.default.removeObserver(observer)
         }
     }
 
     func viewDidLoad() {
         presenter.setupView()
-        initialisationComplete()
+        didUpdateTBVRelatedData()
+        let notificationCenter = NotificationCenter.default
+        downSyncObserver = notificationCenter.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let syncResult = notification.object as? SyncResultContext else { return }
+            if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
+                strongSelf.didUpdateTBVRelatedData()
+            }
+        }
+        upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let syncResult = notification.object as? SyncRequestContext else { return }
+            if syncResult.dataType == .MY_TO_BE_VISION,
+                syncResult.syncRequestType == .UP_SYNC {
+                strongSelf.didUpdateTBVRelatedData()
+            }
+        }
     }
 
-    private func initialisationComplete() {
+    private func didUpdateTBVRelatedData() {
         worker.getData {[weak self] (initialized) in
             if !initialized {
                 self?.presenter.showScreenLoader()
@@ -130,9 +153,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
             vision.profileImageResource = nil
         }
 
-        worker.updateMyToBeVision(vision) {[weak self] in
-            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
-            self?.presenter.load(vision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
+        worker.updateMyToBeVision(vision) { [weak self] in
+            self?.didUpdateTBVRelatedData()
         }
     }
 

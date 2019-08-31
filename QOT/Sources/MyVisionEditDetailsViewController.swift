@@ -9,10 +9,6 @@
 import UIKit
 import qot_dal
 
-protocol MyVisionEditDetailsViewControllerProtocol: class {
-    func didSave(_ saved: Bool)
-}
-
 final class MyVisionEditDetailsViewController: UIViewController, ScreenZLevelOverlay {
 
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -28,7 +24,6 @@ final class MyVisionEditDetailsViewController: UIViewController, ScreenZLevelOve
     var didChangeTitle: Bool = false
 
     var interactor: MyVisionEditDetailsInteractorInterface?
-    weak var delegate: MyVisionEditDetailsViewControllerProtocol?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -159,7 +154,6 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             qot_dal.UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
                 guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
                 self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
-                    self?.delegate?.didSave(true)
                     self?.dismissController()
                 })
             }
@@ -167,7 +161,6 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         }
         let myVision = getVision(for: toBeVision)
         interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
-            self?.delegate?.didSave(true)
             self?.dismissController()
         })
     }
