@@ -41,6 +41,11 @@ final class MyDataSelectionViewController: UIViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         guard let selectionItems = myDataSelectionModel?.myDataSelectionItems else { return }

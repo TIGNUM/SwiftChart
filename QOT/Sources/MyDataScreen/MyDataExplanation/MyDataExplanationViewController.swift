@@ -25,13 +25,16 @@ final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        let configurator = MyDataExplanationConfigurator.make()
-        configurator(self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 }
 

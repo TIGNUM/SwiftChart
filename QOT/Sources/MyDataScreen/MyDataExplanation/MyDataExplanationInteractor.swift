@@ -13,11 +13,13 @@ final class MyDataExplanationInteractor {
     // MARK: - Properties
     private let worker: MyDataExplanationWorker
     private let presenter: MyDataExplanationPresenterInterface
+    let presentedFromSection: MyDataSection
 
     // MARK: - Init
-    init(worker: MyDataExplanationWorker, presenter: MyDataExplanationPresenterInterface) {
+    init(worker: MyDataExplanationWorker, presenter: MyDataExplanationPresenterInterface, presentedFromSection: MyDataSection) {
         self.worker = worker
         self.presenter = presenter
+        self.presentedFromSection = presentedFromSection
     }
 
     // MARK: - Interactor
@@ -29,5 +31,7 @@ final class MyDataExplanationInteractor {
 
 // MARK: - MyDataExplanationInteractorInterface
 extension MyDataExplanationInteractor: MyDataExplanationInteractorInterface {
-
+    func getPresentedFromSection() -> MyDataSection {
+        return presentedFromSection
+    }
 }

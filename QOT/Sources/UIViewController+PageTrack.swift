@@ -84,7 +84,21 @@ extension UIViewController {
         case is StrategyListViewController: return "knowing.feed.strategy"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
+        case is MyDataScreenViewController: return "myqot.mydata"
+        case is MyDataSelectionViewController: return "myqot.mydata.lineselection"
+        case is MyDataExplanationViewController: return myDataInfoViewControllerPageKey
         case is AskPermissionViewController: return askPermissionPageKey
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: - MyDataExplanationViewController
+private extension UIViewController {
+    var myDataInfoViewControllerPageKey: String {
+        switch (self as? MyDataExplanationViewController)?.interactor?.getPresentedFromSection() {
+        case .dailyImpact?: return "myqot.mydata.impact.info"
+        case .heatMap?: return "myqot.mydata.heatmap.info"
         default: preconditionFailure()
         }
     }

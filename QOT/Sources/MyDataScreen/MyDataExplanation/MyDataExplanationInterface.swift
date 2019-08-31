@@ -18,7 +18,9 @@ protocol MyDataExplanationPresenterInterface {
     func present(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String)
 }
 
-protocol MyDataExplanationInteractorInterface: Interactor {}
+protocol MyDataExplanationInteractorInterface: Interactor {
+    func getPresentedFromSection() -> MyDataSection
+}
 
 protocol MyDataExplanationRouterInterface {
     func dismiss()

@@ -28,8 +28,6 @@ protocol MyDataScreenPresenterInterface {
 }
 
 protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSource, JTAppleCalendarViewDelegate, UICollectionViewDelegate, UICollectionViewDataSource {
-    func presentMyDataExplanation()
-    func presentMyDataSelection()
     func myDataSelectionSections() -> MyDataSelectionModel
     func initialDataSelectionSections() -> MyDataSelectionModel
     func setOldestAvailableDate(date: Date)
@@ -42,12 +40,14 @@ protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSou
                          _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void)
     func setDailySelected(_ selectedMode: HeatMapMode)
     func getDailySelected() -> HeatMapMode
+    func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection)
 }
 
 protocol MyDataScreenRouterInterface {
-    func presentMyDataExplanation()
+    func presentMyDataExplanation(withType: MyDataSection)
     func presentMyDataSelection()
     func dismiss()
+    func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection)
 }
 
 protocol MyDataWorkerInterface {

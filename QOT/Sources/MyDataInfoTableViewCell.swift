@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MyDataInfoTableViewCellDelegate: class {
-    func didTapInfoButton()
+    func didTapInfoButton(sender: MyDataInfoTableViewCell)
 }
 
 final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
@@ -68,7 +68,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         let index = subtitleLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
 
         if checkRange(infoRange, contain: index) == true {
-            delegate?.didTapInfoButton()
+            delegate?.didTapInfoButton(sender: self)
             return
         }
     }

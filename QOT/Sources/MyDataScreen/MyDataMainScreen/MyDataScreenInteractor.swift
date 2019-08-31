@@ -36,14 +36,6 @@ final class MyDataScreenInteractor: NSObject {
 
 // MARK: - MyDataScreenInteractorInterface
 extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
-    func presentMyDataExplanation() {
-        router.presentMyDataExplanation()
-    }
-
-    func presentMyDataSelection() {
-        router.presentMyDataSelection()
-    }
-
     func myDataSelectionSections() -> MyDataSelectionModel {
         return worker.myDataSelectionSections()
     }
@@ -84,6 +76,10 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
 
     func getFirstLoad() -> Bool {
         return worker.firstLoad
+    }
+
+    func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection) {
+        router.passDataToScene(segue: segue, withType: withType)
     }
 }
 
@@ -141,6 +137,7 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
             let cell = cell as? MyDataHeatMapDateCell,
             cellState.dateBelongsTo == .thisMonth {
             presenter.showImpactReadinessView(calendar: calendar, withValue: impactReadiness, forCellState: cellState, forCell: cell)
+
         }
     }
 

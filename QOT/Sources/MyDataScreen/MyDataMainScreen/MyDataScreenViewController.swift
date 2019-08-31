@@ -59,11 +59,17 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
         setupZoomingGestureRecognizers()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let myDataSelectionViewController  = segue.destination as? MyDataSelectionViewController else {
-            return
+        var type = MyDataSection.dailyImpact
+        if let data = sender as? MyDataSection {
+            type = data
         }
-        myDataSelectionViewController.delegate = self
+        router?.passDataToScene(segue: segue, withType: type)
     }
 }
 
@@ -266,8 +272,12 @@ extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataCha
         heatMapCell.reloadCalendarData()
     }
 
-    func didTapInfoButton() {
-        router?.presentMyDataExplanation()
+    func didTapInfoButton(sender: MyDataInfoTableViewCell) {
+        var type: MyDataSection = .heatMap
+        if tableView.cellForRow(at: IndexPath(row: MyDataRowType.dailyImpactInfo.rawValue, section: 0)) == sender {
+            type = .dailyImpact
+        }
+        router?.presentMyDataExplanation(withType: type)
     }
 }
 
