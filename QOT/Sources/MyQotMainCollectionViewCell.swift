@@ -29,6 +29,10 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         ThemeView.level1.apply(self)
         contentView.backgroundColor = .clear
 
+        let bkView = UIView()
+        ThemeView.level1Selected.apply(bkView)
+        selectedBackgroundView = bkView
+
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1

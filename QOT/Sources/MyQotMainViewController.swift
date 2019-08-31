@@ -28,6 +28,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
     private var timeSinceMonth: Int?
     private var subtitleVision: String?
     private var impactReadinessScore: Int?
+    private var indexPathDeselect: IndexPath?
 
     private var qotBoxSize: CGSize {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
@@ -74,6 +75,11 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+
+        if let indexPath = indexPathDeselect {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            indexPathDeselect = nil
+        }
     }
 }
 
@@ -198,6 +204,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        indexPathDeselect = indexPath
         switch indexPath.section {
         case MyQotViewModel.Section.header.rawValue:
             return

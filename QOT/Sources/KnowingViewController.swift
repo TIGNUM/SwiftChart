@@ -18,6 +18,7 @@ final class KnowingViewController: HomeViewController {
 
     // MARK: - Properties
 
+    private var indexPathDeselect: IndexPath?
     var interactor: KnowingInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
@@ -43,6 +44,10 @@ final class KnowingViewController: HomeViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+        if let indexPath = indexPathDeselect {
+            collectionView.deselectItem(at: indexPath, animated: true)
+            indexPathDeselect = nil
+        }
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -206,7 +211,7 @@ extension KnowingViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.deselectItem(at: indexPath, animated: false)
+        indexPathDeselect = indexPath
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             break
