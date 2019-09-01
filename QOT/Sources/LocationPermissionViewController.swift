@@ -80,8 +80,9 @@ private extension LocationPermissionViewController {
 extension LocationPermissionViewController: LocationPermissionViewControllerInterface {
 
     func setupView() {
-        titleLabel.text = interactor?.title
-        descriptionLabel.text = interactor?.descriptionText
+        ThemeView.onboarding.apply(view)
+        ThemeText.locationPermissionTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.locationPermissionMessage.apply(interactor?.descriptionText, to: descriptionLabel)
     }
 
     func presentDeniedPermissionAlert() {

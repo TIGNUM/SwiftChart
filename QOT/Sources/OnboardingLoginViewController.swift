@@ -13,6 +13,7 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
 
     // MARK: - Properties
     private let helpEmail = Defaults.firstLevelSupportEmail
+    private let viewTheme = ThemeView.onboarding
     private var didHideEmail: Bool {
         return sendButtonYPosition.constant != 0
     }
@@ -70,16 +71,17 @@ private extension OnboardingLoginViewController {
     func setupTextFields() {
         emailField.delegate = self
         emailField.textField.autocapitalizationType = .none
-        emailField.textField.backgroundColor = .carbonNew
         emailField.textField.keyboardType = .emailAddress
         emailField.placeholderParameters.alpha = 0.6
         emailField.textField.corner(radius: .Nine, borderColor: .sand20)
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
+        viewTheme.apply(emailField.textField)
+        ThemeText.onboardingInputPlaceholder.apply(interactor?.emailPlaceholder ?? "", to: emailField.placeholderLabel)
 
         digitTextFields.forEach { (digitTextField) in
             digitTextField.delegate = self
-            digitTextField.backgroundColor = .carbonNew
+            viewTheme.apply(digitTextField)
             digitTextField.corner(radius: .Nine, borderColor: .sand20)
             digitTextField.textFieldDelegate = self
             digitTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -90,7 +92,7 @@ private extension OnboardingLoginViewController {
         interactor?.resetEmailError()
 
         emailField.textField.layer.borderColor = UIColor.sand20.cgColor
-        emailInstructionsLabel.text = interactor?.emailInstructions
+        ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
     }
 
     func loadDigitTextFieldsDefaultUI() {
@@ -101,7 +103,7 @@ private extension OnboardingLoginViewController {
             $0.textColor = .sand
             $0.layer.borderColor = UIColor.sand20.cgColor
         }
-        digitDescriptionLabel.text = interactor?.digitDescription
+        ThemeText.loginEmailCodeMessage.apply(interactor?.digitDescription, to: digitDescriptionLabel)
     }
 
     func setupButtons() {
@@ -282,6 +284,7 @@ extension OnboardingLoginViewController: TextFieldDelegate {
 // MARK: - OnoardingLoginViewControllerInterface
 extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface {
     func setupView() {
+        viewTheme.apply(view)
         ThemeText.loginEmailTitle.apply(interactor?.title, to: titleLabel)
         ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
         ThemeText.loginEmailCode.apply(interactor?.preCode, to: precodeLabel)

@@ -85,11 +85,13 @@ private extension TrackSelectionViewController {
 extension TrackSelectionViewController: TrackSelectionViewControllerInterface {
 
     func setupView() {
+        ThemeView.onboarding.apply(view)
+
         if let type = interactor?.type, case .registration = type {
             dashView.isHidden = true
             titleSuperviewTopConstraint.priority = .defaultHigh
         }
-        titleLabel.text = interactor?.title
-        descriptionLabel.text = interactor?.descriptionText
+        ThemeText.trackSelectionTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.trackSelectionMessage.apply(interactor?.descriptionText, to: descriptionLabel)
     }
 }

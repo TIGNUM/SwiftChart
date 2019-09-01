@@ -23,7 +23,10 @@ protocol RegistrationCodePresenterInterface {
 
 protocol RegistrationCodeInteractorInterface: Interactor {
     var title: String { get }
-    var description: NSAttributedString { get }
+    var description: String { get }
+    var descriptionEmail: String { get }
+    var preCode: String { get }
+    var disclaimerError: String { get }
     var disclaimer: NSAttributedString { get }
     var codeInfo: NSAttributedString { get }
     var hasDisclaimerError: Bool { get }

@@ -11,14 +11,14 @@ import UIKit
 final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
+    let viewTheme = ThemeView.onboarding
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var emailField: QotPlaceholderTextField!
-    @IBOutlet private weak var descriptionTextView: UITextView!
+    @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
     private var bottomConstraintInitialValue: CGFloat = 0
-    private let textFieldOffset: CGFloat = 180 // Textfield shuoldn't move the whole keyboard height
 
     private lazy var buttonNext: UIBarButtonItem = {
         let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
@@ -87,10 +87,13 @@ private extension RegistrationEmailViewController {
 extension RegistrationEmailViewController: RegistrationEmailViewControllerInterface {
 
     func setupView() {
-        view.backgroundColor = .carbon
+        viewTheme.apply(view)
+        viewTheme.apply(emailField.textField)
+
         buttonNext.isEnabled = interactor?.isNextButtonEnabled ?? false
 
-        titleLabel.text = interactor?.title
+        ThemeText.registrationEmailTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor?.emailPlaceholder, to: emailField.placeholderLabel)
         emailField.delegate = self
         emailField.textField.corner(radius: .Nine, borderColor: .sand40)
         emailField.textField.autocapitalizationType = .none
@@ -101,22 +104,20 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
 
     func updateView() {
         buttonNext.isEnabled = interactor?.isNextButtonEnabled ?? false
-
-        descriptionTextView.text = interactor?.descriptionMessage
-        updateErrorUI(isError: interactor?.isDisplayingError ?? false)
+        updateMessageUI(message: interactor?.descriptionMessage, isError: interactor?.isDisplayingError ?? false)
     }
 }
 
 // MARK: - Private
 
 private extension RegistrationEmailViewController {
-    func updateErrorUI(isError: Bool) {
+    func updateMessageUI(message: String?, isError: Bool) {
         if isError {
             emailField.textField.layer.borderColor = UIColor.redOrange.cgColor
-            descriptionTextView.textColor = UIColor.redOrange70
+            ThemeText.registrationEmailError.apply(message, to: descriptionLabel)
         } else {
             emailField.textField.layer.borderColor = UIColor.sand40.cgColor
-            descriptionTextView.textColor = UIColor.sand40
+            ThemeText.registrationEmailMessage.apply(message, to: descriptionLabel)
         }
     }
 }
@@ -158,7 +159,7 @@ extension RegistrationEmailViewController {
             animateOffset(bottomConstraintInitialValue, duration: parameters.duration, animationCurve: parameters.animationCurve)
         } else {
             // Keyboard is showing
-            let offset = parameters.height - textFieldOffset
+            let offset = parameters.height - bottomConstraintInitialValue
             animateOffset(offset, duration: parameters.duration, animationCurve: parameters.animationCurve)
         }
     }

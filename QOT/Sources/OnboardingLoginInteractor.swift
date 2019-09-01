@@ -47,6 +47,10 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         return worker.title
     }
 
+    var emailPlaceholder: String {
+        return worker.emailPlaceholder
+    }
+
     var emailInstructions: String {
         return worker.emailInstructions
     }
@@ -132,7 +136,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
                  .valid:
                 // Update ToBeVision
                 if let tbv = toBeVision {
-                    self?.worker.updateToBeVision(with: tbv)
+//                    self?.worker.updateToBeVision(with: tbv) // FIXME: ZZ: Cache TBV
                 }
                 // Show main app
                 self?.handleSuccessfulLogin()

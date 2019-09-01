@@ -102,6 +102,7 @@ private extension WalkthroughViewController {
 extension WalkthroughViewController: WalkthroughViewControllerInterface {
 
     func setupView() {
+        ThemeView.onboarding.apply(view)
 
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)

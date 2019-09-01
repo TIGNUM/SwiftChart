@@ -11,6 +11,7 @@ import UIKit
 final class WalkthroughCoachViewController: UIViewController, ScreenZLevelBottom {
 
     // MARK: - Properties
+    @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var coach: WalkthroughAnimatedCoach!
 
@@ -58,7 +59,6 @@ private extension WalkthroughCoachViewController {
 extension WalkthroughCoachViewController: WalkthroughCoachViewControllerInterface {
 
     func setupView() {
-        textView.text = interactor?.text
-
+        ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }
 }

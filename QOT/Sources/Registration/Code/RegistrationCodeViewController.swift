@@ -13,10 +13,12 @@ final class RegistrationCodeViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     private let helpEmail = Defaults.firstLevelSupportEmail
+    private let viewTheme = ThemeView.onboarding
 
     var interactor: RegistrationCodeInteractorInterface?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var preCodeLabel: UILabel!
     @IBOutlet var digitTextFields: [TextField]!
     @IBOutlet var codeErrorLabel: UILabel!
     @IBOutlet var disclaimerErrorLabel: UILabel!
@@ -54,8 +56,8 @@ final class RegistrationCodeViewController: UIViewController, ScreenZLevel3 {
 private extension RegistrationCodeViewController {
     func setupTextFields() {
         digitTextFields.forEach { (digitTextField) in
+            viewTheme.apply(digitTextField)
             digitTextField.delegate = self
-            digitTextField.backgroundColor = .carbon
             digitTextField.corner(radius: .Nine, borderColor: .sand40)
             digitTextField.textFieldDelegate = self
             digitTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
@@ -89,7 +91,7 @@ private extension RegistrationCodeViewController {
 
     func updateCodeDefaultUI() {
         interactor?.resetErrors()
-        codeErrorLabel.text = nil
+        codeErrorLabel.attributedText = nil
         digitTextFields.forEach {
             $0.text = ""
             $0.textColor = .sand
@@ -120,18 +122,29 @@ private extension RegistrationCodeViewController {
 
 extension RegistrationCodeViewController: RegistrationCodeViewControllerInterface {
     func setupView() {
-        titleLabel.text = interactor?.title
-        descriptionLabel.attributedText = interactor?.description
+        viewTheme.apply(view)
+        ThemeText.registrationCodeTitle.apply(interactor?.title, to: titleLabel)
+        let description = NSMutableAttributedString(attributedString:
+            ThemeText.registrationCodeDescription.attributedString(interactor?.description))
+        description.append(ThemeText.registrationCodeDescriptionEmail.attributedString(interactor?.descriptionEmail))
+        descriptionLabel.attributedText = description
+
+        ThemeText.registrationCodePreCode.apply(interactor?.preCode, to: preCodeLabel)
+
         buttonCheckbox.corner(radius: .Three, borderColor: .sand40)
         buttonCheckbox.setImage(R.image.registration_checkmark(), for: .selected)
+
+        ThemeText.registrationCodeDisclaimerError.apply(interactor?.disclaimerError, to: disclaimerErrorLabel)
+        // Theme applied in interactor which handles actions
         privacyAndTermsTextView.attributedText = interactor?.disclaimer ?? NSAttributedString()
+        // Theme applied in interactor which handles actions
         codeInfoTextView.attributedText = interactor?.codeInfo ?? NSAttributedString()
 
         setupTextFields()
     }
 
     func update() {
-        codeErrorLabel.text = interactor?.errorMessage
+        ThemeText.registrationCodeError.apply(interactor?.errorMessage, to: codeErrorLabel)
 
         if interactor?.hasDisclaimerError ?? false {
             disclaimerErrorLabel.isHidden = false

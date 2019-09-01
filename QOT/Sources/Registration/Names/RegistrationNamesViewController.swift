@@ -18,6 +18,8 @@ final class RegistrationNamesViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var mandatoryLabel: UILabel!
     private var keyboardNotification: NSNotification?
 
+    private let viewTheme = ThemeView.onboarding
+
     private lazy var buttonNext: UIBarButtonItem = {
         let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
                                              target: self,
@@ -77,10 +79,14 @@ private extension RegistrationNamesViewController {
 
 extension RegistrationNamesViewController: RegistrationNamesViewControllerInterface {
     func setupView() {
-        titleLabel.text = interactor?.title
-        firstNameField.placeholder = interactor?.firstNameTitle
-        lastNameField.placeholder = interactor?.lastNameTitle
-        mandatoryLabel.text = interactor?.mandatoryText
+        viewTheme.apply(view)
+        viewTheme.apply(firstNameField.textField)
+        viewTheme.apply(lastNameField.textField)
+
+        ThemeText.registrationNamesTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor?.firstNameTitle, to: firstNameField.placeholderLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor?.lastNameTitle, to: lastNameField.placeholderLabel)
+        ThemeText.registrationNamesMandatory.apply(interactor?.mandatoryText, to: mandatoryLabel)
 
         firstNameField.textField.returnKeyType = .next
         firstNameField.delegate = self
@@ -134,7 +140,6 @@ extension RegistrationNamesViewController: UITextFieldDelegate {
         if textField == firstNameField.textField {
             lastNameField.textField.becomeFirstResponder()
         } else {
-            didTapNextButton()
             textField.resignFirstResponder()
         }
         return false

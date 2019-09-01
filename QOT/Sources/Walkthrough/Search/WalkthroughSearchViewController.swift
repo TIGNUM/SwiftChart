@@ -12,7 +12,7 @@ final class WalkthroughSearchViewController: UIViewController, ScreenZLevelBotto
 
     // MARK: - Properties
     @IBOutlet private weak var arrows: WalkthroughAnimatedArrows!
-    @IBOutlet private weak var textView: UITextView!
+    @IBOutlet private weak var textLabel: UILabel!
 
     var interactor: WalkthroughSearchInteractorInterface?
 
@@ -60,6 +60,6 @@ extension WalkthroughSearchViewController: WalkthroughSearchViewControllerInterf
     func setupView() {
         arrows.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi * 0.5)
 
-        textView.text = interactor?.text
+        ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }
 }

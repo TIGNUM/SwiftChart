@@ -16,6 +16,10 @@ final class RegistrationAgeWorker {
         return R.string.localized.onboardingRegistrationAgeTitle()
     }()
 
+    lazy var agePlaceholder: String = {
+        return R.string.localized.onboardingRegistrationAgePlaceholder()
+    }()
+
     lazy var descriptionText: String = {
         return R.string.localized.onboardingRegistrationAgeDescription()
     }()

@@ -41,6 +41,10 @@ final class RegistrationAgeInteractor {
         return worker.title
     }
 
+    var agePlaceholder: String {
+        return worker.agePlaceholder
+    }
+
     var descriptionText: String {
         return worker.descriptionText
     }

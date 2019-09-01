@@ -32,8 +32,8 @@ class CreateAccountInfoViewController: UIViewController, ScreenZLevel3 {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        textLabel.attributedText = NSAttributedString(string: R.string.localized.onboardingCreateInfoTextDescription(),
-                                                      attributes: [.kern: CharacterSpacing.kern06])
+        ThemeView.onboarding.apply(view)
+        ThemeText.createAccountMessage.apply(R.string.localized.onboardingCreateInfoTextDescription(), to: textLabel)
     }
 
     override func viewDidAppear(_ animated: Bool) {

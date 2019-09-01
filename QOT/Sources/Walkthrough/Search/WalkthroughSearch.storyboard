@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Regular.otf">
-            <string>SFProText-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Walkthrough Search View Controller-->
         <scene sceneID="KQZ-e5-Xsp">
@@ -35,32 +30,31 @@
                                     <constraint firstAttribute="height" constant="75" id="hFz-Eh-nFO"/>
                                 </constraints>
                             </view>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwN-Te-NdQ">
-                                <rect key="frame" x="63" y="403" width="288" height="33"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aOv-aK-tdH">
+                                <rect key="frame" x="63" y="403" width="288" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="aOv-aK-tdH" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="0ji-84-qOC"/>
+                            <constraint firstItem="aOv-aK-tdH" firstAttribute="leading" secondItem="gRo-Rb-84h" secondAttribute="leading" constant="63" id="2Jk-Rp-mth"/>
                             <constraint firstItem="t9v-hM-PPd" firstAttribute="centerY" secondItem="4EI-Wh-wfe" secondAttribute="centerY" id="4eh-VP-aYO"/>
+                            <constraint firstItem="gRo-Rb-84h" firstAttribute="trailing" secondItem="aOv-aK-tdH" secondAttribute="trailing" constant="63" id="J0N-Hn-i5B"/>
                             <constraint firstItem="t9v-hM-PPd" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="PRa-F5-S5l"/>
-                            <constraint firstItem="HwN-Te-NdQ" firstAttribute="top" secondItem="4EI-Wh-wfe" secondAttribute="bottom" id="UHl-6b-eL2"/>
-                            <constraint firstItem="gRo-Rb-84h" firstAttribute="trailing" secondItem="HwN-Te-NdQ" secondAttribute="trailing" constant="63" id="dv9-U0-TU8"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="jHI-12-w46"/>
-                            <constraint firstItem="HwN-Te-NdQ" firstAttribute="leading" secondItem="gRo-Rb-84h" secondAttribute="leading" constant="63" id="v70-Zb-XTx"/>
+                            <constraint firstItem="aOv-aK-tdH" firstAttribute="top" secondItem="4EI-Wh-wfe" secondAttribute="bottom" id="swR-z6-Tf3"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="top" secondItem="CfN-fa-ZDl" secondAttribute="top" id="xOU-Zk-Q8e"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="width" secondItem="CfN-fa-ZDl" secondAttribute="width" id="yQB-2J-K7k"/>
-                            <constraint firstItem="HwN-Te-NdQ" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="zaq-Rc-1Kg"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="height" secondItem="CfN-fa-ZDl" secondAttribute="height" multiplier="0.45" id="zcr-do-8sv"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gRo-Rb-84h"/>
                     </view>
                     <connections>
                         <outlet property="arrows" destination="t9v-hM-PPd" id="x1h-FH-xbF"/>
-                        <outlet property="textView" destination="HwN-Te-NdQ" id="OqU-6w-mPc"/>
+                        <outlet property="textLabel" destination="aOv-aK-tdH" id="Evx-Hc-F0g"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="P7n-SK-SdC" userLabel="First Responder" sceneMemberID="firstResponder"/>

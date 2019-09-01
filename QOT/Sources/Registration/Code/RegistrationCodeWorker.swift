@@ -34,6 +34,14 @@ final class RegistrationCodeWorker: BaseSigningWorker {
         return R.string.localized.onboardingRegistrationCodeDescription()
     }()
 
+    lazy var preCode: String = {
+        return R.string.localized.onboardingRegistrationCodePreCode()
+    }()
+
+    lazy var disclaimerError: String = {
+        return R.string.localized.onboardingRegistrationCodeDisclaimerError()
+    }()
+
     lazy var disclaimer: String = {
         return R.string.localized.onboardingRegistrationCodeDisclaimer()
     }()

@@ -181,8 +181,8 @@ private extension DecisionTreeViewController {
 
     @IBAction func didTapContinue() {
         interactor?.didTapContinue()
-        if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
-            delegate?.createToBeVision(text: tbv.text, workAnswers: tbv.workSelections, homeAnswers: tbv.homeSelections)
+        if isOnboardingDecisionTree {
+//            delegate?.createToBeVision(text: "", workAnswers: [], homeAnswers: []) // FIXME: ZZ: Cache TBV
         }
     }
 

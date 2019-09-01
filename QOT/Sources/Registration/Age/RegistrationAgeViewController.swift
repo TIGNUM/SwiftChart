@@ -19,6 +19,8 @@ final class RegistrationAgeViewController: UIViewController, ScreenZLevel3 {
     private let preselectedRow = 12
     private let ageRange = 100
 
+    private let viewTheme = ThemeView.onboarding
+
     var interactor: RegistrationAgeInteractorInterface?
 
     lazy private var years: [String] = {
@@ -99,9 +101,14 @@ private extension RegistrationAgeViewController {
 extension RegistrationAgeViewController: RegistrationAgeViewControllerInterface {
 
     func setupView() {
-        titleLabel.text = interactor?.title
-        descriptionLabel.text = interactor?.descriptionText
-        ageRestrictionLabel.text = interactor?.ageRestrictionText
+        viewTheme.apply(view)
+        viewTheme.apply(ageInputField.textField)
+
+        ThemeText.registrationAgeTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor?.agePlaceholder, to: ageInputField.placeholderLabel)
+        ThemeText.registrationAgeDescription.apply(interactor?.descriptionText, to: descriptionLabel)
+        ThemeText.registrationAgeRestriction.apply(interactor?.ageRestrictionText, to: ageRestrictionLabel)
+
         ageInputField.textField.inputView = yearPicker
         ageInputField.textField.tintColor = .clear
         ageInputField.delegate = self

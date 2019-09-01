@@ -25,6 +25,10 @@ final class OnboardingLoginWorker: BaseSigningWorker {
         return R.string.localized.onboardingLoginEmailTitle()
     }()
 
+    lazy var emailPlaceholder: String = {
+        return R.string.localized.onboardingLoginEmailPlaceholder()
+    }()
+
     lazy var emailInstructions: String = {
         return R.string.localized.onboardingLoginEmailDescription()
     }()

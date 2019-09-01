@@ -46,7 +46,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lhn-rs-EUg" userLabel="Scroll Container View">
                                 <rect key="frame" x="0.0" y="365" width="414" height="531"/>
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mel-Px-0pD">
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mel-Px-0pD">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="531"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pwe-UZ-Grs">
@@ -54,6 +54,7 @@
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="FpM-0l-eEE" userLabel="Image View">
                                                         <rect key="frame" x="24" y="8" width="366" height="493"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="FpM-0l-eEE" secondAttribute="height" multiplier="328:442" id="fP1-fk-mXJ"/>
                                                         </constraints>

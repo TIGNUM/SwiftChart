@@ -13,9 +13,6 @@
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
-        <array key="SF-Pro-Text-Regular.otf">
-            <string>SFProText-Regular</string>
-        </array>
     </customFonts>
     <scenes>
         <!--Registration Email View Controller-->
@@ -32,45 +29,40 @@
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kl4-kE-gSN">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62Y-Sc-rY0">
                                 <rect key="frame" x="24" y="762" width="366" height="50"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Vqb-y1-KwL"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="ANG-Sh-psh"/>
                                 </constraints>
-                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UXk-BO-USW" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="24" y="668" width="366" height="80"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="Ehe-Ki-c3h"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Email*"/>
-                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Kl4-kE-gSN" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="8yj-0u-kOu"/>
+                            <constraint firstItem="62Y-Sc-rY0" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="Bmr-OR-DSk"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="UXk-BO-USW" secondAttribute="trailing" constant="24" id="Ods-nK-fgs"/>
+                            <constraint firstItem="62Y-Sc-rY0" firstAttribute="top" secondItem="UXk-BO-USW" secondAttribute="bottom" constant="14" id="RHS-Fr-gsM"/>
                             <constraint firstItem="DjF-FM-Bxv" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="TBY-yK-kV2"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="DjF-FM-Bxv" secondAttribute="trailing" constant="24" id="Xcc-98-7zQ"/>
+                            <constraint firstItem="0Jj-jd-HRi" firstAttribute="bottom" secondItem="62Y-Sc-rY0" secondAttribute="bottom" constant="50" id="Yh6-jQ-yQu"/>
                             <constraint firstItem="UXk-BO-USW" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="dbd-nB-JB1"/>
                             <constraint firstItem="DjF-FM-Bxv" firstAttribute="top" secondItem="H1e-Qb-dOW" secondAttribute="top" id="kXh-Qe-QRS"/>
-                            <constraint firstItem="0Jj-jd-HRi" firstAttribute="bottom" secondItem="Kl4-kE-gSN" secondAttribute="bottom" constant="50" id="lGU-0B-vCp"/>
-                            <constraint firstItem="Kl4-kE-gSN" firstAttribute="top" secondItem="UXk-BO-USW" secondAttribute="bottom" constant="14" id="swV-cw-7VI"/>
-                            <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="Kl4-kE-gSN" secondAttribute="trailing" constant="24" id="yf3-yT-bkt"/>
+                            <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="62Y-Sc-rY0" secondAttribute="trailing" constant="24" id="xYB-V2-RZJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Jj-jd-HRi"/>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="lGU-0B-vCp" id="JbM-QW-nl1"/>
-                        <outlet property="descriptionTextView" destination="Kl4-kE-gSN" id="ZDY-4L-7Ne"/>
+                        <outlet property="bottomConstraint" destination="Yh6-jQ-yQu" id="Pee-OO-HKu"/>
+                        <outlet property="descriptionLabel" destination="62Y-Sc-rY0" id="and-we-peO"/>
                         <outlet property="emailField" destination="UXk-BO-USW" id="3qC-mF-t9D"/>
                         <outlet property="titleLabel" destination="DjF-FM-Bxv" id="h7a-gX-84j"/>
                     </connections>

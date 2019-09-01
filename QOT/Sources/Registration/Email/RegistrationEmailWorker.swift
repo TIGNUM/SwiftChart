@@ -16,6 +16,11 @@ final class RegistrationEmailWorker: BaseSigningWorker {
     lazy var title: String = {
         return R.string.localized.onboardingRegistrationEmailTitle()
     }()
+
+    lazy var emailPlaceholder: String = {
+        return R.string.localized.onboardingRegistrationEmailPlaceholder()
+    }()
+
     lazy var nextButtonTitle: String = {
         return R.string.localized.onboardingRegistrationEmailButtonNext()
     }()

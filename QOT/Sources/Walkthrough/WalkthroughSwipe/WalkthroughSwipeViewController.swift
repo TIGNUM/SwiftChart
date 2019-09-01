@@ -13,6 +13,7 @@ final class WalkthroughSwipeViewController: UIViewController, ScreenZLevelBottom
     // MARK: - Properties
     @IBOutlet private weak var leftArrows: WalkthroughAnimatedArrows!
     @IBOutlet private weak var rightArrows: WalkthroughAnimatedArrows!
+    @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
 
     var interactor: WalkthroughSwipeInteractorInterface?
@@ -68,7 +69,6 @@ extension WalkthroughSwipeViewController: WalkthroughSwipeViewControllerInterfac
     func setupView() {
         rightArrows.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
 
-        textView.text = interactor?.text
-
+        ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }
 }

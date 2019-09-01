@@ -36,6 +36,7 @@ enum ThemeView {
     case level1Secondary
     case level1Selected
     case level2Selected
+    case onboarding
     case article
     case articleBackground(ThemeColorMode?)
     case articleSeparator(ThemeColorMode?)
@@ -63,6 +64,8 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
+        case .onboarding:
+            return Palette.carbon
         case .article:
             return Palette.light(Palette.sand, or: Palette.carbon)
         case .articleBackground(let mode):
@@ -313,12 +316,38 @@ enum ThemeText {
     case searchContent
     case searchSuggestionHeader
     case searchSuggestion
+
+    case onboardingInputText
+    case onboardingInputPlaceholder
     case loginEmailTitle
     case loginEmailMessage
     case loginEmailErrorMessage
     case loginEmailCode
     case loginEmailCodeMessage
     case loginEmailCodeErrorMessage
+    case createAccountMessage
+    case registrationEmailTitle
+    case registrationEmailMessage
+    case registrationEmailError
+    case registrationCodeTitle
+    case registrationCodeDescription
+    case registrationCodeDescriptionEmail
+    case registrationCodePreCode
+    case registrationCodeError
+    case registrationCodeDisclaimerError
+    case registrationCodeTermsAndPrivacy
+    case registrationCodeInfoActions
+    case registrationCodeLink(String)
+    case registrationNamesTitle
+    case registrationNamesMandatory
+    case registrationAgeTitle
+    case registrationAgeDescription
+    case registrationAgeRestriction
+    case locationPermissionTitle
+    case locationPermissionMessage
+    case trackSelectionTitle
+    case trackSelectionMessage
+    case walkthroughMessage
 
     case tbvSectionHeader
     case tbvHeader
@@ -338,17 +367,21 @@ enum ThemeText {
 
     private var font: UIFont {
         switch self {
+        case .registrationCodeDisclaimerError:
+            return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
-             .leaderText, .tbvVision, .tbvVisionBody:
+             .leaderText, .tbvVision, .tbvVisionBody, .registrationCodeDescription, .registrationCodePreCode,
+             .registrationAgeDescription, .locationPermissionMessage:
             return Fonts.fontRegular16
         case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
-             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
-             .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
-            .tbvTrackerRatingDigits:
+             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage, .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
+             .createAccountMessage, .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
+             .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationNamesMandatory,
+             .registrationAgeRestriction, .trackSelectionMessage:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
@@ -357,8 +390,10 @@ enum ThemeText {
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton:
+        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .registrationCodeLink:
             return Fonts.fontSemiBold14
+        case .registrationCodeDescriptionEmail, .walkthroughMessage:
+            return Fonts.fontSemiBold16
         case .articleCategory, .articleDatestamp:
             switch textScale {
             case .scale: return Fonts.fontMedium14
@@ -366,7 +401,7 @@ enum ThemeText {
             }
         case .strategyTitle:
             return Fonts.fontDisplayThin30
-        case .bespokeTitle:
+        case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
         case .sprintName, .performanceBucketTitle:
             return Fonts.fontMedium16
@@ -401,7 +436,8 @@ enum ThemeText {
             return Fonts.fontRegular15
         case .quotation:
             return Fonts.fontDisplayThin34
-        case .dailyBriefTitle, .loginEmailTitle:
+        case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
+             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle:
             return Fonts.fontDisplayRegular20
         case .tbvStatement:
             return Fonts.fontDisplayLight24
@@ -451,18 +487,21 @@ enum ThemeText {
              .articleRelatedTitle, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountDetail,
-             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult,
+             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
-             .tbvTrackerRatingDigitsSelected, .loginEmailTitle:
+             .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle,
+             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage:
             return Palette.sand
         case .author, .quoteAuthor, .chatButton, .searchSuggestion:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits:
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
+             .registrationNamesMandatory:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
-        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton:
+        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
+             .registrationCodeLink:
             return Palette.accent
         case .performanceSections:
             return Palette.carbon40
@@ -470,11 +509,15 @@ enum ThemeText {
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore, .accountHeader,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer,
-             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage:
+             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .onboardingInputPlaceholder, .createAccountMessage,
+             .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
+            .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
+            .registrationAgeRestriction, .locationPermissionMessage:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
-        case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage:
+        case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
+             .registrationCodeDisclaimerError:
             return Palette.redOrange
         case .articleAudioBar, .articleMarkRead:
             return Palette.light(Palette.sand60, or: Palette.carbon60)
@@ -518,6 +561,8 @@ enum ThemeText {
             return Palette.nightModeBlack40
         case .learnImage, .learnPDF:
             return Palette.nightModeBlackTwo
+        case .registrationCodeError:
+            return Palette.redOrange70
 
         case .placeholder:
             return .sand10
@@ -551,7 +596,11 @@ enum ThemeText {
         case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer:
              string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
-             .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage:
+             .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
+             .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage, .registrationEmailTitle,
+             .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
+             .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
+             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
@@ -602,6 +651,16 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
+        case .createAccountMessage:
+            string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription,
+             .registrationAgeRestriction, .locationPermissionMessage, .trackSelectionMessage, .walkthroughMessage:
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions:
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .registrationCodeLink(let url):
+            string = NSAttributedString(string: text,
+                                        attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
@@ -630,6 +689,7 @@ enum ThemeText {
 }
 
 private struct Fonts {
+    static let fontRegular12 = UIFont.sfProtextRegular(ofSize: 12.0)
     static let fontRegular13 = UIFont.sfProtextRegular(ofSize: 13.0)
     static let fontRegular14 = UIFont.sfProtextRegular(ofSize: 14.0)
     static let fontRegular15 = UIFont.sfProtextRegular(ofSize: 15.0)
@@ -657,6 +717,7 @@ private struct Fonts {
     static let fontLight72 = UIFont.sfProtextLight(ofSize: 72.0)
 
     static let fontSemiBold14 = UIFont.sfProtextSemibold(ofSize: 14.0)
+    static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
@@ -761,6 +822,10 @@ private struct Palette {
 
     static var redOrange: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 1)
+    }
+
+    static var redOrange70: UIColor {
+        return UIColor.redOrange.withAlphaComponent(0.7)
     }
 
     static var cherryRed: UIColor {

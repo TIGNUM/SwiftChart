@@ -18,6 +18,7 @@ protocol RegistrationAgePresenterInterface {
 
 protocol RegistrationAgeInteractorInterface: Interactor {
     var title: String { get }
+    var agePlaceholder: String { get }
     var descriptionText: String { get }
     var ageRestrictionText: String { get }
     var createButtonTitle: String { get }

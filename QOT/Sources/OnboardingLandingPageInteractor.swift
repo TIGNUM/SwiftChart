@@ -121,7 +121,7 @@ extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
     }
 
     func didDismiss() {
-        // noop
+        didTapSaveTBV() // FIXME: ZZ: Cache TBV
     }
 
     func dismissOnMoveBackwards() {

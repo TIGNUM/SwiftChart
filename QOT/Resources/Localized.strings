@@ -642,6 +642,7 @@
 
 "Onboarding.Error.General" = "An error occurred, please try again";
 "Onboarding.Login.Email.Title" = "LOGIN";
+"Onboarding.Login.Email.Placeholder" = "Your email*";
 "Onboarding.Login.Email.Description" = "We will send an email with your code";
 "Onboarding.Login.Email.Error" = "Enter email first, then tap “Send code” button";
 "Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
@@ -656,6 +657,7 @@
 "Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your To Be Vision, please create an account";
 
 "Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Email.Placeholder" = "Email*";
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
@@ -665,7 +667,9 @@
 "Onboarding.Registration.Email.Button.No" = "No";
 
 "Onboarding.Registration.Code.Title" = "CREATE ACCOUNT";
-"Onboarding.Registration.Code.Description" = "We just sent an activation code to ";
+"Onboarding.Registration.Code.Description" = "We just sent your activation code to ";
+"Onboarding.Registration.Code.PreCode" = "Code";
+"Onboarding.Registration.Code.DisclaimerError" = "Required";
 "Onboarding.Registration.Code.Disclaimer" = "By creating an account, you agree to our Terms of use and Privacy policy";
 "Onboarding.Registration.Code.DisclaimerTermsPlaceholder" = "Terms of use";
 "Onboarding.Registration.Code.DisclaimerPrivacyPlaceholder" = "Privacy policy";
@@ -683,6 +687,7 @@
 "Onboarding.Registration.Names.NextTitle" = "Next";
 
 "Onboarding.Registration.Age.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Age.Placeholder" = "Select your birthyear";
 "Onboarding.Registration.Age.Description" = "You’ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients in an effective advertising campaign.";
 "Onboarding.Registration.Age.Restriction" = "You need to be 18 years of age to use the app";
 "Onboarding.Registration.Age.NextTitle" = "Create account";
@@ -696,7 +701,7 @@
 "Onboarding.Registration.LocationPermission.Alert.Skip" = "Skip";
 
 "Onboarding.Registration.TrackSelection.Title" = "YOUR ACCOUNT IS CREATED";
-"Onboarding.Registration.TrackSelection.Message" = " Since QOT is quite rich in content and use cases we created two options for you to start:\n\n1. Fast Track - this will lead you write into QOT so that you can explore it yourself.\n\n2. Guided Track - we created a roadmap for you with recommended step.";
+"Onboarding.Registration.TrackSelection.Message" = "Since QOT is quite rich in content and use cases we created two options for you to start:\n\n1. Fast Track - this will lead you write into QOT so that you can explore it yourself.\n\n2. Guided Track - we created a roadmap for you with recommended step.";
 "Onboarding.Registration.TrackSelection.Button.FastTrack" = "Fast track";
 "Onboarding.Registration.TrackSelection.Button.GuidedTrack" = "Guided track";
 

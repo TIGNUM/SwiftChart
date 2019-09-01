@@ -64,52 +64,52 @@ final class RegistrationCodeInteractor {
         return worker.title
     }
 
-    var description: NSAttributedString {
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 5
-        let description = NSMutableAttributedString(string: worker.description,
-                                                    attributes: [.paragraphStyle: style])
-        let email = NSAttributedString(string: worker.email,
-                                       attributes: [.font: UIFont.sfProtextSemibold(ofSize: 16)])
-        description.append(email)
-        return description
+    var description: String {
+        return worker.description
+    }
+
+    var descriptionEmail: String {
+        return worker.email
+    }
+
+    var preCode: String {
+        return worker.preCode
+    }
+
+    var disclaimerError: String {
+        return worker.disclaimerError
     }
 
     var disclaimer: NSAttributedString {
-        let plainDisclaimer = NSAttributedString(string: worker.disclaimer, attributes: defaultAttributes)
-        let disclaimer = NSMutableAttributedString(attributedString: plainDisclaimer)
+        let disclaimer = NSMutableAttributedString(attributedString:
+            ThemeText.registrationCodeTermsAndPrivacy.attributedString(worker.disclaimer))
         // Terms
         let terms = worker.disclaimerTermsPlaceholder
         if let range = disclaimer.string.range(of: terms) {
-            disclaimer.addAttributes(linkAttributes(for: URLActions.termsOfUse.link()),
-                                     range: NSRange(range, in: disclaimer.string))
+            let termsOfUse = ThemeText.registrationCodeLink(URLActions.termsOfUse.link()).attributedString(terms)
+            disclaimer.replaceCharacters(in: NSRange(range, in: disclaimer.string), with: termsOfUse)
         }
         // Privacy
         let privacy = worker.disclaimerPrivacyPlaceholder
         if let range = disclaimer.string.range(of: privacy) {
-            disclaimer.addAttributes(linkAttributes(for: URLActions.privacyPolicy.link()),
-                                     range: NSRange(range, in: disclaimer.string))
+            let privacyPolicy = ThemeText.registrationCodeLink(URLActions.privacyPolicy.link()).attributedString(privacy)
+            disclaimer.replaceCharacters(in: NSRange(range, in: disclaimer.string), with: privacyPolicy)
         }
         return disclaimer
     }
 
     var codeInfo: NSAttributedString {
-        let plainCodeInfo = NSAttributedString(string: worker.codeInfo + "\n", attributes: defaultAttributes)
-        let codeInfo = NSMutableAttributedString(attributedString: plainCodeInfo)
+        let codeInfo = NSMutableAttributedString(attributedString:
+            ThemeText.registrationCodeInfoActions.attributedString(worker.codeInfo + "\n"))
+        let dash = ThemeText.registrationCodeInfoActions.attributedString(" - ")
         // Change email
-        let changeEmail = NSAttributedString(string: worker.changeEmail,
-                                             attributes: linkAttributes(for: URLActions.changeEmail.link()))
-        codeInfo.append(changeEmail)
-        codeInfo.append(NSAttributedString(string: " - ", attributes: defaultAttributes))
+        codeInfo.append(ThemeText.registrationCodeLink(URLActions.changeEmail.link()).attributedString(worker.changeEmail))
+        codeInfo.append(dash)
         // Send again
-        let sendAgain = NSAttributedString(string: worker.sendAgain,
-                                          attributes: linkAttributes(for: URLActions.resendCode.link()))
-        codeInfo.append(sendAgain)
-        codeInfo.append(NSAttributedString(string: " - ", attributes: defaultAttributes))
+        codeInfo.append(ThemeText.registrationCodeLink(URLActions.resendCode.link()).attributedString(worker.sendAgain))
+        codeInfo.append(dash)
         // Help
-        let help = NSAttributedString(string: worker.help,
-                                      attributes: linkAttributes(for: URLActions.getHelp.link()))
-        codeInfo.append(help)
+        codeInfo.append(ThemeText.registrationCodeLink(URLActions.getHelp.link()).attributedString(worker.help))
 
         return codeInfo
     }

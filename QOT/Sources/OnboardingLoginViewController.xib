@@ -203,9 +203,6 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="T7b-aw-lXo"/>
                     </constraints>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Your email*"/>
-                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
