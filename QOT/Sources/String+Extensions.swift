@@ -107,6 +107,17 @@ extension String {
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: self)
     }
+
+    var isValidName: Bool {
+        let nameRegex = "[A-Za-z ,.'-]{1,512}"
+        let cleanString = self.folding(options: .diacriticInsensitive, locale: .current)
+        if let range = cleanString.range(of: nameRegex, options: .regularExpression, range: nil, locale: nil),
+            NSRange(range, in: cleanString).length == cleanString.lengthOfBytes(using: .utf8) {
+            return true
+        }
+
+        return false
+    }
 }
 
 // MARK: - Attributed Button Title - Charts SegmentedView

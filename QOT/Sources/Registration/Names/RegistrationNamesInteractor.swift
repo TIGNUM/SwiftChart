@@ -17,6 +17,9 @@ final class RegistrationNamesInteractor {
     private let router: RegistrationNamesRouterInterface
     private let delegate: RegistrationDelegate
 
+    var hasFirstNameError: Bool = false
+    var hasLastNameError: Bool = false
+
     // MARK: - Init
 
     init(worker: RegistrationNamesWorker,
@@ -67,6 +70,22 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
     }
 
     func didTapNext(with firstName: String, lastName: String?) {
+        if !firstName.isValidName || firstName.isEmpty {
+            hasFirstNameError = true
+        }
+        if let lastName = lastName, !lastName.isEmpty, !lastName.isValidName {
+            hasLastNameError = true
+        }
+        if hasFirstNameError || hasLastNameError {
+            presenter.presentView()
+            return
+        }
         delegate.didSave(firstName: firstName, lastName: lastName)
+    }
+
+    func resetErrors() {
+        hasFirstNameError = false
+        hasLastNameError = false
+        presenter.presentView()
     }
 }

@@ -36,12 +36,12 @@ final class RegistrationInteractor {
         return controller
     }
 
-    private var namesController: RegistrationNamesViewController {
+    private lazy var namesController: RegistrationNamesViewController = {
         let configurator = RegistrationNamesConfigurator.make()
         let controller = R.storyboard.registrationNames.registrationNamesViewController() ?? RegistrationNamesViewController()
         configurator(controller, self)
         return controller
-    }
+    }()
 
     private var ageController: RegistrationAgeViewController {
         let configurator = RegistrationAgeConfigurator.make()

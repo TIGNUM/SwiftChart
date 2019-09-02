@@ -10,10 +10,12 @@ import Foundation
 
 protocol RegistrationNamesViewControllerInterface: class {
     func setupView()
+    func updateView()
 }
 
 protocol RegistrationNamesPresenterInterface {
     func setupView()
+    func presentView()
 }
 
 protocol RegistrationNamesInteractorInterface: Interactor {
@@ -22,9 +24,12 @@ protocol RegistrationNamesInteractorInterface: Interactor {
     var lastNameTitle: String { get }
     var mandatoryText: String { get }
     var nextButtonTitle: String { get }
+    var hasFirstNameError: Bool { get }
+    var hasLastNameError: Bool { get }
 
     func didTapBack()
     func didTapNext(with firstName: String, lastName: String?)
+    func resetErrors()
 }
 
 protocol RegistrationNamesRouterInterface {}

@@ -27,4 +27,8 @@ extension RegistrationNamesPresenter: RegistrationNamesPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func presentView() {
+        viewController?.updateView()
+    }
 }

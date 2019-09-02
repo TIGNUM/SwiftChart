@@ -19,6 +19,8 @@ final class RegistrationNamesViewController: UIViewController, ScreenZLevel3 {
     private var keyboardNotification: NSNotification?
 
     private let viewTheme = ThemeView.onboarding
+    private let errorBorderColor = UIColor.redOrange.cgColor
+    private let defaultBorderColor = UIColor.sand40.cgColor
 
     private lazy var buttonNext: UIBarButtonItem = {
         let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
@@ -57,6 +59,10 @@ final class RegistrationNamesViewController: UIViewController, ScreenZLevel3 {
     }
 
     override func didTapBackButton() {
+        interactor?.resetErrors()
+        firstNameField.text = nil
+        lastNameField.text = nil
+
         interactor?.didTapBack()
     }
 }
@@ -92,6 +98,11 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         firstNameField.delegate = self
         lastNameField.textField.returnKeyType = .go
         lastNameField.delegate = self
+    }
+
+    func updateView() {
+        firstNameField.textField.layer.borderColor = (interactor?.hasFirstNameError ?? false) ? errorBorderColor : defaultBorderColor
+        lastNameField.textField.layer.borderColor = (interactor?.hasLastNameError ?? false) ? errorBorderColor : defaultBorderColor
     }
 }
 
@@ -141,11 +152,13 @@ extension RegistrationNamesViewController: UITextFieldDelegate {
             lastNameField.textField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
+            didTapNextButton()
         }
         return false
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        interactor?.resetErrors()
         guard lastNameField.textField.isFirstResponder, let notification = keyboardNotification else { return }
         animateKeyboardNotification(notification)
     }
