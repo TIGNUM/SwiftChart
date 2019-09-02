@@ -91,6 +91,8 @@ extension CGFloat.View.Height {
 
 extension CGFloat.Button.Height {
     static let BottomNavBar: CGFloat = 100
+    static let AnswerButtonDefault: CGFloat = 40
+    static let AnswerButtonBig: CGFloat = 56
 }
 
 extension CGFloat.Corner {
@@ -107,6 +109,14 @@ extension CGFloat.Button.Width {
     static let DecisionTree: CGFloat = 168
     static let Cancel: CGFloat = 88
     static let Continue: CGFloat = 100
+}
+
+extension CGRect {
+    typealias Coach = CGRect
+}
+
+extension CGRect.Coach {
+    static let Default = CGRect(origin: .zero, size: CGSize(width: .DecisionTree, height: .Default))
 }
 
 struct Layout {

@@ -12,18 +12,15 @@ import qot_dal
 final class PrepareResultsRouter {
 
     // MARK: - Properties
-
-    private let viewController: PrepareResultsViewController
+    private weak var viewController: PrepareResultsViewController?
 
     // MARK: - Init
-
     init(viewController: PrepareResultsViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - PrepareResultsRouterInterface
-
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
         presentDecisionTree(for: .prepareBenefits(benefits: benefits,
@@ -44,23 +41,29 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func didClickSaveAndContinue() {
-       //viewController.dismissResultView()
+        viewController?.dismissResultView()
+        dismiss()
     }
 
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
         let configurator = ChoiceConfigurator.make(selectedIDs, relatedStrategyId)
         let controller = ChoiceViewController(configure: configurator)
         controller.delegate = viewController
-        viewController.present(controller, animated: true)
+        viewController?.present(controller, animated: true)
+    }
+
+    func dismiss() {
+        viewController?.dismiss(animated: false) {
+            NotificationCenter.default.post(name: .dismissCoachView, object: nil)
+        }
     }
 }
 
 // MARK: - DecisionTreeViewController
-
 private extension PrepareResultsRouter {
     func presentDecisionTree(for type: DecisionTreeType) {
         let configurator = DecisionTreeConfigurator.make(for: type)
         let controller = DecisionTreeViewController(configure: configurator)
-        viewController.present(controller, animated: true)
+        viewController?.present(controller, animated: true)
     }
 }

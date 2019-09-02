@@ -25,11 +25,33 @@ enum QuestionKey {
 
     static func continueButtonIsHidden(_ key: String?) -> Bool {
         switch key {
-        case QuestionKey.ToBeVision.Review,
-             QuestionKey.ToBeVision.Create:
+        case QuestionKey.ToBeVision.Instructions,
+             QuestionKey.ToBeVision.Review,
+             QuestionKey.ToBeVision.Create,
+             QuestionKey.ToBeVision.Home,
+             QuestionKey.ToBeVision.Work,
+             QuestionKey.Prepare.CalendarEventSelectionCritical,
+             QuestionKey.Prepare.CalendarEventSelectionDaily,
+             QuestionKey.Prepare.ShowTBV:
             return false
         default:
             return true
+        }
+    }
+
+    static func preiviousButtonIsHidden(_ key: String?) -> Bool {
+        switch key {
+        case QuestionKey.ToBeVision.Instructions,
+             QuestionKey.MindsetShifter.Intro,
+             QuestionKey.MindsetShifterTBV.Intro,
+             QuestionKey.Prepare.Intro,
+             QuestionKey.Solve.Intro,
+             QuestionKey.Recovery.intro.rawValue,
+             QuestionKey.Sprint.Intro,
+             QuestionKey.SprintReflection.Intro:
+            return true
+        default:
+            return false
         }
     }
 

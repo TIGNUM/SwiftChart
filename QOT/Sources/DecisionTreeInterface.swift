@@ -23,11 +23,6 @@ protocol DecisionTreeViewControllerInterface: UIViewController, ScreenZLevel3 {
     func dismiss()
     func presentAddEventController(_ eventStore: EKEventStore)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
-    func syncButtons(previousButtonIsHidden: Bool,
-                     continueButtonIsHidden: Bool,
-                     isEnabled: Bool,
-                     backgroundColor: UIColor)
-    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func toBeVisionDidChange()
     func presentPermissionView(_ permissionType: AskPermission.Kind)
 }
@@ -46,11 +41,6 @@ protocol DecisionTreePresenterInterface {
     func dismiss()
     func presentAddEventController(_ eventStore: EKEventStore)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
-    func syncButtons(previousButtonIsHidden: Bool,
-                     continueButtonIsHidden: Bool,
-                     isEnabled: Bool,
-                     backgroundColor: UIColor)
-    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func toBeVisionDidChange()
 }
 
@@ -88,7 +78,6 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func loadNextQuestion(from answer: QDMAnswer?)
     func loadNextQuestion(targetId: Int, animated: Bool)
     func loadEventQuestion()
-    func handleSelection(for answer: QDMAnswer)
     func handleSingleSelection(for answer: QDMAnswer)
     func didSelectAnswer(_ answer: QDMAnswer)
     func didDeSelectAnswer(_ answer: QDMAnswer)
@@ -107,17 +96,12 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func setUserCalendarEvent(event: QDMUserCalendarEvent)
     func presentAddEventController(_ eventStore: EKEventStore)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
-    func syncButtons(previousButtonIsHidden: Bool,
-                     continueButtonIsHidden: Bool,
-                     isEnabled: Bool,
-                     backgroundColor: UIColor)
-    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
-    func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]?
     func updateMultiSelectionCounter()
     func toBeVisionDidChange()
     func dismiss()
     func getCalendarPermissionType() -> AskPermission.Kind?
     func presentPermissionView(_ permissionType: AskPermission.Kind)
+    func dismissAll()
 }
 
 protocol DecisionTreeRouterInterface {
@@ -133,6 +117,7 @@ protocol DecisionTreeRouterInterface {
     func openToBeVisionPage()
     func openRecoveryResults(_ recovery: QDMRecovery3D?)
     func dismissAndGoToMyQot()
+    func dismissAll()
     func presentPermissionView(_ permissionType: AskPermission.Kind)
 }
 

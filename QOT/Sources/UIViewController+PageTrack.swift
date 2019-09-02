@@ -81,13 +81,14 @@ extension UIViewController {
         case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
         case is LocationPermissionViewController: return "onboarding.createaccount.permissions"
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
-        case is StrategyListViewController: return "knowing.feed.strategy"
+        case is StrategyListViewController: return "know.feed.strategy"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
         case is MyDataScreenViewController: return "myqot.mydata"
         case is MyDataSelectionViewController: return "myqot.mydata.lineselection"
         case is MyDataExplanationViewController: return myDataInfoViewControllerPageKey
         case is AskPermissionViewController: return askPermissionPageKey
+        case is ChoiceViewController: return "prepare.result.add.remove.strategies"
         default: preconditionFailure()
         }
     }

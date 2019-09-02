@@ -24,6 +24,7 @@ extension Notification.Name {
     static let didUpdateSelectionCounter = Notification.Name(rawValue: "qot_decision_tree_multi_selection_counter")
     static let typingAnimationStart = Notification.Name("qot_decision_tree_typing_animation_start")
     static let dismissCoachView = Notification.Name(rawValue: "qot_coach_view_dismiss")
+    static let questionnaireBottomNavigationUpdate = Notification.Name(rawValue: "qot_questionnaire_bottom_navigation_update")
 }
 
 final class NotificationHandler {

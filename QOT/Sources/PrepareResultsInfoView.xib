@@ -13,9 +13,6 @@
         <array key="SF-Pro-Text-Light.otf">
             <string>SFProText-Light</string>
         </array>
-        <array key="SF-Pro-Text-Semibold.otf">
-            <string>SFProText-Semibold</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -24,21 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HPM-n4-juM">
-                    <rect key="frame" x="319" y="822" width="71" height="40"/>
-                    <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="71" id="6Jw-cg-2we"/>
-                        <constraint firstAttribute="height" constant="40" id="CDY-hJ-QtZ"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
-                    <state key="normal" title="Done">
-                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="didSelectDoneButton" destination="iN0-l3-epB" eventType="touchUpInside" id="IzG-2Z-EOm"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsR-cq-Hfn">
                     <rect key="frame" x="24" y="697.5" width="366" height="76.5"/>
                     <string key="text">Great work in developing your prepare plan to rule your impact (text to be added). This preparation will be saved for you in MyQOT so that you can review it as needed.</string>
@@ -57,17 +39,14 @@
             </subviews>
             <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="HPM-n4-juM" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="PKg-x9-sSm"/>
                 <constraint firstItem="PAD-Tm-Udg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Wsf-oT-hI8"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RsR-cq-Hfn" secondAttribute="trailing" constant="24" id="Zmf-Mu-lXl"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="HPM-n4-juM" secondAttribute="trailing" constant="24" id="elU-kZ-bsa"/>
-                <constraint firstItem="HPM-n4-juM" firstAttribute="top" secondItem="RsR-cq-Hfn" secondAttribute="bottom" constant="48" id="nGa-vs-Uaa"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RsR-cq-Hfn" secondAttribute="bottom" constant="88" id="eop-iR-zcc"/>
                 <constraint firstItem="RsR-cq-Hfn" firstAttribute="top" secondItem="PAD-Tm-Udg" secondAttribute="bottom" constant="16" id="q1j-cd-GS3"/>
                 <constraint firstItem="RsR-cq-Hfn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="qV8-Rg-fyS"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="doneButton" destination="HPM-n4-juM" id="0XV-qJ-rJ9"/>
                 <outlet property="textLabel" destination="RsR-cq-Hfn" id="J6e-bJ-8KE"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="152.67857142857142"/>

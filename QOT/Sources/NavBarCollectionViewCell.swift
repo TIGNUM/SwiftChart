@@ -28,6 +28,13 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        buttonLeft.isHidden = true
+        buttonRight.isHidden = true
+    }
+
     func configure(title: String, tapLeft: actionClosure? = nil, tapRight: actionClosure? = nil) {
         container.alpha = 1.0
         ThemeText.navigationBarHeader.apply(title, to: titleLabel)

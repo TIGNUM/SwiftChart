@@ -37,8 +37,8 @@ extension DecisionTreeWorker {
     }
 }
 
-// MARK: - Private Create Prepare
-private extension DecisionTreeWorker {
+// MARK: - Create Update Prepare
+extension DecisionTreeWorker {
     func createPreparationCritical(_ answer: QDMAnswer) {
         let level = QDMUserPreparation.Level.LEVEL_CRITICAL
         PreparationManager.main.create(level: level,
@@ -49,10 +49,7 @@ private extension DecisionTreeWorker {
                                        strategyIds: [],
                                        eventType: prepareEventType,
                                        event: selectedEvent) { [weak self] (preparation) in
-                                        if let preparation = preparation {
-                                            self?.interactor?.openPrepareResults(preparation,
-                                                                                 self?.decisionTree?.selectedAnswers ?? [])
-                                        }
+                                        self?.presentPrepareResults(preparation: preparation)
         }
     }
 
@@ -63,10 +60,13 @@ private extension DecisionTreeWorker {
                                        relatedStrategyId: answer.decisions.first?.targetTypeId ?? 0,
                                        eventType: answer.subtitle ?? "",
                                        event: selectedEvent) { [weak self] (preparation) in
-                                        if let preparation = preparation {
-                                            self?.interactor?.openPrepareResults(preparation,
-                                                                                 self?.decisionTree?.selectedAnswers ?? [])
-                                        }
+                                        self?.presentPrepareResults(preparation: preparation)
+        }
+    }
+
+    func presentPrepareResults(preparation: QDMUserPreparation?) {
+        if let preparation = preparation {
+            interactor?.openPrepareResults(preparation, decisionTree?.selectedAnswers ?? [])
         }
     }
 }
@@ -75,12 +75,9 @@ extension DecisionTreeWorker {
     func getCalendarPermissionType() -> AskPermission.Kind? {
         let authStatus = EKEventStore.authorizationStatus(for: .event)
         switch authStatus {
-        case .denied:
-            return .calendarOpenSettings
-        case .notDetermined:
-            return .calendar
-        default:
-            return nil
+        case .denied: return .calendarOpenSettings
+        case .notDetermined: return .calendar
+        default: return nil
         }
     }
 }

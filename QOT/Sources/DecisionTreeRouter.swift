@@ -12,7 +12,7 @@ import qot_dal
 final class DecisionTreeRouter {
 
     // MARK: - Properties
-    private let viewController: DecisionTreeViewController
+    private var viewController: DecisionTreeViewController?
     private var imagePickerController: ImagePickerController?
     private var permissionsManager: PermissionsManager = AppCoordinator.appState.permissionsManager!
 
@@ -36,28 +36,29 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         if let controller = R.storyboard.main()
             .instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier) as? ArticleViewController {
             ArticleConfigurator.configure(selectedID: contentID, viewController: controller)
-            viewController.present(controller, animated: true, completion: nil)
+            viewController?.present(controller, animated: true, completion: nil)
         }
     }
 
     func openVideo(from url: URL, item: QDMContentItem?) {
-        viewController.stream(videoURL: url, contentItem: item, .about)
+        viewController?.stream(videoURL: url, contentItem: item, .about)
     }
 
     func openImagePicker() {
+        guard let viewController = viewController else { return }
         imagePickerController?.show(in: viewController, deletable: true)
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
         let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV)
         let decisionTreeVC = DecisionTreeViewController(configure: configurator)
-        viewController.present(decisionTreeVC, animated: true, completion: completion)
+        viewController?.present(decisionTreeVC, animated: true, completion: completion)
     }
 
     func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
         let configurator = ShifterResultConfigurator.make(resultItem: resultItem)
         let controller = ShifterResultViewController(configure: configurator)
-        viewController.present(controller, animated: true) {
+        viewController?.present(controller, animated: true) {
             completion()
         }
     }
@@ -66,25 +67,30 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         let configurator = SolveResultsConfigurator.make(from: selectedAnswer, type: type, solve: nil)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = viewController
-        viewController.present(solveResultsController, animated: true)
+        viewController?.present(solveResultsController, animated: true)
     }
 
     func openToBeVisionPage() {
         let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
         let visionViewController = MyToBeVisionViewController(configurator: configurator)
-        viewController.present(visionViewController, animated: true) {
-           self.viewController.dismiss(animated: true, completion: nil)
+        viewController?.present(visionViewController, animated: true) {
+           self.viewController?.dismiss(animated: true, completion: nil)
         }
     }
 
     func dismissAndGoToMyQot() {
-        viewController.dismiss(animated: true, completion: {
-            self.viewController.delegate?.didDismiss()
-        })
+        viewController?.dismiss(animated: true) {
+            self.viewController?.delegate?.didDismiss()
+        }
+    }
+
+    func dismissAll() {
+        guard let coachViewController = baseRootViewController?.QOTVisibleViewController() else { return }
+        viewController?.navigationController?.dismissAllPresentedViewControllers(coachViewController, false) {}
     }
 
     func presentPermissionView(_ permissionType: AskPermission.Kind) {
-        viewController.presentPermissionView(permissionType)
+        viewController?.presentPermissionView(permissionType)
     }
 }
 
@@ -103,7 +109,7 @@ extension DecisionTreeRouter {
 
     private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {
         let controller = PrepareResultsViewController(configure: configurator)
-        viewController.present(controller, animated: true, completion: nil)
+        viewController?.present(controller, animated: true)
     }
 }
 
@@ -113,7 +119,7 @@ extension DecisionTreeRouter {
         let configurator = SolveResultsConfigurator.make(from: recovery)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = viewController
-        viewController.present(solveResultsController, animated: true)
+        viewController?.present(solveResultsController, animated: true)
     }
 }
 
@@ -124,11 +130,11 @@ extension DecisionTreeRouter: ImagePickerControllerAdapterProtocol {
 
 extension DecisionTreeRouter: ImagePickerControllerDelegate {
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        viewController.interactor?.save(image)
-        viewController.refreshBottomNavigationItems()
+        viewController?.interactor?.save(image)
+        viewController?.refreshBottomNavigationItems()
     }
 
     func cancelSelection() {
-        viewController.refreshBottomNavigationItems()
+        viewController?.refreshBottomNavigationItems()
     }
 }

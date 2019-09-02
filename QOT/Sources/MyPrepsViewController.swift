@@ -264,6 +264,7 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmentedControl.selectedSegmentIndex == 0 {
             if let item = interactor?.itemPrep(at: indexPath), tableView.isEditing == false {
+                tableView.deselectRow(at: indexPath, animated: true)
                 interactor?.presentPreparation(item: item.qdmPrep, viewController: self)
             }
         } else if segmentedControl.selectedSegmentIndex == 1 {

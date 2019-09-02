@@ -67,9 +67,21 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         cell.configure(for: answer,
                        isSelected: isSelected,
                        maxSelections: maxPossibleSelections,
-                       selectionCounter: selectedAnswers.count)
+                       selectionCounter: selectedAnswers.count,
+                       answerButtonNeedsUpdate: answerButtonNeedsUpdate(indexPath: indexPath))
         cell.delegate = self
         return cell
+    }
+}
+
+// MARK: - Private
+extension MultipleSelectionTableViewCell {
+    func answerButtonNeedsUpdate(indexPath: IndexPath) -> Bool {
+        let offset = collectionView.bounds.width * 0.1
+        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
+        let answerText = answers[indexPath.row].subtitle ?? ""
+        let width = answerText.size(with: buttonFont).width + offset
+        return width > collectionView.bounds.width
     }
 }
 
@@ -91,10 +103,13 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let offset = collectionView.bounds.width * 0.1
         let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
         let answerText = answers[indexPath.row].subtitle ?? ""
-        let width = answerText.size(with: buttonFont).width + collectionView.bounds.width * 0.1
-        return CGSize(width: width, height: 40)
+        let tempWidth = answerText.size(with: buttonFont).width + offset
+        let width = tempWidth <= collectionView.bounds.width ? tempWidth : collectionView.frame.width - offset
+        let height = tempWidth <= collectionView.bounds.width ? CGFloat.Button.Height.AnswerButtonDefault : CGFloat.Button.Height.AnswerButtonBig
+        return CGSize(width: width, height: CGFloat(height))
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat {

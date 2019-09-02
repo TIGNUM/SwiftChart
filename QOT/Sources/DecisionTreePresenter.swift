@@ -58,23 +58,6 @@ extension DecisionTreePresenter: DecisionTreePresenterInterface {
         viewController?.presentInfoView(icon: icon, title: title, text: text)
     }
 
-    func syncButtons(previousButtonIsHidden: Bool,
-                     continueButtonIsHidden: Bool,
-                     isEnabled: Bool,
-                     backgroundColor: UIColor) {
-        viewController?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
-                                    continueButtonIsHidden: continueButtonIsHidden,
-                                    isEnabled: isEnabled,
-                                    backgroundColor: backgroundColor)
-    }
-
-    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?) {
-        viewController?.updateBottomButtonTitle(counter: counter,
-                                                maxSelections: maxSelections,
-                                                defaultTitle: defaultTitle,
-                                                confirmTitle: confirmTitle)
-    }
-
     func toBeVisionDidChange() {
         viewController?.toBeVisionDidChange()
     }

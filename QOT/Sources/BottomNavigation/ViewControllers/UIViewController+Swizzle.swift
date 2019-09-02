@@ -304,7 +304,7 @@ extension UIViewController {
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
                                          textColor: UIColor = .accent,
-                                         backgroundColor: UIColor = .carbonDark,
+                                         backgroundColor: UIColor = .carbonNew,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default)))
         button.backgroundColor = backgroundColor

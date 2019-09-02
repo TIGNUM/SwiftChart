@@ -49,12 +49,14 @@ extension DecisionTreeButton {
     func update(with value: Int,
                 defaultTitle: String,
                 confirmationTitle: String,
-                maxSelections: Int,
-                titleColor: UIColor?) {
+                maxSelections: Int) {
+        isHidden = confirmationTitle.isEmpty && defaultTitle.isEmpty
+        guard !isHidden else { return }
         let result = maxSelections - value
         let title = value == maxSelections ? confirmationTitle : R.string.localized.buttonTitlePick(result)
+        isUserInteractionEnabled = value == maxSelections
         backgroundColor = value == maxSelections ? selectedBackgroundColor : defaultBackgroundColor
-        let textColor: UIColor = value == maxSelections ? .accent : titleColor ?? .carbon30
+        let textColor: UIColor = value == maxSelections ? .accent : .carbon30
         setAttributedTitle(NSAttributedString(string: title,
                                               letterSpacing: 0.2,
                                               font: .sfProtextSemibold(ofSize: 14),
@@ -69,7 +71,6 @@ extension DecisionTreeButton {
         } else {
             layer.shadowOpacity = 0
         }
-        setupView()
     }
 
     func toBarButtonItem() -> UIBarButtonItem {

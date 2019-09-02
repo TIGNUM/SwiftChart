@@ -10,10 +10,12 @@ import UIKit
 
 extension UIViewController {
     func updateBottomNavigation(_ leftBarButtonItems: [UIBarButtonItem], _ rightBarButtonItems: [UIBarButtonItem]) {
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: leftBarButtonItems,
-                                                  rightBarButtonItems: rightBarButtonItems,
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        DispatchQueue.main.async {
+            let navigationItem = BottomNavigationItem(leftBarButtonItems: leftBarButtonItems,
+                                                      rightBarButtonItems: rightBarButtonItems,
+                                                      backgroundColor: .clear)
+            NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        }
     }
 }
 
@@ -40,5 +42,12 @@ extension UIViewController {
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .sand08)
+    }
+
+    func saveChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
+        return roundedBarButtonItem(title: R.string.localized.buttonTitleSaveChanges(),
+                                    buttonWidth: .SaveChanges,
+                                    action: action,
+                                    borderColor: .accent40)
     }
 }

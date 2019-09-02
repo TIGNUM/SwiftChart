@@ -48,12 +48,16 @@ extension PreparationManager {
         }
     }
 
-    func update(preparation: QDMUserPreparation, _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        userService?.updateUserPreparation(preparation) { (preparation, error) in
-            if let error = error {
-                log("Error while trying to update preparation: \(error.localizedDescription)", level: QDLogger.Level.debug)
+    func update(_ preparation: QDMUserPreparation?, _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        if let preparation = preparation {
+            userService?.updateUserPreparation(preparation) { (preparation, error) in
+                if let error = error {
+                    log("Error while trying to update preparation: \(error.localizedDescription)", level: QDLogger.Level.debug)
+                }
+                completion(preparation)
             }
-            completion(preparation)
+        } else {
+            completion(nil)
         }
     }
 

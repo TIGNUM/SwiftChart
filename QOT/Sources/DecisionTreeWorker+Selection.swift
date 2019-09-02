@@ -9,56 +9,8 @@
 import Foundation
 import qot_dal
 
-// MARK: - Handle Selections
+// MARK: - Select / DeSelect
 extension DecisionTreeWorker {
-    func handleSelection(for answer: QDMAnswer) {
-        switch currentQuestion?.answerType {
-        case AnswerType.multiSelection.rawValue:
-            handleMultiSelection(for: answer)
-        case AnswerType.singleSelection.rawValue:
-            handleSingleSelection(for: answer)
-        default: break
-        }
-    }
-
-    func handleSingleSelection(for answer: QDMAnswer) {
-        guard let questionID = currentQuestion?.remoteID else { return }
-        updateDecisionTree(from: answer, questionId: questionID)
-        if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
-            interactor?.openToBeVisionPage()
-            return
-        }
-
-        switch type {
-        case .recovery:
-            handleSelectionRecovery(answer)
-
-        case .sprint:
-            handleSelectionSprint(answer)
-
-        case .mindsetShifter:
-            handleSelectionMindsetShifter(answer)
-
-        case .mindsetShifterTBV,
-             .mindsetShifterTBVOnboarding:
-            handleSelectionTBVGeneratorShort(answer)
-
-        case .prepare,
-             .prepareBenefits,
-             .prepareIntentions:
-            handleSelectionPrepare(answer)
-
-        case .solve:
-            handleSelectionSolve(answer)
-
-        case .toBeVisionGenerator:
-            handleSelectionTBVGenerator(answer)
-
-        case .sprintReflection:
-            return
-        }
-    }
-
     func didSelectAnswer(_ answer: QDMAnswer) {
         switch currentQuestion?.answerType {
         case AnswerType.multiSelection.rawValue:
@@ -77,6 +29,30 @@ extension DecisionTreeWorker {
             multiSelectionCounter.minus(1)
             decisionTree?.remove(selection)
             notifyCounterChanged(with: multiSelectionCounter)
+        }
+    }
+}
+
+// MARK: - Selection Handling
+extension DecisionTreeWorker {
+    func handleSingleSelection(for answer: QDMAnswer) {
+        if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
+            interactor?.openToBeVisionPage()
+            return
+        }
+
+        switch type {
+        case .recovery: handleSelectionRecovery(answer)
+        case .sprint: handleSelectionSprint(answer)
+        case .mindsetShifter: handleSelectionMindsetShifter(answer)
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding: handleSelectionTBVGeneratorShort(answer)
+        case .prepare: handleSelectionPrepare(answer)
+        case .solve: handleSelectionSolve(answer)
+        case .toBeVisionGenerator: handleSelectionTBVGenerator(answer)
+        case .sprintReflection,
+             .prepareIntentions,
+             .prepareBenefits: return
         }
     }
 
@@ -132,6 +108,7 @@ extension DecisionTreeWorker {
             didUpdatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
+            return
         case .prepareBenefits:
             didUpdateBenefits(interactor?.userInput ?? "")
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
@@ -237,11 +214,7 @@ private extension DecisionTreeWorker {
     }
 
     func showQuestion(_ node: DecisionTreeNode) {
-        if node.question?.key == QuestionKey.Prepare.BuildCritical && preparations.isEmpty == true {
-            if let answer = currentQuestion?.answers.last {
-                showNextQuestionIfExist(answer)
-            }
-        } else if let question = node.question {
+        if let question = node.question {
             syncButtons()
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
@@ -356,10 +329,7 @@ private extension DecisionTreeWorker {
         case QuestionKey.Prepare.EventTypeSelectionCritical:
             setTargetContentID(for: answer)
             prepareEventType = answer.subtitle ?? ""
-            if let targetQuestionId = answer.targetId(.question) {
-                showNextQuestion(targetId: targetQuestionId)
-                return
-            }
+            showNextQuestionIfExist(answer)
 
         case QuestionKey.Prepare.EventTypeSelectionDaily:
             prepareEventType = answer.subtitle ?? ""
@@ -371,10 +341,8 @@ private extension DecisionTreeWorker {
             if let contentId = answer.targetId(.content) {
                 showResultView(for: answer, contentID: contentId)
             }
-        case QuestionKey.Prepare.BuildCritical,
-             QuestionKey.Prepare.CalendarEventSelectionCritical,
+        case QuestionKey.Prepare.CalendarEventSelectionCritical,
              QuestionKey.Prepare.CalendarEventSelectionDaily,
-             QuestionKey.Prepare.EventTypeSelectionCritical,
              QuestionKey.Prepare.SelectExisting,
              QuestionKey.Prepare.ShowTBV:
                 showNextQuestionIfExist(answer)
