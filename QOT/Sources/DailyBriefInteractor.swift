@@ -468,7 +468,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
         let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
-        let readinessscore = Int((impactReadiness.dailyCheckInResult?.impactReadiness ?? 0) * 100)
+        let readinessscore = Int((impactReadiness.dailyCheckInResult?.impactReadiness ?? 0))
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      dailyCheckImageURL: impactReadinessImageURL,

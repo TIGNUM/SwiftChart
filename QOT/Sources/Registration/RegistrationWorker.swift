@@ -12,7 +12,6 @@ import qot_dal
 final class RegistrationWorker: BaseSigningWorker {
 
     // MARK: - Properties
-    private let service: QOTService
 
     lazy var generalError: String = {
         R.string.localized.onboardingRegistrationCreateAccountError()
@@ -36,10 +35,8 @@ final class RegistrationWorker: BaseSigningWorker {
 
     // MARK: - Init
 
-    init(_ service: QOTService = QOTService.main,
-         _ sessionService: SessionService = SessionService.main,
+    init(_ sessionService: SessionService = SessionService.main,
          _ userService: qot_dal.UserService = qot_dal.UserService.main) {
-        self.service = service
         super.init(sessionService, userService)
     }
 
@@ -51,7 +48,7 @@ final class RegistrationWorker: BaseSigningWorker {
         userObject.firstName = data.firstName
         userObject.lastName = data.lastName
         userObject.birthYear = data.birthYear
-        service.createUser(request: userObject) { [weak self] (response, error) in
+        sessionService.registUser(request: userObject) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
             completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
             requestSynchronization(.USER, .DOWN_SYNC)
