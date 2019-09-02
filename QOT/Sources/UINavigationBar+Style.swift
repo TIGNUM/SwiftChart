@@ -64,13 +64,15 @@ extension UINavigationBar {
         guard let items = items else { return true }
 
         for item in items {
-            if let button = item.leftBarButtonItem,
-                pointTest(button: button, point: point, with: event) {
-                return true
+            for item in item.leftBarButtonItems ?? [] {
+                if pointTest(button: item, point: point, with: event) {
+                    return true
+                }
             }
-            if let button = item.rightBarButtonItem,
-                pointTest(button: button, point: point, with: event) {
-                return true
+            for item in item.rightBarButtonItems ?? [] {
+                if pointTest(button: item, point: point, with: event) {
+                    return true
+                }
             }
         }
         return false
