@@ -61,8 +61,8 @@ extension BaseSigningWorker {
         }
     }
 
-    func validate(code: String, for email: String, _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
-        sessionService.verify(code: code, email: email) { [weak self] (response, error) in
+    func validate(code: String, for email: String, forLogin: Bool, _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
+        sessionService.verify(code: code, email: email, forLogin: forLogin) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
             completion(strongSelf.response(from: response), error)
         }

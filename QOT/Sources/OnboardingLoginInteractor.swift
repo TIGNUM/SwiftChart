@@ -129,7 +129,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         }
 
         presenter.presentActivity(state: .inProgress)
-        worker.validate(code: code, for: email) { [weak self] (result, error) in
+        worker.validate(code: code, for: email, forLogin: true) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
             switch result.code {
             case .codeValid,

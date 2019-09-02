@@ -158,7 +158,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             return
         }
         presenter.presentActivity(state: .inProgress)
-        worker.validate(code: code, for: worker.email) { [weak self] (result, error) in
+        worker.validate(code: code, for: worker.email, forLogin: false) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
             if case .codeValid = result.code {
                 self?.delegate.didVerifyCode(code)
