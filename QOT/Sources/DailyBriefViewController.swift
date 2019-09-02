@@ -22,12 +22,12 @@ protocol DailyBriefViewControllerDelegate: class {
     func showCustomizeTarget()
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) // Save Get To Level 5 Answer Value
-    func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) // Update Selection of Get To Level 5 Answer Value
     func saveTargetValue(value: Int?) //save sleep target
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName)
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
+    func didUpdateLevel5()
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -169,7 +169,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             }
             return UITableViewCell()
         case .GET_TO_LEVEL_5?:
-            guard let level5ViewModel = bucketItem as? Level5CellViewModel else { return UITableViewCell()}
+            guard let level5ViewModel = bucketItem as? Level5ViewModel else { return UITableViewCell()}
             return getlevel5(tableView, indexPath, level5ViewModel)
         case .QUESTION_WITHOUT_ANSWER?:
             guard let questionCellViewModel = bucketItem as? QuestionCellViewModel else {return UITableViewCell()}
@@ -485,10 +485,9 @@ private extension DailyBriefViewController {
      */
     func getlevel5(_ tableView: UITableView,
                    _ indexPath: IndexPath,
-                   _ level5ViewModel: Level5CellViewModel?) -> UITableViewCell {
+                   _ level5ViewModel: Level5ViewModel?) -> UITableViewCell {
         let cell: Level5Cell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: level5ViewModel)
-        cell.backgroundColor = .carbon
+        cell.configure(with: level5ViewModel!)
         cell.delegate = self
         return cell
     }
@@ -702,6 +701,12 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
+    func didUpdateLevel5() {
+        tableView.beginUpdates()
+        tableView.setNeedsLayout()
+        tableView.endUpdates()
+    }
+
     func didPressGotItSprint(sprint: QDMSprint) {
         interactor?.didPressGotItSprint(sprint: sprint)
     }
@@ -730,10 +735,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
         interactor?.saveAnswerValue(value)
-    }
-
-    func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) {
-        interactor?.saveUpdateGetToLevel5Selection(value)
     }
 
     func saveTargetValue(value: Int?) {

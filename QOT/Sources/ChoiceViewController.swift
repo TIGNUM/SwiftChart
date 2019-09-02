@@ -14,7 +14,7 @@ protocol ChoiceViewControllerDelegate: class {
     func didTapRow(_ viewController: UIViewController, contentId: Int)
 }
 
-final class ChoiceViewController: UIViewController {
+final class ChoiceViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
@@ -36,6 +36,11 @@ final class ChoiceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 }
 
@@ -73,11 +78,11 @@ private extension ChoiceViewController {
 
 // MARK: - Actions
 private extension ChoiceViewController {
-    @IBAction func didPressSave() {
+    @objc func didTapSave() {
         delegate?.dismiss(self, selections: interactor?.selected ?? [])
     }
 
-    @IBAction func didPressCancel() {
+    @objc func didTapCancel() {
         dismiss(animated: true, completion: nil)
     }
 }
@@ -168,20 +173,13 @@ extension ChoiceViewController: CollapsableCellDelegate {
     }
 }
 
-// MARK: - Navigation Items
+// MARK: - BottomBarNavigation
 extension ChoiceViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
-                                     buttonWidth: .SaveChanges,
-                                     action: #selector(didPressSave)),
-                roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
-                                     buttonWidth: .Cancel,
-                                     action: #selector(didPressCancel),
-                                     backgroundColor: .clear,
-                                     borderColor: .accent40)]
+        return [saveChangesButtonItem(#selector(didTapSave)), cancelButtonItem(#selector(didTapCancel))]
     }
 }

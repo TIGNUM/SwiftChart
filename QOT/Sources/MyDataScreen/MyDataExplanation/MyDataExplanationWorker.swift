@@ -30,6 +30,6 @@ extension MyDataExplanationWorker: MyDataExplanationWorkerInterface {
     }
 
     func myDataExplanationHeaderTitle() -> String {
-        return ScreenTitleService.main.myDataSectionTitles(for: .dailyImpact) ?? ""
+        return ScreenTitleService.main.myDataSectionTitle(for: .dailyImpact) ?? ""
     }
 }

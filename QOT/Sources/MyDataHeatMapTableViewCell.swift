@@ -72,4 +72,18 @@ extension JTAppleCalendarView {
     static func correctedCalendarDateFor(date: Date) -> Date {
         return date.dateAfterSeconds(Calendar.current.timeZone.secondsFromGMT())
     }
+
+    //handle the touches outside of calendar view's bounds - because heatMapDetailView sometimes exceeds the calendar's bounds and we want to receive touches all over details view
+    override open func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
+        if clipsToBounds || isHidden || alpha == 0 {
+            return nil
+        }
+        for subview in subviews.reversed() {
+            let subPoint = subview.convert(point, from: self)
+            if let result = subview.hitTest(subPoint, with: event) {
+                return result
+            }
+        }
+        return nil
+    }
 }

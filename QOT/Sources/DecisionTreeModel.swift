@@ -137,35 +137,7 @@ enum DecisionTreeType {
     }
 }
 
-//TODO Move to better place && MORE IMPORTANT -> type: DecisionTreeType as Question property
 extension QDMQuestion {
-    var type: DecisionTreeType? {
-        get {
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.ToBeVision_3_0.rawValue }).isEmpty {
-                return .toBeVisionGenerator
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.MindsetShifter.rawValue }).isEmpty {
-                return .mindsetShifter
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.MindsetShifterToBeVision.rawValue }).isEmpty {
-                return .mindsetShifterTBV
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.Prepare.rawValue }).isEmpty {
-                return .prepare
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.Solve.rawValue }).isEmpty {
-                return .solve
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.RecoveryPlan.rawValue }).isEmpty {
-                return .recovery
-            }
-            if !(groups.filter { $0.id == qot_dal.QuestionGroup.Sprint.rawValue }).isEmpty {
-                return .sprint
-            }
-            return nil
-        }
-    }
-
     var hasTypingAnimation: Bool {
         get {
             switch key {

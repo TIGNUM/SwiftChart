@@ -37,7 +37,11 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
 // MARK: - Configure
 extension MultipleSelectionCollectionViewCell {
-    func configure(for answer: QDMAnswer, isSelected: Bool, maxSelections: Int, selectionCounter: Int) {
+    func configure(for answer: QDMAnswer,
+                   isSelected: Bool,
+                   maxSelections: Int,
+                   selectionCounter: Int,
+                   answerButtonNeedsUpdate: Bool) {
         self.answer = answer
         self.maxSelections = maxSelections
         self.isAnswered = isSelected
@@ -47,6 +51,11 @@ extension MultipleSelectionCollectionViewCell {
                                defaultBackgroundColor: isSelected ? .accent30 : .clear,
                                borderColor: .accent30,
                                titleColor: .accent)
+        if answerButtonNeedsUpdate {
+            answerButton.titleLabel?.lineBreakMode = .byWordWrapping
+            answerButton.titleLabel?.numberOfLines = 2
+            answerButton.sizeToFit()
+        }
     }
 }
 

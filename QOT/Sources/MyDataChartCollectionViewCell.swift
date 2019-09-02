@@ -48,6 +48,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.showXGridDashed = false
         chartView.showXLabelsAndGrid = false
         chartView.showYLabelsAndGrid = true
+        chartView.isUserInteractionEnabled = false
     }
 
     private func setupView() {
@@ -160,7 +161,11 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         addSubview(irAverageLabel)
         addedViews.append(irAverageLabel)
         for view in noDataViewsCollection where view.tag == 1 {
-            createPositionConstraints(forView: irAverageLabel, and: view, with: calculateBottomConstraintDifference(for: average) - 10.0, centeredCompensation: false)
+            createPositionConstraints(forView: irAverageLabel,
+                                      and: view,
+                                      with: calculateBottomConstraintDifference(for: average) - 10.0,
+                                      toLeadingOfView: true,
+                                      centeredCompensation: false)
         }
     }
 
@@ -217,14 +222,23 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                     bringSubview(toFront: pointView)
                     addedViews.append(pointView)
                     var alignmentView: UIImageView = UIImageView()
-                    for view in noDataViewsCollection where view.tag == Int(point.x) {
-                        alignmentView = view
+                    var toLeading = true
+                    if point.x == 6 {
+                        toLeading = false
+                        for view in noDataViewsCollection where view.tag == 6 {
+                            alignmentView = view
+                        }
+                    } else {
+                        for view in noDataViewsCollection where view.tag == Int(point.x) + 1 {
+                            alignmentView = view
+                        }
                     }
                     let width: CGFloat = parameter == .IR ? largePointSize: normalPointSize
                     pointView.frame = CGRect(x: 0, y: 0, width: width, height: width)
                     createPositionConstraints(for: pointView,
                                               andPointViewWidth: width,
                                               and: alignmentView,
+                                              toLeadingOfView: toLeading,
                                               with: calculateBottomConstraintDifference(for: point.y))
                 }
             }
@@ -234,6 +248,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     func createPositionConstraints(for pointView: UIView,
                                    andPointViewWidth width: CGFloat,
                                    and alignmentView: UIView,
+                                   toLeadingOfView: Bool,
                                    with bottomConstant: CGFloat) {
         pointView.translatesAutoresizingMaskIntoConstraints = false
         let heightConstraint = NSLayoutConstraint.init(item: pointView,
@@ -251,19 +266,24 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                                                       multiplier: 1,
                                                       constant: width)
         pointView.addConstraints([heightConstraint, widthConstraint])
-        createPositionConstraints(forView: pointView, and: alignmentView, with: bottomConstant, centeredCompensation: true)
+        createPositionConstraints(forView: pointView,
+                                  and: alignmentView,
+                                  with: bottomConstant,
+                                  toLeadingOfView: toLeadingOfView,
+                                  centeredCompensation: true)
     }
 
     func createPositionConstraints(forView: UIView,
                                    and alignmentView: UIView,
                                    with bottomConstant: CGFloat,
+                                   toLeadingOfView: Bool,
                                    centeredCompensation: Bool) {
         forView.translatesAutoresizingMaskIntoConstraints = false
         let leadingConstraint = NSLayoutConstraint.init(item: forView,
                                                         attribute: .leading,
                                                         relatedBy: .equal,
                                                         toItem: alignmentView,
-                                                        attribute: .leading,
+                                                        attribute: toLeadingOfView ? .leading : .trailing,
                                                         multiplier: 1,
                                                         constant: centeredCompensation ? -(forView.frame.size.width / 2) : 0)
         let bottomConstraint = NSLayoutConstraint.init(item: forView,

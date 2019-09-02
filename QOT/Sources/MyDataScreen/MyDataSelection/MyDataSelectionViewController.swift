@@ -71,7 +71,6 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyDataSelectionScreenTableViewCell = tableView.dequeueCell(for: indexPath)
-
         cell.configure(forSelectionItem: myDataSelectionModel?.myDataSelectionItems[indexPath.row])
 
         return cell
@@ -84,6 +83,10 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
             cell.showSelected = !currentSelectedState
             myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected = !currentSelectedState
         }
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
     }
 }
 

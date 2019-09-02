@@ -110,21 +110,24 @@ private extension PrepareResultsViewController {
 
 // MARK: - Actions
 private extension PrepareResultsViewController {
-    @objc func dismissView() {
-        interactor?.deletePreparationIfNeeded()
-        dismiss(animated: false) {
-            NotificationCenter.default.post(name: .dismissCoachView, object: nil)
-        }
+    @objc func openConfirmationView() {
+        trackUserEvent(.CONFIRM, action: .TAP)
+        interactor?.openConfirmationView()
     }
 
-    //TODO Add nice animation
+    @objc func dismissView() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        interactor?.didTapDismissView()
+    }
+
     @objc func saveAndContinue() {
+        trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
-        let resultView = PrepareResultsInfoView.instantiateFromNib()
-        resultView.delegate = self
-        view.addSubview(resultView)
-        resultView.edgeAnchors == view.edgeAnchors
-        self.resultView = resultView
+        let resultInfoWeAreDoneHereView = PrepareResultsInfoView.instantiateFromNib()
+        resultInfoWeAreDoneHereView.delegate = self
+        view.addSubview(resultInfoWeAreDoneHereView)
+        resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
+        self.resultView = resultInfoWeAreDoneHereView
         showDone = true
         refreshBottomNavigationItems()
     }
@@ -170,6 +173,14 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .sand
         view.layoutIfNeeded()
+    }
+
+    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
+        let cancel = QOTAlertAction(title: cancelTitle)
+        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
+            self?.interactor?.didTapLeaveWithoutSaving()
+        }
+        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
     }
 }
 
@@ -292,7 +303,6 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
     //TODO Add nice animation
     func dismissResultView() {
         resultView?.removeFromSuperview()
-        dismissView()
     }
 }
 
@@ -320,7 +330,7 @@ extension PrepareResultsViewController {
         if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
             return nil
         }
-        return [dismissNavigationItem()]
+        return [dismissNavigationItem(action: #selector(openConfirmationView))]
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
@@ -328,11 +338,11 @@ extension PrepareResultsViewController {
             return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
                                           buttonWidth: .Done,
                                           action: #selector(dismissView),
-                                          backgroundColor: .carbon)]
+                                          backgroundColor: .carbonDark)]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .SaveAndContinue,
                                       action: #selector(saveAndContinue),
-                                      backgroundColor: .carbon)]
+                                      backgroundColor: .carbonDark)]
     }
 }

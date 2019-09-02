@@ -23,11 +23,13 @@
             <rect key="frame" x="0.0" y="0.0" width="138" height="116"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view alpha="0.20000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SJ4-Fo-DfR">
+                    <rect key="frame" x="0.0" y="0.0" width="138" height="116"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="8Id-zb-Clc">
-                    <rect key="frame" x="0.0" y="33" width="138" height="50"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="50" id="KZY-c3-lJd"/>
-                    </constraints>
+                    <rect key="frame" x="1" y="1" width="136" height="114"/>
+                    <color key="backgroundColor" red="0.214316725730896" green="0.31352329254150391" blue="0.37830549478530884" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="42"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -39,11 +41,16 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.59452092649999999" green="0.17396673560000001" blue="0.097994796930000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.20976781845092773" green="0.30924153327941895" blue="0.37417036294937134" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="8Id-zb-Clc" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="6Wb-5V-3Dp"/>
+                <constraint firstItem="SJ4-Fo-DfR" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" id="6OK-Gg-JT3"/>
+                <constraint firstItem="8Id-zb-Clc" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" constant="-2" id="6Wb-5V-3Dp"/>
+                <constraint firstItem="SJ4-Fo-DfR" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Hen-QH-mnO"/>
+                <constraint firstItem="SJ4-Fo-DfR" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" id="Kcg-KP-Wws"/>
+                <constraint firstItem="SJ4-Fo-DfR" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="UXb-JT-Lxh"/>
                 <constraint firstItem="heS-pj-eYd" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="Uo2-4s-Bex"/>
                 <constraint firstItem="8Id-zb-Clc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="f9O-Lt-lPj"/>
+                <constraint firstItem="8Id-zb-Clc" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" constant="-2" id="fbL-r2-ejU"/>
                 <constraint firstItem="heS-pj-eYd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="jGc-iq-ieo"/>
                 <constraint firstAttribute="trailing" secondItem="heS-pj-eYd" secondAttribute="trailing" constant="10" id="nOs-tg-VP5"/>
                 <constraint firstItem="8Id-zb-Clc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="q7H-sq-M8q"/>

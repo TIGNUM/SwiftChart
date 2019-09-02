@@ -11,19 +11,14 @@ import UIKit
 final class PrepareResultsInfoView: UIView {
 
     @IBOutlet private weak var textLabel: UILabel!
-    @IBOutlet private weak var doneButton: UIButton!
     weak var delegate: PrepareResultsDelegatge?
 
     static func instantiateFromNib() -> PrepareResultsInfoView {
-        guard let resultView = R.nib.prepareResultsInfoView.instantiate(withOwner: self).first as? PrepareResultsInfoView else {
+        guard let resultView = R.nib.prepareResultsInfoView.instantiate(withOwner: self)
+            .first as? PrepareResultsInfoView else {
             fatalError("Cannot load audio player view")
         }
         return resultView
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        doneButton.corner(radius: 20)
     }
 
     func configure(text: String) {

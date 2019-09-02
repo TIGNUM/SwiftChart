@@ -15,6 +15,7 @@ final class MyDataScreenInteractor: NSObject {
     private let worker: MyDataScreenWorker
     private let presenter: MyDataScreenPresenterInterface
     private let router: MyDataScreenRouterInterface
+    private var visibleGraphIndexPath = IndexPath(row: 0, section: 0)
 
     // MARK: - Init
     init(worker: MyDataScreenWorker, presenter: MyDataScreenPresenterInterface, router: MyDataScreenRouterInterface) {
@@ -198,11 +199,11 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
 
 extension MyDataScreenInteractor: UICollectionViewDelegate {
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let collectionView = scrollView as? UICollectionView,
-           let visibleIndexPath = visibleIndexPath(for: collectionView) {
-                updateGraphHeader(forIndexPath: visibleIndexPath)
-                worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
-        }
+        updateWeekdaysVales(for: scrollView)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        updateWeekdaysVales(for: scrollView)
     }
 
     func updateGraphHeader(forIndexPath: IndexPath) {
@@ -236,6 +237,16 @@ extension MyDataScreenInteractor: UICollectionViewDelegate {
         let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         return collectionView.indexPathForItem(at: visiblePoint)
+    }
+
+    func updateWeekdaysVales(for scrollView: UIScrollView) {
+        if let collectionView = scrollView as? UICollectionView,
+            let visibleIndexPath = visibleIndexPath(for: collectionView),
+            visibleIndexPath != visibleGraphIndexPath {
+            visibleGraphIndexPath = visibleIndexPath
+            updateGraphHeader(forIndexPath: visibleIndexPath)
+            worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
+        }
     }
 }
 

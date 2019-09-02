@@ -12,8 +12,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DecisionTreeViewController" customModule="QOT" customModuleProvider="target">
             <connections>
-                <outlet property="continueButton" destination="eul-Fa-Gfq" id="IDA-LR-nUl"/>
-                <outlet property="dismissButton" destination="1u9-wJ-uaQ" id="ugd-UX-6Tm"/>
                 <outlet property="dotsLoadingView" destination="urb-fR-iAh" id="Msz-1Y-eRD"/>
                 <outlet property="infoEffectContainerView" destination="0az-27-Lxy" id="r5w-vB-VGI"/>
                 <outlet property="infoView" destination="I1k-2X-e0U" id="4ma-RA-cHI"/>
@@ -76,60 +74,23 @@
                     </view>
                     <blurEffect style="dark"/>
                 </visualEffectView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xZO-gx-ypW">
-                    <rect key="frame" x="0.0" y="603" width="375" height="40"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1u9-wJ-uaQ">
-                            <rect key="frame" x="24" y="0.0" width="40" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="dQb-2E-xKE"/>
-                                <constraint firstAttribute="height" constant="40" id="sGs-Kd-cs2"/>
-                            </constraints>
-                            <state key="normal" image="ic_close_rounded"/>
-                            <connections>
-                                <action selector="didTabDismiss" destination="-1" eventType="touchUpInside" id="0wo-xt-1gk"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eul-Fa-Gfq" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="183" y="0.0" width="168" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="168" id="eqI-Nj-aQq"/>
-                                <constraint firstAttribute="height" constant="40" id="gMx-zx-YFx"/>
-                            </constraints>
-                            <connections>
-                                <action selector="didTapContinue" destination="-1" eventType="touchUpInside" id="nCH-RD-kFl"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="bottom" secondItem="eul-Fa-Gfq" secondAttribute="bottom" id="M00-gl-ddX"/>
-                        <constraint firstItem="1u9-wJ-uaQ" firstAttribute="leading" secondItem="xZO-gx-ypW" secondAttribute="leading" constant="24" id="OIA-1S-fnV"/>
-                        <constraint firstAttribute="trailing" secondItem="eul-Fa-Gfq" secondAttribute="trailing" constant="24" id="ewN-qf-URo"/>
-                        <constraint firstAttribute="height" constant="40" id="iDB-Ro-ruD"/>
-                        <constraint firstAttribute="bottom" secondItem="1u9-wJ-uaQ" secondAttribute="bottom" id="qHl-t6-YJJ"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.0" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="3Qo-5f-gwj" firstAttribute="trailing" secondItem="ieN-XU-1uA" secondAttribute="trailing" id="4us-vS-9XU"/>
-                <constraint firstAttribute="bottom" secondItem="ieN-XU-1uA" secondAttribute="bottom" id="Ag8-ei-lvr"/>
+                <constraint firstItem="3Qo-5f-gwj" firstAttribute="bottom" secondItem="ieN-XU-1uA" secondAttribute="bottom" id="8P3-w7-LhC"/>
                 <constraint firstItem="hkM-aG-icG" firstAttribute="height" secondItem="3Qo-5f-gwj" secondAttribute="height" multiplier="0.1" id="EhS-ZP-BTo"/>
                 <constraint firstItem="3Qo-5f-gwj" firstAttribute="trailing" secondItem="hkM-aG-icG" secondAttribute="trailing" id="FF1-QH-WVP"/>
                 <constraint firstItem="urb-fR-iAh" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" constant="10" id="GDo-Od-pXO"/>
                 <constraint firstItem="urb-fR-iAh" firstAttribute="centerY" secondItem="2xV-qg-mlN" secondAttribute="centerY" multiplier="1.3" id="Hrz-so-Mir"/>
-                <constraint firstItem="3Qo-5f-gwj" firstAttribute="bottom" secondItem="xZO-gx-ypW" secondAttribute="bottom" constant="24" id="Vzq-iE-kNi"/>
                 <constraint firstAttribute="bottom" secondItem="0az-27-Lxy" secondAttribute="bottom" id="Zi0-lU-i4v"/>
                 <constraint firstItem="0az-27-Lxy" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="bGC-Eu-KSL"/>
                 <constraint firstItem="ieN-XU-1uA" firstAttribute="top" secondItem="hkM-aG-icG" secondAttribute="bottom" id="cQF-Ma-bpT"/>
                 <constraint firstItem="hkM-aG-icG" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="ehi-FR-h6O"/>
                 <constraint firstItem="0az-27-Lxy" firstAttribute="trailing" secondItem="3Qo-5f-gwj" secondAttribute="trailing" id="gN0-3g-64O"/>
-                <constraint firstAttribute="trailing" secondItem="xZO-gx-ypW" secondAttribute="trailing" id="iff-wt-uns"/>
                 <constraint firstItem="ieN-XU-1uA" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="qyG-80-xaK"/>
                 <constraint firstItem="hkM-aG-icG" firstAttribute="top" secondItem="3Qo-5f-gwj" secondAttribute="top" id="vlj-gd-apf"/>
                 <constraint firstItem="0az-27-Lxy" firstAttribute="top" secondItem="2xV-qg-mlN" secondAttribute="top" id="wYX-qB-ssq"/>
-                <constraint firstItem="xZO-gx-ypW" firstAttribute="leading" secondItem="2xV-qg-mlN" secondAttribute="leading" id="zMT-kN-LgH"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Qo-5f-gwj"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
@@ -137,6 +98,5 @@
     </objects>
     <resources>
         <image name="ic_arrow_up" width="16" height="16"/>
-        <image name="ic_close_rounded" width="40" height="40"/>
     </resources>
 </document>

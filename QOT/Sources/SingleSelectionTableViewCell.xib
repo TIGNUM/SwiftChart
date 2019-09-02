@@ -17,11 +17,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="KGk-i7-Jjw" customClass="SingleSelectionTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="362" height="76"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="89" id="KGk-i7-Jjw" customClass="SingleSelectionTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="89"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="75.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="362" height="88.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b56-4f-yRy" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
@@ -52,9 +52,9 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="b56-4f-yRy" firstAttribute="leading" secondItem="RVR-md-gAZ" secondAttribute="trailing" constant="8" id="7ve-SM-TiC"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RVR-md-gAZ" secondAttribute="bottom" constant="10" id="AFq-Hg-uHa"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b56-4f-yRy" secondAttribute="bottom" constant="10" id="Frb-sO-22n"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RVR-md-gAZ" secondAttribute="bottom" constant="24" id="EEV-9R-siB"/>
                     <constraint firstItem="b56-4f-yRy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Tv7-Y3-SPy"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="b56-4f-yRy" secondAttribute="bottom" constant="24" id="e0P-7y-fnY"/>
                     <constraint firstAttribute="right" secondItem="b56-4f-yRy" secondAttribute="right" multiplier="1.1" id="mqD-oW-Vww"/>
                     <constraint firstItem="RVR-md-gAZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="q5A-Xb-7jo"/>
                 </constraints>
@@ -67,7 +67,7 @@
                 <outlet property="rightOptionButton" destination="b56-4f-yRy" id="jxD-sf-TDx"/>
                 <outlet property="rightWidthContraint" destination="bbM-xI-YbS" id="V46-50-WWi"/>
             </connections>
-            <point key="canvasLocation" x="89.599999999999994" y="62.968515742128943"/>
+            <point key="canvasLocation" x="89.599999999999994" y="67.916041979010501"/>
         </tableViewCell>
     </objects>
 </document>

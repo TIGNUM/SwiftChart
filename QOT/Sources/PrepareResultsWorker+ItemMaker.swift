@@ -179,7 +179,10 @@ extension PrepareResultsWorker {
     func getStrategyItems(_ strategyIds: [Int],
                           _ relatedStrategyID: Int?,
                           _ completion: @escaping (([PrepareResultsType]) -> Void)) {
-        if strategyIds.isEmpty == true && relatedStrategyID == nil {
+        if strategyIds.count == 1 && strategyIds.first == -1 {
+            // TODO: Remove the hack?: If users removes all strategies == [-1] distinguish new created empty prepare.
+            completion([])
+        } else if strategyIds.isEmpty == true && relatedStrategyID == nil {
             makeStrategyItems(strategyIds, completion)
         } else if strategyIds.isEmpty == true && relatedStrategyID != nil {
             strategyIDsDefault(relatedStrategyID) { [weak self] relatedIDs in

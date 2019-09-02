@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -57,18 +57,10 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sWB-up-Tem">
-                        <rect key="frame" x="26" y="95" width="135" height="1"/>
-                        <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="A30-eK-8Tk"/>
-                        </constraints>
-                    </view>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="sWB-up-Tem" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="26" id="0oz-CU-NGN"/>
                 <constraint firstAttribute="trailing" secondItem="Nkw-Bh-e3p" secondAttribute="trailing" constant="8" id="21j-rJ-39c"/>
                 <constraint firstItem="Nkw-Bh-e3p" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="7Rf-ad-12k"/>
                 <constraint firstItem="lJg-GW-HXF" firstAttribute="trailing" secondItem="Nkw-Bh-e3p" secondAttribute="trailing" id="92g-lH-nEd"/>
@@ -78,10 +70,8 @@
                 <constraint firstItem="xCD-YD-CvM" firstAttribute="centerY" secondItem="9WX-ra-lJx" secondAttribute="centerY" id="CDZ-2n-Uum"/>
                 <constraint firstItem="xCD-YD-CvM" firstAttribute="top" secondItem="lJg-GW-HXF" secondAttribute="bottom" constant="8" id="KaT-WF-hCp"/>
                 <constraint firstAttribute="trailing" secondItem="kQF-0z-f7x" secondAttribute="trailing" id="RyC-eY-r0L"/>
-                <constraint firstAttribute="trailing" secondItem="sWB-up-Tem" secondAttribute="trailing" constant="26" id="Syd-Cx-7bY"/>
                 <constraint firstItem="kQF-0z-f7x" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="V6b-SJ-GOo"/>
                 <constraint firstItem="xCD-YD-CvM" firstAttribute="trailing" secondItem="lJg-GW-HXF" secondAttribute="trailing" id="b3X-Ch-dZX"/>
-                <constraint firstAttribute="bottom" secondItem="sWB-up-Tem" secondAttribute="bottom" id="c96-L7-Lbp"/>
                 <constraint firstAttribute="bottom" secondItem="kQF-0z-f7x" secondAttribute="bottom" id="pPc-rK-t6C"/>
                 <constraint firstItem="kQF-0z-f7x" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="pXR-ai-vc2"/>
                 <constraint firstItem="lJg-GW-HXF" firstAttribute="leading" secondItem="Nkw-Bh-e3p" secondAttribute="leading" id="sdN-pn-TsZ"/>
@@ -90,7 +80,6 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="187" height="118"/>
             <connections>
-                <outlet property="bottomSeperator" destination="sWB-up-Tem" id="oYt-6f-OEk"/>
                 <outlet property="categoryTitleLabel" destination="lJg-GW-HXF" id="Z2N-ap-xWm"/>
                 <outlet property="componentContentView" destination="kQF-0z-f7x" id="9uF-J1-mCg"/>
                 <outlet property="performanceLabel" destination="Nkw-Bh-e3p" id="DRJ-Fu-yOG"/>

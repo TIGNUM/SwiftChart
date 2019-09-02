@@ -57,11 +57,11 @@ enum FontName: String {
     case sfProTextMedium = "SFProText-Medium"
     case sfProTextRegular = "SFProText-Regular"
     case sfProTextLight = "SFProText-Light"
+    case sfProTextHeavy = "SFProText-Heavy"
     case sfProDisplayLight = "SFProDisplay-Light"
     case sfProDisplayRegular = "SFProDisplay-Regular"
     case sfProDisplayThin = "SFProDisplay-Thin"
     case sfProDisplayUltralight = "SFProDisplay-Ultralight"
-    case sfProDisplayHeavy = "SFProDisplay-Heavy"
 
     func font(of size: CGFloat) -> UIFont {
         return (UIFont(name: rawValue, size: size) ?? UIFont.systemFont(ofSize: size))
@@ -91,6 +91,8 @@ extension CGFloat.View.Height {
 
 extension CGFloat.Button.Height {
     static let BottomNavBar: CGFloat = 100
+    static let AnswerButtonDefault: CGFloat = 40
+    static let AnswerButtonBig: CGFloat = 56
 }
 
 extension CGFloat.Corner {
@@ -107,6 +109,14 @@ extension CGFloat.Button.Width {
     static let DecisionTree: CGFloat = 168
     static let Cancel: CGFloat = 88
     static let Continue: CGFloat = 100
+}
+
+extension CGRect {
+    typealias Coach = CGRect
+}
+
+extension CGRect.Coach {
+    static let Default = CGRect(origin: .zero, size: CGSize(width: .DecisionTree, height: .Default))
 }
 
 struct Layout {

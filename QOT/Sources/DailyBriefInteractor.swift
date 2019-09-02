@@ -70,9 +70,8 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-
+   
     func showPrepareScreen() {
-
     }
 
     func updateViewModelList(_ list: [BaseDailyBriefViewModel]) {
@@ -97,7 +96,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .ME_AT_MY_BEST?:
                     sectionDataList.append(ArraySection(model: .meAtMyBest, elements: self.createMeAtMyBest(meAtMyBestBucket: bucket)))
                 case .GET_TO_LEVEL_5?:
-                    sectionDataList.append(ArraySection(model: .getToLevel5, elements: self.createLevel5Model(level5Bucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .getToLevel5, elements: self.createLevel5Cell(level5Bucket: bucket)))
                 case .QUESTION_WITHOUT_ANSWER?:
                     sectionDataList.append(ArraySection(model: .questionWithoutAnswer, elements: self.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
                 case .LATEST_WHATS_HOT?:
@@ -468,7 +467,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
-        let readinessscore = Int(round(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0) * 10)
+        let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
+        let readinessscore = Int((impactReadiness.dailyCheckInResult?.impactReadiness ?? 0) * 100)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
@@ -503,11 +503,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.saveAnswerValue(value)
     }
 
-    func saveUpdateGetToLevel5Selection(_ value: Int) {
-        let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .GET_TO_LEVEL_5 }.first as? Level5CellViewModel
-        bucketViewModel?.currentLevel = value
-    }
-
     func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
         let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
 //        check this implementation
@@ -522,23 +517,18 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.saveTargetValue(value: value)
     }
 
-    func createLevel5Model(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+    func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket)-> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
+        var levelMessageModels: [Level5ViewModel.LevelDetail] = []
+
         let title = level5.bucketText?.contentItems.first?.valueText ?? ""
         let intro = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? ""
         let question = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("question1")}.first?.valueText ?? ""
         let youRatedPart1 = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("you_rated_part1")}.first?.valueText ?? ""
         let youRatedPart2 = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("you_rated_part2")}.first?.valueText ?? ""
+        let confirmationMessage =  level5.bucketText?.contentItems.filter {$0.searchTags.contains("LEVEL_5_CONFIRMATION_MESSAGE")}.first?.valueText ?? ""
         let level1Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_1")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level2Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level3Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level4Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level5Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level1Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_1")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        let level2Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        let level3Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        let level4Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        let level5Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+          let level1Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_1")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
         let comeBackText = level5.bucketText?.contentItems.filter {$0.searchTags.contains("COME_BACK")}.first?.valueText ?? "Noted! Come back in 1 month."
         var lastEstimatedLevel: Int?
         lastEstimatedLevel = level5.latestGetToLevel5Value
@@ -548,24 +538,25 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else {
             questionLevel = question
         }
-        createLevel5List.append(Level5CellViewModel(title: title,
-                                                    intro: intro,
-                                                    question: questionLevel,
-                                                    youRatedPart1: youRatedPart1,
-                                                    youRatedPart2: youRatedPart2,
-                                                    level1Title: level1Title,
-                                                    level2Title: level2Title,
-                                                    level3Title: level3Title,
-                                                    level4Title: level4Title,
-                                                    level5Title: level5Title,
-                                                    level1Text: level1Text,
-                                                    level2Text: level2Text,
-                                                    level3Text: level3Text,
-                                                    level4Text: level4Text,
-                                                    level5Text: level5Text,
-                                                    comeBackText: comeBackText,
-                                                    domainModel: level5
-        ))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level1Title, levelContent:level1Text))
+
+        let level2Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
+        let level2Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level2Title, levelContent:level2Text))
+
+        let level3Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
+        let level3Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level3Title, levelContent:level3Text))
+
+        let level4Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
+        let level4Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level4Title, levelContent:level4Text))
+
+        let level5Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
+        let level5Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level5Title, levelContent:level5Text))
+
+        createLevel5List.append(Level5ViewModel(title: title, intro: intro, question: questionLevel, youRatedPart1: youRatedPart1, youRatedPart2: youRatedPart2, comeBackText: comeBackText,levelMessages:levelMessageModels, confirmationMessage: confirmationMessage,domainModel: level5))
         return createLevel5List
     }
 
@@ -769,7 +760,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var aboutMeList: [BaseDailyBriefViewModel] = []
         let aboutMeBucketTitle = aboutMeModel.bucketText?.contentItems.first?.valueText ?? ""
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = "*QOT doesn't have enough data to show a correct average. Make sure to do the Daily Check-in in daily basis"
+        let aboutMeAdditionalContent = "*"
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle, aboutMeContent: aboutMeContent, aboutMeMoreInfo: aboutMeAdditionalContent, domainModel: aboutMeModel))
         return aboutMeList
     }

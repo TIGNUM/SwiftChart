@@ -29,7 +29,7 @@ private enum CellType: Int, CaseIterable {
     case answer
 }
 
-final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
+final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: DecisionTreeInteractorInterface?
@@ -41,18 +41,21 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
     private let answersFilter: String?
     private let questionTitleUpdate: String?
     private let preparations: [QDMUserPreparation]?
+    private let continueButton: DecisionTreeButton?
     let isOnboarding: Bool
-    private var reportedTracking: Bool = false // Tracking is reported in `cellForRow` which is called multiple times
+    private var reportedTracking: Bool = false // Tracking is reported in `cellForRow` which is called multiple times    
     private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
-    private lazy var tableView = UITableView(estimatedRowHeight: 100,
-                                             delegate: self,
-                                             dataSource: self,
-                                             dequeables: MultipleSelectionTableViewCell.self,
-                                             SingleSelectionTableViewCell.self,
-                                             QuestionTableViewCell.self,
-                                             TextTableViewCell.self,
-                                             CalendarEventsTableViewCell.self,
-                                             UserInputTableViewCell.self)
+    private var heightQuestionCell: CGFloat = 0
+    private var heightAnswerCell: CGFloat = 0
+    lazy var tableView = UITableView(estimatedRowHeight: 100,
+                                     delegate: self,
+                                     dataSource: self,
+                                     dequeables: MultipleSelectionTableViewCell.self,
+                                     SingleSelectionTableViewCell.self,
+                                     QuestionTableViewCell.self,
+                                     TextTableViewCell.self,
+                                     CalendarEventsTableViewCell.self,
+                                     UserInputTableViewCell.self)
 
     /// Use filtered answers in order to relate answers between different questions.
     /// E.g.: Based on Question A answer, filter Question B answers to display.
@@ -76,7 +79,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
          answersFilter: String?,
          questionTitleUpdate: String?,
          preparations: [QDMUserPreparation]? = nil,
-         isOnboarding: Bool = false) {
+         isOnboarding: Bool = false,
+         continueButton: DecisionTreeButton?) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
@@ -85,6 +89,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
         self.questionTitleUpdate = questionTitleUpdate
         self.preparations = preparations
         self.isOnboarding = isOnboarding
+        self.continueButton = continueButton
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -96,24 +101,23 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        addObservers()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        recalculateContentInsets()
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard let rightBarButtonItem = continueButton?.toBarButtonItem() else { return }
+        switch interactor?.type {
+        case .mindsetShifterTBV?:
+            updateBottomNavigation([dismissNavigationItem(action: #selector(dismissAll))], [rightBarButtonItem])
+        default:
+            let leftItems = isOnboarding ? [] : [dismissNavigationItem()]
+            updateBottomNavigation(leftItems, [rightBarButtonItem])
+        }
     }
 }
 
 // MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
-    func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(typingAnimationStart),
-                                               name: .typingAnimationStart,
-                                               object: nil)
-    }
-
     func setupView() {
         attachToEdge(tableView, bottomConstant: -.BottomNavBar)
         tableView.backgroundColor = interactor?.type.backgroundColor ?? .sand
@@ -140,6 +144,10 @@ private extension DecisionTreeQuestionnaireViewController {
     @objc func didTapTrackTBV() {
         delegate?.presentTrackTBV()
     }
+
+    @objc func dismissAll() {
+        interactor?.dismissAll()
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -151,6 +159,14 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
         if let inputCell = cell as? UserInputTableViewCell {
             inputCell.showKeyBoard()
         }
+        switch indexPath.section {
+        case 0:
+            heightQuestionCell = cell.frame.height
+        case 1:
+            heightAnswerCell = cell.frame.height
+        default: break
+        }
+        recalculateContentInsets()
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -200,6 +216,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.accept.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
+                cell.backgroundColor = UIColor.red.withAlphaComponent(0.4)
                 return cell
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
@@ -293,15 +310,11 @@ private extension DecisionTreeQuestionnaireViewController {
             return tableView.contentInset = .zero
         }
         if question.answerType == AnswerType.userInput.rawValue {
-            return tableView.contentInset = .zero//UIEdgeInsets(top: view.frame.height * 0.1, left: 0, bottom: 0, right: 0)
+            return tableView.contentInset = .zero
         }
-        let cellsHeight = tableView.visibleCells.map { $0.frame.height }.reduce(0, +)
+        let cellsHeight = heightQuestionCell + heightAnswerCell
         let difference = tableView.frame.height - cellsHeight
-        let padding = tableView.frame.height * 0.1
-        let topPadding = tableView.frame.height * 0.2
-        var topInset = question.answerType != AnswerType.multiSelection.rawValue ? difference - padding : topPadding
-        topInset = question.answers.count > 2 ? topInset * 0.5 : topInset
-        tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: max(difference, 0), left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -320,16 +333,5 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 
     func didDeSelectAnswer(_ answer: QDMAnswer) {
         delegate?.didDeSelectAnswer(answer)
-    }
-}
-
-// MARK: - Bottom Navigation Items
-extension DecisionTreeQuestionnaireViewController {
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return nil
     }
 }

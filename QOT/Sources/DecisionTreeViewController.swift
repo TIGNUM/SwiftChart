@@ -29,7 +29,7 @@ extension DecisionTreeViewControllerDelegate {
     }
 }
 
-final class DecisionTreeViewController: UIViewController, ScreenZLevelOverlay {
+final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
 
     struct NextQuestion {
         let question: QDMQuestion
@@ -47,12 +47,11 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevelOverlay {
     private var pageController: UIPageViewController?
     private var currentTargetId: Int = 0
     private var isMindsetShifterLastQuestion = false
-    @IBOutlet private var continueButton: DecisionTreeButton!
-    @IBOutlet private var dismissButton: UIButton!
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
     @IBOutlet private weak var infoView: InfoHelperView!
+    private var continueButton: DecisionTreeButton?
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
     @IBOutlet private weak var infoEffectContainerView: UIVisualEffectView!
@@ -99,19 +98,11 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateBottomNavigation([], [])
+        if let continueButton = continueButton {
+            updateBottomNavigation([dismissNavigationItem()], [continueButton.toBarButtonItem()])
+        }
         interactor?.viewDidLoad()
         addObservers()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if nextQuestion?.question.key == QuestionKey.Prepare.Intro {
-            syncButtons(previousButtonIsHidden: true,
-                        continueButtonIsHidden: true,
-                        isEnabled: false,
-                        backgroundColor: .clear)
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -132,6 +123,16 @@ private extension DecisionTreeViewController {
                                                selector: #selector(animateNavigationButton),
                                                name: .didUpdateSelectionCounter,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateBottomNavigationItems(_:)),
+                                               name: .questionnaireBottomNavigationUpdate,
+                                               object: nil)
+    }
+
+    @objc func updateBottomNavigationItems(_ notification: NSNotification) {
+        guard let continueButton = notification.object as? DecisionTreeButton else { return }
+        continueButton.addTarget(self, action: #selector(didPressContinue), for: .touchUpInside)
+        self.continueButton = continueButton
     }
 
     func setupPageViewController() {
@@ -142,20 +143,6 @@ private extension DecisionTreeViewController {
             view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         }
         pageController?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
-    }
-
-    func setupContinueButton() {
-        continueButton.cornerDefault()
-        let attributedTitle = NSAttributedString(string: "",
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14))
-        continueButton.configure(with: "",
-                                 attributedTitle: attributedTitle,
-                                 selectedBackgroundColor: .carbonDark,
-                                 defaultBackgroundColor: interactor?.type.navigationButtonBackgroundColor ?? .carbon,
-                                 borderColor: .clear,
-                                 titleColor: interactor?.type.navigationButtonTextColor ?? .accent)
-        continueButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
     }
 
     func setupTypingAnimation() {
@@ -209,7 +196,6 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     func setupView() {
         view.backgroundColor = interactor?.type.backgroundColor
         setupTypingAnimation()
-        setupContinueButton()
         setupPageViewController()
     }
 
@@ -225,19 +211,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
                                     selectedAnswers: selectedAnswers,
                                     direction: direction,
                                     animated: animated)
-        if question.key == QuestionKey.ToBeVision.Review
-            || question.key == QuestionKey.ToBeVision.Create
-            || question.key == QuestionKey.Prepare.Intro {
-            syncButtons(previousButtonIsHidden: false,
-                        continueButtonIsHidden: QuestionKey.continueButtonIsHidden(question.key),
-                        isEnabled: true,
-                        backgroundColor: .carbonDark)
-            let buttonTitle = R.string.localized.alertButtonTitleContinue()
-            updateBottomButtonTitle(counter: 0,
-                                    maxSelections: 0,
-                                    defaultTitle: buttonTitle,
-                                    confirmTitle: buttonTitle)
-        }
+        previousButton.isHidden = QuestionKey.preiviousButtonIsHidden(question.key)
         if question.answerType == AnswerType.openCalendarEvents.rawValue,
             let permissionType = interactor?.getCalendarPermissionType() {
             presentPermissionView(permissionType)
@@ -246,30 +220,12 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
         }
     }
 
-    func syncButtons(previousButtonIsHidden: Bool,
-                     continueButtonIsHidden: Bool,
-                     isEnabled: Bool,
-                     backgroundColor: UIColor) {
-        previousButton.isHidden = previousButtonIsHidden && !isOnboardingDecisionTree
-        continueButton.isHidden = continueButtonIsHidden
-        continueButton.isUserInteractionEnabled = isEnabled
-        continueButton.backgroundColor = .sand
-    }
-
-    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?) {
-        continueButton.update(with: counter,
-                              defaultTitle: defaultTitle ?? "",
-                              confirmationTitle: confirmTitle ?? "",
-                              maxSelections: maxSelections,
-                              titleColor: interactor?.type.navigationButtonTextColor)
-    }
-
     func toBeVisionDidChange() {
         delegate?.toBeVisionDidChange()
     }
 
     @objc func animateNavigationButton() {
-        continueButton.pulsate()
+        continueButton?.pulsate()
     }
 }
 
@@ -308,7 +264,8 @@ private extension DecisionTreeViewController {
                                                                      answersFilter: filter,
                                                                      questionTitleUpdate: answerKey.replacement,
                                                                      preparations: interactor?.preparations(),
-                                                                     isOnboarding: isOnboardingDecisionTree)
+                                                                     isOnboarding: isOnboardingDecisionTree,
+                                                                     continueButton: continueButton)
             controller.delegate = self
             controller.interactor = interactor
             return controller
@@ -362,8 +319,11 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         dismiss()
     }
 
-    func didPressContinue() {
-        didTapContinue()
+    @objc func didPressContinue() {
+        interactor?.didTapContinue()
+        if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
+            delegate?.createToBeVision(text: tbv.text, workAnswers: tbv.workSelections, homeAnswers: tbv.homeSelections)
+        }
     }
 
     func didUpdateUserInput(_ userInput: String?) {

@@ -31,9 +31,29 @@ final class DailyCheckinInsightsSHPICell: UITableViewCell, Dequeueable {
 private extension DailyCheckinInsightsSHPICell {
     func updateView(text: String?, rating: Int) {
         SHPIText.text = text
-        let index = rating < 1 ? 0 : rating - 1
-        labels?[index].font = labels?[index].font.withSize(32)
-        bars?[index].frame = CGRect(x: bars?[index].frame.origin.x ?? 0, y: -5, width: 2, height: 55)
-        heights?[index].constant = 35
+        let selectedIndex = max(0, rating - 1)
+        for index in 0...9 {
+            var barHeight: CGFloat = 32.0
+            var fontSize: CGFloat = 12.0
+            var color: UIColor = .white40
+            if index == selectedIndex {
+                barHeight = 56.0
+                fontSize = 16.0
+                color = .white
+            }
+            if labels?.count ?? 0 > index {
+                labels?[index].font = labels?[index].font.withSize(fontSize)
+                labels?[index].textColor = color
+            }
+
+            if heights?.count ?? 0 > index {
+                heights?[index].constant = barHeight
+            }
+
+            if bars?.count ?? 0 > index {
+                bars?[index].backgroundColor = color
+                bars?[index].setNeedsUpdateConstraints()
+            }
+        }
     }
 }

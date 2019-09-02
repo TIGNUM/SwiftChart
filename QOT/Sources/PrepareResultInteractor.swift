@@ -12,13 +12,11 @@ import qot_dal
 final class PrepareResultInteractor {
 
     // MARK: - Properties
-
     private let worker: PrepareResultsWorker
     private let presenter: PrepareResultsPresenterInterface
     private let router: PrepareResultsRouterInterface
 
     // MARK: - Init
-
     init(worker: PrepareResultsWorker,
         presenter: PrepareResultsPresenterInterface,
         router: PrepareResultsRouterInterface) {
@@ -28,7 +26,6 @@ final class PrepareResultInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.registerTableViewCell(worker.getType)
         presenter.setupView()
@@ -36,7 +33,6 @@ final class PrepareResultInteractor {
 }
 
 // MARK: - PrepareCheckListInteractorInterface
-
 extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     var getType: QDMUserPreparation.Level {
         return worker.getType
@@ -69,21 +65,30 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation { [weak self] (preparation) in
-            self?.router.didClickSaveAndContinue()
-        }
+        worker.updatePreparation { _ in }
     }
 
-    func deletePreparationIfNeeded() {
-        worker.deletePreparationIfNeeded { [weak self] in
-            self?.router.didClickSaveAndContinue()
-        }
+    func openConfirmationView() {
+        presenter.presentAlert(title: worker.leaveAlertTitle,
+                               message: worker.leaveAlertMessage,
+                               cancelTitle: worker.cancelButtonTitle,
+                               leaveTitle: worker.leaveButtonTitle)
     }
 
     func presentEditStrategyView() {
         let relatedId = worker.suggestedStrategyId
         worker.getSelectedIDs { [weak self] (selectedIds) in
             self?.router.presentEditStrategyView(relatedId, selectedIds)
+        }
+    }
+
+    func didTapDismissView() {
+        router.dismiss()
+    }
+
+    func didTapLeaveWithoutSaving() {
+        worker.deletePreparationIfNeeded { [unowned self] in
+            self.didTapDismissView()
         }
     }
 

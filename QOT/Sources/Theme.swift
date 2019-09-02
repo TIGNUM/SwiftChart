@@ -49,6 +49,7 @@ enum ThemeView {
     case prepsSegmentSelected
     case qotAlert
     case imageOverlap
+    case qSearch
 
     var color: UIColor {
         switch self {
@@ -74,7 +75,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine:
+        case .audioBar, .headerLine, .qSearch:
             return Palette.sand
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
@@ -225,7 +226,7 @@ enum ThemeText {
     case datestamp
 
     case linkMenuItem
-    case linkMenuComment
+    case linkMenuComment        //???
     case linkMenuCommentRed
 
     case searchTopic
@@ -402,6 +403,8 @@ enum ThemeText {
     case myDataHeatMapCellDateHighlighted
     case myDataHeatMapDetailCellValue
     case myDataHeatMapDetailCellDate
+    case dailyBriefLevelContent
+    case dailyBriefLevelTitle
 
     private var font: UIFont {
         switch self {
@@ -411,9 +414,9 @@ enum ThemeText {
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage:
+        case .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage:
             return Fonts.fontRegular16
-        case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
+        case .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
              .tbvTrackerRatingDigits, .myDataSectionHeaderSubTitle, .registrationEmailMessage, .registrationEmailError,
@@ -451,7 +454,8 @@ enum ThemeText {
             }
         case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader:
             return Fonts.fontLight34
-        case .articleBullet:
+        case .articleBullet,
+             .dailyBriefLevelContent:
             switch textScale {
             case .scale: return Fonts.fontLight24
             case .scaleNot: return Fonts.fontLight16
@@ -464,13 +468,14 @@ enum ThemeText {
         case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment,
-             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer:
+             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .categorySubHeader, .performanceTitle, .searchTopic,
+             .dailyBriefLevelTitle:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .accountHeader, .searchSuggestionHeader, .tbvSectionHeader,
-             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected:
+             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle:
             return Fonts.fontMedium14
         case .strategyHeader:
-            return Fonts.fontRegular15
+            return Fonts.fontDisplayRegular20
         case .quotation:
             return Fonts.fontDisplayThin34
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
@@ -537,9 +542,10 @@ enum ThemeText {
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
+             .dailyBriefLevelTitle,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage:
             return Palette.sand
-        case .author, .quoteAuthor, .chatButton, .searchSuggestion, .myDataChartValueLabels, .myDataHeatMapLegendText:
+        case .chatButton, .searchSuggestion, .myDataChartValueLabels, .myDataHeatMapLegendText:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits, .myDataChartIRAverageLabel, .registrationNamesMandatory:
@@ -556,7 +562,7 @@ enum ThemeText {
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage:
+             .registrationAgeRestriction, .locationPermissionMessage, .author, .quoteAuthor:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
@@ -583,7 +589,8 @@ enum ThemeText {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleQuote, .articleMediaDescription:
             return Palette.light(Palette.carbon60, or: Palette.sand60)
-        case .articleBullet:
+        case .articleBullet,
+             .dailyBriefLevelContent:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
         case .version, .articleRelatedDetail:
             return Palette.sand30
@@ -652,9 +659,11 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult:
+        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
+             .dailyBriefLevelTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
-        case .articleBullet, .sectionHeader:
+        case .articleBullet, .sectionHeader,
+             .dailyBriefLevelContent:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleRelatedDetail, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)

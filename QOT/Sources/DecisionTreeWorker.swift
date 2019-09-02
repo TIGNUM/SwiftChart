@@ -43,6 +43,7 @@ final class DecisionTreeWorker {
     internal var targetContentID: Int = 0
     internal var nextQuestionId: Int = 0
     internal var createdTBV: CreatedToBeVision?
+    var continueButton = DecisionTreeButton(frame: .Default)
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
@@ -56,10 +57,14 @@ final class DecisionTreeWorker {
     }
 
     internal var pageIndex: Int = 0 {
-        didSet { syncButtons() }
+        didSet { multiSelectionCounter = 0 }
     }
 
     var decisionTree: DecisionTreeModel? {
+        didSet { syncButtons() }
+    }
+
+    internal var multiSelectionCounter: Int = 0 {
         didSet { syncButtons() }
     }
 
@@ -77,10 +82,6 @@ final class DecisionTreeWorker {
         return decisionTree?.selectedAnswers.filter { $0.questionID == 100369 }.last?.answer
     }
 
-    internal var multiSelectionCounter: Int = 0 {
-        didSet { syncButtons() }
-    }
-
     internal var maxPossibleSelections: Int {
         return currentQuestion?.maxPossibleSelections ?? 0
     }
@@ -89,15 +90,15 @@ final class DecisionTreeWorker {
         return decisionTree?.selectedAnswers.map { $0.answer } ?? []
     }
 
-    private var defaultButtonText: String {
+    internal var defaultButtonText: String {
         return currentQuestion?.defaultButtonText ?? ""
     }
 
-    private var confirmationButtonText: String {
+    internal var confirmationButtonText: String {
         return currentQuestion?.confirmationButtonText ?? ""
     }
 
-    private var questionIsAnswered: Bool {
+    internal var questionIsAnswered: Bool {
         guard decisionTree?.selectedAnswers.count ?? 0 > pageIndex else { return false }
         return decisionTree?.selectedAnswers
             .filter { $0.questionID == currentQuestion?.remoteID }
@@ -118,6 +119,7 @@ final class DecisionTreeWorker {
             break
         }
         addObserver()
+        setupContinueButton()
     }
 }
 
@@ -324,22 +326,6 @@ extension DecisionTreeWorker {
         self.selectedEvent = event
     }
 
-    func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]? {
-        switch currentQuestion?.key {
-        case QuestionKey.MindsetShifter.LowSelfTalk,
-             QuestionKey.MindsetShifter.OpenTBV,
-             QuestionKey.MindsetShifter.Check:
-            let title = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
-            return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
-        case QuestionKey.ToBeVision.Work,
-             QuestionKey.ToBeVision.Home:
-            let title = R.string.localized.buttonTitlePick(multiSelectionCounter)
-            return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
-        default:
-            return []
-        }
-    }
-
     func updateMultiSelectionCounter() {
         if currentQuestion?.answerType == AnswerType.multiSelection.rawValue {
             multiSelectionCounter = decisionTree?.selectedAnswers
@@ -354,7 +340,6 @@ extension DecisionTreeWorker {
             if decisionTree?.extendedQuestions.filter({ $0.question.remoteID == question.remoteID }).isEmpty == true {
                 decisionTree?.add(question)
                 pageIndex.plus(1)
-                syncButtons()
             }
         }
         if let answer = answer {
@@ -397,6 +382,20 @@ private extension DecisionTreeWorker {
         answerFilterMindset = relationshipKeys?.filter { $0.contains(selectedAnswerTitle) }.first
         return answerFilterMindset
     }
+
+    func setupContinueButton() {
+        continueButton.cornerDefault()
+        let attributedTitle = NSAttributedString(string: "",
+                                                 letterSpacing: 0.2,
+                                                 font: .sfProtextSemibold(ofSize: 14))
+        continueButton.configure(with: "",
+                                 attributedTitle: attributedTitle,
+                                 selectedBackgroundColor: .carbonNew,
+                                 defaultBackgroundColor: type.navigationButtonBackgroundColor,
+                                 borderColor: .clear,
+                                 titleColor: type.navigationButtonTextColor)
+        continueButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+    }
 }
 
 // MARK: - Recovery3D
@@ -431,69 +430,5 @@ private extension DecisionTreeWorker {
                     level: .debug)
             }
         }
-    }
-}
-
-internal extension DecisionTreeWorker {
-    func syncButtons() {
-        let previousButtonIsHidden = pageIndex == 0
-        var continueButtonIsHidden = true
-        var backgroundColor: UIColor = .carbonDark
-        switch currentQuestion?.answerType {
-        case AnswerType.singleSelection.rawValue,
-             AnswerType.yesOrNo.rawValue,
-             AnswerType.uploadImage.rawValue:
-            continueButtonIsHidden = questionIsAnswered == false
-            backgroundColor = .carbonDark
-        case AnswerType.multiSelection.rawValue:
-            let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
-            backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
-            continueButtonIsHidden = false
-        default: return
-        }
-        switch type {
-        case .mindsetShifterTBVOnboarding:
-            backgroundColor = type.backgroundColor
-        default:
-            break
-        }
-        switch currentQuestion?.key {
-        case QuestionKey.ToBeVision.Instructions,
-             QuestionKey.ToBeVision.Review:
-            continueButtonIsHidden = false
-        case QuestionKey.ToBeVision.Picture:
-            continueButtonIsHidden = true
-        default:
-            break
-        }
-        let maxSelections = maxPossibleSelections == 1 ? 0 : maxPossibleSelections
-        let isEnabled = maxSelections == 0 || maxSelections == multiSelectionCounter
-        interactor?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
-                                continueButtonIsHidden: continueButtonIsHidden,
-                                isEnabled: isEnabled,
-                                backgroundColor: backgroundColor)
-        interactor?.updateBottomButtonTitle(counter: multiSelectionCounter,
-                                            maxSelections: maxPossibleSelections <= 1 ? 0 : maxPossibleSelections,
-                                            defaultTitle: defaultButtonText,
-                                            confirmTitle: confirmationButtonText)
-    }
-
-    func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth, height: .Default))
-        button.backgroundColor = type.backgroundColor
-        let attributedTitle = NSAttributedString(string: title,
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14),
-                                                 lineSpacing: 8,
-                                                 textColor: .sand)
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        if let image = image {
-        button.setImage(image, for: .normal)
-            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
-        }
-        button.addTarget(self, action: action, for: .touchUpInside)
-        button.cornerDefault()
-        return UIBarButtonItem(customView: button)
     }
 }

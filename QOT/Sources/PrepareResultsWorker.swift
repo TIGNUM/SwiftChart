@@ -33,8 +33,14 @@ final class PrepareResultsWorker {
 
         switch level {
         case .LEVEL_CRITICAL:
-            setAnswerIdsIfNeeded(answers)
-            generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+            if answers.isEmpty {
+                generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+            } else {
+                updateAnswerIds(answers) { [unowned self] (preparation) in
+                    self.preparation = preparation
+                    self.generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: self.suggestedStrategyId)
+                }
+            }
         case .LEVEL_DAILY:
             generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
         default: break
@@ -49,13 +55,32 @@ final class PrepareResultsWorker {
         }
     }
 
+    // Texts
+    lazy var leaveAlertTitle: String = {
+        return R.string.localized.mindsetShifterLeaveAlertTitle()
+    }()
+
+    lazy var leaveAlertMessage: String = {
+        return R.string.localized.mindsetShifterLeaveAlertMessage()
+    }()
+
+    lazy var leaveButtonTitle: String = {
+        return R.string.localized.mindsetShifterLeaveAlertLeaveButton()
+    }()
+
+    lazy var cancelButtonTitle: String = {
+        return R.string.localized.buttonTitleCancel()
+    }()
+
     lazy var answerFilter: String? = {
         if level == .LEVEL_CRITICAL && preparation?.answerFilter?.isEmpty == false {
             return preparation?.answerFilter
         }
-        return filteredAnswers(.eventType, getSelectedAnswers).first?.answer.keys.filter {
-            $0.contains(DecisionTreeModel.Filter.Relationship)
-        }.first
+        return
+            filteredAnswers(.eventType, getSelectedAnswers)
+            .first?.answer.keys
+            .filter { $0.contains(DecisionTreeModel.Filter.Relationship) }
+            .first
     }()
 }
 
@@ -190,12 +215,12 @@ private extension PrepareResultsWorker {
         }
     }
 
-    func setAnswerIdsIfNeeded(_ answers: [DecisionTreeModel.SelectedAnswer]) {
-        if !answers.isEmpty {
-            preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
-            knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
-            feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
-        }
+    func updateAnswerIds(_ answers: [DecisionTreeModel.SelectedAnswer],
+                         _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
+        knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
+        feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
+        updatePreparation(completion)
     }
 
     func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?, suggestedStrategyId: Int?) {
@@ -222,7 +247,7 @@ private extension PrepareResultsWorker {
 // MARK: - Update
 extension PrepareResultsWorker {
     func updateStrategies(selectedIds: [Int]) {
-        strategyIds = selectedIds
+        strategyIds = selectedIds.isEmpty ? [-1] : selectedIds
         switch level {
         case .LEVEL_DAILY:
             generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: nil)
@@ -278,16 +303,18 @@ extension PrepareResultsWorker {
 // MARK: - Update, Delete
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
-        canDelete = false
         guard let preparation = preparation else { return }
-        PreparationManager.main.update(preparation: preparation) { [weak self] (preparation) in
+        PreparationManager.main.update(preparation) { [weak self] (preparation) in
             self?.handleReminders()
             completion(preparation)
         }
     }
 
     func deletePreparationIfNeeded(_ completion: @escaping () -> Void) {
-        guard let preparation = preparation, canDelete == true else { return }
-        PreparationManager.main.delete(preparation: preparation, completion: completion)
+        if let preparation = preparation, canDelete == true {
+            PreparationManager.main.delete(preparation: preparation, completion: completion)
+        } else {
+            completion()
+        }
     }
 }

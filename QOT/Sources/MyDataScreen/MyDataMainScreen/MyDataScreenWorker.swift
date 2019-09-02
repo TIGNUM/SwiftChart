@@ -35,8 +35,8 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataSections() -> MyDataScreenModel {
         return MyDataScreenModel(myDataItems: MyDataSection.allCases.map {
                         return MyDataScreenModel.Item(myDataSection: $0,
-                                                      title: ScreenTitleService.main.myDataSectionTitles(for: $0),
-                                                      subtitle: ScreenTitleService.main.myDataSectionSubtitles(for: $0))
+                                                      title: ScreenTitleService.main.myDataSectionTitle(for: $0),
+                                                      subtitle: ScreenTitleService.main.myDataSectionSubtitle(for: $0))
                                                })
     }
 

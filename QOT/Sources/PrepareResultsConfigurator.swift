@@ -10,6 +10,7 @@ import Foundation
 import qot_dal
 
 final class PrepareResultsConfigurator {
+    /// Daily && Critical
     static func configurate(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer],
                             canDelete: Bool) -> (PrepareResultsViewController) -> Void {
@@ -23,6 +24,7 @@ final class PrepareResultsConfigurator {
         }
     }
 
+    /// On The Go
     static func configurate(_ contentId: Int) -> (PrepareResultsViewController) -> Void {
         return { (viewController) in
             let router = PrepareResultsRouter(viewController: viewController)

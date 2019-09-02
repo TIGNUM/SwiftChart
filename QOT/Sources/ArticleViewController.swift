@@ -669,6 +669,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return sectionHasContent(section) ? tableView.estimatedSectionHeaderHeight : 0
     }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        let sectionCount = interactor?.sectionCount ?? 1
+        return section == sectionCount - 1 ? 80.0 : 0.0
+    }
 }
 
 // MARK: - ClickableLabelDelegate
@@ -722,10 +727,13 @@ extension ArticleViewController {
             }
         } else {
             if navBar.isHidden {
-                let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
-                if offset > pixelBuffer || scrollViewOffsetY <= 0 {
-                    navigationBar(show: true)
-                    lastScrollViewActionOffsetY = scrollViewOffsetY <= 0.0 ? 0.0 : scrollViewOffsetY
+                let atBottom = scrollViewOffsetY >= scrollView.contentSize.height - scrollView.bounds.height
+                if !atBottom {
+                    let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
+                    if offset > pixelBuffer || scrollViewOffsetY <= 0 {
+                        navigationBar(show: true)
+                        lastScrollViewActionOffsetY = scrollViewOffsetY <= 0.0 ? 0.0 : scrollViewOffsetY
+                    }
                 }
             } else {
                 lastScrollViewActionOffsetY = scrollViewOffsetY
@@ -739,7 +747,7 @@ extension ArticleViewController {
             return
         }
         nav.setNavigationBarHidden(!show, animated: true)
-        let height = nav.navigationBar.frame.size.height
+        let height = show ? nav.navigationBar.frame.size.height : 0
         UIView.animate(withDuration: Double(UINavigationControllerHideShowBarDuration)) {
             self.tableView.contentInset = UIEdgeInsets(top: -height, left: 0.0, bottom: 0.0, right: 0.0)
         }

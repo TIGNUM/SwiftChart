@@ -13,12 +13,14 @@ protocol PrepareResultsViewControllerInterface: class {
     func setupView()
     func registerTableViewCell(_ type: QDMUserPreparation.Level)
     func reloadView()
+    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol PrepareResultsPresenterInterface {
     func setupView()
     func registerTableViewCell(_ type: QDMUserPreparation.Level)
     func reloadView()
+    func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol PrepareResultsInteractorInterface: Interactor {
@@ -29,19 +31,22 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func rowCount(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> PrepareResultsType?
     func presentRelatedArticle(readMoreID: Int)
-    func didClickSaveAndContinue()
-    func deletePreparationIfNeeded()
     func presentEditStrategyView()
     func presentEditIntentions(_ key: Prepare.Key)
     func presentEditBenefits(benefits: String?, questionID: Int)
     func updateStrategies(selectedIds: [Int])
     func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
     func updateBenefits(_ benefits: String)
+    func openConfirmationView()
+    func didClickSaveAndContinue()
+    func didTapLeaveWithoutSaving()
+    func didTapDismissView()
 }
 
 protocol PrepareResultsRouterInterface {
     func presentRelatedArticle(readMoreID: Int)
     func didClickSaveAndContinue()
+    func dismiss()
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key, answerFilter: String?)
     func presentEditBenefits(benefits: String?, questionID: Int)

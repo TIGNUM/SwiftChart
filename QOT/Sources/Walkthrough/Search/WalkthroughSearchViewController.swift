@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WalkthroughSearchViewController: UIViewController, ScreenZLevelBottom {
+final class WalkthroughSearchViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     @IBOutlet private weak var arrows: WalkthroughAnimatedArrows!

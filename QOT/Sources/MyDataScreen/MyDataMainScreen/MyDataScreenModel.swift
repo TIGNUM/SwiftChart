@@ -33,11 +33,11 @@ struct MyDataDailyCheckInModel: Codable {
 
     init(withDailyCheckInResult: QDMDailyCheckInResult) {
         date = withDailyCheckInResult.date
-        impactReadiness = (withDailyCheckInResult.impactReadiness ?? 0) * 100
-        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0) * 10
-        sleepQuantity = (withDailyCheckInResult.sleepQuantity ?? 0) * 10
-        tenDayLoad = (withDailyCheckInResult.load ?? 0) * 100
-        fiveDayRecovery = ((withDailyCheckInResult.sleepQuantity ?? 0) + (withDailyCheckInResult.sleepQuality ?? 0))/2  * 100
+        impactReadiness = (withDailyCheckInResult.impactReadiness ?? 0)
+        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0)
+        sleepQuantity = (withDailyCheckInResult.sleepQuantity ?? 0)
+        tenDayLoad = (withDailyCheckInResult.load ?? 0)
+        fiveDayRecovery = ((withDailyCheckInResult.sleepQuantity ?? 0) + (withDailyCheckInResult.sleepQuality ?? 0))/2
         averageUsersImpactReadiness = 70
     }
 }
