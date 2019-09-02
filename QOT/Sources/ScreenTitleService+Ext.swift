@@ -213,6 +213,18 @@ extension ScreenTitleService {
     func myDataGraphNoDataTitle() -> String? {
         return localizedString(for: .myDataNoDataGraphTitle)
     }
+
+    func myDataGraphIrAverageTitle() -> String? {
+        return localizedString(for: .myDataGraphIRAverageTitle)
+    }
+
+    func myDataHeatMapLegendHighTitle() -> String? {
+        return localizedString(for: .myDataHeatMapLegendHighTitle)
+    }
+
+    func myDataHeatMapLegendLowTitle() -> String? {
+        return localizedString(for: .myDataHeatMapLegendLowTitle)
+    }
 }
 
 extension ScreenTitleService {

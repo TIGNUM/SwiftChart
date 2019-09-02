@@ -156,9 +156,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.add(ir)
         chartView.add(averageSeries)
         let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        irAverageLabel.text = "IR Average"
-        irAverageLabel.font = .sfProtextSemibold(ofSize: 12)
-        irAverageLabel.textColor = .sand40
+        ThemeText.myDataChartIRAverageLabel.apply(ScreenTitleService.main.myDataGraphIrAverageTitle(), to: irAverageLabel)
         addSubview(irAverageLabel)
         addedViews.append(irAverageLabel)
         for view in noDataViewsCollection where view.tag == 1 {

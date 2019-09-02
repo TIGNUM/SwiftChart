@@ -14,6 +14,7 @@ final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
     var interactor: MyDataExplanationInteractorInterface?
     var router: MyDataExplanationRouterInterface?
     @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var headerLine: UIView!
     @IBOutlet private weak var tableView: UITableView!
     private var myDataExplanationModel: MyDataExplanationModel?
 
@@ -70,10 +71,14 @@ private extension MyDataExplanationViewController {
 extension MyDataExplanationViewController: MyDataExplanationViewControllerInterface {
     func setupView() {
         setupTableView()
+        ThemeView.level3.apply(view)
+        ThemeView.level3.apply(tableView)
+
     }
 
     func setup(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String) {
         myDataExplanationModel = myDataExplanationSection
-        headerTitleLabel.text = myDataExplanationHeaderTitle.uppercased()
+        ThemeView.headerLine.apply(headerLine)
+        ThemeText.myDataSectionHeaderTitle.apply(myDataExplanationHeaderTitle, to: headerTitleLabel)
     }
 }

@@ -115,7 +115,7 @@ Sun</string>
                     </constraints>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="GYW-FM-S3L" firstAttribute="leading" secondItem="5Oa-u1-uil" secondAttribute="leading" constant="27" id="0ey-FT-kSs"/>
                 <constraint firstItem="GYW-FM-S3L" firstAttribute="top" secondItem="5Oa-u1-uil" secondAttribute="top" constant="90" id="60w-eM-7zV"/>

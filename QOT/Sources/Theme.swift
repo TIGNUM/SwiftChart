@@ -145,6 +145,26 @@ enum ThemeTint {
     }
 }
 
+enum ThemeButton {
+    case accent40
+
+    func apply(_ button: UIButton, selected: Bool = false, selectedImage: UIImage? = nil, unSelectedImage: UIImage? = nil) {
+        var color: UIColor?
+        switch self {
+        case .accent40:
+            color = Palette.accent40
+        }
+
+        if let color = color {
+            button.layer.borderWidth = selected ? 0 : 1
+            button.layer.borderColor = selected ? UIColor.clear.cgColor : color.cgColor
+            button.corner(radius: button.frame.size.height / 2)
+
+        }
+        button.backgroundColor = selected ? color : .clear
+    }
+}
+
 enum ThemeSegment {
     case accent
 
@@ -365,32 +385,49 @@ enum ThemeText {
     case tbvTrackerRatingDigits
     case tbvTrackerRatingDigitsSelected
 
+    case myDataSectionHeaderTitle
+    case myDataSectionHeaderSubTitle
+    case myDataMonthYearTitle
+    case myDataWeekdaysNotHighlighted(Bool)
+    case myDataWeekdaysHighlighted(Bool)
+    case myDataSwitchButtons
+    case myDataChartValueLabels
+    case myDataChartIRAverageLabel
+    case myDataParameterLegendText(MyDataParameter)
+    case myDataParameterSelectionTitle(MyDataParameter)
+    case myDataParameterExplanationTitle(MyDataParameter)
+    case myDataExplanationCellSubtitle
+    case myDataHeatMapLegendText
+    case myDataHeatMapCellDateText
+    case myDataHeatMapCellDateHighlighted
+    case myDataHeatMapDetailCellValue
+    case myDataHeatMapDetailCellDate
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError:
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
-             .leaderText, .tbvVision, .tbvVisionBody, .registrationCodeDescription, .registrationCodePreCode,
-             .registrationAgeDescription, .locationPermissionMessage:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage:
             return Fonts.fontRegular16
         case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
-             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage, .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
-             .createAccountMessage, .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
+             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
+             .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
+             .tbvTrackerRatingDigits, .myDataSectionHeaderSubTitle, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationNamesMandatory,
              .registrationAgeRestriction, .trackSelectionMessage:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString,
-             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
+             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle:
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .registrationCodeLink:
+        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink:
             return Fonts.fontSemiBold14
         case .registrationCodeDescriptionEmail, .walkthroughMessage:
             return Fonts.fontSemiBold16
@@ -403,7 +440,7 @@ enum ThemeText {
             return Fonts.fontDisplayThin30
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
-        case .sprintName, .performanceBucketTitle:
+        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText:
             return Fonts.fontMedium16
         case .articleCategoryNotScaled:
             return Fonts.fontMedium12
@@ -449,7 +486,7 @@ enum ThemeText {
             return Fonts.fontLight24
         case .articleHeadline, .learnPDF:
             return Fonts.fontLight20
-        case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess:
+        case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess, .myDataWeekdaysNotHighlighted:
             return Fonts.fontLight14
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
              .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
@@ -472,10 +509,20 @@ enum ThemeText {
             return Fonts.fontLight72
         case .qotAlertTitle:
             return Fonts.fontLight20
-        case .qotAlertMessage:
+        case .qotAlertMessage, .myDataParameterSelectionTitle:
             return Fonts.fontRegular14
         case .tvbCounter:
             return Fonts.fontDisplayUltralight120
+        case .myDataHeatMapLegendText, .myDataParameterLegendText:
+            return Fonts.fontRegular12
+        case .myDataHeatMapDetailCellValue:
+            return Fonts.fontDisplayThin34
+        case .myDataChartIRAverageLabel:
+            return Fonts.fontSemiBold12
+        case .myDataHeatMapCellDateHighlighted:
+            return Fonts.fontSemiBold16
+        case .myDataParameterExplanationTitle:
+            return Fonts.fontRegular20
         default:
             return Fonts.fontRegular20
         }
@@ -489,30 +536,27 @@ enum ThemeText {
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountDetail,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
-             .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle,
+             .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage:
             return Palette.sand
-        case .author, .quoteAuthor, .chatButton, .searchSuggestion:
+        case .author, .quoteAuthor, .chatButton, .searchSuggestion, .myDataChartValueLabels, .myDataHeatMapLegendText:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
-             .registrationNamesMandatory:
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits, .myDataChartIRAverageLabel, .registrationNamesMandatory:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
-        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
-             .registrationCodeLink:
+        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton, .myDataSwitchButtons, .registrationCodeLink:
             return Palette.accent
         case .performanceSections:
             return Palette.carbon40
         case .fromCoachTitle:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore, .accountHeader,
-             .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer,
-             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .onboardingInputPlaceholder, .createAccountMessage,
+             .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
-            .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-            .registrationAgeRestriction, .locationPermissionMessage:
+             .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
+             .registrationAgeRestriction, .locationPermissionMessage:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
@@ -575,6 +619,8 @@ enum ThemeText {
             return Palette.sand
         case .qotAlertMessage:
             return Palette.sand70
+        case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
+            return Palette.parameterColor(for: parameter)
         }
     }
 
@@ -651,13 +697,24 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
+        case .myDataSectionHeaderTitle, .myDataSectionHeaderSubTitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel, .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction, .locationPermissionMessage, .trackSelectionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions:
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
+            var alignment: NSTextAlignment = .left
+            if centered {
+                alignment = .center
+            }
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: alignment, lineBreakMode: nil)
+        case .myDataParameterLegendText, .myDataHeatMapLegendText:
+            string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .myDataParameterSelectionTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .myDataParameterExplanationTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .myDataHeatMapDetailCellValue:
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage, .trackSelectionMessage, .walkthroughMessage:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
@@ -716,6 +773,7 @@ private struct Fonts {
     static let fontLight40 = UIFont.sfProtextLight(ofSize: 40.0)
     static let fontLight72 = UIFont.sfProtextLight(ofSize: 72.0)
 
+    static let fontSemiBold12 = UIFont.sfProtextSemibold(ofSize: 12.0)
     static let fontSemiBold14 = UIFont.sfProtextSemibold(ofSize: 14.0)
     static let fontSemiBold16 = UIFont.sfProtextSemibold(ofSize: 16.0)
 
@@ -723,6 +781,7 @@ private struct Fonts {
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
+    static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
 }
@@ -848,6 +907,30 @@ private struct Palette {
         return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
     }
 
+    static var sleepQuality: UIColor {
+        return UIColor.sleepQuality
+    }
+
+    static var sleepQuantity: UIColor {
+        return UIColor.sleepQuantity
+    }
+
+    static var tenDayLoad: UIColor {
+        return UIColor.tenDayLoad
+    }
+
+    static var fiveDayRecovery: UIColor {
+        return UIColor.fiveDayRecovery
+    }
+
+    static var fiveDayLoad: UIColor {
+        return UIColor.fiveDayLoad
+    }
+
+    static var fiveDayImpactReadiness: UIColor {
+        return UIColor.fiveDayImpactReadiness
+    }
+
     static var nightModeBackground: UIColor {
         return Date().isNight ? Palette.navy : Palette.sand
     }
@@ -895,6 +978,25 @@ private struct Palette {
             case .dark: return darkColor
             case .darkNot: return lightColor
             }
+        }
+    }
+
+    static func parameterColor(for parameter: MyDataParameter) -> UIColor {
+        switch parameter {
+        case .SQL:
+            return Palette.sleepQuality
+        case .SQN:
+            return Palette.sleepQuantity
+        case .tenDL:
+            return Palette.tenDayLoad
+        case .fiveDRR:
+            return Palette.fiveDayRecovery
+        case .fiveDRL:
+            return Palette.fiveDayLoad
+        case .fiveDIR:
+            return Palette.fiveDayImpactReadiness
+        case .IR:
+            return Palette.sand
         }
     }
 }

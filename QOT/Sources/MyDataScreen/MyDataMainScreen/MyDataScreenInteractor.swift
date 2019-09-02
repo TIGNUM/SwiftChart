@@ -150,7 +150,7 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
 
     func configureCell(view: JTAppleCell?, cellState: CellState, date: Date) {
         guard let cell = view as? MyDataHeatMapDateCell  else { return }
-        cell.dateLabel.text = cellState.text
+        cell.setDateLabel(text: cellState.text)
         cell.date = date
         handleCellVisibility(cell: cell, cellState: cellState)
     }
@@ -161,13 +161,8 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
         } else {
             cell.isHidden = true
         }
-        if Date().isSameDay(JTAppleCalendarView.correctedCalendarDateFor(date: cellState.date)) {
-            cell.dateLabel.font = .sfProtextSemibold(ofSize: 16)
-            cell.dateLabel.textColor = .sand
-        } else {
-            cell.dateLabel.font = .sfProDisplayRegular(ofSize: 16)
-            cell.dateLabel.textColor = .sand70
-        }
+
+        cell.setDateLabel(text: cellState.text, isHighlighted: Date().isSameDay(JTAppleCalendarView.correctedCalendarDateFor(date: cellState.date)))
 
         let dailySelected = getDailySelected() == .dailyIR
 
@@ -182,20 +177,20 @@ extension MyDataScreenInteractor: JTAppleCalendarViewDelegate {
                 return
             }
             cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: impactReadiness)
-            cell.noDataImageView.isHidden = true
+            cell.setNoDataImageView(visible: false)
         } else {
             guard let fiveDaysRollingIR = result.fiveDayImpactReadiness else {
                 setNoDataUI(forCell: cell)
                 return
             }
             cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: fiveDaysRollingIR)
-            cell.noDataImageView.isHidden = true
+            cell.setNoDataImageView(visible: false)
         }
     }
 
     func setNoDataUI(forCell: MyDataHeatMapDateCell) {
         forCell.backgroundColor = .clear
-        forCell.noDataImageView.isHidden = false
+        forCell.setNoDataImageView(visible: true)
     }
 }
 

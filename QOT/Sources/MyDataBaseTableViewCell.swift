@@ -11,6 +11,6 @@ import Foundation
 class MyDataBaseTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.backgroundColor = .carbonNew
+        self.backgroundColor = .clear
     }
 }

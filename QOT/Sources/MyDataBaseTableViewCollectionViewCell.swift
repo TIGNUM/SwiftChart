@@ -15,18 +15,17 @@ class MyDataBaseTableViewCollectionViewCell: MyDataBaseTableViewCell {
     // MARK: - Public
 
     func setMonthAndYear(text: String) {
-        self.monthYearLabel.text = text
+        ThemeText.myDataMonthYearTitle.apply(text, to: monthYearLabel)
     }
 
-    func showTodaysWeekdayLabel(asHighlighted: Bool) {
-        if asHighlighted {
-            let weekday = (Calendar.current.component(.weekday, from: Date()) - (Calendar.current.firstWeekday - 1))
-            for label in self.weekDaysLabelsCollection {
-                self.setupLabel(label, asHighlighted: label.tag == (weekday - 1))
-            }
-        } else {
-            for label in self.weekDaysLabelsCollection {
-                self.setupLabel(label, asHighlighted: false)
+    func showTodaysWeekdayLabel(asHighlighted: Bool, centered: Bool = false) {
+        let weekday = Date().weekdayNumberOrdinal()
+        for label in self.weekDaysLabelsCollection {
+            let labelTitle = label.attributedText?.string
+            if label.tag == (weekday - 1) && asHighlighted {
+                ThemeText.myDataWeekdaysHighlighted(centered).apply(labelTitle, to: label)
+            } else {
+                ThemeText.myDataWeekdaysNotHighlighted(centered).apply(labelTitle, to: label)
             }
         }
     }
@@ -43,18 +42,6 @@ class MyDataBaseTableViewCollectionViewCell: MyDataBaseTableViewCell {
         }
         for label in self.weekDaysLabelsCollection where daysOfTheWeekSymbols.count > label.tag {
             label.text = daysOfTheWeekSymbols[label.tag]
-        }
-    }
-
-    // MARK: - Private
-
-    internal func setupLabel(_ label: UILabel, asHighlighted: Bool) {
-        if asHighlighted {
-            label.font = .sfProtextSemibold(ofSize: 14)
-            label.textColor = .sand
-        } else {
-            label.font = .sfProtextLight(ofSize: 14)
-            label.textColor = .sand70
         }
     }
 }

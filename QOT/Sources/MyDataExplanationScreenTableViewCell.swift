@@ -19,17 +19,7 @@ final class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
         guard let explanationItem = forExplanationItem,
               let title = explanationItem.title,
               let subtitle = explanationItem.subtitle else { return }
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.2,
-                                                       font: .sfProtextSemibold(ofSize: 14),
-                                                       lineSpacing: 6,
-                                                       textColor: MyDataExplanationModel.color(for: explanationItem.myDataExplanationSection),
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0,
-                                                          font: .sfProtextRegular(ofSize: 14),
-                                                          lineSpacing: 9,
-                                                          textColor: .sand60,
-                                                          alignment: .left)
+        ThemeText.myDataParameterExplanationTitle(explanationItem.myDataExplanationSection).apply(title, to: titleLabel)
+        ThemeText.myDataExplanationCellSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

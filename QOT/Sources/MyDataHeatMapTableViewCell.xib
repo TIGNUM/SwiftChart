@@ -147,22 +147,22 @@
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdK-lY-bpM" userLabel="Left side mask view">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hdK-lY-bpM">
                     <rect key="frame" x="0.0" y="110" width="27" height="236"/>
-                    <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="27" id="9f7-J2-9lY"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSV-Xm-aAB" userLabel="Right side mask view">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eSV-Xm-aAB">
                     <rect key="frame" x="438" y="110" width="27" height="236"/>
-                    <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="27" id="bLf-fy-Y3U"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="4cv-Am-tbG" firstAttribute="top" secondItem="uxL-FE-mYe" secondAttribute="bottom" constant="5" id="2Us-LS-5HP"/>
                 <constraint firstItem="gRh-aV-HLV" firstAttribute="top" secondItem="NtS-fl-p3m" secondAttribute="bottom" id="3gy-Ac-BGw"/>
@@ -200,7 +200,9 @@
                 <outlet property="bottomColorLabel" destination="54F-bc-hvi" id="uzz-fl-ikC"/>
                 <outlet property="bottomColorView" destination="4cv-Am-tbG" id="Oij-sf-B6h"/>
                 <outlet property="calendarView" destination="NtS-fl-p3m" id="Htx-9L-YE4"/>
+                <outlet property="leftMaskView" destination="hdK-lY-bpM" id="2tF-7X-oJJ"/>
                 <outlet property="monthYearLabel" destination="Qdi-2R-1ta" id="LuI-Mk-OI3"/>
+                <outlet property="rightMaskView" destination="eSV-Xm-aAB" id="fpS-O6-r6q"/>
                 <outlet property="topColorLabel" destination="ddN-hi-ItL" id="SDI-4w-zWB"/>
                 <outlet property="topColorView" destination="uxL-FE-mYe" id="trB-gy-Mol"/>
                 <outletCollection property="weekDaysLabelsCollection" destination="faB-hb-7y3" collectionClass="NSMutableArray" id="jmb-54-g9n"/>

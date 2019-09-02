@@ -8,6 +8,7 @@
 
 import UIKit
 import JTAppleCalendar
+import qot_dal
 
 final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Properties
@@ -16,11 +17,20 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     @IBOutlet private weak var bottomColorView: UIView!
     @IBOutlet private weak var topColorLabel: UILabel!
     @IBOutlet private weak var bottomColorLabel: UILabel!
-
+    @IBOutlet weak var leftMaskView: UIView?
+    @IBOutlet weak var rightMaskView: UIView?
+    override public var backgroundColor: UIColor? {
+        didSet {
+            self.leftMaskView?.backgroundColor = self.backgroundColor
+            self.rightMaskView?.backgroundColor = self.backgroundColor
+        }
+    }
+    
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.setupCalendarView()
+        setupCalendarView()
+        ThemeView.level2.apply(self)
     }
 
     // MARK: - Public
@@ -39,6 +49,7 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Private
 
     // MARK: Helpers
+
     private func setupCalendarView() {
         let startDateForCalendar = Date()
         //general setup of CalendarView
@@ -52,6 +63,8 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
         self.populateWeekdaysLabels()
         self.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: startDateForCalendar))
         showTodaysWeekdayLabel(asHighlighted: true)
+        ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendHighTitle(), to: topColorLabel)
+        ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendLowTitle(), to: bottomColorLabel)
     }
 }
 

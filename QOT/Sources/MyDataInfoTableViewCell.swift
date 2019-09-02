@@ -24,18 +24,9 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         guard let title = title, let subtitle = subtitle else {
             return
         }
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0,
-                                                       font: .apercuRegular(ofSize: 20),
-                                                       lineSpacing: 0,
-                                                       textColor: .sand,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0,
-                                                          font: .sfProtextRegular(ofSize: 14),
-                                                          lineSpacing: 9,
-                                                          textColor: .sand70,
-                                                          alignment: .left)
+        ThemeText.myDataSectionHeaderTitle.apply(title, to: titleLabel)
+        ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleLabel)
+
         addInfoLink()
     }
 

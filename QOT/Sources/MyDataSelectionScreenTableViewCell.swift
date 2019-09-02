@@ -26,12 +26,7 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
             return
         }
         showSelected = selectionItem.selected
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.2,
-                                                       font: .sfProtextRegular(ofSize: 14),
-                                                       lineSpacing: 6,
-                                                       textColor: MyDataExplanationModel.color(for: selectionItem.myDataExplanationSection),
-                                                       alignment: .left)
+        ThemeText.myDataParameterSelectionTitle(selectionItem.myDataExplanationSection).apply(title, to: titleLabel)
         self.setupForSelected(selected: showSelected)
     }
 

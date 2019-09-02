@@ -15,39 +15,46 @@ protocol MyDataChartLegendTableViewCellDelegate: class {
 final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private var labelsCollection: [UILabel]!
+    @IBOutlet private var labelHeightConstraintCollection: [NSLayoutConstraint]!
     @IBOutlet weak var addButton: UIButton!
     weak var delegate: MyDataChartLegendTableViewCellDelegate?
+    let lineHeight: CGFloat = 18.0
 
     // MARK: Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addButton.layer.cornerRadius = 20.0
-        addButton.layer.borderWidth = 1.0
-        addButton.layer.borderColor = UIColor.accent40.cgColor
+        ThemeButton.accent40.apply(addButton)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") != 0 {
+            constraint.constant = 0
+        }
     }
 
     func configure(selectionModel: MyDataSelectionModel?) {
         let attributedString: NSMutableAttributedString = NSMutableAttributedString()
         guard let model = selectionModel else {
-            label.attributedText = attributedString
+            labelsCollection.first?.attributedText = attributedString
             return
         }
-        for sectionModel in  model.myDataSelectionItems {
+        var indexes: [Int] = []
+        for (index, sectionModel) in model.myDataSelectionItems.enumerated() {
             if let title = sectionModel.title {
-                let attributtedTitle = NSAttributedString(string: title,
-                                                          letterSpacing: 0.16,
-                                                          font: .sfProtextRegular(ofSize: 11),
-                                                          lineSpacing: 9,
-                                                          textColor: MyDataExplanationModel.color(for: sectionModel.myDataExplanationSection),
-                                                          alignment: .left)
-                let newLine = attributedString.string.isEmpty ? NSAttributedString() : NSAttributedString.init(string: "\n")
-                attributedString.append(newLine)
-                attributedString.append(attributtedTitle)
+                indexes.append(index)
+                for label in labelsCollection where label.tag == index {
+                    ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)
+                }
             }
         }
-        label.attributedText = attributedString
+        for index in indexes where index != 0 {
+            for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") == index {
+                constraint.constant = lineHeight
+            }
+        }
     }
 
     // MARK: Actions

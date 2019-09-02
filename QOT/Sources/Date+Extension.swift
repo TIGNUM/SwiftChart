@@ -230,6 +230,15 @@ extension Date {
         return short ? calendar.shortWeekdaySymbols[dayIndex] : calendar.weekdaySymbols[dayIndex]
     }
 
+    func weekdayNumberOrdinal() -> Int {
+        let calendar = Calendar.current
+        var dayOfWeek = calendar.component(.weekday, from: Date()) + 1 - calendar.firstWeekday
+        if dayOfWeek <= 0 {
+            dayOfWeek += 7
+        }
+        return dayOfWeek
+    }
+
     static func numerOfWeeksBetween(firstDate: Date, andSecondDate: Date) -> Int {
         let theComponents = Calendar.current.dateComponents([.weekOfYear], from: firstDate, to: andSecondDate)
         return theComponents.weekOfYear ?? 0

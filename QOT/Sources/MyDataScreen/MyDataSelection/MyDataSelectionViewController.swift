@@ -100,13 +100,15 @@ private extension MyDataSelectionViewController {
 extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface {
     func setupView() {
         setupTableView()
+        ThemeView.level3.apply(view)
+        ThemeView.level3.apply(tableView)
     }
 
     func setup(for myDataSelectionSection: MyDataSelectionModel,
                myDataSelectionHeaderTitle: String,
                myDataSelectionHeaderSubtitle: String) {
         myDataSelectionModel = myDataSelectionSection
-        titleLabel.text = myDataSelectionHeaderTitle
-        subtitleLabel.text = myDataSelectionHeaderSubtitle
+        ThemeText.myDataSectionHeaderTitle.apply(myDataSelectionHeaderTitle, to: titleLabel)
+        ThemeText.myDataSectionHeaderSubTitle.apply(myDataSelectionHeaderSubtitle, to: subtitleLabel)
     }
 }

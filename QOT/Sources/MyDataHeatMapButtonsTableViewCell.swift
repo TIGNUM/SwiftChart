@@ -36,14 +36,6 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
     // MARK: UI Setup
 
     private func setupButtons() {
-        dailyIRButton.layer.cornerRadius = 20.0
-        dailyIRButton.layer.borderWidth = 1.0
-        dailyIRButton.layer.borderColor = UIColor.accent40.cgColor
-
-        fiveDaysRollingIRButton.layer.cornerRadius = 20.0
-        fiveDaysRollingIRButton.layer.borderWidth = 1.0
-        fiveDaysRollingIRButton.layer.borderColor = UIColor.accent40.cgColor
-
         dailyIRButton.tag = HeatMapMode.dailyIR.rawValue
         fiveDaysRollingIRButton.tag = HeatMapMode.fiveDaysRollingIR.rawValue
 
@@ -70,11 +62,11 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
 
     func selectButton(_ forTag: Int) {
         for button in allButtons where button.tag == forTag {
-            button.backgroundColor = .accent40
+            ThemeButton.accent40.apply(button, selected: true)
             button.isSelected = true
             for otherButton in allButtons where button != otherButton {
+                ThemeButton.accent40.apply(otherButton, selected: false)
                 otherButton.isSelected = false
-                otherButton.backgroundColor = .clear
             }
         }
     }

@@ -38,7 +38,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="amN-j4-rmu" firstAttribute="bottom" secondItem="K8d-Oz-j85" secondAttribute="bottom" id="7ai-Qc-cno"/>
                             <constraint firstItem="K8d-Oz-j85" firstAttribute="leading" secondItem="amN-j4-rmu" secondAttribute="leading" id="DfA-zw-8NH"/>
@@ -116,7 +116,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="zBy-Qv-cxE" secondAttribute="bottom" constant="24" id="6n8-Cq-zL5"/>
                                     <constraint firstItem="zBy-Qv-cxE" firstAttribute="leading" secondItem="Gzy-nW-dfe" secondAttribute="leading" constant="24" id="KDq-DV-7G4"/>
@@ -126,7 +126,7 @@
                                 <viewLayoutGuide key="safeArea" id="oid-9c-n5F"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="Gzy-nW-dfe" secondAttribute="bottom" id="GDw-GC-n9S"/>
                             <constraint firstItem="YVN-Tw-bnZ" firstAttribute="trailing" secondItem="xRI-V9-qF2" secondAttribute="trailing" id="NyT-ya-LG1"/>
@@ -188,7 +188,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="ea4-YG-XxS" firstAttribute="top" secondItem="W6B-zE-vKC" secondAttribute="top" constant="36" id="392-p7-cq5"/>
                                     <constraint firstAttribute="height" constant="98" id="4bi-UI-MYM"/>
@@ -207,7 +207,7 @@
                                 </connections>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="W6B-zE-vKC" secondAttribute="bottom" id="7lO-Ts-Ejf"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="leading" secondItem="W6B-zE-vKC" secondAttribute="leading" id="9kj-a9-PDi"/>
@@ -222,6 +222,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4sg-76-C2W"/>
                     <connections>
+                        <outlet property="headerLine" destination="e2H-Ij-zXM" id="YfN-TR-jQE"/>
                         <outlet property="headerTitleLabel" destination="t2V-yf-NRU" id="OTa-cb-pyb"/>
                         <outlet property="tableView" destination="Asb-IU-eEH" id="1wI-jH-RTa"/>
                     </connections>

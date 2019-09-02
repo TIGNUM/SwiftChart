@@ -75,13 +75,7 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
 
 // MARK: - Private
 private extension MyDataScreenViewController {
-    func setupTableView() {
-        tableView.registerDequeueable(MyDataInfoTableViewCell.self)
-        tableView.registerDequeueable(MyDataChartTableViewCell.self)
-        tableView.registerDequeueable(MyDataChartLegendTableViewCell.self)
-        tableView.registerDequeueable(MyDataHeatMapButtonsTableViewCell.self)
-        tableView.registerDequeueable(MyDataHeatMapTableViewCell.self)
-    }
+
 }
 
 // MARK: - Actions
@@ -296,6 +290,15 @@ extension MyDataScreenViewController: MyDataSelectionViewControllerDelegate {
 extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
     func setupView() {
         setupTableView()
+        ThemeView.level2.apply(view)
+    }
+
+    func setupTableView() {
+        tableView.registerDequeueable(MyDataInfoTableViewCell.self)
+        tableView.registerDequeueable(MyDataChartTableViewCell.self)
+        tableView.registerDequeueable(MyDataChartLegendTableViewCell.self)
+        tableView.registerDequeueable(MyDataHeatMapButtonsTableViewCell.self)
+        tableView.registerDequeueable(MyDataHeatMapTableViewCell.self)
     }
 
     func setup(for myDataSection: MyDataScreenModel) {
@@ -327,12 +330,12 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
     func updateHeaderDateLabel(forSection: MyDataSection, withFirstDay: Date, andLastDay: Date) {
         if forSection == .heatMap, let heatMapCell = getHeatMapCell() {
             heatMapCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: andLastDay))
-            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay))
+            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay.endOfDay()), centered: true)
         } else if forSection == .dailyImpact, let graphCell = getChartCell() {
             let mideWeekDay = andLastDay.dateAfterDays(-3)
             graphCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: mideWeekDay))
-            graphCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay))
             graphCell.populateWeekdaysLabels(withFirstDay)
+            graphCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay), centered: false)
         }
     }
 
