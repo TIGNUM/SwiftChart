@@ -1045,6 +1045,7 @@
 		9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */; };
 		9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */; };
 		9CF3BE55230190D40027D111 /* MeAtMyBestModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */; };
+		9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF8176123184A320024BCCE /* Level5ViewModel.swift */; };
 		9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */; };
 		9CFA1067231418380023E11E /* ImpactReadinessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA1066231418380023E11E /* ImpactReadinessType.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
@@ -1682,7 +1683,6 @@
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
-		F92A76E322F2E8EC000BB378 /* Level5CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E222F2E8EC000BB378 /* Level5CellViewModel.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
 		F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */; };
 		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
@@ -2902,6 +2902,7 @@
 		9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyCell.swift; sourceTree = "<group>"; };
 		9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestModelType.swift; sourceTree = "<group>"; };
+		9CF8176123184A320024BCCE /* Level5ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5ViewModel.swift; sourceTree = "<group>"; };
 		9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessScoreViewModel.swift; sourceTree = "<group>"; };
 		9CFA1066231418380023E11E /* ImpactReadinessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessType.swift; sourceTree = "<group>"; };
 		AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultPresenter.swift; sourceTree = "<group>"; };
@@ -3527,7 +3528,6 @@
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
-		F92A76E222F2E8EC000BB378 /* Level5CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5CellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
 		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
@@ -8101,8 +8101,8 @@
 			isa = PBXGroup;
 			children = (
 				F92A76E022F2E8D8000BB378 /* Level5Cell.swift */,
-				F92A76E222F2E8EC000BB378 /* Level5CellViewModel.swift */,
 				F92A76E622F2E916000BB378 /* Level5Cell.xib */,
+				9CF8176123184A320024BCCE /* Level5ViewModel.swift */,
 			);
 			name = Level5;
 			sourceTree = "<group>";
@@ -9275,6 +9275,7 @@
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				5F78965522A929C100D2DBAD /* TwoLinesAndImage.swift in Sources */,
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
+				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				91086E48209202740035DA1F /* SettingsPresenter.swift in Sources */,
 				8DBE1EDC22F46B7400BB1086 /* OnboardingLandingPageInteractor.swift in Sources */,
@@ -10430,7 +10431,6 @@
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
 				BB5E76BB230C29A10054AF17 /* DailyBrief.swift in Sources */,
-				F92A76E322F2E8EC000BB378 /* Level5CellViewModel.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				BB5E76DA230D29AC0054AF17 /* MyPrepsHeader.swift in Sources */,

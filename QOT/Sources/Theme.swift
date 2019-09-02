@@ -402,6 +402,8 @@ enum ThemeText {
     case myDataHeatMapCellDateHighlighted
     case myDataHeatMapDetailCellValue
     case myDataHeatMapDetailCellDate
+    case dailyBriefLevelContent
+    case dailyBriefLevelTitle
 
     private var font: UIFont {
         switch self {
@@ -451,7 +453,8 @@ enum ThemeText {
             }
         case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader:
             return Fonts.fontLight34
-        case .articleBullet:
+        case .articleBullet,
+             .dailyBriefLevelContent:
             switch textScale {
             case .scale: return Fonts.fontLight24
             case .scaleNot: return Fonts.fontLight16
@@ -464,7 +467,8 @@ enum ThemeText {
         case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment,
-             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer:
+             .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer,
+             .dailyBriefLevelTitle:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .accountHeader, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected:
@@ -537,6 +541,7 @@ enum ThemeText {
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
+             .dailyBriefLevelTitle,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage:
             return Palette.sand
         case .author, .quoteAuthor, .chatButton, .searchSuggestion, .myDataChartValueLabels, .myDataHeatMapLegendText:
@@ -583,7 +588,8 @@ enum ThemeText {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleQuote, .articleMediaDescription:
             return Palette.light(Palette.carbon60, or: Palette.sand60)
-        case .articleBullet:
+        case .articleBullet,
+             .dailyBriefLevelContent:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
         case .version, .articleRelatedDetail:
             return Palette.sand30
@@ -652,9 +658,11 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult:
+        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
+             .dailyBriefLevelTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
-        case .articleBullet, .sectionHeader:
+        case .articleBullet, .sectionHeader,
+             .dailyBriefLevelContent:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleRelatedDetail, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
