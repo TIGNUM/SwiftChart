@@ -3014,7 +3014,6 @@
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
-		B45502E8230FD7800030A303 /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Heavy.otf"; path = "../../../Downloads/SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -7513,14 +7512,13 @@
 				366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */,
 				366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */,
 				366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */,
-				B45502E8230FD7800030A303 /* SF-Pro-Display-Heavy.otf */,
 				368A125B2277386200866DB0 /* SF-Pro-Display-Light.otf */,
 				368A12572277386100866DB0 /* SF-Pro-Display-Regular.otf */,
 				368A12592277386200866DB0 /* SF-Pro-Display-Thin.otf */,
 				368A125C2277386200866DB0 /* SF-Pro-Display-Ultralight.otf */,
 				368A12582277386200866DB0 /* SF-Pro-Text-Light.otf */,
-				368A12562277386100866DB0 /* SF-Pro-Text-Medium.otf */,
 				368A125A2277386200866DB0 /* SF-Pro-Text-Regular.otf */,
+				368A12562277386100866DB0 /* SF-Pro-Text-Medium.otf */,
 				36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */,
 			);
 			name = Fonts;

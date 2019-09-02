@@ -50,6 +50,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
                 }
             }
         }
+
         for index in indexes where index != 0 {
             for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") == index {
                 constraint.constant = lineHeight

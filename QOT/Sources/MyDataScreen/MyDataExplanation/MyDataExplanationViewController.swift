@@ -47,7 +47,6 @@ extension MyDataExplanationViewController: UITableViewDelegate, UITableViewDataS
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyDataExplanationScreenTableViewCell = tableView.dequeueCell(for: indexPath)
-
         cell.configure(forExplanationItem: myDataExplanationModel?.myDataExplanationItems[indexPath.row])
 
         return cell
@@ -64,6 +63,7 @@ private extension MyDataExplanationViewController {
         tableView.registerDequeueable(MyDataExplanationScreenTableViewCell.self)
         tableView.separatorInset = .zero
         tableView.separatorColor = .sand30
+        tableView.allowsSelection = false
     }
 }
 

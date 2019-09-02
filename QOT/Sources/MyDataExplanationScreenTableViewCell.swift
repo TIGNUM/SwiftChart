@@ -19,6 +19,7 @@ final class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
         guard let explanationItem = forExplanationItem,
               let title = explanationItem.title,
               let subtitle = explanationItem.subtitle else { return }
+        self.selectionStyle = .none
         ThemeText.myDataParameterExplanationTitle(explanationItem.myDataExplanationSection).apply(title, to: titleLabel)
         ThemeText.myDataExplanationCellSubtitle.apply(subtitle, to: subtitleLabel)
     }

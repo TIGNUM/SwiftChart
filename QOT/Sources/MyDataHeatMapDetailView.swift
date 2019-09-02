@@ -18,9 +18,10 @@ final class MyDataHeatMapDetailView: UIView {
     public func setValue(_ value: Double, forDate: Date) {
         let dateText = DateFormatter.ddMM.string(from: forDate)
         ThemeText.myDataHeatMapDetailCellDate.apply(dateText, to: dateLabel)
-        ThemeText.myDataHeatMapDetailCellValue.apply("\(value)", to: valueLabel)
+        ThemeText.myDataHeatMapDetailCellValue.apply("\(Int(value))", to: valueLabel)
         self.alpha = 0.0
         self.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: value)
+        self.valueLabel.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: value)
         UIView.animate(withDuration: animationTimeInterval) { [weak self] in
             guard let s = self else {
                 return

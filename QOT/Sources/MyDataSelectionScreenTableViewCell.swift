@@ -30,7 +30,7 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
         self.setupForSelected(selected: showSelected)
     }
 
-    func setupForSelected(selected: Bool) {
+    private func setupForSelected(selected: Bool) {
         let image = selected ? UIImage.init(named: "activeCircle") : UIImage.init(named: "inactiveCircle")
         checkMarkImageView.image = image
     }

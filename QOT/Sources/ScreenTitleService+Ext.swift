@@ -192,7 +192,7 @@ extension ScreenTitleService {
 
 extension ScreenTitleService {
 
-    func myDataSectionTitles(for myDataItem: MyDataSection) -> String? {
+    func myDataSectionTitle(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
             return localizedString(for: .myDataDailyImpactSectionTitle)
@@ -201,7 +201,7 @@ extension ScreenTitleService {
         }
     }
 
-    func myDataSectionSubtitles(for myDataItem: MyDataSection) -> String? {
+    func myDataSectionSubtitle(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
             return localizedString(for: .myDataDailyImpactSectionSubtitle)
@@ -275,6 +275,6 @@ extension ScreenTitleService {
     }
 
     func myDataSelectionSubtitle() -> String? {
-        return localizedString(for: .myDataDailyImpactSectionTitle)
+        return localizedString(for: .myDataDailyImpactSectionSubtitle)
     }
 }

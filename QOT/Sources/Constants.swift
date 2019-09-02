@@ -57,11 +57,11 @@ enum FontName: String {
     case sfProTextMedium = "SFProText-Medium"
     case sfProTextRegular = "SFProText-Regular"
     case sfProTextLight = "SFProText-Light"
+    case sfProTextHeavy = "SFProText-Heavy"
     case sfProDisplayLight = "SFProDisplay-Light"
     case sfProDisplayRegular = "SFProDisplay-Regular"
     case sfProDisplayThin = "SFProDisplay-Thin"
     case sfProDisplayUltralight = "SFProDisplay-Ultralight"
-    case sfProDisplayHeavy = "SFProDisplay-Heavy"
 
     func font(of size: CGFloat) -> UIFont {
         return (UIFont(name: rawValue, size: size) ?? UIFont.systemFont(ofSize: size))
