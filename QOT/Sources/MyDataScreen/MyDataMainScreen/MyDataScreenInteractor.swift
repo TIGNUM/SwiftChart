@@ -240,13 +240,14 @@ extension MyDataScreenInteractor: UICollectionViewDelegate {
     }
 
     func updateWeekdaysVales(for scrollView: UIScrollView) {
-        if let collectionView = scrollView as? UICollectionView,
+        guard let collectionView = scrollView as? UICollectionView,
             let visibleIndexPath = visibleIndexPath(for: collectionView),
-            visibleIndexPath != visibleGraphIndexPath {
-            visibleGraphIndexPath = visibleIndexPath
-            updateGraphHeader(forIndexPath: visibleIndexPath)
-            worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
+            visibleIndexPath != visibleGraphIndexPath  else {
+                return
         }
+        visibleGraphIndexPath = visibleIndexPath
+        updateGraphHeader(forIndexPath: visibleIndexPath)
+        worker.visibleGraphHasData = modelsFor(indexPath: visibleIndexPath).count > 0
     }
 }
 
