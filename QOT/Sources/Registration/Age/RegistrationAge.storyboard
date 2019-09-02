@@ -69,6 +69,7 @@
                     <connections>
                         <outlet property="ageInputField" destination="Am1-zn-dTp" id="8Xh-vH-hiF"/>
                         <outlet property="ageRestrictionLabel" destination="oIi-gK-YSQ" id="UYV-RL-gud"/>
+                        <outlet property="bottomConstraint" destination="kwY-hL-lzj" id="8e6-cK-N3f"/>
                         <outlet property="descriptionLabel" destination="iez-6b-Ib5" id="4st-1J-uwn"/>
                         <outlet property="titleLabel" destination="Quq-7h-kn9" id="f2u-Jb-fIc"/>
                     </connections>

@@ -15,23 +15,43 @@ final class RegistrationAgeViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var ageInputField: QotPlaceholderTextField!
     @IBOutlet private weak var ageRestrictionLabel: UILabel!
-    private let lowerAgeBound = 18
-    private let preselectedRow = 12
-    private let ageRange = 100
+    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
     private let viewTheme = ThemeView.onboarding
 
+    private var bottomConstraintInitialValue: CGFloat = 0
     var interactor: RegistrationAgeInteractorInterface?
+
+    lazy private var saveButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: interactor?.createButtonTitle ?? "",
+                                       target: self,
+                                       action: #selector(didTapCreateAccountButton))
+    }()
+
+    lazy private var keyboardToolbar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        toolbar.backgroundColor = .carbonNew
+
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        saveButton.isEnabled = false
+        toolbar.items = [space, saveButton]
+        return toolbar
+    }()
 
     lazy private var years: [String] = {
         let currentYear = Calendar.current.component(.year, from: Date())
-        let lowerBound = lowerAgeBound
-        let upperBound = lowerAgeBound + ageRange
+        let lowerBound = Date().minimumDateOfBirth.year()
+        let upperBound = Date().maximumDateOfBirth.year()
 
         var array = [String]()
         for year in lowerBound...upperBound {
-            array.append("\(currentYear - year)")
+            array.append(String(year))
         }
+
+        array.reverse()
+        array.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
         return array
     }()
 
@@ -44,10 +64,8 @@ final class RegistrationAgeViewController: UIViewController, ScreenZLevel3 {
     }()
 
     private lazy var createAccountButton: UIBarButtonItem = {
-        let button = RoundedButton.barButton(title: interactor?.createButtonTitle ?? "",
-                                             target: self,
-                                             action: #selector(didTapCreateAccountButton))
-        return button
+        return RoundedButton.barButton(
+            title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
     }()
 
     // MARK: - Init
@@ -63,7 +81,9 @@ final class RegistrationAgeViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
+        startObservingKeyboard()
         interactor?.viewDidLoad()
+        bottomConstraintInitialValue = bottomConstraint.constant
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -91,7 +111,8 @@ private extension RegistrationAgeViewController {
 private extension RegistrationAgeViewController {
 
     @objc func didTapCreateAccountButton() {
-        guard let year = ageInputField.text else { return }
+        ageInputField.textField.resignFirstResponder()
+        guard let year = ageInputField.text, Int(year) != nil else { return }
         interactor?.didTapNext(with: year)
     }
 }
@@ -110,6 +131,7 @@ extension RegistrationAgeViewController: RegistrationAgeViewControllerInterface 
         ThemeText.registrationAgeRestriction.apply(interactor?.ageRestrictionText, to: ageRestrictionLabel)
 
         ageInputField.textField.inputView = yearPicker
+        ageInputField.textField.inputAccessoryView = keyboardToolbar
         ageInputField.textField.tintColor = .clear
         ageInputField.delegate = self
     }
@@ -137,7 +159,14 @@ extension RegistrationAgeViewController: UIPickerViewDelegate {
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        ageInputField.text = years[row]
+        let selection = years[row]
+        if Int(selection) != nil {
+            ageInputField.text = selection
+            saveButton.isEnabled = true
+        } else {
+            ageInputField.text = nil
+            saveButton.isEnabled = false
+        }
     }
 }
 
@@ -150,12 +179,42 @@ extension RegistrationAgeViewController: UITextFieldDelegate {
 
         refreshBottomNavigationItems()
     }
+}
 
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        // Initial load
-        if let isEmpty = textField.text?.isEmpty, isEmpty == true {
-            yearPicker.selectRow(preselectedRow, inComponent: 0, animated: false)
-            textField.text = years[preselectedRow]
+// MARK: - Keyboard
+
+extension RegistrationAgeViewController {
+
+    override func keyboardWillAppear(notification: NSNotification) {
+        animateKeyboardNotification(notification)
+    }
+
+    override func keyboardWillDisappear(notification: NSNotification) {
+        animateKeyboardNotification(notification)
+        refreshBottomNavigationItems()
+    }
+
+    private func animateKeyboardNotification(_ notification: NSNotification) {
+        // Get animation curve and duration
+        guard let parameters = keyboardParameters(from: notification) else { return }
+
+        if parameters.endFrameY >= UIScreen.main.bounds.size.height {
+            // Keyboard is hiding
+            animateOffset(bottomConstraintInitialValue, duration: parameters.duration, animationCurve: parameters.animationCurve)
+        } else {
+            // Keyboard is showing
+            let difference = (view.frame.size.height - ageInputField.frame.origin.y - ageInputField.frame.size.height)
+            let offset = parameters.height - difference
+            animateOffset(offset, duration: parameters.duration, animationCurve: parameters.animationCurve)
         }
+    }
+
+    private func animateOffset(_ offset: CGFloat, duration: TimeInterval, animationCurve: UIViewAnimationOptions) {
+        bottomConstraint.constant = offset
+        UIView.animate(withDuration: duration,
+                       delay: TimeInterval(0),
+                       options: animationCurve,
+                       animations: { self.view.layoutIfNeeded() },
+                       completion: nil)
     }
 }

@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZf-3h-A2F">
-                                <rect key="frame" x="282" y="582" width="70" height="41"/>
+                                <rect key="frame" x="23" y="786" width="70" height="41"/>
                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="12"/>
                                 <state key="normal" title="Got it">
@@ -52,9 +52,9 @@
                             <constraint firstAttribute="bottom" secondItem="T7L-SH-3Yu" secondAttribute="bottom" id="7WW-xJ-Mh0"/>
                             <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerY" secondItem="7Lh-eS-XQY" secondAttribute="centerY" multiplier="1.33" id="ANL-OQ-opa"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" id="C4c-DO-bgr"/>
-                            <constraint firstItem="iZf-3h-A2F" firstAttribute="centerY" secondItem="Qi8-Va-Dxb" secondAttribute="centerY" id="E83-7Z-L0H"/>
-                            <constraint firstItem="7Lh-eS-XQY" firstAttribute="trailing" secondItem="iZf-3h-A2F" secondAttribute="trailing" constant="62" id="PYm-xM-431"/>
+                            <constraint firstItem="iZf-3h-A2F" firstAttribute="leading" secondItem="7Lh-eS-XQY" secondAttribute="leading" constant="23" id="M4E-Lv-MIQ"/>
                             <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerX" secondItem="7Lh-eS-XQY" secondAttribute="centerX" id="PZA-xV-tdx"/>
+                            <constraint firstItem="7Lh-eS-XQY" firstAttribute="bottom" secondItem="iZf-3h-A2F" secondAttribute="bottom" constant="35" id="fQA-W0-DBf"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="top" secondItem="tv1-Wk-0L9" secondAttribute="top" id="ubb-qU-6J5"/>
                             <constraint firstAttribute="trailing" secondItem="T7L-SH-3Yu" secondAttribute="trailing" id="yZ7-Pu-4aw"/>
                         </constraints>
