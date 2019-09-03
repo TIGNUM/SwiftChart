@@ -692,13 +692,14 @@
 "Onboarding.Registration.Age.Restriction" = "You need to be 18 years of age to use the app";
 "Onboarding.Registration.Age.NextTitle" = "Create account";
 "Onboarding.Registration.CreateAccountError" = "An error occurred.\nPlease try again.";
-"Onboarding.Registration.LocationPermission.Title" = "PERMISSION LOCATION";
-"Onboarding.Registration.LocationPermission.Description" = "You’ve read about the importance of being courageous, rebellious and imaginative.";
-"Onboarding.Registration.LocationPermission.Button.Skip" = "Skip";
-"Onboarding.Registration.LocationPermission.Button.Allow" = "Allow";
-"Onboarding.Registration.LocationPermission.Alert.Message" = "For best performance share your location";
-"Onboarding.Registration.LocationPermission.Alert.Settings" = "Settings";
-"Onboarding.Registration.LocationPermission.Alert.Skip" = "Skip";
+
+"Onboarding.Registration.NotificationPermission.Title" = "PERMISSION NOTIFICATION";
+"Onboarding.Registration.NotificationPermission.Description" = "You’ve read about the importance of being courageous, rebellious and imaginative.";
+"Onboarding.Registration.NotificationPermission.Button.Skip" = "Skip";
+"Onboarding.Registration.NotificationPermission.Button.Allow" = "Allow";
+"Onboarding.Registration.NotificationPermission.Alert.Message" = "For best performance allow notifications";
+"Onboarding.Registration.NotificationPermission.Alert.Settings" = "Settings";
+"Onboarding.Registration.NotificationPermission.Alert.Skip" = "Skip";
 
 "Onboarding.Registration.TrackSelection.Title" = "YOUR ACCOUNT IS CREATED";
 "Onboarding.Registration.TrackSelection.Message" = "Since QOT is quite rich in content and use cases we created two options for you to start:\n\n1. Fast Track - this will lead you write into QOT so that you can explore it yourself.\n\n2. Guided Track - we created a roadmap for you with recommended step.";

@@ -138,10 +138,6 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
     }
 
     func showAlert(message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: { (_) in
-            self.dismiss(animated: true, completion: nil)
-        }))
-        present(alert, animated: true, completion: nil)
+        QOTAlert.show(title: nil, message: message)
     }
 }

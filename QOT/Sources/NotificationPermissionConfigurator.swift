@@ -1,5 +1,5 @@
 //
-//  LocationPermissionConfigurator.swift
+//  NotificationPermissionConfigurator.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,14 +8,14 @@
 
 import Foundation
 
-final class LocationPermissionConfigurator: AppStateAccess {
+final class NotificationPermissionConfigurator: AppStateAccess {
 
-    static func make() -> (LocationPermissionViewController) -> Void {
+    static func make() -> (NotificationPermissionViewController) -> Void {
         return { (viewController) in
-            let router = LocationPermissionRouter(viewController: viewController)
-            let worker = LocationPermissionWorker()
-            let presenter = LocationPermissionPresenter(viewController: viewController)
-            let interactor = LocationPermissionInteractor(worker: worker,
+            let router = NotificationPermissionRouter(viewController: viewController)
+            let worker = NotificationPermissionWorker()
+            let presenter = NotificationPermissionPresenter(viewController: viewController)
+            let interactor = NotificationPermissionInteractor(worker: worker,
                                                           presenter: presenter,
                                                           router: router,
                                                           permissionManager: AppCoordinator.appState.permissionsManager)

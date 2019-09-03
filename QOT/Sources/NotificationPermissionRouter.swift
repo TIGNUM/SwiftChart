@@ -1,5 +1,5 @@
 //
-//  LocationPermissionRouter.swift
+//  NotificationPermissionRouter.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-final class LocationPermissionRouter {
+final class NotificationPermissionRouter {
 
     // MARK: - Properties
 
-    private let viewController: LocationPermissionViewController
+    private let viewController: NotificationPermissionViewController
 
     // MARK: - Init
 
-    init(viewController: LocationPermissionViewController) {
+    init(viewController: NotificationPermissionViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - LocationPermissionRouterInterface
 
-extension LocationPermissionRouter: LocationPermissionRouterInterface {
+extension NotificationPermissionRouter: NotificationPermissionRouterInterface {
     func dismiss() {
         viewController.didTapDismissButton()
     }

@@ -1,5 +1,5 @@
 //
-//  LocationPermissionPresenter.swift
+//  NotificationPermissionPresenter.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,22 +8,22 @@
 
 import UIKit
 
-final class LocationPermissionPresenter {
+final class NotificationPermissionPresenter {
 
     // MARK: - Properties
 
-    private weak var viewController: LocationPermissionViewControllerInterface?
+    private weak var viewController: NotificationPermissionViewControllerInterface?
 
     // MARK: - Init
 
-    init(viewController: LocationPermissionViewControllerInterface) {
+    init(viewController: NotificationPermissionViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - LocationPermissionInterface
 
-extension LocationPermissionPresenter: LocationPermissionPresenterInterface {
+extension NotificationPermissionPresenter: NotificationPermissionPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }

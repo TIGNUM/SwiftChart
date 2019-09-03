@@ -29,8 +29,8 @@ extension RegistrationRouter: RegistrationRouterInterface {
     }
 
     func showLocationPersmission(completion: (() -> Void)?) {
-        let configurator = LocationPermissionConfigurator.make()
-        guard let controller = R.storyboard.locationPermission.locationPermissionViewController() else { return }
+        let configurator = NotificationPermissionConfigurator.make()
+        guard let controller = R.storyboard.notificationPermission.notificationPermissionViewController() else { return }
         configurator(controller)
         viewController.present(controller, animated: true, completion: completion)
     }

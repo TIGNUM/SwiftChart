@@ -16,7 +16,7 @@ final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var buttonGotIt: UIButton!
 
     private let gotItAppearDelay: Double = 2
-    private let animationDuration: Double = Animation.duration_6
+    private let animationDuration: Double = Animation.duration_3
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
     private var timer: Timer?
@@ -81,7 +81,7 @@ private extension WalkthroughViewController {
         guard buttonGotIt.isHidden, viewedControllers.count == interactor?.controllerCount ?? 0 else { return }
         buttonGotIt.alpha = 0
         buttonGotIt.isHidden = false
-        let duration = Animation.duration_06
+        let duration = Animation.duration_04
         UIView.animate(withDuration: duration, delay: gotItAppearDelay, options: .curveEaseInOut, animations: {
             self.buttonGotIt.alpha = 1
         })

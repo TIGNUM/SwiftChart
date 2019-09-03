@@ -1,5 +1,5 @@
 //
-//  LocationPermissionInterface.swift
+//  NotificationPermissionInterface.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol LocationPermissionViewControllerInterface: class {
+protocol NotificationPermissionViewControllerInterface: class {
     func setupView()
     func presentDeniedPermissionAlert()
 }
 
-protocol LocationPermissionPresenterInterface {
+protocol NotificationPermissionPresenterInterface {
     func setupView()
     func presentDeniedPermissionAlert()
 }
 
-protocol LocationPermissionInteractorInterface: Interactor {
+protocol NotificationPermissionInteractorInterface: Interactor {
     var title: String { get }
     var descriptionText: String { get }
     var skipButton: String { get }
@@ -32,7 +32,7 @@ protocol LocationPermissionInteractorInterface: Interactor {
     func didTapSettings()
 }
 
-protocol LocationPermissionRouterInterface {
+protocol NotificationPermissionRouterInterface {
     func dismiss()
     func openSettings()
 }

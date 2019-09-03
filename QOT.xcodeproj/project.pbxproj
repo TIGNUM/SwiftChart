@@ -748,14 +748,14 @@
 		8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */; };
 		8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */; };
 		8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */; };
-		8D0983C3230D3E7C00B0028A /* LocationPermissionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BA230D3E7B00B0028A /* LocationPermissionWorker.swift */; };
-		8D0983C4230D3E7C00B0028A /* LocationPermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BB230D3E7B00B0028A /* LocationPermissionInterface.swift */; };
-		8D0983C5230D3E7C00B0028A /* LocationPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0983BC230D3E7B00B0028A /* LocationPermission.storyboard */; };
-		8D0983C6230D3E7C00B0028A /* LocationPermissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BD230D3E7C00B0028A /* LocationPermissionInteractor.swift */; };
-		8D0983C7230D3E7C00B0028A /* LocationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BE230D3E7C00B0028A /* LocationPermissionPresenter.swift */; };
-		8D0983C8230D3E7C00B0028A /* LocationPermissionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BF230D3E7C00B0028A /* LocationPermissionConfigurator.swift */; };
-		8D0983C9230D3E7C00B0028A /* LocationPermissionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C0230D3E7C00B0028A /* LocationPermissionRouter.swift */; };
-		8D0983CA230D3E7C00B0028A /* LocationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C1230D3E7C00B0028A /* LocationPermissionViewController.swift */; };
+		8D0983C3230D3E7C00B0028A /* NotificationPermissionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */; };
+		8D0983C4230D3E7C00B0028A /* NotificationPermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */; };
+		8D0983C5230D3E7C00B0028A /* NotificationPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */; };
+		8D0983C6230D3E7C00B0028A /* NotificationPermissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */; };
+		8D0983C7230D3E7C00B0028A /* NotificationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */; };
+		8D0983C8230D3E7C00B0028A /* NotificationPermissionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */; };
+		8D0983C9230D3E7C00B0028A /* NotificationPermissionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */; };
+		8D0983CA230D3E7C00B0028A /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */; };
 		8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */; };
 		8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1A2301CC3F00A1AC47 /* RegistrationNamesPresenter.swift */; };
 		8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1B2301CC3F00A1AC47 /* RegistrationNamesWorker.swift */; };
@@ -2605,14 +2605,14 @@
 		8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationAge.storyboard; sourceTree = "<group>"; };
 		8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotPlaceholderTextField.swift; sourceTree = "<group>"; };
 		8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QotPlaceholderTextField.xib; sourceTree = "<group>"; };
-		8D0983BA230D3E7B00B0028A /* LocationPermissionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionWorker.swift; path = Sources/LocationPermissionWorker.swift; sourceTree = "<group>"; };
-		8D0983BB230D3E7B00B0028A /* LocationPermissionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionInterface.swift; path = Sources/LocationPermissionInterface.swift; sourceTree = "<group>"; };
-		8D0983BC230D3E7B00B0028A /* LocationPermission.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LocationPermission.storyboard; path = Sources/LocationPermission.storyboard; sourceTree = "<group>"; };
-		8D0983BD230D3E7C00B0028A /* LocationPermissionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionInteractor.swift; path = Sources/LocationPermissionInteractor.swift; sourceTree = "<group>"; };
-		8D0983BE230D3E7C00B0028A /* LocationPermissionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionPresenter.swift; path = Sources/LocationPermissionPresenter.swift; sourceTree = "<group>"; };
-		8D0983BF230D3E7C00B0028A /* LocationPermissionConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionConfigurator.swift; path = Sources/LocationPermissionConfigurator.swift; sourceTree = "<group>"; };
-		8D0983C0230D3E7C00B0028A /* LocationPermissionRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionRouter.swift; path = Sources/LocationPermissionRouter.swift; sourceTree = "<group>"; };
-		8D0983C1230D3E7C00B0028A /* LocationPermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationPermissionViewController.swift; path = Sources/LocationPermissionViewController.swift; sourceTree = "<group>"; };
+		8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionWorker.swift; path = Sources/NotificationPermissionWorker.swift; sourceTree = "<group>"; };
+		8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionInterface.swift; path = Sources/NotificationPermissionInterface.swift; sourceTree = "<group>"; };
+		8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationPermission.storyboard; path = Sources/NotificationPermission.storyboard; sourceTree = "<group>"; };
+		8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionInteractor.swift; path = Sources/NotificationPermissionInteractor.swift; sourceTree = "<group>"; };
+		8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionPresenter.swift; path = Sources/NotificationPermissionPresenter.swift; sourceTree = "<group>"; };
+		8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionConfigurator.swift; path = Sources/NotificationPermissionConfigurator.swift; sourceTree = "<group>"; };
+		8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionRouter.swift; path = Sources/NotificationPermissionRouter.swift; sourceTree = "<group>"; };
+		8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionViewController.swift; path = Sources/NotificationPermissionViewController.swift; sourceTree = "<group>"; };
 		8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationNames.storyboard; sourceTree = "<group>"; };
 		8D0B4D1A2301CC3F00A1AC47 /* RegistrationNamesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesPresenter.swift; sourceTree = "<group>"; };
 		8D0B4D1B2301CC3F00A1AC47 /* RegistrationNamesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesWorker.swift; sourceTree = "<group>"; };
@@ -4063,7 +4063,7 @@
 				367969FB20D3C3F300B55429 /* SigningCreatePWD */,
 				3698427820C91ECF007A8C8F /* SigningDigit */,
 				366AFD0320BD9F3E00109F29 /* SigningEmail */,
-				8D04FA3B2304673E00AE7CA0 /* LocationPermission */,
+				8D04FA3B2304673E00AE7CA0 /* NotificationPermission */,
 				36796A2520D3C45800B55429 /* SigningProfileDetail */,
 			);
 			name = Signing;
@@ -5556,19 +5556,19 @@
 			path = Age;
 			sourceTree = "<group>";
 		};
-		8D04FA3B2304673E00AE7CA0 /* LocationPermission */ = {
+		8D04FA3B2304673E00AE7CA0 /* NotificationPermission */ = {
 			isa = PBXGroup;
 			children = (
-				8D0983BF230D3E7C00B0028A /* LocationPermissionConfigurator.swift */,
-				8D0983BD230D3E7C00B0028A /* LocationPermissionInteractor.swift */,
-				8D0983BB230D3E7B00B0028A /* LocationPermissionInterface.swift */,
-				8D0983BE230D3E7C00B0028A /* LocationPermissionPresenter.swift */,
-				8D0983C0230D3E7C00B0028A /* LocationPermissionRouter.swift */,
-				8D0983C1230D3E7C00B0028A /* LocationPermissionViewController.swift */,
-				8D0983BA230D3E7B00B0028A /* LocationPermissionWorker.swift */,
-				8D0983BC230D3E7B00B0028A /* LocationPermission.storyboard */,
+				8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */,
+				8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */,
+				8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */,
+				8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */,
+				8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */,
+				8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */,
+				8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */,
+				8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */,
 			);
-			name = LocationPermission;
+			name = NotificationPermission;
 			path = ..;
 			sourceTree = "<group>";
 		};
@@ -8706,7 +8706,7 @@
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
-				8D0983C5230D3E7C00B0028A /* LocationPermission.storyboard in Resources */,
+				8D0983C5230D3E7C00B0028A /* NotificationPermission.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
@@ -9457,7 +9457,7 @@
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
-				8D0983C8230D3E7C00B0028A /* LocationPermissionConfigurator.swift in Sources */,
+				8D0983C8230D3E7C00B0028A /* NotificationPermissionConfigurator.swift in Sources */,
 				7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */,
 				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
@@ -9851,7 +9851,7 @@
 				B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
-				8D0983C3230D3E7C00B0028A /* LocationPermissionWorker.swift in Sources */,
+				8D0983C3230D3E7C00B0028A /* NotificationPermissionWorker.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */,
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
@@ -10145,7 +10145,7 @@
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
-				8D0983CA230D3E7C00B0028A /* LocationPermissionViewController.swift in Sources */,
+				8D0983CA230D3E7C00B0028A /* NotificationPermissionViewController.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
 				F9D6381022D62B830092C482 /* DepartureInfoCell.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
@@ -10274,7 +10274,7 @@
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
-				8D0983C9230D3E7C00B0028A /* LocationPermissionRouter.swift in Sources */,
+				8D0983C9230D3E7C00B0028A /* NotificationPermissionRouter.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */,
@@ -10287,13 +10287,13 @@
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* StatisticsPeriod.swift in Sources */,
 				3608382C225F3ED000664B9B /* ArticleModel.swift in Sources */,
-				8D0983C4230D3E7C00B0028A /* LocationPermissionInterface.swift in Sources */,
+				8D0983C4230D3E7C00B0028A /* NotificationPermissionInterface.swift in Sources */,
 				E813F0A82135280F00C0723E /* PDFReaderConfigurator.swift in Sources */,
 				7FCF0EF91FD9777100138D77 /* MyUniverseContentView.swift in Sources */,
 				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
 				5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */,
-				8D0983C6230D3E7C00B0028A /* LocationPermissionInteractor.swift in Sources */,
+				8D0983C6230D3E7C00B0028A /* NotificationPermissionInteractor.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				B856B48522B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
@@ -10596,7 +10596,7 @@
 				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
-				8D0983C7230D3E7C00B0028A /* LocationPermissionPresenter.swift in Sources */,
+				8D0983C7230D3E7C00B0028A /* NotificationPermissionPresenter.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,

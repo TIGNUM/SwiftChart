@@ -1,5 +1,5 @@
 //
-//  LocationPermissionInteractor.swift
+//  NotificationPermissionInteractor.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,20 +8,20 @@
 
 import UIKit
 
-final class LocationPermissionInteractor {
+final class NotificationPermissionInteractor {
 
     // MARK: - Properties
 
-    private let worker: LocationPermissionWorker
-    private let presenter: LocationPermissionPresenterInterface
-    private let router: LocationPermissionRouterInterface
+    private let worker: NotificationPermissionWorker
+    private let presenter: NotificationPermissionPresenterInterface
+    private let router: NotificationPermissionRouterInterface
     private let permissionManager: PermissionsManager
 
     // MARK: - Init
 
-    init(worker: LocationPermissionWorker,
-        presenter: LocationPermissionPresenterInterface,
-        router: LocationPermissionRouterInterface,
+    init(worker: NotificationPermissionWorker,
+        presenter: NotificationPermissionPresenterInterface,
+        router: NotificationPermissionRouterInterface,
         permissionManager: PermissionsManager) {
         self.worker = worker
         self.presenter = presenter
@@ -66,15 +66,15 @@ final class LocationPermissionInteractor {
     }
 }
 
-// MARK: - LocationPermissionInteractorInterface
+// MARK: - NotificationPermissionInteractorInterface
 
-extension LocationPermissionInteractor: LocationPermissionInteractorInterface {
+extension NotificationPermissionInteractor: NotificationPermissionInteractorInterface {
     func didTapSkip() {
         router.dismiss()
     }
 
     func didTapAllow() {
-        worker.requestLocationAccess { [weak self] (status) in
+        worker.requestNotificationAccess { [weak self] (status) in
             if case .granted = status {
                 self?.router.dismiss()
             } else {

@@ -1,5 +1,5 @@
 //
-//  LocationPermissionViewController.swift
+//  NotificationPermissionViewController.swift
 //  QOT
 //
 //  Created by Zeljko Zivkovic on 14/08/2019.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-final class LocationPermissionViewController: UIViewController, ScreenZLevel3 {
+final class NotificationPermissionViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
-    var interactor: LocationPermissionInteractorInterface?
+    var interactor: NotificationPermissionInteractorInterface?
 
     lazy var skipButton: UIBarButtonItem = {
         let button = RoundedButton(title: interactor?.skipButton ?? "", target: self, action: #selector(didTapSkipButton))
@@ -53,18 +53,24 @@ final class LocationPermissionViewController: UIViewController, ScreenZLevel3 {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [skipButton, allowButton]
+        return [fixedSpace(22), allowButton, fixedSpace(24), skipButton]
     }
 }
 
 // MARK: - Private
 
-private extension LocationPermissionViewController {
+private extension NotificationPermissionViewController {
+
+    func fixedSpace(_ width: CGFloat) -> UIBarButtonItem {
+        let space = UIBarButtonItem(barButtonSystemItem: .fixedSpace, target: nil, action: nil)
+        space.width = width
+        return space
+    }
 }
 
 // MARK: - Actions
 
-private extension LocationPermissionViewController {
+private extension NotificationPermissionViewController {
 
     @objc func didTapSkipButton() {
         interactor?.didTapSkip()
@@ -77,7 +83,7 @@ private extension LocationPermissionViewController {
 
 // MARK: - LocationPermissionViewControllerInterface
 
-extension LocationPermissionViewController: LocationPermissionViewControllerInterface {
+extension NotificationPermissionViewController: NotificationPermissionViewControllerInterface {
 
     func setupView() {
         ThemeView.onboarding.apply(view)
