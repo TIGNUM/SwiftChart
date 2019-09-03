@@ -531,7 +531,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.saveTargetValue(value: value)
     }
 
-    func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket)-> [BaseDailyBriefViewModel] {
+    func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
 
@@ -552,25 +552,25 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else {
             questionLevel = question
         }
-        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level1Title, levelContent:level1Text))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level1Title, levelContent: level1Text))
 
         let level2Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
         let level2Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level2Title, levelContent:level2Text))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level2Title, levelContent: level2Text))
 
         let level3Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
         let level3Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level3Title, levelContent:level3Text))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level3Title, levelContent: level3Text))
 
         let level4Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
         let level4Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level4Title, levelContent:level4Text))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level4Title, levelContent: level4Text))
 
         let level5Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
         let level5Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
-        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle:level5Title, levelContent:level5Text))
+        levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level5Title, levelContent: level5Text))
 
-        createLevel5List.append(Level5ViewModel(title: title, intro: intro, question: questionLevel, youRatedPart1: youRatedPart1, youRatedPart2: youRatedPart2, comeBackText: comeBackText,levelMessages:levelMessageModels, confirmationMessage: confirmationMessage,domainModel: level5))
+        createLevel5List.append(Level5ViewModel(title: title, intro: intro, question: questionLevel, youRatedPart1: youRatedPart1, youRatedPart2: youRatedPart2, comeBackText: comeBackText, levelMessages: levelMessageModels, confirmationMessage: confirmationMessage, domainModel: level5))
         return createLevel5List
     }
 

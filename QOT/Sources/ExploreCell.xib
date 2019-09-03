@@ -272,10 +272,12 @@
                 <constraint firstItem="zOz-nl-19T" firstAttribute="top" secondItem="Jaw-QJ-rkp" secondAttribute="bottom" constant="15" id="s3u-K0-rbm"/>
                 <constraint firstItem="Z4w-dz-0cs" firstAttribute="top" secondItem="kwg-sH-z29" secondAttribute="bottom" constant="15" id="wj0-gn-hck"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Z4w-dz-0cs" secondAttribute="trailing" constant="25" id="wmi-bd-BuN"/>
+                <constraint firstItem="zOz-nl-19T" firstAttribute="leading" secondItem="VM7-eB-9Ne" secondAttribute="trailing" constant="35" id="yVI-eg-UnE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bucketTitle" destination="Z4w-dz-0cs" id="lpx-W5-rKf"/>
                 <outlet property="introTextLabel" destination="Jaw-QJ-rkp" id="mH2-py-VWH"/>
                 <outlet property="strategyView" destination="b9g-0f-hVY" id="PNO-h9-Wgr"/>
                 <outlet property="timeOfDayPosition" destination="jkY-i1-kc7" id="G0t-fj-8y8"/>

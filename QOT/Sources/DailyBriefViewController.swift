@@ -617,14 +617,16 @@ private extension DailyBriefViewController {
             cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0))
+                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openTool))
             cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0) )
+                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
         cell.backgroundColor = .carbon
         return cell
