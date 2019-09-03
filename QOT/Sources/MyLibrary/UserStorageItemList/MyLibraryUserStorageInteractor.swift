@@ -124,6 +124,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     func didTapEdit(isEditing: Bool) {
+        notificationCenter.post(name: .stopAudio, object: nil)
         self.isEditing = isEditing
         bottomButtons = editingButtons
         presenter.present()
@@ -142,7 +143,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
                                      progress: 0,
                                      currentTime: 0,
                                      mediaRemoteId: item.remoteId)
-        NotificationCenter.default.post(name: .playPauseAudio, object: media)
+        notificationCenter.post(name: .playPauseAudio, object: media)
     }
 
     func didTapAddNote() {

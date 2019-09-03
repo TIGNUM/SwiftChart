@@ -57,6 +57,7 @@ private extension MyLibraryCategoryListViewController {
 
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
     func update() {
+        ThemeView.level2.apply(view)
         tableView.reloadData()
         self.removeLoadingSkeleton()
     }
