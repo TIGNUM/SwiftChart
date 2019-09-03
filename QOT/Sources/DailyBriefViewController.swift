@@ -125,10 +125,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
             sectionColor.backgroundColor = .carbon
             return sectionColor
-        } else if section == 0 {
-            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
-            sectionColor.backgroundColor = .carbon
-            return sectionColor
         } else {
             let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
             sectionColor.backgroundColor = .sand40

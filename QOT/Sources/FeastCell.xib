@@ -40,7 +40,7 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38T-gA-UaZ">
-                    <rect key="frame" x="0.0" y="90" width="385" height="284"/>
+                    <rect key="frame" x="0.0" y="90" width="385" height="279"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="Eyu-un-JXU"/>
                     </constraints>
@@ -64,7 +64,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="38T-gA-UaZ" secondAttribute="trailing" id="8DB-qd-i4L"/>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" id="9Bc-ZD-Xr9"/>
-                <constraint firstItem="Bgt-tp-HhS" firstAttribute="top" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="15" id="bJw-Cr-zjx"/>
+                <constraint firstItem="Bgt-tp-HhS" firstAttribute="top" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="20" id="bJw-Cr-zjx"/>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="top" secondItem="rjY-Qr-wDb" secondAttribute="bottom" constant="25" id="cr9-cQ-RY3"/>
                 <constraint firstItem="rjY-Qr-wDb" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="20" id="g0V-Tw-c5X"/>
                 <constraint firstItem="M30-VM-Zxo" firstAttribute="leading" secondItem="axe-l6-9r4" secondAttribute="leading" constant="20" id="iwi-wN-bjo"/>

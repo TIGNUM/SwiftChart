@@ -183,11 +183,10 @@
                                     <outletCollection property="gestureRecognizers" destination="TUA-7x-wVu" appends="YES" id="7vf-gn-hns"/>
                                 </connections>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-lO-wdT">
-                                <rect key="frame" x="142" y="274.33333333333331" width="200" height="25"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-lO-wdT">
+                                <rect key="frame" x="145" y="299.33333333333331" width="220" height="0.0"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="Z5x-ir-Grp"/>
-                                    <constraint firstAttribute="height" constant="25" id="wwj-F1-R6M"/>
+                                    <constraint firstAttribute="width" constant="220" id="fhC-Me-tqf"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                 <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -258,13 +257,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZSG-Sa-kqJ" secondAttribute="trailing" constant="24" id="bnv-wh-LgL"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cbd-gl-cyY"/>
                             <constraint firstItem="Ija-7r-kOP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="cii-ai-5Eq"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Prp-lO-wdT" secondAttribute="trailing" constant="33" id="fZc-we-g1f"/>
                             <constraint firstItem="Tzc-Ic-cPM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fuZ-oK-SPl"/>
                             <constraint firstItem="IvG-bf-DRU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="irR-BR-UiV"/>
                             <constraint firstItem="Prp-lO-wdT" firstAttribute="bottom" secondItem="rNb-KL-Z8H" secondAttribute="bottom" constant="-5" id="jGf-gt-tND"/>
                             <constraint firstItem="ZSG-Sa-kqJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="lqQ-LB-pNz"/>
                             <constraint firstItem="oXm-jd-nOr" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="pjt-pI-jBZ"/>
                             <constraint firstItem="Ija-7r-kOP" firstAttribute="top" secondItem="oXm-jd-nOr" secondAttribute="bottom" constant="15" id="qPV-B2-AyT"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Prp-lO-wdT" secondAttribute="trailing" constant="10" id="qUG-tj-gz8"/>
                             <constraint firstItem="IvG-bf-DRU" firstAttribute="top" secondItem="Tzc-Ic-cPM" secondAttribute="bottom" id="qyR-1v-c2J"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="7th-Xx-vP4" secondAttribute="top" id="uUN-dL-Lnw"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="top" secondItem="IvG-bf-DRU" secondAttribute="bottom" constant="24" id="vtL-Tz-kaM"/>
