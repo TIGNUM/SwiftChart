@@ -28,13 +28,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xws-ox-yjU">
-                    <rect key="frame" x="20" y="69" width="482" height="24"/>
+                    <rect key="frame" x="20" y="57" width="482" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-wa-MhM">
-                    <rect key="frame" x="20" y="113" width="482" height="53"/>
+                    <rect key="frame" x="20" y="101" width="482" height="65"/>
                     <string key="text">Text about the user's answered 15% of busines professionals say they do specific movements to improve their performance during the day.Text about the user's answered 15% of busines professionals say they do specific movements to improve their performance during the day.</string>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -494,7 +494,7 @@
                 <constraint firstItem="iJ5-aQ-5Xi" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="20" id="PKL-n2-dCc"/>
                 <constraint firstItem="zd4-wa-MhM" firstAttribute="top" secondItem="Xws-ox-yjU" secondAttribute="bottom" constant="20" id="SuH-if-8Pj"/>
                 <constraint firstItem="Htd-Bh-cdR" firstAttribute="top" secondItem="NgW-bi-Vgj" secondAttribute="bottom" constant="6" id="T0o-7v-yaY"/>
-                <constraint firstItem="Xws-ox-yjU" firstAttribute="top" secondItem="iJ5-aQ-5Xi" secondAttribute="bottom" constant="20" id="Wmm-mB-8ag"/>
+                <constraint firstItem="Xws-ox-yjU" firstAttribute="top" secondItem="iJ5-aQ-5Xi" secondAttribute="bottom" constant="8" id="Wmm-mB-8ag"/>
                 <constraint firstItem="iJ5-aQ-5Xi" firstAttribute="top" secondItem="Kdu-7B-UOZ" secondAttribute="top" constant="48" id="YLq-yW-6pc"/>
                 <constraint firstAttribute="trailing" secondItem="IpA-hZ-HKE" secondAttribute="trailing" constant="28" id="Z9x-dG-E1J"/>
                 <constraint firstItem="NgW-bi-Vgj" firstAttribute="leading" secondItem="FuO-3N-w9t" secondAttribute="leading" constant="24" id="bUK-nu-P4X"/>

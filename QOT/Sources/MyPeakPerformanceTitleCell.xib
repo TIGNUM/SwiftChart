@@ -16,15 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="154" id="sxQ-Yt-osk" customClass="MyPeakPerformanceTitleCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="483" height="154"/>
+        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="107" id="sxQ-Yt-osk" customClass="MyPeakPerformanceTitleCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="483" height="107"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sxQ-Yt-osk" id="evF-vy-3CQ">
-                <rect key="frame" x="0.0" y="0.0" width="483" height="153.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="483" height="106.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3PC-q7-eT8">
-                        <rect key="frame" x="0.0" y="0.0" width="483" height="153.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="483" height="106.5"/>
                         <subviews>
                             <view alpha="0.60000002384185791" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2M-52-GlI">
                                 <rect key="frame" x="25" y="40.5" width="16" height="1"/>
@@ -35,7 +35,10 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.94999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PEAK PERFORMANCES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAD-og-jm6">
-                                <rect key="frame" x="25" y="53.5" width="434" height="100"/>
+                                <rect key="frame" x="25" y="53.5" width="434" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="imd-Kz-5pL"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
@@ -53,7 +56,7 @@
                             <constraint firstAttribute="trailing" secondItem="sAD-og-jm6" secondAttribute="trailing" constant="24" id="Hlf-Cl-838"/>
                             <constraint firstItem="sAD-og-jm6" firstAttribute="top" secondItem="K2M-52-GlI" secondAttribute="bottom" constant="12" id="Wtq-TT-9dX"/>
                             <constraint firstItem="sAD-og-jm6" firstAttribute="leading" secondItem="3PC-q7-eT8" secondAttribute="leading" constant="25" id="nOl-UN-Pkg"/>
-                            <constraint firstAttribute="bottom" secondItem="sAD-og-jm6" secondAttribute="bottom" id="vPu-mD-Bqb"/>
+                            <constraint firstAttribute="bottom" secondItem="sAD-og-jm6" secondAttribute="bottom" constant="29" id="uFQ-1L-QsA"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -68,7 +71,7 @@
             <connections>
                 <outlet property="title" destination="sAD-og-jm6" id="hW0-pQ-twG"/>
             </connections>
-            <point key="canvasLocation" x="-1557.2463768115942" y="-176.78571428571428"/>
+            <point key="canvasLocation" x="-1557.2463768115942" y="-192.52232142857142"/>
         </tableViewCell>
     </objects>
 </document>

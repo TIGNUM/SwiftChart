@@ -58,13 +58,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The below calendar view is a replication of your day. We marked a quick suggestion where you can try a strategy or tool today." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-QJ-rkp">
-                    <rect key="frame" x="24" y="86" width="355" height="84"/>
+                    <rect key="frame" x="24" y="99" width="355" height="71"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPLORE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4w-dz-0cs">
-                    <rect key="frame" x="25" y="51" width="353" height="25"/>
+                    <rect key="frame" x="25" y="64" width="353" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="qOC-tU-TF5"/>
                     </constraints>
@@ -239,7 +239,7 @@
                     </constraints>
                 </view>
                 <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-sH-z29">
-                    <rect key="frame" x="24" y="35" width="16" height="1"/>
+                    <rect key="frame" x="24" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="7KP-Wv-RqM"/>
@@ -253,7 +253,7 @@
                 <constraint firstAttribute="bottom" secondItem="zOz-nl-19T" secondAttribute="bottom" constant="48" id="7SY-Gu-QAS"/>
                 <constraint firstItem="VM7-eB-9Ne" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="AMZ-FP-Sgd"/>
                 <constraint firstItem="Cax-HU-JTY" firstAttribute="top" secondItem="VM7-eB-9Ne" secondAttribute="bottom" constant="63" id="BDc-aP-GjA"/>
-                <constraint firstItem="kwg-sH-z29" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="C5H-je-thO"/>
+                <constraint firstItem="kwg-sH-z29" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="C5H-je-thO"/>
                 <constraint firstItem="b9g-0f-hVY" firstAttribute="leading" secondItem="zOz-nl-19T" secondAttribute="trailing" constant="10" id="DCD-hk-7Qd"/>
                 <constraint firstAttribute="trailing" secondItem="Jaw-QJ-rkp" secondAttribute="trailing" constant="24" id="GT3-XK-jAE"/>
                 <constraint firstItem="bCs-Zr-GWx" firstAttribute="top" secondItem="Cax-HU-JTY" secondAttribute="bottom" constant="60" id="I8r-Lw-XAV"/>

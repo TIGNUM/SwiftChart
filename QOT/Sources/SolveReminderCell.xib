@@ -28,7 +28,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="403" height="348"/>
                     <subviews>
                         <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwq-nu-K1r">
-                            <rect key="frame" x="24" y="48" width="16" height="1"/>
+                            <rect key="frame" x="24" y="48" width="10" height="1"/>
                             <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="10" id="Vpi-8f-cJz"/>
@@ -36,19 +36,19 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOLVE REMINDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKU-8H-YUQ">
-                            <rect key="frame" x="24" y="69" width="355" height="24"/>
+                            <rect key="frame" x="24" y="57" width="355" height="24"/>
                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two days ago you explored some solutions to help you during difficult high-performance situations." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-zZ-9re">
-                            <rect key="frame" x="24" y="112.5" width="355" height="57.5"/>
+                            <rect key="frame" x="24" y="100.5" width="355" height="57.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Hope the suggested solution has worked for you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-4w-PHD">
-                            <rect key="frame" x="24" y="194" width="355" height="39.5"/>
+                            <rect key="frame" x="24" y="182" width="355" height="51.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -105,7 +105,7 @@
                         <constraint firstAttribute="trailing" secondItem="ZBF-4w-PHD" secondAttribute="trailing" constant="24" id="5V1-JZ-Ryq"/>
                         <constraint firstItem="ecL-Bg-eCc" firstAttribute="top" secondItem="Ibp-jg-x3D" secondAttribute="bottom" constant="61" id="BcN-7g-n62"/>
                         <constraint firstItem="JKU-8H-YUQ" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="DN8-SO-oak"/>
-                        <constraint firstItem="JKU-8H-YUQ" firstAttribute="top" secondItem="Gwq-nu-K1r" secondAttribute="bottom" constant="20" id="DZh-ec-mho"/>
+                        <constraint firstItem="JKU-8H-YUQ" firstAttribute="top" secondItem="Gwq-nu-K1r" secondAttribute="bottom" constant="8" id="DZh-ec-mho"/>
                         <constraint firstAttribute="trailing" secondItem="nPk-IS-ZnT" secondAttribute="trailing" id="Dmz-fc-r2r"/>
                         <constraint firstItem="Ibp-jg-x3D" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="Dsh-Ls-nr9"/>
                         <constraint firstItem="IoC-QV-JDo" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="HOa-ZF-1fc"/>
