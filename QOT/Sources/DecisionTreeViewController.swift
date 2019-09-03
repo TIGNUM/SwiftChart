@@ -16,7 +16,7 @@ protocol DecisionTreeViewControllerDelegate: class {
     func didDismiss()
 
     func dismissOnMoveBackwards()
-    func createToBeVision(text: String, workAnswers: [String], homeAnswers: [String])
+    func createToBeVision(_ toBeVision: QDMToBeVision)
 }
 
 extension DecisionTreeViewControllerDelegate {
@@ -168,8 +168,8 @@ private extension DecisionTreeViewController {
 
     @IBAction func didTapContinue() {
         interactor?.didTapContinue()
-        if isOnboardingDecisionTree {
-//            delegate?.createToBeVision(text: "", workAnswers: [], homeAnswers: []) // FIXME: ZZ: Cache TBV
+        if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
+            delegate?.createToBeVision(tbv)
         }
     }
 
@@ -211,7 +211,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
                                     selectedAnswers: selectedAnswers,
                                     direction: direction,
                                     animated: animated)
-        previousButton.isHidden = QuestionKey.preiviousButtonIsHidden(question.key)
+        previousButton.isHidden = QuestionKey.preiviousButtonIsHidden(question.key) && !isOnboardingDecisionTree
         if question.answerType == AnswerType.openCalendarEvents.rawValue,
             let permissionType = interactor?.getCalendarPermissionType() {
             presentPermissionView(permissionType)
@@ -320,10 +320,10 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     @objc func didPressContinue() {
-        interactor?.didTapContinue()
         if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
-            delegate?.createToBeVision(text: tbv.text, workAnswers: tbv.workSelections, homeAnswers: tbv.homeSelections)
+            delegate?.createToBeVision(tbv)
         }
+        interactor?.didTapContinue()
     }
 
     func didUpdateUserInput(_ userInput: String?) {

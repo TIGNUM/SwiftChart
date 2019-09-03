@@ -74,13 +74,8 @@ extension BaseSigningWorker {
         return emailPredicate.evaluate(with: email)
     }
 
-    func updateToBeVision(with cachedVision: CachedToBeVision) {
-        var vision = QDMToBeVision()
-        vision.createdAt = Date()
-        vision.text = cachedVision.text
-        vision.workKeywords = cachedVision.workAnswers
-        vision.homeKeywords = cachedVision.homeAnswers
-        userService.updateMyToBeVision(vision) { (error) in
+    func updateToBeVision(with cachedVision: QDMToBeVision) {
+        userService.updateMyToBeVision(cachedVision) { (error) in
             guard let error = error else { return }
             qot_dal.log("Failed to save user's ToBeVision: \(error)", level: .debug)
         }

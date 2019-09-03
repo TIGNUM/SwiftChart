@@ -11,9 +11,6 @@ import qot_dal
 
 typealias DecisionTreeNode = (question: QDMQuestion?, generatedAnswer: String?)
 
-// Used during onboarding
-typealias CreatedToBeVision = (text: String, workSelections: [String], homeSelections: [String])
-
 final class DecisionTreeWorker {
 
     // MARK: - Properties
@@ -42,7 +39,7 @@ final class DecisionTreeWorker {
     internal var lastSprintQuestionId: Int?
     internal var targetContentID: Int = 0
     internal var nextQuestionId: Int = 0
-    internal var createdTBV: CreatedToBeVision?
+    internal var createdTBV: QDMToBeVision? // TBV cached during onboarding
     var continueButton = DecisionTreeButton(frame: .Default)
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?

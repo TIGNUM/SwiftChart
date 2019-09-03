@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol OnboardingLandingPageViewControllerInterface: class, SigningInfoDelegate, OnboardingLoginDelegate {
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
@@ -17,14 +18,14 @@ protocol OnboardingLandingPagePresenterInterface {
 }
 
 protocol OnboardingLandingPageInteractorInterface: Interactor {
-    func didTapLogin(with email: String?, cachedToBeVision: CachedToBeVision?)
+    func didTapLogin(with email: String?, cachedToBeVision: QDMToBeVision?)
     func didTapStart()
     func didTapBack()
     func showTrackSelection()
 }
 
 protocol OnboardingLandingPageRouterInterface {
-    func openRegistration(with cachedTBV: CachedToBeVision?)
+    func openRegistration(with cachedTBV: QDMToBeVision?)
     func popToRoot()
     func showTrackSelection()
 }

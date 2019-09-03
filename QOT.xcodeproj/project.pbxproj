@@ -847,7 +847,6 @@
 		8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */; };
 		8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */; };
 		8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */; };
-		8D7567D6230AFB9700BEE744 /* CachedToBeVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D7567D5230AFB9700BEE744 /* CachedToBeVision.swift */; };
 		8D8AA75D22FDCB6700B59A81 /* RegistrationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA74C22FDCB6700B59A81 /* RegistrationWorker.swift */; };
 		8D8AA75E22FDCB6700B59A81 /* RegistrationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA74D22FDCB6700B59A81 /* RegistrationInteractor.swift */; };
 		8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA74E22FDCB6700B59A81 /* RegistrationRouter.swift */; };
@@ -2704,7 +2703,6 @@
 		8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesInteractor.swift; sourceTree = "<group>"; };
 		8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesConfigurator.swift; sourceTree = "<group>"; };
 		8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyLibraryNotes.storyboard; sourceTree = "<group>"; };
-		8D7567D5230AFB9700BEE744 /* CachedToBeVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CachedToBeVision.swift; sourceTree = "<group>"; };
 		8D8AA74C22FDCB6700B59A81 /* RegistrationWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationWorker.swift; sourceTree = "<group>"; };
 		8D8AA74D22FDCB6700B59A81 /* RegistrationInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationInteractor.swift; sourceTree = "<group>"; };
 		8D8AA74E22FDCB6700B59A81 /* RegistrationRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationRouter.swift; sourceTree = "<group>"; };
@@ -4049,7 +4047,6 @@
 			children = (
 				3686678320D3835900B400FE /* AbstractFormViewController.swift */,
 				8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */,
-				8D7567D5230AFB9700BEE744 /* CachedToBeVision.swift */,
 				8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */,
 				366AFD1620BDAD0800109F29 /* FormView */,
 				8DBE1EBE22F460CC00BB1086 /* OnboardingLandingPage */,
@@ -10652,7 +10649,6 @@
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
 				CB8AA2C9205AB6A10033F573 /* NotificationID.swift in Sources */,
 				CBEB8EF51F82719700C764C2 /* ChatViewAvatarView.swift in Sources */,
-				8D7567D6230AFB9700BEE744 /* CachedToBeVision.swift in Sources */,
 				9171647F2101E7D000F42D8F /* R.generated.swift in Sources */,
 				B4AB48BA230BF891003B3C1F /* MyDataSelectionInteractor.swift in Sources */,
 				AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */,

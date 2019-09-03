@@ -27,7 +27,7 @@ final class RegistrationInteractor {
 
     private var registrationData = RegistrationData()
     private var presentedControllers: [UIViewController] = [UIViewController]()
-    private let cachedTBV: CachedToBeVision?
+    private let cachedTBV: QDMToBeVision?
 
     private var codeController: RegistrationCodeViewController {
         let configurator = RegistrationCodeConfigurator.make()
@@ -74,7 +74,7 @@ final class RegistrationInteractor {
     init(worker: RegistrationWorker,
         presenter: RegistrationPresenterInterface,
         router: RegistrationRouterInterface,
-        cachedTBV: CachedToBeVision?) {
+        cachedTBV: QDMToBeVision?) {
         self.worker = worker
         self.presenter = presenter
         self.router = router

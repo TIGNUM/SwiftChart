@@ -79,7 +79,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker?.pageIndex ?? 0
     }
 
-    var createdToBeVision: CreatedToBeVision? {
+    var createdToBeVision: QDMToBeVision? {
         return worker?.createdTBV
     }
 

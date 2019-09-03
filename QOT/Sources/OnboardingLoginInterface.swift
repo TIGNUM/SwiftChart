@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol OnboardingLoginViewControllerInterface: UIViewController {
     var preSetUserEmail: String? { get set }
-    var cachedToBeVision: CachedToBeVision? { get set }
+    var cachedToBeVision: QDMToBeVision? { get set }
     func setupView()
     func updateView()
     func beginCodeEntry()
@@ -40,7 +41,7 @@ protocol OnboardingLoginInteractorInterface: Interactor {
     func didTapSendCode(to email: String?)
     func didTapGetHelpButton()
 
-    func validateLoginCode(_ code: String, for email: String?, toBeVision: CachedToBeVision?)
+    func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?)
     func resetEmailError()
     func resetCodeError()
 }

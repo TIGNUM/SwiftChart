@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class OnboardingLandingPageInteractor {
 
@@ -18,7 +19,7 @@ final class OnboardingLandingPageInteractor {
     private let notificationCenter: NotificationCenter
 
     private var presentedControllers = [UIViewController]()
-    private var cachedToBeVision: CachedToBeVision?
+    private var cachedToBeVision: QDMToBeVision?
 
     // Has to be reallocated because it keeps a state
     private var tbvController: UIViewController {
@@ -59,7 +60,7 @@ final class OnboardingLandingPageInteractor {
 
     @objc func navigateToLogin(_ notification: Notification) {
         let email = notification.userInfo?[Notification.Name.RegistrationKeys.email] as? String
-        let cachedTBV = notification.userInfo?[Notification.Name.RegistrationKeys.toBeVision] as? CachedToBeVision
+        let cachedTBV = notification.userInfo?[Notification.Name.RegistrationKeys.toBeVision] as? QDMToBeVision
         didTapLogin(with: email, cachedToBeVision: cachedTBV)
         router.popToRoot()
         if let first = presentedControllers.first, let last = presentedControllers.last {
@@ -90,7 +91,7 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
         presenter.present(controller: controller, direction: .forward)
     }
 
-    func didTapLogin(with email: String? = nil, cachedToBeVision: CachedToBeVision? = nil) {
+    func didTapLogin(with email: String? = nil, cachedToBeVision: QDMToBeVision? = nil) {
         let controller = worker.loginController
         presentedControllers.append(controller)
         controller.preSetUserEmail = email
@@ -121,15 +122,16 @@ extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
     }
 
     func didDismiss() {
-        didTapSaveTBV() // FIXME: ZZ: Cache TBV
+        // noop
     }
 
     func dismissOnMoveBackwards() {
         navigateBack()
     }
 
-    func createToBeVision(text: String, workAnswers: [String], homeAnswers: [String]) {
-        cachedToBeVision = CachedToBeVision(text: text, workAnswers: workAnswers, homeAnswers: homeAnswers)
+    func createToBeVision(_ toBeVision: QDMToBeVision) {
+        print("ZZ:\n\n________ EUREKA!!!________\n\n")
+        cachedToBeVision = toBeVision
         didTapSaveTBV()
     }
 }

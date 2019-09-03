@@ -53,7 +53,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var selectedSprintTitle: String { get }
     var selectedSprint: QDMAnswer? { get }
     var pageDisplayed: Int { get }
-    var createdToBeVision: CreatedToBeVision? { get }
+    var createdToBeVision: QDMToBeVision? { get }
     var multiSelectionCounter: Int { get }
     var multiSectionButtonArguments: (title: String, textColor: UIColor, bgColor: UIColor, enabled: Bool) { get }
 

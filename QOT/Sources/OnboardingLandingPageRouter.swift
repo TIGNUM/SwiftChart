@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class OnboardingLandingPageRouter {
 
@@ -24,7 +25,7 @@ final class OnboardingLandingPageRouter {
 // MARK: - OnboardingLandingPageRouterInterface
 
 extension OnboardingLandingPageRouter: OnboardingLandingPageRouterInterface {
-    func openRegistration(with cachedTBV: CachedToBeVision?) {
+    func openRegistration(with cachedTBV: QDMToBeVision?) {
         guard let controller = R.storyboard.registration.registrationViewController() else { return }
         let configurator = RegistrationConfigurator.make()
         configurator(controller, cachedTBV)

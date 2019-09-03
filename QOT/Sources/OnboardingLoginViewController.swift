@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 import MessageUI
 
 final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay {
@@ -30,7 +31,7 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
     @IBOutlet weak var buttonGetHelp: UIButton!
 
     var preSetUserEmail: String?
-    var cachedToBeVision: CachedToBeVision?
+    var cachedToBeVision: QDMToBeVision?
 
     // MARK: - Init
     init() {

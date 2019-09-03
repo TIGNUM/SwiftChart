@@ -123,7 +123,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         }
     }
 
-    func validateLoginCode(_ code: String, for email: String?, toBeVision: CachedToBeVision?) {
+    func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?) {
         guard checkAndPresentEmailVailidty(email) == true, let email = email else {
             return
         }
@@ -136,7 +136,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
                  .valid:
                 // Update ToBeVision
                 if let tbv = toBeVision {
-//                    self?.worker.updateToBeVision(with: tbv) // FIXME: ZZ: Cache TBV
+                    self?.worker.updateToBeVision(with: tbv)
                 }
                 // Show main app
                 self?.handleSuccessfulLogin()

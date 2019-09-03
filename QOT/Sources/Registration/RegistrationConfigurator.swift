@@ -7,10 +7,11 @@
 //
 
 import Foundation
+import qot_dal
 
 final class RegistrationConfigurator: AppStateAccess {
 
-    static func make() -> (RegistrationViewController, CachedToBeVision?) -> Void {
+    static func make() -> (RegistrationViewController, QDMToBeVision?) -> Void {
         return { (viewController, cachedTBV) in
             let router = RegistrationRouter(viewController: viewController)
             let worker = RegistrationWorker()

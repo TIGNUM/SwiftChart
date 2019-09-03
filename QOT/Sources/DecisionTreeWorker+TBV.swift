@@ -62,9 +62,11 @@ extension DecisionTreeWorker {
             $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetTypeId
         }
 
-        qot_dal.UserService.main.generateToBeVisionWith(homeKeywordIds, workKeywordIds) { (vision, error) in
-            if qot_dal.SessionService.main.getCurrentSession() != nil,
-                let newVision = vision {
+        qot_dal.UserService.main.generateToBeVisionWith(homeKeywordIds, workKeywordIds) { [weak self] (vision, error) in
+            guard let newVision = vision else { return }
+            self?.createdTBV = newVision
+
+            if qot_dal.SessionService.main.getCurrentSession() != nil {
                 qot_dal.UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
             }
             completion(vision?.text ?? "")
