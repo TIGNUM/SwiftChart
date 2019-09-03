@@ -156,6 +156,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
+    func presentMyDataScreen() {
+        router.presentMyDataScreen()
+    }
+
     var rowCount: Int {
         return worker.rowCount
     }

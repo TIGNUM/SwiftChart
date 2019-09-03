@@ -28,6 +28,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
+    func presentMyDataScreen() 
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -753,6 +754,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func presentMyDataScreen() {
+        interactor?.presentMyDataScreen()
+    }
 
     func didUpdateLevel5() {
         tableView.beginUpdates()

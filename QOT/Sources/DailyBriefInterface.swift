@@ -55,6 +55,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
+    func presentMyDataScreen()
 }
 
 protocol DailyBriefRouterInterface {
@@ -66,4 +67,5 @@ protocol DailyBriefRouterInterface {
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
     func presentCopyRight(copyrightURL: String?)
+    func presentMyDataScreen()
 }

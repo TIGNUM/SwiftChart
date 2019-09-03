@@ -91,4 +91,15 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         navigationController.isNavigationBarHidden = true
         viewController.present(navigationController, animated: true, completion: nil)
     }
+
+    func presentMyDataScreen() {
+        let storyboardID = R.storyboard.myDataScreen.myDataScreenViewControllerID.identifier
+        let myDataScreenViewController = R.storyboard
+            .myDataScreen().instantiateViewController(withIdentifier: storyboardID) as? MyDataScreenViewController
+        if let myDataScreenViewController = myDataScreenViewController {
+            let configurator = MyDataScreenConfigurator.make()
+            configurator(myDataScreenViewController)
+            viewController.pushToStart(childViewController: myDataScreenViewController)
+        }
+    }
 }

@@ -611,7 +611,7 @@
 "MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD";
 "MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
 "MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprintday and you will have access to your tasks.";
-"MySprintDetails.Info.Text.Active" = "The sprint starts on %@. Come back on the first sprintday and you will have access to your tasks.";
+"MySprintDetails.Info.Text.Active" = "The sprint starts on %@. Come back then to access your tasks to start your sprint.";
 "MySprintDetails.Info.Text.Notes" = "You finished your sprint. Why don’t you tell us your main takeaways?";
 "MySprintDetails.Button.Takeaways" = "Capture your takeaways";
 "MySprintDetails.Button.Cancel" = "Cancel";
@@ -714,18 +714,18 @@
 "DailyBrief.Title" = "DAILY BRIEF";
 "MyQOT.Title" = "MY QOT";
 
-"MyPrep.NoPrep.Title" = "YOUR CREATED PREPS\nWILL APPEAR HERE";
-"MyPrep.NoPrep.Comment" = "In the Coach area, \"Prepare for an event\". Your saved ones will appear here.";
-"MyPrep.NoMindset.Title" = "YOUR CREATED MINDSET\nSHIFTERS WILL APPEAR HERE";
-"MyPrep.NoMindset.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
-"MyPrep.NoRecovery.Title" = "YOUR CREATED 3D RECOVERY\naWILL APPEAR HERE";
-"MyPrep.NoRecovery.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
+"MyPrep.NoPrep.Title" = "YOUR EVENT PREPS\nWILL APPEAR HERE";
+"MyPrep.NoPrep.Comment" = "Tap the Q button to enter Coach Mode and prepare for an event.";
+"MyPrep.NoMindset.Title" = "YOUR MINDSET\nSHIFTS WILL APPEAR HERE";
+"MyPrep.NoMindset.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your mindset. We'll save your Mindset Shifter work here.";
+"MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \naWILL APPEAR HERE";
+"MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
 "MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
 "MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
-"MindsetShifter.LeaveAlert.Title" = "Leave without saving";
-"MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without saving? The changes will not be applied.";
+"MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
+"MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without setting a coach follow-up?";
 
 "MyLibrary.Items.Button.Add" = "Add";
 "MyLibrary.Items.Title.All" = "ALL";
@@ -747,10 +747,10 @@
 "MyLibrary.Items.Alert.Empty.Title.Links" = "YOUR WEBSITE LINKS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Notes" = "YOUR NOTES WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Message.All" = "Access the full list of items you bookmarked, downloaded, or wrote.";
-"MyLibrary.Items.Alert.Empty.Message.Bookmarks" = "Look for  {icon}  across QOT and select it to access content offline.";
-"MyLibrary.Items.Alert.Empty.Message.Downloads" = "Look for  {icon}  across QOT and select it to access content offline.";
-"MyLibrary.Items.Alert.Empty.Message.Links" = "Look for  {icon}  in the browser page and select the QOT app to save it here.";
-"MyLibrary.Items.Alert.Empty.Message.Notes" = "Click on  {icon}  at the top of the page and create your own notes.";
+"MyLibrary.Items.Alert.Empty.Message.Bookmarks" = "Tap  {icon}  throughout QOT to save content here.";
+"MyLibrary.Items.Alert.Empty.Message.Downloads" = "Tap  {icon}  throughout QOT to save content offline.";
+"MyLibrary.Items.Alert.Empty.Message.Links" = "Tap  {icon}  on your browser page and select QOT to save content here.";
+"MyLibrary.Items.Alert.Empty.Message.Notes" = "Tap  {icon}  on the top of the page to create or edit notes.";
 "MyLibrary.Items.PersonalNote" = "Personal note";
 "MyLibrary.Items.Downloading" = "Downloading...";
 "MyLibrary.Items.WaitingDownload" = "Waiting for download...";
@@ -764,8 +764,8 @@
 "MySprints.Complete" = "COMPLETE";
 "MySprints.Alert.Remove.Title" = "DELETE SELECTED ITEMS";
 "MySprints.Alert.Remove.Message" = "Are you sure you want to delete the selected items from your Sprints?";
-"MySprints.Alert.Empty.Title" = "YOUR CREATED SPRINTS WILL APPEAR HERE";
-"MySprints.Alert.Empty.Message" = "In the Coach area, “Plan a Sprint”. Your saved ones will appear here.";
+"MySprints.Alert.Empty.Title" = "YOUR SPRINTS WILL APPEAR HERE";
+"MySprints.Alert.Empty.Message" = "Tap the Q button to enter Coach Mode and plan a sprint.";
 "MySprints.Status.Active" = "Active";
 "MySprints.Status.Upcoming" = "Upcoming";
 "MySprints.Status.Paused" = "Paused";

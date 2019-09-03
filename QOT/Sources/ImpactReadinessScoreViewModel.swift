@@ -66,8 +66,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         guard let source = source as? ImpactReadinessScoreViewModel else {
             return false
         }
-        return super.isContentEqual(to: source) &&
-            howYouFeelToday == source.howYouFeelToday &&
+        return howYouFeelToday == source.howYouFeelToday &&
             sleepQuantityValue == source.sleepQuantityValue &&
             sleepQualityValue == source.sleepQualityValue &&
             loadValue == source.loadValue &&

@@ -48,7 +48,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
         ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0), to: sleepQuantity)
-        ThemeText.sleepReference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQuantityTarget)
+        let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuality ?? viewModel?.sleepQualityReference ?? 0) * 5
+        ThemeText.sleepReference.apply(String(targetSleepQuantityInFiveDays), to: sleepQuantityTarget)
 
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 1)?.subTitle, to: sleepQualitySubtitle)
@@ -68,5 +69,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     @IBAction func targetReference(_ sender: Any) {
         delegate?.showCustomizeTarget()
+    }
+    @IBAction func presentMyData(_ sender: Any) {
+        delegate?.presentMyDataScreen()
     }
 }
