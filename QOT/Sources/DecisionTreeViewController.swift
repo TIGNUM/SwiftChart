@@ -50,11 +50,9 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-    @IBOutlet private weak var infoView: InfoHelperView!
     private var continueButton: DecisionTreeButton?
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
-    @IBOutlet private weak var infoEffectContainerView: UIVisualEffectView!
 
     private lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
@@ -174,8 +172,6 @@ private extension DecisionTreeViewController {
     }
 
     @objc func didTapStartSprint() {
-        infoView.isHidden = true
-        infoEffectContainerView.isHidden = true
         interactor?.didTapStartSprint()
     }
 }
@@ -308,11 +304,6 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
                        stringValue: interactor?.selectedSprintTitle,
                        valueType: .CONTENT,
                        action: .PRESS)
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [],
-                                                  backgroundColor: .sand)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
-        infoEffectContainerView.isHidden = true
     }
 
     @objc func didPressDimiss() {
@@ -377,11 +368,6 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {
-        infoView.setBottomContentInset(BottomNavigationContainer.height)
-        infoView.setTransparent(icon: icon, title: title, text: text)
-        infoView.edges(to: view)
-        infoView.isHidden = false
-        infoEffectContainerView.isHidden = false
         trackUserEvent(.OPEN,
                        value: interactor?.selectedSprint?.remoteID,
                        stringValue: interactor?.selectedSprintTitle,
@@ -397,10 +383,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
                                                      action: #selector(didTapStartSprint),
                                                      backgroundColor: .carbonDark,
                                                      borderColor: .accent40)
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [continueButtonItem, cancelButtonItem],
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        QOTAlert.show(title: title, message: text, bottomItems: [cancelButtonItem, continueButtonItem])
     }
 
     func presentPermissionView(_ permissionType: AskPermission.Kind) {

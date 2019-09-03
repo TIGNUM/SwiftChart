@@ -13,8 +13,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DecisionTreeViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="dotsLoadingView" destination="urb-fR-iAh" id="Msz-1Y-eRD"/>
-                <outlet property="infoEffectContainerView" destination="0az-27-Lxy" id="r5w-vB-VGI"/>
-                <outlet property="infoView" destination="I1k-2X-e0U" id="4ma-RA-cHI"/>
                 <outlet property="pageControllerContainer" destination="ieN-XU-1uA" id="ZsB-0U-EB1"/>
                 <outlet property="previousButton" destination="mRU-w0-rbZ" id="JLf-oV-8b0"/>
                 <outlet property="view" destination="2xV-qg-mlN" id="PlH-Q7-oCy"/>
@@ -54,26 +52,6 @@
                         <constraint firstAttribute="width" constant="20" id="RMG-ke-oCG"/>
                     </constraints>
                 </view>
-                <visualEffectView hidden="YES" opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0az-27-Lxy">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0tc-fF-Ygt">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I1k-2X-e0U" customClass="InfoHelperView" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="I1k-2X-e0U" secondAttribute="bottom" id="6O0-Sv-puz"/>
-                            <constraint firstItem="I1k-2X-e0U" firstAttribute="top" secondItem="0tc-fF-Ygt" secondAttribute="top" id="azF-UD-C90"/>
-                            <constraint firstAttribute="trailing" secondItem="I1k-2X-e0U" secondAttribute="trailing" id="ib0-GB-edr"/>
-                            <constraint firstItem="I1k-2X-e0U" firstAttribute="leading" secondItem="0tc-fF-Ygt" secondAttribute="leading" id="l3R-5i-n0m"/>
-                        </constraints>
-                    </view>
-                    <blurEffect style="dark"/>
-                </visualEffectView>
             </subviews>
             <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.0" colorSpace="calibratedRGB"/>
             <constraints>
@@ -83,14 +61,10 @@
                 <constraint firstItem="3Qo-5f-gwj" firstAttribute="trailing" secondItem="hkM-aG-icG" secondAttribute="trailing" id="FF1-QH-WVP"/>
                 <constraint firstItem="urb-fR-iAh" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" constant="10" id="GDo-Od-pXO"/>
                 <constraint firstItem="urb-fR-iAh" firstAttribute="centerY" secondItem="2xV-qg-mlN" secondAttribute="centerY" multiplier="1.3" id="Hrz-so-Mir"/>
-                <constraint firstAttribute="bottom" secondItem="0az-27-Lxy" secondAttribute="bottom" id="Zi0-lU-i4v"/>
-                <constraint firstItem="0az-27-Lxy" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="bGC-Eu-KSL"/>
                 <constraint firstItem="ieN-XU-1uA" firstAttribute="top" secondItem="hkM-aG-icG" secondAttribute="bottom" id="cQF-Ma-bpT"/>
                 <constraint firstItem="hkM-aG-icG" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="ehi-FR-h6O"/>
-                <constraint firstItem="0az-27-Lxy" firstAttribute="trailing" secondItem="3Qo-5f-gwj" secondAttribute="trailing" id="gN0-3g-64O"/>
                 <constraint firstItem="ieN-XU-1uA" firstAttribute="leading" secondItem="3Qo-5f-gwj" secondAttribute="leading" id="qyG-80-xaK"/>
                 <constraint firstItem="hkM-aG-icG" firstAttribute="top" secondItem="3Qo-5f-gwj" secondAttribute="top" id="vlj-gd-apf"/>
-                <constraint firstItem="0az-27-Lxy" firstAttribute="top" secondItem="2xV-qg-mlN" secondAttribute="top" id="wYX-qB-ssq"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="3Qo-5f-gwj"/>
             <point key="canvasLocation" x="53.600000000000001" y="48.125937031484263"/>
