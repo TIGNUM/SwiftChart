@@ -246,10 +246,16 @@ extension UIViewController {
         default:
             if self.navigationController?.viewControllers.first == self {
                 return [dismissNavigationItem()]
-            } else {
+            } else if self.showTransitionBackButton() {
                 return [backNavigationItem()]
+            } else {
+                return []
             }
         }
+    }
+
+    @objc open func showTransitionBackButton() -> Bool {
+        return true
     }
 
     @objc open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

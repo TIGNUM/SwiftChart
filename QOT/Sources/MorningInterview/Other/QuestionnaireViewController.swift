@@ -191,6 +191,10 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     public func questionID() -> Int {
         return questionIdentifier ?? NSNotFound
     }
+
+    override func showTransitionBackButton() -> Bool {
+        return false
+    }
 }
 
 // MARK: Animation
