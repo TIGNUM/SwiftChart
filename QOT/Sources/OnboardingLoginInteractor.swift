@@ -139,7 +139,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
                     self?.worker.updateToBeVision(with: tbv)
                 }
                 // Show main app
-                self?.handleSuccessfulLogin()
+                self?.handleSuccessfulLogin(for: email)
                 return
             default:
                 break
@@ -171,8 +171,9 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 
 private extension OnboardingLoginInteractor {
 
-    func handleSuccessfulLogin() {
-        if !UserDefault.didShowCoachMarks.boolValue {
+    func handleSuccessfulLogin(for email: String) {
+        let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+        if !emails.contains(email) {
             delegate.showTrackSelection()
         } else {
             router.showHomeScreen()

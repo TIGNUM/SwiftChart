@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class WalkthroughWorker {
 
@@ -20,6 +21,9 @@ final class WalkthroughWorker {
     }
 
     func saveViewedWalkthrough() {
-        UserDefault.didShowCoachMarks.setBoolValue(value: true)
+        guard let email = SessionService.main.getCurrentSession()?.useremail else { return }
+        var emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+        emails.append(email)
+        UserDefault.didShowCoachMarks.setObject(emails)
     }
 }

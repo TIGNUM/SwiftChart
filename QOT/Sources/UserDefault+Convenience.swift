@@ -37,8 +37,7 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems,
-                .didShowCoachMarks]
+                .myDataSelectedItems]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -54,8 +53,7 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems,
-                .didShowCoachMarks]
+                .myDataSelectedItems]
     }
 
     var boolValue: Bool {

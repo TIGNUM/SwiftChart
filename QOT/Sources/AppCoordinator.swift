@@ -243,7 +243,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         ExtensionsDataManager.didUserLogIn(true)
 
         // Show coach marks on first launch (of v3.0 app)
-        if !UserDefault.didShowCoachMarks.boolValue {
+        let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+        if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
             showTrackChoice()
             return
         }
