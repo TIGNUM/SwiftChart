@@ -52,7 +52,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     private var showSteps = false
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-  
+    private var navBarHeader: NavBarTableViewCell?
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -63,6 +64,11 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
                                                name: .didUpdateDailyBriefBuckets, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
+        navBarHeader = NavBarTableViewCell.instantiateFromNib(title: R.string.localized.dailyBriefTitle(), tapLeft: { [weak self] in
+            self?.delegate?.moveToCell(item: 0)
+            }, tapRight: { [weak self] in
+                self?.delegate?.moveToCell(item: 2)
+        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -96,7 +102,17 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
                 }, tapRight: { [weak self] in
                     self?.delegate?.moveToCell(item: 2)
             })
-        } else { return nil }
+        } else {
+            return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 44
+        } else {
+            tableView.sectionHeaderHeight = CGFloat.leastNormalMagnitude }
+        return CGFloat.leastNormalMagnitude
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -107,6 +123,10 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         // UIView with sand40 background for section-separators as Section Footer
         if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
             let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+            sectionColor.backgroundColor = .carbon
+            return sectionColor
+        } else if section == 0 {
+            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 0))
             sectionColor.backgroundColor = .carbon
             return sectionColor
         } else {
@@ -120,7 +140,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         // Section Footer height
         if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
             return 100
-        } else { return 0.0 }
+        } else { return 1.0 }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -241,6 +261,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let bar = navBarHeader as? NavBarTableViewCell {
+            bar.updateAlpha(basedOn: scrollView.contentOffset.y)
+        }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
 
     }

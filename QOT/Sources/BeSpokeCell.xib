@@ -105,6 +105,7 @@
                                 <constraints>
                                     <constraint firstItem="jVf-cD-770" firstAttribute="top" secondItem="qut-nf-87k" secondAttribute="top" constant="15" id="oR6-p3-Xal"/>
                                     <constraint firstItem="jVf-cD-770" firstAttribute="leading" secondItem="qut-nf-87k" secondAttribute="leading" constant="24" id="rq7-dG-Y6U"/>
+                                    <constraint firstAttribute="bottom" secondItem="jVf-cD-770" secondAttribute="bottom" constant="22" id="vfN-td-agw"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPS-2W-ZcR">

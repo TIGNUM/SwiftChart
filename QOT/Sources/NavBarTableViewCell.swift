@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NavBarTableViewCell : UIView {
+final class NavBarTableViewCell: UIView {
 
     typealias actionClosure = (() -> Void)
 
@@ -28,7 +28,6 @@ final class NavBarTableViewCell : UIView {
         navBar.configure(title: title, tapLeft: tapLeft, tapRight: tapRight)
         return navBar
     }
-
 
     func configure(title: String, tapLeft: actionClosure?, tapRight: actionClosure?) {
         ThemeView.level1.apply(self)
