@@ -521,15 +521,8 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(_, let title, _, let imageURL, _, _, _):
-            return mediaStreamCell(
-                tableView: tableView,
-                indexPath: indexPath,
-                title: title,
-                imageURL: imageURL,
-                placeholderImage: R.image.audioPlaceholder(),
-                attributedString: ThemeText.articleMediaDescription.attributedString(title),
-                canStream: true)
+        case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
+            return UITableViewCell()    //audio is only shown in the audio bar
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
@@ -606,6 +599,8 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .pdf,
              .articleRelatedStrategy: return 95
         case .articleNextUp: return 144
+        case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
+            return 0
         default: return UITableViewAutomaticDimension
         }
     }

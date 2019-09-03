@@ -75,7 +75,8 @@ enum ContentItemValue {
                 self = .invalid
             }
         case .audio:
-            if let title = text, let audio = mediaURL {
+            if let audio = mediaURL {
+                let title = text ?? ""
                 self = .audio(remoteId: item.remoteID ?? 0, title: title, description: description, placeholderURL: audio, audioURL: audio, duration: duration, waveformData: [])
             } else {
                 self = .invalid
