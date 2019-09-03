@@ -143,13 +143,13 @@ private extension MyQotAccountSettingsViewController {
             ThemeText.accountHeader.apply(text, to: self?.changePasswordHeaderLabel)
         })
         interactor?.protectYourAccountText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.changePasswordTitleLabel)
+            ThemeText.accountDetail.apply(text, to: self?.changePasswordTitleLabel)
         })
         interactor?.logoutQotText({[weak self] (text) in
             ThemeText.accountHeader.apply(text, to: self?.logoutQotHeaderLabel)
         })
         interactor?.withoutDeletingAccountText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.logoutQotTitleLabel)
+            ThemeText.accountDetail.apply(text, to: self?.logoutQotTitleLabel)
         })
     }
 

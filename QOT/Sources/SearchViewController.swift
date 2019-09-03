@@ -48,11 +48,8 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeView.level2.apply(self.view)
-
         ThemeView.level2.apply(view)
         self.navigationItem.hidesBackButton = true
-        self.navigationController?.view.backgroundColor = UIColor.carbonNew
         setupSegementedControl()
         interactor?.showSuggestions()
         suggestionsHeader.autoresizingMask = []
