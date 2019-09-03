@@ -28,6 +28,7 @@ final class DepartureInfoCell: UITableViewCell, Dequeueable {
         ThemeText.bespokeText.apply(viewModel?.text, to: departureText)
         ThemeText.bespokeText.apply(viewModel?.link, to: websiteLabel)
     }
+
     @IBAction func copyrightButtonPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: departureModel?.copyright)
     }

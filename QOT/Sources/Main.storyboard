@@ -333,8 +333,8 @@
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="D7e-WL-YAx" firstAttribute="bottom" secondItem="MNr-kG-dc4" secondAttribute="bottom" id="8hj-bn-AlU"/>
                             <constraint firstItem="MNr-kG-dc4" firstAttribute="top" secondItem="D7e-WL-YAx" secondAttribute="top" id="CY2-V1-Qaz"/>
+                            <constraint firstItem="D7e-WL-YAx" firstAttribute="bottom" secondItem="MNr-kG-dc4" secondAttribute="bottom" id="gbD-q2-hjK"/>
                             <constraint firstItem="MNr-kG-dc4" firstAttribute="leading" secondItem="D7e-WL-YAx" secondAttribute="leading" id="txz-RF-kc9"/>
                             <constraint firstItem="D7e-WL-YAx" firstAttribute="trailing" secondItem="MNr-kG-dc4" secondAttribute="trailing" id="vC4-P2-Cjq"/>
                         </constraints>
@@ -347,7 +347,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qC-fV-33O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92" y="1406"/>
+            <point key="canvasLocation" x="92" y="1405.5472263868066"/>
         </scene>
         <!--MY QOT-->
         <scene sceneID="KdB-NY-797">

@@ -318,7 +318,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         if meAtMyBest.toBeVision == nil {
             let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
             let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be  Vision"
-            meAtMyBestList.append( MeAtMyBestCellViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, tbvStatement: "", intro2: "", buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
+            meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         } else {
             let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? "intro"

@@ -20,8 +20,8 @@ final class BeSpokeCell: UITableViewCell, Dequeueable {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
 
-    @IBAction func copyrighPressed(_ sender: Any) {
-       delegate?.presentCopyRight(copyrightURL: copyrightURL)
+    @IBAction func copyrightPressed(_ sender: Any) {
+        delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     func configure(with viewModel: BeSpokeCellViewModel?) {

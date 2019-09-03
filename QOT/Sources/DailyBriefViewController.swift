@@ -96,14 +96,22 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // UIView with sand40 background for section-separators as Section Footer
-        let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-        sectionColor.backgroundColor = .sand40
-        return sectionColor
+        if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
+            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
+            sectionColor.backgroundColor = .carbon
+            return sectionColor
+        } else {
+            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
+            sectionColor.backgroundColor = .sand40
+            return sectionColor
+        }
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         // Section Footer height
-        return 1.0
+        if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
+            return 100
+        } else { return 0.0 }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -205,7 +213,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             guard let myPeakPerformanceViewModel = bucketItem as? MyPeakPerformanceCellViewModel else { return UITableViewCell()}
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
         default:
-            return UITableViewCell()
+           return UITableViewCell()
         }
     }
 

@@ -23,81 +23,67 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="342" id="PhU-cr-LFf" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="347" height="342"/>
-            <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PhU-cr-LFf" id="c5w-IF-gsy" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
-                <rect key="frame" x="0.0" y="0.0" width="347" height="341.5"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIb-zW-ElS">
-                        <rect key="frame" x="0.0" y="0.0" width="347" height="341.5"/>
-                        <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-tQ-6cG">
-                                <rect key="frame" x="24" y="48" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="16" id="BXf-Tf-gro"/>
-                                    <constraint firstAttribute="height" constant="1" id="RWK-Fk-xla"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME AT MY BEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbg-kJ-pWj">
-                                <rect key="frame" x="24" y="57" width="299" height="110"/>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="The TBV is a critical element for Rule your Impact and reach your goals." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVp-Dx-FYn">
-                                <rect key="frame" x="24" y="191" width="299" height="38.5"/>
-                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw">
-                                <rect key="frame" x="115" y="253.5" width="208" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="FAB-QM-kfI"/>
-                                    <constraint firstAttribute="width" constant="208" id="PNY-Qe-btT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
-                                <state key="normal" title="Create Your To Be Vision">
-                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="presentTBV:" destination="PhU-cr-LFf" eventType="touchUpInside" id="vHN-9e-dpB"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="xPR-6J-8Dw" secondAttribute="trailing" constant="24" id="AcQ-tn-reA"/>
-                            <constraint firstItem="fbg-kJ-pWj" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="CAt-4e-fpB"/>
-                            <constraint firstAttribute="trailing" secondItem="fVp-Dx-FYn" secondAttribute="trailing" constant="24" id="Et0-Qo-OBq"/>
-                            <constraint firstItem="fbg-kJ-pWj" firstAttribute="top" secondItem="hTh-tQ-6cG" secondAttribute="bottom" constant="8" id="Mxt-tL-SJP"/>
-                            <constraint firstItem="fVp-Dx-FYn" firstAttribute="top" secondItem="fbg-kJ-pWj" secondAttribute="bottom" constant="24" id="Qje-rx-g2N"/>
-                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="fbg-kJ-pWj" secondAttribute="trailing" constant="24" id="RSF-ve-PNx"/>
-                            <constraint firstItem="xPR-6J-8Dw" firstAttribute="top" secondItem="fVp-Dx-FYn" secondAttribute="bottom" constant="24" id="bkt-df-Yct"/>
-                            <constraint firstAttribute="bottom" secondItem="xPR-6J-8Dw" secondAttribute="bottom" constant="48" id="gv4-I9-M8f"/>
-                            <constraint firstItem="fVp-Dx-FYn" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="khv-Eb-Twp"/>
-                            <constraint firstItem="hTh-tQ-6cG" firstAttribute="top" secondItem="PIb-zW-ElS" secondAttribute="top" constant="48" id="xbB-4h-hmX"/>
-                            <constraint firstItem="hTh-tQ-6cG" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="zPh-PO-e8K"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="K9I-0P-UMn"/>
-                    </view>
-                </subviews>
-                <constraints>
-                    <constraint firstItem="PIb-zW-ElS" firstAttribute="top" secondItem="c5w-IF-gsy" secondAttribute="top" id="952-B1-aoL"/>
-                    <constraint firstAttribute="bottom" secondItem="PIb-zW-ElS" secondAttribute="bottom" id="gP8-se-UVs"/>
-                    <constraint firstAttribute="trailing" secondItem="PIb-zW-ElS" secondAttribute="trailing" id="iBY-KQ-FzJ"/>
-                    <constraint firstItem="PIb-zW-ElS" firstAttribute="leading" secondItem="c5w-IF-gsy" secondAttribute="leading" id="w0z-po-q58"/>
-                </constraints>
-            </tableViewCellContentView>
+        <view contentMode="scaleToFill" id="cTn-sO-9V7" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="276"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME AT MY BEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbg-kJ-pWj">
+                    <rect key="frame" x="24" y="41" width="138" height="46"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="The TBV is a critical element for Rule your Impact and reach your goals." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVp-Dx-FYn">
+                    <rect key="frame" x="24" y="111" width="366" height="38.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aKE-DE-H4z">
+                    <rect key="frame" x="24" y="25" width="10" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="e4a-6v-G6n"/>
+                        <constraint firstAttribute="width" constant="10" id="gr9-O1-7x5"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw">
+                    <rect key="frame" x="290" y="173.5" width="100" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="292-Y3-5Yn"/>
+                        <constraint firstAttribute="height" constant="40" id="FAB-QM-kfI"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="WWn-ya-siB"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <state key="normal" title="Get started">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="presentTBV:" destination="cTn-sO-9V7" eventType="touchUpInside" id="ouV-Yb-de0"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstItem="aKE-DE-H4z" firstAttribute="top" secondItem="cTn-sO-9V7" secondAttribute="top" constant="25" id="3kJ-78-K1v"/>
+                <constraint firstItem="aKE-DE-H4z" firstAttribute="leading" secondItem="GFn-Ic-whM" secondAttribute="leading" constant="24" id="7YO-eQ-SHc"/>
+                <constraint firstItem="fbg-kJ-pWj" firstAttribute="top" secondItem="aKE-DE-H4z" secondAttribute="bottom" constant="15" id="Jbf-Fp-zWg"/>
+                <constraint firstItem="fVp-Dx-FYn" firstAttribute="leading" secondItem="GFn-Ic-whM" secondAttribute="leading" constant="24" id="P8L-wK-lUx"/>
+                <constraint firstItem="fbg-kJ-pWj" firstAttribute="leading" secondItem="GFn-Ic-whM" secondAttribute="leading" constant="24" id="PRR-AF-Evr"/>
+                <constraint firstItem="xPR-6J-8Dw" firstAttribute="top" secondItem="fVp-Dx-FYn" secondAttribute="bottom" constant="24" id="TOR-zb-LnH"/>
+                <constraint firstItem="GFn-Ic-whM" firstAttribute="trailing" secondItem="xPR-6J-8Dw" secondAttribute="trailing" constant="24" id="cH6-Ft-FgV"/>
+                <constraint firstItem="GFn-Ic-whM" firstAttribute="trailing" secondItem="fVp-Dx-FYn" secondAttribute="trailing" constant="24" id="itX-u8-mJa"/>
+                <constraint firstItem="GFn-Ic-whM" firstAttribute="bottom" secondItem="xPR-6J-8Dw" secondAttribute="bottom" constant="28.5" id="ube-gl-L6q"/>
+                <constraint firstItem="fVp-Dx-FYn" firstAttribute="top" secondItem="fbg-kJ-pWj" secondAttribute="bottom" constant="24" id="ws9-2c-Rmu"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="GFn-Ic-whM"/>
             <connections>
-                <outlet property="buttonText" destination="xPR-6J-8Dw" id="MU9-rI-XRj"/>
-                <outlet property="intro" destination="fVp-Dx-FYn" id="iN2-dn-38H"/>
-                <outlet property="title" destination="fbg-kJ-pWj" id="ehO-b0-hA4"/>
+                <outlet property="buttonText" destination="xPR-6J-8Dw" id="bkk-X6-M2Q"/>
+                <outlet property="intro" destination="fVp-Dx-FYn" id="Kwx-Bn-Tfk"/>
+                <outlet property="title" destination="fbg-kJ-pWj" id="zDS-fw-R5G"/>
             </connections>
-            <point key="canvasLocation" x="715.21739130434787" y="-114.50892857142857"/>
-        </tableViewCell>
+            <point key="canvasLocation" x="-1379.7101449275362" y="48.214285714285715"/>
+        </view>
     </objects>
 </document>

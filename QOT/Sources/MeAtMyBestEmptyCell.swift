@@ -10,28 +10,19 @@ import UIKit
 
 final class MeAtMyBestEmptyCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var intro: UILabel!
     @IBOutlet private weak var buttonText: UIButton!
+    @IBOutlet private weak var title: UILabel!
     var delegate: DailyBriefViewControllerDelegate?
 
     @IBAction func presentTBV(_ sender: Any) {
         delegate?.presentMyToBeVision()
     }
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-    }
-
     func configure(with: MeAtMyBestCellEmptyViewModel?) {
         ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: title)
         ThemeText.sprintText.apply(with?.intro, to: intro)
         buttonText.setTitle(with?.buttonText, for: .normal)
-        contentView.setNeedsLayout()
+        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 }
