@@ -14,17 +14,20 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     private var isRead = false
     weak var delegate: ArticleDelegate?
 
-    func configure(selected: Bool) {
-        isRead = selected
-        markAsReadButton.setAttributedTitle(attributed(selected: selected), for: .normal)
-        markAsReadButton.backgroundColor = selected == true ? colorMode.tint.withAlphaComponent(0.3) : .clear
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectionStyle = .none
         ThemeBorder.accentBackground.apply(markAsReadButton)
     }
 
-    func setMarkAsReadStatus(read: Bool) {
-        isRead = read
-        markAsReadButton.backgroundColor = read == true ? colorMode.tint.withAlphaComponent(0.3) : .clear
-        markAsReadButton.setAttributedTitle(attributed(selected: read), for: .normal)
+    func configure(selected: Bool) {
+        isRead = selected
+
+        let theme: ThemeView = selected ? ThemeView.articleMarkUnread : ThemeView.articleMarkRead
+        theme.apply(markAsReadButton)
+
+        markAsReadButton.setAttributedTitle(attributed(selected: selected), for: .normal)
+        markAsReadButton.setNeedsDisplay()
     }
 }
 
@@ -32,7 +35,7 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
 
 extension MarkAsReadTableViewCell {
     func attributed(selected: Bool) -> NSAttributedString {
-        let text  = selected ? "Mark as unread" : "Mark as read"
+        let text = selected ? R.string.localized.markAsUnread() : R.string.localized.markAsRead()
         return ThemeText.articleMarkRead.attributedString(text)
     }
 }
@@ -41,7 +44,6 @@ extension MarkAsReadTableViewCell {
 
 extension MarkAsReadTableViewCell {
     @IBAction func didTapMarkAsReadButton() {
-        setMarkAsReadStatus(read: !isRead)
-        delegate?.didTapMarkAsRead(isRead)
+        delegate?.didTapMarkAsRead(!isRead)
     }
 }

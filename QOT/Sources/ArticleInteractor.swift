@@ -85,12 +85,12 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.articleItem(at: indexPath)
     }
 
-    func markArticleAsRead(_ read: Bool) {
-        worker.markArticleAsRead(read)
+    func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
+        worker.markArticleAsRead(read, completion: completion)
     }
 
-    var isRead: Bool {
-        return worker.isRead
+    func isRead(completion:@escaping (_ read: Bool) -> Void) {
+        worker.isRead(completion: completion)
     }
 
     func itemCount(in section: Int) -> Int {

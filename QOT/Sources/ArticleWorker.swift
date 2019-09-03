@@ -144,7 +144,7 @@ final class ArticleWorker {
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false {
-            items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: ""))
+            items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
         if content?.section == .About {
             content?.contentItems.forEach { item in
@@ -177,11 +177,7 @@ final class ArticleWorker {
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
         }
-//        relatedArticlesStrategy.forEach { relatedArticle in
-//            items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
-//                                                                                    description: relatedArticle.durationString,
-//                                                                                    itemID: relatedArticle.remoteID)))
-//        }
+
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
@@ -306,22 +302,18 @@ final class ArticleWorker {
         }
     }
 
-    func markArticleAsRead(_ read: Bool) {
-        //Ready to implement write of "viewedAt: Date" property
-//        if read {
-//            qot_dal.ContentService.setContentRead(remoteID: selectedID)
-//        } else {
-//            qot_dal.contentService.setContentNotRead(remoteID: selectedID)
-//        }
+    func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
+        guard let content = content else { return }
+        qot_dal.ContentService.main.markContentCollectionAs(read: read, content) { (error) in
+            completion()
+        }
     }
 
-    var isRead: Bool {
-        //Ready to implement write of "viewedAt: Date" property
-//        if let content = qot_dal.contentService.contentCollection(id: selectedID) {
-//            return content.contentRead != nil
-//        }
-//        return false
-        return true
+    func isRead(completion:@escaping (_ read: Bool) -> Void) {
+        qot_dal.ContentService.main.getContentCollectionById(selectedID, { (content) in
+            let read = content?.viewedAt != nil
+            completion(read)
+        })
     }
 
     func itemCount(in section: Int) -> Int {

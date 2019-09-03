@@ -785,3 +785,5 @@
 
 "Strategy.Performance.Title" = "PERFORMANCE";
 
+"Mark.As.Read" = "Mark as read";
+"Mark.As.Unread" = "Mark as unread";

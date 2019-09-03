@@ -41,6 +41,8 @@ enum ThemeView {
     case articleBackground(ThemeColorMode?)
     case articleSeparator(ThemeColorMode?)
     case articleAudioBar
+    case articleMarkRead
+    case articleMarkUnread
     case audioBar
     case fade
     case separator
@@ -81,7 +83,7 @@ enum ThemeView {
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .separator:
             return Palette.light(Palette.carbon10, or: Palette.sand10)
-        case .accentBackground, .prepsSegmentSelected:
+        case .accentBackground, .prepsSegmentSelected, .articleMarkRead, .articleMarkUnread:
             return Palette.accent30
         case .qotAlert:
             return Palette.carbonDark80

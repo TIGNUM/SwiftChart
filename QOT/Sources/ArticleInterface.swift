@@ -39,8 +39,8 @@ protocol ArticleInteractorInterface: class, Interactor {
     func headerTitle(for section: Int) -> String?
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot?
     func articleItem(at indexPath: IndexPath) -> Article.Item?
-    func markArticleAsRead(_ read: Bool)
-    var isRead: Bool { get }
+    func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) 
+    func isRead(completion:@escaping (_ read: Bool) -> Void)
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)
     var whatsHotShareable: WhatsHotShareable { get }

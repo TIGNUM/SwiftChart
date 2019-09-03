@@ -77,7 +77,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
-    private var readButtonIndexPath: IndexPath?
+    private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
     @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
@@ -152,6 +152,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     private var lastScrollViewOffsetY: CGFloat = 0.0
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
+    private var didScrollToRead = false
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return colorMode.statusBarStyle
@@ -490,11 +491,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
         case .headerText: topTitleNavigationItem.title = nil
-        case .button:
-            if let markAsReadCell = cell as? MarkAsReadTableViewCell {
-                markAsReadCell.setMarkAsReadStatus(read: true)
-            }
-        default: return
+        default: break
         }
     }
 
@@ -566,11 +563,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            isNew: relatedArticle.isNew,
                            forcedColorMode: nil)
             return cell
-        case .button(let selected):
+        case .button:
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(selected: selected)
+            cell.configure(selected: true)
             cell.delegate = self
-            readButtonIndexPath = indexPath
+            readButtonCell = cell
             return cell
         case .articleRelatedStrategy(let title, let description, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -684,14 +681,9 @@ extension ArticleViewController: ClickableLabelDelegate {
 
 extension ArticleViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard let interactor = interactor else {
-            return
-        }
-        if !interactor.isRead {
-            interactor.markArticleAsRead(true)
-            if let indexPath = readButtonIndexPath {
-                tableView.reloadRows(at: [indexPath], with: .none)
-            }
+        if !didScrollToRead {
+            checkMarkAsReadButton(true)
+            didScrollToRead = true
         }
 
         navigationBarAutoShowHide(scrollView)
@@ -752,10 +744,26 @@ extension ArticleViewController {
     }
 }
 
+// MARK: - Mark as Read
+extension ArticleViewController {
+    func checkMarkAsReadButton(_ read: Bool) {
+        guard let interactor = interactor else { return }
+
+        interactor.markArticleAsRead(read) { [weak self] in
+            if let cell = self?.readButtonCell {
+                cell.configure(selected: read)
+            }
+        }
+    }
+}
+
 // MARK: - ArticleDelegate
 extension ArticleViewController: ArticleDelegate {
     func didTapMarkAsRead(_ read: Bool) {
-        interactor?.markArticleAsRead(read)
+        interactor?.markArticleAsRead(read) { [weak self] in
+            self?.checkMarkAsReadButton(read)
+        }
+        didScrollToRead = read
     }
 }
 
