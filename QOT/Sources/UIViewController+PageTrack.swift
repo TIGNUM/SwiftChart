@@ -56,7 +56,7 @@ extension UIViewController {
         case is MyVisionEditDetailsViewController: return "tobevision.edit"
         case is MyToBeVisionRateViewController: return "tobevision.tracker.questionaire"
         case is MyToBeVisionCountDownViewController: return "tobevision.tracker.countdown"
-        case is MyToBeVisionTrackerViewController: return "tobevision.tracker.tbvTracker"
+        case is MyToBeVisionTrackerViewController: return myToBeVisionTrackerViewControllerPageKey
         case is CoachViewController: return "coach.main"
         case is SearchViewController: return "search.main"
         case is ToolsViewController: return "coach.tools"
@@ -89,6 +89,18 @@ extension UIViewController {
         case is MyDataExplanationViewController: return myDataInfoViewControllerPageKey
         case is AskPermissionViewController: return askPermissionPageKey
         case is ChoiceViewController: return "prepare.result.add.remove.strategies"
+        case is MediaPlayerViewController: return "fullscreen.videoPlayer"
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: - MyDataExplanationViewController
+private extension UIViewController {
+    var myToBeVisionTrackerViewControllerPageKey: String {
+        switch (self as? MyToBeVisionTrackerViewController)?.interactor?.controllerType {
+        case .tracker?: return "tobevision.tracker.results"
+        case .data?: return "tobevision.tracker.tbvTracker"
         default: preconditionFailure()
         }
     }

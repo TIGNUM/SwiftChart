@@ -91,13 +91,16 @@ extension UIViewController {
         let interactor = StreamVideoInteractor(content: contentItem)
         playerController.interactor = interactor
         playerController.player = player
+
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error.localizedDescription)
         }
+
         present(playerController, animated: true) {
+            playerController.trackPage()
             player.volume = 1
             player.play()
         }
