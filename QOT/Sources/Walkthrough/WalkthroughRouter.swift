@@ -38,13 +38,13 @@ private extension WalkthroughRouter {
     func showFastTrack() {
         viewController.dismiss(animated: true) { }
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.showApp()
+        appDelegate.appCoordinator.showApp(with: .dailyBrief)
     }
 
     func showGuidedTrack() {
         // TODO: https://tignum.atlassian.net/browse/QOT-1639
         viewController.dismiss(animated: true) { }
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.showApp()
+        appDelegate.appCoordinator.showApp(with: .dailyBrief)
     }
 }

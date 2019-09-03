@@ -26,6 +26,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 
+    var preSelectedItem: Pages? = nil
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -98,6 +99,10 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         coachButton.alpha = 0.0
         UIView.animate(withDuration: 0.75) {
             self.coachButton.alpha = 1.0
+        }
+        if let item = preSelectedItem {
+            moveToCell(item: item.rawValue)
+            preSelectedItem = nil
         }
     }
 }

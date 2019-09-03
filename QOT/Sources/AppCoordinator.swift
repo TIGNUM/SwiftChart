@@ -237,7 +237,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.syncManager.start()
     }
 
-    func showApp() {
+    func showApp(with displayedScreen: CoachCollectionViewController.Pages? = nil) {
         RestartHelper().checkRestartURLAndRoute()
         self.isReadyToProcessURL = true
         ExtensionsDataManager.didUserLogIn(true)
@@ -258,6 +258,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
             baseVC.setContent(viewController: coachCollectionViewController)
         }
+        coachCollectionViewController.preSelectedItem = displayedScreen
+
         self.windowManager.show(rootNavigationController, animated: true, completion: nil)
 
         self.registerRemoteNotifications()
