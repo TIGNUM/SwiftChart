@@ -81,25 +81,16 @@ private extension MyQotSensorsInteractor {
         case .notDetermined:
             status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
             buttonEnabled = true
-        case .sharingAuthorized:
+        default:
             status = R.string.localized.sidebarSensorsMenuSensorsConnected()
-        case .sharingDenied:
-            HealthService.main.healthTrackerDataForToday { [weak self] (trackerData) in
-                if trackerData != nil {
-                    status = R.string.localized.sidebarSensorsMenuSensorsConnected()
-                } else {
-                    status = R.string.localized.sidebarSensorsMenuSensorsDenied()
-                }
+            HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
+                    status = hasData ? R.string.localized.sidebarSensorsMenuSensorsConnected() : R.string.localized.sidebarSensorsMenuSensorsNoData()
                 self?.presenter.setHealthKit(title: self?.worker.healthKitSensor.sensor.title ?? "",
                                        status: status,
                                        labelStatus: self?.worker.healthKitSensor.sensor.labelStatus ?? "",
                                        buttonEnabled: buttonEnabled)
             }
         }
-        presenter.setHealthKit(title: worker.healthKitSensor.sensor.title,
-                               status: status,
-                               labelStatus: worker.healthKitSensor.sensor.labelStatus,
-                               buttonEnabled: buttonEnabled)
     }
 
     func updateOuraStatus() {
