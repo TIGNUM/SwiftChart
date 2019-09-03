@@ -272,6 +272,22 @@ extension UIView {
         gradient.locations = [0.0, 0.2]
         layer.addSublayer(gradient)
     }
+
+    func gradientBackground(top: Bool) {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.carbon.cgColor,
+                                UIColor.carbon80.cgColor,
+                                UIColor.black.withAlphaComponent(0.1).cgColor,
+                                UIColor.black.withAlphaComponent(0.0).cgColor]
+        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
+        gradientLayer.locations = [0.0, 0.54, 0.90, 1.0]
+        gradientLayer.frame = bounds
+        if top {
+            gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
+        }
+        layer.insertSublayer(gradientLayer, at: 0)
+    }
 }
 
 extension UIView {

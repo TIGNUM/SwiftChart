@@ -11,6 +11,8 @@ import Foundation
 final class ImpactReadiness1: BaseDailyBriefCell {
 
     @IBOutlet weak var toBeVisionImage: UIImageView!
+    @IBOutlet weak var gradientTop: UIView!
+    @IBOutlet weak var gradientBottom: UIView!
     @IBOutlet weak var bucketTitle: UILabel!
     @IBOutlet weak var impactReadinessScore: UILabel!
     @IBOutlet weak var content: UILabel!
@@ -25,6 +27,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
                          height: 120,
                          primaryColor: colorMode.background,
                          fadeColor: colorMode.fade)
+        gradientTop.gradientBackground(top: true)
+        gradientBottom.gradientBackground(top: false)
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {

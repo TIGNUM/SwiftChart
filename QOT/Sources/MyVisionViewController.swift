@@ -19,7 +19,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var nullStateView: MyVisionNullStateView!
     @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
     @IBOutlet private weak var scrollView: UIScrollView!
-    @IBOutlet private weak var imageOverLapView: UIView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var warningImageView: UIImageView!
@@ -37,9 +36,9 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
-    @IBOutlet private weak var topGradientView: UIView!
+    @IBOutlet private weak var gradientTop: UIView!
+    @IBOutlet private weak var gradientBottom: UIView!
     @IBOutlet private weak var detailTextView: UITextView!
-    @IBOutlet private weak var middleGradientView: UIView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
 
     var didShowNullStateView = false
@@ -65,6 +64,8 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
         QuestionnaireViewController.hasArrowsAnimated = false
+        gradientTop.gradientBackground(top: true)
+        gradientBottom.gradientBackground(top: false)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -135,15 +136,15 @@ private extension MyVisionViewController {
     }
 
     func removeGradients() {
-        middleGradientView.isHidden = true
-        topGradientView.isHidden = true
+        gradientTop.isHidden = true
+        gradientBottom.isHidden = true
     }
 
     func addGradients(for myVision: QDMToBeVision?) {
         let userImage = myVision?.profileImageResource?.url()
         if userImage != nil {
-            topGradientView.isHidden = false
-            middleGradientView.isHidden = false
+            gradientTop.isHidden = false
+            gradientBottom.isHidden = false
         }
     }
 }
@@ -189,7 +190,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     func setupView() {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
-        ThemeView.imageOverlap.apply(imageOverLapView)
         navigationBarView.delegate = self
         ThemeText.tbvSectionHeader.apply(R.string.localized.myQOTToBeVisionTitle(), to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
@@ -224,7 +224,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(url: tempImageURL, placeholder: R.image.circlesWarning())
-        imageOverLapView.isHidden = tempImageURL == nil
 
         removeGradients()
         addGradients(for: myVision)
@@ -254,13 +253,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 extension MyVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let alphaValue = (offsetY/containerViewSize) * containerViewRatio
-        if alphaValue > lowerBoundAlpha && alphaValue < upperBoundAlpha {
-            DispatchQueue.main.async {
-                self.imageOverLapView.backgroundColor = UIColor.carbon.withAlphaComponent(alphaValue)
-            }
-        }
-
         if self.lastContentOffset > offsetY {
             if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()

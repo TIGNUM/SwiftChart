@@ -28,7 +28,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
-    func presentMyDataScreen() 
+    func presentMyDataScreen()
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -98,11 +98,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return NavBarTableViewCell.instantiateFromNib(title: R.string.localized.dailyBriefTitle(), tapLeft: { [weak self] in
-                self?.delegate?.moveToCell(item: 0)
-                }, tapRight: { [weak self] in
-                    self?.delegate?.moveToCell(item: 2)
-            })
+            return navBarHeader
         } else {
             return nil
         }
@@ -110,9 +106,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return 44
-        } else {
-            tableView.sectionHeaderHeight = CGFloat.leastNormalMagnitude }
+            return navBarHeader?.bounds.height ?? 0
+        }
         return CGFloat.leastNormalMagnitude
     }
 
@@ -258,11 +253,10 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let bar = navBarHeader as? NavBarTableViewCell {
+        if let bar = navBarHeader {
             bar.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
-
     }
 }
 
