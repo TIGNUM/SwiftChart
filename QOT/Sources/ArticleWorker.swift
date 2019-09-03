@@ -65,6 +65,8 @@ final class ArticleWorker {
 
     var nextUp: Article.Item?
 
+    var isTopBarHidden: Bool = false
+
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
@@ -109,6 +111,7 @@ final class ArticleWorker {
             self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
+            self?.isTopBarHidden = self?.shouldHideTopBar() ?? false
             self?.interactor?.dataUpdated()
         }
 
@@ -364,5 +367,19 @@ final class ArticleWorker {
             hasBookmark = false
         }
         return hasBookmark
+    }
+}
+
+private extension ArticleWorker {
+
+    func shouldHideTopBar() -> Bool {
+        // Handle most frequent case
+        guard let content = content, content.section != .Generic else { return false }
+
+        switch content.section {
+        case .ToBeVisionGenerator, .About, .FAQ: return true
+        default: break
+        }
+        return false
     }
 }

@@ -35,11 +35,12 @@ protocol ArticleInteractorInterface: class, Interactor {
     var remoteID: Int { get }
     var audioURL: URL? { get }
     var isShareable: Bool { get }
+    var shouldHideTopBar: Bool { get }
     func itemCount(in section: Int) -> Int
     func headerTitle(for section: Int) -> String?
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot?
     func articleItem(at indexPath: IndexPath) -> Article.Item?
-    func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) 
+    func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void)
     func isRead(completion:@escaping (_ read: Bool) -> Void)
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)

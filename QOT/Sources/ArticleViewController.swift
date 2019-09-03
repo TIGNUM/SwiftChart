@@ -363,6 +363,7 @@ extension ArticleViewController {
     }
 
     func dataUpdated() {
+        navigationController?.setNavigationBarHidden(interactor?.shouldHideTopBar ?? false, animated: true)
         if let imageViewShot = self.view.viewWithTag(871234) {
             UIView.animate(withDuration: 0.5, animations: {
                 imageViewShot.alpha = 0.0
@@ -694,7 +695,9 @@ extension ArticleViewController: UIScrollViewDelegate {
 
 extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
-        guard let navBar = navigationController?.navigationBar else {
+        guard let navBar = navigationController?.navigationBar,
+            let shouldHideNavBar = interactor?.shouldHideTopBar,
+            shouldHideNavBar == false else {
             return
         }
 

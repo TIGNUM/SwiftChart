@@ -77,6 +77,10 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.audioURL
     }
 
+    var shouldHideTopBar: Bool {
+        return worker.isTopBarHidden
+    }
+
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         return worker.relatedArticle(at: indexPath)
     }
