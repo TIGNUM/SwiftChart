@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ImpactReadinessCell2: UITableViewCell, Dequeueable {
+final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var howYouFeelToday: UILabel!

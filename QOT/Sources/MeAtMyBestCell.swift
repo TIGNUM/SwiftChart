@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MeAtMyBestCell: UITableViewCell, Dequeueable {
+final class MeAtMyBestCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var meAtMyBestTitle: UILabel!
     @IBOutlet private weak var meAtMyBestLabel: UILabel!

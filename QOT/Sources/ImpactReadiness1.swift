@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ImpactReadiness1: UITableViewCell, Dequeueable {
+final class ImpactReadiness1: BaseDailyBriefCell {
 
     @IBOutlet weak var toBeVisionImage: UIImageView!
     @IBOutlet weak var bucketTitle: UILabel!

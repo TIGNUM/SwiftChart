@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DailyCheckinInsightsSHPICell: UITableViewCell, Dequeueable {
+final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
     @IBOutlet private weak var SHPIText: UILabel!
     @IBOutlet private var bars: [UIView]?

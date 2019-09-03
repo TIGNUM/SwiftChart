@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DailyCheckinInsightsPeakPerformanceCell: UITableViewCell, Dequeueable {
+final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var peakEventsLabel: UILabel!
     @IBOutlet private weak var button: UIButton!

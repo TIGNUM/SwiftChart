@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class SprintChallengeCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
+final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITableViewDataSource {
 
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet private weak var bucketTitle: UILabel!

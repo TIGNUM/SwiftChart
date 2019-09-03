@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
+final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!

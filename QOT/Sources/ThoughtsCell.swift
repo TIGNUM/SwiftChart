@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ThoughtsCell: UITableViewCell, Dequeueable {
+final class ThoughtsCell: BaseDailyBriefCell {
     @IBOutlet private weak var thoughtLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!

@@ -9,7 +9,7 @@
 import Foundation
 
 //TODO after further testing please remove this class.
-final class GuidedTrackTableViewCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
+final class GuidedTrackTableViewCell: BaseDailyBriefCell, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tableView: UITableView!

@@ -11,7 +11,7 @@ import qot_dal
 
 import UIKit
 
-final class SolveTableViewCell: UITableViewCell, Dequeueable {
+final class SolveTableViewCell: BaseDailyBriefCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

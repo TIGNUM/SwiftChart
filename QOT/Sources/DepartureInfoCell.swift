@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DepartureInfoCell: UITableViewCell, Dequeueable {
+final class DepartureInfoCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var bucketTitle: UILabel!

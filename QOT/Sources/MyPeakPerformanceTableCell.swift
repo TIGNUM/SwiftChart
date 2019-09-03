@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyPeakPerformanceTableCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
+final class MyPeakPerformanceTableCell: BaseDailyBriefCell, UITableViewDelegate, UITableViewDataSource {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WhatsHotLatestCell: UITableViewCell, Dequeueable {
+final class WhatsHotLatestCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var whatsHotImage: UIImageView!

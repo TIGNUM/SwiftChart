@@ -50,6 +50,20 @@ final class DailyBriefInteractor {
     }
 }
 
+// MARK: Private methods
+extension DailyBriefInteractor {
+    private func setVisibleBucketsAsSeenIfNeeded(indexPath: IndexPath) {
+        let bucketModel = bucketViewModelNew()?.at(index: indexPath.section)
+        let bucketList = bucketModel?.elements
+        let bucket = bucketList?[indexPath.row].domainModel
+
+        guard let notSeenBucket = bucket else {
+            return
+        }
+        DailyBriefService.main.markAsSeenBuckets([notSeenBucket])
+    }
+}
+
 // MARK: Notification Listeners
 extension DailyBriefInteractor {
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
@@ -817,5 +831,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func didPressGotItSprint(sprint: QDMSprint) {
         worker.didPressGotItSprint(sprint: sprint)
+    }
+
+    func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
+        forCell.setTimer(with: 2.0) { [weak self] in
+            self?.setVisibleBucketsAsSeenIfNeeded(indexPath: indexPath)
+        }
+    }
+
+    func invalidateTimer(forCell: BaseDailyBriefCell) {
+        forCell.markSeenTimer.invalidate()
     }
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class GoodToKnowCell: UITableViewCell, Dequeueable {
+final class GoodToKnowCell: BaseDailyBriefCell {
     @IBOutlet private weak var goodToKnowImage: UIImageView!
     @IBOutlet private weak var goodToKnowFact: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!

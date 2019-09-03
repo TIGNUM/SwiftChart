@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class GuidedTrackSectionCell: UITableViewCell, Dequeueable {
+final class GuidedTrackSectionCell: BaseDailyBriefCell {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var content: UILabel!
     @IBOutlet private weak var button: UIButton!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SolveReminderCell: UITableViewCell, Dequeueable {
+final class SolveReminderCell: BaseDailyBriefCell {
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var twoDayAgo: UILabel!
     @IBOutlet private weak var question1: UILabel!

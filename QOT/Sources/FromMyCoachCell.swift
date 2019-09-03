@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FromMyCoachCell: UITableViewCell, Dequeueable {
+final class FromMyCoachCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var stackView: UIStackView!
 

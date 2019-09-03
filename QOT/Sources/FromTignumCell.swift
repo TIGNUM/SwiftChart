@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FromTignumCell: UITableViewCell, Dequeueable {
+final class FromTignumCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
 //    add the height constraint to the label in the cell.

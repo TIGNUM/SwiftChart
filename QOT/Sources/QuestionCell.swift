@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class QuestionCell: UITableViewCell, Dequeueable {
+final class QuestionCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var questionLabel: UILabel!

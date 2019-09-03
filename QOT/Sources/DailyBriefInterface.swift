@@ -53,6 +53,8 @@ protocol DailyBriefInteractorInterface: Interactor {
     func showPrepareScreen()
     func presentCopyRight(copyrightURL: String?)
     func didPressGotItSprint(sprint: QDMSprint)
+    func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
+    func invalidateTimer(forCell: BaseDailyBriefCell)
 }
 
 protocol DailyBriefRouterInterface {

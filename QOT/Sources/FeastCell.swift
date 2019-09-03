@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class FeastCell: UITableViewCell, Dequeueable {
+final class FeastCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var feastImage: UIImageView!

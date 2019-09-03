@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AboutMeCell: UITableViewCell, Dequeueable {
+final class AboutMeCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var aboutMeContent: UILabel!

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class BeSpokeCell: UITableViewCell, Dequeueable {
+final class BeSpokeCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var firstImageView: UIImageView!

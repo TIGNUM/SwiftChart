@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class Level5Cell: UITableViewCell, Dequeueable {
+final class Level5Cell: BaseDailyBriefCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introLabel: UILabel!

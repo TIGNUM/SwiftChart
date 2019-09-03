@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ExploreCell: UITableViewCell, Dequeueable {
+final class ExploreCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var timeOfDayPosition: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!

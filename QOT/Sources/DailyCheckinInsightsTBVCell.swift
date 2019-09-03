@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DailyCheckinInsightsTBVCell: UITableViewCell, Dequeueable {
+final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: UIButton!

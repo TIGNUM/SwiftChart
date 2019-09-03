@@ -118,6 +118,20 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         return UITableViewAutomaticDimension
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let dailyBriefCell = cell as? BaseDailyBriefCell else {
+            return
+        }
+        interactor?.startTimer(forCell: dailyBriefCell, at: indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        guard let dailyBriefCell = cell as? BaseDailyBriefCell else {
+            return
+        }
+        interactor?.invalidateTimer(forCell: dailyBriefCell)
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section)
         let bucketList = bucketModel?.elements
@@ -219,6 +233,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
+
     }
 }
 
