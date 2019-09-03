@@ -59,6 +59,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
         self.tableView.tableFooterView = UIView()
         setupView()
+        updateIndicator()
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
     }
@@ -70,7 +71,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateIndicator()
         trackPage()
     }
 
