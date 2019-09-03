@@ -253,27 +253,11 @@ extension UIViewController {
     }
 
     @objc open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if NSStringFromClass(type(of: self)).hasPrefix("QOT.") == false {
-            return nil
-        }
-
-        if self is ScreenZLevel1 {
-            return [coachNavigationItem()]
-        }
         return nil
     }
 
     @objc open func bottomNavigationBackgroundColor() -> UIColor? {
         return self.view.backgroundColor
-    }
-
-    @objc open func coachNavigationItem() -> UIBarButtonItem {
-        let button = CoachButton()
-        button.addTarget(self, action: #selector(showCoachScreen), for: .touchUpInside)
-        button.setImage(R.image.ic_coach(), for: .normal)
-        button.imageView?.contentMode = .center
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default * 2, height: .Default * 2))
-        return UIBarButtonItem(customView: button)
     }
 
     @objc open func backNavigationItem() -> UIBarButtonItem {
@@ -322,21 +306,6 @@ extension UIViewController {
         button.addTarget(self, action: action, for: .touchUpInside)
         button.corner(radius: Layout.cornerRadius20, borderColor: borderColor)
         return UIBarButtonItem(customView: button)
-    }
-
-    @objc open func showCoachScreen() {
-        // create Coach ViewController and show on Level3
-        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
-            return
-        }
-        CoachConfigurator.make(viewController: coachViewController)
-        let navi = UINavigationController(rootViewController: coachViewController)
-        navi.modalTransitionStyle = .coverVertical
-        navi.isNavigationBarHidden = true
-        navi.isToolbarHidden = true
-        navi.view.backgroundColor = .clear
-        present(navi, animated: true)
-        trackUserEvent(.OPEN, valueType: "COACH", action: .TAP)
     }
 
     @objc open func didTapBackButton() {

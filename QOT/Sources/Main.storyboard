@@ -89,10 +89,23 @@
                                     <outlet property="delegate" destination="EyY-ig-0lr" id="AQh-W8-jKl"/>
                                 </connections>
                             </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fbm-Zq-tF6">
+                                <rect key="frame" x="275" y="567" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="dVQ-Dh-gXN"/>
+                                    <constraint firstAttribute="height" constant="80" id="uzu-Od-uLa"/>
+                                </constraints>
+                                <state key="normal" image="ic_coach"/>
+                                <connections>
+                                    <action selector="showCoachScreen" destination="EyY-ig-0lr" eventType="touchUpInside" id="cMy-ti-9i3"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="0.798828125" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="eMu-mg-HCD" firstAttribute="trailing" secondItem="Fbm-Zq-tF6" secondAttribute="trailing" constant="20" id="K7e-NR-pgX"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="trailing" secondItem="eMu-mg-HCD" secondAttribute="trailing" id="Lyt-Lz-Xor"/>
+                            <constraint firstItem="eMu-mg-HCD" firstAttribute="bottom" secondItem="Fbm-Zq-tF6" secondAttribute="bottom" constant="20" id="PkH-qZ-wRw"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="leading" secondItem="eMu-mg-HCD" secondAttribute="leading" id="YbN-C9-Kk1"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="bottom" secondItem="eMu-mg-HCD" secondAttribute="bottom" id="uU4-Ba-fxl"/>
                             <constraint firstItem="2QY-Es-Pku" firstAttribute="top" secondItem="eMu-mg-HCD" secondAttribute="top" id="zvP-jc-Lgq"/>
@@ -100,6 +113,7 @@
                         <viewLayoutGuide key="safeArea" id="eMu-mg-HCD"/>
                     </view>
                     <connections>
+                        <outlet property="coachButton" destination="Fbm-Zq-tF6" id="BwA-py-cFq"/>
                         <outlet property="collectionView" destination="2QY-Es-Pku" id="e6q-I6-hBt"/>
                     </connections>
                 </viewController>
@@ -570,6 +584,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ic_coach" width="98" height="98"/>
         <image name="ic_more_unselected" width="16" height="16"/>
         <image name="img1.png" width="16" height="16"/>
     </resources>

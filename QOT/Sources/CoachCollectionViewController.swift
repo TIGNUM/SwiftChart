@@ -29,6 +29,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
     private var panActive = false
     private var panSearchShowing: Bool = false {
@@ -80,8 +81,8 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.addSubview(collectionView)
-        view.backgroundColor = .carbon
+        ThemeView.level1.apply(view)
+        coachButton.layer.zPosition = 10000
 
         if let searchViewController = searchViewController {
             self.addChildViewController(searchViewController)
@@ -93,9 +94,31 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
+
+        coachButton.alpha = 0.0
+        UIView.animate(withDuration: 0.75) {
+            self.coachButton.alpha = 1.0
+        }
     }
 }
 
+// MARK: - Coach button
+
+extension CoachCollectionViewController {
+    @IBAction func showCoachScreen() {
+        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
+            return
+        }
+        CoachConfigurator.make(viewController: coachViewController)
+        let navi = UINavigationController(rootViewController: coachViewController)
+        navi.modalTransitionStyle = .coverVertical
+        navi.isNavigationBarHidden = true
+        navi.isToolbarHidden = true
+        navi.view.backgroundColor = .clear
+        present(navi, animated: true)
+        trackUserEvent(.OPEN, valueType: "COACH", action: .TAP)
+    }
+}
 // MARK: - handlepan
 
 extension CoachCollectionViewController {
