@@ -52,7 +52,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     private var showSteps = false
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-
+  
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -86,8 +86,17 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         if sections.model == DailyBriefViewModel.Bucket.guidedTrack {
             return showSteps ? sections.elements.count : 1
         }
-
         return sections.elements.count
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return NavBarTableViewCell.instantiateFromNib(title: R.string.localized.dailyBriefTitle(), tapLeft: { [weak self] in
+                self?.delegate?.moveToCell(item: 0)
+                }, tapRight: { [weak self] in
+                    self?.delegate?.moveToCell(item: 2)
+            })
+        } else { return nil }
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {

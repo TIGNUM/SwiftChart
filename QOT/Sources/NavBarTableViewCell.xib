@@ -12,61 +12,59 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="NavBarTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="PNf-LZ-pSF" customClass="NavBarTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-Gs-dv2">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44.5"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m4-Gr-hNY">
-                                <rect key="frame" x="10" y="10.5" width="24" height="24"/>
-                                <state key="normal" image="ic_navbar_arrow_left"/>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpy-Ss-MOI">
-                                <rect key="frame" x="143.5" y="12" width="33.5" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvU-ie-qHc">
-                                <rect key="frame" x="286" y="10.5" width="24" height="24"/>
-                                <state key="normal" image="ic_navbar_arrow_right"/>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerY" secondItem="AdL-Gs-dv2" secondAttribute="centerY" id="8fF-Sw-CM5"/>
-                            <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerX" secondItem="AdL-Gs-dv2" secondAttribute="centerX" id="KD7-q0-07v"/>
-                            <constraint firstItem="YvU-ie-qHc" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="dZo-uF-4Yb"/>
-                            <constraint firstAttribute="trailing" secondItem="YvU-ie-qHc" secondAttribute="trailing" constant="10" id="drQ-9u-tGZ"/>
-                            <constraint firstItem="8m4-Gr-hNY" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="ezW-7U-Qcz"/>
-                            <constraint firstAttribute="height" constant="44" id="fEK-By-dly"/>
-                            <constraint firstItem="8m4-Gr-hNY" firstAttribute="leading" secondItem="AdL-Gs-dv2" secondAttribute="leading" constant="10" id="pAX-JD-3dN"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="mdO-iU-wtU"/>
-                    </view>
-                </subviews>
-                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                <constraints>
-                    <constraint firstAttribute="bottom" secondItem="AdL-Gs-dv2" secondAttribute="bottom" id="Bmi-iW-F2L"/>
-                    <constraint firstItem="AdL-Gs-dv2" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="CXd-uo-gTz"/>
-                    <constraint firstAttribute="trailing" secondItem="AdL-Gs-dv2" secondAttribute="trailing" id="Cae-SU-FtS"/>
-                    <constraint firstItem="AdL-Gs-dv2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="jTF-D1-5qp"/>
-                </constraints>
-            </tableViewCellContentView>
-            <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AdL-Gs-dv2">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8m4-Gr-hNY">
+                            <rect key="frame" x="8" y="9" width="24" height="24"/>
+                            <state key="normal" image="ic_navbar_arrow_left"/>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpy-Ss-MOI">
+                            <rect key="frame" x="144" y="9" width="33.5" height="21"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YvU-ie-qHc">
+                            <rect key="frame" x="288" y="9" width="24" height="24"/>
+                            <state key="normal" image="ic_navbar_arrow_right"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerY" secondItem="AdL-Gs-dv2" secondAttribute="centerY" id="8fF-Sw-CM5"/>
+                        <constraint firstItem="dpy-Ss-MOI" firstAttribute="centerX" secondItem="AdL-Gs-dv2" secondAttribute="centerX" id="KD7-q0-07v"/>
+                        <constraint firstAttribute="height" constant="44" id="ajf-Yt-rpN"/>
+                        <constraint firstItem="YvU-ie-qHc" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="dZo-uF-4Yb"/>
+                        <constraint firstAttribute="trailing" secondItem="YvU-ie-qHc" secondAttribute="trailing" constant="10" id="drQ-9u-tGZ"/>
+                        <constraint firstItem="8m4-Gr-hNY" firstAttribute="centerY" secondItem="dpy-Ss-MOI" secondAttribute="centerY" id="ezW-7U-Qcz"/>
+                        <constraint firstItem="8m4-Gr-hNY" firstAttribute="leading" secondItem="AdL-Gs-dv2" secondAttribute="leading" constant="10" id="pAX-JD-3dN"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="mdO-iU-wtU"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="AdL-Gs-dv2" firstAttribute="top" secondItem="PNf-LZ-pSF" secondAttribute="top" id="9F3-s9-en1"/>
+                <constraint firstItem="AdL-Gs-dv2" firstAttribute="leading" secondItem="iVd-3Z-Mqq" secondAttribute="leading" id="Kgf-Aa-WdY"/>
+                <constraint firstItem="AdL-Gs-dv2" firstAttribute="trailing" secondItem="iVd-3Z-Mqq" secondAttribute="trailing" id="m94-s2-zjT"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="iVd-3Z-Mqq"/>
             <connections>
-                <outlet property="buttonLeft" destination="8m4-Gr-hNY" id="Tvk-CW-7Nf"/>
-                <outlet property="buttonRight" destination="YvU-ie-qHc" id="Mmi-4U-kX1"/>
-                <outlet property="container" destination="AdL-Gs-dv2" id="ApH-MH-pOV"/>
-                <outlet property="titleLabel" destination="dpy-Ss-MOI" id="Krk-ze-tG0"/>
+                <outlet property="buttonLeft" destination="8m4-Gr-hNY" id="chz-Ep-CCw"/>
+                <outlet property="buttonRight" destination="YvU-ie-qHc" id="IQk-j0-PL0"/>
+                <outlet property="container" destination="AdL-Gs-dv2" id="cFY-WK-GER"/>
+                <outlet property="titleLabel" destination="dpy-Ss-MOI" id="guM-hl-mHU"/>
             </connections>
-        </tableViewCell>
+            <point key="canvasLocation" x="146.37681159420291" y="-227.34375"/>
+        </view>
     </objects>
     <resources>
         <image name="ic_navbar_arrow_left" width="24" height="24"/>
