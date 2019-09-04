@@ -13,7 +13,6 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
-    @IBOutlet private weak var websiteLabel: UILabel!
     @IBOutlet private weak var copyrightLabel: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
@@ -24,7 +23,6 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         ThemeText.bespokeText.apply(viewModel?.text, to: departureText)
-        ThemeText.bespokeText.apply(viewModel?.link, to: websiteLabel)
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {

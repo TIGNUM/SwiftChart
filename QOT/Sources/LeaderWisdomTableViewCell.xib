@@ -141,7 +141,7 @@
                             <constraint firstAttribute="bottom" secondItem="haR-YU-jA1" secondAttribute="bottom" constant="48" id="ezM-bX-uMb"/>
                         </constraints>
                     </stackView>
-                    <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08X-1T-E7p">
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08X-1T-E7p">
                         <rect key="frame" x="20" y="48" width="16" height="1"/>
                         <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

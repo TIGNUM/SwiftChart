@@ -58,13 +58,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.90000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The below calendar view is a replication of your day. We marked a quick suggestion where you can try a strategy or tool today." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jaw-QJ-rkp">
-                    <rect key="frame" x="24" y="79" width="355" height="91"/>
+                    <rect key="frame" x="24" y="92" width="355" height="78"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPLORE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z4w-dz-0cs">
-                    <rect key="frame" x="25" y="44" width="353" height="25"/>
+                    <rect key="frame" x="25" y="57" width="353" height="25"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="25" id="qOC-tU-TF5"/>
                     </constraints>
@@ -238,7 +238,7 @@
                         <constraint firstItem="u4T-bG-Q9s" firstAttribute="leading" secondItem="zOz-nl-19T" secondAttribute="leading" constant="8" id="ycL-sm-HbG"/>
                     </constraints>
                 </view>
-                <view alpha="0.94999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-sH-z29">
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwg-sH-z29">
                     <rect key="frame" x="24" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>

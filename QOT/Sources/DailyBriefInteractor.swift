@@ -590,7 +590,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                  subtitle: "",
                                                                  text: "",
                                                                  image: "",
-                                                                 link: "",
                                                                  copyright: "",
                                                                  domainModel: depatureInfo))
             return departureInfoList
@@ -599,7 +598,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                             subtitle: depatureInfo.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
                                                             text: collection.contentItems.first?.valueText,
                                                             image: collection.thumbnailURLString ?? "",
-                                                            link: collection.shareableLink,
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                                             domainModel: depatureInfo))
         return departureInfoList

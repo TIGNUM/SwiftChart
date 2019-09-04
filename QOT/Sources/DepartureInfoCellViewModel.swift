@@ -16,16 +16,14 @@ final class DepartureInfoCellViewModel: BaseDailyBriefViewModel {
     var title: String?
     var text: String?
     var image: String?
-    var link: String?
     var copyright: String?
 
     // MARK: - Init
-    init(title: String?, subtitle: String?, text: String?, image: String?, link: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, subtitle: String?, text: String?, image: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
         self.image = image
-        self.link = link
         self.copyright = copyright
         super.init(domainModel)
     }
