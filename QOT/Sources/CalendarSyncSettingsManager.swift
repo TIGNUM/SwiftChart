@@ -30,6 +30,7 @@ final class CalendarSyncSettingsManager {
         self.eventStore = eventStore
         self.realmProvider = realmProvider
         self.syncManager = AppDelegate.current.appCoordinator.syncManager
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     var calendarIdentifiersOnThisDevice: [String] {

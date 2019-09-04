@@ -69,13 +69,19 @@ final class PDFReaderInteractor {
 }
 
 extension PDFReaderInteractor: PDFReaderInteractorInterface {
+    func contentItemId() -> Int? {
+        return worker.contentItemId()
+    }
+
     func didTapReload() {
         presenter.reload()
         prepareShareContent()
     }
+
     func didTapDone() {
         router.dismiss()
     }
+
     func didTapShare() {
         guard let shareContent = self.shareContent else {
             log("Did select share contentItem without share content.", level: .error)

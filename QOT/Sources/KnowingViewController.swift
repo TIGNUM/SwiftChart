@@ -85,6 +85,10 @@ extension KnowingViewController: KnowingViewControllerInterface {
         self.removeLoadingSkeleton()
         collectionView.reloadData()
     }
+
+    func scrollToSection(_ section: Int) {
+        collectionView.scrollToItem(at: IndexPath(item: 0, section: section), at: .top, animated: true)
+    }
 }
 
 extension KnowingViewController {

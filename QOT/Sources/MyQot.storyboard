@@ -135,7 +135,7 @@
         <!--My Qot App Settings View Controller-->
         <scene sceneID="y48-53-cQf">
             <objects>
-                <viewController id="Hoi-oQ-X68" customClass="MyQotAppSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAppSettingsViewController" id="Hoi-oQ-X68" customClass="MyQotAppSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rfr-6c-UHN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +216,7 @@
         <!--My Qot Siri Shortcuts View Controller-->
         <scene sceneID="9vm-qE-LUk">
             <objects>
-                <viewController id="XM2-FH-qGD" customClass="MyQotSiriShortcutsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSiriShortcutsViewController" id="XM2-FH-qGD" customClass="MyQotSiriShortcutsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ir6-2B-5vk">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -290,7 +290,7 @@
         <!--Synced Calendars View Controller-->
         <scene sceneID="WOJ-Oa-Gqi">
             <objects>
-                <viewController id="xt6-GT-5hV" customClass="SyncedCalendarsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SyncedCalendarsViewController" id="xt6-GT-5hV" customClass="SyncedCalendarsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dYG-vA-qi2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -368,7 +368,7 @@
         <!--My Qot Sensors View Controller-->
         <scene sceneID="gKo-9v-I0L">
             <objects>
-                <viewController id="TNS-Xr-HPB" customClass="MyQotSensorsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSensorsViewController" id="TNS-Xr-HPB" customClass="MyQotSensorsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Xwq-vB-U48">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -608,7 +608,7 @@
         <!--My Qot Support View Controller-->
         <scene sceneID="P0x-Yi-MIP">
             <objects>
-                <viewController id="VSV-MR-rgC" customClass="MyQotSupportViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportViewController" id="VSV-MR-rgC" customClass="MyQotSupportViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="jhL-c4-95l">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -686,7 +686,7 @@
         <!--My Qot Support Faq View Controller-->
         <scene sceneID="Avc-89-hCl">
             <objects>
-                <viewController id="9qJ-t5-Bb5" customClass="MyQotSupportFaqViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportFaqViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportFaqViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hex-a7-A1f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -760,7 +760,7 @@
         <!--My Qot About Us View Controller-->
         <scene sceneID="Oey-y4-XLs">
             <objects>
-                <viewController id="6Hh-bM-OFn" customClass="MyQotAboutUsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAboutUsViewController" id="6Hh-bM-OFn" customClass="MyQotAboutUsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6GP-dy-akx">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -838,7 +838,7 @@
         <!--My Qot Account Settings View Controller-->
         <scene sceneID="6qO-oJ-SCF">
             <objects>
-                <viewController id="BOZ-52-EXB" customClass="MyQotAccountSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotAccountSettingsViewController" id="BOZ-52-EXB" customClass="MyQotAccountSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eFX-9K-BFC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="850"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1175,7 +1175,7 @@
         <!--Profile Settings View Controller-->
         <scene sceneID="WKv-jD-fQ2">
             <objects>
-                <tableViewController id="6dh-gR-82N" customClass="ProfileSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ProfileSettingsViewController" id="6dh-gR-82N" customClass="ProfileSettingsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="lTP-e8-wcO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

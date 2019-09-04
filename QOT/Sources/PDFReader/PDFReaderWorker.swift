@@ -38,4 +38,8 @@ final class PDFReaderWorker {
             }
         }
     }
+
+    func contentItemId() -> Int {
+        return contentItemID
+    }
 }

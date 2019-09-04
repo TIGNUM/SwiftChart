@@ -68,17 +68,7 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
     }
 
 	func didTapNext() {
-		SVProgressHUD.show()
-		worker.sendLoginRequest(email: worker.email,
-								password: worker.password) { [weak self] (error) in
-									SVProgressHUD.dismiss()
-									if let error = error {
-										self?.router.handleLoginError(error)
-									} else {
-										self?.router.add3DTouchShortcuts()
-										AppDelegate.current.appCoordinator.didLogin()
-									}
-		}
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
 	}
 
     func activateButton() {

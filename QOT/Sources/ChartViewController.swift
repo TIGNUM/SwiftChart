@@ -189,7 +189,7 @@ extension ChartViewController: ChartViewControllerDelegate {
     }
 
     func didSelectAddSensor() {
-        AppDelegate.current.appCoordinator.presentAddSensor(from: self)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func didSelectOpenSettings() {

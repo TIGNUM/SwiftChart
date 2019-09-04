@@ -146,12 +146,7 @@ private extension SigningProfileDetailInteractor {
     }
 
     func handleRegistrationSuccess(registrationCheck: UserRegistrationCheck) {
-        let fullMessage = R.string.localized.signingProfileHudTitleUserCreated() + "\n" + registrationCheck.message
-        SVProgressHUD.showSuccess(withStatus: fullMessage)
-        router.add3DTouchShortcuts()
-        UserDefault.clearAllDataRegistration()
-        UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
-        AppDelegate.current.appCoordinator.didLogin()
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func handleRegistrationFailure(registrationCheck: UserRegistrationCheck) {

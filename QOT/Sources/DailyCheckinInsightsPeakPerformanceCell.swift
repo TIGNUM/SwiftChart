@@ -14,7 +14,6 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     @IBOutlet private weak var button: UIButton!
     var delegate: DailyBriefViewControllerDelegate?
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)

@@ -23,9 +23,6 @@ final class MorningInterviewRouter {
 extension MorningInterviewRouter: MorningInterviewRouterInterface {
 
     func close() {
-        appCoordinator.dismiss(viewController, level: .priority)
-        if let destination = URLScheme.guide.destination {
-            appCoordinator.navigate(to: destination)
-        }
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 }

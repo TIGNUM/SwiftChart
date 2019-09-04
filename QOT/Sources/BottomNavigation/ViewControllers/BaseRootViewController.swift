@@ -26,6 +26,10 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
     private weak var contentView: UIView?
 
+    deinit {
+        bottomNavigationContainer.removeFromSuperview()
+    }
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorMode.dark.statusBarStyle
     }
@@ -46,10 +50,8 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
                                                selector: #selector(userLogout(_:)),
                                                name: .automaticLogout,
                                                object: nil)
-    }
-
-    deinit {
-        bottomNavigationContainer.removeFromSuperview()
+        setupBottomNavigationContainer()
+        setupAudioPlayerBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -78,8 +80,6 @@ extension BaseRootViewController {
 // MARK: - Setup
 extension BaseRootViewController {
     func setContent(viewController: UIViewController) {
-        setupBottomNavigationContainer()
-        setupAudioPlayerBar()
         contentView?.removeFromSuperview()
         childViewControllers.forEach({ $0.removeFromParentViewController() })
         addChildViewController(viewController)
@@ -88,6 +88,13 @@ extension BaseRootViewController {
     }
 
     func resetContent() {
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.removeObserver(self, name: .didStartAudio, object: nil)
+        notificationCenter.removeObserver(self, name: .didStopAudio, object: nil)
+        notificationCenter.removeObserver(self, name: .playPauseAudio, object: nil)
+        notificationCenter.removeObserver(self, name: .stopAudio, object: nil)
+        notificationCenter.removeObserver(self, name: .showAudioFullScreen, object: nil)
+        notificationCenter.removeObserver(self, name: .hideAudioFullScreen, object: nil)
         contentView?.removeFromSuperview()
         childViewControllers.forEach({ $0.removeFromParentViewController() })
         if let root = self.navigationController?.presentedViewController {

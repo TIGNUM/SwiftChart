@@ -77,6 +77,10 @@ final class StreamVideoWorker {
     lazy var yesContinueButtonTitle: String = {
         return R.string.localized.buttonTitleYesContinue()
     }()
+
+    lazy var contentItemId: Int? = {
+        return content?.remoteID
+    }()
 }
 
 extension StreamVideoWorker {

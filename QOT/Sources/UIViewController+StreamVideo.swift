@@ -53,6 +53,15 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
             self.view.bringSubview(toFront: controls)
         }
     }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_ITEM
+        pageTrack.associatedValueId = interactor?.contentItemId
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
+    }
 }
 
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {

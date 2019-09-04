@@ -16,7 +16,6 @@ final class SidebarCoordinator: ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
-    private let destination: AppCoordinator.Router.Destination?
     private let sidebarViewModel: SidebarViewModel
     let sideBarViewController: SidebarViewController!
     var topTabBarController: UINavigationController?
@@ -27,14 +26,13 @@ final class SidebarCoordinator: ParentCoordinator {
          services: Services,
          syncManager: SyncManager,
          networkManager: NetworkManager,
-         permissionsManager: PermissionsManager,
-         destination: AppCoordinator.Router.Destination?) {
+         permissionsManager: PermissionsManager) {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
-        self.destination = destination
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
         sidebarViewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: sidebarViewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],

@@ -11,11 +11,13 @@ import Foundation
 protocol KnowingViewControllerInterface: class {
     func setupView()
     func reload()
+    func scrollToSection(_ section: Int)
 }
 
 protocol KnowingPresenterInterface {
     func setupView()
     func reload()
+    func scrollToSection(_ section: Knowing.Section)
 }
 
 protocol KnowingInteractorInterface: class, Interactor {

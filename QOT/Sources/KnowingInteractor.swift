@@ -8,6 +8,10 @@
 
 import UIKit
 
+public extension Notification.Name {
+    static let showKnowingSection = Notification.Name("showKnowingSection")
+}
+
 final class KnowingInteractor {
 
     // MARK: - Properties
@@ -24,6 +28,9 @@ final class KnowingInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didGetNotificationToShowsKnowingSection(_ :)),
+                                               name: .showKnowingSection, object: nil)
     }
 
     // MARK: - Interactor
@@ -70,5 +77,18 @@ extension KnowingInteractor: KnowingInteractorInterface {
 
     func loadData() {
         worker.loadData()
+    }
+}
+
+// MARK: - Notification
+
+extension KnowingInteractor {
+    @objc func didGetNotificationToShowsKnowingSection(_ notification: Notification) {
+        guard let section = notification.object as? Knowing.Section else { return }
+        switch section {
+        case .strategies: break
+        case .whatsHot: break
+        default: break
+        }
     }
 }

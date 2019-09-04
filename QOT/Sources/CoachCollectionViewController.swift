@@ -10,6 +10,11 @@ import UIKit
 import Anchorage
 import qot_dal
 
+// MARK: Session Related Notification
+public extension Notification.Name {
+    static let showFirstLevelScreen = Notification.Name("showFirstLevelScreen")
+}
+
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
     func handlePan(offsetY: CGFloat)
@@ -92,6 +97,11 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
             setupSearchConstraints(searchViewController.view, parentView: view)
         }
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didGetScreenChangeNotification(_ :)),
+                                               name: .showFirstLevelScreen,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -102,6 +112,21 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         UIView.animate(withDuration: 0.75) {
             self.coachButton.alpha = 1.0
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Handle stored link when it's ready to handle
+        RestartHelper().checkRestartURLAndRoute()
+    }
+}
+
+// MARK: - Notification
+
+extension CoachCollectionViewController {
+    @objc func didGetScreenChangeNotification(_ notification: Notification) {
+        guard let page = notification.object as? Pages else { return }
+        moveToCell(item: page.rawValue)
     }
 }
 

@@ -8,13 +8,6 @@
 
 import UIKit
 
-public enum NavigationZLevel: Int {
-    case unknown = 0
-    case zLevel1 = 1
-    case zLevel2 = 2
-    case zLevel3 = 3
-}
-
 var navigationControllerIsSwizzled = false
 
 func swizzleUINavigationController() {
@@ -87,7 +80,9 @@ extension UINavigationController {
             navigationController.pushViewControllerSwizzled(viewController: viewController, animated: animated)
             // TODO: Dismiss all Presented ViewControllers
             if let presentedViewController = currentPresentedViewController {
-                dismissAllPresentedViewControllers(presentedViewController, animated, completion: {})
+                dismissAllPresentedViewControllers(presentedViewController, animated, completion: {
+                    self.dismissAllPresentedViewControllers(self, true, completion: {})
+                })
             }
         } else {
             pushViewControllerSwizzled(viewController: viewController, animated: animated)
@@ -106,14 +101,27 @@ extension UINavigationController {
 
     func dismissAllPresentedViewControllers(_ root: UIViewController,
                                             _ animated: Bool,
+                                            _ index: Int = 0,
                                             completion: @escaping (() -> Void)) {
         let newCompletion: (() -> Void) = {
-            root.dismiss(animated: animated, completion: completion)
+            if index == 0 { // if there is nothing presented.
+                DispatchQueue.main.async {
+                    completion()
+                }
+            } else {
+                root.dismiss(animated: animated, completion: completion)
+            }
         }
         if let currentPresentedViewController = root.presentedViewController {
-            dismissAllPresentedViewControllers(currentPresentedViewController, animated, completion: newCompletion)
+            dismissAllPresentedViewControllers(currentPresentedViewController, animated, index + 1, completion: newCompletion)
         } else {
-            root.dismiss(animated: animated, completion: completion)
+            if index == 0 { // if there is nothing presented.
+                DispatchQueue.main.async {
+                    completion()
+                }
+            } else {
+                root.dismiss(animated: animated, completion: completion)
+            }
         }
     }
 

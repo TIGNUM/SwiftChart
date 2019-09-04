@@ -115,32 +115,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
     }
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: UIViewController) {
-        self.selectedContent = selectedArticle
-        if selectedArticle.section == Database.Section.learnStrategy.rawValue,
-            let contentID = selectedArticle.remoteID.value,
-            let categoryID = selectedArticle.categoryIDs.first?.value {
-            AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryID: categoryID)
-            return
-        }
-        articleHeader = ArticleCollectionHeader(content: selectedArticle, displayDate: nil)
-        viewModel = ArticleItemViewModel(services: services,
-                                         items: Array(selectedArticle.articleItems),
-                                         contentCollection: selectedArticle,
-                                         articleHeader: articleHeader)
-        let topInset = fullViewController.view.bounds.height * Layout.multiplier_025
-        let edgeInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        ArticleItemViewController.page = .whatsHotArticle
-        let relatedArticleViewController = ArticleItemViewController(viewModel: viewModel,
-                                                                     contentInsets: edgeInsets,
-                                                                     fadeMaskLocation: .top)
-        relatedArticleViewController.delegate = self
-        let navigationController = UINavigationController(withPages: [relatedArticleViewController],
-                                                          navigationItem: NavigationItem(),
-                                                          topBarDelegate: self,
-                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
-        viewController.present(navigationController, animated: true) {
-            self.viewModel.markContentAsRead()
-        }
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController) {

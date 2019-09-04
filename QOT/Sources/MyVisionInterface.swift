@@ -46,7 +46,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func showEditVision(isFromNullState: Bool)
     func openToBeVisionGenerator()
     func showRateScreen(with id: Int)
-    func viewWillAppear() 
+    func viewWillAppear()
 }
 
 protocol MyVisionRouterInterface {

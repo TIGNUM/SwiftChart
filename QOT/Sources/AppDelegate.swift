@@ -100,9 +100,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
-            if appCoordinator.userLoggedIn == true {
-                appCoordinator.startSync()
-            }
             if let url = launchOptions?[.url] as? URL {
                 RestartHelper.setRestartURL(url)
             }
@@ -110,21 +107,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                 //
             })
 
-            UINavigationBar.appearance().shadowImage = UIImage()
-            UITabBar.appearance().shadowImage = UIImage()
-            UITabBar.appearance().backgroundImage = UIImage()
-            UNUserNotificationCenter.current().delegate = self
-            UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
-                                                                .foregroundColor: UIColor.white]
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
             setupHockeyApp()
             setupKingfisherCache()
-            #if DEBUG
-                qot_dal.log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
-                qot_dal.log("\nopen -a \"Realm Studio\" \(DatabaseManager.databaseURL)\n")
-            #endif
-            appCoordinator.sendAppEvent(.start)
+            qot_dal.QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
             return true
         #endif //#if UNIT_TEST || BUILD_DATABASE
@@ -144,7 +131,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
         return
         #else
-            appCoordinator.sendAppEvent(.background)
+            qot_dal.QOTService.main.reportAppStatus(.background)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -152,7 +139,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            appCoordinator.sendAppEvent(.termination)
+            qot_dal.QOTService.main.reportAppStatus(.termination)
         #endif
     }
 
@@ -162,8 +149,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
-            appCoordinator.sendAppEvent(.didBecomeActive)
-            NotificationCenter.default.post(name: .requestSynchronization, object: nil)
+            qot_dal.QOTService.main.reportAppStatus(.didBecomeActive)
+            if qot_dal.SessionService.main.getCurrentSession() != nil {
+                NotificationCenter.default.post(name: .requestSynchronization, object: nil)
+            }
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -172,6 +161,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             updateBadgeNumber()
+            qot_dal.QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -181,9 +171,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         if launchHandler.canLaunch(url: url) == true && URLScheme.isLaunchableHost(host: url.host) == true {
             launchHandler.process(url: url)
         }
-        if url.host == "oura-integration" {
-            NotificationCenter.default.post(name: .requestOpenUrl, object: url)
-        }
+
         return launchHandler.canLaunch(url: url)
     }
 
@@ -260,7 +248,7 @@ private extension AppDelegate {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {
             // needs a restart at this point
-            locationManager.startSignificantLocationMonitoring(didUpdateLocations: appCoordinator.sendLocationUpdate)
+            qot_dal.QOTService.main.reportDeviceInfo()
         }
     }
 
@@ -277,7 +265,7 @@ private extension AppDelegate {
     func setupHockeyApp() {
         let hockeyAppID = Bundle.main.object(forInfoDictionaryKey: "HOCKEY_APP_ID") as? String
         BITHockeyManager.shared().configure(withIdentifier: hockeyAppID ?? "4f2cc0d018ea4a2884e052d72eb9c456")
-        BITHockeyManager.shared().isUpdateManagerDisabled = true
+//        BITHockeyManager.shared().isUpdateManagerDisabled = true
         BITHockeyManager.shared().crashManager.crashManagerStatus = BITCrashManagerStatus.autoSend
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
@@ -347,31 +335,19 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
         }
         launchHandler.process(url: notificationLink, notificationID: notificationID)
-        guard
-            let host = notificationLink.host,
-            let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
-            let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
-        let guideWorker = GuideWorker(services: AppDelegate.appState.services)
-        guideWorker.setItemCompleted(id: id)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        qot_dal.log("dailyPrep://userNotificationCenter, willPresent notification:: \(notification)")
+        qot_dal.log("QOT will present notification:: \(notification)")
         completionHandler([.alert, .sound])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        qot_dal.log("dailyPrep://userNotificationCenter, didReceive response:: \(response.notification)")
-        if localNotificationHandlerDelegate?.localNotificationHandler(self,
-                                                                      canProcessNotification: response.notification) == true {
-            handleNotification(notification: response.notification)
-        } else {
-            unhandledNotifications.append(response.notification)
-        }
+        handleNotification(notification: response.notification)
         completionHandler()
     }
 }
@@ -384,23 +360,26 @@ extension AppDelegate {
         var didHandleActivity = true
         switch userActivity.activityType {
         case NSUserActivity.ActivityType.toBeVision.rawValue:
-            appCoordinator.presentToBeVision(articleItemController: nil)
+            // FIXME : SHOW TO BE Vision
+            break
         case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-            appCoordinator.presentToBeVisionGenerator()
+            // FIXME : SHOW TO BE Vision Generator
+            break
         case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-            let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
-            appCoordinator.presentWhatsHotArticle(with: id)
+            // FIXME : SHOW latest what's hot article
+            break
         case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-            appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
+            // FIXME : SHOW show know feed
+            break
         case NSUserActivity.ActivityType.eventsList.rawValue:
-            appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
+            // FIXME : SHOW My preparation
+            break
         case NSUserActivity.ActivityType.event.rawValue:
-            let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
-            appCoordinator.presentPreparationCheckList(localID: id)
+            // FIXME : SHOW  Preparation Detail
+            break
         case NSUserActivity.ActivityType.dailyPrep.rawValue:
-            let groupID: Int = Date().isWeekend ? 100010 : 100002
-            let date: ISODate = Calendar.current.isoDate(from: Date())
-            appCoordinator.presentMorningInterview(groupID: groupID, date: date)
+            // FIXME : SHOW Daily Check In
+            break
         default:
             didHandleActivity = false
         }
@@ -416,14 +395,14 @@ extension AppDelegate {
         if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
             events.events.forEach {
                 switch $0.key {
-                case ExtensionUserDefaults.toBeVision.rawValue:
-                    appCoordinator.sendAppEvent(.siriToBeVision, date: $0.date)
-                case ExtensionUserDefaults.whatsHot.rawValue:
-                    appCoordinator.sendAppEvent(.siriWhatsHot, date: $0.date)
-                case ExtensionUserDefaults.upcomingEvents.rawValue:
-                    appCoordinator.sendAppEvent(.siriUpcomingEvent, date: $0.date)
-                case ExtensionUserDefaults.dailyPrep.rawValue:
-                    appCoordinator.sendAppEvent(.siriDailyPrep, date: $0.date)
+                case ExtensionUserDefaults.toBeVision.rawValue: break
+//                    appCoordinator.sendAppEvent(.siriToBeVision, date: $0.date)
+                case ExtensionUserDefaults.whatsHot.rawValue: break
+//                    appCoordinator.sendAppEvent(.siriWhatsHot, date: $0.date)
+                case ExtensionUserDefaults.upcomingEvents.rawValue: break
+//                    appCoordinator.sendAppEvent(.siriUpcomingEvent, date: $0.date)
+                case ExtensionUserDefaults.dailyPrep.rawValue: break
+//                    appCoordinator.sendAppEvent(.siriDailyPrep, date: $0.date)
                 default: break
                 }
             }

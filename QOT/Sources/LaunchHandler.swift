@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import os.log
+import qot_dal
 
 enum LaunchOption: String {
     case edit
@@ -34,64 +35,179 @@ final class LaunchHandler {
             return
         }
 
-        if !appDelegate.appCoordinator.isReadyToOpenURL() {
+        if !appDelegate.appCoordinator.isReadyToOpenURL() || qot_dal.SessionService.main.getCurrentSession() == nil {
             RestartHelper.setRestartURL(url)
             return
         }
         RestartHelper.clearRestartRouteInfo()
 
-        var options: [LaunchOption: String?] = [:]
+        var queries: [String: String?] = [:]
         for queryItem in url.queryItems() {
-            if let option = LaunchOption(rawValue: queryItem.name) {
-                options[option] = queryItem.value
-            }
+            queries[scheme.queryName] = queryItem.value
         }
 
         switch scheme {
-        case .dailyPrep: dailyPrep(groupID: scheme.queryParameter(url: url),
-                                   notificationID: notificationID,
-                                   guideItem: guideItem)
-        case .fitbit: fitbit(accessToken: scheme.queryParameter(url: url))
-        case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
-        case .randomContent: randomContent(url: url, scheme: scheme, guideItem: guideItem)
-        case .myPreps: navigate(to: scheme.destination)
-        case .toBeVision: toBeVision(articleItemController: articleItemController, options: options)
-        case .weeklyPeakPerformance: navigate(to: scheme.destination)
-        case .contentCategory: contentCategory(collectionID: scheme.queryParameter(url: url))
-        case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
-        case .strategies: navigate(to: scheme.destination)
-        case .meUniverse: navigate(to: scheme.destination)
-        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentCalendar(from: articleItemController)
-        case .preferencesNotification: appDelegate.appCoordinator.presentNotificationsSettings()
-        case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor(from: articleItemController)
-        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentAddSensor(from: articleItemController)
-        case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
-        case .meActivity: navigateToMeCharts(sector: .activity)
-        case .meIntensity: navigateToMeCharts(sector: .intensity)
-        case .meMeeting: navigateToMeCharts(sector: .meetings)
-        case .meSleep: navigateToMeCharts(sector: .sleep)
-        case .meQotPartner: return
-        case .prepare: navigate(to: scheme.destination)
-        case .prepareProblem: navigateToPrepare(scheme.destination)
-        case .prepareEvent: navigateToPrepare(scheme.destination)
-        case .prepareDay: navigateToPrepare(scheme.destination)
-        case .comingEvent:
-            navigateToPrepare(scheme.destination, completion: {
-                self.appDelegate.appCoordinator.presentComingEvent()
+        case .dailyBrief,
+             .guide: showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryName] ?? nil)
+        case .dailyCheckIn,
+             .dailyPrep: showDailyCheckIn()
+        case .latestWhatsHotArticle:
+            qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+                guard let contentId = items?.first?.remoteID else { return }
+                self.showContentCollection(contentId)
             })
-        case .library: appDelegate.appCoordinator.presentLibrary()
-        case .profile: appDelegate.appCoordinator.presentProfile(options: options)
-        case .guide: navigate(to: scheme.destination)
-        case .latestWhatsHotArticle: navigate(to: scheme.destination)
-        case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
-        case .signingVerificationCode: signingVerificationCode(url: url)
-        case .siriSettings: appDelegate.appCoordinator.navigateToSiriSettings()
+        case .ouraring: NotificationCenter.default.post(name: .requestOpenUrl, object: url)
+        case .content_item,
+             .contentItem:
+            guard let itemIdString = queries[scheme.queryName] ?? nil, let itemId = Int(itemIdString) else { break }
+            showContentItem(itemId)
+        case .knowFeed,
+             .strategies: showFirstLevelScreen(page: .know)
+        case .myQOT,
+             .meUniverse,
+             .meQotPartner,
+             .meTravel: showFirstLevelScreen(page: .myQot)
+        case .coachMode: presentCoachModeScreen()
+        case .createSolveAChallenge,
+             .prepareProblem:
+            let configurator = DecisionTreeConfigurator.make(for: .solve)
+            let controller = DecisionTreeViewController(configure: configurator)
+            present(viewController: controller)
+        case .planASprint:
+            let configurator = DecisionTreeConfigurator.make(for: .sprint)
+            let controller = DecisionTreeViewController(configure: configurator)
+            present(viewController: controller)
+        case .tools,
+             .library:
+            guard let controller = R.storyboard.tools.toolsViewControllerID() else { return }
+            ToolsConfigurator.make(viewController: controller)
+            present(viewController: controller)
+        case .prepareEvent,
+             .prepareDay:
+            let configurator = DecisionTreeConfigurator.make(for: .solve)
+            let controller = DecisionTreeViewController(configure: configurator)
+            present(viewController: controller)
+        case .preparation: break // TODO: open specific preparation with QDMUserPreparation's local id
+        case .myPreparations,
+             .myPreps,
+             .comingEvent,
+             .prepare:
+            guard let controller = R.storyboard.myPreps.myPrepsViewControllerID() else { return }
+            MyPrepsConfigurator.configure(viewController: controller, delegate: nil)
+            push(viewController: controller)
+        case .myData,
+             .weeklyPeakPerformance,
+             .meMyWhy,
+             .meChoices,
+             .meActivity,
+             .meIntensity,
+             .meMeeting,
+             .meSleep,
+             .mePeakPerformance:
+            guard let controller = R.storyboard.myDataScreen.myDataScreenViewControllerID() else { return }
+            let configurator = MyDataScreenConfigurator.make()
+            configurator(controller)
+            push(viewController: controller)
+        case .toBeVision:
+            let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
+            guard let controller = R.storyboard.myToBeVision()
+                .instantiateViewController(withIdentifier: identifier) as? MyVisionViewController else { return }
+            MyVisionConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .mySprints:
+            guard let controller = R.storyboard.mySprints.mySprintsListViewController() else { return }
+            let configurator = MySprintsListConfigurator.make()
+            configurator(controller)
+            push(viewController: controller)
+        case .myLibrary:
+            guard let controller = R.storyboard.myLibrary.myLibraryCategoryListViewController() else { return }
+            let configurator = MyLibraryCategoryListConfigurator.make()
+            configurator(controller)
+            push(viewController: controller)
+        case .myProfile:
+            guard let controller = R.storyboard.myQot.myQotProfileID() else { return }
+            MyQotProfileConfigurator.configure(delegate: nil, viewController: controller)
+            push(viewController: controller)
+        case .syncedCalendars,
+             .preferencesSyncCalendar:
+            guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+            SyncedCalendarsConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .accountSetting,
+             .profile:
+            guard let controller = R.storyboard.myQot.myQotAccountSettingsViewController() else { return }
+             MyQotAccountSettingsConfigurator.configure(viewController: controller)
+             push(viewController: controller)
+        case .appSettings,
+             .preferencesNotification:
+            guard let controller = R.storyboard.myQot.myQotAppSettingsViewController() else { return }
+             MyQotAppSettingsConfigurator.configure(viewController: controller)
+             push(viewController: controller)
+        case .activityTrackers,
+             .addSensor,
+             .fitbitApp:
+            guard let controller = R.storyboard.myQot.myQotSensorsViewController() else { return }
+             MyQotSensorsConfigurator.configure(viewController: controller)
+             push(viewController: controller)
+        case .support:
+            guard let controller = R.storyboard.myQot.myQotSupportViewController() else { return }
+            MyQotSupportConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .tutorial: break
+        case .faq:
+            guard let controller = R.storyboard.myQot.myQotSupportFaqViewController() else { return }
+            MyQotSupportFaqConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .aboutTignum:
+            guard let controller = R.storyboard.myQot.myQotAboutUsViewController() else { return }
+            MyQotAboutUsConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .siriShortCuts,
+             .siriSettings:
+            guard let controller = R.storyboard.myQot.myQotSiriShortcutsViewController() else { return }
+            MyQotSiriShortcutsConfigurator.configure(viewController: controller)
+            push(viewController: controller)
+        case .qotBenefits: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.benefits.primaryKey)
+        case .aboutTignumDetail: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.about.primaryKey)
+        case .privacy: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.privacy.primaryKey)
+        case .termsAndConditions: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.terms.primaryKey)
+        case .contentCopyrights: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.copyright.primaryKey)
+        case .performanceFoundation: showLearnStrategy(nil)
+        case .performanceHabituation: showLearnStrategy(.PerformanceHabituation)
+        case .performanceRecovery: showLearnStrategy(.PerformanceRecovery)
+        case .performanceNutrition: showLearnStrategy(.PerformanceNutrition)
+        case .performanceMovement: showLearnStrategy(.PerformanceMovement)
+        case .performanceMindset: showLearnStrategy(.PerformanceMindset)
+        case .contentCategory:
+            guard let categoryIdString = queries.first?.value, let categoryId = Int(categoryIdString) else { break }
+            showCategory(categoryId)
+        case .randomContent,
+             .featureExplainer:
+            guard let contentIdString = queries[scheme.queryName] ?? nil, let contentId = Int(contentIdString) else { break }
+            showContentCollection(contentId)
         case .qrcode0001,
              .qrcode0002,
              .qrcode0003,
-             .qrcode0004: appDelegate.appCoordinator.presentQRCodeURL(url)
-        default:
+             .qrcode0004: presentQRCodeURL(url)
+        default: break
+        }
+        NotificationCenter.default.post(name: .stopAudio, object: nil)
+        qot_dal.NotificationService.main.reportVisitedNotificationLink(url.absoluteString) { (_) in /* WOW */}
+    }
+
+    func presentQRCodeURL(_ url: URL) {
+        guard let settingKey = SettingKey(rawValue: url.absoluteString) else {
             return
+        }
+        qot_dal.SettingService.main.getSettingFor(key: settingKey) { (setting, _, error) in
+            guard let setting = setting, error == nil,
+                let urlString = setting.textValue,
+                let targetURL = URL(string: urlString) else {
+                return
+            }
+            DispatchQueue.main.async {
+                UIApplication.shared.open(targetURL, options: [:], completionHandler: nil)
+            }
         }
     }
 
@@ -106,26 +222,6 @@ final class LaunchHandler {
         guard let alternative = URL(string: schemeEnum.alternativeURLString) else { return }
         UIApplication.shared.open(alternative, options: [:], completionHandler: nil)
     }
-
-    func navigatToSideBar(with destination: AppCoordinator.Router.Destination?) {
-        guard let destination = destination else { return }
-        appDelegate.appCoordinator.presentSideBarWithDestination(destination)
-    }
-
-    func navigate(to destination: AppCoordinator.Router.Destination?) {
-        guard let destination = destination else { return }
-        appDelegate.appCoordinator.navigate(to: destination)
-    }
-
-    func navigateToMeCharts(sector: StatisticsSectionType) {
-        appDelegate.appCoordinator.presentMeCharts(sector: sector)
-    }
-
-    func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?, completion: (() -> Void)? = nil) {
-        guard let destination = destination else { return }
-        appDelegate.appCoordinator.presentPrepare(destination)
-        completion?()
-    }
 }
 
 // MARK: - Preparation
@@ -133,190 +229,134 @@ final class LaunchHandler {
 extension LaunchHandler {
 
     func preparation(localID: String?) {
-        guard let localID = localID else { return }
-        appDelegate.appCoordinator.presentPreparationCheckList(localID: localID)
+//        guard let localID = localID else { return }
+        // FIXME: Show preparation detail
     }
 }
 
-// MARK: - Fitbit
+// MARK: - Show Screen
 
 extension LaunchHandler {
 
-    func fitbit(accessToken: String?) {
-        NotificationCenter.default.post(name: .fitbitAccessTokenReceivedNotification, object: nil)
-        sendAccessToken(accessToken: accessToken)
-    }
-
-    private func sendAccessToken(accessToken: String?) {
-        guard let accessToken = accessToken else {
-            showTemporaryHUD(type: .fitbitFailure)
+    func showFirstLevelScreen(page: CoachCollectionViewController.Pages,
+                              _ bucketName: String? = nil,
+                              _ knowingSection: Knowing.Section? = nil) {
+        guard let mainNavi = baseRootViewController?.navigationController else {
             return
         }
-
-        SVProgressHUD.show()
-        do {
-            let body = try ["accessToken": accessToken].toJSON().serialize()
-            let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
-
-            let networkManager = appDelegate.appCoordinator.networkManager
-            networkManager.request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
-                SVProgressHUD.dismiss()
-                switch result {
-                case .success:
-                    self.showTemporaryHUD(type: .fitbitSuccess)
-                case .failure(let error):
-                    self.handleFitbitFailure(error)
-                }
-            }
-        } catch let error {
-            SVProgressHUD.dismiss()
-            self.showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(),
-                                                message: error.localizedDescription))
+        mainNavi.popToRootViewController(animated: true)
+        mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
+            NotificationCenter.default.post(name: .showFirstLevelScreen, object: page)
         }
-    }
 
-    private func handleFitbitFailure(_ error: NetworkError) {
-        switch error.type {
-        case .unauthenticated: showTemporaryHUD(type: .unauthenticated)
-        case .noNetworkConnection: showTemporaryHUD(type: .noNetworkConnection)
-        case .unknown(let error, _),
-             .failedToParseData(_, let error):
-            showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(),
-                                           message: error.localizedDescription))
-        case .cancelled: showTemporaryHUD(type: .fitbitFailure)
-        default: break
+        if let section = knowingSection {
+            NotificationCenter.default.post(name: .showKnowingSection, object: section)
         }
-    }
 
-    private func showTemporaryHUD(type: AlertType) {
-        var fullMessage: String = ""
-        if let title = type.title {
-            fullMessage = title
-            if type.message != nil {
-                fullMessage += "\n"
+        if let bucket = bucketName {
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1) + .microseconds(500)) {
+                NotificationCenter.default.post(name: .scrollToBucket, object: bucket)
             }
         }
-        if let message = type.message {
-            fullMessage.append(message)
-        }
-        if !fullMessage.isEmpty {
-            SVProgressHUD.showInfo(withStatus: fullMessage)
-        }
     }
 
-    private func notificationIsCompleted(remotID: Int) throws -> Bool {
-        let realmProvider = RealmProvider()
-        let realm = try realmProvider.realm()
-        let type = RealmGuideItemNotification.self
-        return realm.syncableObject(ofType: type, remoteID: remotID)?.completedAt != nil
-    }
-
-    private func dailyPrepIsCompleted(date: ISODate) throws -> Bool {
-        let realmProvider = RealmProvider()
-        let realm = try realmProvider.realm()
-        return realm.objects(DailyPrepResultObject.self).filter("isoDate == %@", date.string).count > 0
-    }
-}
-
-// MARK: - Morning Interview
-
-extension LaunchHandler {
-
-    func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
-        guard let group = groupID,
-            let groupIDIntValue = Int(group),
-            let date = NotificationID(string: notificationID).dailyPrepContent,
-            let alreadyCompleted = try? dailyPrepIsCompleted(date: date) else {
-            let groupIDString = groupID.debugDescription
-            log("Cannot show daily prep - groupID: \(groupIDString) notificationID: \(notificationID)", level: .error)
-            return
-        }
-        if alreadyCompleted == true {
-            navigate(to: URLScheme.guide.destination)
-        } else {
-            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, date: date)
-        }
-    }
-}
-
-// MARK: - Random Content
-
-extension LaunchHandler {
-
-    func randomContent(url: URL, scheme: URLScheme, guideItem: Guide.Item? = nil) {
-        guard
-            let contentIDString = scheme.queryParameter(url: url),
-            let contentID = Int(contentIDString) else { return }
-        let identifier = R.storyboard.main.qotArticleViewController.identifier
-        if let controller = R.storyboard
-            .main().instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
-            ArticleConfigurator.configure(selectedID: contentID, viewController: controller)
-            baseRootViewController?.present(controller, animated: true, completion: nil)
-        }
-    }
-}
-
-// MARK: - To Be Vision
-
-extension LaunchHandler {
-
-    func toBeVision(articleItemController: ArticleItemViewController?, options: [LaunchOption: String?]) {
-        appDelegate.appCoordinator.presentToBeVision(articleItemController: articleItemController, options: options)
-    }
-}
-
-// MARK: - ContentCategory - ContentCollection
-
-extension LaunchHandler {
-
-    func contentCategory(collectionID: String?) {
-        appDelegate.appCoordinator.presentLearnContentCollection(collectionID: collectionID)
-    }
-}
-
-// MARK: - FeatureExplainer
-
-extension LaunchHandler {
-
-    func featureExplainer(url: URL, scheme: URLScheme, guideItem: Guide.Item?) {
-        if
-            let guideItem = guideItem,
-            let contentIDString = scheme.queryParameter(url: url),
-            let contentID = Int(contentIDString) {
-            if guideItem.link?.description == "qot://feature-explainer?contentID=100101" { // QOT Benefits
-                appDelegate.appCoordinator.presentContentItemSettings(contentID: contentID,
-                                                                      controller: appDelegate.window?.rootViewController,
-                                                                      pageName: .featureExplainer)
+    func showDailyCheckIn() {
+        qot_dal.MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { (results, initialized, error) in
+            guard initialized == true, error == nil else {
+                return // DO NOTHING
+            }
+            if results?.first != nil {
+                self.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
             } else {
-                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
-                                                                             guideItem: guideItem)
+                guard let viewController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
+                DailyCheckinStartConfigurator.configure(viewController: viewController)
+                self.present(viewController: viewController)
             }
-        } else if
-            let contentIDString = scheme.queryParameter(url: url),
-            let contentID = Int(contentIDString),
-            let notificationIDString = scheme.pushNotificationID(url: url),
-            let notificationID = Int(notificationIDString) {
-            appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
-                                                                         notificationID: notificationID)
         }
     }
 
-    func contentItem(url: URL, scheme: URLScheme, searchViewController: SearchViewController?) {
-        guard
-            let contentIDString = scheme.queryParameter(url: url),
-            let contentID = Int(contentIDString) else { return }
-        appDelegate.appCoordinator.presentContentItem(contentID: contentID, searchViewController: searchViewController)
+    func showContentItem(_ itemId: Int) {
+        //        guard let localID = localID else { return }
+        // FIXME: Show preparation detail
+        qot_dal.ContentService.main.getContentItemById(itemId) { (contentItem) in
+            guard let contentItem = contentItem else { return }
+            switch contentItem.format {
+            case .pdf:
+                let storyboard = R.storyboard.pdfReaderViewController
+                guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController,
+                let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController,
+                    let pdfURL = URL(string: contentItem.valueMediaURL ?? "") else {
+                    return
+                }
+                let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemId,
+                                                                       title: contentItem.valueText,
+                                                                       url: pdfURL)
+                pdfReaderConfigurator(readerViewController)
+                self.present(viewController: navigationController)
+            case .audio,
+                 .video:
+                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
+                baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem)
+            default: break
+            }
+        }
     }
-}
 
-// MARK: - SigningVerificationCode
+    func showContentCollection(_ collectionId: Int) {
+        qot_dal.ContentService.main.getContentCollectionById(collectionId, { (content) in
+            guard let contentCollection = content else { return }
+            if contentCollection.contentItems.count == 1,
+                (contentCollection.section == .LearnStrategies || contentCollection.section == .Tools || contentCollection.section == .QOTLibrary),
+                let contentItemId = contentCollection.contentItems.first?.remoteID {
+                self.showContentItem(contentItemId)
+                return
+            }
 
-extension LaunchHandler {
-
-    func signingVerificationCode(url: URL) {
-        guard url.pathComponents.count == 4 else { return }
-        let verificationCode = url.pathComponents[1]
-        let email = url.pathComponents[3]
-        appDelegate.appCoordinator.presentSigningVerificationView(code: verificationCode, email: email)
+            if let controller = R.storyboard.main.qotArticleViewController() {
+                ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
+                self.present(viewController: controller)
+            }
+        })
     }
+
+    func presentCoachModeScreen() {
+        guard let mainNavi = baseRootViewController?.navigationController else {
+            return
+        }
+        guard let coachViewController = R.storyboard.coach.coachViewControllerID() else {
+            return
+        }
+        CoachConfigurator.make(viewController: coachViewController)
+        let coachScreenNavigationController = UINavigationController(rootViewController: coachViewController)
+        coachScreenNavigationController.modalTransitionStyle = .coverVertical
+        coachScreenNavigationController.isNavigationBarHidden = true
+        coachScreenNavigationController.isToolbarHidden = true
+        coachScreenNavigationController.view.backgroundColor = .clear
+        mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
+            self.present(viewController: coachScreenNavigationController)
+        }
+    }
+
+    func showLearnStrategy(_ category: qot_dal.ContentCategory?) {
+        showCategory(category?.rawValue)
+    }
+
+    func showCategory(_ categoryId: Int?) {
+        if let controller = R.storyboard.main.qotStrategyListViewController() {
+            StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: categoryId)
+            push(viewController: controller)
+        }
+    }
+
+    func push(viewController: UIViewController) {
+        guard let mainNavi = baseRootViewController?.navigationController else {
+            return
+        }
+        baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
+    }
+
+    func present(viewController: UIViewController) {
+        baseRootViewController?.present(viewController, animated: true, completion: nil)
+    }
+
 }

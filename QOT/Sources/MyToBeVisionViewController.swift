@@ -314,7 +314,7 @@ private extension MyToBeVisionViewController {
         if isEditing == true {
             headlineTextView.becomeFirstResponder()
             tempImageURL = interactor?.myToBeVision?.imageURL
-            AppDelegate.current.appCoordinator.sendAppEvent(.didStartEditingVision)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
         } else {
             view.endEditing(isEditing)
         }
@@ -549,10 +549,9 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
         if isEditing == true {
             cancelEdit()
             toBeVisionDidUpdate()
-            AppDelegate.current.appCoordinator.sendAppEvent(.didCancelEditingVision)
+            // FIXME: THIS VIEW CONTROLLER IS NOT USED
         } else {
-            AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
-                                                                                 leftButtonPressed: button)
+            // FIXME: THIS VIEW CONTROLLER IS NOT USED
         }
     }
 
@@ -561,10 +560,9 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         if isEditing == true {
             saveEdit()
-            AppDelegate.current.appCoordinator.sendAppEvent(.didTapSaveVision)
+            // FIXME: THIS VIEW CONTROLLER IS NOT USED
         } else {
-            AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
-                                                                                 rightButtonPressed: button)
+            // FIXME: THIS VIEW CONTROLLER IS NOT USED
         }
     }
 

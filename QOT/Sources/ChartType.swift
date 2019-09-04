@@ -35,16 +35,6 @@ enum ChartType: String {
     case intensityRecoveryWeek = "intensity.recovery.week"
     case intensityRecoveryMonth = "intensity.recovery.month"
 
-    var infoViewNavigation: AppCoordinator.Router.Destination? {
-        switch self {
-        case .meetingAverageDay,
-             .meetingAverageWeek,
-             .meetingLength,
-             .meetingTimeBetween: return AppCoordinator.Router.Destination(preferences: .calendarSync)
-        default: return nil
-        }
-    }
-
     var infoViewNavigationButtonTitle: String? {
         switch self {
         case .meetingAverageDay,

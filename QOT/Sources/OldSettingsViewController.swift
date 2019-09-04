@@ -23,7 +23,6 @@ final class OldSettingsViewController: UIViewController {
     private var tableView: UITableView!
     private let locationManager = CLLocationManager()
     private var pickerViewHeight: NSLayoutConstraint?
-    private var destination: AppCoordinator.Router.Destination?
     private var pickerItems: UserMeasurement?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
@@ -61,12 +60,10 @@ final class OldSettingsViewController: UIViewController {
 
     init(viewModel: SettingsViewModel,
          services: Services,
-         settingsType: SettingsType.SectionType,
-         destination: AppCoordinator.Router.Destination?) {
+         settingsType: SettingsType.SectionType) {
         self.viewModel = viewModel
         self.settingsType = settingsType
         self.services = services
-        self.destination = destination
         super.init(nibName: nil, bundle: nil)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTableView(_:)),
@@ -108,8 +105,7 @@ final class OldSettingsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard destination != nil else { return }
-        destination = nil
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     @objc func reloadTableView(_ notification: Notification) {

@@ -10,6 +10,10 @@ import UIKit
 import qot_dal
 import DifferenceKit
 
+public extension Notification.Name {
+    static let scrollToBucket = Notification.Name("scrollToBucket")
+}
+
 final class DailyBriefInteractor {
 
     // MARK: - Properties
@@ -42,6 +46,10 @@ final class DailyBriefInteractor {
         // Listen about Expend/Collapse of Closed Guided Track
         NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
                                                name: .displayGuidedTrackRows, object: nil)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didGetScrollNotificationToBucket(_ :)),
+                                               name: .scrollToBucket, object: nil)
 
         getDailyBriefBucketsForViewModel()
     }
@@ -79,6 +87,15 @@ extension DailyBriefInteractor {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
     }
+
+    @objc func didGetScrollNotificationToBucket(_ notification: Notification) {
+        guard let bucketName = notification.object as? DailyBriefBucketName else { return }
+        switch bucketName {
+        default:
+            // @Srikanth, Zeljko : We need to scroll to the bucket.
+            qot_dal.log("did get scroll notification to bucket: \(bucketName)", level: .info)
+        }
+    }
 }
 
 // MARK: - DailyBriefInteractorInterface
@@ -89,7 +106,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func displayCoachPreparationScreen() {
         router.displayCoachPreparationScreen()
     }
-    
+
     func updateViewModelList(_ list: [BaseDailyBriefViewModel]) {
         viewModelOldList = list
     }
@@ -144,7 +161,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .aboutMe, elements: self.createAboutMe(aboutMeBucket: bucket)))
                 case .SOLVE_REFLECTION?:
                     sectionDataList.append(ArraySection(model: .solveReflection, elements: self.createSolveViewModel(bucket: bucket)))
-               case .GUIDE_TRACK?:
+                case .GUIDE_TRACK?:
                     sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
@@ -793,11 +810,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
      */
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
-        let guidedTrackBucketTitle = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_title")}
+        let guidedTrackBucketTitle = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_title")}
             .first?.valueText ?? ""
-        let guidedTrackIntro = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_intro")}
+        let guidedTrackIntro = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_intro")}
             .first?.valueText ?? ""
-        let guidedTrackCta = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_cta")}
+        let guidedTrackCta = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_cta")}
             .first?.valueText ?? ""
         guidedtrackList.append(GuidedTrackViewModel(bucketTitle: guidedTrackBucketTitle,
                                                     levelTitle: "",
@@ -825,7 +842,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         content: levelDescription,
                                                         buttonText: levelCta,
                                                         type: GuidedTrackItemType.ROW,
-                                                        appLink:appLink,
+                                                        appLink: appLink,
                                                         domain: guidedTrack))
         }
         return guidedtrackList

@@ -24,6 +24,7 @@ protocol PDFReaderInteractorInterface: Interactor {
     func didTapReload()
     func didTapDone()
     func didTapShare()
+    func contentItemId() -> Int?
 }
 
 protocol PDFReaderRouterInterface {

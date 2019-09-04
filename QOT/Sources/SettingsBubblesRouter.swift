@@ -54,9 +54,7 @@ private extension SettingsBubblesRouter {
     }
 
     func presentContentItem(id: Int, pageName: PageName) {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id,
-                                                                      controller: viewController,
-                                                                      pageName: pageName)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func presentFAQ() {

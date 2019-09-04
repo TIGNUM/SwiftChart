@@ -112,7 +112,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     weak var delegate: ChartCellDelegate?
     weak var controllerDelegate: ChartViewControllerDelegate?
     private var selectedButtonTag = 0
-    private var infoViewDestination: AppCoordinator.Router.Destination?
     private var chartTypes = [ChartType]()
     private var statistics: Statistics?
     private var charts: [Statistics] = []
@@ -467,7 +466,7 @@ private extension ChartCell {
     }
 
     @IBAction func infoNavigationButtonPressed(_ sender: UIButton) {
-        AppDelegate.current.appCoordinator.navigateToCalendarSettings(infoViewDestination)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     @IBAction func closeInfoView() {
@@ -558,16 +557,7 @@ private extension ChartCell {
     }
 
     func setupInfoViewNavigationButton() {
-        infoVieNavigationButton.isHidden = true
-        guard
-            let destination = statistics?.chartType.infoViewNavigation,
-            let buttonTitle = statistics?.chartType.infoViewNavigationButtonTitle?.uppercased() else { return }
-        infoVieNavigationButton.isHidden = false
-        infoVieNavigationButton.setAttributedTitle(ThemeText.articleTag.attributedString(buttonTitle),
-                                                   for: .normal)
-        infoVieNavigationButton.setAttributedTitle(ThemeText.articleTagSelected.attributedString(buttonTitle),
-                                                   for: .selected)
-        infoViewDestination = destination
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 }
 

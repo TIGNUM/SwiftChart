@@ -118,4 +118,3 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 }
-

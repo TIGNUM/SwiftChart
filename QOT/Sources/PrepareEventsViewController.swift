@@ -55,13 +55,7 @@ final class PrepareEventsViewController: UIViewController {
     }
 
     @IBAction func didTapSavePreparation(_ sender: Any) {
-        if self.viewModel.availableCalendarCount > 0 {
-            delegate?.didTapAddNewTrip(viewController: self)
-        } else {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
-                AppDelegate.current.appCoordinator.navigateToCalendarSettings(AppCoordinator.Router.Destination(preferences: .calendarSync))
-            })
-        }
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     // MARK: - Private

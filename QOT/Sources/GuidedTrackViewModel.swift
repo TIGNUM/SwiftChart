@@ -20,7 +20,7 @@ final class GuidedTrackViewModel: BaseDailyBriefViewModel {
     var type: GuidedTrackItemType?
 
     // MARK: - Init
-    internal init(bucketTitle: String = "", levelTitle: String, content: String?, buttonText: String?, type: GuidedTrackItemType?, appLink: String?,  domain: QDMDailyBriefBucket) {
+    internal init(bucketTitle: String = "", levelTitle: String, content: String?, buttonText: String?, type: GuidedTrackItemType?, appLink: String?, domain: QDMDailyBriefBucket) {
         self.bucketTitle = bucketTitle
         self.levelTitle = levelTitle
         self.content = content

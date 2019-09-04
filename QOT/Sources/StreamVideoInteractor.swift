@@ -20,6 +20,7 @@ protocol StreamVideoInteractorInterface {
     var noWifiMessage: String { get }
     var cancelButtonTitle: String { get }
     var yesContinueButtonTitle: String { get }
+    var contentItemId: Int? { get }
 
     var isBookmarked: Bool { get }
     var isLoggedIn: Bool { get }
@@ -67,6 +68,10 @@ final class StreamVideoInteractor {
 
     var yesContinueButtonTitle: String {
         return worker.yesContinueButtonTitle
+    }
+
+    var contentItemId: Int? {
+        return worker.contentItemId
     }
 }
 

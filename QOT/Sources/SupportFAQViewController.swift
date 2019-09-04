@@ -67,9 +67,6 @@ extension SupportFAQViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let contentID = interactor?.item(at: indexPath).remoteID.value else { return }
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: contentID,
-                                                                      controller: self,
-                                                                      pageName: .faq)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 }

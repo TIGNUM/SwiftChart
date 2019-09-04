@@ -90,6 +90,7 @@ extension UIViewController {
         case is AskPermissionViewController: return askPermissionPageKey
         case is ChoiceViewController: return "prepare.result.add.remove.strategies"
         case is MediaPlayerViewController: return "fullscreen.videoPlayer"
+        case is PDFReaderViewController: return "fullscreen.pdfreader"
         default: preconditionFailure()
         }
     }

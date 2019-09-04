@@ -36,15 +36,11 @@ extension SigningProfileDetailRouter: SigningProfileDetailRouterInterface {
     }
 
     func showTermsOfUse() {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: 100102,
-                                                                      controller: viewController,
-                                                                      pageName: .terms)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func showPrivacyPolicy() {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: 100163,
-                                                                      controller: viewController,
-                                                                      pageName: .privacy)
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 
     func add3DTouchShortcuts() {

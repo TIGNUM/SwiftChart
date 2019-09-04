@@ -11,7 +11,7 @@ import Foundation
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     var markSeenTimer: Timer = Timer()
 
-    func setTimer(with timeInterval: TimeInterval,  completion: @escaping() -> Void) {
+    func setTimer(with timeInterval: TimeInterval, completion: @escaping() -> Void) {
         markSeenTimer = Timer.init(timeInterval: timeInterval, repeats: false, block: { _ in
             completion()
         })

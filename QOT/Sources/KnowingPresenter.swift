@@ -31,4 +31,8 @@ extension KnowingPresenter: KnowingPresenterInterface {
     func reload() {
         viewController?.reload()
     }
+
+    func scrollToSection(_ section: Knowing.Section) {
+        viewController?.scrollToSection(section.rawValue)
+    }
 }

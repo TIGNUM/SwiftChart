@@ -149,7 +149,7 @@ final class UserNotificationsManager {
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let identifier = QDMGuideItemNotfication.notificationIdentifier(with: sprintConfig.sprintType,
                                                                                     date: triggerDate,
-                                                                                    link: "qot://sprint")
+                                                                                    link: "qot://daily-brief?bucketName=sprint")
                     requests.append(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger))
                 }
                 dispatchGroup.leave()

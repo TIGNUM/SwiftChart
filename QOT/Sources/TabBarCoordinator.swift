@@ -306,8 +306,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
                                              services: services,
                                              syncManager: syncManager,
                                              networkManager: networkManager,
-                                             permissionsManager: permissionsManager,
-                                             destination: nil)
+                                             permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 
@@ -356,8 +355,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
                                              services: services,
                                              syncManager: syncManager,
                                              networkManager: networkManager,
-                                             permissionsManager: permissionsManager,
-                                             destination: nil)
+                                             permissionsManager: permissionsManager)
         startChild(child: coordinator)
     }
 

@@ -15,8 +15,7 @@ import SVProgressHUD
 protocol ChatViewControllerDelegate: class {
 
     func cellDidAppear(viewController: UIViewController,
-                       collectionView: UICollectionView,
-                       destination: AppCoordinator.Router.Destination?)
+                       collectionView: UICollectionView)
 }
 
 private struct SizeCacheKey: Hashable {
@@ -68,7 +67,6 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     private var visionChoice: VisionGeneratorChoice?
     private var eventTracker: EventTracker?
     weak var routerDelegate: ChatViewControllerDelegate?
-    var destination: AppCoordinator.Router.Destination?
     let viewModel: ChatViewModel<T>
     let page: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
@@ -168,8 +166,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
                 }, completion: { (_) -> Void in
                     self.scrollToSnapOffset(animated: true)
                     self.routerDelegate?.cellDidAppear(viewController: self,
-                                                       collectionView: self.collectionView,
-                                                       destination: self.destination)
+                                                       collectionView: self.collectionView)
                 })
             }
         }.dispose(in: disposeBag)
@@ -563,8 +560,6 @@ extension ChatViewController: ChatViewControllerInterface {
     }
 
     func showContent(_ contentID: Int, choice: VisionGeneratorChoice) {
-        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID) {
-            self.loadNextQuestions(choice)
-        }
+        // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
 }
