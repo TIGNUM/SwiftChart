@@ -37,10 +37,12 @@ protocol TrackSelectionInteractorInterface: Interactor {
     var fastTrackButton: String { get }
     var guidedTrackButton: String { get }
 
+    func askNotificationPermissions()
     func didTapFastTrack()
     func didTapGuidedTrack()
 }
 
 protocol TrackSelectionRouterInterface {
     func openWalktrough(with trackType: SelectedTrackType)
+    func showLocationPersmission(completion: (() -> Void)?)
 }

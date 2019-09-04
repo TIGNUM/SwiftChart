@@ -172,12 +172,9 @@ private extension RegistrationInteractor {
         if let tbv = cachedTBV {
             worker.updateToBeVision(with: tbv)
         }
-        // Present location permission request screen
-        router.showLocationPersmission {
-            // When permission is displayed exchange the underlying controller to track selection screen
-            self.presentedControllers.append(self.trackSelectionController)
-            self.presenter.present(controller: self.trackSelectionController, direction: .forward)
-        }
+
+        self.presentedControllers.append(self.trackSelectionController)
+        self.presenter.present(controller: self.trackSelectionController, direction: .forward)
     }
 
     func navigateToLogin(with email: String?, toBeVision: Bool) {

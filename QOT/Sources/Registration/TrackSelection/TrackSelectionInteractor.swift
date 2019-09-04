@@ -58,6 +58,10 @@ final class TrackSelectionInteractor {
 
 extension TrackSelectionInteractor: TrackSelectionInteractorInterface {
 
+    func askNotificationPermissions() {
+        router.showLocationPersmission(completion: nil)
+    }
+
     func didTapFastTrack() {
         router.openWalktrough(with: .fast)
     }

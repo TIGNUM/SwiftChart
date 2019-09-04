@@ -16,6 +16,7 @@ final class TrackSelectionViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet private weak var dashView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
+    private var askedNotificationPermissions: Bool = false
 
     var interactor: TrackSelectionInteractorInterface?
 
@@ -46,6 +47,14 @@ final class TrackSelectionViewController: UIViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if !askedNotificationPermissions {
+            interactor?.askNotificationPermissions()
+            askedNotificationPermissions = true
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
