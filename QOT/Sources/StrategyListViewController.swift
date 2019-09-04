@@ -16,6 +16,9 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
 
     var interactor: StrategyListInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
 
     // MARK: - Life Cycle
 
@@ -24,11 +27,6 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         ThemeView.level2.apply(self.view)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func viewDidAppear(_ animated: Bool) {

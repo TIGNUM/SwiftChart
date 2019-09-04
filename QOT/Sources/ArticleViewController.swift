@@ -164,11 +164,11 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
+        setColorMode()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setColorMode()
         tableView.reloadData()
     }
 
@@ -179,7 +179,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        setStatusBar(colorMode: ColorMode.darkNot)
         colorModeIsActive = false
     }
 
@@ -259,6 +258,7 @@ private extension ArticleViewController {
                 topTitleNavigationItem.title = header?.title
             }
         }
+        setNeedsStatusBarAppearanceUpdate()
     }
 }
 

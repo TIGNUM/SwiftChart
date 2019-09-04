@@ -348,6 +348,15 @@ extension UITableViewCell {
     }
 }
 
+extension UINavigationController {
+    override open var preferredStatusBarStyle: UIStatusBarStyle {
+        if let vc = self.viewControllers.last {
+            return vc.preferredStatusBarStyle
+        }
+        return .lightContent
+    }
+}
+
 extension UIView {
     override open func value(forUndefinedKey key: String) -> Any? {
         return nil

@@ -57,7 +57,6 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
-        setStatusBar(colorMode: ColorMode.dark)
         setAllControl(newAlpha: 1.0)
     }
 
