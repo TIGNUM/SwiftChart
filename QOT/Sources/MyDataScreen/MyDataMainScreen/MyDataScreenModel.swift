@@ -20,7 +20,9 @@ enum MyDataParameter: Int, CaseIterable {
 }
 
 struct MyDataDailyCheckInModel: Codable {
+    static let defaultAverageValue: Double = 70
     var date: Date
+    // all values below are percentages with maximum value of 100
     var impactReadiness: Double?
     var sleepQuality: Double?
     var sleepQuantity: Double?
@@ -29,16 +31,29 @@ struct MyDataDailyCheckInModel: Codable {
     var tenDayLoad: Double?
     var fiveDayImpactReadiness: Double?
     var averageUsersImpactReadiness: Double?
-    var tenDaysFutureLoad: Double? // max 10
+    var tenDaysFutureLoad: Double?
 
-    init(withDailyCheckInResult: QDMDailyCheckInResult) {
+    init(withDailyCheckInResult: QDMDailyCheckInResult, _ average: Double = MyDataDailyCheckInModel.defaultAverageValue) {
         date = withDailyCheckInResult.date
         impactReadiness = (withDailyCheckInResult.impactReadiness ?? 0)
-        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0)
-        sleepQuantity = (withDailyCheckInResult.sleepQuantity ?? 0)
-        tenDayLoad = (withDailyCheckInResult.load ?? 0)
-        fiveDayRecovery = ((withDailyCheckInResult.sleepQuantity ?? 0) + (withDailyCheckInResult.sleepQuality ?? 0))/2
-        averageUsersImpactReadiness = 70
+        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0) * 10
+        if let quantity = withDailyCheckInResult.sleepQuantity,
+            let target = withDailyCheckInResult.targetSleepQuantity,
+            quantity > 0 {
+            sleepQuantity = max(quantity/target*100, 100)
+        }
+        if let fiveDaySleepQuality = withDailyCheckInResult.fiveDaysSleepQuality,
+           let fiveDaySleepQuantity = withDailyCheckInResult.fiveDaysSleepQuantity,
+           let target = withDailyCheckInResult.targetSleepQuantity,
+            withDailyCheckInResult.hasFiveDaysDataForSleepQuality,
+            withDailyCheckInResult.hasFiveDaysDataForSleepQuantity {
+            fiveDayRecovery = (fiveDaySleepQuantity/5/target*100 + fiveDaySleepQuality*10)/2
+        }
+
+        fiveDayLoad = (withDailyCheckInResult.fiveDaysload ?? 0) * 10
+        tenDayLoad = (withDailyCheckInResult.load ?? 0) * 10
+        fiveDayImpactReadiness = (withDailyCheckInResult.fiveDaysImpactReadiness ?? 0)
+        averageUsersImpactReadiness = (average >= MyDataDailyCheckInModel.defaultAverageValue) ? average : MyDataDailyCheckInModel.defaultAverageValue
     }
 }
 
