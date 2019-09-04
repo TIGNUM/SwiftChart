@@ -20,6 +20,7 @@ enum ApiResponseResult {
     case noSubscription
     case userDoesNotExist
     case unableToRegister
+    case allowedToRegister
     case appVersionInvalid
 }
 
@@ -104,6 +105,7 @@ extension BaseSigningWorker {
         case .INVALID_APP_VERSION: return .appVersionInvalid
         case .USER_DOESNT_EXIST: return .userDoesNotExist
         case .SUBSCRIPTION_DOES_NOT_EXIST: return .noSubscription
+        case .REGISTRATION_ALLOWED: return .allowedToRegister
         default: return .invalid
         }
     }

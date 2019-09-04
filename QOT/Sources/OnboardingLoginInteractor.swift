@@ -84,15 +84,13 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         presenter.presentActivity(state: .inProgress)
         worker.verifyEmail(email) { [weak self] (result, error) in
             if case .userExists = result.code {
+                // Success
                 self?.didTapSendCode(to: email)
                 return
-            } else if let error = error {
-                qot_dal.log("Failed to verify email: \(error)", level: .debug)
-                self?.viewModel.emailError = self?.worker.emailError
-            } else if case .userDoesNotExist = result.code {
+            } else if case .allowedToRegister = result.code {
                 self?.viewModel.emailError = self?.worker.emailUserDoesntExist
             } else {
-                self?.viewModel.emailError = self?.worker.generalEMailError
+                self?.viewModel.emailError = result.message ?? self?.worker.generalEMailError
             }
             self?.viewModel.sendCodeEnabled = true
             self?.presenter.present()
@@ -109,13 +107,11 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         presenter.presentActivity(state: .inProgress)
         worker.requestCode(for: email) { [weak self] (result, error) in
             if case .codeSent = result.code {
+                // Success
                 self?.presenter.presentCodeEntry()
                 self?.viewModel.sendCodeEnabled = true
-            } else if let error = error {
-                qot_dal.log("Failed to request login code: \(error)", level: .debug)
-                self?.viewModel.emailError = self?.worker.emailError
             } else {
-                self?.viewModel.emailError = self?.worker.generalEMailError
+                self?.viewModel.emailError = result.message ?? self?.worker.generalEMailError
             }
             self?.viewModel.sendCodeEnabled = true
             self?.presenter.present()
@@ -146,10 +142,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
             }
 
             // Unsuccessful code check
-            self?.viewModel.codeError = self?.worker.codeError
-            if let error = error {
-                qot_dal.log("Error sending login code: \(error)", level: .debug)
-            }
+            self?.viewModel.codeError = result.message ?? self?.worker.codeError
             self?.presenter.present()
         }
     }

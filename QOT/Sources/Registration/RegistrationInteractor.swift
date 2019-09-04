@@ -145,15 +145,12 @@ extension RegistrationInteractor: RegistrationDelegate {
         worker.createAccount(with: registrationData) { [weak self] (result, error) in
             guard let strongSelf = self else { return }
             self?.presenter.presentActivity(state: nil)
-            if case .userCreated =  result {
+            if case .userCreated =  result.code {
                 // Success
                 self?.handleSuccess()
             } else {
                 // Failure
-                if let error = error {
-                    qot_dal.log("Error while creating an account. Error: \(error)", level: .debug)
-                }
-                strongSelf.presenter.presentAlert(message: strongSelf.worker.generalError)
+                strongSelf.presenter.presentAlert(message: result.message ?? strongSelf.worker.generalError)
             }
         }
     }

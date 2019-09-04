@@ -166,12 +166,9 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             } else if case .codeInvalid = result.code {
                 self?.errorMessage = self?.worker.codeError
             } else {
-                self?.errorMessage = self?.worker.resendCodeError
-                if let error = error {
-                    qot_dal.log("Error when checking registration code: \(error)", level: .debug)
-                }
+                self?.errorMessage = result.message ?? self?.worker.resendCodeError
+                if let error = error { qot_dal.log("Error when checking registration code: \(error)", level: .debug) }
             }
-
             // Unsuccessful code check
             self?.hasCodeError = true
             self?.presenter.present()
@@ -190,7 +187,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             if let error = error {
                 qot_dal.log("Error when resending code: \(error)", level: .debug)
                 self?.hasCodeError = true
-                self?.errorMessage = self?.worker.resendCodeError
+                self?.errorMessage = result.message ?? self?.worker.resendCodeError
                 self?.presenter.present()
                 self?.presenter.presentActivity(state: nil)
             }

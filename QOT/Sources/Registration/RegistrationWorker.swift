@@ -41,7 +41,7 @@ final class RegistrationWorker: BaseSigningWorker {
     }
 
     func createAccount(with data: RegistrationData,
-                       _ completion: @escaping (_ response: ApiResponseResult, _ error: Error?) -> Void) {
+                       _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
         var userObject = QDMRegistrationRequest()
         userObject.email = data.email
         userObject.code = data.code
@@ -50,7 +50,8 @@ final class RegistrationWorker: BaseSigningWorker {
         userObject.birthYear = data.birthYear
         sessionService.registUser(request: userObject) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
-            completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
+            let result = (code: strongSelf.apiCodeFromResponse(response?.returnCode()), message: response?.message)
+            completion(result, error)
             requestSynchronization(.USER, .DOWN_SYNC)
         }
     }
