@@ -43,6 +43,7 @@ final class RegistrationCodeViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        hideKeyboardWhenTappedAround()
         trackPage()
     }
 
@@ -175,15 +176,29 @@ extension RegistrationCodeViewController: UITextViewDelegate {
 
 // MARK: - UITextFieldDelegate
 extension RegistrationCodeViewController: UITextFieldDelegate {
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        // On error make first field editable
+        guard let field = textField as? TextField else { return true }
+        if let hasError = interactor?.hasCodeError,
+            hasError == true,
+            let index = digitTextFields.index(of: field), index != 0 {
+            digitTextFields.first?.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         refreshBottomNavigationItems()
 
-        guard
-            let textField = textField as? TextField,
-            digitTextFields.index(of: textField) != nil else { return }
+        guard let textField = textField as? TextField, digitTextFields.index(of: textField) != nil else { return }
 
         if interactor?.hasCodeError ?? true {
             updateCodeDefaultUI()
+        }
+        if let text = textField.text, !text.isEmpty {
+            textField.text = nil
         }
     }
 

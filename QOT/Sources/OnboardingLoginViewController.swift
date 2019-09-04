@@ -112,9 +112,10 @@ private extension OnboardingLoginViewController {
         buttonGetHelp.cornerDefault()
     }
 
-    func sendCodeIfPossible() {
+    func sendCodeIfPossible(textField: UITextField) {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
+        textField.resignFirstResponder()
         interactor?.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }),
                                       for: emailField.text,
                                       toBeVision: cachedToBeVision)
@@ -214,6 +215,17 @@ private extension OnboardingLoginViewController {
 
 // MARK: - UITextFieldDelegate
 extension OnboardingLoginViewController: UITextFieldDelegate {
+
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        // On error make first field editable
+        guard let field = textField as? TextField else { return true }
+        if interactor?.viewModel.codeError != nil, let index = digitTextFields.index(of: field), index != 0 {
+            digitTextFields.first?.becomeFirstResponder()
+            return false
+        }
+        return true
+    }
+
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailField.textField {
             if interactor?.viewModel.emailError != nil {
@@ -222,14 +234,16 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
             return
         }
 
-        guard
-            let textField = textField as? TextField,
-            digitTextFields.index(of: textField) != nil else { return }
+        guard let textField = textField as? TextField, digitTextFields.index(of: textField) != nil else { return }
+
         if sendButtonYPosition.constant == 0 {
             moveCodeInputToTop()
         }
         if interactor?.viewModel.codeError != nil {
             loadDigitTextFieldsDefaultUI()
+        }
+        if let text = textField.text, !text.isEmpty {
+            textField.text = nil
         }
     }
 
@@ -266,7 +280,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
             let nextTextField = digitTextFields[index + 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         } else {
-            sendCodeIfPossible()
+            sendCodeIfPossible(textField: textField)
         }
     }
 }
