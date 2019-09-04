@@ -58,14 +58,15 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         interactor?.viewDidLoad()
+        gradientTop.gradientBackground(top: true)
+        gradientBottom.gradientBackground(top: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
         QuestionnaireViewController.hasArrowsAnimated = false
-        gradientTop.gradientBackground(top: true)
-        gradientBottom.gradientBackground(top: false)
+        interactor?.viewWillAppear()
     }
 
     override func viewDidAppear(_ animated: Bool) {

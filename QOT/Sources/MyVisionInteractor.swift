@@ -61,6 +61,14 @@ final class MyVisionInteractor {
         }
     }
 
+    func viewWillAppear() {
+        worker.getData {[weak self] (initialized) in
+            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
+            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
+            self?.worker.updateWidget()
+        }
+    }
+
     private func didUpdateTBVRelatedData() {
         worker.getData {[weak self] (initialized) in
             if !initialized {
@@ -74,6 +82,7 @@ final class MyVisionInteractor {
             self?.worker.updateWidget()
         }
     }
+
     private func share(plainText: String) {
         let activityVC = UIActivityViewController(activityItems: [plainText], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityType.openInIBooks,
