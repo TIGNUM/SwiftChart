@@ -84,12 +84,12 @@ private extension HomeViewController {
     func setupCollectionView() {
         view.addSubview(collectionView)
         if #available(iOS 11.0, *) {
-            collectionView.topAnchor == view.safeTopAnchor + 20
+            collectionView.topAnchor == view.safeTopAnchor
             collectionView.bottomAnchor == view.safeBottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
         } else {
-            collectionView.topAnchor == view.topAnchor + 20
+            collectionView.topAnchor == view.topAnchor
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor

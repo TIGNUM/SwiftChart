@@ -104,7 +104,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return navBarHeader?.bounds.height ?? 0
+            return ThemeView.level1.headerBarHeight
         }
         return CGFloat.leastNormalMagnitude
     }

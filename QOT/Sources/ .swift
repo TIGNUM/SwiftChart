@@ -97,7 +97,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         }
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
-        layout.sectionInset = .init(top: 10, left: 24, bottom: 0, right: 24)
+        layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 24)
     }
 
     func setup(for myQotSection: MyQotViewModel) {

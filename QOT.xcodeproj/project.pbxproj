@@ -1709,7 +1709,7 @@
 		F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */; };
 		F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */; };
 		F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */; };
-		F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */; };
+		F9838F4922AFFF95003F9394 /*  .swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4822AFFF95003F9394 /*  .swift */; };
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
@@ -3553,7 +3553,7 @@
 		F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainPresenter.swift; sourceTree = "<group>"; };
 		F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainRouter.swift; sourceTree = "<group>"; };
 		F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainWorker.swift; sourceTree = "<group>"; };
-		F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainViewController.swift; sourceTree = "<group>"; };
+		F9838F4822AFFF95003F9394 /*  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " .swift"; sourceTree = "<group>"; };
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -8199,7 +8199,7 @@
 				F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */,
 				F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */,
 				F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */,
-				F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */,
+				F9838F4822AFFF95003F9394 /*  .swift */,
 			);
 			name = myQotMain;
 			sourceTree = "<group>";
@@ -9350,7 +9350,7 @@
 				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
-				F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */,
+				F9838F4922AFFF95003F9394 /*  .swift in Sources */,
 				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */,
