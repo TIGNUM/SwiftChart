@@ -72,8 +72,12 @@ struct RatingQuestionViewModel {
             return remoteID
         }
 
-        func question() -> NSAttributedString? {
-            return htmlTitle?.convertHtml() ?? NSAttributedString(string: title)
+        func questionHtml() -> NSAttributedString? {
+            return htmlTitle?.convertHtml()
+        }
+
+        func questionText() -> String? {
+            return title
         }
 
         func selectedAnswer() -> Answer? {

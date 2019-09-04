@@ -99,7 +99,8 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     var chosenValue: String?
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
-    private var question: NSAttributedString? = nil
+    private var questionHtml: NSAttributedString? = nil
+    private var questionText: String? = nil
     private var items = 10
     private var answers: [RatingQuestionViewModel.Answer]?
     private var cellHeight: CGFloat = Layout.padding_24
@@ -134,7 +135,8 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
             let questionItems = questionnaire.items() ?? 0
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
-            viewController.question = questionnaire.question()
+            viewController.questionHtml = questionnaire.questionHtml()
+            viewController.questionText = questionnaire.questionText()
             viewController.items = questionItems
             viewController.answers = questionnaire.getAnswers()
             viewController.currentIndex = questionnaire.selectedQuestionAnswerIndex() ?? questionItems / 2
@@ -206,9 +208,10 @@ extension QuestionnaireViewController {
             topConstraint.constant = 50
             labelCustomizeView.isHidden = false
             customizeTargetTitle.isHidden = false
-            ThemeText.tbvVisionHeader.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
+            ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
             ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
+            hintLabel.isHidden = true
         default:
             return
         }
@@ -304,67 +307,55 @@ extension QuestionnaireViewController {
     }
 
     public func animationShow() {
-        // start animation
+        showAnimated = true
+
+        tableView.isHidden = true
+        tableView.reloadData()
+        questionLabel.isHidden = false
+        questionLabel.alpha = 0
+        progressView.alpha = 0.0
+        progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
+        questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
+        fillView.setNeedsUpdateConstraints()
+
         switch controllerType {
         case .customize:
-            tableView.isHidden = true
-            showAnimated = true
-            tableView.reloadData()
-            questionLabel.isHidden = false
             labelCustomizeView.text = R.string.localized.dailyBriefCustomizeSleepIntro()
-            questionLabel.text = R.string.localized.dailyBriefCustomizeSleepQuestion()
-            questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
-            questionLabel.alpha = 0
-            questionLabel.textColor = UIColor.sand.withAlphaComponent(0.4)
-            progressView.alpha = 0.0
-            progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
-            fillView.setNeedsUpdateConstraints()
-
-            UIView.animate(withDuration: Animation.duration_02,
-                           delay: Animation.duration_02,
-                           options: [.curveEaseInOut],
-                           animations: {
-                            self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-                            self.questionLabel.alpha = 1
-                            self.progressView.alpha = 1
-            }, completion: { finished in
-                self.setupImages()
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-            })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
-                self.animateToIndex(index: self.currentIndex, isTouch: false)
-                self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+            questionLabel.attributedText = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
+        case .dailyCheckin:
+            if let question = questionHtml {
+                questionLabel.attributedText = question
+                questionLabel.font = UIFont.sfProtextMedium(ofSize: 16)
+            } else if let question = questionText {
+                questionLabel.attributedText = ThemeText.tbvQuestionMedium.attributedString(question)
             }
-
-        default:
-            tableView.isHidden = true
-            showAnimated = true
-            tableView.reloadData()
-            questionLabel.isHidden = false
-            questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
-            questionLabel.alpha = 0
-            questionLabel.attributedText = question
-            progressView.alpha = 0.0
-            progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
-            fillView.setNeedsUpdateConstraints()
-
-            UIView.animate(withDuration: Animation.duration_02,
-                           delay: Animation.duration_02,
-                           options: [.curveEaseInOut],
-                           animations: {
-                            self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-                            self.questionLabel.alpha = 1
-                            self.progressView.alpha = 1
-            }, completion: { finished in
-                self.setupImages()
-                self.tableView.isHidden = false
-                self.tableView.reloadData()
-            })
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
-                self.animateToIndex(index: self.currentIndex, isTouch: false)
-                self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+        case .vision:
+            if let question = questionText {
+                let combined = NSMutableAttributedString()
+                combined.append(ThemeText.tbvQuestionLight.attributedString(R.string.localized.tbvHowWouldYou()))
+                combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
+                combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
+                combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
+                questionLabel.attributedText = combined
             }
+        }
+
+        UIView.animate(withDuration: Animation.duration_02,
+                       delay: Animation.duration_02,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                        self.questionLabel.alpha = 1
+                        self.progressView.alpha = 1
+        }, completion: { finished in
+            self.setupImages()
+            self.tableView.isHidden = false
+            self.tableView.reloadData()
+        })
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
+            self.animateToIndex(index: self.currentIndex, isTouch: false)
+            self.answerDelegate?.isPresented(for: self.questionID(), from: self)
         }
     }
 

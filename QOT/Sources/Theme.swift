@@ -388,6 +388,8 @@ enum ThemeText {
     case tbvTrackerRating
     case tbvTrackerRatingDigits
     case tbvTrackerRatingDigitsSelected
+    case tbvQuestionLight
+    case tbvQuestionMedium
 
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
@@ -448,7 +450,7 @@ enum ThemeText {
             return Fonts.fontDisplayThin30
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
-        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText:
+        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium:
             return Fonts.fontMedium16
         case .articleCategoryNotScaled:
             return Fonts.fontMedium12
@@ -474,7 +476,7 @@ enum ThemeText {
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeader, .accountHeaderTitle,
-             .dailyBriefLevelTitle, .strategySubHeader:
+             .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle:
@@ -548,7 +550,8 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion, .accountHeader,
-             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket:
+             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,.dailyBriefLevelContent,.dailyBriefDailyCheckInClosedBucket,
+             .tbvQuestionLight, .tbvQuestionMedium:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText:
             return Palette.sand60
@@ -672,7 +675,7 @@ enum ThemeText {
         case .articleRelatedDetail, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
-             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent:
+             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .tbvQuestionMedium:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
             string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)

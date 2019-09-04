@@ -39,6 +39,7 @@ protocol RatingQuestionnaire {
     func items() -> Int?
     func selectedQuestionAnswerIndex() -> Int?
     func questionIdentifier() -> Int?
-    func question() -> NSAttributedString?
+    func questionHtml() -> NSAttributedString?
+    func questionText() -> String?
     func selectedAnswer() -> RatingQuestionViewModel.Answer?
 }

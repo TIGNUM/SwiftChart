@@ -222,10 +222,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
             return
         }
         nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
-            self.pageController?.setViewControllers([nextViewController],
-                                                    direction: .forward,
-                                                    animated: true,
-                                                    completion: nil)
+            self.pageController?.setViewControllers([nextViewController], direction: .forward, animated: true, completion: nil)
         }
     }
 }

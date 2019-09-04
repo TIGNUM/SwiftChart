@@ -781,8 +781,9 @@
 "TBV.Show.More" = "Show more";
 "TBV.Show.Less" = "Show less";
 "TBV.Tracker.Last.Rating" = "Your last ratings:";
-"TBV.Customize.Target" = "CUSTOMIZE TARGET";
+"TBV.Customize.Target" = "CUSTOMIZE";
 "TBV.Customize.Body" = "Customize your benchmark value for your sleep quantity here according to time amount you want to reach.";
+"TBV.How.Would.You" = "How would you rate yourself in:";
 
 "Strategy.Performance.Title" = "PERFORMANCE";
 
