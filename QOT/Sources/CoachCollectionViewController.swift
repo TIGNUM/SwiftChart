@@ -26,12 +26,12 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 
-    var preSelectedItem: Pages? = nil
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
+    private var preSelectedItem: Pages? = .dailyBrief
     private var panActive = false
     private var panSearchShowing: Bool = false {
         didSet {
@@ -80,6 +80,8 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         return ColorMode.dark.statusBarStyle
     }
 
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
@@ -99,10 +101,6 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         coachButton.alpha = 0.0
         UIView.animate(withDuration: 0.75) {
             self.coachButton.alpha = 1.0
-        }
-        if let item = preSelectedItem {
-            moveToCell(item: item.rawValue)
-            preSelectedItem = nil
         }
     }
 }
@@ -124,6 +122,7 @@ extension CoachCollectionViewController {
         trackUserEvent(.OPEN, valueType: "COACH", action: .TAP)
     }
 }
+
 // MARK: - handlepan
 
 extension CoachCollectionViewController {
@@ -201,7 +200,16 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: self.collectionView.frame.width, height: self.collectionView.frame.height)
     }
+
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        // Show Daily Brief on app launch
+        guard let item = preSelectedItem else { return }
+        moveToCell(item: item.rawValue, animated: false)
+        preSelectedItem = nil
+    }
 }
+
+// MARK: - CoachCollectionViewControllerDelegate
 
 extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
 
@@ -238,9 +246,20 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     }
 
     func moveToCell(item: Int) {
-        collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: true)
+        moveToCell(item: item, animated: true)
     }
 }
+
+// MARK: - Private methods
+
+private extension CoachCollectionViewController {
+
+    func moveToCell(item: Int, animated: Bool) {
+        collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: animated)
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
 
 extension CoachCollectionViewController: UIGestureRecognizerDelegate {
 
