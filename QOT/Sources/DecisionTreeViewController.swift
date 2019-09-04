@@ -286,6 +286,13 @@ private extension DecisionTreeViewController {
     }
 }
 
+// MARK: - navigation bar
+extension DecisionTreeViewController {
+    override func showTransitionBackButton() -> Bool {
+        return false
+    }
+}
+
 // MARK: - DecisionTreeQuestionnaireDelegate
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     func presentSprints() {

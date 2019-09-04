@@ -200,17 +200,17 @@ extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
 
 extension SolveResultsViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.isPresentingExistingSolve() == true {
-            return [dismissNavigationItem(action: #selector(didTapDismiss))]
-        } else {
-            return [dismissNavigationItem(action: #selector(openConfirmationView))]
-        }
+        return []
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
+        return [roundedBarButtonItem(title: R.string.localized.buttonTitleDone(),
                                       buttonWidth: .DecisionTree,
                                       action: #selector(didTapDone),
                                       backgroundColor: .carbon)]
+    }
+
+    override func showTransitionBackButton() -> Bool {
+        return false
     }
 }

@@ -335,3 +335,10 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
         delegate?.didDeSelectAnswer(answer)
     }
 }
+
+// MARK: - navigation bar
+extension DecisionTreeQuestionnaireViewController {
+    override func showTransitionBackButton() -> Bool {
+        return false
+    }
+}
