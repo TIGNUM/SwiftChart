@@ -97,9 +97,7 @@ extension BaseRootViewController {
         notificationCenter.removeObserver(self, name: .hideAudioFullScreen, object: nil)
         contentView?.removeFromSuperview()
         childViewControllers.forEach({ $0.removeFromParentViewController() })
-        if let root = self.navigationController?.presentedViewController {
-            self.navigationController?.dismissAllPresentedViewControllers(root, false) {}
-        }
+        self.navigationController?.dismissAllPresentedViewControllers(self, false) {}
         navigationController?.popToRootViewController(animated: false)
     }
 }

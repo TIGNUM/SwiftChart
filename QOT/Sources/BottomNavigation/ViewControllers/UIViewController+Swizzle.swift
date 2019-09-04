@@ -93,12 +93,32 @@ func swizzleUIViewControllerDismissViewController() {
 
 extension UIViewController {
 
+    func isTopVisibleViewController() -> Bool {
+        guard let window = UIApplication.shared.keyWindow else {
+            return false
+        }
+        let center = window.frame.center
+        guard let view = window.hitTest(center, with: nil) else {
+            return false
+        }
+
+        var parentView: UIView? = view
+        while parentView != nil && parentView != window {
+            if parentView == self.view {
+                return true
+            }
+            parentView = parentView?.superview
+        }
+
+        return false
+    }
+
     @objc func viewWillAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
         self.applyTheme()
-        if animated {
+        if animated && isTopVisibleViewController() {
             refreshBottomNavigationItems()
             setStatusBar(color: view.backgroundColor)
             self.setNeedsStatusBarAppearanceUpdate()
@@ -116,7 +136,7 @@ extension UIViewController {
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
-        if animated {
+        if isTopVisibleViewController() {
             refreshBottomNavigationItems()
             setStatusBar(color: view.backgroundColor)
             self.setNeedsStatusBarAppearanceUpdate()
@@ -221,7 +241,10 @@ extension UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let strongself = self else { return }
                 if strongself.view.window != nil {
-                    NotificationCenter.default.post(name: .updateBottomNavigation, object: nil, userInfo: nil)
+                    NotificationCenter.default.post(name: .updateBottomNavigation,
+                                                    object: BottomNavigationItem(leftBarButtonItems: [],
+                                                                                 rightBarButtonItems: [],backgroundColor: .clear),
+                                                    userInfo: nil)
                 }
             }
         } else if (self as? UINavigationController) == nil,

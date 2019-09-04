@@ -25,6 +25,8 @@ final class DailyBriefInteractor {
     private var expendImpactReadiness: Bool = false
 // Boolean to keep track of the guided closed track.
     private var guidedClosedTrack: Bool = false
+    private var isLoadingBuckets: Bool = false
+    private var needToLoadBuckets: Bool = false
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -116,6 +118,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     }
 
     func getDailyBriefBucketsForViewModel() {
+        if isLoadingBuckets {
+            needToLoadBuckets = true
+        }
+
+        isLoadingBuckets = true
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { (bucketsList) in
             bucketsList.forEach { (bucket) in
@@ -169,6 +176,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             }
             let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
             self.presenter.updateViewNew(changeSet)
+            self.isLoadingBuckets = false
+            if self.needToLoadBuckets {
+                self.needToLoadBuckets = false
+                self.getDailyBriefBucketsForViewModel()
+            }
         }
     }
 
