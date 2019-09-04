@@ -19,9 +19,6 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
     @IBOutlet private weak var personalDataHeaderLabel: UILabel!
     @IBOutlet private weak var genderHeaderLabel: UILabel!
     @IBOutlet private weak var dobHeaderLabel: UILabel!
-    @IBOutlet private weak var accountHeaderLabel: UILabel!
-    @IBOutlet private weak var changePasswordHeaderLabel: UILabel!
-    @IBOutlet private weak var changePasswordTitleLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotTitleLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
@@ -136,17 +133,8 @@ private extension MyQotAccountSettingsViewController {
         interactor?.personalDataText({[weak self] (text) in
             ThemeText.accountHeader.apply(text, to: self?.personalDataHeaderLabel)
         })
-        interactor?.accountText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.accountHeaderLabel)
-        })
-        interactor?.changePasswordText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.changePasswordHeaderLabel)
-        })
-        interactor?.protectYourAccountText({[weak self] (text) in
-            ThemeText.accountDetail.apply(text, to: self?.changePasswordTitleLabel)
-        })
         interactor?.logoutQotText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.logoutQotHeaderLabel)
+            ThemeText.accountHeaderTitle.apply(text, to: self?.logoutQotHeaderLabel)
         })
         interactor?.withoutDeletingAccountText({[weak self] (text) in
             ThemeText.accountDetail.apply(text, to: self?.logoutQotTitleLabel)
