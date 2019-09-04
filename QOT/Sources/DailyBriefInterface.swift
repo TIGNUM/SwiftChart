@@ -50,11 +50,12 @@ protocol DailyBriefInteractorInterface: Interactor {
     func saveTargetValue(value: Int?)
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
-    func showPrepareScreen()
     func presentCopyRight(copyrightURL: String?)
     func didPressGotItSprint(sprint: QDMSprint)
+    func displayCoachPreparationScreen()
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
+    func openGuidedTrackAppLink(_ appLink: String?)
     func presentMyDataScreen()
 }
 
@@ -67,5 +68,7 @@ protocol DailyBriefRouterInterface {
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
     func presentCopyRight(copyrightURL: String?)
+    func displayCoachPreparationScreen()
+    func openGuidedTrackAppLink(_ appLink: String?)
     func presentMyDataScreen()
 }

@@ -407,6 +407,8 @@ enum ThemeText {
     case myDataHeatMapDetailCellDate
     case dailyBriefLevelContent
     case dailyBriefLevelTitle
+    case dailyBriefDailyCheckInSights
+    case dailyBriefDailyCheckInClosedBucket
 
     private var font: UIFont {
         switch self {
@@ -414,9 +416,10 @@ enum ThemeText {
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle,.dailyBriefDailyCheckInClosedBucket:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail
+            ,.dailyBriefLevelContent,.dailyBriefDailyCheckInSights:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -545,7 +548,7 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion, .accountHeader,
-             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage:
+             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,.dailyBriefLevelContent,.dailyBriefDailyCheckInClosedBucket:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText:
             return Palette.sand60
@@ -564,7 +567,7 @@ enum ThemeText {
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage, .author:
+             .registrationAgeRestriction, .locationPermissionMessage, .author,.dailyBriefDailyCheckInSights:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
@@ -616,14 +619,12 @@ enum ThemeText {
             return Palette.nightModeBlackTwo
         case .registrationCodeError:
             return Palette.redOrange70
-
         case .placeholder:
             return .sand10
         case .calendarNoAccess:
             return Palette.sand80
         case .guideNavigationTitle:
             return Palette.sand40
-
         case .qotAlertTitle:
             return Palette.sand
         case .qotAlertMessage:
@@ -640,7 +641,8 @@ enum ThemeText {
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle,
-             .myQOTPrepTitle, .tbvTrackerHeader:
+//             todo check with domnic
+             .myQOTPrepTitle, .tbvTrackerHeader,.dailyBriefDailyCheckInSights:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)

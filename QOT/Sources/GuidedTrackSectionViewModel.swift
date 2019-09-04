@@ -15,12 +15,15 @@ final class GuidedTrackSectionViewModel: BaseDailyBriefViewModel, GuideTrackMode
     var bucketTitle: String?
     var content: String?
     var buttonText: String?
+    var levelTitle: String?
+
     var type: GuidedTrackItemType {
         return .SECTION
     }
 
     // MARK: - Init
-    internal init(bucketTitle: String?, content: String?, buttonText: String?, domain: QDMDailyBriefBucket) {
+    internal init(levelTitle: String, bucketTitle: String?, content: String?, buttonText: String?, domain: QDMDailyBriefBucket) {
+        self.levelTitle = levelTitle
         self.bucketTitle = bucketTitle
         self.content = content
         self.buttonText = buttonText
@@ -34,4 +37,16 @@ final class GuidedTrackSectionViewModel: BaseDailyBriefViewModel, GuideTrackMode
     init(domainModel: QDMDailyBriefBucket?) {
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? GuidedTrackSectionViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            levelTitle == source.levelTitle &&
+            bucketTitle == source.bucketTitle &&
+            content == source.content &&
+            buttonText == source.buttonText
+    }
+
 }

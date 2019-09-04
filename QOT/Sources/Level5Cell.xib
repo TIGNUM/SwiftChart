@@ -26,11 +26,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="993" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="449" height="786"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="990" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="783"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDp-CU-ckE" id="6GX-fH-l8Z">
-                <rect key="frame" x="0.0" y="0.0" width="449" height="785.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="782.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-4e-Eb4" userLabel="HeaderView">
@@ -186,7 +186,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYI-XA-d9f" userLabel="BottomView">
-                        <rect key="frame" x="0.0" y="373.5" width="449" height="330"/>
+                        <rect key="frame" x="0.0" y="370.5" width="449" height="330"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y6n-RW-tYH">
                                 <rect key="frame" x="24" y="24" width="401" height="282"/>
@@ -354,7 +354,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VH1-hy-l0l" userLabel="ButtonView">
-                        <rect key="frame" x="0.0" y="703.5" width="449" height="82"/>
+                        <rect key="frame" x="0.0" y="700.5" width="449" height="82"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-U2-IS7">
                                 <rect key="frame" x="359" y="0.0" width="66" height="40"/>
@@ -385,6 +385,7 @@
                     <constraint firstItem="ZYI-XA-d9f" firstAttribute="top" secondItem="mBt-bT-lD3" secondAttribute="bottom" id="EnN-iP-dHF"/>
                     <constraint firstAttribute="trailing" secondItem="mBt-bT-lD3" secondAttribute="trailing" id="JTP-wv-AWJ"/>
                     <constraint firstItem="vVH-4e-Eb4" firstAttribute="top" secondItem="6GX-fH-l8Z" secondAttribute="top" id="O7T-1B-Ce4"/>
+                    <constraint firstItem="mBt-bT-lD3" firstAttribute="top" secondItem="vVH-4e-Eb4" secondAttribute="bottom" id="Pb7-tf-cFK"/>
                     <constraint firstAttribute="trailing" secondItem="VH1-hy-l0l" secondAttribute="trailing" id="SUU-st-caH"/>
                     <constraint firstAttribute="trailing" secondItem="vVH-4e-Eb4" secondAttribute="trailing" id="Vsu-Pw-ehF"/>
                     <constraint firstItem="mBt-bT-lD3" firstAttribute="top" secondItem="vVH-4e-Eb4" secondAttribute="bottom" id="Z0m-QW-aNU"/>
@@ -417,7 +418,7 @@
                 <outletCollection property="buttons" destination="TbP-Wf-sAH" collectionClass="NSMutableArray" id="2gM-3X-U4b"/>
                 <outletCollection property="buttons" destination="ofJ-fR-mm0" collectionClass="NSMutableArray" id="d4a-2y-nrq"/>
             </connections>
-            <point key="canvasLocation" x="-599.0625" y="89.788732394366193"/>
+            <point key="canvasLocation" x="-599.0625" y="88.204225352112672"/>
         </tableViewCell>
     </objects>
 </document>

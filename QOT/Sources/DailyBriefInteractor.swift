@@ -84,10 +84,12 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-   
-    func showPrepareScreen() {
-    }
 
+//    Invoke the prepare screen in the coach screen.
+    func displayCoachPreparationScreen() {
+        router.displayCoachPreparationScreen()
+    }
+    
     func updateViewModelList(_ list: [BaseDailyBriefViewModel]) {
         viewModelOldList = list
     }
@@ -100,6 +102,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { (bucketsList) in
             bucketsList.forEach { (bucket) in
+                print(bucket.bucketName)
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1, elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
@@ -141,8 +144,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .aboutMe, elements: self.createAboutMe(aboutMeBucket: bucket)))
                 case .SOLVE_REFLECTION?:
                     sectionDataList.append(ArraySection(model: .solveReflection, elements: self.createSolveViewModel(bucket: bucket)))
-//               case .GUIDED_TRACK?:
-//                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
+               case .GUIDE_TRACK?:
+                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -334,15 +337,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
         let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
         if meAtMyBest.toBeVision == nil {
-            let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
+            let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? ""
             let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be  Vision"
             meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         } else {
-            let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? "intro"
+            let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? ""
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
-            let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? "intro2 "
-            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? "Rate"
+            let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? " "
+            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle, intro: tbvIntro, tbvStatement: tbvSentence, intro2: tbvIntro2, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         }
@@ -473,20 +476,22 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else { readinessIntro = impactReadiness.contentCollections?.filter {$0.searchTags.contains("impact_readiness_score")}
             .first?.contentItems.at(index: (responseIndex - 1))?.valueText
         }
+        let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
+
 //        If the dailyCheck is not done
         guard impactReadiness.dailyCheckInResult != nil else {
             expendImpactReadiness = false
-            impactReadinessList.append(ImpactReadinessCellViewModel(title: "",
+            impactReadinessList.append(ImpactReadinessCellViewModel(title: bucketTitle,
                                                                     dailyCheckImageURL: impactReadinessImageURL,
-                                                                    readinessScore: 0, readinessIntro: readinessIntro,
+                                                                    readinessScore: 0,
+                                                                    readinessIntro: readinessIntro,
                                                                     domainModel: impactReadiness))
             return impactReadinessList
         }
 
 //If the daily check in completed update the ImpactReadinessCellViewModel
-        let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
         let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
-        let readinessscore = Int((impactReadiness.dailyCheckInResult?.impactReadiness ?? 0))
+        let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
@@ -783,50 +788,49 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return aboutMeList
     }
 
-//    TODO the values are hard coded and will changed once the database returns the relevant bucket information
     /**
      * Method name: createGuidedTrack.
      * Description: Method which returns the GuidedTrack Model required for the tableview.
      * Parameters: [guidedTrackBucket]
      */
-
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "Guided Track Bucket",
-                                                    content: "You’ve read about the importance of being courageous, rebellious and imaginative.You’ve read about the importance of being courageous, rebellious and imaginative.",
-                                                    buttonText: "Create your To Be Vision",
+        let guidedTrackBucketTitle = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_title")}
+            .first?.valueText ?? ""
+        let guidedTrackIntro = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_intro")}
+            .first?.valueText ?? ""
+        let guidedTrackCta = guidedTrack.bucketText?.contentItems.filter{$0.searchTags.contains("bucket_cta")}
+            .first?.valueText ?? ""
+        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: guidedTrackBucketTitle,
+                                                    levelTitle: "",
+                                                    content: guidedTrackIntro,
+                                                    buttonText: guidedTrackCta,
                                                     type: GuidedTrackItemType.SECTION,
+                                                    appLink: "",
                                                     domain: guidedTrack))
         guard guidedClosedTrack == true else {
             return guidedtrackList
         }
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 1",
-                                                    content: "Vides about read about the importance of courageous, rebellious and imaginative.",
-                                                    buttonText: "Watch",
-                                                    type: GuidedTrackItemType.ROW,
-                                                    domain: guidedTrack))
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 2",
-                                                    content: "Your To Be Vision is about read about the importa nce of courageous, rebelli ous and imaginative.",
-                                                    buttonText: "Explore",
-                                                    type: GuidedTrackItemType.ROW,
-                                                    domain: guidedTrack))
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 3",
-                                                    content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
-                                                    buttonText: "Watch",
-                                                    type: GuidedTrackItemType.ROW,
-                                                    domain: guidedTrack))
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 4",
-                                                    content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
-                                                    buttonText: "Fine Tune",
-                                                    type: GuidedTrackItemType.ROW,
-                                                    domain: guidedTrack))
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 5",
-                                                    content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
-                                                    buttonText: "Prepare",
-                                                    type: GuidedTrackItemType.ROW,
-                                                    domain: guidedTrack))
-        return guidedtrackList
 
+        guidedTrack.contentCollections?.forEach {(contentItem) in
+            let stepTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
+                .first?.valueText ?? ""
+            let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
+                .first?.valueText ?? ""
+            let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
+                .first?.valueText ?? ""
+            let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
+                .first?.valueText ?? ""
+            let appLink = contentItem.links.first?.appLink ?? ""
+            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
+                                                        levelTitle: levelTitle,
+                                                        content: levelDescription,
+                                                        buttonText: levelCta,
+                                                        type: GuidedTrackItemType.ROW,
+                                                        appLink:appLink,
+                                                        domain: guidedTrack))
+        }
+        return guidedtrackList
     }
 
     func showDailyCheckIn() {
@@ -845,5 +849,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func invalidateTimer(forCell: BaseDailyBriefCell) {
         forCell.markSeenTimer.invalidate()
+    }
+
+    func openGuidedTrackAppLink(_ appLink: String?) {
+        router.openGuidedTrackAppLink(appLink)
     }
 }

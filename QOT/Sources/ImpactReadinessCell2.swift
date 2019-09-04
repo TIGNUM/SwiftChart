@@ -47,7 +47,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.asterix.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
-        ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0), to: sleepQuantity)
+        ThemeText.quotation.apply(String(format: "%.2f",viewModel?.sleepQuantityValue ?? 0), to: sleepQuantity)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuality ?? viewModel?.sleepQualityReference ?? 0) * 5
         ThemeText.sleepReference.apply(String(targetSleepQuantityInFiveDays), to: sleepQuantityTarget)
 

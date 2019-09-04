@@ -12,25 +12,29 @@
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="238" id="2M2-0L-K1U" customClass="GuidedTrackSectionCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="632" height="211"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="288" id="2M2-0L-K1U" customClass="GuidedTrackSectionCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="261"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2M2-0L-K1U" id="WOX-Ik-zWw">
-                <rect key="frame" x="0.0" y="0.0" width="632" height="210.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="371" height="260.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Vides about read about the importance of courageous, rebellious and imaginative." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erw-BL-BlP">
-                        <rect key="frame" x="24" y="95" width="584" height="41"/>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Vides about read about the importance of courageous, rebellious and imaginative." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Erw-BL-BlP">
+                        <rect key="frame" x="24" y="95" width="323" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIu-gB-GnD">
-                        <rect key="frame" x="24" y="160" width="158" height="30.5"/>
+                        <rect key="frame" x="24" y="160" width="133" height="52.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                         <state key="normal" title="Get to Know QOT" image="arrowDown">
                             <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
@@ -38,9 +42,9 @@
                             <action selector="clickAction:" destination="2M2-0L-K1U" eventType="touchUpInside" id="Yhf-M1-SnQ"/>
                         </connections>
                     </button>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x15-iX-9g6">
+                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x15-iX-9g6">
                         <rect key="frame" x="24" y="48" width="16" height="1"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="16" id="AVJ-9h-piD"/>
                             <constraint firstAttribute="height" constant="1" id="Id8-qe-d6M"/>
@@ -53,13 +57,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="stm-0F-xAg" firstAttribute="top" secondItem="x15-iX-9g6" secondAttribute="bottom" constant="14" id="0rX-ch-OTM"/>
                     <constraint firstAttribute="trailing" secondItem="Erw-BL-BlP" secondAttribute="trailing" constant="24" id="94C-n2-Tj8"/>
                     <constraint firstItem="x15-iX-9g6" firstAttribute="top" secondItem="WOX-Ik-zWw" secondAttribute="top" constant="48" id="97H-ng-Cff"/>
                     <constraint firstItem="x15-iX-9g6" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" constant="24" id="Jis-5A-U3k"/>
-                    <constraint firstAttribute="bottom" secondItem="cIu-gB-GnD" secondAttribute="bottom" constant="20" id="SOy-Fx-wVS"/>
+                    <constraint firstAttribute="bottom" secondItem="cIu-gB-GnD" secondAttribute="bottom" constant="48" id="SOy-Fx-wVS"/>
                     <constraint firstItem="Erw-BL-BlP" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" constant="24" id="SYJ-16-c1o"/>
                     <constraint firstItem="stm-0F-xAg" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" constant="24" id="cBk-1r-GR6"/>
                     <constraint firstItem="cIu-gB-GnD" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" constant="24" id="eXf-dv-SEW"/>
@@ -74,7 +78,7 @@
                 <outlet property="content" destination="Erw-BL-BlP" id="UUu-Pz-cyD"/>
                 <outlet property="title" destination="stm-0F-xAg" id="7RL-C5-1LG"/>
             </connections>
-            <point key="canvasLocation" x="-18.840579710144929" y="-130.91517857142856"/>
+            <point key="canvasLocation" x="-207.97101449275365" y="-147.65625"/>
         </tableViewCell>
     </objects>
     <resources>

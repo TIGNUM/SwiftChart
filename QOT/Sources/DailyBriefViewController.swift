@@ -15,7 +15,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
-    func openPrepareScreen()
     func showDailyCheckIn()
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
@@ -28,6 +27,8 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
+    func displayCoachPreparationScreen()
+    func openGuidedTrackAppLink(_ appLink: String?)
     func presentMyDataScreen()
 }
 
@@ -89,9 +90,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let sections = interactor?.bucketViewModelNew()?.at(index: section) else {
             return 0
-        }
-        if sections.model == DailyBriefViewModel.Bucket.guidedTrack {
-            return showSteps ? sections.elements.count : 1
         }
         return sections.elements.count
     }
@@ -247,6 +245,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         case .MY_PEAK_PERFORMANCE?:
             guard let myPeakPerformanceViewModel = bucketItem as? MyPeakPerformanceCellViewModel else { return UITableViewCell()}
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
+        case .GUIDE_TRACK?:
+            guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
+            return getGuidedTrack(tableView, indexPath, guidedtrackModel)
         default:
            return UITableViewCell()
         }
@@ -298,7 +299,6 @@ private extension DailyBriefViewController {
         cell.configure(viewModel: impactReadinessScoreViewModel)
         cell.delegate = self
         cell.backgroundColor = .carbon
-
         return cell
     }
 
@@ -577,6 +577,7 @@ private extension DailyBriefViewController {
                                  _ dailyCheckIn2TBVModel: DailyCheckIn2TBVModel?) -> UITableViewCell {
         let cell: DailyCheckinInsightsTBVCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheckIn2TBVModel)
+        cell.delegate = self
         cell.backgroundColor = .carbon
         return cell
     }
@@ -592,6 +593,7 @@ private extension DailyBriefViewController {
         UITableViewCell {
             let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: dailyCheckIn2PeakPerformanceModel)
+            cell.delegate = self
             cell.backgroundColor = .carbon
             return cell
     }
@@ -671,6 +673,9 @@ private extension DailyBriefViewController {
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel)
+        cell.delegate = self
+        cell.backgroundColor = .carbon
+        cell.separatorInset = UIEdgeInsetsMake(0, 0, 0, .greatestFiniteMagnitude)
         return cell
     }
 }
@@ -749,6 +754,14 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
+    func openGuidedTrackAppLink(_ appLink: String?) {
+        interactor?.openGuidedTrackAppLink(appLink)
+    }
+
+    func displayCoachPreparationScreen() {
+        interactor?.displayCoachPreparationScreen()
+    }
+
     func presentMyDataScreen() {
         interactor?.presentMyDataScreen()
     }
@@ -761,10 +774,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func didPressGotItSprint(sprint: QDMSprint) {
         interactor?.didPressGotItSprint(sprint: sprint)
-    }
-
-    func openPrepareScreen() {
-        interactor?.showPrepareScreen()
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
@@ -822,7 +831,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func openToolFromSprint(toolID: Int?) {
         interactor?.presentToolsItems(selectedToolID: toolID ?? 0)
     }
-
 }
 
 extension DailyBriefViewController: QuestionnaireAnswer {

@@ -62,7 +62,7 @@
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
                     <connections>
-                        <action selector="presentTBV:" destination="cTn-sO-9V7" eventType="touchUpInside" id="ouV-Yb-de0"/>
+                        <action selector="presentTBV:" destination="cTn-sO-9V7" eventType="touchUpInside" id="Jeg-yG-DSu"/>
                     </connections>
                 </button>
             </subviews>
@@ -82,7 +82,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="GFn-Ic-whM"/>
             <connections>
-                <outlet property="buttonText" destination="xPR-6J-8Dw" id="bkk-X6-M2Q"/>
+                <outlet property="buttonText" destination="xPR-6J-8Dw" id="0FV-sl-B8h"/>
                 <outlet property="intro" destination="fVp-Dx-FYn" id="Kwx-Bn-Tfk"/>
                 <outlet property="title" destination="fbg-kJ-pWj" id="zDS-fw-R5G"/>
             </connections>

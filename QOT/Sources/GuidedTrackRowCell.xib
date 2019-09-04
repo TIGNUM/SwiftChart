@@ -20,10 +20,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="248" id="6ww-Wz-GjP" customClass="GuidedTrackRowCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="622" height="244"/>
+            <rect key="frame" x="0.0" y="0.0" width="415" height="244"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="6ww-Wz-GjP" id="unR-MB-ZBr">
-                <rect key="frame" x="0.0" y="0.0" width="622" height="243.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="415" height="243.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="STEP: 1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ah-n4-3CE">
@@ -39,13 +39,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vides about read about the importance of courageous, rebellious and imaginative." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FO1-gG-Tdb">
-                        <rect key="frame" x="24" y="100" width="574" height="41"/>
+                        <rect key="frame" x="24" y="100" width="367" height="41"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTu-tU-c9b">
-                        <rect key="frame" x="486" y="175" width="109" height="40"/>
+                        <rect key="frame" x="279" y="175" width="109" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="gGV-ry-9uJ"/>
                             <constraint firstAttribute="width" constant="109" id="yDu-cW-jBo"/>
@@ -54,16 +54,19 @@
                         <state key="normal" title="Watch">
                             <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
+                        <connections>
+                            <action selector="onGuidedTrackSelection" destination="6ww-Wz-GjP" eventType="touchUpInside" id="J3X-Fj-nny"/>
+                        </connections>
                     </button>
                     <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VTr-zE-Ggc">
-                        <rect key="frame" x="24" y="235" width="598" height="1"/>
+                        <rect key="frame" x="24" y="235" width="391" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="eh6-oF-dLS"/>
                         </constraints>
                     </view>
                 </subviews>
-                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="DAN-6L-GwM" firstAttribute="leading" secondItem="FO1-gG-Tdb" secondAttribute="leading" id="7Or-KU-DjD"/>
                     <constraint firstItem="3ah-n4-3CE" firstAttribute="leading" secondItem="unR-MB-ZBr" secondAttribute="leading" constant="24" id="8vs-dE-iMv"/>
@@ -80,14 +83,14 @@
                     <constraint firstItem="3ah-n4-3CE" firstAttribute="top" secondItem="unR-MB-ZBr" secondAttribute="top" constant="40" id="qps-UZ-ar1"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="button" destination="lTu-tU-c9b" id="QkN-C7-iNn"/>
                 <outlet property="content" destination="FO1-gG-Tdb" id="Xa3-7x-lcp"/>
                 <outlet property="subtitle" destination="DAN-6L-GwM" id="rNE-6N-9zs"/>
                 <outlet property="title" destination="3ah-n4-3CE" id="Lzn-aV-8zC"/>
             </connections>
-            <point key="canvasLocation" x="163.768115942029" y="-14.732142857142856"/>
+            <point key="canvasLocation" x="13.768115942028986" y="-14.732142857142856"/>
         </tableViewCell>
     </objects>
 </document>

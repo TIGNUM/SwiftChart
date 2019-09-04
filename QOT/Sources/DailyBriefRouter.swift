@@ -13,7 +13,7 @@ final class DailyBriefRouter {
 
     // MARK: - Properties
 
-    private let viewController: DailyBriefViewController
+    private weak var viewController: DailyBriefViewController?
 
     // MARK: - Init
 
@@ -31,14 +31,14 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         if let controller = R.storyboard
             .main().instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
-            viewController.present(controller, animated: true, completion: nil)
+            viewController?.present(controller, animated: true, completion: nil)
         }
     }
 
     func presentCopyRight(copyrightURL: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: viewController, copyrightURL: copyrightURL)
         popUpController.modalPresentationStyle = .overCurrentContext
-        viewController.present(popUpController, animated: true, completion: nil)
+        viewController?.present(popUpController, animated: true, completion: nil)
     }
 
     func presentMyToBeVision() {
@@ -48,7 +48,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             .myToBeVision().instantiateViewController(withIdentifier: identifier) as? MyVisionViewController
         if let myVisionViewController = myVisionViewController {
             MyVisionConfigurator.configure(viewController: myVisionViewController)
-            viewController.pushToStart(childViewController: myVisionViewController)
+            viewController?.pushToStart(childViewController: myVisionViewController)
         }
     }
 
@@ -57,14 +57,14 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         if let controller = R.storyboard.main()
             .instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
             ArticleConfigurator.configure(selectedID: selectedStrategyID, viewController: controller)
-            viewController.present(controller, animated: true, completion: nil)
+            viewController?.present(controller, animated: true, completion: nil)
         }
     }
 
     func presentToolsItems(selectedToolID: Int?) {
         if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
             ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
-            viewController.present(controller, animated: true, completion: nil)
+            viewController?.present(controller, animated: true, completion: nil)
         }
     }
 
@@ -74,14 +74,14 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             let controller = QuestionnaireViewController.viewController(with: data,
                                                                         delegate: viewController,
                                                                         controllerType: .customize) {
-            viewController.present(controller, animated: true)
+            viewController?.present(controller, animated: true)
         }
     }
 
     func showSolveResults(solve: QDMSolve) {
         let configurator = SolveResultsConfigurator.make(from: solve)
         let solveResultsController = SolveResultsViewController(configure: configurator)
-        viewController.present(solveResultsController, animated: true)
+        viewController?.present(solveResultsController, animated: true)
     }
 
     func showDailyCheckIn() {
@@ -89,7 +89,22 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         DailyCheckinStartConfigurator.configure(viewController: vieController)
         let navigationController = UINavigationController(rootViewController: vieController)
         navigationController.isNavigationBarHidden = true
-        viewController.present(navigationController, animated: true, completion: nil)
+        viewController?.present(navigationController, animated: true, completion: nil)
+    }
+
+    /**
+     * Method name: displayCoachPreparationScreen.
+     * Description: method which is used to trigger the preparation in the coach screen.
+     */
+    func displayCoachPreparationScreen() {
+        let configurator = DecisionTreeConfigurator.make(for: .prepare)
+        let controller = DecisionTreeViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
+    }
+
+    func openGuidedTrackAppLink(_ appLink: String?) {
+        guard let url = URL(string: appLink ?? "") else { return }
+        UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
     func presentMyDataScreen() {
@@ -99,7 +114,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         if let myDataScreenViewController = myDataScreenViewController {
             let configurator = MyDataScreenConfigurator.make()
             configurator(myDataScreenViewController)
-            viewController.pushToStart(childViewController: myDataScreenViewController)
+            viewController?.pushToStart(childViewController: myDataScreenViewController)
         }
     }
 }
+
