@@ -35,7 +35,6 @@ extension BaseRootViewController {
             notificationCenter.addObserver(self, selector: #selector(stopAudio(_:)), name: .stopAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(showAudioFullScreen(_:)), name: .showAudioFullScreen, object: nil)
             notificationCenter.addObserver(self, selector: #selector(hideAudioFullScreen(_:)), name: .hideAudioFullScreen, object: nil)
-
         }
     }
 }
@@ -44,7 +43,6 @@ extension BaseRootViewController {
 extension BaseRootViewController {
     @objc func handleBottomNavigationBar(_ notification: Notification) {
         guard let navigationItem = notification.object as? BottomNavigationItem else {
-            hideBottomNavigation()
             return
         }
         handleNavigationItems(leftItems: navigationItem.leftBarButtonItems,
@@ -53,6 +51,7 @@ extension BaseRootViewController {
 
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
         UIView.animate(withDuration: 0.1) {
+            self.bottomNavigationContainer.alpha = 1
             self.bottomNavigationContainer.layer.zPosition = 1
             self.bottomNavigationContainer.superview?.bringSubview(toFront: self.bottomNavigationContainer)
         }
@@ -66,30 +65,7 @@ extension BaseRootViewController {
         bottomNavigationBar.setItems([navigationItem], animated: false)
         navigationItem.setLeftBarButtonItems(leftItems, animated: false)
         navigationItem.setRightBarButtonItems(rightItems, animated: false)
-        if (leftItems?.count ?? 0) == 0 && (rightItems?.count ?? 0) == 0,
-            audioPlayerContainer.isUserInteractionEnabled == false {
-            hideBottomNavigation()
-        } else {
-            showButtomNavigation()
-            bringBottomNavigationBarToFront()
-        }
-    }
-
-    func hideBottomNavigation() {
-        self.bottomNavigationContainer.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.05) {
-            self.bottomNavigationContainer.alpha = 0
-        }
-    }
-
-    func showButtomNavigation() {
-        UIView.animate(withDuration: 0.05, animations: {
-            self.bottomNavigationContainer.alpha = 1
-        }, completion: { (finished) in
-            self.bottomNavigationContainer.isUserInteractionEnabled = true
-        })
         bringBottomNavigationBarToFront()
-
         audioPlayerBar.setColorMode(colorMode.isLightMode ? ColorMode.darkNot : ColorMode.dark)
     }
 }
