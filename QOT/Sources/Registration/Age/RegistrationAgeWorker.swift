@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class RegistrationAgeWorker {
+final class RegistrationAgeWorker: BaseSigningWorker {
 
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationAgeTitle()
+        return titleService.localizedString(for: .OnboardingRegistrationAgeTitle)
     }()
 
     lazy var agePlaceholder: String = {

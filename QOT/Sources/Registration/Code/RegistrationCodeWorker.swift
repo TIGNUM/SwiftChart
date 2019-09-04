@@ -27,7 +27,7 @@ final class RegistrationCodeWorker: BaseSigningWorker {
     // Texts
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationCodeTitle()
+        return titleService.localizedString(for: .OnboardingRegistrationCodeTitle)
     }()
 
     lazy var description: String = {

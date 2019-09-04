@@ -8,12 +8,12 @@
 
 import UIKit
 
-final class RegistrationNamesWorker {
+final class RegistrationNamesWorker: BaseSigningWorker {
 
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationNamesTitle()
+        return titleService.localizedString(for: .OnboardingRegistrationNamesTitle)
     }()
 
     lazy var firstNameTitle: String = {

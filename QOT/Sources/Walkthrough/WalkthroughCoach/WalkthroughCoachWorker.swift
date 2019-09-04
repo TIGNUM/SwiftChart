@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import qot_dal
 
 final class WalkthroughCoachWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return R.string.localized.walkthroughCoachText()
+        return qot_dal.ScreenTitleService.main.localizedString(for: .WalkthroughCoachText)
     }()
 
     // MARK: - Init

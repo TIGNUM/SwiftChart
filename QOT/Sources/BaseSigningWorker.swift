@@ -36,10 +36,10 @@ class BaseSigningWorker {
 
     init(_ sessionService: SessionService = SessionService.main,
          _ userService: qot_dal.UserService = qot_dal.UserService.main,
-         _ contentService: ScreenTitleService = qot_dal.ScreenTitleService.main) {
+         _ titleService: ScreenTitleService = qot_dal.ScreenTitleService.main) {
         self.sessionService = sessionService
         self.userService = userService
-        self.titleService = contentService
+        self.titleService = titleService
     }
 }
 

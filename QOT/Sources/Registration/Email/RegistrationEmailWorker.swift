@@ -14,7 +14,7 @@ final class RegistrationEmailWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationEmailTitle()
+        return titleService.localizedString(for: .OnboardingRegistrationEmailTitle)
     }()
 
     lazy var emailPlaceholder: String = {

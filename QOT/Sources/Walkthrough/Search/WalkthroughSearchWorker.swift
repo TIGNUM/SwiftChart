@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import qot_dal
 
 final class WalkthroughSearchWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return R.string.localized.walkthroughSearchText()
+        return qot_dal.ScreenTitleService.main.localizedString(for: .WalkthroughSearchText)
     }()
 
     // MARK: - Init
