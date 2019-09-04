@@ -10,7 +10,6 @@ import UIKit
 
 final class DepartureInfoCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
@@ -22,7 +21,6 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
-        ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         ThemeText.bespokeText.apply(viewModel?.text, to: departureText)

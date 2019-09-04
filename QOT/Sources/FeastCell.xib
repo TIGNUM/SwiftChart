@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEAST FOR EYES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rjY-Qr-wDb">
-                    <rect key="frame" x="20" y="41" width="345" height="24"/>
+                    <rect key="frame" x="20" y="59" width="345" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="n59-TT-ucL"/>
                     </constraints>
@@ -31,7 +31,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M30-VM-Zxo">
-                    <rect key="frame" x="20" y="30" width="16" height="1"/>
+                    <rect key="frame" x="20" y="48" width="16" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="Sr1-8Q-XrM"/>
@@ -40,9 +40,10 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38T-gA-UaZ">
-                    <rect key="frame" x="0.0" y="90" width="385" height="279"/>
+                    <rect key="frame" x="0.0" y="108" width="385" height="261"/>
                     <constraints>
                         <constraint firstAttribute="height" relation="lessThanOrEqual" constant="300" id="Eyu-un-JXU"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="200" id="hxa-bd-8ga"/>
                     </constraints>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgt-tp-HhS">
@@ -70,7 +71,7 @@
                 <constraint firstItem="M30-VM-Zxo" firstAttribute="leading" secondItem="axe-l6-9r4" secondAttribute="leading" constant="20" id="iwi-wN-bjo"/>
                 <constraint firstItem="rjY-Qr-wDb" firstAttribute="top" secondItem="M30-VM-Zxo" secondAttribute="bottom" constant="10" id="kXT-Yd-4oW"/>
                 <constraint firstItem="Bgt-tp-HhS" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="24" id="suX-jU-j73"/>
-                <constraint firstItem="M30-VM-Zxo" firstAttribute="top" secondItem="axe-l6-9r4" secondAttribute="top" constant="30" id="t5f-hx-wvc"/>
+                <constraint firstItem="M30-VM-Zxo" firstAttribute="top" secondItem="axe-l6-9r4" secondAttribute="top" constant="48" id="t5f-hx-wvc"/>
                 <constraint firstItem="UKN-Gn-3Pf" firstAttribute="trailing" secondItem="rjY-Qr-wDb" secondAttribute="trailing" constant="20" id="xac-ys-J9w"/>
                 <constraint firstAttribute="bottom" secondItem="Bgt-tp-HhS" secondAttribute="bottom" constant="26" id="yer-hx-0sy"/>
             </constraints>

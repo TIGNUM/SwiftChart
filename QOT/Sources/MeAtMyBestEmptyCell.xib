@@ -82,8 +82,8 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="GFn-Ic-whM"/>
             <connections>
-                <outlet property="buttonText" destination="xPR-6J-8Dw" id="0FV-sl-B8h"/>
-                <outlet property="intro" destination="fVp-Dx-FYn" id="Kwx-Bn-Tfk"/>
+                <outlet property="buttonText" destination="xPR-6J-8Dw" id="bkk-X6-M2Q"/>
+                <outlet property="intro" destination="fVp-Dx-FYn" id="oU4-pu-H86"/>
                 <outlet property="title" destination="fbg-kJ-pWj" id="zDS-fw-R5G"/>
             </connections>
             <point key="canvasLocation" x="-1379.7101449275362" y="48.214285714285715"/>

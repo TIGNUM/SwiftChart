@@ -1040,7 +1040,7 @@
 		9CF3BE4722FC7B460027D111 /* MypeakperformanceTitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
 		9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */; };
-		9CF3BE4F230189650027D111 /*  MeAtMyBestEmptyCell .xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4E230189650027D111 /*  MeAtMyBestEmptyCell .xib */; };
+		9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */; };
 		9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */; };
 		9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */; };
 		9CF3BE55230190D40027D111 /* MeAtMyBestModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */; };
@@ -2897,7 +2897,7 @@
 		9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypeakperformanceTitleModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
-		9CF3BE4E230189650027D111 /*  MeAtMyBestEmptyCell .xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = " MeAtMyBestEmptyCell .xib"; sourceTree = "<group>"; };
+		9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeAtMyBestEmptyCell.xib; sourceTree = "<group>"; };
 		9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyCell.swift; sourceTree = "<group>"; };
 		9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestModelType.swift; sourceTree = "<group>"; };
@@ -6105,7 +6105,7 @@
 				9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */,
 				9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */,
 				9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */,
-				9CF3BE4E230189650027D111 /*  MeAtMyBestEmptyCell .xib */,
+				9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */,
 				9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */,
 				9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */,
 				9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */,
@@ -8892,7 +8892,7 @@
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				CB3333F120480E50009480DF /* ShareViewController.xib in Resources */,
 				BB5E76D5230D29A30054AF17 /* MyPrepsCell.xib in Resources */,
-				9CF3BE4F230189650027D111 /*  MeAtMyBestEmptyCell .xib in Resources */,
+				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,

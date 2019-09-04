@@ -12,13 +12,8 @@ final class GoodToKnowCell: BaseDailyBriefCell {
     @IBOutlet private weak var goodToKnowImage: UIImageView!
     @IBOutlet private weak var goodToKnowFact: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var copyrightButton: UIButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var goodToKnowModel: GoodToKnowCellViewModel?
-
-    @IBAction func CopyrightPressed(_ sender: Any) {
-       delegate?.presentCopyRight(copyrightURL: goodToKnowModel?.copyright)
-    }
 
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         goodToKnowImage.kf.setImage(with: viewModel?.image, placeholder: R.image.preloading())
