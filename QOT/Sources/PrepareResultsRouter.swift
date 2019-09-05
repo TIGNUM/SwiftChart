@@ -53,9 +53,10 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func dismiss() {
-        viewController?.dismiss(animated: false) {
+        DispatchQueue.main.async {
             NotificationCenter.default.post(name: .dismissCoachView, object: nil)
         }
+        viewController?.dismiss(animated: true)
     }
 }
 

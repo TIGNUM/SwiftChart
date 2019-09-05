@@ -236,14 +236,16 @@ extension UIViewController {
 
     @objc open func refreshBottomNavigationItems() {
         let swiftClassName = NSStringFromClass(type(of: self))
-        if (self is ScreenZLevelOverlay) || swiftClassName == "UIViewController" {
+        if (self is ScreenZLevelOverlay) ||
+            swiftClassName == "UIViewController" ||
+            swiftClassName == "INUIVoiceShortcutHostViewController" {
             log("hide BottomNavigationBar for : \(swiftClassName)", level: .info)
             DispatchQueue.main.async { [weak self] in
                 guard let strongself = self else { return }
                 if strongself.view.window != nil {
                     NotificationCenter.default.post(name: .updateBottomNavigation,
                                                     object: BottomNavigationItem(leftBarButtonItems: [],
-                                                                                 rightBarButtonItems: [],backgroundColor: .clear),
+                                                                                 rightBarButtonItems: [], backgroundColor: .clear),
                                                     userInfo: nil)
                 }
             }

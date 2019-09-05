@@ -13,7 +13,8 @@ final class DailyCheckinStartConfigurator: AppStateAccess {
 
     static func configure(viewController: DailyCheckinStartViewController) {
         let router = DailyCheckinStartRouter(viewController: viewController)
-        let worker = DailyCheckinStartWorker(questionService: qot_dal.QuestionService.main)
+        let worker = DailyCheckinStartWorker(questionService: qot_dal.QuestionService.main,
+                                             healthService: qot_dal.HealthService.main)
         let presenter = DailyCheckinStartPresenter(viewController: viewController)
         let interactor = DailyCheckinStartInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

@@ -349,9 +349,6 @@ extension LaunchHandler {
     }
 
     func push(viewController: UIViewController) {
-        guard let mainNavi = baseRootViewController?.navigationController else {
-            return
-        }
         baseRootViewController?.pushToStart(childViewController: viewController, enableInteractivePop: true)
     }
 
