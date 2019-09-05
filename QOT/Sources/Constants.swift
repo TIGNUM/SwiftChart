@@ -77,9 +77,12 @@ extension CGFloat {
     public typealias Corner = CGFloat
 }
 
+extension CGFloat.Button {}
+
 extension CGFloat.Radius {
     static let Three: CGFloat = 3
     static let Nine: CGFloat = 9
+    static let Twenty: CGFloat = 20
 }
 
 extension CGFloat.View.Height {
@@ -87,6 +90,7 @@ extension CGFloat.View.Height {
     static let ParentNode: CGFloat = 64
     static let ChildNode: CGFloat = 95
     static let Footer: CGFloat = 20
+    static let TypingFooter: CGFloat = 80
 }
 
 extension CGFloat.Button.Height {
@@ -107,6 +111,7 @@ extension CGFloat.Button.Width {
     static let Done: CGFloat = 72
     static let SaveAndContinue: CGFloat = 152
     static let DecisionTree: CGFloat = 168
+    static let DecisionTreeContent: CGFloat = 120
     static let Cancel: CGFloat = 88
     static let Continue: CGFloat = 100
 }

@@ -17,44 +17,32 @@ final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
     private var question: QDMQuestion?
+    private var type = DecisionTreeType.mindsetShifter
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     weak var delegate: SingleSelectionCellDelegate?
-    @IBOutlet private weak var rightOptionButton: DecisionTreeButton!
-    @IBOutlet private weak var leftOptionButton: DecisionTreeButton!
+    @IBOutlet private weak var rightOptionButton: AnswerButton!
+    @IBOutlet private weak var leftOptionButton: AnswerButton!
     @IBOutlet private weak var rightWidthContraint: NSLayoutConstraint!
     @IBOutlet private weak var leftWidthConstraint: NSLayoutConstraint!
-
-    // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        rightOptionButton.cornerDefault()
-        leftOptionButton.cornerDefault()
-    }
 }
 
 // MARK: - Configuration
 extension SingleSelectionTableViewCell {
     func configure(for question: QDMQuestion,
+                   type: DecisionTreeType?,
                    selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
+        self.type = type ?? .mindsetShifter
         self.question = question
         self.selectedAnswers = selectedAnswers
-        let rightOption = question.answers[0]
-        let leftOption = question.answers[1]
-        let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID == rightOption.remoteID }.count > 0
-        let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID == leftOption.remoteID }.count > 0
-        rightOptionButton.configure(with: rightOption.subtitle ?? "",
-                                    selectedBackgroundColor: rightIsSelected ? .clear : .accent30,
-                                    defaultBackgroundColor: rightIsSelected ? .accent30 : .clear,
-                                    borderColor: .accent30,
-                                    titleColor: .accent)
-        leftOptionButton.configure(with: leftOption.subtitle ?? "",
-                                   selectedBackgroundColor: leftIsSelected ? .clear : .accent30,
-                                   defaultBackgroundColor: leftIsSelected ? .accent30 : .clear,
-                                   borderColor: .accent30,
-                                   titleColor: .accent)
+        let rightOption = question.answers.at(index: 0)
+        let leftOption = question.answers.at(index: 1)
+        let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID == rightOption?.remoteID }.count > 0
+        let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID == leftOption?.remoteID }.count > 0
+        rightOptionButton.configure(title: rightOption?.subtitle ?? "", isSelected: rightIsSelected )
+        leftOptionButton.configure(title: leftOption?.subtitle ?? "", isSelected: leftIsSelected)
         rightOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
         leftOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
-        setButtonWidth(rightButtonTtile: rightOption.subtitle, leftButtonTtile: leftOption.subtitle)
+        setButtonWidth(rightButtonTtile: rightOption?.subtitle, leftButtonTtile: leftOption?.subtitle)
     }
 }
 
@@ -71,13 +59,15 @@ private extension SingleSelectionTableViewCell {
 
 // MARK: - Actions
 extension SingleSelectionTableViewCell {
-    @IBAction func didTapRightOption(_ sender: UIButton) {
+    @IBAction func didTapRightOption() {
+        rightOptionButton.switchBackgroundColor()
         if let question = question {
             delegate?.didSelect(question.answers[0])
         }
     }
 
-    @IBAction func didTapLeftOption(_ sender: UIButton) {
+    @IBAction func didTapLeftOption() {
+        leftOptionButton.switchBackgroundColor()
         if let question = question {
             delegate?.didSelect(question.answers[1])
         }

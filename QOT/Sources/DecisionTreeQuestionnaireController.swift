@@ -24,12 +24,7 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func presentTrackTBV()
 }
 
-private enum CellType: Int, CaseIterable {
-    case question
-    case answer
-}
-
-final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLevel3 {
+final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLevelIgnore {
 
     // MARK: - Properties
     var interactor: DecisionTreeInteractorInterface?
@@ -41,10 +36,9 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
     private let answersFilter: String?
     private let questionTitleUpdate: String?
     private let preparations: [QDMUserPreparation]?
-    private let continueButton: DecisionTreeButton?
     let isOnboarding: Bool
-    private var reportedTracking: Bool = false // Tracking is reported in `cellForRow` which is called multiple times    
-    private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
+    private var reportedTracking: Bool = false // Tracking is reported in `cellForRow` which is called multiple times
+    private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
     private var heightQuestionCell: CGFloat = 0
     private var heightAnswerCell: CGFloat = 0
     lazy var tableView = UITableView(estimatedRowHeight: 100,
@@ -79,8 +73,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
          answersFilter: String?,
          questionTitleUpdate: String?,
          preparations: [QDMUserPreparation]? = nil,
-         isOnboarding: Bool = false,
-         continueButton: DecisionTreeButton?) {
+         isOnboarding: Bool = false) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
@@ -89,7 +82,6 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
         self.questionTitleUpdate = questionTitleUpdate
         self.preparations = preparations
         self.isOnboarding = isOnboarding
-        self.continueButton = continueButton
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -101,18 +93,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard let rightBarButtonItem = continueButton?.toBarButtonItem() else { return }
-        switch interactor?.type {
-        case .mindsetShifterTBV?:
-            updateBottomNavigation([dismissNavigationItem(action: #selector(dismissAll))], [rightBarButtonItem])
-        default:
-            let leftItems = isOnboarding ? [] : [dismissNavigationItem()]
-            updateBottomNavigation(leftItems, [rightBarButtonItem])
-        }
+        addObservers()
     }
 }
 
@@ -125,7 +106,17 @@ private extension DecisionTreeQuestionnaireViewController {
         tableView.separatorStyle = .none
     }
 
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(typingAnimationStart),
+                                               name: .typingAnimationStart,
+                                               object: nil)
+    }
+
     @objc func typingAnimationStart() {
+        guard question.hasTypingAnimation else { return }
+        tableView.scrollToBottom(animated: true)
+        typingAnimation.alpha = 1
         typingAnimation.startAnimation(withDuration: Animation.duration_3)
     }
 
@@ -160,19 +151,19 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
             inputCell.showKeyBoard()
         }
         switch indexPath.section {
-        case 0:
-            heightQuestionCell = cell.frame.height
-        case 1:
-            heightAnswerCell = cell.frame.height
+        case 0: heightQuestionCell = cell.frame.height
+        case 1: heightAnswerCell = cell.frame.height
         default: break
         }
-        recalculateContentInsets()
+        recalculateContentInsets(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch CellType.allCases[indexPath.section] {
         case .answer where (question.answerType == AnswerType.userInput.rawValue):
             return 260
+        case .answer where (question.answerType == AnswerType.accept.rawValue):
+            return 0
         default:
             return UITableViewAutomaticDimension
         }
@@ -201,11 +192,11 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
             var update = questionTitleUpdate
-            switch interactor?.type {
-            case .sprint?:
-                update = interactor?.selectedSprintTitle
-            default:
-                break
+            if let type = interactor?.type, type.introKey != question.key {
+                switch type {
+                case .sprint: update = interactor?.selectedSprintTitle
+                default: break
+                }
             }
             cell.configure(with: question.title,
                            questionTitleUpdate: update,
@@ -216,7 +207,6 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.accept.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
-                cell.backgroundColor = UIColor.red.withAlphaComponent(0.4)
                 return cell
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
@@ -227,7 +217,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.yesOrNo.rawValue,
                  AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: question, selectedAnswers: selectedAnswers)
+                cell.configure(for: question, type: interactor?.type, selectedAnswers: selectedAnswers)
                 cell.delegate = self
                 return cell
             case AnswerType.singleSelection.rawValue,
@@ -242,6 +232,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                     let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
                     cell.configure(for: filteredAnswers,
                                    question: question,
+                                   type: interactor?.type,
                                    selectedAnswers: selectedAnswers,
                                    maxPossibleSelections: maxPossibleSelections)
                     cell.delegate = self
@@ -261,7 +252,8 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "",
                                textColor: interactor?.type.textColor,
-                               showTypingAnimation: question.key != QuestionKey.ToBeVision.Review)
+                               showTypingAnimation: question.hasTypingAnimation
+                                && question.answerType != AnswerType.noAnswerRequired.rawValue)
                 switch question.key {
                 case QuestionKey.SprintReflection.Intro,
                      QuestionKey.Prepare.ShowTBV,
@@ -288,14 +280,15 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == CellType.question.rawValue && question.hasTypingAnimation ? .Default : 0
+        return section == CellType.question.rawValue && question.hasTypingAnimation ? .TypingFooter : 0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == CellType.question.rawValue && question.hasTypingAnimation {
-            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .Default))
+            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .TypingFooter))
             footer.addSubview(typingAnimation)
-            typingAnimation.configure(dotsColor: .carbonDark)
+            typingAnimation.configure(dotsColor: .carbonNew)
+            typingAnimation.alpha = 0
             return footer
         }
         return nil
@@ -304,7 +297,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 
 // MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
-    func recalculateContentInsets() {
+    func recalculateContentInsets(at indexPath: IndexPath) {
         if question.answerType == AnswerType.openCalendarEvents.rawValue
             || question.key == QuestionKey.Prepare.SelectExisting {
             return tableView.contentInset = .zero
@@ -312,7 +305,9 @@ private extension DecisionTreeQuestionnaireViewController {
         if question.answerType == AnswerType.userInput.rawValue {
             return tableView.contentInset = .zero
         }
-        let cellsHeight = heightQuestionCell + heightAnswerCell
+        let isTypingQuestion = (CellType.question.rawValue == indexPath.section && question.hasTypingAnimation)
+        let footerHeight: CGFloat = isTypingQuestion ? .TypingFooter : 0
+        let cellsHeight = heightQuestionCell + heightAnswerCell + footerHeight
         let difference = tableView.frame.height - cellsHeight
         tableView.contentInset = UIEdgeInsets(top: max(difference, 0), left: 0, bottom: 0, right: 0)
     }

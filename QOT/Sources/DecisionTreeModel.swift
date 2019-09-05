@@ -9,6 +9,11 @@
 import Foundation
 import qot_dal
 
+enum CellType: Int, CaseIterable {
+    case question
+    case answer
+}
+
 // MARK: - TreeType
 enum DecisionTreeType {
     case toBeVisionGenerator
@@ -132,8 +137,29 @@ enum DecisionTreeType {
         case .mindsetShifterTBVOnboarding:
             return .carbon05
         default:
-            return .carbon05
+            return .accent30
         }
+    }
+
+    func buttonSelectedBackgroundColor(_ selected: Bool) -> UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .carbon30
+        default:
+            return selected ? .clear : .accent30
+        }
+    }
+
+    var buttonDefaultTextColor: UIColor {
+        return .accent
+    }
+
+    var borderDefaultColor: UIColor {
+        return .accent30
+    }
+
+    var navigationButtonBackgroundColorActive: UIColor {
+        return .carbonNew
     }
 }
 
@@ -142,10 +168,8 @@ extension QDMQuestion {
         get {
             switch key {
             case QuestionKey.Sprint.Intro,
-                 QuestionKey.MindsetShifter.LowSelfTalk:
-                return true
-            default:
-                return false
+                 QuestionKey.MindsetShifter.LowSelfTalk: return true
+            default: return false
             }
         }
     }

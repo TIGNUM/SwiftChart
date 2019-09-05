@@ -8,61 +8,21 @@
 
 import UIKit
 
-final class DecisionTreeButton: UIButton {
+class AbstractTreeButton: UIButton {
 
-    // MARK: - Properties
-    private var selectedBackgroundColor: UIColor? = .clear
-    private var defaultBackgroundColor: UIColor? = .red
-    private var maxPossibleSelections: Int = 0
+    var maxPossibleSelections: Int = 0
 
-    // MARK: - Lifecycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupView()
-    }
-}
-
-// MARK: - Configure
-extension DecisionTreeButton {
-    func configure(with title: String,
-                   attributedTitle: NSAttributedString? = nil,
-                   selectedBackgroundColor: UIColor,
-                   defaultBackgroundColor: UIColor,
-                   borderColor: UIColor?,
-                   titleColor: UIColor) {
-        if let attributedTitle = attributedTitle {
-            setAttributedTitle(attributedTitle, for: .normal)
-        } else {
-            setTitle(title, for: .normal)
-            setTitleColor(titleColor, for: .normal)
-        }
-        self.layer.borderColor = borderColor?.cgColor
-        self.selectedBackgroundColor = selectedBackgroundColor
-        self.defaultBackgroundColor = defaultBackgroundColor
-        self.backgroundColor = defaultBackgroundColor
+    func attributedString(_ title: String, _ textColor: UIColor) -> NSAttributedString {
+        return NSAttributedString(string: title,
+                                  letterSpacing: 0.2,
+                                  font: .sfProtextSemibold(ofSize: 14),
+                                  lineSpacing: 4,
+                                  textColor: textColor,
+                                  alignment: .center)
     }
 
-    func update() {
-        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
-    }
-
-    func update(with value: Int,
-                defaultTitle: String,
-                confirmationTitle: String,
-                maxSelections: Int) {
-        isHidden = confirmationTitle.isEmpty && defaultTitle.isEmpty
-        guard !isHidden else { return }
-        let result = maxSelections - value
-        let title = value == maxSelections ? confirmationTitle : R.string.localized.buttonTitlePick(result)
-        isUserInteractionEnabled = value == maxSelections
-        backgroundColor = value == maxSelections ? selectedBackgroundColor : defaultBackgroundColor
-        let textColor: UIColor = value == maxSelections ? .accent : .carbon30
-        setAttributedTitle(NSAttributedString(string: title,
-                                              letterSpacing: 0.2,
-                                              font: .sfProtextSemibold(ofSize: 14),
-                                              textColor: textColor),
-                           for: .normal)
-        if value == 4 {
+    func setShadow(_ isHighLighted: Bool) {
+        if isHighLighted {
             layer.shadowOffset = CGSize(width: 0, height: 1)
             layer.shadowColor = UIColor.lightGray.cgColor
             layer.shadowOpacity = 1
@@ -71,18 +31,74 @@ extension DecisionTreeButton {
         } else {
             layer.shadowOpacity = 0
         }
-    }
-
-    func toBarButtonItem() -> UIBarButtonItem {
-        return UIBarButtonItem(customView: self)
+        layoutIfNeeded()
     }
 }
 
-// MARK: - Setup
-private extension DecisionTreeButton {
-    func setupView() {
-        layer.borderWidth = 1.4
-        titleLabel?.numberOfLines = 0
-        titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
+final class AnswerButton: AbstractTreeButton {
+
+    private var selectedBackgroundColor = UIColor.clear
+    private var defaultBackgroundColor = UIColor.red
+
+    func configure(title: String, isSelected: Bool) {
+        defaultBackgroundColor = isSelected ? .accent30 : .clear
+        selectedBackgroundColor = isSelected ? .clear : .accent30
+        setAttributedTitle(attributedString(title, .accent), for: .normal)
+        corner(radius: .Twenty, borderColor: .accent40)
+    }
+
+    func switchBackgroundColor() {
+        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
+    }
+}
+
+final class SelectionButton: AbstractTreeButton {
+
+    @IBOutlet private weak var selectionLabel: UILabel!
+    private var selectedBackgroundColor = UIColor.clear
+    private var defaultBackgroundColor = UIColor.red
+
+    func configure(title: String, isSelected: Bool) {
+        defaultBackgroundColor = isSelected ? .accent30 : .clear
+        selectedBackgroundColor = isSelected ? .clear : .accent30
+        selectionLabel.attributedText = attributedString(title, .accent)
+        switchBackgroundColor()
+        selectionLabel.corner(radius: .Twenty, borderColor: .accent40)
+    }
+
+    func switchBackgroundColor() {
+        selectionLabel.backgroundColor = (selectionLabel.backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
+    }
+}
+
+final class NavigationButton: AbstractTreeButton {
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        cornerDefault()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        cornerDefault()
+    }
+
+    func configure(title: String, backgroundColor: UIColor, titleColor: UIColor) {
+        setAttributedTitle(attributedString(title, titleColor), for: .normal)
+        self.backgroundColor = backgroundColor
+    }
+
+    func update(currentValue: Int, maxSelections: Int, defaultTitle: String, confirmationTitle: String) {
+        isHidden = confirmationTitle.isEmpty && defaultTitle.isEmpty
+        guard !isHidden else { return }
+
+        let isHighLighted = currentValue == maxSelections
+        let buttonTitle = defaultTitle.isEmpty ? confirmationTitle : defaultTitle
+        let textColor: UIColor = isHighLighted ? .accent : .carbon30
+        let updatedTitle = isHighLighted ? buttonTitle : R.string.localized.buttonTitlePick(maxSelections - currentValue)
+        setAttributedTitle(attributedString(updatedTitle, textColor), for: .normal)
+        isUserInteractionEnabled = isHighLighted
+        backgroundColor = isHighLighted ? .carbonNew : .carbonNew08
+        setShadow(isHighLighted)
     }
 }

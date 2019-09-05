@@ -16,31 +16,31 @@ extension UIView {
 
         subview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: subview,
-                           attribute: NSLayoutAttribute.centerX,
-                           relatedBy: NSLayoutRelation.equal,
+                           attribute: .centerX,
+                           relatedBy: .equal,
                            toItem: self,
-                           attribute: NSLayoutAttribute.centerX,
+                           attribute: .centerX,
                            multiplier: 1,
                            constant: 0).isActive = true
         NSLayoutConstraint(item: subview,
-                           attribute: NSLayoutAttribute.centerY,
-                           relatedBy: NSLayoutRelation.equal,
+                           attribute: .centerY,
+                           relatedBy: .equal,
                            toItem: self,
-                           attribute: NSLayoutAttribute.centerY,
+                           attribute: .centerY,
                            multiplier: 1,
                            constant: 0).isActive = true
         NSLayoutConstraint(item: subview,
-                           attribute: NSLayoutAttribute.width,
-                           relatedBy: NSLayoutRelation.equal,
+                           attribute: .width,
+                           relatedBy: .equal,
                            toItem: self,
-                           attribute: NSLayoutAttribute.width,
+                           attribute: .width,
                            multiplier: 1,
                            constant: 0).isActive = true
         NSLayoutConstraint(item: subview,
-                           attribute: NSLayoutAttribute.height,
-                           relatedBy: NSLayoutRelation.equal,
+                           attribute: .height,
+                           relatedBy: .equal,
                            toItem: self,
-                           attribute: NSLayoutAttribute.height,
+                           attribute: .height,
                            multiplier: 1,
                            constant: 0).isActive = true
     }
@@ -51,5 +51,39 @@ extension UIView {
         self.rightAnchor.constraint(equalTo: superView.rightAnchor).isActive = true
         self.topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
+    }
+}
+
+extension UIView {
+    func edges(to view: UIView, top: CGFloat = 0, left: CGFloat = 0, bottom: CGFloat = 0, right: CGFloat = 0) {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([leftAnchor.constraint(equalTo: view.leftAnchor, constant: left),
+                                     rightAnchor.constraint(equalTo: view.rightAnchor, constant: right),
+                                     topAnchor.constraint(equalTo: view.topAnchor, constant: top),
+                                     bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)])
+    }
+
+    func center(to view: UIView, leading: CGFloat = 0, top: CGFloat = 0) {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([view.centerXAnchor.constraint(equalTo: centerXAnchor),
+                                     view.centerYAnchor.constraint(equalTo: centerYAnchor),
+                                     view.leadingAnchor.constraint(equalTo: leadingAnchor),
+                                     view.topAnchor.constraint(equalTo: topAnchor)])
+    }
+
+    func bottomNavigationItem(to view: UIView,
+                              width: CGFloat = .DecisionTree,
+                              widthOffset: CGFloat = 0,
+                              height: CGFloat = .Default,
+                              leading: CGFloat = 0,
+                              top: CGFloat = 0) {
+        translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([widthAnchor.constraint(equalToConstant: width),
+                                     heightAnchor.constraint(equalToConstant: height),
+                                     view.widthAnchor.constraint(equalTo: widthAnchor, constant: widthOffset),
+                                     view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
+                                     view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: leading),
+                                     view.topAnchor.constraint(equalTo: topAnchor, constant: top),
+                                     view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: top)])
     }
 }

@@ -229,7 +229,7 @@ private extension DecisionTreeWorker {
 private extension DecisionTreeWorker {
     func showNextQuestionIfExist(_ answer: QDMAnswer) {
         if let targetQuestionId = answer.targetId(.question) {
-            showNextQuestion(targetId: targetQuestionId)
+            showNextQuestion(targetId: targetQuestionId, answer: answer)
         }
     }
 }

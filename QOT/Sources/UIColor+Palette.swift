@@ -116,6 +116,10 @@ extension UIColor {
         return carbonNew.withAlphaComponent(0.08)
     }
 
+    public class var carbonNew30: UIColor {
+        return carbonNew.withAlphaComponent(0.3)
+    }
+
     public class var carbon30: UIColor {
         return carbon.withAlphaComponent(0.3)
     }

@@ -17,17 +17,17 @@ protocol MultipleSelectionCollectionViewCellDelegate: class {
 final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
-    @IBOutlet private weak var answerButton: DecisionTreeButton!
     weak var delegate: MultipleSelectionCollectionViewCellDelegate?
+    @IBOutlet private weak var selectionButton: SelectionButton!
     private var maxSelections = 0
     private var selectionCounter = 0
     private var isAnswered = false
     private var answer: QDMAnswer?
+    private var type = DecisionTreeType.mindsetShifter
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerButton.cornerDefault()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(syncButton(_:)),
                                                name: .didUpdateSelectionCounter,
@@ -38,40 +38,32 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 // MARK: - Configure
 extension MultipleSelectionCollectionViewCell {
     func configure(for answer: QDMAnswer,
+                   type: DecisionTreeType?,
                    isSelected: Bool,
                    maxSelections: Int,
-                   selectionCounter: Int,
-                   answerButtonNeedsUpdate: Bool) {
+                   selectionCounter: Int) {
+        self.type = type ?? .mindsetShifter
         self.answer = answer
         self.maxSelections = maxSelections
         self.isAnswered = isSelected
         self.selectionCounter = selectionCounter
-        answerButton.configure(with: answer.subtitle ?? "",
-                               selectedBackgroundColor: isSelected ? .clear : .accent30,
-                               defaultBackgroundColor: isSelected ? .accent30 : .clear,
-                               borderColor: .accent30,
-                               titleColor: .accent)
-        if answerButtonNeedsUpdate {
-            answerButton.titleLabel?.lineBreakMode = .byWordWrapping
-            answerButton.titleLabel?.numberOfLines = 2
-            answerButton.sizeToFit()
-        }
+        selectionButton.configure(title: answer.subtitle ?? "", isSelected: isSelected)
     }
 }
 
 // MARK: - Actions
 extension MultipleSelectionCollectionViewCell {
-    @IBAction func didTapButton(_ sender: DecisionTreeButton) {
+    @IBAction func didTapButton() {
         guard let answer = answer else { return }
         if isAnswered == true {
             delegate?.didDeSelectAnswer(answer)
             if answer.canUpdateAnswerButton == true {
-                answerButton.update()
+                selectionButton?.switchBackgroundColor()
                 isAnswered = false
             }
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
             if answer.canUpdateAnswerButton == true {
-                answerButton.update()
+                selectionButton?.switchBackgroundColor()
                 isAnswered = true
             }
             delegate?.didSelectAnswer(answer)

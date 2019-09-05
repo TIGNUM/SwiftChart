@@ -15,7 +15,6 @@ final class SensorViewController: UIViewController {
     var interactor: SensorInteractorInterface?
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var fadeContainerView: FadeContainerView!
     @IBOutlet private weak var sensorsTitleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var wearablesTitleLabel: UILabel!

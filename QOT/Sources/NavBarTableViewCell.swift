@@ -11,7 +11,6 @@ import UIKit
 final class NavBarTableViewCell: UIView {
 
     typealias actionClosure = (() -> Void)
-
     @IBOutlet weak var container: UIView!
     @IBOutlet weak var buttonLeft: UIButton!
     @IBOutlet weak var buttonRight: UIButton!

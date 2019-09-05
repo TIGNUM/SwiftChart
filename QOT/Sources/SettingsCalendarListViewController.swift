@@ -110,23 +110,6 @@ private extension SettingsCalendarListViewController {
         setCustomBackButton()
         view.backgroundColor = .navy
         view.addBlackNavigationView()
-		let fadeContainerView = FadeContainerView()
-		view.addSubview(fadeContainerView)
-		fadeContainerView.edgeAnchors == view.edgeAnchors
-        fadeContainerView.addSubview(tableView)
-        fadeContainerView.backgroundColor = .navy
-        tableView.topAnchor == fadeContainerView.topAnchor + Layout.padding_16
-        tableView.leftAnchor == fadeContainerView.leftAnchor + Layout.padding_16
-        tableView.rightAnchor ==  fadeContainerView.rightAnchor
-        tableView.bottomAnchor == fadeContainerView.bottomAnchor
-        tableView.backgroundColor = .clear
-        tableView.tableFooterView = UIView()
-        tableView.separatorColor = .clear
-        tableView.allowsSelection = true
-		tableView.isScrollEnabled = true
-        tableView.rowHeight = UITableViewAutomaticDimension
-		fadeContainerView.setFade(top: 80, bottom: 0)
-        setupOpenSettingForCalendar(fadeContainerView: fadeContainerView)
 		view.layoutIfNeeded()
     }
 

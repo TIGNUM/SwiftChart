@@ -236,6 +236,9 @@ extension UIViewController {
 
     @objc open func refreshBottomNavigationItems() {
         let swiftClassName = NSStringFromClass(type(of: self))
+        if self is ScreenZLevelIgnore {
+            return
+        }
         if (self is ScreenZLevelOverlay) ||
             swiftClassName == "UIViewController" ||
             swiftClassName == "INUIVoiceShortcutHostViewController" {

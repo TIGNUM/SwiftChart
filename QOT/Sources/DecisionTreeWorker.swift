@@ -40,7 +40,7 @@ final class DecisionTreeWorker {
     internal var targetContentID: Int = 0
     internal var nextQuestionId: Int = 0
     internal var createdTBV: QDMToBeVision? // TBV cached during onboarding
-    var continueButton = DecisionTreeButton(frame: .Default)
+    internal var navigationButton: NavigationButton?
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
@@ -54,7 +54,10 @@ final class DecisionTreeWorker {
     }
 
     internal var pageIndex: Int = 0 {
-        didSet { multiSelectionCounter = 0 }
+        didSet {
+            setupContinueButton()
+            multiSelectionCounter = 0
+        }
     }
 
     var decisionTree: DecisionTreeModel? {
@@ -76,7 +79,7 @@ final class DecisionTreeWorker {
     }
 
     var selectedSprint: QDMAnswer? {
-        return decisionTree?.selectedAnswers.filter { $0.questionID == 100369 }.last?.answer
+        return decisionTree?.selectedAnswers.filter { $0.questionID == 100370 }.last?.answer
     }
 
     internal var maxPossibleSelections: Int {
@@ -116,7 +119,6 @@ final class DecisionTreeWorker {
             break
         }
         addObserver()
-        setupContinueButton()
     }
 }
 
@@ -125,7 +127,10 @@ extension DecisionTreeWorker {
     var extraAnswer: String? {
         return _extraAnswer
     }
+
     var firstQuestion: QDMQuestion? {
+        setupContinueButton()
+        syncButtons()
         switch type {
         case .prepareIntentions,
              .prepareBenefits:
@@ -378,20 +383,6 @@ private extension DecisionTreeWorker {
             .filter { $0.contains(keyFilter) }
         answerFilterMindset = relationshipKeys?.filter { $0.contains(selectedAnswerTitle) }.first
         return answerFilterMindset
-    }
-
-    func setupContinueButton() {
-        continueButton.cornerDefault()
-        let attributedTitle = NSAttributedString(string: "",
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14))
-        continueButton.configure(with: "",
-                                 attributedTitle: attributedTitle,
-                                 selectedBackgroundColor: .carbonNew,
-                                 defaultBackgroundColor: type.navigationButtonBackgroundColor,
-                                 borderColor: .clear,
-                                 titleColor: type.navigationButtonTextColor)
-        continueButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
     }
 }
 

@@ -25,6 +25,7 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
     private var answers: [QDMAnswer] = []
     private var question: QDMQuestion?
     private let layout = ChatViewLayout()
+    private var type = DecisionTreeType.mindsetShifter
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -40,16 +41,17 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
 extension MultipleSelectionTableViewCell {
     func configure(for answers: [QDMAnswer],
                    question: QDMQuestion,
+                   type: DecisionTreeType?,
                    selectedAnswers: [DecisionTreeModel.SelectedAnswer],
                    maxPossibleSelections: Int) {
         self.answers = answers
         self.question = question
+        self.type = type ?? .mindsetShifter
         self.selectedAnswers = selectedAnswers
         self.maxPossibleSelections = maxPossibleSelections
         collectionView.reloadData()
         collectionViewHeight.constant = layout.collectionViewContentSize.height
         collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count <= maxPossibleSelections)
-        layoutIfNeeded()
     }
 }
 
@@ -65,23 +67,12 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         let answer: QDMAnswer = answers[indexPath.row]
         let isSelected = selectedAnswers.filter { $0.answer.remoteID == answer.remoteID }.isEmpty == false
         cell.configure(for: answer,
+                       type: type,
                        isSelected: isSelected,
                        maxSelections: maxPossibleSelections,
-                       selectionCounter: selectedAnswers.count,
-                       answerButtonNeedsUpdate: answerButtonNeedsUpdate(indexPath: indexPath))
+                       selectionCounter: selectedAnswers.count)
         cell.delegate = self
         return cell
-    }
-}
-
-// MARK: - Private
-extension MultipleSelectionTableViewCell {
-    func answerButtonNeedsUpdate(indexPath: IndexPath) -> Bool {
-        let offset = collectionView.bounds.width * 0.1
-        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
-        let answerText = answers[indexPath.row].subtitle ?? ""
-        let width = answerText.size(with: buttonFont).width + offset
-        return width > collectionView.bounds.width
     }
 }
 

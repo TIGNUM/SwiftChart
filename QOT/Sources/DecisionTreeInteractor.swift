@@ -87,6 +87,16 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker?.multiSelectionCounter ?? 0
     }
 
+    var hasLeftBarButtonItem: Bool {
+        if case .mindsetShifterTBVOnboarding = type {
+            return false
+        }
+        switch worker?.currentQuestion?.key {
+        case QuestionKey.Sprint.Last?: return false
+        default: return true
+        }
+    }
+
     var multiSectionButtonArguments: (title: String, textColor: UIColor, bgColor: UIColor, enabled: Bool) {
         let selectedAnswersCount = worker?.multiSelectionCounter ?? 0
         let maxSelections = worker?.maxPossibleSelections ?? 0

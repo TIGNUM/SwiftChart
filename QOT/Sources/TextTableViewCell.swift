@@ -28,7 +28,7 @@ extension TextTableViewCell {
         visionTextLabel.addCharacterSpacing(0.5)
         if showTypingAnimation == true {
             dotsLoadingView.isHidden = false
-            dotsLoadingView.configure(dotsColor: .carbonDark)
+            dotsLoadingView.configure(dotsColor: .carbonNew)
             dotsLoadingView.startAnimation(withDuration: Animation.duration_3) { [weak self] in
                 self?.visionTextLabel.isHidden = false
             }

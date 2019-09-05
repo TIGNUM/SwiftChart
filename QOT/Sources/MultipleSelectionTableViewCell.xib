@@ -20,10 +20,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" semanticContentAttribute="forceLeftToRight" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eDj-Zs-ro4">
-                        <rect key="frame" x="23" y="24" width="467" height="85.5"/>
+                        <rect key="frame" x="24" y="24" width="465" height="85.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="xz5-Yz-4T6"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Tn9-ZW-3Oi"/>
                         </constraints>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="16" minimumInteritemSpacing="2" id="ztj-kk-jbU">
                             <size key="itemSize" width="80" height="20"/>
@@ -36,8 +36,8 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="eDj-Zs-ro4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="RKL-HO-RLx"/>
-                    <constraint firstAttribute="trailing" secondItem="eDj-Zs-ro4" secondAttribute="trailing" constant="23" id="UGG-ui-qex"/>
-                    <constraint firstItem="eDj-Zs-ro4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="23" id="XK5-cM-M9b"/>
+                    <constraint firstAttribute="trailing" secondItem="eDj-Zs-ro4" secondAttribute="trailing" constant="24" id="UGG-ui-qex"/>
+                    <constraint firstItem="eDj-Zs-ro4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="XK5-cM-M9b"/>
                     <constraint firstAttribute="bottom" secondItem="eDj-Zs-ro4" secondAttribute="bottom" id="zHY-FE-Qbu"/>
                 </constraints>
             </tableViewCellContentView>
@@ -45,7 +45,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="eDj-Zs-ro4" id="Gep-4W-Vjc"/>
-                <outlet property="collectionViewHeight" destination="xz5-Yz-4T6" id="uBG-oS-B1M"/>
+                <outlet property="collectionViewHeight" destination="Tn9-ZW-3Oi" id="CwV-Cj-Js3"/>
             </connections>
             <point key="canvasLocation" x="210.40000000000001" y="77.361319340329842"/>
         </tableViewCell>

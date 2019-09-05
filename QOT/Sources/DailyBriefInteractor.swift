@@ -103,7 +103,6 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-
 //    Invoke the prepare screen in the coach screen.
     func displayCoachPreparationScreen() {
         router.displayCoachPreparationScreen()
@@ -344,7 +343,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                domainModel: nil))
 
             return leadersWisdomList
-             }
+        }
 
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: leadersWisdom.bucketText?.contentItems.first?.valueText ?? "",
                                                            subtitle: "\(leadersWisdom.bucketText?.contentItems[1].valueText ?? "") \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
@@ -518,7 +517,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
 
 //If the daily check in completed update the ImpactReadinessCellViewModel
-        let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
+        _ = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
@@ -555,7 +554,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     }
 
     func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
-        let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
+        _ = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
 //        check this implementation
 //        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
     }
@@ -793,7 +792,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let peakPerformanceIntroText  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
+            _  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText

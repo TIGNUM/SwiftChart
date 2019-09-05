@@ -235,10 +235,10 @@ extension UIView {
 
 extension UIView {
 
-    func corner(radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat = 1) {
+    func corner(radius: CGFloat, borderColor: UIColor?, borderWidth: CGFloat = 1) {
         layer.cornerRadius = radius
         layer.masksToBounds = true
-        layer.borderColor = borderColor.cgColor
+        layer.borderColor = borderColor?.cgColor
         layer.borderWidth = borderWidth
     }
 

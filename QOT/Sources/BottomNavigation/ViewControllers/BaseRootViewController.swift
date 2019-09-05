@@ -14,6 +14,7 @@ protocol ScreenZLevel2: ScreenZLevel {}
 protocol ScreenZLevel3: ScreenZLevel {}
 protocol ScreenZLevelCoach: ScreenZLevel3 {}
 protocol ScreenZLevelOverlay: ScreenZLevel {}
+protocol ScreenZLevelIgnore: ScreenZLevel {}
 
 final class BaseRootViewController: UIViewController, ScreenZLevel1 {
 

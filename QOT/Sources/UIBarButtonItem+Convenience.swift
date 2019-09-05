@@ -15,6 +15,10 @@ extension UIBarButtonItem {
         self.tintColor = tintColor
     }
 
+    convenience init(from button: UIButton) {
+        self.init(customView: button)
+    }
+
     static var info: UIBarButtonItem {
         let button = UIBarButtonItem(withImage: R.image.explainer_ico()?.withRenderingMode(.alwaysTemplate))
         button.tintColor = .white60

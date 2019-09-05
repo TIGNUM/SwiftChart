@@ -46,6 +46,7 @@ protocol DecisionTreePresenterInterface {
 
 protocol DecisionTreeInteractorInterface: Interactor {
     var type: DecisionTreeType { get }
+    var hasLeftBarButtonItem: Bool {  get }
     var userInput: String? { get set }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
     var answersFilter: String? { get }

@@ -22,7 +22,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     static var page: PageName = .myPreparations
     private let syncManager: SyncManager
     let viewModel: MyPrepViewModel
-    let fadeContainerView = FadeContainerView()
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
@@ -122,19 +121,9 @@ private extension MyPrepViewController {
 
     func setupView() {
         view.backgroundColor = .clear
-        view.addSubview(fadeContainerView)
-        fadeContainerView.edgeAnchors == view.edgeAnchors
-        fadeContainerView.addSubview(tableView)
-        automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        tableView.topAnchor == view.topAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.leadingAnchor == view.leadingAnchor
-        tableView.trailingAnchor == view.trailingAnchor
-        tableView.contentInset.top = 0
-        tableView.contentInset.bottom = safeAreaInsets.bottom + Layout.padding_64
     }
 
     func updateView() {

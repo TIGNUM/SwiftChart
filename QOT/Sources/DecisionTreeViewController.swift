@@ -43,14 +43,13 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
-    private weak var questionnaireController: DecisionTreeQuestionnaireViewController?
     private var pageController: UIPageViewController?
     private var currentTargetId: Int = 0
     private var isMindsetShifterLastQuestion = false
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-    private var continueButton: DecisionTreeButton?
+    private var navigationButton: NavigationButton?
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
 
@@ -96,9 +95,6 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let continueButton = continueButton {
-            updateBottomNavigation([dismissNavigationItem()], [continueButton.toBarButtonItem()])
-        }
         interactor?.viewDidLoad()
         addObservers()
     }
@@ -128,9 +124,15 @@ private extension DecisionTreeViewController {
     }
 
     @objc func updateBottomNavigationItems(_ notification: NSNotification) {
-        guard let continueButton = notification.object as? DecisionTreeButton else { return }
-        continueButton.addTarget(self, action: #selector(didPressContinue), for: .touchUpInside)
-        self.continueButton = continueButton
+        guard let navigationButton = notification.object as? NavigationButton else { return }
+        navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        self.navigationButton = navigationButton
+        let leftItems = interactor?.hasLeftBarButtonItem == true ? [dismissNavigationItem()] : []
+        updateBottomNavigation(leftItems, [UIBarButtonItem(from: navigationButton)])
+    }
+
+    @objc func animateNavigationButton() {
+        navigationButton?.pulsate()
     }
 
     func setupPageViewController() {
@@ -219,30 +221,31 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     func toBeVisionDidChange() {
         delegate?.toBeVisionDidChange()
     }
-
-    @objc func animateNavigationButton() {
-        continueButton?.pulsate()
-    }
 }
 
 // MARK: - Private
 private extension DecisionTreeViewController {
     func loadNextQuestion(_ nextQuestion: NextQuestion?) {
         guard let next = nextQuestion else { return }
-        let deadline = DispatchTime.now() + (next.animated ? Animation.duration_1_5 : 0)
-        DispatchQueue.main.asyncAfter(deadline: deadline) { [unowned self] in
-            if let dotsLoadingView = self.dotsLoadingView {
-                dotsLoadingView.stopAnimation(nil)
-            }
-            let controller = self.questionnaireController(for: next.question,
-                                                          extraAnswer: next.extraAnswer,
-                                                          filter: next.filter,
-                                                          selectedAnswers: next.selectedAnswers)
-            self.pageController?.setViewControllers([controller],
-                                                    direction: next.direction,
-                                                    animated: true,
-                                                    completion: nil)
-            self.questionnaireController = controller
+        if let dotsLoadingView = self.dotsLoadingView {
+            dotsLoadingView.stopAnimation(nil)
+        }
+        let controller = self.questionnaireController(for: next.question,
+                                                      extraAnswer: next.extraAnswer,
+                                                      filter: next.filter,
+                                                      selectedAnswers: next.selectedAnswers)
+        self.pageController?.setViewControllers([controller],
+                                                direction: next.direction,
+                                                animated: true,
+                                                completion: nil)
+    }
+
+    func getQuestionTitleUpdate(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer]) -> String? {
+        switch interactor?.type {
+        case .recovery?:
+            let answers = selectedAnswers.compactMap { $0.answer }
+            return AnswerKey.Recovery.identifyFatigueSympton(answers).replacement
+        default: return nil
         }
     }
 
@@ -251,17 +254,14 @@ private extension DecisionTreeViewController {
                                  filter: String?,
                                  selectedAnswers: [DecisionTreeModel.SelectedAnswer])
         -> DecisionTreeQuestionnaireViewController {
-            let answers = selectedAnswers.compactMap { $0.answer }
-            let answerKey = AnswerKey.Recovery.identifyFatigueSympton(answers)
             let controller = DecisionTreeQuestionnaireViewController(for: question,
                                                                      with: selectedAnswers,
                                                                      extraAnswer: extraAnswer,
                                                                      maxPossibleSelections: question.maxPossibleSelections ?? 0,
                                                                      answersFilter: filter,
-                                                                     questionTitleUpdate: answerKey.replacement,
+                                                                     questionTitleUpdate: getQuestionTitleUpdate(selectedAnswers),
                                                                      preparations: interactor?.preparations(),
-                                                                     isOnboarding: isOnboardingDecisionTree,
-                                                                     continueButton: continueButton)
+                                                                     isOnboarding: isOnboardingDecisionTree)
             controller.delegate = self
             controller.interactor = interactor
             return controller
