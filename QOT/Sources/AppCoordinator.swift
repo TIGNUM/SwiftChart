@@ -183,7 +183,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     func restart() {
         logout()
         ExtensionsDataManager.didUserLogIn(false)
-        UIApplication.shared.shortcutItems?.removeAll()
         showSigning()
     }
 
@@ -238,7 +237,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
         self.isReadyToProcessURL = true
         ExtensionsDataManager.didUserLogIn(true)
-
+        ExtensionsDataManager().update(.toBeVision)
+        add3DTouchShortcuts()
         // Show coach marks on first launch (of v3.0 app)
         let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
         if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
@@ -378,10 +378,36 @@ extension AppCoordinator {
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
+        UIApplication.shared.shortcutItems?.removeAll()
     }
 
     func didLogin() {
         showApp()
+    }
+
+    func add3DTouchShortcuts() {
+        UIApplication.shared.shortcutItems = []
+        let whatsHot = URLScheme.latestWhatsHotArticle
+        UIApplication.shared.shortcutItems?.append(
+            UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
+                                             localizedTitle: R.string.localized.shortcutItemTitleWhatsHot(),
+                                             localizedSubtitle: nil,
+                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
+                                             userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
+        let tools = URLScheme.tools
+        UIApplication.shared.shortcutItems?.append(
+            UIMutableApplicationShortcutItem(type: tools.rawValue,
+                                             localizedTitle: R.string.localized.shortcutItemTitleLibrary(),
+                                             localizedSubtitle: nil,
+                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
+                                             userInfo: ["link": tools.launchPathWithParameterValue("")]))
+        let myData = URLScheme.myData
+        UIApplication.shared.shortcutItems?.append(
+            UIMutableApplicationShortcutItem(type: myData.rawValue,
+                                             localizedTitle: R.string.localized.shortcutItemTitleMeUniverse(),
+                                             localizedSubtitle: nil,
+                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
+                                             userInfo: ["link": myData.launchPathWithParameterValue("")]))
     }
 }
 

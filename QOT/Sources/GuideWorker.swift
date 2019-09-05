@@ -18,7 +18,7 @@ final class GuideWorker {
 
     init(services: Services) {
         self.services = services
-        self.widgetDataManager = ExtensionsDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager()
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 

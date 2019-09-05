@@ -18,14 +18,9 @@ enum ExtensionDataType {
 
 final class ExtensionsDataManager {
 
-    // MARK: - Properties
-
-    private let services: Services
-
     // MARK: - Init
 
-    init(services: Services) {
-        self.services = services
+    init() {
     }
 
     // MARK: - Update cases

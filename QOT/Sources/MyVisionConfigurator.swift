@@ -12,7 +12,7 @@ import qot_dal
 final class MyVisionConfigurator: AppStateAccess {
     static func configure(viewController: MyVisionViewController) {
         let router = MyVisionRouter(viewController: viewController)
-        let widgetManager = ExtensionsDataManager(services: appState.services)
+        let widgetManager = ExtensionsDataManager()
         let worker = MyVisionWorker(userService: qot_dal.UserService.main,
                                     contentService: qot_dal.ContentService.main,
                                     widgetDataManager: widgetManager)

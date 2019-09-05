@@ -7,11 +7,11 @@
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.0</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18E226</string>
+	<string>18G87</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10E125</string>
+	<string>10G8</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.2</string>
+	<string>10.3</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
@@ -349,171 +349,6 @@
 			<string>New What's Hot Articles</string>
 			<key>INIntentTitleID</key>
 			<string>Qu6wYU</string>
-			<key>INIntentType</key>
-			<string>Custom</string>
-			<key>INIntentUserConfirmationRequired</key>
-			<false/>
-			<key>INIntentVerb</key>
-			<string>View</string>
-		</dict>
-		<dict>
-			<key>INIntentCategory</key>
-			<string>information</string>
-			<key>INIntentDescription</key>
-			<string>QOT will display your upcoming events.</string>
-			<key>INIntentDescriptionID</key>
-			<string>hSpsP8</string>
-			<key>INIntentLastParameterTag</key>
-			<integer>1</integer>
-			<key>INIntentName</key>
-			<string>UpcomingEvent</string>
-			<key>INIntentParameterCombinations</key>
-			<dict>
-				<key></key>
-				<dict>
-					<key>INIntentParameterCombinationIsPrimary</key>
-					<true/>
-					<key>INIntentParameterCombinationSubtitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationSubtitleID</key>
-					<string>AMC5kw</string>
-					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
-					<true/>
-					<key>INIntentParameterCombinationTitle</key>
-					<string></string>
-					<key>INIntentParameterCombinationTitleID</key>
-					<string>9UcuLt</string>
-				</dict>
-			</dict>
-			<key>INIntentParameters</key>
-			<array/>
-			<key>INIntentResponse</key>
-			<dict>
-				<key>INIntentResponseCodes</key>
-				<array>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>You have no events saved on QOT</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>R39Yxx</string>
-						<key>INIntentResponseCodeName</key>
-						<string>failure</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<false/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string></string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>tCwqUx</string>
-						<key>INIntentResponseCodeName</key>
-						<string>success</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>${firstEventTitle} is your upcoming event and it starts on ${firstEventStartDate}</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>FuuK0r</string>
-						<key>INIntentResponseCodeName</key>
-						<string>successOneEvent</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>You do not have any upcoming event</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>Eqwor5</string>
-						<key>INIntentResponseCodeName</key>
-						<string>noUpcomingEvents</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<true/>
-					</dict>
-					<dict>
-						<key>INIntentResponseCodeFormatString</key>
-						<string>You need to sign in to QOT first</string>
-						<key>INIntentResponseCodeFormatStringID</key>
-						<string>pRjY1w</string>
-						<key>INIntentResponseCodeName</key>
-						<string>signedOut</string>
-						<key>INIntentResponseCodeSuccess</key>
-						<true/>
-					</dict>
-				</array>
-				<key>INIntentResponseLastParameterTag</key>
-				<integer>12</integer>
-				<key>INIntentResponseParameters</key>
-				<array>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>1</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>firstEventTitle</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>1</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>firstEventStartDate</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>2</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>3</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>firstEventDuration</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>3</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>String</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>4</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>firstEventTasksCount</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>6</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>Integer</string>
-					</dict>
-					<dict>
-						<key>INIntentResponseParameterDisplayPriority</key>
-						<integer>5</integer>
-						<key>INIntentResponseParameterName</key>
-						<string>firstEventTasksCompletedCount</string>
-						<key>INIntentResponseParameterSupportsMultipleValues</key>
-						<false/>
-						<key>INIntentResponseParameterTag</key>
-						<integer>7</integer>
-						<key>INIntentResponseParameterType</key>
-						<string>Integer</string>
-					</dict>
-				</array>
-			</dict>
-			<key>INIntentRestrictions</key>
-			<integer>0</integer>
-			<key>INIntentTitle</key>
-			<string>Upcoming Events</string>
-			<key>INIntentTitleID</key>
-			<string>OEmX3h</string>
 			<key>INIntentType</key>
 			<string>Custom</string>
 			<key>INIntentUserConfirmationRequired</key>

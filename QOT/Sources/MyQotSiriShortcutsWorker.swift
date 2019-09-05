@@ -18,7 +18,6 @@ final class MyQotSiriShortcutsWorker {
     private let dispatchGroup = DispatchGroup()
 
     private var toBeVisionModel = SiriShortcutsModel.Shortcut.defaultModel(type: .toBeVision)
-    private var upcomingEventModel = SiriShortcutsModel.Shortcut.defaultModel(type: .upcomingEventPrep)
     private var morningInterviewModel = SiriShortcutsModel.Shortcut.defaultModel(type: .morningInterview)
     private var whatsHotModel = SiriShortcutsModel.Shortcut.defaultModel(type: .whatsHot)
 
@@ -43,10 +42,6 @@ final class MyQotSiriShortcutsWorker {
             self?.toBeVisionModel = model
         }
 
-        upcomingEventPrepSiriModel {[weak self] (model) in
-            self?.upcomingEventModel = model
-        }
-
         morningInterviewSiriModel {[weak self] (model) in
             self?.morningInterviewModel = model
         }
@@ -57,7 +52,6 @@ final class MyQotSiriShortcutsWorker {
 
         dispatchGroup.notify(queue: .main) {
             let shortcuts: [SiriShortcutsModel.Shortcut]  = [self.toBeVisionModel,
-                                                             self.upcomingEventModel,
                                                              self.morningInterviewModel,
                                                              self.whatsHotModel]
             let model = SiriShortcutsModel(explanation: nil, shortcuts: shortcuts)
@@ -72,20 +66,6 @@ final class MyQotSiriShortcutsWorker {
                 let model = SiriShortcutsModel.Shortcut(type: .toBeVision,
                                                    title: text,
                                                    trackingKey: self?.siriTrackingKey(for: .toBeVision),
-                                                   suggestion: phrase)
-                completion(model)
-                self?.dispatchGroup.leave()
-            }
-        }
-    }
-
-    func upcomingEventPrepSiriModel(_ completion: @escaping(SiriShortcutsModel.Shortcut) -> Void) {
-        dispatchGroup.enter()
-        siriTitle(for: .upcomingEventPrep) {[weak self] (text) in
-            self?.siriSuggestionPhrase(for: .toBeVision) {[weak self] (phrase) in
-                let model = SiriShortcutsModel.Shortcut(type: .upcomingEventPrep,
-                                                   title: text,
-                                                   trackingKey: self?.siriTrackingKey(for: .upcomingEventPrep),
                                                    suggestion: phrase)
                 completion(model)
                 self?.dispatchGroup.leave()
@@ -129,8 +109,6 @@ final class MyQotSiriShortcutsWorker {
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriDailyPrepDonated)
         case .whatsHot: break
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriWhatsHotDonated)
-        case .upcomingEventPrep: break
-//            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriUpcomingEventDonated)
         }
     }
 
@@ -169,8 +147,6 @@ extension MyQotSiriShortcutsWorker {
         switch shortcut {
         case .toBeVision:
             return ContentService.Siri.siriToBeVisionTitle.rawValue
-        case .upcomingEventPrep:
-            return ContentService.Siri.siriUpcomingEventTitle.rawValue
         case .whatsHot:
             return ContentService.Siri.siriWhatsHotTitle.rawValue
         case .morningInterview:
@@ -182,10 +158,6 @@ extension MyQotSiriShortcutsWorker {
         switch shortcut {
         case .toBeVision:
             contentService.getContentItemByPredicate(ContentService.Siri.siriToBeVisionTitle.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .upcomingEventPrep:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriUpcomingEventTitle.predicate) {(contentItem) in
                 completion(contentItem?.valueText ?? "")
             }
         case .whatsHot:
@@ -203,10 +175,6 @@ extension MyQotSiriShortcutsWorker {
         switch shortcut {
         case .toBeVision:
             contentService.getContentItemByPredicate(ContentService.Siri.siriToBeVisionSuggestionPhrase.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .upcomingEventPrep:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriUpcomingEventSuggestionPhrase.predicate) {(contentItem) in
                 completion(contentItem?.valueText ?? "")
             }
         case .whatsHot:

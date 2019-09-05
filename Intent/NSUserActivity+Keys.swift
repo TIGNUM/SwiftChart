@@ -20,8 +20,6 @@ extension NSUserActivity {
         case toBeVisionGenerator = "com.qot.nsuseractivity.tobevision.generator"
         case whatsHotArticle = "com.qot.nsuseractivity.whatshotArticle"
         case whatsHotArticlesList = "com.qot.nsuseractivity.whatshotList"
-        case eventsList = "com.qot.nsuseractivity.eventsList"
-        case event = "com.qot.nsuseractivity.event"
     }
 
     // MARK: - NSUserActivity

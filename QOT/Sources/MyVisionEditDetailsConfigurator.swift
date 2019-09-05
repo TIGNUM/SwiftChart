@@ -11,7 +11,7 @@ import qot_dal
 
 final class MyVisionEditDetailsConfigurator: AppStateAccess {
     static func configure(viewController: MyVisionEditDetailsViewController, title: String, vision: String, isFromNullState: Bool) {
-        let wdigetManager = ExtensionsDataManager(services: appState.services)
+        let wdigetManager = ExtensionsDataManager()
         let worker = MyVisionEditDetailsWorker(title: title, vision: vision, widgetManager: wdigetManager, contentService: qot_dal.ContentService.main, isFromNullState: isFromNullState)
         let presenter = MyVisionEditDetailsPresenter(viewController: viewController)
         let interactor = MyVisionEditDetailsInteractor(presenter: presenter, worker: worker)

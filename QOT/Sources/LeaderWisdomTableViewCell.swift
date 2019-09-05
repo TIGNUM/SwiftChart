@@ -60,6 +60,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
                                      url: mediaURL,
                                      totalDuration: duration ?? 0, progress: 0, currentTime: 0, mediaRemoteId: remoteID ?? 0)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
+        NotificationCenter.default.post(name: .showAudioFullScreen, object: media)
     }
 
     @IBAction func videoAction(_ sender: Any) {

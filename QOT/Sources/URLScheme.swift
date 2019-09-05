@@ -178,6 +178,19 @@ enum URLScheme: String {
         return url.queryStringParameter(param: "nid")
     }
 
+    func launchPathWithParameterValue(_ value: String) -> String {
+        guard let urlSchemes = URLScheme.urlSchemes() else { return "qot://" }
+        var urlString = "\(urlSchemes[0])://\(self.rawValue)"
+        if !queryName.isEmpty {
+            urlString = "\(urlSchemes[0])://\(self.rawValue)?\(queryName)=\(value)"
+        }
+        return urlString
+    }
+
+    func launchURLWithParameterValue(_ value: String) -> URL? {
+        return URL(string: launchPathWithParameterValue(value))
+    }
+
     static func isSupportedURL(_ url: URL) -> Bool {
         guard
             let host = url.host,

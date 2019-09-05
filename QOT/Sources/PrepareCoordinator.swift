@@ -73,7 +73,7 @@ final class PrepareCoordinator: ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.permissionsManager = permissionsManager
-        self.widgetDataManager = ExtensionsDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager()
         self.tabBarController = tabBarController
         self.topTabBarController = topTabBarController
         self.chatViewController = chatViewController

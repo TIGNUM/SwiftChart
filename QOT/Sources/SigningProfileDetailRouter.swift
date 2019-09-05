@@ -42,8 +42,4 @@ extension SigningProfileDetailRouter: SigningProfileDetailRouterInterface {
     func showPrivacyPolicy() {
         // FIXME: THIS VIEW CONTROLLER IS NOT USED
     }
-
-    func add3DTouchShortcuts() {
-        viewController.add3DTouchShortcuts()
-    }
 }

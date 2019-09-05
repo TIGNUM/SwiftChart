@@ -32,10 +32,6 @@ extension SigningLoginRouter: SigningLoginRouterInterface {
     func handleLoginError(_ error: Error) {
         viewController.handleError(error)
     }
-
-    func add3DTouchShortcuts() {
-        viewController.add3DTouchShortcuts()
-    }
 }
 
 private extension SigningLoginRouter {

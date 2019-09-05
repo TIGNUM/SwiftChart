@@ -33,10 +33,6 @@ extension SiriShortcutsRouter: SiriShortcutsRouterInterface {
                 let intent = DailyPrepIntent()
                 intent.suggestedInvocationPhrase = shortcut?.suggestion
                 presentShortcutViewController(with: intent)
-            case .upcomingEventPrep?:
-                let intent = UpcomingEventIntent()
-                intent.suggestedInvocationPhrase = shortcut?.suggestion
-                presentShortcutViewController(with: intent)
             case .whatsHot?:
                 let intent = WhatsHotIntent()
                 intent.suggestedInvocationPhrase = shortcut?.suggestion

@@ -147,7 +147,7 @@ private extension GuideItemFactory {
         let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback,
                                                      whyDPMTitle: nil, whyDPMDescription: nil)
         if result.displayAt?.date.date?.isToday ?? false == true {
-            let extensionDataManager = ExtensionsDataManager(services: services)
+            let extensionDataManager = ExtensionsDataManager()
             extensionDataManager.update(.dailyPrep(items: items,
                                                    feedback: result.feedback,
                                                    displayDate: result.displayAt?.date.date ?? Date()))
@@ -254,7 +254,7 @@ private extension GuideItemFactory {
                                  feedback: notification.dailyPrepFeedback,
                                  whyDPMTitle: nil,
                                  whyDPMDescription: nil)
-            let extensionDataManager = ExtensionsDataManager(services: services)
+            let extensionDataManager = ExtensionsDataManager()
             extensionDataManager.update(.dailyPrep(items: items,
                                                    feedback: notification.dailyPrepFeedback,
                                                    displayDate: notification.displayAt?.utcDate ?? Date()))

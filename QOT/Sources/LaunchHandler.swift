@@ -64,7 +64,6 @@ final class LaunchHandler {
         case .knowFeed,
              .strategies: showFirstLevelScreen(page: .know)
         case .myQOT,
-             .meUniverse,
              .meQotPartner,
              .meTravel: showFirstLevelScreen(page: .myQot)
         case .coachMode: presentCoachModeScreen()
@@ -103,6 +102,7 @@ final class LaunchHandler {
              .meIntensity,
              .meMeeting,
              .meSleep,
+             .meUniverse,
              .mePeakPerformance:
             guard let controller = R.storyboard.myDataScreen.myDataScreenViewControllerID() else { return }
             let configurator = MyDataScreenConfigurator.make()

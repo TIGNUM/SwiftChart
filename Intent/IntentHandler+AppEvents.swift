@@ -17,8 +17,6 @@ extension NSObjectProtocol {
             return ExtensionUserDefaults.toBeVision.rawValue
         case is WhatsHotIntent:
             return ExtensionUserDefaults.whatsHot.rawValue
-        case is UpcomingEventIntent:
-            return ExtensionUserDefaults.upcomingEvents.rawValue
         case is DailyPrepIntent:
             return ExtensionUserDefaults.dailyPrep.rawValue
         default:

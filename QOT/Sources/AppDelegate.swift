@@ -359,33 +359,25 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate {
 
     private func handleActivity(userActivity: NSUserActivity) -> Bool {
-        var didHandleActivity = true
+        var launchURL: URL?
         switch userActivity.activityType {
-        case NSUserActivity.ActivityType.toBeVision.rawValue:
-            // FIXME : SHOW TO BE Vision
-            break
-        case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-            // FIXME : SHOW TO BE Vision Generator
-            break
+        case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue,
+             NSUserActivity.ActivityType.toBeVision.rawValue:
+            launchURL = URLScheme.toBeVision.launchURLWithParameterValue("")
         case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-            // FIXME : SHOW latest what's hot article
-            break
+            launchURL = URLScheme.latestWhatsHotArticle.launchURLWithParameterValue("")
         case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-            // FIXME : SHOW show know feed
-            break
-        case NSUserActivity.ActivityType.eventsList.rawValue:
-            // FIXME : SHOW My preparation
-            break
-        case NSUserActivity.ActivityType.event.rawValue:
-            // FIXME : SHOW  Preparation Detail
-            break
+            launchURL = URLScheme.knowFeed.launchURLWithParameterValue("")
         case NSUserActivity.ActivityType.dailyPrep.rawValue:
-            // FIXME : SHOW Daily Check In
-            break
+            launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("")
         default:
-            didHandleActivity = false
+            break
         }
-        return didHandleActivity
+        if let url = launchURL {
+            UIApplication.shared.open(url, options: [:]) { (_) in }
+            return true
+        }
+        return false
     }
 }
 

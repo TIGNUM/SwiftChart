@@ -54,7 +54,7 @@ final class MyPrepViewModel {
 
     init(services: Services) {
         self.services = services
-        self.widgetDataManager = ExtensionsDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager()
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()

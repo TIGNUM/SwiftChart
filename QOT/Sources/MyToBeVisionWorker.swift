@@ -41,7 +41,7 @@ final class MyToBeVisionWorker {
         self.navigationItem = navigationItem
         self.services = services
         self.syncManager = syncManager
-        self.widgetDataManager = ExtensionsDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager()
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         syncStateObserver.onUpdate { [unowned self] _ in
             self.toBeVisionDidChange?(self.myToBeVision())

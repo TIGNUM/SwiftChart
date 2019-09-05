@@ -941,7 +941,6 @@
 		912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */; };
 		9130CD6C20EE0C3E0094A594 /* WidgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9130CD6B20EE0C3E0094A594 /* WidgetViewController.xib */; };
 		9130CD7020EE15020094A594 /* MyToBeVisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */; };
-		9130CD7220EE15D70094A594 /* UpcomingEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */; };
 		914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */; };
 		914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */; };
 		914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */; };
@@ -1093,9 +1092,6 @@
 		AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */; };
 		AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */; };
 		AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */; };
-		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
-		AC4DA0E6221581E000BAF914 /* UpcomingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */; };
-		AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */; };
 		AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC516C6A228059CC009C4D30 /* CellAnimator.swift */; };
 		AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */; };
 		AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */; };
@@ -2792,7 +2788,6 @@
 		912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionWorker.swift; sourceTree = "<group>"; };
 		9130CD6B20EE0C3E0094A594 /* WidgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetViewController.xib; sourceTree = "<group>"; };
 		9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionView.swift; sourceTree = "<group>"; };
-		9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsView.swift; sourceTree = "<group>"; };
 		914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesRouter.swift; sourceTree = "<group>"; };
 		914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesWorker.swift; sourceTree = "<group>"; };
 		914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesConfigurator.swift; sourceTree = "<group>"; };
@@ -2945,9 +2940,6 @@
 		AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveDayPlanTableViewCell.xib; sourceTree = "<group>"; };
 		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
 		AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionSearchTableViewCell.xib; sourceTree = "<group>"; };
-		AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventHandler.swift; sourceTree = "<group>"; };
-		AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventViewController.swift; sourceTree = "<group>"; };
-		AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingEventView.xib; sourceTree = "<group>"; };
 		AC516C6A228059CC009C4D30 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
 		AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePreparationTableViewCell.swift; sourceTree = "<group>"; };
 		AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidePreparationTableViewCell.xib; sourceTree = "<group>"; };
@@ -5869,7 +5861,6 @@
 			isa = PBXGroup;
 			children = (
 				9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */,
-				9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -6272,7 +6263,6 @@
 				ACA4B18B2211D13800552A54 /* NSUserActivity+Keys.swift */,
 				AC87A7A0220D961800622C90 /* ReadVisionIntentHandler.swift */,
 				ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */,
-				AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */,
 				ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */,
 				AC87A79D220D953F00622C90 /* Intents.intentdefinition */,
 			);
@@ -6287,12 +6277,10 @@
 				AC87A787220D94F900622C90 /* MainInterface.storyboard */,
 				AC87A7AF220DBAE000622C90 /* ReadVisionView.xib */,
 				ACA4B196221300BD00552A54 /* WhatsHotView.xib */,
-				AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */,
 				ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */,
 				AC87A785220D94F900622C90 /* IntentViewController.swift */,
 				ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */,
 				AC87A7AB220DBA2200622C90 /* ReadVisionViewController.swift */,
-				AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */,
 				ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */,
 			);
 			path = IntentUI;
@@ -8609,7 +8597,6 @@
 			files = (
 				AC87A7B0220DBAE000622C90 /* ReadVisionView.xib in Resources */,
 				ACC68C90221C4F4F00ED899B /* DailyPrepView.xib in Resources */,
-				AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */,
 				ACA4B1892211CDB400552A54 /* Assets.xcassets in Resources */,
 				ACA4B197221300BD00552A54 /* WhatsHotView.xib in Resources */,
 				AC87A789220D94F900622C90 /* MainInterface.storyboard in Resources */,
@@ -9176,7 +9163,6 @@
 				9130CD7020EE15020094A594 /* MyToBeVisionView.swift in Sources */,
 				914FEFF120EF5A9600999D6A /* Connectivity.swift in Sources */,
 				9100195320F88EF100049118 /* Calendar+Convenience.swift in Sources */,
-				9130CD7220EE15D70094A594 /* UpcomingEventsView.swift in Sources */,
 				9100195220F88EE600049118 /* Date+Extension.swift in Sources */,
 				912AB11720F38BD700E34328 /* ExtensionUserDefaults.swift in Sources */,
 				F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */,
@@ -9190,7 +9176,6 @@
 			files = (
 				ACA4B1912212E21D00552A54 /* ArticleCollectionViewData.swift in Sources */,
 				ACC68C82221C181300ED899B /* Date+Extension.swift in Sources */,
-				AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */,
 				ACA4B1902212DEA600552A54 /* WhatsHotIntentHandler.swift in Sources */,
 				AC84FFC42229477A0056F9EA /* IntentHandler+AppEvents.swift in Sources */,
 				ACC68C86221C2F2A00ED899B /* DateFormatter+Convenience.swift in Sources */,
@@ -9217,7 +9202,6 @@
 				ACC68C8A221C2F7000ED899B /* DateFormatter+Convenience.swift in Sources */,
 				AC87A7B2220DBDAC00622C90 /* UIImageView+Extensions.swift in Sources */,
 				ACC68C83221C181300ED899B /* Date+Extension.swift in Sources */,
-				AC4DA0E6221581E000BAF914 /* UpcomingEventViewController.swift in Sources */,
 				ACC68C88221C2F4B00ED899B /* ISODate.swift in Sources */,
 				ACA4B18D2211D1E900552A54 /* NSUserActivity+Keys.swift in Sources */,
 				AC87A7A5220D987F00622C90 /* ExtensionUserDefaults.swift in Sources */,

@@ -98,7 +98,8 @@ extension UIViewController {
             return false
         }
         let center = window.frame.center
-        guard let view = window.hitTest(center, with: nil) else {
+        let targetPoint = center.adding(x: 0, y: center.y / 3)
+        guard let view = window.hitTest(targetPoint, with: nil) else {
             return false
         }
 

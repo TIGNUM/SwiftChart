@@ -31,8 +31,6 @@ final class SiriShortcutsWorker {
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriDailyPrepDonated)
         case .whatsHot: break
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriWhatsHotDonated)
-        case .upcomingEventPrep: break
-//            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriUpcomingEventDonated)
         }
     }
 }

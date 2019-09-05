@@ -17,8 +17,6 @@ final class IntentHandler: INExtension {
             return ReadVisionIntentHandler()
         case is WhatsHotIntent:
             return WhatsHotIntentHandler()
-        case is UpcomingEventIntent:
-            return UpcomingEventHandler()
         case is DailyPrepIntent:
             return DailyPrepIntentHandler()
         default:

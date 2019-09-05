@@ -21,10 +21,9 @@ final class WidgetViewController: UIViewController, NCWidgetProviding {
     // MARK: - Properties
 
     @IBOutlet private weak var myToBeVisionView: MyToBeVisionView!
-    @IBOutlet private weak var upcomingEventsView: UpcomingEventsView!
 
     private var totalHeight: CGFloat {
-        return myToBeVisionView.bounds.height + upcomingEventsView.bounds.height
+        return myToBeVisionView.bounds.height
     }
 
     private var isNetworkAvailable: Bool {
@@ -41,7 +40,6 @@ final class WidgetViewController: UIViewController, NCWidgetProviding {
         super.viewDidLoad()
 		syncDisplayMode()
         myToBeVisionView.delegate = self
-        upcomingEventsView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -84,10 +82,6 @@ private extension WidgetViewController {
         myToBeVisionView.configure(toBeVision: vision,
                                    isNetworkAvailable: isNetworkAvailable,
                                    isSignedIn: isSignedIn)
-        if let upcomingEvents: [ExtensionModel.UpcomingEvent] = ExtensionUserDefaults.object(for: .widget,
-                                                                                             key: .upcomingEvents) {
-            upcomingEventsView.configure(event: upcomingEvents.first)
-        }
     }
 }
 
@@ -105,18 +99,5 @@ extension WidgetViewController: MyToBeVisionViewDelegate {
 
     func didTapSignIn() {
         open(.signIn)
-    }
-}
-
-// MARK: - UpcomingEventsView Delegate
-
-extension WidgetViewController: UpcomingEventsViewDelegate {
-
-    func didTapCreateNewEvent() {
-        open(.prepareEvent)
-    }
-    
-    @objc func didTapShowEvent() {
-        open(.comingEvent)
     }
 }

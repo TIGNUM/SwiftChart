@@ -91,33 +91,6 @@ extension AbstractFormViewController {
         alert.addAction(settingsAction)
         present(alert, animated: true, completion: nil)
     }
-
-    func add3DTouchShortcuts() {
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: "whats-hot-article",
-                                             localizedTitle: R.string.localized.shortcutItemTitleWhatsHot(),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
-                                             userInfo: ["link": "qot://latest-whats-hot-article"]))
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: "library",
-                                             localizedTitle: R.string.localized.shortcutItemTitleLibrary(),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
-                                             userInfo: ["link": "qot://library"]))
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: "me-universe",
-                                             localizedTitle: R.string.localized.shortcutItemTitleMeUniverse(),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
-                                             userInfo: ["link": "qot://me-universe"]))
-        UIApplication.shared.shortcutItems?.append(
-            UIMutableApplicationShortcutItem(type: "prepare",
-                                             localizedTitle: R.string.localized.shortcutItemTitlePrepare(),
-                                             localizedSubtitle: nil,
-                                             icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-prepare"),
-                                             userInfo: ["link": "qot://prepare"]))
-    }
 }
 
 // MARK: - Private

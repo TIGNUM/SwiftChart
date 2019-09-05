@@ -33,5 +33,4 @@ protocol SigningLoginInteractorInterface: SigningInteractor {
 protocol SigningLoginRouterInterface {
     func handleLoginError(_ error: Error)
     func handleResetPasswordError(_ error: Error)
-    func add3DTouchShortcuts()
 }
