@@ -36,7 +36,7 @@ final class DailyCheckinStartWorker {
         }
 
         dispatchGroup.enter()
-        healthService.healthTrackerDataForToday() { (trackerData) in
+        healthService.healthTrackerDataForToday { (trackerData) in
             hasSleepQuality = trackerData?.userHealthReadinessId != nil
             hasSleepQuantity = trackerData?.userHealthSleepId != nil || hasSleepQuantity
             dispatchGroup.leave()

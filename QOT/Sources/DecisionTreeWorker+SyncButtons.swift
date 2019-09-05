@@ -11,11 +11,11 @@ import Foundation
 extension DecisionTreeWorker {
     func setupContinueButton() {
         let isMultiSelection = currentQuestion?.answerType == AnswerType.multiSelection.rawValue
-        let bgColor: UIColor = isMultiSelection ? .carbonNew08 : .carbonNew
-        let textColor: UIColor = isMultiSelection ? .carbonNew30 : .accent
+        let bgColor = type.barButtonBackgroundColor(isMultiSelection)
+        let textColor = type.barButtonTextColor(isMultiSelection)
         let buttonTitle = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
         navigationButton = NavigationButton(frame: CGRect.Coach.Default)
-        navigationButton?.configure(title: buttonTitle, backgroundColor: bgColor, titleColor: textColor)
+        navigationButton?.configure(title: buttonTitle, backgroundColor: bgColor, titleColor: textColor, type: type)
     }
 
     func syncButtons() {

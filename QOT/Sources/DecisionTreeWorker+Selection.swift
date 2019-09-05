@@ -46,7 +46,8 @@ extension DecisionTreeWorker {
         case .sprint: handleSelectionSprint(answer)
         case .mindsetShifter: handleSelectionMindsetShifter(answer)
         case .mindsetShifterTBV,
-             .mindsetShifterTBVOnboarding: handleSelectionTBVGeneratorShort(answer)
+             .mindsetShifterTBVOnboarding,
+             .mindsetShifterTBVPrepare: handleSelectionTBVGeneratorShort(answer)
         case .prepare: handleSelectionPrepare(answer)
         case .solve: handleSelectionSolve(answer)
         case .toBeVisionGenerator: handleSelectionTBVGenerator(answer)
@@ -86,6 +87,11 @@ extension DecisionTreeWorker {
 
     func didTapContinue() {
         switch type {
+        case .mindsetShifterTBVOnboarding,
+             .mindsetShifterTBVPrepare,
+             .mindsetShifterTBV:
+            nextQuestion()
+            return
         case .toBeVisionGenerator:
             switch currentQuestion?.key {
             case QuestionKey.ToBeVision.Instructions,

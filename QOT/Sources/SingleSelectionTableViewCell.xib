@@ -20,22 +20,22 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uI-Lm-6yH" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="24" y="61" width="140" height="40"/>
+                        <rect key="frame" x="158" y="61" width="78" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4IB-4z-ZU2"/>
-                            <constraint firstAttribute="width" constant="140" id="Tig-3R-8BZ"/>
                         </constraints>
+                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="didTapLeftOption" destination="Thd-Gv-bn7" eventType="touchUpInside" id="vVo-B7-mQ9"/>
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzj-rc-XMw" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="198" y="61" width="140" height="40"/>
+                        <rect key="frame" x="260" y="61" width="78" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="6dg-aQ-h3S"/>
-                            <constraint firstAttribute="width" constant="140" id="pjR-ZO-Ghs"/>
                         </constraints>
+                        <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                         <state key="normal" title="Button"/>
                         <connections>
                             <action selector="didTapRightOption" destination="Thd-Gv-bn7" eventType="touchUpInside" id="h3E-rx-47v"/>
@@ -47,18 +47,16 @@
                     <constraint firstAttribute="bottomMargin" secondItem="1uI-Lm-6yH" secondAttribute="bottom" constant="24" id="8vY-Sf-sH8"/>
                     <constraint firstItem="Hzj-rc-XMw" firstAttribute="top" secondItem="xSF-EM-MGz" secondAttribute="topMargin" constant="50" id="Fpi-Md-Aor"/>
                     <constraint firstAttribute="trailing" secondItem="Hzj-rc-XMw" secondAttribute="trailing" constant="24" id="KlW-Ww-8Cn"/>
-                    <constraint firstItem="1uI-Lm-6yH" firstAttribute="leading" secondItem="xSF-EM-MGz" secondAttribute="leading" constant="24" id="YJh-Ya-3E8"/>
                     <constraint firstAttribute="bottomMargin" secondItem="Hzj-rc-XMw" secondAttribute="bottom" constant="24" id="duK-uf-bew"/>
                     <constraint firstItem="1uI-Lm-6yH" firstAttribute="top" secondItem="xSF-EM-MGz" secondAttribute="topMargin" constant="50" id="gx9-1g-Hqj"/>
+                    <constraint firstItem="Hzj-rc-XMw" firstAttribute="leading" secondItem="1uI-Lm-6yH" secondAttribute="trailing" constant="24" id="xeO-ln-Xla"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="gra-5c-Xlt"/>
             <connections>
                 <outlet property="leftOptionButton" destination="1uI-Lm-6yH" id="2Dv-w4-FOT"/>
-                <outlet property="leftWidthConstraint" destination="Tig-3R-8BZ" id="6Be-Oa-6ua"/>
                 <outlet property="rightOptionButton" destination="Hzj-rc-XMw" id="zeT-1w-xts"/>
-                <outlet property="rightWidthContraint" destination="pjR-ZO-Ghs" id="LUR-Hj-XQG"/>
             </connections>
             <point key="canvasLocation" x="89.599999999999994" y="74.662668665667169"/>
         </tableViewCell>

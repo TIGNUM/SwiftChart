@@ -47,8 +47,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.asterix.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
 
-
-        sleepQuantity.attributedText = buildString(String(format: "%.1f",viewModel?.sleepQuantityValue ?? 0),
+        sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
                                                    ThemeText.quotation,
                                                    "h",
                                                    ThemeText.quotationSmall)
@@ -59,7 +58,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 1)?.subTitle, to: sleepQualitySubtitle)
-        sleepQuality.attributedText = buildString(String(format: "%.1f",viewModel?.sleepQualityValue ?? 0),
+        sleepQuality.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
                                                   ThemeText.quotation,
                                                   "/",
                                                   ThemeText.quotationSlash,
@@ -69,7 +68,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 2)?.title ?? "").uppercased(), to: loadTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 2)?.subTitle, to: loadSubtitle)
-        load.attributedText = buildString(String(format: "%.1f",viewModel?.loadValue ?? 0),
+        load.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
                                           ThemeText.quotation,
                                           "/",
                                           ThemeText.quotationSlash,
@@ -79,7 +78,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 3)?.title ?? "").uppercased(), to: futureLoadTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 3)?.subTitle, to: futureLoadSubtitle)
-        futureLoad.attributedText = buildString(String(format: "%.1f",viewModel?.futureLoadValue ?? 0),
+        futureLoad.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
                                                 ThemeText.quotation,
                                                 "/",
                                                 ThemeText.quotationSlash,
@@ -97,7 +96,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     private func buildString(_ text1: String, _ theme1: ThemeText,
                              _ text2: String, _ theme2: ThemeText,
-                             _ text3: String? = nil, _ theme3: ThemeText? = nil)-> NSAttributedString {
+                             _ text3: String? = nil, _ theme3: ThemeText? = nil) -> NSAttributedString {
 
         let combine = NSMutableAttributedString()
         combine.append(theme1.attributedString(text1))

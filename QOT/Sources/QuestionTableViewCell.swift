@@ -16,9 +16,9 @@ final class QuestionTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: Configuration
 extension QuestionTableViewCell {
-    func configure(with question: String, questionTitleUpdate: String?, textColor: UIColor) {
-        let tempQuestion = updateQuestionIfNeeded(question, questionTitleUpdate)
-        let attributedString = NSMutableAttributedString(string: tempQuestion)
+    func configure(with question: String?, questionTitleUpdate: String?, textColor: UIColor) {
+        let tempQuestion = updateQuestionIfNeeded(question ?? "", questionTitleUpdate)
+        let attributedString = NSMutableAttributedString(attributedString: tempQuestion.convertHtml() ?? NSAttributedString())
         let paragraphStyle = NSMutableParagraphStyle()
         let range = NSRange(location: 0, length: attributedString.length)
         paragraphStyle.lineSpacing = 4
@@ -29,8 +29,8 @@ extension QuestionTableViewCell {
 }
 
 private extension QuestionTableViewCell {
-    func updateQuestionIfNeeded(_ question: String, _ questionTitleUpdate: String?) -> String {
-        guard let update = questionTitleUpdate, update.isEmpty == false else { return question }
+    func updateQuestionIfNeeded(_ question: String, _ toUpdate: String?) -> String {
+        guard let update = toUpdate, update.isEmpty == false else { return question }
         if update == AnswerKey.Recovery.general.rawValue {
             return update
         }

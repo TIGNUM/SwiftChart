@@ -20,6 +20,7 @@ enum DecisionTreeType {
     case mindsetShifter
     case mindsetShifterTBV
     case mindsetShifterTBVOnboarding
+    case mindsetShifterTBVPrepare
     case prepare
     case prepareIntentions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
@@ -34,9 +35,12 @@ enum DecisionTreeType {
             return QuestionKey.ToBeVision.Instructions
         case .mindsetShifter:
             return QuestionKey.MindsetShifter.Intro
-        case .mindsetShifterTBV,
-             .mindsetShifterTBVOnboarding:
+        case .mindsetShifterTBV:
             return QuestionKey.MindsetShifterTBV.Intro
+        case .mindsetShifterTBVOnboarding:
+            return QuestionKey.MindsetShifterTBV.IntroOnboarding
+        case .mindsetShifterTBVPrepare:
+            return QuestionKey.MindsetShifterTBV.IntroPrepare
         case .prepare:
             return QuestionKey.Prepare.Intro
         case .prepareIntentions(_, _, let key, _):
@@ -61,7 +65,8 @@ enum DecisionTreeType {
         case .mindsetShifter:
             return .MindsetShifter
         case .mindsetShifterTBV,
-             .mindsetShifterTBVOnboarding:
+             .mindsetShifterTBVOnboarding,
+             .mindsetShifterTBVPrepare:
             return .MindsetShifterToBeVision
         case .prepare,
              .prepareIntentions,
@@ -105,21 +110,25 @@ enum DecisionTreeType {
         }
     }
 
-    var navigationButtonTextColor: UIColor {
-        switch self {
-        case .mindsetShifterTBVOnboarding:
+    func barButtonTextColor(_ enabled: Bool) -> UIColor {
+        switch (self, enabled) {
+        case (.mindsetShifterTBVOnboarding, false):
             return .sand30
+        case (_, false):
+            return .carbonNew30
         default:
-            return .carbon30
+            return .accent
         }
     }
 
-    var navigationButtonBackgroundColor: UIColor {
-        switch self {
-        case .mindsetShifterTBVOnboarding:
+    func barButtonBackgroundColor(_ enabled: Bool) -> UIColor {
+        switch (self, enabled) {
+        case (.mindsetShifterTBVOnboarding, false):
             return .sand08
-        default:
+        case (_, false):
             return .carbonNew08
+        default:
+            return .carbonNew
         }
     }
 

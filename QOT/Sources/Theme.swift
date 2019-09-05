@@ -975,7 +975,7 @@ private struct Palette {
         return Date().isNight ? Palette.navy : Palette.sand
     }
 
-    static var nightModeMainFont: UIColor { 
+    static var nightModeMainFont: UIColor {
         return Date().isNight ? Palette.sand : Palette.darkIndigo
     }
 

@@ -7296,6 +7296,7 @@
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
 				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
+				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
 				7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */,
@@ -7324,7 +7325,6 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
-				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";

@@ -195,13 +195,17 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
             var update = questionTitleUpdate
+            var questionTitle = question.title
+            if case .mindsetShifterTBVOnboarding? = interactor?.type, interactor?.type.introKey == question.key {
+                questionTitle = question.htmlTitleString ?? question.title
+            }
             if let type = interactor?.type, type.introKey != question.key {
                 switch type {
                 case .sprint: update = interactor?.selectedSprintTitle
                 default: break
                 }
             }
-            cell.configure(with: question.title,
+            cell.configure(with: questionTitle,
                            questionTitleUpdate: update,
                            textColor: interactor?.type.textColor ?? .carbon)
             return cell
@@ -209,13 +213,12 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             switch question.answerType {
             case AnswerType.accept.rawValue:
                 let cell = UITableViewCell()
-                cell.backgroundColor = .sand
+                cell.backgroundColor = interactor?.type.backgroundColor
                 return cell
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
-                cell.backgroundColor = .sand
-                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
-                                            questionKey: question.key)
+                cell.backgroundColor = interactor?.type.backgroundColor
+                notifyCellDidAppearIfNeeded()
                 return cell
             case AnswerType.yesOrNo.rawValue,
                  AnswerType.uploadImage.rawValue:
@@ -256,19 +259,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                                textColor: interactor?.type.textColor,
                                showTypingAnimation: question.hasTypingAnimation
                                 && question.answerType != AnswerType.noAnswerRequired.rawValue)
-                switch question.key {
-                case QuestionKey.SprintReflection.Intro,
-                     QuestionKey.Prepare.ShowTBV,
-                     QuestionKey.ToBeVision.Create,
-                     QuestionKey.MindsetShifter.OpenTBV,
-                     QuestionKey.MindsetShifter.ShowTBV,
-                     QuestionKey.MindsetShifter.Check,
-                     QuestionKey.ToBeVision.Review:
-                    break
-                default:
-                    delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
-                                                questionKey: question.key)
-                }
+                notifyCellDidAppearIfNeeded()
                 return cell
             case AnswerType.openCalendarEvents.rawValue:
                 let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -312,6 +303,13 @@ private extension DecisionTreeQuestionnaireViewController {
         let cellsHeight = heightQuestionCell + heightAnswerCell + footerHeight
         let difference = tableView.frame.height - cellsHeight
         tableView.contentInset = UIEdgeInsets(top: max(difference, 0), left: 0, bottom: 0, right: 0)
+    }
+
+    func notifyCellDidAppearIfNeeded() {
+        if QuestionKey.shouldNotifyAnswerDidAppear(question.key) {
+            delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
+                                        questionKey: question.key)
+        }
     }
 }
 

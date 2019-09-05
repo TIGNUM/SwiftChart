@@ -44,6 +44,8 @@ enum QuestionKey {
         case QuestionKey.ToBeVision.Instructions,
              QuestionKey.MindsetShifter.Intro,
              QuestionKey.MindsetShifterTBV.Intro,
+             QuestionKey.MindsetShifterTBV.IntroOnboarding,
+             QuestionKey.MindsetShifterTBV.IntroPrepare,
              QuestionKey.Prepare.Intro,
              QuestionKey.Solve.Intro,
              QuestionKey.Recovery.intro.rawValue,
@@ -52,6 +54,24 @@ enum QuestionKey {
             return true
         default:
             return false
+        }
+    }
+
+    static func shouldNotifyAnswerDidAppear(_ key: String?) -> Bool {
+        switch key {
+        case QuestionKey.SprintReflection.Intro,
+             QuestionKey.Prepare.ShowTBV,
+             QuestionKey.ToBeVision.Create,
+             QuestionKey.MindsetShifter.OpenTBV,
+             QuestionKey.MindsetShifter.ShowTBV,
+             QuestionKey.MindsetShifter.Check,
+             QuestionKey.ToBeVision.Review,
+             QuestionKey.MindsetShifterTBV.Intro,
+             QuestionKey.MindsetShifterTBV.IntroOnboarding,
+             QuestionKey.MindsetShifterTBV.IntroPrepare:
+            return false
+        default:
+            return true
         }
     }
 
@@ -77,6 +97,8 @@ enum QuestionKey {
     }
 
     struct MindsetShifterTBV {
+        static let IntroOnboarding = "onboarding-short-tbv"
+        static let IntroPrepare = "prepare-tbv-generator-key-intro"
         static let Intro = "mindsetshifter-tbv-generator-key-intro"
         static let Work = "mindsetshifter-tbv-generator-key-work"
         static let Home = "mindsetshifter-tbv-generator-key-home"

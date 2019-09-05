@@ -73,6 +73,8 @@ final class SelectionButton: AbstractTreeButton {
 
 final class NavigationButton: AbstractTreeButton {
 
+    private var type = DecisionTreeType.mindsetShifter
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         cornerDefault()
@@ -83,22 +85,23 @@ final class NavigationButton: AbstractTreeButton {
         cornerDefault()
     }
 
-    func configure(title: String, backgroundColor: UIColor, titleColor: UIColor) {
+    func configure(title: String, backgroundColor: UIColor, titleColor: UIColor, type: DecisionTreeType) {
         setAttributedTitle(attributedString(title, titleColor), for: .normal)
         self.backgroundColor = backgroundColor
+        self.type = type
     }
 
     func update(currentValue: Int, maxSelections: Int, defaultTitle: String, confirmationTitle: String) {
         isHidden = confirmationTitle.isEmpty && defaultTitle.isEmpty
         guard !isHidden else { return }
 
-        let isHighLighted = currentValue == maxSelections
-        let buttonTitle = defaultTitle.isEmpty ? confirmationTitle : defaultTitle
-        let textColor: UIColor = isHighLighted ? .accent : .carbon30
-        let updatedTitle = isHighLighted ? buttonTitle : R.string.localized.buttonTitlePick(maxSelections - currentValue)
+        let isEnabled = currentValue == maxSelections
+        let buttonTitle = isEnabled ? (!confirmationTitle.isEmpty ? confirmationTitle : defaultTitle) : defaultTitle
+        let textColor = type.barButtonTextColor(isEnabled)
+        let updatedTitle = isEnabled ? buttonTitle : R.string.localized.buttonTitlePick(maxSelections - currentValue)
         setAttributedTitle(attributedString(updatedTitle, textColor), for: .normal)
-        isUserInteractionEnabled = isHighLighted
-        backgroundColor = isHighLighted ? .carbonNew : .carbonNew08
-        setShadow(isHighLighted)
+        isUserInteractionEnabled = isEnabled
+        backgroundColor = type.barButtonBackgroundColor(isEnabled)
+        setShadow(isEnabled)
     }
 }

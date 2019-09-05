@@ -29,6 +29,8 @@ extension DecisionTreeViewControllerDelegate {
     }
 }
 
+final class DecisionTreePageViewController: UIPageViewController, ScreenZLevelIgnore {}
+
 final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
 
     struct NextQuestion {
@@ -43,8 +45,8 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
+    private var pageController: DecisionTreePageViewController?
     private weak var questionnaireController: DecisionTreeQuestionnaireViewController?
-    private var pageController: UIPageViewController?
     private var currentTargetId: Int = 0
     private var isMindsetShifterLastQuestion = false
     @IBOutlet private weak var previousButton: UIButton!
@@ -104,6 +106,7 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
         super.viewDidAppear(animated)
         baseRootViewController?.shouldMoveBottomBarWithKeyboard = true
         trackPage()
+        updateNavigationItems()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -134,8 +137,16 @@ private extension DecisionTreeViewController {
         guard let navigationButton = notification.object as? NavigationButton else { return }
         navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
         self.navigationButton = navigationButton
+        updateNavigationItems()
+    }
+
+    func updateNavigationItems() {
         let leftItems = interactor?.hasLeftBarButtonItem == true ? [dismissNavigationItem()] : []
-        updateBottomNavigation(leftItems, [UIBarButtonItem(from: navigationButton)])
+        var rightItems = [UIBarButtonItem]()
+        if let navigationButton = navigationButton {
+            rightItems = [UIBarButtonItem(from: navigationButton)]
+        }
+        updateBottomNavigation(leftItems, rightItems)
     }
 
     @objc func animateNavigationButton() {
@@ -143,13 +154,12 @@ private extension DecisionTreeViewController {
     }
 
     func setupPageViewController() {
-        pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
-        pageController?.view.backgroundColor = interactor?.type.backgroundColor ?? .sand
-        if let pageController = pageController {
-            addChildViewController(pageController)
-            view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
-        }
-        pageController?.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
+        let pageController = DecisionTreePageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
+        pageController.view.backgroundColor = interactor?.type.backgroundColor ?? .sand
+        addChildViewController(pageController)
+        view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
+        pageController.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
+        self.pageController = pageController
     }
 
     func setupTypingAnimation() {
@@ -272,6 +282,7 @@ private extension DecisionTreeViewController {
                                                                      isOnboarding: isOnboardingDecisionTree)
             controller.delegate = self
             controller.interactor = interactor
+            questionnaireController = controller
             return controller
     }
 }

@@ -42,18 +42,6 @@ extension SingleSelectionTableViewCell {
         leftOptionButton.configure(title: leftOption?.subtitle ?? "", isSelected: leftIsSelected)
         rightOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
         leftOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
-        setButtonWidth(rightButtonTtile: rightOption?.subtitle, leftButtonTtile: leftOption?.subtitle)
-    }
-}
-
-// MARK: - Private
-private extension SingleSelectionTableViewCell {
-    func setButtonWidth(rightButtonTtile: String?, leftButtonTtile: String?) {
-        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
-        let leftWidth = (leftButtonTtile?.size(with: buttonFont).width ?? 0) + (bounds.width * 0.1)
-        let rightWidth = (rightButtonTtile?.size(with: buttonFont).width ?? 0) + (bounds.width * 0.1)
-        rightWidthContraint.constant = rightWidth
-        leftWidthConstraint.constant = leftWidth
     }
 }
 
