@@ -43,6 +43,7 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
+    private weak var questionnaireController: DecisionTreeQuestionnaireViewController?
     private var pageController: UIPageViewController?
     private var currentTargetId: Int = 0
     private var isMindsetShifterLastQuestion = false
@@ -244,6 +245,7 @@ private extension DecisionTreeViewController {
                                                 direction: next.direction,
                                                 animated: true,
                                                 completion: nil)
+        self.questionnaireController = controller
     }
 
     func getQuestionTitleUpdate(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer]) -> String? {
