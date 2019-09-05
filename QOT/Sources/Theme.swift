@@ -763,6 +763,26 @@ enum ThemeText {
             }
         }
     }
+
+    func apply(_ text: String?, to textView: UITextView?, lineSpacing: CGFloat? = nil,
+               lineHeight: CGFloat? = nil) {
+        guard let view = textView else { return }
+
+        let string = attributedString(text, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        if string.string.contains("<NO THEME") {
+            view.backgroundColor = .red
+        } else {
+            view.attributedText = string
+            view.backgroundColor = .clear
+
+            switch self {
+            case .myDataSectionHeaderSubTitle:
+                view.contentMode = .topLeft
+            default:
+                break
+            }
+        }
+    }
 }
 
 private struct Fonts {

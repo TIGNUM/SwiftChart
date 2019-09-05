@@ -13,9 +13,6 @@
         <array key="Apercu-Regular.otf">
             <string>Apercu-Regular</string>
         </array>
-        <array key="SF-Pro-Text-Regular.otf">
-            <string>SFProText-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -41,29 +38,29 @@
                     <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds7-VQ-mul">
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" editable="NO" text="Label" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fR5-QI-wwS">
                     <rect key="frame" x="24" y="91" width="327" height="28"/>
-                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                    <color key="textColor" red="0.65089362859725952" green="0.64324843883514404" blue="0.63529411764705879" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="ikd-4e-jYi" secondAttribute="trailing" constant="24" id="1N3-mK-Zhn"/>
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="top" secondItem="eQb-Bt-EwV" secondAttribute="bottom" constant="12" id="5Rz-GX-fYJ"/>
-                <constraint firstItem="ds7-VQ-mul" firstAttribute="top" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="10" id="72q-k7-04M"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="fR5-QI-wwS" secondAttribute="trailing" constant="24" id="7Gy-Ww-MDS"/>
                 <constraint firstItem="eQb-Bt-EwV" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="7LP-AE-rTP"/>
+                <constraint firstItem="fR5-QI-wwS" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="JVm-Ft-cuV"/>
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="YGO-Ow-KQD"/>
-                <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="ds7-VQ-mul" secondAttribute="bottom" id="iYx-eH-8et"/>
-                <constraint firstItem="ds7-VQ-mul" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="jEj-WS-umG"/>
+                <constraint firstItem="fR5-QI-wwS" firstAttribute="top" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="10" id="YPy-EA-f0f"/>
                 <constraint firstItem="eQb-Bt-EwV" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="40" id="l7g-sx-Pyo"/>
-                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="ds7-VQ-mul" secondAttribute="trailing" constant="24" id="rLk-97-tx5"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="fR5-QI-wwS" secondAttribute="bottom" id="nGh-LX-mYX"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <connections>
-                <outlet property="subtitleLabel" destination="ds7-VQ-mul" id="2Y8-yk-tjH"/>
+                <outlet property="subtitleTextView" destination="fR5-QI-wwS" id="FEA-WT-BjH"/>
                 <outlet property="titleLabel" destination="ikd-4e-jYi" id="HxV-hc-QBb"/>
             </connections>
             <point key="canvasLocation" x="117.59999999999999" y="157.87106446776613"/>

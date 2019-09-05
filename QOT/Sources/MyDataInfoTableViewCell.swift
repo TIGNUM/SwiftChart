@@ -17,54 +17,43 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
     weak var delegate: MyDataInfoTableViewCellDelegate?
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    private let infoText = " ⓘ"
+    @IBOutlet private weak var subtitleTextView: UITextView!
+    private let infoText = " ⓘ "
 
     func configure(title: String?, subtitle: String?) {
         guard let title = title, let subtitle = subtitle else {
             return
         }
         ThemeText.myDataSectionHeaderTitle.apply(title, to: titleLabel)
-        ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleLabel)
+        ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleTextView)
 
         addInfoLink()
+        subtitleTextView.delegate = self
     }
 
     // MARK: Add the circle info charcter with tap action
     private func addInfoLink() {
-        guard let subtitle = subtitleLabel.attributedText else {
+        guard let subtitle = subtitleTextView.attributedText else {
             return
         }
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleInfoTapped))
-        subtitleLabel.addGestureRecognizer(tap)
-        subtitleLabel.isUserInteractionEnabled = true
+
         let subtitleMutable = NSMutableAttributedString.init(attributedString: subtitle)
-        let infoLinkAttributtedString: NSAttributedString = NSAttributedString(string: infoText,
-                                                                               letterSpacing: 0.3,
-                                                                               font: .apercuRegular(ofSize: 15),
-                                                                               lineSpacing: 8,
-                                                                               textColor: .accent,
-                                                                               alignment: .left)
+        let infoLinkAttributtedString: NSMutableAttributedString = NSMutableAttributedString(string: infoText,
+                                                                                             letterSpacing: 0.3,
+                                                                                             font: .apercuRegular(ofSize: 15),
+                                                                                             lineSpacing: 8,
+                                                                                             textColor: .accent,
+                                                                                             alignment: .left)
+        infoLinkAttributtedString.addAttribute(.link, value: "More info on My Data", range: NSRange(location: 0, length: infoText.count))
         subtitleMutable.append(infoLinkAttributtedString)
-        subtitleLabel.attributedText = subtitleMutable
+        subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
+        subtitleTextView.attributedText = subtitleMutable
     }
+}
 
-    @objc private func handleInfoTapped(gesture: UITapGestureRecognizer) {
-        guard let subtitleString = subtitleLabel.text else {
-            return
-        }
-        let subtitle = NSString.init(string: subtitleString)
-        let infoRange = subtitle.range(of: infoText)
-        let tapLocation = gesture.location(in: subtitleLabel)
-        let index = subtitleLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
-
-        if checkRange(infoRange, contain: index) == true {
-            delegate?.didTapInfoButton(sender: self)
-            return
-        }
-    }
-
-    private func checkRange(_ range: NSRange, contain index: Int) -> Bool {
-        return index > range.location && index < range.location + range.length
+extension MyDataInfoTableViewCell: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        delegate?.didTapInfoButton(sender: self)
+        return false
     }
 }
