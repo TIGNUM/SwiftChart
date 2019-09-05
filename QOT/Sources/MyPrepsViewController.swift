@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyPrepsNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyPrepsNavigationController.classForCoder())
@@ -100,11 +101,11 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     @IBAction func removeRows(_ sender: Any) {
         guard tableView.indexPathForSelectedRow != nil else { return }
-        let cancel = QOTAlertAction(title: R.string.localized.buttonTitleCancel(),
+        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
                                     handler: nil)
-        let remove = QOTAlertAction(title: R.string.localized.buttonTitleYesContinue(),
+        let remove = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleYesContinue),
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)
@@ -281,7 +282,7 @@ extension MyPrepsViewController {
         guard editPressed else { return nil }
 
         return [roundedBarBurtonItem(title: R.string.localized.buttonTitleRemove(), action: #selector(removeRows(_:))),
-                roundedBarBurtonItem(title: R.string.localized.buttonTitleCancel(), action: #selector(cancelButton(_:)))]
+                roundedBarBurtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel), action: #selector(cancelButton(_:)))]
 
     }
 

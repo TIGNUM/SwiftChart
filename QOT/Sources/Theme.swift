@@ -16,6 +16,7 @@ struct ThemeAppearance {
 
     static func setNavigation(bar: UINavigationBar?, theme: ThemeView) {
         bar?.barTintColor = theme.color
+        bar?.isTranslucent = false
     }
 }
 

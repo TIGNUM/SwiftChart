@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 {
 
@@ -92,7 +93,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
     }
 
     func showLogoutAlert() {
-        let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
         let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { [weak self] (_) in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
@@ -103,7 +104,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
     }
 
     func showResetPasswordAlert() {
-        let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
         let change = QOTAlertAction(title: R.string.localized.settingsChangePasswordButton()) { [weak self] (_) in
             let key = self?.interactor?.changePasswordKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)

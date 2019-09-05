@@ -380,7 +380,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
                        stringValue: interactor?.selectedSprintTitle,
                        valueType: .CONTENT,
                        action: .PRESS)
-        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+        let cancelButtonItem = roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                                      buttonWidth: .Cancel,
                                                      action: #selector(didPressDimissInfoView),
                                                      backgroundColor: .carbonDark,

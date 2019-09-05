@@ -12,6 +12,7 @@ import ActionSheetPicker_3_0
 import UserNotifications
 import UserNotificationsUI
 import CoreLocation
+import qot_dal
 
 //FIXME: Remove when nothing is calling this (Notifications still do)
 final class OldSettingsViewController: UIViewController {
@@ -37,7 +38,7 @@ final class OldSettingsViewController: UIViewController {
     lazy var pickerToolBar: UIToolbar = {
         let toolBar = UIToolbar()
         toolBar.barTintColor = .white
-        let cancelButton = UIBarButtonItem(title: R.string.localized.alertButtonTitleCancel(),
+        let cancelButton = UIBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                            style: .plain,
                                            target: self,
                                            action: #selector(pickerViewCancelButtonTapped))

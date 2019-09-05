@@ -47,7 +47,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelTitle: String = {
-        return R.string.localized.buttonTitleCancel()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
     }()
 
     lazy var removeTitle: String = {

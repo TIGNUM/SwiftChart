@@ -43,7 +43,7 @@ final class SolveResultsWorker {
     }()
 
     lazy var leaveAlertStayButton: String = {
-        return R.string.localized.buttonTitleCancel()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
     }()
 }
 

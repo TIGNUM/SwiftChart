@@ -9,6 +9,7 @@
 import UIKit
 import AVKit
 import AVFoundation
+import qot_dal
 
 final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
@@ -344,7 +345,7 @@ private extension MyToBeVisionViewController {
         let leftButton = UIBarButtonItem()
         leftButton.setTitleTextAttributes(attributedTitle, for: .normal)
         leftButton.image = isEditing == true ? nil : R.image.ic_menu()
-        leftButton.title = isEditing == true ? R.string.localized.alertButtonTitleCancel() : nil
+        leftButton.title = isEditing == true ? ScreenTitleService.main.localizedString(for: .ButtonTitleCancel) : nil
         let rightButton = UIBarButtonItem()
         rightButton.image = isEditing == true ? nil : R.image.explainer_ico()
         rightButton.title = isEditing == true ? R.string.localized.alertButtonTitleSave() : nil

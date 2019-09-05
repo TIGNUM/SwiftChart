@@ -48,7 +48,7 @@ final class ShifterResultWorker {
     }()
 
     lazy var cancelButtonTitle: String = {
-        return R.string.localized.buttonTitleCancel()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
     }()
 }
 

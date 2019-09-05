@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum AlertType {
     case empty
@@ -144,7 +145,7 @@ enum AlertType {
              .prepareEditStrategy,
              .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .addSensor: return R.string.localized.alertButtonTitleCancel()
+             .addSensor: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
         default: return nil
         }
     }
@@ -171,7 +172,7 @@ enum AlertType {
              .settingsCalendars,
              .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .changeNotifications: return R.string.localized.alertButtonTitleCancel()
+             .changeNotifications: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
         default: return nil
@@ -291,7 +292,7 @@ extension UIViewController {
 extension UIViewController {
 
     func handleError(_ error: Error?) {
-        log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
+        qot_dal.log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
         if let networkError = error as? NetworkError {
             switch networkError.type {
             case .unauthenticated: showAlert(type: .loginFailed)

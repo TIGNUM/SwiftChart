@@ -231,7 +231,6 @@ private extension ArticleViewController {
         ThemeAppearance.setNavigationBar()
         setStatusBar(colorMode: colorMode)
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
-
         ThemeView.articleBackground(nil).apply(view)
         ThemeView.articleBackground(nil).apply(tableView)
 
@@ -704,7 +703,7 @@ extension ArticleViewController {
         let pixelBuffer: CGFloat = 50
         let scrollViewOffsetY = scrollView.contentOffset.y
         let movingUp = lastScrollViewOffsetY < scrollViewOffsetY
-
+        navBar.isTranslucent = false
         if movingUp {
             if !navBar.isHidden && scrollViewOffsetY > 0 {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY

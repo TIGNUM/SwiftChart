@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 extension UIViewController {
     func updateBottomNavigation(_ leftBarButtonItems: [UIBarButtonItem], _ rightBarButtonItems: [UIBarButtonItem]) {
@@ -22,7 +23,7 @@ extension UIViewController {
 // MARK: - UIBarButtonItem
 extension UIViewController {
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .clear,

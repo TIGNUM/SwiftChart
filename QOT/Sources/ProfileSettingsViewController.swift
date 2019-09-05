@@ -194,7 +194,7 @@ extension ProfileSettingsViewController {
         case .label(_, _, let settingsType):
             switch settingsType {
             case .logout:
-                let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+                let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
                 let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { (_) in
                     ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
@@ -202,7 +202,7 @@ extension ProfileSettingsViewController {
                 }
                 QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
             case .password:
-                let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+                let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
                 let change = QOTAlertAction(title: R.string.localized.settingsChangePasswordButton()) { [weak self] (_) in
                     self?.resetPassword()
                 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol ImagePickerControllerDelegate: class {
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage)
@@ -83,7 +84,7 @@ final class ImagePickerController {
             self.handleOption(.camera)
         }
 
-        let cancelAction = UIAlertAction(title: R.string.localized.alertButtonTitleCancel(),
+        let cancelAction = UIAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                          style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
                                             self.adapter?.cancelSelectionEvent()
                                             self.delegate?.cancelSelection()
