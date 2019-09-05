@@ -414,6 +414,7 @@ enum ThemeText {
     case myDataHeatMapDetailCellDate
     case dailyBriefLevelContent
     case dailyBriefLevelTitle
+    case dailyBriefTitleBlack
     case dailyBriefDailyCheckInSights
     case dailyBriefDailyCheckInClosedBucket
 
@@ -489,7 +490,7 @@ enum ThemeText {
         case .quotation:
             return Fonts.fontDisplayThin34
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
-             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle:
+             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
             return Fonts.fontDisplayRegular20
         case .tbvStatement:
             return Fonts.fontDisplayLight24
@@ -568,7 +569,7 @@ enum ThemeText {
             return Palette.accent
         case .performanceSections:
             return Palette.carbon40
-        case .fromCoachTitle:
+        case .fromCoachTitle, .dailyBriefTitleBlack:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
@@ -646,8 +647,9 @@ enum ThemeText {
 
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
-             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle,
-             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationSlash,.quotationLight:
+             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
+//             todo check with domnic
+             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)

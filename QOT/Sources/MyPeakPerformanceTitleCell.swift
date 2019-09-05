@@ -14,6 +14,6 @@ final class MyPeakPerformanceTitleCell: UITableViewCell, Dequeueable {
 
     func configure(with: MypeakperformanceTitleModel?) {
         ThemeView.level2.apply(self)
-        ThemeText.dailyBriefTitle.apply(with?.title ?? "", to: title)
+        ThemeText.dailyBriefTitleBlack.apply(with?.title ?? "", to: title)
     }
 }

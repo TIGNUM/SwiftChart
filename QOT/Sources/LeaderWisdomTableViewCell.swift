@@ -37,6 +37,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         videoView.isHidden = viewModel?.format != .video
         videoThumbnailImageView.isHidden = viewModel?.format != .video
         audioView.isHidden = viewModel?.format != .audio
+        audioButton.isHidden = viewModel?.format != .audio
         titleLabel.isHidden = viewModel?.title == nil
         subtitleLabel.isHidden = viewModel?.subtitle == nil
         descriptionLabel.isHidden = viewModel?.description == nil

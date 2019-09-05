@@ -88,9 +88,12 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="UI8-ge-cPI" secondAttribute="trailing" id="1ad-mq-v15"/>
+                                    <constraint firstItem="UI8-ge-cPI" firstAttribute="top" secondItem="a1R-2W-1El" secondAttribute="top" id="253-Gc-zgB"/>
                                     <constraint firstItem="mJd-Kb-cPB" firstAttribute="leading" secondItem="a1R-2W-1El" secondAttribute="leading" id="5Le-3V-huR"/>
                                     <constraint firstAttribute="bottom" secondItem="MkS-v5-pLn" secondAttribute="bottom" id="814-Vv-F9l"/>
                                     <constraint firstItem="mJd-Kb-cPB" firstAttribute="top" secondItem="a1R-2W-1El" secondAttribute="top" constant="12" id="ATz-8b-amp"/>
+                                    <constraint firstAttribute="bottom" secondItem="UI8-ge-cPI" secondAttribute="bottom" constant="16" id="Bi2-zQ-Uzs"/>
                                     <constraint firstAttribute="trailing" secondItem="MkS-v5-pLn" secondAttribute="trailing" id="CpQ-8B-pGi"/>
                                     <constraint firstAttribute="trailing" secondItem="UI8-ge-cPI" secondAttribute="trailing" id="Klp-vm-cSf"/>
                                     <constraint firstItem="qEk-8p-TpN" firstAttribute="top" secondItem="mJd-Kb-cPB" secondAttribute="bottom" constant="8" id="P5I-z3-1ud"/>
