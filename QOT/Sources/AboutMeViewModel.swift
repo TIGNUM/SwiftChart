@@ -22,4 +22,14 @@ final class AboutMeViewModel: BaseDailyBriefViewModel {
         self.aboutMeMoreInfo = aboutMeMoreInfo
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? AboutMeViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            title == source.title &&
+            aboutMeContent == source.aboutMeContent &&
+            aboutMeMoreInfo == source.aboutMeMoreInfo
+    }
 }

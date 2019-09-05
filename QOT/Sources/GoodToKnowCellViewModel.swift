@@ -25,4 +25,15 @@ final class GoodToKnowCellViewModel: BaseDailyBriefViewModel {
         self.copyright = copyright
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? GoodToKnowCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+                fact == source.fact &&
+                image == source.image &&
+                title == source.title &&
+                copyright == source.copyright
+    }
 }

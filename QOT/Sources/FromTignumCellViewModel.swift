@@ -23,4 +23,14 @@ final class FromTignumCellViewModel: BaseDailyBriefViewModel {
         self.subtitle = subtitle
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? FromTignumCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            text == source.text &&
+            title == source.title &&
+            subtitle == source.subtitle
+    }
 }

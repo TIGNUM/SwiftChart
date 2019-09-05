@@ -102,9 +102,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         viewController?.present(controller, animated: true)
     }
 
-    func openGuidedTrackAppLink(_ appLink: String?) {
-        guard let url = URL(string: appLink ?? "") else { return }
-        UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
+        appLink?.launch()
+
     }
 
     func presentMyDataScreen() {

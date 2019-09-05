@@ -23,10 +23,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        impactReadinessView.addFadeView(at: .bottom,
-                         height: 120,
-                         primaryColor: colorMode.background,
-                         fadeColor: colorMode.fade)
         gradientTop.gradientBackground(top: true)
         gradientBottom.gradientBackground(top: false)
     }

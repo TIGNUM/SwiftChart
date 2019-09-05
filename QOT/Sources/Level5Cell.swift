@@ -36,7 +36,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
-        delegate?.saveAnswerValue(savedAnswer, from: self)
+        delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         QOTAlert.show(title: nil, message: confirmationMessage)
     }
 

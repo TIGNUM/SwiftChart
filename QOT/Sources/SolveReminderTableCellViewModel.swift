@@ -23,4 +23,12 @@ final class SolveReminderTableCellViewModel: BaseDailyBriefViewModel {
         self.solve = solve
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? SolveReminderTableCellViewModel else { return false }
+        return super.isContentEqual(to: source) &&
+            title == source.title &&
+            date == source.date
+    }
+
 }

@@ -308,6 +308,9 @@ enum ThemeText {
     case accountDetail
     case accountHeaderTitle
     case quotation
+    case quotationSmall
+    case quotationLight
+    case quotationSlash
     case dailyBriefTitle
     case sprintName
     case quoteAuthor
@@ -421,7 +424,7 @@ enum ThemeText {
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefLevelContent, .dailyBriefDailyCheckInSights:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefLevelContent, .dailyBriefDailyCheckInSights, .quotationLight:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -461,8 +464,7 @@ enum ThemeText {
             }
         case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader:
             return Fonts.fontLight34
-        case .articleBullet,
-             .dailyBriefLevelContent:
+        case .articleBullet:
             switch textScale {
             case .scale: return Fonts.fontLight24
             case .scaleNot: return Fonts.fontLight16
@@ -494,11 +496,12 @@ enum ThemeText {
             return Fonts.fontLight36
         case .articleSecondaryTitle:
             return Fonts.fontLight32
-        case .articleSubTitle, .myQOTProfileName:
+        case .articleSubTitle, .myQOTProfileName, .quotationSlash:
             return Fonts.fontLight24
         case .articleHeadline, .learnPDF:
             return Fonts.fontLight20
-        case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess, .myDataWeekdaysNotHighlighted:
+        case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess, .myDataWeekdaysNotHighlighted,
+             .quotationSmall:
             return Fonts.fontLight14
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
              .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
@@ -550,13 +553,13 @@ enum ThemeText {
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating,
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion, .accountHeader,
-             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,.dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket,
+             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,.dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
              .tbvQuestionLight, .tbvQuestionMedium:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits, .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail:
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits, .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -597,8 +600,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleQuote, .articleMediaDescription:
             return Palette.light(Palette.carbon60, or: Palette.sand60)
-        case .articleBullet,
-             .dailyBriefLevelContent:
+        case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
         case .version, .articleRelatedDetail:
             return Palette.sand30
@@ -644,8 +646,7 @@ enum ThemeText {
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle,
-//             todo check with domnic
-             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights:
+             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationSlash,.quotationLight:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
@@ -709,7 +710,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left)
         case .qotAlertMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .searchSuggestionHeader, .tbvButton, .tbvTrackerRating:
+        case .searchSuggestionHeader, .tbvButton, .tbvTrackerRating, .quotationSmall:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
@@ -951,7 +952,7 @@ private struct Palette {
         return Date().isNight ? Palette.navy : Palette.sand
     }
 
-    static var nightModeMainFont: UIColor {
+    static var nightModeMainFont: UIColor { 
         return Date().isNight ? Palette.sand : Palette.darkIndigo
     }
 

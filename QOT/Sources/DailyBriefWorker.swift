@@ -188,9 +188,6 @@ extension DailyBriefWorker {
         }
 
 }
-//    func openURL(_ url: URL) {
-//        UIApplication.shared.open(url, options: [:], completionHandler: nil)
-//    }
 
     // MARK: - Get to level 5
     extension DailyBriefWorker {

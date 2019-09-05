@@ -23,4 +23,14 @@ final class FeastCellViewModel: BaseDailyBriefViewModel {
         self.remoteID = remoteID
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? FeastCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            title == source.title &&
+            image == source.image &&
+            remoteID == source.remoteID
+    }
 }

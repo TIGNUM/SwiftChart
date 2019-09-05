@@ -29,4 +29,17 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
         self.section = section
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? ExploreCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            labelPosition == source.labelPosition &&
+            introText == source.introText &&
+            bucketTitle == source.bucketTitle &&
+            title == source.title &&
+            remoteID == source.remoteID &&
+            section == source.section
+    }
 }

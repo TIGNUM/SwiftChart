@@ -27,4 +27,16 @@ final class DepartureInfoCellViewModel: BaseDailyBriefViewModel {
         self.copyright = copyright
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? DepartureInfoCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            subtitle == source.subtitle &&
+            title == source.title &&
+            text == source.text &&
+            image == source.image &&
+            copyright == source.copyright
+    }
 }

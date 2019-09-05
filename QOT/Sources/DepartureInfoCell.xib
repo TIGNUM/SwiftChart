@@ -25,13 +25,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldI-hy-OZt">
-                    <rect key="frame" x="20" y="57" width="374" height="24"/>
+                    <rect key="frame" x="24" y="57" width="366" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gex-9p-hZg">
-                    <rect key="frame" x="20" y="48" width="16" height="1"/>
+                    <rect key="frame" x="24" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="LER-Nw-Kk8"/>
@@ -70,15 +70,15 @@
                 <constraint firstItem="ldI-hy-OZt" firstAttribute="top" secondItem="gex-9p-hZg" secondAttribute="bottom" constant="8" id="1h3-cg-oG7"/>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="1qc-ea-buc"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="rzr-sH-xjU" secondAttribute="trailing" constant="20" id="2hF-Hl-nGW"/>
-                <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="ldI-hy-OZt" secondAttribute="trailing" constant="20" id="9RL-sy-t8L"/>
-                <constraint firstItem="gex-9p-hZg" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="20" id="FKL-Pn-Go6"/>
+                <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="ldI-hy-OZt" secondAttribute="trailing" constant="24" id="9RL-sy-t8L"/>
+                <constraint firstItem="gex-9p-hZg" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="24" id="FKL-Pn-Go6"/>
                 <constraint firstItem="iEN-DF-pwm" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="GAZ-NH-M72"/>
                 <constraint firstItem="rzr-sH-xjU" firstAttribute="top" secondItem="iEN-DF-pwm" secondAttribute="bottom" constant="21" id="JVM-YG-cNy"/>
                 <constraint firstItem="rzr-sH-xjU" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="bvO-xH-khY"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="y6D-ng-z8U" secondAttribute="trailing" constant="20" id="cD9-AS-IZf"/>
                 <constraint firstItem="iEN-DF-pwm" firstAttribute="top" secondItem="y6D-ng-z8U" secondAttribute="bottom" constant="15" id="gra-tC-Jpr"/>
                 <constraint firstAttribute="bottom" secondItem="rzr-sH-xjU" secondAttribute="bottom" constant="43.5" id="ov7-R2-aYb"/>
-                <constraint firstItem="ldI-hy-OZt" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="qro-we-kBb"/>
+                <constraint firstItem="ldI-hy-OZt" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="qro-we-kBb"/>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="top" secondItem="ldI-hy-OZt" secondAttribute="bottom" constant="20" id="snj-Su-mmd"/>
                 <constraint firstItem="gex-9p-hZg" firstAttribute="top" secondItem="kj8-nb-NRI" secondAttribute="top" constant="48" id="wZ9-7H-ReV"/>
             </constraints>

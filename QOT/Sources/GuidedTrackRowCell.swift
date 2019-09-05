@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class GuidedTrackRowCell: BaseDailyBriefCell {
 
@@ -15,7 +16,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     @IBOutlet private weak var content: UILabel!
     @IBOutlet private weak var button: UIButton!
     var delegate: DailyBriefViewControllerDelegate?
-    private var appLink: String?
+    private var appLink: QDMAppLink?
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)

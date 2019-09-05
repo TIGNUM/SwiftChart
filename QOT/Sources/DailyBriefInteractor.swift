@@ -126,7 +126,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { (bucketsList) in
             bucketsList.forEach { (bucket) in
-                print(bucket.bucketName)
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1, elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
@@ -833,7 +832,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                     content: guidedTrackIntro,
                                                     buttonText: guidedTrackCta,
                                                     type: GuidedTrackItemType.SECTION,
-                                                    appLink: "",
+                                                    appLink: nil,
                                                     domain: guidedTrack))
         guard guidedClosedTrack == true else {
             return guidedtrackList
@@ -848,13 +847,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 .first?.valueText ?? ""
             let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
                 .first?.valueText ?? ""
-            let appLink = contentItem.links.first?.appLink ?? ""
+            let qdmAppLink = contentItem.links.first
             guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
                                                         levelTitle: levelTitle,
                                                         content: levelDescription,
                                                         buttonText: levelCta,
                                                         type: GuidedTrackItemType.ROW,
-                                                        appLink: appLink,
+                                                        appLink: qdmAppLink,
                                                         domain: guidedTrack))
         }
         return guidedtrackList
@@ -878,7 +877,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         forCell.markSeenTimer.invalidate()
     }
 
-    func openGuidedTrackAppLink(_ appLink: String?) {
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         router.openGuidedTrackAppLink(appLink)
     }
 }

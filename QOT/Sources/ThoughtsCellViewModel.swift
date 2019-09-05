@@ -23,4 +23,15 @@ final class ThoughtsCellViewModel: BaseDailyBriefViewModel {
         self.title = title
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? ThoughtsCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+        thought == source.thought &&
+        author == source.author &&
+        title == source.title
+    }
+
 }

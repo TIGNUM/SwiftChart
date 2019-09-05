@@ -1,6 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (4.8.2)
+  - Alamofire (4.9.0)
   - AMScrollingNavbar (5.3.0)
   - Anchorage (4.3.1)
   - Bond (7.5.0):
@@ -98,7 +98,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 8d54fec5c44b4c54d660a98db3106ae77c90e9a6
+    :commit: 4304c52aeadc7567c0f99444f0d23bac6aacae5e
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -106,7 +106,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   AMScrollingNavbar: 8548c0df70da8f894217a709d9b2555b9d0babbe
   Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   Bond: 17f2d81e08cea3d95713eed33611176376f9056d

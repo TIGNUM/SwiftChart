@@ -55,7 +55,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func displayCoachPreparationScreen()
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
-    func openGuidedTrackAppLink(_ appLink: String?)
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
 }
 
@@ -69,6 +69,6 @@ protocol DailyBriefRouterInterface {
     func showDailyCheckIn()
     func presentCopyRight(copyrightURL: String?)
     func displayCoachPreparationScreen()
-    func openGuidedTrackAppLink(_ appLink: String?)
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
 }

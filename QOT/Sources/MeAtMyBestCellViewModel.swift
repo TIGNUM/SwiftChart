@@ -28,4 +28,11 @@ final class MeAtMyBestCellViewModel: BaseDailyBriefViewModel {
         super.init(domainModel)
     }
 
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? MeAtMyBestCellViewModel else { return false }
+        return super.isContentEqual(to: source) &&
+            title == source.title &&
+            intro == source.intro &&
+            tbvStatement == source.tbvStatement
+    }
 }

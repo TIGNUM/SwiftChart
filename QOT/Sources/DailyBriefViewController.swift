@@ -28,7 +28,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
     func displayCoachPreparationScreen()
-    func openGuidedTrackAppLink(_ appLink: String?)
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
 }
 
@@ -754,7 +754,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
-    func openGuidedTrackAppLink(_ appLink: String?) {
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         interactor?.openGuidedTrackAppLink(appLink)
     }
 
