@@ -23,7 +23,8 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet var bottomNavigationContainer: UIView!
     @IBOutlet weak var bottomNavigationBar: UINavigationBar!
     @IBOutlet weak var audioPlayerContainer: UIView!
-
+    @IBOutlet weak var bottomNavigationBottomConstraint: NSLayoutConstraint!
+    public var shouldMoveBottomBarWithKeyboard: Bool = false
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
     private weak var contentView: UIView?
 
@@ -50,6 +51,14 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(userLogout(_:)),
                                                name: .automaticLogout,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: Notification.Name.UIKeyboardWillHide,
                                                object: nil)
         setupBottomNavigationContainer()
         setupAudioPlayerBar()
@@ -119,5 +128,29 @@ extension BaseRootViewController {
                 return nil
         }
         return contentViewController.bottomNavigationRightBarItems()
+    }
+}
+
+//Handle keyboard notifications
+extension BaseRootViewController {
+    @objc func keyboardWillShow(notification: Notification) {
+        if shouldMoveBottomBarWithKeyboard,
+            let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: duration) {
+                self.bottomNavigationBottomConstraint.constant = -keyboardSize.height
+            }
+            view.layoutIfNeeded()
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        if shouldMoveBottomBarWithKeyboard,
+            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            UIView.animate(withDuration: duration) {
+                self.bottomNavigationBottomConstraint.constant = 0
+            }
+            view.layoutIfNeeded()
+        }
     }
 }

@@ -54,6 +54,7 @@
                     <connections>
                         <outlet property="audioPlayerContainer" destination="H3j-t6-QRW" id="L9j-dN-y1o"/>
                         <outlet property="bottomNavigationBar" destination="WaZ-yl-3vk" id="vly-rT-P3n"/>
+                        <outlet property="bottomNavigationBottomConstraint" destination="QUK-tJ-1hg" id="Cyt-jW-Epa"/>
                         <outlet property="bottomNavigationContainer" destination="u0O-GE-XGq" id="jde-R3-IsT"/>
                         <outlet property="bottomNavigationPlaceholder" destination="Gv7-dO-NxS" id="SJl-vn-GB9"/>
                     </connections>

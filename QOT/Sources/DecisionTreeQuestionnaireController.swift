@@ -95,6 +95,11 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
         setupView()
         addObservers()
     }
+
+    // MARK: - Public
+    func getUserInputCell() -> UserInputTableViewCell? {
+        return tableView.cellForRow(at: IndexPath(row: 0, section: 1)) as? UserInputTableViewCell
+    }
 }
 
 // MARK: - Private
@@ -147,9 +152,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
         let animation = CellAnimator.moveUpWithFade(rowHeight: cell.frame.height, duration: 0.01, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-        if let inputCell = cell as? UserInputTableViewCell {
-            inputCell.showKeyBoard()
-        }
+
         switch indexPath.section {
         case 0: heightQuestionCell = cell.frame.height
         case 1: heightAnswerCell = cell.frame.height
@@ -244,7 +247,6 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.configure(inputText: text,
                                maxCharacters: QuestionKey.maxCharacter(question.key),
                                delegate: delegate)
-                cell.showKeyBoard()
                 return cell
             case AnswerType.noAnswerRequired.rawValue,
                  AnswerType.text.rawValue,

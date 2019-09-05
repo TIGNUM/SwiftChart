@@ -101,7 +101,13 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        baseRootViewController?.shouldMoveBottomBarWithKeyboard = true
         trackPage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        baseRootViewController?.shouldMoveBottomBarWithKeyboard = false
     }
 
     override func viewDidLayoutSubviews() {
@@ -282,6 +288,13 @@ private extension DecisionTreeViewController {
                          selectedAnswers: interactor?.selectedanswers ?? [],
                          direction: .reverse,
                          animated: false)
+            setShouldEndEditingTrue()
+        }
+    }
+
+    func setShouldEndEditingTrue() {
+        if let userInputCell = questionnaireController?.getUserInputCell() {
+            userInputCell.shouldEndEditing = true
         }
     }
 }
@@ -314,10 +327,12 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     @objc func didPressDimiss() {
+        setShouldEndEditingTrue()
         dismiss()
     }
 
     @objc func didPressContinue() {
+        setShouldEndEditingTrue()
         if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
             delegate?.createToBeVision(tbv)
         }

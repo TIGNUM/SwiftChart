@@ -14,16 +14,14 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var maxCharactersLabel: UILabel!
-    @IBOutlet private weak var dismissButton: UIButton!
-    @IBOutlet private weak var continueBbutton: UIButton!
     private weak var delegate: DecisionTreeQuestionnaireDelegate?
     private var inputText: String?
     private var maxCharacters = 100
+    public var shouldEndEditing = false
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        continueBbutton.cornerDefault()
         showKeyBoard()
     }
 
@@ -36,6 +34,8 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
             textView.text = inputText
             counterLabel.text = String(format: "%d", textView.text.count)
         }
+
+        self.showKeyBoard()
     }
 
     func showKeyBoard() {
@@ -43,22 +43,14 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
     }
 }
 
-// MARK: - Actions
-extension UserInputTableViewCell {
-    @IBAction func didTapDismiss() {
-        delegate?.didPressDimiss()
-    }
-
-    @IBAction func didTapContinue() {
-        delegate?.didPressContinue()
-        delegate?.didUpdateUserInput(textView.text)
-    }
-}
-
 // MARK: - UITextViewDelegate
 extension UserInputTableViewCell: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         return textView.text.count + (text.count - range.length) <= maxCharacters
+    }
+
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return shouldEndEditing
     }
 
     func textViewDidChange(_ textView: UITextView) {
