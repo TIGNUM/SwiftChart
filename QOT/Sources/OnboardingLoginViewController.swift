@@ -13,6 +13,8 @@ import MessageUI
 final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
+    let digitsActiveOffset: CGFloat = -230
+
     private let helpEmail = Defaults.firstLevelSupportEmail
     private let viewTheme = ThemeView.onboarding
     private var didHideEmail: Bool {
@@ -130,7 +132,7 @@ private extension OnboardingLoginViewController {
     }
 
     func moveCodeInputToTop() {
-        sendButtonYPosition.constant = -250
+        sendButtonYPosition.constant = digitsActiveOffset
         UIView.animate(withDuration: Animation.duration_02) {
             self.view.layoutIfNeeded()
             self.buttonSendCode.alpha = 0
