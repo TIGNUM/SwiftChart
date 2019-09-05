@@ -220,7 +220,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 
         ThemeText.tbvVisionHeader.apply(myVision?.headline, to: headerLabel)
-        detailTextView.attributedText = ThemeText.tbvVision.attributedString(myVision?.text)
+        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(myVision?.text)
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill

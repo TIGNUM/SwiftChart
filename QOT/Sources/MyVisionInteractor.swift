@@ -126,7 +126,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     var nullStateSubtitle: String? {
-        return worker.nullStateTitle
+        return worker.nullStateSubtitle
     }
 
     var nullStateTitle: String? {
