@@ -867,13 +867,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     }
 
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
-        forCell.setTimer(with: 2.0) { [weak self] in
+        forCell.setTimer(with: 3.0) { [weak self] in
             self?.setVisibleBucketsAsSeenIfNeeded(indexPath: indexPath)
         }
     }
 
     func invalidateTimer(forCell: BaseDailyBriefCell) {
-        forCell.markSeenTimer.invalidate()
+        forCell.stopTimer()
     }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {

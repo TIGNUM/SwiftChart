@@ -122,23 +122,7 @@ final class PermissionsManager {
         }
     }
 
-    func serializedJSONData(for: [Permission], completion: @escaping (Data?) -> Void) {
-        fetchDescriptions { descriptions in
-            var json = [JSON]()
-            descriptions.keys.forEach { key in
-                guard let value = descriptions[key] else { return }
-                let data: [JsonKey: JSONEncodable] = [
-                    .feature: key.rawValue,
-                    .permissionState: value
-                ]
-                json.append(.dictionary(data.mapKeyValues({ ($0.rawValue, $1.toJSON()) })))
-            }
-            completion(try? json.toJSON().serialize())
-        }
-    }
-
-    // MARK: - private
-    private func fetchDescriptions(completion: @escaping ([Permission.Identifier: String]) -> Void) {
+    func fetchDescriptions(completion: @escaping ([Permission.Identifier: String]) -> Void) {
         var authorizationStatusDescriptions = [Permission.Identifier: String]()
         let group = DispatchGroup()
 
@@ -146,7 +130,6 @@ final class PermissionsManager {
             group.enter()
             guard let permission = self.data[key] else { return }
             permission.interface.authorizationStatusDescription(completion: { description in
-
                 authorizationStatusDescriptions[key] = description
                 group.leave()
             })

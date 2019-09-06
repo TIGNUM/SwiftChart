@@ -36,36 +36,52 @@ final class MyPrepsWorker {
 
     func recoveries(completion: @escaping (RecoveriesModel?) -> Void) {
         qot_dal.UserService.main.getRecovery3D { [weak self] (recoveries, initialized, error) in
-            var prepItems = [RecoveriesModel.Items]()
+            var recoveryItems = [RecoveriesModel.Items]()
             recoveries?.forEach {
-                let prepItem = RecoveriesModel.Items(title: $0.fatigueAnswer?.title ?? "",
-                                                  date: $0.createdAt?.eventDateString ?? "",
-                                                  qdmRec: $0)
-                prepItems.append(prepItem)
+                let recoveryItem = RecoveriesModel.Items(title: $0.fatigueContentItem?.valueText ?? "",
+                                                         date: $0.createdAt?.eventDateString ?? "",
+                                                         qdmRec: $0)
+                recoveryItems.append(recoveryItem)
             }
-            self?.recModel = RecoveriesModel(prepItems: prepItems)
+            self?.recModel = RecoveriesModel(prepItems: recoveryItems)
             completion(self?.recModel)
         }
     }
 
     func mindsetShifters(completion: @escaping (MindsetShiftersModel?) -> Void) {
         userService.getMindsetShifters { [weak self] (mindsetShifters, initialized, error) in
-            var prepItems = [MindsetShiftersModel.Items]()
+            var mindsetItems = [MindsetShiftersModel.Items]()
             mindsetShifters?.forEach {
-                let prepItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.title ?? "",
-                                                  date: $0.createdAt?.eventDateString ?? "",
-                                                  qdmMind: $0)
-                prepItems.append(prepItem)
+                let mindsetItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.title ?? "",
+                                                             date: $0.createdAt?.eventDateString ?? "",
+                                                             qdmMind: $0)
+                mindsetItems.append(mindsetItem)
             }
-            self?.mindModel = MindsetShiftersModel(prepItems: prepItems)
+            self?.mindModel = MindsetShiftersModel(prepItems: mindsetItems)
             completion(self?.mindModel)
         }
     }
 
     func createModels(completion: @escaping () -> Void) {
-        createRecModel()
-        createMindModel()
-        createPrepModel(completion)
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        preparations(completion: { (myPrepsModel) in
+            dispatchGroup.leave()
+            completion()
+        })
+        dispatchGroup.enter()
+        recoveries(completion: { (myPrepsModel) in
+            dispatchGroup.leave()
+            completion()
+        })
+        dispatchGroup.enter()
+        mindsetShifters(completion: { (myPrepsModel) in
+            dispatchGroup.leave()
+            completion()
+        })
+        dispatchGroup.notify(queue: .main) {
+            completion()
+        }
     }
 }
 
@@ -93,18 +109,5 @@ extension MyPrepsWorker {
                 }
             }
         }
-    }
-
-    func createPrepModel(_ completion: @escaping () -> Void) {
-        preparations(completion: { (myPrepsModel) in
-            self.model = myPrepsModel
-            completion()
-        })
-    }
-
-    func createMindModel() {
-    }
-
-    func createRecModel() {
     }
 }

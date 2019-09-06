@@ -224,7 +224,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.setImage(url: tempImageURL, placeholder: R.image.circlesWarning())
+        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image)
 
         removeGradients()
         addGradients(for: myVision)

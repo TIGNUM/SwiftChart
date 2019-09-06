@@ -30,17 +30,16 @@ final class DailyCheckinStartWorker {
         var hasSleepQuantity = false
 
         dispatchGroup.enter()
-        healthService.hasSleepData(from: Date.beginingOfDay(), to: Date.endOfDay()) { (hasSleepHourData) in
-            hasSleepQuantity = hasSleepHourData
+        healthService.availableHealthIndexesForToday({ (indexes) in
+            for index in indexes ?? [] {
+                switch index {
+                case .RECOVERY_INDEX: hasSleepQuality = true
+                case .SLEEP_DURATION: hasSleepQuantity = true
+                }
+            }
             dispatchGroup.leave()
-        }
+        })
 
-        dispatchGroup.enter()
-        healthService.healthTrackerDataForToday { (trackerData) in
-            hasSleepQuality = trackerData?.userHealthReadinessId != nil
-            hasSleepQuantity = trackerData?.userHealthSleepId != nil || hasSleepQuantity
-            dispatchGroup.leave()
-        }
         dispatchGroup.enter()
         questionService.dailyCheckInQuestions { (questions) in
             dailyCheckInQuestions = questions ?? []

@@ -307,9 +307,9 @@ extension DecisionTreeWorker {
         }
     }
 
-    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
+    func updateRecoveryModel(fatigueContentItemId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
         qot_dal.ContentService.main.getContentCollectionById(targetContentId) { [weak self] (content) in
-            self?.recoveryModel?.fatigueAnswerId = fatigueAnswerId
+            self?.recoveryModel?.fatigueContentItemId = fatigueContentItemId
             self?.recoveryModel?.causeAnwserId = causeAnwserId
             self?.recoveryModel?.exclusiveContentCollectionIds = content?.relatedContentIdsRecoveryExclusive ?? []
             self?.recoveryModel?.suggestedSolutionsContentCollectionIds = content?.suggestedContentIdsRecovery ?? []
@@ -351,12 +351,12 @@ extension DecisionTreeWorker {
     }
 
     func createRecoveryModel(_ completion: @escaping (QDMRecovery3D?) -> Void) {
-        let fatigueAnswerId = AnswerKey.Recovery.identifyFatigueSympton(decisionTreeAnswers).fatigueAnswerId
+        let fatigueContentItemId = AnswerKey.Recovery.identifyFatigueSympton(decisionTreeAnswers).fatigueContentItemId
         qot_dal.ContentService.main.getContentCollectionById(recoveryCauseContentId ?? 0) { [weak self] (content) in
             let exclusiveContentIds = content?.relatedContentIdsRecoveryExclusive ?? []
             let suggestedContentIds = content?.suggestedContentIdsRecovery ?? []
             qot_dal.UserService.main.createRecovery3D(
-                fatigueAnswerId: fatigueAnswerId,
+                fatigueContentItemId: fatigueContentItemId,
                 causeAnwserId: self?.recoveryCauseAnswerId ?? 0,
                 causeContentItemId: self?.recoveryCauseContentItemId ?? 0,
                 exclusiveContentCollectionIds: exclusiveContentIds,

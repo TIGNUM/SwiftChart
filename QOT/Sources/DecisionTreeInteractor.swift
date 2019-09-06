@@ -278,8 +278,8 @@ extension DecisionTreeInteractor {
 
 // MARK: - Recovery
 extension DecisionTreeInteractor {
-    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
-        worker?.updateRecoveryModel(fatigueAnswerId: fatigueAnswerId, causeAnwserId, targetContentId)
+    func updateRecoveryModel(fatigueContentItemId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
+        worker?.updateRecoveryModel(fatigueContentItemId: fatigueContentItemId, causeAnwserId, targetContentId)
     }
 
     func deleteModelIfNeeded() {

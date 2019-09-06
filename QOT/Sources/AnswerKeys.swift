@@ -46,7 +46,7 @@ enum AnswerKey {
             }
         }
 
-        var fatigueAnswerId: Int {
+        var fatigueContentItemId: Int {
             switch self {
             case .cognitive: return 104463
             case .emotional: return 104462

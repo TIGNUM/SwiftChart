@@ -74,7 +74,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void)
     func dismissAndGoToMyQot()
 
-    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
+    func updateRecoveryModel(fatigueContentItemId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
     func deleteModelIfNeeded()
     func loadNextQuestion(from answer: QDMAnswer?)
     func loadNextQuestion(targetId: Int, animated: Bool)

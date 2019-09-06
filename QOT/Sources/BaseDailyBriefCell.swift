@@ -9,12 +9,21 @@
 import Foundation
 
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
-    var markSeenTimer: Timer = Timer()
+    private var markAsSeenTimer: Timer?
 
     func setTimer(with timeInterval: TimeInterval, completion: @escaping() -> Void) {
-        markSeenTimer = Timer.init(timeInterval: timeInterval, repeats: false, block: { _ in
+        if markAsSeenTimer?.isValid == true {
+            return
+        }
+        markAsSeenTimer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false, block: { [weak self] (_) in
+            self?.markAsSeenTimer?.invalidate()
+            self?.markAsSeenTimer = nil
             completion()
         })
-        markSeenTimer.fire()
+    }
+
+    func stopTimer() {
+        markAsSeenTimer?.invalidate()
+        markAsSeenTimer = nil
     }
 }

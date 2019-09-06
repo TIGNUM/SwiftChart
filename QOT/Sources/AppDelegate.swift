@@ -94,9 +94,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             setupProgressHud()
             swizzleUIViewController()
             swizzleUINavigationController()
-            importHealthKitDataIfAuthorized()
-            importCalendarEventsIfAuthorized()
-            ExternalLinkImporter.main.importLink()
             Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
@@ -104,7 +101,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                 RestartHelper.setRestartURL(url)
             }
             appCoordinator.start(completion: {
-                //
+                if qot_dal.SessionService.main.getCurrentSession() != nil {
+                    self.importHealthKitDataIfAuthorized()
+                    self.importCalendarEventsIfAuthorized()
+                    ExternalLinkImporter.main.importLink()
+                }
             })
 
             incomingLocationEvent(launchOptions: launchOptions)

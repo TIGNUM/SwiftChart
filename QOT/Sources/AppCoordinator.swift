@@ -533,22 +533,30 @@ extension AppCoordinator: PermissionManagerDelegate {
 
     func permissionManager(_ manager: PermissionsManager,
                             didUpdatePermissions permissions: [PermissionsManager.Permission]) {
-        reportPermissions(permissions)
-    }
-
-    private func reportPermissions(_ permissions: [PermissionsManager.Permission]) {
-        permissionsManager.serializedJSONData(for: permissions) { [unowned self] data in
-            guard let data = data else {
-                assertionFailure("couldn't generate permissions json data")
-                return
-            }
-            self.networkManager.performDevicePermissionsRequest(with: data, completion: { error in
-                if let error = error {
-                    log("failed to report permissions: \(error.localizedDescription)", level: Logger.Level.info)
-                } else {
-                    log("successfully reported permissions: \(permissions.map({ $0.identifier }))", level: Logger.Level.info)
+        manager.fetchDescriptions { (descriptions) in
+            var devicePermissions = [QDMDevicePermission]()
+            for permissionIdentifer in descriptions.keys {
+                guard let statusString = descriptions[permissionIdentifer],
+                    let status = QotDevicePermissionState(rawValue: statusString) else { continue }
+                var devicePermission = QDMDevicePermission()
+                devicePermission.permissionState = status
+                switch permissionIdentifer {
+                case .calendar:
+                    devicePermission.feature = .calendar
+                case .notifications:
+                    devicePermission.feature = .notifcations
+                case .location:
+                    devicePermission.feature = .location
+                case .photos:
+                    devicePermission.feature = .photos
+                case .camera:
+                    devicePermission.feature = .camera
                 }
-            })
+
+                devicePermissions.append(devicePermission)
+            }
+            guard !devicePermissions.isEmpty else { return }
+            qot_dal.QOTService.main.updateDevicePermissions(permissions: devicePermissions)
         }
     }
 }

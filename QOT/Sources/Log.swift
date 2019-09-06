@@ -30,7 +30,7 @@ final class Logger {
     static var shared = Logger()
 
     func setup() {
-        console.minLevel = .info // <<<<<<<<<<<<<< Change log level here (.verbose prints everything)
+        console.minLevel = .verbose // <<<<<<<<<<<<<< Change log level here (.verbose prints everything)
         logger.addDestination(console)
 
         remote.minLevel = .error

@@ -72,7 +72,7 @@ extension SolveResultsWorker {
                 completion()
             }
         } else {
-            let contentId = recovery?.fatigueAnswer?.targetId(.content)
+            let contentId = recovery?.fatigueContentItemId
             relatedStrategies(contentId) { [weak self] (relatedStrategies) in
                 let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
                 qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswer?.remoteID ?? 0,
