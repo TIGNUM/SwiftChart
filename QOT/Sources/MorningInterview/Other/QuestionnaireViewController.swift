@@ -440,6 +440,9 @@ extension QuestionnaireViewController {
             }
         } else {
             indexLabel.text = String(items - index)
+            var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
+            hintLabel.text = subtitles[items - index - 1]
+            hintLabel.textColor = UIColor.red
         }
 
         if isTouch == true {

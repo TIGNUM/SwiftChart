@@ -18,5 +18,4 @@ struct DailyCheckIn2PeakPerformanceModel {
         self.title = title
         self.intro = intro
     }
-
 }
