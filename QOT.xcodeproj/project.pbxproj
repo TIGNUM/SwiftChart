@@ -1002,6 +1002,12 @@
 		9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */; };
 		9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */; };
 		9C650B8022FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */; };
+		9C6E48B9232155DC004D657F /* DailyCheckInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48B7232155DC004D657F /* DailyCheckInHeader.swift */; };
+		9C6E48BA232155DC004D657F /* DailyCheckInHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48B8232155DC004D657F /* DailyCheckInHeader.xib */; };
+		9C6E48BF23215690004D657F /* DailyCheckInFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BB23215690004D657F /* DailyCheckInFooter.swift */; };
+		9C6E48C023215690004D657F /* DailyCheckInRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BC23215690004D657F /* DailyCheckInRow.xib */; };
+		9C6E48C123215690004D657F /* DailyCheckInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BD23215690004D657F /* DailyCheckInRow.swift */; };
+		9C6E48C223215690004D657F /* DailyCheckInFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BE23215690004D657F /* DailyCheckInFooter.xib */; };
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
@@ -2841,6 +2847,12 @@
 		9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionCell.swift; sourceTree = "<group>"; };
 		9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowCell.swift; sourceTree = "<group>"; };
 		9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTableCell.swift; sourceTree = "<group>"; };
+		9C6E48B7232155DC004D657F /* DailyCheckInHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckInHeader.swift; sourceTree = "<group>"; };
+		9C6E48B8232155DC004D657F /* DailyCheckInHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyCheckInHeader.xib; sourceTree = "<group>"; };
+		9C6E48BB23215690004D657F /* DailyCheckInFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckInFooter.swift; sourceTree = "<group>"; };
+		9C6E48BC23215690004D657F /* DailyCheckInRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyCheckInRow.xib; sourceTree = "<group>"; };
+		9C6E48BD23215690004D657F /* DailyCheckInRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckInRow.swift; sourceTree = "<group>"; };
+		9C6E48BE23215690004D657F /* DailyCheckInFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyCheckInFooter.xib; sourceTree = "<group>"; };
 		9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDataTableViewCell.swift; sourceTree = "<group>"; };
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
@@ -4604,6 +4616,7 @@
 			isa = PBXGroup;
 			children = (
 				BB7B3181230A9662004A5E52 /* BaseSkeletonView.swift */,
+				9CDA59A22321556700FE32B7 /* DailyCheckIn */,
 				BB7B3183230AA88F004A5E52 /* OneLineHeading */,
 				BB7B3188230AB2F5004A5E52 /* OneLineBlock */,
 				BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */,
@@ -6077,6 +6090,19 @@
 				9CC426212306A54400F8072E /* GuidedTrackTableViewCell.xib */,
 			);
 			name = "Guided Track";
+			sourceTree = "<group>";
+		};
+		9CDA59A22321556700FE32B7 /* DailyCheckIn */ = {
+			isa = PBXGroup;
+			children = (
+				9C6E48BB23215690004D657F /* DailyCheckInFooter.swift */,
+				9C6E48BE23215690004D657F /* DailyCheckInFooter.xib */,
+				9C6E48BD23215690004D657F /* DailyCheckInRow.swift */,
+				9C6E48BC23215690004D657F /* DailyCheckInRow.xib */,
+				9C6E48B7232155DC004D657F /* DailyCheckInHeader.swift */,
+				9C6E48B8232155DC004D657F /* DailyCheckInHeader.xib */,
+			);
+			path = DailyCheckIn;
 			sourceTree = "<group>";
 		};
 		AC103E362285AF4700F426F0 /* Mindset Shifter Result */ = {
@@ -8617,6 +8643,7 @@
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
+				9C6E48C023215690004D657F /* DailyCheckInRow.xib in Resources */,
 				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
@@ -8646,6 +8673,7 @@
 				9171647C2101E43B00F42D8F /* SensorCollectionViewCell.xib in Resources */,
 				368A125F2277387900866DB0 /* SF-Pro-Display-Thin.otf in Resources */,
 				368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */,
+				9C6E48C223215690004D657F /* DailyCheckInFooter.xib in Resources */,
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				5F78965422A929C100D2DBAD /* FiveLinesWithTopBroad.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
@@ -8733,6 +8761,7 @@
 				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
+				9C6E48BA232155DC004D657F /* DailyCheckInHeader.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				BB7B3187230AA8BE004A5E52 /* OneLineHeading.xib in Resources */,
@@ -9532,6 +9561,7 @@
 				7F3A9CCC1FCEFEFB000F1744 /* MyUniverseViewData.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
+				9C6E48B9232155DC004D657F /* DailyCheckInHeader.swift in Sources */,
 				F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
@@ -9769,6 +9799,7 @@
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
+				9C6E48C123215690004D657F /* DailyCheckInRow.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
@@ -10136,6 +10167,7 @@
 				8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */,
 				3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */,
 				9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */,
+				9C6E48BF23215690004D657F /* DailyCheckInFooter.swift in Sources */,
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,

@@ -33,6 +33,7 @@ final class MeAtMyBestCellViewModel: BaseDailyBriefViewModel {
         return super.isContentEqual(to: source) &&
             title == source.title &&
             intro == source.intro &&
-            tbvStatement == source.tbvStatement
+            tbvStatement == source.tbvStatement &&
+            intro2 == source.intro2
     }
 }

@@ -282,7 +282,7 @@ private extension DailyBriefViewController {
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
         cell.configure(viewModel: impactReadinessCellViewModel)
-        if impactReadinessCellViewModel?.readinessScore == 0 {
+        if impactReadinessCellViewModel?.readinessScore == -1 {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
@@ -299,7 +299,6 @@ private extension DailyBriefViewController {
         let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
         cell.configure(viewModel: impactReadinessScoreViewModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 

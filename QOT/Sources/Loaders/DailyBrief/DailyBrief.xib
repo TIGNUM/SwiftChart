@@ -13,17 +13,17 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DailyBrief" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="571" height="496"/>
+            <rect key="frame" x="0.0" y="0.0" width="489" height="496"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6dN-Bj-Lng">
-                    <rect key="frame" x="0.0" y="0.0" width="571" height="496"/>
+                    <rect key="frame" x="0.0" y="0.0" width="489" height="496"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n1p-xK-5bn">
-                            <rect key="frame" x="0.0" y="0.0" width="571" height="496"/>
+                            <rect key="frame" x="0.0" y="0.0" width="489" height="496"/>
                             <subviews>
                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6yr-BK-ktF">
-                                    <rect key="frame" x="0.0" y="80" width="571" height="180"/>
+                                    <rect key="frame" x="0.0" y="80" width="489" height="180"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="180" id="d6L-WT-qfk"/>
@@ -38,7 +38,7 @@
                                     </constraints>
                                 </view>
                                 <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KA9-V9-pHW">
-                                    <rect key="frame" x="24" y="304" width="447" height="24"/>
+                                    <rect key="frame" x="24" y="304" width="365" height="24"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="24" id="Gtz-50-XD4"/>
@@ -53,7 +53,7 @@
                                     </constraints>
                                 </view>
                                 <view tag="5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O58-Dm-YbQ">
-                                    <rect key="frame" x="24" y="426" width="523" height="60"/>
+                                    <rect key="frame" x="24" y="426" width="441" height="60"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="60" id="Gx5-uu-G3a"/>
@@ -102,7 +102,7 @@
             <connections>
                 <outlet property="containerView" destination="n1p-xK-5bn" id="Q2l-nj-iOa"/>
             </connections>
-            <point key="canvasLocation" x="141.30434782608697" y="-284.59821428571428"/>
+            <point key="canvasLocation" x="81.884057971014499" y="-284.59821428571428"/>
         </view>
     </objects>
 </document>

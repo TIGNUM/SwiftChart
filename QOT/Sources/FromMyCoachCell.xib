@@ -20,15 +20,14 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="nUC-sk-ILO">
-                        <rect key="frame" x="0.0" y="0.0" width="472" height="474.5"/>
+                        <rect key="frame" x="0.0" y="48" width="472" height="378.5"/>
                     </stackView>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="nUC-sk-ILO" secondAttribute="trailing" id="1mZ-FI-Zp1"/>
-                    <constraint firstItem="nUC-sk-ILO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MZJ-5G-J8i"/>
                     <constraint firstItem="nUC-sk-ILO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Pu9-bu-kPv"/>
-                    <constraint firstAttribute="bottom" secondItem="nUC-sk-ILO" secondAttribute="bottom" id="S52-mh-30u"/>
-                    <constraint firstItem="nUC-sk-ILO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="W25-SD-HSi"/>
+                    <constraint firstAttribute="bottom" secondItem="nUC-sk-ILO" secondAttribute="bottom" constant="48" id="S52-mh-30u"/>
+                    <constraint firstAttribute="top" secondItem="nUC-sk-ILO" secondAttribute="top" constant="-48" id="W25-SD-HSi"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

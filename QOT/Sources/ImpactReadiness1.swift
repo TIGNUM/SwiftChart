@@ -28,8 +28,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
-        // tell someone it's selected.
-        if score != 0 {
+        // tell someone it's selected. -1 indicates the default condition.
+        if score != -1 {
              NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
         } else {
             delegate?.showDailyCheckIn()
@@ -40,7 +40,13 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         ThemeText.sprintText.apply(viewModel?.readinessIntro, to: content)
-        ThemeText.readinessScore.apply(String(viewModel?.readinessScore ?? 0), to: impactReadinessScore)
+        let score: Int = viewModel?.readinessScore ?? 0
+        if score == -1 {
+            ThemeText.readinessScore.apply(" - ", to: impactReadinessScore)
+        }
+        else {
+            ThemeText.readinessScore.apply(String(score), to: impactReadinessScore)
+        }
         toBeVisionImage.setImage(url: viewModel?.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
         self.score = viewModel?.readinessScore ?? 0
     }

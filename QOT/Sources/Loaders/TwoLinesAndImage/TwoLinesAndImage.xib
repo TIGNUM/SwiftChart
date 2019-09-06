@@ -13,31 +13,31 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TwoLinesAndImage" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="383" height="136"/>
+            <rect key="frame" x="0.0" y="0.0" width="258" height="136"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r5h-SN-rMu">
-                    <rect key="frame" x="0.0" y="0.0" width="383" height="136"/>
+                    <rect key="frame" x="0.0" y="0.0" width="258" height="136"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JP7-HW-xek">
-                            <rect key="frame" x="0.0" y="0.0" width="383" height="136"/>
+                            <rect key="frame" x="0.0" y="0.0" width="258" height="136"/>
                             <subviews>
                                 <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-v4-xrr">
-                                    <rect key="frame" x="24" y="48" width="153" height="18"/>
+                                    <rect key="frame" x="24" y="48" width="103" height="18"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="3nN-XR-2vN"/>
                                     </constraints>
                                 </view>
                                 <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWc-In-6zB">
-                                    <rect key="frame" x="24" y="78" width="89" height="12"/>
+                                    <rect key="frame" x="24" y="78" width="39" height="12"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="12" id="adt-OT-187"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14d-zt-wYH">
-                                    <rect key="frame" x="0.0" y="135" width="383" height="1"/>
+                                    <rect key="frame" x="0.0" y="135" width="258" height="1"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="1" id="d1L-9C-Zti"/>
@@ -45,7 +45,7 @@
                                     </constraints>
                                 </view>
                                 <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87l-gB-00L">
-                                    <rect key="frame" x="232.5" y="32" width="126.5" height="72"/>
+                                    <rect key="frame" x="149" y="44" width="85" height="48"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" secondItem="87l-gB-00L" secondAttribute="height" multiplier="127:72" id="hNP-pj-H6P"/>
@@ -93,7 +93,7 @@
             <connections>
                 <outlet property="containerView" destination="JP7-HW-xek" id="6gz-K2-4LZ"/>
             </connections>
-            <point key="canvasLocation" x="64.492753623188406" y="-358.25892857142856"/>
+            <point key="canvasLocation" x="-135" y="-361"/>
         </view>
     </objects>
 </document>

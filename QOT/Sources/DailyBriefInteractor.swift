@@ -127,47 +127,67 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             bucketsList.forEach { (bucket) in
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
-                    sectionDataList.append(ArraySection(model: .dailyCheckIn1, elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .dailyCheckIn1,
+                                                        elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
                 case .DAILY_CHECK_IN_2?:
-                    sectionDataList.append(ArraySection(model: .dailyCheckIn2, elements: self.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .dailyCheckIn2,
+                                                        elements:self.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
-                    sectionDataList.append(ArraySection(model: .explore, elements: self.createExploreModel(exploreBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .explore,
+                                                        elements: self.createExploreModel(exploreBucket: bucket)))
                 case .ME_AT_MY_BEST?:
-                    sectionDataList.append(ArraySection(model: .meAtMyBest, elements: self.createMeAtMyBest(meAtMyBestBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .meAtMyBest,
+                                                        elements: self.createMeAtMyBest(meAtMyBestBucket: bucket)))
                 case .GET_TO_LEVEL_5?:
-                    sectionDataList.append(ArraySection(model: .getToLevel5, elements: self.createLevel5Cell(level5Bucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .getToLevel5,
+                                                        elements: self.createLevel5Cell(level5Bucket: bucket)))
                 case .QUESTION_WITHOUT_ANSWER?:
-                    sectionDataList.append(ArraySection(model: .questionWithoutAnswer, elements: self.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
+                                                        elements: self.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
                 case .LATEST_WHATS_HOT?:
-                    sectionDataList.append(ArraySection(model: .whatsHotLatest, elements: self.createLatestWhatsHot(whatsHotLatestCell: bucket)))
+                    sectionDataList.append(ArraySection(model: .whatsHotLatest,
+                                                        elements: self.createLatestWhatsHot(whatsHotLatestCell: bucket)))
                 case .THOUGHTS_TO_PONDER?:
-                    sectionDataList.append(ArraySection(model: .thoughtsToPonder, elements: self.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .thoughtsToPonder,
+                                                        elements: self.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
                 case .GOOD_TO_KNOW?:
-                    sectionDataList.append(ArraySection(model: .goodToKnow, elements: self.createGoodToKnow(createGoodToKnowBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .goodToKnow,
+                                                        elements: self.createGoodToKnow(createGoodToKnowBucket: bucket)))
                 case .FROM_TIGNUM?:
-                    sectionDataList.append(ArraySection(model: .fromTignum, elements: self.createFromTignum(fromTignum: bucket)))
+                    sectionDataList.append(ArraySection(model: .fromTignum,
+                                                        elements: self.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
-                    sectionDataList.append(ArraySection(model: .bespoke, elements: self.createBeSpokeModel(beSpokeModelBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .bespoke,
+                                                        elements: self.createBeSpokeModel(beSpokeModelBucket: bucket)))
                 case .DEPARTURE_INFO?:
-                    sectionDataList.append(ArraySection(model: .departureInfo, elements: self.createDepatureInfo(depatureInfoBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .departureInfo,
+                                                        elements: self.createDepatureInfo(depatureInfoBucket: bucket)))
                 case .LEADERS_WISDOM?:
-                    sectionDataList.append(ArraySection(model: .leaderswisdom, elements: self.createLeaderWisdom(createLeadersWisdom: bucket)))
+                    sectionDataList.append(ArraySection(model: .leaderswisdom,
+                                                        elements: self.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
-                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .feastForYourEyes,
+                                                        elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
                 case .FROM_MY_COACH?:
-                    sectionDataList.append(ArraySection(model: .fromMyCoach, elements: self.createFromMyCoachModel(fromCoachBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .fromMyCoach,
+                                                        elements: self.createFromMyCoachModel(fromCoachBucket: bucket)))
                 case .MY_PEAK_PERFORMANCE?:
-                    sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: self.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .myPeakPerformance,
+                                                        elements: self.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
                 case .SPRINT_CHALLENGE?:
                     if bucket.sprint != nil {
-                        sectionDataList.append(ArraySection(model: .sprint, elements: self.createSprintChallenge(bucket: bucket)))
+                        sectionDataList.append(ArraySection(model: .sprint,
+                                                            elements: self.createSprintChallenge(bucket: bucket)))
                     }
                 case .ABOUT_ME?:
-                    sectionDataList.append(ArraySection(model: .aboutMe, elements: self.createAboutMe(aboutMeBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .aboutMe,
+                                                        elements: self.createAboutMe(aboutMeBucket: bucket)))
                 case .SOLVE_REFLECTION?:
-                    sectionDataList.append(ArraySection(model: .solveReflection, elements: self.createSolveViewModel(bucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .solveReflection,
+                                                        elements: self.createSolveViewModel(bucket: bucket)))
                 case .GUIDE_TRACK?:
-                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .guidedTrack,
+                                                        elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -313,7 +333,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
         let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
         guard (fromTignum.contentCollections?.first) != nil else {
-            createFromTignumList.append( FromTignumCellViewModel(title: "", text: "", subtitle: "", domainModel: fromTignum))
+            createFromTignumList.append( FromTignumCellViewModel(title: "",
+                                                                 text: "",
+                                                                 subtitle: "",
+                                                                 domainModel: fromTignum))
             return createFromTignumList
 
         }
@@ -373,7 +396,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
             let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? " "
             let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
-            meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle, intro: tbvIntro, tbvStatement: tbvSentence, intro2: tbvIntro2, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
+            meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
+                                                          intro: tbvIntro,
+                                                          tbvStatement: tbvSentence,
+                                                          intro2: tbvIntro2,
+                                                          buttonText: ctaTBVButtonText,
+                                                          domainModel: meAtMyBest))
             return meAtMyBestList
         }
 
@@ -457,7 +485,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
         fromCoach.coachMessages?.forEach {(message) in
-            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!), text: message.body ?? ""))
+            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!),
+                                                                             text: message.body ?? ""))
         }
         createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
         return createFromMyCoachModelList
@@ -467,7 +496,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var createBeSpokeModelList: [BaseDailyBriefViewModel] = []
 
         guard let collection = beSpoke.contentCollections?.first else {
-            createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: "", title: "", description: "", image: "", domainModel: nil))
+            createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: "",
+                                                               title: "",
+                                                               description: "",
+                                                               image: "",
+                                                               domainModel: nil))
             return createBeSpokeModelList
 
         }
@@ -510,14 +543,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             expendImpactReadiness = false
             impactReadinessList.append(ImpactReadinessCellViewModel(title: bucketTitle,
                                                                     dailyCheckImageURL: impactReadinessImageURL,
-                                                                    readinessScore: 0,
+                                                                    readinessScore: -1,
                                                                     readinessIntro: readinessIntro,
                                                                     domainModel: impactReadiness))
             return impactReadinessList
         }
 
 //If the daily check in completed update the ImpactReadinessCellViewModel
-        _ = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
@@ -525,12 +557,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
                                                                      domainModel: impactReadiness))
-
-        guard expendImpactReadiness == true else {
-            return impactReadinessList
-        }
-//        If the daily check in completed update the ImpactReadinessScoreViewModel which contains all the impact readiness score
-
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
@@ -545,7 +571,24 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title, subTitle: collection.contentItems.first?.valueText))
         }
-         impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday, asteriskText: asteriskText, sleepQuantityValue: sleepQuantity, sleepQualityValue: sleepQuality, loadValue: load, futureLoadValue: futureLoad, targetSleepQuality: targetSleepQuantity, sleepQualityReference: sleepQualityReference, loadReference: loadReference, futureLoadReference: futureLoadReference, impactDataModels: models, domainModel: impactReadiness, "detail"))
+
+        guard expendImpactReadiness else {
+            return impactReadinessList
+        }
+//        If the daily check in completed update the ImpactReadinessScoreViewModel which contains all the impact readiness  score
+        impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
+                                                                      asteriskText: asteriskText,
+                                                                      sleepQuantityValue: sleepQuantity,
+                                                                      sleepQualityValue: sleepQuality,
+                                                                      loadValue: load,
+                                                                      futureLoadValue: futureLoad,
+                                                                      targetSleepQuality: targetSleepQuantity,
+                                                                      sleepQualityReference: sleepQualityReference,
+                                                                      loadReference: loadReference,
+                                                                      futureLoadReference: futureLoadReference,
+                                                                      impactDataModels: models,
+                                                                      domainModel: impactReadiness, "detail"))
+
         return impactReadinessList
     }
 
@@ -606,7 +649,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let level5Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level5Title, levelContent: level5Text))
 
-        createLevel5List.append(Level5ViewModel(title: title, intro: intro, question: questionLevel, youRatedPart1: youRatedPart1, youRatedPart2: youRatedPart2, comeBackText: comeBackText, levelMessages: levelMessageModels, confirmationMessage: confirmationMessage, domainModel: level5))
+        createLevel5List.append(Level5ViewModel(title: title,
+                                                intro: intro,
+                                                question: questionLevel,
+                                                youRatedPart1: youRatedPart1,
+                                                youRatedPart2: youRatedPart2,
+                                                comeBackText: comeBackText,
+                                                levelMessages: levelMessageModels,
+                                                confirmationMessage: confirmationMessage,
+                                                domainModel: level5))
         return createLevel5List
     }
 
@@ -681,7 +732,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let date = Date()
         let dateComponents = Calendar.current.dateComponents([.hour], from: date)
         guard let exploreContentCollections = explore.contentCollections else {
-            exploreModelList.append(ExploreCellViewModel(bucketTitle: "", title: "", introText: "", labelPosition: 0, remoteID: 0, domainModel: explore, section: ContentSection.Unkown))
+            exploreModelList.append(ExploreCellViewModel(bucketTitle: "",
+                                                         title: "",
+                                                         introText: "",
+                                                         labelPosition: 0,
+                                                         remoteID: 0,
+                                                         domainModel: explore,
+                                                         section: ContentSection.Unkown))
             return exploreModelList
         }
         if let hour = dateComponents.hour {
@@ -808,8 +865,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var aboutMeList: [BaseDailyBriefViewModel] = []
         let aboutMeBucketTitle = aboutMeModel.bucketText?.contentItems.first?.valueText ?? ""
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = "*"
-        aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle, aboutMeContent: aboutMeContent, aboutMeMoreInfo: aboutMeAdditionalContent, domainModel: aboutMeModel))
+        let aboutMeAdditionalContent = aboutMeModel.additionalDescription
+        aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
+                                            aboutMeContent: aboutMeContent,
+                                            aboutMeMoreInfo: aboutMeAdditionalContent,
+                                            domainModel: aboutMeModel))
         return aboutMeList
     }
 
