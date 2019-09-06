@@ -81,6 +81,10 @@ private extension MyQotSensorsInteractor {
         case .notDetermined:
             status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
             buttonEnabled = true
+            self.presenter.setHealthKit(title: self.worker.healthKitSensor.sensor.title,
+                                        status: status,
+                                        labelStatus: self.worker.healthKitSensor.sensor.labelStatus,
+                                        buttonEnabled: buttonEnabled)
         default:
             status = R.string.localized.sidebarSensorsMenuSensorsConnected()
             HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
