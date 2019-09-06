@@ -291,6 +291,7 @@ private extension DecisionTreeViewController {
 private extension DecisionTreeViewController {
     func moveBackward() {
         if let previousQuestion = interactor?.previousQuestion() {
+            setShouldEndEditingTrue()
             var extraAnswer = interactor?.extraAnswer
             if previousQuestion.key == QuestionKey.ToBeVision.Create {
                 extraAnswer = interactor?.createdToBeVision?.text
@@ -301,7 +302,6 @@ private extension DecisionTreeViewController {
                          selectedAnswers: interactor?.selectedanswers ?? [],
                          direction: .reverse,
                          animated: false)
-            setShouldEndEditingTrue()
         }
     }
 

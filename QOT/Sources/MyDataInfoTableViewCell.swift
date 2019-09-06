@@ -44,7 +44,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
                                                                                              lineSpacing: 8,
                                                                                              textColor: .accent,
                                                                                              alignment: .left)
-        infoLinkAttributtedString.addAttribute(.link, value: "More info on My Data", range: NSRange(location: 0, length: infoText.count))
+        infoLinkAttributtedString.addAttribute(.link, value: "MoreInfo", range: NSRange(location: 0, length: infoText.count))
         subtitleMutable.append(infoLinkAttributtedString)
         subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
         subtitleTextView.attributedText = subtitleMutable

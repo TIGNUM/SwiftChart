@@ -20,10 +20,12 @@ extension DecisionTreeWorker {
 
     func syncButtons() {
         guard let navigationButton = navigationButton else { return }
-        navigationButton.update(currentValue: multiSelectionCounter,
-                                maxSelections: maxPossibleSelections <= 1 ? 0 : maxPossibleSelections,
-                                defaultTitle: defaultButtonText,
-                                confirmationTitle: confirmationButtonText)
-        NotificationCenter.default.post(name: .questionnaireBottomNavigationUpdate, object: navigationButton)
+        DispatchQueue.main.async {
+            navigationButton.update(currentValue: self.multiSelectionCounter,
+                                    maxSelections: self.maxPossibleSelections <= 1 ? 0 : self.maxPossibleSelections,
+                                    defaultTitle: self.defaultButtonText,
+                                    confirmationTitle: self.confirmationButtonText)
+            NotificationCenter.default.post(name: .questionnaireBottomNavigationUpdate, object: self.navigationButton)
+        }
     }
 }
