@@ -83,15 +83,11 @@ final class MyVisionWorker {
     }()
 
     private func getNullStateSubtitle() {
-        contentService.getContentItemByPredicate(ContentService.MyVision.nullStateSubtitle.predicate) {[weak self] (contentItem) in
-            self?.nullStateSubtitle = contentItem?.valueText ?? ""
-        }
+        nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
     }
 
     private func getNullStateTitle() {
-        contentService.getContentItemByPredicate(ContentService.MyVision.nullStateTitle.predicate) {[weak self] (contentItem) in
-            self?.nullStateTitle = contentItem?.valueText ?? ""
-        }
+        nullStateTitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
     }
 
     func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
@@ -170,19 +166,11 @@ final class MyVisionWorker {
     }
 
     func getSyncingText(_ dispatchGroup: DispatchGroup) {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyVision.syncingtext.predicate) {[weak self] (contentItem) in
-            self?.syncingText = contentItem?.valueText ?? ""
-            dispatchGroup.leave()
-        }
+        syncingText = ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
     }
 
     func getNotRatedText(_ dispatchGroup: DispatchGroup) {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyVision.notRatedText.predicate) {[weak self] (contentItem) in
-            self?.notRatedText = contentItem?.valueText ?? ""
-            dispatchGroup.leave()
-        }
+        notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
     }
 
     func updateRateButton() -> (String?, Bool, Bool) {

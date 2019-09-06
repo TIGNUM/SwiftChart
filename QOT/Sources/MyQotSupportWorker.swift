@@ -24,8 +24,7 @@ final class MyQotSupportWorker {
     }
 
     func item(at indexPath: IndexPath) -> MyQotSupportModel.MyQotSupportModelItem? {
-        guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else { return nil }
-        return item
+        return MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row)
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
@@ -35,24 +34,18 @@ final class MyQotSupportWorker {
         return item.trackingKeys()
     }
 
-    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+    func title(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
-            completion("")
-            return
+            return ""
         }
-        item.title(for: contentService) { (text) in
-            completion(text)
-        }
+        return item.title(for: contentService)
     }
 
-    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+    func subtitle(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
-            completion("")
-            return
+            return ""
         }
-        item.subtitle(for: contentService) { (text) in
-            completion(text)
-        }
+        return item.subtitle(for: contentService)
     }
 
     func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
@@ -61,10 +54,8 @@ final class MyQotSupportWorker {
         }
     }
 
-    func supportText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.Support.support.predicate) {(text) in
-            completion(text?.valueText ?? "")
-        }
+    var supportText: String {
+        return ScreenTitleService.main.localizedString(for: .Support)
     }
 
     func email(_ completion: @escaping(String) -> Void) {

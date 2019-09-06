@@ -14,7 +14,7 @@ protocol MyQotAppSettingsPresenterInterface {
 
 protocol MyQotAppSettingsInteractorInterface: Interactor {
     func handleTap(setting: MyQotAppSettingsModel.Setting)
-    func appSettingsText(_ completion: @escaping(String) -> Void)
+    var appSettingsText: String { get }
 }
 
 protocol MyQotAppSettingsRouterInterface {

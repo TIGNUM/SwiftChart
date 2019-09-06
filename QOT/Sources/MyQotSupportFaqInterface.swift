@@ -18,7 +18,7 @@ protocol MyQotSupportFaqPresenterInterface {
 }
 
 protocol MyQotSupportFaqInteractorInterface: Interactor {
-    func faqHeaderText(_ completion: @escaping(String) -> Void)
+    var faqHeaderText: String { get }
     var itemCount: Int { get }
     func item(at indexPath: IndexPath) -> QDMContentCollection
     func trackingID(at indexPath: IndexPath) -> Int

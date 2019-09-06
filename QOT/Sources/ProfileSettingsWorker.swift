@@ -89,10 +89,8 @@ extension ProfileSettingsWorker {
         }
     }
 
-    func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.EditAccount.editAccount.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var editAccountTitle: String {
+        return ScreenTitleService.main.localizedString(for: .MyProfileEditAccount)
     }
 
     func numberOfSections() -> Int {
@@ -120,59 +118,31 @@ extension ProfileSettingsWorker {
 private extension ProfileSettingsWorker {
 
     func personalDataTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.personalData.predicate) {[weak self] (contentItem) in
-            self?.personalTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        personalTxt = ScreenTitleService.main.localizedString(for: .MyProfilePersonalData)
     }
 
     func contactTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.contact.predicate) {[weak self] (contentItem) in
-            self?.contactTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        contactTxt = ScreenTitleService.main.localizedString(for: .MyProfileContact)
     }
 
     func nameTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.name.predicate) {[weak self] (contentItem) in
-            self?.nameTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        nameTxt = ScreenTitleService.main.localizedString(for: .MyProfileName)
     }
 
     func surnameTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.surname.predicate) {[weak self] (contentItem) in
-            self?.surnameTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        surnameTxt = ScreenTitleService.main.localizedString(for: .MyProfileSurname)
     }
 
     func dateOfBirthTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.yearOfBirth.predicate) {[weak self] (contentItem) in
-            self?.dateOfBirthTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        dateOfBirthTxt = ScreenTitleService.main.localizedString(for: .MyProfileYearOfBirth)
     }
 
     func companyTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.company.predicate) {[weak self] (contentItem) in
-            self?.companyTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        companyTxt = ScreenTitleService.main.localizedString(for: .MyProfileCompany)
     }
 
     func emailTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.email.predicate) {[weak self] (contentItem) in
-            self?.emailTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        emailTxt = ScreenTitleService.main.localizedString(for: .MyProfileEmail)
     }
 }
 

@@ -52,10 +52,8 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
                                doneTitle: worker.confirmationAlertDone)
     }
 
-    func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {
-        worker.editAccountTitle { (text) in
-            completion(text)
-        }
+    var editAccountTitle: String {
+        return worker.editAccountTitle
     }
 
     var profile: QDMUser? {

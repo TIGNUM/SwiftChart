@@ -33,24 +33,18 @@ final class MyQotAboutUsWorker {
         return item.trackingKeys()
     }
 
-    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+    func title(at indexPath: IndexPath) -> String {
         guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
-            completion("")
-            return
+            return ""
         }
-        item.title(for: contentService) { (text) in
-            completion(text)
-        }
+        return item.title(for: contentService)
     }
 
-    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+    func subtitle(at indexPath: IndexPath) -> String {
         guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
-            completion("")
-            return
+            return ""
         }
-        item.subtitle(for: contentService) { (text) in
-            completion(text)
-        }
+        return item.subtitle(for: contentService)
     }
 
     func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem,
@@ -60,9 +54,7 @@ final class MyQotAboutUsWorker {
         }
     }
 
-    func aboutUsText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(qot_dal.ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var aboutUsText: String {
+        return ScreenTitleService.main.localizedString(for: .AboutUsAboutTignum)
     }
 }

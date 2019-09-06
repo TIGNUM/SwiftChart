@@ -45,9 +45,7 @@ final class MyQotSupportViewController: UIViewController, ScreenZLevel3 {
 extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        interactor?.supportText({[weak self] (text) in
-            ThemeText.myQOTSectionHeader.apply(text.uppercased(), to: self?.headerLabel)
-        })
+        ThemeText.myQOTSectionHeader.apply((interactor?.supportText ?? "").uppercased(), to: headerLabel)
         setUpTableView()
     }
 
@@ -67,12 +65,8 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        interactor?.title(at: indexPath, { (text) in
-            cell.configure(title: text, themeCell: .level3)
-        })
-        interactor?.subtitle(at: indexPath, { (text) in
-            cell.configure(subTitle: text)
-        })
+        cell.configure(title: interactor?.title(at: indexPath) ?? "", themeCell: .level3)
+        cell.configure(subTitle: interactor?.subtitle(at: indexPath) ?? "")
         return cell
     }
 

@@ -26,9 +26,7 @@ final class MyQotAppSettingsWorker {
 
 extension MyQotAppSettingsWorker {
 
-    func appSettingsText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.appSettings.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var appSettingsText: String {
+        return ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
     }
 }

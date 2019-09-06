@@ -28,18 +28,14 @@ final class MyQotAboutUsInteractor {
     }
 
     func viewDidLoad() {
-        aboutUsText {[weak self] (text) in
-            self?.presenter.setupView(with: text)
-        }
+        presenter.setupView(with: aboutUsText)
     }
 }
 
 extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
 
-    func aboutUsText(_ completion: @escaping(String) -> Void) {
-        worker.aboutUsText { (text) in
-            completion(text)
-        }
+    var aboutUsText: String {
+        return worker.aboutUsText
     }
 
     func itemCount() -> Int {
@@ -54,16 +50,12 @@ extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
         return worker.trackingKeys(at: indexPath)
     }
 
-    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
-        worker.title(at: indexPath) { (text) in
-            completion(text)
-        }
+    func title(at indexPath: IndexPath) -> String {
+        return worker.title(at: indexPath)
     }
 
-    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
-        worker.subtitle(at: indexPath) { (text) in
-            completion(text)
-        }
+    func subtitle(at indexPath: IndexPath) -> String {
+        return worker.subtitle(at: indexPath)
     }
 
     func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {

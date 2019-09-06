@@ -21,8 +21,8 @@ protocol MyQotAboutUsInteractorInterface: Interactor {
     func trackingKeys(at indexPath: IndexPath) -> String
     func itemCount() -> Int
     func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem?
-    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void)
-    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void)
+    func title(at indexPath: IndexPath) -> String
+    func subtitle(at indexPath: IndexPath) -> String
     func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void)
     func handleSelection(for indexPath: IndexPath)
 }

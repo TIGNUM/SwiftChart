@@ -45,16 +45,12 @@ extension MyQotSupportInteractor: MyQotSupportInteractorInterface {
         return worker.trackingKeys(at: indexPath)
     }
 
-    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
-        worker.title(at: indexPath) { (text) in
-            completion(text)
-        }
+    func title(at indexPath: IndexPath) -> String {
+        return worker.title(at: indexPath)
     }
 
-    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
-        worker.subtitle(at: indexPath) { (text) in
-            completion(text)
-        }
+    func subtitle(at indexPath: IndexPath) -> String {
+        return worker.subtitle(at: indexPath)
     }
 
     func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
@@ -70,9 +66,7 @@ extension MyQotSupportInteractor: MyQotSupportInteractorInterface {
         }
     }
 
-    func supportText(_ completion: @escaping(String) -> Void) {
-        worker.supportText { (text) in
-            completion(text)
-        }
+    var supportText: String {
+        return worker.supportText
     }
 }

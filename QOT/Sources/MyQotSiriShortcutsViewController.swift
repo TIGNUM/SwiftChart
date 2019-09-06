@@ -38,9 +38,7 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
         ThemeView.level3.apply(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        interactor?.siriShortcutsHeaderText({[weak self] (text) in
-            ThemeText.myQOTSectionHeader.apply(text, to: self?.headerLabel)
-        })
+        ThemeText.myQOTSectionHeader.apply(interactor?.siriShortcutsHeaderText, to: headerLabel)
         tableView.reloadData()
     }
 }

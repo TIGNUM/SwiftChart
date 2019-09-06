@@ -57,9 +57,7 @@ extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterfac
     func setup(_ settings: MyQotAppSettingsModel) {
         ThemeView.level3.apply(view)
         settingsModel = settings
-        interactor?.appSettingsText({[weak self] (text) in
-            ThemeText.myQOTSectionHeader.apply(text, to: self?.appSettingsHeaderLabel)
-        })
+        ThemeText.myQOTSectionHeader.apply(interactor?.appSettingsText, to: appSettingsHeaderLabel)
     }
 }
 
@@ -101,20 +99,14 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-        settingsModel.headerTitleForItem(at: section, completion: {(text) in
-            headerView.configure(title: text, theme: .level3)
-        })
+        headerView.configure(title: settingsModel.headerTitleForItem(at: section), theme: .level3)
         return headerView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        settingsModel.titleForItem(at: indexPath) { (text) in
-            cell.configure(title: text, themeCell: .level3)
-        }
-        settingsModel.subtitleForItem(at: indexPath) { (text) in
-            cell.configure(subTitle: text)
-        }
+        cell.configure(title: settingsModel.titleForItem(at: indexPath), themeCell: .level3)
+        cell.configure(subTitle: settingsModel.subtitleForItem(at: indexPath))
         return cell
     }
 

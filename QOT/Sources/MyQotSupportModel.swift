@@ -30,59 +30,42 @@ struct MyQotSupportModel {
             }
         }
 
+        func tag() -> Tags {
+            switch self {
+            case .contactSupport:
+                return Tags.SupportContactSupport
+            case .featureRequest:
+                return Tags.SupportFeatureRequest
+            case .tutorial:
+                return Tags.SupportTutorial
+            case .faq:
+                return Tags.SupportFaq
+            }
+        }
+
+        func tagSubtitle() -> Tags {
+            switch self {
+            case .contactSupport:
+                return Tags.SupportAreYouMissingSomething
+            case .featureRequest:
+                return Tags.SupportLearnHowToUseQot
+            case .tutorial:
+                return Tags.SupportContactUsForAnyQuestion
+            case .faq:
+                return Tags.SupportCheckTheMostAskedQuestion
+            }
+        }
+
         func trackingKeys() -> String {
-            switch self {
-            case .contactSupport:
-                return ContentService.Support.contactSupport.rawValue
-            case .featureRequest:
-                return ContentService.Support.featureRequest.rawValue
-            case .tutorial:
-                return ContentService.Support.tutorial.rawValue
-            case .faq:
-                return ContentService.Support.faq.rawValue
-            }
+            return tag().rawValue
         }
 
-        func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
-            switch self {
-            case .contactSupport:
-                contentService.getContentItemByPredicate(ContentService.Support.contactSupport.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .featureRequest:
-                contentService.getContentItemByPredicate(ContentService.Support.featureRequest.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .tutorial:
-                contentService.getContentItemByPredicate(ContentService.Support.tutorial.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .faq:
-                contentService.getContentItemByPredicate(ContentService.Support.faq.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            }
+        func title(for contentService: qot_dal.ContentService) -> String {
+            return ScreenTitleService.main.localizedString(for: tag())
         }
 
-        func subtitle(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
-            switch self {
-            case .contactSupport:
-                contentService.getContentItemByPredicate(ContentService.Support.areYouMissingSomething.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .featureRequest:
-                contentService.getContentItemByPredicate(ContentService.Support.learnHowToUseQot.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .tutorial:
-                contentService.getContentItemByPredicate(ContentService.Support.contactUsForAnyQuestion.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .faq:
-                contentService.getContentItemByPredicate(ContentService.Support.checkTheMostAskedQuestion.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            }
+        func subtitle(for contentService: qot_dal.ContentService) -> String {
+            return ScreenTitleService.main.localizedString(for: tagSubtitle())
         }
 
         var pageName: PageName {

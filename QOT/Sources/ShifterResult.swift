@@ -31,20 +31,4 @@ struct ShifterResult {
         let lowPerformanceItems: [String]
         let highPerformanceItems: [String]
     }
-
-    enum Tag: String, CaseIterable, Predicatable {
-        case headerTitle = "mindset-shifter-checklist-header-title"
-        case headerSubtitle = "mindset-shifter-checklist-header-subtitle"
-        case triggerTitle = "mindset-shifter-checklist-trigger-title"
-        case reactionsTitle = "mindset-shifter-checklist-reactions-title"
-        case lowToHighTitle = "mindset-shifter-checklist-negativeToPositive-title"
-        case lowTitle = "mindset-shifter-checklist-negativeToPositive-lowTitle"
-        case highTitle = "mindset-shifter-checklist-negativeToPositive-highTitle"
-        case visionTitle = "mindset-shifter-checklist-vision-Title"
-        case buttonTitle = "mindset-shifter-checklist-save-button-text"
-
-        var predicate: NSPredicate {
-            return NSPredicate(dalSearchTag: rawValue)
-        }
-    }
 }

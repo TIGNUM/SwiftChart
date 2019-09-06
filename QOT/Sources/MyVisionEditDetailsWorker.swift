@@ -89,14 +89,10 @@ final class MyVisionEditDetailsWorker {
     }
 
     private func getVisionDescription() {
-        contentService.getContentItemByPredicate(ContentService.MyVision.visionDescription.predicate) {[weak self] (contentItem) in
-            self?.visionPlaceholderDescription = contentItem?.valueText ?? R.string.localized.myToBeVisionTitlePlaceholder()
-        }
+        visionPlaceholderDescription = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
     }
 
     private func getVisionTitle() {
-        contentService.getContentItemByPredicate(ContentService.MyVision.visionTitle.predicate) {[weak self] (contentItem) in
-            self?.visionPlaceholderTitle = contentItem?.valueText ?? R.string.localized.myToBeVisionDescriptionPlaceholder()
-        }
+        visionPlaceholderTitle = ScreenTitleService.main.localizedString(for: .MyVisionVisionTitle)
     }
 }

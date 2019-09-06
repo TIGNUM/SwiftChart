@@ -66,90 +66,64 @@ final class MyQotAccountSettingsWorker {
 
 extension MyQotAccountSettingsWorker {
 
-    func accountSettingsText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.accountSettings.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var accountSettingsText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccountSettings)
     }
 
-    func contactText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.contact.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var contactText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsContact)
     }
 
-    func emailText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.email.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var emailText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsEmail)
     }
 
-    func dateOfBirthText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.yearOfBirth.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var dateOfBirthText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
     }
 
-    func companyText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.company.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var companyText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsCompany)
     }
 
-    func personalDataText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.personalData.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var personalDataText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsPersonalData)
     }
 
-    func heightText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.height.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var heightText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsHeight)
     }
 
-    func weightText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.weight.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var weightText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsWeight)
     }
 
-    func accountText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.account.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var accountText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccount)
     }
 
-    func changePasswordText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.changePassword.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var changePasswordText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsChangePassword)
     }
 
-    func protectYourAccountText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.protectYourAccount.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var protectYourAccountText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsProtectYourAccount)
     }
 
-    func logoutQotText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.logoutQot.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var logoutQotText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsLogoutQot)
     }
 
-    func withoutDeletingAccountText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.withoutDeletingAccountText.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var withoutDeletingAccountText: String {
+        return ScreenTitleService.main.localizedString(for: .AccountSettingsWithoutDeletingAccountText)
     }
 
     var changePasswordKey: String {
-        return ContentService.AccountSettings.Profile.changePassword.rawValue
+        return Tags.AccountSettingsChangePassword.rawValue
     }
 
     var logoutQOTKey: String {
-        return ContentService.AccountSettings.Profile.logoutQot.rawValue
+        return Tags.AccountSettingsLogoutQot.rawValue
     }
 }
 

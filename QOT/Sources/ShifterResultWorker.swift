@@ -55,7 +55,7 @@ final class ShifterResultWorker {
 // MARK: - Public
 extension ShifterResultWorker {
     func getModel(_ completion: @escaping (ShifterResult) -> Void) {
-        ShifterResult.Tag.allCases.forEach { setTitle($0) }
+        setTitles()
         setVision()
 
         dispatchGroup.notify(queue: .main) { [unowned self] in
@@ -84,32 +84,16 @@ extension ShifterResultWorker {
 
 // MARK: - Private
 private extension ShifterResultWorker {
-    func setTitle(_ tag: ShifterResult.Tag) {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(tag.predicate) { [weak self] (contentItem) in
-            let title = contentItem?.valueText ?? ""
-            switch tag {
-            case .buttonTitle:
-                self?.buttonTitle = title
-            case .headerSubtitle:
-                self?.headerSubTitle = title
-            case .headerTitle:
-                self?.headerTitle = title
-            case .highTitle:
-                self?.highTitle = title
-            case .lowTitle:
-                self?.lowTitle = title
-            case .lowToHighTitle:
-                self?.lowToHighTitle = title
-            case .reactionsTitle:
-                self?.reactionsTitle = title
-            case .triggerTitle:
-                self?.triggerTitle = title
-            case .visionTitle:
-                self?.visionTitle = title
-            }
-            self?.dispatchGroup.leave()
-        }
+    func setTitles() {
+        buttonTitle = ScreenTitleService.main.localizedString(for: .ShifterResultButtonTitle)
+        headerSubTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderSubtitle)
+        headerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderTitle)
+        highTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHighTitle)
+        lowTitle = ScreenTitleService.main.localizedString(for: .ShifterResultLowTitle)
+        lowToHighTitle = ScreenTitleService.main.localizedString(for: .ShifterResultLowToHighTitle)
+        reactionsTitle = ScreenTitleService.main.localizedString(for: .ShifterResultReactionsTitle)
+        triggerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultTriggerTitle)
+        visionTitle = ScreenTitleService.main.localizedString(for: .ShifterResultVisionTitle)
     }
 
     func setVision() {

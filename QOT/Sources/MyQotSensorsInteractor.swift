@@ -65,11 +65,7 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
             })
         }
 
-        worker.headerTitle {[weak self]  (workerText) in
-            self?.worker.sensorTitle({[weak self]  (sensorText) in
-                self?.presenter.set(headerTitle: workerText, sensorTitle: sensorText)
-            })
-        }
+        presenter.set(headerTitle: worker.headerTitle, sensorTitle: worker.sensorTitle)
     }
 }
 

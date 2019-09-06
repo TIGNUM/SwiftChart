@@ -6,7 +6,8 @@
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import qot_dal
 
 enum ToolSection: Int, CaseIterable {
     case mindset = 0
@@ -19,19 +20,23 @@ enum ToolSection: Int, CaseIterable {
         return [.mindset, .nutrition, .movement, .recovery, .habituation]
     }
 
-    func trackingKeys() -> String {
+    func tag() -> Tags {
         switch self {
         case .mindset:
-            return ContentService.Tools.mindset.rawValue
+            return .ToolsMindset
         case .nutrition:
-            return ContentService.Tools.nutrition.rawValue
+            return .ToolsNutrition
         case .movement:
-            return ContentService.Tools.movement.rawValue
+            return .ToolsMovement
         case .recovery:
-            return ContentService.Tools.recovery.rawValue
+            return .ToolsRecovery
         case .habituation:
-            return ContentService.Tools.habituation.rawValue
+            return .ToolsHabituation
         }
+    }
+
+    func trackingKeys() -> String {
+        return tag().rawValue
     }
 }
 

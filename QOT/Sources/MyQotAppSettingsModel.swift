@@ -36,10 +36,8 @@ struct MyQotAppSettingsModel {
         return Section.values.count
     }
 
-    func headerTitleForItem(at section: Int, completion: @escaping(String) -> Void) {
-        headertitle(for: Section.values.item(at: section)) { (text) in
-            completion(text)
-        }
+    func headerTitleForItem(at section: Int) -> String {
+        return headertitle(for: Section.values.item(at: section))
     }
 
     func heightForHeader(in section: Int) -> CGFloat {
@@ -70,17 +68,13 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    func subtitleForItem(at indexPath: IndexPath, completion: @escaping(String) -> Void) {
+    func subtitleForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            subtitle(for: Setting.generalSettings.item(at: indexPath.row)) { (text) in
-                completion(text)
-            }
+            return subtitle(for: Setting.generalSettings.item(at: indexPath.row))
         case .custom:
-            subtitle(for: Setting.customSettings.item(at: indexPath.row)) { (text) in
-                completion(text)
-            }
+            return subtitle(for: Setting.customSettings.item(at: indexPath.row))
         }
     }
 
@@ -94,17 +88,13 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    func titleForItem(at indexPath: IndexPath, completion: @escaping(String) -> Void) {
+    func titleForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            title(for: Setting.generalSettings.item(at: indexPath.row)) { (text) in
-                completion(text)
-            }
+            return title(for: Setting.generalSettings.item(at: indexPath.row))
         case .custom:
-            title(for: Setting.customSettings.item(at: indexPath.row)) { (text) in
-                completion(text)
-            }
+            return title(for: Setting.customSettings.item(at: indexPath.row))
         }
     }
 
@@ -114,81 +104,54 @@ struct MyQotAppSettingsModel {
         }
     }
 
+    private func tag(for item: Setting) -> Tags {
+        switch item {
+        case .permissions:
+            return .AppSettingsPermissions
+        case .notifications:
+            return .AppSettingsNotifications
+        case .calendars:
+            return .AppSettingsSyncedCalendars
+        case .sensors:
+            return .AppSettingsActivityTrackers
+        case .siriShortcuts:
+            return .AppSettingsSiriShortcuts
+        }
+    }
+
+    private func tagSubtitle(for item: Setting) -> Tags {
+        switch item {
+        case .permissions:
+            return .AppSettingsAllowQotToAccessYourDevice
+        case .notifications:
+            return .AppSettingsAllowAlertsForSomeQOTFeatures
+        case .calendars:
+            return .AppSettingsSyncYourPersonalCalendarWithQot
+        case .sensors:
+            return .AppSettingsConnectWearablesToQot
+        case .siriShortcuts:
+            return .AppSettingsRecordYourVoiceAndCreateShortcuts
+        }
+    }
+
     private func trackingKey(for item: Setting) -> String {
-        switch item {
-        case .permissions:
-            return ContentService.AppSettings.Profile.permissions.rawValue
-        case .notifications:
-            return ContentService.AppSettings.Profile.notifications.rawValue
-        case .calendars:
-            return ContentService.AppSettings.Profile.syncedCalendars.rawValue
-        case .sensors:
-            return ContentService.AppSettings.Profile.activityTrackers.rawValue
-        case .siriShortcuts:
-            return ContentService.AppSettings.Profile.siriShortcuts.rawValue
-        }
+        return tag(for: item).rawValue
     }
 
-    private func title(for item: Setting, completion: @escaping(String) -> Void) {
-        switch item {
-        case .permissions:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.permissions.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .notifications:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.notifications.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .calendars:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.syncedCalendars.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .sensors:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.activityTrackers.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .siriShortcuts:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.siriShortcuts.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        }
+    private func title(for item: Setting) -> String {
+        return ScreenTitleService.main.localizedString(for: tag(for: item))
     }
 
-    private func subtitle(for item: Setting, completion: @escaping(String) -> Void) {
-        switch item {
-        case .permissions:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.appSettingsAllowQotToAccessYourDevice.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .notifications:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.allowAlertsForSomeQOTFeatures.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .calendars:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.syncYourPersonalCalendarWithQot.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .sensors:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.connectWearablesToQot.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .siriShortcuts:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.recodYourVoiceAndCreateShortcuts.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        }
+    private func subtitle(for item: Setting) -> String {
+        return ScreenTitleService.main.localizedString(for: tagSubtitle(for: item))
     }
 
-    private func headertitle(for item: Section, completion: @escaping(String) -> Void) {
+    private func headertitle(for item: Section) -> String {
         switch item {
         case .general:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.generalSettings.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
+            return ScreenTitleService.main.localizedString(for: .AppSettingsGeneralSettings)
         case .custom:
-            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.customSettings.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
+            return ScreenTitleService.main.localizedString(for: .AppSettingsCustomSettings)
         }
     }
 }

@@ -59,18 +59,10 @@ private extension MyToBeVisionDataNullStateViewController {
 
 private extension MyToBeVisionDataNullStateViewController {
     func setupEmptySate() {
-        emptyStateHeaderTitle {[weak self] (title) in
-            ThemeText.tbvStatement.apply(title.uppercased(), to: self?.headingLabel)
-        }
-        emptyStateHeaderDesc {[weak self] (title) in
-            ThemeText.tbvBody.apply(title, to: self?.headingDescriptionLabel)
-        }
-        emptyStateTitleTitle {[weak self] (title) in
-            ThemeText.tbvSectionHeader.apply(title.uppercased(), to: self?.titleLabel)
-        }
-        emptyStateTitleDesc {[weak self] (title) in
-            ThemeText.tbvBody.apply(title, to: self?.titleDescriptionLabel)
-        }
+        ThemeText.tbvStatement.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderTitle).uppercased(), to: headingLabel)
+        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc), to: headingDescriptionLabel)
+        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased(), to: titleLabel)
+        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc), to: titleDescriptionLabel)
     }
 
     func formatted(title: String) -> NSAttributedString? {
@@ -80,30 +72,6 @@ private extension MyToBeVisionDataNullStateViewController {
                                   lineSpacing: 7,
                                   textColor: .sand,
                                   lineBreakMode: .byTruncatingTail)
-    }
-
-    func emptyStateHeaderTitle(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.TBVData.emptyStateHeaderTitle.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
-    }
-
-    func emptyStateHeaderDesc(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.TBVData.emptyStateHeaderDesc.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
-    }
-
-    func emptyStateTitleTitle(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.TBVData.emptyStateTitleTitle.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
-    }
-
-    func emptyStateTitleDesc(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.TBVData.emptyStateTitleDesc.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
     }
 }
 

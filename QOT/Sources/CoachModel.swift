@@ -6,7 +6,8 @@
 //  Copyright (c) 2019 Tignum. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import qot_dal
 
 enum CoachSection: Int, CaseIterable {
     case search = 0
@@ -19,19 +20,23 @@ enum CoachSection: Int, CaseIterable {
         return [.search, .tools, .sprint, .event, .challenge]
     }
 
-    func trackingKeys() -> String {
+    func tag() -> Tags {
         switch self {
         case .search:
-            return ContentService.Coach.search.rawValue
+            return .CoachSearch
         case .tools:
-            return ContentService.Coach.tools.rawValue
+            return .CoachTools
         case .sprint:
-            return ContentService.Coach.sprint.rawValue
+            return .CoachSprint
         case .event:
-            return ContentService.Coach.event.rawValue
+            return .CoachEvent
         case .challenge:
-            return ContentService.Coach.challenge.rawValue
+            return .CoachChallenge
         }
+    }
+
+    func trackingKeys() -> String {
+        return tag().rawValue
     }
 }
 

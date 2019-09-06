@@ -38,10 +38,8 @@ final class MyQotSupportFaqInteractor {
 
 extension MyQotSupportFaqInteractor: MyQotSupportFaqInteractorInterface {
 
-    func faqHeaderText(_ completion: @escaping(String) -> Void) {
-        worker.faqHeaderText { (text) in
-            completion(text)
-        }
+    var faqHeaderText: String {
+        return worker.faqHeaderText
     }
 
     var itemCount: Int {

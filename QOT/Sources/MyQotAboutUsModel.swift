@@ -36,79 +36,46 @@ struct MyQotAboutUsModel {
                     MyQotAboutUsModelItem.copyright.primaryKey]
         }
 
+        func tag() -> Tags {
+            switch self {
+            case .benefits:
+                return .AboutUsQotBenefits
+            case .about:
+                return .AboutUsAboutTignum
+            case .privacy:
+                return .AboutUsPrivacy
+            case .terms:
+                return .AboutUsTermsAndConditions
+            case .copyright:
+                return .AboutUsCopyright
+            }
+        }
+
+        func tagSubtitle() -> Tags {
+            switch self {
+            case .benefits:
+                return .AboutUsQotBenefitsSubtitle
+            case .about:
+                return .AboutUsAboutTignumSubtitle
+            case .privacy:
+                return .AboutUsPrivacySubtitle
+            case .terms:
+                return .AboutUsTermsAndConditionSubtitle
+            case .copyright:
+                return .AboutUsContentAndCopyrightSubtitle
+            }
+        }
+
         func trackingKeys() -> String {
-            switch self {
-            case .benefits:
-                return qot_dal.ContentService.AboutUs.qotBenefits.rawValue
-            case .about:
-                return qot_dal.ContentService.AboutUs.aboutTignum.rawValue
-            case .privacy:
-                return qot_dal.ContentService.AboutUs.privacy.rawValue
-            case .terms:
-                return qot_dal.ContentService.AboutUs.termsAndConditions.rawValue
-            case .copyright:
-                return qot_dal.ContentService.AboutUs.copyright.rawValue
-            }
+            return tag().rawValue
         }
 
-        func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
-            switch self {
-            case .benefits:
-                contentService.getContentItemsByPredicate(
-                qot_dal.ContentService.AboutUs.qotBenefits.predicate) {(contentItems) in
-                    completion(contentItems?.last?.valueText ?? "")
-                }
-            case .about:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .privacy:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.privacy.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .terms:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.termsAndConditions.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .copyright:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.copyright.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            }
+        func title(for contentService: qot_dal.ContentService) -> String {
+            return ScreenTitleService.main.localizedString(for: tag())
         }
 
-        func subtitle(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
-            switch self {
-            case .benefits:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.qotBenefitsSubtitle.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .about:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.aboutTignumSubtitle.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .privacy:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.privacySubtitle.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .terms:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.termsAndCOnditionSubtitle.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            case .copyright:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
-                }
-            }
+        func subtitle(for contentService: qot_dal.ContentService) -> String {
+            return ScreenTitleService.main.localizedString(for: tagSubtitle())
         }
 
         var pageName: PageName {

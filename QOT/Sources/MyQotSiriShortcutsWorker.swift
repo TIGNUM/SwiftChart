@@ -37,18 +37,9 @@ final class MyQotSiriShortcutsWorker {
     }
 
     private func siriShortcuts(_ completion: @escaping(SiriShortcutsModel) -> Void) {
-
-        toBeVisionSiriModel {[weak self] (model) in
-            self?.toBeVisionModel = model
-        }
-
-        morningInterviewSiriModel {[weak self] (model) in
-            self?.morningInterviewModel = model
-        }
-
-        whatsHotSiriModel {[weak self] (model) in
-            self?.whatsHotModel = model
-        }
+        toBeVisionModel = toBeVisionSiriModel
+        morningInterviewModel = morningInterviewSiriModel
+        whatsHotModel = whatsHotSiriModel
 
         dispatchGroup.notify(queue: .main) {
             let shortcuts: [SiriShortcutsModel.Shortcut]  = [self.toBeVisionModel,
@@ -59,46 +50,28 @@ final class MyQotSiriShortcutsWorker {
         }
     }
 
-    func toBeVisionSiriModel(_ completion: @escaping(SiriShortcutsModel.Shortcut) -> Void) {
-        dispatchGroup.enter()
-        siriTitle(for: .toBeVision) {[weak self] (text) in
-            self?.siriSuggestionPhrase(for: .toBeVision) {[weak self] (phrase) in
-                let model = SiriShortcutsModel.Shortcut(type: .toBeVision,
-                                                   title: text,
-                                                   trackingKey: self?.siriTrackingKey(for: .toBeVision),
-                                                   suggestion: phrase)
-                completion(model)
-                self?.dispatchGroup.leave()
-            }
-        }
+    var toBeVisionSiriModel: SiriShortcutsModel.Shortcut {
+        let model = SiriShortcutsModel.Shortcut(type: .toBeVision,
+                                           title: siriTitle(for: .toBeVision),
+                                           trackingKey: siriTrackingKey(for: .toBeVision),
+                                           suggestion: siriSuggestionPhrase(for: .toBeVision))
+        return model
     }
 
-    func morningInterviewSiriModel(_ completion: @escaping(SiriShortcutsModel.Shortcut) -> Void) {
-        dispatchGroup.enter()
-        siriTitle(for: .morningInterview) {[weak self] (text) in
-            self?.siriSuggestionPhrase(for: .morningInterview) {[weak self] (phrase) in
-                let model = SiriShortcutsModel.Shortcut(type: .morningInterview,
-                                                   title: text,
-                                                   trackingKey: self?.siriTrackingKey(for: .morningInterview),
-                                                   suggestion: phrase)
-                completion(model)
-                self?.dispatchGroup.leave()
-            }
-        }
+    var morningInterviewSiriModel: SiriShortcutsModel.Shortcut {
+        let model = SiriShortcutsModel.Shortcut(type: .morningInterview,
+                                           title: siriTitle(for: .morningInterview),
+                                           trackingKey: siriTrackingKey(for: .morningInterview),
+                                           suggestion: siriSuggestionPhrase(for: .morningInterview))
+        return model
     }
 
-    func whatsHotSiriModel(_ completion: @escaping(SiriShortcutsModel.Shortcut) -> Void) {
-        dispatchGroup.enter()
-        siriTitle(for: .whatsHot) {[weak self] (text) in
-            self?.siriSuggestionPhrase(for: .whatsHot) {[weak self] (phrase) in
-                let model = SiriShortcutsModel.Shortcut(type: .whatsHot,
-                                                   title: text,
-                                                   trackingKey: self?.siriTrackingKey(for: .whatsHot),
-                                                   suggestion: phrase)
-                completion(model)
-                self?.dispatchGroup.leave()
-            }
-        }
+    var whatsHotSiriModel: SiriShortcutsModel.Shortcut {
+        let model = SiriShortcutsModel.Shortcut(type: .whatsHot,
+                                           title: siriTitle(for: .whatsHot),
+                                           trackingKey: siriTrackingKey(for: .whatsHot),
+                                           suggestion: siriSuggestionPhrase(for: .whatsHot))
+        return model
     }
 
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType) {
@@ -128,63 +101,48 @@ final class MyQotSiriShortcutsWorker {
         return shortcutModel.shortcuts[indexPath.row]
     }
 
-    func siriShortcutsHeaderText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.siriShortcuts.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var siriShortcutsHeaderText: String {
+        return ScreenTitleService.main.localizedString(for: .AppSettingsSiriShortcuts)
     }
 }
 
 extension MyQotSiriShortcutsWorker {
 
-    func siriExplanation(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.Siri.siriExplanation.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
+    var siriExplanation: String {
+        return ScreenTitleService.main.localizedString(for: .MyQOTSiriExplanation)
+    }
+
+    func siriTag(for shortcut: ShortcutType) -> Tags {
+        switch shortcut {
+        case .toBeVision:
+            return Tags.MyQOTSiriToBeVisionTitle
+        case .whatsHot:
+            return Tags.MyQOTSiriWhatsHotTitle
+        case .morningInterview:
+            return Tags.MyQOTSiriDailyPrepTitle
+        }
+    }
+
+    func siriTagSubtitle(for shortcut: ShortcutType) -> Tags {
+        switch shortcut {
+        case .toBeVision:
+            return Tags.MyQOTSiriToBeVisionSuggestionPhrase
+        case .whatsHot:
+            return Tags.MyQOTSiriWhatsHotSuggestionPhrase
+        case .morningInterview:
+            return Tags.MyQOTSiriDailyPrepSuggestionPhrase
         }
     }
 
     func siriTrackingKey(for shortcut: ShortcutType) -> String? {
-        switch shortcut {
-        case .toBeVision:
-            return ContentService.Siri.siriToBeVisionTitle.rawValue
-        case .whatsHot:
-            return ContentService.Siri.siriWhatsHotTitle.rawValue
-        case .morningInterview:
-            return ContentService.Siri.siriDailyPrepTitle.rawValue
-        }
+        return siriTag(for: shortcut).rawValue
     }
 
-    func siriTitle(for shortcut: ShortcutType, _ completion: @escaping(String) -> Void) {
-        switch shortcut {
-        case .toBeVision:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriToBeVisionTitle.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .whatsHot:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriWhatsHotTitle.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .morningInterview:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriDailyPrepTitle.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        }
+    func siriTitle(for shortcut: ShortcutType) -> String {
+        return ScreenTitleService.main.localizedString(for: siriTag(for: shortcut))
     }
 
-    func siriSuggestionPhrase(for shortcut: ShortcutType, _ completion: @escaping(String) -> Void) {
-        switch shortcut {
-        case .toBeVision:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriToBeVisionSuggestionPhrase.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .whatsHot:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriWhatsHotSuggestionPhrase.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        case .morningInterview:
-            contentService.getContentItemByPredicate(ContentService.Siri.siriDailyPrepSuggestionPhrase.predicate) {(contentItem) in
-                completion(contentItem?.valueText ?? "")
-            }
-        }
+    func siriSuggestionPhrase(for shortcut: ShortcutType) -> String {
+        return ScreenTitleService.main.localizedString(for: siriTagSubtitle(for: shortcut))
     }
 }

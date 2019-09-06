@@ -88,9 +88,7 @@ private extension ProfileSettingsViewController {
     func setupView() {
         tableView.tableFooterView = UIView()
         registerCells()
-        interactor?.editAccountTitle({[weak self] (text) in
-            self?.headerTitle.text = text
-        })
+        headerTitle.text = interactor?.editAccountTitle
         view.backgroundColor = .carbon
         keyboardInputView.delegate = self
     }

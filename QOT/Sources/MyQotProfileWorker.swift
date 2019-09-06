@@ -67,96 +67,56 @@ final class MyQotProfileWorker {
 private extension MyQotProfileWorker {
 
     var accountSettingsKey: String {
-        return ContentService.MyQot.Profile.accountSettings.rawValue
+        return Tags.MyQotProfileAccountSettings.rawValue
     }
     var appSettingsKey: String {
-        return ContentService.MyQot.Profile.appSettings.rawValue
+        return Tags.MyQotProfileAppSettings.rawValue
     }
     var supportKey: String {
-        return ContentService.MyQot.Profile.support.rawValue
+        return Tags.MyQotProfileSupport.rawValue
     }
     var aboutTignumKey: String {
-        return ContentService.MyQot.Profile.aboutTignum.rawValue
+        return Tags.MyQotProfileAboutTignum.rawValue
     }
 
     func myProfileText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.myProfile.predicate) {[weak self] (contentItem) in
-            self?.myProfileTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        myProfileTxt = ScreenTitleService.main.localizedString(for: .MyQotMyProfile)
     }
 
     func memberSinceText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.memberSince.predicate) {[weak self] (contentItem) in
-            self?.memberSinceTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        memberSinceTxt = ScreenTitleService.main.localizedString(for: .MyQotMemberSince)
     }
 
     func accountSettingsText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.accountSettings.predicate) {[weak self] (contentItem) in
-            self?.accountSettingsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        accountSettingsTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAccountSettings)
     }
 
     func manageYourProfileDetailsText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.manageYourProfileDetails.predicate) {[weak self] (contentItem) in
-            self?.manageYourProfileDetailsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        manageYourProfileDetailsTxt = ScreenTitleService.main.localizedString(for: .MyQotManageYourProfileDetails)
     }
 
     func appSettingsText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.appSettings.predicate) {[weak self] (contentItem) in
-            self?.appSettingsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        appSettingsTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
     }
 
     func enableNotificationsText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.enableNotifications.predicate) {[weak self] (contentItem) in
-            self?.enableNotificationsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        enableNotificationsTxt = ScreenTitleService.main.localizedString(for: .MyQotEnableNotifications)
     }
 
     func supportText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.support.predicate) {[weak self] (contentItem) in
-            self?.supportTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        supportTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileSupport)
     }
 
     func walkthroughOurFeaturesText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.walkthroughOurFeatures.predicate) {[weak self] (contentItem) in
-            self?.walkthroughOurFeaturesTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        walkthroughOurFeaturesTxt = ScreenTitleService.main.localizedString(for: .MyQotWalkthroughOurFeatures)
     }
 
     func aboutTignumText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.aboutTignum.predicate) {[weak self] (contentItem) in
-            self?.aboutTignumTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        aboutTignumTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAboutTignum)
     }
 
     func learnMoreAboutUsText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.learnMoreAboutUs.predicate) {[weak self] (contentItem) in
-            self?.learnMoreAboutUsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        learnMoreAboutUsTxt = ScreenTitleService.main.localizedString(for: .MyQotLearnMoreAboutUs)
     }
 
     func getUserProfile() {

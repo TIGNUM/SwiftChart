@@ -30,10 +30,8 @@ final class MyQotAppSettingsInteractor {
         presenter.present(worker.settings())
     }
 
-    func appSettingsText(_ completion: @escaping(String) -> Void) {
-        worker.appSettingsText { (text) in
-            completion(text)
-        }
+    var appSettingsText: String {
+        return worker.appSettingsText
     }
 }
 

@@ -116,30 +116,14 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 
 private extension MyQotAccountSettingsViewController {
     func setContentForView() {
-        interactor?.accountSettingsText({[weak self] (text) in
-            ThemeText.myQOTSectionHeader.apply(text, to: self?.accountSettingsHeaderLabel)
-        })
-        interactor?.contactText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.contactHeaderLabel)
-        })
-        interactor?.emailText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.emailHeaderLabel)
-        })
-        interactor?.userAgeText({[weak self] (text) in
-            self?.dobHeaderLabel.text = text
-        })
-        interactor?.companyText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.companyHeaderLabel)
-        })
-        interactor?.personalDataText({[weak self] (text) in
-            ThemeText.accountHeader.apply(text, to: self?.personalDataHeaderLabel)
-        })
-        interactor?.logoutQotText({[weak self] (text) in
-            ThemeText.accountHeaderTitle.apply(text, to: self?.logoutQotHeaderLabel)
-        })
-        interactor?.withoutDeletingAccountText({[weak self] (text) in
-            ThemeText.accountDetail.apply(text, to: self?.logoutQotTitleLabel)
-        })
+        ThemeText.myQOTSectionHeader.apply(interactor?.accountSettingsText, to: accountSettingsHeaderLabel)
+        ThemeText.accountHeader.apply(interactor?.contactText, to: contactHeaderLabel)
+        ThemeText.accountHeader.apply(interactor?.emailText, to: emailHeaderLabel)
+        dobHeaderLabel.text = interactor?.dateOfBirthText
+        ThemeText.accountHeader.apply(interactor?.companyText, to: companyHeaderLabel)
+        ThemeText.accountHeader.apply(interactor?.personalDataText, to: personalDataHeaderLabel)
+        ThemeText.accountHeaderTitle.apply(interactor?.logoutQotText, to: logoutQotHeaderLabel)
+        ThemeText.accountDetail.apply(interactor?.withoutDeletingAccountText, to: logoutQotTitleLabel)
     }
 
     func setDataOnView() {

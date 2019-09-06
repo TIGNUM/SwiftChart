@@ -20,7 +20,7 @@ protocol MyQotSiriShortcutsInteractorInterface: Interactor {
     func trackingKey(for indexPath: IndexPath) -> String
     func shortcutType(for indexPath: IndexPath) -> SiriShortcutsModel.Shortcut
     func title(for indexPath: IndexPath) -> String
-    func siriShortcutsHeaderText(_ completion: @escaping(String) -> Void)
+    var siriShortcutsHeaderText: String { get }
     func itemsCount() -> Int
     func handleTap(for shortcut: SiriShortcutsModel.Shortcut?)
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType)

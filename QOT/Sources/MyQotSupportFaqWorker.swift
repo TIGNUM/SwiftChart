@@ -54,9 +54,7 @@ extension MyQotSupportFaqWorker {
         return text.uppercased()
     }
 
-    func faqHeaderText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.Support.faq.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var faqHeaderText: String {
+        return ScreenTitleService.main.localizedString(for: .SupportFaq)
     }
 }

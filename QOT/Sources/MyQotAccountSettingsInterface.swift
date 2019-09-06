@@ -21,17 +21,21 @@ protocol MyQotAccountSettingsPresenterInterface {
 }
 
 protocol MyQotAccountSettingsInteractorInterface: Interactor {
-    func accountSettingsText(_ completion: @escaping(String) -> Void)
-    func contactText(_ completion: @escaping(String) -> Void)
-    func emailText(_ completion: @escaping(String) -> Void)
-    func companyText(_ completion: @escaping(String) -> Void)
-    func userAgeText(_ completion: @escaping(String) -> Void)
-    func personalDataText(_ completion: @escaping(String) -> Void)
-    func accountText(_ completion: @escaping(String) -> Void)
-    func changePasswordText(_ completion: @escaping(String) -> Void)
-    func protectYourAccountText(_ completion: @escaping(String) -> Void)
-    func logoutQotText(_ completion: @escaping(String) -> Void)
-    func withoutDeletingAccountText(_ completion: @escaping(String) -> Void)
+    var accountSettingsText: String { get }
+    var contactText: String { get }
+    var emailText: String { get }
+    var dateOfBirthText: String { get }
+    var companyText: String { get }
+    var personalDataText: String { get }
+    var heightText: String { get }
+    var weightText: String { get }
+    var accountText: String { get }
+    var changePasswordText: String { get }
+    var protectYourAccountText: String { get }
+    var logoutQotText: String { get }
+    var withoutDeletingAccountText: String { get }
+    var changePasswordKey: String { get }
+    var logoutQOTKey: String { get }
     func userProfile(_ completion: @escaping (UserProfileModel?) -> Void)
     func showLogoutAlert()
     func showResetPasswordAlert()

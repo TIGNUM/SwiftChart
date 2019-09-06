@@ -124,38 +124,14 @@ final class MyToBeVisionTrackerWorker {
     }
 
     func getSubTitle() {
-        dispatchGroup.enter()
-        var predicate: NSPredicate = ContentService.TBVTracker.subtitle.predicate
-        if controllerType == .data {
-            predicate = ContentService.TBVData.subtitle.predicate
-        }
-        contentService.getContentItemByPredicate(predicate) {[weak self] (contentItem) in
-            self?.subTitle = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        subTitle = ScreenTitleService.main.localizedString(for: controllerType == .data ? .TbvDataSubtitle : .TbvTrackerSubtitle)
     }
 
     func getTitle() {
-        dispatchGroup.enter()
-        var predicate: NSPredicate = ContentService.TBVTracker.title.predicate
-        if controllerType == .data {
-            predicate = ContentService.TBVData.title.predicate
-        }
-        contentService.getContentItemByPredicate(predicate) {[weak self] (contentItem) in
-            self?.title = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        title = ScreenTitleService.main.localizedString(for: controllerType == .data ? .TbvDataTitle : .TbvTrackerTitle)
     }
 
     func getGraphHeading() {
-        dispatchGroup.enter()
-        var predicate: NSPredicate = ContentService.TBVTracker.graphTitle.predicate
-        if controllerType == .data {
-            predicate = ContentService.TBVData.graphTitle.predicate
-        }
-        contentService.getContentItemByPredicate(predicate) {[weak self] (contentItem) in
-            self?.graphHeading = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
+        graphHeading = ScreenTitleService.main.localizedString(for: controllerType == .data ? .TbvDataGraphTitle : .TbvTrackerGraphTitle)
     }
 }

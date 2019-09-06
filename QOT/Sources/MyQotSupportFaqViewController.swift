@@ -40,9 +40,7 @@ extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface 
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
-        interactor?.faqHeaderText({[weak self] (text) in
-            ThemeText.myQOTSectionHeader.apply(text, to: self?.headerLabel)
-        })
+        ThemeText.myQOTSectionHeader.apply(interactor?.faqHeaderText, to: headerLabel)
         tableView.reloadData()
     }
 }

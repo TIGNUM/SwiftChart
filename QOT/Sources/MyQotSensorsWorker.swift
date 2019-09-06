@@ -48,16 +48,12 @@ final class MyQotSensorsWorker {
         }
     }
 
-    func headerTitle(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.Sensors.activityTrackers.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var headerTitle: String {
+        return ScreenTitleService.main.localizedString(for: .MyQotTrackerActivityTrackers)
     }
 
-    func sensorTitle(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.Sensors.sensors.predicate) {(contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+    var sensorTitle: String {
+        return ScreenTitleService.main.localizedString(for: .MyQotTrackerSensors)
     }
 }
 
