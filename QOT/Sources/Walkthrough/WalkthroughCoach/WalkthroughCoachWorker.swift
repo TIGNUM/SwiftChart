@@ -13,7 +13,7 @@ final class WalkthroughCoachWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return qot_dal.ScreenTitleService.main.localizedString(for: .WalkthroughCoachText)
+        return ScreenTitleService.main.localizedString(for: .WalkthroughCoachText)
     }()
 
     // MARK: - Init

@@ -15,7 +15,6 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     var interactor: MyLibraryNotesInteractorInterface?
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
-    private var infoAlertView: InfoAlertView?
     private var saveButton: RoundedButton?
     private var bottomNavigationItems = UINavigationItem()
 
@@ -52,37 +51,16 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
-        showDefaultBottomButtons()
-    }
-
-    override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return bottomNavigationItems.leftBarButtonItems
     }
 
     override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return bottomNavigationItems.rightBarButtonItems
+        return (interactor?.showDeleteButton ?? false) ? [deleteButton] : []
     }
 }
 
 // MARK: - Private
 
 private extension MyLibraryNotesViewController {
-
-    private func showDefaultBottomButtons() {
-        bottomNavigationItems.leftBarButtonItems = [dismissNavigationItem()]
-        bottomNavigationItems.rightBarButtonItems = (interactor?.showDeleteButton ?? false) ? [deleteButton] : []
-        refreshBottomNavigationItems()
-    }
-
-    private func showBottomButtons(_ buttons: [ButtonParameters]) {
-        bottomNavigationItems.leftBarButtonItems = nil
-        bottomNavigationItems.rightBarButtonItems = buttons.map {
-            let button = RoundedButton.barButton(title: $0.title, target: $0.target, action: $0.action)
-            button.isEnabled = $0.isEnabled
-            return button
-        }
-        refreshBottomNavigationItems()
-    }
 
     private func keyboardToolbar() -> UIToolbar {
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 80))
@@ -100,20 +78,6 @@ private extension MyLibraryNotesViewController {
         let saveBarButton = UIBarButtonItem(customView: save)
         toolbar.items = [dismissButton, space, saveBarButton]
         return toolbar
-    }
-
-    private func updateInfoViewWithViewModel(_ model: MyLibraryUserStorageInfoViewModel?) {
-        guard let model = model else {
-            infoAlertView?.dismiss()
-            infoAlertView = nil
-            return
-        }
-
-        infoAlertView = InfoAlertView()
-        infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.present(on: self.view)
-        infoAlertView?.bottomInset = BottomNavigationContainer.height
-        infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
 
     private func updateTextViewText() {
@@ -160,18 +124,14 @@ extension MyLibraryNotesViewController: MyLibraryNotesViewControllerInterface {
     func update() {
         updateTextViewText()
         saveButton?.isEnabled = interactor?.isSaveButtonEnabled ?? false
-
-        updateInfoViewWithViewModel(interactor?.infoViewModel)
-
-        if let bottomButtons = interactor?.bottomButtons {
-            showBottomButtons(bottomButtons)
-        } else {
-            showDefaultBottomButtons()
-        }
     }
 
     func beginEditing() {
         textView.becomeFirstResponder()
+    }
+
+    func showAlert(title: String?, message: String?, buttons: [UIBarButtonItem]) {
+        QOTAlert.show(title: title, message: message, bottomItems: buttons)
     }
 }
 

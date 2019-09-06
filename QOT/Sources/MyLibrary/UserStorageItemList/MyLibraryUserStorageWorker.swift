@@ -55,7 +55,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var continueTitle: String = {
-        return R.string.localized.buttonTitleYesContinue()
+        return R.string.localized.alertButtonTitleContinue()
     }()
 
     lazy var showAddButton: Bool = {
@@ -67,7 +67,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var removeItemsAlertMessage: String = {
-        return R.string.localized.myLibraryItemsAlertRemoveMessage(title.lowercased())
+        return R.string.localized.myLibraryItemsAlertRemoveMessage()
     }()
 
     lazy var cellullarDownloadTitle: String = {

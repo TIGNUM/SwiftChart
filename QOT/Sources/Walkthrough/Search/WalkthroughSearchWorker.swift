@@ -13,7 +13,7 @@ final class WalkthroughSearchWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return qot_dal.ScreenTitleService.main.localizedString(for: .WalkthroughSearchText)
+        return ScreenTitleService.main.localizedString(for: .WalkthroughSearchText)
     }()
 
     // MARK: - Init

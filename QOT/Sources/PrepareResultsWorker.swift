@@ -57,19 +57,19 @@ final class PrepareResultsWorker {
 
     // Texts
     lazy var leaveAlertTitle: String = {
-        return R.string.localized.mindsetShifterLeaveAlertTitle()
+        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
     }()
 
     lazy var leaveAlertMessage: String = {
-        return R.string.localized.mindsetShifterLeaveAlertMessage()
+        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return R.string.localized.mindsetShifterLeaveAlertLeaveButton()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue)
     }()
 
     lazy var cancelButtonTitle: String = {
-        return R.string.localized.buttonTitleCancel()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
     }()
 
     lazy var answerFilter: String? = {

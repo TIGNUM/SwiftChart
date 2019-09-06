@@ -28,10 +28,10 @@ extension DecisionTreeWorker {
                     self?.activeSprint = sprint
                     self?.newSprintContentId = targetContentId
                     self?.lastSprintQuestionId = targetQuestionId
-                    self?.interactor?.presentInfoView(icon: R.image.ic_warning_circle(),
-                                                      title: R.string.localized.mySprintDetailsInfoTitleInProgress(),
-                                                      text: R.string.localized.mySprintDetailsInfoBodyInProgress(dateString,
-                                                                                                                 self?.selectedSprintTitle ?? ""))
+                    let title = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
+                    let messageFormat = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
+                    let message = String(format: messageFormat, dateString, self?.selectedSprintTitle ?? "")
+                    self?.interactor?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
                 } else {
                     self?.createSprintAndStart(targetContentId)
                 }

@@ -27,19 +27,19 @@ final class ProfileSettingsWorker {
     private var emailTxt = ""
 
     lazy var confirmationAlertTitle: String = {
-        return R.string.localized.profileConfirmationHeader().uppercased()
+        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
     }()
 
     lazy var confirmationAlertMessage: String = {
-        return R.string.localized.profileConfirmationDescription()
+        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
     }()
 
     lazy var confirmationAlertDone: String = {
-        return R.string.localized.profileConfirmationDoneButton()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
     }()
 
     lazy var confirmationAlertCancel: String = {
-        return R.string.localized.buttonTitleCancel()
+        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
     }()
 
     init(contentService: qot_dal.ContentService) {

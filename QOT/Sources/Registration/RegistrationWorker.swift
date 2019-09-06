@@ -14,23 +14,23 @@ final class RegistrationWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var generalError: String = {
-        R.string.localized.onboardingRegistrationCreateAccountError()
+        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationCreateAccountError)
     }()
 
     lazy var existingAccountAlertTitle: String = {
-        return R.string.localized.onboardingRegistrationEmailErrorExistingEmailTitle()
+        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmailTitle)
     }()
 
     lazy var existingAccountAlertMessage: String = {
-        return R.string.localized.onboardingRegistrationEmailErrorExistingEmail()
+        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmail)
     }()
 
     lazy var yesButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationEmailButtonYes()
+        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonYes)
     }()
 
     lazy var noButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationEmailButtonNo()
+        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonNo)
     }()
 
     // MARK: - Init

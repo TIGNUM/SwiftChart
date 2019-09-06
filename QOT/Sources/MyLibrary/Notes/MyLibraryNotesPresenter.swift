@@ -31,4 +31,8 @@ extension MyLibraryNotesPresenter: MyLibraryNotesPresenterInterface {
     func continueEditing() {
         viewController?.beginEditing()
     }
+
+    func presentAlert(title: String?, message: String?, buttons: [UIBarButtonItem]) {
+        viewController?.showAlert(title: title, message: message, buttons: buttons)
+    }
 }

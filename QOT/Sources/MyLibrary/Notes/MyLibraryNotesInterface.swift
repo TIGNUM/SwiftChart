@@ -11,19 +11,19 @@ import Foundation
 protocol MyLibraryNotesViewControllerInterface: class {
     func update()
     func beginEditing()
+    func showAlert(title: String?, message: String?, buttons: [UIBarButtonItem])
 }
 
 protocol MyLibraryNotesPresenterInterface {
     func present()
     func continueEditing()
+    func presentAlert(title: String?, message: String?, buttons: [UIBarButtonItem])
 }
 
 protocol MyLibraryNotesInteractorInterface: Interactor {
-    var infoViewModel: MyLibraryUserStorageInfoViewModel? { get }
     var placeholderText: String { get }
     var saveTitle: String { get }
     var noteText: String? { get }
-    var bottomButtons: [ButtonParameters]? { get }
     var isSaveButtonEnabled: Bool { get }
     var showDeleteButton: Bool { get }
     var isCreatingNewNote: Bool { get }

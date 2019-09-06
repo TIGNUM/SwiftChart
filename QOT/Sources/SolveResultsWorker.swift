@@ -31,15 +31,15 @@ final class SolveResultsWorker {
 
     // Texts
     lazy var leaveAlertTitle: String = {
-        return R.string.localized.profileConfirmationHeader()
+        return R.string.localized.mindsetShifterLeaveAlertTitle()
     }()
 
     lazy var leaveAlertMessage: String = {
-        return R.string.localized.profileConfirmationDescription()
+        return R.string.localized.mindsetShifterLeaveAlertMessage()
     }()
 
     lazy var leaveAlertLeaveButton: String = {
-        return R.string.localized.profileConfirmationDoneButton()
+        return R.string.localized.mindsetShifterLeaveAlertLeaveButton()
     }()
 
     lazy var leaveAlertStayButton: String = {

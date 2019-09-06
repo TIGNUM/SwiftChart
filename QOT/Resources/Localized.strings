@@ -573,6 +573,7 @@
 "Button.Title.Cancel" = "Cancel";
 "Button.Title.YesContinue" = "Yes, continue";
 "Button.Title.Done" = "Done";
+"Button.Title.YesLeave" = "Yes, Leave";
 
 "Audio.FullScreen.Button.Download" = "Download";
 "Audio.FullScreen.Button.Waiting" = "Waiting";
@@ -589,10 +590,6 @@
 
 "TBVTrackerViewController.doneButton" = "Done";
 "TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
-
-"ProfileConfirmation.doneButton" = "Yes, Leave";
-"ProfileConfirmation.header" = "Leave without saving";
-"ProfileConfirmation.description" = "Are you sure you want to leave without saving? The changes will not be applied.";
 
 "QuestionnaireViewController.doneButton" = "Done";
 
@@ -738,8 +735,8 @@
 "MyLibrary.Items.EditTitle.Downloads" = "EDIT DOWNLOADS";
 "MyLibrary.Items.EditTitle.Links" = "EDIT LINKS";
 "MyLibrary.Items.EditTitle.Notes" = "EDIT NOTES";
-"MyLibrary.Items.Alert.Remove.Title" = "DELETE SELECTED ITEMS";
-"MyLibrary.Items.Alert.Remove.Message" = "Are you sure you want to delete the selected items from your %@?";
+"MyLibrary.Items.Alert.Remove.Title" = "DELETE";
+"MyLibrary.Items.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
 "MyLibrary.Items.TapToDownload" = "Tap to download";
 "MyLibrary.Items.Alert.Empty.Title.All" = "ALL ITEMS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Bookmarks" = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE";
@@ -757,6 +754,16 @@
 "MyLibrary.Items.ToRead" = "to read";
 "MyLibrary.Items.ToWatch" = "to watch";
 "MyLibrary.Items.ToListen" = "to listen";
+"MyLibrary.Notes.PlaceholderText" = "Take a note";
+"MyLibrary.Notes.SaveButton" = "Save";
+"MyLibrary.Notes.DismissAlert.Title" = "CONTINUE WITHOUT SAVING";
+"MyLibrary.Notes.DismissAlert.Message" = "If you continue, your changes won't be saved.";
+"MyLibrary.Notes.DismissAlert.CancelButton" = "Cancel";
+"MyLibrary.Notes.DismissAlert.LeaveButton" = "Continue";
+"MyLibrary.Notes.RemoveAlert.Title" = "DELETE NOTE";
+"MyLibrary.Notes.RemoveAlert.Message" = "If you continue, your note will be deleted.";
+"MyLibrary.Notes.RemoveAlert.CancelButton" = "Cancel";
+"MyLibrary.Notes.RemoveAlert.RemoveButton" = "Continue";
 
 "MySprints.Title" = "MY SPRINTS";
 "MySprints.EditTitle" = "EDIT SPRINTS";

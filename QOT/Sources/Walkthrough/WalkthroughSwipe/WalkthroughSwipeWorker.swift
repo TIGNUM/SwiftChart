@@ -13,7 +13,7 @@ final class WalkthroughSwipeWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return qot_dal.ScreenTitleService.main.localizedString(for: .WalkthroughSwipeText)
+        return ScreenTitleService.main.localizedString(for: .WalkthroughSwipeText)
     }()
 
     // MARK: - Init

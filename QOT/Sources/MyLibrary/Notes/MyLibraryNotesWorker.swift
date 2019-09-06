@@ -38,7 +38,7 @@ final class MyLibraryNotesWorker {
     }
 
     lazy var placeholderText: String = {
-        return "Take a note"
+        return R.string.localized.myLibraryNotesPlaceholderText()
     }()
 
     // Cannot be lazy as note fetching sometimes happens after `viewDidLoad`
@@ -47,35 +47,39 @@ final class MyLibraryNotesWorker {
     }
 
     lazy var saveTitle: String = {
-        return "Save"
+        return R.string.localized.myLibraryNotesSaveButton()
     }()
 
     lazy var dismissAlertTitle: String = {
-        return "LEAVE WITHOUT SAVING"
+        return R.string.localized.myLibraryNotesDismissAlertTitle()
     }()
 
-    lazy var dismissAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: "Are you sure you want to leave without saving? The changes will not be applied.")
+    lazy var dismissAlertMessage: String = {
+        return R.string.localized.myLibraryNotesDismissAlertMessage()
     }()
 
     lazy var cancelTitle: String = {
-       return "Cancel"
+       return R.string.localized.myLibraryNotesDismissAlertCancelButton()
     }()
 
     lazy var leaveButtonTitle: String = {
-        return "Yes, Leave"
+        return R.string.localized.myLibraryNotesDismissAlertLeaveButton()
     }()
 
     lazy var removeAlertTitle: String = {
-       return "REMOVE NOTE"
+       return R.string.localized.myLibraryNotesRemoveAlertTitle()
     }()
 
-    lazy var removeAlertMessage: NSAttributedString = {
-       return NSAttributedString(string: "Are you sure you would like to remove your personal note?")
+    lazy var removeAlertMessage: String = {
+        return R.string.localized.myLibraryNotesRemoveAlertMessage()
     }()
 
     lazy var removeButtonTitle: String = {
-        return "Yes, Remove"
+        return R.string.localized.myLibraryNotesRemoveAlertRemoveButton()
+    }()
+
+    lazy var removeCancelTitle: String = {
+        return R.string.localized.myLibraryNotesRemoveAlertCancelButton()
     }()
 
     lazy var isExistingNote: Bool = {

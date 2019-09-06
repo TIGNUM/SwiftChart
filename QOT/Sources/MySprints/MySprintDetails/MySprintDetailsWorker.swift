@@ -68,11 +68,11 @@ final class MySprintDetailsWorker {
     }()
 
     lazy var buttonCancel = {
-        return R.string.localized.mySprintDetailsButtonCancel()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonCancel)
     }()
 
     lazy var buttonContinue = {
-        return R.string.localized.mySprintDetailsButtonContinue()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
     }()
 
     lazy var buttonStartSprint: String = {
@@ -80,43 +80,45 @@ final class MySprintDetailsWorker {
     }()
 
     lazy var infoPauseSprintTitle: String = {
-        return R.string.localized.mySprintDetailsInfoTitlePauseSprint()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitlePauseSprint)
     }()
 
     lazy var infoPauseSprintMessage: String = {
-        return R.string.localized.mySprintDetailsInfoMessagePauseSprint(sprint.maxDays)
+        let format = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessagePauseSprint)
+        return String(format: format, sprint.maxDays)
     }()
 
     lazy var buttonPauseSprint: String = {
-        return R.string.localized.mySprintDetailsButtonPauseSprint()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonPauseSprint)
     }()
 
     lazy var buttonYesPause: String = {
-        return R.string.localized.mySprintDetailsButtonYesPause()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
     }()
 
     lazy var infoReplanSprintTitle: String = {
-        return R.string.localized.mySprintDetailsInfoTitleReplanSprint()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleReplanSprint)
     }()
 
     lazy var infoReplanSprintMessage: String = {
-        return R.string.localized.mySprintDetailsInfoMessageReplanSprint(sprint.maxDays)
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessageReplanSprint)
     }()
 
     lazy var buttonContinueSprint: String = {
-        return R.string.localized.mySprintDetailsButtonContinue()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
     }()
 
     lazy var buttonRestartSprint: String = {
-        return R.string.localized.mySprintDetailsButtonRestartSprint()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonRestartSprint)
     }()
 
     lazy var infoSprintInProgressTitle: String = {
-        return R.string.localized.mySprintDetailsInfoTitleSprintInProgress()
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
     }()
 
     func infoSprintInProgressMessage(endDate: Date) -> String {
-        return R.string.localized.mySprintDetailsInfoMessageSprintInProgress(DateFormatter.ddMMMyyyy.string(from: endDate))
+        return String(format: ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessageSprintInProgress),
+                      DateFormatter.ddMMMyyyy.string(from: endDate))
     }
 
     var sprintStatus: MySprintStatus {

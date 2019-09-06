@@ -31,7 +31,7 @@ extension UIViewController {
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.profileConfirmationDoneButton(),
+        return roundedBarButtonItem(title: R.string.localized.buttonTitleYesLeave(),
                                     buttonWidth: .Continue,
                                     action: action,
                                     backgroundColor: .clear,

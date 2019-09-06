@@ -18,19 +18,17 @@ final class MyLibraryNotesInteractor {
     private let router: MyLibraryNotesRouterInterface
     private let notificationCenter: NotificationCenter
 
-    private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel? = nil
-    private (set) var bottomButtons: [ButtonParameters]? = nil
     // Text received from the viewController
     private var text: String?
 
-    private lazy var dismissButtons: [ButtonParameters] = {
-        return [ButtonParameters(title: worker.leaveButtonTitle, target: self, action: #selector(continueDismissingTapped)),
-                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelDismissingTapped))]
+    private lazy var dismissButtons: [UIBarButtonItem] = {
+        return [RoundedButton.barButton(title: worker.cancelTitle, target: self, action: #selector(cancelDismissingTapped)),
+                RoundedButton.barButton(title: worker.leaveButtonTitle, target: self, action: #selector(continueDismissingTapped))]
     }()
 
-    private lazy var removeButtons: [ButtonParameters] = {
-        return [ButtonParameters(title: worker.removeButtonTitle, target: self, action: #selector(continueRemovingTapped)),
-                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped))]
+    private lazy var removeButtons: [UIBarButtonItem] = {
+        return [RoundedButton.barButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)),
+                RoundedButton.barButton(title: worker.removeButtonTitle, target: self, action: #selector(continueRemovingTapped))]
     }()
 
     // MARK: - Init
@@ -103,30 +101,17 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
             router.dismiss()
             return
         }
-        // Show info view
-        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
-                                                          icon: R.image.my_library_warning() ?? UIImage(),
-                                                          title: worker.dismissAlertTitle,
-                                                          message: worker.dismissAlertMessage)
-        bottomButtons = dismissButtons
-        presenter.present()
+        presenter.presentAlert(title: worker.dismissAlertTitle, message: worker.dismissAlertMessage, buttons: dismissButtons)
     }
 
     func didTapDelete() {
-        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
-                                                          icon: R.image.my_library_warning() ?? UIImage(),
-                                                          title: worker.removeAlertTitle,
-                                                          message: worker.removeAlertMessage)
-        bottomButtons = removeButtons
-        presenter.present()
+        presenter.presentAlert(title: worker.removeAlertTitle, message: worker.removeAlertMessage, buttons: removeButtons)
     }
 }
 
 // MARK: - Private methods
 extension MyLibraryNotesInteractor {
     @objc private func cancelDismissingTapped() {
-        infoViewModel = nil
-        bottomButtons = nil
         presenter.present()
         presenter.continueEditing()
     }
@@ -136,8 +121,6 @@ extension MyLibraryNotesInteractor {
     }
 
     @objc private func cancelRemovingTapped() {
-        infoViewModel = nil
-        bottomButtons = nil
         presenter.present()
     }
 
