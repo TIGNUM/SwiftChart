@@ -146,7 +146,7 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
-        if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false {
+        if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
         if content?.section == .About {
@@ -381,5 +381,15 @@ private extension ArticleWorker {
         default: break
         }
         return false
+    }
+
+    func shouldHideMarkAsReadButton() -> Bool {
+        // Handle most frequent case
+        guard let content = content, content.section != .Generic else { return false }
+
+        switch content.section {
+        case .Tools, .QOTLibrary: return true
+        default: return false
+        }
     }
 }
