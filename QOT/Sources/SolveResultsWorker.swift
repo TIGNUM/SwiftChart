@@ -158,9 +158,9 @@ private extension SolveResultsWorker {
                     self?.fiveDayPlan { (fiveDayPlanItems) in
                         self?.followUp { (followUpItem) in
                             items.append(headerItem)
-                            items.append(contentsOf: strategyItems)
+                            if !strategyItems.isEmpty { items.append(contentsOf: strategyItems) }
                             if let trigger = triggerItem { items.append(trigger) }
-                            items.append(contentsOf: fiveDayPlanItems)
+                            if !fiveDayPlanItems.isEmpty { items.append(contentsOf: fiveDayPlanItems) }
                             items.append(followUpItem)
                             completion(SolveResults(type: .solve, items: items))
                         }
@@ -180,15 +180,18 @@ private extension SolveResultsWorker {
 
     func trigger(_ completion: @escaping (SolveResults.Item?) -> Void) {
         contentCollection { [weak self] content in
-            let header = self?.valueText(for: "solve-trigger-header", content: content) ?? ""
-            let description = self?.valueText(for: "solve-trigger-description", content: content) ?? ""
-            let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? ""
-            let triggerType = content?.triggerType()
-            let trigger = SolveResults.Item.trigger(type: triggerType,
-                                                    header: header,
-                                                    description: description,
-                                                    buttonText: buttonText)
-            completion(trigger)
+            if let triggerType = content?.triggerType() {
+                let header = self?.valueText(for: "solve-trigger-header", content: content) ?? ""
+                let description = self?.valueText(for: "solve-trigger-description", content: content) ?? ""
+                let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? ""
+                let trigger = SolveResults.Item.trigger(type: triggerType,
+                                                        header: header,
+                                                        description: description,
+                                                        buttonText: buttonText)
+                completion(trigger)
+            } else {
+                completion(nil)
+            }
         }
     }
 

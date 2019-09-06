@@ -195,17 +195,22 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
             var update = questionTitleUpdate
-            var questionTitle = question.title
-            if case .mindsetShifterTBVOnboarding? = interactor?.type, interactor?.type.introKey == question.key {
-                questionTitle = question.htmlTitleString ?? question.title
-            }
-            if let type = interactor?.type, type.introKey != question.key {
-                switch type {
-                case .sprint: update = interactor?.selectedSprintTitle
+            var questionTitle: String? = question.title
+            var questionHtml: String?
+
+            if let type = interactor?.type {
+                let isFirstQuestion = type.introKey == question.key
+                switch (type, isFirstQuestion) {
+                case (.sprint, false):
+                    update = interactor?.selectedSprintTitle
+                case (.mindsetShifterTBVOnboarding, true):
+                    questionHtml = question.htmlTitleString
+                    questionTitle = nil
                 default: break
                 }
             }
             cell.configure(with: questionTitle,
+                           html: questionHtml,
                            questionTitleUpdate: update,
                            textColor: interactor?.type.textColor ?? .carbon)
             return cell
