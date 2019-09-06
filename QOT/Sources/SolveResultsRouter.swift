@@ -11,7 +11,7 @@ import UIKit
 final class SolveResultsRouter {
 
     // MARK: - Properties
-    private let viewController: SolveResultsViewController
+    private weak var viewController: SolveResultsViewController?
 
     // MARK: - Init
     init(viewController: SolveResultsViewController) {
@@ -22,9 +22,7 @@ final class SolveResultsRouter {
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
     func dismiss() {
-        viewController.dismiss(animated: true, completion: {
-            self.viewController.delegate?.didFinishSolve()
-        })
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func openStrategy(with id: Int) {
@@ -32,7 +30,7 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
             .instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier)
             as? ArticleViewController {
                 ArticleConfigurator.configure(selectedID: id, viewController: controller)
-                viewController.present(controller, animated: true, completion: nil)
+                viewController?.present(controller, animated: true, completion: nil)
         }
     }
 
@@ -54,6 +52,6 @@ private extension SolveResultsRouter {
     func presentDecisionTree(type: DecisionTreeType) {
         let configurator = DecisionTreeConfigurator.make(for: type)
         let decisionTreeController = DecisionTreeViewController(configure: configurator)
-        viewController.present(decisionTreeController, animated: true)
+        viewController?.present(decisionTreeController, animated: true)
     }
 }

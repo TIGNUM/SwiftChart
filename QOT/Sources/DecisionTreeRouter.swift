@@ -12,7 +12,7 @@ import qot_dal
 final class DecisionTreeRouter {
 
     // MARK: - Properties
-    private var viewController: DecisionTreeViewController?
+    private weak var viewController: DecisionTreeViewController?
     private var imagePickerController: ImagePickerController?
     private var permissionsManager: PermissionsManager = AppCoordinator.appState.permissionsManager!
 
@@ -85,8 +85,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func dismissAll() {
-        guard let coachViewController = baseRootViewController?.QOTVisibleViewController() else { return }
-        viewController?.navigationController?.dismissAllPresentedViewControllers(coachViewController, false) {}
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func presentPermissionView(_ permissionType: AskPermission.Kind) {

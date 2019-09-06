@@ -29,7 +29,6 @@ final class CoachViewController: UIViewController, ScreenZLevelCoach {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addObserver()
         view.backgroundColor = .sand
         interactor?.viewDidLoad()
     }
@@ -51,23 +50,6 @@ private extension CoachViewController {
 
     func setupTableView() {
         tableView.registerDequeueable(CoachTableViewCell.self)
-    }
-
-    func addObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(closeButton),
-                                               name: .dismissCoachView,
-                                               object: nil)
-    }
-}
-
-// MARK: - Actions
-
-private extension CoachViewController {
-
-    @objc func closeButton() {
-         dismiss(animated: true, completion: nil)
-         trackUserEvent(.CLOSE, action: .TAP)
     }
 }
 

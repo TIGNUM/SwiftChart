@@ -337,6 +337,16 @@ extension LaunchHandler {
         }
     }
 
+    func dismissChatBotFlow() {
+        guard let mainNavi = baseRootViewController?.navigationController else {
+            return
+        }
+        guard let coachController = baseRootViewController?.QOTVisibleViewController() as? CoachViewController else {
+            return
+        }
+        mainNavi.dismissAllPresentedViewControllers(coachController, false) {}
+    }
+
     func showLearnStrategy(_ category: qot_dal.ContentCategory?) {
         showCategory(category?.rawValue)
     }

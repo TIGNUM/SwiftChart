@@ -22,6 +22,6 @@ final class ShifterResultRouter {
 // MARK: - ShifterResultRouterInterface
 extension ShifterResultRouter: ShifterResultRouterInterface {
     func dismiss() {
-        viewController.dismiss(animated: true, completion: nil)
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 }
