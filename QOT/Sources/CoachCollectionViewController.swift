@@ -81,10 +81,6 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         return searchViewController
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

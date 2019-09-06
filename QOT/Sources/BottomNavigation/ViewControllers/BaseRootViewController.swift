@@ -32,10 +32,6 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
         bottomNavigationContainer.removeFromSuperview()
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         baseRootViewController = self

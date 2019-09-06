@@ -45,10 +45,6 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
         return CGSize(width: widthForOneItem, height: heightForOneItem)
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {

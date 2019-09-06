@@ -39,10 +39,6 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
         return collectionView
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     // MARK: - Init
 
     init(viewModel: LearnCategoryListViewModel) {

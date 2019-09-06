@@ -25,10 +25,6 @@ final class DailyCheckinStartViewController: UIViewController, ScreenZLevel3 {
     private var buttonTitle: String = ""
     var interactor: DailyCheckinStartInteractorInterface?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         dotsLoadingView.configure(dotsColor: .carbonDark)

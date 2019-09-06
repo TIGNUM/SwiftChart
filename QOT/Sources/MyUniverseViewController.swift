@@ -114,10 +114,6 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         }
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     init(config: Config, viewData: MyUniverseViewData, pageTracker: PageTracker) {
         self.config = config
         self.viewData = viewData

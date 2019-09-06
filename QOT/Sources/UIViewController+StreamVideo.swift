@@ -25,10 +25,6 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         AppDelegate.appState.orientationManager.videos()
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))

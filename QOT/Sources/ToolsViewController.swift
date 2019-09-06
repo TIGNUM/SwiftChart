@@ -16,9 +16,6 @@ final class ToolsViewController: UIViewController, ScreenZLevel3 {
     var interactor: ToolsInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var toolModel: ToolModel?
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections

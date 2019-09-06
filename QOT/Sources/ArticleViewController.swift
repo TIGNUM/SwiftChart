@@ -8,7 +8,6 @@
 
 import UIKit
 import Anchorage
-import AMScrollingNavbar
 import qot_dal
 
 protocol ArticleDelegate: class {
@@ -154,9 +153,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
     private var didScrollToRead = false
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return colorMode.statusBarStyle
-    }
 
     // MARK: - Life Cycle
 

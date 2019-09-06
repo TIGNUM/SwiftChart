@@ -32,10 +32,6 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     init(configure: Configurator<SearchViewController>, pageName: PageName) {
         self.pageName = pageName
         super.init(nibName: nil, bundle: nil)

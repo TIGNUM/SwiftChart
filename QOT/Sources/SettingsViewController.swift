@@ -17,10 +17,6 @@ final class SettingsViewController: UIViewController {
     var selectedSettings: SettingsModel.Setting?
     var interactor: SettingsInteractorInterface?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     // MARK: - Init
 
     init(configure: Configurator<SettingsViewController>, services: Services) {

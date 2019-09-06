@@ -13,6 +13,7 @@ protocol ScreenZLevel {}
 
 var viewWillAppearIsSwizzled = false
 var viewDidAppearIsSwizzled = false
+var preferredStatusBarStyleIsSwizzled = false
 var presentViewControllerIsSwizzled = false
 var dismissViewControllerIsSwizzled = false
 var timer: Timer?
@@ -32,6 +33,22 @@ func swizzleUIViewController() {
 
     if dismissViewControllerIsSwizzled == false {
         swizzleUIViewControllerDismissViewController()
+    }
+    if preferredStatusBarStyleIsSwizzled == false {
+        swizzleUIViewControllerPreferredStatusBarStyle()
+    }
+}
+
+func swizzleUIViewControllerPreferredStatusBarStyle() {
+    let originalSelector = NSSelectorFromString("preferredStatusBarStyle")
+    let swizzledSelector = NSSelectorFromString("getPreferredStatusBarStyleSwizzled")
+    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+
+    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+        // switch implementation..
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+        preferredStatusBarStyleIsSwizzled = !preferredStatusBarStyleIsSwizzled
     }
 }
 
@@ -112,6 +129,16 @@ extension UIViewController {
         }
 
         return false
+    }
+
+    @objc func getPreferredStatusBarStyleSwizzled() -> UIStatusBarStyle {
+        guard let backgroundColor = view.backgroundColor else {
+            return .lightContent
+        }
+        var grayscale: CGFloat = 0
+        var alpha: CGFloat = 0
+        _ = backgroundColor.getWhite(&grayscale, alpha: &alpha)
+        return grayscale > 0.5 ? .default : .lightContent
     }
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
@@ -377,69 +404,11 @@ extension UITableViewCell {
     }
 }
 
-extension UINavigationController {
-    override open var preferredStatusBarStyle: UIStatusBarStyle {
-        if let vc = self.viewControllers.last {
-            return vc.preferredStatusBarStyle
-        }
-        return .lightContent
-    }
-}
-
 extension UIView {
     override open func value(forUndefinedKey key: String) -> Any? {
         return nil
     }
 
     func applyTheme(_ targetView: UIView) {
-//        if let theme = targetView.themeView {
-//            theme.apply(targetView)
-//        }
-
-//        for subView in targetView.subviews {
-//            if let label = subView as? UILabel {
-//                if let text = label.text,
-//                    let theme = label.themeText {
-//                    theme.apply(text, to: label)
-//                } else {
-//                    label.backgroundColor = UIColor.yellow   //use this to show unthemed componenets
-//                }
-//            } else if !subView.subviews.isEmpty {
-//                applyTheme(subView)
-//            }
-//        }
     }
-
-//    var themeView: ThemeView? {
-//        get {
-//            if let themeKey = self.value(forKeyPath: "ThemeView") as? String,
-//                let theme = ThemeView(rawValue: themeKey) {
-//                return theme
-//            }
-//            return nil
-//        }
-//        set {
-//            if let value = newValue?.rawValue {
-//                self.setValue(value, forKeyPath: "ThemeView")
-//            }
-//        }
-//    }
-
 }
-
-//extension UILabel {
-//    var themeText: ThemeText? {
-//        get {
-//            if let themeKey = self.value(forKeyPath: "ThemeText") as? String,
-//                let theme = ThemeText(rawValue: themeKey) {
-//                return theme
-//            }
-//            return nil
-//        }
-//        set {
-//            if let value = newValue?.rawValue {
-//                self.setValue(value, forKeyPath: "ThemeText")
-//            }
-//        }
-//    }
-//}

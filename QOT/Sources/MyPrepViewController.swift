@@ -61,10 +61,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         return barButtonItem
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
     // MARK: - Init
 
     init(viewModel: MyPrepViewModel, syncManager: SyncManager) {

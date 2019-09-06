@@ -19,9 +19,6 @@ final class CoachViewController: UIViewController, ScreenZLevelCoach {
     var interactor: CoachInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var coachModel: CoachModel?
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections

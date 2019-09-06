@@ -51,10 +51,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         return view
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Date().isNight ? .lightContent : .default
-    }
-
     // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel,

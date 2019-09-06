@@ -35,10 +35,6 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                                        GuidePreparationTableViewCell.self)
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
-
     // MARK: - Init
 
     init(configurator: Configurator<GuideViewController>) {

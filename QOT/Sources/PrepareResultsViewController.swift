@@ -25,9 +25,6 @@ final class PrepareResultsViewController: UIViewController, ScreenZLevel3 {
     var interactor: PrepareResultsInteractorInterface?
     private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped, delegate: self, dataSource: self)

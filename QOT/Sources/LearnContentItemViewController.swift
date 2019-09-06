@@ -61,9 +61,6 @@ final class LearnContentItemViewController: UIViewController {
                                        ErrorCell.self)
     }()
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return Date().isNight ? .lightContent : .default
-    }
     // MARK: Init
 
     init(viewModel: LearnContentItemViewModel, tabType: TabType) {

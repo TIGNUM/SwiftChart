@@ -23,10 +23,6 @@ final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsItemsInteractorInterface?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
-
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

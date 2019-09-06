@@ -1627,6 +1627,7 @@
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
+		DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3920C2322B4B20017E7F6 /* MyQotMainViewController.swift */; };
 		DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
 		DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA002622FC68A700B28647 /* HealthKit.framework */; };
@@ -1697,7 +1698,6 @@
 		F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */; };
 		F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */; };
 		F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */; };
-		F9838F4922AFFF95003F9394 /*  .swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4822AFFF95003F9394 /*  .swift */; };
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
@@ -3459,6 +3459,7 @@
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		DBA3920C2322B4B20017E7F6 /* MyQotMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotMainViewController.swift; sourceTree = "<group>"; };
 		DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		DBFA002622FC68A700B28647 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
@@ -3529,7 +3530,6 @@
 		F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainPresenter.swift; sourceTree = "<group>"; };
 		F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainRouter.swift; sourceTree = "<group>"; };
 		F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainWorker.swift; sourceTree = "<group>"; };
-		F9838F4822AFFF95003F9394 /*  .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = " .swift"; sourceTree = "<group>"; };
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
@@ -8107,7 +8107,7 @@
 				F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */,
 				F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */,
 				F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */,
-				F9838F4822AFFF95003F9394 /*  .swift */,
+				DBA3920C2322B4B20017E7F6 /* MyQotMainViewController.swift */,
 			);
 			name = myQotMain;
 			sourceTree = "<group>";
@@ -9257,7 +9257,6 @@
 				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
-				F9838F4922AFFF95003F9394 /*  .swift in Sources */,
 				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */,
@@ -10066,6 +10065,7 @@
 				F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
+				DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */,
 				75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,

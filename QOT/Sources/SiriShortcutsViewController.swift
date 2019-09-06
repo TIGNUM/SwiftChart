@@ -20,10 +20,6 @@ final class SiriShortcutsViewController: UIViewController {
     private var shortcutType: ShortcutType = .toBeVision
     var selectedShortCutPage: PageName?
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
-
      // MARK: - Init
 
     init(configure: Configurator<SiriShortcutsViewController>, services: Services) {

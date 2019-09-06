@@ -21,10 +21,6 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
         case sections
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.darkNot.statusBarStyle
-    }
-
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
