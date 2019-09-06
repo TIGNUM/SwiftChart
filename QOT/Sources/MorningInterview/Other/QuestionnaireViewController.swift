@@ -325,7 +325,7 @@ extension QuestionnaireViewController {
         case .dailyCheckin:
             if let question = questionHtml {
                 questionLabel.attributedText = question
-                questionLabel.font = UIFont.sfProtextMedium(ofSize: 16)
+                questionLabel.font = UIFont.sfProtextLight(ofSize: 16)
             } else if let question = questionText {
                 questionLabel.attributedText = ThemeText.tbvQuestionMedium.attributedString(question)
             }
@@ -431,18 +431,16 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    hintLabel.text = finalAnswers[answerIndex].title
-                    hintLabel.textColor = UIColor.sand.withAlphaComponent(0.4)
+                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title, to: hintLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    hintLabel.text = finalAnswers[answerIndex].title
+                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title, to: hintLabel)
                  }
             }
         } else {
             indexLabel.text = String(items - index)
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
-            hintLabel.text = subtitles[items - index - 1]
-            hintLabel.textColor = UIColor.red
+            ThemeText.questionHintLabelRed.apply(subtitles[items - index - 1], to: hintLabel)
         }
 
         if isTouch == true {

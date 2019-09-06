@@ -33,7 +33,7 @@
                             <fragment content="Label">
                                 <attributes>
                                     <color key="NSColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <font key="NSFont" size="16" name="SFProText-Light"/>
+                                    <font key="NSFont" metaFont="system" size="16"/>
                                     <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="24" tighteningFactorForTruncation="0.0"/>
                                 </attributes>
                             </fragment>
