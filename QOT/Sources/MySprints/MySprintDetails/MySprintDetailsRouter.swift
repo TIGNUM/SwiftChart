@@ -26,7 +26,7 @@ final class MySprintDetailsRouter {
 
 extension MySprintDetailsRouter: MySprintDetailsRouterInterface {
     func presentTakeawayCapture(for sprint: QDMSprint) {
-        let configurator = DecisionTreeConfigurator.make(for: .sprintReflection(sprint: sprint))
+        let configurator = DecisionTreeConfigurator.make(for: .takeaways(sprint: sprint))
         let controller = DecisionTreeViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }

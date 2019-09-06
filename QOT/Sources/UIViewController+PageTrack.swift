@@ -91,6 +91,8 @@ extension UIViewController {
         case is ChoiceViewController: return "prepare.result.add.remove.strategies"
         case is MediaPlayerViewController: return "fullscreen.videoPlayer"
         case is PDFReaderViewController: return "fullscreen.pdfreader"
+        case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
+        case is DailyBriefViewController: return "daily.brief"
         default: preconditionFailure()
         }
     }
@@ -133,6 +135,7 @@ private extension UIViewController {
         case .recovery?: return "decisiontree.3drecovery"
         case .sprint?: return "decisiontree.sprint"
         case .sprintReflection?: return "decisiontree.sprint.reflection"
+        case .takeaways?: return "decisiontree.sprint.takeaways"
         default: preconditionFailure()
         }
     }

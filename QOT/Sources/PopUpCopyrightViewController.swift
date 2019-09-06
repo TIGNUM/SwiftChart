@@ -46,6 +46,11 @@ final class PopUpCopyrightViewController: UIViewController, ScreenZLevelOverlay 
         addGestures()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
         cancel()
     }

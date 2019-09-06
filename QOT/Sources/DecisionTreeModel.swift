@@ -28,6 +28,7 @@ enum DecisionTreeType {
     case recovery
     case sprint
     case sprintReflection(sprint: QDMSprint)
+    case takeaways(sprint: QDMSprint)
 
     var introKey: String {
         switch self {
@@ -53,7 +54,7 @@ enum DecisionTreeType {
             return QuestionKey.Recovery.intro.rawValue
         case .sprint:
             return QuestionKey.Sprint.Intro
-        case .sprintReflection:
+        case .sprintReflection, .takeaways:
             return QuestionKey.SprintReflection.Intro
         }
     }
@@ -78,7 +79,7 @@ enum DecisionTreeType {
             return .RecoveryPlan
         case .sprint:
             return .Sprint
-        case .sprintReflection:
+        case .sprintReflection, .takeaways:
             return .SprintPostReflection
         }
     }

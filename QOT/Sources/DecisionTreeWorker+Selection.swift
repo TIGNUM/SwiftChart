@@ -52,6 +52,7 @@ extension DecisionTreeWorker {
         case .solve: handleSelectionSolve(answer)
         case .toBeVisionGenerator: handleSelectionTBVGenerator(answer)
         case .sprintReflection,
+             .takeaways,
              .prepareIntentions,
              .prepareBenefits: return
         }

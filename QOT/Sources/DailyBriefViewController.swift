@@ -76,6 +76,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.getDailyBriefBucketsForViewModel()
+        trackPage()
     }
 
     override func viewDidAppear(_ animated: Bool) {
