@@ -54,8 +54,8 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.remoteID = mediaItemId
         self.duration = duration
         setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
-        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
-        ThemeText.articleRelatedDetail.apply(timeToWatch, to: detailLabel)
+        ThemeText.articleRelatedTitleInStrategy.apply(title, to: titleLabel)
+        ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         showDuration(duration)
     }

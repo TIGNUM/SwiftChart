@@ -65,6 +65,10 @@ private extension KnowingViewController {}
 // MARK: - KnowingViewControllerInterface
 
 extension KnowingViewController: KnowingViewControllerInterface {
+    func scrollToSection(_ section: Int) {
+        
+    }
+
     func setupView() {
         navigationController?.navigationBar.isHidden = true
         ThemeView.level1.apply(view)
@@ -81,10 +85,6 @@ extension KnowingViewController: KnowingViewControllerInterface {
     func reload() {
         self.removeLoadingSkeleton()
         collectionView.reloadData()
-    }
-
-    func scrollToSection(_ section: Int) {
-        collectionView.scrollToItem(at: IndexPath(item: 0, section: section), at: .top, animated: true)
     }
 }
 
@@ -152,7 +152,7 @@ extension KnowingViewController {
             return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
-                return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
+                return CGSize(width: view.frame.width, height: 80)
             } else {
                 return CGSize(width: view.frame.width * 0.5, height: 96)
             }
