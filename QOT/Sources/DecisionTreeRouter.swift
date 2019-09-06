@@ -103,7 +103,8 @@ extension DecisionTreeRouter {
                             _ answers: [DecisionTreeModel.SelectedAnswer]) {
         presentPrepareResults(PrepareResultsConfigurator.configurate(preparation,
                                                                      answers,
-                                                                     canDelete: answers.isEmpty == false))
+                                                                     canDelete: answers.isEmpty == false,
+                                                                     true))
     }
 
     private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {

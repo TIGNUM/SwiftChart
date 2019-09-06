@@ -109,7 +109,11 @@ private extension PrepareResultsViewController {
 private extension PrepareResultsViewController {
     @objc func openConfirmationView() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.openConfirmationView()
+        if interactor?.dataModified ?? false {
+            interactor?.openConfirmationView()
+        } else {
+            dismissView()
+        }
     }
 
     @objc func dismissView() {
@@ -274,9 +278,11 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 extension PrepareResultsViewController: PrepareResultsDelegatge {
     func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
         interactor?.updateIntentions(selectedAnswers, key)
+        refreshBottomNavigationItems()
     }
 
     func didUpdateBenefits(_ benefits: String) {
+        refreshBottomNavigationItems()
         interactor?.updateBenefits(benefits)
     }
 
@@ -291,10 +297,12 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
         case .reminder:
             interactor?.setReminder = isOn
         }
+        refreshBottomNavigationItems()
     }
 
     func openEditStrategyView() {
         interactor?.presentEditStrategyView()
+        refreshBottomNavigationItems()
     }
 
     //TODO Add nice animation
@@ -331,7 +339,10 @@ extension PrepareResultsViewController {
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
+        if !(interactor?.dataModified ?? false) {
+            return []
+        }
+        if interactor?.getType == .LEVEL_ON_THE_GO || showDone {
             return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
                                           buttonWidth: .Done,
                                           action: #selector(dismissView),

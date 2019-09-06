@@ -27,6 +27,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     var saveToICal: Bool { get set }
     var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
+    var dataModified: Bool { get }
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> PrepareResultsType?

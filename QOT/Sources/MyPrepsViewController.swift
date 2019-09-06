@@ -68,6 +68,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         noPreparationsView.isHidden = true
+        refreshBottomNavigationItems()
     }
 
     override func viewDidAppear(_ animated: Bool) {

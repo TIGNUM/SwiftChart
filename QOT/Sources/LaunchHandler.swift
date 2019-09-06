@@ -342,6 +342,7 @@ extension LaunchHandler {
             return
         }
         guard let coachController = baseRootViewController?.QOTVisibleViewController() as? CoachViewController else {
+            mainNavi.dismissAllPresentedViewControllers(mainNavi, false) {}
             return
         }
         mainNavi.dismissAllPresentedViewControllers(coachController, false) {}

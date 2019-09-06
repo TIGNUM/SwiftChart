@@ -13,10 +13,11 @@ final class PrepareResultsConfigurator {
     /// Daily && Critical
     static func configurate(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer],
-                            canDelete: Bool) -> (PrepareResultsViewController) -> Void {
+                            canDelete: Bool,
+                            _ dataModified: Bool = false) -> (PrepareResultsViewController) -> Void {
         return { (viewController) in
             let router = PrepareResultsRouter(viewController: viewController)
-            let worker = PrepareResultsWorker(preparation, answers, canDelete)
+            let worker = PrepareResultsWorker(preparation, answers, canDelete, dataModified)
             let presenter = PrepareResultsPresenter(viewController: viewController)
             let interactor = PrepareResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

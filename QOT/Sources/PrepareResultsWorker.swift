@@ -21,15 +21,18 @@ final class PrepareResultsWorker {
     private var canDelete: Bool = false
     private var level: QDMUserPreparation.Level
     weak var delegate: PrepareResultsDelegatge?
+    var dataModified: Bool = false
 
     // MARK: - Init
     init(_ preparation: QDMUserPreparation?,
          _ answers: [DecisionTreeModel.SelectedAnswer],
-         _ canDelete: Bool) {
+         _ canDelete: Bool,
+         _ dataModified: Bool = false) {
         self.canDelete = canDelete
         self.answers = answers
         self.preparation = preparation
         self.level = preparation?.type ?? .LEVEL_DAILY
+        self.dataModified = dataModified
 
         switch level {
         case .LEVEL_CRITICAL:
@@ -43,7 +46,8 @@ final class PrepareResultsWorker {
             }
         case .LEVEL_DAILY:
             generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-        default: break
+        default:
+            self.dataModified = true
         }
     }
 
@@ -65,7 +69,7 @@ final class PrepareResultsWorker {
     }()
 
     lazy var leaveButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue)
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsNotesButtonLeave)
     }()
 
     lazy var cancelButtonTitle: String = {
@@ -96,27 +100,42 @@ extension PrepareResultsWorker {
 
     var feelAnswerIds: [Int] {
         get { return preparation?.feelAnswerIds ?? [] }
-        set { preparation?.feelAnswerIds = newValue }
+        set {
+            dataModified = true
+            preparation?.feelAnswerIds = newValue
+
+        }
     }
 
     var preceiveAnswerIds: [Int] {
         get { return preparation?.preceiveAnswerIds ?? [] }
-        set { preparation?.preceiveAnswerIds = newValue }
+        set {
+            preparation?.preceiveAnswerIds = newValue
+        }
     }
 
     var knowAnswerIds: [Int] {
         get { return preparation?.knowAnswerIds ?? [] }
-        set { preparation?.knowAnswerIds = newValue }
+        set {
+            dataModified = true
+            preparation?.knowAnswerIds = newValue
+        }
     }
 
     var benefits: String? {
         get { return preparation?.benefits }
-        set { preparation?.benefits = newValue }
+        set {
+            dataModified = true
+            preparation?.benefits = newValue
+        }
     }
 
     var strategyIds: [Int] {
         get { return preparation?.strategyIds ?? [] }
-        set { preparation?.strategyIds = newValue }
+        set {
+            dataModified = true
+            preparation?.strategyIds = newValue
+        }
     }
 
     var getType: QDMUserPreparation.Level {
@@ -134,6 +153,7 @@ extension PrepareResultsWorker {
     var saveToICal: Bool {
         get { return preparation?.setICalDeepLink ?? false }
         set {
+            dataModified = true
             preparation?.setICalDeepLink = newValue
             updateCalendarEventLink(isOn: newValue)
         }
@@ -141,7 +161,10 @@ extension PrepareResultsWorker {
 
     var setReminder: Bool {
         get { return preparation?.setReminder ?? false }
-        set { preparation?.setReminder = newValue }
+        set {
+            dataModified = true
+            preparation?.setReminder = newValue
+        }
     }
 
     func getSelectedIDs(_ completion: @escaping (([Int]) -> Void)) {

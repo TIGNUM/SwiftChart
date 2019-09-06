@@ -34,6 +34,10 @@ final class PrepareResultInteractor {
 
 // MARK: - PrepareCheckListInteractorInterface
 extension PrepareResultInteractor: PrepareResultsInteractorInterface {
+    var dataModified: Bool {
+        return worker.dataModified
+    }
+
     var getType: QDMUserPreparation.Level {
         return worker.getType
     }
