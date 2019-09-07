@@ -141,8 +141,7 @@ extension BaseRootViewController {
     }
 
     @objc func keyboardWillHide(notification: Notification) {
-        if shouldMoveBottomBarWithKeyboard,
-            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+        if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
             UIView.animate(withDuration: duration) {
                 self.bottomNavigationBottomConstraint.constant = 0
             }

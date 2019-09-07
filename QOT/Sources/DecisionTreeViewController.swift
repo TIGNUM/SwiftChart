@@ -107,6 +107,10 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
         baseRootViewController?.shouldMoveBottomBarWithKeyboard = true
         trackPage()
         updateNavigationItems()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didTabDismiss),
+                                               name: .didTabDismissBottomNavigation,
+                                               object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,6 +121,10 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageController?.view.frame = pageControllerContainer.frame
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .didTabDismissBottomNavigation, object: nil)
     }
 }
 
@@ -133,6 +141,11 @@ private extension DecisionTreeViewController {
                                                object: nil)
     }
 
+    func removeObservers() {
+        NotificationCenter.default.removeObserver(self, name: .questionnaireBottomNavigationUpdate, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didUpdateSelectionCounter, object: nil)
+    }
+
     @objc func updateBottomNavigationItems(_ notification: NSNotification) {
         guard let navigationButton = notification.object as? NavigationButton else { return }
         navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
@@ -147,6 +160,11 @@ private extension DecisionTreeViewController {
             rightItems = [UIBarButtonItem(from: navigationButton)]
         }
         updateBottomNavigation(leftItems, rightItems)
+    }
+
+    func resetNavigationItems() {
+        let leftItems = [dismissNavigationItem()]
+        updateBottomNavigation(leftItems, [])
     }
 
     @objc func animateNavigationButton() {
@@ -170,8 +188,11 @@ private extension DecisionTreeViewController {
 
 // MARK: - Actions
 private extension DecisionTreeViewController {
-    @IBAction func didTabDismiss() {
+    @objc func didTabDismiss() {
+        setShouldEndEditingTrue()
         dismiss()
+        removeObservers()
+        resetNavigationItems()
     }
 
     @IBAction func didTapPrevious(_ sender: UIButton) {
@@ -184,6 +205,7 @@ private extension DecisionTreeViewController {
     }
 
     @IBAction func didTapContinue() {
+        setShouldEndEditingTrue()
         interactor?.didTapContinue()
         if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
             delegate?.createToBeVision(tbv)
