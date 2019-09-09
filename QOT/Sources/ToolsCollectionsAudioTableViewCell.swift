@@ -45,20 +45,11 @@ final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
         self.title = title
         self.remoteID = remoteID
         self.duration = duration
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        detailLabel.attributedText = NSAttributedString(string: timeToWatch,
-                                                        letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: UIColor.carbon.withAlphaComponent(0.4),
-                                                        alignment: .left)
+        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotToolsSubtitle.apply(timeToWatch, to: detailLabel)
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
         mediaIconImageView.image = R.image.ic_audio_grey()
-        let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
+        let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
         audioLabel.attributedText = NSAttributedString(string: mediaDescription,
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
@@ -82,6 +73,7 @@ extension ToolsCollectionsAudioTableViewCell {
     func makePDFCell() {
         mediaIconImageView.image = R.image.ic_read_grey()
         audioView.isHidden = true
+        audioButton.isHidden = true
     }
 }
 

@@ -357,6 +357,24 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
+    @objc open func dismissNavigationItemLight(action: Selector? = nil) -> UIBarButtonItem {
+        var buttonAction = #selector(didTapDismissButton)
+        if let action = action {
+            buttonAction = action
+        }
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: buttonAction, for: .touchUpInside)
+        button.setImage(R.image.ic_close(), for: .normal)
+        button.frame.size.height = .Default
+        button.frame.size.width = .Default
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.accent.cgColor
+        button.layer.cornerRadius =  button.frame.size.height/2
+        button.layer.backgroundColor = UIColor.sand.cgColor
+        button.imageView?.contentMode = .center
+        return UIBarButtonItem(customView: button)
+    }
+
     @objc open func roundedBarButtonItem(title: String,
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,

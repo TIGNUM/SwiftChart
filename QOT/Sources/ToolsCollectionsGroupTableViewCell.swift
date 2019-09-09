@@ -43,17 +43,8 @@ final class ToolsCollectionsGroupTableViewCell: UITableViewCell, Dequeueable {
         self.title = title
         self.remoteID = remoteID
         self.type = type
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        detailLabel.attributedText = NSAttributedString(string: "\(numberOfItems)" + " items",
-                                                        letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: UIColor.carbon.withAlphaComponent(0.4),
-                                                        alignment: .left)
+        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotToolsSubtitle.apply( "\(numberOfItems)" + " items", to: detailLabel)
         mediaIconImageView.image = R.image.ic_group_grey()
         counterLabel.attributedText = NSAttributedString(string: "\(numberOfItems)",
                                                        letterSpacing: 0.4,
