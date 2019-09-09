@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import qot_dal
 
 private enum ToolType: String {

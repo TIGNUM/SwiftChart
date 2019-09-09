@@ -8,7 +8,6 @@
 
 import UIKit
 import EventKit
-import Anchorage
 
 protocol SettingsCalendarListViewControllerDelegate: class {
     func didChangeCalendarSyncValue(sender: UISwitch, calendarIdentifier: String)

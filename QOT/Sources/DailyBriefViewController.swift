@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import qot_dal
 import DifferenceKit
 
@@ -685,7 +684,7 @@ private extension DailyBriefViewController {
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
-        tableView.reload(using: differenceList, with: .middle) { data in
+        tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor?.updateViewModelListNew(data)
         }
     }

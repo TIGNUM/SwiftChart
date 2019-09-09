@@ -68,7 +68,6 @@ struct MyQotSupportModel {
             return ScreenTitleService.main.localizedString(for: tagSubtitle())
         }
 
-
         func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
             case .contactSupport:

@@ -147,7 +147,7 @@ extension UIViewController {
         log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
         self.applyTheme()
-        if animated && isTopVisibleViewController() {
+        if animated || (!animated && isTopVisibleViewController()) {
             refreshBottomNavigationItems()
             setStatusBar(color: view.backgroundColor)
             self.setNeedsStatusBarAppearanceUpdate()
@@ -213,7 +213,14 @@ extension UIViewController {
     @objc func presentSwizzled(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
         log("swizzled   present: \(viewControllerName)", level: .verbose)
-        viewControllerToPresent.refreshBottomNavigationItems()
+        if (viewControllerToPresent as? UINavigationController) == nil, viewControllerToPresent.view != nil {
+            viewControllerToPresent.refreshBottomNavigationItems()
+        } else if let navigationController = viewControllerToPresent as? UINavigationController {
+            if let contentViewController = navigationController.viewControllers.last, contentViewController.view != nil {
+                contentViewController.refreshBottomNavigationItems()
+            }
+        }
+
         if viewControllerToPresent is UIActivityViewController || viewControllerToPresent is UIAlertController {
             presentSwizzled(viewControllerToPresent: viewControllerToPresent, animated: animated, completion: completion)
             return
@@ -237,8 +244,12 @@ extension UIViewController {
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled   dismiss: \(viewControllerName)", level: .verbose)
         dismissSwizzled(animated: flag, completion: completion)
-        // get presenting.
-        self.presentingViewController?.QOTVisibleViewController()?.refreshBottomNavigationItems()
+        // remove current bottom navigation items.
+        NotificationCenter.default.post(name: .updateBottomNavigation,
+                                        object: BottomNavigationItem(leftBarButtonItems: [],
+                                                                     rightBarButtonItems: [],
+                                                                     backgroundColor: .clear),
+                                        userInfo: nil)
     }
 }
 

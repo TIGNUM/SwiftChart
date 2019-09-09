@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import qot_dal
 
 final class MyQotNavigationController: UINavigationController {
