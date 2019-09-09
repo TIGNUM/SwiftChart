@@ -715,7 +715,7 @@
 "MyPrep.NoPrep.Comment" = "Tap the Q button to enter Coach Mode and prepare for an event.";
 "MyPrep.NoMindset.Title" = "YOUR MINDSET\nSHIFTS WILL APPEAR HERE";
 "MyPrep.NoMindset.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your mindset. We'll save your Mindset Shifter work here.";
-"MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \naWILL APPEAR HERE";
+"MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \nWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
 "MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
 "MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
