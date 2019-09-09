@@ -33,6 +33,7 @@ class DTSprintQuestionnaireViewController: UIViewController {
                                              UserInputTableViewCell.self)
     private var constraintTableHeight: NSLayoutConstraint?
     private var observers: [NSKeyValueObservation] = []
+    private var heightOfCollection: CGFloat = 0.0
 
     // MARK: - Init
     init(viewModel: ViewModel) {
@@ -59,21 +60,21 @@ class DTSprintQuestionnaireViewController: UIViewController {
 private extension DTSprintQuestionnaireViewController {
     func setupView() {
         ThemeView.chatbot.apply(view)
+        tableView.contentInset = .zero      //this takes off an automatic 49.0 pixel top inset that is not needed
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
         tableView.clipsToBounds = false
-
         attachTableView()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
-            guard let tableView = self?.tableView else { return }
-
-            self?.constraintTableHeight?.constant = tableView.contentSize.height
+            guard let tableView = self?.tableView,
+                let view = self?.view ,
+                let constraintHeight = self?.constraintTableHeight else { return }
+            constraintHeight.constant = tableView.contentSize.height
             tableView.setNeedsUpdateConstraints()
-            tableView.isScrollEnabled = tableView.contentSize.height > tableView.bounds.height
+            tableView.isScrollEnabled = tableView.contentSize.height > view.bounds.height
             }
         ]
-
         attachBottomShadow()
     }
 
@@ -118,11 +119,23 @@ extension DTSprintQuestionnaireViewController: UITableViewDelegate {
         let animation = CellAnimator.moveUpWithFade(rowHeight: cell.frame.height, duration: 0.01, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
-//        recalculateContentInsets(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        let type = CellType.allCases[indexPath.section]
+        switch type {
+        case .question:
+            return UITableViewAutomaticDimension
+        case .answer:
+            switch viewModel.question.answerType {
+            case .yesOrNo,
+                 .singleSelection,
+                 .multiSelection:
+                return UITableViewAutomaticDimension
+            default:
+                return 0.0
+            }
+        }
     }
 }
 
@@ -157,7 +170,7 @@ extension DTSprintQuestionnaireViewController: UITableViewDataSource {
             case .singleSelection,
                  .multiSelection:
                 let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: viewModel.answers, maxPossibleSelections: viewModel.question.maxSelections)
+                cell.configure(for: viewModel.answers, maxPossibleSelections: viewModel.question.maxSelections, collectionHeight: heightOfCollection)
                 cell.delegate = self
                 return cell
             default:
@@ -194,6 +207,14 @@ extension DTSprintQuestionnaireViewController: SingleSelectionCellDelegate {
 
 // MARK: - MultiselectionCellDelegate
 extension DTSprintQuestionnaireViewController: MultipleSelectionCellDelegate {
+    func didSetHeight(to height: CGFloat) {
+        let setBefore = heightOfCollection != 0
+        heightOfCollection = height
+        if !setBefore {
+            tableView.reloadData()
+        }
+    }
+
     func didSelectAnswer(_ answer: ViewModel.Answer) {
         delegate?.didSelectAnswer(answer)
     }

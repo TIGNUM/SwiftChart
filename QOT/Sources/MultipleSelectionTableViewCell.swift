@@ -12,6 +12,7 @@ import qot_dal
 protocol MultipleSelectionCellDelegate: class {
     func didSelectAnswer(_ answer: ViewModel.Answer)
     func didDeSelectAnswer(_ answer: ViewModel.Answer)
+    func didSetHeight(to height: CGFloat)
 }
 
 final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
@@ -36,12 +37,14 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Configure
 extension MultipleSelectionTableViewCell {
-    func configure(for answers: [ViewModel.Answer], maxPossibleSelections: Int) {
+    func configure(for answers: [ViewModel.Answer], maxPossibleSelections: Int, collectionHeight: CGFloat) {
+        collectionViewHeight.constant = collectionHeight
+        layoutIfNeeded()
         self.answers = answers
         self.maxPossibleSelections = maxPossibleSelections
-        collectionView.reloadData()
         let selectedAnswers = answers.filter { $0.selected == true }
         collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count <= maxPossibleSelections)
+        collectionView.reloadData()
     }
 }
 
@@ -123,8 +126,6 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, updateContentSize: CGSize) {
-        collectionViewHeight.constant = updateContentSize.height
-        updateConstraintsIfNeeded()
-        layoutIfNeeded()
+        delegate?.didSetHeight(to: updateContentSize.height)
     }
 }
