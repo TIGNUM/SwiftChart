@@ -23,6 +23,7 @@ protocol StreamVideoInteractorInterface {
     var contentItemId: Int? { get }
 
     var isBookmarked: Bool { get }
+    var isDownloaded: Bool { get }
     var isLoggedIn: Bool { get }
     var delegate: StreamVideoInteractorDelegate? { get set }
     func didTapDownload()
@@ -49,6 +50,10 @@ final class StreamVideoInteractor {
 
     var isBookmarked: Bool {
         return worker.isBookmarked
+    }
+
+    var isDownloaded: Bool {
+        return worker.downloadStatus == .DOWNLOADED
     }
 
     var isLoggedIn: Bool {

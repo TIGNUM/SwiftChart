@@ -671,6 +671,7 @@
 		8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECF9AE22DE079D00451E65 /* MySprintsListHeaderView.swift */; };
 		8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DECF9B022DE07A800451E65 /* MySprintsListHeaderView.xib */; };
 		8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECF9B222DE277400451E65 /* MySprintsListDataViewModel.swift */; };
+		8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */; };
 		8DF7870622FEB50800CDE0A9 /* RegistrationCodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF786FE22FEB50800CDE0A9 /* RegistrationCodePresenter.swift */; };
 		8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF786FF22FEB50800CDE0A9 /* RegistrationCodeWorker.swift */; };
 		8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7870022FEB50800CDE0A9 /* RegistrationCodeRouter.swift */; };
@@ -1989,6 +1990,7 @@
 		8DECF9AE22DE079D00451E65 /* MySprintsListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListHeaderView.swift; sourceTree = "<group>"; };
 		8DECF9B022DE07A800451E65 /* MySprintsListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MySprintsListHeaderView.xib; sourceTree = "<group>"; };
 		8DECF9B222DE277400451E65 /* MySprintsListDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListDataViewModel.swift; sourceTree = "<group>"; };
+		8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonThemeable.swift; sourceTree = "<group>"; };
 		8DF786FE22FEB50800CDE0A9 /* RegistrationCodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodePresenter.swift; sourceTree = "<group>"; };
 		8DF786FF22FEB50800CDE0A9 /* RegistrationCodeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeWorker.swift; sourceTree = "<group>"; };
 		8DF7870022FEB50800CDE0A9 /* RegistrationCodeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeRouter.swift; sourceTree = "<group>"; };
@@ -2973,6 +2975,7 @@
 				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
 				3637666A223BC4D300C2C429 /* Model.swift */,
 				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
+				8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */,
 				BB667EF72313D76A007C2AC8 /* Theme.swift */,
 				B47953AA230AD512006EFE0F /* MyDataScreen */,
 				3608381D225F3E9E00664B9B /* article */,
@@ -7074,6 +7077,7 @@
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
 				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
+				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
 				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
 				BB5E76C6230C401C0054AF17 /* PadHeading.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,

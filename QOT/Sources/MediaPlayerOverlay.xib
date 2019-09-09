@@ -16,23 +16,24 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-a4-xQY">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-a4-xQY" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="210" y="0.0" width="141" height="40"/>
-                    <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="50" id="6Jb-xR-9Yf"/>
                         <constraint firstAttribute="height" constant="40" id="tzS-lJ-nSO"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="24" minY="0.0" maxX="20" maxY="0.0"/>
                     <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    <state key="normal" title="Download" image="ic_download">
+                    <state key="normal" title="Download" image="ic_save">
                         <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
                     </state>
+                    <state key="disabled" image="ic_saved"/>
                     <connections>
                         <action selector="didTapDownloadButton" destination="otv-Ax-RUX" eventType="touchUpInside" id="uBs-07-61R"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjA-Yn-GU0">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjA-Yn-GU0" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="154" y="0.0" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="U76-gB-tcb"/>
@@ -64,6 +65,7 @@
     <resources>
         <image name="ic_bookmark" width="14" height="16"/>
         <image name="ic_bookmark_fill" width="16" height="16"/>
-        <image name="ic_download" width="16" height="16"/>
+        <image name="ic_save" width="16" height="16"/>
+        <image name="ic_saved" width="16" height="16"/>
     </resources>
 </document>

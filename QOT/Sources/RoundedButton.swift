@@ -7,33 +7,60 @@
 
 import UIKit
 
-class RoundedButton: UIButton {
+class RoundedButton: UIButton, ButtonThemeable {
+
+    // Default values are for backwards compatibility until all instances get "Themed"
+    var titleAttributes: [NSAttributedStringKey: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
+    var normal: ButtonTheme? = ButtonTheme(foreground: .accent, background: nil, border: .accent40)
+    var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
+    var select: ButtonTheme? = nil
+    var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
 
     static func barButton(title: String, target: Any, action: Selector) -> UIBarButtonItem {
         return UIBarButtonItem(customView: RoundedButton(title: title, target: target, action: action))
     }
 
-    private let borderColorActive = UIColor.accent40
-    private let borderColorInactive = UIColor.sand08
-    private let activeColor = UIColor.accent
-    private let inactiveColor = UIColor.sand08
+    var barButton: UIBarButtonItem {
+        return UIBarButtonItem(customView: self)
+    }
 
     /// Closure used in specific cases (see `QOTAlert` implementation)
     var handler: ((UIButton) -> Void)?
 
     override var isEnabled: Bool {
         didSet {
-            self.layer.borderColor = self.isEnabled ? borderColorActive.cgColor : borderColorInactive.cgColor
+            if let normal = normal?.foregroundColor, let disabled = disabled?.foregroundColor {
+                tintColor = self.isEnabled ? normal : disabled
+            }
+            if let normal = normal?.borderColor, let disabled = disabled?.borderColor {
+                self.layer.borderColor = self.isEnabled ? normal.cgColor : disabled.cgColor
+            }
+        }
+    }
+
+    override var isSelected: Bool {
+        didSet {
+            if let normal = normal?.foregroundColor, let selected = select?.foregroundColor {
+                tintColor = self.isSelected ? normal : selected
+            }
+            if let normal = normal?.borderColor, let selected = select?.borderColor {
+                self.layer.borderColor = self.isSelected ? selected.cgColor : normal.cgColor
+            }
         }
     }
 
     override var isHighlighted: Bool {
         didSet {
-            self.layer.borderColor = self.isHighlighted ? borderColorInactive.cgColor : borderColorActive.cgColor
+            if let normal = normal?.foregroundColor, let highlighted = highlight?.foregroundColor {
+                tintColor = self.isHighlighted ? highlighted : normal
+            }
+            if let normal = normal?.borderColor, let highlighted = highlight?.borderColor {
+                layer.borderColor = self.isHighlighted ? highlighted.cgColor : normal.cgColor
+            }
         }
     }
 
-    init(title: String, target: Any, action: Selector) {
+    init(title: String?, target: Any, action: Selector) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
         addTarget(target, action: action, for: .touchUpInside)
@@ -45,53 +72,67 @@ class RoundedButton: UIButton {
         setup()
     }
 
-    override func setTitle(_ title: String?, for state: UIControlState) {
-        setAttributedTitle(NSAttributedString(string: title ?? ""), for: .normal)
+    func setTitle(_ title: String?) {
+        setTitle(title, for: .normal)
     }
 
-    override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControlState) {
-        // Desired
-        let attributes: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.kern: CharacterSpacing.kern04,
-            NSAttributedStringKey.foregroundColor: activeColor,
-            NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
-        let desiredTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
-        desiredTitle.addAttributes(attributes, range: NSRange(location: 0, length: desiredTitle.length))
-        super.setAttributedTitle(desiredTitle, for: state)
+    override func setTitle(_ title: String?, for state: UIControlState) {
+        setAttributedTitle(NSAttributedString(string: title ?? ""))
+    }
+
+    func setAttributedTitle(_ title: NSAttributedString?) {
+        let normalTheme = self.normal ?? ButtonTheme(foreground: .accent, background: .clear, border: .accent40)
+        tintColor = normalTheme.foregroundColor
+
+        layer.borderColor = normalTheme.borderColor?.cgColor
+        if !isEnabled, let color = disabled?.borderColor {
+            layer.borderColor = color.cgColor
+        }
+        if isSelected, let color = select?.borderColor {
+            layer.borderColor = color.cgColor
+        }
+
+        // Normal
+        setTheme(normalTheme, for: .normal, with: title)
 
         // Highlighted
-        if state != .highlighted {
-            let attributes: [NSAttributedStringKey: Any] = [
-                NSAttributedStringKey.kern: CharacterSpacing.kern04,
-                NSAttributedStringKey.foregroundColor: activeColor.withAlphaComponent(0.6),
-                NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
-            let disabledTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
-            disabledTitle.addAttributes(attributes, range: NSRange(location: 0, length: disabledTitle.length))
-            super.setAttributedTitle(disabledTitle, for: .highlighted)
+        if let highlighted = highlight {
+            setTheme(highlighted, for: .highlighted, with: title)
+        }
+
+        // Selected
+        if let selected = select {
+            setTheme(selected, for: .selected, with: title)
         }
 
         // Disabled
-        if state != .disabled {
-            let attributes: [NSAttributedStringKey: Any] = [
-                NSAttributedStringKey.kern: CharacterSpacing.kern04,
-                NSAttributedStringKey.foregroundColor: inactiveColor,
-                NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
-            let disabledTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
-            disabledTitle.addAttributes(attributes, range: NSRange(location: 0, length: disabledTitle.length))
-            super.setAttributedTitle(disabledTitle, for: .disabled)
+        if let disabled = disabled {
+            setTheme(disabled, for: .disabled, with: title)
         }
     }
 
-    func setup() {
-        self.tintColor = activeColor
+    private func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
+        var attributes: [NSAttributedStringKey: Any] = titleAttributes ?? [NSAttributedStringKey: Any]()
+        attributes[.foregroundColor] = theme.foregroundColor
+        let attributedTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
+        attributedTitle.addAttributes(attributes, range: NSRange(location: 0, length: attributedTitle.length))
+        super.setAttributedTitle(attributedTitle, for: state)
+        if let color = theme.backgroundColor, let image = UIImage.from(color: color) {
+            super.setBackgroundImage(image, for: state)
+        }
+    }
 
+    private func setup() {
         clipsToBounds = true
         layer.borderWidth = 1.0
-        layer.borderColor = borderColorActive.cgColor
+        imageView?.contentMode = .center
+        imageView?.clipsToBounds = false
 
-        let verticalInset: CGFloat = 11
-        let horizontalInset: CGFloat = 16
-        contentEdgeInsets = UIEdgeInsets(top: verticalInset, left: horizontalInset, bottom: verticalInset, right: horizontalInset)
+        if contentEdgeInsets == .zero {
+            let vertical: CGFloat = 11
+            let horizontal: CGFloat = 16
+            contentEdgeInsets = UIEdgeInsets(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
+        }
     }
 
     override func didMoveToSuperview() {

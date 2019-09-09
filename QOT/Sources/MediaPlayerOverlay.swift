@@ -18,8 +18,8 @@ final class MediaPlayerOverlay: UIView {
     // MARK: - Properties
     static let height: CGFloat = 40
 
-    @IBOutlet private weak var downloadButton: UIButton!
-    @IBOutlet private weak var bookmarkButton: UIButton!
+    @IBOutlet private weak var downloadButton: RoundedButton!
+    @IBOutlet private weak var bookmarkButton: RoundedButton!
     weak var delegate: MediaPlayerOverlayDelegate?
 
     static func instantiateFromNib() -> MediaPlayerOverlay {
@@ -43,8 +43,9 @@ final class MediaPlayerOverlay: UIView {
                                                object: nil)
     }
 
-    func configure(downloadTitle: String, isBokmarked: Bool) {
-        downloadButton.setTitle(downloadTitle, for: .normal)
+    func configure(downloadTitle: String, isBokmarked: Bool, isDownloaded: Bool) {
+        ThemableButton.fullscreenVideoPlayerDownload.apply(downloadButton, title: downloadTitle)
+        downloadButton.isEnabled = !isDownloaded
         bookmarkButton.isSelected = isBokmarked
     }
 }
@@ -53,8 +54,7 @@ final class MediaPlayerOverlay: UIView {
 
 private extension MediaPlayerOverlay {
     func setupView() {
-        downloadButton.corner(radius: 20)
-        ThemeBorder.accentBackground.apply(bookmarkButton)
+        ThemableButton.fullscreenVideoPlayerDownload.apply(bookmarkButton, title: nil)
     }
 
     @objc func didChangeOrientation() {

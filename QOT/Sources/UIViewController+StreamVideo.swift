@@ -63,7 +63,9 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 
     func didUpdateData(interactor: StreamVideoInteractorInterface) {
-        overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle, isBokmarked: interactor.isBookmarked)
+        overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle,
+                                   isBokmarked: interactor.isBookmarked,
+                                   isDownloaded: interactor.isDownloaded)
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
@@ -133,7 +135,9 @@ extension UIViewController {
             overlay.heightAnchor.constraint(equalToConstant: MediaPlayerOverlay.height).isActive = true
         }
         if let interactor = playerController.interactor {
-            overlay.configure(downloadTitle: interactor.downloadButtonTitle, isBokmarked: interactor.isBookmarked)
+            overlay.configure(downloadTitle: interactor.downloadButtonTitle,
+                              isBokmarked: interactor.isBookmarked,
+                              isDownloaded: interactor.isDownloaded)
         }
     }
 }

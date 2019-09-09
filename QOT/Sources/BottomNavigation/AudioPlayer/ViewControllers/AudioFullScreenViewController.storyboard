@@ -25,23 +25,24 @@
                                     <constraint firstAttribute="height" secondItem="2Xa-v4-1Tm" secondAttribute="width" id="Cdf-Kw-eFg"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W">
-                                <rect key="frame" x="274" y="722" width="116" height="40"/>
-                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="268" y="722" width="122" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vcx-ft-aWY"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
-                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                                <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="contentEdgeInsets" minX="26" minY="0.0" maxX="24" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Download" image="ic_save"/>
+                                <state key="disabled" image="ic_saved"/>
                                 <connections>
                                     <action selector="didTapDownloadButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="sHf-1I-WjR"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ">
-                                <rect key="frame" x="218" y="722" width="40" height="40"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="212" y="722" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="O4L-Yl-7T2"/>
                                     <constraint firstAttribute="width" constant="40" id="YV2-oK-s6D"/>
@@ -132,6 +133,7 @@
         <image name="ic_minimize" width="23" height="12"/>
         <image name="ic_pause_sand" width="16" height="16"/>
         <image name="ic_play_sand" width="16" height="16"/>
-        <image name="ic_save" width="36" height="36"/>
+        <image name="ic_save" width="16" height="16"/>
+        <image name="ic_saved" width="16" height="16"/>
     </resources>
 </document>

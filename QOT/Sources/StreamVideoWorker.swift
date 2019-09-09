@@ -122,9 +122,9 @@ extension StreamVideoWorker {
                     self?.downloadStatus = status
                     completion(status)
                 }
-            case .DOWNLOADING: service.pauseDownload(download) { [weak self] (status) in
-                self?.downloadStatus = status
-                completion(status)
+            case .DOWNLOADING: service.deleteUserStorage(download) { [weak self] (_) in
+                    self?.downloadStatus = .NONE
+                    completion(.NONE)
                 }
             case .DOWNLOADED:
                 completion(.DOWNLOADED)

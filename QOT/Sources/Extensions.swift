@@ -567,7 +567,7 @@ extension UIImage {
     }
 
     // @see adapted from https://stackoverflow.com/questions/6496441/creating-a-uiimage-from-a-uicolor-to-use-as-a-background-image-for-uibutton
-    static func from(color: UIColor, size: CGSize) -> UIImage? {
+    static func from(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
         guard size.width > 0, size.height > 0 else {
             return nil
         }

@@ -205,7 +205,9 @@ extension MyLibraryUserStorageWorker {
             completion(.NONE)
             return
         }
-        service.pauseDownload(item, completion: completion)
+        service.deleteUserStorage(item) { (error) in
+            completion(.NONE)
+        }
     }
 
     func resumeDownload(for itemId: String, completion: @escaping (_ status: QOTDownloadStatus) -> Void) {

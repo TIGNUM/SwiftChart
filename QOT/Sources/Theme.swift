@@ -169,6 +169,75 @@ enum ThemeButton {
     }
 }
 
+enum ThemableButton {
+    case myLibrary
+    case fullscreenAudioPlayerDownload
+    case fullscreenVideoPlayerDownload
+
+    var titleAttributes: [NSAttributedStringKey: Any]? {
+        switch self {
+        case .myLibrary, .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+            return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
+        }
+    }
+
+    var normal: ButtonTheme? {
+        switch self {
+        case .myLibrary:
+            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent40)
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+            return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
+        }
+    }
+
+    var highlight: ButtonTheme? {
+        switch self {
+        case .myLibrary:
+            return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+            return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
+        }
+    }
+
+    var select: ButtonTheme? {
+        switch self {
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        default:
+            return nil
+        }
+    }
+
+    var disabled: ButtonTheme? {
+        switch self {
+        case .myLibrary:
+            return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+            return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        }
+    }
+
+    func apply(_ button: ButtonThemeable, title: String?) {
+        var button = button
+        button.titleAttributes = titleAttributes
+        button.normal = normal
+        button.highlight = highlight
+        button.select = select
+        button.disabled = disabled
+        button.setTitle(title)
+    }
+
+    func apply(_ button: ButtonThemeable, title: NSAttributedString) {
+        var button = button
+        button.titleAttributes = titleAttributes
+        button.normal = normal
+        button.highlight = highlight
+        button.select = select
+        button.disabled = disabled
+        button.setAttributedTitle(title)
+    }
+}
+
 enum ThemeSegment {
     case accent
 

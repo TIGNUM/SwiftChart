@@ -14,8 +14,8 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var categorytitleLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var downloadButton: UIButton!
-    @IBOutlet private weak var bookmarkButton: UIButton!
+    @IBOutlet private weak var downloadButton: RoundedButton!
+    @IBOutlet private weak var bookmarkButton: RoundedButton!
 
     @IBOutlet private weak var playPauseButton: UIButton!
 
@@ -46,10 +46,7 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
     }
 
     func setupButtons() {
-        downloadButton.backgroundColor = .clear
-        ThemeBorder.accentBackground.apply(downloadButton)
-        ThemeView.accentBackground.apply(bookmarkButton)
-        downloadButton.corner(radius: 20)
+        ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
     }
 
     func updateLabel() {
@@ -86,9 +83,11 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
         case .NONE: title = R.string.localized.audioFullScreenButtonDownload()
         case .WAITING: title = R.string.localized.audioFullScreenButtonWaiting()
         case .DOWNLOADING: title = R.string.localized.audioFullScreenButtonDownloading()
-        case .DONE: title = R.string.localized.audioFullScreenButtonDownloaded()
+        case .DONE:
+            title = R.string.localized.audioFullScreenButtonDownloaded()
+            downloadButton.isEnabled = false
         }
-        downloadButton.setTitle(title, for: .normal)
+        ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: title)
     }
 
     func convertDownloadStatus(_ status: QOTDownloadStatus) -> UserStorageDownloadStatus {
@@ -158,9 +157,9 @@ extension AudioFullScreenViewController {
                  .WAITING: qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
                 self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
                 }
-            case .DOWNLOADING: qot_dal.UserStorageService.main.pauseDownload(download) { [weak self] (status) in
-                self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
-                }
+            case .DOWNLOADING: qot_dal.UserStorageService.main.deleteUserStorage(download) { [weak self] (error) in
+                self?.updateDownloadButtonState(.NONE)
+            }
             default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {
