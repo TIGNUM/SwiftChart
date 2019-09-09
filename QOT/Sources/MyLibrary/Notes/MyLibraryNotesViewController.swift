@@ -17,13 +17,14 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
     private var saveButton: RoundedButton?
     private var bottomNavigationItems = UINavigationItem()
+    private var initialBottomOffset: CGFloat = 0
 
     lazy var deleteButton: UIBarButtonItem = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        let button = RoundedButton(title: nil, target: self, action: #selector(didTapDeleteButton))
+        button.contentEdgeInsets = UIEdgeInsets(top: 12, left: 12, bottom: 12, right: 12)
         button.setImage(R.image.my_library_delete(), for: .normal)
-        button.addTarget(self, action: #selector(didTapDeleteButton), for: .touchUpInside)
-        button.corner(radius: 20, borderColor: .accent40)
-        return UIBarButtonItem(customView: button)
+        ThemableButton.myLibraryNotes.apply(button, title: nil)
+        return button.barButton
     }()
 
     // MARK: - Init
@@ -48,6 +49,9 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        textViewBottomConstraint.constant = BottomNavigationContainer.height
+        initialBottomOffset = textViewBottomConstraint.constant
+        startObservingKeyboard()
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
@@ -73,10 +77,10 @@ private extension MyLibraryNotesViewController {
             dismiss.addTarget(self, action: #selector(didTapDismiss), for: .touchUpInside)
         }
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let save = RoundedButton(title: interactor?.saveTitle ?? "Save", target: self, action: #selector(didTapSaveButton))
+        let save = RoundedButton(title: interactor?.saveTitle, target: self, action: #selector(didTapSaveButton))
+        ThemableButton.myLibraryNotes.apply(save, title: interactor?.saveTitle)
         saveButton = save
-        let saveBarButton = UIBarButtonItem(customView: save)
-        toolbar.items = [dismissButton, space, saveBarButton]
+        toolbar.items = [dismissButton, space, save.barButton]
         return toolbar
     }
 
@@ -150,5 +154,23 @@ extension MyLibraryNotesViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         interactor?.didUpdateText(textView.text)
         saveButton?.isEnabled = interactor?.isSaveButtonEnabled ?? false
+    }
+}
+
+// Keyboard
+
+extension MyLibraryNotesViewController {
+
+    @objc override func keyboardWillAppear(notification: NSNotification) {
+        let parameters = keyboardParameters(from: notification)
+        animateTextView(height: parameters?.height ?? 0)
+    }
+
+    @objc override func keyboardWillDisappear(notification: NSNotification) {
+        animateTextView(height: initialBottomOffset)
+    }
+
+    func animateTextView(height: CGFloat) {
+        textViewBottomConstraint.constant = height
     }
 }

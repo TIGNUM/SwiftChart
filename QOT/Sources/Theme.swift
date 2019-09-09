@@ -173,10 +173,11 @@ enum ThemableButton {
     case myLibrary
     case fullscreenAudioPlayerDownload
     case fullscreenVideoPlayerDownload
+    case myLibraryNotes
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
-        case .myLibrary, .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+        case .myLibrary, .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .myLibraryNotes:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -185,6 +186,8 @@ enum ThemableButton {
         switch self {
         case .myLibrary:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent40)
+        case .myLibraryNotes:
+            return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent40)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         }
@@ -194,6 +197,8 @@ enum ThemableButton {
         switch self {
         case .myLibrary:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
+        case .myLibraryNotes:
+            return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         }
@@ -212,6 +217,8 @@ enum ThemableButton {
         switch self {
         case .myLibrary:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
+        case .myLibraryNotes:
+            return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
         }
