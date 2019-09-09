@@ -179,6 +179,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         nullStateView.isHidden = false
         nullStateView.setupView(with: title, message: message, delegate: self)
         refreshBottomNavigationItems()
+        hideScreenLoader()
     }
 
     func hideNullState() {
