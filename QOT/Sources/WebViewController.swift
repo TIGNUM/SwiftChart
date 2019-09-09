@@ -8,6 +8,7 @@
 
 import SafariServices
 import Foundation
+import qot_dal
 
 final class WebViewController: SFSafariViewController {
 

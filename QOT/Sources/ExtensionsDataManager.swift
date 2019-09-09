@@ -12,7 +12,6 @@ import qot_dal
 enum ExtensionDataType {
     case toBeVision
     case upcomingEvent
-    case dailyPrep(items: [Guide.DailyPrepItem], feedback: String?, displayDate: Date)
     case all
 }
 
@@ -31,8 +30,6 @@ final class ExtensionsDataManager {
             updateToBeVision()
         case .upcomingEvent:
             updateUpcomingEvents()
-        case .dailyPrep(let items, let feedback, let displayDate):
-            updateDailyPrep(items: items, feedback: feedback, displayDate: displayDate)
         case .all:
             updateAll()
         }
@@ -82,45 +79,8 @@ private extension ExtensionsDataManager {
         }
     }
 
-    func updateDailyPrep(items: [Guide.DailyPrepItem], feedback: String?, displayDate: Date) {
-        let loadItems = items.filter {
-            $0.title.lowercased().contains("length") ||
-            $0.title.lowercased().contains("load") ||
-            $0.title.lowercased().contains("pressure") }
-        let loadValue = Float(loadItems.map { $0.result ?? 1 }.reduce(0, +)) / max(Float(loadItems.count), 1)
-        let recoveryItems =  items.filter {
-            $0.title.lowercased().contains("quality") ||
-            $0.title.lowercased().contains("quantity") }
-        let recoveryValue = Float(recoveryItems.map { $0.result ?? 1 }.reduce(0, +)) / max(Float(recoveryItems.count), 1)
-        let dailyPrep = ExtensionModel.DailyPrep(loadValue: loadValue,
-                                                 recoveryValue: recoveryValue,
-                                                 feedback: feedback,
-                                                 displayDate: displayDate)
-        ExtensionUserDefaults.set(dailyPrep, for: .dailyPrep)
-    }
-
     func updateAll() {
         updateToBeVision()
         updateUpcomingEvents()
-    }
-}
-
-// MARK: - Siri Event Tracking
-
-extension ExtensionsDataManager {
-
-    func eventType(for siriEvent: SiriEventsModel.Event) -> AppEventRequest.EventType? {
-        switch siriEvent.key {
-        case ExtensionUserDefaults.toBeVision.rawValue:
-            return .siriToBeVision
-        case ExtensionUserDefaults.whatsHot.rawValue:
-            return .siriWhatsHot
-        case ExtensionUserDefaults.upcomingEvents.rawValue:
-            return .siriUpcomingEvent
-        case ExtensionUserDefaults.dailyPrep.rawValue:
-            return .siriDailyPrep
-        default:
-            return nil
-        }
     }
 }

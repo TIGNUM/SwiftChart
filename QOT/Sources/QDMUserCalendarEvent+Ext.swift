@@ -20,13 +20,4 @@ extension QDMUserCalendarEvent {
         self.startDate = event.startDate
         self.endDate = event.endDate
     }
-
-    init(event: CalendarEvent) {
-        self.init()
-        self.createdAt = event.createdAt
-        self.modifiedAt = event.modifiedAt
-        self.title = event.title
-        self.startDate = event.startDate
-        self.endDate = event.endDate
-    }
 }

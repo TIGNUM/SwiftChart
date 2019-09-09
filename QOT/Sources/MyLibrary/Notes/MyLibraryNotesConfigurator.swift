@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyLibraryNotesConfigurator: AppStateAccess {
+final class MyLibraryNotesConfigurator {
 
     static func make() -> (MyLibraryNotesViewController, String?) -> Void {
         return { (viewController, note) in

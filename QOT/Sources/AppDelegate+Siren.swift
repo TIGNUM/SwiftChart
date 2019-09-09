@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 // MARK: - Siren. App Store version check.
 
@@ -20,6 +21,7 @@ enum SirenMessagingType: String {
     case buttonNexTimeOptional = "alert.button.title.release.manager.update.optional"
 
     func value(contentServie: ContentService?) -> String? {
-        return contentServie?.releaseManagerValue(for: self)
+        // CHANGE ME
+        return ""
     }
 }

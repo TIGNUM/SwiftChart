@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyVisionEditDetailsConfigurator: AppStateAccess {
+final class MyVisionEditDetailsConfigurator {
     static func configure(viewController: MyVisionEditDetailsViewController, title: String, vision: String, isFromNullState: Bool) {
         let wdigetManager = ExtensionsDataManager()
         let worker = MyVisionEditDetailsWorker(title: title, vision: vision, widgetManager: wdigetManager, contentService: qot_dal.ContentService.main, isFromNullState: isFromNullState)

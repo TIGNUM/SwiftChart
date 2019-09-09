@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyDataScreenConfigurator: AppStateAccess {
+final class MyDataScreenConfigurator {
     static func make() -> (MyDataScreenViewController) -> Void {
         return { (viewController) in
             let router = MyDataScreenRouter(viewController: viewController)

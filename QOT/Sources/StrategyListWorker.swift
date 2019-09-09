@@ -9,11 +9,21 @@
 import UIKit
 import qot_dal
 
+// CHANGE ME : NEED TO USE ScreenTitleService
+enum LearnContentTitle: String {
+    case mindset = "PERFORMANCE MINDSET"
+    case nutrition = "PERFORMANCE NUTRITION"
+    case movement = "PERFORMANCE MOVEMENT"
+    case recovery = "PERFORMANCE RECOVERY"
+    case habituation = "PERFORMANCE HABITUATION"
+    case foundation = "PERFORMANCE FOUNDATION"
+    static let allTitles = [mindset, nutrition, movement, recovery, habituation, foundation]
+}
+
 final class StrategyListWorker {
 
     // MARK: - Properties
 
-    let services: Services
     private let selectedStrategyID: Int?
     weak var interactor: StrategyListInteractorInterface?
 
@@ -44,8 +54,7 @@ final class StrategyListWorker {
 
     // MARK: - Init
 
-    init(services: Services, selectedStrategyID: Int?) {
-        self.services = services
+    init(selectedStrategyID: Int?) {
         self.selectedStrategyID = selectedStrategyID
 
         qot_dal.ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in

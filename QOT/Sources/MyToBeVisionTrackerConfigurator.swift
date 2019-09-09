@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyToBeVisionTrackerConfigurator: AppStateAccess {
+final class MyToBeVisionTrackerConfigurator {
 
     static func configure(viewController: MyToBeVisionTrackerViewController, controllerType: MyToBeVisionTrackerWorker.ControllerType) {
         _ = MyToBeVisionTrackerRouter(viewController: viewController)

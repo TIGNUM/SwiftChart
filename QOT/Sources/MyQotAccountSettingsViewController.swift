@@ -68,10 +68,6 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
         interactor?.showLogoutAlert()
     }
 
-    @IBAction func changePassword(_ sender: Any) {
-        interactor?.showResetPasswordAlert()
-    }
-
     @IBAction func presentEditAccountSettings(_ sender: Any) {
         trackUserEvent(.EDIT, action: .TAP)
         interactor?.presentEditAccountSettings()
@@ -101,16 +97,6 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
             self?.interactor?.logout()
         }
         QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
-    }
-
-    func showResetPasswordAlert() {
-        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-        let change = QOTAlertAction(title: R.string.localized.settingsChangePasswordButton()) { [weak self] (_) in
-            let key = self?.interactor?.changePasswordKey
-            self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
-            self?.interactor?.resetPassword()
-        }
-        QOTAlert.show(title: nil, message: R.string.localized.settingsChangePasswordTitle(), bottomItems: [cancel, change])
     }
 }
 

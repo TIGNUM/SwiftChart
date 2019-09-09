@@ -12,10 +12,7 @@ import qot_dal
 final class SyncedCalendarsWorker {
 
     func getViewTitle(_ completion: @escaping (String) -> Void) {
-        let predicate = NSPredicate(dalSearchTag: "synced_calendars_synced_calendars")
-        qot_dal.ContentService.main.getContentItemByPredicate(predicate) { (contentItem) in
-            completion(contentItem?.valueText ?? "")
-        }
+        completion("synced_calendars_synced_calendars") // CHANGE ME : NEED TO USE ScreenTitleService
     }
 
     func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {

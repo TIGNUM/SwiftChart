@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class RegistrationConfigurator: AppStateAccess {
+final class RegistrationConfigurator {
 
     static func make() -> (RegistrationViewController, QDMToBeVision?) -> Void {
         return { (viewController, cachedTBV) in

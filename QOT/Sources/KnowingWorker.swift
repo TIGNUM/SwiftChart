@@ -13,15 +13,13 @@ final class KnowingWorker {
 
     // MARK: - Properties
     weak var interactor: KnowingInteractorInterface?
-    private let services: Services?
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
 
     // MARK: - Init
 
-    init(services: Services?) {
-        self.services = services
+    init() {
     }
 
     func loadData() {

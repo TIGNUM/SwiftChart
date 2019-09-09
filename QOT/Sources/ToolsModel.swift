@@ -54,7 +54,7 @@ struct ToolModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> ToolSection {
-        return ToolSection.sectionValues.item(at: indexPath.row)
+        return ToolSection.sectionValues.at(index: indexPath.row) ?? .mindset
     }
 }
 

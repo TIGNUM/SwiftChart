@@ -8,6 +8,7 @@
 
 import Foundation
 import UserNotifications
+import qot_dal
 
 extension UNUserNotificationCenter {
     func scheduleNofications(_ requests: [UNNotificationRequest],

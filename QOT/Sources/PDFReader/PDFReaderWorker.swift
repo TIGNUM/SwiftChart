@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class PDFReaderWorker {
 
@@ -19,23 +20,21 @@ final class PDFReaderWorker {
 
     // MARK: - Properties
 
-    private let networkManager: NetworkManager
     private let contentItemID: Int
 
-    init(networkManager: NetworkManager, contentItemID: Int) {
-        self.networkManager = networkManager
+    init(contentItemID: Int) {
         self.contentItemID = contentItemID
     }
 
     func prepareShareContent(completion: @escaping ((Result) -> Void)) {
-        self.networkManager.performContentItemSharingRequest(contentItemID: contentItemID) { (result) in
-            switch result {
-            case .success(let value):
-                let content = Share.ContentItem(title: value.title, url: value.url, body: value.body)
-                completion(.success(content))
-            case .failure(let error):
-                completion(.failure(error))
+        qot_dal.ContentService.main.getContentItemShareData(contentItemId: contentItemID) { (shareData, error) in
+            guard let value = shareData else {
+                completion(.failure(error ?? NSError(domain: "QOT", code: 500, userInfo: nil) ))
+                return
             }
+
+            let content = Share.ContentItem(title: value.title ?? "", url: value.url ?? "", body: value.body ?? "")
+            completion(.success(content))
         }
     }
 

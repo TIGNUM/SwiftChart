@@ -8,17 +8,16 @@
 
 import Foundation
 
-final class NotificationPermissionConfigurator: AppStateAccess {
+final class NotificationPermissionConfigurator {
 
     static func make() -> (NotificationPermissionViewController) -> Void {
         return { (viewController) in
             let router = NotificationPermissionRouter(viewController: viewController)
-            let worker = NotificationPermissionWorker()
+            let worker = NotificationPermissionWorker(permissionManager: AppCoordinator.permissionsManager)
             let presenter = NotificationPermissionPresenter(viewController: viewController)
             let interactor = NotificationPermissionInteractor(worker: worker,
                                                           presenter: presenter,
-                                                          router: router,
-                                                          permissionManager: AppCoordinator.appState.permissionsManager)
+                                                          router: router)
             viewController.interactor = interactor
         }
     }

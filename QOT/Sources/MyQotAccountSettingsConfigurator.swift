@@ -9,13 +9,12 @@
 import Foundation
 import qot_dal
 
-final class MyQotAccountSettingsConfigurator: AppStateAccess {
+final class MyQotAccountSettingsConfigurator {
 
     static func configure(viewController: MyQotAccountSettingsViewController) {
         let router = MyQotAccountSettingsRouter(viewController: viewController)
         let worker = MyQotAccountSettingsWorker(userService: qot_dal.UserService.main,
-                                                contentService: qot_dal.ContentService.main,
-                                                networkManager: appState.networkManager)
+                                                contentService: qot_dal.ContentService.main)
         let presenter = MyQotAccountSettingsPresenter(viewController: viewController)
         let interactor = MyQotAccountSettingsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

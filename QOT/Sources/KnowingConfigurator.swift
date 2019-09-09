@@ -10,10 +10,9 @@ import Foundation
 
 final class KnowingConfigurator {
     static func configure(delegate: CoachCollectionViewControllerDelegate?,
-                          services: Services?,
                           viewController: KnowingViewController) {
         let router = KnowingRouter(viewController: viewController)
-        let worker = KnowingWorker(services: services)
+        let worker = KnowingWorker()
         let presenter = KnowingPresenter(viewController: viewController)
         let interactor = KnowingInteractor(worker: worker, presenter: presenter, router: router)
         worker.interactor = interactor

@@ -219,13 +219,6 @@ struct Layout {
     }
 }
 
-enum KeychainConstant: String {
-    case username = "com.tignum.qot.username"
-    case password = "com.tignum.qot.password"
-    case deviceID = "com.tignum.qot.device-identifier"
-    case databaseKey = "com.tignum.qot.database.key"
-}
-
 extension UIFont {
 
     /// SIMPLE REGUAR 72 // Number title

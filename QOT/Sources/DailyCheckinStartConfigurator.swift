@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class DailyCheckinStartConfigurator: AppStateAccess {
+final class DailyCheckinStartConfigurator {
 
     static func configure(viewController: DailyCheckinStartViewController) {
         let router = DailyCheckinStartRouter(viewController: viewController)

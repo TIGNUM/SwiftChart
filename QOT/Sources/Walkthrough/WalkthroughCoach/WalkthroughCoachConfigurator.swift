@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class WalkthroughCoachConfigurator: AppStateAccess {
+final class WalkthroughCoachConfigurator {
 
     static func make() -> (WalkthroughCoachViewController) -> Void {
         return { (viewController) in

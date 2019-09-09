@@ -140,7 +140,7 @@ private extension SigningInfoViewController {
 // MARK: - Actions
 private extension SigningInfoViewController {
     @IBAction func didTapBottomButton() {
-        interactor?.didTapBottomButton()
+        // REMOMVE ME
     }
 
     @IBAction func didTapLogin() {

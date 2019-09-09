@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class WalkthroughConfigurator: AppStateAccess {
+final class WalkthroughConfigurator {
 
     static func make() -> (WalkthroughViewController, SelectedTrackType) -> Void {
         return { (viewController, trackType) in

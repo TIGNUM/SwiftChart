@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class MySprintsListConfigurator: AppStateAccess {
+final class MySprintsListConfigurator {
 
     static func make() -> (MySprintsListViewController) -> Void {
         return { (viewController) in

@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class OnboardingLandingPageConfigurator: AppStateAccess {
+final class OnboardingLandingPageConfigurator {
 
     static func make() -> (OnboardingLandingPageViewController, QDMContentCategory?) -> Void {
         return { (viewController, contentCategory) in

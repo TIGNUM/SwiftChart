@@ -69,8 +69,7 @@ private extension MyQotSupportRouter {
             viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
             return
         }
-        let pageName: PageName = id == .contactSupport ? .supportContact : .featureRequest
-        let composer = MFMailComposeViewController(pageName: pageName)
+        let composer = MFMailComposeViewController()
         composer.setToRecipients(recipients)
         composer.setSubject(subject)
         composer.mailComposeDelegate = viewController

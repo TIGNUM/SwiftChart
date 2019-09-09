@@ -107,19 +107,6 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         presenter.showLogoutAlert()
     }
 
-    func showResetPasswordAlert() {
-        presenter.showResetPasswordAlert()
-    }
-
-    func resetPassword() {
-        router.showProgressHUD()
-        worker.resetPassword (completion: {[weak self] error in
-            self?.router.hideProgressHUD()
-            guard let alertType = self?.worker.alertType(for: error) else { return }
-            self?.router.showAlert(alertType)
-        })
-    }
-
     func presentEditAccountSettings() {
         router.presentEditAccountSettings()
     }

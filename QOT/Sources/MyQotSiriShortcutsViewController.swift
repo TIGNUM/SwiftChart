@@ -15,7 +15,6 @@ final class MyQotSiriShortcutsViewController: UIViewController, ScreenZLevel3 {
 
     var interactor: MyQotSiriShortcutsInteractorInterface?
     private var shortcutType: ShortcutType = .toBeVision
-    private var selectedShortCutPage: PageName?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
 
@@ -61,7 +60,6 @@ extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         shortcutType = interactor?.shortcutType(for: indexPath).type ?? .toBeVision
-        selectedShortCutPage =  interactor?.shortcutType(for: indexPath).type.pageName
         let key =  interactor?.trackingKey(for: indexPath)
         trackUserEvent(.OPEN, valueType: key, action: .TAP)
         interactor?.handleTap(for: interactor?.shortcutType(for: indexPath))

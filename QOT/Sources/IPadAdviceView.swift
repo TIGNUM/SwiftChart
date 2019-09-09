@@ -18,8 +18,9 @@ enum IPadAdviceViewType: String {
     case buttonDismiss = "ipad.advice.button.title.dismiss"
     case buttonDoNotShowAgain = "ipad.advice.button.title.do.not.show.again"
 
-    func value(contentService: ContentService?) -> String? {
-        return contentService?.iPadAdviceValue(for: self)
+    func value(contentService: Any?) -> String? {
+        // CHANGE ME
+        return "contentService?.iPadAdviceValue(for: self)"
     }
 }
 

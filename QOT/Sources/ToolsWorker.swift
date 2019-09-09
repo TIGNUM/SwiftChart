@@ -55,7 +55,7 @@ extension ToolsWorker: ToolsWorkerInterface {
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
-        let item = ToolSection.sectionValues.item(at: indexPath.row)
+        guard let item = ToolSection.sectionValues.at(index: indexPath.row) else { return "UNKNOWN_TOOL_TRACKING_KEYS" }
         return item.trackingKeys()
     }
 }

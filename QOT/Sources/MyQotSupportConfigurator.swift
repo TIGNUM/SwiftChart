@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyQotSupportConfigurator: AppStateAccess {
+final class MyQotSupportConfigurator {
 
     static func configure(viewController: MyQotSupportViewController) {
         let router = MyQotSupportRouter(viewController: viewController)

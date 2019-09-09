@@ -153,7 +153,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
     private var didScrollToRead = false
 
-
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -608,7 +607,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .video(let remoteID, _, _, _, let videoURL, _):
             qot_dal.ContentService.main.getContentItemById(remoteID) { (contentItem) in
                 guard let item = contentItem else { return }
-                let playerViewController = self.stream(videoURL: videoURL, contentItem: item, PageName.search)
+                let playerViewController = self.stream(videoURL: videoURL, contentItem: item)
                 if let playerItem = playerViewController.player?.currentItem {
                     let avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
                     avPlayerObserver.onStatusUpdate { (player) in

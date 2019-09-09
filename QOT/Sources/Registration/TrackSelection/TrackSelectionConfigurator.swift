@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class TrackSelectionConfigurator: AppStateAccess {
+final class TrackSelectionConfigurator {
     /// Creates configurator which sets up `TrackSelectionViewController` for presentation
     /// - Parameters:
     ///   - viewController: `TrackSelectionViewController` to be configured

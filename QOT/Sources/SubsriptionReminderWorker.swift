@@ -12,13 +12,11 @@ final class SubsriptionReminderWorker {
 
     // MARK: - Properties
 
-    private let services: Services
     private let isExpired: Bool
 
     // MARK: - Init
 
-    init(services: Services, isExpired: Bool) {
-        self.services = services
+    init(isExpired: Bool) {
         self.isExpired = isExpired
     }
 
@@ -27,45 +25,45 @@ final class SubsriptionReminderWorker {
     }
 
     var title: NSAttributedString? {
-       return SubsriptionReminderModel.Items.title.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.title.attributedText()
     }
 
     var subTitle: NSAttributedString? {
         if isExpired == true {
-            return SubsriptionReminderModel.Items.subtitleExpired.attributedText(contentSerice: services.contentService)
+            return SubsriptionReminderModel.Items.subtitleExpired.attributedText()
         }
-        return SubsriptionReminderModel.Items.subtitle.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.subtitle.attributedText()
     }
 
     var benefitsTitleFirst: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsTitleFirst.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsTitleFirst.attributedText()
     }
 
     var benefitsSubtitleFirst: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsSubtitleFirst.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsSubtitleFirst.attributedText()
     }
 
     var benefitsTitleSecond: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsTitleSecond.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsTitleSecond.attributedText()
     }
 
     var benefitsSubtitleSecond: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsSubtitleSecond.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsSubtitleSecond.attributedText()
     }
 
     var benefitsTitleThird: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsTitleThird.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsTitleThird.attributedText()
     }
 
     var benefitsSubtitleThird: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsSubtitleThird.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsSubtitleThird.attributedText()
     }
 
     var benefitsTitleFourth: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsTitleFourth.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsTitleFourth.attributedText()
     }
 
     var benefitsSubtitleFourth: NSAttributedString? {
-        return SubsriptionReminderModel.Items.benefitsSubtitleFourth.attributedText(contentSerice: services.contentService)
+        return SubsriptionReminderModel.Items.benefitsSubtitleFourth.attributedText()
     }
 }

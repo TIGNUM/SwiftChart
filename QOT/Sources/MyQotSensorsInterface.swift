@@ -33,6 +33,5 @@ protocol MyQotSensorsInteractorInterface: Interactor {
 }
 
 protocol MyQotSensorsRouterInterface {
-    func didTapSensor(sensor: MyQotSensorsModel, settingValue: SettingValue?, completion: @escaping (String) -> Void?)
     func startOuraAuth(requestURL: URL, config: QDMOuraRingConfig)
 }

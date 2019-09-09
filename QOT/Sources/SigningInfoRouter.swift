@@ -25,10 +25,4 @@ final class SigningInfoRouter {
 
 extension SigningInfoRouter: SigningInfoRouterInterface {
 
-    func presentSigningEmailView() {
-        viewController.navigationController?.navigationBar.isHidden = false
-        let configurator = SigningEmailConfigurator.make()
-        let controller = SigningEmailViewController(configure: configurator)
-        viewController.pushToStart(childViewController: controller)
-    }
 }

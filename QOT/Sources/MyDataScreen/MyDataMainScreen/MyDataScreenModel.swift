@@ -77,6 +77,6 @@ struct MyDataScreenModel {
     // MARK: - Properties
 
     func sectionItem(at index: Int) -> MyDataSection {
-        return MyDataSection.sectionValues.item(at: index)
+        return MyDataSection.sectionValues.at(index: index) ?? .dailyImpact
     }
 }

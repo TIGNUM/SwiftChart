@@ -15,18 +15,15 @@ final class NotificationPermissionInteractor {
     private let worker: NotificationPermissionWorker
     private let presenter: NotificationPermissionPresenterInterface
     private let router: NotificationPermissionRouterInterface
-    private let permissionManager: PermissionsManager
 
     // MARK: - Init
 
     init(worker: NotificationPermissionWorker,
         presenter: NotificationPermissionPresenterInterface,
-        router: NotificationPermissionRouterInterface,
-        permissionManager: PermissionsManager) {
+        router: NotificationPermissionRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        self.permissionManager = permissionManager
     }
 
     // MARK: - Interactor

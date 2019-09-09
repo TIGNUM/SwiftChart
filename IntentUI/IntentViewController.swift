@@ -49,13 +49,6 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
             completion(shouldDisplay, parameters, size)
             return
         }
-        if let response = interaction.intentResponse as? DailyPrepIntentResponse {
-            let viewController = DailyPrepViewController(for: response)
-            let shouldDisplay = response.code != .notCompleted
-            attachChild(viewController)
-            completion(shouldDisplay, parameters, viewController.viewSize)
-            return
-        }
         completion(false, parameters, .zero)
     }
 }

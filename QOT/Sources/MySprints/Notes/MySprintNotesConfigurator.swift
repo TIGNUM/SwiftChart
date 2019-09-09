@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MySprintNotesConfigurator: AppStateAccess {
+final class MySprintNotesConfigurator {
 
     static func make() -> (MySprintNotesViewController, QDMSprint, MySprintDetailsItem.Action) -> Void {
         return { (viewController, sprint, action) in

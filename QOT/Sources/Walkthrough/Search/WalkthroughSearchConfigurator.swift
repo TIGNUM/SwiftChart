@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class WalkthroughSearchConfigurator: AppStateAccess {
+final class WalkthroughSearchConfigurator {
 
     static func make() -> (WalkthroughSearchViewController) -> Void {
         return { (viewController) in

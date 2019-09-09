@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyQotSensorsConfigurator: AppStateAccess {
+final class MyQotSensorsConfigurator {
     static func configure(viewController: MyQotSensorsViewController) {
         let router =  MyQotSensorsRouter(viewController: viewController)
         let worker = MyQotSensorsWorker(contentService: qot_dal.ContentService.main)

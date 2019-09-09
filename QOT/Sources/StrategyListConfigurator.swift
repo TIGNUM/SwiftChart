@@ -8,12 +8,11 @@
 
 import Foundation
 
-final class StrategyListConfigurator: AppStateAccess {
+final class StrategyListConfigurator {
     static func configure(viewController: StrategyListViewController,
                           selectedStrategyID: Int?) {
         let router = StrategyListRouter(viewController: viewController)
-        let worker = StrategyListWorker(services: appState.services,
-                                        selectedStrategyID: selectedStrategyID)
+        let worker = StrategyListWorker(selectedStrategyID: selectedStrategyID)
         let presenter = StrategyListPresenter(viewController: viewController)
         let interactor = StrategyListInteractor(worker: worker, presenter: presenter, router: router)
         worker.interactor = interactor

@@ -12,13 +12,11 @@ final class PaymentReminderWorker {
 
     // MARK: - Properties
 
-    private let services: Services
     private let isExpired: Bool
 
     // MARK: - Init
 
-    init(services: Services, isExpired: Bool) {
-        self.services = services
+    init(isExpired: Bool) {
         self.isExpired = isExpired
     }
 

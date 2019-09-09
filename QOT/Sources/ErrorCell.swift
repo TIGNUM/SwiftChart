@@ -10,17 +10,6 @@ import UIKit
 
 final class ErrorCell: UITableViewCell, Dequeueable {
 
-    func configure(text: String, item: ContentItem) {
-        textLabel?.numberOfLines = 0
-        textLabel?.textColor = .red
-        textLabel?.text = String(format: "%@\nfomat: %@\ntitle: %@\nid: %d",
-                                 text,
-                                 item.format,
-                                 item.valueText ?? "" ,
-                                 item.remoteID.value ?? 0)
-        selectionStyle = .none
-    }
-
     func configure(text: String, item: Article.Item) {
         textLabel?.numberOfLines = 0
         textLabel?.textColor = .red

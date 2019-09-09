@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyQotProfileConfigurator: AppStateAccess {
+final class MyQotProfileConfigurator {
 
     static func configure(delegate: CoachCollectionViewControllerDelegate?, viewController: MyQotProfileViewController) {
         let router = MyQotProfileRouter(viewController: viewController)

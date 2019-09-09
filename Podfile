@@ -21,9 +21,7 @@ target 'QOT' do
   shared_pods
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'Freddy'
   pod 'Alamofire'
-  pod 'KeychainAccess'
   pod 'ActionSheetPicker-3.0'
   pod 'RSKImageCropper'
   pod 'BonMot'
@@ -33,7 +31,6 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'HockeySDK'
   pod 'Kingfisher'
-  pod 'AMScrollingNavbar'
   pod 'Bond', :git => 'git@github.com:SanggeonPark/Bond.git'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'

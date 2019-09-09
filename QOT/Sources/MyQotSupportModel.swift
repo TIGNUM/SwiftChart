@@ -68,14 +68,6 @@ struct MyQotSupportModel {
             return ScreenTitleService.main.localizedString(for: tagSubtitle())
         }
 
-        var pageName: PageName {
-            switch self {
-            case .contactSupport: return .supportContact
-            case .featureRequest: return .featureRequest
-            case .tutorial: return .tutorial
-            case .faq: return .faq
-            }
-        }
 
         func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {

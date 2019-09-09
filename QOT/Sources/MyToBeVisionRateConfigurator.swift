@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyToBeVisionRateConfigurator: AppStateAccess {
+final class MyToBeVisionRateConfigurator {
     static func configure(previousController: MyVisionViewController, viewController: MyToBeVisionRateViewController, visionId: Int) {
         let router = MyToBeVisionRateRouter(viewController: viewController)
         let worker = MyToBeVisionRateWorker(userService: qot_dal.UserService.main,

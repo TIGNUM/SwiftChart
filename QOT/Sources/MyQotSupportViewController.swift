@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import qot_dal
 
 final class MyQotSupportViewController: UIViewController, ScreenZLevel3 {
 

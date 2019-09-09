@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RegistrationEmailConfigurator: AppStateAccess {
+final class RegistrationEmailConfigurator {
 
     static func make() -> (RegistrationEmailViewController, RegistrationDelegate) -> Void {
         return { (viewController, delegate) in

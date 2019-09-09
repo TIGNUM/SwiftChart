@@ -14,7 +14,7 @@ final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var topLabel: ClickableLabel!
     @IBOutlet private weak var bottomLabel: ClickableLabel!
-    weak var delegate: LearnContentItemViewController?
+    weak var delegate: ClickableLabelDelegate?
 
     func setup(topText: NSAttributedString,
                bottomText: NSAttributedString?,

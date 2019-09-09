@@ -11,12 +11,6 @@ import qot_dal
 
 enum AlertType {
     case empty
-    case fitbit
-    case fitbitSuccess
-    case fitbitFailure
-    case fitbitAlreadyConnected
-    case addSensor
-    case addSensorCompletion
     case noContent
     case title(String)
     case message(String)
@@ -36,7 +30,6 @@ enum AlertType {
     case permissionNotGranted
     case imagePicker
     case notSynced
-    case resetPassword
     case canNotUploadPhoto
     case canNotSendMail
     case canNotSendEmailToBeVision
@@ -56,11 +49,6 @@ enum AlertType {
 
     var title: String? {
         switch self {
-        case .fitbitSuccess: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
-        case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitFailure()
-        case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedTitle()
-        case .addSensor: return R.string.localized.addSensorViewAlertTitle()
-        case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackTitle()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .title(let title): return title
@@ -76,7 +64,6 @@ enum AlertType {
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
         case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertTitleCustom()
-        case .resetPassword: return R.string.localized.alertTitleResetPassword()
         case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle()
         case .canNotSendMail,
              .canNotSendEmailToBeVision,
@@ -113,8 +100,6 @@ enum AlertType {
         case .cameraNotAvailable: return R.string.localized.alertBodyCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
-        case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
-        case .resetPassword: return R.string.localized.alertMessageResetPassword()
         case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage()
         case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
         case .canNotSendEmailToBeVision: return R.string.localized.alertMessageCouldNotSendEmailToBeVision()
@@ -125,7 +110,6 @@ enum AlertType {
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
         case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
-        case .addSensor: return R.string.localized.addSensorViewAlertMessage()
         case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
         case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
@@ -144,8 +128,7 @@ enum AlertType {
              .toBeVisionActionSheet,
              .prepareEditStrategy,
              .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized,
-             .addSensor: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+             .cameraPermissionNotAuthorized: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
         default: return nil
         }
     }
@@ -161,7 +144,6 @@ enum AlertType {
              .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
-        case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackSuccessOK()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -182,8 +164,7 @@ enum AlertType {
     var actionStyle: [UIAlertActionStyle] {
         switch self {
         case .notificationsNotAuthorized,
-             .settingsLoccationService,
-             .addSensor: return [.cancel]
+             .settingsLoccationService: return [.cancel]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
@@ -293,7 +274,7 @@ extension UIViewController {
 
     func handleError(_ error: Error?) {
         qot_dal.log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
-        if let networkError = error as? NetworkError {
+        if let networkError = error as? QOTNetworkError {
             switch networkError.type {
             case .unauthenticated: showAlert(type: .loginFailed)
             case .noNetworkConnection: showAlert(type: .noNetworkConnection)
@@ -305,9 +286,10 @@ extension UIViewController {
             case .notFound: showAlert(messaggeType: "notFound")
             case .unknown(let error, let statusCode):
                 showAlert(messaggeType: String(format: "error: %@\nStatusCode: %d",
-                                               error.localizedDescription, statusCode ?? 0))
+                                               error?.localizedDescription ?? "", statusCode ?? 0))
             case .badRequest: showAlert(messaggeType: "Bad Request")
             case .unknownError: showAlert(type: .unknown)
+            case .forbidden: showAlert(messaggeType: "Forbidden")
             }
         } else {
             showAlert(type: .unknown)

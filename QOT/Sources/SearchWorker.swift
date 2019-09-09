@@ -11,12 +11,7 @@ import qot_dal
 
 final class SearchWorker {
 
-    private let services: Services
-    private let networkManager: NetworkManager
-
-    init(services: Services, networkManager: NetworkManager) {
-        self.services = services
-        self.networkManager = networkManager
+    init() {
     }
 
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {

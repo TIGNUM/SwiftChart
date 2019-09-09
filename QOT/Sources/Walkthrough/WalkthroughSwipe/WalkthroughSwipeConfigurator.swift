@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class WalkthroughSwipeConfigurator: AppStateAccess {
+final class WalkthroughSwipeConfigurator {
 
     static func make() -> (WalkthroughSwipeViewController) -> Void {
         return { (viewController) in

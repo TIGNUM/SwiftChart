@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class MyVisionConfigurator: AppStateAccess {
+final class MyVisionConfigurator {
     static func configure(viewController: MyVisionViewController) {
         let router = MyVisionRouter(viewController: viewController)
         let widgetManager = ExtensionsDataManager()

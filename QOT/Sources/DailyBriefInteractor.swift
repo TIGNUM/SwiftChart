@@ -131,7 +131,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
                 case .DAILY_CHECK_IN_2?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
-                                                        elements:self.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
+                                                        elements: self.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
                     sectionDataList.append(ArraySection(model: .explore,
                                                         elements: self.createExploreModel(exploreBucket: bucket)))

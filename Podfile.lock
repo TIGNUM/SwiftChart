@@ -1,7 +1,6 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.9.0)
-  - AMScrollingNavbar (5.3.0)
   - Anchorage (4.3.1)
   - Bond (7.5.0):
     - Differ (~> 1.3)
@@ -15,7 +14,6 @@ PODS:
   - DifferenceKit/Core (1.1.3)
   - DifferenceKit/UIKitExtension (1.1.3):
     - DifferenceKit/Core
-  - Freddy (3.0.3)
   - HockeySDK (5.1.4):
     - HockeySDK/DefaultLib (= 5.1.4)
   - HockeySDK/DefaultLib (5.1.4)
@@ -41,17 +39,14 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
-  - AMScrollingNavbar
   - Anchorage
   - "Bond (from `git@github.com:SanggeonPark/Bond.git`)"
   - BonMot
   - Buglife
   - DifferenceKit
-  - Freddy
   - HockeySDK
   - JPSimulatorHacks
   - JTAppleCalendar (= 7.1.6)
-  - KeychainAccess
   - Kingfisher
   - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
@@ -65,13 +60,11 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
-    - AMScrollingNavbar
     - Anchorage
     - BonMot
     - Buglife
     - Differ
     - DifferenceKit
-    - Freddy
     - HockeySDK
     - JPSimulatorHacks
     - JTAppleCalendar
@@ -98,7 +91,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: db8d5147c8e6481482bd9323b87de7495192b184
+    :commit: 337d5e095b354d6b1e4eca5f9f42dbdf891b4fad
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -107,14 +100,12 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
-  AMScrollingNavbar: 8548c0df70da8f894217a709d9b2555b9d0babbe
   Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   Bond: 17f2d81e08cea3d95713eed33611176376f9056d
   BonMot: aa82119ff2ffa184223d8a31c72aed84fbb009e0
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
-  Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
@@ -130,6 +121,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: 1aacae8b30c51be596fc21214a1aecfc97df8b47
+PODFILE CHECKSUM: 37fee06690d73092a18ba00f276c49be144fce27
 
 COCOAPODS: 1.7.5

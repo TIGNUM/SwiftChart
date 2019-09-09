@@ -37,7 +37,8 @@ struct MyQotAppSettingsModel {
     }
 
     func headerTitleForItem(at section: Int) -> String {
-        return headertitle(for: Section.values.item(at: section))
+        guard let itemSection = Section.values.at(index: section) else { return "UNKNOWN_SECTION_HEADER" }
+        return headertitle(for: itemSection)
     }
 
     func heightForHeader(in section: Int) -> CGFloat {
@@ -62,9 +63,9 @@ struct MyQotAppSettingsModel {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return Setting.generalSettings.item(at: indexPath.row)
+            return Setting.generalSettings.at(index: indexPath.row) ?? .permissions
         case .custom:
-            return Setting.customSettings.item(at: indexPath.row)
+            return Setting.customSettings.at(index: indexPath.row) ?? .calendars
         }
     }
 
@@ -72,9 +73,9 @@ struct MyQotAppSettingsModel {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return subtitle(for: Setting.generalSettings.item(at: indexPath.row))
+            return subtitle(for: Setting.generalSettings.at(index: indexPath.row) ?? .notifications)
         case .custom:
-            return subtitle(for: Setting.customSettings.item(at: indexPath.row))
+            return subtitle(for: Setting.customSettings.at(index: indexPath.row) ?? .calendars)
         }
     }
 
@@ -82,9 +83,9 @@ struct MyQotAppSettingsModel {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return trackingKey(for: Setting.generalSettings.item(at: indexPath.row))
+            return trackingKey(for: Setting.generalSettings.at(index: indexPath.row) ?? .notifications)
         case .custom:
-            return trackingKey(for: Setting.customSettings.item(at: indexPath.row))
+            return trackingKey(for: Setting.customSettings.at(index: indexPath.row) ?? .calendars)
         }
     }
 
@@ -92,9 +93,9 @@ struct MyQotAppSettingsModel {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return title(for: Setting.generalSettings.item(at: indexPath.row))
+            return title(for: Setting.generalSettings.at(index: indexPath.row) ?? .notifications)
         case .custom:
-            return title(for: Setting.customSettings.item(at: indexPath.row))
+            return title(for: Setting.customSettings.at(index: indexPath.row) ?? .calendars)
         }
     }
 

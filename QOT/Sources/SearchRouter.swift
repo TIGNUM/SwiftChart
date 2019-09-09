@@ -27,10 +27,10 @@ extension SearchRouter: SearchRouterInterface {
         }
         if let section = searchResult.section {
             switch section {
-            case .learnStrategy,
-                 .learnWhatsHot,
-                 .library,
-                 .tools:
+            case .LearnStrategies,
+                 .WhatsHot,
+                 .QOTLibrary,
+                 .Tools:
                 if let link = link(with: searchResult.contentID, urlFormat: "qot://random-content?contentID=%d") {
                     presentArticle(with: link)
                 }

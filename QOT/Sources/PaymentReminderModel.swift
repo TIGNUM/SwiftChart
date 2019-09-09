@@ -34,6 +34,6 @@ struct PaymentModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> PaymentSection {
-        return PaymentSection.sectionValues.item(at: indexPath.row)
+        return PaymentSection.sectionValues.at(index: indexPath.row) ?? .prepared
     }
 }

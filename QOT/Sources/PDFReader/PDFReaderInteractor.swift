@@ -8,6 +8,21 @@
 
 import Foundation
 import MessageUI
+import qot_dal
+
+struct Share {
+    struct EmailContent {
+        let email: String
+        let subject: String
+        let body: String
+    }
+
+    struct ContentItem {
+        let title: String
+        let url: String
+        let body: String
+    }
+}
 
 func swizzleMFMailComposeViewControllerMessageBody() {
     let originalMethod = class_getInstanceMethod(MFMailComposeViewController.self,

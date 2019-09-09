@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import Kingfisher
 import Anchorage
+import qot_dal
 
 // MARK: - String
 
@@ -604,34 +605,6 @@ extension UIImageView {
         self.layer.cornerRadius = frame.width * 0.5
         self.clipsToBounds = true
     }
-
-    func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let url = resource.url {
-            if url.isFileURL {
-                let image = UIImage(dataUrl: url)
-                self.image = image
-                completion?(image, nil)
-            } else {
-                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-                kf.setImage(with: url,
-                            placeholder: defaultImage,
-                            options: options,
-                            progressBlock: nil) { (result) in
-                                switch result {
-                                case .success(let value):
-                                    completion?(value.image, nil)
-                                case .failure(let error):
-                                    completion?(nil, error)
-                                }
-                }
-            }
-        } else if let defaultImage = defaultImage {
-            image = defaultImage
-            completion?(image, nil)
-        } else {
-            completion?(nil, nil)
-        }
-    }
 }
 
 // MARK: - UIButton
@@ -646,58 +619,6 @@ extension UIButton {
         attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
         attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
         self.setAttributedTitle(attrString, for: state)
-    }
-
-    func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let url = resource.url {
-            if url.isFileURL {
-                let image = UIImage(dataUrl: url)
-                setImage(image, for: .normal)
-                completion?(image, nil)
-            } else {
-                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-                kf.setImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil,
-                            completionHandler: { (result) in
-                                switch result {
-                                case .success(let value):
-                                    completion?(value.image, nil)
-                                case .failure(let error):
-                                    completion?(nil, error)
-                                }
-                })
-            }
-        } else if let defaultImage = defaultImage {
-            setImage(defaultImage, for: .normal)
-            completion?(defaultImage, nil)
-        } else {
-            completion?(nil, nil)
-        }
-    }
-
-    func setBackgroundImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let url = resource.url {
-            if url.isFileURL {
-                let image = UIImage(dataUrl: url)
-                setBackgroundImage(image, for: .normal)
-                completion?(image, nil)
-            } else {
-                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-                kf.setBackgroundImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil,
-                                      completionHandler: { (result) in
-                                        switch result {
-                                        case .success(let value):
-                                            completion?(value.image, nil)
-                                        case .failure(let error):
-                                            completion?(nil, error)
-                                        }
-                })
-            }
-        } else if let defaultImage = defaultImage {
-            setBackgroundImage(defaultImage, for: .normal)
-            completion?(defaultImage, nil)
-        } else {
-            completion?(nil, nil)
-        }
     }
 }
 
@@ -795,17 +716,6 @@ extension Double {
     func roundToPlaces(places: Int) -> Double {
         let divisor = pow(10.0, Double(places))
         return (self * divisor).rounded() / divisor
-    }
-}
-
-extension DoubleObject {
-
-    var toFloat: CGFloat {
-        return self.value.toFloat
-    }
-
-    var toInt: Int {
-        return self.value.toInt
     }
 }
 

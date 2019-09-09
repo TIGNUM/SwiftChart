@@ -9,6 +9,12 @@
 import UIKit
 import qot_dal
 
+struct WhatsHotShareable {
+    let message: String?
+    let imageURL: URL?
+    let shareableLink: String?
+}
+
 final class ArticleWorker {
 
     // MARK: - Properties

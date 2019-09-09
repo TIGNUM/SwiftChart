@@ -22,7 +22,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) // Save Get To Level 5 Answer Value
     func saveTargetValue(value: Int?) //save sleep target
-    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName)
+    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
@@ -806,8 +806,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor?.customzieSleepQuestion(completion: completion)
     }
     // TODO Set correct pageName
-    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName) {
-        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem, pageName)
+    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
+        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {

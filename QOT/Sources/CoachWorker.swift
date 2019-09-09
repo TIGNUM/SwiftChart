@@ -29,7 +29,7 @@ final class CoachWorker {
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
-        let item = CoachSection.sectionValues.item(at: indexPath.row)
+        guard let item = CoachSection.sectionValues.at(index: indexPath.row) else { return "UNKONW_COACH_TRACKING" }
         return item.trackingKeys()
     }
 }

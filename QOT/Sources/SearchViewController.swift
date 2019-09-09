@@ -23,7 +23,6 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     @IBOutlet private weak var activeView: UIView!
     @IBOutlet private weak var constraintSearch: NSLayoutConstraint!
 
-    let pageName: PageName
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
     private var avPlayerObserver: AVPlayerObserver?
     private var searchResults = [Search.Result]()
@@ -32,8 +31,7 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
 
-    init(configure: Configurator<SearchViewController>, pageName: PageName) {
-        self.pageName = pageName
+    init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
@@ -306,7 +304,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 private extension SearchViewController {
 
     func handleMediaSelection(mediaURL: URL, contentItem: QDMContentItem?) {
-        let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem, pageName)
+        let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in

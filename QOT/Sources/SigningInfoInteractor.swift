@@ -48,10 +48,6 @@ extension SigningInfoInteractor: SigningInfoInteractorInterface {
         return worker.body(at: item)
     }
 
-    func didTapBottomButton() {
-        router.presentSigningEmailView()
-    }
-
     func didTapLoginButton() {
         delegate.didTapLogin()
     }

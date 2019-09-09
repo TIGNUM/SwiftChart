@@ -64,7 +64,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     }
 
     @IBAction func videoAction(_ sender: Any) {
-        delegate?.videoAction(sender, videoURL: mediaURL, contentItem: nil, pageName: .sideBarSearch)
+        delegate?.videoAction(sender, videoURL: mediaURL, contentItem: nil)
     }
 }
 

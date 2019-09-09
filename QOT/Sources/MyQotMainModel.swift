@@ -29,7 +29,7 @@ struct MyQotViewModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> MyQotSection {
-        return MyQotSection.allCases.item(at: indexPath.row)
+        return MyQotSection.allCases.at(index: indexPath.row) ?? .profile
     }
 
     enum Section: Int, CaseIterable {

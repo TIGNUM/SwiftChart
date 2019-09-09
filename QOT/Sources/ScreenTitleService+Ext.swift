@@ -173,19 +173,6 @@ extension ScreenTitleService {
     func toBeVisionMessagePlaceholder() -> String? {
         return localizedString(for: .toBeVisionMessagePlaceholder)
     }
-
-    func visionGeneratorAlertModelNotSaved() -> VisionGeneratorAlertModel? {
-        let title = localizedString(for: .tbvGeneratorAlertNotSavedTitle)
-        let message = localizedString(for: .tbvGeneratorAlertNotSavedMessage)
-        let buttonTitleCancel = localizedString(for: .tbvGeneratorAlertNotSavedButtonTitleCancel)
-        let buttonTitleDefault = localizedString(for: .tbvGeneratorAlertNotSavedButtonTitleDefault)
-        let buttonTitleDestructive = localizedString(for: .tbvGeneratorAlertNotSavedButtonTitleDestructive)
-        return VisionGeneratorAlertModel(title: title,
-                                         message: message,
-                                         buttonTitleCancel: buttonTitleCancel,
-                                         buttonTitleDefault: buttonTitleDefault,
-                                         buttonTitleDestructive: buttonTitleDestructive)
-    }
 }
 
 // MARK: - My Data

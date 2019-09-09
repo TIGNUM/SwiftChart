@@ -11,7 +11,7 @@ import UIKit
 final class NotificationPermissionWorker {
 
     // MARK: - Properties
-    private let permissionManager: PermissionsManager
+    private let permissionManager: PermissionsManager?
 
     lazy var title: String = {
         return R.string.localized.onboardingRegistrationNotificationPermissionTitle()
@@ -42,13 +42,13 @@ final class NotificationPermissionWorker {
     }()
 
     // MARK: - Init
-    init(permissionManager: PermissionsManager = AppCoordinator.appState.permissionsManager) {
+    init(permissionManager: PermissionsManager? = nil) {
         self.permissionManager = permissionManager
     }
 
     func requestNotificationAccess(completion: @escaping (PermissionsManager.AuthorizationStatus) -> Void) {
         let requestedPermissions: PermissionsManager.Permission.Identifier = .notifications
-        permissionManager.askPermission(for: [requestedPermissions]) { (statusDict) in
+        permissionManager?.askPermission(for: [requestedPermissions]) { (statusDict) in
             let status: PermissionsManager.AuthorizationStatus
             if let resultStatus = statusDict[requestedPermissions] {
                 status = resultStatus

@@ -54,6 +54,6 @@ struct CoachModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> CoachSection {
-        return CoachSection.sectionValues.item(at: indexPath.row)
+        return CoachSection.sectionValues.at(index: indexPath.row) ?? .tools
     }
 }

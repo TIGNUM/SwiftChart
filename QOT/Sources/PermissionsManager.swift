@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Freddy
 
 protocol PermissionManagerDelegate: class {
     func permissionManager(_ manager: PermissionsManager, didUpdatePermissions permissions: [PermissionsManager.Permission])

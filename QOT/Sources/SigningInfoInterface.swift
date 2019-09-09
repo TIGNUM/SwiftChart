@@ -18,7 +18,6 @@ protocol SigningInfoPresenterInterface {
 }
 
 protocol SigningInfoInteractorInterface: Interactor {
-    func didTapBottomButton()
     func title(at item: Int) -> String?
     func body(at item: Int) -> String?
     func didTapLoginButton()
@@ -26,7 +25,7 @@ protocol SigningInfoInteractorInterface: Interactor {
 }
 
 protocol SigningInfoRouterInterface {
-    func presentSigningEmailView()
+
 }
 
 protocol SigningInfoDelegate {

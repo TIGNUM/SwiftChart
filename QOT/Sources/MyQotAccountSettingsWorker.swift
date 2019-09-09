@@ -16,14 +16,12 @@ final class MyQotAccountSettingsWorker {
     private var userEmail: String?
     private let userService: qot_dal.UserService
     private let contentService: qot_dal.ContentService
-    private let networkManager: NetworkManager
 
     // MARK: - Init
 
-    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, networkManager: NetworkManager) {
+    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService) {
         self.userService = userService
         self.contentService = contentService
-        self.networkManager = networkManager
     }
 
     func logout() {
@@ -31,18 +29,8 @@ final class MyQotAccountSettingsWorker {
         ExtensionsDataManager.didUserLogIn(false)
     }
 
-    func resetPassword(completion: @escaping (NetworkError?) -> Void) {
-        guard let email = userEmail else {
-            completion(nil)
-            return
-        }
-        networkManager.performResetPasswordRequest(username: email, completion: { error in
-            completion(error)
-        })
-    }
-
-    func alertType(for error: NetworkError?) -> AlertType {
-        guard let error = error else { return .resetPassword }
+    func alertType(for error: QOTNetworkError?) -> AlertType {
+        guard let error = error else { return .unknown }
         switch error.type {
         case .noNetworkConnection:
             return .noNetworkConnection

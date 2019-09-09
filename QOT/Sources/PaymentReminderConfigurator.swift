@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class PaymentReminderConfigurator: AppStateAccess {
+final class PaymentReminderConfigurator {
 
-    static func make(isExpired: Bool) -> (PaymentReminderViewController) -> Void {
+    static func make(isExpired: Bool, windowManager: WindowManager) -> (PaymentReminderViewController) -> Void {
         return { (viewController) in
-            let router = PaymentReminderRouter(windowManager: appState.windowManager, viewController: viewController)
-            let worker = PaymentReminderWorker(services: appState.services, isExpired: isExpired)
+            let router = PaymentReminderRouter(windowManager: windowManager, viewController: viewController)
+            let worker = PaymentReminderWorker(isExpired: isExpired)
             let presenter = PaymentReminderPresenter(viewController: viewController)
             let interactor = PaymentReminderInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

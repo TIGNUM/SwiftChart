@@ -12,14 +12,6 @@ enum ShortcutType: Int, CaseIterable {
     case toBeVision = 0
     case morningInterview
     case whatsHot
-
-    var pageName: PageName {
-        switch self {
-        case .toBeVision: return .settingsSiriShortCutsTBV
-        case .morningInterview: return .settingsSiriShortCutsDPMFeedback
-        case .whatsHot: return .settingsSiriShortCutsWhatsHot
-        }
-    }
 }
 
 struct SiriShortcutsModel {

@@ -33,7 +33,7 @@ struct NotificationConfigurationObject {
         let componants = DateComponents(hour: hour, minute: minute, weekday: weekday)
         let content = UNMutableNotificationContent(title: title, body: body, soundName: nil, link: link)
         let trigger = UNCalendarNotificationTrigger(dateMatching: componants, repeats: true)
-        let identifier = "daily-prep-\(weekday)"
+        let identifier = "daily-check-in"
         return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
     }
 }
@@ -52,7 +52,7 @@ extension NotificationConfigurationObject {
 
     private static func needsSchedule(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            completion?(requests.filter { $0.identifier.contains("daily-prep-") }.count != 7)
+            completion?(requests.filter { $0.identifier.contains("daily-check-in") }.count != 7)
         }
     }
 
@@ -75,7 +75,7 @@ extension NotificationConfigurationObject {
             minute: 0,
             hour: 5,
             weekday: weekday,
-            title: "DAILY PREP MINUTE",
+            title: "DAILY CHECK IN", // CHANGE ME : USE Screen Title Service
             body: "Let's start the morning with a quick check in, so I can help support you today.",
             link: "qot://morning-interview"
         )

@@ -22,13 +22,13 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        AppDelegate.appState.orientationManager.videos()
+        AppCoordinator.orientationManager.videos()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
-        AppDelegate.appState.orientationManager.regular()
+        AppCoordinator.orientationManager.regular()
 
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
@@ -90,7 +90,7 @@ extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
 
 extension UIViewController {
     @discardableResult
-    func stream(videoURL: URL, contentItem: QDMContentItem?, _ pageName: PageName? = nil) -> MediaPlayerViewController {
+    func stream(videoURL: URL, contentItem: QDMContentItem?) -> MediaPlayerViewController {
         let player = AVPlayer(url: videoURL)
         let playerController = MediaPlayerViewController(contentItem: contentItem)
         let interactor = StreamVideoInteractor(content: contentItem)

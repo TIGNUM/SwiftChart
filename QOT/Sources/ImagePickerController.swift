@@ -33,7 +33,6 @@ final class ImagePickerController {
     let permissionsManager: PermissionsManager
     let imagePicker: ImagePicker
     var imageCropper: ImageCropper?
-    let page: PageName
     let adapter: ImagePickerControllerAdapter?
 
     weak var viewController: UIViewController?
@@ -43,13 +42,11 @@ final class ImagePickerController {
          imageQuality: ImageQuality,
          imageSize: ImageSize,
          permissionsManager: PermissionsManager,
-         pageName: PageName,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager
-        self.page = pageName
         imagePicker = ImagePicker()
         let imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
@@ -60,13 +57,11 @@ final class ImagePickerController {
     init(imageQuality: ImageQuality,
          imageSize: ImageSize,
          permissionsManager: PermissionsManager,
-         pageName: PageName,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager
-        self.page = pageName
         imagePicker = ImagePicker()
         imagePicker.delegte = self
     }

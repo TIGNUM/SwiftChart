@@ -7,18 +7,10 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TutorialWorker {
 
-    // MARK: - Properties
-
-    private let services: Services
-
-    // MARK: - Init
-
-    init(services: Services) {
-        self.services = services
-    }
 }
 
 // MARK: - Public
@@ -60,9 +52,8 @@ extension TutorialWorker {
 
 private extension TutorialWorker {
 
-    func contentItem(at index: Index, and type: TutorialModel.ItemType) -> ContentItem? {
-        let identifier = TutorialModel.Slide.allSlides[index].contentID
-        let content = services.contentService.contentCollection(id: identifier)
-        return content?.contentItems.filter { $0.format == type.format }.first
+    func contentItem(at index: Index, and type: TutorialModel.ItemType) -> QDMContentItem? {
+        // CHANGE ME
+        return nil
     }
 }

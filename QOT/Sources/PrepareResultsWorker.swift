@@ -214,7 +214,7 @@ extension PrepareResultsWorker {
 private extension PrepareResultsWorker {
     func updateCalendarEventLink(isOn: Bool) {
         getEkEvent { [weak self] (ekEvent) in
-            if isOn == true, let permissionsManager = AppCoordinator.appState.permissionsManager {
+            if isOn == true, let permissionsManager = AppCoordinator.permissionsManager {
                 permissionsManager.askPermission(for: [.calendar], completion: { [weak self] status in
                     guard let status = status[.calendar] else { return }
                     switch status {
@@ -309,7 +309,7 @@ extension PrepareResultsWorker {
     }
 
     func addPreparationLink(preparationID: String?) {
-        guard let permissionManager = AppCoordinator.appState.permissionsManager else { return }
+        guard let permissionManager = AppCoordinator.permissionsManager else { return }
         getEKEvent()?.addPreparationLink(preparationID: preparationID, permissionsManager: permissionManager)
     }
 
@@ -317,8 +317,7 @@ extension PrepareResultsWorker {
         do {
             try getEKEvent()?.removePreparationLink()
         } catch {
-            log("Error while trying to remove PreparationLink error: \(error.localizedDescription)",
-                level: Logger.Level.debug)
+            log("Error while trying to remove PreparationLink error: \(error.localizedDescription)", level: .debug)
         }
     }
 }

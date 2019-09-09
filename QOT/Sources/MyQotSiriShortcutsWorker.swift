@@ -76,11 +76,11 @@ final class MyQotSiriShortcutsWorker {
 
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType) {
         switch shortcutType {
-        case .toBeVision: break
+        case .toBeVision: break // CHANGE ME to fire User Event
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriToBeVisionDonated)
-        case .morningInterview: break
+        case .morningInterview: break // CHANGE ME to fire User Event
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriDailyPrepDonated)
-        case .whatsHot: break
+        case .whatsHot: break // CHANGE ME to fire User Event
 //            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriWhatsHotDonated)
         }
     }

@@ -28,10 +28,6 @@ extension MyQotAccountSettingsPresenter: MyQotAccountSettingsPresenterInterface 
         viewController?.setupView()
     }
 
-    func showResetPasswordAlert() {
-        viewController?.showResetPasswordAlert()
-    }
-
     func showLogoutAlert() {
         viewController?.showLogoutAlert()
     }

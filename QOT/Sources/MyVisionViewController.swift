@@ -8,7 +8,6 @@
 
 import UIKit
 import qot_dal
-import AMScrollingNavbar
 import Kingfisher
 
 final class MyVisionViewController: UIViewController, ScreenZLevel2 {
@@ -204,8 +203,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
-                                                      permissionsManager: AppCoordinator.appState.permissionsManager!,
-                                                      pageName: .imagePickerToBeVision,
+                                                      permissionsManager: AppCoordinator.permissionsManager!,
                                                       adapter: adapter)
         imagePickerController.delegate = self
         userImageView.image = R.image.circlesWarning()

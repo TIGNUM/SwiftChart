@@ -27,9 +27,7 @@ final class LaunchHandler {
 
     func process(url: URL,
                  notificationID: String = "",
-                 guideItem: Guide.Item? = nil,
-                 searchViewController: SearchViewController? = nil,
-                 articleItemController: ArticleItemViewController? = nil) {
+                 searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
             return

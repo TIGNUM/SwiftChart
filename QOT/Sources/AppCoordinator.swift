@@ -7,25 +7,27 @@
 //
 
 import UIKit
-import RealmSwift
 import Alamofire
 import UserNotifications
 import AirshipKit
 import Buglife
 import qot_dal
 
-final class AppCoordinator: ParentCoordinator, AppStateAccess {
+final class AppCoordinator {
+
+    // MARK: - Static Properties
+
+    static var permissionsManager: PermissionsManager?
+    static var orientationManager: OrientationManager = OrientationManager()
 
     // MARK: - Properties
 
     private var isReadyToProcessURL = false
 
     var checkListIDToPresent: String?
-    var children = [Coordinator]()
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
-    private var services: Services?
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
@@ -35,78 +37,28 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private weak var currentPresentedNavigationController: UINavigationController?
     lazy var userLogoutNotificationHandler = NotificationHandler(name: .userLogout)
     lazy var automaticLogoutNotificationHandler = NotificationHandler(name: .automaticLogout)
-    lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar()
-    lazy var tabBarCoordinator: TabBarCoordinator? = {
-        guard let services = services else { return nil }
-        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
-        return TabBarCoordinator(windowManager: windowManager,
-                                 selectedIndex: selectedIndex,
-                                 services: services,
-                                 eventTracker: eventTracker,
-                                 permissionsManager: permissionsManager,
-                                 pageTracker: pageTracker,
-                                 syncManager: syncManager,
-                                 networkManager: networkManager)
-    }()
-    lazy var networkManager: NetworkManager = {
-        let manager = NetworkManager(delegate: self, authenticator: authenticator)
-        AppCoordinator.appState.networkManager = manager
-        return manager
-    }()
+    lazy var apnsDeviceTokenRegistrator = APNSDeviceTokenRegistrator()
     private lazy var permissionsManager: PermissionsManager = {
         let manager = PermissionsManager(delegate: self)
-        AppCoordinator.appState.permissionsManager = manager
         return manager
-    }()
-    private lazy var authenticator = Authenticator()
-    private lazy var realmProvider: RealmProvider = {
-        return RealmProvider()
-    }()
-
-    private lazy var pageTracker: PageTracker = {
-        let tracker = PageTracker(eventTracker: self.eventTracker)
-        PageTracker.setStaticTracker(pageTracker: tracker)
-        return tracker
-    }()
-    private lazy var eventTracker: EventTracker = {
-        return EventTracker(realmProvider: self.realmProvider)
-    }()
-    private lazy var syncRecordService: SyncRecordService = {
-        return SyncRecordService(realmProvider: self.realmProvider)
     }()
     lazy var userLoggedIn: Bool = {
         return qot_dal.SessionService.main.getCurrentSession() != nil
     }()
-    lazy var syncManager: SyncManager = {
-        let manager = SyncManager(networkManager: self.networkManager,
-                           syncRecordService: self.syncRecordService,
-                           realmProvider: self.realmProvider)
-        AppCoordinator.appState.syncManager = manager
-        return manager
-    }()
-
-    lazy var calendarImportManager: CalendarImportManger = {
-        let manager = CalendarImportManger(realm: self.realmProvider, predicate: { () -> (start: Date, end: Date) in
-            let start = Date().dayBefore(days: 30)
-            let end = Date().dayAfter(days: 30)
-            return (start, end)
-        })
-        manager.delegate = self
-        return manager
-    }()
 
     private lazy var iPadAdviceView: IPadAdviceView? = {
         let advice = UINib(resource: R.nib.iPadAdviceView).instantiate(withOwner: nil, options: nil).first as? IPadAdviceView
-        if
-            let title = IPadAdviceViewType.title.value(contentService: services?.contentService),
-            let body = IPadAdviceViewType.body.value(contentService: services?.contentService),
-            let buttonDismiss = IPadAdviceViewType.buttonDismiss.value(contentService: services?.contentService),
-            let buttonDoNotShow = IPadAdviceViewType.buttonDoNotShowAgain.value(contentService: services?.contentService) {
-                advice?.setupView(title: title,
-                                  body: body,
-                                  buttonTitleDismiss: buttonDismiss,
-                                  buttonTitleDoNotShow: buttonDoNotShow)
-        }
+        // CHANGE ME
+//        if
+//            let title = IPadAdviceViewType.title.value(contentService: services?.contentService),
+//            let body = IPadAdviceViewType.body.value(contentService: services?.contentService),
+//            let buttonDismiss = IPadAdviceViewType.buttonDismiss.value(contentService: services?.contentService),
+//            let buttonDoNotShow = IPadAdviceViewType.buttonDoNotShowAgain.value(contentService: services?.contentService) {
+//                advice?.setupView(title: title,
+//                                  body: body,
+//                                  buttonTitleDismiss: buttonDismiss,
+//                                  buttonTitleDoNotShow: buttonDoNotShow)
+//        }
         advice?.delegate = self
         return advice
     }()
@@ -121,23 +73,12 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.locationManager = locationManager
         AppDelegate.current.localNotificationHandlerDelegate = self
         AppDelegate.current.shortcutHandlerDelegate = self
-        AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
         automaticLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
-        }
-    }
-
-    func basicSetup() {
-        do {
-            let services = try Services()
-            self.services = services
-            AppCoordinator.appState.services = services
-        } catch {
-
         }
     }
 
@@ -159,24 +100,15 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         if UserDefault.firstInstallationTimestamp.object == nil {
             UserDefault.firstInstallationTimestamp.setObject(Date())
         }
-        pageTracker.start()
-        let dispatchGroup = DispatchGroup()
-        dispatchGroup.enter()
-        var setupError: Error?
-        setupApp { error in
-            setupError = error
-            dispatchGroup.leave()
-        }
-        dispatchGroup.notify(queue: .main) {
-            if let error = setupError {
-                self.handleSetupError(error: error)
-            } else if qot_dal.SessionService.main.getCurrentSession() != nil {
-                self.showApp()
-                completion()
-            } else {
-                UserDefault.clearAllDataLogOut()
-                self.showSigning()
-            }
+        AppCoordinator.permissionsManager = self.permissionsManager
+        self.setupBugLife()
+
+        if qot_dal.SessionService.main.getCurrentSession() != nil {
+            self.showApp()
+            completion()
+        } else {
+            UserDefault.clearAllDataLogOut()
+            self.showSigning()
         }
     }
 
@@ -187,7 +119,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func setupBugLife() {
-        guard authenticator.hasLoginCredentials() else { return }
+        guard SessionService.main.getCurrentSession() != nil else { return }
         if qot_dal.SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
@@ -198,40 +130,17 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         }
     }
 
-    private func setupApp(completion: @escaping (Error?) -> Void) {
-        DatabaseManager.shared.onSetupComplete { (error) in
-            if let error = error {
-                completion(error)
-            } else {
-                do {
-                    let services = try Services()
-                    self.services = services
-                    AppCoordinator.appState.services = services
-                    QOTUsageTimer.sharedInstance.userService = services.userService
-                    _ = self.tabBarCoordinator
-                    self.setupBugLife()
-                    completion(nil)
-                } catch {
-                    completion(error)
-                }
-            }
-        }
-    }
-
     func checkVersionIfNeeded() {
-        guard services?.userService.user()?.appUpdatePrompt == true else { return }
+//        guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // CHANGE ME
     }
 
     private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: Logger.Level.error)
+        log("Error setting up database: \(error)", level: .error)
         let message = "There was a problem initializing the app's data. Please restart the app and try again"
         self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
             exit(0)
         })
-    }
-
-    func startSync() {
-        self.syncManager.start()
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
@@ -251,7 +160,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             let rootNavigationController = rootViewController as? UINavigationController else {
                 return
         }
-        coachCollectionViewController.services = services
         if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
             baseVC.setContent(viewController: coachCollectionViewController)
         }
@@ -259,7 +167,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.windowManager.show(rootNavigationController, animated: true, completion: nil)
 
         self.registerRemoteNotifications()
-        self.calendarImportManager.importEvents()
         self.canProcessRemoteNotifications = true
         self.canProcessLocalNotifications = true
         self.remoteNotificationHandler.processOutstandingNotifications()
@@ -299,14 +206,15 @@ private extension AppCoordinator {
     }
 
     func showSubscriptionReminderIfNeeded() {
-        guard let user = services?.userService.user() else { return }
-        let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
-        if user.subscriptionExpired == true {
-            windowManager.showSubscriptionReminder(isExpired: true)
-        } else if user.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
-            UserDefault.subscriptionInfoShow.setObject(Date())
-            windowManager.showSubscriptionReminder(isExpired: false)
-        }
+//        guard let user = services?.userService.user() else { return }
+//        let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
+//        if user.subscriptionExpired == true {
+//            windowManager.showSubscriptionReminder(isExpired: true)
+//        } else if user.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
+//            UserDefault.subscriptionInfoShow.setObject(Date())
+//            windowManager.showSubscriptionReminder(isExpired: false)
+//        }
+        // CHANGE ME
     }
 }
 
@@ -324,15 +232,6 @@ extension AppCoordinator {
         })
         windowManager.showAlert(alert, animated: true, completion: nil)
         currentPresentedController = alert
-    }
-
-    func showOnboarding() {
-        let userName = self.services?.userService.user()?.givenName ?? ""
-        let coordinator = OnboardingCoordinator(windowManager: windowManager,
-                                                delegate: self,
-                                                permissionsManager: permissionsManager,
-                                                userName: userName)
-        startChild(child: coordinator)
     }
 
     func showTrackChoice() {
@@ -369,12 +268,6 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         environment.dynamicBaseURL = nil
-        do {
-            syncManager.stop()
-            try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
-        } catch {
-            log(error.localizedDescription, level: Logger.Level.error)
-        }
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -411,81 +304,6 @@ extension AppCoordinator {
     }
 }
 
-extension AppCoordinator: NavigationItemDelegate {
-
-    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
-        self.onDismiss?()
-        self.onDismiss = nil
-        topTabBarController?.dismiss(animated: true) {
-            self.windowManager.resignWindow(atLevel: .priority)
-        }
-    }
-
-    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
-        guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else { return }
-        pageViewController.setPageIndex(index, animated: true)
-    }
-
-    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        log("did select book mark", level: Logger.Level.info)
-    }
-
-    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
-}
-
-// MARK: - CalendarImportMangerDelegate
-
-extension AppCoordinator: CalendarImportMangerDelegate {
-
-    func eventStoreAuthorizationRequired(for mangager: CalendarImportManger, currentStatus: EKAuthorizationStatus) {
-        permissionsManager.askPermission(for: [.calendar]) { status in
-            guard let status = status[.calendar] else { return }
-            if status == .granted {
-                mangager.importEvents()
-            }
-        }
-    }
-
-    func calendarImportDidFail(error: Error) {
-        // FIXME: Handle error
-        log("Calendar import failed: with error: \(error.localizedDescription))", level: Logger.Level.error)
-        assertionFailure("Calendar import failed: \(error)")
-    }
-}
-
-// MARK: - NetworkManagerDelegate
-
-extension AppCoordinator: NetworkManagerDelegate {
-
-    func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
-        if authenticator.hasLoginCredentials() {
-            authenticator.refreshSession { [weak self] (result) in
-                switch result {
-                case .failure(let error):
-                    if error.isUnauthenticated {
-                        self?.restart()
-                    } else {
-                        return
-                    }
-                default: return // do nothing
-                }
-            }
-        } else {
-            restart()
-        }
-    }
-}
-
-// MARK: - OnboardingCoordinatorDelegate
-
-extension AppCoordinator: OnboardingCoordinatorDelegate {
-
-    func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
-        removeChild(child: onboardingCoordinator)
-        showApp()
-    }
-}
-
 // MARK: - RemoteNotificationHandlerDelegate (Handle Response)
 
 extension AppCoordinator: RemoteNotificationHandlerDelegate {
@@ -506,7 +324,9 @@ extension AppCoordinator {
 
         switch scheme {
         case .toBeVision:
-            services?.userService.setMyToBeVisionReminder(true)
+//            services?.userService.setMyToBeVisionReminder(true)
+            // REMOVE ME
+            break
         default:
             return
         }
@@ -557,17 +377,6 @@ extension AppCoordinator: PermissionManagerDelegate {
             }
             guard !devicePermissions.isEmpty else { return }
             qot_dal.QOTService.main.updateDevicePermissions(permissions: devicePermissions)
-        }
-    }
-}
-
-// MARK: - LearnContentListCoordinatorDelegate
-
-extension AppCoordinator: LearnContentListCoordinatorDelegate {
-
-    func didFinish(coordinator: LearnContentListCoordinator) {
-        if let index = children.index(where: { $0 === coordinator}) {
-            children.remove(at: index)
         }
     }
 }

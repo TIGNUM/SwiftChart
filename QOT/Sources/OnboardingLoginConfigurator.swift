@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class OnboardingLoginConfigurator: AppStateAccess {
+final class OnboardingLoginConfigurator {
     static func make() -> (OnboardingLoginViewController, OnboardingLoginDelegate) -> Void {
         return { (viewController, delegate) in
             let router = OnboardingLoginRouter(viewController: viewController)

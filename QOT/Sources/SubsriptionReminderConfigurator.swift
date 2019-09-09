@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class SubsriptionReminderConfigurator: AppStateAccess {
+final class SubsriptionReminderConfigurator {
 
-    static func make(isExpired: Bool) -> (SubsriptionReminderViewController) -> Void {
+    static func make(windowManager: WindowManager, isExpired: Bool) -> (SubsriptionReminderViewController) -> Void {
         return { (viewController) in
-            let router = SubsriptionReminderRouter(windowManager: appState.windowManager, viewController: viewController)
-            let worker = SubsriptionReminderWorker(services: appState.services, isExpired: isExpired)
+            let router = SubsriptionReminderRouter(windowManager: windowManager, viewController: viewController)
+            let worker = SubsriptionReminderWorker(isExpired: isExpired)
             let presenter = SubsriptionReminderPresenter(viewController: viewController)
             let interactor = SubsriptionReminderInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

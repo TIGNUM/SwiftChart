@@ -93,14 +93,8 @@ final class WindowManager {
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
 
-    func showInfo(helpSection: ScreenHelp.Category) {
-        let configurator = ScreenHelpConfigurator.make(helpSection)
-        let infoViewController = ScreenHelpViewController(configurator: configurator, category: helpSection)
-        presentViewController(infoViewController, atLevel: .normal, animated: true, completion: nil)
-    }
-
     func showSubscriptionReminder(isExpired: Bool) {
-        let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
+        let configurator = PaymentReminderConfigurator.make(isExpired: isExpired, windowManager: self)
         let controller = PaymentReminderViewController(configure: configurator)
         showPriority(controller, animated: true, completion: nil)
     }

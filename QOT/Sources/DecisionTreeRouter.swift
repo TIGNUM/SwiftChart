@@ -14,7 +14,7 @@ final class DecisionTreeRouter {
     // MARK: - Properties
     private weak var viewController: DecisionTreeViewController?
     private var imagePickerController: ImagePickerController?
-    private var permissionsManager: PermissionsManager = AppCoordinator.appState.permissionsManager!
+    private var permissionsManager: PermissionsManager = AppCoordinator.permissionsManager!
 
     // MARK: - Init
     init(viewController: DecisionTreeViewController) {
@@ -24,7 +24,6 @@ final class DecisionTreeRouter {
                                                            imageQuality: .high,
                                                            imageSize: .large,
                                                            permissionsManager: permissionsManager,
-                                                           pageName: .imagePickerGenerator,
                                                            adapter: adapter)
         self.imagePickerController?.delegate = self
     }
@@ -41,7 +40,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func openVideo(from url: URL, item: QDMContentItem?) {
-        viewController?.stream(videoURL: url, contentItem: item, .about)
+        viewController?.stream(videoURL: url, contentItem: item)
     }
 
     func openImagePicker() {
@@ -71,10 +70,14 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func openToBeVisionPage() {
-        let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
-        let visionViewController = MyToBeVisionViewController(configurator: configurator)
-        viewController?.present(visionViewController, animated: true) {
-           self.viewController?.dismiss(animated: true, completion: nil)
+        let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
+        guard let myVisionViewController = R.storyboard
+            .myToBeVision().instantiateViewController(withIdentifier: identifier) as? MyVisionViewController else {
+                return
+        }
+        MyVisionConfigurator.configure(viewController: myVisionViewController)
+        viewController?.present(myVisionViewController, animated: true) {
+            self.viewController?.dismiss(animated: true, completion: nil)
         }
     }
 

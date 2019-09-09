@@ -40,10 +40,6 @@ struct SubsriptionReminderModel {
             }
         }
 
-        private var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
-        }
-
         private var font: UIFont {
             switch self {
             case .title: return .apercuRegular(ofSize: 37)
@@ -92,7 +88,7 @@ struct SubsriptionReminderModel {
             }
         }
 
-        func attributedText(contentSerice: ContentService) -> NSAttributedString? {
+        func attributedText() -> NSAttributedString? {
             let text = ScreenTitleService.main.localizedString(for: self.tag)
             return NSMutableAttributedString(string: text,
                                              letterSpacing: 0,

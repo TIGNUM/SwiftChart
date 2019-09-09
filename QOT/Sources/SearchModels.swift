@@ -67,7 +67,7 @@ struct Search {
         let contentItemID: Int?
         let createdAt: Date
         let searchTags: String
-        let section: Database.Section?
+        let section: ContentSection?
         let mediaURL: URL?
         let displayType: DisplayType
         let duration: String
@@ -87,7 +87,7 @@ struct Search {
                           contentItemID: nil,
                           createdAt: $0.createdAt ?? Date(),
                           searchTags: "",
-                          section: Database.Section(rawValue: $0.section.rawValue),
+                          section: ContentSection(rawValue: $0.section.rawValue),
                           mediaURL: nil,
                           displayType: displayType,
                           duration: $0.durationString)

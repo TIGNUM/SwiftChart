@@ -31,7 +31,6 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 
-    var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var coachButton: UIButton!
@@ -53,7 +52,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
             return nil
         }
-        KnowingConfigurator.configure(delegate: self, services: services, viewController: knowingViewController)
+        KnowingConfigurator.configure(delegate: self, viewController: knowingViewController)
         return navController
     }()
 
@@ -77,7 +76,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     lazy var searchViewController: SearchViewController? = {
         let configurator = SearchConfigurator.make(delegate: self)
-        let searchViewController = SearchViewController(configure: configurator, pageName: .sideBarSearch)
+        let searchViewController = SearchViewController(configure: configurator)
         return searchViewController
     }()
 

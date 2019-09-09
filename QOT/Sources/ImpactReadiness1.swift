@@ -43,8 +43,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         let score: Int = viewModel?.readinessScore ?? 0
         if score == -1 {
             ThemeText.readinessScore.apply(" - ", to: impactReadinessScore)
-        }
-        else {
+        } else {
             ThemeText.readinessScore.apply(String(score), to: impactReadinessScore)
         }
         toBeVisionImage.setImage(url: viewModel?.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())

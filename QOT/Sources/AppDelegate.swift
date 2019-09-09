@@ -9,7 +9,6 @@
 import UIKit
 import AirshipKit
 import CoreLocation
-import RealmSwift
 import Buglife
 import Alamofire
 import Kingfisher
@@ -25,7 +24,7 @@ protocol ShortcutHandlerDelegate: class {
 }
 
 @UIApplicationMain
-final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
+final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     // MARK: - Properties
 
@@ -47,7 +46,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             overlayWindow: UIWindow(frame: frame),
             normalWindow: window
         )
-        AppDelegate.appState.windowManager = windowManager
         return windowManager
     }()
     lazy var appCoordinator: AppCoordinator = {
@@ -60,7 +58,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }()
     lazy var launchHandler: LaunchHandler = {
         let launchHandler = LaunchHandler()
-        AppDelegate.appState.launchHandler = launchHandler
         return launchHandler
     }()
     static var current: AppDelegate {
@@ -77,13 +74,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
             Logger.shared.setup()
-            #if BUILD_DATABASE
-                // @warning REINSTALL before running. Must be logged in
-                __buildDatabase()
-            #endif
-            return true
         #else
             if isRunning {
                 return true
@@ -94,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             setupProgressHud()
             swizzleUIViewController()
             swizzleUINavigationController()
-            Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
             if let url = launchOptions?[.url] as? URL {
@@ -114,30 +105,30 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             setupKingfisherCache()
             qot_dal.QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
-            return true
-        #endif //#if UNIT_TEST || BUILD_DATABASE
+        #endif //#if UNIT_TEST
+        return true
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
             return
         #else
             reachabilityOfSinging()
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
-        #endif //#if UNIT_TEST || BUILD_DATABASE
+        #endif //#if UNIT_TEST
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
         return
         #else
             qot_dal.QOTService.main.reportAppStatus(.background)
-        #endif //#if UNIT_TEST || BUILD_DATABASE
+        #endif //#if UNIT_TEST
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
             return
         #else
             qot_dal.QOTService.main.reportAppStatus(.termination)
@@ -145,7 +136,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
             return
         #else
             appCoordinator.checkVersionIfNeeded()
@@ -154,16 +145,16 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             if qot_dal.SessionService.main.getCurrentSession() != nil {
                 NotificationCenter.default.post(name: .requestSynchronization, object: nil)
             }
-        #endif //#if UNIT_TEST || BUILD_DATABASE
+        #endif //#if UNIT_TEST
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        #if UNIT_TEST || BUILD_DATABASE
+        #if UNIT_TEST
             return
         #else
             updateBadgeNumber()
             qot_dal.QOTService.main.reportAppStatus(.willResignActive)
-        #endif //#if UNIT_TEST || BUILD_DATABASE
+        #endif //#if UNIT_TEST
     }
 
     func application(_ app: UIApplication,
@@ -184,7 +175,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceToken = UAUtils.deviceTokenString(fromDeviceToken: deviceToken)
-        appCoordinator.apnsDeviceTokenRegistrar.registerDeviceToken(deviceToken)
+        appCoordinator.apnsDeviceTokenRegistrator.registerDeviceToken(deviceToken)
     }
 
     func application(_ application: UIApplication,
@@ -199,7 +190,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
         guard
-            let linkString = shortcutItem.userInfo?[JsonKey.link.value] as? String,
+            let linkString = shortcutItem.userInfo?["link"] as? String,
             let link = URL(string: linkString) else { return }
         launchHandler.process(url: link)
     }
@@ -213,7 +204,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     //Interface Orientation
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        return AppDelegate.appState.orientationManager.supportedOrientations
+        return AppCoordinator.orientationManager.supportedOrientations
     }
 }
 

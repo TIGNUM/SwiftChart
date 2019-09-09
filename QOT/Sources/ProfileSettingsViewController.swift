@@ -16,7 +16,6 @@ protocol SettingsViewControllerDelegate: class {
     func didTextFieldChanged(at indexPath: IndexPath, text: String)
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String)
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
-    func didTapResetPassword(completion: @escaping (NetworkError?) -> Void)
 }
 
 final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 {
@@ -30,7 +29,6 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
     var interactor: ProfileSettingsInteractorInterface?
-    var networkManager: NetworkManager!
     var launchOptions: [LaunchOption: String?]?
 
     var shouldAllowSave: Bool = false {
@@ -199,12 +197,6 @@ extension ProfileSettingsViewController {
                     NotificationHandler.postNotification(withName: .logoutNotification)
                 }
                 QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
-            case .password:
-                let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-                let change = QOTAlertAction(title: R.string.localized.settingsChangePasswordButton()) { [weak self] (_) in
-                    self?.resetPassword()
-                }
-                QOTAlert.show(title: nil, message: R.string.localized.settingsChangePasswordTitle(), bottomItems: [cancel, change])
             default: return
             }
         case .datePicker(let title, let selectedYear, _):
@@ -212,36 +204,6 @@ extension ProfileSettingsViewController {
         default:
             break
         }
-    }
-}
-
-// MARK: - Reset password
-extension ProfileSettingsViewController {
-    func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {
-        SVProgressHUD.show()
-        let userEmail = interactor?.profile?.email ?? ""
-        networkManager.performResetPasswordRequest(username: userEmail, completion: { error in
-            SVProgressHUD.dismiss()
-            completion(error)
-        })
-    }
-
-    func resetPassword() {
-        didTapResetPassword (completion: { error in
-            if let error = error {
-                switch error.type {
-                case .noNetworkConnection:
-                    self.showAlert(type: .noNetworkConnection)
-                case .notFound:
-                    self.showAlert(type: .emailNotFound)
-                default:
-                    self.showAlert(type: .unknown)
-                }
-                return
-            }
-
-            self.showAlert(type: .resetPassword)
-        })
     }
 }
 

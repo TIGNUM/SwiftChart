@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RegistrationCodeConfigurator: AppStateAccess {
+final class RegistrationCodeConfigurator {
 
     static func make() -> (RegistrationCodeViewController, String, RegistrationDelegate) -> Void {
         return { (viewController, email, delegate) in
