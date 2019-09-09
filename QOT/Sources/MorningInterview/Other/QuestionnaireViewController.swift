@@ -446,7 +446,7 @@ extension QuestionnaireViewController {
         } else {
             indexLabel.text = String(items - index)
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
-            ThemeText.questionHintLabelRed.apply(subtitles[items - index - 1], to: hintLabel)
+            ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 
         if isTouch == true {
