@@ -273,12 +273,16 @@ extension UIView {
         layer.addSublayer(gradient)
     }
 
-    func gradientBackground(top: Bool) {
+    func gradientBackground(top: Bool,
+                            firstColor: UIColor = .carbon,
+                            secondColor: UIColor = .carbon80,
+                            thirdColor: UIColor = UIColor.black.withAlphaComponent(0.1),
+                            fourthColor: UIColor = UIColor.black.withAlphaComponent(0.0)) {
         let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [UIColor.carbon.cgColor,
-                                UIColor.carbon80.cgColor,
-                                UIColor.black.withAlphaComponent(0.1).cgColor,
-                                UIColor.black.withAlphaComponent(0.0).cgColor]
+        gradientLayer.colors = [firstColor.cgColor,
+                                secondColor.cgColor,
+                                thirdColor.cgColor,
+                                fourthColor.cgColor]
         gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
         gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
         gradientLayer.locations = [0.0, 0.54, 0.90, 1.0]

@@ -18,7 +18,6 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     private var departureModel: DepartureInfoCellViewModel?
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())

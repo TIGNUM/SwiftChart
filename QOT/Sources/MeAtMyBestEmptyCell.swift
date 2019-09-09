@@ -21,12 +21,10 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeView.level2.apply(self)
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     func configure(with: MeAtMyBestCellEmptyViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: title)
         ThemeText.sprintText.apply(with?.intro, to: intro)
         buttonText.setTitle(with?.buttonText ?? "none", for: .normal)

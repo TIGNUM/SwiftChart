@@ -14,7 +14,6 @@ final class ThoughtsCell: BaseDailyBriefCell {
     @IBOutlet weak var titleLabel: UILabel!
 
     func configure(with viewModel: ThoughtsCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.quotation.apply(viewModel?.thought, to: thoughtLabel)
         ThemeText.quoteAuthor.apply(viewModel?.author, to: authorLabel)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)

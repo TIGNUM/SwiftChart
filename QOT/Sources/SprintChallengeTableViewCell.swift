@@ -40,7 +40,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
             let gesture = UITapGestureRecognizer(target: self, action: #selector(openTool))
             self.addGestureRecognizer(gesture)
         }
-        ThemeView.level2.apply(self)
+        
         ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
         ThemeText.durationString.apply(durationString, to: durationLabel)
         var duration: String

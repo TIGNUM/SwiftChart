@@ -30,7 +30,6 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     }
 
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
         ThemeText.leaderText.apply(viewModel?.description, to: descriptionLabel)

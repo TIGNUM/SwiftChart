@@ -24,7 +24,6 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
     }
 
     func configure(with: WhatsHotLatestCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: whatsHotTitle)
         whatsHotImage.kf.setImage(with: with?.image, placeholder: R.image.preloading())
         ThemeText.author.apply(with?.author, to: authorLabel)

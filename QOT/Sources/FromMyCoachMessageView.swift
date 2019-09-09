@@ -44,7 +44,7 @@ final class FromMyCoachMessageView: UIView {
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachMessage) {
         topViewHeightConstraint.constant = isFirstView == true ? Spacing.defaultSpacing.rawValue : Spacing.fromSecondViewSpacing.rawValue
         topSeparatorView.isHidden = isFirstView == true
-        ThemeView.level2.apply(self)
+        ThemeView.level1.apply(self)
         ThemeText.performanceSubtitle.apply(data.date, to: dateLabel)
         ThemeText.performanceSectionText.apply(data.text, to: textLabel)
     }

@@ -119,7 +119,7 @@ extension UIViewController {
     }
 
     func showLoadingSkeleton(with types: [SkeletonType]) {
-        let skeleton = Skeleton.show(types)
+        let skeleton = Skeleton.show(types, backgroundColor: self.view.backgroundColor)
         view.addSubview(skeleton)
         skeleton.layer.zPosition = 10000
         skeleton.addConstraints(to: view)

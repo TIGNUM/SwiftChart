@@ -34,6 +34,7 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ml6-kf-324">
                         <rect key="frame" x="0.0" y="0.0" width="441" height="347"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="347" id="IUV-2p-vEK"/>
                         </constraints>
@@ -61,7 +62,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMPACT READINESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="79.666666666666686" width="175.66666666666666" height="24"/>
+                                <rect key="frame" x="24" y="80" width="175.66666666666666" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
                                 </constraints>
@@ -72,10 +73,10 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="8.5" id="5KI-sN-rwF"/>
+                            <constraint firstAttribute="bottom" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="8" id="5KI-sN-rwF"/>
                             <constraint firstAttribute="height" constant="112" id="6UL-tK-mVV"/>
                             <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="top" constant="64" id="OQc-mB-PAF"/>
-                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="top" secondItem="ft1-S7-msi" secondAttribute="bottom" constant="14.5" id="Rc0-74-rpC"/>
+                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="top" secondItem="ft1-S7-msi" secondAttribute="bottom" constant="15" id="Rc0-74-rpC"/>
                             <constraint firstItem="ft1-S7-msi" firstAttribute="leading" secondItem="13j-PD-rak" secondAttribute="leading" constant="24" id="aVv-RQ-kFS"/>
                             <constraint firstItem="IAV-Ov-hU9" firstAttribute="leading" secondItem="13j-PD-rak" secondAttribute="leading" constant="24" id="yki-tr-XGH"/>
                         </constraints>
@@ -100,6 +101,7 @@
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
                         <rect key="frame" x="24" y="444" width="393" height="1.6666666666666856"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <string key="text">On days that you don't feel your best let your High Performance Mindset take over. Spend some time visualizing, in detail, what it will look like to Rule Your Impact today.</string>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -148,6 +150,7 @@
                     <constraint firstItem="6GA-1H-dWQ" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="top" id="zHr-38-Mqy"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="bucketTitle" destination="IAV-Ov-hU9" id="0Qz-yG-4QW"/>
                 <outlet property="content" destination="w4g-tE-UTh" id="46l-wH-Uvn"/>

@@ -68,7 +68,6 @@ final class Level5Cell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setUpButtons()
-        ThemeView.level2.apply(self)
     }
     //
     func setUpButtons() {

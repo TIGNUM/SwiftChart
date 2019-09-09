@@ -11,6 +11,11 @@ import Foundation
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     private var markAsSeenTimer: Timer?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ThemeView.level1.apply(self)
+    }
+
     func setTimer(with timeInterval: TimeInterval, completion: @escaping() -> Void) {
         if markAsSeenTimer?.isValid == true {
             return

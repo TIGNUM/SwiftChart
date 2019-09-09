@@ -43,7 +43,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
         let lowercaseTitle = viewModel?.sprintTitle?.lowercased()
         ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
