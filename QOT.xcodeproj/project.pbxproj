@@ -663,6 +663,8 @@
 		8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2F7252313F4470002F29F /* StreamVideoWorker.swift */; };
 		8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */; };
 		8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */; };
+		8DC849B32326463900C4D4A3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B12326463900C4D4A3 /* Reachability.m */; };
+		8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC849B5232648C300C4D4A3 /* QOTReachability.swift */; };
 		8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */; };
 		8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */; };
 		8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */; };
@@ -1982,6 +1984,9 @@
 		8DC2F7252313F4470002F29F /* StreamVideoWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoWorker.swift; sourceTree = "<group>"; };
 		8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSigningWorker.swift; sourceTree = "<group>"; };
 		8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Registration.swift"; sourceTree = "<group>"; };
+		8DC849B12326463900C4D4A3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
+		8DC849B22326463900C4D4A3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		8DC849B5232648C300C4D4A3 /* QOTReachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTReachability.swift; sourceTree = "<group>"; };
 		8DD6B5932308190800C582A4 /* UIViewController+ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+ActivityIndicator.swift"; sourceTree = "<group>"; };
 		8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHelperView.swift; sourceTree = "<group>"; };
 		8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoHelperView.xib; sourceTree = "<group>"; };
@@ -2956,6 +2961,7 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				8DC849B4232648B000C4D4A3 /* QOTReachability */,
 				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
 				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
 				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
@@ -4269,6 +4275,23 @@
 			name = "UIViewController+StreamVideo";
 			sourceTree = "<group>";
 		};
+		8DC849B02326462A00C4D4A3 /* Rechability */ = {
+			isa = PBXGroup;
+			children = (
+				8DC849B22326463900C4D4A3 /* Reachability.h */,
+				8DC849B12326463900C4D4A3 /* Reachability.m */,
+			);
+			name = Rechability;
+			sourceTree = "<group>";
+		};
+		8DC849B4232648B000C4D4A3 /* QOTReachability */ = {
+			isa = PBXGroup;
+			children = (
+				8DC849B5232648C300C4D4A3 /* QOTReachability.swift */,
+			);
+			name = QOTReachability;
+			sourceTree = "<group>";
+		};
 		8DECF9A622DDD32F00451E65 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -5094,6 +5117,7 @@
 		CB78420F1FB311DC00C91546 /* ObjC */ = {
 			isa = PBXGroup;
 			children = (
+				8DC849B02326462A00C4D4A3 /* Rechability */,
 				CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */,
 				CB78420B1FB30DA800C91546 /* EKParticipant+ObjC.h */,
 				CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */,
@@ -6501,7 +6525,6 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
 				"${BUILT_PRODUCTS_DIR}/BonMot/BonMot.framework",
 				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
@@ -6525,7 +6548,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Anchorage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BonMot.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
@@ -6629,7 +6651,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				$SRCROOT/QOT/Generated/R.generated.swift,
+				"$SRCROOT/QOT/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7177,6 +7199,7 @@
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
+				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
 				B4AB48C8230BF982003B3C1F /* MyDataExplanationRouter.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
 				B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */,
@@ -7416,6 +7439,7 @@
 				5F8A89972296DEEC0011A05C /* MyVisionInteractor.swift in Sources */,
 				9CFA1067231418380023E11E /* ImpactReadinessType.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
+				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
 				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
@@ -8732,10 +8756,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
-					Resources/Animations.xcassets/QOT,
-					Logo,
-				);
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

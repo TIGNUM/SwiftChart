@@ -1,6 +1,5 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
-  - Alamofire (4.9.0)
   - Anchorage (4.3.1)
   - Bond (7.5.0):
     - Differ (~> 1.3)
@@ -38,7 +37,6 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
-  - Alamofire
   - Anchorage
   - "Bond (from `git@github.com:SanggeonPark/Bond.git`)"
   - BonMot
@@ -59,7 +57,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
-    - Alamofire
     - Anchorage
     - BonMot
     - Buglife
@@ -99,7 +96,6 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Alamofire: afc3e7c6db61476cb45cdd23fed06bad03bbc321
   Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   Bond: 17f2d81e08cea3d95713eed33611176376f9056d
   BonMot: aa82119ff2ffa184223d8a31c72aed84fbb009e0
@@ -121,6 +117,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: 37fee06690d73092a18ba00f276c49be144fce27
+PODFILE CHECKSUM: 1e77a98fc2da16d26234a6b04da23ffe8fcbef6c
 
 COCOAPODS: 1.7.5

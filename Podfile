@@ -21,7 +21,6 @@ target 'QOT' do
   shared_pods
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'Alamofire'
   pod 'ActionSheetPicker-3.0'
   pod 'RSKImageCropper'
   pod 'BonMot'

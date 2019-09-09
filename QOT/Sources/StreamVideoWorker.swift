@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 import qot_dal
 
 protocol StreamVideoWorkerDelegate: class {
@@ -24,7 +23,7 @@ final class StreamVideoWorker {
     weak var delegate: StreamVideoWorkerDelegate?
 
     private let service = UserStorageService.main
-    private let reachability = NetworkReachabilityManager()
+    private let reachability = QOTReachability()
 
     init(content: QDMContentItem?) {
         self.content = content
@@ -47,7 +46,7 @@ final class StreamVideoWorker {
     }
 
     var isConnectedToWiFi: Bool {
-        return reachability?.isReachableOnEthernetOrWiFi ?? false
+        return reachability.isReachableOnEthernetOrWiFi
     }
 
     lazy var downloadButtonTitle: String = {

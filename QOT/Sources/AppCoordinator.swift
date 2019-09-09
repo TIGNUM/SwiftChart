@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Alamofire
 import UserNotifications
 import AirshipKit
 import Buglife

@@ -8,13 +8,12 @@
 
 import UIKit
 import qot_dal
-import Alamofire
 
 final class MyLibraryUserStorageWorker {
     private let service = UserStorageService.main
     private var storages = [QDMUserStorage]()
     private let type: UserStorageType
-    private let reachability = NetworkReachabilityManager()
+    private let reachability = QOTReachability()
 
     init(type: UserStorageType) {
         self.type = type
@@ -219,10 +218,7 @@ extension MyLibraryUserStorageWorker {
     }
 
     var isConnectedToWiFi: Bool {
-        if let wifi = reachability?.isReachableOnEthernetOrWiFi {
-            return wifi
-        }
-        return false
+        return reachability.isReachableOnEthernetOrWiFi
     }
 }
 

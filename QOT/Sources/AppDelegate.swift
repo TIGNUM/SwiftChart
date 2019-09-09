@@ -10,7 +10,6 @@ import UIKit
 import AirshipKit
 import CoreLocation
 import Buglife
-import Alamofire
 import Kingfisher
 import SVProgressHUD
 import qot_dal
@@ -228,7 +227,7 @@ private extension AppDelegate {
 
     func reachabilityOfSinging() {
         if let abstractController = AppDelegate.topViewController() as? AbstractFormViewController {
-            if ((abstractController.reachability?.isReachable) ?? false) == false {
+            if abstractController.reachability.isReachable == false {
                 abstractController.showSettingsCustomAlert()
             } else {
                 abstractController.alert.dismiss(animated: true, completion: nil)
