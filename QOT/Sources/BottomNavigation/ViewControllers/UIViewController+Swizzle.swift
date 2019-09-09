@@ -388,7 +388,7 @@ extension UIViewController {
     }
 
     @objc open func didTapDismissButton() {
-        NotificationCenter.default.post(name: .didTabDismissBottomNavigation, object: nil)
+        NotificationCenter.default.post(name: .didTapDismissBottomNavigation, object: nil)
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
         trackUserEvent(.CLOSE, action: .TAP)

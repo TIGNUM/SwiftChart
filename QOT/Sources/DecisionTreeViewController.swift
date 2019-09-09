@@ -108,8 +108,8 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
         trackPage()
         updateNavigationItems()
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didTabDismiss),
-                                               name: .didTabDismissBottomNavigation,
+                                               selector: #selector(didTapDismiss),
+                                               name: .didTapDismissBottomNavigation,
                                                object: nil)
     }
 
@@ -124,7 +124,7 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     }
 
     deinit {
-        NotificationCenter.default.removeObserver(self, name: .didTabDismissBottomNavigation, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didTapDismissBottomNavigation, object: nil)
     }
 }
 
@@ -188,7 +188,7 @@ private extension DecisionTreeViewController {
 
 // MARK: - Actions
 private extension DecisionTreeViewController {
-    @objc func didTabDismiss() {
+    @objc func didTapDismiss() {
         setShouldEndEditingTrue()
         dismiss()
         removeObservers()

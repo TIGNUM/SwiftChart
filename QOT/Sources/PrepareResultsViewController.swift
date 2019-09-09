@@ -49,7 +49,7 @@ final class PrepareResultsViewController: UIViewController, ScreenZLevel3 {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(dismissView),
-                                               name: .didTabDismissBottomNavigation,
+                                               name: .didTapDismissBottomNavigation,
                                                object: nil)
     }
 
@@ -60,7 +60,7 @@ final class PrepareResultsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: .didTabDismissBottomNavigation, object: nil)
+        NotificationCenter.default.removeObserver(self, name: .didTapDismissBottomNavigation, object: nil)
     }
 }
 

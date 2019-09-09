@@ -45,7 +45,10 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.present(toolsViewController, animated: true, completion: nil)
             }
         case .sprint:
-            presentDecisionTree(.sprint)
+            let configurator = DTSprintConfigurator.make()
+            let controller = DTSprintViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+//            presentDecisionTree(.sprint)
         case .event:
             presentDecisionTree(.prepare)
         case .challenge:

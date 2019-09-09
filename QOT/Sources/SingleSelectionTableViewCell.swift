@@ -10,54 +10,45 @@ import UIKit
 import qot_dal
 
 protocol SingleSelectionCellDelegate: class {
-    func didSelect(_ answer: QDMAnswer)
+    func didSelect(_ answer: ViewModel.Answer)
 }
 
 final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-    private var question: QDMQuestion?
-    private var type = DecisionTreeType.mindsetShifter
-    private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     weak var delegate: SingleSelectionCellDelegate?
+    private var rightAnswer: ViewModel.Answer?
+    private var leftAnswer: ViewModel.Answer?
     @IBOutlet private weak var rightOptionButton: AnswerButton!
     @IBOutlet private weak var leftOptionButton: AnswerButton!
-    @IBOutlet private weak var rightWidthContraint: NSLayoutConstraint!
-    @IBOutlet private weak var leftWidthConstraint: NSLayoutConstraint!
 }
 
 // MARK: - Configuration
 extension SingleSelectionTableViewCell {
-    func configure(for question: QDMQuestion,
-                   type: DecisionTreeType?,
-                   selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
-        self.type = type ?? .mindsetShifter
-        self.question = question
-        self.selectedAnswers = selectedAnswers
-        let rightOption = question.answers.at(index: 0)
-        let leftOption = question.answers.at(index: 1)
-        let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID == rightOption?.remoteID }.count > 0
-        let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID == leftOption?.remoteID }.count > 0
-        rightOptionButton.configure(title: rightOption?.subtitle ?? "", isSelected: rightIsSelected )
-        leftOptionButton.configure(title: leftOption?.subtitle ?? "", isSelected: leftIsSelected)
-        rightOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
-        leftOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
+    func configure(for rightAnswer: ViewModel.Answer?, leftAnswer: ViewModel.Answer?) {
+        guard let rightAnswer = rightAnswer, let leftAnswer = leftAnswer else { return }
+        rightOptionButton.configure(title: rightAnswer.title, isSelected: rightAnswer.selected)
+        leftOptionButton.configure(title: leftAnswer.title, isSelected: leftAnswer.selected)
+        rightOptionButton.isUserInteractionEnabled = (rightAnswer.selected || leftAnswer.selected) == false
+        leftOptionButton.isUserInteractionEnabled = (rightAnswer.selected || leftAnswer.selected) == false
+        rightOptionButton.backgroundColor = rightAnswer.backgroundColor
+        leftOptionButton.backgroundColor = leftAnswer.backgroundColor
+        self.rightAnswer = rightAnswer
+        self.leftAnswer = leftAnswer
     }
 }
 
 // MARK: - Actions
 extension SingleSelectionTableViewCell {
     @IBAction func didTapRightOption() {
-        rightOptionButton.switchBackgroundColor()
-        if let question = question {
-            delegate?.didSelect(question.answers[0])
+        if let answer = rightAnswer {
+            delegate?.didSelect(answer)
         }
     }
 
     @IBAction func didTapLeftOption() {
-        leftOptionButton.switchBackgroundColor()
-        if let question = question {
-            delegate?.didSelect(question.answers[1])
+        if let answer = leftAnswer {
+            delegate?.didSelect(answer)
         }
     }
 }

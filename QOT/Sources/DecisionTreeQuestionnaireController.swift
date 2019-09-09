@@ -158,7 +158,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
         case 1: heightAnswerCell = cell.frame.height
         default: break
         }
-        recalculateContentInsets(at: indexPath)
+//        recalculateContentInsets(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -228,8 +228,8 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.yesOrNo.rawValue,
                  AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: question, type: interactor?.type, selectedAnswers: selectedAnswers)
-                cell.delegate = self
+//                cell.configure(for: question, type: interactor?.type, selectedAnswers: selectedAnswers)
+//                cell.delegate = self
                 return cell
             case AnswerType.singleSelection.rawValue,
                  AnswerType.multiSelection.rawValue:
@@ -241,12 +241,11 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                     return cell
                 default:
                     let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                    cell.configure(for: filteredAnswers,
-                                   question: question,
-                                   type: interactor?.type,
-                                   selectedAnswers: selectedAnswers,
-                                   maxPossibleSelections: maxPossibleSelections)
-                    cell.delegate = self
+//                    cell.configure(for: filteredAnswers,
+//                                   question: question,
+//                                   selectedAnswers: selectedAnswers,
+//                                   maxPossibleSelections: maxPossibleSelections)
+//                    cell.delegate = self
                     return cell
                 }
             case AnswerType.userInput.rawValue:
@@ -295,20 +294,20 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 
 // MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
-    func recalculateContentInsets(at indexPath: IndexPath) {
-        if question.answerType == AnswerType.openCalendarEvents.rawValue
-            || question.key == QuestionKey.Prepare.SelectExisting {
-            return tableView.contentInset = .zero
-        }
-        if question.answerType == AnswerType.userInput.rawValue {
-            return tableView.contentInset = .zero
-        }
-        let isTypingQuestion = (CellType.question.rawValue == indexPath.section && question.hasTypingAnimation)
-        let footerHeight: CGFloat = isTypingQuestion ? .TypingFooter : 0
-        let cellsHeight = heightQuestionCell + heightAnswerCell + footerHeight
-        let difference = tableView.frame.height - cellsHeight
-        tableView.contentInset = UIEdgeInsets(top: max(difference, 0), left: 0, bottom: 0, right: 0)
-    }
+//    func recalculateContentInsets(at indexPath: IndexPath) {
+//        if question.answerType == AnswerType.openCalendarEvents.rawValue
+//            || question.key == QuestionKey.Prepare.SelectExisting {
+//            return tableView.contentInset = .zero
+//        }
+//        if question.answerType == AnswerType.userInput.rawValue {
+//            return tableView.contentInset = .zero
+//        }
+//        let isTypingQuestion = (CellType.question.rawValue == indexPath.section && question.hasTypingAnimation)
+//        let footerHeight: CGFloat = isTypingQuestion ? .TypingFooter : 0
+//        let cellsHeight = heightQuestionCell + heightAnswerCell + footerHeight
+//        let difference = tableView.frame.height - cellsHeight
+//        tableView.contentInset = UIEdgeInsets(top: max(difference, 0), left: 0, bottom: 0, right: 0)
+//    }
 
     func notifyCellDidAppearIfNeeded() {
         if QuestionKey.shouldNotifyAnswerDidAppear(question.key) {
@@ -318,23 +317,23 @@ private extension DecisionTreeQuestionnaireViewController {
     }
 }
 
-// MARK: - SingleSelectionCellDelegate
-extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
-    func didSelect(_ answer: QDMAnswer) {
-        delegate?.didTapBinarySelection(answer)
-    }
-}
+//// MARK: - SingleSelectionCellDelegate
+//extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
+//    func didSelect(_ answer: QDMAnswer) {
+//        delegate?.didTapBinarySelection(answer)
+//    }
+//}
 
 // MARK: - MultiselectionCellDelegate
-extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate {
-    func didSelectAnswer(_ answer: QDMAnswer) {
-        delegate?.didSelectAnswer(answer)
-    }
-
-    func didDeSelectAnswer(_ answer: QDMAnswer) {
-        delegate?.didDeSelectAnswer(answer)
-    }
-}
+//extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate {
+//    func didSelectAnswer(_ answer: QDMAnswer) {
+//        delegate?.didSelectAnswer(answer)
+//    }
+//
+//    func didDeSelectAnswer(_ answer: QDMAnswer) {
+//        delegate?.didDeSelectAnswer(answer)
+//    }
+//}
 
 // MARK: - navigation bar
 extension DecisionTreeQuestionnaireViewController {

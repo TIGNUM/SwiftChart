@@ -53,6 +53,7 @@ enum ThemeView {
     case qotAlert
     case imageOverlap
     case qSearch
+    case chatbot
 
     var color: UIColor {
         switch self {
@@ -78,7 +79,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch:
+        case .audioBar, .headerLine, .qSearch, .chatbot:
             return Palette.sand
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)

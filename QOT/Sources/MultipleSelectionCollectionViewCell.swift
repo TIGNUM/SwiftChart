@@ -10,8 +10,8 @@ import UIKit
 import qot_dal
 
 protocol MultipleSelectionCollectionViewCellDelegate: class {
-    func didSelectAnswer(_ answer: QDMAnswer)
-    func didDeSelectAnswer(_ answer: QDMAnswer)
+    func didSelectAnswer(_ answer: ViewModel.Answer)
+    func didDeSelectAnswer(_ answer: ViewModel.Answer)
 }
 
 final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
@@ -21,9 +21,7 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
     @IBOutlet private weak var selectionButton: SelectionButton!
     private var maxSelections = 0
     private var selectionCounter = 0
-    private var isAnswered = false
-    private var answer: QDMAnswer?
-    private var type = DecisionTreeType.mindsetShifter
+    private var answer: ViewModel.Answer?
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -37,35 +35,27 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
 // MARK: - Configure
 extension MultipleSelectionCollectionViewCell {
-    func configure(for answer: QDMAnswer,
-                   type: DecisionTreeType?,
-                   isSelected: Bool,
+    func configure(for answer: ViewModel.Answer,
                    maxSelections: Int,
                    selectionCounter: Int) {
-        self.type = type ?? .mindsetShifter
         self.answer = answer
         self.maxSelections = maxSelections
-        self.isAnswered = isSelected
         self.selectionCounter = selectionCounter
-        selectionButton.configure(title: answer.subtitle ?? "", isSelected: isSelected)
+        selectionButton.configure(title: answer.title, isSelected: answer.selected)
     }
 }
 
 // MARK: - Actions
 extension MultipleSelectionCollectionViewCell {
     @IBAction func didTapButton() {
-        guard let answer = answer else { return }
-        if isAnswered == true {
+        guard var answer = answer else { return }
+        if answer.selected == true {
             delegate?.didDeSelectAnswer(answer)
-            if answer.canUpdateAnswerButton == true {
-                selectionButton?.switchBackgroundColor()
-                isAnswered = false
-            }
+            selectionButton?.switchBackgroundColor()
+            answer.setSelected(false)
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
-            if answer.canUpdateAnswerButton == true {
-                selectionButton?.switchBackgroundColor()
-                isAnswered = true
-            }
+            selectionButton?.switchBackgroundColor()
+            answer.setSelected(true)
             delegate?.didSelectAnswer(answer)
         }
     }

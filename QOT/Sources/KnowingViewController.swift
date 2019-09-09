@@ -65,7 +65,7 @@ private extension KnowingViewController {}
 
 extension KnowingViewController: KnowingViewControllerInterface {
     func scrollToSection(_ section: Int) {
-        
+
     }
 
     func setupView() {
