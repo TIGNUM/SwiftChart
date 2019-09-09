@@ -15,13 +15,15 @@ final class BeSpokeCellViewModel: BaseDailyBriefViewModel {
     var title: String?
     var description: String?
     let image: String?
+    let copyright: String?
     let bucketTitle: String?
 
     // MARK: - INIT
-    init(bucketTitle: String?, title: String?, description: String?, image: String?, domainModel: QDMDailyBriefBucket?) {
+    init(bucketTitle: String?, title: String?, description: String?, image: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.description = description
         self.image = image
+        self.copyright = copyright
         self.bucketTitle = bucketTitle
         super.init(domainModel)
     }
@@ -34,6 +36,7 @@ final class BeSpokeCellViewModel: BaseDailyBriefViewModel {
             title == source.title &&
             image == source.image &&
             description == source.description &&
+            copyright == source.copyright &&
             bucketTitle == source.bucketTitle
     }
 }

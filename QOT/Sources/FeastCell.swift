@@ -22,5 +22,6 @@ final class FeastCell: BaseDailyBriefCell {
     func configure(with viewModel: FeastCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         feastImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
+        copyrightURL = viewModel?.copyright ?? ""
     }
 }

@@ -16,6 +16,7 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     @IBOutlet private weak var copyrightLabel: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
+    var copyrightURL: String?
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)

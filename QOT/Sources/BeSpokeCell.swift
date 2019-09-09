@@ -29,5 +29,6 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.bespokeTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.bespokeText.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
+        copyrightURL = viewModel?.copyright ?? ""
     }
 }
