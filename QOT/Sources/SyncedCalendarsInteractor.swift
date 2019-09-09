@@ -40,11 +40,7 @@ private extension SyncedCalendarsInteractor {
     }
 
     func getViewTitle() {
-        dispatchGroup.enter()
-        worker.getViewTitle { [unowned self] (viewTitle) in
-            self.viewTitle = viewTitle
-            self.dispatchGroup.leave()
-        }
+         self.viewTitle = worker.viewTitle
     }
 
     func getCalendarData() {

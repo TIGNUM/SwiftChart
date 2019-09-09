@@ -15,12 +15,14 @@ final class FeastCellViewModel: BaseDailyBriefViewModel {
     var title: String?
     var image: String?
     var remoteID: Int?
+    var copyright: String?
 
     // MARK: - Init
-    internal init(title: String?, image: String?, remoteID: Int?, domainModel: QDMDailyBriefBucket?) {
+    internal init(title: String?, image: String?, remoteID: Int?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
         self.image = image
         self.title = title
         self.remoteID = remoteID
+        self.copyright = copyright
         super.init(domainModel)
     }
 
@@ -31,6 +33,7 @@ final class FeastCellViewModel: BaseDailyBriefViewModel {
         return super.isContentEqual(to: source) &&
             title == source.title &&
             image == source.image &&
-            remoteID == source.remoteID
+            remoteID == source.remoteID &&
+            copyright == source.copyright
     }
 }

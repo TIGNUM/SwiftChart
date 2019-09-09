@@ -32,44 +32,44 @@ enum SkeletonType {
         return SkeletonType.loader
     }
 
-    var objectView: BaseSkeletonView {
+    var objectView: SkeletonBaseView {
         switch self {
         case .oneLineHeading:
-            return OneLineHeading.instantiateFromNib()
+            return SkeletonOneLineHeading.instantiateFromNib()
         case .oneLineBlock:
-            return OneLineBlock.instantiateFromNib()
+            return SkeletonOneLineBlock.instantiateFromNib()
         case .twoLinesAndTag:
-            return TwoLinesAndTag.instantiateFromNib()
+            return SkeletonTwoLinesAndTag.instantiateFromNib()
         case .twoLinesAndImage:
-            return TwoLinesAndImage.instantiateFromNib()
+            return SkeletonTwoLinesAndImage.instantiateFromNib()
         case .threeLinesAndTwoColumns:
-            return ThreeLinesAndTwoColumns.instantiateFromNib()
+            return SkeletonThreeLinesAndTwoColumns.instantiateFromNib()
         case .threeLinesLeftColumn:
-            return ThreeLinesLeftColumn.instantiateFromNib()
+            return SkeletonThreeLinesLeftColumn.instantiateFromNib()
         case .fiveLinesWithTopBroad:
-            return FiveLinesWithTopBroad.instantiateFromNib()
+            return SkeletonFiveLinesWithTopBroad.instantiateFromNib()
         case .dailyBrief:
-            return DailyBrief.instantiateFromNib()
+            return SkeletonDailyBrief.instantiateFromNib()
         case .myQOT:
-            return MyQOT.instantiateFromNib()
+            return SkeletonMyQOT.instantiateFromNib()
         case .padHeading:
-            return PadHeading.instantiateFromNib()
+            return SkeletonPadHeading.instantiateFromNib()
         case .myQOTCell:
-            return MyQOTCell.instantiateFromNib()
+            return SkeletonMyQOTCell.instantiateFromNib()
         case .myPrepsHeader:
-            return MyPrepsHeader.instantiateFromNib()
+            return SkeletonMyPrepsHeader.instantiateFromNib()
         case .myPrepsCell:
-            return MyPrepsCell.instantiateFromNib()
+            return SkeletonMyPrepsCell.instantiateFromNib()
         case .myDataGraph:
-            return MyDataGraph.instantiateFromNib()
+            return SkeletonMyDataGraph.instantiateFromNib()
         case .dailyCheckInHeader:
-            return DailyCheckInHeader.instantiateFromNib()
+            return SkeletonDailyCheckInHeader.instantiateFromNib()
         case .dailyCheckInRow:
-            return DailyCheckInRow.instantiateFromNib()
+            return SkeletonDailyCheckInRow.instantiateFromNib()
         case .dailyCheckInFooter:
-            return DailyCheckInFooter.instantiateFromNib()
+            return SkeletonDailyCheckInFooter.instantiateFromNib()
         default:
-            return Loader.instantiateFromNib()
+            return SkeletonLoader.instantiateFromNib()
         }
     }
 }

@@ -38,7 +38,7 @@
                         <constraint firstAttribute="width" constant="16" id="f8x-qy-stk"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
                     <rect key="frame" x="20" y="97" width="367" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="G15-Ey-uAu"/>

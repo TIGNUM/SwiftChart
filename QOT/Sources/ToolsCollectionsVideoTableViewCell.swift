@@ -27,17 +27,8 @@ final class ToolsCollectionsVideoTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, timeToWatch: String, imageURL: URL?) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        detailLabel.attributedText = NSAttributedString(string: timeToWatch,
-                                                        letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: UIColor.carbon.withAlphaComponent(0.4),
-                                                        alignment: .left)
+        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotToolsSubtitle.apply(timeToWatch, to: detailLabel)
         previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         mediaIconImageView.image = R.image.ic_camera_tools()?.withRenderingMode(.alwaysTemplate)
     }

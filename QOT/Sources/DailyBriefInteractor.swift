@@ -470,13 +470,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             createFeastForEyesList.append(FeastCellViewModel(title: "",
                                                              image: "",
                                                              remoteID: 1,
+                                                             copyright: "",
                                                              domainModel: feastForEyes))
             return createFeastForEyesList
 
         }
-        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText,
+        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
                                                          image: collection.thumbnailURLString ?? "",
                                                          remoteID: collection.contentItems.first?.remoteID,
+                                                         copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                                          domainModel: feastForEyes))
         return createFeastForEyesList
     }
@@ -500,14 +502,16 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                title: "",
                                                                description: "",
                                                                image: "",
+                                                               copyright: "",
                                                                domainModel: nil))
             return createBeSpokeModelList
 
         }
         createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: beSpoke.bucketText?.contentItems.first?.valueText,
                                                            title: collection.title,
-                                                           description: collection.contentItems.first?.valueText,
+                                                           description: collection.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
                                                            image: collection.thumbnailURLString ?? "",
+                                                           copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                                            domainModel: beSpoke))
         return createBeSpokeModelList
     }
@@ -673,7 +677,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             return departureInfoList
         }
         departureInfoList.append(DepartureInfoCellViewModel(title: depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
-                                                            subtitle: depatureInfo.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
+                                                            subtitle: depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText,
                                                             text: collection.contentItems.first?.valueText,
                                                             image: collection.thumbnailURLString ?? "",
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,

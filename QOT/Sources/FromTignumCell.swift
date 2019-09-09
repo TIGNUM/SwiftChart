@@ -36,7 +36,6 @@ final class FromTignumCell: BaseDailyBriefCell {
     }
 
     func configure(with viewModel: FromTignumCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.bespokeText.apply(viewModel?.text, to: fromTignumText)
     }

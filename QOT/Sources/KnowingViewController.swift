@@ -34,6 +34,7 @@ final class KnowingViewController: HomeViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(color: ThemeView.level1.color)
         interactor?.loadData()
     }
 
@@ -64,9 +65,7 @@ private extension KnowingViewController {}
 // MARK: - KnowingViewControllerInterface
 
 extension KnowingViewController: KnowingViewControllerInterface {
-    func scrollToSection(_ section: Int) {
-
-    }
+    func scrollToSection(_ section: Int) {}
 
     func setupView() {
         navigationController?.navigationBar.isHidden = true

@@ -27,7 +27,6 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     }
 
     func configure(with viewModel: MeAtMyBestCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: meAtMyBestTitle)
         ThemeText.sprintText.apply(viewModel?.intro, to: meAtMyBestLabel)
         ThemeText.tbvStatement.apply(viewModel?.tbvStatement, to: meAtMyBestContent)

@@ -47,7 +47,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                 return Tool.Item(remoteID: toolItemId,
                                  categoryTitle: collection.contentCategoryTitle ?? "",
                                  title: collection.title,
-                                 durationString: collection.durationString,
+                                 durationString: collection.contentItems.first?.durationString ?? "",
                                  imageURL: URL(string: collection.contentItems.first?.valueImageURL ?? ""),
                                  mediaURL: URL(string: (collection.contentItems.first?.valueMediaURL ?? "")),
                                  duration: collection.contentItems.first?.valueDuration ?? 0,

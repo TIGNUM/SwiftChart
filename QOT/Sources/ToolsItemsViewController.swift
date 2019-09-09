@@ -72,13 +72,6 @@ final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
     }
 }
 
-// MARK: - Bottom Navigation
-extension ToolsItemsViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
-    }
-}
-
 // MARK: - Private
 
 private extension ToolsItemsViewController {
@@ -86,6 +79,7 @@ private extension ToolsItemsViewController {
     func setupTableView() {
         tableView.registerDequeueable(ToolsCollectionsAudioTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
     }
 }
 
@@ -127,10 +121,6 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                                                            subtitle: interactor?.headerSubtitle ?? "")
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIImageView(image: R.image.footer_light())
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -215,5 +205,9 @@ extension ToolsItemsViewController {
 extension ToolsItemsViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
     }
 }

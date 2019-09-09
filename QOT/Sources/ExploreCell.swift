@@ -17,7 +17,6 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet weak var strategyView: UIView!
 
     func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: self.bucketTitle)
         ThemeText.bespokeText.apply(introText, to: introTextLabel)
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)

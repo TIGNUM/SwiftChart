@@ -10,10 +10,9 @@ import Foundation
 import qot_dal
 
 final class SyncedCalendarsWorker {
-
-    func getViewTitle(_ completion: @escaping (String) -> Void) {
-        completion("synced_calendars_synced_calendars") // CHANGE ME : NEED TO USE ScreenTitleService
-    }
+    lazy var viewTitle: String = {
+        return ScreenTitleService.main.localizedString(for: .syncedCalendars)
+    }()
 
     func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {
         qot_dal.CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in

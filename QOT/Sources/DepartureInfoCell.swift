@@ -16,9 +16,9 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     @IBOutlet private weak var copyrightLabel: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
+    var copyrightURL: String?
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())

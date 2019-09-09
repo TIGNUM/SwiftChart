@@ -22,7 +22,6 @@ final class SolveReminderCell: BaseDailyBriefCell {
     }
 
     func configure(with viewModel: SolveReminderCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
         ThemeText.solveQuestions.apply(viewModel?.question1, to: question1)
         ThemeText.solveQuestions.apply(viewModel?.question2, to: question2)

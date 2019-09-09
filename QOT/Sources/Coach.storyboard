@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="100" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-Rg-04A">
-                                <rect key="frame" x="0.0" y="30" width="414" height="629"/>
+                                <rect key="frame" x="0.0" y="30" width="414" height="644"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="sectionIndexBackgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
@@ -31,9 +31,9 @@
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="tcp-Rg-04A" firstAttribute="trailing" secondItem="9us-Lr-JIC" secondAttribute="trailing" id="I5o-O3-qHb"/>
+                            <constraint firstItem="9us-Lr-JIC" firstAttribute="bottom" secondItem="tcp-Rg-04A" secondAttribute="bottom" constant="100" id="Ozn-c3-OqZ"/>
                             <constraint firstItem="tcp-Rg-04A" firstAttribute="top" secondItem="9us-Lr-JIC" secondAttribute="top" constant="30" id="R1X-BW-PCp"/>
                             <constraint firstItem="tcp-Rg-04A" firstAttribute="leading" secondItem="9us-Lr-JIC" secondAttribute="leading" id="Y3G-NC-b7p"/>
-                            <constraint firstItem="9us-Lr-JIC" firstAttribute="bottom" secondItem="tcp-Rg-04A" secondAttribute="bottom" constant="115" id="jc5-YN-Y7B" userLabel="Safe Area.bottom = Table View.bottom + 90"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="9us-Lr-JIC"/>
                     </view>

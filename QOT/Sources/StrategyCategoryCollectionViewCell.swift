@@ -28,7 +28,6 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         let bkView = UIView()
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView

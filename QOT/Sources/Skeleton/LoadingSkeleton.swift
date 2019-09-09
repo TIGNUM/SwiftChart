@@ -10,12 +10,14 @@ import UIKit
 
 final class LoadingSkeleton: UIView {
 
-    func showLoaderSkeleton() {
-        showSkeleton(with: .loader)
+    func showLoaderSkeleton(backgroundColor: UIColor? = UIColor.carbon) {
+        showSkeleton(with: .loader, backgroundColor: backgroundColor)
     }
 
-    func showSkeleton(with type: SkeletonType = .loader, delay: Double = 0.0) {
+    func showSkeleton(with type: SkeletonType = .loader, delay: Double = 0.0, backgroundColor: UIColor? = .carbon) {
         let objectView = type.objectView
+        objectView.containerView.backgroundColor = backgroundColor
+        self.backgroundColor = backgroundColor
         self.addSubview(objectView)
         objectView.startAnimating(delay)
         objectView.addConstraints(to: self)

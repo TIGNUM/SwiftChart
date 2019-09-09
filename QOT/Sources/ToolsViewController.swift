@@ -59,6 +59,7 @@ private extension ToolsViewController {
 
     func setupTableView() {
         tableView.registerDequeueable(ToolsTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
     }
 }
 
@@ -69,6 +70,10 @@ private extension ToolsViewController {
     @IBAction func closeButton(_ sender: Any) {
         trackUserEvent(.CLOSE, action: .TAP)
         navigationController?.popToRootViewController(animated: true)
+    }
+
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
     }
 }
 
@@ -103,10 +108,6 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
             return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: toolModel?.headerSubtitle ?? "")
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIImageView(image: R.image.footer_light())
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

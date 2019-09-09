@@ -14,7 +14,6 @@ final class QuestionCell: BaseDailyBriefCell {
     @IBOutlet private weak var questionLabel: UILabel!
 
     func configure(with viewModel: QuestionCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.quotation.apply(viewModel?.text, to: questionLabel)
     }

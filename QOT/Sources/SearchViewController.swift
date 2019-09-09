@@ -42,7 +42,7 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeView.level2.apply(view)
+        ThemeView.level1.apply(view)
         self.navigationItem.hidesBackButton = true
         setupSegementedControl()
         interactor?.showSuggestions()

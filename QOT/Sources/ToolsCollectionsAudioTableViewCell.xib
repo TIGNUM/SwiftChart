@@ -19,27 +19,27 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="130" id="uKE-T5-gmc" customClass="ToolsCollectionsAudioTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="440" height="130"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="112" id="uKE-T5-gmc" customClass="ToolsCollectionsAudioTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="440" height="112"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uKE-T5-gmc" id="TlB-WY-xK8">
-                <rect key="frame" x="0.0" y="0.0" width="440" height="129.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="111.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINDSET SHIFT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ANB-D3-M3L">
-                        <rect key="frame" x="24" y="40" width="293" height="25"/>
+                        <rect key="frame" x="24" y="30" width="293" height="21"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="0.798828125" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 min video" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSP-qz-GRD">
-                        <rect key="frame" x="59" y="77" width="67" height="23"/>
+                        <rect key="frame" x="59" y="59" width="67" height="23"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_audio" translatesAutoresizingMaskIntoConstraints="NO" id="cT0-Qe-yOO">
-                        <rect key="frame" x="24" y="77" width="23" height="23"/>
+                        <rect key="frame" x="24" y="59" width="23" height="23"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
@@ -48,7 +48,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="91F-B2-hgX">
-                        <rect key="frame" x="336" y="68.5" width="80" height="40"/>
+                        <rect key="frame" x="336" y="50.5" width="80" height="40"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-l9-3Su">
                                 <rect key="frame" x="68" y="12" width="0.0" height="15"/>
@@ -91,7 +91,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ogk-GZ-SM0">
-                        <rect key="frame" x="336" y="68.5" width="80" height="40"/>
+                        <rect key="frame" x="336" y="50.5" width="80" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="JbX-uf-TD0"/>
                             <constraint firstAttribute="width" constant="80" id="lK4-mG-FCu"/>
@@ -102,7 +102,7 @@
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="cT0-Qe-yOO" firstAttribute="top" secondItem="ANB-D3-M3L" secondAttribute="bottom" constant="12" id="2PV-ng-Zba"/>
+                    <constraint firstItem="cT0-Qe-yOO" firstAttribute="top" secondItem="ANB-D3-M3L" secondAttribute="bottom" constant="8" id="2PV-ng-Zba"/>
                     <constraint firstItem="KSP-qz-GRD" firstAttribute="leading" secondItem="cT0-Qe-yOO" secondAttribute="trailing" constant="12" id="2nW-7g-gp3"/>
                     <constraint firstItem="ogk-GZ-SM0" firstAttribute="centerX" secondItem="91F-B2-hgX" secondAttribute="centerX" id="6f7-rA-iwb"/>
                     <constraint firstItem="91F-B2-hgX" firstAttribute="centerY" secondItem="KSP-qz-GRD" secondAttribute="centerY" id="BPy-l2-njQ"/>
@@ -110,7 +110,7 @@
                     <constraint firstItem="KSP-qz-GRD" firstAttribute="centerY" secondItem="cT0-Qe-yOO" secondAttribute="centerY" id="Hrh-ex-pQa"/>
                     <constraint firstItem="cT0-Qe-yOO" firstAttribute="leading" secondItem="TlB-WY-xK8" secondAttribute="leading" constant="24" id="PQ8-L6-ptz"/>
                     <constraint firstAttribute="trailingMargin" secondItem="ANB-D3-M3L" secondAttribute="trailing" constant="103" id="Pnd-G3-PTs"/>
-                    <constraint firstItem="ANB-D3-M3L" firstAttribute="top" secondItem="TlB-WY-xK8" secondAttribute="top" constant="40" id="YD8-r6-eDX"/>
+                    <constraint firstItem="ANB-D3-M3L" firstAttribute="top" secondItem="TlB-WY-xK8" secondAttribute="top" constant="30" id="YD8-r6-eDX"/>
                     <constraint firstItem="ogk-GZ-SM0" firstAttribute="width" secondItem="91F-B2-hgX" secondAttribute="width" id="Zbf-i3-Ob4"/>
                     <constraint firstItem="ANB-D3-M3L" firstAttribute="leading" secondItem="TlB-WY-xK8" secondAttribute="leading" constant="24" id="hRH-kR-flg"/>
                     <constraint firstAttribute="trailing" secondItem="91F-B2-hgX" secondAttribute="trailing" constant="24" id="kBo-QW-cvR"/>
@@ -127,7 +127,7 @@
                 <outlet property="mediaIconImageView" destination="cT0-Qe-yOO" id="fnx-vl-Fd2"/>
                 <outlet property="titleLabel" destination="ANB-D3-M3L" id="tfm-Os-eKa"/>
             </connections>
-            <point key="canvasLocation" x="40" y="89.955022488755631"/>
+            <point key="canvasLocation" x="40" y="81.859070464767626"/>
         </tableViewCell>
     </objects>
     <resources>

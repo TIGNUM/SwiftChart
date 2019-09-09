@@ -73,7 +73,7 @@ enum ControllerType {
     }
 }
 
-final class QuestionnaireViewController: UIViewController, ScreenZLevelIgnore {
+final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var customizeTargetTitle: UILabel!
@@ -97,6 +97,7 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevelIgnore {
     @IBOutlet private weak var indexLabel: UILabel!
     static var hasArrowsAnimated: Bool = false
     var chosenValue: String?
+    @IBOutlet weak var questionToTop: NSLayoutConstraint!
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
     private var questionHtml: NSAttributedString? = nil
@@ -212,8 +213,13 @@ extension QuestionnaireViewController {
             ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-        default:
-            return
+            questionToTop.constant = 120
+        case .dailyCheckin:
+            topConstraint.constant = 80
+            questionToTop.constant = 20
+        case .vision:
+            topConstraint.constant = 20
+            questionToTop.constant = 20
         }
 
     }
@@ -440,7 +446,7 @@ extension QuestionnaireViewController {
         } else {
             indexLabel.text = String(items - index)
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
-            ThemeText.questionHintLabelRed.apply(subtitles[items - index - 1], to: hintLabel)
+            ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 
         if isTouch == true {
@@ -628,7 +634,6 @@ extension QuestionnaireViewController {
     }
 }
 
-//TODO - Removing this fixes the Done button problem but needs more testing around daily brief before removing commented code
 extension QuestionnaireViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch controllerType {

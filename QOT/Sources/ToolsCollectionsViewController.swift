@@ -70,12 +70,6 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
     }
 }
 
-// MARK: - Bottom Navigation
-extension ToolsCollectionsViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
-    }
-}
 
 // MARK: - Private
 
@@ -85,6 +79,7 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsCollectionsAudioTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsGroupTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
     }
 }
 
@@ -128,10 +123,6 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "Introduction for section")
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return UIImageView(image: R.image.footer_light())
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -219,5 +210,9 @@ private extension ToolsCollectionsViewController {
         let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
+    }
+
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
     }
 }

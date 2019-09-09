@@ -25,10 +25,10 @@ final class BeSpokeCell: BaseDailyBriefCell {
     }
 
     func configure(with viewModel: BeSpokeCellViewModel?) {
-        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: headingLabel)
         ThemeText.bespokeTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.bespokeText.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
+        copyrightURL = viewModel?.copyright ?? ""
     }
 }

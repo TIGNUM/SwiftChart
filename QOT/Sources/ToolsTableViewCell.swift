@@ -18,16 +18,7 @@ final class ToolsTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 16),
-                                                       textColor: UIColor.carbon,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.2,
-                                                          font: .apercuLight(ofSize: 12),
-                                                          lineSpacing: 4,
-                                                          textColor: UIColor.carbon.withAlphaComponent(0.4),
-                                                          alignment: .left)
+        ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotToolsSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

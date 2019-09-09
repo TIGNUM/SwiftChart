@@ -59,6 +59,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeView.level1.apply(view)
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
         interactor?.viewDidLoad()
@@ -75,12 +76,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.getDailyBriefBucketsForViewModel()
+        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(color: ThemeView.level1.color)
         trackPage()
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.removeLoadingSkeleton()
     }
 
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -117,11 +115,11 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         // UIView with sand40 background for section-separators as Section Footer
         if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
             let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-            sectionColor.backgroundColor = .carbon
+            sectionColor.backgroundColor = ThemeView.level1.color
             return sectionColor
         } else {
             let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-            sectionColor.backgroundColor = .sand40
+            sectionColor.backgroundColor = .sand10
             return sectionColor
         }
     }
@@ -265,6 +263,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
         interactor?.getDailyBriefBucketsForViewModel()
+        removeLoadingSkeleton()
     }
 }
 
@@ -287,7 +286,6 @@ private extension DailyBriefViewController {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
         }
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -310,7 +308,6 @@ private extension DailyBriefViewController {
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
         let cell: QuestionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: questionCellViewModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -324,7 +321,6 @@ private extension DailyBriefViewController {
                          _ thoughtsCellViewModel: ThoughtsCellViewModel?) -> UITableViewCell {
         let cell: ThoughtsCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: thoughtsCellViewModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -338,7 +334,6 @@ private extension DailyBriefViewController {
                            _ goodToKnowCellViewModel: GoodToKnowCellViewModel) -> UITableViewCell {
         let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: goodToKnowCellViewModel)
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -354,7 +349,6 @@ private extension DailyBriefViewController {
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
         let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: fromTignumMessageViewModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -368,7 +362,6 @@ private extension DailyBriefViewController {
                               _ departureInfoViewModel: DepartureInfoCellViewModel?) -> UITableViewCell {
         let cell: DepartureInfoCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: departureInfoViewModel)
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -383,7 +376,6 @@ private extension DailyBriefViewController {
                              _ coachMessageModel: FromMyCoachCellViewModel) -> UITableViewCell {
         let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: coachMessageModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -397,7 +389,6 @@ private extension DailyBriefViewController {
                              _ feastForEyesViewModel: FeastCellViewModel?) -> UITableViewCell {
         let cell: FeastCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: feastForEyesViewModel)
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -412,7 +403,6 @@ private extension DailyBriefViewController {
                         _ beSpokeViewModel: BeSpokeCellViewModel?) -> UITableViewCell {
         let cell: BeSpokeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: beSpokeViewModel)
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -427,7 +417,6 @@ private extension DailyBriefViewController {
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: aboutMeViewModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -442,7 +431,6 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestViewModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -457,7 +445,6 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestEmptyCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestCellEmptyViewModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -471,7 +458,6 @@ private extension DailyBriefViewController {
                     _ sprintChallengeModel: SprintChallengeViewModel?) -> UITableViewCell {
         let cell: SprintChallengeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: sprintChallengeModel)
-        cell.backgroundColor = .carbon
         cell.delegate = self
         return cell
     }
@@ -489,7 +475,6 @@ private extension DailyBriefViewController {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction))
         cell.addGestureRecognizer(gesture)
         cell.configure(with: whatsHotViewModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -504,7 +489,6 @@ private extension DailyBriefViewController {
         let cell: SolveReminderCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: solveReminderViewModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -519,7 +503,6 @@ private extension DailyBriefViewController {
         let cell: SolveTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: solveReminderTableCellViewModel?.title, date: solveReminderTableCellViewModel?.date, solve: solveReminderTableCellViewModel?.solve)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -548,7 +531,6 @@ private extension DailyBriefViewController {
         let cell: LeaderWisdomTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: leadersWisdomViewModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -562,7 +544,6 @@ private extension DailyBriefViewController {
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
         let cell: DailyCheckinInsightsSHPICell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheck2SHPIModel)
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -577,7 +558,6 @@ private extension DailyBriefViewController {
         let cell: DailyCheckinInsightsTBVCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheckIn2TBVModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         return cell
     }
 
@@ -593,7 +573,6 @@ private extension DailyBriefViewController {
             let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: dailyCheckIn2PeakPerformanceModel)
             cell.delegate = self
-            cell.backgroundColor = .carbon
             return cell
     }
 
@@ -652,7 +631,7 @@ private extension DailyBriefViewController {
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
-        cell.backgroundColor = .carbon
+
         return cell
     }
 
@@ -667,13 +646,12 @@ private extension DailyBriefViewController {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: guidedtrackModel)
-            cell.backgroundColor = .carbon
+
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel)
         cell.delegate = self
-        cell.backgroundColor = .carbon
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }

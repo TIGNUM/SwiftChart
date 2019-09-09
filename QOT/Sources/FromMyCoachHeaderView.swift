@@ -29,7 +29,7 @@ final class FromMyCoachHeaderView: UIView {
     }
 
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
-        ThemeView.level2.apply(self)
+        ThemeView.level1.apply(self)
         ThemeText.fromCoachTitle.apply(data.title.uppercased(), to: title)
         coachImageView.kf.setImage(with: data.imageUrl, placeholder: R.image.placeholder_user())
         coachImageView.circle()
