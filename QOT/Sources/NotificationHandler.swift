@@ -11,6 +11,7 @@ import Foundation
 enum UserInfo: String {
     case multiSelectionCounter
     case selectedAnswers
+    case updatedAnswer
 
     func pair<T>(for value: T) -> (key: String, value: T) {
         return (self.rawValue, value)

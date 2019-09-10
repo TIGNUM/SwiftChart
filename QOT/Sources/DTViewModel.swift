@@ -1,5 +1,5 @@
 //
-//  DTSprintViewModel.swift
+//  DTViewModel.swift
 //  QOT
 //
 //  Created by karmic on 08.09.19.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct ViewModel {
+struct DTViewModel {
     let question: Question
     var answers: [Answer]
     let navigationButton: NavigationButton?
@@ -20,25 +20,29 @@ struct ViewModel {
         if let index = indexOf(answer.remoteId) {
             answers.remove(at: index)
             answers.insert(answer, at: index)
+            if question.answerType == .multiSelection {
+                notifyCounterChanged()
+            }
         }
     }
 
     struct Question {
+        let remoteId: Int
         let title: String
         let key: String
         let answerType: AnswerType
-        let maxSelections: Int = 0
+        let maxSelections: Int
     }
 
     struct Answer: Equatable {
         let remoteId: Int
         let title: String
         let keys: [String]
-        var selected: Bool
+        var selected: Bool = false
         var backgroundColor: UIColor
         let decisions: [Decision]
 
-        static func == (lhs: ViewModel.Answer, rhs: ViewModel.Answer) -> Bool {
+        static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
             return lhs.remoteId == rhs.remoteId && lhs.title == rhs.title && lhs.keys == rhs.keys
         }
 
@@ -57,8 +61,20 @@ struct ViewModel {
     }
 }
 
-extension ViewModel {
+private extension DTViewModel {
     func indexOf(_ answerId: Int) -> Int? {
         return answers.firstIndex(where: { $0.remoteId == answerId })
+    }
+}
+
+private extension DTViewModel {
+    func notifyCounterChanged() {
+        let selected = answers.filter { $0.selected }
+        let selectionCounter = UserInfo.multiSelectionCounter.pair(for: selected.count)
+        let selectedAnswers = UserInfo.selectedAnswers.pair(for: selected)
+        NotificationCenter.default.post(name: .didUpdateSelectionCounter,
+                                        object: nil,
+                                        userInfo: [selectionCounter.key: selectionCounter.value,
+                                                   selectedAnswers.key: selectedAnswers.value])
     }
 }

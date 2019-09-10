@@ -9,22 +9,7 @@
 import UIKit
 import qot_dal
 
-final class DTSprintWorker {
-
-    // MARK: - Properties
-    private lazy var contentService = qot_dal.ContentService.main
-    private lazy var questionService = qot_dal.QuestionService.main
-    private lazy var questionGroup = qot_dal.QuestionGroup.Sprint
-}
-
-// MARK: - Fetch Questions
-extension DTSprintWorker {
-    func getQuestions(_ completion: @escaping ([QDMQuestion]?) -> Void) {
-        questionService.questionsWithQuestionGroup(questionGroup, ascending: true) { (questions) in
-            completion(questions)
-        }
-    }
-}
+final class DTSprintWorker: DTWorker {}
 
 // MARK: - Sprint
 extension DTSprintWorker {

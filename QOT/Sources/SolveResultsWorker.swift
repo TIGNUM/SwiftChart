@@ -13,13 +13,15 @@ final class SolveResultsWorker {
 
     // MARK: - Properties
     private var recovery: QDMRecovery3D?
-    private var selectedAnswer: QDMAnswer?
+    private var selectedAnswerId: Int = 0
+    private var solutionCollectionId: Int = 0
     private let type: ResultType
     private var existingSolve: QDMSolve? = nil
 
     // MARK: - Init
-    init(selectedAnswer: QDMAnswer?, type: ResultType, solve: QDMSolve? = nil) {
-        self.selectedAnswer = selectedAnswer
+    init(selectedAnswerId: Int, solutionCollectionId: Int, type: ResultType, solve: QDMSolve? = nil) {
+        self.selectedAnswerId = selectedAnswerId
+        self.solutionCollectionId = solutionCollectionId
         self.type = type
         self.existingSolve = solve
     }
@@ -75,8 +77,8 @@ extension SolveResultsWorker {
             let contentId = recovery?.fatigueContentItemId
             relatedStrategies(contentId) { [weak self] (relatedStrategies) in
                 let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-                qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswer?.remoteID ?? 0,
-                                                     solutionCollectionId: self?.selectedAnswer?.targetId(.content) ?? 0,
+                qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
+                                                     solutionCollectionId: self?.solutionCollectionId ?? 0,
                                                      strategyIds: relatedStragyIds,
                                                      followUp: true) { (solve, error) in
                                                         completion()
@@ -107,8 +109,7 @@ extension SolveResultsWorker {
 // MARK: - Private
 private extension SolveResultsWorker {
     func contentCollection(_ contentId: Int? = nil, _ completion: @escaping (QDMContentCollection?) -> Void) {
-        let targetContentId = selectedAnswer?.targetId(.content) ?? 0
-        qot_dal.ContentService.main.getContentCollectionById(contentId ?? targetContentId, completion)
+        qot_dal.ContentService.main.getContentCollectionById(contentId ?? solutionCollectionId, completion)
     }
 
     func relatedStrategies(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentCollection]) -> Void) {

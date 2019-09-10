@@ -1,5 +1,5 @@
 //
-//  DTSprintQuestionnaireViewController.swift
+//  DTQuestionnaireViewController.swift
 //  QOT
 //
 //  Created by karmic on 07.09.19.
@@ -9,18 +9,18 @@
 import UIKit
 import qot_dal
 
-protocol DTSprintQuestionnaireViewControllerDelegate: class {
-    func didTapBinarySelection(_ answer: ViewModel.Answer)
-    func didSelectAnswer(_ answer: ViewModel.Answer)
-    func didDeSelectAnswer(_ answer: ViewModel.Answer)
+protocol DTQuestionnaireViewControllerDelegate: class {
+    func didTapBinarySelection(_ answer: DTViewModel.Answer)
+    func didSelectAnswer(_ answer: DTViewModel.Answer)
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer)
 }
 
-class DTSprintQuestionnaireViewController: UIViewController {
+class DTQuestionnaireViewController: UIViewController {
 
     // MARK: - Properties
-    private let viewModel: ViewModel
-    weak var delegate: DTSprintQuestionnaireViewControllerDelegate?
-    var interactor: DTSprintInteractorInterface?
+    private let viewModel: DTViewModel
+    weak var delegate: DTQuestionnaireViewControllerDelegate?
+    var interactor: DTInteractorInterface?
     private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
     private lazy var tableView = UITableView(estimatedRowHeight: 100,
                                              delegate: self,
@@ -36,7 +36,7 @@ class DTSprintQuestionnaireViewController: UIViewController {
     private var heightOfCollection: CGFloat = 0.0
 
     // MARK: - Init
-    init(viewModel: ViewModel) {
+    init(viewModel: DTViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -57,7 +57,7 @@ class DTSprintQuestionnaireViewController: UIViewController {
     }
 }
 
-private extension DTSprintQuestionnaireViewController {
+private extension DTQuestionnaireViewController {
     func setupView() {
         ThemeView.chatbot.apply(view)
         tableView.contentInset = .zero      //this takes off an automatic 49.0 pixel top inset that is not needed
@@ -114,7 +114,7 @@ private extension DTSprintQuestionnaireViewController {
 }
 
 // MARK: - UITableViewDelegate
-extension DTSprintQuestionnaireViewController: UITableViewDelegate {
+extension DTQuestionnaireViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let animation = CellAnimator.moveUpWithFade(rowHeight: cell.frame.height, duration: 0.01, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
@@ -140,7 +140,7 @@ extension DTSprintQuestionnaireViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-extension DTSprintQuestionnaireViewController: UITableViewDataSource {
+extension DTQuestionnaireViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return CellType.allCases.count
     }
@@ -199,14 +199,14 @@ extension DTSprintQuestionnaireViewController: UITableViewDataSource {
 }
 
 // MARK: - SingleSelectionCellDelegate
-extension DTSprintQuestionnaireViewController: SingleSelectionCellDelegate {
-    func didSelect(_ answer: ViewModel.Answer) {
+extension DTQuestionnaireViewController: SingleSelectionCellDelegate {
+    func didSelect(_ answer: DTViewModel.Answer) {
         delegate?.didTapBinarySelection(answer)
     }
 }
 
 // MARK: - MultiselectionCellDelegate
-extension DTSprintQuestionnaireViewController: MultipleSelectionCellDelegate {
+extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
     func didSetHeight(to height: CGFloat) {
         let setBefore = heightOfCollection != 0
         heightOfCollection = height
@@ -215,11 +215,11 @@ extension DTSprintQuestionnaireViewController: MultipleSelectionCellDelegate {
         }
     }
 
-    func didSelectAnswer(_ answer: ViewModel.Answer) {
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
         delegate?.didSelectAnswer(answer)
     }
 
-    func didDeSelectAnswer(_ answer: ViewModel.Answer) {
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         delegate?.didDeSelectAnswer(answer)
     }
 }
