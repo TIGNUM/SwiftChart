@@ -8,13 +8,4 @@
 
 import UIKit
 
-final class DTSprintRouter: DTRouter {
-
-    // MARK: - Properties
-    private weak var viewController: DTSprintViewController?
-
-    // MARK: - Init
-    init(viewController: DTSprintViewController?) {
-        self.viewController = viewController
-    }
-}
+final class DTSprintRouter: DTRouter {}

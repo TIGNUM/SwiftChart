@@ -12,9 +12,11 @@ struct DTViewModel {
     let question: Question
     var answers: [Answer]
     let navigationButton: NavigationButton?
+    let tbvText: String?
     let hasTypingAnimation: Bool
     let previousButtonIsHidden: Bool
     let dismissButtonIsHidden: Bool
+    let showNextQuestionAutomated: Bool
 
     mutating func setSelectedAnswer(_ answer: Answer) {
         if let index = indexOf(answer.remoteId) {

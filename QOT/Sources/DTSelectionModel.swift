@@ -10,37 +10,37 @@ import Foundation
 import qot_dal
 
 struct DTSelectionModel {
-    let selectedAnswer: DTViewModel.Answer?
+    let selectedAnswers: [DTViewModel.Answer]
+    let question: DTViewModel.Question?
     let answerFilter: String?
     let userInput: String?
-    let tbv: QDMToBeVision?
     let trigger: String?
 
-    init(selectedAnswer: DTViewModel.Answer?,
+    init(selectedAnswers: [DTViewModel.Answer],
+         question: DTViewModel.Question?,
          trigger: String?,
          answerFilter: String?,
-         userInput: String?,
-         tbv: QDMToBeVision?) {
-        self.selectedAnswer = selectedAnswer
+         userInput: String?) {
+        self.selectedAnswers = selectedAnswers
         self.answerFilter = answerFilter
         self.userInput = userInput
+        self.question = question
         self.trigger = trigger
-        self.tbv = tbv
     }
 
-    init(selectedAnswer: DTViewModel.Answer?, userInput: String?) {
-        self.selectedAnswer = selectedAnswer
+    init(selectedAnswers: [DTViewModel.Answer], question: DTViewModel.Question?, userInput: String?) {
+        self.selectedAnswers = selectedAnswers
         self.userInput = userInput
+        self.question = question
         self.answerFilter = nil
         self.trigger = nil
-        self.tbv = nil
     }
 
-    init (selectedAnswer: DTViewModel.Answer?) {
-        self.selectedAnswer = selectedAnswer
+    init(selectedAnswers: [DTViewModel.Answer], question: DTViewModel.Question?) {
+        self.selectedAnswers = selectedAnswers
+        self.question = question
         self.answerFilter = nil
         self.userInput = nil
         self.trigger = nil
-        self.tbv = nil
     }
 }

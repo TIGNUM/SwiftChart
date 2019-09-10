@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import qot_dal
 
 final class DTMindsetViewController: DTViewController {
 
     // MARK: - Properties
     var mindsetRouter: DTMindsetRouterInterface?
-    private var tbv: QDMToBeVision?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -41,21 +39,10 @@ final class DTMindsetViewController: DTViewController {
         }
     }
 
-    override func getUsersTBV() -> QDMToBeVision? {
-        return tbv
-    }
-
     @IBAction override func didTapNext() {
-        setSelectedAnswerIfNeeded()
+        setAnswerSelectedIfNeeded()
         if viewModel?.question.key == Mindset.QuestionKey.OpenTBV {
-            interactor?.getUsersTBV { [weak self] (tbv, initiated) in
-                if initiated && tbv?.text != nil {
-                    self?.tbv = tbv
-                    self?.loadNextQuestion()
-                } else {
-                    self?.router?.openTBVGenerator()
-                }
-            }
+            handleTBVCase()
         } else {
             loadNextQuestion()
         }
@@ -83,7 +70,7 @@ final class DTMindsetViewController: DTViewController {
 
 // MARK: - Actions
 private extension DTMindsetViewController {
-    func setSelectedAnswerIfNeeded() {
+    func setAnswerSelectedIfNeeded() {
         switch viewModel?.question.key {
         case Mindset.QuestionKey.LowSelfTalk?,
              Mindset.QuestionKey.OpenTBV?:
@@ -93,5 +80,18 @@ private extension DTMindsetViewController {
             }
         default: break
         }
+    }
+
+    func handleTBVCase() {
+        router?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet)
+//        router?.openTBVGenerator(introKey: )
+        return
+//        interactor?.getUsersTBV { [weak self] (tbv, initiated) in
+//            if initiated && tbv?.text != nil {
+//                self?.loadNextQuestion()
+//            } else {
+//                self?.router?.openTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet)
+//            }
+//        }
     }
 }

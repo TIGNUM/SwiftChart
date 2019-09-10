@@ -9,9 +9,7 @@
 import UIKit
 import qot_dal
 
-final class DTMindsetWorker: DTWorker {
-    
-}
+final class DTMindsetWorker: DTWorker {}
 
 // MARK: - MindsetShifter
 extension DTMindsetWorker {

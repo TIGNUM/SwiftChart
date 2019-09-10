@@ -19,8 +19,8 @@ final class DTSprintPresenter: DTPresenter {
         return questionKey == Sprint.QuestionKey.Last
     }
 
-    override func hasTypingAnimation(questionAnswerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        return questionAnswerType == .noAnswerRequired && !answers.filter { $0.title.isEmpty }.isEmpty //TODO - make this work with new data model for new CMS
+    override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
+        return answerType == .noAnswerRequired && !answers.filter { $0.title.isEmpty }.isEmpty //TODO - make this work with new data model for new CMS
     }
 
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
@@ -32,5 +32,9 @@ final class DTSprintPresenter: DTPresenter {
 
     override func answerBackgroundColor(answer: QDMAnswer) -> UIColor {
         return answer.keys.contains(Sprint.AnswerKey.AddToQueue) ? .carbonNew : .clear
+    }
+
+    override func showNextQuestionAutomated(questionKey: String) -> Bool {
+        return questionKey == Sprint.QuestionKey.Intro
     }
 }

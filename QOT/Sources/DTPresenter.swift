@@ -51,12 +51,16 @@ class DTPresenter: DTPresenterInterface {
         return false
     }
 
-    func hasTypingAnimation(questionAnswerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
+    func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
         return false
     }
 
     func answerBackgroundColor(answer: QDMAnswer) -> UIColor {
         return .clear
+    }
+
+    func showNextQuestionAutomated(questionKey: String) -> Bool {
+        return false
     }
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
@@ -66,11 +70,12 @@ class DTPresenter: DTPresenterInterface {
         return DTViewModel(question: question,
                            answers: answers,
                            navigationButton: navigationButton,
-                           hasTypingAnimation: hasTypingAnimation(questionAnswerType: question.answerType,
+                           tbvText: presentationModel.tbv?.text,
+                           hasTypingAnimation: hasTypingAnimation(answerType: question.answerType,
                                                                   answers: answers),
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
-                           dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key))
-
+                           dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key),
+                           showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
     }
 
     func getQuestion(_ question: QDMQuestion?, titleToUpdate: String?) -> DTViewModel.Question {

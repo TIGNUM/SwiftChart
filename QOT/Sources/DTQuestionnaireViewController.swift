@@ -34,6 +34,7 @@ class DTQuestionnaireViewController: UIViewController {
     private var constraintTableHeight: NSLayoutConstraint?
     private var observers: [NSKeyValueObservation] = []
     private var heightOfCollection: CGFloat = 0.0
+    private var shouldWaitFotTBVAnimationCompleted = false
 
     // MARK: - Init
     init(viewModel: DTViewModel) {
@@ -76,6 +77,7 @@ private extension DTQuestionnaireViewController {
             }
         ]
         attachBottomShadow()
+        shouldWaitFotTBVAnimationCompleted = viewModel.hasTypingAnimation && viewModel.tbvText != nil
     }
 
     func attachTableView() {
@@ -111,7 +113,7 @@ extension DTQuestionnaireViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
+        return shouldWaitFotTBVAnimationCompleted ? 0 : UITableViewAutomaticDimension
     }
 }
 
@@ -148,6 +150,11 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(for: viewModel.answers, maxPossibleSelections: viewModel.question.maxSelections, collectionHeight: heightOfCollection)
                 cell.delegate = self
+                return cell
+            case .text,
+                 .noAnswerRequired:
+                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
+                cell.configure(with: viewModel.tbvText ?? "", textColor: .carbonNew)
                 return cell
             default:
                 if let answer = viewModel.answers.first {
@@ -204,7 +211,7 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
     func didFinishTypeAnimation() {
         if let answer = viewModel.answers.first {
             if answer.title.isEmpty {
-                interactor?.didStopTypingAnimationPresentNextPage(answer: answer)
+                interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
             } else {
                 interactor?.didStopTypingAnimation()
 
