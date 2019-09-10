@@ -552,7 +552,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
 
 //        If the dailyCheck is not done
-        guard impactReadiness.dailyCheckInResult != nil else {
+        if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false {
             expendImpactReadiness = false
             impactReadinessList.append(ImpactReadinessCellViewModel(title: bucketTitle,
                                                                     dailyCheckImageURL: impactReadinessImageURL,
@@ -561,7 +561,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                     domainModel: impactReadiness))
             return impactReadinessList
         }
-
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
 
@@ -582,7 +581,25 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let futureLoadReference = impactReadiness.dailyCheckInResult?.futureLoadReference ?? 0
 
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
-            models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title, subTitle: collection.contentItems.first?.valueText))
+            models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
+                                                                            subTitle: collection.contentItems.first?.valueText))
+        }
+//  If the daily check is in progress add the default ImpactReadinessScoreViewModel for the loading indicator.
+        if impactReadiness.dailyCheckInResult == nil &&
+            impactReadiness.dailyCheckInAnswerIds?.isEmpty == false {
+            expendImpactReadiness = true
+            impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
+                                                                          asteriskText: asteriskText,
+                                                                          sleepQuantityValue: sleepQuantity,
+                                                                          sleepQualityValue: sleepQuality,
+                                                                          loadValue: load,
+                                                                          futureLoadValue: futureLoad,
+                                                                          targetSleepQuality: targetSleepQuantity,
+                                                                          sleepQualityReference: sleepQualityReference,
+                                                                          loadReference: loadReference,
+                                                                          futureLoadReference: futureLoadReference,
+                                                                          impactDataModels: models,
+                                                                          domainModel: impactReadiness, "detail"))
         }
 
         guard expendImpactReadiness else {

@@ -197,10 +197,27 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
     }
 }
 
+// MARK: - Bottom Navigation
+extension ToolsCollectionsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
+    }
+}
+
 // MARK: - Private
 
 private extension ToolsCollectionsViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
+
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL) {
+        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
+        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
+            return
+        }
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
+        pdfReaderConfigurator(readerViewController)
+        present(navigationController, animated: true, completion: nil)
     }
 }

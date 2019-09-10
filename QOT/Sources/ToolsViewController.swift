@@ -63,6 +63,14 @@ private extension ToolsViewController {
     }
 }
 
+// MARK: - Bottom Navigation
+
+extension ToolsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
+    }
+}
+
 // MARK: - Actions
 
 private extension ToolsViewController {
@@ -70,10 +78,6 @@ private extension ToolsViewController {
     @IBAction func closeButton(_ sender: Any) {
         trackUserEvent(.CLOSE, action: .TAP)
         navigationController?.popToRootViewController(animated: true)
-    }
-
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
     }
 }
 
