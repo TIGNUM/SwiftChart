@@ -744,7 +744,7 @@
 "MyLibrary.Items.Alert.Empty.Title.Links" = "YOUR WEBSITE LINKS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Notes" = "YOUR NOTES WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Message.All" = "Access the full list of items you bookmarked, downloaded, or wrote.";
-"MyLibrary.Items.Alert.Empty.Message.Bookmarks" = "Tap  {icon}  throughout QOT to save content here.";
+"MyLibrary.Items.Alert.Empty.Message.Bookmarks" = "Look for  {icon}  across QOT and select it to save the content here";
 "MyLibrary.Items.Alert.Empty.Message.Downloads" = "Tap  {icon}  throughout QOT to save content offline.";
 "MyLibrary.Items.Alert.Empty.Message.Links" = "Tap  {icon}  on your browser page and select QOT to save content here.";
 "MyLibrary.Items.Alert.Empty.Message.Notes" = "Tap  {icon}  on the top of the page to create or edit notes.";

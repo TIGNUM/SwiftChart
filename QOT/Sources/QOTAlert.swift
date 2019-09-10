@@ -129,6 +129,7 @@ class QOTAlertViewController: UIViewController {
     private let appearDuration: Double = Animation.duration_02
     private let dismissDuration: Double = Animation.duration_03
     private lazy var hiddenContentPosition: CGFloat = { return -contentView.frame.size.height * 2 }()
+    private lazy var displayedContentPosition: CGFloat = { return 24 }()
 
     // MARK: - IBOutlets
     @IBOutlet private weak var backgroundView: UIView! // Dark background view
@@ -235,7 +236,7 @@ extension QOTAlertViewController {
     }
 
     func show() {
-        bottomContentConstraint.constant = 0
+        bottomContentConstraint.constant = displayedContentPosition
         UIView.animate(withDuration: appearDuration) { [weak self] in
             self?.backgroundView.alpha = 1
             self?.view.layoutIfNeeded()

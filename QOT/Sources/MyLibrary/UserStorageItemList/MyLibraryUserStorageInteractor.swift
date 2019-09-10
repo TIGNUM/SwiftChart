@@ -189,10 +189,10 @@ extension MyLibraryUserStorageInteractor {
     @objc private func continueRemovingTapped() {
         worker.deleteFor(identifiers: Array(identifiersForCheck)) { [weak self] (update, error) in
             guard let strongSelf = self else { return }
-            strongSelf.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)
             if error == nil {
                 strongSelf.successfullyDeleted(identifier: update)
             }
+            strongSelf.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)
         }
         cancelEditingTapped()
         presenter.present()
