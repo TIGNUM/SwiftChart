@@ -115,8 +115,6 @@
 		363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363BB1762316EFB500B65065 /* ChoiceViewController.xib */; };
 		363BB17D2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BB17C2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift */; };
 		363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */; };
-		36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */; };
-		36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36424981214A55E80018A4A7 /* IPadAdviceView.xib */; };
 		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
 		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */; };
@@ -1427,8 +1425,6 @@
 		363BB1762316EFB500B65065 /* ChoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
 		363BB17C2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+SyncButtons.swift"; sourceTree = "<group>"; };
 		363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
-		3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAdviceView.swift; sourceTree = "<group>"; };
-		36424981214A55E80018A4A7 /* IPadAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPadAdviceView.xib; sourceTree = "<group>"; };
 		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
 		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
 		365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentAnimator.swift; sourceTree = "<group>"; };
@@ -2871,15 +2867,6 @@
 				3637666E223BFF3800C2C429 /* StrategyListWorker.swift */,
 			);
 			name = strategyList;
-			sourceTree = "<group>";
-		};
-		3642496C214A50DE0018A4A7 /* iPad Advice */ = {
-			isa = PBXGroup;
-			children = (
-				3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */,
-				36424981214A55E80018A4A7 /* IPadAdviceView.xib */,
-			);
-			name = "iPad Advice";
 			sourceTree = "<group>";
 		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
@@ -5252,7 +5239,6 @@
 				CBB4DD461EE0911A0071494A /* Common */,
 				CB873292202AED1F0081F522 /* GradientView */,
 				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
-				3642496C214A50DE0018A4A7 /* iPad Advice */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3E1EE08EB50071494A /* Prepare Chat */,
@@ -6291,7 +6277,6 @@
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,
 				ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */,
-				36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */,
 				36E4B7B4219EC19C00049EE8 /* TutorialViewController.xib in Resources */,
 				ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */,
 				36B5BD3523142BB300439A64 /* AskPermission.storyboard in Resources */,
@@ -6631,7 +6616,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6946,7 +6931,6 @@
 				75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */,
 				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
-				36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
@@ -8734,7 +8718,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

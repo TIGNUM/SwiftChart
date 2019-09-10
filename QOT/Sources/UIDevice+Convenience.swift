@@ -14,6 +14,15 @@ extension UIDevice {
         return UIDevice.current.model.contains("iPad")
     }
 
+    static var isSmallScreenDevice: Bool {
+        let isFourSeries = UIDevice.current.modelName.lowercased().range(of: "iphone 4") != nil
+        let isFiveSeries = UIDevice.current.modelName.lowercased().range(of: "iphone 5") != nil
+        let isSEiPhone = UIDevice.current.modelName.lowercased().range(of: "iphone SE") != nil
+        let isiPod = UIDevice.current.modelName.lowercased().range(of: "ipod") != nil
+
+        return isFourSeries || isFiveSeries || isiPod || isSEiPhone
+    }
+
     static var isVersion10: Bool {
         if #available(iOS 11.0, *) {
             return false

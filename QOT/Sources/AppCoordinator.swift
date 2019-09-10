@@ -30,7 +30,6 @@ final class AppCoordinator {
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
-    private var iPadAdviceCompletion: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
@@ -43,23 +42,6 @@ final class AppCoordinator {
     }()
     lazy var userLoggedIn: Bool = {
         return qot_dal.SessionService.main.getCurrentSession() != nil
-    }()
-
-    private lazy var iPadAdviceView: IPadAdviceView? = {
-        let advice = UINib(resource: R.nib.iPadAdviceView).instantiate(withOwner: nil, options: nil).first as? IPadAdviceView
-        // CHANGE ME
-//        if
-//            let title = IPadAdviceViewType.title.value(contentService: services?.contentService),
-//            let body = IPadAdviceViewType.body.value(contentService: services?.contentService),
-//            let buttonDismiss = IPadAdviceViewType.buttonDismiss.value(contentService: services?.contentService),
-//            let buttonDoNotShow = IPadAdviceViewType.buttonDoNotShowAgain.value(contentService: services?.contentService) {
-//                advice?.setupView(title: title,
-//                                  body: body,
-//                                  buttonTitleDismiss: buttonDismiss,
-//                                  buttonTitleDoNotShow: buttonDoNotShow)
-//        }
-        advice?.delegate = self
-        return advice
     }()
 
     // MARK: - Life Cycle
@@ -181,22 +163,6 @@ final class AppCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
-
-    func showIpadSupportViewIfNeeded(completion: (() -> Void)?) {
-        if UIDevice.isPad == true && UserDefault.iPadAdviceDoNotShowAgain.boolValue == false {
-            if let iPadAdvice = iPadAdviceView {
-                iPadAdvice.alpha = 0
-                AppDelegate.topViewController()?.view.addSubview(iPadAdvice)
-                iPadAdviceCompletion = completion
-                UIView.animate(withDuration: Animation.duration_06) {
-                    iPadAdvice.alpha = 1
-                }
-            }
-        } else {
-            completion?()
-        }
-    }
-
     func registerRemoteNotifications() {
         permissionsManager.askPermission(for: [.notifications]) { status in
             guard let status = status[.notifications] else { return }
@@ -371,20 +337,6 @@ extension AppCoordinator: PermissionManagerDelegate {
             }
             guard !devicePermissions.isEmpty else { return }
             qot_dal.QOTService.main.updateDevicePermissions(permissions: devicePermissions)
-        }
-    }
-}
-
-extension AppCoordinator: IPadAdviceViewDelegate {
-
-    func dismiss() {
-        if let iPadAdvice = iPadAdviceView {
-            UIView.animate(withDuration: Animation.duration_06, animations: {
-                iPadAdvice.alpha = 0
-            }, completion: { _ in
-                iPadAdvice.removeFromSuperview()
-                self.iPadAdviceCompletion?()
-            })
         }
     }
 }
