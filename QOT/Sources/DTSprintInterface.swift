@@ -7,32 +7,16 @@
 //
 
 import Foundation
-import qot_dal
 
-protocol DTSprintViewControllerInterface: class {
-    func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor)
-    func showNextQuestion(_ viewModel: ViewModel)
-    func showPreviosQuestion(_ viewModel: ViewModel)
-    func presentInfoView(icon: UIImage?, title: String?, text: String?)
-}
+protocol DTSprintViewControllerInterface: class {}
 
-protocol DTSprintPresenterInterface {
-    func setupView()
-    func showNextQuestion(_ presentationModel: PresentationModel)
-    func showPreviosQuestion(_ presentationModel: PresentationModel)
-    func presentInfoView(icon: UIImage?, title: String?, text: String?)
-}
+protocol DTSprintPresenterInterface {}
 
 protocol DTSprintInteractorInterface: Interactor {
-    func didStopTypingAnimation(answer: ViewModel.Answer?)
-    func loadNextQuestion(selection: SelectionModel)
-    func loadPreviousQuestion()
-    func startSprintTomorrow(selection: SelectionModel)
+    func startSprintTomorrow(selection: DTSelectionModel)
     func stopActiveSprintAndStartNewSprint()
-    func addSprintToQueue(selection: SelectionModel)
+    func addSprintToQueue(selection: DTSelectionModel)
     func getSelectedSprintTitle() -> String?
 }
 
-protocol DTSprintRouterInterface {
-    func dismiss()
-}
+protocol DTSprintRouterInterface {}

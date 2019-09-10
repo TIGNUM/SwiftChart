@@ -63,7 +63,10 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
-        let configurator = SolveResultsConfigurator.make(from: selectedAnswer, type: type, solve: nil)
+        let configurator = SolveResultsConfigurator.make(from: selectedAnswer.remoteID ?? 0,
+                                                         solutionCollectionId: selectedAnswer.targetId(.content) ?? 0,
+                                                         type: type,
+                                                         solve: nil)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = viewController
         viewController?.present(solveResultsController, animated: true)

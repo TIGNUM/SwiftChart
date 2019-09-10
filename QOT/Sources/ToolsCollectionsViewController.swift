@@ -70,7 +70,6 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
     }
 }
 
-
 // MARK: - Private
 
 private extension ToolsCollectionsViewController {

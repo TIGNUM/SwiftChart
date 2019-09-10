@@ -10,22 +10,22 @@ import UIKit
 import qot_dal
 
 protocol SingleSelectionCellDelegate: class {
-    func didSelect(_ answer: ViewModel.Answer)
+    func didSelect(_ answer: DTViewModel.Answer)
 }
 
 final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: SingleSelectionCellDelegate?
-    private var rightAnswer: ViewModel.Answer?
-    private var leftAnswer: ViewModel.Answer?
+    private var rightAnswer: DTViewModel.Answer?
+    private var leftAnswer: DTViewModel.Answer?
     @IBOutlet private weak var rightOptionButton: AnswerButton!
     @IBOutlet private weak var leftOptionButton: AnswerButton!
 }
 
 // MARK: - Configuration
 extension SingleSelectionTableViewCell {
-    func configure(for rightAnswer: ViewModel.Answer?, leftAnswer: ViewModel.Answer?) {
+    func configure(for rightAnswer: DTViewModel.Answer?, leftAnswer: DTViewModel.Answer?) {
         guard let rightAnswer = rightAnswer, let leftAnswer = leftAnswer else { return }
         rightOptionButton.configure(title: rightAnswer.title, isSelected: rightAnswer.selected)
         leftOptionButton.configure(title: leftAnswer.title, isSelected: leftAnswer.selected)

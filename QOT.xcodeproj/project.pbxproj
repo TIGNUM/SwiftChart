@@ -44,10 +44,10 @@
 		3611BBC822DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */; };
 		3616EF9222D7408900E43961 /* DecisionTreeWorker+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */; };
 		3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */; };
-		36288A6F23257EC60036C8C0 /* DTSprintModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A6E23257EC60036C8C0 /* DTSprintModel.swift */; };
-		36288A7123257EDD0036C8C0 /* PresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7023257EDD0036C8C0 /* PresentationModel.swift */; };
-		36288A7323257EEF0036C8C0 /* SelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7223257EEF0036C8C0 /* SelectionModel.swift */; };
-		36288A7723257F060036C8C0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7623257F060036C8C0 /* ViewModel.swift */; };
+		36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A6E23257EC60036C8C0 /* DTSprint.swift */; };
+		36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */; };
+		36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */; };
+		36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7623257F060036C8C0 /* DTViewModel.swift */; };
 		3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */; };
 		3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */; };
 		3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */; };
@@ -122,6 +122,17 @@
 		36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */; };
 		36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36424981214A55E80018A4A7 /* IPadAdviceView.xib */; };
 		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
+		3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */; };
+		3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CC2326EBD600334719 /* DTMindsetWorker.swift */; };
+		3655F2D52326EBD600334719 /* DTMindsetRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CD2326EBD600334719 /* DTMindsetRouter.swift */; };
+		3655F2D62326EBD600334719 /* DTMindsetInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CE2326EBD600334719 /* DTMindsetInterface.swift */; };
+		3655F2D72326EBD600334719 /* DTMindsetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CF2326EBD600334719 /* DTMindsetViewController.swift */; };
+		3655F2D82326EBD600334719 /* DTMindsetInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2D02326EBD600334719 /* DTMindsetInteractor.swift */; };
+		3655F2D92326EBD600334719 /* DTMindset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2D12326EBD600334719 /* DTMindset.swift */; };
+		3655F2DA2326EBD600334719 /* DTMindsetConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2D22326EBD600334719 /* DTMindsetConfigurator.swift */; };
+		3655F2DC2326F1E400334719 /* DTInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2DB2326F1E400334719 /* DTInteractor.swift */; };
+		3655F2DE2326FCA800334719 /* DTPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2DD2326FCA800334719 /* DTPresenter.swift */; };
+		3655F2E023270B9500334719 /* DTRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2DF23270B9500334719 /* DTRouter.swift */; };
 		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */; };
 		365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */; };
@@ -167,6 +178,18 @@
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
 		3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E02175E3BA00DF761A /* WebViewContent.html */; };
 		3679A4E32175E45300DF761A /* qot_clip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E22175E45200DF761A /* qot_clip.gif */; };
+		367A58532326A15D0089A082 /* DTSolvePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584B2326A15D0089A082 /* DTSolvePresenter.swift */; };
+		367A58542326A15D0089A082 /* DTSolveWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584C2326A15D0089A082 /* DTSolveWorker.swift */; };
+		367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584D2326A15D0089A082 /* DTSolveRouter.swift */; };
+		367A58562326A15D0089A082 /* DTSolveInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584E2326A15D0089A082 /* DTSolveInterface.swift */; };
+		367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584F2326A15D0089A082 /* DTSolveViewController.swift */; };
+		367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A58502326A15D0089A082 /* DTSolveInteractor.swift */; };
+		367A58592326A15D0089A082 /* DTSolve.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A58512326A15D0089A082 /* DTSolve.swift */; };
+		367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A58522326A15D0089A082 /* DTSolveConfigurator.swift */; };
+		367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A585C2326A1AF0089A082 /* DTViewController.swift */; };
+		367A585F2326A4350089A082 /* DTViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 367A585E2326A4350089A082 /* DTViewController.xib */; };
+		367A58632326B23A0089A082 /* DTInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A58622326B23A0089A082 /* DTInterface.swift */; };
+		367A58652326B85B0089A082 /* DTWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A58642326B85B0089A082 /* DTWorker.swift */; };
 		367BB014223956A700282AB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367BB013223956A700282AB6 /* Main.storyboard */; };
 		367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */; };
 		367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367CD17722EF4EDE00AF2187 /* OnboardingLoginPresenter.swift */; };
@@ -291,8 +314,7 @@
 		36EC23052323F45700DB5696 /* DTSprintViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC22FD2323F45700DB5696 /* DTSprintViewController.swift */; };
 		36EC23062323F45700DB5696 /* DTSprintInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC22FE2323F45700DB5696 /* DTSprintInteractor.swift */; };
 		36EC23082323F45700DB5696 /* DTSprintConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC23002323F45700DB5696 /* DTSprintConfigurator.swift */; };
-		36EC230A2323F4C700DB5696 /* DTSprintViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36EC23092323F4C700DB5696 /* DTSprintViewController.xib */; };
-		36EC230C2323F89900DB5696 /* DTSprintQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC230B2323F89900DB5696 /* DTSprintQuestionnaireViewController.swift */; };
+		36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
 		5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */; };
@@ -1366,10 +1388,10 @@
 		3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Sprint.swift"; sourceTree = "<group>"; };
 		3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Selection.swift"; sourceTree = "<group>"; };
 		3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+TBV.swift"; sourceTree = "<group>"; };
-		36288A6E23257EC60036C8C0 /* DTSprintModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSprintModel.swift; sourceTree = "<group>"; };
-		36288A7023257EDD0036C8C0 /* PresentationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationModel.swift; sourceTree = "<group>"; };
-		36288A7223257EEF0036C8C0 /* SelectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectionModel.swift; sourceTree = "<group>"; };
-		36288A7623257F060036C8C0 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
+		36288A6E23257EC60036C8C0 /* DTSprint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSprint.swift; sourceTree = "<group>"; };
+		36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPresentationModel.swift; sourceTree = "<group>"; };
+		36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSelectionModel.swift; sourceTree = "<group>"; };
+		36288A7623257F060036C8C0 /* DTViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTViewModel.swift; sourceTree = "<group>"; };
 		3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
 		3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentHeaderView.swift; sourceTree = "<group>"; };
 		3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -1447,6 +1469,17 @@
 		3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAdviceView.swift; sourceTree = "<group>"; };
 		36424981214A55E80018A4A7 /* IPadAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPadAdviceView.xib; sourceTree = "<group>"; };
 		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
+		3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetPresenter.swift; sourceTree = "<group>"; };
+		3655F2CC2326EBD600334719 /* DTMindsetWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetWorker.swift; sourceTree = "<group>"; };
+		3655F2CD2326EBD600334719 /* DTMindsetRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetRouter.swift; sourceTree = "<group>"; };
+		3655F2CE2326EBD600334719 /* DTMindsetInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetInterface.swift; sourceTree = "<group>"; };
+		3655F2CF2326EBD600334719 /* DTMindsetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetViewController.swift; sourceTree = "<group>"; };
+		3655F2D02326EBD600334719 /* DTMindsetInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetInteractor.swift; sourceTree = "<group>"; };
+		3655F2D12326EBD600334719 /* DTMindset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindset.swift; sourceTree = "<group>"; };
+		3655F2D22326EBD600334719 /* DTMindsetConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetConfigurator.swift; sourceTree = "<group>"; };
+		3655F2DB2326F1E400334719 /* DTInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTInteractor.swift; sourceTree = "<group>"; };
+		3655F2DD2326FCA800334719 /* DTPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTPresenter.swift; sourceTree = "<group>"; };
+		3655F2DF23270B9500334719 /* DTRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRouter.swift; sourceTree = "<group>"; };
 		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
 		365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentAnimator.swift; sourceTree = "<group>"; };
 		365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentTransitionDriver.swift; sourceTree = "<group>"; };
@@ -1492,6 +1525,18 @@
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
 		3679A4E02175E3BA00DF761A /* WebViewContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewContent.html; sourceTree = "<group>"; };
 		3679A4E22175E45200DF761A /* qot_clip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = qot_clip.gif; path = Media/qot_clip.gif; sourceTree = "<group>"; };
+		367A584B2326A15D0089A082 /* DTSolvePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolvePresenter.swift; sourceTree = "<group>"; };
+		367A584C2326A15D0089A082 /* DTSolveWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveWorker.swift; sourceTree = "<group>"; };
+		367A584D2326A15D0089A082 /* DTSolveRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveRouter.swift; sourceTree = "<group>"; };
+		367A584E2326A15D0089A082 /* DTSolveInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveInterface.swift; sourceTree = "<group>"; };
+		367A584F2326A15D0089A082 /* DTSolveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveViewController.swift; sourceTree = "<group>"; };
+		367A58502326A15D0089A082 /* DTSolveInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveInteractor.swift; sourceTree = "<group>"; };
+		367A58512326A15D0089A082 /* DTSolve.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolve.swift; sourceTree = "<group>"; };
+		367A58522326A15D0089A082 /* DTSolveConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveConfigurator.swift; sourceTree = "<group>"; };
+		367A585C2326A1AF0089A082 /* DTViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTViewController.swift; sourceTree = "<group>"; };
+		367A585E2326A4350089A082 /* DTViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DTViewController.xib; sourceTree = "<group>"; };
+		367A58622326B23A0089A082 /* DTInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTInterface.swift; sourceTree = "<group>"; };
+		367A58642326B85B0089A082 /* DTWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTWorker.swift; sourceTree = "<group>"; };
 		367BB013223956A700282AB6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachCollectionViewController.swift; sourceTree = "<group>"; };
 		367CD17722EF4EDE00AF2187 /* OnboardingLoginPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLoginPresenter.swift; sourceTree = "<group>"; };
@@ -1616,8 +1661,7 @@
 		36EC22FE2323F45700DB5696 /* DTSprintInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintInteractor.swift; sourceTree = "<group>"; };
 		36EC22FF2323F45700DB5696 /* DTSprintModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintModel.swift; sourceTree = "<group>"; };
 		36EC23002323F45700DB5696 /* DTSprintConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintConfigurator.swift; sourceTree = "<group>"; };
-		36EC23092323F4C700DB5696 /* DTSprintViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DTSprintViewController.xib; sourceTree = "<group>"; };
-		36EC230B2323F89900DB5696 /* DTSprintQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintQuestionnaireViewController.swift; sourceTree = "<group>"; };
+		36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTQuestionnaireViewController.swift; sourceTree = "<group>"; };
 		36EC230D2324EF7500DB5696 /* SprintTreeNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintTreeNode.swift; sourceTree = "<group>"; };
 		36EC230F232511E300DB5696 /* SelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectionModel.swift; sourceTree = "<group>"; };
 		36EC23112325124600DB5696 /* ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -2922,6 +2966,21 @@
 			name = HTML;
 			sourceTree = "<group>";
 		};
+		3655F2CA2326EB7C00334719 /* MindsetShifter */ = {
+			isa = PBXGroup;
+			children = (
+				3655F2D12326EBD600334719 /* DTMindset.swift */,
+				3655F2D22326EBD600334719 /* DTMindsetConfigurator.swift */,
+				3655F2D02326EBD600334719 /* DTMindsetInteractor.swift */,
+				3655F2CE2326EBD600334719 /* DTMindsetInterface.swift */,
+				3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */,
+				3655F2CD2326EBD600334719 /* DTMindsetRouter.swift */,
+				3655F2CF2326EBD600334719 /* DTMindsetViewController.swift */,
+				3655F2CC2326EBD600334719 /* DTMindsetWorker.swift */,
+			);
+			name = MindsetShifter;
+			sourceTree = "<group>";
+		};
 		366AFD1620BDAD0800109F29 /* FormView */ = {
 			isa = PBXGroup;
 			children = (
@@ -2983,14 +3042,44 @@
 			name = SigningInfo;
 			sourceTree = "<group>";
 		};
-		367A5846232695380089A082 /* Models */ = {
+		367A5846232695380089A082 /* Base Models */ = {
 			isa = PBXGroup;
 			children = (
-				36288A7023257EDD0036C8C0 /* PresentationModel.swift */,
-				36288A7223257EEF0036C8C0 /* SelectionModel.swift */,
-				36288A7623257F060036C8C0 /* ViewModel.swift */,
+				36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */,
+				36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */,
+				36288A7623257F060036C8C0 /* DTViewModel.swift */,
 			);
-			name = Models;
+			name = "Base Models";
+			sourceTree = "<group>";
+		};
+		367A584A2326A13D0089A082 /* Solve */ = {
+			isa = PBXGroup;
+			children = (
+				367A58512326A15D0089A082 /* DTSolve.swift */,
+				367A58522326A15D0089A082 /* DTSolveConfigurator.swift */,
+				367A58502326A15D0089A082 /* DTSolveInteractor.swift */,
+				367A584E2326A15D0089A082 /* DTSolveInterface.swift */,
+				367A584B2326A15D0089A082 /* DTSolvePresenter.swift */,
+				367A584D2326A15D0089A082 /* DTSolveRouter.swift */,
+				367A584F2326A15D0089A082 /* DTSolveViewController.swift */,
+				367A584C2326A15D0089A082 /* DTSolveWorker.swift */,
+			);
+			name = Solve;
+			sourceTree = "<group>";
+		};
+		367A585B2326A1900089A082 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				3655F2DB2326F1E400334719 /* DTInteractor.swift */,
+				367A58622326B23A0089A082 /* DTInterface.swift */,
+				3655F2DD2326FCA800334719 /* DTPresenter.swift */,
+				36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */,
+				3655F2DF23270B9500334719 /* DTRouter.swift */,
+				367A585C2326A1AF0089A082 /* DTViewController.swift */,
+				367A58642326B85B0089A082 /* DTWorker.swift */,
+				367A585E2326A4350089A082 /* DTViewController.xib */,
+			);
+			name = Base;
 			sourceTree = "<group>";
 		};
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
@@ -3214,16 +3303,14 @@
 		36EC22F82323F43C00DB5696 /* Sprint */ = {
 			isa = PBXGroup;
 			children = (
+				36288A6E23257EC60036C8C0 /* DTSprint.swift */,
 				36EC23002323F45700DB5696 /* DTSprintConfigurator.swift */,
 				36EC22FE2323F45700DB5696 /* DTSprintInteractor.swift */,
 				36EC22FC2323F45700DB5696 /* DTSprintInterface.swift */,
-				36288A6E23257EC60036C8C0 /* DTSprintModel.swift */,
 				36EC22F92323F45700DB5696 /* DTSprintPresenter.swift */,
-				36EC230B2323F89900DB5696 /* DTSprintQuestionnaireViewController.swift */,
 				36EC22FB2323F45700DB5696 /* DTSprintRouter.swift */,
 				36EC22FD2323F45700DB5696 /* DTSprintViewController.swift */,
 				36EC22FA2323F45700DB5696 /* DTSprintWorker.swift */,
-				36EC23092323F4C700DB5696 /* DTSprintViewController.xib */,
 			);
 			name = Sprint;
 			sourceTree = "<group>";
@@ -4690,11 +4777,14 @@
 		ACB0ED4B225FC28500BBF243 /* Decision Tree */ = {
 			isa = PBXGroup;
 			children = (
-				367A5846232695380089A082 /* Models */,
-				36EC22F82323F43C00DB5696 /* Sprint */,
-				ACD399EF2294026D00DDE1BD /* Keys */,
-				ACF0B94C225FC436008CFAEC /* Core */,
+				367A585B2326A1900089A082 /* Base */,
+				367A5846232695380089A082 /* Base Models */,
 				ACF0B94E225FC46E008CFAEC /* Cells */,
+				ACF0B94C225FC436008CFAEC /* Core */,
+				ACD399EF2294026D00DDE1BD /* Keys */,
+				3655F2CA2326EB7C00334719 /* MindsetShifter */,
+				367A584A2326A13D0089A082 /* Solve */,
+				36EC22F82323F43C00DB5696 /* Sprint */,
 				ACB449922260E13700B0E79F /* Views */,
 			);
 			name = "Decision Tree";
@@ -6296,6 +6386,7 @@
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
+				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
@@ -6472,7 +6563,6 @@
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
-				36EC230A2323F4C700DB5696 /* DTSprintViewController.xib in Resources */,
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
@@ -6697,7 +6787,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6877,7 +6967,7 @@
 				9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */,
 				8D9F6D23230E80EB00DCC241 /* WalkthroughConfigurator.swift in Sources */,
 				3637664A223A7DE100C2C429 /* LevelTwoInterface.swift in Sources */,
-				36288A7323257EEF0036C8C0 /* SelectionModel.swift in Sources */,
+				36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */,
 				36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */,
 				759AB42322C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.swift in Sources */,
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
@@ -6888,6 +6978,7 @@
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
+				3655F2DA2326EBD600334719 /* DTMindsetConfigurator.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
 				7582616622D8DBBE000094DE /* DailyCheckinStartWorker.swift in Sources */,
 				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
@@ -6909,6 +7000,7 @@
 				8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */,
 				369AE00022A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift in Sources */,
 				9C24238222F099BE00B911E6 /* MeAtMyBestCellViewModel.swift in Sources */,
+				3655F2D52326EBD600334719 /* DTMindsetRouter.swift in Sources */,
 				5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */,
@@ -6970,8 +7062,11 @@
 				75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
+				3655F2DE2326FCA800334719 /* DTPresenter.swift in Sources */,
 				8DBE1EDB22F46B7400BB1086 /* OnboardingLandingPageViewController.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
+				3655F2D72326EBD600334719 /* DTMindsetViewController.swift in Sources */,
+				367A58532326A15D0089A082 /* DTSolvePresenter.swift in Sources */,
 				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
@@ -6996,6 +7091,7 @@
 				36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */,
 				8D110D06230FDA41000181BA /* WalkthroughCoachInteractor.swift in Sources */,
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
+				367A58562326A15D0089A082 /* DTSolveInterface.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
 				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
@@ -7079,6 +7175,7 @@
 				5FF1A0E9228561C800D76D55 /* TitleTableHeaderView.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */,
+				367A58652326B85B0089A082 /* DTWorker.swift in Sources */,
 				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
 				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
@@ -7120,12 +7217,14 @@
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */,
 				BB7B317A230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift in Sources */,
+				367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
+				3655F2E023270B9500334719 /* DTRouter.swift in Sources */,
 				5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */,
 				DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */,
 				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
@@ -7150,7 +7249,7 @@
 				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
-				36288A7723257F060036C8C0 /* ViewModel.swift in Sources */,
+				36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */,
 				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
 				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
@@ -7203,7 +7302,7 @@
 				8D5668BD22DCAD4800AA172F /* MySprintsListConfigurator.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */,
-				36EC230C2323F89900DB5696 /* DTSprintQuestionnaireViewController.swift in Sources */,
+				36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */,
 				7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
 				36E86D4F227059A100371C67 /* MarkAsReadTableViewCell.swift in Sources */,
@@ -7219,7 +7318,7 @@
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */,
-				36288A6F23257EC60036C8C0 /* DTSprintModel.swift in Sources */,
+				36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */,
 				8D66E8A32305A0E500BE78C7 /* TrackSelectionConfigurator.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
@@ -7253,7 +7352,7 @@
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
-				36288A7123257EDD0036C8C0 /* PresentationModel.swift in Sources */,
+				36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
 				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
@@ -7273,6 +7372,7 @@
 				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
 				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
+				3655F2DC2326F1E400334719 /* DTInteractor.swift in Sources */,
 				8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */,
 				8D204C2822F06F1000DF6A76 /* MySprintNotesInterface.swift in Sources */,
 				8D66E8A12305A0E500BE78C7 /* TrackSelectionInteractor.swift in Sources */,
@@ -7281,10 +7381,12 @@
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */,
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
+				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
+				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */,
@@ -7311,6 +7413,7 @@
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
+				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
 				75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */,
 				B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
@@ -7320,6 +7423,7 @@
 				8D66E89F2305A0E500BE78C7 /* TrackSelectionInterface.swift in Sources */,
 				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
 				B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */,
+				3655F2D82326EBD600334719 /* DTMindsetInteractor.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */,
 				8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */,
@@ -7429,6 +7533,7 @@
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */,
+				3655F2D42326EBD600334719 /* DTMindsetWorker.swift in Sources */,
 				9CC426202306A4DB00F8072E /* GuidedTrackRowViewModel.swift in Sources */,
 				75423F0A22CF304F008EE726 /* BeSpokeCellViewModel.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
@@ -7458,8 +7563,10 @@
 				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
 				8D110D05230FDA41000181BA /* WalkthroughCoachViewController.swift in Sources */,
 				75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */,
+				367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
+				3655F2D92326EBD600334719 /* DTMindset.swift in Sources */,
 				F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
@@ -7475,6 +7582,7 @@
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
 				36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */,
+				3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */,
 				360256EC205183C700862B0E /* SearchModels.swift in Sources */,
 				B4AB48D0230C0002003B3C1F /* MyDataInfoTableViewCell.swift in Sources */,
 				B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */,
@@ -7485,6 +7593,7 @@
 				9CF3BE4722FC7B460027D111 /* MypeakperformanceTitleModel.swift in Sources */,
 				8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */,
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
+				367A58542326A15D0089A082 /* DTSolveWorker.swift in Sources */,
 				36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */,
 				75423EFA22CE242B008EE726 /* MyToBeVisionTrackerRouter.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
@@ -7518,6 +7627,7 @@
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				B86E744D22A9519900B0AE75 /* MyLibraryCategoryListViewController.swift in Sources */,
 				3637664B223A7DE100C2C429 /* LevelTwoViewController.swift in Sources */,
+				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
@@ -7542,6 +7652,7 @@
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
+				367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				3608382C225F3ED000664B9B /* ArticleModel.swift in Sources */,
@@ -7565,6 +7676,7 @@
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
+				3655F2D62326EBD600334719 /* DTMindsetInterface.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				366B6D2E23018980003FA63E /* QDMTermData+Ext.swift in Sources */,
 				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,
@@ -8812,7 +8924,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

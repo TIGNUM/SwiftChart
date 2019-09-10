@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DTSprintRouter {
+final class DTSprintRouter: DTRouter {
 
     // MARK: - Properties
     private weak var viewController: DTSprintViewController?
@@ -16,12 +16,5 @@ final class DTSprintRouter {
     // MARK: - Init
     init(viewController: DTSprintViewController?) {
         self.viewController = viewController
-    }
-}
-
-// MARK: - DTSprintRouterInterface
-extension DTSprintRouter: DTSprintRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
     }
 }

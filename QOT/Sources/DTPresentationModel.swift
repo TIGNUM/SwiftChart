@@ -1,5 +1,5 @@
 //
-//  PresentationModel.swift
+//  DTPresentationModel.swift
 //  QOT
 //
 //  Created by karmic on 08.09.19.
@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-struct PresentationModel {
+struct DTPresentationModel {
     var question: QDMQuestion?
     var titleToUpdate: String?
     var answerFilter: String?
