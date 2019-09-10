@@ -15,7 +15,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     var interactor: DTInteractor?
     var router: DTRouterInterface?
     var viewModel: DTViewModel?
-    var selectedAnswers: [DTViewModel.Answer] = []
     weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -59,23 +58,16 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
-    func getUsersTBV() -> QDMToBeVision? {
-        return nil
-    }
-
     // MARK: - Question Handling
     func loadNextQuestion() {
-        let newSelectedAnswers = viewModel?.answers.filter { $0.selected }
-        let selectedAnswer = newSelectedAnswers?.first
-        let filter = getAnswerFilter(selectedAnswer: selectedAnswer, questionKey: viewModel?.question.key)
-        let trigger = getTrigger(selectedAnswer: selectedAnswer, questionKey: viewModel?.question.key)
-        let tbv = getUsersTBV()
-        let selectionModel = DTSelectionModel(selectedAnswer: selectedAnswer,
+        let selectedAnswers = viewModel?.answers.filter { $0.selected } ?? []
+        let filter = getAnswerFilter(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
+                                              question: viewModel?.question,
                                               trigger: trigger,
                                               answerFilter: filter,
-                                              userInput: nil,
-                                              tbv: tbv)
-        selectedAnswers.append(contentsOf: newSelectedAnswers ?? [])
+                                              userInput: nil)
         interactor?.loadNextQuestion(selection: selectionModel)
     }
 

@@ -9,16 +9,20 @@
 import Foundation
 import qot_dal
 
+typealias SelectedAnswer = (question: DTViewModel.Question?, answers: [DTViewModel.Answer])
+typealias Node = (questionId: Int?, answerFilter: String?)
+
 class DTInteractor: DTInteractorInterface {
 
     // MARK: - Properties
-    typealias Node = (questionId: Int?, answerFilter: String?)
     lazy var worker: DTWorker? = DTWorker()
     let presenter: DTPresenterInterface
     let questionGroup: QuestionGroup
     let introKey: String
     var questions: [QDMQuestion] = []
     var presentedNodes: [Node] = []
+    var selectedAnswers: [SelectedAnswer] = []
+    var tbv: QDMToBeVision?
     var canShowContinue = false
 
     // MARK: - Init
@@ -34,7 +38,7 @@ class DTInteractor: DTInteractorInterface {
         worker?.getQuestions(questionGroup: questionGroup) { [weak self] (questions) in
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
-            let presentationModel = DTPresentationModel(question: firstQuestion, titleToUpdate: nil, answerFilter: nil)
+            let presentationModel = DTPresentationModel(question: firstQuestion)
             let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil)
             self?.presentedNodes.append(node)
             self?.presenter.showNextQuestion(presentationModel)
@@ -42,8 +46,8 @@ class DTInteractor: DTInteractorInterface {
     }
 
     // MARK: - DTInteractorInterface
-    func didStopTypingAnimationPresentNextPage(answer: DTViewModel.Answer?) {
-        let selectionModel = DTSelectionModel(selectedAnswer: answer)
+    func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?) {
+        let selectionModel = DTSelectionModel(selectedAnswers: viewModel?.answers ?? [], question: viewModel?.question)
         loadNextQuestion(selection: selectionModel)
     }
 
@@ -60,6 +64,7 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func loadNextQuestion(selection: DTSelectionModel) {
+        selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         let presentationModel = createPresentationModel(selection: selection, questions: questions)
         presenter.showNextQuestion(presentationModel)
         let node = Node(questionId: presentationModel.question?.remoteID, answerFilter: selection.answerFilter)
@@ -67,24 +72,29 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func loadPreviousQuestion() {
-        presentedNodes.removeLast()
-        let lastNode = presentedNodes.last
-        let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
-                                                        answerFilter: lastNode?.answerFilter,
-                                                        questions: questions)
-        presenter.showPreviosQuestion(presentationModel)
+        if presentedNodes.isEmpty == false {
+            presentedNodes.removeLast()
+            let lastNode = presentedNodes.last
+            let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
+                                                            answerFilter: lastNode?.answerFilter,
+                                                            questions: questions)
+            presenter.showPreviosQuestion(presentationModel)
+        }
     }
 
     // MARK: - Create DTPresentationModel
     func createPresentationModel(questionId: Int??, answerFilter: String?, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
-        return DTPresentationModel(question: question, titleToUpdate: nil, answerFilter: answerFilter)
+        return DTPresentationModel(question: question, titleToUpdate: nil, answerFilter: answerFilter, tbv: tbv)
     }
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
-        let question = getNextQuestion(selectedAnswer: selection.selectedAnswer, questions: questions)
-        let titleToUpdate = getTitleToUpdate(selectedAnswer: selection.selectedAnswer)
-        return DTPresentationModel(question: question, titleToUpdate: titleToUpdate, answerFilter: selection.answerFilter)
+        let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
+        let titleToUpdate = getTitleToUpdate(selectedAnswer: selection.selectedAnswers.first)
+        return DTPresentationModel(question: question,
+                                   titleToUpdate: titleToUpdate,
+                                   answerFilter: selection.answerFilter,
+                                   tbv: tbv)
     }
 
     func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {
@@ -98,6 +108,9 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - TBV
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        worker?.getUsersTBV(completion)
+        worker?.getUsersTBV { [weak self] (tbv, initiated) in
+            self?.tbv = tbv
+            completion(tbv, initiated)
+        }
     }
 }

@@ -26,7 +26,7 @@ protocol DTPresenterInterface {
 }
 
 protocol DTInteractorInterface: Interactor {
-    func didStopTypingAnimationPresentNextPage(answer: DTViewModel.Answer?)
+    func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion()
@@ -35,5 +35,5 @@ protocol DTInteractorInterface: Interactor {
 
 protocol DTRouterInterface {
     func dismiss()
-    func openTBVGenerator()
+    func loadShortTBVGenerator(introKey: String)
 }

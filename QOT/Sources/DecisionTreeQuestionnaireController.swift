@@ -158,7 +158,6 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
         case 1: heightAnswerCell = cell.frame.height
         default: break
         }
-//        recalculateContentInsets(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -260,9 +259,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "",
-                               textColor: interactor?.type.textColor,
-                               showTypingAnimation: question.hasTypingAnimation
-                                && question.answerType != AnswerType.noAnswerRequired.rawValue)
+                               textColor: interactor?.type.textColor)
                 notifyCellDidAppearIfNeeded()
                 return cell
             case AnswerType.openCalendarEvents.rawValue:

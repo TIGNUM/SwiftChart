@@ -53,11 +53,12 @@ final class DTSprintViewController: DTViewController {
 
     // MARK: - DTQuestionnaireViewControllerDelegate
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
+        let selectionModel = DTSelectionModel(selectedAnswers: [answer], question: viewModel?.question)
         switch answer.keys.first {
         case Sprint.AnswerKey.StartTomorrow:
-            sprintInteractor?.startSprintTomorrow(selection: DTSelectionModel(selectedAnswer: answer))
+            sprintInteractor?.startSprintTomorrow(selection: selectionModel)
         case Sprint.AnswerKey.AddToQueue:
-            sprintInteractor?.addSprintToQueue(selection: DTSelectionModel(selectedAnswer: answer))
+            sprintInteractor?.addSprintToQueue(selection: selectionModel)
         default:
             return
         }

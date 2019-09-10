@@ -8,16 +8,7 @@
 
 import UIKit
 
-final class DTMindsetRouter: DTRouter {
-
-    // MARK: - Properties
-    private weak var viewController: DTMindsetViewController?
-
-    // MARK: - Init
-    init(viewController: DTMindsetViewController?) {
-        self.viewController = viewController
-    }
-}
+final class DTMindsetRouter: DTRouter {}
 
 // MARK: - DTMindsetRouterInterface
 extension DTMindsetRouter: DTMindsetRouterInterface {}
