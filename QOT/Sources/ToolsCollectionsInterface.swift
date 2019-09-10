@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol ToolsCollectionsViewControllerInterface: class {
     func setupView()
@@ -25,6 +26,7 @@ protocol ToolsCollectionsInteractorInterface: Interactor {
     var headerTitle: String { get }
     func presentToolsItems(selectedToolID: Int?)
     func selectedCategoryId() -> Int
+    func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void)
 }
 
 protocol ToolsCollectionsRouterInterface {

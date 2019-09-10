@@ -76,6 +76,10 @@ extension BaseRootViewController {
         guard let mediaModel = notification.object as? MediaPlayerModel else {
             return
         }
+        guard QOTReachability().isReachable else {
+            self.showNoInternetConnectionAlert()
+            return
+        }
         audioPlayerBar.playPause(mediaModel)
     }
 

@@ -177,30 +177,11 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             NotificationCenter.default.post(name: .playPauseAudio, object: media)
         default:
             if let pdfURL = tool?.mediaURL {
-                didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)
+                self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
             }
         }
     }
 }
-
-// MARK: - Functions
-
-extension ToolsItemsViewController {
-
-    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL) {
-        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
-        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            return
-        }
-        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
-            return
-        }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
-        pdfReaderConfigurator(readerViewController)
-        present(navigationController, animated: true, completion: nil)
-    }
-}
-
 // MARK: - Audio Player Related
 extension ToolsItemsViewController {
     @objc func didEndAudio(_ notification: Notification) {

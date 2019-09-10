@@ -45,7 +45,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
-        if viewModel?.impactDataModels != nil {
+        if viewModel?.domainModel?.dailyCheckInResult != nil {
                 self.removeLoadingSkeleton()
         }
 

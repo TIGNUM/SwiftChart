@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 extension UIViewController {
     typealias keyboardAnimationParameters = (endFrameY: CGFloat, height: CGFloat, duration: TimeInterval, animationCurve: UIViewAnimationOptions)
@@ -123,5 +124,30 @@ extension UIViewController {
         view.addSubview(skeleton)
         skeleton.layer.zPosition = 10000
         skeleton.addConstraints(to: view)
+    }
+
+    func showNoInternetConnectionAlert() {
+        let OK = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone))
+        QOTAlert.show(title: ScreenTitleService.main.localizedString(for: .NoInternetConnectionTitle),
+                      message: ScreenTitleService.main.localizedString(for: .NoInternetConnectionMessage),
+                                                                       bottomItems: [OK])
+    }
+
+    func showPDFReader(withURL url: URL, title: String, itemID: Int) {
+        guard QOTReachability.init().isReachable else {
+            showNoInternetConnectionAlert()
+            return
+        }
+        trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
+        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
+        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
+            return
+        }
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title, url: url)
+        pdfReaderConfigurator(readerViewController)
+        self.present(navigationController, animated: true, completion: nil)
     }
 }

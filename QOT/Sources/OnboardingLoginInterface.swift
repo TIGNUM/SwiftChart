@@ -16,6 +16,7 @@ protocol OnboardingLoginViewControllerInterface: UIViewController {
     func updateView()
     func beginCodeEntry()
     func presentGetHelpView()
+    func presentUnoptimizedAlertView()
 }
 
 protocol OnboardingLoginPresenterInterface {
@@ -24,6 +25,7 @@ protocol OnboardingLoginPresenterInterface {
     func presentActivity(state: ActivityState?)
     func presentCodeEntry()
     func presentGetHelp()
+    func presentUnoptimizedAlertView()
 }
 
 protocol OnboardingLoginInteractorInterface: Interactor {

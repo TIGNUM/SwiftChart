@@ -93,4 +93,8 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
     func selectedCategoryId() -> Int {
         return selectedToolID ?? 0
     }
+
+    func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void) {
+        qot_dal.ContentService.main.getContentItemById(id, completion)
+    }
 }

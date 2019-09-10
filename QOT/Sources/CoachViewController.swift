@@ -41,16 +41,19 @@ final class CoachViewController: UIViewController, ScreenZLevelCoach {
     }
 }
 
+// MARK: - Bottom Navigation
+extension CoachViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
+    }
+}
+
 // MARK: - Private
 
 private extension CoachViewController {
 
     func setupTableView() {
         tableView.registerDequeueable(CoachTableViewCell.self)
-    }
-
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
     }
 }
 

@@ -183,14 +183,24 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             if tool?.type == "video" {
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
-                    let videoURL = videoTool.mediaURL else { return }
-                stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
+                    let videoURL = videoTool.mediaURL,
+                    let remoteId = tool?.remoteID else { return }
+                interactor?.contentItem(for: remoteId, { [weak self] (item) in
+                    self?.stream(videoURL: videoURL, contentItem: item)
+                })
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
-                    didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)
+                    self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
                 }
             }
         }
+    }
+}
+
+// MARK: - Bottom Navigation
+extension ToolsCollectionsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItemLight()]
     }
 }
 
@@ -209,9 +219,5 @@ private extension ToolsCollectionsViewController {
         let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
-    }
-
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItemLight()]
     }
 }

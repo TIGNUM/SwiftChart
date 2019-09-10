@@ -27,6 +27,8 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(color: ThemeView.level2.color)
         trackPage()
     }
 

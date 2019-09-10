@@ -139,6 +139,7 @@ class AudioPlayer {
             player = AVPlayer(playerItem: playerItem)
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             _isReset = false
+            try? AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, mode: AVAudioSessionModeDefault, options: [.mixWithOthers, .allowAirPlay])
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))
         updater?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
