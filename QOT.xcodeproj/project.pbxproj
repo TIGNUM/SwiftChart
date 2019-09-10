@@ -1040,6 +1040,8 @@
 		BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D7230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib */; };
 		BB5E76DA230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D8230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift */; };
 		BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB667EF72313D76A007C2AC8 /* Theme.swift */; };
+		BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */; };
+		BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */; };
 		BB7B317A230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift */; };
 		BB7B317B230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib */; };
 		BB7B317F230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib */; };
@@ -2374,6 +2376,8 @@
 		BB5E76D7230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyPrepsHeader.xib; sourceTree = "<group>"; };
 		BB5E76D8230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyPrepsHeader.swift; sourceTree = "<group>"; };
 		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedAnswerTableViewCell.swift; sourceTree = "<group>"; };
+		BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimatedAnswerTableViewCell.xib; sourceTree = "<group>"; };
 		BB7B3178230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonTwoLinesAndTag.swift; sourceTree = "<group>"; };
 		BB7B3179230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonTwoLinesAndTag.xib; sourceTree = "<group>"; };
 		BB7B317D230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
@@ -4837,6 +4841,8 @@
 			children = (
 				ACF0B96E2260B905008CFAEC /* QuestionTableViewCell.swift */,
 				ACF0B96F2260B905008CFAEC /* QuestionTableViewCell.xib */,
+				BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */,
+				BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */,
 				ACF0B9722260BAD2008CFAEC /* SingleSelectionTableViewCell.swift */,
 				ACF0B9732260BAD2008CFAEC /* SingleSelectionTableViewCell.xib */,
 				ACF0B9762260BC80008CFAEC /* TextTableViewCell.swift */,
@@ -6442,6 +6448,7 @@
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
+				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */,
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
@@ -7791,6 +7798,7 @@
 				759AB41F22C4D5B50091BFB8 /* TBVGraphBarRangeCell.swift in Sources */,
 				AC103E522289621900F426F0 /* TriggerTableViewCell.swift in Sources */,
 				759AB30522C353090091BFB8 /* MyToBeVisionPageComponentView.swift in Sources */,
+				BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */,
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
 				F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,

@@ -21,13 +21,13 @@ class DTQuestionnaireViewController: UIViewController {
     private let viewModel: DTViewModel
     weak var delegate: DTQuestionnaireViewControllerDelegate?
     var interactor: DTInteractorInterface?
-    private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
     private lazy var tableView = UITableView(estimatedRowHeight: 100,
                                              delegate: self,
                                              dataSource: self,
                                              dequeables: MultipleSelectionTableViewCell.self,
                                              SingleSelectionTableViewCell.self,
                                              QuestionTableViewCell.self,
+                                             AnimatedAnswerTableViewCell.self,
                                              TextTableViewCell.self,
                                              CalendarEventsTableViewCell.self,
                                              UserInputTableViewCell.self)
@@ -78,17 +78,6 @@ private extension DTQuestionnaireViewController {
         attachBottomShadow()
     }
 
-    func typingAnimationStart() {
-        guard viewModel.hasTypingAnimation else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
-            self?.tableView.scrollToBottom(animated: true)
-            self?.typingAnimation.alpha = 1
-            self?.typingAnimation.startAnimation(withDuration: Animation.duration_3) {
-                self?.interactor?.didStopTypingAnimation(answer: self?.viewModel.answers.first)
-            }
-        }
-    }
-
     func attachTableView() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(tableView)
@@ -122,20 +111,7 @@ extension DTQuestionnaireViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let type = CellType.allCases[indexPath.section]
-        switch type {
-        case .question:
-            return UITableViewAutomaticDimension
-        case .answer:
-            switch viewModel.question.answerType {
-            case .yesOrNo,
-                 .singleSelection,
-                 .multiSelection:
-                return UITableViewAutomaticDimension
-            default:
-                return 0.0
-            }
-        }
+        return UITableViewAutomaticDimension
     }
 }
 
@@ -174,27 +150,26 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 cell.delegate = self
                 return cell
             default:
-                let cell = UITableViewCell()
-                cell.backgroundColor = .clear
-                return cell
+                if let answer = viewModel.answers.first {
+                    let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
+                    cell.configure(with: answer.title,
+                                   html: nil,
+                                   questionTitleUpdate: nil,
+                                   textColor: .carbon,
+                                   animateTextDuration: viewModel.hasTypingAnimation ? 5.0 : 0.0)
+                    cell.delegate = self
+                    return cell
+                } else {
+                    let cell = UITableViewCell()
+                    cell.backgroundColor = .clear
+                    return cell
+                }
             }
         }
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == CellType.question.rawValue && viewModel.hasTypingAnimation ? .TypingFooter : 0
-    }
-
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        if section == CellType.question.rawValue && viewModel.hasTypingAnimation {
-            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .TypingFooter))
-            footer.addSubview(typingAnimation)
-            typingAnimation.configure(dotsColor: .carbonNew)
-            typingAnimation.alpha = 0
-            typingAnimationStart()
-            return footer
-        }
-        return nil
+        return 0
     }
 }
 
@@ -221,5 +196,23 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         delegate?.didDeSelectAnswer(answer)
+    }
+}
+
+// MARK: - QuestionCellDelegate
+extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
+    func didFinishTypeAnimation() {
+        if let answer = viewModel.answers.first {
+            if answer.title.isEmpty {
+                interactor?.didStopTypingAnimationPresentNextPage(answer: answer)
+            } else {
+                interactor?.didStopTypingAnimation()
+
+                UIView.animate(withDuration: 0.25, animations: {
+                    self.tableView.beginUpdates()
+                    self.tableView.endUpdates()
+                })
+            }
+        }
     }
 }

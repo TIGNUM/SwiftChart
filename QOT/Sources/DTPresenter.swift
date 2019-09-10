@@ -62,10 +62,10 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, titleToUpdate: presentationModel.titleToUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
-        let navigstionButton = getNavigationButton(question: presentationModel.question)
+        let navigationButton = getNavigationButton(question: presentationModel.question)
         return DTViewModel(question: question,
                            answers: answers,
-                           navigationButton: navigstionButton,
+                           navigationButton: navigationButton,
                            hasTypingAnimation: hasTypingAnimation(questionAnswerType: question.answerType,
                                                                   answers: answers),
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
@@ -116,5 +116,9 @@ class DTPresenter: DTPresenterInterface {
     func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
         guard let filter = answerFilter else { return question?.answers ?? [] }
         return question?.answers.filter { $0.keys.contains(filter) } ?? []
+    }
+
+    func refreshNavigationButton() {
+        viewController?.refreshNavigationButton()
     }
 }

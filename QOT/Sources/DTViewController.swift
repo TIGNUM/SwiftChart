@@ -106,7 +106,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func setNavigationButton(_ viewModel: DTViewModel) {
         navigationButtonContainer.removeSubViews()
-        if let navigationButton = viewModel.navigationButton {
+        if let navigationButton = interactor?.navigationButton(viewModel) {
             navigationButtonContainer.addSubview(navigationButton)
             navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
         }
@@ -141,5 +141,10 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
+    }
+
+    func refreshNavigationButton() {
+        guard let viewModel = viewModel else { return }
+        setNavigationButton(viewModel)
     }
 }

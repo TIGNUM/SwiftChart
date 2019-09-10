@@ -14,6 +14,7 @@ protocol DTViewControllerInterface: class {
     func showNextQuestion(_ viewModel: DTViewModel)
     func showPreviosQuestion(_ viewModel: DTViewModel)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
+    func refreshNavigationButton()
 }
 
 protocol DTPresenterInterface {
@@ -21,10 +22,12 @@ protocol DTPresenterInterface {
     func showNextQuestion(_ presentationModel: DTPresentationModel)
     func showPreviosQuestion(_ presentationModel: DTPresentationModel)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
+    func refreshNavigationButton()
 }
 
 protocol DTInteractorInterface: Interactor {
-    func didStopTypingAnimation(answer: DTViewModel.Answer?)
+    func didStopTypingAnimationPresentNextPage(answer: DTViewModel.Answer?)
+    func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion()
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
