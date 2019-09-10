@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ToolsCollectionsInteractor {
 
@@ -67,5 +68,9 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
 
     func selectedCategoryId() -> Int {
         return worker.selectedCategoryId()
+    }
+
+    func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void) {
+        return worker.contentItem(for: id, completion)
     }
 }

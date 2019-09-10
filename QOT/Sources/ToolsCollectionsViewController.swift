@@ -184,8 +184,11 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             if tool?.type == "video" {
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
-                    let videoURL = videoTool.mediaURL else { return }
-                stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
+                    let videoURL = videoTool.mediaURL,
+                    let remoteId = tool?.remoteID else { return }
+                interactor?.contentItem(for: remoteId, { [weak self] (item) in
+                    self?.stream(videoURL: videoURL, contentItem: item)
+                })
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
                     didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)
