@@ -48,7 +48,7 @@ private extension DTShortTBVViewController {
     }
 
     func generateTBV() {
-        shortTBVInteractor?.generateTBV { [weak self] _ in
+        shortTBVInteractor?.generateTBV { [weak self] in
             self?.loadNextQuestion()
         }
     }

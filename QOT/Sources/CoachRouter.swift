@@ -51,8 +51,8 @@ extension CoachRouter: CoachRouterInterface {
         case .event:
             presentDecisionTree(.prepare)
         case .challenge:
-            let configurator = DTSolveConfigurator.make()
-            let controller = DTSolveViewController(configure: configurator)
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
             viewController.present(controller, animated: true)
         }
     }

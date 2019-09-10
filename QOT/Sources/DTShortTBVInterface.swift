@@ -13,7 +13,7 @@ protocol DTShortTBVViewControllerInterface: class {}
 protocol DTShortTBVPresenterInterface {}
 
 protocol DTShortTBVInteractorInterface: Interactor {
-    func generateTBV(_ completion: @escaping (String) -> Void)
+    func generateTBV(_ completion: @escaping () -> Void)
 }
 
 protocol DTShortTBVRouterInterface {}
