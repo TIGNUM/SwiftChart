@@ -308,9 +308,18 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
                                                                                            content.contentItems.first?.durationString,
                                                                                            content.remoteID ?? 0,
+                                                                                           nil,
                                                                                            content.section,
                                                                                            content.contentItems.first?.format,
                                                                                            content.contentItems.count))
+        }
+        sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
+            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(contentItem.valueText,
+                                                                                           contentItem.durationString,
+                                                                                           nil,
+                                                                                           contentItem.remoteID,
+                                                                                           .Unkown,
+                                                                                           contentItem.format, 1))
         }
 
         createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,

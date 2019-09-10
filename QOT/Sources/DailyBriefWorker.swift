@@ -83,7 +83,7 @@ extension DailyBriefWorker {
         }
     }
 
-    func saveTargetValue(value: Int?) {
+   func saveTargetValue(value: Int?) {
         settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
             if let setting = settings?.first {
                 var updatedSetting = setting
