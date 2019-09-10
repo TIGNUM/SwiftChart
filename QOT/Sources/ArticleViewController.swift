@@ -449,20 +449,6 @@ extension ArticleViewController {
         return cell
     }
 
-    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL) {
-        trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
-        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
-        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            return
-        }
-        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
-            return
-        }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
-        pdfReaderConfigurator(readerViewController)
-        present(navigationController, animated: true, completion: nil)
-    }
-
     func sectionHasContent(_ section: Int) -> Bool {
         let numRows = interactor?.itemCount(in: section) ?? 0
         let title = interactor?.headerTitle(for: section) ?? ""
@@ -604,20 +590,12 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let url = item.bundledAudioURL ?? remoteURL
             delegate?.didTapMedia(withURL: url, in: self)
         case .video(let remoteID, _, _, _, let videoURL, _):
-            qot_dal.ContentService.main.getContentItemById(remoteID) { (contentItem) in
+            qot_dal.ContentService.main.getContentItemById(remoteID) { [weak self] (contentItem) in
                 guard let item = contentItem else { return }
-                let playerViewController = self.stream(videoURL: videoURL, contentItem: item)
-                if let playerItem = playerViewController.player?.currentItem {
-                    let avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-                    avPlayerObserver.onStatusUpdate { (player) in
-                        if playerItem.status == .failed {
-                            playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
-                        }
-                    }
-                }
+                self?.stream(videoURL: videoURL, contentItem: item)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
-            didTapPDFLink(title, itemID, pdfURL)
+            showPDFReader(withURL: pdfURL, title: title, itemID: itemID)
             trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
         case .articleRelatedWhatsHot(let relatedArticle):
             transitionArticle(remoteID: relatedArticle.remoteID)

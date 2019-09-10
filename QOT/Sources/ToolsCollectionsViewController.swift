@@ -70,7 +70,6 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
     }
 }
 
-
 // MARK: - Private
 
 private extension ToolsCollectionsViewController {
@@ -191,7 +190,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                 })
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
-                    didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)
+                    self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
                 }
             }
         }
@@ -201,20 +200,6 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 // MARK: - Private
 
 private extension ToolsCollectionsViewController {
-
-    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL) {
-        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
-        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            return
-        }
-        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
-            return
-        }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
-        pdfReaderConfigurator(readerViewController)
-        present(navigationController, animated: true, completion: nil)
-    }
-
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return [dismissNavigationItemLight()]
     }

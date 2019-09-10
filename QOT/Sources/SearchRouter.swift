@@ -23,7 +23,7 @@ extension SearchRouter: SearchRouterInterface {
 
     func handleSelection(searchResult: Search.Result) {
         if searchResult.displayType == .pdf, let url = searchResult.mediaURL {
-            didTapPDF(withURL: url, in: searchViewController, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
+            searchViewController.showPDFReader(withURL: url, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
         }
         if let section = searchResult.section {
             switch section {
@@ -55,18 +55,5 @@ private extension SearchRouter {
 
     func presentArticle(with link: URL) {
         LaunchHandler().process(url: link, searchViewController: searchViewController)
-    }
-
-    func didTapPDF(withURL url: URL, in viewController: SearchViewController, title: String, itemID: Int) {
-        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
-        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
-            return
-        }
-        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
-            return
-        }
-        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title, url: url)
-        pdfReaderConfigurator(readerViewController)
-        viewController.present(navigationController, animated: true, completion: nil)
     }
 }

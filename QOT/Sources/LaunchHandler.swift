@@ -280,17 +280,10 @@ extension LaunchHandler {
             guard let contentItem = contentItem else { return }
             switch contentItem.format {
             case .pdf:
-                let storyboard = R.storyboard.pdfReaderViewController
-                guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController,
-                let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController,
-                    let pdfURL = URL(string: contentItem.valueMediaURL ?? "") else {
+                guard let pdfURL = URL(string: contentItem.valueMediaURL ?? "") else {
                     return
                 }
-                let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemId,
-                                                                       title: contentItem.valueText,
-                                                                       url: pdfURL)
-                pdfReaderConfigurator(readerViewController)
-                self.present(viewController: navigationController)
+                baseRootViewController?.showPDFReader(withURL: pdfURL, title: contentItem.valueText, itemID: itemId)
             case .audio,
                  .video:
                 guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }

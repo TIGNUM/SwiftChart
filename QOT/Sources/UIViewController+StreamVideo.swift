@@ -96,6 +96,10 @@ extension UIViewController {
         let player = AVPlayer(url: videoURL)
         let playerController = MediaPlayerViewController(contentItem: contentItem)
         let interactor = StreamVideoInteractor(content: contentItem)
+        guard QOTReachability().isReachable || interactor.isDownloaded else {
+            self.showNoInternetConnectionAlert()
+            return playerController
+        }
         playerController.interactor = interactor
         playerController.player = player
 
