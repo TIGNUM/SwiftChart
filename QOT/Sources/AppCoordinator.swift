@@ -234,17 +234,12 @@ extension AppCoordinator {
     }
 
     func showTrackChoice() {
-        guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
-
-        let navigationController = UINavigationController(rootViewController: controller)
-        navigationController.navigationBar.isHidden = true
-        navigationController.navigationBar.applyDefaultStyle()
-        navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.modalPresentationStyle = .overFullScreen
-
+        guard let controller = R.storyboard.trackSelection.trackSelectionViewController(),
+            let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
+            let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
         let configurator = TrackSelectionConfigurator.make()
         configurator(controller, .login)
-        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
+        baseController.setContent(viewController: controller)
     }
 
     func showSigning() {
