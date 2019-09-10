@@ -17,6 +17,7 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
 
     private let helpEmail = Defaults.firstLevelSupportEmail
     private let viewTheme = ThemeView.onboarding
+    private var shouldBeginEmailEntry: Bool = true
     private var didHideEmail: Bool {
         return sendButtonYPosition.constant != 0
     }
@@ -62,10 +63,12 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        guard  shouldBeginEmailEntry else { return }
         // There needs to be a small delay or the textfield automatically resigns first responder
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) { [weak self] in
             self?.emailField.textField.becomeFirstResponder()
         }
+        shouldBeginEmailEntry = false
     }
 }
 
@@ -208,6 +211,7 @@ private extension OnboardingLoginViewController {
             resetCodeInputPosition()
             emailField.textField.becomeFirstResponder()
         } else {
+            shouldBeginEmailEntry = true
             loadEmailTextFieldDefaultUI()
             emailField.text = nil
             interactor?.didTapBack()

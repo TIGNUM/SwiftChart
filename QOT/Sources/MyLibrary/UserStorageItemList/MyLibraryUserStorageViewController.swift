@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import Kingfisher
 
 final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 {
 
@@ -182,17 +183,17 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
         switch cellType {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.setImage(from: item?.previewURL, placeholder: placeholder)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.setImage(from: item?.previewURL, placeholder: placeholder)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
             cell.playButton.setTitle(item?.duration, for: .normal)
             cell.playButton.tag = indexPath.row
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.setImage(from: item?.previewURL, placeholder: placeholder)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)

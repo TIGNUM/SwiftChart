@@ -35,14 +35,15 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         super.awakeFromNib()
         contentView.backgroundColor = .carbon
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
+        tableView.delegate = self
+        tableView.dataSource = self
+        ThemeView.level2.apply(self)
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
         let lowercaseTitle = viewModel?.sprintTitle?.lowercased()
         ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
@@ -59,14 +60,33 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SprintChallengeTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.selectedBackgroundView = backgroundView
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         cell.configure(title: relatedStrategiesModels?[indexPath.row].title,
                        durationString: relatedStrategiesModels?[indexPath.row].durationString,
-                       remoteID: relatedStrategiesModels?[indexPath.row].remoteID,
+                       remoteID: relatedStrategiesModels?[indexPath.row].contentId,
                        section: relatedStrategiesModels?[indexPath.row].section,
                        format: relatedStrategiesModels?[indexPath.row].format,
                        numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)
         cell.backgroundColor = .carbon
         cell.delegate = self.delegate
         return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        guard let relatedStrategy = relatedStrategiesModels?[indexPath.row] else { return }
+        if let contentItemId = relatedStrategy.contentItemId,
+            let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+        } else if let contentCollectionId = relatedStrategy.contentId {
+            if relatedStrategy.section == .LearnStrategies {
+                delegate?.openStrategyFromSprint(strategyID: contentCollectionId)
+            } else if relatedStrategy.section == .QOTLibrary {
+                delegate?.openToolFromSprint(toolID: contentCollectionId)
+            } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
+        }
     }
 }

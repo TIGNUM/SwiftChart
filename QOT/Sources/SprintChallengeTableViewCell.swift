@@ -28,6 +28,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
         iconVideo.isHidden = true
         iconFiles.isHidden = true
         iconAudio.isHidden = true
+        ThemeView.level2.apply(self)
     }
 
     func configure(title: String?, durationString: String?, remoteID: Int?, section: ContentSection?, format: ContentFormat?, numberOfItems: Int) {

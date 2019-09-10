@@ -22,17 +22,25 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
     struct RelatedStrategiesModel {
         var title: String?
         var durationString: String?
-        var remoteID: Int?
+        var contentId: Int?
+        var contentItemId: Int?
         var section: ContentSection?
         var format: ContentFormat?
         var numberOfItems: Int?
 
         init() {}
 
-        init(_ title: String?, _ durationString: String?, _ remoteID: Int?, _ section: ContentSection?, _ format: ContentFormat?, _ numberOfItems: Int?) {
+        init(_ title: String?,
+             _ durationString: String?,
+             _ contentId: Int?,
+             _ contentItemId: Int?,
+             _ section: ContentSection?,
+             _ format: ContentFormat?,
+             _ numberOfItems: Int?) {
             self.title = title
             self.durationString = durationString
-            self.remoteID = remoteID
+            self.contentId = contentId
+            self.contentItemId = contentItemId
             self.section = section
             self.format = format
             self.numberOfItems = numberOfItems

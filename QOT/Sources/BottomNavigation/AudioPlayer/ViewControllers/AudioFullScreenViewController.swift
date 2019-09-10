@@ -130,6 +130,7 @@ extension AudioFullScreenViewController {
                 if let error = error {
                     qot_dal.log("failed to remove bookmark: \(error)", level: .info)
                 }
+                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = nil
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
             }
@@ -138,6 +139,7 @@ extension AudioFullScreenViewController {
                 if let error = error {
                     qot_dal.log("failed to add bookmark: \(error)", level: .info)
                 }
+                NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
             }

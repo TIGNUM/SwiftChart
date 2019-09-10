@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAA-TH-Axd">
-                    <rect key="frame" x="20" y="48" width="10" height="1"/>
+                    <rect key="frame" x="20" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="9Qu-kc-umq"/>
@@ -75,12 +75,16 @@
                         <action selector="showMoreButton:" destination="h1K-Pb-kvU" eventType="touchUpInside" id="9zr-w0-uO9"/>
                     </connections>
                 </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a2X-cN-vE8">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a2X-cN-vE8">
                     <rect key="frame" x="0.0" y="351" width="414" height="195"/>
                     <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="195" id="ZmT-dw-wk2"/>
                     </constraints>
+                    <connections>
+                        <outlet property="dataSource" destination="h1K-Pb-kvU" id="pCR-wJ-GAR"/>
+                        <outlet property="delegate" destination="h1K-Pb-kvU" id="NWf-Qc-bx4"/>
+                    </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm">
                     <rect key="frame" x="335" y="566" width="55" height="40"/>
