@@ -15,10 +15,9 @@ enum CoachSection: Int, CaseIterable {
     case sprint
     case event
     case challenge
-
-    static var sectionValues: [CoachSection] {
-        return [.search, .tools, .sprint, .event, .challenge]
-    }
+    case shortTBVMindSet
+    case shortTBVPrepare
+    case shortTBVOnBoarding
 
     func tag() -> Tags {
         switch self {
@@ -32,6 +31,7 @@ enum CoachSection: Int, CaseIterable {
             return .CoachEvent
         case .challenge:
             return .CoachChallenge
+        default: return .CoachSprint //TODO: Please DELETE ME later WHen u are done :D
         }
     }
 
@@ -54,6 +54,6 @@ struct CoachModel {
     // MARK: - Properties
 
     func sectionItem(at indexPath: IndexPath) -> CoachSection {
-        return CoachSection.sectionValues.at(index: indexPath.row) ?? .tools
+        return CoachSection.allCases.at(index: indexPath.row) ?? .tools
     }
 }

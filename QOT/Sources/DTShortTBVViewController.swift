@@ -12,6 +12,7 @@ final class DTShortTBVViewController: DTViewController {
 
     // MARK: - Properties
     var shortTBVInteractor: DTShortTBVInteractorInterface?
+    var shortTBVRouter: DTShortTBVRouter?
 
     // MARK: - Init
     init(configure: Configurator<DTShortTBVViewController>) {
@@ -25,10 +26,13 @@ final class DTShortTBVViewController: DTViewController {
 
     // MARK: - DTViewController
     override func didTapNext() {
-        setAnswerSelectedIfNeeded()
-        if viewModel?.question.key == ShortTBV.QuestionKey.Home {
+        switch viewModel?.question.key {
+        case ShortTBV.QuestionKey.Review:
+            shortTBVRouter?.dismiss()
+        case ShortTBV.QuestionKey.Home:
             generateTBV()
-        } else {
+        default:
+            setAnswerSelectedIfNeeded()
             loadNextQuestion()
         }
     }
@@ -48,7 +52,11 @@ private extension DTShortTBVViewController {
     }
 
     func generateTBV() {
-        shortTBVInteractor?.generateTBV { [weak self] in
+        var selectedAnswers = interactor?.selectedAnswers ?? []
+        let answers = viewModel?.answers.filter { $0.selected } ?? []
+        let update = SelectedAnswer(question: viewModel?.question, answers: answers)
+        selectedAnswers.append(update)
+        shortTBVInteractor?.generateTBV(selectedAnswers) { [weak self] in
             self?.loadNextQuestion()
         }
     }

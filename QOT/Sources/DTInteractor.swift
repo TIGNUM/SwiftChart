@@ -13,7 +13,6 @@ typealias SelectedAnswer = (question: DTViewModel.Question?, answers: [DTViewMod
 typealias Node = (questionId: Int?, answerFilter: String?)
 
 class DTInteractor: DTInteractorInterface {
-
     // MARK: - Properties
     lazy var worker: DTWorker? = DTWorker()
     let presenter: DTPresenterInterface
@@ -65,6 +64,9 @@ class DTInteractor: DTInteractorInterface {
     func loadPreviousQuestion() {
         if presentedNodes.isEmpty == false {
             presentedNodes.removeLast()
+            if selectedAnswers.isEmpty == false {
+                selectedAnswers.removeLast()
+            }
             let lastNode = presentedNodes.last
             let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
                                                             answerFilter: lastNode?.answerFilter,

@@ -13,4 +13,8 @@ final class DTShortTBVPresenter: DTPresenter {
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == ShortTBV.QuestionKey.IntroMindSet
     }
+
+    override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
+        return answerType == .text
+    }
 }

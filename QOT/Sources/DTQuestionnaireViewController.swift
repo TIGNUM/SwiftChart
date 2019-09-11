@@ -113,7 +113,8 @@ extension DTQuestionnaireViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return shouldWaitFotTBVAnimationCompleted ? 0 : UITableViewAutomaticDimension
+        return UITableViewAutomaticDimension
+//        return shouldWaitFotTBVAnimationCompleted && CellType.allCases[indexPath.section] == .answer ? 0 : UITableViewAutomaticDimension
     }
 }
 
@@ -158,14 +159,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return cell
             default:
                 if let answer = viewModel.answers.first {
-                    let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
-                    cell.configure(with: answer.title,
-                                   html: nil,
-                                   questionTitleUpdate: nil,
-                                   textColor: .carbon,
-                                   animateTextDuration: viewModel.hasTypingAnimation ? 5.0 : 0.0)
-                    cell.delegate = self
-                    return cell
+                    return getTypingCell(indexPath, tableView, title: answer.title)
                 } else {
                     let cell = UITableViewCell()
                     cell.backgroundColor = .clear
@@ -176,7 +170,22 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
+        return (viewModel.hasTypingAnimation && section == 0) ? .TypingFooter : 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return getTypingCell(IndexPath(item: 0, section: section), tableView, title: nil)
+    }
+
+    func getTypingCell(_ indexPath: IndexPath, _ tableView: UITableView, title: String?) -> AnimatedAnswerTableViewCell {
+        let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: title ?? "",
+                       html: nil,
+                       questionTitleUpdate: nil,
+                       textColor: .carbon,
+                       animateTextDuration: viewModel.hasTypingAnimation ? 5.0 : 0.0)
+        cell.delegate = self
+        return cell
     }
 }
 
