@@ -1061,6 +1061,7 @@
 		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
 		BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */; };
 		BBB47C612328DCE700B165F8 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C602328DCE700B165F8 /* AnimatedButton.swift */; };
+		BBB47C6323292DBD00B165F8 /* BaseWithTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C6223292DBD00B165F8 /* BaseWithTableViewController.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
@@ -2403,6 +2404,7 @@
 		BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarTableViewCell.swift; sourceTree = "<group>"; };
 		BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarTableViewCell.xib; sourceTree = "<group>"; };
 		BBB47C602328DCE700B165F8 /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
+		BBB47C6223292DBD00B165F8 /* BaseWithTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWithTableViewController.swift; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
@@ -3173,6 +3175,7 @@
 				AC1A40D122A54DC90022156C /* Solve Results */,
 				F99DF60D2292E38F00341DAB /* TOOLS */,
 				36E6E3F2224938D8001BE9C7 /* transition */,
+				BBB47C6223292DBD00B165F8 /* BaseWithTableViewController.swift */,
 			);
 			name = "3.0 Main Navigation";
 			sourceTree = "<group>";
@@ -7802,6 +7805,7 @@
 				7582617E22DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift in Sources */,
 				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
+				BBB47C6323292DBD00B165F8 /* BaseWithTableViewController.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
 				BB5E76BB230C29A10054AF17 /* SkeletonDailyBrief.swift in Sources */,

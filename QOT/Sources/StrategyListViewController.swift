@@ -9,12 +9,11 @@
 import UIKit
 import qot_dal
 
-final class StrategyListViewController: UIViewController, ScreenZLevel2 {
+final class StrategyListViewController: BaseWithTableViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
     var interactor: StrategyListInteractorInterface?
-    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Life Cycle
 
@@ -124,7 +123,8 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectRow(at: indexPath)
+
         if interactor?.isFoundation == true {
             guard
                 let foundation = interactor?.foundationStrategies[indexPath.row],

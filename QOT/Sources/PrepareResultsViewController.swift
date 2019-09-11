@@ -19,16 +19,12 @@ protocol PrepareResultsDelegatge: class {
     func didUpdateBenefits(_ benefits: String)
 }
 
-final class PrepareResultsViewController: UIViewController, ScreenZLevel3 {
+final class PrepareResultsViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?
     private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
-
-    private lazy var tableView: UITableView = {
-        return UITableView(style: .grouped, delegate: self, dataSource: self)
-    }()
 
     // MARK: - Init
     init(configure: Configurator<PrepareResultsViewController>) {
@@ -156,6 +152,9 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 
     func setupView() {
         view.addSubview(tableView)
+        tableView.delegate = self
+        tableView.dataSource = self
+
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.safeTopAnchor == view.safeTopAnchor
@@ -260,7 +259,7 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectRow(at: indexPath)
         guard let item = interactor?.item(at: indexPath) else { return }
         switch item {
         case .strategy(_, _, let readMoreID):

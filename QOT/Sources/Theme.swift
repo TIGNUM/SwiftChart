@@ -506,6 +506,13 @@ enum ThemeText {
 
     case chatBotButton
 
+    case resultDate
+    case resultTitle
+    case resultHeader1
+    case resultHeader2
+    case resultList
+    case resultFollowUp
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError:
@@ -524,6 +531,7 @@ enum ThemeText {
              .registrationAgeRestriction, .trackSelectionMessage, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
+             .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle:
@@ -568,10 +576,11 @@ enum ThemeText {
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeader, .accountHeaderTitle,
+             .resultTitle, .resultHeader2,
              .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight, .qotTools, .qotToolsSectionSubtitle:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
-             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle:
+             .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList:
             return Fonts.fontMedium14
         case .strategyHeader:
             return Fonts.fontDisplayRegular20
@@ -580,7 +589,7 @@ enum ThemeText {
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
             return Fonts.fontDisplayRegular20
-        case .tbvStatement, .qotToolsTitle:
+        case .tbvStatement, .qotToolsTitle, .resultHeader1:
             return Fonts.fontDisplayLight24
         case .articlePostTitle, .articlePostTitleNight:
             return Fonts.fontLight36
@@ -656,9 +665,10 @@ enum ThemeText {
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatBotButton:
             return Palette.accent
-        case .performanceSections, .qotToolsSubtitle:
+        case .performanceSections, .qotToolsSubtitle, .resultList, .resultFollowUp:
             return Palette.carbon40
-        case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark:
+        case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark,
+             .resultTitle, .resultHeader1:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
@@ -666,7 +676,7 @@ enum ThemeText {
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
              .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights:
             return Palette.sand70
-        case .performanceSectionText, .qotToolsSectionSubtitle:
+        case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2:
             return Palette.carbon70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:
@@ -727,6 +737,8 @@ enum ThemeText {
             return Palette.sand
         case .qotAlertMessage:
             return Palette.sand70
+        case .resultDate:
+            return Palette.carbon30
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
         }
@@ -740,15 +752,19 @@ enum ThemeText {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
 //             todo check with domnic
-             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash, .qotToolsSubtitle, .qotToolsTitle:
+             .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
+             .resultFollowUp,
+             .qotToolsSubtitle, .qotToolsTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
-        case .performanceStaticTitle, .fromCoachTitle:
+        case .performanceStaticTitle, .fromCoachTitle, .resultDate:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
-        case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools, .qotToolsSectionSubtitle:
+        case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
+             .resultTitle, .resultHeader1, .resultHeader2, .resultList,
+             .qotToolsSectionSubtitle:
              string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,

@@ -16,7 +16,7 @@ final class RelatedStrategyTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var durationLabel: UILabel!
 
     func configure(title: String?, duration: String?) {
-        titleLabel.text = title
-        durationLabel.text = duration
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultDate.apply(duration, to: durationLabel)
     }
 }
