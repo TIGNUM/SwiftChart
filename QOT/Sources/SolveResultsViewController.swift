@@ -11,6 +11,7 @@ import qot_dal
 
 protocol SolveResultsViewControllerDelegate: class {
     func didFinishSolve()
+    func didFinishRec()
 }
 
 // TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..

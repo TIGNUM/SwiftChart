@@ -33,4 +33,6 @@ extension DTSolveRouter: SolveResultsViewControllerDelegate {
     func didFinishSolve() {
         solveResultsController?.dismiss(animated: true, completion: nil)
     }
+
+    func didFinishRec() {}
 }
