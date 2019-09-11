@@ -123,6 +123,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         cell.selectedBackgroundView = backgroundView
+        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         return cell
     }
 

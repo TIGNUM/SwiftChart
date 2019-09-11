@@ -91,11 +91,11 @@ private extension WalkthroughAnimatedArrows {
     @objc func animate() {
         // Slide
         contentLeftConstraint.constant = self.frame.size.width * 0.25
-        UIView.animate(withDuration: totalDuration, delay: 0, options: .curveLinear, animations: {
-            self.layoutIfNeeded()
-        }, completion: { (_) in
-            self.contentLeftConstraint.constant = 0
-            self.layoutIfNeeded()
+        UIView.animate(withDuration: totalDuration, delay: 0, options: .curveLinear, animations: { [weak self] in
+            self?.layoutIfNeeded()
+        }, completion: {  [weak self] (_) in
+            self?.contentLeftConstraint.constant = 0
+            self?.layoutIfNeeded()
         })
 
         // Arrows
@@ -103,8 +103,11 @@ private extension WalkthroughAnimatedArrows {
             let tempDelay = Double(index) * (fadeIn + visible - overlap)
             UIView.animate(withDuration: fadeIn, delay: tempDelay, options: .curveEaseIn, animations: {
                 view.alpha = 1
-            }, completion: { (_) in
-                UIView.animate(withDuration: self.fadeOut, delay: self.visible, options: .curveEaseIn, animations: {
+            }, completion: { [weak self] (_) in
+                guard let strongSelf = self else {
+                    return
+                }
+                UIView.animate(withDuration: strongSelf.fadeOut, delay: strongSelf.visible, options: .curveEaseIn, animations: {
                     view.alpha = 0
                 })
             })

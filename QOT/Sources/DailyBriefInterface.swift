@@ -12,19 +12,16 @@ import DifferenceKit
 
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
-    func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>)
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
-    func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>)
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
-    func updateViewModelList(_ list: [BaseDailyBriefViewModel])
     var rowCount: Int { get }
     var rowViewModelCount: Int { get }
     var rowViewSectionCount: Int { get }

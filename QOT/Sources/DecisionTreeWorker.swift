@@ -227,7 +227,7 @@ extension DecisionTreeWorker {
                 guard let question = question else { return }
                 self?.questions = [question]
                 self?.decisionTree = DecisionTreeModel(question: question)
-                selectedAnswers.forEach { (selectedAnswer) in
+                selectedAnswers.forEach { [weak self] (selectedAnswer) in
                     self?.decisionTree?.add(selectedAnswer)
                 }
                 completion()
@@ -359,8 +359,9 @@ extension DecisionTreeWorker {
                 fatigueContentItemId: fatigueContentItemId,
                 causeAnwserId: self?.recoveryCauseAnswerId ?? 0,
                 causeContentItemId: self?.recoveryCauseContentItemId ?? 0,
+
                 exclusiveContentCollectionIds: exclusiveContentIds,
-                suggestedSolutionsContentCollectionIds: suggestedContentIds) { (recoveryModel, error) in
+                suggestedSolutionsContentCollectionIds: suggestedContentIds) { [weak self] (recoveryModel, error) in
                     if let error = error {
                         qot_dal.log("Error while trying to CREATE QDMRecovery3D: \(error.localizedDescription)",
                             level: .debug)

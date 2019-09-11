@@ -17,52 +17,67 @@ final class SearchWorker {
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {
         switch searchFilter {
         case .all:
-            qot_dal.ContentService.main.getAllFor(keyword: searchText) { (contentCollections, contentItems) in
+            qot_dal.ContentService.main.getAllFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+                guard let strongSelf = self else {
+                    return
+                }
                 var searchArray = [Search.Result]()
                 if let collections = contentCollections {
                     searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .article))
                 }
                 if let items = contentItems {
-                    searchArray.append(contentsOf: self.contentItemResultsFrom(contentItems: items, filter: searchFilter))
+                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
                 }
-                completion(self.removeDuplicates(from: searchArray))
+                completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .read:
-            qot_dal.ContentService.main.getAllReadablesFor(keyword: searchText) { (contentCollections, contentItems) in
+            qot_dal.ContentService.main.getAllReadablesFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+                guard let strongSelf = self else {
+                    return
+                }
                 var searchArray = [Search.Result]()
                 if let collections = contentCollections {
                     searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .article))
                 }
                 if let items = contentItems {
-                    searchArray.append(contentsOf: self.contentItemResultsFrom(contentItems: items, filter: searchFilter))
+                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
                 }
-                completion(self.removeDuplicates(from: searchArray))
+                completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .listen:
-            qot_dal.ContentService.main.getAudioItemsFor(keyword: searchText) { (contentItems) in
+            qot_dal.ContentService.main.getAudioItemsFor(keyword: searchText) { [weak self] (contentItems) in
+                guard let strongSelf = self else {
+                    return
+                }
                 var searchArray = [Search.Result]()
                 if let items = contentItems {
-                    searchArray.append(contentsOf: self.contentItemResultsFrom(contentItems: items, filter: searchFilter))
+                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
                 }
-                completion(self.removeDuplicates(from: searchArray))
+                completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .watch:
-            qot_dal.ContentService.main.getVideoItemsFor(keyword: searchText) { (contentItems) in
+            qot_dal.ContentService.main.getVideoItemsFor(keyword: searchText) { [weak self] (contentItems) in
+                guard let strongSelf = self else {
+                    return
+                }
                 var searchArray = [Search.Result]()
                 if let items = contentItems {
-                    searchArray.append(contentsOf: self.contentItemResultsFrom(contentItems: items, filter: searchFilter))
+                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
                 }
                 searchArray.sort(by: { $0.title < $1.title })
-                completion(self.removeDuplicates(from: searchArray))
+                completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .tools:
-            qot_dal.ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { (contentCollections) in
+            qot_dal.ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { [weak self] (contentCollections) in
+                guard let strongSelf = self else {
+                    return
+                }
                 var searchArray = [Search.Result]()
                 if let collections = contentCollections {
                     searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .tool))
                 }
                 searchArray.sort(by: { $0.title < $1.title })
-                completion(self.removeDuplicates(from: searchArray))
+                completion(strongSelf.removeDuplicates(from: searchArray))
             }
         }
     }

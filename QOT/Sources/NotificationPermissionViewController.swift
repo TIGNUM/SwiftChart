@@ -93,11 +93,11 @@ extension NotificationPermissionViewController: NotificationPermissionViewContro
 
     func presentDeniedPermissionAlert() {
         let alert = UIAlertController(title: nil, message: interactor?.permissionDeniedMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: interactor?.alertSkipButton, style: .default, handler: { (_) in
-            self.interactor?.didTapSkip()
+        alert.addAction(UIAlertAction(title: interactor?.alertSkipButton, style: .default, handler: { [weak self] (_) in
+            self?.interactor?.didTapSkip()
         }))
-        alert.addAction(UIAlertAction(title: interactor?.alertSettingsButton, style: .cancel, handler: { (_) in
-            self.interactor?.didTapSettings()
+        alert.addAction(UIAlertAction(title: interactor?.alertSettingsButton, style: .cancel, handler: { [weak self] (_) in
+            self?.interactor?.didTapSettings()
         }))
         present(alert, animated: true, completion: nil)
     }

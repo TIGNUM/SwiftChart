@@ -8,6 +8,7 @@
 
 import UserNotifications
 
+let DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER = URLScheme.dailyCheckIn.rawValue
 // FIXME: Make realm obj and sync from server
 struct NotificationConfigurationObject {
 
@@ -33,7 +34,7 @@ struct NotificationConfigurationObject {
         let componants = DateComponents(hour: hour, minute: minute, weekday: weekday)
         let content = UNMutableNotificationContent(title: title, body: body, soundName: nil, link: link)
         let trigger = UNCalendarNotificationTrigger(dateMatching: componants, repeats: true)
-        let identifier = "daily-check-in"
+        let identifier = "\(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)-\(weekday)"
         return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
     }
 }
@@ -52,7 +53,7 @@ extension NotificationConfigurationObject {
 
     private static func needsSchedule(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            completion?(requests.filter { $0.identifier.contains("daily-check-in") }.count != 7)
+            completion?(requests.filter { $0.identifier.hasPrefix(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER) }.count != 7)
         }
     }
 
@@ -77,7 +78,7 @@ extension NotificationConfigurationObject {
             weekday: weekday,
             title: "DAILY CHECK IN", // CHANGE ME : USE Screen Title Service
             body: "Let's start the morning with a quick check in, so I can help support you today.",
-            link: "qot://morning-interview"
+            link: URLScheme.dailyCheckIn.launchPathWithParameterValue("")
         )
     }
 }

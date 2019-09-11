@@ -42,11 +42,11 @@ class ShareExtensionViewController: SLComposeServiceViewController {
         }
         let propertyList = String(kUTTypeURL)
         if itemProvider.hasItemConformingToTypeIdentifier(propertyList) {
-            itemProvider.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler: { (item, error) -> Void in
-                guard let url = item as? URL else { return }
+            itemProvider.loadItem(forTypeIdentifier: propertyList, options: nil, completionHandler: { [weak self] (item, error) -> Void in
+                guard let strongSelf = self, let url = item as? URL else { return }
                 OperationQueue.main.addOperation {
-                    self.shareExtensionData.url = url.absoluteString
-                    self.shareExtensionData.title = self.textView.text
+                    strongSelf.shareExtensionData.url = url.absoluteString
+                    strongSelf.shareExtensionData.title = strongSelf.textView.text
                 }
             })
         }

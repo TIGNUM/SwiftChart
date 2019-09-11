@@ -49,4 +49,18 @@ final class SolveResultsConfigurator {
             viewController.isFollowUpActive = solve.followUp
         }
     }
+
+    static func make(from mindsetShifter: QDMMindsetShifter) -> (SolveResultsViewController) -> Void {
+        return { (viewController) in
+            let router = SolveResultsRouter(viewController: viewController)
+            let worker = SolveResultsWorker(selectedAnswerId: mindsetShifter.triggerAnswerId ?? 0,
+                                            solutionCollectionId: mindsetShifter.triggerAnswer?.targetId(.content) ?? 0,
+                                            type: .solve,
+                                            solve: nil)
+            let presenter = SolveResultsPresenter(viewController: viewController)
+            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
+            viewController.interactor = interactor
+            viewController.isFollowUpActive = true
+        }
+    }
 }

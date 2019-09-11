@@ -44,5 +44,5 @@ protocol TrackSelectionInteractorInterface: Interactor {
 
 protocol TrackSelectionRouterInterface {
     func openWalktrough(with trackType: SelectedTrackType)
-    func showLocationPersmission(completion: (() -> Void)?)
+    func showNotificationPersmission(type: AskPermission.Kind, completion: (() -> Void)?)
 }

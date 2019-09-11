@@ -32,7 +32,6 @@ protocol RegistrationInteractorInterface: Interactor {
 
 protocol RegistrationRouterInterface {
     func popBack()
-    func showLocationPersmission(completion: (() -> Void)?)
 }
 
 protocol RegistrationDelegate {

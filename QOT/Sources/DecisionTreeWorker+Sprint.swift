@@ -85,7 +85,7 @@ private extension DecisionTreeWorker {
     func createSprintAndStart(_ targetContentId: Int) {
         createSprint(targetContentId) { [weak self] (sprint) in
             if let sprint = sprint {
-                qot_dal.UserService.main.startSprint(sprint) { (sprint, error) in
+                qot_dal.UserService.main.startSprint(sprint) { [weak self] (sprint, error) in
                     self?.showNextQuestion(targetId: self?.lastSprintQuestionId ?? 0, answer: nil)
                     self?.lastSprintQuestionId = nil
                 }

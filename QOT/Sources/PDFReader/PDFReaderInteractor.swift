@@ -68,17 +68,17 @@ final class PDFReaderInteractor {
     }
 
     func prepareShareContent() {
-        worker.prepareShareContent { (result) in
+        worker.prepareShareContent { [weak self] (result) in
             switch result {
             case .success(let shareContent) :
-                self.shareContent = shareContent
+                self?.shareContent = shareContent
                 PDFReaderInteractor.shareMailTitle = shareContent.title
                 PDFReaderInteractor.shareMailBody = shareContent.body
             case .failure(let error):
                 log("Getting Share Content Failed- \(error)", level: .error)
-                self.router.showAlert(type: .message(error.localizedDescription), handler: nil, handlerDestructive: nil)
+                self?.router.showAlert(type: .message(error.localizedDescription), handler: nil, handlerDestructive: nil)
             }
-            self.presenter.enableShareButton(self.shareContent != nil)
+            self?.presenter.enableShareButton(self?.shareContent != nil)
         }
     }
 }

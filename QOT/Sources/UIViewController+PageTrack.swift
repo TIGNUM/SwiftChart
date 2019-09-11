@@ -79,7 +79,6 @@ extension UIViewController {
         case is RegistrationCodeViewController: return "onboarding.createaccount.activationcode"
         case is RegistrationNamesViewController: return "onboarding.createaccount.name"
         case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
-        case is NotificationPermissionViewController: return "onboarding.createaccount.permissions"
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
         case is StrategyListViewController: return "know.feed.strategy"
         case is ArticleViewController: return "article.detail"
@@ -163,6 +162,7 @@ private extension UIViewController {
         case .notification?: return "askPermission.notification"
         case .calendar?: return "askPermission.calendar"
         case .calendarOpenSettings?: return "askPermission.calendar.settings"
+        case .notificationOpenSettings?: return "askPermission.notification.settings"
         default: preconditionFailure()
         }
     }

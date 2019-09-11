@@ -33,10 +33,11 @@ private extension AskPermissionRouter {
         case .location?:
             requestLocationAccess()
         case .notification?:
-            print("Reuqest Notidfication Access")
+            requestNotificationAccess()
         case .calendar?:
             requestCalendarAccess()
-        case .calendarOpenSettings?:
+        case .calendarOpenSettings?,
+             .notificationOpenSettings?:
             openSystemSettings()
         case .none:
             preconditionFailure("PermissionType does not exist")
@@ -55,9 +56,19 @@ private extension AskPermissionRouter {
 
     func requestCalendarAccess() {
         CalendarPermission().askPermission { [weak self] (granted) in
-            if granted == true {
-                self?.viewController?.dismiss(animated: true, completion: nil)
-            } else {
+            DispatchQueue.main.async { [weak self] in
+                if granted == true {
+                    self?.viewController?.dismiss(animated: true, completion: nil)
+                } else {
+                    self?.viewController?.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
+
+    func requestNotificationAccess() {
+        RemoteNotificationPermission().askPermission { (_) in
+            DispatchQueue.main.async { [weak self] in
                 self?.viewController?.dismiss(animated: true, completion: nil)
             }
         }

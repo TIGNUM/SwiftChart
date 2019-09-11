@@ -16,7 +16,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     @IBOutlet private weak var videoThumbnailImageView: UIImageView!
     @IBOutlet private weak var videoTitle: UILabel!
     @IBOutlet private weak var videoDurationButton: UIButton!
-    @IBOutlet private weak var audioButton: UIButton!
+    @IBOutlet private weak var audioButton: AnimatedButton!
     @IBOutlet private weak var audioView: UIView!
     @IBOutlet private weak var videoView: UIView!
     private var mediaURL: URL?
@@ -26,6 +26,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
     }
 

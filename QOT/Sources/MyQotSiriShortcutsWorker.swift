@@ -30,8 +30,8 @@ final class MyQotSiriShortcutsWorker {
     // MARK: - Functions
 
     func getData(_ completion: @escaping() -> Void) {
-        siriShortcuts { (model) in
-            self.shortcutModel = model
+        siriShortcuts { [weak self] (model) in
+            self?.shortcutModel = model
             completion()
         }
     }
@@ -75,14 +75,14 @@ final class MyQotSiriShortcutsWorker {
     }
 
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType) {
+        var userEventTrack = QDMUserEventTracking()
+        userEventTrack.action = .SIRI_DONATED
         switch shortcutType {
-        case .toBeVision: break // CHANGE ME to fire User Event
-//            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriToBeVisionDonated)
-        case .morningInterview: break // CHANGE ME to fire User Event
-//            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriDailyPrepDonated)
-        case .whatsHot: break // CHANGE ME to fire User Event
-//            AppCoordinator.appState.appCoordinator.sendAppEvent(.siriWhatsHotDonated)
+        case .toBeVision: userEventTrack.name = .SIRI_TO_BE_VISION
+        case .morningInterview: userEventTrack.name = .SIRI_DAILY_CHECK_IN
+        case .whatsHot: userEventTrack.name = .SIRI_WHATS_HOT
         }
+        NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
     }
 
     func trackingKey(for indexPath: IndexPath) -> String {

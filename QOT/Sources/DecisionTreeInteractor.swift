@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import UserNotifications
 
 final class DecisionTreeInteractor {
 
@@ -30,6 +31,9 @@ final class DecisionTreeInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
+        if let type = worker?.type, case .sprint = type {
+            checkNotificationPermissions()
+        }
         fetchFirstQuestionAndDisplay()
     }
 }
@@ -289,6 +293,23 @@ extension DecisionTreeInteractor {
     func openRecoveryResults() {
         worker?.createRecoveryModel { [weak self] (recovery) in
             self?.router.openRecoveryResults(recovery)
+        }
+    }
+}
+
+// MARK: - Private methods
+
+private extension DecisionTreeInteractor {
+    func checkNotificationPermissions() {
+        RemoteNotificationPermission().authorizationStatus { [weak self] (status) in
+            switch status {
+            case .denied:
+                self?.router.presentPermissionView(.notificationOpenSettings)
+            case .notDetermined:
+                self?.router.presentPermissionView(.notification)
+            case .authorized, .provisional:
+                break
+            }
         }
     }
 }

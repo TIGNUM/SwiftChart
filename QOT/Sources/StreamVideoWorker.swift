@@ -90,14 +90,14 @@ extension StreamVideoWorker {
     func toggleBookmark(_ completion: @escaping () -> Void) {
         if let bookmark = bookmark {
             // remove
-            service.deleteUserStorage(bookmark) { (error) in
-                self.bookmark = nil
+            service.deleteUserStorage(bookmark) { [weak self] (error) in
+                self?.bookmark = nil
                 completion()
             }
         } else if let content = self.content {
             // add
-            service.addBookmarkContentItem(content) { (bookmark, error) in
-                self.bookmark = bookmark
+            service.addBookmarkContentItem(content) { [weak self] (bookmark, error) in
+                self?.bookmark = bookmark
                 completion()
             }
         } else {

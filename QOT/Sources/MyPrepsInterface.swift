@@ -29,8 +29,11 @@ protocol MyPrepsInteractorInterface: Interactor {
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Items?
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Items?
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController)
+    func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController)
+    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
+    func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController)
 }
 
 protocol MyPrepsRouterInterface {
-
+    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
 }

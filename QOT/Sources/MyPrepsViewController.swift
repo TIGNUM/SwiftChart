@@ -13,6 +13,10 @@ final class MyPrepsNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyPrepsNavigationController.classForCoder())
 }
 
+protocol MyPrepsViewControllerDelegate: class {
+     func confirmDeleteButton(_ sender: Any)
+}
+
 final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     enum SegmentView: Int {
@@ -38,7 +42,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
     @IBOutlet private weak var cancelDeleteButton: UIButton!
     private var editPressed: Bool = false
-    @IBOutlet private weak var confirmDeleteButton: UIButton!
 
     @IBOutlet weak var noPrepsTitle: UILabel!
     @IBOutlet weak var noPrepsComment: UILabel!
@@ -68,6 +71,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         noPreparationsView.isHidden = true
+        updateIndicator()
         refreshBottomNavigationItems()
     }
 
@@ -80,6 +84,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     @IBAction func didChangeSegment(_ sender: Any) {
         tableView.reloadData()
+        updateIndicator()
     }
 
     @IBAction func cancelButton(_ sender: Any) {
@@ -93,6 +98,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBAction func editButton(_ sender: Any) {
         if noPreparationsView.isHidden == true {
             refreshBottomNavigationItems()
+            indicatorView.isHidden = !editPressed
             segmentedControl.isHidden = !editPressed
             tableView.setEditing(!editPressed, animated: true)
             tableView.reloadData()
@@ -188,8 +194,6 @@ private extension MyPrepsViewController {
 
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
-        hideAllViews()
-        tableView.reloadData()
         setupSegementedControl()
         showEmptyStateViewIfNeeded(segmentedControl)
     }
@@ -215,6 +219,7 @@ private extension MyPrepsViewController {
 // MARK: - MyPrepsViewControllerInterface
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func dataUpdated() {
+        hideAllViews()
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
         self.removeLoadingSkeleton()
@@ -242,20 +247,22 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyPrepsTableViewCell = tableView.dequeueCell(for: indexPath)
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.carbon
-        cell.selectedBackgroundView = backgroundView
-        cell.setSelectedColor(.accent, alphaComponent: 0.1)
+        if editPressed == true {
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+        }
         cell.backgroundColor = .carbon
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             let item = interactor?.itemPrep(at: indexPath)
+            cell.setSelectedColor(.carbon, alphaComponent: 1)
             cell.configure(title: item?.title ?? "", subtitle: (item?.date ?? "") + " | " + (item?.eventType ?? ""))
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor?.itemMind(at: indexPath)
+            cell.setSelectedColor(.carbon, alphaComponent: 1)
             cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "")
         case SegmentView.recovery.rawValue:
             let item = interactor?.itemRec(at: indexPath)
+            cell.setSelectedColor(.carbon, alphaComponent: 1)
             cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "")
         default:
             break
@@ -270,10 +277,17 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
                 interactor?.presentPreparation(item: item.qdmPrep, viewController: self)
             }
         } else if segmentedControl.selectedSegmentIndex == 1 {
-            return
+            if let item = interactor?.itemMind(at: indexPath), tableView.isEditing == false {
+                tableView.deselectRow(at: indexPath, animated: true)
+                interactor?.presentMindsetShifter(item: item.qdmMind, viewController: self)
+            }
         } else if segmentedControl.selectedSegmentIndex == 2 {
-            return
+            if let item = interactor?.itemRec(at: indexPath), tableView.isEditing == false {
+                tableView.deselectRow(at: indexPath, animated: true)
+                interactor?.present3DRecovery(item: item.qdmRec, viewController: self)
+            }
         }
+        updateIndicator()
     }
 }
 
@@ -284,7 +298,6 @@ extension MyPrepsViewController {
 
         return [roundedBarBurtonItem(title: R.string.localized.buttonTitleRemove(), action: #selector(removeRows(_:))),
                 roundedBarBurtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel), action: #selector(cancelButton(_:)))]
-
     }
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {
@@ -302,5 +315,4 @@ extension MyPrepsViewController {
             self?.view.layoutIfNeeded()
         }
     }
-
 }
