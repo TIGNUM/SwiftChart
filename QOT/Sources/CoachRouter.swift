@@ -49,10 +49,24 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .event:
-            presentDecisionTree(.prepare)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet)
+            let controller = DTShortTBVViewController(configure: configurator)
+            viewController.present(controller, animated: true)
         case .challenge:
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVMindSet:
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet)
+            let controller = DTShortTBVViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVPrepare:
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroPrepare)
+            let controller = DTShortTBVViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVOnBoarding:
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding)
+            let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         }
     }

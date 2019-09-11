@@ -52,7 +52,7 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-    private var navigationButton: NavigationButton?
+//    private var navigationButton: NavigationButton?
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
 
@@ -147,19 +147,19 @@ private extension DecisionTreeViewController {
     }
 
     @objc func updateBottomNavigationItems(_ notification: NSNotification) {
-        guard let navigationButton = notification.object as? NavigationButton else { return }
-        navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-        self.navigationButton = navigationButton
-        updateNavigationItems()
+//        guard let navigationButton = notification.object as? NavigationButton else { return }
+//        navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+//        self.navigationButton = navigationButton
+//        updateNavigationItems()
     }
 
     func updateNavigationItems() {
-        let leftItems = interactor?.hasLeftBarButtonItem == true ? [dismissNavigationItem()] : []
-        var rightItems = [UIBarButtonItem]()
-        if let navigationButton = navigationButton {
-            rightItems = [UIBarButtonItem(from: navigationButton)]
-        }
-        updateBottomNavigation(leftItems, rightItems)
+//        let leftItems = interactor?.hasLeftBarButtonItem == true ? [dismissNavigationItem()] : []
+//        var rightItems = [UIBarButtonItem]()
+//        if let navigationButton = navigationButton {
+//            rightItems = [UIBarButtonItem(from: navigationButton)]
+//        }
+//        updateBottomNavigation(leftItems, rightItems)
     }
 
     func resetNavigationItems() {
@@ -168,7 +168,7 @@ private extension DecisionTreeViewController {
     }
 
     @objc func animateNavigationButton() {
-        navigationButton?.pulsate()
+//        navigationButton?.pulsate()
     }
 
     func setupPageViewController() {

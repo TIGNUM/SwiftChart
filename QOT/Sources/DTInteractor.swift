@@ -13,7 +13,6 @@ typealias SelectedAnswer = (question: DTViewModel.Question?, answers: [DTViewMod
 typealias Node = (questionId: Int?, answerFilter: String?)
 
 class DTInteractor: DTInteractorInterface {
-
     // MARK: - Properties
     lazy var worker: DTWorker? = DTWorker()
     let presenter: DTPresenterInterface
@@ -23,7 +22,6 @@ class DTInteractor: DTInteractorInterface {
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
     var tbv: QDMToBeVision?
-    var canShowContinue = false
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -52,15 +50,7 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func didStopTypingAnimation() {
-        canShowContinue = true
-        presenter.refreshNavigationButton()
-    }
-
-    func navigationButton(_ viewModel: DTViewModel) -> NavigationButton? {
-        if !viewModel.hasTypingAnimation || canShowContinue {
-            return viewModel.navigationButton
-        }
-        return nil
+        presenter.showNavigationButtonAfterAnimation()
     }
 
     func loadNextQuestion(selection: DTSelectionModel) {
@@ -74,6 +64,9 @@ class DTInteractor: DTInteractorInterface {
     func loadPreviousQuestion() {
         if presentedNodes.isEmpty == false {
             presentedNodes.removeLast()
+            if selectedAnswers.isEmpty == false {
+                selectedAnswers.removeLast()
+            }
             let lastNode = presentedNodes.last
             let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
                                                             answerFilter: lastNode?.answerFilter,

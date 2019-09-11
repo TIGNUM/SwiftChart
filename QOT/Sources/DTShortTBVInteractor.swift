@@ -16,7 +16,7 @@ final class DTShortTBVInteractor: DTInteractor {
 
 // MARK: - DTShortTBVInteractorInterface
 extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
-    func generateTBV(_ completion: @escaping () -> Void) {
+    func generateTBV(_ selectedAnswers: [SelectedAnswer], _ completion: @escaping () -> Void) {
         shortTBVWorker?.createVision(selectedAnswers: selectedAnswers) { [weak self] (tbv) in
             self?.tbv = tbv
             completion()
