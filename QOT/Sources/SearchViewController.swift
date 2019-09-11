@@ -98,7 +98,17 @@ extension SearchViewController {
     }
 
     private func doActivate() {
-        let constantNew = activeView.frame.size.height - mySearchBar.frame.size.height
+        var constantNew: CGFloat = activeView.frame.size.height - mySearchBar.frame.size.height
+        if let parentView = parent?.view {
+            if #available(iOS 11.0, *) {
+                let guide = parentView.safeAreaLayoutGuide
+                let height = guide.layoutFrame.size.height
+                let insetsHeight = parentView.bounds.height - height
+                constantNew = parentView.bounds.height - mySearchBar.bounds.height - insetsHeight
+            } else {
+                constantNew = parentView.bounds.height - mySearchBar.bounds.height
+            }
+        }
         if constantNew == constraintSearch.constant { return }
 
         constraintSearch.constant = constantNew

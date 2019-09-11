@@ -152,10 +152,15 @@ extension CoachCollectionViewController {
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
         }
-
+        refreshCoachButton()
         if panSearchShowing {
             searchViewController?.activate(duration)
         }
+    }
+
+    private func refreshCoachButton() {
+        let newAlpha: CGFloat = 1 - min((CGFloat(bottomSearchViewConstraint.constant) / 100), 1)
+        coachButton.alpha = newAlpha
     }
 
     private func setupSearchConstraints(_ targetView: UIView, parentView: UIView) {
@@ -237,6 +242,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
         if let searchViewController = searchViewController {
             bottomSearchViewConstraint.constant = 0
             UIView.animate(withDuration: 0.25) {
+                self.refreshCoachButton()
                 searchViewController.view.superview?.layoutIfNeeded()
             }
         }
