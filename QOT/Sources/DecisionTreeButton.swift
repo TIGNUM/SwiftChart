@@ -132,6 +132,7 @@ private extension NavigationButton {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
             currentValue = counter > maxSelections ? 0 : counter
             syncButton(currentValue)
+            pulsate()
         }
     }
 

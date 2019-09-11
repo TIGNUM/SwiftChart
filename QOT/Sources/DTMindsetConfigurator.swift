@@ -16,6 +16,7 @@ final class DTMindsetConfigurator {
             let interactor = DTMindsetInteractor(presenter,
                                                  questionGroup: .MindsetShifter,
                                                  introKey: Mindset.QuestionKey.Intro)
+            viewController.mindsetInteractor = interactor
             viewController.mindsetRouter = router
             viewController.interactor = interactor
             viewController.router = router

@@ -11,4 +11,10 @@ import UIKit
 final class DTMindsetRouter: DTRouter {}
 
 // MARK: - DTMindsetRouterInterface
-extension DTMindsetRouter: DTMindsetRouterInterface {}
+extension DTMindsetRouter: DTMindsetRouterInterface {
+    func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?) {
+        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: delegate)
+        let controller = DTShortTBVViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: completion)
+    }
+}

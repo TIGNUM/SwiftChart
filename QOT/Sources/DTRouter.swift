@@ -22,10 +22,4 @@ class DTRouter: DTRouterInterface {
     func dismiss() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
-
-    func loadShortTBVGenerator(introKey: String) {
-        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet)
-        let controller = DTShortTBVViewController(configure: configurator)
-        viewController?.present(controller, animated: true, completion: nil)
-    }
 }

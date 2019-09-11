@@ -38,5 +38,4 @@ protocol DTInteractorInterface: Interactor {
 
 protocol DTRouterInterface {
     func dismiss()
-    func loadShortTBVGenerator(introKey: String)
 }

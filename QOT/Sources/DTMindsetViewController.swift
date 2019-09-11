@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTMindsetViewController: DTViewController {
 
     // MARK: - Properties
     var mindsetRouter: DTMindsetRouterInterface?
+    var mindsetInteractor: DTMindsetInteractorInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -74,7 +76,7 @@ private extension DTMindsetViewController {
         switch viewModel?.question.key {
         case Mindset.QuestionKey.LowSelfTalk?,
              Mindset.QuestionKey.OpenTBV?:
-            if var answer = viewModel?.answers.first {
+            if var answer = viewModel?.answers.first {J
                 answer.setSelected(true)
                 viewModel?.setSelectedAnswer(answer)
             }
@@ -83,7 +85,10 @@ private extension DTMindsetViewController {
     }
 
     func handleTBVCase() {
-        router?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet)
+        mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
+                                             delegate: mindsetInteractor) { [weak self] in
+                                                self?.loadNextQuestion()
+        }
 //        router?.openTBVGenerator(introKey: )
         return
 //        interactor?.getUsersTBV { [weak self] (tbv, initiated) in

@@ -49,7 +49,7 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .event:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
             let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .challenge:
@@ -57,15 +57,15 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTMindsetViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .shortTBVMindSet:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
             let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .shortTBVPrepare:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroPrepare)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroPrepare, delegate: nil)
             let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .shortTBVOnBoarding:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding, delegate: nil)
             let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         }

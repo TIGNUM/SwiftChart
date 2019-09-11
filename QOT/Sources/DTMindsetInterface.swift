@@ -13,6 +13,10 @@ protocol DTMindsetViewControllerInterface: class {}
 
 protocol DTMindsetPresenterInterface {}
 
-protocol DTMindsetInteractorInterface: Interactor {}
+protocol DTMindsetInteractorInterface: Interactor {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?)
+}
 
-protocol DTMindsetRouterInterface {}
+protocol DTMindsetRouterInterface {
+    func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?)
+}
