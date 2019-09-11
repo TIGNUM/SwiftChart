@@ -51,20 +51,12 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
         return [.alert, .sound]
     }
 
-    func processOutstandingNotifications() {
-        if let notificationResponse = unhandledNotificationResponses.first {
-            process(notificationResponse)
-            unhandledNotificationResponses.removeAll() // TODO: maybe we can handle all of them in the future?
-        }
-    }
-
     // MARK: - private
 
     private func process(_ notificationResponse: UANotificationResponse) {
         guard
-            let deepLinkURL = notificationResponse.notificationContent.deepLinkURL,
-            let notificationID = notificationResponse.notificationContent.notificationID  else { return }
-        launchHandler.process(url: deepLinkURL, notificationID: notificationID)
+            let deepLinkURL = notificationResponse.notificationContent.deepLinkURL  else { return }
+        launchHandler.process(url: deepLinkURL)
     }
 }
 

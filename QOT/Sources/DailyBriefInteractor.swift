@@ -108,10 +108,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.displayCoachPreparationScreen()
     }
 
-    func updateViewModelList(_ list: [BaseDailyBriefViewModel]) {
-        viewModelOldList = list
-    }
-
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]) {
         viewModelOldListModels = list
     }

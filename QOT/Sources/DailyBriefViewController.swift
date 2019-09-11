@@ -662,6 +662,9 @@ private extension DailyBriefViewController {
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
+        if differenceList.count > 0 {
+            self.removeLoadingSkeleton()
+        }
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor?.updateViewModelListNew(data)
         }
@@ -687,14 +690,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     @objc func openTool(sender: UITapGestureRecognizer) {
         interactor?.presentToolsItems(selectedToolID: selectedToolID ?? 0)
-    }
-
-    func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>) {
-        self.removeLoadingSkeleton()
-        tableView.reload(using: differenceList, with: .fade) { data in
-            interactor?.updateViewModelList(data)
-        }
-        self.removeLoadingSkeleton()
     }
 
     func setupView() {

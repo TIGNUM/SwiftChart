@@ -1037,7 +1037,6 @@
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
 		CB873294202AEDA80081F522 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB873293202AEDA80081F522 /* GradientView.swift */; };
 		CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
-		CB8AA2C9205AB6A10033F573 /* NotificationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C8205AB6A10033F573 /* NotificationID.swift */; };
 		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
@@ -2333,7 +2332,6 @@
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		CB873293202AEDA80081F522 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
 		CB8AA2C4205A850A0033F573 /* ISODate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
-		CB8AA2C8205AB6A10033F573 /* NotificationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationID.swift; sourceTree = "<group>"; };
 		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
@@ -5077,7 +5075,6 @@
 			children = (
 				CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */,
 				CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */,
-				CB8AA2C8205AB6A10033F573 /* NotificationID.swift */,
 				DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */,
 				DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */,
 				DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */,
@@ -7688,7 +7685,6 @@
 				36B5BD3123142B4A00439A64 /* AskPermissionInteractor.swift in Sources */,
 				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,
-				CB8AA2C9205AB6A10033F573 /* NotificationID.swift in Sources */,
 				9171647F2101E7D000F42D8F /* R.generated.swift in Sources */,
 				B4AB48BA230BF891003B3C1F /* MyDataSelectionInteractor.swift in Sources */,
 				7582618122DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift in Sources */,

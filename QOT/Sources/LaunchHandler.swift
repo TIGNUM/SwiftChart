@@ -26,7 +26,6 @@ final class LaunchHandler {
     }
 
     func process(url: URL,
-                 notificationID: String = "",
                  searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
@@ -81,7 +80,7 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DecisionTreeConfigurator.make(for: .solve)
+            let configurator = DecisionTreeConfigurator.make(for: .prepare)
             let controller = DecisionTreeViewController(configure: configurator)
             present(viewController: controller)
         case .preparation: break // TODO: open specific preparation with QDMUserPreparation's local id

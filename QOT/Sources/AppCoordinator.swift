@@ -150,9 +150,6 @@ final class AppCoordinator {
         self.registerRemoteNotifications()
         self.canProcessRemoteNotifications = true
         self.canProcessLocalNotifications = true
-        self.remoteNotificationHandler.processOutstandingNotifications()
-        AppDelegate.current.processOutstandingNotifications()
-        AppDelegate.current.processOutstandingShortcuts()
     }
 
     func isReadyToOpenURL() -> Bool {

@@ -9,9 +9,91 @@
 import UIKit
 import SafariServices
 import RSKImageCropper
+import Social
+import MessageUI
 
 extension SFSafariViewController: ScreenZLevelOverlay {
 
+}
+
+extension MFMailComposeViewController: ScreenZLevelOverlay {
+    private static var _lastBottomNavigationItem = [String: BottomNavigationItem]()
+
+    var lastBottomNavigationItem: BottomNavigationItem? {
+        get {
+            return MFMailComposeViewController._lastBottomNavigationItem[objectAddressString] ?? nil
+        }
+        set(newValue) {
+            MFMailComposeViewController._lastBottomNavigationItem[objectAddressString] = newValue
+        }
+    }
+
+    var objectAddressString: String {
+        return String(format: "%p", unsafeBitCast(self, to: Int.self))
+    }
+
+    override open func viewWillAppear(_ animated: Bool) {
+        lastBottomNavigationItem = baseRootViewController?.currentBottomNavigationItem()
+        super.viewWillAppear(animated)
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        let notification = Notification(name: .updateBottomNavigation, object: lastBottomNavigationItem, userInfo: nil)
+        NotificationCenter.default.post(notification)
+        let controllerIdentifier = objectAddressString
+        DispatchQueue.main.async {
+            MFMailComposeViewController._lastBottomNavigationItem[controllerIdentifier] = nil
+        }
+
+        super.viewWillDisappear(animated)
+    }
+    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+}
+
+extension SLComposeViewController: ScreenZLevelOverlay {
+    private static var _lastBottomNavigationItem = [String: BottomNavigationItem]()
+
+    var lastBottomNavigationItem: BottomNavigationItem? {
+        get {
+            return SLComposeViewController._lastBottomNavigationItem[objectAddressString] ?? nil
+        }
+        set(newValue) {
+            SLComposeViewController._lastBottomNavigationItem[objectAddressString] = newValue
+        }
+    }
+
+    var objectAddressString: String {
+        return String(format: "%p", unsafeBitCast(self, to: Int.self))
+    }
+
+    override open func viewWillAppear(_ animated: Bool) {
+        lastBottomNavigationItem = baseRootViewController?.currentBottomNavigationItem()
+        super.viewWillAppear(animated)
+    }
+
+    override open func viewWillDisappear(_ animated: Bool) {
+        let notification = Notification(name: .updateBottomNavigation, object: lastBottomNavigationItem, userInfo: nil)
+        NotificationCenter.default.post(notification)
+        let controllerIdentifier = objectAddressString
+        DispatchQueue.main.async {
+            SLComposeViewController._lastBottomNavigationItem[controllerIdentifier] = nil
+        }
+
+        super.viewWillDisappear(animated)
+    }
+    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
 }
 
 extension UIActivityViewController: ScreenZLevelOverlay {

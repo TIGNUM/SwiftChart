@@ -194,13 +194,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         launchHandler.process(url: link)
     }
 
-    func processOutstandingShortcuts() {
-        if let shortcut = unhandledShortCuts.first {
-            handleShortcut(shortcutItem: shortcut)
-            unhandledShortCuts.removeAll()
-        }
-    }
-
     //Interface Orientation
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppCoordinator.orientationManager.supportedOrientations
@@ -300,14 +293,6 @@ extension AppDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
-    func processOutstandingNotifications() {
-        qot_dal.log("dailyPrep://processOutstandingNotifications:: \(unhandledNotifications)")
-        if let notification = unhandledNotifications.first {
-            handleNotification(notification: notification)
-            unhandledNotifications.removeAll() // TODO: maybe we can handle all of them in the future?
-        }
-    }
-
     func handleNotification(notification: UNNotification) {
         qot_dal.log("dailyPrep://handleNotification, notification:: \(notification)")
         var link: URL?
@@ -323,11 +308,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         guard let notificationLink = link, launchHandler.canLaunch(url: notificationLink) == true else { return }
-        var notificationID = notification.request.identifier
-        if notificationID.starts(with: NotificationID.Prefix.dailyPrep.rawValue) {
-            notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
-        }
-        launchHandler.process(url: notificationLink, notificationID: notificationID)
+        launchHandler.process(url: notificationLink)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
