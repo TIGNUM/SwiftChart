@@ -36,12 +36,20 @@ extension UIColor {
         return accent.withAlphaComponent(0.7)
     }
 
+    public class var accent60: UIColor {
+        return accent.withAlphaComponent(0.6)
+    }
+
     public class var accent40: UIColor {
         return accent.withAlphaComponent(0.4)
     }
 
     public class var accent30: UIColor {
         return accent.withAlphaComponent(0.3)
+    }
+
+    public class var accent20: UIColor {
+        return accent.withAlphaComponent(0.2)
     }
 
     public class var accent75: UIColor {
@@ -565,5 +573,12 @@ extension UIColor {
                            blue: CGFloat(b1 + (b2 - b1) * percentage),
                            alpha: CGFloat(a1 + (a2 - a1) * percentage))
         }
+    }
+
+    func isLightColor() -> Bool {
+        var grayscale: CGFloat = 0
+        var alpha: CGFloat = 0
+        _ = self.getWhite(&grayscale, alpha: &alpha)
+        return grayscale > 0.5
     }
 }

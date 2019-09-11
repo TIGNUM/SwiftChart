@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ToolsCollectionsGroupTableViewCell: UITableViewCell, Dequeueable {
+final class ToolsCollectionsGroupTableViewCell: BaseToolsTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -44,12 +44,45 @@ final class ToolsCollectionsGroupTableViewCell: UITableViewCell, Dequeueable {
         self.remoteID = remoteID
         self.type = type
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply( "\(numberOfItems)" + " items", to: detailLabel)
+        ThemeText.qotToolsSectionSubtitle.apply( "\(numberOfItems)" + " items", to: detailLabel)
         mediaIconImageView.image = R.image.ic_group_grey()
         counterLabel.attributedText = NSAttributedString(string: "\(numberOfItems)",
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
                                                        textColor: .carbon,
                                                        alignment: .center)
+    }
+}
+
+class BaseToolsTableViewCell: UITableViewCell {
+
+    private let topLineTag = 0985674
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .clear
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        removeTopLine()
+    }
+
+    func addTopLine(for row: Int) {
+        if row == 0 { return }
+        let line = UIView(frame: .zero)
+        line.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(line)
+        line.tag = topLineTag
+        line.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        line.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        ThemeView.toolSeparator.apply(line)
+        addConstraint(NSLayoutConstraint(item: line, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: 1))
+        addConstraint(NSLayoutConstraint(item: line, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1, constant: 24))
+    }
+
+    func removeTopLine() {
+        if let line = viewWithTag(topLineTag) {
+            line.removeFromSuperview()
+        }
     }
 }

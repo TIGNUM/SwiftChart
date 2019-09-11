@@ -33,7 +33,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KS0-qy-TCd" customClass="ToolsCollectionsVideoTableViewCell">
-                        <rect key="frame" x="56" y="56" width="231" height="24"/>
+                        <rect key="frame" x="52" y="56" width="235" height="20"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,12 +47,12 @@
                         </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_grey" translatesAutoresizingMaskIntoConstraints="NO" id="8f0-2U-j1U">
-                        <rect key="frame" x="24" y="58" width="20" height="20"/>
+                        <rect key="frame" x="24" y="58" width="16" height="16"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="20" id="Pdg-cR-tdw"/>
-                            <constraint firstAttribute="width" constant="20" id="uuh-ta-dcl"/>
+                            <constraint firstAttribute="height" constant="16" id="Pdg-cR-tdw"/>
+                            <constraint firstAttribute="width" constant="16" id="uuh-ta-dcl"/>
                         </constraints>
                     </imageView>
                     <view multipleTouchEnabled="YES" alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LJT-2m-ojb">

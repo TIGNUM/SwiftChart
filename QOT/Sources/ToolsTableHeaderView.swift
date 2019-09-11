@@ -35,17 +35,7 @@ final class ToolsTableHeaderView: UIView {
     }
 
     func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.4,
-                                                       font: .sfProtextLight(ofSize: 24),
-                                                       lineSpacing: 5,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.5,
-                                                          font: .sfProtextLight(ofSize: 16),
-                                                          lineSpacing: 5,
-                                                          textColor: UIColor.carbon.withAlphaComponent(0.4),
-                                                          alignment: .left)
+        ThemeText.qotToolsTitle.apply(title.uppercased(), to: titleLabel)
+        ThemeText.qotToolsSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

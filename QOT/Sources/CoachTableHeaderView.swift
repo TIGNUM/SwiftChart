@@ -25,17 +25,7 @@ final class CoachTableHeaderView: UIView {
     }
 
     func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.2,
-                                                       font: .apercuRegular(ofSize: 20),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                       letterSpacing: 0.3,
-                                                       font: .apercuRegular(ofSize: 12),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
+        ThemeText.coachHeader.apply(title.uppercased(), to: titleLabel)
+        ThemeText.coachHeaderSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

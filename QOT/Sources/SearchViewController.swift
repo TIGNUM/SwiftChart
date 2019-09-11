@@ -174,6 +174,7 @@ extension SearchViewController {
     @IBAction func close(_ sender: UIButton) {
         trackUserEvent(.CLOSE, action: .TAP)
         interactor?.didTapClose()
+        mySearchBar.resignFirstResponder()
     }
 
     @IBAction func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {

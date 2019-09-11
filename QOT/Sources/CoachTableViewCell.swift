@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class CoachTableViewCell: UITableViewCell, Dequeueable {
+final class CoachTableViewCell: BaseToolsTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -18,16 +18,7 @@ final class CoachTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                               letterSpacing: 0.4,
-                                                               font: .apercuMedium(ofSize: 20),
-                                                               textColor: UIColor.accent,
-                                                               alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                       letterSpacing: 0.2,
-                                                       font: .apercuLight(ofSize: 12),
-                                                       lineSpacing: 4,
-                                                       textColor: UIColor.carbon,
-                                                       alignment: .left)
+        ThemeText.coachTitle.apply(title.uppercased(), to: titleLabel)
+        ThemeText.coachSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

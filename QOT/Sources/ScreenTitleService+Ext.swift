@@ -159,7 +159,7 @@ extension ScreenTitleService {
         case .library:
             return localizedString(for: .myQotLibrarySectionTitle)
         case .preps:
-            return localizedString(for: .myQotPrepsSectionTitle)
+            return localizedString(for: .MyQotheadertitle)
         case .sprints:
             return localizedString(for: .myQotSprintsSectionTitle)
         case .data:

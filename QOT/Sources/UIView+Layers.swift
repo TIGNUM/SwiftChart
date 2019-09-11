@@ -273,24 +273,18 @@ extension UIView {
         layer.addSublayer(gradient)
     }
 
-    func gradientBackground(top: Bool,
-                            firstColor: UIColor = .carbon,
-                            secondColor: UIColor = .carbon80,
-                            thirdColor: UIColor = UIColor.black.withAlphaComponent(0.1),
-                            fourthColor: UIColor = UIColor.black.withAlphaComponent(0.0)) {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [firstColor.cgColor,
-                                secondColor.cgColor,
-                                thirdColor.cgColor,
-                                fourthColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 1.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 0.0)
-        gradientLayer.locations = [0.0, 0.54, 0.90, 1.0]
-        gradientLayer.frame = bounds
-        if top {
-            gradientLayer.transform = CATransform3DMakeRotation(CGFloat.pi, 0, 0, 1)
-        }
-        layer.insertSublayer(gradientLayer, at: 0)
+    func gradientBackground(top: Bool) {
+        guard let image = top ? R.image.topGradient() : R.image.bottomGradient() else { return }
+        let imageView = UIImageView(frame: CGRect(x: 0, y: top ? 0 : bounds.height - image.size.height, width: bounds.width, height: image.size.height))
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.image = image
+        imageView.contentMode = .scaleAspectFill
+        addSubview(imageView)
+
+        addConstraint(NSLayoutConstraint(item: imageView, attribute: .left, relatedBy: .equal, toItem: self, attribute: .left, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: imageView, attribute: .right, relatedBy: .equal, toItem: self, attribute: .right, multiplier: 1.0, constant: 0.0))
+        addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: image.size.height))
+        addConstraint(NSLayoutConstraint(item: imageView, attribute: top ? .top : .bottom, relatedBy: .equal, toItem: self, attribute: top ? .top : .bottom, multiplier: 1.0, constant: 0.0))
     }
 }
 
@@ -306,5 +300,18 @@ extension UIView {
             return image!
         }
         return UIImage()
+    }
+}
+
+extension UIView {
+    var parentViewController: UIViewController? {
+        var parentResponder: UIResponder? = self
+        while parentResponder != nil {
+            parentResponder = parentResponder!.next
+            if let viewController = parentResponder as? UIViewController {
+                return viewController
+            }
+        }
+        return nil
     }
 }

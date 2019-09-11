@@ -16,13 +16,14 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var downloadButton: RoundedButton!
     @IBOutlet private weak var bookmarkButton: RoundedButton!
-
     @IBOutlet private weak var playPauseButton: UIButton!
+    @IBOutlet private weak var fullScreenCircles: FullScreenBackgroundCircleView!
 
     var media: MediaPlayerModel?
     var contentItem: QDMContentItem?
     var bookmark: QDMUserStorage?
     var download: QDMUserStorage?
+    private var colorMode: ColorMode = .dark
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,9 +36,11 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
         notificationCenter.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
                                        name: .didUpdateDownloadStatus, object: nil)
 
-        view.backgroundColor = .carbon
+        // FIXME : change color with color mode
+        view.backgroundColor = (colorMode == .dark) ? .carbon : .sand
         setupButtons()
         updateLabel()
+        setupFullScreenCircles(colorMode: self.colorMode)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,8 +48,23 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
         trackPage()
     }
 
+    func setupFullScreenCircles(colorMode: ColorMode) {
+        switch colorMode {
+        case .dark:
+            ThemeCircles.fullScreenAudioDark.apply(fullScreenCircles)
+        case .darkNot:
+            ThemeCircles.fullScreenAudioLight.apply(fullScreenCircles)
+        }
+
+    }
+
     func setupButtons() {
-        ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
+        switch colorMode {
+        case .dark:
+            ThemableButton.fullscreenAudioPlayerDownload.apply(bookmarkButton, title: nil)
+        case .darkNot:
+            ThemableButton.fullscreenAudioPlayerDownloadLight.apply(bookmarkButton, title: nil)
+        }
     }
 
     func updateLabel() {
@@ -56,6 +74,10 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
 
     func updatePlayButton(_ isPlaying: Bool) {
         playPauseButton.isSelected = isPlaying
+    }
+
+    func set(colorMode: ColorMode) {
+        self.colorMode = colorMode
     }
 
     func configureMedia(_ media: MediaPlayerModel, isPlaying: Bool = true) {
@@ -87,7 +109,13 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
             title = R.string.localized.audioFullScreenButtonDownloaded()
             downloadButton.isEnabled = false
         }
-        ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: title)
+
+        switch colorMode {
+        case .dark:
+            ThemableButton.fullscreenAudioPlayerDownload.apply(downloadButton, title: title)
+        case .darkNot:
+            ThemableButton.fullscreenAudioPlayerDownloadLight.apply(downloadButton, title: title)
+        }
     }
 
     func convertDownloadStatus(_ status: QOTDownloadStatus) -> UserStorageDownloadStatus {
