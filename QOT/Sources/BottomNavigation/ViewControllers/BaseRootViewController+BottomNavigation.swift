@@ -10,11 +10,7 @@ import UIKit
 
 extension BaseRootViewController {
     func currentBottomNavigationItem() -> BottomNavigationItem? {
-        let lastItem = bottomNavigationBar.items?.last
-        let lastBottomItem = BottomNavigationItem(leftBarButtonItems: lastItem?.leftBarButtonItems ?? [],
-                                                  rightBarButtonItems: lastItem?.rightBarButtonItems ?? [],
-                                                  backgroundColor: .clear)
-        return lastBottomItem
+        return lastBottomNavigationItem
     }
 
     func setupBottomNavigationContainer() {
@@ -45,8 +41,10 @@ extension BaseRootViewController {
         guard let navigationItem = notification.object as? BottomNavigationItem else {
             return
         }
+        lastBottomNavigationItem = navigationItem
         handleNavigationItems(leftItems: navigationItem.leftBarButtonItems,
-                              rightItems: navigationItem.rightBarButtonItems)
+                              rightItems: navigationItem.rightBarButtonItems,
+                              backgroundColor: navigationItem.backgroundColor)
     }
 
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
@@ -57,7 +55,7 @@ extension BaseRootViewController {
         }
     }
 
-    func handleNavigationItems(leftItems: [UIBarButtonItem]?, rightItems: [UIBarButtonItem]?) {
+    func handleNavigationItems(leftItems: [UIBarButtonItem]?, rightItems: [UIBarButtonItem]?, backgroundColor: UIColor) {
         let navigationItem = UINavigationItem()
         let transparentView = UIView()
         transparentView.backgroundColor = .clear
@@ -66,7 +64,7 @@ extension BaseRootViewController {
         navigationItem.setLeftBarButtonItems(leftItems, animated: false)
         navigationItem.setRightBarButtonItems(rightItems, animated: false)
         bringBottomNavigationBarToFront()
-        audioPlayerBar.setColorMode(colorMode.isLightMode ? ColorMode.darkNot : ColorMode.dark)
+        audioPlayerBar.refreshColorMode(isLight: backgroundColor.isLightColor())
     }
 }
 
@@ -108,7 +106,9 @@ extension BaseRootViewController {
 
         })
         let currentItem = bottomNavigationBar.items?.last
-        handleNavigationItems(leftItems: currentItem?.leftBarButtonItems, rightItems: currentItem?.rightBarButtonItems)
+        handleNavigationItems(leftItems: currentItem?.leftBarButtonItems,
+                              rightItems: currentItem?.rightBarButtonItems,
+                              backgroundColor: lastBottomNavigationItem.backgroundColor)
     }
 
     @objc func showAudioFullScreen(_ notification: Notification) {
@@ -117,7 +117,7 @@ extension BaseRootViewController {
             let fullScreenVC = vc as? AudioFullScreenViewController else {
                 return
         }
-
+        fullScreenVC.set(colorMode: lastBottomNavigationItem.backgroundColor.isLightColor() ? .darkNot : .dark )
         fullScreenVC.configureMedia(mediaModel, isPlaying: audioPlayerBar.isPlaying)
         self.present(fullScreenVC, animated: true)
         audioPlayerBar.setBarMode(.progress)

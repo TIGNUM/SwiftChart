@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
+final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -46,7 +46,7 @@ final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
         self.remoteID = remoteID
         self.duration = duration
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply(timeToWatch, to: detailLabel)
+        ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
         mediaIconImageView.image = R.image.ic_audio_grey()
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)

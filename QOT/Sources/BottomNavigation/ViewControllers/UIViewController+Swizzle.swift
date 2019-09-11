@@ -132,14 +132,15 @@ extension UIViewController {
         return false
     }
 
-    @objc func getPreferredStatusBarStyleSwizzled() -> UIStatusBarStyle {
+    func isLightBackground() -> Bool {
         guard let backgroundColor = view.backgroundColor else {
-            return .lightContent
+            return true
         }
-        var grayscale: CGFloat = 0
-        var alpha: CGFloat = 0
-        _ = backgroundColor.getWhite(&grayscale, alpha: &alpha)
-        return grayscale > 0.5 ? .default : .lightContent
+        return backgroundColor.isLightColor()
+    }
+
+    @objc func getPreferredStatusBarStyleSwizzled() -> UIStatusBarStyle {
+        return isLightBackground() ? .default : .lightContent
     }
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
@@ -287,9 +288,11 @@ extension UIViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let strongself = self else { return }
                 if strongself.view.window != nil {
+                    let notificationObject = BottomNavigationItem(leftBarButtonItems: [],
+                                                                  rightBarButtonItems: [],
+                                                                  backgroundColor: strongself.view.backgroundColor ?? .black)
                     NotificationCenter.default.post(name: .updateBottomNavigation,
-                                                    object: BottomNavigationItem(leftBarButtonItems: [],
-                                                                                 rightBarButtonItems: [], backgroundColor: .clear),
+                                                    object: notificationObject,
                                                     userInfo: nil)
                 }
             }
@@ -352,9 +355,12 @@ extension UIViewController {
         }
         let button = UIButton(type: .custom)
         button.addTarget(self, action: buttonAction, for: .touchUpInside)
-        button.setImage(R.image.ic_close_rounded(), for: .normal)
+
+        let isLight = isLightBackground()
+        button.setImage(isLight ? R.image.ic_close() : R.image.ic_close_rounded(), for: .normal)
         button.imageView?.contentMode = .center
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        ThemeButton.audioButton.apply(button)
         return UIBarButtonItem(customView: button)
     }
 

@@ -41,5 +41,4 @@ class FullScreenBackgroundCircleView: UIView {
             path.fill()
         }
     }
-
 }

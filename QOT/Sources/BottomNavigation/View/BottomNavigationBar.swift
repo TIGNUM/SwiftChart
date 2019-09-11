@@ -15,6 +15,7 @@ class BottomNavigationBar: UINavigationBar {
         self.translatesAutoresizingMaskIntoConstraints = false
         super.willMove(toWindow: newWindow)
         setBackgroundImage(UIImage(), for: .default)
+        shadowImage = UIImage()
         self.isTranslucent = true
         backgroundColor = .clear
         setNeedsLayout()

@@ -132,6 +132,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(title: tool?.title ?? "video title",
                            timeToWatch: tool?.durationString ?? "",
                            imageURL: tool?.imageURL)
+            cell.addTopLine(for: indexPath.row)
             cell.sizeToFit()
             cell.layoutIfNeeded()
             return cell
@@ -144,6 +145,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0)
+            cell.addTopLine(for: indexPath.row)
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -154,6 +156,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0)
+            cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
         }

@@ -171,7 +171,7 @@ extension CoachCollectionViewController {
         NSLayoutConstraint.activate([
             targetView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 0),
             targetView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: 0),
-            targetView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+            targetView.heightAnchor.constraint(equalToConstant: parentView.bounds.height - 20),
             bottomSearchViewConstraint,
             targetView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0)
             ])

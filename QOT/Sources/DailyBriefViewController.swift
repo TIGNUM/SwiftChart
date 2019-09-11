@@ -66,11 +66,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
                                                name: .didUpdateDailyBriefBuckets, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
-        navBarHeader = NavBarTableViewCell.instantiateFromNib(title: R.string.localized.dailyBriefTitle(), tapLeft: { [weak self] in
-            self?.delegate?.moveToCell(item: 0)
-            }, tapRight: { [weak self] in
-                self?.delegate?.moveToCell(item: 2)
-        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -92,17 +87,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         return sections.elements.count
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
-            return navBarHeader
-        } else {
-            return nil
-        }
-    }
-
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 {
-            return ThemeView.level1.headerBarHeight
+            return 1
         }
         return CGFloat.leastNormalMagnitude
     }
@@ -279,7 +266,11 @@ private extension DailyBriefViewController {
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
-        cell.configure(viewModel: impactReadinessCellViewModel)
+        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
+                        self?.delegate?.moveToCell(item: 0)
+                        }, tapRight: { [weak self] in
+                            self?.delegate?.moveToCell(item: 2)
+                    })
         if impactReadinessCellViewModel?.readinessScore == -1 {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {

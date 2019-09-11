@@ -31,7 +31,6 @@ final class AudioButton: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         corner(radius: 20)
-        ThemeView.articleAudioBar.apply(self)
     }
 
     func configure(categoryTitle: String,
@@ -44,13 +43,13 @@ final class AudioButton: UIView {
         self.audioURL = audioURL
         self.audioRemoteID = remoteID
         self.duration = duration
-        showDuration(duration)
         setColorMode()
     }
 
     func setColorMode() {
-        backgroundColor = colorMode.tint.withAlphaComponent(0.3)
-     }
+        ThemeView.articleAudioBar.apply(self)
+        showDuration(duration)
+    }
 }
 
 // MARK: - Private

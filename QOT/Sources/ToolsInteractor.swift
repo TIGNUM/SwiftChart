@@ -25,6 +25,10 @@ final class ToolsInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        worker.tools { [weak self] (items) in
+            self?.toolItems = items
+            self?.presenter.reload()
+        }
     }
 
     // MARK: - Interactor
@@ -32,10 +36,7 @@ final class ToolsInteractor {
     func viewDidLoad() {
         presenter.present(for: worker.toolsSections())
         presenter.setupView()
-        worker.tools { [weak self] (items) in
-            self?.toolItems = items
-            self?.presenter.reload()
-        }
+//        presenter.reload()
     }
 }
 

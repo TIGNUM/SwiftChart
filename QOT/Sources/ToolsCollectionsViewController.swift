@@ -79,6 +79,7 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsGroupTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.tableFooterView = UIView()
     }
 }
 
@@ -137,7 +138,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            remoteID: tool?.remoteID ?? 0,
                            numberOfItems: tool?.numberOfItems ?? 0,
                            type: tool?.type ?? "")
-            cell.backgroundColor = .sand
+            cell.addTopLine(for: indexPath.row)
             return cell
         } else if tool?.type == "video" {
             let cell: ToolsCollectionsVideoTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -145,6 +146,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             cell.configure(title: tool?.title ?? "",
                            timeToWatch: tool?.durationString ?? "",
                            imageURL: tool?.imageURL)
+            cell.addTopLine(for: indexPath.row)
             cell.sizeToFit()
             cell.layoutIfNeeded()
             return cell
@@ -157,6 +159,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0)
+            cell.addTopLine(for: indexPath.row)
             return cell
         } else {
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -167,6 +170,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0)
+            cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
         }
@@ -183,11 +187,14 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             if tool?.type == "video" {
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
-                    let videoURL = videoTool.mediaURL,
-                    let remoteId = tool?.remoteID else { return }
-                interactor?.contentItem(for: remoteId, { [weak self] (item) in
-                    self?.stream(videoURL: videoURL, contentItem: item)
-                })
+                    let videoURL = videoTool.mediaURL else { return }
+                stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
+            } else if tool?.type == "audio" {
+                let media = MediaPlayerModel(title: tool?.title ?? "",
+                                             subtitle: tool?.categoryTitle ?? "",
+                                             url: tool?.mediaURL,
+                                             totalDuration: 0, progress: 0, currentTime: 0, mediaRemoteId: tool?.remoteID ?? 0)
+                NotificationCenter.default.post(name: .playPauseAudio, object: media)
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
                     self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
