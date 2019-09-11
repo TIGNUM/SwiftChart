@@ -27,6 +27,7 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionButton.delegate = self
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(syncButton(_:)),
                                                name: .didUpdateSelectionCounter,
@@ -67,6 +68,21 @@ private extension MultipleSelectionCollectionViewCell {
     @objc func syncButton(_ notification: Notification) {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
             selectionCounter = counter > maxSelections ? 0 : counter
+        }
+    }
+}
+
+// MARK: - Button Delegate
+extension MultipleSelectionCollectionViewCell: AnimatedButtonDelegate {
+    func willShowPressed() {
+        UIView.animate(withDuration: 0.25) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+    }
+
+    func willShowUnpressed() {
+        UIView.animate(withDuration: 0.25) {
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
 }

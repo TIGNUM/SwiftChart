@@ -27,6 +27,10 @@ final class CoachRouter {
 // MARK: - CoachRouterInterface
 extension CoachRouter: CoachRouterInterface {
     func handleTap(coachSection: CoachSection) {
+        NotificationCenter.default.post(name: .updateBottomNavigation,
+                                        object: BottomNavigationItem(leftBarButtonItems: [],
+                                                                     rightBarButtonItems: [], backgroundColor: .clear),
+                                        userInfo: nil)
         switch coachSection {
         case .search:
             let configurator = SearchConfigurator.make(delegate: delegate)

@@ -309,7 +309,8 @@ extension UIViewController {
 
         switch self {
         case is ScreenZLevel1,
-             is ScreenZLevelBottom:
+             is ScreenZLevelBottom,
+             is ScreenZLevelChatBot:
             return nil
         default:
             if self.navigationController?.viewControllers.first == self {

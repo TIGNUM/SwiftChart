@@ -8,7 +8,10 @@
 
 import UIKit
 
-class AbstractTreeButton: UIButton {
+class AbstractTreeButton: AnimatedButton {
+
+    var maxPossibleSelections: Int = 0
+
     func attributedString(_ title: String, _ textColor: UIColor) -> NSAttributedString {
         return NSAttributedString(string: title,
                                   letterSpacing: 0.2,
@@ -40,7 +43,7 @@ final class AnswerButton: AbstractTreeButton {
     func configure(title: String, isSelected: Bool) {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
-        setAttributedTitle(attributedString(title, .accent), for: .normal)
+        setAttributedTitle(ThemeText.chatBotButton.attributedString(title), for: .normal)
         corner(radius: .Twenty, borderColor: .accent40)
     }
 
@@ -58,13 +61,13 @@ final class SelectionButton: AbstractTreeButton {
     func configure(title: String, isSelected: Bool) {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
-        selectionLabel.attributedText = attributedString(title, .accent)
+        selectionLabel.attributedText = ThemeText.chatBotButton.attributedString(title)
         switchBackgroundColor()
-        selectionLabel.corner(radius: .Twenty, borderColor: .accent40)
+        corner(radius: .Twenty, borderColor: .accent40)
     }
 
     func switchBackgroundColor() {
-        selectionLabel.backgroundColor = (selectionLabel.backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
+        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
     }
 }
 

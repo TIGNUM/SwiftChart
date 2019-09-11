@@ -504,6 +504,8 @@ enum ThemeText {
     case dailyBriefDailyCheckInSights
     case dailyBriefDailyCheckInClosedBucket
 
+    case chatBotButton
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError:
@@ -528,7 +530,7 @@ enum ThemeText {
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink:
+        case .chatBotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink:
             return Fonts.fontSemiBold14
         case .registrationCodeDescriptionEmail, .walkthroughMessage:
             return Fonts.fontSemiBold16
@@ -651,7 +653,8 @@ enum ThemeText {
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
-        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton, .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle:
+        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatBotButton:
             return Palette.accent
         case .performanceSections, .qotToolsSubtitle:
             return Palette.carbon40
@@ -829,6 +832,9 @@ enum ThemeText {
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
+        case .chatBotButton:
+            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
+
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
