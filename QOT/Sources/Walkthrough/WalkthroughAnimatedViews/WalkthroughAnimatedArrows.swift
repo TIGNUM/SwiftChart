@@ -101,7 +101,7 @@ private extension WalkthroughAnimatedArrows {
         // Arrows
         for (index, view) in arrows.enumerated() {
             let tempDelay = Double(index) * (fadeIn + visible - overlap)
-            UIView.animate(withDuration: fadeIn, delay: tempDelay, options: .curveEaseIn, animations: { [weak self] in
+            UIView.animate(withDuration: fadeIn, delay: tempDelay, options: .curveEaseIn, animations: {
                 view.alpha = 1
             }, completion: { [weak self] (_) in
                 guard let strongSelf = self else {

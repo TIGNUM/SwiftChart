@@ -360,15 +360,22 @@ extension AppDelegate {
     func sendSiriEventsIfNeeded() {
         if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
             events.events.forEach {
+                var userEventTrack = QDMUserEventTracking()
+                userEventTrack.action = .SIRI_READ
+                userEventTrack.date = $0.date
                 switch $0.key {
-                case ExtensionUserDefaults.toBeVision.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriToBeVision, date: $0.date)
-                case ExtensionUserDefaults.whatsHot.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriWhatsHot, date: $0.date)
-                case ExtensionUserDefaults.upcomingEvents.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriUpcomingEvent, date: $0.date)
-                case ExtensionUserDefaults.dailyPrep.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriDailyPrep, date: $0.date)
+                case ExtensionUserDefaults.toBeVision.rawValue:
+                    userEventTrack.name = .SIRI_TO_BE_VISION
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.whatsHot.rawValue:
+                    userEventTrack.name = .SIRI_WHATS_HOT
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.upcomingEvents.rawValue:
+                    userEventTrack.name = .SIRI_PREPARATION_EVENT
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.dailyPrep.rawValue:
+                    userEventTrack.name = .SIRI_DAILY_CHECK_IN
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
                 default: break
                 }
             }

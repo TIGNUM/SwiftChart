@@ -53,7 +53,7 @@ extension NotificationConfigurationObject {
 
     private static func needsSchedule(completion: ((Bool) -> Void)?) {
         UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
-            completion?(requests.filter { $0.identifier.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER) }.count != 7)
+            completion?(requests.filter { $0.identifier.hasPrefix(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER) }.count != 7)
         }
     }
 
