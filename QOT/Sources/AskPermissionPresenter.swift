@@ -24,7 +24,9 @@ final class AskPermissionPresenter {
 extension AskPermissionPresenter: AskPermissionPresenterInterface {
     func setupView(_ contentCollection: QDMContentCollection?, type: AskPermission.Kind?) {
         let viewModel = createViewModel(contentCollection, type: type)
-        viewController?.setupView(viewModel)
+        DispatchQueue.main.async { [weak self] in
+            self?.viewController?.setupView(viewModel)
+        }
     }
 }
 
@@ -41,6 +43,6 @@ private extension AskPermissionPresenter {
 
     func valueText(for tag: String?, _ content: QDMContentCollection?) -> String? {
         return content?.contentItems.filter {
-            $0.searchTagsDetailed.contains(where: { $0.name == tag }) }.first?.valueText
+            $0.searchTagsDetailed.contains(where: { ($0.name ?? "").lowercased() == tag?.lowercased() }) }.first?.valueText
     }
 }

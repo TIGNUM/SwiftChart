@@ -19,6 +19,7 @@ protocol AskPermissionPresenterInterface {
 
 protocol AskPermissionInteractorInterface: Interactor {
     var permissionType: AskPermission.Kind { get }
+    var placeholderImage: UIImage? { get }
 }
 
 protocol AskPermissionRouterInterface {

@@ -520,14 +520,6 @@
 		8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */; };
 		8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */; };
 		8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */; };
-		8D0983C3230D3E7C00B0028A /* NotificationPermissionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */; };
-		8D0983C4230D3E7C00B0028A /* NotificationPermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */; };
-		8D0983C5230D3E7C00B0028A /* NotificationPermission.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */; };
-		8D0983C6230D3E7C00B0028A /* NotificationPermissionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */; };
-		8D0983C7230D3E7C00B0028A /* NotificationPermissionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */; };
-		8D0983C8230D3E7C00B0028A /* NotificationPermissionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */; };
-		8D0983C9230D3E7C00B0028A /* NotificationPermissionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */; };
-		8D0983CA230D3E7C00B0028A /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */; };
 		8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */; };
 		8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1A2301CC3F00A1AC47 /* RegistrationNamesPresenter.swift */; };
 		8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1B2301CC3F00A1AC47 /* RegistrationNamesWorker.swift */; };
@@ -1836,14 +1828,6 @@
 		8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationAge.storyboard; sourceTree = "<group>"; };
 		8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotPlaceholderTextField.swift; sourceTree = "<group>"; };
 		8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QotPlaceholderTextField.xib; sourceTree = "<group>"; };
-		8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionWorker.swift; path = Sources/NotificationPermissionWorker.swift; sourceTree = "<group>"; };
-		8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionInterface.swift; path = Sources/NotificationPermissionInterface.swift; sourceTree = "<group>"; };
-		8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = NotificationPermission.storyboard; path = Sources/NotificationPermission.storyboard; sourceTree = "<group>"; };
-		8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionInteractor.swift; path = Sources/NotificationPermissionInteractor.swift; sourceTree = "<group>"; };
-		8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionPresenter.swift; path = Sources/NotificationPermissionPresenter.swift; sourceTree = "<group>"; };
-		8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionConfigurator.swift; path = Sources/NotificationPermissionConfigurator.swift; sourceTree = "<group>"; };
-		8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionRouter.swift; path = Sources/NotificationPermissionRouter.swift; sourceTree = "<group>"; };
-		8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationPermissionViewController.swift; path = Sources/NotificationPermissionViewController.swift; sourceTree = "<group>"; };
 		8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationNames.storyboard; sourceTree = "<group>"; };
 		8D0B4D1A2301CC3F00A1AC47 /* RegistrationNamesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesPresenter.swift; sourceTree = "<group>"; };
 		8D0B4D1B2301CC3F00A1AC47 /* RegistrationNamesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesWorker.swift; sourceTree = "<group>"; };
@@ -2901,8 +2885,8 @@
 				367CD17622EF4EAD00AF2187 /* Login_3.0 */,
 				8D13B8DD22FB1F0300B776E8 /* CreateAccountInfo */,
 				8D8AA74B22FDCB6700B59A81 /* Registration */,
+				8D66E8932305A04400BE78C7 /* TrackSelection */,
 				8D9F6D13230E80A200DCC241 /* Walkthrough */,
-				8D04FA3B2304673E00AE7CA0 /* NotificationPermission */,
 			);
 			name = Signing;
 			sourceTree = "<group>";
@@ -3972,22 +3956,6 @@
 			path = Age;
 			sourceTree = "<group>";
 		};
-		8D04FA3B2304673E00AE7CA0 /* NotificationPermission */ = {
-			isa = PBXGroup;
-			children = (
-				8D0983BF230D3E7C00B0028A /* NotificationPermissionConfigurator.swift */,
-				8D0983BD230D3E7C00B0028A /* NotificationPermissionInteractor.swift */,
-				8D0983BB230D3E7B00B0028A /* NotificationPermissionInterface.swift */,
-				8D0983BE230D3E7C00B0028A /* NotificationPermissionPresenter.swift */,
-				8D0983C0230D3E7C00B0028A /* NotificationPermissionRouter.swift */,
-				8D0983C1230D3E7C00B0028A /* NotificationPermissionViewController.swift */,
-				8D0983BA230D3E7B00B0028A /* NotificationPermissionWorker.swift */,
-				8D0983BC230D3E7B00B0028A /* NotificationPermission.storyboard */,
-			);
-			name = NotificationPermission;
-			path = ..;
-			sourceTree = "<group>";
-		};
 		8D0B4D072301CBB000A1AC47 /* Names */ = {
 			isa = PBXGroup;
 			children = (
@@ -4175,7 +4143,6 @@
 				8DF786FD22FEB4DF00CDE0A9 /* Code */,
 				8D0B4D072301CBB000A1AC47 /* Names */,
 				8D04FA2723041DC000AE7CA0 /* Age */,
-				8D66E8932305A04400BE78C7 /* TrackSelection */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -6276,7 +6243,6 @@
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
-				8D0983C5230D3E7C00B0028A /* NotificationPermission.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
@@ -6905,7 +6871,6 @@
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
-				8D0983C8230D3E7C00B0028A /* NotificationPermissionConfigurator.swift in Sources */,
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
 				B86E744922A9519900B0AE75 /* MyLibraryCategoryListPresenter.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
@@ -7171,7 +7136,6 @@
 				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
 				B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
-				8D0983C3230D3E7C00B0028A /* NotificationPermissionWorker.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
@@ -7370,7 +7334,6 @@
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
-				8D0983CA230D3E7C00B0028A /* NotificationPermissionViewController.swift in Sources */,
 				F9D6381022D62B830092C482 /* DepartureInfoCell.swift in Sources */,
 				9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */,
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
@@ -7457,7 +7420,6 @@
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
-				8D0983C9230D3E7C00B0028A /* NotificationPermissionRouter.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				BB7B318C230AB337004A5E52 /* SkeletonOneLineBlock.swift in Sources */,
@@ -7467,11 +7429,9 @@
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				3608382C225F3ED000664B9B /* ArticleModel.swift in Sources */,
-				8D0983C4230D3E7C00B0028A /* NotificationPermissionInterface.swift in Sources */,
 				E813F0A82135280F00C0723E /* PDFReaderConfigurator.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
 				5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */,
-				8D0983C6230D3E7C00B0028A /* NotificationPermissionInteractor.swift in Sources */,
 				B856B48522B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
@@ -7663,7 +7623,6 @@
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
-				8D0983C7230D3E7C00B0028A /* NotificationPermissionPresenter.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
