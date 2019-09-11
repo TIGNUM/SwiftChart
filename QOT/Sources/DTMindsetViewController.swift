@@ -42,12 +42,16 @@ final class DTMindsetViewController: DTViewController {
     }
 
     @IBAction override func didTapNext() {
-        if viewModel?.question.key == Mindset.QuestionKey.OpenTBV {
+        switch viewModel?.question.key {
+        case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
-        } else {
+        case Mindset.QuestionKey.PresentResult:
+            mindsetInteractor?.generateMindsetResults()
+            mindsetRouter?.presentMindsetResults()
+        default:
             setAnswerSelectedIfNeeded()
             loadNextQuestion()
-        }
+        }        
     }
 
     // MARK: - DTQuestionnaireViewControllerDelegate
@@ -60,8 +64,6 @@ final class DTMindsetViewController: DTViewController {
         guard let viewModel = viewModel else { return }
         if viewModel.question.answerType == .singleSelection && answer.targetId(.question) != nil {
             loadNextQuestion()
-        } else if viewModel.question.answerType == .singleSelection && answer.targetId(.content) != nil {
-//            presentContentView(selectedAnswer: answer)
         }
     }
 

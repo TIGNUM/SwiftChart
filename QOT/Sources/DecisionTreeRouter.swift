@@ -54,7 +54,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController?.present(decisionTreeVC, animated: true, completion: completion)
     }
 
-    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
+    func openMindsetShifterResult(resultItem: MindsetResult.Item, completion: @escaping () -> Void) {
         let configurator = ShifterResultConfigurator.make(resultItem: resultItem)
         let controller = ShifterResultViewController(configure: configurator)
         viewController?.present(controller, animated: true) {

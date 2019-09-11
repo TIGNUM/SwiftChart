@@ -24,13 +24,13 @@ final class ShifterResultWorker {
     private var vision = ""
     private var workerAnswerIds: [Int] = []
     private var homeAnswerIds: [Int] = []
-    private var model: ShifterResult?
-    private let resultItem: ShifterResult.Item
+    private var model: MindsetResult?
+    private let resultItem: MindsetResult.Item
     private lazy var contentService = qot_dal.ContentService.main
     private lazy var dispatchGroup = DispatchGroup()
 
     // MARK: - Init
-    init(_ resultItem: ShifterResult.Item) {
+    init(_ resultItem: MindsetResult.Item) {
         self.resultItem = resultItem
     }
 
@@ -54,15 +54,15 @@ final class ShifterResultWorker {
 
 // MARK: - Public
 extension ShifterResultWorker {
-    func getModel(_ completion: @escaping (ShifterResult) -> Void) {
+    func getModel(_ completion: @escaping (MindsetResult) -> Void) {
         setTitles()
         setVision()
 
         dispatchGroup.notify(queue: .main) { [unowned self] in
-            let sections = [self.getHeader, self.getTrigger, self.getReactions, self.getLowToHigh, self.getVision]
-            let model = ShifterResult(sections: sections, buttonTitle: self.buttonTitle)
-            completion(model)
-            self.model = model
+//            let sections = [self.getHeader, self.getTrigger, self.getReactions, self.getLowToHigh, self.getVision]
+//            let model = MindsetResult(sections: sections, buttonTitle: self.buttonTitle)
+//            completion(model)
+//            self.model = model
         }
     }
 
@@ -107,27 +107,27 @@ private extension ShifterResultWorker {
         }
     }
 
-    var getHeader: ShifterResult.Section {
-        return .header(title: headerTitle, subtitle: headerSubTitle)
-    }
+//    var getHeader: MindsetResult.Section {
+//        return .header(title: headerTitle, subtitle: headerSubTitle)
+//    }
+//
+//    var getTrigger: MindsetResult.Section {
+//        return .trigger(title: triggerTitle, item: resultItem.trigger)
+//    }
+//
+//    var getReactions: MindsetResult.Section {
+//        return .reactions(title: reactionsTitle, items: resultItem.reactions)
+//    }
+//
+//    var getLowToHigh: MindsetResult.Section {
+//        return .lowToHigh(title: lowToHighTitle,
+//                          lowTitle: lowTitle,
+//                          lowItems: resultItem.lowPerformanceItems,
+//                          highTitle: highTitle,
+//                          highItems: resultItem.highPerformanceItems)
+//    }
 
-    var getTrigger: ShifterResult.Section {
-        return .trigger(title: triggerTitle, item: resultItem.trigger)
-    }
-
-    var getReactions: ShifterResult.Section {
-        return .reactions(title: reactionsTitle, items: resultItem.reactions)
-    }
-
-    var getLowToHigh: ShifterResult.Section {
-        return .lowToHigh(title: lowToHighTitle,
-                          lowTitle: lowTitle,
-                          lowItems: resultItem.lowPerformanceItems,
-                          highTitle: highTitle,
-                          highItems: resultItem.highPerformanceItems)
-    }
-
-    var getVision: ShifterResult.Section {
+    var getVision: MindsetResult.Section {
         return .vision(title: visionTitle, text: vision)
     }
 }

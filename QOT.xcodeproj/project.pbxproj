@@ -820,7 +820,7 @@
 		AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */; };
 		AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */; };
 		AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */; };
-		AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3E2285B27200F426F0 /* ShifterResult.swift */; };
+		AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3E2285B27200F426F0 /* MindsetResult.swift */; };
 		AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */; };
 		AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E482285BAFD00F426F0 /* ShifterResultViewController.xib */; };
 		AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */; };
@@ -2184,7 +2184,7 @@
 		AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultInterface.swift; sourceTree = "<group>"; };
 		AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultViewController.swift; sourceTree = "<group>"; };
 		AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultInteractor.swift; sourceTree = "<group>"; };
-		AC103E3E2285B27200F426F0 /* ShifterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResult.swift; sourceTree = "<group>"; };
+		AC103E3E2285B27200F426F0 /* MindsetResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetResult.swift; sourceTree = "<group>"; };
 		AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultConfigurator.swift; sourceTree = "<group>"; };
 		AC103E482285BAFD00F426F0 /* ShifterResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShifterResultViewController.xib; sourceTree = "<group>"; };
 		AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterHeaderCell.swift; sourceTree = "<group>"; };
@@ -4710,7 +4710,7 @@
 				AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */,
 				AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */,
 				AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */,
-				AC103E3E2285B27200F426F0 /* ShifterResult.swift */,
+				AC103E3E2285B27200F426F0 /* MindsetResult.swift */,
 				AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */,
 				AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */,
 				AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */,
@@ -7265,7 +7265,7 @@
 				BB7B317A230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift in Sources */,
 				367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
-				AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */,
+				AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */,

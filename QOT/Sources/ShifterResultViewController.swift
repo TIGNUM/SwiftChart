@@ -12,7 +12,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ShifterResultInteractorInterface?
-    private var model: ShifterResult?
+    private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
@@ -39,7 +39,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
 // MARK: - ShifterResultViewControllerInterface
 extension ShifterResultViewController: ShifterResultViewControllerInterface {
-    func load(_ model: ShifterResult) {
+    func load(_ model: MindsetResult) {
         self.model = model
         tableView.reloadData()
     }

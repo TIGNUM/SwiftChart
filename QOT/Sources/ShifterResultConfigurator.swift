@@ -9,7 +9,7 @@
 import Foundation
 
 final class ShifterResultConfigurator {
-    static func make(resultItem: ShifterResult.Item) -> (ShifterResultViewController) -> Void {
+    static func make(resultItem: MindsetResult.Item) -> (ShifterResultViewController) -> Void {
         return { viewController in
             let router = ShifterResultRouter(viewController: viewController)
             let worker = ShifterResultWorker(resultItem)

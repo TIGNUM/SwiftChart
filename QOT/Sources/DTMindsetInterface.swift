@@ -15,8 +15,10 @@ protocol DTMindsetPresenterInterface {}
 
 protocol DTMindsetInteractorInterface: Interactor {
     func didDismissShortTBVScene(tbv: QDMToBeVision?)
+    func generateMindsetResults()
 }
 
 protocol DTMindsetRouterInterface {
     func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?)
+    func presentMindsetResults()
 }

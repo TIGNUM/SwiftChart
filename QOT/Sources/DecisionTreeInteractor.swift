@@ -130,7 +130,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
+    func openMindsetShifterResult(resultItem: MindsetResult.Item, completion: @escaping () -> Void) {
         router.openMindsetShifterResult(resultItem: resultItem, completion: completion)
     }
 

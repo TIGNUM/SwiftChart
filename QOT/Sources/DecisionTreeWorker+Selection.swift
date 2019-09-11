@@ -244,7 +244,7 @@ private extension DecisionTreeWorker {
 // MARK: - MindsetShifter
 private extension DecisionTreeWorker {
     func getShifterResultItem(answers: [QDMAnswer],
-                              completion: @escaping (ShifterResult.Item) -> Void) {
+                              completion: @escaping (MindsetResult.Item) -> Void) {
         let dispatchGroup = DispatchGroup()
         let triggerAnswers = filteredAnswers([answers[0]], filter: .Trigger)
         let reactionAnswers = filteredAnswers(answers, filter: .Reaction)
@@ -259,15 +259,15 @@ private extension DecisionTreeWorker {
         }
 
         dispatchGroup.notify(queue: .main) {
-            let resultItem = ShifterResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteID ?? 0 }.first ?? 0,
-                                                reactionsAnswerIds: reactionAnswers.map { $0.remoteID ?? 0 },
-                                                lowPerformanceAnswerIds: lowAnswers.map { $0.remoteID ?? 0 },
-                                                highPerformanceContentItemIds: contentItemIds,
-                                                trigger: triggerAnswers.map { $0.subtitle ?? "" }.first ?? "",
-                                                reactions: reactionAnswers.map { $0.subtitle ?? ""},
-                                                lowPerformanceItems: lowAnswers.map { $0.subtitle ?? ""},
-                                                highPerformanceItems: highItems.map { $0.valueText })
-            completion(resultItem)
+//            let resultItem = MindsetResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteID ?? 0 }.first ?? 0,
+//                                                reactionsAnswerIds: reactionAnswers.map { $0.remoteID ?? 0 },
+//                                                lowPerformanceAnswerIds: lowAnswers.map { $0.remoteID ?? 0 },
+//                                                highPerformanceContentItemIds: contentItemIds,
+//                                                trigger: triggerAnswers.map { $0.subtitle ?? "" }.first ?? "",
+//                                                reactions: reactionAnswers.map { $0.subtitle ?? ""},
+//                                                lowPerformanceItems: lowAnswers.map { $0.subtitle ?? ""},
+//                                                highPerformanceItems: highItems.map { $0.valueText })
+//            completion(resultItem)
         }
     }
 

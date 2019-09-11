@@ -9,13 +9,13 @@
 import Foundation
 
 protocol ShifterResultViewControllerInterface: class {
-    func load(_ model: ShifterResult)
+    func load(_ model: MindsetResult)
     func setupView()
     func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol ShifterResultPresenterInterface {
-    func load(_ model: ShifterResult)
+    func load(_ model: MindsetResult)
     func setupView()
     func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }

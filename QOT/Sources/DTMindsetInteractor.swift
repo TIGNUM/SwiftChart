@@ -9,11 +9,13 @@
 import UIKit
 import qot_dal
 
-final class DTMindsetInteractor: DTInteractor {
-
-}
+final class DTMindsetInteractor: DTInteractor {}
 
 extension DTMindsetInteractor: DTMindsetInteractorInterface {
+    func generateMindsetResults() {
+        
+    }
+
     func didDismissShortTBVScene(tbv: QDMToBeVision?) {
         self.tbv = tbv
     }
