@@ -96,18 +96,9 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
-        var reactions: [String] = []
-        item.reactionsAnswers?.forEach { (answer) in
-            reactions.append(answer.subtitle ?? "")
-        }
-        var lowPerformanceItems: [String] = []
-        item.lowPerformanceAnswers?.forEach { (answer) in
-            lowPerformanceItems.append(answer.title ?? "")
-        }
-        var highPerformanceItems: [String] = []
-        item.highPerformanceContentItems.forEach { (answer) in
-        highPerformanceItems.append(answer.valueText)
-        }
+        let reactions: [String] = item.reactionsAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
+        let lowPerformanceItems: [String] = item.lowPerformanceAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
+        let highPerformanceItems: [String] = item.highPerformanceContentItems.compactMap({ $0.valueText })
         let mindsetItem = ShifterResult.Item(triggerAnswerId: item.triggerAnswerId,
                                         reactionsAnswerIds: item.reactionsAnswerIds,
                                         lowPerformanceAnswerIds: item.lowPerformanceAnswerIds,
