@@ -46,12 +46,13 @@ final class DTMindsetViewController: DTViewController {
         case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
         case Mindset.QuestionKey.PresentResult:
-            mindsetInteractor?.generateMindsetResults()
-            mindsetRouter?.presentMindsetResults()
+            mindsetInteractor?.getMindsetShifter { [weak self] (mindsetShifter) in
+                self?.mindsetRouter?.presentMindsetResults(mindsetShifter)
+            }
         default:
-            setAnswerSelectedIfNeeded()
+            setAnswerNeedsSelection()
             loadNextQuestion()
-        }        
+        }
     }
 
     // MARK: - DTQuestionnaireViewControllerDelegate
@@ -81,36 +82,28 @@ private extension DTMindsetViewController {
 
      - Parameter answer: The answer to select if exist otherwise select first available.
      */
-    func setAnswerSelectedIfNeeded(_ answer: DTViewModel.Answer? = nil) {
-        switch viewModel?.question.key {
-        case Mindset.QuestionKey.LowSelfTalk?:
-            if var answer = viewModel?.answers.first {
-                answer.setSelected(true)
-                viewModel?.setSelectedAnswer(answer)
-            }
-        default: break
+    func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
+        if var answer = answer {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
+        } else if var answer = viewModel?.answers.first {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
         }
     }
 
     func handleTBVCase() {
-        if true {
-            mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
-                                                 delegate: mindsetInteractor) { [weak self] in
-                                                    self?.loadNextQuestion()
-            }
-        } else {
-            interactor?.getUsersTBV { [weak self] (tbv, initiated) in
-                if initiated && tbv?.text != nil {
-                    let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.ShowTBV)
-                    self?.setAnswerSelectedIfNeeded(targetAnswer)
-                    self?.loadNextQuestion()
-                } else {
-                    self?.mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
-                                                               delegate: self?.mindsetInteractor) { [weak self] in
-                                                                let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.CheckPlan)
-                                                                self?.setAnswerSelectedIfNeeded(targetAnswer)
-                                                                self?.loadNextQuestion()
-                    }
+        interactor?.getUsersTBV { [weak self] (tbv, initiated) in
+            if initiated && tbv?.text != nil {
+                let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.ShowTBV)
+                self?.setAnswerNeedsSelection(targetAnswer)
+                self?.loadNextQuestion()
+            } else {
+                self?.mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
+                                                           delegate: self?.mindsetInteractor) { [weak self] in
+                                                            let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.CheckPlan)
+                                                            self?.setAnswerNeedsSelection(targetAnswer)
+                                                            self?.loadNextQuestion()
                 }
             }
         }

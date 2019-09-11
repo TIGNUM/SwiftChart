@@ -49,9 +49,9 @@ private extension DTMindsetWorker {
                               tbv: QDMToBeVision?,
                               completion: @escaping (MindsetResult.Item) -> Void) {
         let dispatchGroup = DispatchGroup()
-        let triggerAnswers = filteredAnswers([answers[0]], filter: .Trigger)
-        let reactionAnswers = filteredAnswers(answers, filter: .Reaction)
-        let lowAnswers = filteredAnswers(answers, filter: .LowPerfomance)
+        let triggerAnswers = filteredAnswers([answers[0]], filter: Mindset.Filter.Trigger)
+        let reactionAnswers = filteredAnswers(answers, filter: Mindset.Filter.Reaction)
+        let lowAnswers = filteredAnswers(answers, filter: Mindset.Filter.LowPerfomance)
         var highPerformanceContentItemIds: [QDMContentItem] = []
         let contentItemIds = answers.compactMap { $0.targetId(.contentItem) }
 
@@ -73,7 +73,7 @@ private extension DTMindsetWorker {
         }
     }
 
-    func filteredAnswers(_ answers: [DTViewModel.Answer], filter: Mindset.Filter) -> [DTViewModel.Answer] {
+    func filteredAnswers(_ answers: [DTViewModel.Answer], filter: String) -> [DTViewModel.Answer] {
         return answers.filter { $0.keys.filter { $0.contains(filter) }.isEmpty == false }
     }
 
