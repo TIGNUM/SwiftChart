@@ -21,6 +21,11 @@ struct Mindset {
         static let Last = "mindsetshifter-last-question"
     }
 
+    struct AnswerKey {
+        static let ShowTBV = "mindsetshifter-answer-key-show-tbv"
+        static let CheckPlan = "mindsetshifter-answer-key-check-plan"
+    }
+
     struct Filter {
         static let Relationship = "_relationship_"
         static let TriggerRelationship = "trigger_relationship_"
