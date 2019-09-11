@@ -32,8 +32,8 @@ final class SolveTriggerTableViewCell: UITableViewCell, Dequeueable {
 extension SolveTriggerTableViewCell {
     func configure(type: SolveTriggerType?, header: String, description: String, buttonText: String) {
         triggerType = type ?? .midsetShifter
-        headerLabel.text = header
-        triggerDescription.text = description
+        ThemeText.resultList.apply(header, to: headerLabel)
+        ThemeText.resultHeader2.apply(description, to: triggerDescription)
         startButton.setTitle(buttonText, for: .normal)
     }
 }

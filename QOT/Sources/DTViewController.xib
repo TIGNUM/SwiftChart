@@ -49,22 +49,22 @@
                     <rect key="frame" x="0.0" y="126" width="414" height="736"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.0" colorSpace="calibratedRGB"/>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF3-zN-Uqf">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eF3-zN-Uqf" userLabel="Fake Nav Bar">
                     <rect key="frame" x="0.0" y="762" width="414" height="100"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="47a-82-tV1">
-                            <rect key="frame" x="24" y="36" width="40" height="40"/>
+                            <rect key="frame" x="24" y="22" width="40" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="FMC-Cl-VFf"/>
                                 <constraint firstAttribute="height" constant="40" id="QwN-N5-3m2"/>
                             </constraints>
-                            <state key="normal" image="ic_close_rounded"/>
+                            <state key="normal" image="ic_close_sand"/>
                             <connections>
                                 <action selector="didTapClose" destination="-1" eventType="touchUpInside" id="5m2-6v-5Ua"/>
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5G-g8-DRI">
-                            <rect key="frame" x="222" y="36" width="168" height="40"/>
+                            <rect key="frame" x="222" y="22" width="168" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="168" id="1KP-QU-oEm"/>
@@ -76,9 +76,9 @@
                     <constraints>
                         <constraint firstItem="g5G-g8-DRI" firstAttribute="centerY" secondItem="47a-82-tV1" secondAttribute="centerY" id="BcR-ov-rjY"/>
                         <constraint firstAttribute="trailing" secondItem="g5G-g8-DRI" secondAttribute="trailing" constant="24" id="H2I-fr-mk9"/>
-                        <constraint firstAttribute="bottom" secondItem="47a-82-tV1" secondAttribute="bottom" constant="24" id="SJS-eS-dVS"/>
                         <constraint firstItem="47a-82-tV1" firstAttribute="leading" secondItem="eF3-zN-Uqf" secondAttribute="leading" constant="24" id="SPG-js-Njn"/>
                         <constraint firstAttribute="height" constant="100" id="c5f-g4-UmA"/>
+                        <constraint firstItem="47a-82-tV1" firstAttribute="top" secondItem="eF3-zN-Uqf" secondAttribute="top" constant="22" id="xV7-QW-c3E"/>
                     </constraints>
                 </view>
             </subviews>
@@ -89,10 +89,10 @@
                 <constraint firstItem="QCm-Ox-GWq" firstAttribute="bottom" secondItem="eF3-zN-Uqf" secondAttribute="bottom" id="Evk-kA-MDh"/>
                 <constraint firstItem="11e-bw-5N1" firstAttribute="leading" secondItem="QCm-Ox-GWq" secondAttribute="leading" id="IHM-Ah-vWw"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="leading" secondItem="QCm-Ox-GWq" secondAttribute="leading" id="PMA-0K-W7B"/>
-                <constraint firstItem="QCm-Ox-GWq" firstAttribute="trailing" secondItem="eF3-zN-Uqf" secondAttribute="trailing" id="WkO-L1-5Cs"/>
+                <constraint firstAttribute="trailing" secondItem="eF3-zN-Uqf" secondAttribute="trailing" id="WkO-L1-5Cs"/>
                 <constraint firstItem="QCm-Ox-GWq" firstAttribute="bottom" secondItem="11e-bw-5N1" secondAttribute="bottom" id="bbD-Ll-WRz"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="height" secondItem="QCm-Ox-GWq" secondAttribute="height" multiplier="0.1" id="k51-im-XGy"/>
-                <constraint firstItem="eF3-zN-Uqf" firstAttribute="leading" secondItem="QCm-Ox-GWq" secondAttribute="leading" id="lDP-Zb-8fv"/>
+                <constraint firstItem="eF3-zN-Uqf" firstAttribute="leading" secondItem="vm2-T3-MVz" secondAttribute="leading" id="lDP-Zb-8fv"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="top" secondItem="QCm-Ox-GWq" secondAttribute="top" id="lOG-vB-EDq"/>
                 <constraint firstItem="QCm-Ox-GWq" firstAttribute="trailing" secondItem="11e-bw-5N1" secondAttribute="trailing" id="yWM-7n-VgQ"/>
             </constraints>
@@ -102,6 +102,6 @@
     </objects>
     <resources>
         <image name="ic_arrow_up" width="16" height="16"/>
-        <image name="ic_close_rounded" width="40" height="40"/>
+        <image name="ic_close_sand" width="40" height="40"/>
     </resources>
 </document>

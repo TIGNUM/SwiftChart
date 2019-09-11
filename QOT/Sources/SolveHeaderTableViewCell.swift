@@ -27,8 +27,8 @@ final class SolveHeaderTableViewCell: UITableViewCell, Dequeueable {
 
 extension SolveHeaderTableViewCell {
     func configure(title: String, solutionText: String, hideShowMoreButton: Bool) {
-        titleLabel.text = title.uppercased()
-        solutionTextLabel.text = solutionText
+        ThemeText.resultHeader1.apply(title.uppercased(), to: titleLabel)
+        ThemeText.resultHeader2.apply(solutionText, to: solutionTextLabel)
         showMoreButton.isHidden = hideShowMoreButton
     }
 }

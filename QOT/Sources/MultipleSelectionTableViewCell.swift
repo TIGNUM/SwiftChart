@@ -84,12 +84,16 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let offset = collectionView.bounds.width * 0.1
-        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
         let answerText = answers[indexPath.row].title
-        let tempWidth = answerText.size(with: buttonFont).width + offset
-        let width = tempWidth <= collectionView.bounds.width ? tempWidth : collectionView.frame.width - offset
-        let height = tempWidth <= collectionView.bounds.width ? .AnswerButtonDefault : CGFloat.AnswerButtonBig
-        return CGSize(width: width, height: CGFloat(height))
+
+        let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
+        label.numberOfLines = 2
+        label.attributedText = ThemeText.chatBotButton.attributedString(answerText)
+        label.sizeToFit()
+
+        let width: CGFloat = label.bounds.width
+        let height: CGFloat = label.bounds.height
+        return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat {

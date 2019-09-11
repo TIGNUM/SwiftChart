@@ -56,6 +56,16 @@ class DTQuestionnaireViewController: UIViewController {
         super.viewWillAppear(animated)
         tableView.reloadData()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        if tableView.isScrollEnabled {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.tableView.flashScrollIndicators()
+            }
+        }
+    }
 }
 
 private extension DTQuestionnaireViewController {

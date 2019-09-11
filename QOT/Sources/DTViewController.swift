@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate {
+class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
 
     // MARK: - Properties
     var interactor: DTInteractor?
@@ -142,5 +142,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
+    }
+}
+
+// MARK: - Bottom Navigation
+extension DTViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }
