@@ -91,6 +91,7 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let item = coachModel?.coachItems[indexPath.row]
         cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
+        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         return cell
     }
 

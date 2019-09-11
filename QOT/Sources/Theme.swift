@@ -34,6 +34,7 @@ enum ThemeView {
     case level1
     case level2
     case level3
+    case sprints
     case level1Secondary
     case level1Selected
     case level2Selected
@@ -87,7 +88,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10)
         case .accentBackground, .prepsSegmentSelected, .articleMarkRead, .articleMarkUnread:
             return Palette.accent30
-        case .qotAlert:
+        case .qotAlert, .sprints:
             return Palette.carbonDark80
         case .imageOverlap:
             return Palette.carbon60
