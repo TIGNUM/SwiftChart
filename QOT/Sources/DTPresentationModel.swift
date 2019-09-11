@@ -27,5 +27,27 @@ struct DTPresentationModel {
         self.titleToUpdate = nil
         self.answerFilter = nil
         self.tbv = nil
+
+    }
+
+    func getNavigationButton(isHidden: Bool) -> NavigationButton? {
+        guard let question = question else { return nil }
+        if question.defaultButtonText?.isEmpty == true && question.confirmationButtonText?.isEmpty == true {
+            return nil
+        }
+        let enabled = question.answerType != AnswerType.multiSelection.rawValue
+        let title = question.defaultButtonText?.isEmpty == true ? question.confirmationButtonText : question.defaultButtonText
+        let navigationButton = NavigationButton(title: title ?? "", type: .sprint, enabled: enabled)
+        if !enabled,
+            let maxSelections = question.maxPossibleSelections,
+            let defaultTitle = question.defaultButtonText,
+            let confirmationTitle = question.confirmationButtonText {
+            navigationButton.update(currentValue: 0,
+                                    maxSelections: maxSelections,
+                                    defaultTitle: defaultTitle,
+                                    confirmationTitle: confirmationTitle)
+        }
+        navigationButton.isHidden = isHidden
+        return navigationButton
     }
 }

@@ -2962,6 +2962,47 @@
 			name = strategyList;
 			sourceTree = "<group>";
 		};
+		3638F81A23286577002D40E8 /* Daily Brief */ = {
+			isa = PBXGroup;
+			children = (
+				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
+				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
+				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
+				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
+				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
+				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
+				9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */,
+				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
+			);
+			name = "Daily Brief";
+			sourceTree = "<group>";
+		};
+		3638F81B232865C1002D40E8 /* Theme */ = {
+			isa = PBXGroup;
+			children = (
+				8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */,
+				BB667EF72313D76A007C2AC8 /* Theme.swift */,
+			);
+			name = Theme;
+			sourceTree = "<group>";
+		};
+		3638F81C232865E5002D40E8 /* LevelOne */ = {
+			isa = PBXGroup;
+			children = (
+				F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */,
+				367BB013223956A700282AB6 /* Main.storyboard */,
+				F95B923F228EC732000DEAEC /* Tools.storyboard */,
+				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
+				36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */,
+				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
+				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
+				36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */,
+				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
+				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
+			);
+			name = LevelOne;
+			sourceTree = "<group>";
+		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -3105,27 +3146,9 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
-				8DC849B4232648B000C4D4A3 /* QOTReachability */,
-				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
-				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
-				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
-				9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */,
-				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
-				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
-				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
-				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
-				F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */,
-				367BB013223956A700282AB6 /* Main.storyboard */,
-				F95B923F228EC732000DEAEC /* Tools.storyboard */,
-				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
-				36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */,
-				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
-				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
-				36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */,
-				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
-				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
-				8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */,
-				BB667EF72313D76A007C2AC8 /* Theme.swift */,
+				3638F81A23286577002D40E8 /* Daily Brief */,
+				3638F81C232865E5002D40E8 /* LevelOne */,
+				3638F81B232865C1002D40E8 /* Theme */,
 				B47953AA230AD512006EFE0F /* MyDataScreen */,
 				3608381D225F3E9E00664B9B /* article */,
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
@@ -5670,6 +5693,7 @@
 				5F78962C22A9292800D2DBAD /* LoadingSkeleton */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
 				75496E9622BA700D00150C78 /* PopUpView */,
+				8DC849B4232648B000C4D4A3 /* QOTReachability */,
 				DB5E5E5421763264006BA438 /* RestartRouteHandler */,
 				CB6637A7201A24E200A995D6 /* UserNotifications */,
 			);

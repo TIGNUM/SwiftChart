@@ -20,29 +20,41 @@ class DTPresenter: DTPresenterInterface {
     }
 
     // MARK: - DTPresenterInterface
+    func setupView() {
+        viewController?.setupView(.sand, .carbonDark)
+    }
+
     func showNextQuestion(_ presentationModel: DTPresentationModel) {
         let viewModel = createViewModel(presentationModel)
         viewController?.showNextQuestion(viewModel)
-    }
-
-    func setupView() {
-        viewController?.setupView(.sand, .carbonDark)
+        let button = presentationModel.getNavigationButton(isHidden: false) //TODO viewModel.hasTypingAnimation
+        viewController?.setNavigationButton(button)
     }
 
     func showPreviosQuestion(_ presentationModel: DTPresentationModel) {
         let viewModel = createViewModel(presentationModel)
         viewController?.showPreviosQuestion(viewModel)
+        let button = presentationModel.getNavigationButton(isHidden: false) //TODO viewModel.hasTypingAnimation
+        viewController?.setNavigationButton(button)
+    }
+
+    func showNavigationButtonAfterAnimation() {
+        viewController?.showNavigationButtonAfterAnimation()
+    }
+
+    func hideNavigationButtonForAnimation() {
+        viewController?.hideNavigationButtonForAnimation()
     }
 
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {
         viewController?.presentInfoView(icon: icon, title: title, text: text)
     }
 
+    // MARK: - Create DTViewModel
     func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
         return nil
     }
 
-    // MARK: - Create DTViewModel
     func previousIsHidden(questionKey: String) -> Bool {
         return false
     }
@@ -66,13 +78,10 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, titleToUpdate: presentationModel.titleToUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
-        let navigationButton = getNavigationButton(question: presentationModel.question)
         return DTViewModel(question: question,
                            answers: answers,
-                           navigationButton: navigationButton,
                            tbvText: presentationModel.tbv?.text,
-                           hasTypingAnimation: hasTypingAnimation(answerType: question.answerType,
-                                                                  answers: answers),
+                           hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
                            dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key),
                            showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
@@ -110,20 +119,8 @@ class DTPresenter: DTPresenterInterface {
         }
     }
 
-    func getNavigationButton(question: QDMQuestion?) -> NavigationButton? {
-        if question?.defaultButtonText?.isEmpty == true && question?.confirmationButtonText?.isEmpty == true {
-            return nil
-        }
-        let title = question?.defaultButtonText?.isEmpty == true ? question?.confirmationButtonText : question?.defaultButtonText
-        return NavigationButton(title: title ?? "", backgroundColor: .carbonNew, titleColor: .accent, type: .sprint)
-    }
-
     func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
         guard let filter = answerFilter else { return question?.answers ?? [] }
         return question?.answers.filter { $0.keys.contains(filter) } ?? []
-    }
-
-    func refreshNavigationButton() {
-        viewController?.refreshNavigationButton()
     }
 }

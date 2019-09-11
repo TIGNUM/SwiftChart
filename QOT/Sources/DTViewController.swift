@@ -15,6 +15,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     var interactor: DTInteractor?
     var router: DTRouterInterface?
     var viewModel: DTViewModel?
+    private var navigationButton: NavigationButton?
     weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
@@ -50,6 +51,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     }
 
+    // MARK: - Question Handling
     func getAnswerFilter(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> String? {
         return nil
     }
@@ -58,7 +60,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
-    // MARK: - Question Handling
     func loadNextQuestion() {
         let selectedAnswers = viewModel?.answers.filter { $0.selected } ?? []
         let filter = getAnswerFilter(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
@@ -88,6 +89,23 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         showQuestion(viewModel: viewModel, direction: .reverse)
     }
 
+    func setNavigationButton(_ button: NavigationButton?) {
+        navigationButtonContainer.removeSubViews()
+        if let navigationButton = button {
+            self.navigationButton = navigationButton
+            navigationButtonContainer.addSubview(navigationButton)
+            navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
+        }
+    }
+
+    func showNavigationButtonAfterAnimation() {
+        navigationButton?.isHidden = false
+    }
+
+    func hideNavigationButtonForAnimation() {
+        navigationButton?.isHidden = true
+    }
+
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {}
 
     // MARK: Configuration
@@ -96,19 +114,10 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         setupPageViewController(backgroundColor)
     }
 
-    func setNavigationButton(_ viewModel: DTViewModel) {
-        navigationButtonContainer.removeSubViews()
-        if let navigationButton = interactor?.navigationButton(viewModel) {
-            navigationButtonContainer.addSubview(navigationButton)
-            navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
-        }
-    }
-
     func updateView(viewModel: DTViewModel) {
         self.viewModel = viewModel
         previousButton.isHidden = viewModel.previousButtonIsHidden
         closeButton.isHidden = viewModel.dismissButtonIsHidden
-        setNavigationButton(viewModel)
     }
 
     private func setupPageViewController(_ backgroundColor: UIColor) {
@@ -133,10 +142,5 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
-    }
-
-    func refreshNavigationButton() {
-        guard let viewModel = viewModel else { return }
-        setNavigationButton(viewModel)
     }
 }

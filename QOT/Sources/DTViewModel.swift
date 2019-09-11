@@ -11,7 +11,6 @@ import Foundation
 struct DTViewModel {
     let question: Question
     var answers: [Answer]
-    let navigationButton: NavigationButton?
     let tbvText: String?
     let hasTypingAnimation: Bool
     let previousButtonIsHidden: Bool

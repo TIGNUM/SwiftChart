@@ -75,6 +75,14 @@ final class NavigationButton: AbstractTreeButton {
 
     private var type = DecisionTreeType.mindsetShifter
 
+    convenience init(title: String, type: DecisionTreeType, enabled: Bool) {
+        self.init(frame: .Default)
+        configure(title: title,
+                  backgroundColor: type.barButtonBackgroundColor(enabled),
+                  titleColor: type.barButtonTextColor(enabled),
+                  type: type)
+    }
+
     convenience init(title: String, backgroundColor: UIColor, titleColor: UIColor, type: DecisionTreeType) {
         self.init(frame: .Default)
         configure(title: title, backgroundColor: backgroundColor, titleColor: titleColor, type: type)

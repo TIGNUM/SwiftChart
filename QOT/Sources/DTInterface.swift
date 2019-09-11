@@ -14,7 +14,9 @@ protocol DTViewControllerInterface: class {
     func showNextQuestion(_ viewModel: DTViewModel)
     func showPreviosQuestion(_ viewModel: DTViewModel)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
-    func refreshNavigationButton()
+    func setNavigationButton(_ button: NavigationButton?)
+    func showNavigationButtonAfterAnimation()
+    func hideNavigationButtonForAnimation()
 }
 
 protocol DTPresenterInterface {
@@ -22,7 +24,8 @@ protocol DTPresenterInterface {
     func showNextQuestion(_ presentationModel: DTPresentationModel)
     func showPreviosQuestion(_ presentationModel: DTPresentationModel)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
-    func refreshNavigationButton()
+    func showNavigationButtonAfterAnimation()
+    func hideNavigationButtonForAnimation()
 }
 
 protocol DTInteractorInterface: Interactor {

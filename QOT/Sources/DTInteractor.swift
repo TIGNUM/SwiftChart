@@ -23,7 +23,6 @@ class DTInteractor: DTInteractorInterface {
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
     var tbv: QDMToBeVision?
-    var canShowContinue = false
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -52,15 +51,7 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func didStopTypingAnimation() {
-        canShowContinue = true
-        presenter.refreshNavigationButton()
-    }
-
-    func navigationButton(_ viewModel: DTViewModel) -> NavigationButton? {
-        if !viewModel.hasTypingAnimation || canShowContinue {
-            return viewModel.navigationButton
-        }
-        return nil
+        presenter.showNavigationButtonAfterAnimation()
     }
 
     func loadNextQuestion(selection: DTSelectionModel) {
