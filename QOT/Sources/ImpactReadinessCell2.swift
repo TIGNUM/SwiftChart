@@ -35,16 +35,22 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var futureLoadRefrence: UILabel!
 ////  delagate
    weak var delegate: DailyBriefViewControllerDelegate?
-    @IBOutlet weak var moreData: UIButton!
+    @IBOutlet weak var moreData: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeView.level1Selected.apply(self)
+        self.showLoadingSkeleton(with: [.dailyCheckInHeader,
+                                        .dailyCheckInRow,
+                                        .dailyCheckInRow,
+                                        .dailyCheckInRow,
+                                        .dailyCheckInRow,
+                                        .dailyCheckInFooter])
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        self.showLoadingSkeleton(with: [.dailyCheckInHeader, .dailyCheckInRow, .dailyCheckInRow, .dailyCheckInFooter])
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
+
         if viewModel?.domainModel?.dailyCheckInResult != nil {
                 self.removeLoadingSkeleton()
         }

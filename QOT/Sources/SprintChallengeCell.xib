@@ -86,7 +86,7 @@
                         <outlet property="delegate" destination="h1K-Pb-kvU" id="NWf-Qc-bx4"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="335" y="566" width="55" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="87U-1V-ceJ"/>

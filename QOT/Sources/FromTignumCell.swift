@@ -15,7 +15,7 @@ final class FromTignumCell: BaseDailyBriefCell {
     @IBOutlet private weak var heightOfText: NSLayoutConstraint!
     @IBOutlet private weak var fromTignumText: UILabel!
     private var isLabelAtMaxHeight = false
-    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var button: AnimatedButton!
     @IBOutlet weak var fromTignumTitle: UILabel!
 
     override func awakeFromNib() {

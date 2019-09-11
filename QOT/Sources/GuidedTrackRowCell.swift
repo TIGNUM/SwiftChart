@@ -14,7 +14,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var subtitle: UILabel!
     @IBOutlet private weak var content: UILabel!
-    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var button: AnimatedButton!
     var delegate: DailyBriefViewControllerDelegate?
     private var appLink: QDMAppLink?
     override func awakeFromNib() {

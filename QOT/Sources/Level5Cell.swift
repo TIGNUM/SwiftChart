@@ -19,13 +19,13 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet private weak var levelText: UILabel!
     @IBOutlet private var views: [UIView]!
     @IBOutlet private var saveButtons: [UIButton]!
-    @IBOutlet weak var level1Button: UIButton!
-    @IBOutlet weak var level2Button: UIButton!
-    @IBOutlet weak var level3Button: UIButton!
-    @IBOutlet weak var level4Button: UIButton!
-    @IBOutlet weak var level5Button: UIButton!
+    @IBOutlet weak var level1Button: AnimatedButton!
+    @IBOutlet weak var level2Button: AnimatedButton!
+    @IBOutlet weak var level3Button: AnimatedButton!
+    @IBOutlet weak var level4Button: AnimatedButton!
+    @IBOutlet weak var level5Button: AnimatedButton!
     @IBOutlet weak var knowledgeProgress: UIProgressView!
-    @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: AnimatedButton!
     @IBOutlet weak var readinessProgress: UIProgressView!
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
@@ -43,7 +43,7 @@ final class Level5Cell: BaseDailyBriefCell {
     func configure(with: Level5ViewModel?) {
         ThemeText.dailyBriefTitle.apply(with?.title, to: titleLabel)
         ThemeText.dailyBriefLevelContent.apply(with?.intro, to: introLabel)
-        ThemeText.registrationCodeDescription.apply(with?.question, to: questionLabel)
+        ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []
         initialSetup()

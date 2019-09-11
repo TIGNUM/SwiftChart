@@ -486,7 +486,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             return createFeastForEyesList
 
         }
-        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
+        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText ?? "",
                                                          image: collection.thumbnailURLString ?? "",
                                                          remoteID: collection.contentItems.first?.remoteID,
                                                          copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,

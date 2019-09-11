@@ -20,7 +20,6 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         newLabel.isHidden = true
-        backgroundColor = .carbon
     }
 
     func configure(with: WhatsHotLatestCellViewModel?) {
