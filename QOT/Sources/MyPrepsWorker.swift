@@ -38,7 +38,7 @@ final class MyPrepsWorker {
         qot_dal.UserService.main.getRecovery3D { [weak self] (recoveries, initialized, error) in
             var recoveryItems = [RecoveriesModel.Items]()
             recoveries?.forEach {
-                let recoveryItem = RecoveriesModel.Items(title: $0.fatigueContentItem?.valueText ?? "",
+                let recoveryItem = RecoveriesModel.Items(title: $0.causeAnwser?.subtitle ?? "",
                                                          date: $0.createdAt?.eventDateString ?? "",
                                                          qdmRec: $0)
                 recoveryItems.append(recoveryItem)
@@ -52,7 +52,7 @@ final class MyPrepsWorker {
         userService.getMindsetShifters { [weak self] (mindsetShifters, initialized, error) in
             var mindsetItems = [MindsetShiftersModel.Items]()
             mindsetShifters?.forEach {
-                let mindsetItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.title ?? "",
+                let mindsetItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.subtitle ?? "",
                                                              date: $0.createdAt?.eventDateString ?? "",
                                                              qdmMind: $0)
                 mindsetItems.append(mindsetItem)

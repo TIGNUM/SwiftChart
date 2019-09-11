@@ -25,6 +25,12 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
+    func didTapDone() {
+        viewController?.dismiss(animated: true, completion: {
+            self.viewController?.delegate?.didFinishRec()
+        })
+    }
+
     func openStrategy(with id: Int) {
         if let controller = R.storyboard.main()
             .instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier)

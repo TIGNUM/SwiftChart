@@ -467,4 +467,10 @@ extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
     func didFinishSolve() {
         dismiss()
     }
+
+    func didFinishRec() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        delegate?.didDismiss()
+        dismiss(animated: true)
+    }
 }

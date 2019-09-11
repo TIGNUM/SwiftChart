@@ -88,4 +88,41 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
+
+    func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController) {
+        let configurator = SolveResultsConfigurator.make(from: item)
+        let controller = SolveResultsViewController(configure: configurator)
+        viewController.present(controller, animated: true)
+    }
+
+    func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
+        var reactions: [String] = []
+        item.reactionsAnswers?.forEach { (answer) in
+            reactions.append(answer.subtitle ?? "")
+        }
+        var lowPerformanceItems: [String] = []
+        item.lowPerformanceAnswers?.forEach { (answer) in
+            lowPerformanceItems.append(answer.title ?? "")
+        }
+        var highPerformanceItems: [String] = []
+        item.highPerformanceContentItems.forEach { (answer) in
+        highPerformanceItems.append(answer.valueText)
+        }
+        let mindsetItem = ShifterResult.Item(triggerAnswerId: item.triggerAnswerId,
+                                        reactionsAnswerIds: item.reactionsAnswerIds,
+                                        lowPerformanceAnswerIds: item.lowPerformanceAnswerIds,
+                                        highPerformanceContentItemIds: item.highPerformanceContentItemIds,
+                                        trigger: item.triggerAnswer?.subtitle ?? "",
+                                        reactions: reactions,
+                                        lowPerformanceItems: lowPerformanceItems,
+                                        highPerformanceItems: highPerformanceItems)
+        let configurator = ShifterResultConfigurator.make(resultItem: mindsetItem)
+        let controller = ShifterResultViewController(configure: configurator)
+        viewController.present(controller, animated: true) {
+        }
+    }
+
+   func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
+        router.showDeleteConfirmation(delegate: delegate)
+    }
 }

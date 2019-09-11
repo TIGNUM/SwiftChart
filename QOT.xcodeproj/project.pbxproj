@@ -1156,6 +1156,8 @@
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
+		F9462250230D4422000A3B42 /* DeleteConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F946224E230D4422000A3B42 /* DeleteConfirmationViewController.swift */; };
+		F9462251230D4422000A3B42 /* DeleteConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224F230D4422000A3B42 /* DeleteConfirmationViewController.xib */; };
 		F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */; };
 		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
 		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
@@ -2459,6 +2461,8 @@
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
+		F946224E230D4422000A3B42 /* DeleteConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteConfirmationViewController.swift; sourceTree = "<group>"; };
+		F946224F230D4422000A3B42 /* DeleteConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DeleteConfirmationViewController.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
 		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
 		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
@@ -5662,6 +5666,7 @@
 		F909961322B23F1A00EAEAC6 /* myPreps */ = {
 			isa = PBXGroup;
 			children = (
+				F946224D230D43F4000A3B42 /* DeleteConfirmation */,
 				F909961422B23F3B00EAEAC6 /* Core */,
 			);
 			name = myPreps;
@@ -5691,6 +5696,15 @@
 				9CF8176123184A320024BCCE /* Level5ViewModel.swift */,
 			);
 			name = Level5;
+			sourceTree = "<group>";
+		};
+		F946224D230D43F4000A3B42 /* DeleteConfirmation */ = {
+			isa = PBXGroup;
+			children = (
+				F946224E230D4422000A3B42 /* DeleteConfirmationViewController.swift */,
+				F946224F230D4422000A3B42 /* DeleteConfirmationViewController.xib */,
+			);
+			name = DeleteConfirmation;
 			sourceTree = "<group>";
 		};
 		F9462248230C2C21000A3B42 /* Copyright */ = {
@@ -6239,6 +6253,7 @@
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
+				F9462251230D4422000A3B42 /* DeleteConfirmationViewController.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
 				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
@@ -7066,6 +7081,9 @@
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
+				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
+				F9462250230D4422000A3B42 /* DeleteConfirmationViewController.swift in Sources */,
+				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				5F78965822A929C100D2DBAD /* SkeletonLoader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,

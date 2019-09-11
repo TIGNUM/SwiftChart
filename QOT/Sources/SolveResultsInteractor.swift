@@ -80,6 +80,10 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
         router.dismiss()
     }
 
+    func didTapDone() {
+        router.didTapDone()
+    }
+
     func isPresentingExistingSolve() -> Bool {
         return worker.hasExistingSolve()
     }

@@ -26,4 +26,10 @@ final class MyPrepsRouter {
 
 extension MyPrepsRouter: MyPrepsRouterInterface {
 
+    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
+        let confirmDeleteViewController = DeleteConfirmationViewController(nibName: "DeleteConfirmationViewController", bundle: nil)
+        confirmDeleteViewController.delegate = delegate
+        viewController.present(confirmDeleteViewController, animated: true, completion: nil)
+    }
+
 }

@@ -359,6 +359,7 @@ extension DecisionTreeWorker {
                 fatigueContentItemId: fatigueContentItemId,
                 causeAnwserId: self?.recoveryCauseAnswerId ?? 0,
                 causeContentItemId: self?.recoveryCauseContentItemId ?? 0,
+
                 exclusiveContentCollectionIds: exclusiveContentIds,
                 suggestedSolutionsContentCollectionIds: suggestedContentIds) { [weak self] (recoveryModel, error) in
                     if let error = error {

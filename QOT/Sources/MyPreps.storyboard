@@ -278,7 +278,9 @@
                             <constraint firstItem="FQX-We-ykg" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="2D8-q1-Kcn"/>
                             <constraint firstItem="hvU-ex-T62" firstAttribute="top" secondItem="C6u-Gz-PnI" secondAttribute="bottom" id="CYB-o9-ip2"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="sTN-qp-Myo" secondAttribute="bottom" constant="100" id="DTQ-ya-in2"/>
+                            <constraint firstItem="RIe-hX-AO4" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="I7m-OD-Cc8"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="sTN-qp-Myo" secondAttribute="trailing" constant="30" id="Jlz-lJ-c2z"/>
+                            <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="RIe-hX-AO4" secondAttribute="bottom" constant="150" id="KHr-YV-rJU"/>
                             <constraint firstItem="9aH-l5-mKn" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="Lov-gf-OFw"/>
                             <constraint firstItem="dEq-o1-iv8" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="Nnq-hR-uWx"/>
                             <constraint firstItem="hvU-ex-T62" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="P1G-Ou-2hO"/>
@@ -294,7 +296,7 @@
                             <constraint firstItem="sTN-qp-Myo" firstAttribute="leading" secondItem="orY-pW-1WY" secondAttribute="trailing" constant="20" id="jZA-Kl-LNq"/>
                             <constraint firstItem="FQX-We-ykg" firstAttribute="top" secondItem="izd-Ti-FEs" secondAttribute="top" id="lxE-eG-p7I"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="orY-pW-1WY" secondAttribute="bottom" constant="100" id="mHA-Md-xfz"/>
-                            <constraint firstItem="C6u-Gz-PnI" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="oCu-lH-c5N"/>
+                            <constraint firstItem="C6u-Gz-PnI" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="mi8-vW-cvo"/>
                             <constraint firstAttribute="bottom" secondItem="9aH-l5-mKn" secondAttribute="bottom" constant="150" id="pd1-0s-VkX"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="RIe-hX-AO4" secondAttribute="bottom" constant="150" id="qoo-fC-PLb"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="hvU-ex-T62" secondAttribute="trailing" id="qvs-Yx-klg"/>

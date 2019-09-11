@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Light.otf">
+            <string>SFProDisplay-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DeleteConfirmationViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="rpq-7G-nNa" id="UoP-vm-Zmp"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="rpq-7G-nNa">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REMOVE SELECTED ITEMS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rrl-7U-p1w">
+                    <rect key="frame" x="20" y="643.5" width="229.5" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are you sure you want to remove the selected items?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HmS-N2-zDH">
+                    <rect key="frame" x="20" y="687.5" width="374" height="38.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xy9-yx-cmb">
+                    <rect key="frame" x="194" y="816" width="70" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="70" id="IaS-ha-vQg"/>
+                        <constraint firstAttribute="height" constant="40" id="ybP-lZ-LdG"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <state key="normal" title="Cancel">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="cancelButton:" destination="-1" eventType="touchUpInside" id="Prb-lh-TeV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tl-xr-xBR">
+                    <rect key="frame" x="284" y="816" width="110" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="ReX-Sc-3D3"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="dWH-9T-lUz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <state key="normal" title="Yes, continue">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="yesContinueButton:" destination="-1" eventType="touchUpInside" id="sdH-Ox-Cab"/>
+                    </connections>
+                </button>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_warning" translatesAutoresizingMaskIntoConstraints="NO" id="7oT-20-GbC">
+                    <rect key="frame" x="50" y="587.5" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="Haa-RH-sq2"/>
+                        <constraint firstAttribute="height" constant="16" id="foB-5v-0vQ"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_warning_circles" translatesAutoresizingMaskIntoConstraints="NO" id="wlS-4x-DIg">
+                    <rect key="frame" x="2" y="540.5" width="113" height="116"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="113" id="ArD-Rs-t0q"/>
+                        <constraint firstAttribute="height" constant="116" id="cbh-u5-hGL"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="4tl-xr-xBR" secondAttribute="trailing" constant="20" id="5Eg-TA-sNe"/>
+                <constraint firstItem="HmS-N2-zDH" firstAttribute="leading" secondItem="rpq-7G-nNa" secondAttribute="leading" constant="20" id="C4b-WQ-0Fs"/>
+                <constraint firstAttribute="bottom" secondItem="4tl-xr-xBR" secondAttribute="bottom" constant="40" id="HiN-gJ-fNe"/>
+                <constraint firstItem="Rrl-7U-p1w" firstAttribute="leading" secondItem="rpq-7G-nNa" secondAttribute="leading" constant="20" id="Kxz-Qh-xVp"/>
+                <constraint firstAttribute="bottom" secondItem="xy9-yx-cmb" secondAttribute="bottom" constant="40" id="Mhh-SV-f72"/>
+                <constraint firstItem="wlS-4x-DIg" firstAttribute="leading" secondItem="rpq-7G-nNa" secondAttribute="leading" constant="2" id="S1r-9G-3sU"/>
+                <constraint firstItem="7oT-20-GbC" firstAttribute="leading" secondItem="rpq-7G-nNa" secondAttribute="leading" constant="50" id="SYm-Pm-7da"/>
+                <constraint firstItem="4tl-xr-xBR" firstAttribute="leading" secondItem="xy9-yx-cmb" secondAttribute="trailing" constant="20" id="ShV-qH-9uZ"/>
+                <constraint firstItem="HmS-N2-zDH" firstAttribute="top" secondItem="wlS-4x-DIg" secondAttribute="bottom" constant="31" id="UtH-fU-3bJ"/>
+                <constraint firstItem="Rrl-7U-p1w" firstAttribute="top" secondItem="7oT-20-GbC" secondAttribute="bottom" constant="40" id="XjW-K1-mil"/>
+                <constraint firstItem="HmS-N2-zDH" firstAttribute="top" secondItem="Rrl-7U-p1w" secondAttribute="bottom" constant="20" id="ZKm-Qe-p5i"/>
+                <constraint firstItem="xy9-yx-cmb" firstAttribute="top" secondItem="HmS-N2-zDH" secondAttribute="bottom" constant="90" id="gnk-Gw-YCS"/>
+                <constraint firstAttribute="trailing" secondItem="HmS-N2-zDH" secondAttribute="trailing" constant="20" id="pTK-Je-O8G"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="YLf-dE-0H5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_warning" width="16" height="16"/>
+        <image name="ic_warning_circles" width="136" height="136"/>
+    </resources>
+</document>
