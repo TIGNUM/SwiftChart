@@ -14,7 +14,10 @@ final class MyLibraryCategoryListWorker {
     private let service = UserStorageService.main
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
-        service.getUserStorages { (storages, initiated, error) in
+        service.getUserStorages { [weak self] (storages, initiated, error) in
+            guard let strongSelf = self else {
+                return
+            }
             var userStorages = [MyLibraryCategoryListModel]()
             let sorted = storages?.sorted(by: { (first, second) -> Bool in
                 first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
@@ -36,11 +39,11 @@ final class MyLibraryCategoryListWorker {
             })
             // FIXME: change to localized string
 
-            userStorages.append(self.viewModelWith(title: "ALL", items: sorted, icon: "my_library_group", type: .ALL))
-            userStorages.append(self.viewModelWith(title: "Bookmarks", items: bookmarks, icon: "my_library_bookmark", type: .BOOKMARKS))
-            userStorages.append(self.viewModelWith(title: "Downloads", items: downloads, icon: "my_library_download", type: .DOWNLOADS))
-            userStorages.append(self.viewModelWith(title: "Links", items: links, icon: "my_library_link", type: .LINKS))
-            userStorages.append(self.viewModelWith(title: "Notes", items: notes, icon: "my_library_note_light", type: .NOTES))
+            userStorages.append(strongSelf.viewModelWith(title: "ALL", items: sorted, icon: "my_library_group", type: .ALL))
+            userStorages.append(strongSelf.viewModelWith(title: "Bookmarks", items: bookmarks, icon: "my_library_bookmark", type: .BOOKMARKS))
+            userStorages.append(strongSelf.viewModelWith(title: "Downloads", items: downloads, icon: "my_library_download", type: .DOWNLOADS))
+            userStorages.append(strongSelf.viewModelWith(title: "Links", items: links, icon: "my_library_link", type: .LINKS))
+            userStorages.append(strongSelf.viewModelWith(title: "Notes", items: notes, icon: "my_library_note_light", type: .NOTES))
             completion(initiated, userStorages)
         }
     }

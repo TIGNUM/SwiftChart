@@ -331,16 +331,16 @@ private extension SearchViewController {
         let reverseAlpha = 1 - alpha
         setAllControl(newAlpha: reverseAlpha)
 
-        UIView.animate(withDuration: 0.25, animations: {
-            self.suggestionsTableView.alpha = alpha
-            self.tableView.alpha = reverseAlpha
-            self.indicatorView.alpha = reverseAlpha
-            self.segmentedControl.alpha = reverseAlpha
-        }, completion: { (_) in
-            self.suggestionsTableView.isHidden = suggestionShouldHide
-            self.tableView.isHidden = !suggestionShouldHide
-            self.indicatorView.isHidden = !suggestionShouldHide
-            self.segmentedControl.isHidden = !suggestionShouldHide
+        UIView.animate(withDuration: 0.25, animations: { [weak self] in
+            self?.suggestionsTableView.alpha = alpha
+            self?.tableView.alpha = reverseAlpha
+            self?.indicatorView.alpha = reverseAlpha
+            self?.segmentedControl.alpha = reverseAlpha
+        }, completion: { [weak self] (_) in
+            self?.suggestionsTableView.isHidden = suggestionShouldHide
+            self?.tableView.isHidden = !suggestionShouldHide
+            self?.indicatorView.isHidden = !suggestionShouldHide
+            self?.segmentedControl.isHidden = !suggestionShouldHide
         })
     }
 

@@ -153,10 +153,10 @@ private extension SolveResultsWorker {
     func createSolveItems(_ completion: @escaping (SolveResults) -> Void) {
         var items: [SolveResults.Item] = []
         solveHeader { [weak self] (headerItem) in
-            self?.relatedStrategyItems { (strategyItems) in
-                self?.trigger { (triggerItem) in
-                    self?.fiveDayPlan { (fiveDayPlanItems) in
-                        self?.followUp { (followUpItem) in
+            self?.relatedStrategyItems { [weak self] (strategyItems) in
+                self?.trigger { [weak self] (triggerItem) in
+                    self?.fiveDayPlan { [weak self] (fiveDayPlanItems) in
+                        self?.followUp { [weak self] (followUpItem) in
                             items.append(headerItem)
                             if !strategyItems.isEmpty { items.append(contentsOf: strategyItems) }
                             if let trigger = triggerItem { items.append(trigger) }
@@ -221,9 +221,9 @@ private extension SolveResultsWorker {
     func createRecoveryItems(_ completion: @escaping (SolveResults) -> Void) {
         var items: [SolveResults.Item] = []
         recoveryHeader { [weak self] (headerItem) in
-            self?.fatigueSymptom { (fatigueItem) in
-                self?.cause { (causeItem) in
-                    self?.exclusiveContent { (exclusiveItems) in
+            self?.fatigueSymptom { [weak self] (fatigueItem) in
+                self?.cause { [weak self] (causeItem) in
+                    self?.exclusiveContent { [weak self] (exclusiveItems) in
                         let contentId = self?.recovery?.causeAnwser?.targetId(.content)
                         self?.relatedStrategyItems(contentId) { (strategyItems) in
                             items.append(headerItem)

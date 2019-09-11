@@ -148,23 +148,23 @@ extension DailyBriefWorker {
     }
 
     func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { (collectionID) in
-            self.contentService.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
+        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
+            self?.contentService.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
                 completion(item?.first)
             })
         })
     }
 
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { (collectionID) in
-            self.contentService.getContentCollectionById(collectionID ?? 0, completion)
+        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
+            self?.contentService.getContentCollectionById(collectionID ?? 0, completion)
 
         })
     }
 
     func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
         latestWhatsHotContent(completion: { [weak self] (item) in
-            self?.getContentCollection(completion: { (collection) in
+            self?.getContentCollection(completion: { [weak self] (collection) in
                 if let collection = collection {
                     completion(WhatsHotLatestCellViewModel(bucketTitle: "WHAT'S HOT",
                                                            title: collection.title,

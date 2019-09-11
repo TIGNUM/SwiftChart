@@ -52,11 +52,11 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
         navigationController?.navigationBar.isHidden = true
         self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
 
-        nextPrepDate(completion: { (dateString) in
-            self.dateOfPrep = dateString
+        nextPrepDate(completion: { [weak self] (dateString) in
+            self?.dateOfPrep = dateString
         })
-        nextPrepType(completion: { (eventType) in
-            self.eventType = eventType
+        nextPrepType(completion: { [weak self] (eventType) in
+            self?.eventType = eventType
         })
         refreshParams(updateCell: false)
     }
@@ -101,25 +101,28 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func refreshParams(updateCell: Bool) {
-        getImpactReadinessScore(completion: { (score) in
-            self.impactReadinessScore = Int(score ?? 0)
-            self.removeLoadingSkeleton()
+        getImpactReadinessScore(completion: { [weak self] (score) in
+            self?.impactReadinessScore = Int(score ?? 0)
+            self?.removeLoadingSkeleton()
             if updateCell {
-                self.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.data.rawValue, section: 1)])
+                self?.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.data.rawValue, section: 1)])
             }
         })
-        toBeVisionDate(completion: { (date) in
-            self.toBeVisionModified = date
-            self.timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
-            if let time = self.timeSinceMonth {
+        toBeVisionDate(completion: { [weak self] (date) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.toBeVisionModified = date
+            strongSelf.timeSinceMonth = Int(strongSelf.timeElapsed(date: date).rounded())
+            if let time = strongSelf.timeSinceMonth {
                 if time == 1 {
-                    self.subtitleVision = "One month ago"
+                    self?.subtitleVision = "One month ago"
                 } else if time  > 1 {
-                    self.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
-                } else { self.subtitleVision = R.string.localized.myQotVisionLessThan()}
+                    self?.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+                } else { self?.subtitleVision = R.string.localized.myQotVisionLessThan()}
             }
             if updateCell {
-                self.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.toBeVision.rawValue, section: 1)])
+                strongSelf.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.toBeVision.rawValue, section: 1)])
             }
         })
     }
@@ -165,22 +168,31 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             case .library:
                 cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
             case .preps:
-                nextPrepDate(completion: { (dateString) in
-                    cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateString ?? "") + " " + (self.eventType ?? ""))
+                nextPrepDate(completion: { [weak self] (dateString) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateString ?? "") + " " + (strongSelf.eventType ?? ""))
                 })
             case .sprints:
-                interactor?.getSubtitles(completion: {(subtitles) in
-                     if subtitles.count > 0 {
-                     cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
+                interactor?.getSubtitles(completion: { [weak self] (subtitles) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    if subtitles.count > 0 {
+                        cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
                     }
                 })
             case .data:
                 let subtitle = R.string.localized.myQotDataImpact()
                 cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: String(impactReadinessScore ?? 0) + subtitle)
             case .toBeVision:
-                interactor?.getSubtitles(completion: {(subtitles) in
-                     if subtitles.count > 0 {
-                        cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: self.subtitleVision ?? subtitles[indexPath.row] ?? "", isRed: true)
+                interactor?.getSubtitles(completion: { [weak self] (subtitles) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    if subtitles.count > 0 {
+                        cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: strongSelf.subtitleVision ?? subtitles[indexPath.row] ?? "", isRed: true)
                     }
                 })
             }

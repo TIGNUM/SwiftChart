@@ -283,8 +283,8 @@ extension MyLibraryUserStorageInteractor {
                 assertionFailure("Cannot play video; missing URL")
                 return false
             }
-            qot_dal.ContentService.main.getContentItemById(item.remoteId) { (item) in
-                self.router.presentVideo(url: url, item: item)
+            qot_dal.ContentService.main.getContentItemById(item.remoteId) { [weak self] (item) in
+                self?.router.presentVideo(url: url, item: item)
             }
 
         case .AUDIO:

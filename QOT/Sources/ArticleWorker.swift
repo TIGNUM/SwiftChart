@@ -358,14 +358,14 @@ final class ArticleWorker {
         var hasBookmark = (self.bookmark != nil)
         if hasBookmark {
             // remove
-            qot_dal.UserStorageService.main.deleteUserStorage(self.bookmark!) { (error) in
-                self.bookmark = nil
+            qot_dal.UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
+                self?.bookmark = nil
             }
             hasBookmark = false
         } else if let content = self.content {
             // add
-            qot_dal.UserStorageService.main.addBookmarkContentCollection(content) { (bookmark, error) in
-                self.bookmark = bookmark
+            qot_dal.UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
+                self?.bookmark = bookmark
             }
             hasBookmark = true
         } else {

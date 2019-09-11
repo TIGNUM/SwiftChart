@@ -30,8 +30,8 @@ final class MyQotSiriShortcutsWorker {
     // MARK: - Functions
 
     func getData(_ completion: @escaping() -> Void) {
-        siriShortcuts { (model) in
-            self.shortcutModel = model
+        siriShortcuts { [weak self] (model) in
+            self?.shortcutModel = model
             completion()
         }
     }

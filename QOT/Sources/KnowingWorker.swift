@@ -23,7 +23,7 @@ final class KnowingWorker {
     }
 
     func loadData() {
-        qot_dal.ContentService.main.getContentCategories(StrategyContentCategories) { (categories) in
+        qot_dal.ContentService.main.getContentCategories(StrategyContentCategories) { [weak self] (categories) in
             var strategyItems: [Knowing.StrategyItem] = []
             for strategy in categories ?? [] {
                 let items = strategy.contentCollections.filter({ (content) -> Bool in
@@ -40,14 +40,17 @@ final class KnowingWorker {
                                                           itemCount: itemCount,
                                                           sortOrder: strategy.sortOrder))
             }
-            self.strategies = strategyItems.sorted(by: { (lhs, rhs) -> Bool in
+            self?.strategies = strategyItems.sorted(by: { (lhs, rhs) -> Bool in
                 lhs.sortOrder < rhs.sortOrder
             })
         }
 
-        qot_dal.ContentService.main.getContentCategory(.WhatsHot) { (category) in
+        qot_dal.ContentService.main.getContentCategory(.WhatsHot) { [weak self] (category) in
+            guard let strongSelf = self else {
+                return
+            }
             guard let category = category else {
-                self.interactor?.reload()
+                strongSelf.interactor?.reload()
                 return
             }
             var whatsHotItems: [Knowing.WhatsHotItem] = []
@@ -60,13 +63,13 @@ final class KnowingWorker {
                                                               author: article.author ?? "",
                                                               publishDate: article.publishedDate ?? article.modifiedAt,
                                                               timeToRead: article.durationString,
-                                                              isNew: self.isNew(article)))
+                                                              isNew: strongSelf.isNew(article)))
                 }
             }
-            self.whatsHotItems = whatsHotItems.sorted(by: { (first, second) -> Bool in
+            strongSelf.whatsHotItems = whatsHotItems.sorted(by: { (first, second) -> Bool in
                 first.publishDate ?? Date() > second.publishDate ?? Date()
             })
-            self.interactor?.reload()
+            strongSelf.interactor?.reload()
         }
     }
 

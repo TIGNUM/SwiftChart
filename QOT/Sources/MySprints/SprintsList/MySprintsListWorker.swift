@@ -89,8 +89,8 @@ final class MySprintsListWorker {
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ sprints: [QDMSprint]) -> Void) {
         sprints.removeAll()
-        service.getSprints { (sprints, initiated, error) in
-            self.sprints.append(contentsOf: sprints ?? [])
+        service.getSprints { [weak self] (sprints, initiated, error) in
+            self?.sprints.append(contentsOf: sprints ?? [])
             completion(initiated, sprints ?? [])
         }
     }
