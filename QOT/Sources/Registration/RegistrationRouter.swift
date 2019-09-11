@@ -27,11 +27,4 @@ extension RegistrationRouter: RegistrationRouterInterface {
     func popBack() {
         viewController.navigationController?.popViewController(animated: true)
     }
-
-    func showLocationPersmission(completion: (() -> Void)?) {
-        let configurator = NotificationPermissionConfigurator.make()
-        guard let controller = R.storyboard.notificationPermission.notificationPermissionViewController() else { return }
-        configurator(controller)
-        viewController.present(controller, animated: true, completion: completion)
-    }
 }

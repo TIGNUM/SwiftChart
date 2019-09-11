@@ -50,7 +50,7 @@
                         <constraint firstAttribute="width" constant="16" id="u99-Gq-A22"/>
                     </constraints>
                 </view>
-                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw">
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceLeftToRight" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="290" y="182" width="100" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="292-Y3-5Yn"/>

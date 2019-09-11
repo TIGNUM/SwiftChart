@@ -281,6 +281,7 @@ extension UIViewController {
         }
         if (self is ScreenZLevelOverlay) ||
             swiftClassName == "UIViewController" ||
+            swiftClassName == "_UIRemoteViewController" ||
             swiftClassName == "INUIVoiceShortcutHostViewController" {
             log("hide BottomNavigationBar for : \(swiftClassName)", level: .info)
             DispatchQueue.main.async { [weak self] in

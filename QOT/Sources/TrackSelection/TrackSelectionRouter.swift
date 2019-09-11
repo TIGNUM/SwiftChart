@@ -32,10 +32,11 @@ extension TrackSelectionRouter: TrackSelectionRouterInterface {
         viewController.pushToStart(childViewController: controller)
     }
 
-    func showLocationPersmission(completion: (() -> Void)?) {
-        let configurator = NotificationPermissionConfigurator.make()
-        guard let controller = R.storyboard.notificationPermission.notificationPermissionViewController() else { return }
-        configurator(controller)
+    func showNotificationPersmission(type: AskPermission.Kind, completion: (() -> Void)?) {
+        guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as? AskPermissionViewController else {
+            return
+        }
+        AskPermissionConfigurator.make(viewController: controller, type: type)
         viewController.present(controller, animated: true, completion: completion)
     }
 }

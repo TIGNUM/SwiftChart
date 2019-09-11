@@ -11,7 +11,7 @@ import Foundation
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var peakEventsLabel: UILabel!
-    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var button: AnimatedButton!
     var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {

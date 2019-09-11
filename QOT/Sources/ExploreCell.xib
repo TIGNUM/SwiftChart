@@ -102,7 +102,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="rv0-qA-dHX" firstAttribute="leading" secondItem="b9g-0f-hVY" secondAttribute="leading" constant="25" id="96Y-0g-DUH"/>
                         <constraint firstItem="AmM-aH-sus" firstAttribute="centerY" secondItem="b9g-0f-hVY" secondAttribute="centerY" id="EA0-sr-58j"/>
@@ -210,7 +210,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="YeN-Li-cli" firstAttribute="leading" secondItem="DSX-De-G4W" secondAttribute="leading" id="2bi-9z-crB"/>
                         <constraint firstItem="lTb-NK-VCw" firstAttribute="leading" secondItem="zOz-nl-19T" secondAttribute="leading" constant="8" id="5rQ-nu-P74"/>

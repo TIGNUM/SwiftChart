@@ -12,6 +12,12 @@ import UserNotifications
 struct RemoteNotificationPermission: PermissionInterface {
     let notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current()
 
+    func authorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
+        return notificationCenter.getNotificationSettings(completionHandler: { (settings) in
+            completion(settings.authorizationStatus)
+        })
+    }
+
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
         notificationCenter.getNotificationSettings { settings in
             completion(settings.authorizationStatus.stringValue)

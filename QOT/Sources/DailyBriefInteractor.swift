@@ -108,10 +108,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.displayCoachPreparationScreen()
     }
 
-    func updateViewModelList(_ list: [BaseDailyBriefViewModel]) {
-        viewModelOldList = list
-    }
-
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]) {
         viewModelOldListModels = list
     }
@@ -123,81 +119,87 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         isLoadingBuckets = true
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-        worker.getDailyBriefBucketsForViewModel { (bucketsList) in
-            bucketsList.forEach { (bucket) in
+        worker.getDailyBriefBucketsForViewModel { [weak self] (bucketsList) in
+            guard let strongSelf = self else {
+                return
+            }
+            bucketsList.forEach { [weak self] (bucket) in
+                guard let strongSelf = self else {
+                    return
+                }
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1,
-                                                        elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
+                                                        elements: strongSelf.createImpactReadinessCell(impactReadinessBucket: bucket)))
                 case .DAILY_CHECK_IN_2?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn2,
-                                                        elements: self.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
+                                                        elements: strongSelf.createDailyCheckIn2(dailyCheckIn2Bucket: bucket)))
                 case .EXPLORE?:
                     sectionDataList.append(ArraySection(model: .explore,
-                                                        elements: self.createExploreModel(exploreBucket: bucket)))
+                                                        elements: strongSelf.createExploreModel(exploreBucket: bucket)))
                 case .ME_AT_MY_BEST?:
                     sectionDataList.append(ArraySection(model: .meAtMyBest,
-                                                        elements: self.createMeAtMyBest(meAtMyBestBucket: bucket)))
+                                                        elements: strongSelf.createMeAtMyBest(meAtMyBestBucket: bucket)))
                 case .GET_TO_LEVEL_5?:
                     sectionDataList.append(ArraySection(model: .getToLevel5,
-                                                        elements: self.createLevel5Cell(level5Bucket: bucket)))
+                                                        elements: strongSelf.createLevel5Cell(level5Bucket: bucket)))
                 case .QUESTION_WITHOUT_ANSWER?:
                     sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
-                                                        elements: self.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
+                                                        elements: strongSelf.createQuestionsWithoutAnswer(questionsWithoutAnswerBucket: bucket)))
                 case .LATEST_WHATS_HOT?:
                     sectionDataList.append(ArraySection(model: .whatsHotLatest,
-                                                        elements: self.createLatestWhatsHot(whatsHotLatestCell: bucket)))
+                                                        elements: strongSelf.createLatestWhatsHot(whatsHotLatestCell: bucket)))
                 case .THOUGHTS_TO_PONDER?:
                     sectionDataList.append(ArraySection(model: .thoughtsToPonder,
-                                                        elements: self.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
+                                                        elements: strongSelf.createThoughtsToPonder(thoughtsToPonderBucket: bucket)))
                 case .GOOD_TO_KNOW?:
                     sectionDataList.append(ArraySection(model: .goodToKnow,
-                                                        elements: self.createGoodToKnow(createGoodToKnowBucket: bucket)))
+                                                        elements: strongSelf.createGoodToKnow(createGoodToKnowBucket: bucket)))
                 case .FROM_TIGNUM?:
                     sectionDataList.append(ArraySection(model: .fromTignum,
-                                                        elements: self.createFromTignum(fromTignum: bucket)))
+                                                        elements: strongSelf.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
                     sectionDataList.append(ArraySection(model: .bespoke,
-                                                        elements: self.createBeSpokeModel(beSpokeModelBucket: bucket)))
+                                                        elements: strongSelf.createBeSpokeModel(beSpokeModelBucket: bucket)))
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
-                                                        elements: self.createDepatureInfo(depatureInfoBucket: bucket)))
+                                                        elements: strongSelf.createDepatureInfo(depatureInfoBucket: bucket)))
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom,
-                                                        elements: self.createLeaderWisdom(createLeadersWisdom: bucket)))
+                                                        elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
                     sectionDataList.append(ArraySection(model: .feastForYourEyes,
-                                                        elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
+                                                        elements: strongSelf.createFeastForEyesModel(feastForEyesBucket: bucket)))
                 case .FROM_MY_COACH?:
                     sectionDataList.append(ArraySection(model: .fromMyCoach,
-                                                        elements: self.createFromMyCoachModel(fromCoachBucket: bucket)))
+                                                        elements: strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)))
                 case .MY_PEAK_PERFORMANCE?:
                     sectionDataList.append(ArraySection(model: .myPeakPerformance,
-                                                        elements: self.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
+                                                        elements: strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
                 case .SPRINT_CHALLENGE?:
                     if bucket.sprint != nil {
                         sectionDataList.append(ArraySection(model: .sprint,
-                                                            elements: self.createSprintChallenge(bucket: bucket)))
+                                                            elements: strongSelf.createSprintChallenge(bucket: bucket)))
                     }
                 case .ABOUT_ME?:
                     sectionDataList.append(ArraySection(model: .aboutMe,
-                                                        elements: self.createAboutMe(aboutMeBucket: bucket)))
+                                                        elements: strongSelf.createAboutMe(aboutMeBucket: bucket)))
                 case .SOLVE_REFLECTION?:
                     sectionDataList.append(ArraySection(model: .solveReflection,
-                                                        elements: self.createSolveViewModel(bucket: bucket)))
+                                                        elements: strongSelf.createSolveViewModel(bucket: bucket)))
                 case .GUIDE_TRACK?:
                     sectionDataList.append(ArraySection(model: .guidedTrack,
-                                                        elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
+                                                        elements: strongSelf.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
             }
-            let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
-            self.presenter.updateViewNew(changeSet)
-            self.isLoadingBuckets = false
-            if self.needToLoadBuckets {
-                self.needToLoadBuckets = false
-                self.getDailyBriefBucketsForViewModel()
+            let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+            strongSelf.presenter.updateViewNew(changeSet)
+            strongSelf.isLoadingBuckets = false
+            if strongSelf.needToLoadBuckets {
+                strongSelf.needToLoadBuckets = false
+                strongSelf.getDailyBriefBucketsForViewModel()
             }
         }
     }
@@ -484,7 +486,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             return createFeastForEyesList
 
         }
-        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
+        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText ?? "",
                                                          image: collection.thumbnailURLString ?? "",
                                                          remoteID: collection.contentItems.first?.remoteID,
                                                          copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,

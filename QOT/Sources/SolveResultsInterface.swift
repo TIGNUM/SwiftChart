@@ -29,11 +29,13 @@ protocol SolveResultsInteractorInterface: Interactor {
     func openConfirmationView()
     func deleteModelAndDismiss()
     func dismiss()
+    func didTapDone()
     func isPresentingExistingSolve() -> Bool
 }
 
 protocol SolveResultsRouterInterface {
     func dismiss()
+    func didTapDone()
     func openStrategy(with id: Int)
     func openVisionGenerator()
     func openMindsetShifter()

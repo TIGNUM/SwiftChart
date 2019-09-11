@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 final class TrackSelectionWorker {
 
@@ -31,5 +32,17 @@ final class TrackSelectionWorker {
     // MARK: - Init
 
     init() {
+    }
+
+    func notificationRequestType(completion: @escaping ((AskPermission.Kind?) -> Void)) {
+        RemoteNotificationPermission().authorizationStatus { (status) in
+            DispatchQueue.main.async {
+                switch status {
+                case .authorized, .provisional: completion(nil)
+                case .denied: completion(.notificationOpenSettings)
+                case .notDetermined: completion(.notification)
+                }
+            }
+        }
     }
 }

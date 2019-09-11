@@ -54,11 +54,11 @@ extension PrepareResultsWorker {
                        _ completion: @escaping ItemCompletion) {
         var items = [Int: [PrepareResultsType]]()
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
-            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
-                self?.getSelectedIntentionItems(prepare.preceiveAnswerIds, .perceived, completion: { (perceivedItems) in
-                    self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: { (knowItems) in
-                        self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: { (feelItems) in
-                            self?.getEkEvent(completion: { ekEvent in
+            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) {  [weak self] strategyItems in
+                self?.getSelectedIntentionItems(prepare.preceiveAnswerIds, .perceived, completion: {  [weak self] (perceivedItems) in
+                    self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: {  [weak self] (knowItems) in
+                        self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: {  [weak self] (feelItems) in
+                            self?.getEkEvent(completion: {  [weak self] ekEvent in
                                 items[Prepare.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
                                 items[Prepare.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
                                 items[Prepare.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),

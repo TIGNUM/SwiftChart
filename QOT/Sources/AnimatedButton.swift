@@ -34,7 +34,6 @@ class AnimatedButton: UIButton {
 
     func willShowPressed() {
         if !shouldAnimate { return }
-
         if let delegate = delegate {
             delegate.willShowPressed()
         } else {
@@ -46,7 +45,6 @@ class AnimatedButton: UIButton {
 
     func willShowUnpressed() {
         if !shouldAnimate { return }
-
         if let delegate = delegate {
             delegate.willShowUnpressed()
         } else {

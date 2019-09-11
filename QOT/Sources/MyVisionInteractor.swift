@@ -96,14 +96,14 @@ final class MyVisionInteractor {
                                             UIActivityType.postToFacebook,
                                             UIActivityType.postToTwitter]
 
-        activityVC.completionWithItemsHandler = { (activity, success, items, error) in
+        activityVC.completionWithItemsHandler = { [weak self] (activity, success, items, error) in
             // swizzle back to original
-            self.swizzleMFMailComposeViewControllerMessageBody()
+            self?.swizzleMFMailComposeViewControllerMessageBody()
         }
 
-        router.presentViewController(viewController: activityVC) {
+        router.presentViewController(viewController: activityVC) { [weak self] in
             // after present swizzle for mail
-            self.swizzleMFMailComposeViewControllerMessageBody()
+            self?.swizzleMFMailComposeViewControllerMessageBody()
         }
     }
 }
@@ -172,9 +172,9 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func shareMyToBeVision() {
-        worker.visionToShare { (visionToShare) in
+        worker.visionToShare { [weak self] (visionToShare) in
             guard let vision = visionToShare else { return }
-            self.share(plainText: vision.plainBody ?? "")
+            self?.share(plainText: vision.plainBody ?? "")
         }
     }
 

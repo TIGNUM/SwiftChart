@@ -26,7 +26,6 @@ final class LaunchHandler {
     }
 
     func process(url: URL,
-                 notificationID: String = "",
                  searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
@@ -50,9 +49,9 @@ final class LaunchHandler {
         case .dailyCheckIn,
              .dailyPrep: showDailyCheckIn()
         case .latestWhatsHotArticle:
-            qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+            qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { [weak self] (items) in
                 guard let contentId = items?.first?.remoteID else { return }
-                self.showContentCollection(contentId)
+                self?.showContentCollection(contentId)
             })
         case .ouraring: NotificationCenter.default.post(name: .requestOpenUrl, object: url)
         case .content_item,
@@ -81,7 +80,7 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DecisionTreeConfigurator.make(for: .solve)
+            let configurator = DecisionTreeConfigurator.make(for: .prepare)
             let controller = DecisionTreeViewController(configure: configurator)
             present(viewController: controller)
         case .preparation: break // TODO: open specific preparation with QDMUserPreparation's local id
@@ -259,16 +258,16 @@ extension LaunchHandler {
     }
 
     func showDailyCheckIn() {
-        qot_dal.MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { (results, initialized, error) in
+        qot_dal.MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { [weak self] (results, initialized, error) in
             guard initialized == true, error == nil else {
                 return // DO NOTHING
             }
             if results?.first != nil {
-                self.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
+                self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
                 DailyCheckinStartConfigurator.configure(viewController: viewController)
-                self.present(viewController: viewController)
+                self?.present(viewController: viewController)
             }
         }
     }
@@ -294,18 +293,18 @@ extension LaunchHandler {
     }
 
     func showContentCollection(_ collectionId: Int) {
-        qot_dal.ContentService.main.getContentCollectionById(collectionId, { (content) in
+        qot_dal.ContentService.main.getContentCollectionById(collectionId, { [weak self] (content) in
             guard let contentCollection = content else { return }
             if contentCollection.contentItems.count == 1,
                 (contentCollection.section == .LearnStrategies || contentCollection.section == .Tools || contentCollection.section == .QOTLibrary),
                 let contentItemId = contentCollection.contentItems.first?.remoteID {
-                self.showContentItem(contentItemId)
+                self?.showContentItem(contentItemId)
                 return
             }
 
             if let controller = R.storyboard.main.qotArticleViewController() {
                 ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
-                self.present(viewController: controller)
+                self?.present(viewController: controller)
             }
         })
     }

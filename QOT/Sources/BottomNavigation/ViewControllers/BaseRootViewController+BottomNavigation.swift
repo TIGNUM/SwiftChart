@@ -92,8 +92,8 @@ extension BaseRootViewController {
         UIView.animate(withDuration: 0.25, animations: {
             self.audioPlayerContainer.alpha = 1
             self.bottomNavigationBar.alpha = 0
-        }, completion: { (finished) in
-            self.audioPlayerContainer.isUserInteractionEnabled = true
+        }, completion: { [weak self] (finished) in
+            self?.audioPlayerContainer.isUserInteractionEnabled = true
         })
 
         bringBottomNavigationBarToFront()
@@ -101,9 +101,9 @@ extension BaseRootViewController {
 
     @objc func didStopAudio(_ notification: Notification) {
         self.audioPlayerContainer.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.25, animations: {
-            self.audioPlayerContainer.alpha = 0
-            self.bottomNavigationBar.alpha = 1
+        UIView.animate(withDuration: 0.25, animations: { [weak self] in
+            self?.audioPlayerContainer.alpha = 0
+            self?.bottomNavigationBar.alpha = 1
         }, completion: { (finished) in
 
         })

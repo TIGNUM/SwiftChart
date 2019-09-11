@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AskPermissionViewController: UIViewController {
+final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
     var interactor: AskPermissionInteractorInterface?
@@ -33,6 +33,7 @@ final class AskPermissionViewController: UIViewController {
         super.viewDidLoad()
         bottomConstraint.constant = BottomNavigationContainer.height - 30
         interactor?.viewDidLoad()
+        ThemeView.askPermissions.apply(view)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,12 +60,14 @@ final class AskPermissionViewController: UIViewController {
 private extension AskPermissionViewController {
     func cancelButton(_ title: String) -> UIBarButtonItem {
         let button = RoundedButton(title: title, target: self, action: #selector(didTapCancelButton))
-        return UIBarButtonItem(customView: button)
+        ThemableButton.askPermissions.apply(button, title: title)
+        return button.barButton
     }
 
     func confirmButton(_ title: String) -> UIBarButtonItem {
         let button = RoundedButton(title: title, target: self, action: #selector(didTapConfirmButton))
-        return UIBarButtonItem(customView: button)
+        ThemableButton.askPermissions.apply(button, title: title)
+        return button.barButton
     }
 }
 
@@ -82,11 +85,11 @@ private extension AskPermissionViewController {
 // MARK: - AskPermissionViewControllerInterface
 extension AskPermissionViewController: AskPermissionViewControllerInterface {
     func setupView(_ viewModel: AskPermission.ViewModel) {
-        titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.description
-        imageView.kf.setImage(with: viewModel.imageURL, placeholder: R.image.preloading())
-        rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? ""),
-                               cancelButton(viewModel.buttonTitleCancel ?? "")]
+        ThemeText.askPermissionTitle.apply(viewModel.title, to: titleLabel)
+        ThemeText.askPermissionMessage.apply(viewModel.description, to: descriptionLabel)
+        imageView.kf.setImage(with: viewModel.imageURL, placeholder: interactor?.placeholderImage)
+        rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
+                               cancelButton(viewModel.buttonTitleCancel ?? " ")]
         updateBottomNavigation([], rightBarButtonItems)
     }
 }

@@ -88,4 +88,32 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
+
+    func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController) {
+        let configurator = SolveResultsConfigurator.make(from: item)
+        let controller = SolveResultsViewController(configure: configurator)
+        viewController.present(controller, animated: true)
+    }
+
+    func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
+        let reactions: [String] = item.reactionsAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
+        let lowPerformanceItems: [String] = item.lowPerformanceAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
+        let highPerformanceItems: [String] = item.highPerformanceContentItems.compactMap({ $0.valueText })
+        let mindsetItem = ShifterResult.Item(triggerAnswerId: item.triggerAnswerId,
+                                        reactionsAnswerIds: item.reactionsAnswerIds,
+                                        lowPerformanceAnswerIds: item.lowPerformanceAnswerIds,
+                                        highPerformanceContentItemIds: item.highPerformanceContentItemIds,
+                                        trigger: item.triggerAnswer?.subtitle ?? "",
+                                        reactions: reactions,
+                                        lowPerformanceItems: lowPerformanceItems,
+                                        highPerformanceItems: highPerformanceItems)
+        let configurator = ShifterResultConfigurator.make(resultItem: mindsetItem)
+        let controller = ShifterResultViewController(configure: configurator)
+        viewController.present(controller, animated: true) {
+        }
+    }
+
+   func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
+        router.showDeleteConfirmation(delegate: delegate)
+    }
 }

@@ -16,7 +16,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet weak var bucketTitle: UILabel!
     @IBOutlet weak var impactReadinessScore: UILabel!
     @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var impactReadinessButton: UIButton!
+    @IBOutlet weak var impactReadinessButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
     @IBOutlet weak var impactReadinessView: UIImageView!

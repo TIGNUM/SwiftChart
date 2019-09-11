@@ -194,13 +194,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         launchHandler.process(url: link)
     }
 
-    func processOutstandingShortcuts() {
-        if let shortcut = unhandledShortCuts.first {
-            handleShortcut(shortcutItem: shortcut)
-            unhandledShortCuts.removeAll()
-        }
-    }
-
     //Interface Orientation
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppCoordinator.orientationManager.supportedOrientations
@@ -300,14 +293,6 @@ extension AppDelegate {
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
-    func processOutstandingNotifications() {
-        qot_dal.log("dailyPrep://processOutstandingNotifications:: \(unhandledNotifications)")
-        if let notification = unhandledNotifications.first {
-            handleNotification(notification: notification)
-            unhandledNotifications.removeAll() // TODO: maybe we can handle all of them in the future?
-        }
-    }
-
     func handleNotification(notification: UNNotification) {
         qot_dal.log("dailyPrep://handleNotification, notification:: \(notification)")
         var link: URL?
@@ -323,11 +308,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             }
         }
         guard let notificationLink = link, launchHandler.canLaunch(url: notificationLink) == true else { return }
-        var notificationID = notification.request.identifier
-        if notificationID.starts(with: NotificationID.Prefix.dailyPrep.rawValue) {
-            notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
-        }
-        launchHandler.process(url: notificationLink, notificationID: notificationID)
+        launchHandler.process(url: notificationLink)
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
@@ -379,15 +360,22 @@ extension AppDelegate {
     func sendSiriEventsIfNeeded() {
         if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
             events.events.forEach {
+                var userEventTrack = QDMUserEventTracking()
+                userEventTrack.action = .SIRI_READ
+                userEventTrack.date = $0.date
                 switch $0.key {
-                case ExtensionUserDefaults.toBeVision.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriToBeVision, date: $0.date)
-                case ExtensionUserDefaults.whatsHot.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriWhatsHot, date: $0.date)
-                case ExtensionUserDefaults.upcomingEvents.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriUpcomingEvent, date: $0.date)
-                case ExtensionUserDefaults.dailyPrep.rawValue: break
-//                    appCoordinator.sendAppEvent(.siriDailyPrep, date: $0.date)
+                case ExtensionUserDefaults.toBeVision.rawValue:
+                    userEventTrack.name = .SIRI_TO_BE_VISION
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.whatsHot.rawValue:
+                    userEventTrack.name = .SIRI_WHATS_HOT
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.upcomingEvents.rawValue:
+                    userEventTrack.name = .SIRI_PREPARATION_EVENT
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
+                case ExtensionUserDefaults.dailyPrep.rawValue:
+                    userEventTrack.name = .SIRI_DAILY_CHECK_IN
+                    NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
                 default: break
                 }
             }

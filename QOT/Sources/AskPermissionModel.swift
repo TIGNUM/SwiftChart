@@ -12,6 +12,7 @@ struct AskPermission {
     enum Kind: String {
         case location
         case notification
+        case notificationOpenSettings
         case calendar
         case calendarOpenSettings
 
@@ -21,6 +22,8 @@ struct AskPermission {
                 return 102076
             case .notification:
                 return 102038
+            case .notificationOpenSettings:
+                return 102107
             case .calendar:
                 return 102039
             case .calendarOpenSettings:

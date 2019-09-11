@@ -27,10 +27,10 @@ final class ComponentPresentationController: UIPresentationController {
         blurView.edges(to: container)
         blurView.alpha = 0.0
         presentingViewController.beginAppearanceTransition(false, animated: false)
-        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { (ctx) in
+        presentedViewController.transitionCoordinator?.animate(alongsideTransition: { [weak self] (ctx) in
             UIView.animate(withDuration: 0.5, animations: {
-                self.blurView.effect = UIBlurEffect(style: .light)
-                self.blurView.alpha = 1
+                self?.blurView.effect = UIBlurEffect(style: .light)
+                self?.blurView.alpha = 1
             })
         }, completion: { (ctx) in
             // DO NOTHING
@@ -43,8 +43,8 @@ final class ComponentPresentationController: UIPresentationController {
 
     override func dismissalTransitionWillBegin() {
         presentingViewController.beginAppearanceTransition(true, animated: true)
-        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { (ctx) in
-            self.blurView.alpha = 0
+        presentedViewController.transitionCoordinator!.animate(alongsideTransition: { [weak self] (ctx) in
+            self?.blurView.alpha = 0
         }, completion: nil)
     }
 

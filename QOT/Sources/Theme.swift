@@ -34,6 +34,7 @@ enum ThemeView {
     case level1
     case level2
     case level3
+    case sprints
     case level1Secondary
     case level1Selected
     case level2Selected
@@ -54,6 +55,7 @@ enum ThemeView {
     case imageOverlap
     case qSearch
     case chatbot
+    case askPermissions
 
     var color: UIColor {
         switch self {
@@ -87,10 +89,12 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10)
         case .accentBackground, .prepsSegmentSelected, .articleMarkRead, .articleMarkUnread:
             return Palette.accent30
-        case .qotAlert:
+        case .qotAlert, .sprints:
             return Palette.carbonDark80
         case .imageOverlap:
             return Palette.carbon60
+        case .askPermissions:
+            return Palette.carbon
         }
     }
 
@@ -175,28 +179,29 @@ enum ThemableButton {
     case fullscreenAudioPlayerDownload
     case fullscreenVideoPlayerDownload
     case myLibraryNotes
+    case askPermissions
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
-        case .myLibrary, .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .myLibraryNotes:
+        case .myLibrary, .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .myLibraryNotes, .askPermissions:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
 
     var normal: ButtonTheme? {
         switch self {
-        case .myLibrary:
-            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent40)
+        case .myLibrary, .askPermissions:
+            return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
-            return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent40)
+            return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
-            return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
+            return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent30)
         }
     }
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary:
+        case .myLibrary, .askPermissions:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
@@ -222,6 +227,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
             return ButtonTheme(foreground: .accent, background: .accent40, border: nil)
+        default:
+            return nil
         }
     }
 
@@ -512,6 +519,8 @@ enum ThemeText {
     case resultHeader2
     case resultList
     case resultFollowUp
+    case askPermissionTitle
+    case askPermissionMessage
 
     private var font: UIFont {
         switch self {
@@ -519,9 +528,9 @@ enum ThemeText {
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket, .askPermissionTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefLevelContent, .dailyBriefDailyCheckInSights, .quotationLight:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefLevelContent, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -577,7 +586,8 @@ enum ThemeText {
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeader, .accountHeaderTitle,
              .resultTitle, .resultHeader2,
-             .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight, .qotTools, .qotToolsSectionSubtitle:
+             .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight, .qotTools, .qotToolsSectionSubtitle,
+             .dailyBriefLevelContent:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList:
@@ -653,9 +663,9 @@ enum ThemeText {
              .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted, .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion, .accountHeader,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
-             .tbvQuestionLight, .tbvQuestionMedium:
+             .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle:
             return Palette.sand
-        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText:
+        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits, .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash:
@@ -670,11 +680,11 @@ enum ThemeText {
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark,
              .resultTitle, .resultHeader1:
             return Palette.carbon
-        case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore,
+        case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights:
+             .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .askPermissionMessage:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2:
             return Palette.carbon70
@@ -771,7 +781,7 @@ enum ThemeText {
              .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage, .registrationEmailTitle,
              .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
              .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
-             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle:
+             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
@@ -849,8 +859,9 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
         case .chatBotButton:
-            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
-
+            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)            
+        case .askPermissionMessage:
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }

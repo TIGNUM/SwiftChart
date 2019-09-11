@@ -139,11 +139,11 @@ private extension AbstractFormViewController {
     }
 
     func listenForConnection() {
-        reachability.onStatusChange = { (status) -> Void in
+        reachability.onStatusChange = {  [weak self] (status) -> Void in
             switch status {
             case .notReachable:
-                  self.showSettingsCustomAlert()
-            default: self.alert.dismiss(animated: true, completion: nil)
+                  self?.showSettingsCustomAlert()
+            default: self?.alert.dismiss(animated: true, completion: nil)
             }
         }
     }

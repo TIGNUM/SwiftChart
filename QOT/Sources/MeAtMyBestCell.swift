@@ -14,7 +14,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     @IBOutlet private weak var meAtMyBestLabel: UILabel!
     @IBOutlet private weak var meAtMyBestContent: UILabel!
     @IBOutlet private weak var meAtMyBestFuture: UILabel!
-    @IBOutlet private weak var meAtMyBestButtonText: UIButton!
+    @IBOutlet private weak var meAtMyBestButtonText: AnimatedButton!
     var delegate: DailyBriefViewControllerDelegate?
 
     @IBAction func presentTBV(_ sender: Any) {

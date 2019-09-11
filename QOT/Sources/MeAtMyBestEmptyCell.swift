@@ -11,7 +11,7 @@ import UIKit
 final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var intro: UILabel!
-    @IBOutlet private weak var buttonText: UIButton!
+    @IBOutlet private weak var buttonText: AnimatedButton!
     @IBOutlet private weak var title: UILabel!
     var delegate: DailyBriefViewControllerDelegate?
 

@@ -17,7 +17,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet private weak var sprintInfo: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var sprintStepNumber: UILabel!
-    @IBOutlet weak var gotItButton: UIButton!
+    @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
 

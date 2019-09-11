@@ -59,7 +59,10 @@ final class TrackSelectionInteractor {
 extension TrackSelectionInteractor: TrackSelectionInteractorInterface {
 
     func askNotificationPermissions() {
-        router.showLocationPersmission(completion: nil)
+        worker.notificationRequestType { [weak self] (type) in
+            guard let type = type else { return }
+            self?.router.showNotificationPersmission(type: type, completion: nil)
+        }
     }
 
     func didTapFastTrack() {

@@ -98,7 +98,17 @@ extension SearchViewController {
     }
 
     private func doActivate() {
-        let constantNew = activeView.frame.size.height - mySearchBar.frame.size.height
+        var constantNew: CGFloat = activeView.frame.size.height - mySearchBar.frame.size.height
+        if let parentView = parent?.view {
+            if #available(iOS 11.0, *) {
+                let guide = parentView.safeAreaLayoutGuide
+                let height = guide.layoutFrame.size.height
+                let insetsHeight = parentView.bounds.height - height
+                constantNew = parentView.bounds.height - mySearchBar.bounds.height - insetsHeight
+            } else {
+                constantNew = parentView.bounds.height - mySearchBar.bounds.height
+            }
+        }
         if constantNew == constraintSearch.constant { return }
 
         constraintSearch.constant = constantNew
@@ -331,16 +341,16 @@ private extension SearchViewController {
         let reverseAlpha = 1 - alpha
         setAllControl(newAlpha: reverseAlpha)
 
-        UIView.animate(withDuration: 0.25, animations: {
-            self.suggestionsTableView.alpha = alpha
-            self.tableView.alpha = reverseAlpha
-            self.indicatorView.alpha = reverseAlpha
-            self.segmentedControl.alpha = reverseAlpha
-        }, completion: { (_) in
-            self.suggestionsTableView.isHidden = suggestionShouldHide
-            self.tableView.isHidden = !suggestionShouldHide
-            self.indicatorView.isHidden = !suggestionShouldHide
-            self.segmentedControl.isHidden = !suggestionShouldHide
+        UIView.animate(withDuration: 0.25, animations: { [weak self] in
+            self?.suggestionsTableView.alpha = alpha
+            self?.tableView.alpha = reverseAlpha
+            self?.indicatorView.alpha = reverseAlpha
+            self?.segmentedControl.alpha = reverseAlpha
+        }, completion: { [weak self] (_) in
+            self?.suggestionsTableView.isHidden = suggestionShouldHide
+            self?.tableView.isHidden = !suggestionShouldHide
+            self?.indicatorView.isHidden = !suggestionShouldHide
+            self?.segmentedControl.isHidden = !suggestionShouldHide
         })
     }
 
