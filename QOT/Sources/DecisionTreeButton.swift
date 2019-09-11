@@ -9,9 +9,6 @@
 import UIKit
 
 class AbstractTreeButton: UIButton {
-
-    var maxPossibleSelections: Int = 0
-
     func attributedString(_ title: String, _ textColor: UIColor) -> NSAttributedString {
         return NSAttributedString(string: title,
                                   letterSpacing: 0.2,
@@ -73,8 +70,14 @@ final class SelectionButton: AbstractTreeButton {
 
 final class NavigationButton: AbstractTreeButton {
 
+    // MARK: - Properties
     private var type = DecisionTreeType.mindsetShifter
+    private var maxSelections = 0
+    private var currentValue = 0
+    private var defaultTitle = ""
+    private var confirmationTitle = ""
 
+    // MARK: - Init
     convenience init(title: String, type: DecisionTreeType, enabled: Bool) {
         self.init(frame: .Default)
         configure(title: title,
@@ -91,13 +94,16 @@ final class NavigationButton: AbstractTreeButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         cornerDefault()
+        addObserver()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         cornerDefault()
+        addObserver()
     }
 
+    // MARK: Configuration
     func configure(title: String, backgroundColor: UIColor, titleColor: UIColor, type: DecisionTreeType) {
         setAttributedTitle(attributedString(title, titleColor), for: .normal)
         self.backgroundColor = backgroundColor
@@ -105,9 +111,31 @@ final class NavigationButton: AbstractTreeButton {
     }
 
     func update(currentValue: Int, maxSelections: Int, defaultTitle: String, confirmationTitle: String) {
-        isHidden = confirmationTitle.isEmpty && defaultTitle.isEmpty
-        guard !isHidden else { return }
+        self.currentValue = currentValue
+        self.maxSelections = maxSelections
+        self.defaultTitle = defaultTitle
+        self.confirmationTitle = confirmationTitle
+        syncButton(currentValue)
+    }
+}
 
+// MARK: Event handling
+private extension NavigationButton {
+    func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didUpdateSelectionCounter(_:)),
+                                               name: .didUpdateSelectionCounter,
+                                               object: nil)
+    }
+
+    @objc func didUpdateSelectionCounter(_ notification: Notification) {
+        if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
+            currentValue = counter > maxSelections ? 0 : counter
+            syncButton(currentValue)
+        }
+    }
+
+    func syncButton(_ currentValue: Int) {
         let isEnabled = currentValue == maxSelections
         let buttonTitle = isEnabled ? (!confirmationTitle.isEmpty ? confirmationTitle : defaultTitle) : defaultTitle
         let textColor = type.barButtonTextColor(isEnabled)
