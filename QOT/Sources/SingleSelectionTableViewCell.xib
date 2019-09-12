@@ -19,8 +19,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="362" height="103.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uI-Lm-6yH" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="158" y="61" width="78" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uI-Lm-6yH" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="142" y="61" width="86" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4IB-4z-ZU2"/>
                         </constraints>
@@ -30,8 +30,8 @@
                             <action selector="didTapLeftOption" destination="Thd-Gv-bn7" eventType="touchUpInside" id="vVo-B7-mQ9"/>
                         </connections>
                     </button>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzj-rc-XMw" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="260" y="61" width="78" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzj-rc-XMw" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="252" y="61" width="86" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="6dg-aQ-h3S"/>
                         </constraints>

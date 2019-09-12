@@ -189,7 +189,8 @@ extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
 extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
     func didTapShowMoreLess() {
         trackUserEvent(.SELECT, valueType: "SHOW MORE/LESS", action: .TAP)
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 
