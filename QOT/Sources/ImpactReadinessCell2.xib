@@ -318,8 +318,8 @@
                             </view>
                         </subviews>
                     </stackView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iz-cZ-qYd" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="368" y="662.66666666666663" width="118" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7iz-cZ-qYd" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="351" y="662.66666666666663" width="135" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="SsB-hm-2q3"/>
                         </constraints>

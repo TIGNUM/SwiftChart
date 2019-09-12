@@ -65,12 +65,12 @@ extension DailyBriefInteractor {
     private func setVisibleBucketsAsSeenIfNeeded(indexPath: IndexPath) {
         let bucketModel = bucketViewModelNew()?.at(index: indexPath.section)
         let bucketList = bucketModel?.elements
-        let bucket = bucketList?[indexPath.row].domainModel
-
-        guard let notSeenBucket = bucket else {
-            return
+        if let bucketList = bucketList,
+            bucketList.count > indexPath.row {
+            if let bucket = bucketList[indexPath.row].domainModel {
+                DailyBriefService.main.markAsSeenBuckets([bucket])
+            }
         }
-        DailyBriefService.main.markAsSeenBuckets([notSeenBucket])
     }
 }
 

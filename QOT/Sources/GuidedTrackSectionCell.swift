@@ -15,9 +15,7 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     var trackState = false
     @IBAction func clickAction(_ sender: Any) {
         trackState = !trackState
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.button.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: self.trackState ? -1.0 : 1.0)
-        }
+        button.flipImage(trackState)
         NotificationCenter.default.post(name: .displayGuidedTrackRows, object: nil)
     }
 

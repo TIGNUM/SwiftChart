@@ -37,9 +37,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         // tell someone it's selected. -1 indicates the default condition.
         if score != -1 {
             trackState = !trackState
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-                self.impactReadinessButton.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: self.trackState ? -1.0 : 1.0)
-            }
+            impactReadinessButton.flipImage(trackState)
             NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
         } else {
             delegate?.showDailyCheckIn()

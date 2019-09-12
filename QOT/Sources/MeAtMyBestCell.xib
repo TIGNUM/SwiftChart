@@ -66,8 +66,8 @@
                                     <constraint firstAttribute="height" constant="1" id="JY6-rb-UNQ"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="322" y="360.5" width="80" height="40"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="317" y="360.5" width="85" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dvw-lH-XlC"/>
                                 </constraints>

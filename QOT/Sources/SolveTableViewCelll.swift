@@ -15,7 +15,7 @@ final class SolveTableViewCell: BaseDailyBriefCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var solve: QDMSolve?
 
