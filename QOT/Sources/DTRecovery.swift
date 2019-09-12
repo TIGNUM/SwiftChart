@@ -12,6 +12,7 @@ struct Recovery {
 	struct QuestionKey {
         static let Intro = "3drecovery-question-intro"
         static let Symptom = "3drecovery-question-syntom"
+        static let SymptomGeneral = "3drecovery-question-syntom-general"
         static let GeneratePlan = "3drecovery-question-generate-recovery-loading"
     }
 
@@ -27,12 +28,12 @@ struct Recovery {
         case physical
         case general
 
-        var replacement: String {
+        var replacement: String? {
             switch self {
             case .cognitive: return R.string.localized.fatigueSymptomCognitive()
             case .emotional: return R.string.localized.fatigueSymptomEmotional()
             case .physical: return R.string.localized.fatigueSymptomPhysical()
-            case .general: return R.string.localized.fatigueSymptomGeneral()
+            case .general: return nil
             }
         }
 

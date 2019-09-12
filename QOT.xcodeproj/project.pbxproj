@@ -2743,6 +2743,16 @@
 			name = Abstract;
 			sourceTree = "<group>";
 		};
+		36103325232AC794008A8205 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */,
+				36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */,
+				36288A7623257F060036C8C0 /* DTViewModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		361DB158201F2CF000E8FD22 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
@@ -3125,16 +3135,6 @@
 			name = SigningInfo;
 			sourceTree = "<group>";
 		};
-		367A5846232695380089A082 /* Base Models */ = {
-			isa = PBXGroup;
-			children = (
-				36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */,
-				36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */,
-				36288A7623257F060036C8C0 /* DTViewModel.swift */,
-			);
-			name = "Base Models";
-			sourceTree = "<group>";
-		};
 		367A584A2326A13D0089A082 /* Solve */ = {
 			isa = PBXGroup;
 			children = (
@@ -3161,6 +3161,7 @@
 				367A585C2326A1AF0089A082 /* DTViewController.swift */,
 				367A58642326B85B0089A082 /* DTWorker.swift */,
 				367A585E2326A4350089A082 /* DTViewController.xib */,
+				36103325232AC794008A8205 /* Models */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -4827,7 +4828,6 @@
 			children = (
 				ACF0B94C225FC436008CFAEC /* __Core */,
 				367A585B2326A1900089A082 /* Base */,
-				367A5846232695380089A082 /* Base Models */,
 				ACF0B94E225FC46E008CFAEC /* Cells */,
 				ACD399EF2294026D00DDE1BD /* Keys */,
 				3655F2CA2326EB7C00334719 /* MindsetShifter */,

@@ -12,6 +12,8 @@ protocol DTRecoveryViewControllerInterface: class {}
 
 protocol DTRecoveryPresenterInterface {}
 
-protocol DTRecoveryInteractorInterface: Interactor {}
+protocol DTRecoveryInteractorInterface: Interactor {
+    var nextQuestionKey: String? { get set }
+}
 
 protocol DTRecoveryRouterInterface {}

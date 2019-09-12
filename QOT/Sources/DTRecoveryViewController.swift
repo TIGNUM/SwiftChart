@@ -10,6 +10,9 @@ import UIKit
 
 final class DTRecoveryViewController: DTViewController {
 
+    // MARK: - Properties
+    var recoveryInteractor: DTRecoveryInteractorInterface?
+
     // MARK: - Init
     init(configure: Configurator<DTRecoveryViewController>) {
         super.init(nibName: R.nib.dtViewController.name, bundle: R.nib.dtViewController.bundle)
@@ -20,23 +23,25 @@ final class DTRecoveryViewController: DTViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - DTViewController
+    // MARK: - Answer Handling
     override func didTapNext() {
         switch viewModel?.question.key {
         case Recovery.QuestionKey.GeneratePlan?:
             setAnswerNeedsSelection()
             loadNextQuestion()
+        case Recovery.QuestionKey.Intro?:
+            setNextQuestionForFatigueSymptoms()
         default:
             loadNextQuestion()
         }
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        super.didSelectAnswer(answer)
     }
 
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        super.didDeSelectAnswer(answer)
     }
 
     // MARK: - Question Handling
@@ -49,7 +54,16 @@ final class DTRecoveryViewController: DTViewController {
 }
 
 // MARK: - Private
-private extension DTRecoveryViewController {}
+private extension DTRecoveryViewController {
+    func setNextQuestionForFatigueSymptoms() {
+        if case .general = Recovery.getFatigueSymptom(viewModel?.selectedAnswers ?? []) {
+            recoveryInteractor?.nextQuestionKey = Recovery.QuestionKey.SymptomGeneral
+            loadNextQuestion()
+        } else {
+            loadNextQuestion()
+        }
+    }
+}
 
 // MARK: - DTRecoveryViewControllerInterface
 extension DTRecoveryViewController: DTRecoveryViewControllerInterface {}

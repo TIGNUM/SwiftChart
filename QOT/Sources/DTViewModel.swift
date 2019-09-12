@@ -17,14 +17,9 @@ struct DTViewModel {
     let dismissButtonIsHidden: Bool
     let showNextQuestionAutomated: Bool
 
-    mutating func setSelectedAnswer(_ answer: Answer) {
-        if let index = indexOf(answer.remoteId) {
-            answers.remove(at: index)
-            answers.insert(answer, at: index)
-            if question.answerType == .multiSelection {
-                notifyCounterChanged()
-            }
-        }
+    // -ReadOnly
+    var selectedAnswers: [DTViewModel.Answer] {
+        return answers.filter { $0.selected }
     }
 
     struct Question {
@@ -65,6 +60,18 @@ struct DTViewModel {
 private extension DTViewModel {
     func indexOf(_ answerId: Int) -> Int? {
         return answers.firstIndex(where: { $0.remoteId == answerId })
+    }
+}
+
+extension DTViewModel {
+    mutating func setSelectedAnswer(_ answer: Answer) {
+        if let index = indexOf(answer.remoteId) {
+            answers.remove(at: index)
+            answers.insert(answer, at: index)
+            if question.answerType == .multiSelection {
+                notifyCounterChanged()
+            }
+        }
     }
 }
 

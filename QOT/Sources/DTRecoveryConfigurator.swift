@@ -16,6 +16,7 @@ final class DTRecoveryConfigurator {
                                                   questionGroup: .RecoveryPlan,
                                                   introKey: Recovery.QuestionKey.Intro)
             viewController.interactor = interactor
+            viewController.recoveryInteractor = interactor
         }
     }
 }

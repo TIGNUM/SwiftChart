@@ -12,11 +12,11 @@ import qot_dal
 class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
 
     // MARK: - Properties
-    var interactor: DTInteractor?
-    var router: DTRouterInterface?
     var viewModel: DTViewModel?
-    private var navigationButton: NavigationButton?
-    weak var pageController: UIPageViewController?
+    var router: DTRouterInterface?
+    weak var interactor: DTInteractor?
+    private weak var navigationButton: NavigationButton?
+    private weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
@@ -130,7 +130,10 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     // MARK: - DTQuestionnaireViewControllerDelegate
-    func didTapBinarySelection(_ answer: DTViewModel.Answer) {}
+    func didTapBinarySelection(_ answer: DTViewModel.Answer) {
+        setAnswerNeedsSelection(answer)
+        loadNextQuestion()
+    }
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)

@@ -58,7 +58,7 @@ final class DTMindsetViewController: DTViewController {
 
     // MARK: - DTQuestionnaireViewControllerDelegate
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
-
+        super.didTapBinarySelection(answer)
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
