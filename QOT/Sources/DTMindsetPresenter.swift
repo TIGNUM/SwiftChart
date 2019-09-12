@@ -16,7 +16,11 @@ final class DTMindsetPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        return answerType == .text
+        let typingAnimationState = answerType == .text
+        if typingAnimationState {
+            hideNavigationButtonForAnimation()
+        }
+        return typingAnimationState
     }
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {

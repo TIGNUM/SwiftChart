@@ -28,6 +28,7 @@ final class DTSprintViewController: DTViewController {
         if viewModel?.question.key == Sprint.QuestionKey.Last {
             didTapClose()
         } else {
+            setAnswerNeedsSelection()
             loadNextQuestion()
         }
     }

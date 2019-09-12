@@ -20,7 +20,11 @@ final class DTSprintPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        return answerType == .noAnswerRequired && !answers.filter { $0.title.isEmpty }.isEmpty //TODO - make this work with new data model for new CMS
+        let typingAnimationState = answerType == .noAnswerRequired
+        if typingAnimationState {
+            hideNavigationButtonForAnimation()
+        }
+        return typingAnimationState
     }
 
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
