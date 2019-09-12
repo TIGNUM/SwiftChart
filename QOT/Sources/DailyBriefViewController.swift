@@ -276,6 +276,7 @@ private extension DailyBriefViewController {
         } else {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
+            cell.impactReadinessButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
         }
         cell.delegate = self
         return cell
@@ -637,7 +638,7 @@ private extension DailyBriefViewController {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: guidedtrackModel)
-
+            cell.button.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)

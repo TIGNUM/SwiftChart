@@ -18,6 +18,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
     @IBOutlet weak var impactReadinessView: UIImageView!
+    var trackState: Bool = false
     @IBOutlet weak var buttonLeft: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var buttonRight: UIButton!
@@ -35,7 +36,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if score != -1 {
-             NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+            trackState = !trackState
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+                self.impactReadinessButton.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: self.trackState ? -1.0 : 1.0)
+            }
+            NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
         } else {
             delegate?.showDailyCheckIn()
         }
