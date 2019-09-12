@@ -35,6 +35,15 @@ struct Recovery {
             case .general: return R.string.localized.fatigueSymptomGeneral()
             }
         }
+
+        var answerFilter: String {
+            switch self {
+            case .cognitive: return "3drecovery_relationship_cognitive"
+            case .emotional: return "3drecovery_relationship_emotional"
+            case .physical: return "3drecovery_relationship_physical"
+            case .general: return "3drecovery_relationship_general"
+            }
+        }
     }
 
     static func getFatigueSymptom(_ selectedAnswers: [DTViewModel.Answer]) -> Recovery.FatigueSymptom {

@@ -60,7 +60,18 @@ extension CoachRouter: CoachRouterInterface {
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
             viewController.present(controller, animated: true)
-
+        case .recovery:
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .recoveryResult:
+            UserService.main.getRecovery3D { [weak self] (recoveryList, _, _) in
+                if let recovery = recoveryList?.at(index: recoveryList?.randomIndex ?? 0) {
+                    let configurator = SolveResultsConfigurator.make(from: recovery)
+                    let controller = SolveResultsViewController(configure: configurator)
+                    self?.viewController.present(controller, animated: true)
+                }
+            }
         case .shortTBVMindSet:
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)

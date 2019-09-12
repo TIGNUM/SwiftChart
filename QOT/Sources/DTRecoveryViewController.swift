@@ -27,7 +27,7 @@ final class DTRecoveryViewController: DTViewController {
             setAnswerNeedsSelection()
             loadNextQuestion()
         default:
-            break
+            loadNextQuestion()
         }
     }
 
@@ -42,7 +42,7 @@ final class DTRecoveryViewController: DTViewController {
     // MARK: - Question Handling
     override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         if questionKey == Recovery.QuestionKey.Intro {
-
+            return Recovery.getFatigueSymptom(selectedAnswers).answerFilter
         }
         return nil
     }
