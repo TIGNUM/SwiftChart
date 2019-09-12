@@ -24,33 +24,30 @@ final class MyQotAppSettingsRouter {
 // MARK: - MyQotAppSettingsRouterInterface
 
 extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
-    func handleTap(setting: MyQotAppSettingsModel.Setting) {
-        switch setting {
-        case .notifications:
-            viewController.showAlert(type: .changeNotifications, handler: {
-                UIApplication.openAppSettings()
-            }, handlerDestructive: nil)
-        case .permissions:
-            viewController.showAlert(type: .changePermissions, handler: {
-                UIApplication.openAppSettings()
-            }, handlerDestructive: nil)
-        case .calendars:
-            let calendarPermission = CalendarPermission()
-            calendarPermission.askPermission { [weak self] result in
-                if result == true {
-                    DispatchQueue.main.async {
-                        self?.viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSyncedCalendarSegueIdentifier, sender: nil)
-                    }
-                } else {
-                    self?.viewController.showAlert(type: .settingsCalendars, handler: {
-                        UIApplication.openAppSettings()
-                    }, handlerDestructive: nil)
-                }
-            }
-        case .sensors:
-            viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsActivityTrackerSegueIdentifier, sender: nil)
-        case .siriShortcuts:
-            viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSiriShortcutsSegueIdentifier, sender: nil)
+
+    func openAppSettings() {
+        viewController.showAlert(type: .changeNotifications, handler: {
+            UIApplication.openAppSettings()
+        }, handlerDestructive: nil)
+    }
+
+    func openCalendarSettings() {
+        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSyncedCalendarSegueIdentifier, sender: nil)
+    }
+
+    func openActivityTrackerSettings() {
+        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsActivityTrackerSegueIdentifier, sender: nil)
+    }
+
+    func openSiriSettings() {
+        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSiriShortcutsSegueIdentifier, sender: nil)
+    }
+
+    func openCalendarPermission(_ type: AskPermission.Kind, delegate: AskPermissionDelegate) {
+        guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as? AskPermissionViewController else {
+            return
         }
+        AskPermissionConfigurator.make(viewController: controller, type: type, delegate: delegate)
+        viewController.present(controller, animated: true, completion: nil)
     }
 }

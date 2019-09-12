@@ -38,7 +38,43 @@ final class MyQotAppSettingsInteractor {
 // MARK: - MyQotAppSettingsInteractorInterface
 
 extension MyQotAppSettingsInteractor: MyQotAppSettingsInteractorInterface {
+
     func handleTap(setting: MyQotAppSettingsModel.Setting) {
-        router.handleTap(setting: setting)
+        switch setting {
+        case .notifications:
+            router.openAppSettings()
+        case .permissions:
+            router.openAppSettings()
+        case .calendars:
+            handleCalendarTap()
+        case .sensors:
+            router.openActivityTrackerSettings()
+        case .siriShortcuts:
+            router.openSiriSettings()
+        }
+    }
+}
+
+// MARK: - Private methods
+
+extension MyQotAppSettingsInteractor {
+    func handleCalendarTap() {
+        switch worker.calendarAuthorizationStatus {
+        case .authorized:
+            router.openCalendarSettings()
+        case .notDetermined:
+            router.openCalendarPermission(.calendar, delegate: self)
+        case .denied, .restricted:
+            router.openCalendarPermission(.calendarOpenSettings, delegate: self)
+        }
+    }
+}
+
+// MARK: - AskPermissionDelegate
+
+extension MyQotAppSettingsInteractor: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        guard granted else { return }
+        router.openCalendarSettings()
     }
 }

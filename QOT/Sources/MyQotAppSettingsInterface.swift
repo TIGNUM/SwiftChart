@@ -18,7 +18,11 @@ protocol MyQotAppSettingsInteractorInterface: Interactor {
 }
 
 protocol MyQotAppSettingsRouterInterface {
-    func handleTap(setting: MyQotAppSettingsModel.Setting)
+    func openAppSettings()
+    func openCalendarSettings()
+    func openActivityTrackerSettings()
+    func openSiriSettings()
+    func openCalendarPermission(_ type: AskPermission.Kind, delegate: AskPermissionDelegate)
 }
 
 protocol MyQotAppSettingsViewControllerInterface: class {

@@ -12,7 +12,6 @@ final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
     var interactor: AskPermissionInteractorInterface?
-    var router: AskPermissionRouterInterface?
     private var rightBarButtonItems = [UIBarButtonItem]()
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -74,11 +73,11 @@ private extension AskPermissionViewController {
 // MARK: - Actions
 private extension AskPermissionViewController {
     @objc func didTapCancelButton() {
-        dismiss(animated: true, completion: nil)
+        interactor?.didTapSkip()
     }
 
     @objc func didTapConfirmButton() {
-        router?.didTapConfirm(interactor?.permissionType)
+        interactor?.didTapConfirm()
     }
 }
 

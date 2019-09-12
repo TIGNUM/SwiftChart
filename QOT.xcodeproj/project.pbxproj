@@ -3599,14 +3599,14 @@
 		5FF1A0F222857AFF00D76D55 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5FF1A0F322857B2C00D76D55 /* MyQotAppSettingsViewController.swift */,
-				5FF1A0F522857B4300D76D55 /* MyQotAppSettingsInterface.swift */,
-				5FF1A0F722857B6100D76D55 /* MyQotAppSettingsWorker.swift */,
-				5FF1A0F922857B9400D76D55 /* MyQotAppSettingsPresenter.swift */,
-				5FF1A0FB22857BA300D76D55 /* MyQotAppSettingsInteractor.swift */,
-				5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */,
-				5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */,
 				5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */,
+				5FF1A0FB22857BA300D76D55 /* MyQotAppSettingsInteractor.swift */,
+				5FF1A0F522857B4300D76D55 /* MyQotAppSettingsInterface.swift */,
+				5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */,
+				5FF1A0F922857B9400D76D55 /* MyQotAppSettingsPresenter.swift */,
+				5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */,
+				5FF1A0F322857B2C00D76D55 /* MyQotAppSettingsViewController.swift */,
+				5FF1A0F722857B6100D76D55 /* MyQotAppSettingsWorker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";

@@ -9,6 +9,10 @@
 import Foundation
 import qot_dal
 
+protocol AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool)
+}
+
 protocol AskPermissionViewControllerInterface: class {
     func setupView(_ viewModel: AskPermission.ViewModel)
 }
@@ -20,8 +24,11 @@ protocol AskPermissionPresenterInterface {
 protocol AskPermissionInteractorInterface: Interactor {
     var permissionType: AskPermission.Kind { get }
     var placeholderImage: UIImage? { get }
+    func didTapSkip()
+    func didTapConfirm()
 }
 
 protocol AskPermissionRouterInterface {
-    func didTapConfirm(_ permissionType: AskPermission.Kind?)
+    func didTapDismiss(_ permissionType: AskPermission.Kind)
+    func didTapConfirm(_ permissionType: AskPermission.Kind)
 }

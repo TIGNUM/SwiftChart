@@ -13,11 +13,15 @@ final class AskPermissionInteractor {
     // MARK: - Properties
     private let worker: AskPermissionWorker
     private let presenter: AskPermissionPresenterInterface
+    private let router: AskPermissionRouterInterface
 
     // MARK: - Init
-    init(worker: AskPermissionWorker, presenter: AskPermissionPresenterInterface) {
+    init(worker: AskPermissionWorker,
+         presenter: AskPermissionPresenterInterface,
+         router: AskPermissionRouterInterface) {
         self.worker = worker
         self.presenter = presenter
+        self.router = router
     }
 
     // MARK: - Interactor
@@ -41,5 +45,13 @@ extension AskPermissionInteractor: AskPermissionInteractorInterface {
         default: image = R.image.preloading()
         }
         return image
+    }
+
+    func didTapSkip() {
+        router.didTapDismiss(worker.getPermissionType)
+    }
+
+    func didTapConfirm() {
+        router.didTapConfirm(worker.getPermissionType)
     }
 }
