@@ -17,7 +17,7 @@ final class DTRecoveryPresenter: DTPresenter {
 
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
         if question?.key == Recovery.QuestionKey.Symptom, let replacement = replacement {
-            if replacement == R.string.localized.fatigueSymptomGeneral() {
+            if replacement == Recovery.FatigueSymptom.general.replacement {
                 return replacement
             }
             return question?.title.replacingOccurrences(of: "%@", with: replacement)
