@@ -962,6 +962,8 @@ enum ThemeText {
         }
     }
 
+    
+
     func apply(_ text: String?, to textView: UITextView?, lineSpacing: CGFloat? = nil,
                lineHeight: CGFloat? = nil) {
         guard let view = textView else { return }

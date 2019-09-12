@@ -30,3 +30,5 @@ protocol ShifterResultInteractorInterface: Interactor {
 protocol ShifterResultRouterInterface {
     func dismiss()
 }
+
+
