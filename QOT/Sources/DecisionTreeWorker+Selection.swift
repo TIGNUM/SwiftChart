@@ -222,7 +222,7 @@ private extension DecisionTreeWorker {
     }
 
     func showQuestion(_ node: DecisionTreeNode) {
-        if let question = node.question {            
+        if let question = node.question {
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
                                      filter: answersFilter(),
@@ -232,8 +232,6 @@ private extension DecisionTreeWorker {
         }
     }
 }
-
-
 
 private extension DecisionTreeWorker {
     func showNextQuestionIfExist(_ answer: QDMAnswer) {
@@ -295,8 +293,6 @@ private extension DecisionTreeWorker {
 //        }
 //    }
 }
-
-
 
 // MARK: - Sprint Selection
 private extension DecisionTreeWorker {

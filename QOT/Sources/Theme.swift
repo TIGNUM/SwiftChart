@@ -930,7 +930,7 @@ enum ThemeText {
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
         case .chatBotButton:
-            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)            
+            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
@@ -938,7 +938,6 @@ enum ThemeText {
         }
         return string
 
-        
     }
 
     func apply(_ text: String?, to view: UILabel?, lineSpacing: CGFloat? = nil,
@@ -961,8 +960,6 @@ enum ThemeText {
             }
         }
     }
-
-    
 
     func apply(_ text: String?, to textView: UITextView?, lineSpacing: CGFloat? = nil,
                lineHeight: CGFloat? = nil) {
