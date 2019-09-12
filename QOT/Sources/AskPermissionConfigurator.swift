@@ -10,12 +10,13 @@ import Foundation
 import qot_dal
 
 final class AskPermissionConfigurator {
-    static func make(viewController: AskPermissionViewController?, type: AskPermission.Kind) {
-        let router = AskPermissionRouter(viewController: viewController)
+    static func make(viewController: AskPermissionViewController?,
+                     type: AskPermission.Kind,
+                     delegate: AskPermissionDelegate? = nil) {
+        let router = AskPermissionRouter(viewController: viewController, delegate: delegate)
         let worker = AskPermissionWorker(contentService: qot_dal.ContentService.main, permissionType: type)
         let presenter = AskPermissionPresenter(viewController: viewController)
-        let interactor = AskPermissionInteractor(worker: worker, presenter: presenter)
+        let interactor = AskPermissionInteractor(worker: worker, presenter: presenter, router: router)
         viewController?.interactor = interactor
-        viewController?.router = router
     }
 }

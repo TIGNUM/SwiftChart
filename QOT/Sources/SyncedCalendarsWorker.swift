@@ -14,6 +14,18 @@ final class SyncedCalendarsWorker {
         return ScreenTitleService.main.localizedString(for: .syncedCalendars)
     }()
 
+    lazy var skipButton: String = {
+        return R.string.localized.syncedCalendarsButtonSkip()
+    }()
+
+    lazy var saveButton: String = {
+        return R.string.localized.syncedCalendarsButtonSave()
+    }()
+}
+
+// MARK: - Public
+extension SyncedCalendarsWorker {
+
     func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {
         qot_dal.CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
             if let error = error {
@@ -22,9 +34,24 @@ final class SyncedCalendarsWorker {
             completion(calendarSettings ?? [])
         }
     }
-}
 
-// MARK: - Public
-extension SyncedCalendarsWorker {
+    func updateCalendarSetting(_ calendarSetting: QDMUserCalendarSetting?,
+                               _ completion: ((QDMUserCalendarSetting?) -> Void)?) {
+        guard let setting = calendarSetting else { return }
+        qot_dal.CalendarService.main.updateCalendarSetting(setting) { (calendarSetting, error) in
+            if let error = error {
+                qot_dal.log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
+            }
+            completion?(calendarSetting)
+        }
+    }
 
+    func getCalendarEvents(_ completion: @escaping ([QDMUserCalendarEvent]) -> Void) {
+        CalendarService.main.getCalendarEvents { (events, initialized, error) in
+            if let error = error {
+                qot_dal.log("Error fetching calendar events: \(error.localizedDescription)", level: .error)
+            }
+            completion(events ?? [])
+        }
+    }
 }

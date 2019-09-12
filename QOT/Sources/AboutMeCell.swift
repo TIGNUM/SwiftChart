@@ -13,10 +13,20 @@ final class AboutMeCell: BaseDailyBriefCell {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var aboutMeContent: UILabel!
     @IBOutlet private weak var aboutMeMoreInfo: UILabel!
+    @IBOutlet weak var dividerView: UIView!
+    @IBOutlet weak var dividerHeight: NSLayoutConstraint!
 
+    @IBOutlet weak var stackView: UIStackView!
     func configure(with viewModel: AboutMeViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: title)
-        self.aboutMeContent.text = viewModel?.aboutMeContent
-        self.aboutMeMoreInfo.text = viewModel?.aboutMeMoreInfo
+        guard let viewModel = viewModel else {
+            return
+        }
+        ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: title)
+        self.aboutMeContent.text = viewModel.aboutMeContent
+        self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo
+        guard let asteriskInfo = viewModel.aboutMeMoreInfo, !asteriskInfo.isEmpty else {
+            dividerHeight.constant = 0
+            return
+        }
     }
 }

@@ -16,7 +16,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     @IBOutlet private weak var introText: UILabel!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
-    var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

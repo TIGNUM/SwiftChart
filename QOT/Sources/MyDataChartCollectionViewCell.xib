@@ -50,12 +50,6 @@
                             </imageView>
                         </subviews>
                     </stackView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No data" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d7J-Er-4RL">
-                        <rect key="frame" x="119.5" y="104.5" width="82" height="27"/>
-                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="23"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E4u-Co-obe">
                         <rect key="frame" x="0.0" y="1" width="20.5" height="14"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
@@ -73,7 +67,6 @@
             <constraints>
                 <constraint firstItem="HWJ-Fz-j1h" firstAttribute="top" secondItem="8x9-h1-g39" secondAttribute="bottom" constant="5" id="0DK-A2-brC"/>
                 <constraint firstItem="8x9-h1-g39" firstAttribute="bottom" secondItem="XBd-Hg-XQ8" secondAttribute="bottom" constant="-20" id="0Ew-6x-OGI"/>
-                <constraint firstItem="d7J-Er-4RL" firstAttribute="centerX" secondItem="XBd-Hg-XQ8" secondAttribute="centerX" id="5Na-kB-Lnn"/>
                 <constraint firstItem="HWJ-Fz-j1h" firstAttribute="leading" secondItem="8x9-h1-g39" secondAttribute="leading" id="8ec-Po-aYZ"/>
                 <constraint firstItem="XTN-te-kee" firstAttribute="centerY" secondItem="8x9-h1-g39" secondAttribute="centerY" id="EXY-YV-YgL"/>
                 <constraint firstAttribute="trailing" secondItem="8x9-h1-g39" secondAttribute="trailing" id="HMS-XO-PD2"/>
@@ -82,7 +75,6 @@
                 <constraint firstItem="XTN-te-kee" firstAttribute="centerX" secondItem="8x9-h1-g39" secondAttribute="centerX" id="bhE-Kh-TFZ"/>
                 <constraint firstItem="XTN-te-kee" firstAttribute="width" secondItem="8x9-h1-g39" secondAttribute="width" id="fMu-rI-1DQ"/>
                 <constraint firstItem="8x9-h1-g39" firstAttribute="top" secondItem="E4u-Co-obe" secondAttribute="bottom" constant="5" id="gMV-T4-gNX"/>
-                <constraint firstItem="d7J-Er-4RL" firstAttribute="centerY" secondItem="XBd-Hg-XQ8" secondAttribute="centerY" id="h58-IE-phv"/>
                 <constraint firstAttribute="top" secondItem="8x9-h1-g39" secondAttribute="top" constant="-20" id="rLM-wm-wra"/>
                 <constraint firstItem="8x9-h1-g39" firstAttribute="leading" secondItem="XBd-Hg-XQ8" secondAttribute="leading" id="wWf-bd-5bv"/>
             </constraints>
@@ -91,7 +83,6 @@
                 <outlet property="chartView" destination="8x9-h1-g39" id="81r-a1-oOU"/>
                 <outlet property="chartViewBottomConstraint" destination="0Ew-6x-OGI" id="87Z-nF-C64"/>
                 <outlet property="lowerValueLabel" destination="HWJ-Fz-j1h" id="c12-Mm-JNd"/>
-                <outlet property="noDataLabel" destination="d7J-Er-4RL" id="dX9-QY-sQU"/>
                 <outlet property="upperValueLabel" destination="E4u-Co-obe" id="FKE-4r-UMb"/>
                 <outletCollection property="noDataViewsCollection" destination="v1d-9n-Ur0" collectionClass="NSMutableArray" id="ao6-2F-KzX"/>
                 <outletCollection property="noDataViewsCollection" destination="U7r-OB-wfI" collectionClass="NSMutableArray" id="cHQ-Qj-Kbh"/>

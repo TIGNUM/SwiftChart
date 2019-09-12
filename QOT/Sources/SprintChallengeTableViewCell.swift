@@ -14,7 +14,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet private weak var iconRead: UIImageView!
     @IBOutlet private weak var iconAudio: UIImageView!
     @IBOutlet private weak var iconVideo: UIImageView!

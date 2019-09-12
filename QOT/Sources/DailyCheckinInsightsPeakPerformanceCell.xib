@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="zgz-NQ-hjF" customClass="DailyCheckinInsightsPeakPerformanceCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="378" height="255"/>
+            <rect key="frame" x="0.0" y="0.0" width="378" height="270"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLE-Yv-qe8">
@@ -36,13 +36,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You have mentioned that you have 3 peak performance " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yft-xx-ovk">
-                    <rect key="frame" x="24" y="93" width="330" height="50"/>
+                    <rect key="frame" x="24" y="105" width="330" height="53"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-Ge-Z5X" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="252" y="167" width="102" height="40"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-Ge-Z5X" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                    <rect key="frame" x="238" y="182" width="116" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="SQB-lL-Zkw"/>
                     </constraints>
@@ -63,7 +63,7 @@
                 <constraint firstAttribute="trailing" secondItem="J2g-Ge-Z5X" secondAttribute="trailing" constant="24" id="QCn-Te-HYE"/>
                 <constraint firstItem="iLE-Yv-qe8" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="24" id="Sk6-it-9mv"/>
                 <constraint firstItem="lsA-7q-jmf" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="24" id="T7Y-Dj-TM2"/>
-                <constraint firstItem="yft-xx-ovk" firstAttribute="top" secondItem="iLE-Yv-qe8" secondAttribute="bottom" constant="12" id="W7g-x7-5of"/>
+                <constraint firstItem="yft-xx-ovk" firstAttribute="top" secondItem="iLE-Yv-qe8" secondAttribute="bottom" constant="24" id="W7g-x7-5of"/>
                 <constraint firstItem="J2g-Ge-Z5X" firstAttribute="top" secondItem="yft-xx-ovk" secondAttribute="bottom" constant="24" id="hzF-Bb-1mP"/>
                 <constraint firstAttribute="bottom" secondItem="J2g-Ge-Z5X" secondAttribute="bottom" constant="48" id="iiw-PN-WeZ"/>
                 <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="iLE-Yv-qe8" secondAttribute="trailing" constant="20" id="uwO-cx-qzK"/>
@@ -75,7 +75,7 @@
                 <outlet property="button" destination="J2g-Ge-Z5X" id="wRq-nl-6O6"/>
                 <outlet property="peakEventsLabel" destination="yft-xx-ovk" id="TGS-R8-sfU"/>
             </connections>
-            <point key="canvasLocation" x="111.59420289855073" y="-76.004464285714278"/>
+            <point key="canvasLocation" x="111.59420289855073" y="-70.982142857142847"/>
         </view>
     </objects>
 </document>

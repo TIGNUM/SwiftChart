@@ -33,7 +33,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
-        ThemeText.leaderText.apply(viewModel?.description, to: descriptionLabel)
+        ThemeText.bespokeText.apply(viewModel?.description, to: descriptionLabel)
         videoView.isHidden = viewModel?.format != .video
         videoThumbnailImageView.isHidden = viewModel?.format != .video
         audioView.isHidden = viewModel?.format != .audio

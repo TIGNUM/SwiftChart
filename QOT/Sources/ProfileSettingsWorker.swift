@@ -134,7 +134,7 @@ private extension ProfileSettingsWorker {
     }
 
     func dateOfBirthTitle() {
-        dateOfBirthTxt = ScreenTitleService.main.localizedString(for: .MyProfileYearOfBirth)
+        dateOfBirthTxt = ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
     }
 
     func companyTitle() {

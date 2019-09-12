@@ -29,7 +29,7 @@ final class MyToBeVisionRateViewController: UIViewController, ScreenZLevel3 {
 
     private var tracks: [RatingQuestionViewModel.Question] = []
 
-    var delegate: MyToBeVisionRateViewControllerProtocol?
+    weak var delegate: MyToBeVisionRateViewControllerProtocol?
     var interactor: MyToBeVisionRateInteracorInterface?
 
     override func viewDidLoad() {

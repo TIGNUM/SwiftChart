@@ -27,8 +27,8 @@ final class MyQotSupportFaqWorker {
 extension MyQotSupportFaqWorker {
 
     func fetchItems(_ completion: @escaping() -> Void) {
-        contentService.getContentCollectionBySection(.FAQ) {[weak self] (collection) in
-            self?.items = collection?.filter({ $0.section.rawValue == "FAQ" && $0.title != "FAQ" }) ?? []
+        contentService.getContentCategory(.FAQ) { (category) in
+            self.items = category?.contentCollections ?? []
             completion()
         }
     }

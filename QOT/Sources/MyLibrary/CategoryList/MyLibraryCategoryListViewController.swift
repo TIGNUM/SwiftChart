@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyLibraryCategoryListViewController: AbstractLevelTwoViewController {
+final class MyLibraryCategoryListViewController: UIViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
