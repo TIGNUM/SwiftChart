@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ToolsCollectionsVideoTableViewCell: UITableViewCell, Dequeueable {
+final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeueable {
 
      // MARK: - Properties
 
@@ -28,7 +28,7 @@ final class ToolsCollectionsVideoTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, timeToWatch: String, imageURL: URL?) {
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply(timeToWatch, to: detailLabel)
+        ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         mediaIconImageView.image = R.image.ic_camera_tools()?.withRenderingMode(.alwaysTemplate)
     }

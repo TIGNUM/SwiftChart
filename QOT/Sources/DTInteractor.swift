@@ -78,16 +78,18 @@ class DTInteractor: DTInteractorInterface {
     // MARK: - Create DTPresentationModel
     func createPresentationModel(questionId: Int??, answerFilter: String?, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
-        return DTPresentationModel(question: question, titleToUpdate: nil, answerFilter: answerFilter, tbv: tbv)
+        let tbvToPresent = question?.answerType == AnswerType.text.rawValue ? tbv : nil
+        return DTPresentationModel(question: question, titleToUpdate: nil, answerFilter: answerFilter, tbv: tbvToPresent)
     }
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
         let titleToUpdate = getTitleToUpdate(selectedAnswer: selection.selectedAnswers.first)
+        let tbvToPresent = question?.answerType == AnswerType.text.rawValue ? tbv : nil
         return DTPresentationModel(question: question,
                                    titleToUpdate: titleToUpdate,
                                    answerFilter: selection.answerFilter,
-                                   tbv: tbv)
+                                   tbv: tbvToPresent)
     }
 
     func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {

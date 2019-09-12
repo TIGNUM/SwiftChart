@@ -157,7 +157,7 @@ private extension SolveResultsWorker {
             self?.relatedStrategyItems { [weak self] (strategyItems) in
                 self?.trigger { [weak self] (triggerItem) in
                     self?.fiveDayPlan { [weak self] (fiveDayPlanItems) in
-                        self?.followUp { [weak self] (followUpItem) in
+                        self?.followUp { (followUpItem) in
                             items.append(headerItem)
                             if !strategyItems.isEmpty { items.append(contentsOf: strategyItems) }
                             if let trigger = triggerItem { items.append(trigger) }

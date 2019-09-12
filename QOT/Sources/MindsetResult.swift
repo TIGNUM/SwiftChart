@@ -1,5 +1,5 @@
 //
-//  ShifterResult.swift
+//  MindsetResult.swift
 //  QOT
 //
 //  Created by Javier Sanz Rozalén on 10.05.19.
@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import qot_dal
 
-struct ShifterResult {
+struct MindsetResult {
     let sections: [Section]
     let buttonTitle: String
 
@@ -23,12 +22,9 @@ struct ShifterResult {
 
     struct Item {
         let triggerAnswerId: Int?
+        let toBeVisionText: String?
         let reactionsAnswerIds: [Int]
         let lowPerformanceAnswerIds: [Int]
         let highPerformanceContentItemIds: [Int]
-        let trigger: String
-        let reactions: [String]
-        let lowPerformanceItems: [String]
-        let highPerformanceItems: [String]
     }
 }

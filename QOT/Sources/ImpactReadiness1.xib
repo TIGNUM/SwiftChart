@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -39,16 +40,38 @@
                             <constraint firstAttribute="height" constant="347" id="IUV-2p-vEK"/>
                         </constraints>
                     </imageView>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hne-VT-rCj">
-                        <rect key="frame" x="0.0" y="0.0" width="441" height="68"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iCz-Cs-rct">
+                        <rect key="frame" x="0.0" y="0.0" width="441" height="44"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cHB-0X-pIa">
+                                <rect key="frame" x="10" y="10" width="24" height="24"/>
+                                <state key="normal" image="ic_navbar_arrow_left"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Kz-LO-SEb">
+                                <rect key="frame" x="204" y="7" width="33.333333333333343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="TPT-gA-GMR"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FoF-ku-DkF">
+                                <rect key="frame" x="407" y="10" width="24" height="24"/>
+                                <state key="normal" image="ic_navbar_arrow_right"/>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="MlR-Oz-g41"/>
+                            <constraint firstItem="1Kz-LO-SEb" firstAttribute="centerX" secondItem="iCz-Cs-rct" secondAttribute="centerX" id="Dav-U9-OtF"/>
+                            <constraint firstItem="cHB-0X-pIa" firstAttribute="leading" secondItem="iCz-Cs-rct" secondAttribute="leading" constant="10" id="JUe-fh-HME"/>
+                            <constraint firstAttribute="height" constant="44" id="PS8-fX-WkO"/>
+                            <constraint firstAttribute="trailing" secondItem="FoF-ku-DkF" secondAttribute="trailing" constant="10" id="R1C-Qf-Eh0"/>
+                            <constraint firstItem="FoF-ku-DkF" firstAttribute="centerY" secondItem="1Kz-LO-SEb" secondAttribute="centerY" id="amn-9t-w2M"/>
+                            <constraint firstItem="1Kz-LO-SEb" firstAttribute="centerY" secondItem="iCz-Cs-rct" secondAttribute="centerY" id="bXw-9V-b2a"/>
+                            <constraint firstItem="cHB-0X-pIa" firstAttribute="centerY" secondItem="1Kz-LO-SEb" secondAttribute="centerY" id="mTV-MX-JHT"/>
                         </constraints>
-                    </view>
-                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6GA-1H-dWQ">
-                        <rect key="frame" x="0.0" y="235" width="441" height="112"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="fPY-UK-N9u"/>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13j-PD-rak">
                         <rect key="frame" x="0.0" y="235" width="441" height="112"/>
@@ -125,7 +148,6 @@
                 <constraints>
                     <constraint firstItem="Vjm-ra-cbt" firstAttribute="top" secondItem="w4g-tE-UTh" secondAttribute="bottom" constant="24" id="33a-BJ-1Hh"/>
                     <constraint firstItem="Vjm-ra-cbt" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="3RV-aK-U7f"/>
-                    <constraint firstItem="hne-VT-rCj" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="42d-i6-9iS"/>
                     <constraint firstItem="bhX-cm-XO0" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="bottom" constant="54" id="4zL-Ym-mIY"/>
                     <constraint firstItem="bhX-cm-XO0" firstAttribute="leading" secondItem="DM5-PW-enG" secondAttribute="trailing" constant="0.69999999999999996" id="9yo-Nb-Pp6"/>
                     <constraint firstItem="DM5-PW-enG" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="AdI-sx-3oP"/>
@@ -133,35 +155,37 @@
                     <constraint firstItem="DM5-PW-enG" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="bottom" constant="4" id="D9z-eO-mcE"/>
                     <constraint firstItem="13j-PD-rak" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="Ehe-9U-4rF"/>
                     <constraint firstItem="Ml6-kf-324" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="EuN-9d-i85"/>
-                    <constraint firstAttribute="trailing" secondItem="6GA-1H-dWQ" secondAttribute="trailing" id="Fcd-Th-2FQ"/>
-                    <constraint firstItem="6GA-1H-dWQ" firstAttribute="bottom" secondItem="Ml6-kf-324" secondAttribute="bottom" id="HX4-n6-yfX"/>
                     <constraint firstItem="13j-PD-rak" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="235" id="R9a-8a-eiR"/>
-                    <constraint firstItem="6GA-1H-dWQ" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="TPE-ql-Zxp"/>
+                    <constraint firstAttribute="trailing" secondItem="iCz-Cs-rct" secondAttribute="trailing" id="XZp-Au-HBO"/>
+                    <constraint firstItem="iCz-Cs-rct" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="ZlZ-XJ-3pt"/>
                     <constraint firstAttribute="trailing" secondItem="Ml6-kf-324" secondAttribute="trailing" id="aVR-Ea-8fM"/>
                     <constraint firstItem="R2j-t5-POi" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="bottom" constant="56" id="bv5-as-IPc"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="DM5-PW-enG" secondAttribute="bottom" constant="16" id="cqd-fI-YXq"/>
-                    <constraint firstAttribute="trailing" secondItem="hne-VT-rCj" secondAttribute="trailing" id="elH-6P-emg"/>
                     <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="28" id="elm-az-MtF"/>
                     <constraint firstItem="Ml6-kf-324" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" id="gsc-tb-nkn"/>
                     <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" constant="24" id="hbs-Wz-fES"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="iof-DH-iCq"/>
-                    <constraint firstItem="hne-VT-rCj" firstAttribute="top" secondItem="Ml6-kf-324" secondAttribute="top" id="kye-FH-JaK"/>
+                    <constraint firstItem="iCz-Cs-rct" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" id="t8L-5H-ZSi"/>
                     <constraint firstAttribute="trailing" secondItem="13j-PD-rak" secondAttribute="trailing" id="yUX-bg-IxT"/>
-                    <constraint firstItem="6GA-1H-dWQ" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="top" id="zHr-38-Mqy"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="bucketTitle" destination="IAV-Ov-hU9" id="0Qz-yG-4QW"/>
+                <outlet property="buttonLeft" destination="cHB-0X-pIa" id="KqO-uQ-lMS"/>
+                <outlet property="buttonRight" destination="FoF-ku-DkF" id="b2D-Q0-Uzf"/>
                 <outlet property="content" destination="w4g-tE-UTh" id="46l-wH-Uvn"/>
-                <outlet property="gradientBottom" destination="6GA-1H-dWQ" id="eXz-ZO-LMK"/>
-                <outlet property="gradientTop" destination="hne-VT-rCj" id="Xgf-JW-SNu"/>
                 <outlet property="impactReadinessButton" destination="Vjm-ra-cbt" id="jpM-JP-Uvx"/>
                 <outlet property="impactReadinessScore" destination="DM5-PW-enG" id="jgy-dv-ELQ"/>
                 <outlet property="impactReadinessView" destination="Ml6-kf-324" id="i3s-IS-k2q"/>
+                <outlet property="titleLabel" destination="1Kz-LO-SEb" id="YUp-yd-cB7"/>
                 <outlet property="toBeVisionImage" destination="Ml6-kf-324" id="LkD-9e-Ku0"/>
             </connections>
             <point key="canvasLocation" x="310.86956521739131" y="378.68303571428572"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_navbar_arrow_left" width="24" height="24"/>
+        <image name="ic_navbar_arrow_right" width="24" height="24"/>
+    </resources>
 </document>

@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ToolsTableViewCell: UITableViewCell, Dequeueable {
+final class ToolsTableViewCell: BaseToolsTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -19,6 +19,6 @@ final class ToolsTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, subtitle: String) {
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply(subtitle, to: subtitleLabel)
+        ThemeText.qotToolsSectionSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }

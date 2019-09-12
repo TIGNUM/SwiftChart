@@ -35,8 +35,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var lastRatedComment: UILabel!
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
-    @IBOutlet private weak var gradientTop: UIView!
-    @IBOutlet private weak var gradientBottom: UIView!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
 
@@ -57,8 +55,8 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         interactor?.viewDidLoad()
-        gradientTop.gradientBackground(top: true)
-        gradientBottom.gradientBackground(top: false)
+        userImageView.gradientBackground(top: true)
+        userImageView.gradientBackground(top: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -136,15 +134,14 @@ private extension MyVisionViewController {
     }
 
     func removeGradients() {
-        gradientTop.isHidden = true
-        gradientBottom.isHidden = true
+        userImageView.removeSubViews()
     }
 
     func addGradients(for myVision: QDMToBeVision?) {
         let userImage = myVision?.profileImageResource?.url()
         if userImage != nil {
-            gradientTop.isHidden = false
-            gradientBottom.isHidden = false
+            userImageView.gradientBackground(top: true)
+            userImageView.gradientBackground(top: false)
         }
     }
 }

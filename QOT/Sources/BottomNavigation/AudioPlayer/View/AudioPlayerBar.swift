@@ -36,6 +36,7 @@ final class AudioPlayerBar: UIView {
     @IBOutlet private weak var sliderTrailing: NSLayoutConstraint!
 
     private var currentMedia: MediaPlayerModel?
+    private var isLightMode: Bool = false
 
     var isPlaying: Bool {
         return audioPlayer.isPlaying
@@ -55,7 +56,7 @@ final class AudioPlayerBar: UIView {
         sliderLeading.constant = -(thumbImageWidth/2)
         sliderTrailing.constant = -(thumbImageWidth/2)
         progressModeContentView.corner(radius: 20)
-        setColorMode()
+        refreshColorMode(isLight: isLightMode)
     }
 
     static func instantiateFromNib() -> AudioPlayerBar {
@@ -68,7 +69,7 @@ final class AudioPlayerBar: UIView {
     func configure(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int, titleColor: UIColor? = nil) {
         audioPlayer.delegate = self
         progressView.progress = 0
-        setTitleLabel(title: title)
+        setTitleLabel(title: title, isLight: isLightMode)
         audioPlayer.resetPlayer()
         audioPlayer.prepareToPlay(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
         if let titleColor = titleColor {
@@ -83,26 +84,22 @@ final class AudioPlayerBar: UIView {
         playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_sand() : R.image.ic_play_sand(), for: .normal)
     }
 
-    func setColorMode(_ newColorMode: ColorMode? = nil) {
-        if let newColorMode = newColorMode {
-            colorModeLocal = newColorMode
-        }
-        setTitleLabel(title: titleLabel.text ?? "")
-        contentView.backgroundColor = colorModeLocal.audioBackground
-        progressModeContentView.backgroundColor = colorModeLocal.audioBackground
-        verticalDivider.backgroundColor = colorModeLocal.audioText
+    func refreshColorMode(isLight: Bool) {
+        isLightMode = isLight
+        setTitleLabel(title: titleLabel.text ?? "", isLight: isLight)
+        contentView.backgroundColor = (isLight) ? .carbon : .sand
+        progressModeContentView.backgroundColor = (isLight) ? .carbon : .sand
+        verticalDivider.backgroundColor = (isLight) ? .sand60 : .carbon60
     }
 }
 
 // MARK: - Private
 
 private extension AudioPlayerBar {
-    func setTitleLabel(title: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 12),
-                                                       textColor: colorModeLocal.audioText.withAlphaComponent(0.8),
-                                                       alignment: .left)
+    func setTitleLabel(title: String, isLight: Bool) {
+        if isLight {
+        ThemeText.audioPlayerTitleLight.apply(title.uppercased(), to: titleLabel)
+        } else {  ThemeText.audioPlayerTitleDark.apply(title.uppercased(), to: titleLabel)}
     }
 }
 
@@ -122,7 +119,7 @@ extension AudioPlayerBar {
             currentMedia = media
             audioPlayer.delegate = self
             progressView.progress = 0
-            setTitleLabel(title: media.title)
+            setTitleLabel(title: media.title, isLight: isLightMode)
 
             audioPlayer.prepareToPlay(categoryTitle: media.subtitle,
                                       title: media.title,
@@ -159,17 +156,15 @@ extension AudioPlayerBar {
         }
     }
 
-    func updateTimeValues(currentTime: Double, totalTime: Double) {
-        currentTimeLabel.attributedText = NSAttributedString(string: timeString(for: currentTime),
-                                                             letterSpacing: 0.4,
-                                                             font: .apercuMedium(ofSize: 12),
-                                                             textColor: colorModeLocal.audioText,
-                                                             alignment: .right)
-        totalTimeLabel.attributedText = NSAttributedString(string: timeString(for: totalTime),
-                                                           letterSpacing: 0.4,
-                                                           font: .apercuMedium(ofSize: 12),
-                                                           textColor: colorModeLocal.audioText,
-                                                           alignment: .left)
+    func updateTimeValues(currentTime: Double, totalTime: Double, isLight: Bool) {
+        if isLight {
+            ThemeText.audioPlayerTime.apply(timeString(for: currentTime), to: currentTimeLabel)
+            ThemeText.audioPlayerTime.apply(timeString(for: totalTime), to: totalTimeLabel)
+
+        } else {
+            ThemeText.audioPlayerTimeLight.apply(timeString(for: currentTime), to: currentTimeLabel)
+            ThemeText.audioPlayerTimeLight.apply(timeString(for: totalTime), to: totalTimeLabel)
+        }
     }
 
     private func timeString(for seconds: Double) -> String {
@@ -221,7 +216,7 @@ extension AudioPlayerBar: AudioPlayerDelegate {
         updateProgress(progress: progress)
         progressModeSlider.setValue(progress, animated: true)
         progressModeSlider.isUserInteractionEnabled = true
-        updateTimeValues(currentTime: currentTime, totalTime: totalTime)
+        updateTimeValues(currentTime: currentTime, totalTime: totalTime, isLight: isLightMode)
     }
 
     func updateControllButton(with image: UIImage?) {

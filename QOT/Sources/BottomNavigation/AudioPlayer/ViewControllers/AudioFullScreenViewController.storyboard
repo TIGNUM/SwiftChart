@@ -118,6 +118,7 @@
                         <outlet property="categorytitleLabel" destination="Rtb-mS-eZN" id="xT5-yS-9U8"/>
                         <outlet property="closeButton" destination="MOp-Dk-Bbn" id="3uZ-qU-br3"/>
                         <outlet property="downloadButton" destination="Tej-Ln-v5W" id="WMs-ww-7NP"/>
+                        <outlet property="fullScreenCircles" destination="2Xa-v4-1Tm" id="Cxd-TI-n8y"/>
                         <outlet property="playPauseButton" destination="Ai7-FY-RGD" id="dLT-gJ-HAf"/>
                         <outlet property="titleLabel" destination="LHn-1J-XJa" id="LeL-qg-nYS"/>
                     </connections>

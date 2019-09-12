@@ -20,7 +20,6 @@ protocol ScreenZLevelChatBot: ScreenZLevel {}
 final class BaseRootViewController: UIViewController, ScreenZLevel1 {
 
     @IBOutlet weak var bottomNavigationPlaceholder: UIView!
-
     @IBOutlet var bottomNavigationContainer: UIView!
     @IBOutlet weak var bottomNavigationBar: UINavigationBar!
     @IBOutlet weak var audioPlayerContainer: UIView!
@@ -28,6 +27,9 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     public var shouldMoveBottomBarWithKeyboard: Bool = false
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
     private weak var contentView: UIView?
+    internal var lastBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                                                       rightBarButtonItems: [],
+                                                                                       backgroundColor: .black)
 
     deinit {
         bottomNavigationContainer.removeFromSuperview()

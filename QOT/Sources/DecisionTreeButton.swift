@@ -10,8 +10,6 @@ import UIKit
 
 class AbstractTreeButton: AnimatedButton {
 
-    var maxPossibleSelections: Int = 0
-
     func attributedString(_ title: String, _ textColor: UIColor) -> NSAttributedString {
         return NSAttributedString(string: title,
                                   letterSpacing: 0.2,
@@ -135,6 +133,7 @@ private extension NavigationButton {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
             currentValue = counter > maxSelections ? 0 : counter
             syncButton(currentValue)
+            pulsate()
         }
     }
 

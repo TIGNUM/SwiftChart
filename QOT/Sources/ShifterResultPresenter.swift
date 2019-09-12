@@ -21,7 +21,7 @@ final class ShifterResultPresenter {
 
 // MARK: - ShifterResultPresenterInterface
 extension ShifterResultPresenter: ShifterResultPresenterInterface {
-    func load(_ model: ShifterResult) {
+    func load(_ model: MindsetResult) {
         viewController?.load(model)
     }
 

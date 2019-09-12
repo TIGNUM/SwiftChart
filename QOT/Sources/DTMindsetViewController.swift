@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTMindsetViewController: DTViewController {
 
     // MARK: - Properties
     var mindsetRouter: DTMindsetRouterInterface?
+    var mindsetInteractor: DTMindsetInteractorInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -40,10 +42,15 @@ final class DTMindsetViewController: DTViewController {
     }
 
     @IBAction override func didTapNext() {
-        setAnswerSelectedIfNeeded()
-        if viewModel?.question.key == Mindset.QuestionKey.OpenTBV {
+        switch viewModel?.question.key {
+        case Mindset.QuestionKey.Last:
+            mindsetRouter?.dismiss()
+        case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
-        } else {
+        case Mindset.QuestionKey.PresentResult:
+            presentMindsetShifterResult()
+        default:
+            setAnswerNeedsSelection()
             loadNextQuestion()
         }
     }
@@ -58,8 +65,6 @@ final class DTMindsetViewController: DTViewController {
         guard let viewModel = viewModel else { return }
         if viewModel.question.answerType == .singleSelection && answer.targetId(.question) != nil {
             loadNextQuestion()
-        } else if viewModel.question.answerType == .singleSelection && answer.targetId(.content) != nil {
-//            presentContentView(selectedAnswer: answer)
         }
     }
 
@@ -70,28 +75,50 @@ final class DTMindsetViewController: DTViewController {
 
 // MARK: - Actions
 private extension DTMindsetViewController {
-    func setAnswerSelectedIfNeeded() {
-        switch viewModel?.question.key {
-        case Mindset.QuestionKey.LowSelfTalk?,
-             Mindset.QuestionKey.OpenTBV?:
-            if var answer = viewModel?.answers.first {
-                answer.setSelected(true)
-                viewModel?.setSelectedAnswer(answer)
-            }
-        default: break
+    /**
+     An answer contains the decision about the next question to load or needed content.
+     Some questions will be displayed without answers. If the an answer can not be
+     selected by the user, the selection will happen here on `didTapNext()`.
+
+     - Parameter answer: The answer to select if exist otherwise select first available.
+     */
+    func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
+        if var answer = answer {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
+        } else if var answer = viewModel?.answers.first {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
         }
     }
 
     func handleTBVCase() {
-        router?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet)
-//        router?.openTBVGenerator(introKey: )
-        return
-//        interactor?.getUsersTBV { [weak self] (tbv, initiated) in
-//            if initiated && tbv?.text != nil {
-//                self?.loadNextQuestion()
-//            } else {
-//                self?.router?.openTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet)
-//            }
-//        }
+        interactor?.getUsersTBV { [weak self] (tbv, initiated) in
+            if initiated && tbv?.text != nil {
+                let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.ShowTBV)
+                self?.setAnswerNeedsSelection(targetAnswer)
+                self?.loadNextQuestion()
+            } else {
+                self?.mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
+                                                           delegate: self?.mindsetInteractor) { [weak self] in
+                                                            let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.CheckPlan)
+                                                            self?.setAnswerNeedsSelection(targetAnswer)
+                                                            self?.loadNextQuestion()
+                }
+            }
+        }
+    }
+
+    func presentMindsetShifterResult() {
+        mindsetInteractor?.getMindsetShifter { [weak self] (mindsetShifter) in
+            self?.mindsetRouter?.presentMindsetResults(mindsetShifter) {
+                self?.setAnswerNeedsSelection()
+                self?.loadNextQuestion()
+            }
+        }
+    }
+
+    func getAnswerToSelect(_ answerKey: String) -> DTViewModel.Answer? {
+        return viewModel?.answers.filter { $0.keys.contains(answerKey) }.first
     }
 }

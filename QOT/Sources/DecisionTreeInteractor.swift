@@ -134,10 +134,6 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
-        router.openMindsetShifterResult(resultItem: resultItem, completion: completion)
-    }
-
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
         router.openSolveResults(from: selectedAnswer, type: type)
     }

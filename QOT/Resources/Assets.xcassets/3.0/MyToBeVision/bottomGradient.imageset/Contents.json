@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "gradientBase.png",
+      "filename" : "bottomCubicBezier0580081083Lrgb25.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gradientBase@2x.png",
+      "filename" : "bottomCubicBezier0580081083Lrgb25@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gradientBase@3x.png",
+      "filename" : "bottomCubicBezier0580081083Lrgb25@3x.png",
       "scale" : "3x"
     }
   ],

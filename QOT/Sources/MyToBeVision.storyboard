@@ -203,20 +203,6 @@
                                                             <constraint firstAttribute="width" secondItem="B7h-k9-Hqf" secondAttribute="height" multiplier="207:166" id="zQh-3q-9Ky"/>
                                                         </constraints>
                                                     </imageView>
-                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GGg-3s-PCQ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="414" height="68"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="68" id="t8g-NL-j2y"/>
-                                                        </constraints>
-                                                    </view>
-                                                    <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xvn-BV-UyI">
-                                                        <rect key="frame" x="0.0" y="264" width="414" height="68"/>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="68" id="8HZ-JC-mtH"/>
-                                                        </constraints>
-                                                    </view>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tse-4U-RWD">
                                                         <rect key="frame" x="24" y="370" width="366" height="0.0"/>
                                                         <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="34"/>
@@ -258,11 +244,7 @@
                                                 <constraints>
                                                     <constraint firstItem="d8g-k3-ZEc" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" constant="24" id="4Ip-OB-1aw"/>
                                                     <constraint firstItem="Tse-4U-RWD" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" constant="24" id="5fP-fT-Loo"/>
-                                                    <constraint firstItem="Xvn-BV-UyI" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" id="D2p-sb-qDc"/>
-                                                    <constraint firstItem="GGg-3s-PCQ" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" id="EOL-u2-YBe"/>
                                                     <constraint firstAttribute="trailing" secondItem="Tse-4U-RWD" secondAttribute="trailing" constant="24" id="PUL-eR-0xb"/>
-                                                    <constraint firstItem="Xvn-BV-UyI" firstAttribute="bottom" secondItem="B7h-k9-Hqf" secondAttribute="bottom" id="UHe-f2-vgp"/>
-                                                    <constraint firstItem="GGg-3s-PCQ" firstAttribute="top" secondItem="B7h-k9-Hqf" secondAttribute="top" id="Xlk-Se-D61"/>
                                                     <constraint firstAttribute="trailing" secondItem="d8g-k3-ZEc" secondAttribute="trailing" constant="24" id="ZWy-SC-kmz"/>
                                                     <constraint firstAttribute="trailing" secondItem="B7h-k9-Hqf" secondAttribute="trailing" id="ZZg-x2-RH7"/>
                                                     <constraint firstItem="Tse-4U-RWD" firstAttribute="top" secondItem="d8g-k3-ZEc" secondAttribute="bottom" id="cqf-9B-oke"/>
@@ -270,8 +252,6 @@
                                                     <constraint firstItem="B7h-k9-Hqf" firstAttribute="leading" secondItem="HJG-NY-ISU" secondAttribute="leading" id="e57-qj-MNF"/>
                                                     <constraint firstAttribute="bottom" secondItem="B7h-k9-Hqf" secondAttribute="bottom" constant="58" id="k3y-1u-ZBp"/>
                                                     <constraint firstItem="B7h-k9-Hqf" firstAttribute="top" secondItem="HJG-NY-ISU" secondAttribute="top" id="k5g-kd-COp"/>
-                                                    <constraint firstAttribute="trailing" secondItem="GGg-3s-PCQ" secondAttribute="trailing" id="mpn-Rc-2Gt"/>
-                                                    <constraint firstAttribute="trailing" secondItem="Xvn-BV-UyI" secondAttribute="trailing" id="zIC-Ww-83c"/>
                                                 </constraints>
                                             </view>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" bouncesZoom="NO" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="8BV-tV-w1L">
@@ -621,8 +601,6 @@
                         <outlet property="cameraButton" destination="aw2-2S-Mjn" id="QX1-1S-QrC"/>
                         <outlet property="detailTextView" destination="8BV-tV-w1L" id="9oa-Yn-pzg"/>
                         <outlet property="doubleMessageRatingView" destination="eTh-Nf-rEo" id="phz-dX-L4a"/>
-                        <outlet property="gradientBottom" destination="Xvn-BV-UyI" id="lbz-OG-ih3"/>
-                        <outlet property="gradientTop" destination="GGg-3s-PCQ" id="EXM-7o-1k5"/>
                         <outlet property="headerLabel" destination="Tse-4U-RWD" id="cId-aW-gV8"/>
                         <outlet property="imageContainerView" destination="HJG-NY-ISU" id="8Fi-1D-ivq"/>
                         <outlet property="lastRatedComment" destination="b2Y-Vo-oXG" id="jCN-vp-h3z"/>

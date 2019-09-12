@@ -9,6 +9,22 @@
 import UIKit
 import qot_dal
 
-final class DTMindsetInteractor: DTInteractor {}
+final class DTMindsetInteractor: DTInteractor {
 
-extension DTMindsetInteractor: DTMindsetInteractorInterface {}
+    // MARK: - Properties
+    private lazy var mindsetWorker: DTMindsetWorker? = DTMindsetWorker()
+}
+
+extension DTMindsetInteractor: DTMindsetInteractorInterface {
+    func getMindsetShifter(_ completion: @escaping (QDMMindsetShifter?) -> Void) {
+        mindsetWorker?.getMindsetShifter(tbv: tbv, selectedAnswers: selectedAnswers, completion: completion)
+    }
+
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        self.tbv = tbv
+    }
+
+    func didDismissMindsetResults() {
+
+    }
+}

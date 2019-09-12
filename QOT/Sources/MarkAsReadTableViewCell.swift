@@ -26,17 +26,10 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
         let theme: ThemeView = selected ? ThemeView.articleMarkUnread : ThemeView.articleMarkRead
         theme.apply(markAsReadButton)
 
-        markAsReadButton.setAttributedTitle(attributed(selected: selected), for: .normal)
-        markAsReadButton.setNeedsDisplay()
-    }
-}
-
-// MARK: - Private
-
-extension MarkAsReadTableViewCell {
-    func attributed(selected: Bool) -> NSAttributedString {
         let text = selected ? R.string.localized.markAsUnread() : R.string.localized.markAsRead()
-        return ThemeText.articleMarkRead.attributedString(text)
+        let attrText = ThemeText.articleMarkRead.attributedString(text)
+        markAsReadButton.setAttributedTitle(attrText, for: .normal)
+        markAsReadButton.setNeedsDisplay()
     }
 }
 
