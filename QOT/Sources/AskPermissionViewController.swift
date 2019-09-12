@@ -16,7 +16,7 @@ final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
+//    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
     // MARK: - Init
     init() {
@@ -30,7 +30,7 @@ final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        bottomConstraint.constant = BottomNavigationContainer.height - 30
+//        bottomConstraint.constant = BottomNavigationContainer.height - 30
         interactor?.viewDidLoad()
         ThemeView.askPermissions.apply(view)
     }

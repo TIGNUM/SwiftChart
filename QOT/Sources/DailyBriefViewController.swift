@@ -29,6 +29,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func displayCoachPreparationScreen()
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
+    func didChangeLocationPermission(granted: Bool)
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -233,6 +234,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         case .GUIDE_TRACK?:
             guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
             return getGuidedTrack(tableView, indexPath, guidedtrackModel)
+        case .WEATHER?:
+            guard let weatherModel = bucketItem as? WeatherViewModel else { return UITableViewCell()}
+            return getWeatherCell(tableView, indexPath, weatherModel)
         default:
            return UITableViewCell()
         }
@@ -647,6 +651,14 @@ private extension DailyBriefViewController {
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
+
+    func getWeatherCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ weatherModel: WeatherViewModel?) -> UITableViewCell {
+        let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: weatherModel)
+        return cell
+    }
 }
 
 // MARK: - DumViewControllerInterface
@@ -713,10 +725,13 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadiness1.self)
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
+        tableView.registerDequeueable(WeatherCell.self)
     }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+    func didChangeLocationPermission(granted: Bool) {
+    }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         interactor?.openGuidedTrackAppLink(appLink)

@@ -35,5 +35,6 @@ struct DailyBriefViewModel {
         case guidedTrack
         case myPeakPerformance
         case solveReflection
+        case weather
     }
 }

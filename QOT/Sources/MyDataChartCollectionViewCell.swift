@@ -14,7 +14,6 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private var noDataViewsCollection: [UIImageView]!
     @IBOutlet private weak var upperValueLabel: UILabel!
     @IBOutlet private weak var lowerValueLabel: UILabel!
-    @IBOutlet private weak var noDataLabel: UILabel!
     @IBOutlet private weak var chartViewBottomConstraint: NSLayoutConstraint!
     private var addedViews: [UIView] = []
     private let largePointSize: CGFloat = 10.0
@@ -26,7 +25,6 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupChart()
-        setupView()
     }
 
     // MARK: Private
@@ -51,10 +49,6 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.isUserInteractionEnabled = false
     }
 
-    private func setupView() {
-        ThemeText.sectionHeader.apply(ScreenTitleService.main.myDataGraphNoDataTitle(), to: noDataLabel)
-    }
-
     // MARK: Public
 
     func configure(withModels: [Date: MyDataDailyCheckInModel], selectionModel: MyDataSelectionModel) {
@@ -67,7 +61,6 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         for noDataView in noDataViewsCollection {
             noDataView.alpha = hasData ? 0.0 : 1.0
         }
-        noDataLabel.isHidden = hasData
         guard let firstModelDate = withModels.first?.key else {
             return
         }
@@ -183,6 +176,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         for dictModel in inModels {
             let model = dictModel.value
             if inModels[model.date.dateAfterDays(1)] == nil && inModels[model.date.dateAfterDays(-1)] == nil {
+                let datesOfCurrentWeek = datesOfTheWeek(thatContains: model.date)
                 for parameter in MyDataParameter.allCases {
                     var pointsArray: [(x: Double, y: Double)] = []
                     var parameterValue: Double?
@@ -203,7 +197,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                         parameterValue = model.sleepQuantity
                     }
                     if let value = parameterValue {
-                        pointsArray.append((x: Double(model.date.dayOfWeek - 1), y: value))
+                        pointsArray.append((x: Double(datesOfCurrentWeek.index(of: model.date) ?? model.date.dayOfWeek - 1), y: value))
                     }
                     resultsDictionary[parameter] = pointsArray
                 }

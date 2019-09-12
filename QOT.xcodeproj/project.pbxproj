@@ -873,6 +873,9 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
+		B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACCC2328EAE1006BA566 /* WeatherCell.swift */; };
+		B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49EACCD2328EAE1006BA566 /* WeatherCell.xib */; };
+		B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACD0232902C3006BA566 /* WeatherViewModel.swift */; };
 		B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */; };
 		B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */; };
 		B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */; };
@@ -2129,6 +2132,9 @@
 		B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenWorker.swift; sourceTree = "<group>"; };
 		B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenViewController.swift; sourceTree = "<group>"; };
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
+		B49EACCC2328EAE1006BA566 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
+		B49EACCD2328EAE1006BA566 /* WeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
+		B49EACD0232902C3006BA566 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
 		B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapButtonsTableViewCell.xib; sourceTree = "<group>"; };
 		B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataExplanationScreenTableViewCell.xib; sourceTree = "<group>"; };
@@ -2604,6 +2610,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				B49EACCB2328EA47006BA566 /* Weather */,
 				F9462248230C2C21000A3B42 /* Copyright */,
 				9CC426142306A41E00F8072E /* GuidedTrack */,
 				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
@@ -4482,6 +4489,16 @@
 			path = MyDataScreen;
 			sourceTree = "<group>";
 		};
+		B49EACCB2328EA47006BA566 /* Weather */ = {
+			isa = PBXGroup;
+			children = (
+				B49EACCC2328EAE1006BA566 /* WeatherCell.swift */,
+				B49EACCD2328EAE1006BA566 /* WeatherCell.xib */,
+				B49EACD0232902C3006BA566 /* WeatherViewModel.swift */,
+			);
+			name = Weather;
+			sourceTree = "<group>";
+		};
 		B4AB48AB230BF83A003B3C1F /* MyDataMainScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -6067,6 +6084,7 @@
 				BB7B318B230AB337004A5E52 /* SkeletonOneLineBlock.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
+				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
 				BB5E76D5230D29A30054AF17 /* SkeletonMyPrepsCell.xib in Resources */,
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */,
@@ -6549,6 +6567,7 @@
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
 				B86E744922A9519900B0AE75 /* MyLibraryCategoryListPresenter.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
+				B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
 				5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */,
 				F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */,
@@ -7288,6 +7307,7 @@
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				5F78965322A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift in Sources */,
+				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,
 				8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
