@@ -57,16 +57,16 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSolveViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .challenge:
+            let configurator = DTSolveConfigurator.make()
+            let controller = DTSolveViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVMindSet:
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
             viewController.present(controller, animated: true)
-        case .shortTBVMindSet:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
-            let controller = DTShortTBVViewController(configure: configurator)
-            viewController.present(controller, animated: true)
         case .shortTBVPrepare:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroPrepare, delegate: nil)
-            let controller = DTShortTBVViewController(configure: configurator)
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .shortTBVOnBoarding:
             let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding, delegate: nil)
