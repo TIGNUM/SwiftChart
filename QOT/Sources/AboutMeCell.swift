@@ -24,9 +24,9 @@ final class AboutMeCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: title)
         self.aboutMeContent.text = viewModel.aboutMeContent
         self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo
-        if let text = viewModel.aboutMeMoreInfo,
-            text.isEmpty {
+        guard let asteriskInfo = viewModel.aboutMeMoreInfo, !asteriskInfo.isEmpty else {
             dividerHeight.constant = 0
+            return
         }
     }
 }

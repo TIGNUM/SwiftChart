@@ -26,15 +26,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="jbC-tc-Nav" customClass="MeAtMyBestCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="426" height="449"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="376" id="jbC-tc-Nav" customClass="MeAtMyBestCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="426" height="376"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jbC-tc-Nav" id="rYi-FS-C8c">
-                <rect key="frame" x="0.0" y="0.0" width="426" height="448.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="426" height="375.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                        <rect key="frame" x="0.0" y="0.0" width="426" height="448.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="426" height="375.5"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfO-wv-Fpb">
                                 <rect key="frame" x="24" y="48" width="16" height="1"/>
@@ -54,20 +54,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="The TBV is a critical element fto Rule your Impact and reach your goals." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-gE-gfd">
-                                <rect key="frame" x="24" y="105" width="378" height="38.5"/>
+                                <rect key="frame" x="24" y="105" width="378" height="18.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTs-2a-VLY">
-                                <rect key="frame" x="24" y="331.5" width="402" height="1"/>
-                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="JY6-rb-UNQ"/>
-                                </constraints>
-                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="317" y="360.5" width="85" height="40"/>
+                                <rect key="frame" x="317" y="287.5" width="85" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dvw-lH-XlC"/>
                                 </constraints>
@@ -80,7 +73,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URP-Fj-vXg">
-                                <rect key="frame" x="24" y="245" width="378" height="58.5"/>
+                                <rect key="frame" x="24" y="225" width="378" height="38.5"/>
                                 <string key="text">What could you do today to become 
 that statement statement?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
@@ -88,7 +81,7 @@ that statement statement?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="“I am a great listener in high pressure meetings” " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcg-bf-cKP">
-                                <rect key="frame" x="24" y="159.5" width="378" height="57.5"/>
+                                <rect key="frame" x="24" y="139.5" width="378" height="57.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -96,17 +89,15 @@ that statement statement?</string>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="rhA-xn-lOn" firstAttribute="top" secondItem="URP-Fj-vXg" secondAttribute="bottom" constant="24" id="49x-OU-YRi"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="top" secondItem="Tcg-bf-cKP" secondAttribute="bottom" constant="28" id="4zs-iR-xL7"/>
                             <constraint firstAttribute="bottom" secondItem="rhA-xn-lOn" secondAttribute="bottom" constant="48" id="5VC-L5-usE"/>
-                            <constraint firstAttribute="trailing" secondItem="gTs-2a-VLY" secondAttribute="trailing" id="6GY-Up-oaa"/>
                             <constraint firstItem="mfO-wv-Fpb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="7dC-vM-xZv"/>
                             <constraint firstItem="Vi4-ue-UZu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="BrN-SV-ZKL"/>
                             <constraint firstItem="Ee8-gE-gfd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="GoP-Ex-ggg"/>
                             <constraint firstItem="Vi4-ue-UZu" firstAttribute="top" secondItem="mfO-wv-Fpb" secondAttribute="bottom" constant="8" id="MZl-vU-RpU"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="TrZ-B3-LXk"/>
-                            <constraint firstItem="gTs-2a-VLY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="WGH-fU-gbP"/>
                             <constraint firstItem="Tcg-bf-cKP" firstAttribute="top" secondItem="Ee8-gE-gfd" secondAttribute="bottom" constant="16" id="XdJ-bw-nHt"/>
-                            <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="URP-Fj-vXg" secondAttribute="trailing" constant="24" id="ZaK-Cg-RRX"/>
                             <constraint firstItem="mfO-wv-Fpb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="baN-wQ-8Y3"/>
                             <constraint firstAttribute="trailing" secondItem="Ee8-gE-gfd" secondAttribute="trailing" constant="24" id="deo-AC-h9a"/>
                             <constraint firstItem="Tcg-bf-cKP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="g1C-VP-4fm"/>
@@ -114,13 +105,9 @@ that statement statement?</string>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="hDW-CJ-eb5"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vi4-ue-UZu" secondAttribute="trailing" constant="24" id="i0t-Mq-4q8"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Tcg-bf-cKP" secondAttribute="trailing" constant="24" id="j8d-tD-JEz"/>
-                            <constraint firstItem="gTs-2a-VLY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="lgP-ZS-5lY"/>
                             <constraint firstItem="Ee8-gE-gfd" firstAttribute="top" secondItem="Vi4-ue-UZu" secondAttribute="bottom" constant="24" id="m42-V9-u48"/>
-                            <constraint firstItem="rhA-xn-lOn" firstAttribute="top" secondItem="gTs-2a-VLY" secondAttribute="bottom" constant="28" id="tPg-yD-ILO"/>
                             <constraint firstAttribute="trailing" secondItem="Tcg-bf-cKP" secondAttribute="trailing" constant="24" id="vRm-sQ-Uhq"/>
-                            <constraint firstItem="gTs-2a-VLY" firstAttribute="top" secondItem="URP-Fj-vXg" secondAttribute="bottom" constant="28" id="xAr-Ox-yzv"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rhA-xn-lOn" secondAttribute="trailing" constant="24" id="xX2-lr-CO0"/>
-                            <constraint firstAttribute="trailing" secondItem="URP-Fj-vXg" secondAttribute="trailing" constant="24" id="yfv-41-G1Q"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
                     </view>
@@ -133,6 +120,7 @@ that statement statement?</string>
                     <constraint firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" id="Y6q-Dw-840"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="meAtMyBestButtonText" destination="rhA-xn-lOn" id="4Xc-E4-UbY"/>
                 <outlet property="meAtMyBestContent" destination="Tcg-bf-cKP" id="ZD8-lI-Had"/>
@@ -140,7 +128,7 @@ that statement statement?</string>
                 <outlet property="meAtMyBestLabel" destination="Ee8-gE-gfd" id="1tR-79-cxy"/>
                 <outlet property="meAtMyBestTitle" destination="Vi4-ue-UZu" id="3JE-Q8-zbd"/>
             </connections>
-            <point key="canvasLocation" x="944.92753623188412" y="-264.84375"/>
+            <point key="canvasLocation" x="944.92753623188412" y="-289.28571428571428"/>
         </tableViewCell>
     </objects>
 </document>
