@@ -10,12 +10,12 @@ import Foundation
 
 final class DTRecoveryConfigurator {
     static func make() -> (DTRecoveryViewController) -> Void {
-        return { (viewController) in            
+        return { (viewController) in
             let presenter = DTRecoveryPresenter(viewController: viewController)
             let interactor = DTRecoveryInteractor(presenter,
                                                   questionGroup: .RecoveryPlan,
                                                   introKey: Recovery.QuestionKey.Intro)
-            viewController.interactor = interactor            
+            viewController.interactor = interactor
         }
     }
 }
