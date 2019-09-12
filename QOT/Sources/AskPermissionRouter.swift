@@ -12,7 +12,7 @@ final class AskPermissionRouter {
 
     // MARK: - Properties
     private weak var viewController: AskPermissionViewController?
-    private let delegate: AskPermissionDelegate?
+    private weak var delegate: AskPermissionDelegate?
 
     // MARK: - Init
     init(viewController: AskPermissionViewController?, delegate: AskPermissionDelegate?) {

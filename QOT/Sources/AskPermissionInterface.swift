@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol AskPermissionDelegate {
+protocol AskPermissionDelegate: class {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool)
 }
 

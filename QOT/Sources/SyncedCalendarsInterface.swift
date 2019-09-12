@@ -9,6 +9,10 @@
 import Foundation
 import qot_dal
 
+protocol SyncedCalendarsDelegate: class {
+    func didFinishSyncingCalendars(hasEvents: Bool)
+}
+
 protocol SyncedCalendarsViewControllerInterface: class {
     func setupView(_ viewModel: SyncedCalendarsViewModel?)
     func updateViewModel(_ viewModel: SyncedCalendarsViewModel?)
@@ -20,5 +24,14 @@ protocol SyncedCalendarsPresenterInterface {
 }
 
 protocol SyncedCalendarsInteractorInterface: Interactor {
+    var skipButtonTitle: String { get }
+    var saveButtonTitle: String { get }
+    var isInitialCalendarSelection: Bool { get }
     func updateSyncStatus(enabled: Bool, identifier: String)
+    func didTapSkip()
+    func didTapSave()
+}
+
+protocol SyncedCalendarsRouterInterface {
+    func dismiss(_ completion: (() -> Void)?)
 }

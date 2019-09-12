@@ -637,6 +637,7 @@
 		8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DECF9B022DE07A800451E65 /* MySprintsListHeaderView.xib */; };
 		8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECF9B222DE277400451E65 /* MySprintsListDataViewModel.swift */; };
 		8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */; };
+		8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF717E3232A48C700BB0E18 /* SyncedCalendarsRouter.swift */; };
 		8DF7870622FEB50800CDE0A9 /* RegistrationCodePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF786FE22FEB50800CDE0A9 /* RegistrationCodePresenter.swift */; };
 		8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF786FF22FEB50800CDE0A9 /* RegistrationCodeWorker.swift */; };
 		8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7870022FEB50800CDE0A9 /* RegistrationCodeRouter.swift */; };
@@ -1917,6 +1918,7 @@
 		8DECF9B022DE07A800451E65 /* MySprintsListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MySprintsListHeaderView.xib; sourceTree = "<group>"; };
 		8DECF9B222DE277400451E65 /* MySprintsListDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListDataViewModel.swift; sourceTree = "<group>"; };
 		8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonThemeable.swift; sourceTree = "<group>"; };
+		8DF717E3232A48C700BB0E18 /* SyncedCalendarsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsRouter.swift; sourceTree = "<group>"; };
 		8DF786FE22FEB50800CDE0A9 /* RegistrationCodePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodePresenter.swift; sourceTree = "<group>"; };
 		8DF786FF22FEB50800CDE0A9 /* RegistrationCodeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeWorker.swift; sourceTree = "<group>"; };
 		8DF7870022FEB50800CDE0A9 /* RegistrationCodeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeRouter.swift; sourceTree = "<group>"; };
@@ -3098,15 +3100,16 @@
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
 			isa = PBXGroup;
 			children = (
+				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */,
 				5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */,
 				5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */,
 				36C8F171230864BD00CD718F /* SyncedCalendarsModels.swift */,
 				5F36073A228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift */,
+				8DF717E3232A48C700BB0E18 /* SyncedCalendarsRouter.swift */,
 				5F36073E228C1F970074FEC4 /* SyncedCalendarsViewController.swift */,
 				5F360736228C1F030074FEC4 /* SyncedCalendarsWorker.swift */,
-				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 			);
 			name = MyQotCalendars;
 			sourceTree = "<group>";
@@ -6889,6 +6892,7 @@
 				DBA3921923247B2D0017E7F6 /* QuestionnaireViewController.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
+				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
 				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,

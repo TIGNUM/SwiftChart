@@ -559,3 +559,6 @@
 
 "Mark.As.Read" = "Mark as read";
 "Mark.As.Unread" = "Mark as unread";
+
+"SyncedCalendars.Button.Skip" = "Skip";
+"SyncedCalendars.Button.Save" = "Save";

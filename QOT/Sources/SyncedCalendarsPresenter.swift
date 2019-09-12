@@ -55,7 +55,7 @@ private extension SyncedCalendarsPresenter {
     }
 
     func createModel(_ setting: QDMUserCalendarSetting, switchIsHidden: Bool) -> SyncedCalendarsViewModel.Row {
-        return SyncedCalendarsViewModel.Row(title: setting.title,
+        return SyncedCalendarsViewModel.Row(title: setting.title?.uppercased(),
                                             identifier: setting.calendarId,
                                             source: setting.source,
                                             syncEnabled: setting.syncEnabled,
