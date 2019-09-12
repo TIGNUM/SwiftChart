@@ -27,20 +27,15 @@ final class ShifterResultInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter.setupView()
-        worker.getModel { [weak self] (model) in
-            self?.presenter.load(model)
-        }
+        presenter.load(worker.getMindsetShifterResultModel())
     }
 }
 
 // MARK: - ShifterResultInteractorInterface
 extension ShifterResultInteractor: ShifterResultInteractorInterface {
     func didTapClose() {
+        worker.deleteMindsetShifter()
         router.dismiss()
-    }
-
-    func didTapSave() {
-        worker.createMindsetShifter()
     }
 
     func openConfirmationView() {

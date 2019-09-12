@@ -21,8 +21,7 @@ protocol ShifterResultPresenterInterface {
 }
 
 protocol ShifterResultInteractorInterface: Interactor {
-    func didTapClose()
-    func didTapSave()
+    func didTapClose()    
     func openConfirmationView()
 }
 

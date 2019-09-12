@@ -9,12 +9,19 @@
 import UIKit
 import qot_dal
 
-final class DTMindsetRouter: DTRouter {}
+final class DTMindsetRouter: DTRouter {
+
+    override func dismiss() {
+        super.dismiss()
+    }
+}
 
 // MARK: - DTMindsetRouterInterface
 extension DTMindsetRouter: DTMindsetRouterInterface {
-    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?) {
-
+    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?, completion: (() -> Void)?) {
+        let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter)
+        let controller = ShifterResultViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: completion)
     }
 
     func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?) {

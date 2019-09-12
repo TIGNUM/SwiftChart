@@ -21,5 +21,6 @@ protocol DTMindsetInteractorInterface: Interactor {
 
 protocol DTMindsetRouterInterface {
     func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?)
-    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?)
+    func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?, completion: (() -> Void)?)
+    func dismiss()
 }

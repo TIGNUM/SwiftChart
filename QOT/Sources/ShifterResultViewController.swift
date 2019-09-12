@@ -72,8 +72,6 @@ private extension ShifterResultViewController {
 private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.didTapSave()
-        NotificationCenter.default.post(name: .didDismissMindsetResultView, object: nil)
         dismiss(animated: true)
     }
 

@@ -43,12 +43,12 @@ final class DTMindsetViewController: DTViewController {
 
     @IBAction override func didTapNext() {
         switch viewModel?.question.key {
+        case Mindset.QuestionKey.Last:
+            mindsetRouter?.dismiss()
         case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
         case Mindset.QuestionKey.PresentResult:
-            mindsetInteractor?.getMindsetShifter { [weak self] (mindsetShifter) in
-                self?.mindsetRouter?.presentMindsetResults(mindsetShifter)
-            }
+            presentMindsetShifterResult()
         default:
             setAnswerNeedsSelection()
             loadNextQuestion()
@@ -105,6 +105,15 @@ private extension DTMindsetViewController {
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }
+            }
+        }
+    }
+
+    func presentMindsetShifterResult() {
+        mindsetInteractor?.getMindsetShifter { [weak self] (mindsetShifter) in
+            self?.mindsetRouter?.presentMindsetResults(mindsetShifter) {
+                self?.setAnswerNeedsSelection()
+                self?.loadNextQuestion()
             }
         }
     }

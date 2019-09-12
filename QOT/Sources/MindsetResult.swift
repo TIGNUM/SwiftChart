@@ -25,8 +25,6 @@ struct MindsetResult {
         let toBeVisionText: String?
         let reactionsAnswerIds: [Int]
         let lowPerformanceAnswerIds: [Int]
-        let workAnswerIds: [Int]
-        let homeAnswerIds: [Int]
         let highPerformanceContentItemIds: [Int]
     }
 }
