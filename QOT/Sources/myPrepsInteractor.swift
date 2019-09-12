@@ -96,20 +96,9 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
-//        let reactions: [String] = item.reactionsAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
-//        let lowPerformanceItems: [String] = item.lowPerformanceAnswers?.compactMap({ $0.subtitle ?? "ERROR"}) ?? []
-//        let highPerformanceItems: [String] = item.highPerformanceContentItems.compactMap({ $0.valueText })
-//        let mindsetItem = MindsetResult.Item(triggerAnswerId: item.triggerAnswerId,
-//                                        reactionsAnswerIds: item.reactionsAnswerIds,
-//                                        lowPerformanceAnswerIds: item.lowPerformanceAnswerIds,
-//                                        highPerformanceContentItemIds: item.highPerformanceContentItemIds,
-//                                        reactions: reactions,
-//                                        lowPerformanceItems: lowPerformanceItems,
-//                                        highPerformanceItems: highPerformanceItems)
-//        let configurator = ShifterResultConfigurator.make(resultItem: mindsetItem)
-//        let controller = ShifterResultViewController(configure: configurator)
-//        viewController.present(controller, animated: true) {
-//        }
+        let configurator = ShifterResultConfigurator.make(mindsetShifter: item)
+        let controller = ShifterResultViewController(configure: configurator)
+        viewController.present(controller, animated: true)
     }
 
    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
