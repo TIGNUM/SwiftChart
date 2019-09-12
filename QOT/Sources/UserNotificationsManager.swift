@@ -130,18 +130,15 @@ final class UserNotificationsManager {
         var requests = originalRequests ?? []
         guard let sprint = sprint,
             let config = config, config.isEmpty == false else {
-                self.removeAllSprintRelatedPendingNotifications()
                 completion(requests)
                 return
         }
         guard let sprintType = sprint.sprintCollection?.searchTagsDetailed
             .filter({ $0.name != nil && $0.name != "SPRINT_REPORT" }).first?.name else {
-                self.removeAllSprintRelatedPendingNotifications()
                 completion(requests)
                 return
         }
         guard let sprintConfig = config.filter({ $0.sprintType == sprintType}).first else {
-            self.removeAllSprintRelatedPendingNotifications()
             completion(requests)
             return
         }
@@ -205,17 +202,6 @@ final class UserNotificationsManager {
             completion(filteredRequests)
         }
     }
-
-    private func removeAllSprintRelatedPendingNotifications() {
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.getPendingNotificationRequests(completionHandler: { (pendingNotifications) in
-            let pendingSprintNotificaionIds = pendingNotifications.compactMap({ $0.identifier })
-                .filter({ $0.hasPrefix("SPRINT_") })
-            if pendingSprintNotificaionIds.isEmpty == false {
-                notificationCenter.removePendingNotificationRequests(withIdentifiers: pendingSprintNotificaionIds)
-            }
-        })
-    }
 }
 
 extension UserNotificationsManager {
@@ -224,7 +210,14 @@ extension UserNotificationsManager {
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        guard let syncResult = notification.object as? SyncResultContext, syncResult.dataType == .SPRINT else { return }
-        scheduleNotifications()
+        guard let syncResult = notification.object as? SyncResultContext,
+            syncResult.dataType == .SPRINT || syncResult.dataType == .GUIDE_ITEM_USER_NOTIFICATION  else { return }
+
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional: self.scheduleNotifications()
+            default: break
+            }
+        }
     }
 }

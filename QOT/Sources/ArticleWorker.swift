@@ -99,9 +99,12 @@ final class ArticleWorker {
         bookmark = content.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .BOOKMARK
         }).first
-        articleAudioItem = content.contentItems.filter({ (item) -> Bool in
-            item.format == .audio && item.tabs.contains(obj: "AUDIO")
-        }).first
+        let audioAvailableSections: [ContentSection] = [.WhatsHot, .LearnStrategies, .QOTLibrary, .Tools]
+        if audioAvailableSections.contains(obj: content.section) {
+            articleAudioItem = content.contentItems.filter({ (item) -> Bool in
+                item.format == .audio && item.tabs.contains(obj: "AUDIO")
+            }).first
+        }
         articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? "",
                                        title: content.title,
                                        author: content.author,
@@ -155,7 +158,8 @@ final class ArticleWorker {
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
-        if content?.section == .About {
+        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0]
+        if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
             content?.contentItems.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
             }
@@ -260,10 +264,12 @@ final class ArticleWorker {
     }
 
     var sectionCount: Int {
-        switch content?.section {
-        case .WhatsHot?:
+        guard let content = content else { return 1 }
+        switch content.section {
+        case .WhatsHot:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
-        case .About?:
+        case .FAQ_3_0,
+             .About:
             return 1
         default:
             return 3
@@ -326,8 +332,9 @@ final class ArticleWorker {
     }
 
     func itemCount(in section: Int) -> Int {
-        switch content?.section {
-        case .WhatsHot?:
+        guard let content = content else { return 1 }
+        switch content.section {
+        case .WhatsHot:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
         default:
             switch section {
@@ -342,8 +349,9 @@ final class ArticleWorker {
     }
 
     func headerTitle(for section: Int) -> String? {
-        switch content?.section {
-        case .WhatsHot?:
+        guard let content = content else { return nil }
+        switch content.section {
+        case .WhatsHot:
             return section == 0 ? nil : R.string.localized.prepareContentReadMore().uppercased()
         default:
             return section != 1 ? nil : R.string.localized.learnArticleItemRelatedContent()
@@ -383,7 +391,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .About, .FAQ: return true
+        case .ToBeVisionGenerator, .About, .FAQ_3_0: return true
         default: break
         }
         return false
@@ -394,7 +402,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0: return true
         default: return false
         }
     }

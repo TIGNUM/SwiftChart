@@ -122,103 +122,15 @@
 "Loading.Data" = "Please wait while we configure your data";
 "Me.My.Prep.Loading" = "Please wait while we configure your preparation";
 
-"Me.Sector.Peak.Performance" = "Peak\nPerformance";
-"Me.Sector.Meetings" = "Meetings";
-"Me.Sector.Intensity" = "Intensity";
-"Me.Sector.Travel" = "Flights";
-"Me.Sector.Sleep" = "Sleep";
-"Me.Sector.Activity" = "Activity";
-"Me.Sector.My.Why.Vision.Title" = "To Be Vision";
-"Me.Sector.My.Why.Vision.Headline.Placeholder" = "Your Headline";
-"Me.Sector.My.Why.Vision.Message.Placeholder" = "Me at my best. Getting Chills? Rule Your Impact!";
-"Me.Sector.My.Why.Vision.Write.Date" = "Written %@ ago";
-"Me.Sector.My.Why.Weekly.Choices.Title" = "Weekly Choices";
-"Me.Sector.My.Why.Weekly.Choices.NoChoice.Title" = "No Choice";
-"Me.Sector.My.Why.Weekly.Choices.Choice" = "%02d CHOICE";
-
-"Me.Sector.My.Why.Select.Weekly.Choices.Header" = "Select your %@ strategies you want to challenge this week";
-"Me.Sector.My.Why.Select.Weekly.Choices.Navigation" = "Your %@ weekly choices %@/%@";
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Title" = "Max Limit";
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Message" = "You have already reached the maximum limit of weekly choices. Please unselect something to continue your selection";
 "Me.Sector.My.Why.Select.Weekly.Choices.Max.Choice.Alert.Button" = "OK";
-"Me.Sector.My.Why.Partners.Title" = "QOT Partners";
-"Me.Sector.My.Why.Partners.Edit.Title" = "Edit QOT Partner";
-"Me.Sector.My.Why.Partners.Header" = "MY SUPPORT\nTEAM";
-"Me.Sector.My.Why.Partners.Share.Header" = "What would you like to share with %@?";
-"Me.Sector.My.Why.Partners.Name" = "Name";
-"Me.Sector.My.Why.Partners.Surname" = "Surname";
-"Me.Sector.My.Why.Partners.Relationship" = "Relationship";
-"Me.Sector.My.Why.Partners.Email" = "e-mail";
-"Me.Sector.My.Why.Partners.Add.Photo" = "Add a photo";
-"Me.Sector.My.Why.Partners.Change.Photo" = "Change photo";
 "Me.Sector.My.Why.Partners.Photo.Error.Title" = "Error";
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
-"Me.Sector.My.Why.Partners.Cell.Empty.State" = "Share QOT progress with your circle of three.";
-"Me.Sector.My.Why.Partners.Cell.Add.Partner" = "Add partner";
-"Me.Sector.My.Why.Partners.Cell.Share.Content" = "Share content";
 "Me.Sector.My.Why.Partners.Share.NoContent.Title" = "Unable to share content";
 "Me.Sector.My.Why.Partners.Share.MissingMyToBeVision.alert" = "Please create your To Be Vision first";
 "Me.Sector.My.Why.Partners.Share.MissingWeeklyChoice.alert" = " No Weekly Choices selected.";
-"Me.Sector.My.Statistics.Personal.Average.Default" = "PERSONAL\nAVG.";
-"Me.Sector.My.Statistics.Personal.Average.Sleep.Quality" = "Your Average Sleep Score";
-"Me.Sector.My.Statistics.Personal.Average.Sleep.Quantity" = "Average Number of Hours You Sleep";
-"Me.Sector.My.Statistics.Personal.Average.Movement.Frequency" = "Your Average Movement Frequency Score";
-"Me.Sector.My.Statistics.Personal.Average.Activity.Level" = "Your Average Activity Level Score";
-"Me.Sector.My.Statistics.Personal.Average.Perceived.Load" = "Your Average Perceived Load";
-"Me.Sector.My.Statistics.Personal.Average.Perceived.Recovery" = "Your Average Perceived Recovery";
-"Me.Sector.My.Statistics.Personal.Average.Number.Of.Meetings" = "This Week’s Average Number of Meetings";
-"Me.Sector.My.Statistics.Personal.Meetings.Length" = "This Week's Average Time in Meetings";
-"Me.Sector.My.Statistics.Personal.Average.Time.Between.Meetings" = "Today’s Average Time Between Meetings";
-"Me.Sector.My.Statistics.Personal.Average.Length.Of.Meetings" = "This Week's Average Time in Meetings";
-
-"Me.Sector.My.Statistics.Day" = "DAY";
-"Me.Sector.My.Statistics.Today" = "TODAY";
-"Me.Sector.My.Statistics.This.Week" = "THIS WEEK";
-"Me.Sector.My.Statistics.Week" = "WEEK";
-"Me.Sector.My.Statistics.LastWeek" = "LAST WEEK";
-"Me.Sector.My.Statistics.NextWeek" = "NEXT WEEK";
-"Me.Sector.My.Statistics.Month" = "MONTH";
-"Me.Sector.My.Statistics.Year" = "YEAR";
-"Me.Sector.My.Statistics.Weeks" = "%@ WEEKS";
-"Me.Card.Title.Sleep.Quantity" = "Sleep Quantity";
-"Me.Card.Title.Sleep.Quality" = "Sleep Quality";
-"Me.Card.Title.Meetings.Number" = "Number of Meetings";
-"Me.Card.Title.Meetings.Length" = "Time in meetings";
-"Me.Card.Title.Meetings.Increase" = "Meeting load history";
-"Me.Card.Title.Meetings.Time.Between" = "Time Between Meetings";
-"Me.Card.Title.Meetings.Hours.Spent" = "Time in meetings";
-"Me.Card.Title.Travel.Average" = "NUMBER OF FLIGHTS";
-"Me.Card.Title.Travel.Trips" = "FLIGHTS NEXT FOUR WEEKS";
-"Me.Card.Title.Travel.Time.Zone.Change" = "NUMBER OF TRIPS WITH TIME ZONE CHANGED";
-"Me.Card.Title.Travel.Time.Zone.Max" = "AVERAGE TIME ZONE CHANGES";
-"Me.Card.Title.Peak.Performacne.Upcoming" = "Number of Upcoming Peak Performances";
-"Me.Card.Title.Peak.Performacne.Average" = "Average Number of Peak Performances";
-"Me.Card.Title.Activity.Ratio" = "Movement Frequency";
-"Me.Card.Title.Activity.Level" = "Activity Level";
-"Me.Card.Title.Intensity.Load" = "Perceived Load";
-"Me.Card.Title.Intensity.Recovery" = "Perceived Recovery";
-"Me.Chart.Info.Text.Meetings.Hours.Spent" = "QOT analyzes your calendar to determine how much time you spend in meetings throughout your day. The length of time you spend in meetings helps determine your overall load, which requires preparation if you are going to Rule Your Meetings. It also helps you become more purposeful in the way you design your schedule and prepare for certain types of meetings. On days where your meetings are longer than normal, you may want to schedule oscillation breaks and transitions between your peak performances.";
-"Me.Chart.Info.Text.Meetings.Increase" = "QOT reviews your calendar and meeting load history to help you see how your current week's load compares to your previous week. The number of meetings you have each week helps you become more purposeful in the way you design your schedule and how you prepare for the week ahead. On weeks where your meeting load is high, you may want to schedule recovery time throughout the week to ensure you Rule Your Impact even during your busiest weeks.";
-"Me.Chart.Info.Text.Peak.Performance.Upcoming" = "QOT® uses your calendar and daily input to determine how many peak performances you have coming up this week and next week as well as your average number of peak performances per week. This data will help you better prepare for your upcoming events and customize your strategies accordingly. The personal average helps bring self-awareness as to how many peak performances you typically have compared to your current load and your future ahead.";
-"Me.Chart.Info.Text.Peak.Performance.Average" = "QOT® uses your calendar and daily input to determine your average number of many peak performances on a monthly and weekly basis. This data helps bring self-awareness as to how many peak performances you typically have compared to your current load and future load ahead.";
-"Me.Chart.Info.Text.Intensity.Load" = "QOT uses the input from your Daily Preparation Minute to determine your perceived load each day. It then compiles this data to help you get a snapshot of your current week and month. Your average score helps bring self-awareness to how you perceive the intensity of your days. This will help you become more strategic with designing your energy, focus, and recovery needs. The graph displays red bars during periods of high intensity and white bars during periods of moderate to low intensity.";
-"Me.Chart.Info.Text.Intensity.Recovery" = "QOT uses the input from your Daily Preparation Minute to determine your perceived recovery each day. It then compiles this data to help you get a snapshot of your current week and month. Your average score helps bring self-awareness as to how you perceive your recovery state in relation to your perceived load that day. Ideally, your perceived recovery should be equal to or greater than your perceived load. This would mean you created a performance buffer and you are ready for the challenges ahead. If your perceived recovery score is less than your perceived load, you should increase the amount of your sleep, improve the quality of your sleep, and improve your overall recovery plan. You should also examine how you are strategically scheduling your days.";
-"Me.Chart.Info.Text.Meetings.Average.Number" = "QOT reviews the calendars you have allowed access to determine how many meetings you have throughout your week. The number of meetings you have today helps determine your overall meeting load, which requires preparation if you are going to Rule Your Meetings. It also helps you become more purposeful in the way you design your schedule and prepare for your meetings. We have found that more than 6 meetings a day makes it very difficult to prepare properly and to have adequate thinking, problem solving, and working time. On days when your meeting load is high you may want to consider activating your Tough Day plan.";
-"Me.Chart.Info.Text.Meetings.Average.Time.Between" = "QOT analyzes your calendar to determine the average time you have between meetings for the day. QOT then gives you a score between 1 (little-to-no time between meetings) and 10 (15 or more minutes between meetings on average). We recommend taking an average of 15 minutes between your meetings to plan for oscillation, preparation, and reflection. These three key strategies are critical to helping you Rule Your QOT. When planning your day, try reviewing your meetings to see if you can fit in a few more 15-minute breaks. The closer your average is to 15 minutes, the closer your graph will be to becoming a complete circle. If your average time between meetings is 15 minutes or greater, you will receive a score of 10 and have a completed circle.";
-"Me.Chart.Info.Text.Meetings.Average.Length" = "QOT analyzes your calendar to determine how much time you spend in meetings throughout your day. The length of time you spend in meetings helps determine your overall load, which requires preparation if you are going to Rule Your Meetings. It also helps you become more purposeful in the way you design your schedule and prepare for certain types of meetings. On days where your meetings are longer than normal, you may want to schedule oscillation breaks and transitions between your peak performances.";
-"Me.Chart.Info.Text.Sleep.Quantity" = "Your sleep quantity comes from your paired wearable device and shows you how long you slept. This graph shows the number of hours you slept last night and for the past five days. The internal pentagon represents the average number of hours you slept over those five days.";
-"Me.Chart.Info.Text.Sleep.Quality" = "Your sleep quality comes from your paired wearable device and ranges from 1 (bad quality) to 10 (very good sleep quality). The score is derived from an algorithm developed by our recovery experts that considers the time it takes you to fall asleep, how much deep sleep you get, how many times you wake up, and your overall sleep architecture. Each bar on the graph displays your daily sleep score over the last 5 days. The internal pentagon represents your average sleep score for those days. Sleep quality helps you maximize your QOT.";
-"Me.Chart.Info.Text.Activity.Oscillation" = "Your daily movement frequency measures uses data from your wearable device and measures how many times you sit for 90 minutes or longer throughout the day. Your daily score ranges from 1 (highly sedentary) to 10 (very active). Strive for a score greater than 6 to help your brain and body harness the performance benefits of movement. The movement frequency graph displays your daily movement frequency score for the last 5 days.";
-"Me.Chart.Info.Text.Activity.Index" = "Your daily activity level comes from your wearable device and is based on your overall volume of activity throughout your entire day. Your score ranges from 1 (inactive) to 10 (very active). Your activity level score is particularly helpful to build awareness during long days (i.e full of meetings, travel, etc.), when you might not realize that you spend most of the day sitting. Being active helps your brain performance, your energy levels, and your immune function.";
-"Me.Chart.Info.Text.Travel.Average.Number" = "QOT® uses your calendar to determine your amount of flights you have in the past four weeks and the year. This data helps bring self-awareness as to how many flights you have. Make sure to apply High Performance Travel strategies from your QOT® coach for each flight.";
-"Me.Chart.Info.Text.Travel.Trips" = "QOT® uses your calendar to determine your amount of flights you have for the next four weeks. This data helps bring self-awareness as to how many flights you have and strategically plan your weeks ahead. Make sure to apply High Performance Travel strategies from your QOT® coach for each flight.";
-
-"Me.Chart.Comming.Soon" = "Coming soon";
-"Me.Chart.Add.Calendar" = "Allow QOT to access the\ncalendar to see this card.";
-"Me.Chart.Add.Sensor" = "Add sensor to\nsee this card.";
-"Me.Chart.Add.Sensor.Pending" = "Sensor connection state is pending.\nPlease try again in a few minutes.";
-"Me.Chart.Info.Button.Title.Navigate.To.Calendar" = "Set your calendar";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";
@@ -266,12 +178,8 @@
 
 "Weekly.Choices.No.Content" = "No weekly choices\nhave been saved yet.";
 
-"Learn.Content.Item.Title.Full" = "Full";
-"Learn.Content.Item.Title.Bullets" = "Bullets";
-"Learn.Content.Item.Title.Audio" = "Audio";
 "Learn.Content.Item.Title.Related.Articles" = "RELATED ARTICLES";
 "Learn.Content.Item.Title.Related.Articles.Load.More" = "Load more";
-"Learn.Content.Performance.Title" = "PERFORMANCE";
 "Learn.Content.Item.Article" = "Article";
 "Learn.Content.Item.Articles" = "Articles";
 "Learn.Content.Item.ToRead" = "To read";
@@ -378,79 +286,8 @@
 "ImagePicker.Options.Button.Cancel" = "Cancel";
 "YearPicker.Title.Select" = "Select";
 
-"MorningController.titleLabel" = "DAILY PREP MINUTE";
-"MorningController.previousButton" = "PREVIOUS";
-"MorningController.nextButton" = "NEXT";
 "MorningController.doneButton" = "DONE";
-"MorningController.question.HTML.style" = "<head><style>body{font-family:Apercu-Light;font-size:16px;color:gray;line-height:1.25;}highlight{font-family:Apercu-Light;font-size:21px;color:white;line-height:1.0}</style></head>";
-
-"ActivityView.WeekButton" = "WEEK";
-"ActivityView.MonthButton" = "MONTH";
-
-"LoginView.InputPlaceHolder" = "Enter your email here";
-"LoginView.PasswordPlaceHolder" = "Enter your password";
-"LoginView.LoginButton" = "Log in";
-"LoginView.ForgotButton" = "Forgot password?";
-"LoginView.ToggleShow" = "SHOW";
-"LoginView.ToggleHide" = "HIDE";
-"LoginView.UnknowEmailMessage" = "This email does not exist in our database";
 "LoginView.LoginFailed" = "Invalid username or password";
-
-"ResetPassword.emailPlaceHolder" = "Enter your email here";
-"ResetPassword.ResetMyPassword" = "Reset my password";
-"ResetPassword.EmailSent" = "Email sent";
-"ResetPassword.ForgottenPasswordMessage" = "Forgot your password? We can help to reset it.";
-
-"Change.Password.Issue.Confirm.Not.Match" = "Password doesn't match the confirmation";
-"Change.Password.Issue.Old.Password.Not.Valid" = "Old password isn't valid";
-
-"Calendar.Year" = "Year";
-"Calendar.Month" = "Month";
-"Calendar.Week" = "Week";
-"Calendar.Day" = "Day";
-"Calendar.Hour" = "Hour";
-"Calendar.Minute" = "Minute";
-
-"Calendar.Years" = "Years";
-"Calendar.Months" = "Months";
-"Calendar.Weeks" = "Weeks";
-"Calendar.Days" = "Days";
-"Calendar.Hours" = "Hours";
-"Calendar.Minutes" = "Minutes";
-
-"AddSensorView.Alert.Title" = "Something else?";
-"AddSensorView.Alert.Message" = "What device would you like us to support?";
-"AddSensorView.Alert.Send" = "Send";
-"AddSensorView.Alert.Cancel" = "Cancel";
-"AddSensorView.Alert.Feedback.Title" = "Thanks for your feedback";
-"AddSensorView.Alert.Feedback.Success.OK" = "OK";
-"AddSensorView.Alert.Placeholder" = "Enter your device info.";
-
-"Tutorial.Learn.Text" = "The Learn area contains great content on all of the QOT 55 strategies. You can go there to learn, review, or deep dive into any of the strategies. This Learn area also hosts your “What’s Hot” portal where we periodically place new information that we feel you would love.";
-"Tutorial.Me.Text" = "The Me area is where we house all of your data, your To Be Vision, your support team, and any other information that pertains only to you. This area is always growing so we recommend you visit it often.";
-"Tutorial.Prepare.Text" = "The Prepare area is your QOT game changer area. In this area you will find your normal day and rough day plans but also you can prepare for any event you have coming up where you want to improve your QOT and the QOT of those around you.";
-
-"Onboarding.Choice.Title.Access.All" = "Yes, I give you confidential access to all.";
-"Onboarding.Choice.Title.Access.Later" = "Thank you. I prefer to give you access later.";
-"Onboarding.Choice.Title.Access.Why" = "Why do you need access?";
-"Onboarding.Choice.Title.Access.All.Why" = "Thank you. Yes, I give you confidential access to all.";
-"Onboarding.Choice.Title.Access.Later.Why" = "Thank you. I prefer to give you access later.";
-"Onboarding.Choice.Title.Lets.Go" = "Let's go!";
-
-"Onboarding.Chat.Item.Welcome" = "Welcome %@";
-"Onboarding.Chat.Item.Permissions" = "Before you start, I would like access to your calendar and your location. Also, I would like to get permission to send you notifications. As always, all of your information is secure and confidential.";
-"Onboarding.Chat.Item.Why" = "Your events and, therefore, your load is kept on your calendar. When I analyze your information, I am looking for how many meetings you have, how much time you have between meetings, how often you need to travel, etc. When I know these things, I can help you rule your impact every day. By knowing your location, I can analyze timezone changes when you travel. This way, I can provide you with custom strategies during your entire trip. Lastly, permission to send you notifications allows me to interact with you when you need it most";
-"Onboarding.Chat.Item.Last.Step" = "Thank you, if you give me a minute, I will give you my first analysis";
-"Onboarding.Chat.Item.Show.Settings" = "No worries. If you change your mind, you can change this access in your preferences at any time";
-
-"Qot.Usage.Timer.Default" = "1 MINUTE";
-
-"SlideShow.MorePrompt.Title" = "ARE YOU READY TO RULE YOUR IMPACT?";
-"SlideShow.MorePrompt.Subtitle" = "Start now or learn a few more steps to learn how to get the most out of QOT.";
-"SlideShow.MorePrompt.DoneButtonTitle" = "Explore now";
-"SlideShow.MorePrompt.MoreButtonTitle" = "Get the most out of QOT";
-"SlideShow.CompletePrompt.Title" = "Great job! You have finished the on-boarding.";
-"SlideShow.CompletePrompt.DoneButtonTitle" = "Start QOT";
 
 "Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
 "Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname', 'Relationship' and 'Email.'";
@@ -466,83 +303,10 @@
 "Search.Filter.Tools" = "TOOLS";
 "Search.Placeholder" = "Search QOT content";
 
-"guide.card.preparation.subtitle" = "PREPARE";
-"guide.card.foundation.subtitle" = "QOT FOUNDATION";
-"guide.card.preparation.single-unstarted-today.title" = "Prepare for your upcoming event";
-"guide.card.preparation.single-unstarted-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
-"guide.card.preparation.multiple-unstarted-today.title" = "Prepare for your upcoming events";
-"guide.card.preparation.multiple-unstarted-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
-"guide.card.preparation.single-unstarted-tomorrow.title" = "Prepare for your upcoming event";
-"guide.card.preparation.single-unstarted-tomorrow.content" = "Looks like you have an event coming up tomorrow. Tap on the card to prepare.";
-"guide.card.preparation.multiple-unstarted-tomorrow.title" = "Prepare for your upcoming events";
-"guide.card.preparation.multiple-unstarted-tomorrow.content" = "Looks like you have several events coming up tomorrow. Tap on the card to prepare.";
-"guide.card.preparation.single-started-today.title" = "Prepare for your upcoming event";
-"guide.card.preparation.single-started-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
-"guide.card.preparation.multiple-started-today.title" = "Prepare for your upcoming events";
-"guide.card.preparation.multiple-started-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
-"guide.item.completed.strategies.counter" = "%d of %d STRATEGIES";
-
-"signing.email.check.title" = "ENTER EMAIL";
-"signing.email.check.subtitle" = "We use your email to securely verify your account and protect all data you share with us.";
-"signing.email.check.bottomButtonTitle" = "Next";
-
-"signing.login.title" = "SIGN IN";
-"signing.login.subtitle" = "Welcome back to QOT.";
-"signing.login.bottomButtonTitle" = "Next";
-"signing.login.button.title.forgot.password" = "Forgot password?";
-"signing.login.error.message.password" = "Please enter your password.";
-"signing.login.hud.title.password.reset" = "Password reset";
-"signing.login.hud.message.password.reset" = "A reset password email has been sent to\n%@";
-
-"signing.digit.check.title" = "ENTER CODE";
-"signing.digit.check.subtitle" = "An email has been sent to\n\%@\n\nEnter the 4-digit code to continue.";
-"signing.digit.check.bottomButtonTitle" = "Verify";
-"signing.digit.check.button.title.resend.code" = "Retry sending verification code?";
-"signing.digit.check.error" = "Incorrect code, please try again";
-
-"signing.country.title" = "COUNTRY OF RESIDENCE";
-"signing.country.subtitle" = "Which country do you live in? We use this to protect your data.";
-"signing.country.bottomButtonTitle" = "Next";
-
-"signing.password.title" = "CREATE A PASSWORD";
-"signing.password.subtitle" = "Set your password to access Tignum QOT";
-"signing.password.bottomButtonTitle" = "Create password";
-"signing.password.error" = "Password is not secure enough, please review guidelines below";
-"signing.password.hint.character" = "• Eight characters minimum";
-"signing.password.hint.uppercase" = "• One uppercase character";
-"signing.password.hint.special" = "• One special character";
-
-"signing.profile.title" = "PROFILE DETAILS";
-"signing.profile.subtitle" = "We use your email to securely verify your account and to protect all data you share with us.";
-"signing.profile.bottomButtonTitle" = "Create account";
-"signing.profile.check.box.text" = "By creating an account, you agree to our [Terms of Use](termsOfUse://) and [Privacy Policy](privacyPolicy://).";
-"signing.profile.check.box.error" = "To use Tignum QOT, you must agree to the conditons.";
-"signing.profile.error.first.name" = "Please enter a first name.";
-"signing.profile.error.last.name" = "Please enter a last name.";
-"signing.profile.error.gender" = "Enter gender";
-"signing.profile.error.birthdate" = "Enter birthdate";
-"signing.profile.hud.title.user.created" = "WELCOME";
-
 "shortcut.item.title.whats.hot" = "Latest What's Hot Article";
 "shortcut.item.title.library" = "Tools";
 "shortcut.item.title.me.universe" = "Review My Data";
 "shortcut.item.title.prepare" = "Prepare for an event";
-
-"gender.title" = "Gender";
-"gender.female" = "Female";
-"gender.male" = "Male";
-"gender.other" = "Female";
-"gender.prefer.not.to.say" = "Prefer not to say";
-"birthdate.title" = "Birthdate";
-"aricle.author.by" = "BY %@";
-
-"Chart.Initial.State.Team.Avg" = "MY\nTEAM\nAVG.";
-"Chart.Initial.State.Database.Avg" = "DATA\nBASE\nAVG.";
-"Chart.Initial.State.User.Avg" = "User's\naverage\nvalue";
-"Chart.Initial.State.Value" = "0";
-"Chart.Initial.State.Week" = "WEEK";
-"Chart.Initial.State.Month" = "MONTH";
-"Chart.Initial.State.Close" = "CLOSE";
 
 "MyQot.Profile.Subtitle" = "Edit your personal info and settings";
 "MyQot.Sprints.Subtitle" = "Building your daily recovery plan";
@@ -702,10 +466,6 @@
 "Onboarding.Registration.TrackSelection.Message" = "Since QOT is quite rich in content and use cases we created two options for you to start:\n\n1. Fast Track - this will lead you write into QOT so that you can explore it yourself.\n\n2. Guided Track - we created a roadmap for you with recommended step.";
 "Onboarding.Registration.TrackSelection.Button.FastTrack" = "Fast track";
 "Onboarding.Registration.TrackSelection.Button.GuidedTrack" = "Guided track";
-
-"Walkthrough.Search.Text" = "SWIPE DOWN\n\nTo access the SEARCH function";
-"Walkthrough.Coach.Text" = "TAP the Q button\n\nTo access the “Coach” area\nwhere you can prepare...";
-"Walkthrough.Swipe.Text" = "SWIPE LEFT\nTo access KNOW\n\n\nSWIPE RIGHT\nTo access the MY QOT";
 
 "Know.Title" = "KNOW";
 "DailyBrief.Title" = "DAILY BRIEF";
