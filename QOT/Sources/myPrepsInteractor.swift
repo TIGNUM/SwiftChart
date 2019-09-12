@@ -105,5 +105,3 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         router.showDeleteConfirmation(delegate: delegate)
     }
 }
-
-
