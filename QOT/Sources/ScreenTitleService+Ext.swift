@@ -71,11 +71,11 @@ extension ScreenTitleService {
         case .challenge:
             return localizedString(for: .coachSolveChallengeSectionTitle)
         case .shortTBVMindSet:
-            return "shortTBVMindSet:"
+            return "MindsetShifter:"
         case .shortTBVPrepare:
-            return "shortTBVPrepare:"
+            return "MindsetShifter:"
         case .shortTBVOnBoarding:
-            return "shortTBVOnBoarding:"
+            return "MindsetShifter:"
         }
     }
 
@@ -92,11 +92,11 @@ extension ScreenTitleService {
         case .challenge:
             return localizedString(for: .coachSolveChallengeSectionSubtitle)
         case .shortTBVMindSet:
-            return "shortTBVMindSet:"
+            return "… flow:"
         case .shortTBVPrepare:
-            return "shortTBVPrepare:"
+            return "… result isWaiting…:"
         case .shortTBVOnBoarding:
-            return "shortTBVOnBoarding:"
+            return "… tbv:"
         }
     }
 

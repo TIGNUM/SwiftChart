@@ -156,6 +156,7 @@
 		3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3E232A4B7D00FC67D0 /* DTRecoveryInteractor.swift */; };
 		3666FD47232A4B7D00FC67D0 /* DTRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3F232A4B7D00FC67D0 /* DTRecovery.swift */; };
 		3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD40232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift */; };
+		3666FD49232A7F2300FC67D0 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C32328D970004D657F /* AnimatedButton.swift */; };
 		366AFD1820BDAD3000109F29 /* FormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1720BDAD3000109F29 /* FormView.xib */; };
 		366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AFD1920BDAE8900109F29 /* FormView.swift */; };
 		366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1B20BEA2F000109F29 /* Apercu-Bold.otf */; };
@@ -1058,8 +1059,9 @@
 		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
 		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
 		BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */; };
-		BBB47C612328DCE700B165F8 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C602328DCE700B165F8 /* AnimatedButton.swift */; };
 		BBB47C6323292DBD00B165F8 /* BaseWithTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C6223292DBD00B165F8 /* BaseWithTableViewController.swift */; };
+		BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */; };
+		BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
@@ -2401,8 +2403,9 @@
 		BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarTableViewCell.swift; sourceTree = "<group>"; };
 		BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarTableViewCell.xib; sourceTree = "<group>"; };
-		BBB47C602328DCE700B165F8 /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		BBB47C6223292DBD00B165F8 /* BaseWithTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseWithTableViewController.swift; sourceTree = "<group>"; };
+		BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTResultBaseTableViewCell.swift; sourceTree = "<group>"; };
+		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
@@ -2916,6 +2919,7 @@
 				BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */,
 				8DAE106A231526D400A247A5 /* QOTAlert.swift */,
 				8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */,
+				BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -4841,7 +4845,6 @@
 			children = (
 				ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */,
 				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
-				BBB47C602328DCE700B165F8 /* AnimatedButton.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -4897,6 +4900,7 @@
 				36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */,
 				36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */,
 				36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */,
+				BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -7231,6 +7235,7 @@
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
 				5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */,
 				5FF1A0E9228561C800D76D55 /* TitleTableHeaderView.swift in Sources */,
+				3666FD49232A7F2300FC67D0 /* AnimatedButton.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */,
 				367A58652326B85B0089A082 /* DTWorker.swift in Sources */,
@@ -7802,7 +7807,6 @@
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				36B5BD2C23142B4A00439A64 /* AskPermissionPresenter.swift in Sources */,
 				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
-				BBB47C612328DCE700B165F8 /* AnimatedButton.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */,
@@ -7830,6 +7834,7 @@
 				8DBE1EDA22F46B7400BB1086 /* OnboardingLandingPageInterface.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
 				8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */,
+				BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */,
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */,
 				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
@@ -7851,6 +7856,7 @@
 				B4AB48CB230BF982003B3C1F /* MyDataExplanationInteractor.swift in Sources */,
 				8DF7870A22FEB50800CDE0A9 /* RegistrationCodeViewController.swift in Sources */,
 				ACB99E7922687D2000A73709 /* MultipleSelectionCollectionViewCell.swift in Sources */,
+				BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */,
 				36376650223A851500C2C429 /* AbstractLevelTwoViewController.swift in Sources */,
 				363765FE223A4BD200C2C429 /* KnowingInterface.swift in Sources */,
 				759AB41F22C4D5B50091BFB8 /* TBVGraphBarRangeCell.swift in Sources */,

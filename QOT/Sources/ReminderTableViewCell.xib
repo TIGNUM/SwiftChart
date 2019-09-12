@@ -40,12 +40,12 @@
                         <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KJ3-Re-OTA">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KJ3-Re-OTA" customClass="QotUISwitch" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="247" y="32" width="51" height="31"/>
                         <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <color key="onTintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <connections>
-                            <action selector="didChangeValue:" destination="KGk-i7-Jjw" eventType="valueChanged" id="HS3-JX-qfM"/>
+                            <action selector="didChangeValue:" destination="KGk-i7-Jjw" eventType="valueChanged" id="Hmj-8d-GYq"/>
                         </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-Gh-FUM">
@@ -73,7 +73,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="reminderSwitch" destination="KJ3-Re-OTA" id="8Tn-yf-vk3"/>
+                <outlet property="reminderSwitch" destination="KJ3-Re-OTA" id="OsI-H4-2bR"/>
                 <outlet property="subTitleLabel" destination="Rgh-Gh-FUM" id="9o2-Pp-BqM"/>
                 <outlet property="titleLabel" destination="vtw-ze-YVt" id="TlM-vw-l28"/>
             </connections>

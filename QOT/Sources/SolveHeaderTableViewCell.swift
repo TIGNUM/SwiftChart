@@ -12,7 +12,7 @@ protocol SolveHeaderTableViewCellDelegate: class {
     func didTapShowMoreLess()
 }
 
-final class SolveHeaderTableViewCell: UITableViewCell, Dequeueable {
+final class SolveHeaderTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -30,6 +30,7 @@ extension SolveHeaderTableViewCell {
         ThemeText.resultHeader1.apply(title.uppercased(), to: titleLabel)
         ThemeText.resultHeader2.apply(solutionText, to: solutionTextLabel)
         showMoreButton.isHidden = hideShowMoreButton
+        selectionStyle = .none
     }
 }
 
@@ -37,8 +38,8 @@ extension SolveHeaderTableViewCell {
 
 extension SolveHeaderTableViewCell {
     @IBAction func didTapShowMore(_ sender: UIButton) {
-        solutionTextLabel.numberOfLines = isExpanded == true ? 4 : 0
-        showMoreButton.setTitle(isExpanded == true ? "Show more" : "Show less", for: .normal)
+        solutionTextLabel.numberOfLines = isExpanded ? 4 : 0
+        showMoreButton.setTitle(isExpanded ? "Show more" : "Show less", for: .normal)
         isExpanded = !isExpanded
         delegate?.didTapShowMoreLess()
     }

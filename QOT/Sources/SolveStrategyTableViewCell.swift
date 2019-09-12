@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SolveStrategyTableViewCell: UITableViewCell, Dequeueable {
+final class SolveStrategyTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 

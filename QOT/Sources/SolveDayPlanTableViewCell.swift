@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SolveDayPlanTableViewCell: UITableViewCell, Dequeueable {
+final class SolveDayPlanTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -23,12 +23,12 @@ final class SolveDayPlanTableViewCell: UITableViewCell, Dequeueable {
 extension SolveDayPlanTableViewCell {
 
     func configure(hasHeader: Bool, with text: String) {
+        selectionStyle = .none
         ThemeText.resultList.apply(R.string.localized.solve5DayPlan(), to: headerLabel)
         ThemeText.resultHeader2.apply(text, to: fiveDayPlanTextLabel)
 
         hasHeaderTopConstraint?.isActive = hasHeader == true
         hasNoHeaderTopConstraint?.isActive = hasHeader == false
         headerLabel.isHidden = hasHeader == false
-        layoutIfNeeded()
     }
 }

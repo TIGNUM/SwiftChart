@@ -60,16 +60,21 @@ extension CoachRouter: CoachRouterInterface {
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
             viewController.present(controller, animated: true)
+            
         case .shortTBVMindSet:
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .shortTBVPrepare:
-            let configurator = DTRecoveryConfigurator.make()
-            let controller = DTRecoveryViewController(configure: configurator)
-            viewController.present(controller, animated: true)
+            UserService.main.getMindsetShifters { [weak self] (mindsetShifters, _, _) in
+                if let mindsetShifter = mindsetShifters?.at(index: mindsetShifters?.randomIndex ?? 0) {
+                    let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter)
+                    let controller = ShifterResultViewController(configure: configurator)
+                    self?.viewController.present(controller, animated: true)
+                }
+            }
         case .shortTBVOnBoarding:
-            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding, delegate: nil)
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
             let controller = DTShortTBVViewController(configure: configurator)
             viewController.present(controller, animated: true)
         }

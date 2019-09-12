@@ -57,6 +57,7 @@ enum ThemeView {
     case chatbot
     case toolSeparator
     case askPermissions
+    case resultWhite
 
     var color: UIColor {
         switch self {
@@ -100,6 +101,8 @@ enum ThemeView {
             return Palette.carbon60
         case .askPermissions:
             return Palette.carbon
+        case .resultWhite:
+            return Palette.white40
         }
     }
 
@@ -155,6 +158,24 @@ enum ThemeTint {
         }
         if let color = color {
             view.tintColor = color
+        }
+    }
+}
+
+enum ThemeSwitch {
+    case accent
+    case white
+
+    func apply(_ view: UISwitch) {
+        switch self {
+        case .accent:
+            view.tintColor = Palette.accent70
+            view.onTintColor = Palette.accent70
+            view.layer.borderColor = Palette.accent70.cgColor
+        case .white:
+            view.tintColor = Palette.white40
+            view.onTintColor = .clear
+            view.layer.borderColor = Palette.white40.cgColor
         }
     }
 }
@@ -584,13 +605,16 @@ enum ThemeText {
     case resultHeader1
     case resultHeader2
     case resultList
+    case resultListHeader
     case resultFollowUp
     case askPermissionTitle
     case askPermissionMessage
+    case resultCounter
+    case resultCounterMax
 
     private var font: UIFont {
         switch self {
-        case .registrationCodeDisclaimerError:
+        case .registrationCodeDisclaimerError, .resultCounterMax:
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
@@ -626,7 +650,7 @@ enum ThemeText {
             return Fonts.fontDisplayThin30
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
-        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium:
+        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader:
             return Fonts.fontMedium16
         case .articleCategoryNotScaled, .qotToolsSectionSubtitle:
             return Fonts.fontMedium12
@@ -707,7 +731,7 @@ enum ThemeText {
             return Fonts.fontRegular12
         case .myDataHeatMapDetailCellValue:
             return Fonts.fontDisplayThin34
-        case .myDataChartIRAverageLabel, .audioPlayerTime, .audioPlayerTimeLight:
+        case .myDataChartIRAverageLabel, .resultCounter, .audioPlayerTime, .audioPlayerTimeLight:
             return Fonts.fontSemiBold12
         case .myDataHeatMapCellDateHighlighted:
             return Fonts.fontSemiBold16
@@ -744,7 +768,8 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatBotButton,
              .articleMarkRead, .articleAudioBar, .coachTitle:
             return Palette.accent
-        case .performanceSections, .qotToolsSubtitle, .resultList, .resultFollowUp, .audioPlayerTimeLight:
+        case .performanceSections, .qotToolsSubtitle, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
+             .resultCounter, .resultCounterMax:
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1:
@@ -842,7 +867,7 @@ enum ThemeText {
         case .performanceStaticTitle, .fromCoachTitle, .resultDate:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
         case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
-             .resultTitle, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle:
+             .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle:
              string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
@@ -929,7 +954,7 @@ enum ThemeText {
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
-        case .chatBotButton:
+        case .chatBotButton, .resultCounter, .resultCounterMax:
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
@@ -1048,6 +1073,10 @@ private struct Palette {
 
     static var accent60: UIColor {
         return UIColor.accent.withAlphaComponent(0.6)
+    }
+
+    static var accent70: UIColor {
+        return UIColor.accent.withAlphaComponent(0.7)
     }
 
     static var carbonDark: UIColor {
@@ -1204,6 +1233,10 @@ private struct Palette {
 
     static var nightModeBlue: UIColor {
         return Date().isNight ? Palette.azure : .blue
+    }
+
+    static var white40: UIColor {
+        return UIColor.white.withAlphaComponent(0.4)
     }
 
     static func light(_ lightColor: UIColor, or darkColor: UIColor, forcedColorMode: ThemeColorMode? = nil) -> UIColor {

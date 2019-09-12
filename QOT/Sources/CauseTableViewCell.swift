@@ -8,8 +8,9 @@
 
 import UIKit
 
-final class CauseTableViewCell: UITableViewCell, Dequeueable {
+final class CauseTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     // MARK: - Properties
+    @IBOutlet private weak var topTitleLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var explanationLabel: UILabel!
 }
@@ -18,7 +19,9 @@ final class CauseTableViewCell: UITableViewCell, Dequeueable {
 
 extension CauseTableViewCell {
     func configure(cause: String, explanation: String) {
-        titleLabel.text = cause
-        explanationLabel.text = explanation
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(R.string.localized.solveCause(), to: topTitleLabel)
+        ThemeText.resultHeader2.apply(cause, to: titleLabel)
+        ThemeText.resultListHeader.apply(explanation, to: explanationLabel)
     }
 }
