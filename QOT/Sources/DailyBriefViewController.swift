@@ -42,7 +42,7 @@ final class DailyBriefNavigationController: UINavigationController {
 final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    var delegate: CoachCollectionViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?

@@ -18,7 +18,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
     // MARK: - Properties
 
     var interactor: MyQotMainInteractorInterface?
-    var delegate: CoachCollectionViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
     private var myQotModel: MyQotViewModel?
     private var dateOfPrep: String?

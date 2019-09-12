@@ -13,7 +13,7 @@ final class MyPeakPerformanceTableCell: BaseDailyBriefCell, UITableViewDelegate,
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     var peakPerformanceList = [MyPerformanceModelItem]()
-    var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()

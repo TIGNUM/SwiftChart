@@ -27,6 +27,10 @@ final class DailyCheckinQuestionsWorker {
         var answers: [QDMDailyCheckInAnswer] = []
 
         for question in questions {
+            guard let selectedIndex = question.selectedAnswerIndex,
+                let answerCount = question.answers?.count, answerCount > 1 else { continue }
+            // we are converting selected Index because we converted selected index in DailyCheckinStartWorker.
+            question.selectedAnswerIndex = answerCount - selectedIndex - 1 // - 1, bcause it is index
             var checkInAnswer = QDMDailyCheckInAnswer()
             checkInAnswer.questionId = question.remoteID
             checkInAnswer.SHPIQuestionId = question.SHPIQuestionId
