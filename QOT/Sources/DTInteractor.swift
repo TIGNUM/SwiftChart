@@ -84,7 +84,7 @@ class DTInteractor: DTInteractorInterface {
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
-        let titleToUpdate = getTitleToUpdate(selectedAnswer: selection.selectedAnswers.first)
+        let titleToUpdate = getTitleToUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
         let tbvToPresent = question?.answerType == AnswerType.text.rawValue ? tbv : nil
         return DTPresentationModel(question: question,
                                    titleToUpdate: titleToUpdate,
@@ -97,7 +97,7 @@ class DTInteractor: DTInteractorInterface {
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
 
-    func getTitleToUpdate(selectedAnswer: DTViewModel.Answer?) -> String? {
+    func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return nil
     }
 

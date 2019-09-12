@@ -22,15 +22,16 @@ final class DTSprintInteractor: DTInteractor {
     private var lastQuestionSelection: DTSelectionModel?
     private var selectedSprintTitle = ""
 
-    override func getTitleToUpdate(selectedAnswer: DTViewModel.Answer?) -> String? {
-        if selectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
-            selectedSprintContentId = selectedAnswer?.targetId(.content) ?? 0
-            selectedSprintTargetQuestionId = selectedAnswer?.targetId(.question) ?? 0
-            selectedSprintTitle = selectedAnswer?.title ?? ""
-            return selectedAnswer?.title
+    override func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+        let firstSelectedAnswer = selectedAnswers.first
+        if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
+            selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
+            selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? 0
+            selectedSprintTitle = firstSelectedAnswer?.title ?? ""
+            return firstSelectedAnswer?.title
         } else if
-            selectedAnswer?.keys.contains(Sprint.AnswerKey.StartTomorrow) == true ||
-                selectedAnswer?.keys.contains(Sprint.AnswerKey.AddToQueue) == true {
+            firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.StartTomorrow) == true ||
+                firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.AddToQueue) == true {
             return selectedSprintTitle
         }
         return nil

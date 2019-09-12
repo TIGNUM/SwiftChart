@@ -12,12 +12,43 @@ struct Recovery {
 	struct QuestionKey {
         static let Intro = "3drecovery-question-intro"
         static let Symptom = "3drecovery-question-syntom"
-        static let Loading = "3drecovery-question-generate-recovery-loading"
+        static let GeneratePlan = "3drecovery-question-generate-recovery-loading"
     }
 
     struct AnswerKey {
         static let Cognitive = "3drecovery-cognitive-item"
         static let Emotional = "3drecovery-emotional-item"
         static let Physical = "3drecovery-physical-item"
+    }
+
+    enum FatigueSymptom {
+        case cognitive
+        case emotional
+        case physical
+        case general
+
+        var replacement: String {
+            switch self {
+            case .cognitive: return R.string.localized.fatigueSymptomCognitive()
+            case .emotional: return R.string.localized.fatigueSymptomEmotional()
+            case .physical: return R.string.localized.fatigueSymptomPhysical()
+            case .general: return R.string.localized.fatigueSymptomGeneral()
+            }
+        }
+    }
+
+    static func getFatigueSymptom(_ selectedAnswers: [DTViewModel.Answer]) -> Recovery.FatigueSymptom {
+        let keys = selectedAnswers.flatMap { $0.keys }
+        let referenceValue = selectedAnswers.count < 3 ? selectedAnswers.count : 2
+        if (keys.filter { $0.contains(Recovery.AnswerKey.Cognitive) }).count == referenceValue {
+            return .cognitive
+        }
+        if (keys.filter { $0.contains(Recovery.AnswerKey.Emotional) }).count == referenceValue {
+            return .emotional
+        }
+        if (keys.filter { $0.contains(Recovery.AnswerKey.Physical) }).count == referenceValue {
+            return .physical
+        }
+        return .general
     }
 }

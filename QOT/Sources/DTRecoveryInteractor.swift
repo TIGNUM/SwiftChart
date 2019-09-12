@@ -8,7 +8,18 @@
 
 import UIKit
 
-final class DTRecoveryInteractor: DTInteractor {}
+final class DTRecoveryInteractor: DTInteractor {
+
+    override func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+        if questionKey == Recovery.QuestionKey.Symptom {
+            return getFatigueSymptom(selectedAnswers)
+        }
+        return nil
+    }
+}
+
+// MARK: - Private
+private extension DTRecoveryInteractor {}
 
 // MARK: - DTRecoveryInteractorInterface
 extension DTRecoveryInteractor: DTRecoveryInteractorInterface {}

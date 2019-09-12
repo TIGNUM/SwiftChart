@@ -73,25 +73,8 @@ final class DTMindsetViewController: DTViewController {
     }
 }
 
-// MARK: - Actions
+// MARK: - Private
 private extension DTMindsetViewController {
-    /**
-     An answer contains the decision about the next question to load or needed content.
-     Some questions will be displayed without answers. If the an answer can not be
-     selected by the user, the selection will happen here on `didTapNext()`.
-
-     - Parameter answer: The answer to select if exist otherwise select first available.
-     */
-    func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
-        if var answer = answer {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
-        } else if var answer = viewModel?.answers.first {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
-        }
-    }
-
     func handleTBVCase() {
         interactor?.getUsersTBV { [weak self] (tbv, initiated) in
             if initiated && tbv?.text != nil {

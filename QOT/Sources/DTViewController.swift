@@ -52,7 +52,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     // MARK: - Question Handling
-    func getAnswerFilter(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> String? {
+    func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return nil
     }
 
@@ -62,7 +62,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func loadNextQuestion() {
         let selectedAnswers = viewModel?.answers.filter { $0.selected } ?? []
-        let filter = getAnswerFilter(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
@@ -142,6 +142,23 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
+    }
+
+    /**
+     An answer contains the decision about the next question to load or needed content.
+     Some questions will be displayed without answers. If the an answer can not be
+     selected by the user, the selection will happen here on `didTapNext()`.
+
+     - Parameter answer: The answer to select if exist otherwise select first available.
+     */
+    func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
+        if var answer = answer {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
+        } else if var answer = viewModel?.answers.first {
+            answer.setSelected(true)
+            viewModel?.setSelectedAnswer(answer)
+        }
     }
 }
 
