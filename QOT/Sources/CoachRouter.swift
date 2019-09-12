@@ -60,7 +60,7 @@ extension CoachRouter: CoachRouterInterface {
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
             viewController.present(controller, animated: true)
-            
+
         case .shortTBVMindSet:
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
