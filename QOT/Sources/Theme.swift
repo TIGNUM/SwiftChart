@@ -937,6 +937,8 @@ enum ThemeText {
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
         return string
+
+        
     }
 
     func apply(_ text: String?, to view: UILabel?, lineSpacing: CGFloat? = nil,

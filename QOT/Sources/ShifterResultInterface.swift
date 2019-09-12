@@ -23,6 +23,8 @@ protocol ShifterResultPresenterInterface {
 protocol ShifterResultInteractorInterface: Interactor {
     func didTapClose()    
     func openConfirmationView()
+
+    
 }
 
 protocol ShifterResultRouterInterface {
