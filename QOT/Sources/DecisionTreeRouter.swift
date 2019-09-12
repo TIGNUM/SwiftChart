@@ -54,14 +54,6 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController?.present(decisionTreeVC, animated: true, completion: completion)
     }
 
-    func openMindsetShifterResult(resultItem: MindsetResult.Item, completion: @escaping () -> Void) {
-//        let configurator = ShifterResultConfigurator.make(resultItem: resultItem)
-//        let controller = ShifterResultViewController(configure: configurator)
-//        viewController?.present(controller, animated: true) {
-//            completion()
-//        }
-    }
-
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
         let configurator = SolveResultsConfigurator.make(from: selectedAnswer.remoteID ?? 0,
                                                          solutionCollectionId: selectedAnswer.targetId(.content) ?? 0,

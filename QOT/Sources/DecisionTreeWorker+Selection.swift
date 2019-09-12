@@ -162,6 +162,7 @@ extension DecisionTreeWorker {
                     showNextQuestion(targetId: targetQuestionId)
                     return
                 }
+            //TODO: Remove in clean up task.
             case QuestionKey.MindsetShifter.Check:
 //                getShifterResultItem(answers: decisionTreeAnswers) { [unowned self] (resultItem) in
 //                    self.interactor?.openMindsetShifterResult(resultItem: resultItem) {
@@ -221,8 +222,7 @@ private extension DecisionTreeWorker {
     }
 
     func showQuestion(_ node: DecisionTreeNode) {
-        if let question = node.question {
-            syncButtons()
+        if let question = node.question {            
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
                                      filter: answersFilter(),
@@ -243,6 +243,7 @@ private extension DecisionTreeWorker {
 
 // MARK: - MindsetShifter
 private extension DecisionTreeWorker {
+    //TODO: Remove in clean up task.
 //    func getShifterResultItem(answers: [QDMAnswer],
 //                              completion: @escaping (MindsetResult.Item) -> Void) {
 //        let dispatchGroup = DispatchGroup()

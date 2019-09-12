@@ -52,7 +52,6 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-//    private var navigationButton: NavigationButton?
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
 
@@ -99,14 +98,12 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        addObservers()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         baseRootViewController?.shouldMoveBottomBarWithKeyboard = true
         trackPage()
-        updateNavigationItems()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didTapDismiss),
                                                name: .didTapDismissBottomNavigation,
@@ -130,47 +127,6 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
 
 // MARK: - Private
 private extension DecisionTreeViewController {
-    func addObservers() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(animateNavigationButton),
-                                               name: .didUpdateSelectionCounter,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateBottomNavigationItems(_:)),
-                                               name: .questionnaireBottomNavigationUpdate,
-                                               object: nil)
-    }
-
-    func removeObservers() {
-        NotificationCenter.default.removeObserver(self, name: .questionnaireBottomNavigationUpdate, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .didUpdateSelectionCounter, object: nil)
-    }
-
-    @objc func updateBottomNavigationItems(_ notification: NSNotification) {
-//        guard let navigationButton = notification.object as? NavigationButton else { return }
-//        navigationButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-//        self.navigationButton = navigationButton
-//        updateNavigationItems()
-    }
-
-    func updateNavigationItems() {
-//        let leftItems = interactor?.hasLeftBarButtonItem == true ? [dismissNavigationItem()] : []
-//        var rightItems = [UIBarButtonItem]()
-//        if let navigationButton = navigationButton {
-//            rightItems = [UIBarButtonItem(from: navigationButton)]
-//        }
-//        updateBottomNavigation(leftItems, rightItems)
-    }
-
-    func resetNavigationItems() {
-        let leftItems = [dismissNavigationItem()]
-        updateBottomNavigation(leftItems, [])
-    }
-
-    @objc func animateNavigationButton() {
-//        navigationButton?.pulsate()
-    }
-
     func setupPageViewController() {
         let pageController = DecisionTreePageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = interactor?.type.backgroundColor ?? .sand
@@ -191,8 +147,6 @@ private extension DecisionTreeViewController {
     @objc func didTapDismiss() {
         setShouldEndEditingTrue()
         dismiss()
-        removeObservers()
-        resetNavigationItems()
     }
 
     @IBAction func didTapPrevious(_ sender: UIButton) {

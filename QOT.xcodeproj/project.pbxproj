@@ -116,7 +116,6 @@
 		3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376673223BFF3800C2C429 /* StrategyListModel.swift */; };
 		3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376674223BFF3800C2C429 /* StrategyListConfigurator.swift */; };
 		363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363BB1762316EFB500B65065 /* ChoiceViewController.xib */; };
-		363BB17D2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363BB17C2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift */; };
 		363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */; };
 		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
 		3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */; };
@@ -149,14 +148,6 @@
 		365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */; };
 		3662433E227C56E500FFED3A /* AudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662433D227C56E500FFED3A /* AudioButton.swift */; };
 		36624340227C570200FFED3A /* AudioButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3662433F227C570200FFED3A /* AudioButton.xib */; };
-		3666FD202329C34200FC67D0 /* ResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD182329C34200FC67D0 /* ResultPresenter.swift */; };
-		3666FD212329C34200FC67D0 /* ResultWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD192329C34200FC67D0 /* ResultWorker.swift */; };
-		3666FD222329C34200FC67D0 /* ResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1A2329C34200FC67D0 /* ResultRouter.swift */; };
-		3666FD232329C34200FC67D0 /* ResultInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1B2329C34200FC67D0 /* ResultInterface.swift */; };
-		3666FD242329C34200FC67D0 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1C2329C34200FC67D0 /* ResultViewController.swift */; };
-		3666FD252329C34200FC67D0 /* ResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1D2329C34200FC67D0 /* ResultInteractor.swift */; };
-		3666FD262329C34200FC67D0 /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1E2329C34200FC67D0 /* ResultModel.swift */; };
-		3666FD272329C34200FC67D0 /* ResultConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD1F2329C34200FC67D0 /* ResultConfigurator.swift */; };
 		366AFD1820BDAD3000109F29 /* FormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1720BDAD3000109F29 /* FormView.xib */; };
 		366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AFD1920BDAE8900109F29 /* FormView.swift */; };
 		366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1B20BEA2F000109F29 /* Apercu-Bold.otf */; };
@@ -1473,7 +1464,6 @@
 		36376673223BFF3800C2C429 /* StrategyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListModel.swift; sourceTree = "<group>"; };
 		36376674223BFF3800C2C429 /* StrategyListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListConfigurator.swift; sourceTree = "<group>"; };
 		363BB1762316EFB500B65065 /* ChoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
-		363BB17C2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+SyncButtons.swift"; sourceTree = "<group>"; };
 		363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
 		3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetPresenter.swift; sourceTree = "<group>"; };
@@ -1506,14 +1496,6 @@
 		365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotDetailViewController.swift; sourceTree = "<group>"; };
 		3662433D227C56E500FFED3A /* AudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioButton.swift; sourceTree = "<group>"; };
 		3662433F227C570200FFED3A /* AudioButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioButton.xib; sourceTree = "<group>"; };
-		3666FD182329C34200FC67D0 /* ResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultPresenter.swift; sourceTree = "<group>"; };
-		3666FD192329C34200FC67D0 /* ResultWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultWorker.swift; sourceTree = "<group>"; };
-		3666FD1A2329C34200FC67D0 /* ResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultRouter.swift; sourceTree = "<group>"; };
-		3666FD1B2329C34200FC67D0 /* ResultInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultInterface.swift; sourceTree = "<group>"; };
-		3666FD1C2329C34200FC67D0 /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
-		3666FD1D2329C34200FC67D0 /* ResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultInteractor.swift; sourceTree = "<group>"; };
-		3666FD1E2329C34200FC67D0 /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
-		3666FD1F2329C34200FC67D0 /* ResultConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultConfigurator.swift; sourceTree = "<group>"; };
 		366AFD1720BDAD3000109F29 /* FormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormView.xib; sourceTree = "<group>"; };
 		366AFD1920BDAE8900109F29 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		366AFD1B20BEA2F000109F29 /* Apercu-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Bold.otf"; sourceTree = "<group>"; };
@@ -3046,21 +3028,6 @@
 				365825712327D19200AC3F4A /* DTShortTBVWorker.swift */,
 			);
 			name = ShortTBV;
-			sourceTree = "<group>";
-		};
-		3666FD172329C2B300FC67D0 /* Result */ = {
-			isa = PBXGroup;
-			children = (
-				3666FD1F2329C34200FC67D0 /* ResultConfigurator.swift */,
-				3666FD1D2329C34200FC67D0 /* ResultInteractor.swift */,
-				3666FD1B2329C34200FC67D0 /* ResultInterface.swift */,
-				3666FD1E2329C34200FC67D0 /* ResultModel.swift */,
-				3666FD182329C34200FC67D0 /* ResultPresenter.swift */,
-				3666FD1A2329C34200FC67D0 /* ResultRouter.swift */,
-				3666FD1C2329C34200FC67D0 /* ResultViewController.swift */,
-				3666FD192329C34200FC67D0 /* ResultWorker.swift */,
-			);
-			name = Result;
 			sourceTree = "<group>";
 		};
 		366AFD1620BDAD0800109F29 /* FormView */ = {
@@ -4830,7 +4797,6 @@
 				ACF0B94E225FC46E008CFAEC /* Cells */,
 				ACD399EF2294026D00DDE1BD /* Keys */,
 				3655F2CA2326EB7C00334719 /* MindsetShifter */,
-				3666FD172329C2B300FC67D0 /* Result */,
 				3658254D2327ABEA00AC3F4A /* ShortTBV */,
 				367A584A2326A13D0089A082 /* Solve */,
 				36EC22F82323F43C00DB5696 /* Sprint */,
@@ -4875,7 +4841,6 @@
 				364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */,
 				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
 				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
-				363BB17C2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift */,
 				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
 				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 			);
@@ -7025,7 +6990,6 @@
 				36B5BD3023142B4A00439A64 /* AskPermissionViewController.swift in Sources */,
 				36E4B7B1219EBFED00049EE8 /* TutorialModel.swift in Sources */,
 				9100195020F6413900049118 /* ExtensionModel.swift in Sources */,
-				3666FD242329C34200FC67D0 /* ResultViewController.swift in Sources */,
 				9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */,
 				8D9F6D23230E80EB00DCC241 /* WalkthroughConfigurator.swift in Sources */,
 				3637664A223A7DE100C2C429 /* LevelTwoInterface.swift in Sources */,
@@ -7035,7 +6999,6 @@
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				8D110D08230FDA41000181BA /* WalkthroughCoachConfigurator.swift in Sources */,
-				3666FD272329C34200FC67D0 /* ResultConfigurator.swift in Sources */,
 				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
@@ -7176,7 +7139,6 @@
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */,
-				3666FD232329C34200FC67D0 /* ResultInterface.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
@@ -7204,7 +7166,6 @@
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
 				9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */,
 				75DC685F22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift in Sources */,
-				3666FD202329C34200FC67D0 /* ResultPresenter.swift in Sources */,
 				8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */,
 				8DC2F7242313F2B70002F29F /* StreamVideoInteractor.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -7355,7 +7316,6 @@
 				3616EF9222D7408900E43961 /* DecisionTreeWorker+Selection.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
-				363BB17D2317CA4800B65065 /* DecisionTreeWorker+SyncButtons.swift in Sources */,
 				8D008F07230EFA45006D7263 /* WalkthroughSearchInteractor.swift in Sources */,
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
@@ -7472,7 +7432,6 @@
 				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
 				75DC685922BD181A00FF183D /* MyToBeVisionCountDownRouter.swift in Sources */,
 				8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */,
-				3666FD252329C34200FC67D0 /* ResultInteractor.swift in Sources */,
 				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
 				75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */,
@@ -7655,7 +7614,6 @@
 				CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */,
 				DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */,
 				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
-				3666FD262329C34200FC67D0 /* ResultModel.swift in Sources */,
 				8D204C2322F06F1000DF6A76 /* MySprintNotesRouter.swift in Sources */,
 				9CF3BE4722FC7B460027D111 /* MypeakperformanceTitleModel.swift in Sources */,
 				8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */,
@@ -7738,7 +7696,6 @@
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
-				3666FD222329C34200FC67D0 /* ResultRouter.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
@@ -7888,7 +7845,6 @@
 				7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */,
 				75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */,
 				7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */,
-				3666FD212329C34200FC67D0 /* ResultWorker.swift in Sources */,
 				36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				91CCC996206938EE00E0C251 /* EventDate.swift in Sources */,

@@ -71,7 +71,6 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openShortTBVGenerator(completion: (() -> Void)?)
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
-    func openMindsetShifterResult(resultItem: MindsetResult.Item, completion: @escaping () -> Void)
     func dismissAndGoToMyQot()
 
     func updateRecoveryModel(fatigueContentItemId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
@@ -109,7 +108,6 @@ protocol DecisionTreeRouterInterface {
     func openPrepareResults(_ contentId: Int)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
-    func openMindsetShifterResult(resultItem: MindsetResult.Item, completion: @escaping () -> Void)
     func openArticle(with contentID: Int)
     func openVideo(from url: URL, item: QDMContentItem?)
     func openShortTBVGenerator(completion: (() -> Void)?)
