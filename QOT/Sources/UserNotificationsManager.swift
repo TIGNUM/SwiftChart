@@ -33,6 +33,15 @@ final class UserNotificationsManager {
     }
 
     func scheduleNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional: self._scheduleNotifications()
+            default: break
+            }
+        }
+    }
+
+    func _scheduleNotifications() {
         let dispatchGroup = DispatchGroup()
 
         // schedule new notifications
@@ -73,16 +82,17 @@ final class UserNotificationsManager {
             dispatchGroup.leave()
         }
 
-        dispatchGroup.notify(queue: queue) {
+        dispatchGroup.notify(queue: .main) {
             self._scheduleNotifciations(currentSprint, sprintNotificationConfig, requests)
             NotificationService.main.reportScheduledNotification(scheduledNotificationItems) { (error) in }
         }
     }
+
     private func _scheduleNotifciations(_ currentSprint: QDMSprint?,
                                         _ sprintNotificationConfig: [QDMSprintNotificationConfig],
                                         _ requests: [UNNotificationRequest]) {
         NotificationConfigurationObject.scheduleDailyNotificationsIfNeeded()
-        self.removeDuplicatedNotificationAndCreateNotificationsFor(currentSprint, sprintNotificationConfig, requests) { (requests) in
+        self.createSprintNotifications(currentSprint, sprintNotificationConfig, requests) { (requests, identifiersToRemove) in
             guard let newRequests = requests, newRequests.isEmpty == false else {
                 return
             }
@@ -90,56 +100,70 @@ final class UserNotificationsManager {
 
             // remove Delivered Notifications which it has same link in the future
             notificationCenter.getDeliveredNotifications(completionHandler: { (deliveredNotifications) in
-                var identifiersToRemove = [String]()
+                var deliveredIdentifiersToRemove = [String]()
                 for deliveredNotification in deliveredNotifications {
                     for newRequest in requests ?? [] {
                         guard let link = newRequest.content.link() else { continue }
                         if deliveredNotification.request.content.link() == link {
-                            identifiersToRemove.append(deliveredNotification.request.identifier)
+                            deliveredIdentifiersToRemove.append(deliveredNotification.request.identifier)
                         }
                     }
                 }
-                notificationCenter.removeDeliveredNotifications(withIdentifiers: identifiersToRemove)
+                self.queue.async {
+                    notificationCenter.removeDeliveredNotifications(withIdentifiers: deliveredIdentifiersToRemove)
+                }
             })
             notificationCenter.getPendingNotificationRequests(completionHandler: { (pendingNotifications) in
                 let pendingNotificaionIds = pendingNotifications.compactMap({ $0.identifier })
                 let allValidFutureNotificationIds = newRequests.compactMap({ $0.identifier })
                 let finalRequests = newRequests.filter({ pendingNotificaionIds.contains(obj: $0.identifier) == false })
-                // Schedule new Notifications
-                if finalRequests.isEmpty == false {
-                    notificationCenter.scheduleNofications(finalRequests, queue: self.queue, completion: { (requests) in })
-                }
 
                 // Remove Pending notifications which are not valid any more.
-                let pendingNotificationIdsToRemove = pendingNotificaionIds.filter({
+                var pendingNotificationIdsToRemove = pendingNotificaionIds.filter({
                     if allValidFutureNotificationIds.contains(obj: $0) || $0.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER) {
                         return false
                     }
                     return true
                 })
+                pendingNotificationIdsToRemove.append(contentsOf: identifiersToRemove)
+
                 if pendingNotificationIdsToRemove.isEmpty == false {
-                    notificationCenter.removePendingNotificationRequests(withIdentifiers: pendingNotificationIdsToRemove)
+                    self.queue.async {
+                        notificationCenter.removePendingNotificationRequests(withIdentifiers: pendingNotificationIdsToRemove)
+                    }
                 }
+                notificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
+                    // Schedule new Notifications
+                    self.queue.async {
+                        for request in finalRequests {
+                            notificationCenter.add(request) { (error) in
+                                if let error = error {
+                                    log("Failed to schedule user notification request: \(request), error: \(error)")
+                                }
+                            }
+                        }
+                    }
+                })
             })
         }
     }
-    private func removeDuplicatedNotificationAndCreateNotificationsFor(_ sprint: QDMSprint?,
-                                                                       _ config: [QDMSprintNotificationConfig]?,
-                                                                       _ originalRequests: [UNNotificationRequest]?,
-                                                                       _ completion: @escaping ([UNNotificationRequest]?) -> Void) {
+    private func createSprintNotifications(_ sprint: QDMSprint?,
+                                           _ config: [QDMSprintNotificationConfig]?,
+                                           _ originalRequests: [UNNotificationRequest]?,
+                                           _ completion: @escaping ([UNNotificationRequest]?, [String]) -> Void) {
         var requests = originalRequests ?? []
         guard let sprint = sprint,
             let config = config, config.isEmpty == false else {
-                completion(requests)
+                completion(requests, [])
                 return
         }
         guard let sprintType = sprint.sprintCollection?.searchTagsDetailed
             .filter({ $0.name != nil && $0.name != "SPRINT_REPORT" }).first?.name else {
-                completion(requests)
+                completion(requests, [])
                 return
         }
         guard let sprintConfig = config.filter({ $0.sprintType == sprintType}).first else {
-            completion(requests)
+            completion(requests, [])
             return
         }
 
@@ -170,9 +194,10 @@ final class UserNotificationsManager {
                     let content = UNMutableNotificationContent(title: notificationTitle, body: notificationText, soundName: "", link: "")
                     content.sound = nil
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
+                    let link = URLScheme.dailyBrief.launchPathWithParameterValue(DailyBriefBucketName.SPRINT_CHALLENGE)
                     let identifier = QDMGuideItemNotfication.notificationIdentifier(with: sprintConfig.sprintType,
                                                                                     date: triggerDate,
-                                                                                    link: "qot://daily-brief?bucketName=sprint")
+                                                                                    link: link)
                     requests.append(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger))
                 }
                 dispatchGroup.leave()
@@ -180,7 +205,7 @@ final class UserNotificationsManager {
         }
         dispatchGroup.leave()
 
-        dispatchGroup.notify(queue: queue) {
+        dispatchGroup.notify(queue: .main) {
             var requestIdetifiersToRemove = [String]()
             let filteredRequests = requests.filter { (request) -> Bool in
                 for date in notificationTagsToRemove.keys {
@@ -196,10 +221,7 @@ final class UserNotificationsManager {
                 }
                 return true
             }
-            if requestIdetifiersToRemove.isEmpty == false {
-                UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: requestIdetifiersToRemove)
-            }
-            completion(filteredRequests)
+            completion(filteredRequests, requestIdetifiersToRemove)
         }
     }
 }
@@ -210,14 +232,9 @@ extension UserNotificationsManager {
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
+        let dataTypes: [SyncDataType] = [.SPRINT, .GUIDE_ITEM_USER_NOTIFICATION, .NONE]
         guard let syncResult = notification.object as? SyncResultContext,
-            syncResult.dataType == .SPRINT || syncResult.dataType == .GUIDE_ITEM_USER_NOTIFICATION  else { return }
-
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
-            switch settings.authorizationStatus {
-            case .authorized, .provisional: self.scheduleNotifications()
-            default: break
-            }
-        }
+            dataTypes.contains(obj: syncResult.dataType) else { return }
+        scheduleNotifications()
     }
 }

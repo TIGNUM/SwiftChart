@@ -1002,7 +1002,6 @@
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */; };
 		CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57589D205FD22E00EDC028 /* FadeContainerView.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
-		CB6637AD201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */; };
 		CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */; };
 		CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
@@ -2264,7 +2263,6 @@
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuModel.swift; sourceTree = "<group>"; };
 		CB57589D205FD22E00EDC028 /* FadeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeContainerView.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
-		CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+Convenience.swift"; sourceTree = "<group>"; };
 		CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
 		CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QOT-Bridging-Header.h"; sourceTree = "<group>"; };
 		CB78420B1FB30DA800C91546 /* EKParticipant+ObjC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EKParticipant+ObjC.h"; sourceTree = "<group>"; };
@@ -4851,7 +4849,6 @@
 		CB6637A7201A24E200A995D6 /* UserNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */,
 				CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */,
 				DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */,
 				DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */,
@@ -6948,7 +6945,6 @@
 				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
-				CB6637AD201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
