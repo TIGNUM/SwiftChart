@@ -13,10 +13,6 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     @IBOutlet private weak var content: UILabel!
     @IBOutlet weak var button: AnimatedButton!
     var trackState = false
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-    }
     @IBAction func clickAction(_ sender: Any) {
         trackState = !trackState
         button.flipImage(trackState)

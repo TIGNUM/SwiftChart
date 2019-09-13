@@ -55,9 +55,9 @@ final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLe
     /// E.g.: Based on Question A answer, filter Question B answers to display.
     /// If `answersFilter` is nil, we'll display all possible answers.
     private var filteredAnswers: [QDMAnswer] {
-        if question.key == QuestionKey.Prepare.BuildCritical {
+        if question.key == Prepare.QuestionKey.BuildCritical {
             if preparations?.isEmpty == true {
-                return Array(question.answers).filter { $0.keys.contains(AnswerKey.Prepare.PeakPlanNew) }
+                return Array(question.answers).filter { $0.keys.contains(Prepare.AnswerKey.PeakPlanNew) }
             }
             return question.answers
         }
@@ -210,7 +210,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             }
             cell.configure(with: questionTitle,
                            html: questionHtml,
-                           questionTitleUpdate: update,
+                           questionUpdate: update,
                            textColor: interactor?.type.textColor ?? .carbon)
             return cell
         case .answer:
@@ -233,7 +233,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.singleSelection.rawValue,
                  AnswerType.multiSelection.rawValue:
                 switch question.key {
-                case QuestionKey.Prepare.SelectExisting:
+                case Prepare.QuestionKey.SelectExisting:
                     let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
                     let tableViewHeight = view.frame.height - (cell.frame.height + 64)
                     cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
@@ -249,7 +249,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 }
             case AnswerType.userInput.rawValue:
                 let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                let text = question.key == QuestionKey.Prepare.BenefitsInput ? interactor?.userInput : nil
+                let text = question.key == Prepare.QuestionKey.BenefitsInput ? interactor?.userInput : nil
                 cell.configure(inputText: text,
                                maxCharacters: QuestionKey.maxCharacter(question.key),
                                delegate: delegate)
@@ -293,7 +293,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 private extension DecisionTreeQuestionnaireViewController {
 //    func recalculateContentInsets(at indexPath: IndexPath) {
 //        if question.answerType == AnswerType.openCalendarEvents.rawValue
-//            || question.key == QuestionKey.Prepare.SelectExisting {
+//            || question.key == Prepare.QuestionKey.SelectExisting {
 //            return tableView.contentInset = .zero
 //        }
 //        if question.answerType == AnswerType.userInput.rawValue {

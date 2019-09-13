@@ -15,6 +15,8 @@ enum CoachSection: Int, CaseIterable {
     case sprint
     case event
     case challenge
+    case recovery
+    case recoveryResult
     case shortTBVMindSet
     case shortTBVPrepare
     case shortTBVOnBoarding

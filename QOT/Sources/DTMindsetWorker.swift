@@ -31,8 +31,7 @@ private extension DTMindsetWorker {
                                          lowPerformanceAnswerIds: mindsetItem.lowPerformanceAnswerIds,
                                          workAnswerIds: [],
                                          homeAnswerIds: [],
-                                         highPerformanceContentItemIds: mindsetItem.highPerformanceContentItemIds) {
-                                            (mindsetShifter, error) in
+                                         highPerformanceContentItemIds: mindsetItem.highPerformanceContentItemIds) { (mindsetShifter, error) in
                                             if let error = error {
                                                 log("Error createMindsetShifter: \(error)", level: .error)
                                             }

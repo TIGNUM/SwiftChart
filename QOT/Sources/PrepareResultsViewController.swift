@@ -15,7 +15,7 @@ protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
+    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key)
     func didUpdateBenefits(_ benefits: String)
 }
 
@@ -96,8 +96,8 @@ private extension PrepareResultsViewController {
     }
 
     func shouldShowHeader(in section: Int) -> Bool {
-        return (section == Prepare.Daily.REMINDER_LIST && interactor?.getType == .LEVEL_DAILY) ||
-            (section == Prepare.Critical.REMINDER_LIST && interactor?.getType == .LEVEL_CRITICAL)
+        return (section == PrepareResult.Daily.REMINDER_LIST && interactor?.getType == .LEVEL_DAILY) ||
+            (section == PrepareResult.Critical.REMINDER_LIST && interactor?.getType == .LEVEL_CRITICAL)
     }
 }
 
@@ -275,7 +275,7 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
+    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key) {
         interactor?.updateIntentions(selectedAnswers, key)
         refreshBottomNavigationItems()
     }
@@ -338,14 +338,14 @@ extension PrepareResultsViewController {
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
+            return [doneButtonItem(#selector(dismissView))]
+        }
         if !(interactor?.dataModified ?? false) {
             return []
         }
-        if interactor?.getType == .LEVEL_ON_THE_GO || showDone {
-            return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
-                                          buttonWidth: .Done,
-                                          action: #selector(dismissView),
-                                          backgroundColor: .carbonDark)]
+        if showDone {
+            return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .SaveAndContinue,

@@ -12,8 +12,8 @@ final class SolveResultsInteractor {
 
     // MARK: - Properties
     private let worker: SolveResultsWorker
-    private let presenter: SolveResultsPresenterInterface
-    private let router: SolveResultsRouterInterface
+    private let presenter: SolveResultsPresenterInterface?
+    private let router: SolveResultsRouterInterface?
 
     // MARK: - Init
     init(worker: SolveResultsWorker,
@@ -26,9 +26,9 @@ final class SolveResultsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter?.setupView()
         worker.results { [weak self] (solveResults) in
-            self?.presenter.present(solveResults)
+            self?.presenter?.present(solveResults)
         }
     }
 }
@@ -45,43 +45,43 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
 
     func save() {
         worker.save { [weak self] in
-            self?.router.dismiss()
+            self?.router?.dismiss()
         }
     }
 
     func didTapStrategy(with id: Int) {
-        router.openStrategy(with: id)
+        router?.openStrategy(with: id)
     }
 
     func didTapTrigger(_ type: SolveTriggerType) {
         switch type {
         case .midsetShifter:
-            router.openMindsetShifter()
+            router?.openMindsetShifter()
         case .tbvGenerator:
-            router.openVisionGenerator()
+            router?.openRecovery()
         case .recoveryPlaner:
-            router.openRecovery()
+            router?.openRecovery()
         }
     }
 
     func openConfirmationView() {
-        presenter.presentAlert(title: worker.leaveAlertTitle,
+        presenter?.presentAlert(title: worker.leaveAlertTitle,
                                message: worker.leaveAlertMessage,
                                stayTitle: worker.leaveAlertStayButton,
                                leaveTitle: worker.leaveAlertLeaveButton)
     }
 
     func deleteModelAndDismiss() {
-        router.dismiss()
+        router?.dismiss()
         worker.deleteModel()
     }
 
     func dismiss() {
-        router.dismiss()
+        router?.dismiss()
     }
 
     func didTapDone() {
-        router.didTapDone()
+        router?.didTapDone()
     }
 
     func isPresentingExistingSolve() -> Bool {
