@@ -579,12 +579,6 @@ enum ThemeText {
     case qotToolsSubtitle
     case qotToolsTitle
     case qotToolsSectionSubtitle
-    case weatherIntro
-    case weatherDescription
-    case weatherTitle
-    case weatherBody
-    case weatherHourlyLabels
-    case weatherHourlyLabelNow
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
     case myDataMonthYearTitle
@@ -634,12 +628,6 @@ enum ThemeText {
     case weatherBody
     case weatherHourlyLabels
     case weatherHourlyLabelNow
-
-    case syncedCalendarTitle
-    case syncedCalendarDescription
-    case syncedCalendarTableHeader
-    case syncedCalendarRowTitle
-    case syncedCalendarRowSubtitle
 
     private var font: UIFont {
         switch self {
