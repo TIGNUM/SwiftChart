@@ -22,15 +22,13 @@ extension DecisionTreeWorker {
                 self?.showNextQuestion(targetId: targetQuestionId, answer: nil)
             }
         case .startTomorrow:
-            isSprintInProgress { [weak self] (sprint, endDate) in
-                if let sprint = sprint, let endDate = endDate {
-                    let dateString = DateFormatter.settingsUser.string(from: endDate)
+            isSprintInProgress { [weak self] (sprint, _) in
+                if let sprint = sprint {
                     self?.activeSprint = sprint
                     self?.newSprintContentId = targetContentId
                     self?.lastSprintQuestionId = targetQuestionId
                     let title = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
-                    let messageFormat = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
-                    let message = String(format: messageFormat, dateString, self?.selectedSprintTitle ?? "")
+                    let message = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
                     self?.interactor?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
                 } else {
                     self?.createSprintAndStart(targetContentId)

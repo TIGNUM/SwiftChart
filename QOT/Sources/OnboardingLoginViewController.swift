@@ -80,6 +80,7 @@ private extension OnboardingLoginViewController {
         emailField.textField.keyboardType = .emailAddress
         emailField.placeholderParameters.alpha = 0.6
         emailField.textField.corner(radius: .Nine, borderColor: .sand20)
+        emailField.textField.autocorrectionType = .no
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
         viewTheme.apply(emailField.textField)

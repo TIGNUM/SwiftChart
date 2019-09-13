@@ -74,7 +74,7 @@ final class StreamVideoWorker {
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return R.string.localized.buttonTitleYesContinue()
+        return R.string.localized.alertButtonTitleContinue()
     }()
 
     lazy var contentItemId: Int? = {

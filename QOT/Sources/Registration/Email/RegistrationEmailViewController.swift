@@ -98,6 +98,7 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
         emailField.textField.corner(radius: .Nine, borderColor: .sand40)
         emailField.textField.autocapitalizationType = .none
         emailField.textField.keyboardType = .emailAddress
+        emailField.textField.autocorrectionType = .no
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
     }
