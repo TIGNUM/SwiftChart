@@ -11,33 +11,40 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="r2R-x6-7tm" customClass="CoachTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="556" height="171"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" rowHeight="126" id="r2R-x6-7tm" customClass="CoachTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="556" height="135"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r2R-x6-7tm" id="oZM-WY-vOG">
-                <rect key="frame" x="0.0" y="0.0" width="518" height="170.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="r2R-x6-7tm" id="oZM-WY-vOG">
+                <rect key="frame" x="0.0" y="0.0" width="518" height="134.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LaT-qw-HPO">
-                        <rect key="frame" x="30" y="94" width="468" height="21"/>
+                        <rect key="frame" x="30" y="22" width="468" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="MpP-5y-pWU"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muG-wl-Bhs">
-                        <rect key="frame" x="30" y="125" width="443" height="20.5"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hjdhhdhd hdhdh fff ffff ffff f ff eeeeeeeeehjuhjfhjdsbfjsdfbjdfbdjsfjsdkfndsjk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muG-wl-Bhs">
+                        <rect key="frame" x="30" y="53" width="448" height="46"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="46" id="rWx-ff-hcE"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="bottom" secondItem="muG-wl-Bhs" secondAttribute="bottom" constant="25" id="H0O-Nx-EYl"/>
+                    <constraint firstAttribute="bottom" secondItem="muG-wl-Bhs" secondAttribute="bottom" constant="22" id="H0O-Nx-EYl"/>
                     <constraint firstItem="LaT-qw-HPO" firstAttribute="leading" secondItem="oZM-WY-vOG" secondAttribute="leading" constant="30" id="UEw-Bx-mD9"/>
                     <constraint firstAttribute="trailing" secondItem="LaT-qw-HPO" secondAttribute="trailing" constant="20" id="YEe-KT-6ot"/>
                     <constraint firstItem="muG-wl-Bhs" firstAttribute="leading" secondItem="oZM-WY-vOG" secondAttribute="leading" constant="30" id="bLg-1K-fUa"/>
-                    <constraint firstItem="muG-wl-Bhs" firstAttribute="top" secondItem="LaT-qw-HPO" secondAttribute="bottom" constant="10" id="ggd-sy-0X1"/>
-                    <constraint firstAttribute="trailing" secondItem="muG-wl-Bhs" secondAttribute="trailing" constant="45" id="whc-ow-o8W"/>
+                    <constraint firstItem="muG-wl-Bhs" firstAttribute="top" secondItem="LaT-qw-HPO" secondAttribute="bottom" constant="6" id="ggd-sy-0X1"/>
+                    <constraint firstItem="LaT-qw-HPO" firstAttribute="top" secondItem="oZM-WY-vOG" secondAttribute="top" constant="22" id="ivK-lM-XwU"/>
+                    <constraint firstAttribute="trailing" secondItem="muG-wl-Bhs" secondAttribute="trailing" constant="40" id="whc-ow-o8W"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.92122668027877808" green="0.90475624799728394" blue="0.89374810457229614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -45,7 +52,7 @@
                 <outlet property="subtitleLabel" destination="muG-wl-Bhs" id="yIo-ay-mEq"/>
                 <outlet property="titleLabel" destination="LaT-qw-HPO" id="Y0F-Dq-OIj"/>
             </connections>
-            <point key="canvasLocation" x="-225.59999999999999" y="46.326836581709152"/>
+            <point key="canvasLocation" x="-225.59999999999999" y="30.134932533733135"/>
         </tableViewCell>
     </objects>
 </document>

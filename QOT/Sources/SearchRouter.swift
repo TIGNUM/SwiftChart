@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SearchRouter {
 
@@ -31,8 +32,16 @@ extension SearchRouter: SearchRouterInterface {
                  .WhatsHot,
                  .QOTLibrary,
                  .Tools:
-                if let link = link(with: searchResult.contentID, urlFormat: "qot://random-content?contentID=%d") {
-                    presentArticle(with: link)
+                if let contentItemID = searchResult.contentItemID, let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {
+                    UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+                } else if let contentCollectionID = searchResult.contentID {
+                    if searchResult.section == .LearnStrategies {
+                        presentStrategyList(selectedStrategyID: contentCollectionID)
+                    } else if searchResult.section == .QOTLibrary {
+                        presentToolsItems(selectedToolID: contentCollectionID)
+                    } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionID)) {
+                        UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+                    }
                 }
             default: return
             }
@@ -55,5 +64,21 @@ private extension SearchRouter {
 
     func presentArticle(with link: URL) {
         LaunchHandler().process(url: link, searchViewController: searchViewController)
+    }
+
+    func presentStrategyList(selectedStrategyID: Int) {
+        let identifier = R.storyboard.main.qotArticleViewController.identifier
+        if let controller = R.storyboard.main()
+            .instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
+            ArticleConfigurator.configure(selectedID: selectedStrategyID, viewController: controller)
+            searchViewController.present(controller, animated: true, completion: nil)
+        }
+    }
+
+    func presentToolsItems(selectedToolID: Int?) {
+        if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
+            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
+            searchViewController.present(controller, animated: true, completion: nil)
+        }
     }
 }

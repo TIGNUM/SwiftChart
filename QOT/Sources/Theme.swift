@@ -61,7 +61,7 @@ enum ThemeView {
     var color: UIColor {
         switch self {
         case .level1:
-            return Palette.carbonDark
+            return Palette.carbon
         case .level2:
             return Palette.carbon
         case .level3:
@@ -323,7 +323,7 @@ enum ThemeSegment {
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
             view.tintColor = .clear
-            view.backgroundColor = .clear
+            view.backgroundColor = .carbon
         }
 
         if let normal = normal,
@@ -349,7 +349,7 @@ enum ThemeSearchBar {
             view.keyboardAppearance = .dark
             if let searchField = view.value(forKey: "_searchField") as? UITextField {
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = Palette.carbon
+                searchField.backgroundColor = Palette.sand10
                 searchField.textColor = Palette.sand
             }
             view.setShowsCancelButton(true, animated: false)
