@@ -340,13 +340,6 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
     func presentGetHelpView() {
         sendEmail()
     }
-
-    func presentUnoptimizedAlertView() {
-        let doneButton = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone))
-        QOTAlert.show(title: ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertTitle),
-                      message: ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertMessage),
-                      bottomItems: [doneButton])
-    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
