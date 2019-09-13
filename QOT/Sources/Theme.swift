@@ -58,6 +58,7 @@ enum ThemeView {
     case toolSeparator
     case askPermissions
     case resultWhite
+    case qotTools
     case syncedCalendarSeparator
 
     var color: UIColor {
@@ -86,7 +87,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
             return Palette.sand
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
