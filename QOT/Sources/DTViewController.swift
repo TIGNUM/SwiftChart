@@ -14,7 +14,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     // MARK: - Properties
     var viewModel: DTViewModel?
     var router: DTRouterInterface?
-    weak var interactor: DTInteractor?
+    var interactor: DTInteractorInterface?
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!

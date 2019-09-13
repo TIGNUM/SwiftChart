@@ -16,4 +16,6 @@ protocol DTShortTBVInteractorInterface: Interactor {
     func generateTBV(_ selectedAnswers: [SelectedAnswer], _ completion: @escaping () -> Void)
 }
 
-protocol DTShortTBVRouterInterface {}
+protocol DTShortTBVRouterInterface {
+    func dismiss()
+}

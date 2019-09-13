@@ -12,7 +12,7 @@ final class DTRecoveryViewController: DTViewController {
 
     // MARK: - Properties
     var recoveryInteractor: DTRecoveryInteractorInterface?
-    var recoveryRouter: DTRecoveryRouter?
+    var recoveryRouter: DTRecoveryRouterInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTRecoveryViewController>) {

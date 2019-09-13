@@ -59,7 +59,7 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                                                                             newSprintTitle: self?.selectedSprintTitle ?? "",
                                                                             message: messageFormat)
                 let message = String(format: updatedMessageFormat ?? "", dateString, self?.selectedSprintTitle ?? "")
-                self?.presenter.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
+                self?.presenter?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
             } else {
                 self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0)
                 if let selection = self?.lastQuestionSelection {

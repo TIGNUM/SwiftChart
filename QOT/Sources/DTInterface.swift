@@ -34,6 +34,8 @@ protocol DTInteractorInterface: Interactor {
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion()
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
+    func getTBV() -> QDMToBeVision?
+    func getSelectedAnswers() -> [SelectedAnswer]
 }
 
 protocol DTRouterInterface {
