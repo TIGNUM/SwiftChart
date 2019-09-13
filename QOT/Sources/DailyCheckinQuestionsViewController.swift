@@ -76,7 +76,7 @@ private extension DailyCheckinQuestionsViewController {
             return NSNotFound
         }
         let id = vc.questionID()
-        guard let filteredIndices = interactor.questions.indices.filter ({interactor.questions[$0].remoteID == id}).first else { return 0 }
+        guard let filteredIndices = interactor.questions.indices.filter({interactor.questions[$0].remoteID == id}).first else { return 0 }
         return filteredIndices
     }
 

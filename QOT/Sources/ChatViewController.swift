@@ -30,10 +30,6 @@ private struct SizeCacheKey: Hashable {
             && lhs.maxWidth == rhs.maxWidth
     }
 
-    var hashValue: Int {
-        return text.hashValue ^ styleID.hashValue ^ maxWidth.hashValue
-    }
-
     func hash(into hasher: inout Hasher) {
         hasher.combine(text.hashValue ^ styleID.hashValue ^ maxWidth.hashValue)
     }
