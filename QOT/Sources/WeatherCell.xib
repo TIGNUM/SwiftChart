@@ -30,7 +30,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Two days ago you explored some solutions to help you during difficult high-performance situations." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                        <rect key="frame" x="24" y="135.99999999999997" width="434" height="260.33333333333326"/>
+                        <rect key="frame" x="24" y="108" width="434" height="288.33333333333331"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -953,7 +953,7 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
-                        <rect key="frame" x="24" y="64" width="16" height="1"/>
+                        <rect key="frame" x="24" y="36" width="16" height="1"/>
                         <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="P5J-RI-SQf"/>
@@ -961,7 +961,7 @@ using the app?</string>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                        <rect key="frame" x="24" y="80" width="89" height="24"/>
+                        <rect key="frame" x="24" y="52" width="89" height="24"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
                         </constraints>
@@ -986,7 +986,7 @@ using the app?</string>
                     <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="28" id="elm-az-MtF"/>
                     <constraint firstItem="j3g-Se-GqU" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="bottom" id="ftH-qo-kGs"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="32" id="fvl-VH-DZf"/>
-                    <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="64" id="hb4-Vv-9KQ"/>
+                    <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="36" id="hb4-Vv-9KQ"/>
                     <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" constant="24" id="hbs-Wz-fES"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="ZlO-AQ-5eT" secondAttribute="trailing" id="i4S-5o-EpQ"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="iof-DH-iCq"/>

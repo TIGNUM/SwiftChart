@@ -45,6 +45,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeader: UIView!
+    @IBOutlet weak var screenTitleLabel: UILabel!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -250,6 +252,17 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     }
 }
 
+// MARK: IBActions
+private extension DailyBriefViewController {
+    @IBAction func didTapLeftArrowButton(_ sender: Any?) {
+        delegate?.moveToCell(item: 0)
+    }
+
+    @IBAction func didTapRightArrowButton(_ sender: Any?) {
+        delegate?.moveToCell(item: 2)
+    }
+}
+
 // MARK: Daily Brief Update Notification
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
@@ -270,11 +283,7 @@ private extension DailyBriefViewController {
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
-        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
-                        self?.delegate?.moveToCell(item: 0)
-                        }, tapRight: { [weak self] in
-                            self?.delegate?.moveToCell(item: 2)
-                    })
+        cell.configure(viewModel: impactReadinessCellViewModel)
         if impactReadinessCellViewModel?.readinessScore == -1 {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
@@ -726,6 +735,8 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+
+        ThemeText.navigationBarHeader.apply(interactor?.screenTitle(), to: screenTitleLabel)
     }
 }
 

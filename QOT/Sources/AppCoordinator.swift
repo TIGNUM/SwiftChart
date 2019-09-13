@@ -61,6 +61,9 @@ final class AppCoordinator {
         automaticLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishSynchronization(_:)),
+                                               name: .didFinishSynchronization, object: nil)
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -327,6 +330,56 @@ extension AppCoordinator: PermissionManagerDelegate {
             }
             guard !devicePermissions.isEmpty else { return }
             qot_dal.QOTService.main.updateDevicePermissions(permissions: devicePermissions)
+        }
+    }
+}
+
+// MARK: Synchonization Update
+
+extension AppCoordinator {
+
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION]
+        guard let syncResult = notification.object as? SyncResultContext,
+            syncResult.hasUpdatedContent,
+            dataTypes.contains(obj: syncResult.dataType) else { return }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+            switch syncResult.dataType {
+            case .MY_TO_BE_VISION:
+                UserService.main.getMyToBeVision({ (vision, initiated, error) in
+                    guard error == nil, initiated == true, let vision = vision else { return }
+                    let data = ExtensionModel.ToBeVision(headline: vision.headline, text: vision.text, imageURL: vision.profileImageResource?.url())
+                    ExtensionUserDefaults.set(data, for: .toBeVision)
+                })
+            case .DAILY_CHECK_IN_RESULT:
+                MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
+                    guard error == nil, initiated == true, let result = results?.first else { return }
+
+                    let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? 0),
+                                                        recoveryValue: Float(result.impactReadiness ?? 0),
+                                                        feedback: result.feedback, displayDate: Date())
+                    ExtensionUserDefaults.set(data, for: .dailyPrep)
+                })
+            case .CONTENT_COLLECTION:
+                ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+                    guard let latest = items?.first else { return }
+                    let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
+                                                              title: latest.contentCategoryTitle ?? "",
+                                                              description: latest.title,
+                                                              date: latest.publishedDate ?? Date(),
+                                                              duration: latest.durationString,
+                                                              articleDate: latest.publishedDate ?? Date(),
+                                                              sortOrder: "0",
+                                                              previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
+                                                              contentCollectionID: latest.remoteID ?? 0,
+                                                              newArticle: true,
+                                                              shareableLink: latest.shareableLink)
+                    ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
+                })
+            default: break
+            }
+
         }
     }
 }

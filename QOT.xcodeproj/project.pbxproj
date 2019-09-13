@@ -1063,6 +1063,7 @@
 		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
+		DB22ADB0232AF9DC009281AB /* DailyBriefTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */; };
 		DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */; };
 		DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */; };
 		DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */; };
@@ -2334,6 +2335,7 @@
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefTableView.swift; sourceTree = "<group>"; };
 		DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFullScreenViewController.swift; sourceTree = "<group>"; };
 		DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioFullScreenViewController.storyboard; sourceTree = "<group>"; };
 		DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
@@ -2632,6 +2634,7 @@
 				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
 				9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */,
 				B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */,
+				DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */,
 			);
 			name = DailyBriefComponents;
 			sourceTree = "<group>";
@@ -3435,13 +3438,12 @@
 		5FF1A0F122857AC900D76D55 /* MyQotAppSettings */ = {
 			isa = PBXGroup;
 			children = (
-				5FF1A10122858A4A00D76D55 /* Others */,
-				5FF1A0F222857AFF00D76D55 /* Core */,
+				5FF1A0F222857AFF00D76D55 /* MyQotAppSettings */,
 			);
 			name = MyQotAppSettings;
 			sourceTree = "<group>";
 		};
-		5FF1A0F222857AFF00D76D55 /* Core */ = {
+		5FF1A0F222857AFF00D76D55 /* MyQotAppSettings */ = {
 			isa = PBXGroup;
 			children = (
 				5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */,
@@ -6610,6 +6612,7 @@
 				8D9F6D21230E80EB00DCC241 /* WalkthroughInteractor.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				8D04FA3723041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift in Sources */,
+				DB22ADB0232AF9DC009281AB /* DailyBriefTableView.swift in Sources */,
 				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
 				8D0B4D262301CC4000A1AC47 /* RegistrationNamesViewController.swift in Sources */,
 				8D04FA3323041E9C00AE7CA0 /* RegistrationAgeInterface.swift in Sources */,

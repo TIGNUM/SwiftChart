@@ -19,12 +19,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     private var score: Int = 0
     @IBOutlet weak var impactReadinessView: UIImageView!
     var trackState: Bool = false
-    @IBOutlet weak var buttonLeft: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var buttonRight: UIButton!
-    typealias actionClosure = (() -> Void)
-    private var actionLeft: actionClosure? = nil
-    private var actionRight: actionClosure? = nil
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,15 +38,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         }
     }
 
-    @objc func didTapLeft() {
-        actionLeft?()
-    }
-
-    @objc func didTapRight() {
-        actionRight?()
-    }
-
-    func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
+    func configure(viewModel: ImpactReadinessCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         ThemeText.sprintText.apply(viewModel?.readinessIntro, to: content)
         let score: Int = viewModel?.readinessScore ?? 0
@@ -64,12 +50,5 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         toBeVisionImage.setImage(url: viewModel?.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
         self.score = viewModel?.readinessScore ?? 0
         ThemeView.level1.apply(self)
-        ThemeText.navigationBarHeader.apply(R.string.localized.dailyBriefTitle(), to: titleLabel)
-        buttonLeft.isHidden = tapLeft == nil
-        buttonRight.isHidden = tapRight == nil
-        actionLeft = tapLeft
-        actionRight = tapRight
-        buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
-        buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
     }
 }

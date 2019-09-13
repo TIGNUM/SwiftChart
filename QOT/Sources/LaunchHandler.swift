@@ -8,7 +8,6 @@
 
 import UIKit
 import SVProgressHUD
-import os.log
 import qot_dal
 
 enum LaunchOption: String {
