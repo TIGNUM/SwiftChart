@@ -88,8 +88,8 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
 // MARK: - Private
 private extension DTSprintInteractor {
     func replaceMessagePlaceHolders(sprintInProgressTitle: String, newSprintTitle: String, message: String) -> String {
-        let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]\'s", with: sprintInProgressTitle)
-        return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle)
+        let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]\'s", with: sprintInProgressTitle.uppercased())
+        return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle.uppercased())
     }
 
     func checkNotificationPermissions() {
