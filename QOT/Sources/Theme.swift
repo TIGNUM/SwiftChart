@@ -60,6 +60,7 @@ enum ThemeView {
     case resultWhite
     case qotTools
     case syncedCalendarSeparator
+    case tbvLowPerformance
 
     var color: UIColor {
         switch self {
@@ -107,6 +108,8 @@ enum ThemeView {
             return Palette.white40
         case .syncedCalendarSeparator:
             return Palette.sand40
+        case .tbvLowPerformance:
+            return Palette.carbon70
         }
     }
 

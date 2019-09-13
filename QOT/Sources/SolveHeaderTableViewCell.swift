@@ -19,6 +19,7 @@ final class SolveHeaderTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var solutionTextLabel: UILabel!
     @IBOutlet private weak var showMoreButton: UIButton!
+    @IBOutlet private weak var constraintShowMoreHeight: NSLayoutConstraint!
     weak var delegate: SolveHeaderTableViewCellDelegate?
     private var isExpanded: Bool = false
 }
@@ -30,6 +31,8 @@ extension SolveHeaderTableViewCell {
         ThemeText.resultHeader1.apply(title.uppercased(), to: titleLabel)
         ThemeText.resultHeader2.apply(solutionText, to: solutionTextLabel)
         showMoreButton.isHidden = hideShowMoreButton
+        constraintShowMoreHeight.constant = hideShowMoreButton ? 0.0 : 40.0
+        setNeedsUpdateConstraints()
         selectionStyle = .none
     }
 }

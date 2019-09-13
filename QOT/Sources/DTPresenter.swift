@@ -82,7 +82,11 @@ class DTPresenter: DTPresenterInterface {
                            answers: answers,
                            tbvText: presentationModel.tbv?.text,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
+<<<<<<< HEAD
                            typingAnimationDuration: 5.0,
+=======
+                           typingAnimationDuration: question.duration,
+>>>>>>> decisionTree/refactor
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
                            dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key),
                            showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
@@ -97,7 +101,11 @@ class DTPresenter: DTPresenterInterface {
                                     title: title ?? "",
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
+<<<<<<< HEAD
                                     duration: question?.answerType == nil ? 0.0 : 5.0,
+=======
+                                    duration: question?.layout?.animation?.duration ?? 5.0,
+>>>>>>> decisionTree/refactor
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 

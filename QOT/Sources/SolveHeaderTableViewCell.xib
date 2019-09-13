@@ -23,11 +23,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="361" id="KGk-i7-Jjw" customClass="SolveHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="608" height="361"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="308" id="KGk-i7-Jjw" customClass="SolveHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="608" height="280"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
-                <rect key="frame" x="0.0" y="0.0" width="608" height="360.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="608" height="279.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="biK-9s-04C">
@@ -38,51 +38,64 @@
                             <constraint firstAttribute="height" constant="1" id="reI-ck-Ccb"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dab-eq-LBr">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="TITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dab-eq-LBr">
                         <rect key="frame" x="24" y="102" width="560" height="29"/>
                         <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Super long text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbX-mO-yeX">
+                    <label opaque="NO" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Super long text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZbX-mO-yeX">
                         <rect key="frame" x="24" y="155" width="560" height="19.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.69854987157534243" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-QQ-3KV">
-                        <rect key="frame" x="24" y="190.5" width="88" height="32"/>
-                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="16"/>
-                        <state key="normal" title="Show more">
-                            <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.69854987157534243" colorSpace="calibratedRGB"/>
-                        </state>
-                        <connections>
-                            <action selector="didTapShowMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T83-AV-ohc"/>
-                        </connections>
-                    </button>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oDe-P8-JFu" userLabel="ShowMore ContainerView">
+                        <rect key="frame" x="24" y="199.5" width="560" height="80"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bb3-QQ-3KV">
+                                <rect key="frame" x="0.0" y="0.0" width="82" height="31"/>
+                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="16"/>
+                                <state key="normal" title="Show more">
+                                    <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.69854987157534243" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapShowMore:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="T83-AV-ohc"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bb3-QQ-3KV" firstAttribute="leading" secondItem="oDe-P8-JFu" secondAttribute="leading" id="7uv-V5-MYY"/>
+                            <constraint firstAttribute="height" constant="80" id="NQp-Bm-aXJ"/>
+                            <constraint firstItem="bb3-QQ-3KV" firstAttribute="top" secondItem="oDe-P8-JFu" secondAttribute="top" id="g5D-f2-CrW"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.90980392156862744" green="0.8901960784313725" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="ZbX-mO-yeX" firstAttribute="top" secondItem="dab-eq-LBr" secondAttribute="bottom" constant="24" id="4g8-Ei-boy"/>
                     <constraint firstItem="dab-eq-LBr" firstAttribute="top" secondItem="biK-9s-04C" secondAttribute="bottom" constant="16" id="6u4-jJ-QpN"/>
-                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bb3-QQ-3KV" secondAttribute="bottom" constant="40" id="9Uz-yK-lBS"/>
                     <constraint firstAttribute="trailing" secondItem="ZbX-mO-yeX" secondAttribute="trailing" constant="24" id="9bn-e4-yaJ"/>
-                    <constraint firstItem="bb3-QQ-3KV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="D05-Bd-74L"/>
-                    <constraint firstItem="bb3-QQ-3KV" firstAttribute="top" secondItem="ZbX-mO-yeX" secondAttribute="bottom" constant="16" id="FUi-BM-oky"/>
+                    <constraint firstItem="oDe-P8-JFu" firstAttribute="top" secondItem="ZbX-mO-yeX" secondAttribute="bottom" constant="24" id="Ahw-9S-59w"/>
+                    <constraint firstAttribute="bottom" secondItem="oDe-P8-JFu" secondAttribute="bottom" id="Anu-xQ-qEV"/>
+                    <constraint firstAttribute="trailing" secondItem="oDe-P8-JFu" secondAttribute="trailing" constant="24" id="SUn-NY-AWz"/>
                     <constraint firstItem="dab-eq-LBr" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="T5D-n8-x4F"/>
                     <constraint firstItem="ZbX-mO-yeX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="bKy-6U-VkB"/>
                     <constraint firstAttribute="trailing" secondItem="dab-eq-LBr" secondAttribute="trailing" constant="24" id="e3L-8b-RBj"/>
                     <constraint firstItem="biK-9s-04C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="lth-Na-a7W"/>
                     <constraint firstItem="biK-9s-04C" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="85" id="r7Q-sO-PSz"/>
+                    <constraint firstItem="oDe-P8-JFu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="ypc-LH-hFt"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="constraintShowMoreHeight" destination="NQp-Bm-aXJ" id="1WQ-YN-C4V"/>
                 <outlet property="showMoreButton" destination="bb3-QQ-3KV" id="4ij-Zf-azO"/>
                 <outlet property="solutionTextLabel" destination="ZbX-mO-yeX" id="oJp-KV-NsA"/>
                 <outlet property="titleLabel" destination="dab-eq-LBr" id="ChU-p6-Ioy"/>
             </connections>
-            <point key="canvasLocation" x="346.37681159420293" y="259.48660714285711"/>
+            <point key="canvasLocation" x="346.37681159420293" y="237.72321428571428"/>
         </tableViewCell>
     </objects>
 </document>
