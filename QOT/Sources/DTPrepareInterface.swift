@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTPrepareViewControllerInterface: class {}
 
@@ -14,4 +15,7 @@ protocol DTPreparePresenterInterface {}
 
 protocol DTPrepareInteractorInterface: Interactor {}
 
-protocol DTPrepareRouterInterface {}
+protocol DTPrepareRouterInterface {
+    func presentPrepareResults(_ contentId: Int)
+    func presentPrepareResults(_ preparation: QDMUserPreparation, _ answers: [SelectedAnswer])
+}

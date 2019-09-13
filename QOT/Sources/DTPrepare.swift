@@ -19,6 +19,7 @@ struct Prepare {
         static let BenefitsInput = "prepare_peak_prep_benefits_input"
         static let BuildCritical = "prepare_peak_prep_build_plan"
         static let SelectExisting = "prepare_previous_preps_selection"
+        static let Last = "prepare_key_last"
     }
 
     struct AnswerKey {

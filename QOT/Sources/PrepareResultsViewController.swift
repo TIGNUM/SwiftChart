@@ -338,14 +338,14 @@ extension PrepareResultsViewController {
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
+            return [doneButtonItem(#selector(dismissView))]
+        }
         if !(interactor?.dataModified ?? false) {
             return []
         }
-        if interactor?.getType == .LEVEL_ON_THE_GO || showDone {
-            return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
-                                          buttonWidth: .Done,
-                                          action: #selector(dismissView),
-                                          backgroundColor: .carbonDark)]
+        if showDone {
+            return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .SaveAndContinue,

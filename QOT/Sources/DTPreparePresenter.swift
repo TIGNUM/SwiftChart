@@ -8,7 +8,12 @@
 
 import UIKit
 
-final class DTPreparePresenter: DTPresenter {}
+final class DTPreparePresenter: DTPresenter {
+
+    override func previousIsHidden(questionKey: String) -> Bool {
+        return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
+    }
+}
 
 // MARK: - DTPrepareInterface
 extension DTPreparePresenter: DTPreparePresenterInterface {}

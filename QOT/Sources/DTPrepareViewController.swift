@@ -10,6 +10,9 @@ import UIKit
 
 final class DTPrepareViewController: DTViewController {
 
+    // MARK: - Properties
+    var prepareRouter: DTPrepareRouterInterface?
+
     // MARK: - Init
     init(configure: Configurator<DTPrepareViewController>) {
         super.init(nibName: R.nib.dtViewController.name, bundle: R.nib.dtViewController.bundle)
@@ -27,7 +30,10 @@ final class DTPrepareViewController: DTViewController {
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didSelectAnswer(answer)
+        viewModel?.setSelectedAnswer(answer)
+        if viewModel?.question.answerType == .singleSelection, let contentId = answer.targetId(.content) {
+            prepareRouter?.presentPrepareResults(contentId)
+        }
     }
 
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {

@@ -13,6 +13,7 @@ typealias SelectedAnswer = (question: DTViewModel.Question?, answers: [DTViewMod
 typealias Node = (questionId: Int?, answerFilter: String?, titleUpdate: String?)
 
 class DTInteractor: DTInteractorInterface {
+
     // MARK: - Properties
     lazy var worker: DTWorker? = DTWorker()
     let presenter: DTPresenterInterface
@@ -44,6 +45,10 @@ class DTInteractor: DTInteractorInterface {
     }
 
     // MARK: - DTInteractorInterface
+    func getSelectedAnswers() -> [SelectedAnswer] {
+        return selectedAnswers
+    }
+
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?) {
         let selectionModel = DTSelectionModel(selectedAnswers: viewModel?.answers ?? [], question: viewModel?.question)
         loadNextQuestion(selection: selectionModel)
@@ -116,5 +121,9 @@ class DTInteractor: DTInteractorInterface {
             self?.tbv = tbv
             completion(tbv, initiated)
         }
+    }
+
+    func getTBV() -> QDMToBeVision? {
+        return tbv
     }
 }

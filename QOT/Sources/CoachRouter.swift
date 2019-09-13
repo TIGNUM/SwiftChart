@@ -53,8 +53,8 @@ extension CoachRouter: CoachRouterInterface {
             let controller = DTSprintViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .event:
-            let configurator = DTSolveConfigurator.make()
-            let controller = DTSolveViewController(configure: configurator)
+            let configurator = DTPrepareConfigurator.make()
+            let controller = DTPrepareViewController(configure: configurator)
             viewController.present(controller, animated: true)
         case .challenge:
             let configurator = DTSolveConfigurator.make()
