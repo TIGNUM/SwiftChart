@@ -57,6 +57,7 @@ enum ThemeView {
     case toolSeparator
     case askPermissions
     case syncedCalendarSeparator
+    case audioPlaying
 
     var color: UIColor {
         switch self {
@@ -72,6 +73,8 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
+        case .audioPlaying:
+            return Palette.accent40
         case .onboarding:
             return Palette.carbon
         case .toolSeparator:
@@ -551,6 +554,7 @@ enum ThemeText {
     case qotToolsSubtitle
     case qotToolsTitle
     case qotToolsSectionSubtitle
+    case audioLabel
 
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
@@ -681,6 +685,8 @@ enum ThemeText {
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
              .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
             return Fonts.fontLight11
+        case .audioLabel:
+            return Fonts.fontSemiBold12
         case .articleQuote:
             switch textScale {
             case .scale: return Fonts.fontLight20
@@ -741,7 +747,7 @@ enum ThemeText {
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleMarkRead, .articleAudioBar, .coachTitle:
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleMarkRead, .articleAudioBar, .coachTitle, .audioLabel:
             return Palette.accent
         case .performanceSections, .audioPlayerTimeLight, .qotToolsSectionSubtitle:
             return Palette.carbon40
@@ -828,7 +834,7 @@ enum ThemeText {
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle, .coachHeader, .coachTitle, .syncedCalendarTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
-        case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
+        case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)

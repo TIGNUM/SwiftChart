@@ -14,6 +14,7 @@ final class ToolsItemsInteractor {
 
     private let worker: ToolsItemsWorker
     private let presenter: ToolsItemsPresenterInterface
+    private var isMediaPlaying = false
 
     // MARK: - Init
 
@@ -21,6 +22,10 @@ final class ToolsItemsInteractor {
          presenter: ToolsItemsPresenterInterface) {
         self.worker = worker
         self.presenter = presenter
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(didStartAudio(_:)), name: .didStartAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didPauseAudio(_:)), name: .didPauseAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
     }
 
     // MARK: - Interactor
@@ -36,6 +41,10 @@ final class ToolsItemsInteractor {
 // MARK: - ToolsInteractorInterface
 
 extension ToolsItemsInteractor: ToolsItemsInteractorInterface {
+
+    var isPlaying: Bool {
+        return self.isMediaPlaying
+    }
 
     var headerTitle: String {
         return worker.headerTitle
@@ -55,5 +64,38 @@ extension ToolsItemsInteractor: ToolsItemsInteractorInterface {
 
     func selectedContentId() -> Int {
         return worker.selectedContentId()
+    }
+}
+
+extension ToolsItemsInteractor {
+
+    @objc func didStartAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = true
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didPauseAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didStopAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
     }
 }

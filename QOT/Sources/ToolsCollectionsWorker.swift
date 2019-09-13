@@ -54,8 +54,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                                  isCollection: isCollection,
                                  contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: collection.contentItems.count,
-                                 type: collection.contentItems.first?.format.rawValue ?? "",
-                                 isPlaying: false)
+                                 type: collection.contentItems.first?.format.rawValue ?? "")
             })
             completion(items)
         }
@@ -85,8 +84,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                                  isCollection: false,
                                  contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: 1,
-                                 type: collection.contentItems.first?.format.rawValue ?? "",
-                                 isPlaying: false)
+                                 type: collection.contentItems.first?.format.rawValue ?? "")
             })
             completion(items)
         }

@@ -11,14 +11,17 @@ import Foundation
 protocol ToolsItemsViewControllerInterface: class {
     func setupView()
     func reload()
+    func audioIsPlayingForCell(index: IndexPath)
 }
 
 protocol ToolsItemsPresenterInterface {
     func setupView()
     func reload()
+    func audioIsPlayingForCell(index: IndexPath)
 }
 
 protocol ToolsItemsInteractorInterface: Interactor {
+    var isPlaying: Bool { get }
     var tools: [Tool.Item] { get }
     var rowCount: Int { get }
     var headerTitle: String { get }

@@ -15,6 +15,10 @@ private enum ToolType: String {
     case pdf
 }
 
+protocol ToolsItemsViewControllerDelegate: class {
+    func isPlaying() -> Bool
+}
+
 final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -105,6 +109,13 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func reload() {
         tableView.reloadData()
     }
+
+    func audioIsPlayingForCell(index: IndexPath) {
+        if let cell = tableView.cellForRow(at: index) as? ToolsCollectionsAudioTableViewCell {
+            cell.itemDelegate = self
+        }
+        tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
+    }
 }
 
 extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -145,8 +156,10 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           isPlaying: tool?.isPlaying)
+                           delegate: nil,
+                           itemDelegate: self)
             cell.addTopLine(for: indexPath.row)
+            cell.itemDelegate = self
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -157,7 +170,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           isPlaying: tool?.isPlaying)
+                           delegate: nil,
+                           itemDelegate: self)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
@@ -168,22 +182,9 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let tool = interactor?.tools[indexPath.item]
         trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT_ITEM, action: .TAP)
-        switch tool?.type {
-        case ToolType.video.rawValue:
-            guard
-                let videoTool = interactor?.tools[indexPath.row],
-                let videoURL = videoTool.mediaURL else { return }
-            stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
-        case ToolType.audio.rawValue:
-            let media = MediaPlayerModel(title: tool?.title ?? "",
-                                         subtitle: tool?.categoryTitle ?? "",
-                                         url: tool?.mediaURL,
-                                         totalDuration: 0, progress: 0, currentTime: 0, mediaRemoteId: tool?.remoteID ?? 0)
-            NotificationCenter.default.post(name: .playPauseAudio, object: media)
-        default:
-            if let pdfURL = tool?.mediaURL {
-                self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
-            }
+        if let contentItemId = tool?.remoteID,
+            let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
+            UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
     }
 }
@@ -195,5 +196,12 @@ extension ToolsItemsViewController {
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return [dismissNavigationItemLight()]
+    }
+}
+
+extension ToolsItemsViewController: ToolsItemsViewControllerDelegate {
+
+    func isPlaying() -> Bool {
+        return interactor?.isPlaying ?? false
     }
 }
