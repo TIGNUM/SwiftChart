@@ -36,23 +36,20 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     }
 
     func openVisionGenerator() {
-        presentDecisionTree(type: .toBeVisionGenerator)
+        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
+        let controller = DTShortTBVViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 
     func openMindsetShifter() {
-        presentDecisionTree(type: .mindsetShifter)
+        let configurator = DTMindsetConfigurator.make()
+        let controller = DTMindsetViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 
     func openRecovery() {
-        presentDecisionTree(type: .recovery)
-    }
-}
-
-// MARK: - Private
-private extension SolveResultsRouter {
-    func presentDecisionTree(type: DecisionTreeType) {
-        let configurator = DecisionTreeConfigurator.make(for: type)
-        let decisionTreeController = DecisionTreeViewController(configure: configurator)
-        viewController?.present(decisionTreeController, animated: true)
+        let configurator = DTRecoveryConfigurator.make()
+        let controller = DTRecoveryViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 }

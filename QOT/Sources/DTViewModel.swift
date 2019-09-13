@@ -40,6 +40,15 @@ struct DTViewModel {
         var backgroundColor: UIColor
         let decisions: [Decision]
 
+        init(answer: DTViewModel.Answer, newTargetId: Int) {
+            self.remoteId = answer.remoteId
+            self.title = answer.title
+            self.keys = answer.keys
+            self.selected = true
+            self.backgroundColor = answer.backgroundColor
+            self.decisions = [Decision(answer, newTargetId)]
+        }
+
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
             return lhs.remoteId == rhs.remoteId && lhs.title == rhs.title && lhs.keys == rhs.keys
         }
@@ -51,6 +60,17 @@ struct DTViewModel {
         struct Decision {
             let targetType: TargetType
             let targetTypeId: Int?
+            let questionGroupId: Int?
+            let targetGroupId: Int?
+            let targetGroupName: String?
+
+            init(_ answer: DTViewModel.Answer, _ newTargetId: Int) {
+                self.targetType = .question
+                self.targetTypeId = newTargetId
+                self.questionGroupId = answer.decisions.first?.questionGroupId
+                self.targetGroupId = answer.decisions.first?.targetGroupId
+                self.targetGroupName = answer.decisions.first?.targetGroupName
+            }
         }
 
         mutating func setSelected(_ selected: Bool) {

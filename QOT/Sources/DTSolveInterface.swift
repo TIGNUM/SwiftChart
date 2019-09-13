@@ -7,13 +7,18 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTSolveViewControllerInterface: class {}
 
 protocol DTSolvePresenterInterface {}
 
-protocol DTSolveInteractorInterface: Interactor {}
+protocol DTSolveInteractorInterface: Interactor {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?)
+}
 
 protocol DTSolveRouterInterface {
     func presentSolveResults(selectedAnswer: DTViewModel.Answer)
+    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?)
+    func dismissFlowAndGoToMyTBV()
 }
