@@ -22,7 +22,7 @@ final class DTSprintInteractor: DTInteractor {
     private var lastQuestionSelection: DTSelectionModel?
     private var selectedSprintTitle = ""
 
-    override func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
             selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0

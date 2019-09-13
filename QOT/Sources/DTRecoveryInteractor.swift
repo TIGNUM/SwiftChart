@@ -13,7 +13,7 @@ final class DTRecoveryInteractor: DTInteractor {
 
     var nextQuestionKey: String? = nil
 
-    override func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         if questionKey == Recovery.QuestionKey.Symptom {
             return Recovery.getFatigueSymptom(selectedAnswers).replacement
         }

@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 typealias SelectedAnswer = (question: DTViewModel.Question?, answers: [DTViewModel.Answer])
-typealias Node = (questionId: Int?, answerFilter: String?)
+typealias Node = (questionId: Int?, answerFilter: String?, titleUpdate: String?)
 
 class DTInteractor: DTInteractorInterface {
     // MARK: - Properties
@@ -37,7 +37,7 @@ class DTInteractor: DTInteractorInterface {
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
             let presentationModel = DTPresentationModel(question: firstQuestion)
-            let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil)
+            let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil, titleUpdate: nil)
             self?.presentedNodes.append(node)
             self?.presenter.showNextQuestion(presentationModel)
         }
@@ -57,7 +57,9 @@ class DTInteractor: DTInteractorInterface {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         let presentationModel = createPresentationModel(selection: selection, questions: questions)
         presenter.showNextQuestion(presentationModel)
-        let node = Node(questionId: presentationModel.question?.remoteID, answerFilter: selection.answerFilter)
+        let node = Node(questionId: presentationModel.question?.remoteID,
+                        answerFilter: selection.answerFilter,
+                        titleUpdate: presentationModel.questionUpdate)
         presentedNodes.append(node)
     }
 
@@ -70,26 +72,33 @@ class DTInteractor: DTInteractorInterface {
             let lastNode = presentedNodes.last
             let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
                                                             answerFilter: lastNode?.answerFilter,
+                                                            questionUpdate: lastNode?.titleUpdate,
                                                             questions: questions)
             presenter.showPreviosQuestion(presentationModel)
         }
     }
 
     // MARK: - Create DTPresentationModel
-    func createPresentationModel(questionId: Int??, answerFilter: String?, questions: [QDMQuestion]) -> DTPresentationModel {
+    func createPresentationModel(questionId: Int??,
+                                 answerFilter: String?,
+                                 questionUpdate: String?,
+                                 questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
-        let tbvToPresent = question?.answerType == AnswerType.text.rawValue ? tbv : nil
-        return DTPresentationModel(question: question, titleToUpdate: nil, answerFilter: answerFilter, tbv: tbvToPresent)
+        let tbv = question?.answerType == AnswerType.text.rawValue ? self.tbv : nil
+        return DTPresentationModel(question: question,
+                                   questionUpdate: questionUpdate,
+                                   answerFilter: answerFilter,
+                                   tbv: tbv)
     }
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
-        let titleToUpdate = getTitleToUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
-        let tbvToPresent = question?.answerType == AnswerType.text.rawValue ? tbv : nil
+        let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
+        let tbv = question?.answerType == AnswerType.text.rawValue ? self.tbv : nil
         return DTPresentationModel(question: question,
-                                   titleToUpdate: titleToUpdate,
+                                   questionUpdate: questionUpdate,
                                    answerFilter: selection.answerFilter,
-                                   tbv: tbvToPresent)
+                                   tbv: tbv)
     }
 
     func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {
@@ -97,7 +106,7 @@ class DTInteractor: DTInteractorInterface {
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
 
-    func getTitleToUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return nil
     }
 
