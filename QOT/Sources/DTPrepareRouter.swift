@@ -14,7 +14,7 @@ final class DTPrepareRouter: DTRouter {}
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
     func openArticle(with contentID: Int) {
-        
+
     }
 
     func openVideo(from url: URL, item: QDMContentItem?) {
