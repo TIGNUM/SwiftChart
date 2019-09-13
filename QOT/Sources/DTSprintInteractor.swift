@@ -22,6 +22,11 @@ final class DTSprintInteractor: DTInteractor {
     private var lastQuestionSelection: DTSelectionModel?
     private var selectedSprintTitle = ""
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        checkNotificationPermissions()
+    }
+
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
@@ -86,5 +91,16 @@ private extension DTSprintInteractor {
     func replaceMessagePlaceHolders(sprintInProgressTitle: String, newSprintTitle: String, message: String) -> String {
         let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]\'s", with: sprintInProgressTitle)
         return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle)
+    }
+
+    func checkNotificationPermissions() {
+        guard let worker = sprintWorker, let presenter = presenter as? DTSprintPresenterInterface else {  return }
+        worker.checkNotificationPermissions { (action) in
+            switch action {
+            case .permission: presenter.presentPermissionView(.notification)
+            case .settings: presenter.presentPermissionView(.notificationOpenSettings)
+            case .none: break
+            }
+        }
     }
 }

@@ -35,25 +35,25 @@ struct MyDataDailyCheckInModel: Codable {
 
     init(withDailyCheckInResult: QDMDailyCheckInResult, _ average: Double = MyDataDailyCheckInModel.defaultAverageValue) {
         date = withDailyCheckInResult.date
-        impactReadiness = (withDailyCheckInResult.impactReadiness ?? 0)
-        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0) * 10
+        impactReadiness = min((withDailyCheckInResult.impactReadiness ?? 0), 100)
+        sleepQuality = min((withDailyCheckInResult.sleepQuality ?? 0) * 10, 100)
         if let quantity = withDailyCheckInResult.sleepQuantity,
             let target = withDailyCheckInResult.targetSleepQuantity,
             quantity > 0 {
-            sleepQuantity = max(quantity/target*100, 100)
+            sleepQuantity = quantity/target*100
         }
         if let fiveDaySleepQuality = withDailyCheckInResult.fiveDaysSleepQuality,
            let fiveDaySleepQuantity = withDailyCheckInResult.fiveDaysSleepQuantity,
            let target = withDailyCheckInResult.targetSleepQuantity,
             withDailyCheckInResult.hasFiveDaysDataForSleepQuality,
             withDailyCheckInResult.hasFiveDaysDataForSleepQuantity {
-            fiveDayRecovery = (fiveDaySleepQuantity/5/target*100 + fiveDaySleepQuality*10)/2
+            fiveDayRecovery = min((fiveDaySleepQuantity/5/target*100 + fiveDaySleepQuality*10)/2, 100)
         }
 
-        fiveDayLoad = (withDailyCheckInResult.fiveDaysload ?? 0) * 10
-        tenDayLoad = (withDailyCheckInResult.load ?? 0) * 10
-        fiveDayImpactReadiness = (withDailyCheckInResult.fiveDaysImpactReadiness ?? 0)
-        averageUsersImpactReadiness = (average >= MyDataDailyCheckInModel.defaultAverageValue) ? average : MyDataDailyCheckInModel.defaultAverageValue
+        fiveDayLoad = min((withDailyCheckInResult.fiveDaysload ?? 0) * 10, 100)
+        tenDayLoad = min((withDailyCheckInResult.load ?? 0) * 10, 100)
+        fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? 0), 100)
+        averageUsersImpactReadiness = min(max(average, MyDataDailyCheckInModel.defaultAverageValue), 100)
     }
 }
 

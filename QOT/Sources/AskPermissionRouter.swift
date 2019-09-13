@@ -12,69 +12,76 @@ final class AskPermissionRouter {
 
     // MARK: - Properties
     private weak var viewController: AskPermissionViewController?
+    private weak var delegate: AskPermissionDelegate?
 
     // MARK: - Init
-    init(viewController: AskPermissionViewController?) {
+    init(viewController: AskPermissionViewController?, delegate: AskPermissionDelegate?) {
         self.viewController = viewController
+        self.delegate = delegate
     }
 }
 
 // MARK: - AskPermissionRouterInterface
 extension AskPermissionRouter: AskPermissionRouterInterface {
-    func didTapConfirm(_ permissionType: AskPermission.Kind?) {
+
+    func didTapDismiss(_ permissionType: AskPermission.Kind) {
+        dismiss(type: permissionType, granted: false)
+    }
+
+    func didTapConfirm(_ permissionType: AskPermission.Kind) {
         requestAccess(permissionType)
     }
 }
 
 // MARK: - Request Permission
 private extension AskPermissionRouter {
-    func requestAccess(_ permissionType: AskPermission.Kind?) {
+    func requestAccess(_ permissionType: AskPermission.Kind) {
         switch permissionType {
-        case .location?:
-            requestLocationAccess()
-        case .notification?:
-            requestNotificationAccess()
-        case .calendar?:
-            requestCalendarAccess()
-        case .calendarOpenSettings?,
-             .notificationOpenSettings?:
-            openSystemSettings()
-        case .none:
-            preconditionFailure("PermissionType does not exist")
+        case .location:
+            requestLocationAccess(permissionType)
+        case .notification:
+            requestNotificationAccess(permissionType)
+        case .calendar:
+            requestCalendarAccess(permissionType)
+        case .calendarOpenSettings,
+             .notificationOpenSettings:
+            openSystemSettings(permissionType)
         }
     }
 
-    func requestLocationAccess() {
+    func requestLocationAccess(_ type: AskPermission.Kind) {
         LocationPermission().askPermission { [weak self] (granted) in
-            if granted == true {
-                self?.viewController?.dismiss(animated: true, completion: nil)
-            } else {
-                self?.viewController?.dismiss(animated: true, completion: nil)
-            }
+            self?.dismiss(type: type, granted: granted)
         }
     }
 
-    func requestCalendarAccess() {
+    func requestCalendarAccess(_ type: AskPermission.Kind) {
         CalendarPermission().askPermission { [weak self] (granted) in
-            DispatchQueue.main.async { [weak self] in
-                if granted == true {
-                    self?.viewController?.dismiss(animated: true, completion: nil)
-                } else {
-                    self?.viewController?.dismiss(animated: true, completion: nil)
-                }
-            }
+            self?.dismiss(type: type, granted: granted)
         }
     }
 
-    func requestNotificationAccess() {
-        RemoteNotificationPermission().askPermission { (_) in
-            DispatchQueue.main.async { [weak self] in
-                self?.viewController?.dismiss(animated: true, completion: nil)
-            }
+    func requestNotificationAccess(_ type: AskPermission.Kind) {
+        RemoteNotificationPermission().askPermission { [weak self] (granted) in
+            self?.dismiss(type: type, granted: granted)
         }
     }
 
-    func openSystemSettings() {
+    func openSystemSettings(_ type: AskPermission.Kind) {
+        dismiss(type: type, granted: false)
         UIApplication.openAppSettings()
+    }
+}
+
+// MARK: - Private func
+
+private extension AskPermissionRouter {
+
+    func dismiss(type: AskPermission.Kind, granted: Bool) {
+        DispatchQueue.main.async {
+            self.viewController?.dismiss(animated: true, completion: {
+                self.delegate?.didFinishAskingForPermission(type: type, granted: granted)
+            })
+        }
     }
 }

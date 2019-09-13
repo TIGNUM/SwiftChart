@@ -8,4 +8,11 @@
 
 import UIKit
 
-final class DTSprintRouter: DTRouter {}
+final class DTSprintRouter: DTRouter {
+    func openPermissionView(_ permissionType: AskPermission.Kind) {
+        guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as?
+            AskPermissionViewController else { return }
+        AskPermissionConfigurator.make(viewController: controller, type: permissionType)
+        viewController?.present(controller, animated: true, completion: nil)
+    }
+}

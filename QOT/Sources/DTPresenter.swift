@@ -12,7 +12,7 @@ import qot_dal
 class DTPresenter: DTPresenterInterface {
 
     // MARK: - Properties
-    private weak var viewController: DTViewControllerInterface?
+    weak var viewController: DTViewControllerInterface?
 
     // MARK: - Init
     init(viewController: DTViewControllerInterface?) {
@@ -25,17 +25,17 @@ class DTPresenter: DTPresenterInterface {
     }
 
     func showNextQuestion(_ presentationModel: DTPresentationModel) {
+        let button = presentationModel.getNavigationButton(isHidden: false)
+        viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showNextQuestion(viewModel)
-        let button = presentationModel.getNavigationButton(isHidden: false) //TODO viewModel.hasTypingAnimation
-        viewController?.setNavigationButton(button)
     }
 
     func showPreviosQuestion(_ presentationModel: DTPresentationModel) {
+        let button = presentationModel.getNavigationButton(isHidden: false)
+        viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showPreviosQuestion(viewModel)
-        let button = presentationModel.getNavigationButton(isHidden: false) //TODO viewModel.hasTypingAnimation
-        viewController?.setNavigationButton(button)
     }
 
     func showNavigationButtonAfterAnimation() {
@@ -82,6 +82,7 @@ class DTPresenter: DTPresenterInterface {
                            answers: answers,
                            tbvText: presentationModel.tbv?.text,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
+                           typingAnimationDuration: 5.0,
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
                            dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key),
                            showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
@@ -96,6 +97,7 @@ class DTPresenter: DTPresenterInterface {
                                     title: title ?? "",
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
+                                    duration: question?.answerType == nil ? 0.0 : 5.0,
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 

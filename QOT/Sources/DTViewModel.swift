@@ -13,6 +13,7 @@ struct DTViewModel {
     var answers: [Answer]
     let tbvText: String?
     let hasTypingAnimation: Bool
+    let typingAnimationDuration: Double
     let previousButtonIsHidden: Bool
     let dismissButtonIsHidden: Bool
     let showNextQuestionAutomated: Bool
@@ -27,6 +28,7 @@ struct DTViewModel {
         let title: String
         let key: String
         let answerType: AnswerType
+        let duration: Double
         let maxSelections: Int
     }
 

@@ -39,13 +39,13 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
-                    <rect key="frame" x="20" y="97" width="367" height="80"/>
+                    <rect key="frame" x="20" y="106" width="367" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="G15-Ey-uAu"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-tE-jmj">
-                    <rect key="frame" x="20" y="197" width="367" height="24"/>
+                    <rect key="frame" x="20" y="206" width="367" height="15"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -55,7 +55,7 @@
             <constraints>
                 <constraint firstItem="tRN-tE-jmj" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="1ID-7x-NKs"/>
                 <constraint firstAttribute="bottom" secondItem="tRN-tE-jmj" secondAttribute="bottom" constant="48" id="3Bp-pK-lSx"/>
-                <constraint firstItem="1Bo-K3-SlV" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="15" id="7IT-L2-kf5"/>
+                <constraint firstItem="1Bo-K3-SlV" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="24" id="7IT-L2-kf5"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="Hhk-xi-QDD" secondAttribute="trailing" constant="20" id="PLI-hr-kgF"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="1Bo-K3-SlV" secondAttribute="trailing" constant="20" id="PjG-I9-zmc"/>
                 <constraint firstItem="MOJ-hc-tEU" firstAttribute="leading" secondItem="Jio-Dk-Pbb" secondAttribute="leading" constant="20" id="RUB-dT-bEY"/>

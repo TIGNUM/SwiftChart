@@ -50,6 +50,7 @@ enum ContentItemValue {
              .header5,
              .header6,
              .paragraph,
+             .body,
              .textQuote:
             if let text = text, let style = ContentItemTextStyle.createStyle(for: item.format.rawValue) {
                 self = .text(text: text, style: style)
@@ -111,6 +112,7 @@ enum ContentItemValue {
         case .h4: return .articleHeadline
         case .h5: return .articleHeadlineSmall
         case .h6: return .articleNavigationTitle
+        case .body: return .articleParagraph
         case .paragraph: return .articleParagraph
         case .quote: return .articleQuote
         }
@@ -137,6 +139,7 @@ enum ContentItemTextStyle: String {
     case h4 = "text.h4"
     case h5 = "text.h5"
     case h6 = "text.h6"
+    case body
     case paragraph = "text.paragraph"
     case quote = "text.quote"
 
@@ -163,6 +166,7 @@ enum ContentItemFormat: String {
     case textH4 = "text.h4"
     case textH5 = "text.h5"
     case textH6 = "text.h6"
+    case body
     case textParagraph = "text.paragraph"
     case textQuote = "text.quote"
     case listItem = "listitem"

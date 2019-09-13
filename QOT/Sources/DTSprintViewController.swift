@@ -28,6 +28,7 @@ final class DTSprintViewController: DTViewController {
         if viewModel?.question.key == Sprint.QuestionKey.Last {
             didTapClose()
         } else {
+            setAnswerNeedsSelection()
             loadNextQuestion()
         }
     }
@@ -77,5 +78,13 @@ private extension DTSprintViewController {
                        stringValue: sprintInteractor?.getSelectedSprintTitle(),
                        valueType: .CONTENT,
                        action: .PRESS)
+    }
+}
+
+// MARK: - DTSprintPresenterInterface
+extension DTSprintViewController: DTSprintPresenterInterface {
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+        guard let router = router as? DTSprintRouter else { return }
+        router.openPermissionView(permissionType)
     }
 }

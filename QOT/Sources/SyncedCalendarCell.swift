@@ -27,8 +27,8 @@ final class SyncedCalendarCell: UITableViewCell, Dequeueable {
     func configure(title: String?, source: String?, syncEabled: Bool?, identifier: String?, switchIsHidden: Bool?) {
         switchControl.isHidden = switchIsHidden ?? true
         switchControl.isOn = syncEabled ?? false
-        titleLabel.text = title?.capitalized
-        subtitleLabel.text = source
+        ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
+        ThemeText.syncedCalendarRowSubtitle.apply(source, to: subtitleLabel)
         self.identifier = identifier
     }
 }

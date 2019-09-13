@@ -29,4 +29,8 @@ extension MyQotAppSettingsWorker {
     var appSettingsText: String {
         return ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
     }
+
+    var calendarAuthorizationStatus: EKAuthorizationStatus {
+        return CalendarPermission().authorizationStatus
+    }
 }

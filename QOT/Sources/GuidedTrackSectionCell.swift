@@ -11,8 +11,11 @@ import Foundation
 final class GuidedTrackSectionCell: BaseDailyBriefCell {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var content: UILabel!
-    @IBOutlet private weak var button: AnimatedButton!
+    @IBOutlet weak var button: AnimatedButton!
+    var trackState = false
     @IBAction func clickAction(_ sender: Any) {
+        trackState = !trackState
+        button.flipImage(trackState)
         NotificationCenter.default.post(name: .displayGuidedTrackRows, object: nil)
     }
 

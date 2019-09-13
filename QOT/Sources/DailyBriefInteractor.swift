@@ -65,12 +65,12 @@ extension DailyBriefInteractor {
     private func setVisibleBucketsAsSeenIfNeeded(indexPath: IndexPath) {
         let bucketModel = bucketViewModelNew()?.at(index: indexPath.section)
         let bucketList = bucketModel?.elements
-        let bucket = bucketList?[indexPath.row].domainModel
-
-        guard let notSeenBucket = bucket else {
-            return
+        if let bucketList = bucketList,
+            bucketList.count > indexPath.row {
+            if let bucket = bucketList[indexPath.row].domainModel {
+                DailyBriefService.main.markAsSeenBuckets([bucket])
+            }
         }
-        DailyBriefService.main.markAsSeenBuckets([notSeenBucket])
     }
 }
 
@@ -187,6 +187,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .SOLVE_REFLECTION?:
                     sectionDataList.append(ArraySection(model: .solveReflection,
                                                         elements: strongSelf.createSolveViewModel(bucket: bucket)))
+                case .WEATHER?:
+                    sectionDataList.append(ArraySection(model: .weather,
+                                                        elements: strongSelf.createWeatherViewModel(weatherBucket: bucket)))
                 case .GUIDE_TRACK?:
                     sectionDataList.append(ArraySection(model: .guidedTrack,
                                                         elements: strongSelf.createGuidedTrack(guidedTrackBucket: bucket)))
@@ -903,6 +906,44 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             aboutMeMoreInfo: aboutMeAdditionalContent,
                                             domainModel: aboutMeModel))
         return aboutMeList
+    }
+
+    func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var weatherList: [BaseDailyBriefViewModel] = []
+
+        let title = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "BUCKET_TITLE")
+        }).first?.valueText ?? "BUCKET_TITLE"
+
+        let intro = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "BUCKET_INTRO")
+        }).first?.valueText ?? "BUCKET_INTRO"
+
+        let requestLocationPermissionDescription = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_TEXT")
+        }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_TEXT"
+
+        let requestLocationPermissionButtonTitle = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE")
+        }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE"
+
+        let deniedLocationPermissionDescription = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_TEXT")
+        }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_TEXT"
+
+        let deniedLocationPermissionButtonTitle = weatherBucket.bucketText?.contentItems.filter({
+            $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
+        }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
+
+        weatherList.append(WeatherViewModel(bucketTitle: title,
+                                            intro: intro,
+                                            requestLocationPermissionDescription: requestLocationPermissionDescription,
+                                            requestLocationPermissionButtonTitle: requestLocationPermissionButtonTitle,
+                                            deniedLocationPermissionDescription: deniedLocationPermissionDescription,
+                                            deniedLocationPermissionButtonTitle: deniedLocationPermissionButtonTitle,
+                                            domain: weatherBucket))
+
+        return weatherList
     }
 
     /**

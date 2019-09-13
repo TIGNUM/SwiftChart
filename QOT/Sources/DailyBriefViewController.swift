@@ -29,6 +29,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func displayCoachPreparationScreen()
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
+    func didChangeLocationPermission(granted: Bool)
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -42,7 +43,7 @@ final class DailyBriefNavigationController: UINavigationController {
 final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
-    var delegate: CoachCollectionViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
@@ -233,6 +234,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
         case .GUIDE_TRACK?:
             guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
             return getGuidedTrack(tableView, indexPath, guidedtrackModel)
+        case .WEATHER?:
+            guard let weatherModel = bucketItem as? WeatherViewModel else { return UITableViewCell()}
+            return getWeatherCell(tableView, indexPath, weatherModel)
         default:
            return UITableViewCell()
         }
@@ -276,6 +280,7 @@ private extension DailyBriefViewController {
         } else {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
+            cell.impactReadinessButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
         }
         cell.delegate = self
         return cell
@@ -637,13 +642,21 @@ private extension DailyBriefViewController {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: guidedtrackModel)
-
+            cell.button.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel)
         cell.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        return cell
+    }
+
+    func getWeatherCell(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ weatherModel: WeatherViewModel?) -> UITableViewCell {
+        let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: weatherModel)
         return cell
     }
 }
@@ -712,10 +725,13 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadiness1.self)
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
+        tableView.registerDequeueable(WeatherCell.self)
     }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+    func didChangeLocationPermission(granted: Bool) {
+    }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         interactor?.openGuidedTrackAppLink(appLink)

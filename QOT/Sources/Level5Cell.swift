@@ -30,7 +30,7 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
     var levelMessages: [Level5ViewModel.LevelDetail] = []
-    var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
     var savedAnswer: Int = 0
     var confirmationMessage: String?
 

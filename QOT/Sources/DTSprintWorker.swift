@@ -8,8 +8,15 @@
 
 import UIKit
 import qot_dal
+import UserNotifications
 
-final class DTSprintWorker: DTWorker {}
+final class DTSprintWorker: DTWorker {
+    enum NotificationAction {
+        case none
+        case settings
+        case permission
+    }
+}
 
 // MARK: - Sprint
 extension DTSprintWorker {
@@ -56,6 +63,22 @@ extension DTSprintWorker {
                                                     object: nil,
                                                     userInfo: [Notification.Name.MySprintDetailsKeys.sprint: sprint])
                 }
+            }
+        }
+    }
+}
+
+// MARK: - Notifications
+extension DTSprintWorker {
+    func checkNotificationPermissions(_ completion: @escaping ((NotificationAction) -> Void)) {
+        RemoteNotificationPermission().authorizationStatus { (status) in
+            switch status {
+            case .denied:
+                completion(.settings)
+            case .notDetermined:
+                completion(.permission)
+            case .authorized, .provisional:
+                completion(.none)
             }
         }
     }

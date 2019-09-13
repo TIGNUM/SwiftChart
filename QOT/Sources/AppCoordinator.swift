@@ -147,7 +147,6 @@ final class AppCoordinator {
 
         self.windowManager.show(rootNavigationController, animated: true, completion: nil)
 
-        self.registerRemoteNotifications()
         self.canProcessRemoteNotifications = true
         self.canProcessLocalNotifications = true
     }
@@ -160,12 +159,6 @@ final class AppCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
-    func registerRemoteNotifications() {
-        permissionsManager.askPermission(for: [.notifications]) { status in
-            guard let status = status[.notifications] else { return }
-            UAirship.push().userPushNotificationsEnabled = status == .granted
-        }
-    }
 
     func showSubscriptionReminderIfNeeded() {
 //        guard let user = services?.userService.user() else { return }

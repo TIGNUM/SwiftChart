@@ -109,11 +109,9 @@ private extension DailyCheckinQuestionsViewController {
         if currentIndex == NSNotFound {
             return nil
         }
-
         if interactor.questions[currentIndex].selectedAnswerIndex == nil {
             return nil
         }
-
         let nextIndex = currentIndex + 1
         trackUserEvent(.OPEN, value: nextIndex, valueType: "DailyCheckin.PresentedQuestion", action: .SWIPE)
         if nextIndex >= interactor.questions.count {
@@ -213,8 +211,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         if index == NSNotFound { return }
-        let answers = interactor?.questions[index].answers?.count ?? 0
-        interactor?.questions[index].selectedAnswerIndex = (answers - 1) - answer
+        interactor?.questions[index].selectedAnswerIndex = answer
         trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
         isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
         refreshBottomNavigationItems()

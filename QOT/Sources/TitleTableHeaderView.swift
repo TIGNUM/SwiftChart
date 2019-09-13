@@ -15,8 +15,8 @@ final class TitleTableHeaderView: UITableViewHeaderFooterView, Dequeueable {
     @IBOutlet private weak var containerView: UIView!
 
     // MARK: Configuration
-    func configure(title: String, theme: ThemeView) {
+    func configure(title: String, theme: ThemeView, themeText: ThemeText = ThemeText.myQOTTitle) {
         theme.apply(containerView)
-        ThemeText.myQOTTitle.apply(title, to: titleLabel)
+        themeText.apply(title, to: titleLabel)
     }
 }

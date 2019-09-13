@@ -8,12 +8,13 @@
 
 import Foundation
 import UserNotifications
+import AirshipKit
 
 struct RemoteNotificationPermission: PermissionInterface {
     let notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current()
 
     func authorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
-        return notificationCenter.getNotificationSettings(completionHandler: { (settings) in
+        notificationCenter.getNotificationSettings(completionHandler: { (settings) in
             completion(settings.authorizationStatus)
         })
     }
@@ -26,6 +27,7 @@ struct RemoteNotificationPermission: PermissionInterface {
 
     func askPermission(completion: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.sound, .alert, .badge]) { (granted: Bool, _: Error?) in
+            UAirship.push().userPushNotificationsEnabled = granted
             completion(granted)
         }
     }

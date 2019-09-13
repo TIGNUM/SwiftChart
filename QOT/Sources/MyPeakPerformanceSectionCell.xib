@@ -27,13 +27,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="370" height="200.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="REFLECT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-tv-d2p">
-                                <rect key="frame" x="24" y="15" width="322" height="21"/>
+                                <rect key="frame" x="24" y="0.0" width="322" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-SJ-VzL">
-                                <rect key="frame" x="25" y="42" width="321" height="134.5"/>
+                                <rect key="frame" x="25" y="27" width="321" height="149.5"/>
                                 <string key="text">How did your Peak Performance 
 go yesterday? Take a minute to reflect on what did you do well and what would you do differently next time. Remember: reflection and an 
 after action review is a high performance tool. </string>
@@ -44,7 +44,7 @@ after action review is a high performance tool. </string>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IXz-tv-d2p" firstAttribute="top" secondItem="IuR-aP-FDG" secondAttribute="top" constant="15" id="5yE-2R-lzs"/>
+                            <constraint firstItem="IXz-tv-d2p" firstAttribute="top" secondItem="IuR-aP-FDG" secondAttribute="top" id="5yE-2R-lzs"/>
                             <constraint firstAttribute="bottom" secondItem="xKL-SJ-VzL" secondAttribute="bottom" constant="24" id="DW6-PJ-5YM"/>
                             <constraint firstAttribute="trailing" secondItem="IXz-tv-d2p" secondAttribute="trailing" constant="24" id="EGW-Qf-wTf"/>
                             <constraint firstItem="IXz-tv-d2p" firstAttribute="leading" secondItem="IuR-aP-FDG" secondAttribute="leading" constant="24" id="NYv-BP-kOD"/>

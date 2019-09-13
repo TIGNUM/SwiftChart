@@ -217,10 +217,6 @@ extension ScreenTitleService {
         }
     }
 
-    func myDataGraphNoDataTitle() -> String? {
-        return localizedString(for: .myDataNoDataGraphTitle)
-    }
-
     func myDataGraphIrAverageTitle() -> String? {
         return localizedString(for: .myDataGraphIRAverageTitle)
     }

@@ -58,11 +58,13 @@ final class DailyCheckinStartWorker {
             let finalQuestions = dailyCheckInQuestions.filter({ keysToFilter.contains(obj: $0.key) != true })
                 .compactMap { (question) -> RatingQuestionViewModel.Question? in
                     guard let remoteID = question.remoteID else { return nil }
-                    let answers = question.answers.compactMap({ (answer) -> RatingQuestionViewModel.Answer in
+                    let answers = question.answers.sorted(by: {$0.sortOrder ?? 0 > $1.sortOrder ?? 0})
+                    .compactMap({ (answer) -> RatingQuestionViewModel.Answer in
                         return RatingQuestionViewModel.Answer(remoteID: answer.remoteID,
                                                               title: answer.title,
                                                               subtitle: answer.subtitle)
                     })
+
                     return RatingQuestionViewModel.Question(remoteID: remoteID,
                                                             title: question.title,
                                                             htmlTitle: question.htmlTitleString,
