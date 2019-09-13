@@ -27,10 +27,12 @@ final class DTRecoveryViewController: DTViewController {
     // MARK: - Answer Handling
     override func didTapNext() {
         switch viewModel?.question.key {
-        case Recovery.QuestionKey.GeneratePlan?:
-            presentRecoveryResults()
         case Recovery.QuestionKey.Intro?:
             setNextQuestionForFatigueSymptoms()
+        case Recovery.QuestionKey.GeneratePlan?:
+            presentRecoveryResults()
+        case Recovery.QuestionKey.Last?:
+            router?.dismiss()
         default:
             loadNextQuestion()
         }
