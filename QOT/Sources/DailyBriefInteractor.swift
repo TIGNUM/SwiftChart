@@ -103,9 +103,6 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-    func screenTitle() -> String {
-        return worker.screenTitle()
-    }
 
 //    Invoke the prepare screen in the coach screen.
     func displayCoachPreparationScreen() {

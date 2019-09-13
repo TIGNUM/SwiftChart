@@ -52,10 +52,6 @@ final class DailyBriefWorker {
             }
         })
     }
-
-    func screenTitle() -> String {
-        return ScreenTitleService.main.localizedString(for: .DailyBriefTitle)
-    }
 }
 
 // MARK: - Daily Checkin 1
