@@ -12,7 +12,7 @@ import qot_dal
 class DTPresenter: DTPresenterInterface {
 
     // MARK: - Properties
-    private var viewController: DTViewControllerInterface?
+    var viewController: DTViewControllerInterface?
 
     // MARK: - Init
     init(viewController: DTViewControllerInterface?) {

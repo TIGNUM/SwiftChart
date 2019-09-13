@@ -8,9 +8,13 @@
 
 import Foundation
 
-protocol DTSprintViewControllerInterface: class {}
+protocol DTSprintViewControllerInterface: class {
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
+}
 
-protocol DTSprintPresenterInterface {}
+protocol DTSprintPresenterInterface {
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
+}
 
 protocol DTSprintInteractorInterface: Interactor {
     func startSprintTomorrow(selection: DTSelectionModel)
@@ -19,4 +23,6 @@ protocol DTSprintInteractorInterface: Interactor {
     func getSelectedSprintTitle() -> String?
 }
 
-protocol DTSprintRouterInterface {}
+protocol DTSprintRouterInterface {
+    func openPermissionView(_ permissionType: AskPermission.Kind)
+}

@@ -42,3 +42,10 @@ final class DTSprintPresenter: DTPresenter {
         return questionKey == Sprint.QuestionKey.Intro
     }
 }
+
+extension DTSprintPresenter: DTSprintPresenterInterface {
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+        guard let viewController = viewController as? DTSprintViewController else { return }
+        viewController.presentPermissionView(permissionType)
+    }
+}
