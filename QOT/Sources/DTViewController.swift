@@ -147,16 +147,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
     }
-}
 
-// MARK: - Bottom Navigation
-extension DTViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-}
-
-extension DTViewController {
     /**
      An answer contains the decision about the next question to load or needed content.
      Some questions will be displayed without answers. If the an answer can not be
@@ -172,5 +163,12 @@ extension DTViewController {
             answer.setSelected(true)
             viewModel?.setSelectedAnswer(answer)
         }
+    }
+}
+
+// MARK: - Bottom Navigation
+extension DTViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }

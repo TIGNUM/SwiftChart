@@ -8,7 +8,11 @@
 
 import UIKit
 
-final class DTTBVInteractor: DTInteractor {}
+final class DTTBVInteractor: DTInteractor {
+
+    // MARK: - Properties
+    private lazy var tbvWorker: DTShortTBVWorker? = DTShortTBVWorker()
+}
 
 // MARK: - DTTBVInteractorInterface
 extension DTTBVInteractor: DTTBVInteractorInterface {}
