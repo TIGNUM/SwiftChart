@@ -640,7 +640,7 @@ enum ThemeText {
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
-             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, 
+             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody:
             return Fonts.fontRegular16
