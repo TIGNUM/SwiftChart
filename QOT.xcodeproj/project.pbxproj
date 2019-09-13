@@ -537,8 +537,6 @@
 		8D0500B3232AAFFE00D357D1 /* BaseWithTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */; };
 		8D0500B4232AB04700D357D1 /* SkeletonDailyCheckInFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BE23215690004D657F /* SkeletonDailyCheckInFooter.xib */; };
 		8D0500B5232AB11800D357D1 /* WalkthroughConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D1B230E80EB00DCC241 /* WalkthroughConfigurator.swift */; };
-		8D0500C0232AB21E00D357D1 /* DeleteConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0500BE232AB21E00D357D1 /* DeleteConfirmationViewController.swift */; };
-		8D0500C1232AB21E00D357D1 /* DeleteConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D0500BF232AB21E00D357D1 /* DeleteConfirmationViewController.xib */; };
 		8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */; };
 		8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */; };
 		8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */; };
@@ -1453,8 +1451,6 @@
 		365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotDetailViewController.swift; sourceTree = "<group>"; };
 		3662433D227C56E500FFED3A /* AudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioButton.swift; sourceTree = "<group>"; };
 		3662433F227C570200FFED3A /* AudioButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioButton.xib; sourceTree = "<group>"; };
-		3666FD1123299AA100FC67D0 /* DeleteConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteConfirmationViewController.xib; sourceTree = "<group>"; };
-		3666FD1223299AA100FC67D0 /* DeleteConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteConfirmationViewController.swift; sourceTree = "<group>"; };
 		366AFD1720BDAD3000109F29 /* FormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormView.xib; sourceTree = "<group>"; };
 		366AFD1920BDAE8900109F29 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		366AFD1B20BEA2F000109F29 /* Apercu-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Bold.otf"; sourceTree = "<group>"; };
@@ -1867,8 +1863,6 @@
 		8D04FA2F23041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAgeConfigurator.swift; sourceTree = "<group>"; };
 		8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationAge.storyboard; sourceTree = "<group>"; };
 		8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseWithTableViewController.swift; sourceTree = "<group>"; };
-		8D0500BE232AB21E00D357D1 /* DeleteConfirmationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeleteConfirmationViewController.swift; sourceTree = "<group>"; };
-		8D0500BF232AB21E00D357D1 /* DeleteConfirmationViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DeleteConfirmationViewController.xib; sourceTree = "<group>"; };
 		8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotPlaceholderTextField.swift; sourceTree = "<group>"; };
 		8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QotPlaceholderTextField.xib; sourceTree = "<group>"; };
 		8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationNames.storyboard; sourceTree = "<group>"; };
@@ -5479,7 +5473,6 @@
 		CCA834E51F17663800FAAA2B /* Animation */ = {
 			isa = PBXGroup;
 			children = (
-				9C6E48C32328D970004D657F /* AnimatedButton.swift */,
 				BB5E76B3230C048C0054AF17 /* CustomSegue */,
 			);
 			name = Animation;
@@ -6108,7 +6101,6 @@
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */,
 				BB7B317B230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib in Resources */,
-				3666FD1323299AA100FC67D0 /* DeleteConfirmationViewController.xib in Resources */,
 				B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
@@ -6312,7 +6304,6 @@
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
 				B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */,
 				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
-				8D0500C1232AB21E00D357D1 /* DeleteConfirmationViewController.xib in Resources */,
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
@@ -6673,7 +6664,6 @@
 				9100195020F6413900049118 /* ExtensionModel.swift in Sources */,
 				9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */,
 				36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */,
-				8D9F6D23230E80EB00DCC241 /* WalkthroughConfigurator.swift in Sources */,
 				36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */,
 				759AB42322C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.swift in Sources */,
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
@@ -6983,7 +6973,6 @@
 				759AB42622C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift in Sources */,
 				5FD890A822807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift in Sources */,
 				9CE28A2322E1C78C00013C44 /* DailyBriefViewModel.swift in Sources */,
-				8D0500C0232AB21E00D357D1 /* DeleteConfirmationViewController.swift in Sources */,
 				5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */,
 				8D8AA76A22FDCB6700B59A81 /* RegistrationEmailRouter.swift in Sources */,
 				36083826225F3ED000664B9B /* ArticlePresenter.swift in Sources */,
@@ -7274,7 +7263,6 @@
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
-				3666FD1423299AA100FC67D0 /* DeleteConfirmationViewController.swift in Sources */,
 				36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */,
 				3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */,
 				360256EC205183C700862B0E /* SearchModels.swift in Sources */,
