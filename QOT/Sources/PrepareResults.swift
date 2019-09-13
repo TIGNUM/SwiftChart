@@ -19,7 +19,7 @@ enum PrepareResultsType {
     case eventItem(title: String, date: Date, type: String)
     case strategy(title: String, durationString: String, readMoreID: Int)
     case reminder(title: String, subbtitle: String, active: Bool, type: ReminderType)
-    case intentionContentItem(format: ContentFormat, title: String?, key: Prepare.Key)
+    case intentionContentItem(format: ContentFormat, title: String?, key: PrepareResult.Key)
     case intentionItem(title: String)
     case benefitContentItem(format: ContentFormat, title: String?, benefits: String?, questionID: Int)
     case benefitItem(benefits: String?)
@@ -96,7 +96,7 @@ extension ContentFormat {
     }
 }
 
-struct Prepare {
+struct PrepareResult {
     struct Daily: Hashable {
         static let HEADER = 0
         static let EVENT_LIST = 1
@@ -174,8 +174,8 @@ extension QDMUserPreparation.Level {
     var key: String? {
         switch self {
         case .LEVEL_ON_THE_GO: return nil
-        case .LEVEL_DAILY: return AnswerKey.Prepare.EventTypeSelectionDaily
-        case .LEVEL_CRITICAL: return AnswerKey.Prepare.EventTypeSelectionCritical
+        case .LEVEL_DAILY: return Prepare.AnswerKey.EventTypeSelectionDaily
+        case .LEVEL_CRITICAL: return Prepare.AnswerKey.EventTypeSelectionCritical
         default: return nil
         }
     }
