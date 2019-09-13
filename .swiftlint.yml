@@ -1,5 +1,5 @@
 disabled_rules:
-  - variable_name
+  - identifier_name
   - class_delegate_protocol # This can give false positives if the protocol is inherited.
   - large_tuple
   - nesting

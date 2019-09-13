@@ -210,7 +210,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             }
             cell.configure(with: questionTitle,
                            html: questionHtml,
-                           questionTitleUpdate: update,
+                           questionUpdate: update,
                            textColor: interactor?.type.textColor ?? .carbon)
             return cell
         case .answer:

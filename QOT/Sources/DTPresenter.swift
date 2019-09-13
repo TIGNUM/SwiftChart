@@ -12,7 +12,7 @@ import qot_dal
 class DTPresenter: DTPresenterInterface {
 
     // MARK: - Properties
-    var viewController: DTViewControllerInterface?
+    weak var viewController: DTViewControllerInterface?
 
     // MARK: - Init
     init(viewController: DTViewControllerInterface?) {
@@ -76,7 +76,7 @@ class DTPresenter: DTPresenterInterface {
     }
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
-        let question = getQuestion(presentationModel.question, titleToUpdate: presentationModel.titleToUpdate)
+        let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
         return DTViewModel(question: question,
                            answers: answers,
@@ -88,9 +88,9 @@ class DTPresenter: DTPresenterInterface {
                            showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
     }
 
-    func getQuestion(_ question: QDMQuestion?, titleToUpdate: String?) -> DTViewModel.Question {
+    func getQuestion(_ question: QDMQuestion?, questionUpdate: String?) -> DTViewModel.Question {
         var title = question?.title
-        if let update = updatedQuestionTitle(question, replacement: titleToUpdate) {
+        if let update = updatedQuestionTitle(question, replacement: questionUpdate) {
             title = update
         }
         return DTViewModel.Question(remoteId: question?.remoteID ?? 0,

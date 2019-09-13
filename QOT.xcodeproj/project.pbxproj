@@ -127,6 +127,14 @@
 		365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */; };
 		3662433E227C56E500FFED3A /* AudioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3662433D227C56E500FFED3A /* AudioButton.swift */; };
 		36624340227C570200FFED3A /* AudioButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3662433F227C570200FFED3A /* AudioButton.xib */; };
+		3666FD41232A4B7D00FC67D0 /* DTRecoveryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD39232A4B7D00FC67D0 /* DTRecoveryPresenter.swift */; };
+		3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3A232A4B7D00FC67D0 /* DTRecoveryWorker.swift */; };
+		3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3B232A4B7D00FC67D0 /* DTRecoveryRouter.swift */; };
+		3666FD44232A4B7D00FC67D0 /* DTRecoveryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3C232A4B7D00FC67D0 /* DTRecoveryInterface.swift */; };
+		3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3D232A4B7D00FC67D0 /* DTRecoveryViewController.swift */; };
+		3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3E232A4B7D00FC67D0 /* DTRecoveryInteractor.swift */; };
+		3666FD47232A4B7D00FC67D0 /* DTRecovery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD3F232A4B7D00FC67D0 /* DTRecovery.swift */; };
+		3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666FD40232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift */; };
 		3666FD49232A7F2300FC67D0 /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C32328D970004D657F /* AnimatedButton.swift */; };
 		366AFD1820BDAD3000109F29 /* FormView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1720BDAD3000109F29 /* FormView.xib */; };
 		366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366AFD1920BDAE8900109F29 /* FormView.swift */; };
@@ -748,7 +756,6 @@
 		9C6E48BF23215690004D657F /* SkeletonDailyCheckInFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */; };
 		9C6E48C023215690004D657F /* SkeletonDailyCheckInRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BC23215690004D657F /* SkeletonDailyCheckInRow.xib */; };
 		9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BD23215690004D657F /* SkeletonDailyCheckInRow.swift */; };
-		9C6E48C42328D970004D657F /* AnimatedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C32328D970004D657F /* AnimatedButton.swift */; };
 		9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */; };
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
@@ -1448,6 +1455,14 @@
 		365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotDetailViewController.swift; sourceTree = "<group>"; };
 		3662433D227C56E500FFED3A /* AudioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioButton.swift; sourceTree = "<group>"; };
 		3662433F227C570200FFED3A /* AudioButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AudioButton.xib; sourceTree = "<group>"; };
+		3666FD39232A4B7D00FC67D0 /* DTRecoveryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryPresenter.swift; sourceTree = "<group>"; };
+		3666FD3A232A4B7D00FC67D0 /* DTRecoveryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryWorker.swift; sourceTree = "<group>"; };
+		3666FD3B232A4B7D00FC67D0 /* DTRecoveryRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryRouter.swift; sourceTree = "<group>"; };
+		3666FD3C232A4B7D00FC67D0 /* DTRecoveryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryInterface.swift; sourceTree = "<group>"; };
+		3666FD3D232A4B7D00FC67D0 /* DTRecoveryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryViewController.swift; sourceTree = "<group>"; };
+		3666FD3E232A4B7D00FC67D0 /* DTRecoveryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryInteractor.swift; sourceTree = "<group>"; };
+		3666FD3F232A4B7D00FC67D0 /* DTRecovery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecovery.swift; sourceTree = "<group>"; };
+		3666FD40232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTRecoveryConfigurator.swift; sourceTree = "<group>"; };
 		366AFD1720BDAD3000109F29 /* FormView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FormView.xib; sourceTree = "<group>"; };
 		366AFD1920BDAE8900109F29 /* FormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormView.swift; sourceTree = "<group>"; };
 		366AFD1B20BEA2F000109F29 /* Apercu-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Bold.otf"; sourceTree = "<group>"; };
@@ -2656,6 +2671,16 @@
 			name = Abstract_qot_dal;
 			sourceTree = "<group>";
 		};
+		36103325232AC794008A8205 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */,
+				36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */,
+				36288A7623257F060036C8C0 /* DTViewModel.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		361DB158201F2CF000E8FD22 /* PLists */ = {
 			isa = PBXGroup;
 			children = (
@@ -2873,20 +2898,6 @@
 			name = StrategyList;
 			sourceTree = "<group>";
 		};
-		3638F81A23286577002D40E8 /* Daily Brief */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Daily Brief";
-			sourceTree = "<group>";
-		};
-		3638F81B232865C1002D40E8 /* Theme */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Theme;
-			sourceTree = "<group>";
-		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -2945,10 +2956,25 @@
 		36582581232853E400AC3F4A /* Theme */ = {
 			isa = PBXGroup;
 			children = (
-				BB667EF72313D76A007C2AC8 /* Theme.swift */,
 				8DF556FA232435DF00DC0094 /* ButtonThemeable.swift */,
+				BB667EF72313D76A007C2AC8 /* Theme.swift */,
 			);
 			name = Theme;
+			sourceTree = "<group>";
+		};
+		3666FD28232A45E900FC67D0 /* Recovery */ = {
+			isa = PBXGroup;
+			children = (
+				3666FD3F232A4B7D00FC67D0 /* DTRecovery.swift */,
+				3666FD40232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift */,
+				3666FD3E232A4B7D00FC67D0 /* DTRecoveryInteractor.swift */,
+				3666FD3C232A4B7D00FC67D0 /* DTRecoveryInterface.swift */,
+				3666FD39232A4B7D00FC67D0 /* DTRecoveryPresenter.swift */,
+				3666FD3B232A4B7D00FC67D0 /* DTRecoveryRouter.swift */,
+				3666FD3D232A4B7D00FC67D0 /* DTRecoveryViewController.swift */,
+				3666FD3A232A4B7D00FC67D0 /* DTRecoveryWorker.swift */,
+			);
+			name = Recovery;
 			sourceTree = "<group>";
 		};
 		366AFD1620BDAD0800109F29 /* FormView */ = {
@@ -3012,16 +3038,6 @@
 			name = SigningInfo;
 			sourceTree = "<group>";
 		};
-		367A5846232695380089A082 /* Base Models */ = {
-			isa = PBXGroup;
-			children = (
-				36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */,
-				36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */,
-				36288A7623257F060036C8C0 /* DTViewModel.swift */,
-			);
-			name = "Base Models";
-			sourceTree = "<group>";
-		};
 		367A584A2326A13D0089A082 /* Solve */ = {
 			isa = PBXGroup;
 			children = (
@@ -3048,6 +3064,7 @@
 				367A585C2326A1AF0089A082 /* DTViewController.swift */,
 				367A58642326B85B0089A082 /* DTWorker.swift */,
 				367A585E2326A4350089A082 /* DTViewController.xib */,
+				36103325232AC794008A8205 /* Models */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -3055,8 +3072,6 @@
 		367BB012223955D200282AB6 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				3638F81A23286577002D40E8 /* Daily Brief */,
-				3638F81B232865C1002D40E8 /* Theme */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
 				3608381D225F3E9E00664B9B /* Article */,
 				36B5BD152314295E00439A64 /* AskPermission */,
@@ -3087,9 +3102,7 @@
 				3637666C223BFF1100C2C429 /* StrategyList */,
 				36718B2E224CDB7B0042881E /* Subscription */,
 				F99DF60D2292E38F00341DAB /* Tools */,
-				36E6E3F2224938D8001BE9C7 /* Transition */,
 				36E4B7A2219EBFB900049EE8 /* Tutorial */,
-				9C6E48C32328D970004D657F /* AnimatedButton.swift */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -3207,6 +3220,15 @@
 				36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */,
 			);
 			name = PrepareEventSelection;
+			sourceTree = "<group>";
+		};
+		36E12EB8232B4CD7009E96EA /* BaseViews */ = {
+			isa = PBXGroup;
+			children = (
+				8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */,
+				9C6E48C32328D970004D657F /* AnimatedButton.swift */,
+			);
+			name = BaseViews;
 			sourceTree = "<group>";
 		};
 		36E4B7A2219EBFB900049EE8 /* Tutorial */ = {
@@ -4550,10 +4572,10 @@
 			children = (
 				ACF0B94C225FC436008CFAEC /* __Core */,
 				367A585B2326A1900089A082 /* Base */,
-				367A5846232695380089A082 /* Base Models */,
 				ACF0B94E225FC46E008CFAEC /* Cells */,
 				ACD399EF2294026D00DDE1BD /* Keys */,
 				3655F2CA2326EB7C00334719 /* MindsetShifter */,
+				3666FD28232A45E900FC67D0 /* Recovery */,
 				3658254D2327ABEA00AC3F4A /* ShortTBV */,
 				367A584A2326A13D0089A082 /* Solve */,
 				36EC22F82323F43C00DB5696 /* Sprint */,
@@ -5102,7 +5124,6 @@
 		CBB4DD171EE07B010071494A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */,
 				CCA834E51F17663800FAAA2B /* Animation */,
 				CBB4DD3D1EE08DDB0071494A /* App */,
 				CBB4DD1A1EE084C00071494A /* Coordinators */,
@@ -5111,7 +5132,6 @@
 				CBB4DD4B1EE093A10071494A /* Generated */,
 				CB78420F1FB311DC00C91546 /* ObjC */,
 				367BB012223955D200282AB6 /* Scenes */,
-				36582581232853E400AC3F4A /* Theme */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* ViewLayer */,
 			);
@@ -5157,6 +5177,7 @@
 			isa = PBXGroup;
 			children = (
 				CC7D21A41EFBF50A007A062E /* Article */,
+				36E12EB8232B4CD7009E96EA /* BaseViews */,
 				CBB4DD461EE0911A0071494A /* Common */,
 				CB873292202AED1F0081F522 /* GradientView */,
 				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
@@ -5164,6 +5185,8 @@
 				CCDCE7321EEFE63600BD019C /* LearnContentItem */,
 				CBB4DD3E1EE08EB50071494A /* PrepareChat */,
 				CC02E1471F2799E500134574 /* SettingsCalendarList */,
+				36582581232853E400AC3F4A /* Theme */,
+				36E6E3F2224938D8001BE9C7 /* Transition */,
 			);
 			name = ViewLayer;
 			sourceTree = "<group>";
@@ -6672,6 +6695,7 @@
 				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
+				3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				3658257A2327D19200AC3F4A /* DTShortTBVRouter.swift in Sources */,
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
@@ -6733,6 +6757,7 @@
 				36E4CF0B22BC51BD009A2DF7 /* ChoiceRouter.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
+				3666FD44232A4B7D00FC67D0 /* DTRecoveryInterface.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
@@ -6869,6 +6894,7 @@
 				F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */,
 				8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
+				3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */,
 				5F78966522A929F800D2DBAD /* SkeletonType.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
@@ -6980,6 +7006,7 @@
 				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */,
+				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
@@ -7022,13 +7049,16 @@
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */,
 				8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */,
+				3666FD47232A4B7D00FC67D0 /* DTRecovery.swift in Sources */,
 				9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */,
+				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				5F78966922A9478400D2DBAD /* SkeletonAnimationType.swift in Sources */,
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
+				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */,
 				9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */,
@@ -7278,6 +7308,7 @@
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */,
 				5F8A899D2296DF0D0011A05C /* MyVisionInterface.swift in Sources */,
+				3666FD41232A4B7D00FC67D0 /* DTRecoveryPresenter.swift in Sources */,
 				F9A5C94622B7D04700AB2E94 /* PaymentReminderInterface.swift in Sources */,
 				8DF7870B22FEB50800CDE0A9 /* RegistrationCodeInteractor.swift in Sources */,
 				36343F212306EF4500F1EC66 /* UIViewController+BottomNavigation.swift in Sources */,
@@ -7395,7 +7426,6 @@
 				8D5668BA22DCAD4800AA172F /* MySprintsListViewController.swift in Sources */,
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
 				B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */,
-				9C6E48C42328D970004D657F /* AnimatedButton.swift in Sources */,
 				8D04FA3023041E9C00AE7CA0 /* RegistrationAgePresenter.swift in Sources */,
 				F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */,
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,

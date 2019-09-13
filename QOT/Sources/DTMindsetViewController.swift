@@ -26,16 +26,17 @@ final class DTMindsetViewController: DTViewController {
     }
 
     // MARK: - DTViewController
-    override func getAnswerFilter(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> String? {
+    override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+        let firstAnswer = selectedAnswers.first
         switch questionKey {
         case Mindset.QuestionKey.Intro?:
-            return selectedAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            return firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
         case Mindset.QuestionKey.MoreInfo?:
-            var tempTitle = selectedAnswer?.title.replacingOccurrences(of: " ", with: "_") ?? ""
+            var tempTitle = firstAnswer?.title.replacingOccurrences(of: " ", with: "_") ?? ""
             tempTitle = tempTitle.replacingOccurrences(of: "\'", with: "")
             return Mindset.Filter.TriggerRelationship + tempTitle
         case Mindset.QuestionKey.GutReactions?:
-            return selectedAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            return firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
         default:
             return nil
         }
@@ -57,7 +58,7 @@ final class DTMindsetViewController: DTViewController {
 
     // MARK: - DTQuestionnaireViewControllerDelegate
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
-
+        super.didTapBinarySelection(answer)
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
@@ -73,7 +74,7 @@ final class DTMindsetViewController: DTViewController {
     }
 }
 
-// MARK: - Actions
+// MARK: - Private
 private extension DTMindsetViewController {
     func handleTBVCase() {
         interactor?.getUsersTBV { [weak self] (tbv, initiated) in
