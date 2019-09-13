@@ -560,5 +560,10 @@
 "Mark.As.Read" = "Mark as read";
 "Mark.As.Unread" = "Mark as unread";
 
+"Solve.5Day.Plan" = "YOUR 5-DAY PLAN";
+"Solve.Your.Answers" = "YOUR ANSWERS";
+"Solve.Fatigue" = "FATIGUE";
+"Solve.Cause" = "CAUSE";
+
 "SyncedCalendars.Button.Skip" = "Skip";
 "SyncedCalendars.Button.Save" = "Save";

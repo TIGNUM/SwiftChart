@@ -16,7 +16,7 @@ extension Notification.Name {
      NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
      */
     static let updateBottomNavigation = Notification.Name("updateBottomNavigation")
-    static let didTabDismissBottomNavigation = Notification.Name("didTabDismissBottomNavigation")
+    static let didTapDismissBottomNavigation = Notification.Name("didTapDismissBottomNavigation")
     static let didDismissMindsetResultView = Notification.Name("didDismissMindsetResultView")
 //  Notification to hide/display the ImpactReadinessScore
     static let dispayDailyCheckInScore = Notification.Name("showDailyCheckInScore")

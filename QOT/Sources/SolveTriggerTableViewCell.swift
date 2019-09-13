@@ -12,14 +12,14 @@ protocol SolveTriggerTableViewCellDelegate: class {
     func didTapStart(_ type: SolveTriggerType)
 }
 
-final class SolveTriggerTableViewCell: UITableViewCell, Dequeueable {
+final class SolveTriggerTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
     weak var delegate: SolveTriggerTableViewCellDelegate?
     private var triggerType: SolveTriggerType = .midsetShifter
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var triggerDescription: UILabel!
-    @IBOutlet private weak var startButton: UIButton!
+    @IBOutlet private weak var startButton: AnimatedButton!
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -31,9 +31,12 @@ final class SolveTriggerTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Configure
 extension SolveTriggerTableViewCell {
     func configure(type: SolveTriggerType?, header: String, description: String, buttonText: String) {
+        selectionStyle = .none
+        ThemeView.resultWhite.apply(self)
+
         triggerType = type ?? .midsetShifter
-        headerLabel.text = header
-        triggerDescription.text = description
+        ThemeText.resultList.apply(header, to: headerLabel)
+        ThemeText.resultHeader2.apply(description, to: triggerDescription)
         startButton.setTitle(buttonText, for: .normal)
     }
 }

@@ -27,6 +27,10 @@ final class CoachRouter {
 // MARK: - CoachRouterInterface
 extension CoachRouter: CoachRouterInterface {
     func handleTap(coachSection: CoachSection) {
+        NotificationCenter.default.post(name: .updateBottomNavigation,
+                                        object: BottomNavigationItem(leftBarButtonItems: [],
+                                                                     rightBarButtonItems: [], backgroundColor: .clear),
+                                        userInfo: nil)
         switch coachSection {
         case .search:
             let configurator = SearchConfigurator.make(delegate: delegate)
@@ -45,11 +49,33 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.present(toolsViewController, animated: true, completion: nil)
             }
         case .sprint:
-            presentDecisionTree(.sprint)
+            let configurator = DTSprintConfigurator.make()
+            let controller = DTSprintViewController(configure: configurator)
+            viewController.present(controller, animated: true)
         case .event:
-            presentDecisionTree(.prepare)
+            let configurator = DTSolveConfigurator.make()
+            let controller = DTSolveViewController(configure: configurator)
+            viewController.present(controller, animated: true)
         case .challenge:
-            presentDecisionTree(.solve)
+            let configurator = DTSolveConfigurator.make()
+            let controller = DTSolveViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVMindSet:
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+        case .shortTBVPrepare:
+            UserService.main.getMindsetShifters { [weak self] (mindsetShifters, _, _) in
+                if let mindsetShifter = mindsetShifters?.at(index: mindsetShifters?.randomIndex ?? 0) {
+                    let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter)
+                    let controller = ShifterResultViewController(configure: configurator)
+                    self?.viewController.present(controller, animated: true)
+                }
+            }
+        case .shortTBVOnBoarding:
+            let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
+            let controller = DTShortTBVViewController(configure: configurator)
+            viewController.present(controller, animated: true)
         }
     }
 }

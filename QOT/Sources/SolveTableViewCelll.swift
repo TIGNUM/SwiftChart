@@ -22,6 +22,7 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     func configure(title: String?, date: String?, solve: QDMSolve?) {

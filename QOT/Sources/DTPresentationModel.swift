@@ -1,0 +1,53 @@
+//
+//  DTPresentationModel.swift
+//  QOT
+//
+//  Created by karmic on 08.09.19.
+//  Copyright © 2019 Tignum. All rights reserved.
+//
+
+import Foundation
+import qot_dal
+
+struct DTPresentationModel {
+    var question: QDMQuestion?
+    var titleToUpdate: String?
+    var answerFilter: String?
+    var tbv: QDMToBeVision?
+
+    init(question: QDMQuestion?, titleToUpdate: String?, answerFilter: String?, tbv: QDMToBeVision?) {
+        self.question = question
+        self.titleToUpdate = titleToUpdate
+        self.answerFilter = answerFilter
+        self.tbv = tbv
+    }
+
+    init(question: QDMQuestion?) {
+        self.question = question
+        self.titleToUpdate = nil
+        self.answerFilter = nil
+        self.tbv = nil
+
+    }
+
+    func getNavigationButton(isHidden: Bool) -> NavigationButton? {
+        guard let question = question else { return nil }
+        if question.defaultButtonText?.isEmpty == true && question.confirmationButtonText?.isEmpty == true {
+            return nil
+        }
+        let enabled = question.answerType != AnswerType.multiSelection.rawValue
+        let title = question.defaultButtonText?.isEmpty == true ? question.confirmationButtonText : question.defaultButtonText
+        let navigationButton = NavigationButton(title: title ?? "", type: .sprint, enabled: enabled)
+        if !enabled,
+            let maxSelections = question.maxPossibleSelections,
+            let defaultTitle = question.defaultButtonText,
+            let confirmationTitle = question.confirmationButtonText {
+            navigationButton.update(currentValue: 0,
+                                    maxSelections: maxSelections,
+                                    defaultTitle: defaultTitle,
+                                    confirmationTitle: confirmationTitle)
+        }
+        navigationButton.isHidden = isHidden
+        return navigationButton
+    }
+}

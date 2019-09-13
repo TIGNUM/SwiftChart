@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class NegativeToPositiveTableViewCell: UITableViewCell, Dequeueable {
+final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
@@ -33,15 +33,18 @@ final class NegativeToPositiveTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Configuration
 extension NegativeToPositiveTableViewCell {
     func configure(title: String, lowTitle: String, lowItems: [String], highTitle: String, highItems: [String]) {
-        titleLabel.text = title
-        lowTitleLabel.text = lowTitle
-        lowFirstItemLabel.text = lowItems[0, default: "lowItem_01 not set"]
-        lowSecondItemLabel.text = lowItems[1, default: "lowItem_02 not set"]
-        lowThirdItemLabel.text = lowItems[2, default: "lowItem_03 not set"]
-        highTitleLabel.text = highTitle
-        highFirstItemLabel.text = highItems[0, default: "highItem_01 not set"]
-        highSecondItemLabel.text = highItems[1, default: "highItem_02 not set"]
-        highThirdItemLabel.text = highItems[2, default: "highItem_03 not set"]
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+
+        ThemeText.resultTitle.apply(lowTitle, to: lowTitleLabel)
+        ThemeText.resultHeader2.apply(lowItems[0, default: "lowItem_01 not set"], to: lowFirstItemLabel)
+        ThemeText.resultHeader2.apply(lowItems[1, default: "lowItem_02 not set"], to: lowSecondItemLabel)
+        ThemeText.resultHeader2.apply(lowItems[2, default: "lowItem_03 not set"], to: lowThirdItemLabel)
+
+        ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
+        ThemeText.resultHeader2.apply(lowItems[0, default: "highItem_01 not set"], to: highFirstItemLabel)
+        ThemeText.resultHeader2.apply(lowItems[1, default: "highItem_02 not set"], to: highSecondItemLabel)
+        ThemeText.resultHeader2.apply(lowItems[2, default: "highItem_03 not set"], to: highThirdItemLabel)
     }
 }
 

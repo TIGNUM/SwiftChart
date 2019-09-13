@@ -45,7 +45,8 @@ final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .sand
+        ThemeView.qotTools.apply(view)
+        ThemeView.qotTools.apply(tableView)
         setCustomBackButton()
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
@@ -132,6 +133,10 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                                                            subtitle: interactor?.headerSubtitle ?? "")
         default: return nil
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 90
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

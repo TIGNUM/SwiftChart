@@ -9,25 +9,25 @@
 import UIKit
 import qot_dal
 
-protocol MultipleSelectionCollectionViewCellDelegate: class {
-    func didSelectAnswer(_ answer: QDMAnswer)
-    func didDeSelectAnswer(_ answer: QDMAnswer)
+protocol MultipleSelectionDelegate: class {
+    func didSelectAnswer(_ answer: DTViewModel.Answer)
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer)
 }
 
 final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
-    weak var delegate: MultipleSelectionCollectionViewCellDelegate?
+    weak var delegate: MultipleSelectionDelegate?
     @IBOutlet private weak var selectionButton: SelectionButton!
     private var maxSelections = 0
     private var selectionCounter = 0
+    private var answer: DTViewModel.Answer?
     private var isAnswered = false
-    private var answer: QDMAnswer?
-    private var type = DecisionTreeType.mindsetShifter
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        selectionButton.delegate = self
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(syncButton(_:)),
                                                name: .didUpdateSelectionCounter,
@@ -37,35 +37,27 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
 // MARK: - Configure
 extension MultipleSelectionCollectionViewCell {
-    func configure(for answer: QDMAnswer,
-                   type: DecisionTreeType?,
-                   isSelected: Bool,
-                   maxSelections: Int,
-                   selectionCounter: Int) {
-        self.type = type ?? .mindsetShifter
+    func configure(for answer: DTViewModel.Answer, maxSelections: Int, selectionCounter: Int) {
         self.answer = answer
         self.maxSelections = maxSelections
-        self.isAnswered = isSelected
         self.selectionCounter = selectionCounter
-        selectionButton.configure(title: answer.subtitle ?? "", isSelected: isSelected)
+        selectionButton.configure(title: answer.title, isSelected: answer.selected)
     }
 }
 
 // MARK: - Actions
 extension MultipleSelectionCollectionViewCell {
     @IBAction func didTapButton() {
-        guard let answer = answer else { return }
+        guard var answer = answer else { return }
         if isAnswered == true {
+            answer.setSelected(false)
+            isAnswered = false
+            selectionButton?.switchBackgroundColor()
             delegate?.didDeSelectAnswer(answer)
-            if answer.canUpdateAnswerButton == true {
-                selectionButton?.switchBackgroundColor()
-                isAnswered = false
-            }
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
-            if answer.canUpdateAnswerButton == true {
-                selectionButton?.switchBackgroundColor()
-                isAnswered = true
-            }
+            answer.setSelected(true)
+            isAnswered = true
+            selectionButton?.switchBackgroundColor()
             delegate?.didSelectAnswer(answer)
         }
     }
@@ -76,6 +68,21 @@ private extension MultipleSelectionCollectionViewCell {
     @objc func syncButton(_ notification: Notification) {
         if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
             selectionCounter = counter > maxSelections ? 0 : counter
+        }
+    }
+}
+
+// MARK: - Button Delegate
+extension MultipleSelectionCollectionViewCell: AnimatedButtonDelegate {
+    func willShowPressed() {
+        UIView.animate(withDuration: 0.25) {
+            self.transform = CGAffineTransform(scaleX: 0.9, y: 0.9)
+        }
+    }
+
+    func willShowUnpressed() {
+        UIView.animate(withDuration: 0.25) {
+            self.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
     }
 }

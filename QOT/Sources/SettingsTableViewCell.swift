@@ -133,11 +133,7 @@ private extension SettingsTableViewCell {
     func setupControlCell(title: String, source: String?, isOn: Bool) {
         switchControl.isOn = isOn
         switchControl.addTarget(self, action: #selector(valueChanged(sender:)), for: .valueChanged)
-        switchControl.tintColor = .white40
-        switchControl.onTintColor = .clear
-        switchControl.layer.borderWidth = 1
-        switchControl.layer.borderColor = UIColor.white40.cgColor
-        switchControl.layer.cornerRadius = 16
+        ThemeSwitch.white.apply(switchControl)
         setSwitchState(switchControl: switchControl)
         setTitle(title: title)
         setValue(value: source, alignment: .left)

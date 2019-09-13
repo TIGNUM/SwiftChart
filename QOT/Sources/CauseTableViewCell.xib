@@ -41,8 +41,8 @@
                             <constraint firstAttribute="height" constant="1" id="tJ7-8g-nUh"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5S-9G-sEQ">
-                        <rect key="frame" x="24" y="78.5" width="460" height="20"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5S-9G-sEQ">
+                        <rect key="frame" x="24" y="79" width="460" height="19.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -74,6 +74,7 @@
             <connections>
                 <outlet property="explanationLabel" destination="Id4-by-GmA" id="Kt0-1V-GXb"/>
                 <outlet property="titleLabel" destination="B5S-9G-sEQ" id="8n9-FJ-AEy"/>
+                <outlet property="topTitleLabel" destination="oZW-2C-TAu" id="9sd-bE-uLf"/>
             </connections>
             <point key="canvasLocation" x="292.02898550724638" y="254.12946428571428"/>
         </tableViewCell>

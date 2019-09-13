@@ -12,13 +12,13 @@ protocol SolveFollowUpTableViewCellDelegate: class {
     func didTapFollowUp(isOn: Bool)
 }
 
-final class SolveFollowUpTableViewCell: UITableViewCell, Dequeueable {
+final class SolveFollowUpTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var followUpSwitch: UISwitch!
+    @IBOutlet private weak var followUpSwitch: QotUISwitch!
     weak var delegate: SolveFollowUpTableViewCellDelegate?
 }
 
@@ -27,8 +27,9 @@ final class SolveFollowUpTableViewCell: UITableViewCell, Dequeueable {
 extension SolveFollowUpTableViewCell {
 
     func configure(title: String, description: String, isFollowUp: Bool = false) {
-        titleLabel.text = title
-        descriptionLabel.text = description
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultFollowUp.apply(description, to: descriptionLabel)
         followUpSwitch.isOn = isFollowUp
     }
 }
@@ -37,7 +38,7 @@ extension SolveFollowUpTableViewCell {
 
 extension SolveFollowUpTableViewCell {
 
-    @IBAction func didTapFollowUp(_ sender: UISwitch) {
+    @IBAction func didTapFollowUp() {
         delegate?.didTapFollowUp(isOn: followUpSwitch.isOn)
     }
 }

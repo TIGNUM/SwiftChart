@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ReactionsTableViewCell: UITableViewCell, Dequeueable {
+final class ReactionsTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
@@ -20,9 +20,10 @@ final class ReactionsTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Configuration
 extension ReactionsTableViewCell {
     func configure(title: String, reactions: [String]) {
-        titleLabel.text = title
-        firstReactionLabel.text = reactions[0, default: "Reaction_01 not set"]
-        secondReactionLabel.text = reactions[1, default: "Reaction_02 not set"]
-        thirdReactionLabel.text = reactions[2, default: "Reaction_03 not set"]
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultHeader2.apply(reactions[0, default: "Reaction_01 not set"], to: firstReactionLabel)
+        ThemeText.resultHeader2.apply(reactions[1, default: "Reaction_02 not set"], to: secondReactionLabel)
+        ThemeText.resultHeader2.apply(reactions[2, default: "Reaction_03 not set"], to: thirdReactionLabel)
     }
 }

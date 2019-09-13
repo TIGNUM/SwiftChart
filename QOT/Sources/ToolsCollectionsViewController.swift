@@ -39,7 +39,8 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .sand
+        ThemeView.qotTools.apply(view)
+        ThemeView.qotTools.apply(tableView)
         setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
@@ -134,6 +135,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "Introduction for section")
         default: return nil
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 90
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

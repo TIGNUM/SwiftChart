@@ -32,7 +32,8 @@ final class ToolsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .sand
+        ThemeView.qotTools.apply(view)
+        ThemeView.qotTools.apply(tableView)
         setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
@@ -60,6 +61,7 @@ private extension ToolsViewController {
     func setupTableView() {
         tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.tableFooterView = UIView()
     }
 }
 
@@ -112,6 +114,10 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
             return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: toolModel?.headerSubtitle ?? "")
         default: return nil
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 90
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

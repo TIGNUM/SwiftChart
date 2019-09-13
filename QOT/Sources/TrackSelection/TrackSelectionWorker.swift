@@ -45,4 +45,8 @@ final class TrackSelectionWorker {
             }
         }
     }
+
+    func guideTrackBucketVisible(_ visible: Bool) {
+        UserDefaults.standard.set(visible, forKey: UserDefault.showGuideTrackBucket.rawValue)
+    }
 }

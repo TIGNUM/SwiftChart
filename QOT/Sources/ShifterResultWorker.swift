@@ -21,17 +21,14 @@ final class ShifterResultWorker {
     private var lowTitle = ""
     private var highTitle = ""
     private var visionTitle = ""
-    private var vision = ""
-    private var workerAnswerIds: [Int] = []
-    private var homeAnswerIds: [Int] = []
-    private var model: ShifterResult?
-    private let resultItem: ShifterResult.Item
+    private var mindsetResultModel: MindsetResult?
+    private var mindsetShifter: QDMMindsetShifter? = nil
     private lazy var contentService = qot_dal.ContentService.main
-    private lazy var dispatchGroup = DispatchGroup()
 
     // MARK: - Init
-    init(_ resultItem: ShifterResult.Item) {
-        self.resultItem = resultItem
+    init(_ mindsetShifter: QDMMindsetShifter?) {
+        self.mindsetShifter = mindsetShifter
+        setTitles()
     }
 
     // Texts
@@ -54,30 +51,19 @@ final class ShifterResultWorker {
 
 // MARK: - Public
 extension ShifterResultWorker {
-    func getModel(_ completion: @escaping (ShifterResult) -> Void) {
-        setTitles()
-        setVision()
-
-        dispatchGroup.notify(queue: .main) { [unowned self] in
-            let sections = [self.getHeader, self.getTrigger, self.getReactions, self.getLowToHigh, self.getVision]
-            let model = ShifterResult(sections: sections, buttonTitle: self.buttonTitle)
-            completion(model)
-            self.model = model
-        }
+    func getMindsetShifterResultModel() -> MindsetResult {
+        let sections = [getHeader, getTrigger, getReactions, getLowToHigh, getVision]
+        let model = MindsetResult(sections: sections, buttonTitle: buttonTitle)
+        mindsetResultModel = model
+        return model
     }
 
-    func createMindsetShifter() {
-        qot_dal.UserService.main.createMindsetShifter(
-            triggerAnswerId: resultItem.triggerAnswerId,
-            toBeVisionText: vision,
-            reactionsAnswerIds: resultItem.reactionsAnswerIds,
-            lowPerformanceAnswerIds: resultItem.lowPerformanceAnswerIds,
-            workAnswerIds: workerAnswerIds,
-            homeAnswerIds: homeAnswerIds,
-            highPerformanceContentItemIds: resultItem.highPerformanceContentItemIds) { (qdmMindsetShifter, error) in
-                if let error = error {
-                    qot_dal.log("Error createMindsetShifter: \(error.localizedDescription)", level: .error)
-                }
+    func deleteMindsetShifter() {
+        guard let mindsetShifter = mindsetShifter else { return }
+        UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
+            if let error = error {
+                log("Error causedeleteMindsetShifter: \(error.localizedDescription)", level: .error)
+            }
         }
     }
 }
@@ -96,38 +82,28 @@ private extension ShifterResultWorker {
         visionTitle = ScreenTitleService.main.localizedString(for: .ShifterResultVisionTitle)
     }
 
-    func setVision() {
-        dispatchGroup.enter()
-        qot_dal.UserService.main.getMyToBeVision { [weak self] (vision, _, error) in
-            if let error = error {
-                qot_dal.log("Error while trying to getMyToBeVision: \(error.localizedDescription)", level: .error)
-            }
-            self?.vision = vision?.text ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
-    var getHeader: ShifterResult.Section {
+    var getHeader: MindsetResult.Section {
         return .header(title: headerTitle, subtitle: headerSubTitle)
     }
 
-    var getTrigger: ShifterResult.Section {
-        return .trigger(title: triggerTitle, item: resultItem.trigger)
+    var getTrigger: MindsetResult.Section {
+        return .trigger(title: triggerTitle, item: mindsetShifter?.triggerAnswer?.subtitle ?? "")
     }
 
-    var getReactions: ShifterResult.Section {
-        return .reactions(title: reactionsTitle, items: resultItem.reactions)
+    var getReactions: MindsetResult.Section {
+        return .reactions(title: reactionsTitle,
+                          items: mindsetShifter?.reactionsAnswers?.compactMap { $0.subtitle ?? "" } ?? [])
     }
 
-    var getLowToHigh: ShifterResult.Section {
+    var getLowToHigh: MindsetResult.Section {
         return .lowToHigh(title: lowToHighTitle,
                           lowTitle: lowTitle,
-                          lowItems: resultItem.lowPerformanceItems,
+                          lowItems: mindsetShifter?.lowPerformanceAnswers?.compactMap { $0.subtitle ?? "" } ?? [],
                           highTitle: highTitle,
-                          highItems: resultItem.highPerformanceItems)
+                          highItems: mindsetShifter?.highPerformanceContentItems.compactMap { $0.valueText } ?? [])
     }
 
-    var getVision: ShifterResult.Section {
-        return .vision(title: visionTitle, text: vision)
+    var getVision: MindsetResult.Section {
+        return .vision(title: visionTitle, text: mindsetShifter?.toBeVisionText ?? "")
     }
 }

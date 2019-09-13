@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MindsetVisionTableViewCell: UITableViewCell, Dequeueable {
+final class MindsetVisionTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -21,8 +21,9 @@ final class MindsetVisionTableViewCell: UITableViewCell, Dequeueable {
 extension MindsetVisionTableViewCell {
 
     func configure(title: String, vision: String) {
-        titleLabel.text = title
-        visionLabel.text = vision
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultHeader2.apply(vision, to: visionLabel)
         updateConstraintsIfNeeded()
     }
 }

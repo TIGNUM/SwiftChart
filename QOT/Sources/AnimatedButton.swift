@@ -2,11 +2,12 @@
 //  AnimatedButton.swift
 //  QOT
 //
-//  Created by Srikanth Roopa on 11.09.19.
+//  Created by Dominic Frazer Imregh on 11/09/2019.
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
 import UIKit
+
 protocol AnimatedButtonDelegate: class {
     func willShowPressed()
     func willShowUnpressed()

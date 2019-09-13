@@ -33,10 +33,10 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N1c-mM-AFS">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="N1c-mM-AFS" customClass="QotUISwitch" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="695" y="78" width="51" height="31"/>
                         <connections>
-                            <action selector="didTapFollowUp:" destination="KGk-i7-Jjw" eventType="valueChanged" id="gcs-fZ-uOd"/>
+                            <action selector="didTapFollowUp" destination="KGk-i7-Jjw" eventType="valueChanged" id="UGp-4u-cOM"/>
                         </connections>
                     </switch>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Another long text that nobody will read." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RTk-K0-8Di">

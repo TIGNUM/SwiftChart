@@ -24,15 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="367" height="96.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28B-fX-rZx" customClass="DotsLoadingView" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="24" y="24" width="20" height="20"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="20" id="4ht-DC-y7N"/>
-                            <constraint firstAttribute="width" constant="20" id="Or2-DL-7qp"/>
-                        </constraints>
-                    </view>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-St-mfK">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFw-St-mfK">
                         <rect key="frame" x="24" y="24" width="319" height="19.5"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.84705882352941175" colorSpace="calibratedRGB"/>
@@ -52,15 +44,12 @@
                     <constraint firstItem="aFw-St-mfK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Hm9-UY-TqW"/>
                     <constraint firstItem="aFw-St-mfK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Ir4-B9-oy4"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aFw-St-mfK" secondAttribute="bottom" constant="10" id="QwF-Q3-T9S"/>
-                    <constraint firstItem="28B-fX-rZx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="gn4-uW-moy"/>
-                    <constraint firstItem="28B-fX-rZx" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="jFT-I0-QJo"/>
                     <constraint firstAttribute="trailing" secondItem="aFw-St-mfK" secondAttribute="trailing" constant="24" id="seZ-zu-mBD"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="dotsLoadingView" destination="28B-fX-rZx" id="p2r-0C-3Ss"/>
                 <outlet property="visionTextLabel" destination="aFw-St-mfK" id="9Jo-cz-IAL"/>
             </connections>
             <point key="canvasLocation" x="175.19999999999999" y="178.56071964017991"/>

@@ -313,7 +313,8 @@ extension UIViewController {
 
         switch self {
         case is ScreenZLevel1,
-             is ScreenZLevelBottom:
+             is ScreenZLevelBottom,
+             is ScreenZLevelChatBot:
             return nil
         default:
             if self.navigationController?.viewControllers.first == self {
@@ -413,7 +414,7 @@ extension UIViewController {
     }
 
     @objc open func didTapDismissButton() {
-        NotificationCenter.default.post(name: .didTabDismissBottomNavigation, object: nil)
+        NotificationCenter.default.post(name: .didTapDismissBottomNavigation, object: nil)
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
         trackUserEvent(.CLOSE, action: .TAP)

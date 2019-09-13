@@ -19,31 +19,31 @@
                 <rect key="frame" x="0.0" y="0.0" width="349" height="49"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-Ek-4bp">
-                        <rect key="frame" x="0.0" y="0.0" width="349" height="49"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-mN-BgD" customClass="SelectionButton" customModule="QOT" customModuleProvider="target">
+                    <button opaque="NO" contentMode="scaleToFill" highlighted="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ia8-mN-BgD" customClass="SelectionButton" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="349" height="49"/>
                         <connections>
                             <action selector="didTapButton" destination="gTV-IL-0wX" eventType="touchUpInside" id="ejm-QZ-reV"/>
                             <outlet property="selectionLabel" destination="GeI-Ek-4bp" id="PHm-RO-oAA"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GeI-Ek-4bp">
+                        <rect key="frame" x="16" y="10" width="317" height="29"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="Ia8-mN-BgD" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="3Ml-62-b0h"/>
-                <constraint firstItem="Ia8-mN-BgD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="3jG-CC-olS"/>
-                <constraint firstAttribute="trailing" secondItem="GeI-Ek-4bp" secondAttribute="trailing" id="Bdb-az-jcF"/>
-                <constraint firstAttribute="bottom" secondItem="GeI-Ek-4bp" secondAttribute="bottom" id="BgU-fM-VZR"/>
-                <constraint firstItem="GeI-Ek-4bp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ayK-gg-ity"/>
-                <constraint firstItem="GeI-Ek-4bp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="orE-fJ-xAN"/>
-                <constraint firstAttribute="trailing" secondItem="Ia8-mN-BgD" secondAttribute="trailing" id="qM6-dq-Ma3"/>
-                <constraint firstAttribute="bottom" secondItem="Ia8-mN-BgD" secondAttribute="bottom" id="rAR-IZ-AdN"/>
+                <constraint firstItem="Ia8-mN-BgD" firstAttribute="trailing" secondItem="GeI-Ek-4bp" secondAttribute="trailing" constant="16" id="2fI-vZ-m5I"/>
+                <constraint firstItem="Ia8-mN-BgD" firstAttribute="leading" secondItem="GeI-Ek-4bp" secondAttribute="leading" constant="-16" id="5nS-q7-kOr"/>
+                <constraint firstAttribute="trailing" secondItem="GeI-Ek-4bp" secondAttribute="trailing" constant="16" id="Bdb-az-jcF"/>
+                <constraint firstAttribute="bottom" secondItem="GeI-Ek-4bp" secondAttribute="bottom" constant="10" id="BgU-fM-VZR"/>
+                <constraint firstItem="Ia8-mN-BgD" firstAttribute="top" secondItem="GeI-Ek-4bp" secondAttribute="top" constant="-10" id="TW1-2o-jih"/>
+                <constraint firstItem="GeI-Ek-4bp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="16" id="ayK-gg-ity"/>
+                <constraint firstItem="GeI-Ek-4bp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="orE-fJ-xAN"/>
+                <constraint firstItem="Ia8-mN-BgD" firstAttribute="bottom" secondItem="GeI-Ek-4bp" secondAttribute="bottom" constant="10" id="tK4-d3-3vb"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="349" height="49"/>

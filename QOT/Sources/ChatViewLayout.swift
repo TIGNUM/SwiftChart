@@ -21,6 +21,7 @@ protocol ChatViewLayoutDelegate: class {
     func chatViewLayout(_ layout: ChatViewLayout,
                          animatorForLayoutAttributes: UICollectionViewLayoutAttributes) -> ChatViewAnimator?
     func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat?
+    func chatViewLayout(_ layout: ChatViewLayout, updateContentSize: CGSize)
 }
 
 enum ChatViewAlignment {
@@ -88,6 +89,7 @@ final class ChatViewLayout: UICollectionViewLayout {
         let height: CGFloat = max(originY, finalSnapOffset().y + collectionView.bounds.height - collectionView.contentInset.top - collectionView.contentInset.bottom)
 
         contentSize = CGSize(width: width, height: height)
+        delegate.chatViewLayout(self, updateContentSize: contentSize)
         for section in cache {
             if insertedSections.contains(section.sectionNumber) {
                 section.prepareAnimations(using: self)

@@ -55,17 +55,16 @@ final class DecisionTreeWorker {
 
     internal var pageIndex: Int = 0 {
         didSet {
-            setupContinueButton()
             multiSelectionCounter = 0
         }
     }
 
     var decisionTree: DecisionTreeModel? {
-        didSet { syncButtons() }
+        didSet { }
     }
 
     internal var multiSelectionCounter: Int = 0 {
-        didSet { syncButtons() }
+        didSet {}
     }
 
     var eventQuestion: QDMQuestion? {
@@ -129,8 +128,6 @@ extension DecisionTreeWorker {
     }
 
     var firstQuestion: QDMQuestion? {
-        setupContinueButton()
-        syncButtons()
         switch type {
         case .prepareIntentions,
              .prepareBenefits:

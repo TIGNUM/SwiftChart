@@ -21,6 +21,7 @@ final class FromTignumCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     @IBAction func discoverButton(_ sender: Any) {
