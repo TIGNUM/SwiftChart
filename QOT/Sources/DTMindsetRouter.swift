@@ -9,12 +9,7 @@
 import UIKit
 import qot_dal
 
-final class DTMindsetRouter: DTRouter {
-
-    override func dismiss() {
-        super.dismiss()
-    }
-}
+final class DTMindsetRouter: DTRouter {}
 
 // MARK: - DTMindsetRouterInterface
 extension DTMindsetRouter: DTMindsetRouterInterface {

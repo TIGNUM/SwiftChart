@@ -89,6 +89,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     @objc func autogenerateMyVisionAction() {
         trackUserEvent(.OPEN, valueType: "TBVGeneratorFromNullState", action: .TAP)
+        removeBottomNavigation()
         interactor?.openToBeVisionGenerator()
     }
 

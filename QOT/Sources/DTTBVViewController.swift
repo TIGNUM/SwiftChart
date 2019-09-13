@@ -19,6 +19,26 @@ final class DTTBVViewController: DTViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - DTViewController
+    override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
+
+    }
+
+    override func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        switch viewModel?.question.key {
+        case TBV.QuestionKey.Instructions?:
+            if let contentId = answer.targetId(.content) {
+                router?.presentContent(contentId)
+            }
+            if let contentItemId = answer.targetId(.contentItem) {
+                router?.playMediaItem(contentItemId)
+            }
+            didDeSelectAnswer(answer)
+        default:
+            break
+        }
+    }
 }
 
 // MARK: - Private

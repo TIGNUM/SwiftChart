@@ -48,7 +48,8 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     @objc func didTapNext() {
-
+        setAnswerNeedsSelection()
+        loadNextQuestion()
     }
 
     // MARK: - Question Handling

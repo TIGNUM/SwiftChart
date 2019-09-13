@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DTRouter: DTRouterInterface {
+class DTRouter {
 
     // MARK: - Properties
     weak var viewController: DTViewController?
@@ -17,9 +17,19 @@ class DTRouter: DTRouterInterface {
     init(viewController: DTViewController?) {
         self.viewController = viewController
     }
+}
 
-    // MARK: - DTRouterInterface
+// MARK: - DTRouterInterface
+extension DTRouter: DTRouterInterface {
     func dismiss() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
+    }
+
+    func presentContent(_ contentId: Int) {
+        AppDelegate.current.launchHandler.showContentCollection(contentId)
+    }
+
+    func playMediaItem(_ contentItemId: Int) {
+        AppDelegate.current.launchHandler.showContentItem(contentItemId)
     }
 }

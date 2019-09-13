@@ -8,7 +8,12 @@
 
 import UIKit
 
-final class DTTBVPresenter: DTPresenter {}
+final class DTTBVPresenter: DTPresenter {
+
+    override func previousIsHidden(questionKey: String) -> Bool {
+        return questionKey == TBV.QuestionKey.Instructions
+    }
+}
 
 // MARK: - DTTBVInterface
 extension DTTBVPresenter: DTTBVPresenterInterface {}
