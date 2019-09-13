@@ -144,7 +144,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           isPlaying: tool?.isPlaying)
             cell.addTopLine(for: indexPath.row)
             return cell
         default:
@@ -155,7 +156,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           isPlaying: tool?.isPlaying)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell

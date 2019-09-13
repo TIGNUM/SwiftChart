@@ -158,7 +158,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           isPlaying: tool?.isPlaying)
             cell.addTopLine(for: indexPath.row)
             return cell
         } else {
@@ -169,7 +170,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           isPlaying: tool?.isPlaying)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
@@ -178,7 +180,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let tool = interactor?.tools[indexPath.item]
+        var tool = interactor?.tools[indexPath.item]
         if tool?.isCollection == true {
             trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
@@ -195,6 +197,13 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                                              url: tool?.mediaURL,
                                              totalDuration: 0, progress: 0, currentTime: 0, mediaRemoteId: tool?.remoteID ?? 0)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
+                if tool?.isPlaying == false {
+                    tool?.isPlaying = true
+                    tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+                } else {
+                    tool?.isPlaying = false
+                    tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+                }
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
                     self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)

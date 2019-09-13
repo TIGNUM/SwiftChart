@@ -64,7 +64,8 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
                           isCollection: false,
                           contentCollectionId: contentCollection?.remoteID ?? 0,
                           numberOfItems: count,
-                          type: firstItemFormat)
+                          type: firstItemFormat,
+                          isPlaying: false)
             }) ?? []
             completion()
         }

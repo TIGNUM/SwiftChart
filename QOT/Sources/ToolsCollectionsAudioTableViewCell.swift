@@ -15,7 +15,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
-    @IBOutlet private weak var audioView: UIView!
+    @IBOutlet weak var audioView: AudioButton!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
     private var mediaURL: URL?
@@ -23,6 +23,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var remoteID: Int = 0
     private var categoryTitle = ""
     private var duration: Double = 0
+    private var isPlaying: Bool?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,12 +40,18 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
                    timeToWatch: String,
                    mediaURL: URL?,
                    duration: Double,
-                   remoteID: Int) {
+                   remoteID: Int,
+                   isPlaying: Bool?) {
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
         self.remoteID = remoteID
         self.duration = duration
+        self.isPlaying = isPlaying
+        if isPlaying == true {
+            audioView.backgroundColor = .accent40
+        } else { audioView.backgroundColor = .carbon
+        }
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
@@ -68,6 +75,10 @@ extension ToolsCollectionsAudioTableViewCell {
                                      url: mediaURL,
                                      totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
+        if isPlaying == true {
+            audioView.backgroundColor = .accent40
+        } else { audioView.backgroundColor = .carbon
+        }
     }
 
     func makePDFCell() {

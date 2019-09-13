@@ -22,5 +22,6 @@ struct Tool {
         let contentCollectionId: Int
         let numberOfItems: Int
         let type: String
+        var isPlaying: Bool
     }
 }
