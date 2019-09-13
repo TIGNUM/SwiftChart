@@ -104,6 +104,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             setupKingfisherCache()
             qot_dal.QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
+            UNUserNotificationCenter.current().delegate = self
         #endif //#if UNIT_TEST
         return true
     }
@@ -175,6 +176,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceToken = UAUtils.deviceTokenString(fromDeviceToken: deviceToken)
         appCoordinator.apnsDeviceTokenRegistrator.registerDeviceToken(deviceToken)
+        UserNotificationsManager.main.scheduleNotifications()
     }
 
     func application(_ application: UIApplication,
@@ -232,7 +234,7 @@ private extension AppDelegate {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {
             // needs a restart at this point
-            qot_dal.QOTService.main.reportDeviceInfo()
+            QOTService.main.reportDeviceInfo()
         }
     }
 

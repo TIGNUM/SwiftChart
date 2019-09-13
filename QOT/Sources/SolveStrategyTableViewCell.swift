@@ -15,8 +15,7 @@ final class SolveStrategyTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var strategyTitleLabel: UILabel!
     @IBOutlet private weak var minsToReadLabel: UILabel!
-    @IBOutlet private weak var hasHeaderTopConstraint: NSLayoutConstraint?
-    @IBOutlet private weak var doesNotHaveHeaderTopConstraint: NSLayoutConstraint?
+    @IBOutlet private weak var constraintHeaderHeight: NSLayoutConstraint!
 }
 
 // MARK: - Configuration
@@ -28,9 +27,8 @@ extension SolveStrategyTableViewCell {
         ThemeText.resultDate.apply(minsToRead, to: minsToReadLabel)
         ThemeText.resultList.apply(headerTitle, to: headerLabel)
 
-        headerLabel.isHidden = hasHeader == false
-        hasHeaderTopConstraint?.isActive = hasHeader == true
-        doesNotHaveHeaderTopConstraint?.isActive = hasHeader == false
+        let designerTopBottomMargin: CGFloat = 24 + 28
+        constraintHeaderHeight.constant = hasHeader ? designerTopBottomMargin + headerLabel.bounds.height : 24
         updateConstraints()
     }
 }

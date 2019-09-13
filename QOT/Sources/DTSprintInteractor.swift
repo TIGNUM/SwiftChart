@@ -59,7 +59,7 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                                                                             newSprintTitle: self?.selectedSprintTitle ?? "",
                                                                             message: messageFormat)
                 let message = String(format: updatedMessageFormat ?? "", dateString, self?.selectedSprintTitle ?? "")
-                self?.presenter.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
+                self?.presenter?.presentInfoView(icon: R.image.ic_warning_circle(), title: title, text: message)
             } else {
                 self?.sprintWorker?.startSprintTomorrow(selectedSprintContentId: self?.selectedSprintContentId ?? 0)
                 if let selection = self?.lastQuestionSelection {
@@ -89,8 +89,8 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
 // MARK: - Private
 private extension DTSprintInteractor {
     func replaceMessagePlaceHolders(sprintInProgressTitle: String, newSprintTitle: String, message: String) -> String {
-        let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]\'s", with: sprintInProgressTitle)
-        return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle)
+        let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]\'s", with: sprintInProgressTitle.uppercased())
+        return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle.uppercased())
     }
 
     func checkNotificationPermissions() {

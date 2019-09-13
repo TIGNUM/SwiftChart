@@ -19,7 +19,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeView.level2.apply(self)
+        backgroundColor = .clear
         contentView.backgroundColor = .clear
         selectionStyle = .gray
         let bkView = UIView()
@@ -27,9 +27,10 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         selectedBackgroundView = bkView
     }
 
-    func configure(title: String, timeToWatch: String, imageURL: URL?) {
-        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
-        ThemeText.articleRelatedDetail.apply(timeToWatch, to: detailLabel)
+    func configure(title: String, timeToWatch: String, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
+        ThemeText.articleRelatedTitle(forcedColorMode).apply(title, to: titleLabel)
+        ThemeText.articleRelatedDetail(forcedColorMode).apply(timeToWatch, to: detailLabel)
+
         previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2

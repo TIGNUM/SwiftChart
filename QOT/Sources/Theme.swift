@@ -58,12 +58,13 @@ enum ThemeView {
     case toolSeparator
     case askPermissions
     case resultWhite
+    case qotTools
     case syncedCalendarSeparator
 
     var color: UIColor {
         switch self {
         case .level1:
-            return Palette.carbonDark
+            return Palette.carbon
         case .level2:
             return Palette.carbon
         case .level3:
@@ -86,7 +87,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
             return Palette.sand
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
@@ -351,7 +352,7 @@ enum ThemeSegment {
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
             view.tintColor = .clear
-            view.backgroundColor = .clear
+            view.backgroundColor = .carbon
         }
 
         if let normal = normal,
@@ -377,7 +378,7 @@ enum ThemeSearchBar {
             view.keyboardAppearance = .dark
             if let searchField = view.value(forKey: "_searchField") as? UITextField {
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = Palette.carbon
+                searchField.backgroundColor = Palette.sand10
                 searchField.textColor = Palette.sand
             }
             view.setShowsCancelButton(true, animated: false)
@@ -418,9 +419,9 @@ enum ThemeText {
     case articleAuthor(ThemeColorMode?)
     case articleDatestamp(ThemeColorMode?)
     case articleToolBarTint
-    case articleRelatedTitle
+    case articleRelatedTitle(ThemeColorMode?)
     case articleRelatedTitleInStrategy
-    case articleRelatedDetail
+    case articleRelatedDetail(ThemeColorMode?)
     case articleRelatedDetailInStrategy
     case articleNextTitle
     case audioPlayerTitleDark
@@ -579,12 +580,6 @@ enum ThemeText {
     case qotToolsSubtitle
     case qotToolsTitle
     case qotToolsSectionSubtitle
-    case weatherIntro
-    case weatherDescription
-    case weatherTitle
-    case weatherBody
-    case weatherHourlyLabels
-    case weatherHourlyLabelNow
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
     case myDataMonthYearTitle
@@ -628,15 +623,25 @@ enum ThemeText {
     case syncedCalendarRowTitle
     case syncedCalendarRowSubtitle
 
+    case weatherIntro
+    case weatherDescription
+    case weatherTitle
+    case weatherBody
+    case weatherHourlyLabels
+    case weatherHourlyLabelNow
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax:
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket, .askPermissionTitle, .syncedCalendarTitle:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
+          .askPermissionTitle, .syncedCalendarTitle, .weatherTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
+             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
+             .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
@@ -815,14 +820,17 @@ enum ThemeText {
             return .red
         case .articleCategory, .articleCategoryNotScaled:
              return Palette.light(Palette.carbon30, or: Palette.sand30)
-        case .articleTitle, .articleRelatedTitle, .articleTitleNotScaled, .articleBody:
+        case .articleTitle, .articleTitleNotScaled, .articleBody:
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleDatestamp, .articleRelatedDetailInStrategy:
             return Palette.light(Palette.carbon30, or: Palette.sand30)
         case .articleNextTitle:
             return Palette.light(Palette.carbon40, or: Palette.sand40)
-        case .whatsHotHeader(let mode):
+        case .whatsHotHeader(let mode),
+             .articleRelatedTitle(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+        case .articleRelatedDetail(let mode):
+            return Palette.light(Palette.carbon30, or: Palette.sand30, forcedColorMode: mode)
         case .articleAuthor(let mode):
             return Palette.light(Palette.carbon60, or: Palette.sand60, forcedColorMode: mode)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
@@ -833,7 +841,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-        case .version, .articleRelatedDetail:
+        case .version:
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed

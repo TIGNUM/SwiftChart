@@ -160,6 +160,13 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
         setupButtons()
         setupCollectionView()
     }
+
+    func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String) {
+        let doneButton = QOTAlertAction(title: dismissButtonTitle)
+        QOTAlert.show(title: title,
+                      message: message,
+                      bottomItems: [doneButton])
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

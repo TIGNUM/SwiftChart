@@ -66,10 +66,12 @@ extension TrackSelectionInteractor: TrackSelectionInteractorInterface {
     }
 
     func didTapFastTrack() {
+        worker.guideTrackBucketVisible(false)
         router.openWalktrough(with: .fast)
     }
 
     func didTapGuidedTrack() {
+        worker.guideTrackBucketVisible(true)
         router.openWalktrough(with: .guided)
     }
 }

@@ -38,7 +38,7 @@
 "Settings.General.JobTitle.Title" = "Title";
 
 "Settings.Notifications.Strategies.Title" = "PERFORMANCE REMINDERS";
-"Settings.Notifications.DailyPrep.Title" = "DAILY PREP MINUTE";
+"Settings.Notifications.DailyPrep.Title" = "DAILY CHECK IN";
 "Settings.Notifications.WeeklyChoices.Title" = "Your 5 Weekly Choices";
 
 "Settings.Security.Password.Title" = "Change Password";
@@ -80,12 +80,12 @@
 
 "SiriShortcuts.ToBeVision.Title" = "Your To Be Vision";
 "SiriShortcuts.UpcomingEventPrep.Title" = "Your Upcoming Event Preparation";
-"SiriShortcuts.DailyPrep.Title" = "Your Morning Interview Feedback";
+"SiriShortcuts.DailyPrep.Title" = "Your Daily Check In Feedback";
 "SiriShortcuts.WhatsHotArticle.Title" = "Your What's Hot? Article";
 "SiriShortcuts.ToBeVision.suggestedInvocation" = "Read my To Be Vision";
 "SiriShortcuts.WhatsHotArticle.suggestedInvocation" = "Show me the latest What's Hot? article";
 "SiriShortcuts.UpcomingEvent.suggestedInvocation" = "What's my Upcoming QOT Preparation Event?";
-"SiriShortcuts.DailyPrep.suggestedInvocation" = "Show my Morning Interview feedback";
+"SiriShortcuts.DailyPrep.suggestedInvocation" = "Show my Daily Check In feedback";
 
 "Tab.Bar.Item.Guide" = "GUIDE";
 "Tab.Bar.Item.Learn" = "LEARN";

@@ -12,8 +12,8 @@ final class DTShortTBVViewController: DTViewController {
 
     // MARK: - Properties
     var shortTBVInteractor: DTShortTBVInteractorInterface?
-    var delegate: DTMindsetInteractorInterface?
-    weak var shortTBVRouter: DTShortTBVRouter?
+    var mindsetInteractor: DTMindsetInteractorInterface?
+    var shortTBVRouter: DTShortTBVRouterInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTShortTBVViewController>) {
@@ -29,7 +29,7 @@ final class DTShortTBVViewController: DTViewController {
     override func didTapNext() {
         switch viewModel?.question.key {
         case ShortTBV.QuestionKey.Review:
-            delegate?.didDismissShortTBVScene(tbv: interactor?.getTBV())
+            mindsetInteractor?.didDismissShortTBVScene(tbv: interactor?.getTBV())
             shortTBVRouter?.dismiss()
         case ShortTBV.QuestionKey.Home:
             generateTBV()

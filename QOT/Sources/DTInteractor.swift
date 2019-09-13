@@ -16,7 +16,7 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - Properties
     lazy var worker: DTWorker? = DTWorker()
-    let presenter: DTPresenterInterface
+    let presenter: DTPresenterInterface?
     let questionGroup: QuestionGroup
     let introKey: String
     var questions: [QDMQuestion] = []
@@ -33,18 +33,22 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter?.setupView()
         worker?.getQuestions(questionGroup: questionGroup) { [weak self] (questions) in
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
             let presentationModel = DTPresentationModel(question: firstQuestion)
             let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil, titleUpdate: nil)
             self?.presentedNodes.append(node)
-            self?.presenter.showNextQuestion(presentationModel)
+            self?.presenter?.showNextQuestion(presentationModel)
         }
     }
 
     // MARK: - DTInteractorInterface
+    func getTBV() -> QDMToBeVision? {
+        return tbv
+    }
+
     func getSelectedAnswers() -> [SelectedAnswer] {
         return selectedAnswers
     }
@@ -55,13 +59,13 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func didStopTypingAnimation() {
-        presenter.showNavigationButtonAfterAnimation()
+        presenter?.showNavigationButtonAfterAnimation()
     }
 
     func loadNextQuestion(selection: DTSelectionModel) {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         let presentationModel = createPresentationModel(selection: selection, questions: questions)
-        presenter.showNextQuestion(presentationModel)
+        presenter?.showNextQuestion(presentationModel)
         let node = Node(questionId: presentationModel.question?.remoteID,
                         answerFilter: selection.answerFilter,
                         titleUpdate: presentationModel.questionUpdate)
@@ -79,7 +83,7 @@ class DTInteractor: DTInteractorInterface {
                                                             answerFilter: lastNode?.answerFilter,
                                                             questionUpdate: lastNode?.titleUpdate,
                                                             questions: questions)
-            presenter.showPreviosQuestion(presentationModel)
+            presenter?.showPreviosQuestion(presentationModel)
         }
     }
 
@@ -121,9 +125,5 @@ class DTInteractor: DTInteractorInterface {
             self?.tbv = tbv
             completion(tbv, initiated)
         }
-    }
-
-    func getTBV() -> QDMToBeVision? {
-        return tbv
     }
 }

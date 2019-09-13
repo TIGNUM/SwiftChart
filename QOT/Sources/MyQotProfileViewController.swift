@@ -32,7 +32,7 @@ final class MyQotProfileViewController: UIViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
+        ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
     }
 
     override func viewDidAppear(_ animated: Bool) {

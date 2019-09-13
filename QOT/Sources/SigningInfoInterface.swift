@@ -10,11 +10,13 @@ import Foundation
 
 protocol SigningInfoViewControllerInterface: UIViewController {
     func setup()
+    func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String)
     var delegate: SigningInfoDelegate? { get set }
 }
 
 protocol SigningInfoPresenterInterface {
     func setup()
+    func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String)
 }
 
 protocol SigningInfoInteractorInterface: Interactor {

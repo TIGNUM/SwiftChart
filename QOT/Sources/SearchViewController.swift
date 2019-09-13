@@ -22,6 +22,8 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var activeView: UIView!
     @IBOutlet private weak var constraintSearch: NSLayoutConstraint!
+    @IBOutlet private weak var masterView: UIView!
+    @IBOutlet private weak var bottomView: UIView!
 
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
     private var avPlayerObserver: AVPlayerObserver?
@@ -43,6 +45,13 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
+        ThemeView.level1.apply(tableView)
+        ThemeView.level1.apply(suggestionsTableView)
+        ThemeView.level1.apply(activeView)
+        ThemeView.level1.apply(mySearchBar)
+        ThemeView.level1.apply(segmentedControl)
+        ThemeView.level1.apply(masterView)
+        ThemeView.level1.apply(bottomView)
         self.navigationItem.hidesBackButton = true
         setupSegementedControl()
         interactor?.showSuggestions()
@@ -153,10 +162,9 @@ private extension SearchViewController {
 
     func setupSearchBar() {
         ThemeSearchBar.accent.apply(mySearchBar)
-
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
-
+        mySearchBar.backgroundImage = UIImage()
         mySearchBar.placeholder = R.string.localized.searchPlaceholder()
         mySearchBar.delegate = self
     }
@@ -260,17 +268,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,
                                      contentType: result.displayType,
-                                     duration: result.duration)            }
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
-            searchCell.selectedBackgroundView = backgroundView
+                                     duration: result.duration)
+            }
+            searchCell.setSelectedColor(.accent, alphaComponent: 0.15)
             return searchCell
         case self.suggestionsTableView:
             let suggestionCell: SuggestionSearchTableViewCell = tableView.dequeueCell(for: indexPath)
             suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? "")
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
-            suggestionCell.selectedBackgroundView = backgroundView
+            suggestionCell.setSelectedColor(.accent, alphaComponent: 0.15)
             return suggestionCell
         default:
             preconditionFailure()

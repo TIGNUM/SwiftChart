@@ -64,8 +64,4 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     lazy var buttonResendCode: String = {
         return R.string.localized.onboardingLoginButtonResendCode()
     }()
-
-    func shouldShowUnoptimizedScreenWarning() -> Bool {
-        return UIDevice.isPad || UIDevice.isSmallScreenDevice
-    }
 }

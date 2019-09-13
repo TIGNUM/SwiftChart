@@ -24,6 +24,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     typealias actionClosure = (() -> Void)
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
+    var trackState: Bool = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +36,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if score != -1 {
-             NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+            trackState = !trackState
+            impactReadinessButton.flipImage(trackState)
+            NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
         } else {
             delegate?.showDailyCheckIn()
         }
