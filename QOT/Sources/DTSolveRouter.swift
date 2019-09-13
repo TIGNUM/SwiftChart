@@ -27,7 +27,13 @@ extension DTSolveRouter: DTSolveRouterInterface {
         self.solveResultsController = solveResultsController
     }
 
-    func
+    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?) {
+
+    }
+
+    func dismissFlowAndGoToMyTBV() {
+
+    }
 }
 
 // MARK: - SolveResultsViewControllerDelegate

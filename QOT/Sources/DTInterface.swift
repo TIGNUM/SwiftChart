@@ -29,13 +29,13 @@ protocol DTPresenterInterface {
 }
 
 protocol DTInteractorInterface: Interactor {
+    func getTBV() -> QDMToBeVision?
+    func getSelectedAnswers() -> [SelectedAnswer]
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion()
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
-    func getTBV() -> QDMToBeVision?
-    func getSelectedAnswers() -> [SelectedAnswer]
 }
 
 protocol DTRouterInterface {

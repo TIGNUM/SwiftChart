@@ -18,17 +18,17 @@ extension qot_dal.ContentService {
     }
 
     func questionId(_ contentItem: QDMContentItem) -> Int {
-        if contentItem.valueText.contains(Prepare.Key.perceived.tag) {
-            return Prepare.Key.perceived.questionID
+        if contentItem.valueText.contains(PrepareResult.Key.perceived.tag) {
+            return PrepareResult.Key.perceived.questionID
         }
-        if contentItem.valueText.contains(Prepare.Key.feel.tag) {
-            return Prepare.Key.feel.questionID
+        if contentItem.valueText.contains(PrepareResult.Key.feel.tag) {
+            return PrepareResult.Key.feel.questionID
         }
-        if contentItem.valueText.contains(Prepare.Key.know.tag) {
-            return Prepare.Key.know.questionID
+        if contentItem.valueText.contains(PrepareResult.Key.know.tag) {
+            return PrepareResult.Key.know.questionID
         }
-        if contentItem.valueText.contains(Prepare.Key.benefits.tag) {
-            return Prepare.Key.benefits.questionID
+        if contentItem.valueText.contains(PrepareResult.Key.benefits.tag) {
+            return PrepareResult.Key.benefits.questionID
         }
         return 0
     }

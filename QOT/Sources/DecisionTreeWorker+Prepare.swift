@@ -25,11 +25,11 @@ extension DecisionTreeWorker {
 extension DecisionTreeWorker {
     func showResultView(for answer: QDMAnswer, contentID: Int) {
         switch currentQuestion?.key {
-        case QuestionKey.Prepare.Intro where answer.keys.contains(AnswerKey.Prepare.OpenCheckList):
+        case Prepare.QuestionKey.Intro where answer.keys.contains(Prepare.AnswerKey.OpenCheckList):
             interactor?.openPrepareResults(contentID)
-        case QuestionKey.Prepare.BenefitsInput:
+        case Prepare.QuestionKey.BenefitsInput:
             createPreparationCritical(answer)
-        case QuestionKey.Prepare.EventTypeSelectionDaily:
+        case Prepare.QuestionKey.EventTypeSelectionDaily:
             createPreparationDaily(answer)
         default:
             interactor?.displayContent(with: contentID)

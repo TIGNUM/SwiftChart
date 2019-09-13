@@ -40,6 +40,20 @@ struct DTViewModel {
         var backgroundColor: UIColor
         let decisions: [Decision]
 
+        init(remoteId: Int,
+             title: String,
+             keys: [String],
+             selected: Bool,
+             backgroundColor: UIColor,
+             decisions: [Decision]) {
+            self.remoteId = remoteId
+            self.title = title
+            self.keys = keys
+            self.selected = selected
+            self.backgroundColor = backgroundColor
+            self.decisions = decisions
+        }
+
         init(answer: DTViewModel.Answer, newTargetId: Int) {
             self.remoteId = answer.remoteId
             self.title = answer.title
@@ -63,6 +77,18 @@ struct DTViewModel {
             let questionGroupId: Int?
             let targetGroupId: Int?
             let targetGroupName: String?
+
+            init(targetType: TargetType,
+                 targetTypeId: Int?,
+                 questionGroupId: Int?,
+                 targetGroupId: Int?,
+                 targetGroupName: String?) {
+                self.targetType = targetType
+                self.targetTypeId = targetTypeId
+                self.questionGroupId = questionGroupId
+                self.targetGroupId = targetGroupId
+                self.targetGroupName = targetGroupName
+            }
 
             init(_ answer: DTViewModel.Answer, _ newTargetId: Int) {
                 self.targetType = .question
