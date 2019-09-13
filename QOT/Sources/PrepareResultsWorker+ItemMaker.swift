@@ -27,17 +27,17 @@ extension PrepareResultsWorker {
             self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
                 self?.getEkEvent(completion: { ekEvent in
                     var items = [Int: [PrepareResultsType]]()
-                    items[Prepare.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                    items[Prepare.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                    items[Prepare.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
+                    items[PrepareResult.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
+                    items[PrepareResult.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
+                    items[PrepareResult.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
                                                                            title: prepare.name ?? "",
                                                                            type: prepare.eventType ?? "")
-                    items[Prepare.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
-                    items[Prepare.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
-                    items[Prepare.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
-                    items[Prepare.Daily.STRATEGY_ITEMS] = strategyItems
-                    items[Prepare.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                    items[Prepare.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
+                    items[PrepareResult.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
+                    items[PrepareResult.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
+                    items[PrepareResult.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
+                    items[PrepareResult.Daily.STRATEGY_ITEMS] = strategyItems
+                    items[PrepareResult.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
+                    items[PrepareResult.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
                                                                                  prepare.setReminder,
                                                                                  ekEvent: ekEvent)
                     completion(items)
@@ -59,33 +59,33 @@ extension PrepareResultsWorker {
                     self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: {  [weak self] (knowItems) in
                         self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: {  [weak self] (feelItems) in
                             self?.getEkEvent(completion: {  [weak self] ekEvent in
-                                items[Prepare.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                                items[Prepare.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                                items[Prepare.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
+                                items[PrepareResult.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
+                                items[PrepareResult.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
+                                items[PrepareResult.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
                                                                                           title: prepare.name ?? "",
                                                                                           type: prepare.eventType ?? "")
-                                items[Prepare.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
-                                items[Prepare.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
-                                items[Prepare.Critical.PERCEIVED_ITEMS] = perceivedItems
+                                items[PrepareResult.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
+                                items[PrepareResult.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
+                                items[PrepareResult.Critical.PERCEIVED_ITEMS] = perceivedItems
 
-                                items[Prepare.Critical.KNOW_TITLE] = self?.getIntentionTitle(contentItems ?? [], .know)
-                                items[Prepare.Critical.KNOW_ITEMS] = knowItems
+                                items[PrepareResult.Critical.KNOW_TITLE] = self?.getIntentionTitle(contentItems ?? [], .know)
+                                items[PrepareResult.Critical.KNOW_ITEMS] = knowItems
 
-                                items[Prepare.Critical.FEEL_TITLE] = self?.getIntentionTitle(contentItems ?? [], .feel)
-                                items[Prepare.Critical.FEEL_ITEMS] = feelItems
+                                items[PrepareResult.Critical.FEEL_TITLE] = self?.getIntentionTitle(contentItems ?? [], .feel)
+                                items[PrepareResult.Critical.FEEL_ITEMS] = feelItems
 
-                                items[Prepare.Critical.BENEFIT_LIST] = [.contentItem(format: .list, title: "BENEFITS")]
-                                items[Prepare.Critical.BENEFIT_TITLE] = self?.getBenefitTitle(contentItems ?? [],
+                                items[PrepareResult.Critical.BENEFIT_LIST] = [.contentItem(format: .list, title: "BENEFITS")]
+                                items[PrepareResult.Critical.BENEFIT_TITLE] = self?.getBenefitTitle(contentItems ?? [],
                                                                                               .benefits,
                                                                                               prepare.benefits)
-                                items[Prepare.Critical.BENEFITS] = [.benefitItem(benefits: prepare.benefits ?? "")]
+                                items[PrepareResult.Critical.BENEFITS] = [.benefitItem(benefits: prepare.benefits ?? "")]
 
-                                items[Prepare.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
+                                items[PrepareResult.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
                                                                                       title: "SUGGESTED STRATEGIES")]
-                                items[Prepare.Critical.STRATEGY_ITEMS] = strategyItems
+                                items[PrepareResult.Critical.STRATEGY_ITEMS] = strategyItems
 
-                                items[Prepare.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                                items[Prepare.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
+                                items[PrepareResult.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
+                                items[PrepareResult.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
                                                                                              prepare.setReminder,
                                                                                              ekEvent: ekEvent)
                                 completion(items)
@@ -105,7 +105,7 @@ extension PrepareResultsWorker {
         }
     }
 
-    func generateSelectedAnswers(_ ids: [Int], _ key: Prepare.Key, _ completion: @escaping (([DecisionTreeModel.SelectedAnswer]) -> Void)) {
+    func generateSelectedAnswers(_ ids: [Int], _ key: PrepareResult.Key, _ completion: @escaping (([DecisionTreeModel.SelectedAnswer]) -> Void)) {
         qot_dal.QuestionService.main.questions(with: key.rawValue) { (questions) in
             var selectedAnswers = [DecisionTreeModel.SelectedAnswer]()
             let dqmAnswers = questions?.first?.answers.filter { ids.contains(obj: $0.remoteID ?? 0) }
@@ -133,7 +133,7 @@ extension PrepareResultsWorker {
         return items
     }
 
-    func getIntentionTitle(_ contentItems: [QDMContentItem], _ key: Prepare.Key) -> [PrepareResultsType] {
+    func getIntentionTitle(_ contentItems: [QDMContentItem], _ key: PrepareResult.Key) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isTitle && $0.valueText.contains(key.tag) }.forEach {
             items.append(.intentionContentItem(format: $0.format, title: $0.valueText, key: key))
@@ -142,7 +142,7 @@ extension PrepareResultsWorker {
     }
 
     func getBenefitTitle(_ contentItems: [QDMContentItem],
-                         _ key: Prepare.Key,
+                         _ key: PrepareResult.Key,
                          _ benefits: String?) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isTitle && $0.valueText.contains(key.tag) }.forEach {
@@ -194,7 +194,7 @@ extension PrepareResultsWorker {
     }
 
     func getSelectedIntentionItems(_ answersIds: [Int],
-                                   _ tag: Prepare.Key,
+                                   _ tag: PrepareResult.Key,
                                    completion: @escaping (([PrepareResultsType]) -> Void)) {
         var items = [PrepareResultsType]()
         qot_dal.QuestionService.main.questions(with: tag.rawValue) { (questions) in
@@ -205,7 +205,7 @@ extension PrepareResultsWorker {
         }
     }
 
-    func filteredAnswers(_ tag: Prepare.Key,
+    func filteredAnswers(_ tag: PrepareResult.Key,
                          _ answers: [DecisionTreeModel.SelectedAnswer]) -> [DecisionTreeModel.SelectedAnswer] {
         return answers.filter { $0.questionID == tag.questionID }
     }

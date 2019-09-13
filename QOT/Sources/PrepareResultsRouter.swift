@@ -24,12 +24,12 @@ final class PrepareResultsRouter {
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
         presentDecisionTree(for: .prepareBenefits(benefits: benefits,
-                                                  questionID: Prepare.Key.benefits.questionID,
+                                                  questionID: PrepareResult.Key.benefits.questionID,
                                                   viewController))
     }
 
     func presentEditIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                               _ key: Prepare.Key,
+                               _ key: PrepareResult.Key,
                                answerFilter: String?) {
         presentDecisionTree(for: .prepareIntentions(selectedAnswers, answerFilter, key, viewController))
     }

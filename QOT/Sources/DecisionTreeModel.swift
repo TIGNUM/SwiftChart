@@ -22,7 +22,7 @@ enum DecisionTreeType {
     case mindsetShifterTBVOnboarding
     case mindsetShifterTBVPrepare
     case prepare
-    case prepareIntentions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
+    case prepareIntentions([DecisionTreeModel.SelectedAnswer], String?, PrepareResult.Key, PrepareResultsDelegatge?)
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
     case solve
     case recovery
@@ -43,7 +43,7 @@ enum DecisionTreeType {
         case .mindsetShifterTBVPrepare:
             return QuestionKey.MindsetShifterTBV.IntroPrepare
         case .prepare:
-            return QuestionKey.Prepare.Intro
+            return Prepare.QuestionKey.Intro
         case .prepareIntentions(_, _, let key, _):
             return key.tag
         case .prepareBenefits:
@@ -225,7 +225,7 @@ extension DecisionTreeModel.Filter {
 // MARK: - ModelInterface
 extension DecisionTreeModel: DecisionTreeModelInterface {
     mutating func add(_ question: QDMQuestion) {
-        if extendedQuestions.filter ({ $0.question.remoteID == question.remoteID }).isEmpty {
+        if extendedQuestions.filter({ $0.question.remoteID == question.remoteID }).isEmpty {
             extendedQuestions.append(ExtendedQuestion(userInput: nil, question: question))
         }
     }
@@ -246,7 +246,7 @@ extension DecisionTreeModel: DecisionTreeModelInterface {
     }
 
     mutating func add(_ selection: DecisionTreeModel.SelectedAnswer) {
-        if selectedAnswers.filter ({ $0.answer.remoteID == selection.answer.remoteID }).isEmpty {
+        if selectedAnswers.filter({ $0.answer.remoteID == selection.answer.remoteID }).isEmpty {
             selectedAnswers.append(selection)
         }
     }

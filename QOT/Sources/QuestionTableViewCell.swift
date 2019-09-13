@@ -16,14 +16,14 @@ final class QuestionTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: Configuration
 extension QuestionTableViewCell {
-    func configure(with question: String?, html: String?, questionTitleUpdate: String?, textColor: UIColor) {
+    func configure(with question: String?, html: String?, questionUpdate: String?, textColor: UIColor) {
         var updatedTitle: String
         var attributedString = NSMutableAttributedString()
         if let html = html {
-            updatedTitle = updateQuestionIfNeeded(html, questionTitleUpdate)
+            updatedTitle = updateQuestionIfNeeded(html, questionUpdate)
             attributedString = NSMutableAttributedString(attributedString: updatedTitle.convertHtml() ?? NSAttributedString())
         } else if let question = question {
-            updatedTitle = updateQuestionIfNeeded(question, questionTitleUpdate)
+            updatedTitle = updateQuestionIfNeeded(question, questionUpdate)
             attributedString = NSMutableAttributedString(string: updatedTitle)
         }
         let paragraphStyle = NSMutableParagraphStyle()

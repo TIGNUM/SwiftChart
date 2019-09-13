@@ -12,7 +12,7 @@ import qot_dal
 class DTPresenter: DTPresenterInterface {
 
     // MARK: - Properties
-    var viewController: DTViewControllerInterface?
+    weak var viewController: DTViewControllerInterface?
 
     // MARK: - Init
     init(viewController: DTViewControllerInterface?) {
@@ -76,28 +76,28 @@ class DTPresenter: DTPresenterInterface {
     }
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
-        let question = getQuestion(presentationModel.question, titleToUpdate: presentationModel.titleToUpdate)
+        let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
         return DTViewModel(question: question,
                            answers: answers,
                            tbvText: presentationModel.tbv?.text,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
-                           typingAnimationDuration: 5.0,
+                           typingAnimationDuration: question.duration,
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
                            dismissButtonIsHidden: dismissButtonIsHidden(questionKey: question.key),
                            showNextQuestionAutomated: showNextQuestionAutomated(questionKey: question.key))
     }
 
-    func getQuestion(_ question: QDMQuestion?, titleToUpdate: String?) -> DTViewModel.Question {
+    func getQuestion(_ question: QDMQuestion?, questionUpdate: String?) -> DTViewModel.Question {
         var title = question?.title
-        if let update = updatedQuestionTitle(question, replacement: titleToUpdate) {
+        if let update = updatedQuestionTitle(question, replacement: questionUpdate) {
             title = update
         }
         return DTViewModel.Question(remoteId: question?.remoteID ?? 0,
                                     title: title ?? "",
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
-                                    duration: question?.answerType == nil ? 0.0 : 5.0,
+                                    duration: question?.layout?.animation?.duration ?? 5.0,
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 
@@ -117,7 +117,10 @@ class DTPresenter: DTPresenterInterface {
     func getDecisions(answer: QDMAnswer) -> [DTViewModel.Answer.Decision] {
         return answer.decisions.compactMap { (decision) -> DTViewModel.Answer.Decision in
             return DTViewModel.Answer.Decision(targetType: TargetType(rawValue: decision.targetType) ?? .question,
-                                               targetTypeId: decision.targetTypeId)
+                                               targetTypeId: decision.targetTypeId,
+                                               questionGroupId: decision.questionGroupId,
+                                               targetGroupId: decision.targetGroupId,
+                                               targetGroupName: decision.targetGroupName)
         }
     }
 

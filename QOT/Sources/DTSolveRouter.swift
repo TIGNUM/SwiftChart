@@ -16,7 +16,7 @@ final class DTSolveRouter: DTRouter {
 
 // MARK: - DTSolveRouterInterface
 extension DTSolveRouter: DTSolveRouterInterface {
-    func presentSolveResultView(selectedAnswer: DTViewModel.Answer) {
+    func presentSolveResults(selectedAnswer: DTViewModel.Answer) {
         let configurator = SolveResultsConfigurator.make(from: selectedAnswer.remoteId,
                                                          solutionCollectionId: selectedAnswer.targetId(.content) ?? 0,
                                                          type: .solve,
@@ -25,6 +25,14 @@ extension DTSolveRouter: DTSolveRouterInterface {
         solveResultsController.delegate = self
         viewController?.present(solveResultsController, animated: true)
         self.solveResultsController = solveResultsController
+    }
+
+    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?) {
+
+    }
+
+    func dismissFlowAndGoToMyTBV() {
+
     }
 }
 

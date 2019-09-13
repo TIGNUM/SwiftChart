@@ -66,7 +66,7 @@ private extension ChoiceViewController {
             title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
             message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),
             preferredStyle: .alert)
-        alert.addAction (
+        alert.addAction(
             UIAlertAction(
                 title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertButton(),
                 style: .default,
