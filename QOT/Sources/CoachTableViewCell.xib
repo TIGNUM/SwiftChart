@@ -27,11 +27,8 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="hjdhhdhd hdhdh fff ffff ffff f ff eeeeeeeeehjuhjfhjdsbfjsdfbjdfbdjsfjsdkfndsjk" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muG-wl-Bhs">
-                        <rect key="frame" x="30" y="53" width="448" height="46"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="46" id="rWx-ff-hcE"/>
-                        </constraints>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="muG-wl-Bhs">
+                        <rect key="frame" x="30" y="125" width="443" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -42,9 +39,8 @@
                     <constraint firstItem="LaT-qw-HPO" firstAttribute="leading" secondItem="oZM-WY-vOG" secondAttribute="leading" constant="30" id="UEw-Bx-mD9"/>
                     <constraint firstAttribute="trailing" secondItem="LaT-qw-HPO" secondAttribute="trailing" constant="20" id="YEe-KT-6ot"/>
                     <constraint firstItem="muG-wl-Bhs" firstAttribute="leading" secondItem="oZM-WY-vOG" secondAttribute="leading" constant="30" id="bLg-1K-fUa"/>
-                    <constraint firstItem="muG-wl-Bhs" firstAttribute="top" secondItem="LaT-qw-HPO" secondAttribute="bottom" constant="6" id="ggd-sy-0X1"/>
-                    <constraint firstItem="LaT-qw-HPO" firstAttribute="top" secondItem="oZM-WY-vOG" secondAttribute="top" constant="22" id="ivK-lM-XwU"/>
-                    <constraint firstAttribute="trailing" secondItem="muG-wl-Bhs" secondAttribute="trailing" constant="40" id="whc-ow-o8W"/>
+                    <constraint firstItem="muG-wl-Bhs" firstAttribute="top" secondItem="LaT-qw-HPO" secondAttribute="bottom" constant="10" id="ggd-sy-0X1"/>
+                    <constraint firstAttribute="trailing" secondItem="muG-wl-Bhs" secondAttribute="trailing" constant="45" id="whc-ow-o8W"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.92122668027877808" green="0.90475624799728394" blue="0.89374810457229614" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

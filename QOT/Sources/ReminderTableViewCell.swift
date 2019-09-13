@@ -12,7 +12,7 @@ final class ReminderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
-    @IBOutlet private weak var reminderSwitch: UISwitch!
+    @IBOutlet private weak var reminderSwitch: QotUISwitch!
     private var type: ReminderType = .iCal
     weak var delegate: PrepareResultsDelegatge?
 

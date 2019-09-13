@@ -10,22 +10,21 @@ import UIKit
 import qot_dal
 
 protocol MultipleSelectionCellDelegate: class {
-    func didSelectAnswer(_ answer: QDMAnswer)
-    func didDeSelectAnswer(_ answer: QDMAnswer)
+    func didSelectAnswer(_ answer: DTViewModel.Answer)
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSetHeight(to height: CGFloat)
 }
 
 final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
+    weak var delegate: MultipleSelectionCellDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
-    private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
-    weak var delegate: MultipleSelectionCellDelegate?
-    private var maxPossibleSelections: Int = 0
-    private var answers: [QDMAnswer] = []
-    private var question: QDMQuestion?
     private let layout = ChatViewLayout()
-    private var type = DecisionTreeType.mindsetShifter
+    private var maxPossibleSelections = 0
+    private var selectionCounter = 0
+    private var answers: [DTViewModel.Answer] = []
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -39,19 +38,14 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Configure
 extension MultipleSelectionTableViewCell {
-    func configure(for answers: [QDMAnswer],
-                   question: QDMQuestion,
-                   type: DecisionTreeType?,
-                   selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                   maxPossibleSelections: Int) {
+    func configure(for answers: [DTViewModel.Answer], maxPossibleSelections: Int, collectionHeight: CGFloat) {
+        collectionViewHeight.constant = collectionHeight
+        layoutIfNeeded()
         self.answers = answers
-        self.question = question
-        self.type = type ?? .mindsetShifter
-        self.selectedAnswers = selectedAnswers
         self.maxPossibleSelections = maxPossibleSelections
+        let selectedAnswers = answers.filter { $0.selected == true }
+        selectionCounter = selectedAnswers.count
         collectionView.reloadData()
-        collectionViewHeight.constant = layout.collectionViewContentSize.height
-        collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count <= maxPossibleSelections)
     }
 }
 
@@ -64,26 +58,21 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        let answer: QDMAnswer = answers[indexPath.row]
-        let isSelected = selectedAnswers.filter { $0.answer.remoteID == answer.remoteID }.isEmpty == false
-        cell.configure(for: answer,
-                       type: type,
-                       isSelected: isSelected,
-                       maxSelections: maxPossibleSelections,
-                       selectionCounter: selectedAnswers.count)
+        let answer = answers[indexPath.row]
+        cell.configure(for: answer, maxSelections: maxPossibleSelections, selectionCounter: selectionCounter)
         cell.delegate = self
         return cell
     }
 }
 
 // MARK: - MultipleSelectionCollectionViewCellDelegate
-extension MultipleSelectionTableViewCell: MultipleSelectionCollectionViewCellDelegate {
-    func didSelectAnswer(_ answer: QDMAnswer) {
-        delegate?.didSelectAnswer(answer)
+extension MultipleSelectionTableViewCell: MultipleSelectionDelegate {
+    func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didDeSelectAnswer(answer)
     }
 
-    func didDeSelectAnswer(_ answer: QDMAnswer) {
-        delegate?.didDeSelectAnswer(answer)
+    func didSelectAnswer(_ answer: DTViewModel.Answer) {
+        delegate?.didSelectAnswer(answer)
     }
 }
 
@@ -95,12 +84,16 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let offset = collectionView.bounds.width * 0.1
-        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
-        let answerText = answers[indexPath.row].subtitle ?? ""
-        let tempWidth = answerText.size(with: buttonFont).width + offset
-        let width = tempWidth <= collectionView.bounds.width ? tempWidth : collectionView.frame.width - offset
-        let height = tempWidth <= collectionView.bounds.width ? CGFloat.Button.Height.AnswerButtonDefault : CGFloat.Button.Height.AnswerButtonBig
-        return CGSize(width: width, height: CGFloat(height))
+        let answerText = answers[indexPath.row].title
+
+        let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
+        label.numberOfLines = 2
+        label.attributedText = ThemeText.chatBotButton.attributedString(answerText)
+        label.sizeToFit()
+
+        let width: CGFloat = label.bounds.width
+        let height: CGFloat = label.bounds.height
+        return CGSize(width: width + 32, height: CGFloat(height) + 20)  //size includes constraints from cell.xib
     }
 
     func chatViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat {
@@ -134,5 +127,9 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
 
     func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat? {
         return 0
+    }
+
+    func chatViewLayout(_ layout: ChatViewLayout, updateContentSize: CGSize) {
+        delegate?.didSetHeight(to: updateContentSize.height)
     }
 }

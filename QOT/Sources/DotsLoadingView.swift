@@ -17,6 +17,7 @@ final class DotsLoadingView: UIView {
 
     // MARK: - Configuration
     func configure(dotsColor: UIColor?, size: CGSize? = nil) {
+        alpha = 0.0
         self.dotsColor = dotsColor
         if let size = size {
             self.size = size
@@ -28,8 +29,8 @@ final class DotsLoadingView: UIView {
         if self.superview == nil {
             return
         }
-        if alpha == 0 {
-            alpha = 1
+        UIView.animate(withDuration: Animation.duration_06) {
+            self.alpha = 1.0
         }
         setupAnimation(size: size ?? frame.size, color: dotsColor)
     }
@@ -43,9 +44,6 @@ final class DotsLoadingView: UIView {
 
     func stopAnimation(_ completion: (() -> Void)? = nil) {
         if alpha > 0 {
-            UIView.animate(withDuration: Animation.duration_03) {
-                self.alpha = 0
-            }
             UIView.animate(withDuration: Animation.duration_03, animations: {
                 self.alpha = 0
             }, completion: { (finished) in

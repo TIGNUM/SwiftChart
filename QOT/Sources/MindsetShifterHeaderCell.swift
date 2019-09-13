@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MindsetShifterHeaderCell: UITableViewCell, Dequeueable {
+final class MindsetShifterHeaderCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -18,7 +18,8 @@ final class MindsetShifterHeaderCell: UITableViewCell, Dequeueable {
     // MARK: - Configuration
 
     func configure(title: String, subtitle: String) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultList.apply(subtitle, to: subtitleLabel)
     }
 }

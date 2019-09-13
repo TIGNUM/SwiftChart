@@ -283,7 +283,11 @@ private extension DailyBriefViewController {
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
-        cell.configure(viewModel: impactReadinessCellViewModel)
+        cell.configure(viewModel: impactReadinessCellViewModel, tapLeft: { [weak self] in
+                        self?.delegate?.moveToCell(item: 0)
+                        }, tapRight: { [weak self] in
+                            self?.delegate?.moveToCell(item: 2)
+                    })
         if impactReadinessCellViewModel?.readinessScore == -1 {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
@@ -735,7 +739,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
-
         ThemeText.navigationBarHeader.apply(interactor?.screenTitle(), to: screenTitleLabel)
     }
 }

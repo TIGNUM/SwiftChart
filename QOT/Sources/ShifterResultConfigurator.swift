@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import qot_dal
 
 final class ShifterResultConfigurator {
-    static func make(resultItem: ShifterResult.Item) -> (ShifterResultViewController) -> Void {
+    static func make(mindsetShifter: QDMMindsetShifter?) -> (ShifterResultViewController) -> Void {
         return { viewController in
             let router = ShifterResultRouter(viewController: viewController)
-            let worker = ShifterResultWorker(resultItem)
+            let worker = ShifterResultWorker(mindsetShifter)
             let presenter = ShifterResultPresenter(viewController: viewController)
             let interactor = ShifterResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

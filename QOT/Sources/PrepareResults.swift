@@ -82,11 +82,11 @@ extension ContentFormat {
     func attributedText(title: String?) -> NSAttributedString? {
         guard let title = title else { return nil }
         switch self {
-        case .header1: return attributed(title, .sfProDisplayLight(ofSize: 24), .carbon)
+        case .header1: return ThemeText.resultHeader1.attributedString(title)
         case .header2,
-             .listitem: return attributed(title, .sfProtextLight(ofSize: 16), UIColor.carbon.withAlphaComponent(0.7))
-        case .list: return attributed("\n\n"+title, .sfProtextMedium(ofSize: 14), UIColor.carbon.withAlphaComponent(0.4))
-        case .title: return attributed(title, .sfProtextLight(ofSize: 16), .carbon)
+             .listitem: return ThemeText.resultHeader2.attributedString(title)
+        case .list: return ThemeText.resultList.attributedString("\n\n" + title)
+        case .title: return ThemeText.resultTitle.attributedString(title)
         default: return nil
         }
     }

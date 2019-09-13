@@ -9,12 +9,11 @@
 import UIKit
 import qot_dal
 
-final class StrategyListViewController: UIViewController, ScreenZLevel2 {
+final class StrategyListViewController: BaseWithTableViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
     var interactor: StrategyListInteractorInterface?
-    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Life Cycle
 
@@ -93,7 +92,8 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title ?? "",
                            timeToWatch: strategy?.durationString ?? "",
-                           imageURL: strategy?.imageURL)
+                           imageURL: strategy?.imageURL,
+                           forcedColorMode: .dark)
             return cell
         } else {
             let strategy = interactor?.strategies[indexPath.item]
@@ -124,7 +124,8 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectRow(at: indexPath)
+
         if interactor?.isFoundation == true {
             guard
                 let foundation = interactor?.foundationStrategies[indexPath.row],

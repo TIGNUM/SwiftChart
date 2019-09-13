@@ -162,12 +162,13 @@ extension DecisionTreeWorker {
                     showNextQuestion(targetId: targetQuestionId)
                     return
                 }
+            //TODO: Remove in clean up task.
             case QuestionKey.MindsetShifter.Check:
-                getShifterResultItem(answers: decisionTreeAnswers) { [unowned self] (resultItem) in
-                    self.interactor?.openMindsetShifterResult(resultItem: resultItem) {
-                        self.nextQuestionId = self.currentQuestion?.answers.first?.targetId(.question) ?? 0
-                    }
-                }
+//                getShifterResultItem(answers: decisionTreeAnswers) { [unowned self] (resultItem) in
+//                    self.interactor?.openMindsetShifterResult(resultItem: resultItem) {
+//                        self.nextQuestionId = self.currentQuestion?.answers.first?.targetId(.question) ?? 0
+//                    }
+//                }
                 return
             case QuestionKey.MindsetShifter.Last:
                 interactor?.dismissAndGoToMyQot()
@@ -222,7 +223,6 @@ private extension DecisionTreeWorker {
 
     func showQuestion(_ node: DecisionTreeNode) {
         if let question = node.question {
-            syncButtons()
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
                                      filter: answersFilter(),
@@ -243,54 +243,55 @@ private extension DecisionTreeWorker {
 
 // MARK: - MindsetShifter
 private extension DecisionTreeWorker {
-    func getShifterResultItem(answers: [QDMAnswer],
-                              completion: @escaping (ShifterResult.Item) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        let triggerAnswers = filteredAnswers([answers[0]], filter: .Trigger)
-        let reactionAnswers = filteredAnswers(answers, filter: .Reaction)
-        let lowAnswers = filteredAnswers(answers, filter: .LowPerfomance)
-        var highItems: [QDMContentItem] = []
-        let contentItemIds = answers.compactMap { $0.targetId(.contentItem) }
-
-        dispatchGroup.enter()
-        getHighItems(contentItemIds) { (items) in
-            highItems = items
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.notify(queue: .main) {
-            let resultItem = ShifterResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteID ?? 0 }.first ?? 0,
-                                                reactionsAnswerIds: reactionAnswers.map { $0.remoteID ?? 0 },
-                                                lowPerformanceAnswerIds: lowAnswers.map { $0.remoteID ?? 0 },
-                                                highPerformanceContentItemIds: contentItemIds,
-                                                trigger: triggerAnswers.map { $0.subtitle ?? "" }.first ?? "",
-                                                reactions: reactionAnswers.map { $0.subtitle ?? ""},
-                                                lowPerformanceItems: lowAnswers.map { $0.subtitle ?? ""},
-                                                highPerformanceItems: highItems.map { $0.valueText })
-            completion(resultItem)
-        }
-    }
-
-    func filteredAnswers(_ answers: [QDMAnswer], filter: DecisionTreeModel.Filter) -> [QDMAnswer] {
-        return answers.filter { $0.keys.filter { $0.contains(filter) }.isEmpty == false }
-    }
-
-    func getHighItems(_ contentItemIDs: [Int], completion: @escaping ([QDMContentItem]) -> Void) {
-        var items: [QDMContentItem] = []
-        let dispatchGroup = DispatchGroup()
-        contentItemIDs.forEach {
-            dispatchGroup.enter()
-            qot_dal.ContentService.main.getContentItemById($0) { (item) in
-                if let item = item, item.searchTags.contains("mindsetshifter-highperformance-item") {
-                    items.append(item)
-                }
-                dispatchGroup.leave()
-            }
-        }
-        dispatchGroup.notify(queue: .main) {
-            completion(items)
-        }
-    }
+    //TODO: Remove in clean up task.
+//    func getShifterResultItem(answers: [QDMAnswer],
+//                              completion: @escaping (MindsetResult.Item) -> Void) {
+//        let dispatchGroup = DispatchGroup()
+//        let triggerAnswers = filteredAnswers([answers[0]], filter: .Trigger)
+//        let reactionAnswers = filteredAnswers(answers, filter: .Reaction)
+//        let lowAnswers = filteredAnswers(answers, filter: .LowPerfomance)
+//        var highItems: [QDMContentItem] = []
+//        let contentItemIds = answers.compactMap { $0.targetId(.contentItem) }
+//
+//        dispatchGroup.enter()
+//        getHighItems(contentItemIds) { (items) in
+//            highItems = items
+//            dispatchGroup.leave()
+//        }
+//
+//        dispatchGroup.notify(queue: .main) {
+//            let resultItem = MindsetResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteID ?? 0 }.first ?? 0,
+//                                                reactionsAnswerIds: reactionAnswers.map { $0.remoteID ?? 0 },
+//                                                lowPerformanceAnswerIds: lowAnswers.map { $0.remoteID ?? 0 },
+//                                                highPerformanceContentItemIds: contentItemIds,
+//                                                trigger: triggerAnswers.map { $0.subtitle ?? "" }.first ?? "",
+//                                                reactions: reactionAnswers.map { $0.subtitle ?? ""},
+//                                                lowPerformanceItems: lowAnswers.map { $0.subtitle ?? ""},
+//                                                highPerformanceItems: highItems.map { $0.valueText })
+//            completion(resultItem)
+//        }
+//    }
+//
+//    func filteredAnswers(_ answers: [QDMAnswer], filter: DecisionTreeModel.Filter) -> [QDMAnswer] {
+//        return answers.filter { $0.keys.filter { $0.contains(filter) }.isEmpty == false }
+//    }
+//
+//    func getHighItems(_ contentItemIDs: [Int], completion: @escaping ([QDMContentItem]) -> Void) {
+//        var items: [QDMContentItem] = []
+//        let dispatchGroup = DispatchGroup()
+//        contentItemIDs.forEach {
+//            dispatchGroup.enter()
+//            qot_dal.ContentService.main.getContentItemById($0) { (item) in
+//                if let item = item, item.searchTags.contains("mindsetshifter-highperformance-item") {
+//                    items.append(item)
+//                }
+//                dispatchGroup.leave()
+//            }
+//        }
+//        dispatchGroup.notify(queue: .main) {
+//            completion(items)
+//        }
+//    }
 }
 
 // MARK: - Sprint Selection

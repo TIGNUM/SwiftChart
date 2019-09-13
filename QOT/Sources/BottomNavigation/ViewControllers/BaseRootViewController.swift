@@ -15,6 +15,7 @@ protocol ScreenZLevel3: ScreenZLevel {}
 protocol ScreenZLevelCoach: ScreenZLevel3 {}
 protocol ScreenZLevelOverlay: ScreenZLevel {}
 protocol ScreenZLevelIgnore: ScreenZLevel {}
+protocol ScreenZLevelChatBot: ScreenZLevel {}
 
 final class BaseRootViewController: UIViewController, ScreenZLevel1 {
 

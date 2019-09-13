@@ -12,12 +12,11 @@ final class CoachNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(CoachNavigationController.classForCoder())
 }
 
-final class CoachViewController: UIViewController, ScreenZLevelCoach {
+final class CoachViewController: BaseWithTableViewController, ScreenZLevelCoach {
 
     // MARK: - Properties
 
     var interactor: CoachInteractorInterface?
-    @IBOutlet private weak var tableView: UITableView!
     private var coachModel: CoachModel?
     private enum CellType: Int, CaseIterable {
         case header = 0
@@ -97,7 +96,8 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectRow(at: indexPath)
+
         let sectionTapped = coachModel?.sectionItem(at: indexPath)
         trackUserEvent(.SELECT, valueType: String(indexPath.row), action: .TAP)
         interactor?.handleTap(coachSection: sectionTapped ?? .search)

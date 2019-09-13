@@ -23,7 +23,7 @@ final class PrepareEventTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, dateString: String?) {
-        titleLabel.text = title
-        dateLabel.text = dateString
+        ThemeText.resultTitle.apply(title, to: titleLabel)
+        ThemeText.resultDate.apply(dateString, to: dateLabel)
     }
 }

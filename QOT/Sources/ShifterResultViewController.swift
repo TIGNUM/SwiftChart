@@ -12,7 +12,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ShifterResultInteractorInterface?
-    private var model: ShifterResult?
+    private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
@@ -29,6 +29,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        ThemeView.chatbot.apply(view)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -39,7 +40,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
 // MARK: - ShifterResultViewControllerInterface
 extension ShifterResultViewController: ShifterResultViewControllerInterface {
-    func load(_ model: ShifterResult) {
+    func load(_ model: MindsetResult) {
         self.model = model
         tableView.reloadData()
     }
@@ -60,11 +61,12 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
 // MARK: - Private
 private extension ShifterResultViewController {
     func registerCells() {
-        tableView?.registerDequeueable(MindsetShifterHeaderCell.self)
-        tableView?.registerDequeueable(TriggerTableViewCell.self)
-        tableView?.registerDequeueable(ReactionsTableViewCell.self)
-        tableView?.registerDequeueable(NegativeToPositiveTableViewCell.self)
-        tableView?.registerDequeueable(MindsetVisionTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
+        tableView.registerDequeueable(MindsetShifterHeaderCell.self)
+        tableView.registerDequeueable(TriggerTableViewCell.self)
+        tableView.registerDequeueable(ReactionsTableViewCell.self)
+        tableView.registerDequeueable(NegativeToPositiveTableViewCell.self)
+        tableView.registerDequeueable(MindsetVisionTableViewCell.self)
     }
 }
 
@@ -72,8 +74,6 @@ private extension ShifterResultViewController {
 private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.didTapSave()
-        NotificationCenter.default.post(name: .didDismissMindsetResultView, object: nil)
         dismiss(animated: true)
     }
 

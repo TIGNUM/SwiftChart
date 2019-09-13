@@ -29,10 +29,11 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
         self.maxCharacters = maxCharacters
         self.inputText = inputText
         self.delegate = delegate
-        maxCharactersLabel.text = String(format: "/%d", maxCharacters)
+
+        ThemeText.resultCounterMax.apply(String(format: "/%d", maxCharacters), to: maxCharactersLabel)
         if let inputText = inputText {
             textView.text = inputText
-            counterLabel.text = String(format: "%d", textView.text.count)
+            ThemeText.resultCounter.apply(String(format: "%d", textView.text.count), to: counterLabel)
         }
 
         self.showKeyBoard()

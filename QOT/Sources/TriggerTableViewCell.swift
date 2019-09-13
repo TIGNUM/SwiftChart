@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TriggerTableViewCell: UITableViewCell, Dequeueable {
+final class TriggerTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Properties
     @IBOutlet private weak var triggerTitleLabel: UILabel!
@@ -18,7 +18,8 @@ final class TriggerTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Configuration
 extension TriggerTableViewCell {
     func configure(title: String, triggerItem: String) {
-        triggerTitleLabel.text = title
-        triggerItemLabel.text = triggerItem
+        selectionStyle = .none
+        ThemeText.resultTitle.apply(title, to: triggerTitleLabel)
+        ThemeText.resultHeader2.apply(triggerItem, to: triggerItemLabel)
     }
 }

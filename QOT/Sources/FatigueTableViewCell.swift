@@ -8,11 +8,16 @@
 
 import UIKit
 
-final class FatigueTableViewCell: UITableViewCell, Dequeueable {
+final class FatigueTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
+    @IBOutlet private weak var topTitleLabel: UILabel!
+    @IBOutlet private weak var mainTitleLabel: UILabel!
     @IBOutlet private weak var fatigueLabel: UILabel!
 
     func configure(symptom: String) {
-        fatigueLabel.text = symptom
+        selectionStyle = .none
+        ThemeText.resultList.apply(R.string.localized.solveYourAnswers(), to: topTitleLabel)
+        ThemeText.resultTitle.apply(R.string.localized.solveFatigue(), to: mainTitleLabel)
+        ThemeText.resultHeader2.apply(symptom, to: fatigueLabel)
     }
 }

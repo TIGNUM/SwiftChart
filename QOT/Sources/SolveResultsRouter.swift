@@ -32,12 +32,7 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     }
 
     func openStrategy(with id: Int) {
-        if let controller = R.storyboard.main()
-            .instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier)
-            as? ArticleViewController {
-                ArticleConfigurator.configure(selectedID: id, viewController: controller)
-                viewController?.present(controller, animated: true, completion: nil)
-        }
+        AppDelegate.current.launchHandler.showContentCollection(id)
     }
 
     func openVisionGenerator() {
