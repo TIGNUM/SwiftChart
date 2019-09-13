@@ -24,8 +24,11 @@ final class SigningInfoPresenter {
 // MARK: - SigningInfoInterface
 
 extension SigningInfoPresenter: SigningInfoPresenterInterface {
-
     func setup() {
         viewController?.setup()
+    }
+
+    func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String) {
+        viewController?.presentUnoptimizedAlertView(title: title, message: message, dismissButtonTitle: dismissButtonTitle)
     }
 }

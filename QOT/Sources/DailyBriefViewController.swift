@@ -45,6 +45,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableHeader: UIView!
+    @IBOutlet weak var screenTitleLabel: UILabel!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -247,6 +249,17 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             bar.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
+    }
+}
+
+// MARK: IBActions
+private extension DailyBriefViewController {
+    @IBAction func didTapLeftArrowButton(_ sender: Any?) {
+        delegate?.moveToCell(item: 0)
+    }
+
+    @IBAction func didTapRightArrowButton(_ sender: Any?) {
+        delegate?.moveToCell(item: 2)
     }
 }
 
@@ -726,6 +739,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+        ThemeText.navigationBarHeader.apply(interactor?.screenTitle(), to: screenTitleLabel)
     }
 }
 

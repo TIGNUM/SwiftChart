@@ -50,7 +50,7 @@ extension MyQotSupportFaqWorker {
     func title(at indexPath: IndexPath) -> String {
         let content = item(at: indexPath)
         let contentItem = content.contentItems.filter { $0.format == .header3 }.first
-        let text = contentItem?.valueText ?? ""
+        let text = contentItem?.valueText ?? content.title
         return text.uppercased()
     }
 

@@ -40,8 +40,4 @@ extension OnboardingLoginPresenter: OnboardingLoginPresenterInterface {
     func presentGetHelp() {
         viewController?.presentGetHelpView()
     }
-
-    func presentUnoptimizedAlertView() {
-        viewController?.presentUnoptimizedAlertView()
-    }
 }

@@ -360,7 +360,7 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>QOT will lead you to Daily Prep Minute</string>
+			<string>QOT will lead you to Daily Check In</string>
 			<key>INIntentDescriptionID</key>
 			<string>KRbSNC</string>
 			<key>INIntentLastParameterTag</key>
@@ -413,7 +413,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>You did not do your Daily Prep Minute today.</string>
+						<string>You did not do your Daily Check In today.</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>YQIyt1</string>
 						<key>INIntentResponseCodeName</key>

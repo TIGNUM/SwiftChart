@@ -63,7 +63,7 @@ enum ThemeView {
     var color: UIColor {
         switch self {
         case .level1:
-            return Palette.carbonDark
+            return Palette.carbon
         case .level2:
             return Palette.carbon
         case .level3:
@@ -351,7 +351,7 @@ enum ThemeSegment {
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
             view.tintColor = .clear
-            view.backgroundColor = .clear
+            view.backgroundColor = .carbon
         }
 
         if let normal = normal,
@@ -377,7 +377,7 @@ enum ThemeSearchBar {
             view.keyboardAppearance = .dark
             if let searchField = view.value(forKey: "_searchField") as? UITextField {
                 searchField.corner(radius: 20)
-                searchField.backgroundColor = Palette.carbon
+                searchField.backgroundColor = Palette.sand10
                 searchField.textColor = Palette.sand
             }
             view.setShowsCancelButton(true, animated: false)
@@ -628,15 +628,31 @@ enum ThemeText {
     case syncedCalendarRowTitle
     case syncedCalendarRowSubtitle
 
+    case weatherIntro
+    case weatherDescription
+    case weatherTitle
+    case weatherBody
+    case weatherHourlyLabels
+    case weatherHourlyLabelNow
+
+    case syncedCalendarTitle
+    case syncedCalendarDescription
+    case syncedCalendarTableHeader
+    case syncedCalendarRowTitle
+    case syncedCalendarRowSubtitle
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax:
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket, .askPermissionTitle, .syncedCalendarTitle:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
+          .askPermissionTitle, .syncedCalendarTitle, .weatherTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
+             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, 
+             .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
@@ -977,7 +993,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .myDataHeatMapDetailCellValue:
+        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)

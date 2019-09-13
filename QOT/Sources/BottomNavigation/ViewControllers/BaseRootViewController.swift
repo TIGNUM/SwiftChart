@@ -38,7 +38,7 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseRootViewController = self
-        view.backgroundColor = .carbonDark
+        ThemeView.level1.apply(view)
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleBottomNavigationBar(_:)),
                                                name: .updateBottomNavigation,
