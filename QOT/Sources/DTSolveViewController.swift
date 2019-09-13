@@ -11,7 +11,7 @@ import UIKit
 final class DTSolveViewController: DTViewController {
 
     // MARK: - Properties
-    var solveRouter: DTSolveRouter?
+    weak var solveRouter: DTSolveRouter?
 
     // MARK: - Init
     init(configure: Configurator<DTSolveViewController>) {

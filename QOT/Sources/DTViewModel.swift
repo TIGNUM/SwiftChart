@@ -77,9 +77,8 @@ extension DTViewModel {
 
 private extension DTViewModel {
     func notifyCounterChanged() {
-        let selected = answers.filter { $0.selected }
-        let selectionCounter = UserInfo.multiSelectionCounter.pair(for: selected.count)
-        let selectedAnswers = UserInfo.selectedAnswers.pair(for: selected)
+        let selectionCounter = UserInfo.multiSelectionCounter.pair(for:  self.selectedAnswers.count)
+        let selectedAnswers = UserInfo.selectedAnswers.pair(for: self.selectedAnswers)
         NotificationCenter.default.post(name: .didUpdateSelectionCounter,
                                         object: nil,
                                         userInfo: [selectionCounter.key: selectionCounter.value,
