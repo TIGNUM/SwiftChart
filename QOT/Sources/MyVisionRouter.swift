@@ -64,6 +64,6 @@ extension MyVisionRouter: MyVisionRouterInterface {
     func openToBeVisionGenerator() {
         let configurator = DTTBVConfigurator.make()
         let controller = DTTBVViewController(configure: configurator)
-        viewController?.present(controller, animated: true, completion: nil)        
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }
