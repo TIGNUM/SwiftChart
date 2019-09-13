@@ -157,7 +157,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        navigationController?.navigationBar.shadowImage = UIImage()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
     }
@@ -165,6 +164,8 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        navigationController?.navigationBar.shadowImage = UIImage()
+        ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -208,7 +209,7 @@ private extension ArticleViewController {
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
-
+        tableView.backgroundColor = .clear
     }
 
     func setupAudioItem() {
@@ -225,9 +226,8 @@ private extension ArticleViewController {
         colorModeIsActive = true
         ThemeAppearance.setNavigationBar()
         setStatusBar(colorMode: colorMode)
-        ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
         ThemeView.articleBackground(nil).apply(view)
-        ThemeView.articleBackground(nil).apply(tableView)
+        ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
 
         audioButton.setColorMode()
         view.bringSubview(toFront: audioButton)
@@ -526,7 +526,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .video(_, let title, _, let placeholderURL, _, let duration):
             let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL)
+            cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL, forcedColorMode: nil)
             return cell
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)

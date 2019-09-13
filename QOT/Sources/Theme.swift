@@ -418,9 +418,9 @@ enum ThemeText {
     case articleAuthor(ThemeColorMode?)
     case articleDatestamp(ThemeColorMode?)
     case articleToolBarTint
-    case articleRelatedTitle
+    case articleRelatedTitle(ThemeColorMode?)
     case articleRelatedTitleInStrategy
-    case articleRelatedDetail
+    case articleRelatedDetail(ThemeColorMode?)
     case articleRelatedDetailInStrategy
     case articleNextTitle
     case audioPlayerTitleDark
@@ -815,14 +815,17 @@ enum ThemeText {
             return .red
         case .articleCategory, .articleCategoryNotScaled:
              return Palette.light(Palette.carbon30, or: Palette.sand30)
-        case .articleTitle, .articleRelatedTitle, .articleTitleNotScaled, .articleBody:
+        case .articleTitle, .articleTitleNotScaled, .articleBody:
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleDatestamp, .articleRelatedDetailInStrategy:
             return Palette.light(Palette.carbon30, or: Palette.sand30)
         case .articleNextTitle:
             return Palette.light(Palette.carbon40, or: Palette.sand40)
-        case .whatsHotHeader(let mode):
+        case .whatsHotHeader(let mode),
+             .articleRelatedTitle(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+        case .articleRelatedDetail(let mode):
+            return Palette.light(Palette.carbon30, or: Palette.sand30, forcedColorMode: mode)
         case .articleAuthor(let mode):
             return Palette.light(Palette.carbon60, or: Palette.sand60, forcedColorMode: mode)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
@@ -833,7 +836,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-        case .version, .articleRelatedDetail:
+        case .version:
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed

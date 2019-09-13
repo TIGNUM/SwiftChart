@@ -17,8 +17,8 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var iconImageView: UIImageView!
 
     func configure(title: String, durationString: String, icon: UIImage?) {
-        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
-        ThemeText.articleRelatedDetail.apply(durationString, to: detailLabel)
+        ThemeText.articleRelatedTitle(nil).apply(title, to: titleLabel)
+        ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
         iconImageView.image = icon
         contentView.backgroundColor = colorMode.background
     }
