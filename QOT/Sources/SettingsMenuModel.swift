@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReactiveKit
 import qot_dal
 
 enum SettingsType: Int {

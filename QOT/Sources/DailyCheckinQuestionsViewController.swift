@@ -16,6 +16,7 @@ final class DailyCheckinQuestionsViewController: UIViewController, ScreenZLevel3
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
     @IBOutlet private weak var backButton: UIButton!
+    private var currentAnswer: Int?
 
     var isDoneButtonEnabled: Bool = false
     var interactor: DailyCheckinQuestionsInteractorInterface?

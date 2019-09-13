@@ -28,6 +28,10 @@ final class DailyBriefWorker {
         self.userService = userService
         self.contentService = contentService
         self.questionService = questionService
+
+        if UserDefault.showGuideTrackBucket.boolValue != true {
+            DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
+        }
     }
 
     private lazy var firstInstallTimeStamp: Date? = {
@@ -47,6 +51,10 @@ final class DailyBriefWorker {
                 completion(bucketsList)
             }
         })
+    }
+
+    func screenTitle() -> String {
+        return ScreenTitleService.main.localizedString(for: .DailyBriefTitle)
     }
 }
 

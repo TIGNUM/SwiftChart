@@ -29,6 +29,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        ThemeView.chatbot.apply(view)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -60,11 +61,12 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
 // MARK: - Private
 private extension ShifterResultViewController {
     func registerCells() {
-        tableView?.registerDequeueable(MindsetShifterHeaderCell.self)
-        tableView?.registerDequeueable(TriggerTableViewCell.self)
-        tableView?.registerDequeueable(ReactionsTableViewCell.self)
-        tableView?.registerDequeueable(NegativeToPositiveTableViewCell.self)
-        tableView?.registerDequeueable(MindsetVisionTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
+        tableView.registerDequeueable(MindsetShifterHeaderCell.self)
+        tableView.registerDequeueable(TriggerTableViewCell.self)
+        tableView.registerDequeueable(ReactionsTableViewCell.self)
+        tableView.registerDequeueable(NegativeToPositiveTableViewCell.self)
+        tableView.registerDequeueable(MindsetVisionTableViewCell.self)
     }
 }
 

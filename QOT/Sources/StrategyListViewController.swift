@@ -92,7 +92,8 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title ?? "",
                            timeToWatch: strategy?.durationString ?? "",
-                           imageURL: strategy?.imageURL)
+                           imageURL: strategy?.imageURL,
+                           forcedColorMode: .dark)
             return cell
         } else {
             let strategy = interactor?.strategies[indexPath.item]

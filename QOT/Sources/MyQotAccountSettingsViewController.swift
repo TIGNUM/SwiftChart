@@ -48,7 +48,7 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setDataOnView()
-        UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
+        ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
     }
 
     override func viewWillDisappear(_ animated: Bool) {

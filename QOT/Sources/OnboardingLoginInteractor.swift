@@ -36,7 +36,6 @@ final class OnboardingLoginInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
-        showUnoptimizedAlertIfNeeded()
     }
 }
 
@@ -182,11 +181,5 @@ private extension OnboardingLoginInteractor {
         viewModel.emailError = worker.emailError
         presenter.present()
         return false
-    }
-
-    func showUnoptimizedAlertIfNeeded() {
-        if worker.shouldShowUnoptimizedScreenWarning() {
-            presenter.presentUnoptimizedAlertView()
-        }
     }
 }

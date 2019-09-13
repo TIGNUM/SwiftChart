@@ -15,14 +15,13 @@ protocol SolveResultsViewControllerDelegate: class {
 }
 
 // TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..
-final class SolveResultsViewController: UIViewController, ScreenZLevel3 {
+final class SolveResultsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: SolveResultsInteractorInterface?
     weak var delegate: SolveResultsViewControllerDelegate?
     var isFollowUpActive = false
     private var results: SolveResults?
-    @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
     init(configure: Configurator<SolveResultsViewController>) {
@@ -115,7 +114,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
 // MARK: - UITableViewDelegate
 extension SolveResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
+        didSelectRow(at: indexPath)
         switch results?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:

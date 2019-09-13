@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SigningInfoInteractor {
 
@@ -33,6 +34,15 @@ final class SigningInfoInteractor {
 
     func viewDidLoad() {
         presenter.setup()
+        presentUnoptimizedAlertView()
+    }
+
+    func presentUnoptimizedAlertView() {
+        let title = ScreenTitleService.main.localizedString(for: .ButtonTitleDone)
+        let message = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertTitle)
+        let dismissButtonTitle = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertMessage)
+
+        presenter.presentUnoptimizedAlertView(title: title, message: message, dismissButtonTitle: dismissButtonTitle)
     }
 }
 

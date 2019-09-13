@@ -78,16 +78,17 @@ private extension DTQuestionnaireViewController {
         tableView.clipsToBounds = false
         attachTableView()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
-            guard let tableView = self?.tableView,
-                let view = self?.view ,
-                let constraintHeight = self?.constraintTableHeight else { return }
-            constraintHeight.constant = tableView.contentSize.height
-            tableView.setNeedsUpdateConstraints()
-            tableView.isScrollEnabled = tableView.contentSize.height > view.bounds.height
+            self?.checkScroll()
             }
         ]
         attachBottomShadow()
         shouldWaitFotTBVAnimationCompleted = viewModel.hasTypingAnimation && viewModel.tbvText != nil
+    }
+
+    func checkScroll() {
+        constraintTableHeight?.constant = tableView.contentSize.height
+        tableView.setNeedsUpdateConstraints()
+        tableView.isScrollEnabled = tableView.contentSize.height > tableView.bounds.height
     }
 
     func attachTableView() {
@@ -234,6 +235,7 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
                 UIView.animate(withDuration: 0.25, animations: {
                     self.tableView.beginUpdates()
                     self.tableView.endUpdates()
+                    self.checkScroll()
                 })
             }
         }

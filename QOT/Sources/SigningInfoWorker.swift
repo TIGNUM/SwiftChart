@@ -35,6 +35,10 @@ extension SigningInfoWorker {
     func body(at item: Int) -> String? {
         return contentItem(at: item, format: .body)?.valueText.uppercased()
     }
+
+    func shouldShowUnoptimizedScreenWarning() -> Bool {
+        return UIDevice.isPad || UIDevice.isSmallScreenDevice
+    }
 }
 
 // MARK: - Private
