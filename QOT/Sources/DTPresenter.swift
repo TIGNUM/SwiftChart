@@ -117,7 +117,10 @@ class DTPresenter: DTPresenterInterface {
     func getDecisions(answer: QDMAnswer) -> [DTViewModel.Answer.Decision] {
         return answer.decisions.compactMap { (decision) -> DTViewModel.Answer.Decision in
             return DTViewModel.Answer.Decision(targetType: TargetType(rawValue: decision.targetType) ?? .question,
-                                               targetTypeId: decision.targetTypeId)
+                                               targetTypeId: decision.targetTypeId,
+                                               questionGroupId: decision.questionGroupId,
+                                               targetGroupId: decision.targetGroupId,
+                                               targetGroupName: decision.targetGroupName)
         }
     }
 
