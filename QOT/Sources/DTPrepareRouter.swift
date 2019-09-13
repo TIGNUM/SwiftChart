@@ -13,6 +13,34 @@ final class DTPrepareRouter: DTRouter {}
 
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
+    func openArticle(with contentID: Int) {
+        
+    }
+
+    func openVideo(from url: URL, item: QDMContentItem?) {
+
+    }
+
+    func openShortTBVGenerator(completion: (() -> Void)?) {
+
+    }
+
+    func openImagePicker() {
+
+    }
+
+    func dismissAll() {
+
+    }
+
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+
+    }
+
+    func presentAddEventController(_ eventStore: EKEventStore) {
+
+    }
+
     func presentPrepareResults(_ contentId: Int) {
         let configurator = PrepareResultsConfigurator.configurate(contentId)
         let controller = PrepareResultsViewController(configure: configurator)

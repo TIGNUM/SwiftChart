@@ -66,6 +66,7 @@ extension CoachRouter: CoachRouterInterface {
             viewController.present(controller, animated: true)
         case .recoveryResult:
             UserService.main.getRecovery3D { [weak self] (recoveryList, _, _) in
+                guard recoveryList?.isEmpty == false else { return }
                 if let recovery = recoveryList?.at(index: recoveryList?.randomIndex ?? 0) {
                     let configurator = SolveResultsConfigurator.make(from: recovery)
                     let controller = SolveResultsViewController(configure: configurator)
@@ -78,6 +79,7 @@ extension CoachRouter: CoachRouterInterface {
             viewController.present(controller, animated: true)
         case .shortTBVPrepare:
             UserService.main.getMindsetShifters { [weak self] (mindsetShifters, _, _) in
+                guard mindsetShifters?.isEmpty == false else { return }
                 if let mindsetShifter = mindsetShifters?.at(index: mindsetShifters?.randomIndex ?? 0) {
                     let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter)
                     let controller = ShifterResultViewController(configure: configurator)

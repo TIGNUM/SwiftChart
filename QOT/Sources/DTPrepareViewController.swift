@@ -31,8 +31,12 @@ final class DTPrepareViewController: DTViewController {
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
-        if viewModel?.question.answerType == .singleSelection, let contentId = answer.targetId(.content) {
-            prepareRouter?.presentPrepareResults(contentId)
+        if viewModel?.question.answerType == .singleSelection {
+            if let contentId = answer.targetId(.content) {
+                prepareRouter?.presentPrepareResults(contentId)
+            } else {
+                loadNextQuestion()
+            }
         }
     }
 
