@@ -12,7 +12,11 @@ import qot_dal
 final class DTRecoveryPresenter: DTPresenter {
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == Recovery.QuestionKey.Intro
+        return questionKey == Recovery.QuestionKey.Intro || questionKey == Recovery.QuestionKey.Last
+    }
+
+    override func dismissButtonIsHidden(questionKey: String) -> Bool {
+        return questionKey == Recovery.QuestionKey.Last
     }
 
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {

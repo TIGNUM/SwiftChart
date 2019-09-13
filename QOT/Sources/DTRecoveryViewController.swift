@@ -12,6 +12,7 @@ final class DTRecoveryViewController: DTViewController {
 
     // MARK: - Properties
     var recoveryInteractor: DTRecoveryInteractorInterface?
+    var recoveryRouter: DTRecoveryRouter?
 
     // MARK: - Init
     init(configure: Configurator<DTRecoveryViewController>) {
@@ -27,8 +28,7 @@ final class DTRecoveryViewController: DTViewController {
     override func didTapNext() {
         switch viewModel?.question.key {
         case Recovery.QuestionKey.GeneratePlan?:
-            setAnswerNeedsSelection()
-            loadNextQuestion()
+            presentRecoveryResults()
         case Recovery.QuestionKey.Intro?:
             setNextQuestionForFatigueSymptoms()
         default:
@@ -61,6 +61,16 @@ private extension DTRecoveryViewController {
             loadNextQuestion()
         } else {
             loadNextQuestion()
+        }
+    }
+
+    func presentRecoveryResults() {
+        recoveryInteractor?.nextQuestionKey = Recovery.QuestionKey.Last
+        setAnswerNeedsSelection()
+        recoveryInteractor?.getRecovery3D { [weak self] (recovery) in
+            self?.recoveryRouter?.presentRecoveryResults(recovery) {
+                self?.loadNextQuestion()
+            }
         }
     }
 }

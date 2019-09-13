@@ -7,8 +7,15 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTRecoveryRouter: DTRouter {}
 
 // MARK: - DTRecoveryRouterInterface
-extension DTRecoveryRouter: DTRecoveryRouterInterface {}
+extension DTRecoveryRouter: DTRecoveryRouterInterface {
+    func presentRecoveryResults(_ recovery: QDMRecovery3D?, _ completion: (() -> Void)?) {
+        let configurator = SolveResultsConfigurator.make(from: recovery)
+        let controller = SolveResultsViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: completion)
+    }
+}

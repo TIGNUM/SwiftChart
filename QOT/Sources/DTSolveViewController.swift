@@ -34,7 +34,7 @@ final class DTSolveViewController: DTViewController {
         if viewModel.question.answerType == .singleSelection && answer.targetId(.question) != nil {
             loadNextQuestion()
         } else if viewModel.question.answerType == .singleSelection && answer.targetId(.content) != nil {
-            solveRouter?.presentSolveResultView(selectedAnswer: answer)
+            solveRouter?.presentSolveResults(selectedAnswer: answer)
         }
     }
 }

@@ -15,5 +15,5 @@ protocol DTSolvePresenterInterface {}
 protocol DTSolveInteractorInterface: Interactor {}
 
 protocol DTSolveRouterInterface {
-    func presentSolveResultView(selectedAnswer: DTViewModel.Answer)
+    func presentSolveResults(selectedAnswer: DTViewModel.Answer)
 }

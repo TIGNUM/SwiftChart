@@ -14,6 +14,7 @@ struct Recovery {
         static let Symptom = "3drecovery-question-syntom"
         static let SymptomGeneral = "3drecovery-question-syntom-general"
         static let GeneratePlan = "3drecovery-question-generate-recovery-loading"
+        static let Last = "3drecovery-question-end"
     }
 
     struct AnswerKey {
@@ -43,6 +44,15 @@ struct Recovery {
             case .emotional: return "3drecovery_relationship_emotional"
             case .physical: return "3drecovery_relationship_physical"
             case .general: return "3drecovery_relationship_general"
+            }
+        }
+
+        var fatigueContentItemId: Int {
+            switch self {
+            case .cognitive: return 104463
+            case .emotional: return 104462
+            case .physical: return 104464
+            case .general: return 104465
             }
         }
     }

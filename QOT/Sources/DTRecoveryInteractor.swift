@@ -12,6 +12,7 @@ import qot_dal
 final class DTRecoveryInteractor: DTInteractor {
 
     var nextQuestionKey: String? = nil
+    private lazy var recoveryWorker: DTRecoveryWorker? = DTRecoveryWorker()
 
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         if questionKey == Recovery.QuestionKey.Symptom {
@@ -32,8 +33,9 @@ final class DTRecoveryInteractor: DTInteractor {
     }
 }
 
-// MARK: - Private
-private extension DTRecoveryInteractor {}
-
 // MARK: - DTRecoveryInteractorInterface
-extension DTRecoveryInteractor: DTRecoveryInteractorInterface {}
+extension DTRecoveryInteractor: DTRecoveryInteractorInterface {
+    func getRecovery3D(_ completion: @escaping (QDMRecovery3D?) -> Void) {
+        recoveryWorker?.createRecovery(selectedAnswers: selectedAnswers, completion)
+    }
+}
