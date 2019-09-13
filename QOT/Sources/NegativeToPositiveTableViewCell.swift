@@ -51,14 +51,7 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
 extension NegativeToPositiveTableViewCell {
     func configure(title: String, lowTitle: String, lowItems: [String], highTitle: String, highItems: [String]) {
         selectionStyle = .none
-<<<<<<< HEAD
-        ThemeText.resultTitle.apply(title, to: titleLabel)
 
-        ThemeText.resultTitle.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.resultHeader2.apply(lowItems[0, default: "lowItem_01 not set"], to: lowFirstItemLabel)
-        ThemeText.resultHeader2.apply(lowItems[1, default: "lowItem_02 not set"], to: lowSecondItemLabel)
-        ThemeText.resultHeader2.apply(lowItems[2, default: "lowItem_03 not set"], to: lowThirdItemLabel)
-=======
         ThemeView.tbvLowPerformance.apply(lowPerformanceView)
         ThemeText.resultTitle.apply(title, to: titleLabel)
 
@@ -66,7 +59,6 @@ extension NegativeToPositiveTableViewCell {
         ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_01 not set"], to: lowFirstItemLabel)
         ThemeText.tbvQuestionLight.apply(lowItems[1, default: "lowItem_02 not set"], to: lowSecondItemLabel)
         ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_03 not set"], to: lowThirdItemLabel)
->>>>>>> decisionTree/refactor
 
         ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
         ThemeText.resultHeader2.apply(lowItems[0, default: "highItem_01 not set"], to: highFirstItemLabel)
