@@ -31,7 +31,6 @@ class DTInteractor: DTInteractorInterface {
         self.questionGroup = questionGroup
     }
 
-    
     // MARK: - Interactor
     func viewDidLoad() {
         presenter?.setupView()
