@@ -38,6 +38,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
+        gotItButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
