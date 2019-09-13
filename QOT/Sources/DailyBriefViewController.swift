@@ -668,6 +668,7 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
+        cell.delegate = self
         return cell
     }
 }
@@ -742,6 +743,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func didChangeLocationPermission(granted: Bool) {
+        interactor?.updateDailyBriefBucket()
     }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {

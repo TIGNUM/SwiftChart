@@ -54,6 +54,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func invalidateTimer(forCell: BaseDailyBriefCell)
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
+    func updateDailyBriefBucket()
 }
 
 protocol DailyBriefRouterInterface {

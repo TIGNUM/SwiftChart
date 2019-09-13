@@ -956,6 +956,8 @@
 		B4B0EBA6231543E10029BB40 /* SkeletonMyDataGraph.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EBA4231543E00029BB40 /* SkeletonMyDataGraph.xib */; };
 		B4B0EBA7231543E10029BB40 /* SkeletonMyDataGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA5231543E00029BB40 /* SkeletonMyDataGraph.swift */; };
 		B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */; };
+		B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */; };
+		B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */; };
 		B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
@@ -2252,6 +2254,9 @@
 		B4B0EBA4231543E00029BB40 /* SkeletonMyDataGraph.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyDataGraph.xib; sourceTree = "<group>"; };
 		B4B0EBA5231543E00029BB40 /* SkeletonMyDataGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyDataGraph.swift; sourceTree = "<group>"; };
 		B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCell.swift; sourceTree = "<group>"; };
+		B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyView.swift; sourceTree = "<group>"; };
+		B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyView.xib; sourceTree = "<group>"; };
+		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
 		B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCellInterface.swift; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
 		B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Navigation.swift"; sourceTree = "<group>"; };
@@ -4660,6 +4665,8 @@
 				B49EACCC2328EAE1006BA566 /* WeatherCell.swift */,
 				B49EACCD2328EAE1006BA566 /* WeatherCell.xib */,
 				B49EACD0232902C3006BA566 /* WeatherViewModel.swift */,
+				B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */,
+				B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */,
 			);
 			name = Weather;
 			sourceTree = "<group>";
@@ -6193,6 +6200,7 @@
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
+				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
 				5F78965622A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib in Resources */,
 				B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */,
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
@@ -6656,6 +6664,7 @@
 				B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */,
 				F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */,
 				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
+				B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */,
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */,
