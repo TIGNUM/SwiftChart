@@ -15,6 +15,12 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = ""
+        subtitleLabel.text = ""
+    }
+
     func configure(title: String, subtitle: String, isRed: Bool = false) {
         ThemeText.myQOTBoxTitle.apply(title.uppercased(), to: titleLabel)
 

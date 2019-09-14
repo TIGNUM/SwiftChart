@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DifferenceKit
 
 final class MyQotMainInteractor {
 
@@ -15,6 +16,10 @@ final class MyQotMainInteractor {
     private let worker: MyQotMainWorker
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
+    private var viewModelOldListModels: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = []
+    private var subtitles: [String?] = []
+    private var dateOfPrep: String?
+    private var eventType: String?
 
     // MARK: - Init
 
@@ -29,8 +34,93 @@ final class MyQotMainInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.present(for: worker.myQotSections())
         presenter.setupView()
+    }
+
+    private func createMyData(irScore: Double?) -> [MyQotViewModel.Item] {
+        var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
+        item.subtitle = String(irScore ?? 0) + R.string.localized.myQotDataImpact()
+        return [item]
+    }
+
+    private func createToBeVision(date: Date?) -> [MyQotViewModel.Item] {
+        var item = worker.myQotSections().myQotItems[MyQotSection.toBeVision.rawValue]
+        let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
+        var subtitleVision: String?
+        if timeSinceMonth == 1 {
+            subtitleVision = "One month ago"
+        } else if timeSinceMonth  > 1 {
+            subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+        } else {
+            subtitleVision = R.string.localized.myQotVisionLessThan()
+        }
+        item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
+        item.showSubtitleInRed = true
+        
+        return [item]
+    }
+
+    private func createProfile(userName: String?) -> [MyQotViewModel.Item] {
+        var item = worker.myQotSections().myQotItems[MyQotSection.profile.rawValue]
+        item.subtitle = "Hello " + (userName ?? "") + ",\n" + (subtitles[MyQotSection.profile.rawValue]?.lowercased() ?? "")
+
+        return [item]
+    }
+
+    private func createLibrary() -> [MyQotViewModel.Item] {
+        let item = worker.myQotSections().myQotItems[MyQotSection.library.rawValue]
+
+        return [item]
+    }
+
+    private func createPreps(dateString: String?, eventType: String?) -> [MyQotViewModel.Item] {
+        var item = worker.myQotSections().myQotItems[MyQotSection.preps.rawValue]
+        item.subtitle = (dateString ?? "") + " " + (eventType ?? "")
+
+        return [item]
+    }
+
+    private func createSprints() -> [MyQotViewModel.Item] {
+        var item = worker.myQotSections().myQotItems[MyQotSection.sprints.rawValue]
+        item.subtitle = subtitles[MyQotSection.sprints.rawValue] ?? ""
+
+        return [item]
+    }
+
+    private func timeElapsed(date: Date?) -> Double {
+        if let monthSince = date?.months(to: Date()), monthSince > 1 {
+            return Double(monthSince)
+        }
+        return 0
+    }
+
+    private func nextPrep(completion: @escaping (String?) -> Void) {
+        worker.nextPrep { (preparation) in
+            completion(preparation)
+        }
+    }
+
+    private func nextPrepType(completion: @escaping (String?) -> Void) {
+        worker.nextPrepType { ( preparation) in
+            completion(preparation)
+        }
+    }
+
+    private func toBeVisionDate(completion: @escaping (Date?) -> Void) {
+        worker.toBeVisionDate { (toBeVisionDate) in
+            completion(toBeVisionDate)
+        }
+    }
+    private func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+        worker.getImpactReadinessScore(completion: completion)
+    }
+
+    private func getSubtitles(completion: @escaping ([String?]) -> Void) {
+        worker.getSubtitles(completion: completion)
+    }
+
+    private func getUserName(completion: @escaping (String?) -> Void) {
+        worker.getUserName(completion: completion)
     }
 }
 
@@ -62,32 +152,58 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentMyDataScreen()
     }
 
-    func nextPrep(completion: @escaping (String?) -> Void) {
-        worker.nextPrep { (preparation) in
-            completion(preparation)
-        }
+    func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]? {
+        return viewModelOldListModels
     }
 
-    func nextPrepType(completion: @escaping (String?) -> Void) {
-        worker.nextPrepType { ( preparation) in
-            completion(preparation)
-        }
+    func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]) {
+        viewModelOldListModels = list
     }
 
-    func toBeVisionDate(completion: @escaping (Date?) -> Void) {
-        worker.toBeVisionDate { (toBeVisionDate) in
-            completion(toBeVisionDate)
-        }
-    }
-    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
-        worker.getImpactReadinessScore(completion: completion)
-    }
+    func refreshParams() {
+        var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
+                                                                                                         elements: [])]
+        var elements: [MyQotViewModel.Item] = []
 
-   func getSubtitles(completion: @escaping ([String?]) -> Void) {
-    worker.getSubtitles(completion: completion)
-    }
+        getSubtitles(completion: { [weak self] (subtitles) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.subtitles = subtitles
+            strongSelf.getImpactReadinessScore(completion: { [weak self] (score) in
+                guard let strongSelf = self else {
+                    return
+                }
+                strongSelf.toBeVisionDate(completion: { [weak self] (date) in
+                    guard let strongSelf = self else {
+                        return
+                    }
+                    strongSelf.getUserName(completion: {(name) in
+                        strongSelf.nextPrep(completion: { [weak self] (dateString) in
+                            guard let strongSelf = self else {
+                                return
+                            }
+                            strongSelf.nextPrepType(completion: { [weak self] (eventType) in
+                                guard let strongSelf = self else {
+                                    return
+                                }
+                                elements.append(contentsOf: strongSelf.createProfile(userName: name))
+                                elements.append(contentsOf: strongSelf.createLibrary())
+                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                elements.append(contentsOf: strongSelf.createSprints())
+                                elements.append(contentsOf: strongSelf.createMyData(irScore: score))
+                                elements.append(contentsOf: strongSelf.createToBeVision(date: date))
 
-    func getUserName(completion: @escaping (String?) -> Void) {
-        worker.getUserName(completion: completion)
+                                sectionDataList.append(ArraySection(model: .body,
+                                                                    elements: elements))
+
+                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+                                strongSelf.presenter.updateViewNew(changeSet)
+                            })
+                        })
+                    })
+                })
+            })
+        })
     }
 }

@@ -22,7 +22,6 @@ protocol DailyBriefPresenterInterface {
 
 protocol DailyBriefInteractorInterface: Interactor {
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
-    var rowCount: Int { get }
     var rowViewModelCount: Int { get }
     var rowViewSectionCount: Int { get }
     var shpiAnswer: QDMDailyCheckInAnswer? { get }

@@ -218,9 +218,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    var rowCount: Int {
-        return worker.rowCount
-    }
     var rowViewModelCount: Int {
         return viewModelOldList.count
     }
