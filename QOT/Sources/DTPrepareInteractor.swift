@@ -10,12 +10,14 @@ import UIKit
 import qot_dal
 
 final class DTPrepareInteractor: DTInteractor {
+
+    // MARK: - Properties
+    var preparePresenter: DTPreparePresenterInterface?
+
+    // MARK: - DTInteractor
     override func loadNextQuestion(selection: DTSelectionModel) {
         if selection.question?.key == Prepare.QuestionKey.Intro {
-            if selection.selectedAnswers.first?.keys.contains(Prepare.AnswerKey.EventTypeSelectionDaily) == true ||
-                selection.selectedAnswers.first?.keys.contains(Prepare.AnswerKey.EventTypeSelectionCritical) == true {
-
-            }
+            checkCalendarPermissionForSelection(selection)
         } else {
             super.loadNextQuestion(selection: selection)
         }
@@ -24,18 +26,26 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
-    func checkCalendarPermission() {
-        switch CalendarPermission().authorizationStatus {
-        case .notDetermined:
-//            presenter.openCalendarPermission(.calendar, delegate: self)
-        case .denied, .restricted:
-//            router.openCalendarPermission(.calendarOpenSettings, delegate: self)
-        default:
-            return
-        }
-    }
-
     func setUserCalendarEvent(event: QDMUserCalendarEvent) {
 
+    }
+}
+
+// MARK: - Private
+private extension DTPrepareInteractor {
+    func checkCalendarPermissionForSelection(_ selection: DTSelectionModel) {
+        let answerKeys = selection.selectedAnswers.first?.keys ?? []
+        if answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionDaily) ||
+            answerKeys.contains(Prepare.AnswerKey.EventTypeSelectionCritical) {
+
+            switch CalendarPermission().authorizationStatus {
+            case .notDetermined:
+                preparePresenter?.presentCalendarPermission(.calendar)
+            case .denied, .restricted:
+                preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
+            default:
+                super.loadNextQuestion(selection: selection)
+            }
+        }
     }
 }

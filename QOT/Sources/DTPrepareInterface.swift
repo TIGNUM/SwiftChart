@@ -10,11 +10,11 @@ import Foundation
 import qot_dal
 
 protocol DTPrepareViewControllerInterface: class {
-    func presentPermissionView(_ permissionType: AskPermission.Kind)
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
 }
 
 protocol DTPreparePresenterInterface {
-    func presentPermissionView(_ permissionType: AskPermission.Kind)
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
 }
 
 protocol DTPrepareInteractorInterface: Interactor {
@@ -24,6 +24,7 @@ protocol DTPrepareInteractorInterface: Interactor {
 protocol DTPrepareRouterInterface {
     func presentPrepareResults(_ contentId: Int)
     func presentPrepareResults(_ preparation: QDMUserPreparation, _ answers: [SelectedAnswer])
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
 
     func openArticle(with contentID: Int)
     func openVideo(from url: URL, item: QDMContentItem?)

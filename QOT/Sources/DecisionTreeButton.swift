@@ -59,8 +59,7 @@ final class SelectionButton: AbstractTreeButton {
     func configure(title: String, isSelected: Bool) {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
-        selectionLabel.attributedText = ThemeText.chatBotButton.attributedString(title)
-        switchBackgroundColor()
+        selectionLabel.attributedText = ThemeText.chatBotButton.attributedString(title)        
         corner(radius: .Twenty, borderColor: .accent40)
     }
 

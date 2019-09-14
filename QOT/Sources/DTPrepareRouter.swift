@@ -9,7 +9,11 @@
 import UIKit
 import qot_dal
 
-final class DTPrepareRouter: DTRouter {}
+final class DTPrepareRouter: DTRouter {
+
+    // MARK: - Properties
+    weak var prepareViewController: DTPrepareViewController?
+}
 
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
@@ -54,5 +58,12 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
 //                                                                  true)
 //        let controller = PrepareResultsViewController(configure: configurator)
 //        viewController?.present(controller, animated: true)
+    }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as?
+            AskPermissionViewController else { return }
+        AskPermissionConfigurator.make(viewController: controller, type: permissionType, delegate: prepareViewController)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }

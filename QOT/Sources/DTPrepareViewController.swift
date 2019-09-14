@@ -48,5 +48,17 @@ final class DTPrepareViewController: DTViewController {
 // MARK: - Private
 private extension DTPrepareViewController {}
 
+extension DTPrepareViewController: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        if granted {
+            loadNextQuestion()
+        }
+    }
+}
+
 // MARK: - DTPrepareViewControllerInterface
-extension DTPrepareViewController: DTPrepareViewControllerInterface {}
+extension DTPrepareViewController: DTPrepareViewControllerInterface {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        prepareRouter?.presentCalendarPermission(permissionType)        
+    }
+}
