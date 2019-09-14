@@ -11,4 +11,8 @@ import UIKit
 final class DTTBVRouter: DTRouter {}
 
 // MARK: - DTTBVRouterInterface
-extension DTTBVRouter: DTTBVRouterInterface {}
+extension DTTBVRouter: DTTBVRouterInterface {
+    func dismissAndShowTBV() {
+        AppDelegate.current.launchHandler.showToBeVision()
+    }
+}

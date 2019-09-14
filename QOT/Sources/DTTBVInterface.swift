@@ -18,6 +18,9 @@ protocol DTTBVInteractorInterface: Interactor {
                      questionKeyWork: String,
                      questionKeyHome: String,
                      _ completion: @escaping (QDMToBeVision?) -> Void)
+    func saveTBVImage(_ image: UIImage)
 }
 
-protocol DTTBVRouterInterface {}
+protocol DTTBVRouterInterface {
+    func dismissAndShowTBV()
+}

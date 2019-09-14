@@ -18,8 +18,9 @@ final class DTTBVConfigurator {
                                              questionGroup: .ToBeVision_3_0,
                                              introKey: TBV.QuestionKey.Instructions)
             viewController.interactor = interactor
-            viewController.tbvInteractor = interactor
             viewController.router = router
+            viewController.tbvInteractor = interactor
+            viewController.tbvRouter = router
         }
     }
 }

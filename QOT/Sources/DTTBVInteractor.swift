@@ -31,9 +31,14 @@ extension DTTBVInteractor: DTTBVInteractorInterface {
                      _ completion: @escaping (QDMToBeVision?) -> Void) {
         tbvWorker?.createVision(selectedAnswers: selectedAnswers,
                                 questionKeyWork: TBV.QuestionKey.Work,
-                                questionKeyHome: TBV.QuestionKey.Home) { [weak self] (tbv) in
+                                questionKeyHome: TBV.QuestionKey.Home,
+                                shouldSave: true) { [weak self] (tbv) in
             self?.tbv = tbv
             completion(tbv)
         }
+    }
+
+    func saveTBVImage(_ image: UIImage) {
+        tbvWorker?.save(image)
     }
 }

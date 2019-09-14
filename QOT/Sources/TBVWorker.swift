@@ -10,31 +10,61 @@ import Foundation
 import qot_dal
 
 class TBVWorker {
-
-    // MARK: - Properties
-    private lazy var userService = UserService.main
-
     func createVision(selectedAnswers: [SelectedAnswer],
                       questionKeyWork: String,
                       questionKeyHome: String,
+                      shouldSave: Bool = false,
                       completion: @escaping (QDMToBeVision?) -> Void) {
         let workIds = getSelectedIds(selectedAnswers, questionKeyWork)
         let homeIds = getSelectedIds(selectedAnswers, questionKeyHome)
 
-        userService.generateToBeVisionWith(homeIds, workIds) { (vision, error) in
+        UserService.main.generateToBeVisionWith(homeIds, workIds) { (vision, error) in
             if let error = error {
                 log("Error generateToBeVisionWith: \(error.localizedDescription)", level: .error)
             }
+
             completion(vision)
+            guard var newVision = vision else { return }
+            if shouldSave, SessionService.main.getCurrentSession() != nil {
+                UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
+            } else {
+                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+            }
         }
     }
 
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        userService.getMyToBeVision { (tbv, initiated, error) in
+        UserService.main.getMyToBeVision { (tbv, initiated, error) in
             if let error = error {
                 log("Error getMyToBeVision: \(error.localizedDescription)", level: .error)
             }
             completion(tbv, initiated)
+        }
+    }
+
+    func save(_ image: UIImage) {
+        saveToBeVisionImage(image) { (error) in
+            if let error = error {
+                log("Error updateMyToBeVision: \(error.localizedDescription)", level: .error)
+            }
+        }
+    }
+
+    func saveToBeVisionImage(_ image: UIImage, completion: @escaping (Error?) -> Void) {
+        do {
+            let imageURL = try image.save(withName: UUID().uuidString).absoluteString
+            UserService.main.getMyToBeVision { (vision, _, _) in
+                if var vision = vision {
+                    vision.profileImageResource = QDMMediaResource()
+                    vision.profileImageResource?.localURLString = imageURL
+                    vision.modifiedAt = Date()
+                    UserService.main.updateMyToBeVision(vision) { (error) in
+                        completion(error)
+                    }
+                }
+            }
+        } catch {
+            log("Error save TBV image: \(error.localizedDescription)", level: .error)
         }
     }
 

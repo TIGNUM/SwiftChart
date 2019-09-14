@@ -10,7 +10,17 @@ import UIKit
 
 final class DTTBVViewController: DTViewController {
 
+    // MARK: - Properties
     var tbvInteractor: DTTBVInteractorInterface?
+    var tbvRouter: DTTBVRouter?
+    private weak var permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
+    private lazy var imagePickerController: ImagePickerController? = {
+        guard let permissionsManager = permissionsManager else { return nil }
+        return ImagePickerController(imageQuality: .medium,
+                                     imageSize: .medium,
+                                     permissionsManager: permissionsManager,
+                                     adapter: ImagePickerControllerAdapter(self))
+    }()
 
     // MARK: - Init
     init(configure: Configurator<DTTBVViewController>) {
@@ -23,12 +33,22 @@ final class DTTBVViewController: DTViewController {
     }
 
     // MARK: - DTViewController
-    override func didTapBinarySelection(_ answer: DTViewModel.Answer) {}
+    override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
+        viewModel?.setSelectedAnswer(answer)
+        switch viewModel?.question.key {
+        case TBV.QuestionKey.Picture?:
+            showImageSelectionAlert()
+        default:
+            loadNextQuestion()
+        }
+    }
 
     override func didTapNext() {
         switch viewModel?.question.key {
         case TBV.QuestionKey.Home?:
             generateTBV()
+        case TBV.QuestionKey.Review?:
+            tbvRouter?.dismissAndShowTBV()
         default:
             setAnswerSelectedIfNeeded()
             loadNextQuestion()
@@ -81,3 +101,27 @@ private extension DTTBVViewController {
 
 // MARK: - DTTBVViewControllerInterface
 extension DTTBVViewController: DTTBVViewControllerInterface {}
+
+// MARK: - ImagePickerControllerAdapterProtocol
+extension DTTBVViewController: ImagePickerControllerAdapterProtocol {}
+
+// MARK: - DTTBVRouterInterface
+extension DTTBVViewController: DTTBVRouterInterface {
+    func showImageSelectionAlert() {
+        imagePickerController?.delegate = self
+        imagePickerController?.show(in: self, deletable: false)
+        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
+    }
+}
+
+extension DTTBVViewController: ImagePickerControllerDelegate {
+    func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
+        loadNextQuestion()
+        tbvInteractor?.saveTBVImage(image)
+        self.imagePickerController = nil
+    }
+
+    func cancelSelection() {
+        RestartHelper.clearRestartRouteInfo()
+    }
+}

@@ -66,7 +66,7 @@ final class ImagePickerController {
         imagePicker.delegte = self
     }
 
-    func show(in viewController: UIViewController, deletable: Bool, completion: (() -> Void)? = nil) {
+    func show(in viewController: UIViewController?, deletable: Bool, completion: (() -> Void)? = nil) {
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),

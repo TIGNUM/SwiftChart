@@ -15,7 +15,11 @@ final class DTTBVPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        return answerType == .text
+        return answerType == .text || answerType == .noAnswerRequired
+    }
+
+    override func dismissButtonIsHidden(questionKey: String) -> Bool {
+        return questionKey == TBV.QuestionKey.Review
     }
 }
 
