@@ -9,12 +9,15 @@
 import Foundation
 import qot_dal
 
-protocol DTPrepareViewControllerInterface: class {}
+protocol DTPrepareViewControllerInterface: class {
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
+}
 
-protocol DTPreparePresenterInterface {}
+protocol DTPreparePresenterInterface {
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
+}
 
 protocol DTPrepareInteractorInterface: Interactor {
-    func getCalendarPermissionType() -> AskPermission.Kind?
     func setUserCalendarEvent(event: QDMUserCalendarEvent)
 }
 
@@ -28,7 +31,6 @@ protocol DTPrepareRouterInterface {
     func openImagePicker()
 
     func dismissAll()
-    func presentPermissionView(_ permissionType: AskPermission.Kind)
 
     func presentAddEventController(_ eventStore: EKEventStore)
 }
