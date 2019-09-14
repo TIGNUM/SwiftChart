@@ -592,23 +592,10 @@ private extension DailyBriefViewController {
     func getMyPeakPerformance(_ tableView: UITableView,
                               _ indexPath: IndexPath,
                               _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
-        let cell: MyPeakPerformanceTableCell = tableView.dequeueCell(for: indexPath)
-        let peakPerformanceList = peakPerformanceModel?.peakPerformanceSectionList ?? []
-        let tableViewHeight = getPeakPerformanceTableViewHeight(peakPerformanceList, peakPerformanceModel)
-        cell.peakPerformanceList = peakPerformanceList
-        cell.configure(with: peakPerformanceModel,
-                       tableViewHeight: tableViewHeight)
-        cell.delegate = self
+        let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
+        cell.appDelegate = self
+        cell.configure(with: peakPerformanceModel)
         return cell
-    }
-
-    func getPeakPerformanceTableViewHeight(_ modelItems: [MyPerformanceModelItem],
-                                           _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> CGFloat {
-        let headerHeight: CGFloat = 78
-        let rowHeight: CGFloat = 99 * CGFloat(modelItems.filter { $0.type == .ROW }.count)
-        let sections = peakPerformanceModel?.peakPerformanceSectionList.filter { $0.type == .SECTION }
-        let sectionHeight: CGFloat = 200 * CGFloat(sections?.count ?? 0)
-        return headerHeight + rowHeight + sectionHeight
     }
 
     /**
@@ -727,7 +714,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
         tableView.registerDequeueable(LeaderWisdomTableViewCell.self)
-        tableView.registerDequeueable(MyPeakPerformanceTableCell.self)
+        tableView.registerDequeueable(MyPeakPerformanceCell.self)
         tableView.registerDequeueable(MeAtMyBestEmptyCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)

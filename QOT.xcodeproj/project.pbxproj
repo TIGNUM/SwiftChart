@@ -752,19 +752,22 @@
 		9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */; };
 		9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */; };
 		9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */; };
-		9C650B7022FB0BC200DF2D6B /* MyPeakPerformanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */; };
 		9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */; };
-		9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */; };
 		9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */; };
 		9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */; };
 		9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */; };
-		9C650B8022FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */; };
 		9C6E48B9232155DC004D657F /* SkeletonDailyCheckInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48B7232155DC004D657F /* SkeletonDailyCheckInHeader.swift */; };
 		9C6E48BA232155DC004D657F /* SkeletonDailyCheckInHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48B8232155DC004D657F /* SkeletonDailyCheckInHeader.xib */; };
 		9C6E48BF23215690004D657F /* SkeletonDailyCheckInFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */; };
 		9C6E48C023215690004D657F /* SkeletonDailyCheckInRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BC23215690004D657F /* SkeletonDailyCheckInRow.xib */; };
 		9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BD23215690004D657F /* SkeletonDailyCheckInRow.swift */; };
 		9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */; };
+		9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */; };
+		9C7F4199232BB9C7007E4B5D /* MyPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F4198232BB9C7007E4B5D /* MyPeakPerformanceCell.swift */; };
+		9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7F419A232BF499007E4B5D /* MyPeakPerformanceFooter.xib */; };
+		9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F419C232BF4F2007E4B5D /* MyPeakperformanceFooter.swift */; };
+		9C7F419F232CB521007E4B5D /* MyPeakPerformanceDividerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7F419E232CB521007E4B5D /* MyPeakPerformanceDividerView.xib */; };
+		9C7F41A1232CB72D007E4B5D /* MyPeakPerformanceDividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F41A0232CB72D007E4B5D /* MyPeakPerformanceDividerView.swift */; };
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
@@ -782,11 +785,7 @@
 		9CC426282306D42200F8072E /* GuideTrackModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426272306D42200F8072E /* GuideTrackModelItem.swift */; };
 		9CC4262A2306D83B00F8072E /* GuidedTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426292306D83B00F8072E /* GuidedTrackTableViewCell.swift */; };
 		9CE28A2322E1C78C00013C44 /* DailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */; };
-		9CF3BE3D22FC5FF80027D111 /* MyPerformanceModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE3C22FC5FF80027D111 /* MyPerformanceModelItem.swift */; };
 		9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */; };
-		9CF3BE4122FC69D40027D111 /* MyPeakPerformanceRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4022FC69D40027D111 /* MyPeakPerformanceRowModel.swift */; };
-		9CF3BE4522FC6A610027D111 /* MyPeakPerformanceSectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4422FC6A610027D111 /* MyPeakPerformanceSectionModel.swift */; };
-		9CF3BE4722FC7B460027D111 /* MypeakperformanceTitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
 		9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */; };
 		9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */; };
@@ -2089,14 +2088,10 @@
 		9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceViewModel.swift; sourceTree = "<group>"; };
 		9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceSectionCell.xib; sourceTree = "<group>"; };
 		9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceRowCell.xib; sourceTree = "<group>"; };
-		9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowModel.swift; sourceTree = "<group>"; };
-		9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTableViewCell.swift; sourceTree = "<group>"; };
 		9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceTitleCell.xib; sourceTree = "<group>"; };
-		9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceTableCell.xib; sourceTree = "<group>"; };
 		9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTitleCell.swift; sourceTree = "<group>"; };
 		9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionCell.swift; sourceTree = "<group>"; };
 		9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowCell.swift; sourceTree = "<group>"; };
-		9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTableCell.swift; sourceTree = "<group>"; };
 		9C6E48B7232155DC004D657F /* SkeletonDailyCheckInHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyCheckInHeader.swift; sourceTree = "<group>"; };
 		9C6E48B8232155DC004D657F /* SkeletonDailyCheckInHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyCheckInHeader.xib; sourceTree = "<group>"; };
 		9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyCheckInFooter.swift; sourceTree = "<group>"; };
@@ -2105,6 +2100,12 @@
 		9C6E48BE23215690004D657F /* SkeletonDailyCheckInFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyCheckInFooter.xib; sourceTree = "<group>"; };
 		9C6E48C32328D970004D657F /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animations.swift"; sourceTree = "<group>"; };
+		9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceCell.xib; sourceTree = "<group>"; };
+		9C7F4198232BB9C7007E4B5D /* MyPeakPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceCell.swift; sourceTree = "<group>"; };
+		9C7F419A232BF499007E4B5D /* MyPeakPerformanceFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceFooter.xib; sourceTree = "<group>"; };
+		9C7F419C232BF4F2007E4B5D /* MyPeakperformanceFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakperformanceFooter.swift; sourceTree = "<group>"; };
+		9C7F419E232CB521007E4B5D /* MyPeakPerformanceDividerView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceDividerView.xib; sourceTree = "<group>"; };
+		9C7F41A0232CB72D007E4B5D /* MyPeakPerformanceDividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceDividerView.swift; sourceTree = "<group>"; };
 		9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDataTableViewCell.swift; sourceTree = "<group>"; };
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
@@ -2122,11 +2123,7 @@
 		9CC426272306D42200F8072E /* GuideTrackModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTrackModelItem.swift; sourceTree = "<group>"; };
 		9CC426292306D83B00F8072E /* GuidedTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackTableViewCell.swift; sourceTree = "<group>"; };
 		9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefViewModel.swift; sourceTree = "<group>"; };
-		9CF3BE3C22FC5FF80027D111 /* MyPerformanceModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPerformanceModelItem.swift; sourceTree = "<group>"; };
 		9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceModelItemType.swift; sourceTree = "<group>"; };
-		9CF3BE4022FC69D40027D111 /* MyPeakPerformanceRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowModel.swift; sourceTree = "<group>"; };
-		9CF3BE4422FC6A610027D111 /* MyPeakPerformanceSectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionModel.swift; sourceTree = "<group>"; };
-		9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MypeakperformanceTitleModel.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckIn2ModelItemType.swift; sourceTree = "<group>"; };
 		9CF3BE4E230189650027D111 /* MeAtMyBestEmptyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MeAtMyBestEmptyCell.xib; sourceTree = "<group>"; };
@@ -4426,20 +4423,18 @@
 			children = (
 				9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */,
 				9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */,
-				9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */,
 				9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */,
-				9CF3BE4422FC6A610027D111 /* MyPeakPerformanceSectionModel.swift */,
-				9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */,
-				9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */,
 				9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */,
-				9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */,
 				9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */,
-				9CF3BE3C22FC5FF80027D111 /* MyPerformanceModelItem.swift */,
 				9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */,
 				9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */,
-				9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */,
 				9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */,
-				9CF3BE4022FC69D40027D111 /* MyPeakPerformanceRowModel.swift */,
+				9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */,
+				9C7F4198232BB9C7007E4B5D /* MyPeakPerformanceCell.swift */,
+				9C7F419A232BF499007E4B5D /* MyPeakPerformanceFooter.xib */,
+				9C7F419C232BF4F2007E4B5D /* MyPeakperformanceFooter.swift */,
+				9C7F419E232CB521007E4B5D /* MyPeakPerformanceDividerView.xib */,
+				9C7F41A0232CB72D007E4B5D /* MyPeakPerformanceDividerView.swift */,
 			);
 			name = DailyBriefPeakPerformance;
 			sourceTree = "<group>";
@@ -6200,6 +6195,7 @@
 				B4B0EBA6231543E10029BB40 /* SkeletonMyDataGraph.xib in Resources */,
 				8D110CF7230FD0F5000181BA /* WalkthroughSwipe.storyboard in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
+				9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */,
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
 				8D66E8A52305A18300BE78C7 /* TrackSelection.storyboard in Resources */,
 				BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */,
@@ -6215,6 +6211,7 @@
 				DBA3921A23247B2D0017E7F6 /* QuestionnaireViewController.storyboard in Resources */,
 				368A125F2277387900866DB0 /* SF-Pro-Display-Thin.otf in Resources */,
 				368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */,
+				9C7F419F232CB521007E4B5D /* MyPeakPerformanceDividerView.xib in Resources */,
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				5F78965422A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
@@ -6287,8 +6284,8 @@
 				9C6E48BA232155DC004D657F /* SkeletonDailyCheckInHeader.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
+				9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */,
 				BB7B3187230AA8BE004A5E52 /* SkeletonOneLineHeading.xib in Resources */,
-				9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
@@ -6474,7 +6471,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6767,7 +6764,6 @@
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
 				B4AB48B8230BF891003B3C1F /* MyDataSelectionInterface.swift in Sources */,
-				9CF3BE4122FC69D40027D111 /* MyPeakPerformanceRowModel.swift in Sources */,
 				5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */,
 				3658257B2327D19200AC3F4A /* DTShortTBVInterface.swift in Sources */,
 				DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */,
@@ -7058,7 +7054,6 @@
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
-				9C650B7022FB0BC200DF2D6B /* MyPeakPerformanceTableViewCell.swift in Sources */,
 				754EBEEB22C64C930010A663 /* TBVDataGraphHeaderView.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
@@ -7104,6 +7099,7 @@
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
 				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
+				9C7F4199232BB9C7007E4B5D /* MyPeakPerformanceCell.swift in Sources */,
 				9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */,
 				9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
@@ -7132,6 +7128,7 @@
 				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
 				8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */,
 				8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */,
+				9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */,
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
@@ -7212,7 +7209,6 @@
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
 				8D110CEE230FCEDE000181BA /* WalkthroughSwipePresenter.swift in Sources */,
 				B8BB413322C555BF002897E4 /* MediaPlayerModel.swift in Sources */,
-				9C650B8022FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift in Sources */,
 				8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */,
 				366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */,
 				5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */,
@@ -7257,7 +7253,6 @@
 				DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */,
 				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
 				8D204C2322F06F1000DF6A76 /* MySprintNotesRouter.swift in Sources */,
-				9CF3BE4722FC7B460027D111 /* MypeakperformanceTitleModel.swift in Sources */,
 				8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */,
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				367A58542326A15D0089A082 /* DTSolveWorker.swift in Sources */,
@@ -7356,6 +7351,7 @@
 				5F8A899D2296DF0D0011A05C /* MyVisionInterface.swift in Sources */,
 				3666FD41232A4B7D00FC67D0 /* DTRecoveryPresenter.swift in Sources */,
 				F9A5C94622B7D04700AB2E94 /* PaymentReminderInterface.swift in Sources */,
+				9C7F41A1232CB72D007E4B5D /* MyPeakPerformanceDividerView.swift in Sources */,
 				8DF7870B22FEB50800CDE0A9 /* RegistrationCodeInteractor.swift in Sources */,
 				36343F212306EF4500F1EC66 /* UIViewController+BottomNavigation.swift in Sources */,
 				B4AB48B7230BF891003B3C1F /* MyDataSelectionRouter.swift in Sources */,
@@ -7510,7 +7506,6 @@
 				367CD18122EF4EDE00AF2187 /* OnboardingLoginRouter.swift in Sources */,
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
-				9CF3BE3D22FC5FF80027D111 /* MyPerformanceModelItem.swift in Sources */,
 				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
 				5F78966222A929E300D2DBAD /* Skeleton.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
@@ -7557,7 +7552,6 @@
 				8D110D02230FDA41000181BA /* WalkthroughCoachWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,
 				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
-				9CF3BE4522FC6A610027D111 /* MyPeakPerformanceSectionModel.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,
 				36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */,
 				36B5BD3123142B4A00439A64 /* AskPermissionInteractor.swift in Sources */,
@@ -8582,7 +8576,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

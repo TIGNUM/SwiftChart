@@ -815,20 +815,79 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                      section: ContentSection.Unkown))
         return exploreModelList
     }
+//
+//    func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+//        var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
+//        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
+//        let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
+//        let calendar = Calendar.current
+//        var contentSentence: String = ""
+//        var isTitleAdded: Bool = true
+//        myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
+//            var localPreparationList = [QDMUserPreparation]()
+//            if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
+//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
+//                localPreparationList = myPeakperformance.preparations?.filter({
+//                    guard let inThreeDaysDate = $0.eventDate, inThreeDaysDate.isFuture() else { return false }
+//                    let inThreeDaysRange = NSRange(location: 2, length: 1)
+//                    if inThreeDaysRange.contains(abs(inThreeDaysDate.daysTo())) {
+//                        return true
+//                    }
+//                    return false
+//                }) ?? [QDMUserPreparation]()
+//            } else if contentItem.searchTags.contains(obj: "TOMORROW") {
+//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
+//                localPreparationList = myPeakperformance.preparations?.filter({
+//                    calendar.isDateInTomorrow($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
+//            } else if contentItem.searchTags.contains(obj: "TODAY") {
+//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_SAME_DAY")}.randomElement()?.contentItems.first?.valueText ?? ""
+//                localPreparationList = myPeakperformance.preparations?.filter({
+//                    calendar.isDateInToday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
+//            } else if contentItem.searchTags.contains(obj: "REFLECT") {
+//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_AFTER")}.randomElement()?.contentItems.first?.valueText ?? ""
+//                localPreparationList = myPeakperformance.preparations?.filter({
+//                    calendar.isDateInYesterday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
+//            }
+//            if localPreparationList.count > 0 {
+//                // add the tile cell
+//                if isTitleAdded {
+//                    peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: bucketTitle))
+//                    isTitleAdded = false
+//                }
+//                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueText, sectionContent: contentSentence))
+//                localPreparationList.forEach({ (localPreparationList) in
+//                    let subtitle: String = localPreparationList.eventType ?? "" + DateFormatter.tbvTracker.string(from: localPreparationList.eventDate ?? Date())
+//                    peakPerformanceViewModel.peakPerformanceSectionList.append(
+//                        MyPeakPerformanceRowModel(qdmUserPreparation: localPreparationList,
+//                                                  title: localPreparationList.name,
+//                                                  subtitle: subtitle))
+//                })
+//            }
+//        })
+//        createMyPeakPerformanceList.append(peakPerformanceViewModel)
+//        return createMyPeakPerformanceList
+//    }
+
 
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
+        //        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
         let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
         let calendar = Calendar.current
         var contentSentence: String = ""
+        var isTitleAdded: Bool = true
+        var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
+        var sections: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow
+        var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
+
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
                 contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
-                    let inThreeDaysDate = $0.eventDate ?? Date()
-                    if 2..<3 ~= inThreeDaysDate.daysTo() {
+                    guard let inThreeDaysDate = $0.eventDate, inThreeDaysDate.isFuture() else { return false }
+                    let inThreeDaysRange = NSRange(location: 2, length: 1)
+                    if inThreeDaysRange.contains(abs(inThreeDaysDate.daysTo())) {
                         return true
                     }
                     return false
@@ -847,19 +906,20 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     calendar.isDateInYesterday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
             }
             if localPreparationList.count > 0 {
-                // add the tile cell
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: bucketTitle))
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueDescription, sectionContent: contentSentence))
-                localPreparationList.forEach({ (localPreparationList) in
-                    let subtitle: String = localPreparationList.eventType ?? "" + DateFormatter.tbvTracker.string(from: localPreparationList.eventDate ?? Date())
-                    peakPerformanceViewModel.peakPerformanceSectionList.append(
-                        MyPeakPerformanceRowModel(qdmUserPreparation: localPreparationList,
-                                                  title: localPreparationList.name,
-                                                  subtitle: subtitle))
+                localPreparationList.forEach({ (prepareItem) in
+                    let subtitle: String = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
+                    rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.name,
+                                                                                    subtitle: subtitle,
+                                                                                    qdmUserPreparation: prepareItem))
                 })
+                sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow(sectionSubtitle: contentItem.valueText,
+                                                                                                                                                                    sectionContent: contentSentence), rows: rows))
             }
+
         })
-        createMyPeakPerformanceList.append(peakPerformanceViewModel)
+        createMyPeakPerformanceList.append( MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
+                                                                                sections:sectionsModels ,
+                                                                                domainModel: myPeakperformance))
         return createMyPeakPerformanceList
     }
 
