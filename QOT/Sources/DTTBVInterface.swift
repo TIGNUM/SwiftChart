@@ -21,6 +21,4 @@ protocol DTTBVInteractorInterface: Interactor {
     func saveTBVImage(_ image: UIImage)
 }
 
-protocol DTTBVRouterInterface {
-    func dismissAndShowTBV()
-}
+protocol DTTBVRouterInterface {}

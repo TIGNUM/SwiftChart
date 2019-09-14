@@ -247,6 +247,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 }
 
+// MARK: - MyVisionViewControllerScrollViewDelegate
+extension MyVisionViewController: MyVisionViewControllerScrollViewDelegate {
+    func scrollToTop(_ animated: Bool) {
+        scrollView.scrollToTop(animated)
+    }
+}
+
 // MARK: - UIScrollViewDelegate
 extension MyVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

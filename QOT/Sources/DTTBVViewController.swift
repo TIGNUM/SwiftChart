@@ -35,10 +35,9 @@ final class DTTBVViewController: DTViewController {
     // MARK: - DTViewController
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
-        switch viewModel?.question.key {
-        case TBV.QuestionKey.Picture?:
+        if viewModel?.question.key == TBV.QuestionKey.Picture && answer.keys.contains(TBV.AnswerKey.UploadImage) {
             showImageSelectionAlert()
-        default:
+        } else {
             loadNextQuestion()
         }
     }
@@ -48,11 +47,16 @@ final class DTTBVViewController: DTViewController {
         case TBV.QuestionKey.Home?:
             generateTBV()
         case TBV.QuestionKey.Review?:
-            tbvRouter?.dismissAndShowTBV()
+            tbvRouter?.dismiss()
         default:
             setAnswerSelectedIfNeeded()
             loadNextQuestion()
         }
+    }
+
+    override func didTapClose() {
+        super.didTapClose()
+        RestartHelper.clearRestartRouteInfo()
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
@@ -79,9 +83,9 @@ private extension DTTBVViewController {
         let update = SelectedAnswer(question: viewModel?.question, answers: answers)
         selectedAnswers.append(update)
         tbvInteractor?.generateTBV(selectedAnswers: selectedAnswers,
-                                    questionKeyWork: TBV.QuestionKey.Work,
-                                    questionKeyHome: TBV.QuestionKey.Home) { [weak self] _ in
-            self?.loadNextQuestion()
+                                   questionKeyWork: TBV.QuestionKey.Work,
+                                   questionKeyHome: TBV.QuestionKey.Home) { [weak self] _ in
+                                    self?.loadNextQuestion()
         }
     }
 
@@ -97,6 +101,12 @@ private extension DTTBVViewController {
             setAnswerNeedsSelection()
         }
     }
+
+    func showImageSelectionAlert() {
+        imagePickerController?.delegate = self
+        imagePickerController?.show(in: self, deletable: false)
+        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
+    }
 }
 
 // MARK: - DTTBVViewControllerInterface
@@ -105,20 +115,12 @@ extension DTTBVViewController: DTTBVViewControllerInterface {}
 // MARK: - ImagePickerControllerAdapterProtocol
 extension DTTBVViewController: ImagePickerControllerAdapterProtocol {}
 
-// MARK: - DTTBVRouterInterface
-extension DTTBVViewController: DTTBVRouterInterface {
-    func showImageSelectionAlert() {
-        imagePickerController?.delegate = self
-        imagePickerController?.show(in: self, deletable: false)
-        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
-    }
-}
-
 extension DTTBVViewController: ImagePickerControllerDelegate {
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         loadNextQuestion()
         tbvInteractor?.saveTBVImage(image)
         self.imagePickerController = nil
+        RestartHelper.clearRestartRouteInfo()
     }
 
     func cancelSelection() {

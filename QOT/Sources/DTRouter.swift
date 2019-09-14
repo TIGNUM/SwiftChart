@@ -21,7 +21,7 @@ class DTRouter {
 
 // MARK: - DTRouterInterface
 extension DTRouter: DTRouterInterface {
-    func dismiss() {
+    @objc func dismiss() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 

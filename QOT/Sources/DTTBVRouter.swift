@@ -8,11 +8,18 @@
 
 import UIKit
 
-final class DTTBVRouter: DTRouter {}
+final class DTTBVRouter: DTRouter {
 
-// MARK: - DTTBVRouterInterface
-extension DTTBVRouter: DTTBVRouterInterface {
-    func dismissAndShowTBV() {
-        AppDelegate.current.launchHandler.showToBeVision()
+    // MARK: - Properties
+    weak var delegate: MyVisionViewControllerScrollViewDelegate?
+
+    // MARK: - DTRouter
+    override func dismiss() {
+        viewController?.dismiss(animated: true) { [weak self] in
+            self?.delegate?.scrollToTop(true)
+        }
     }
 }
+
+// MARK: - DTTBVRouterInterface
+extension DTTBVRouter: DTTBVRouterInterface {}

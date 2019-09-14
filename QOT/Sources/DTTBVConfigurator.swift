@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 final class DTTBVConfigurator {
-    static func make() -> (DTTBVViewController) -> Void {
+    static func make(delegate: MyVisionViewControllerScrollViewDelegate?) -> (DTTBVViewController) -> Void {
         return { (viewController) in
             let router = DTTBVRouter(viewController: viewController)
             let presenter = DTTBVPresenter(viewController: viewController)
@@ -21,6 +21,7 @@ final class DTTBVConfigurator {
             viewController.router = router
             viewController.tbvInteractor = interactor
             viewController.tbvRouter = router
+            router.delegate = delegate
         }
     }
 }

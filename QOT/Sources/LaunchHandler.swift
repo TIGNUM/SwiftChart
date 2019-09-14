@@ -256,17 +256,6 @@ extension LaunchHandler {
         }
     }
 
-    func showToBeVision() {
-        guard let mainNavi = baseRootViewController?.navigationController else {
-            return
-        }
-        mainNavi.popToRootViewController(animated: true)
-        mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
-            NotificationCenter.default.post(name: .showFirstLevelScreen,
-                                            object: CoachCollectionViewController.Pages.myQot)
-        }
-    }
-
     func showDailyCheckIn() {
         qot_dal.MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { [weak self] (results, initialized, error) in
             guard initialized == true, error == nil else {
