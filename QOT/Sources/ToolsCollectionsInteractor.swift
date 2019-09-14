@@ -94,7 +94,7 @@ extension ToolsCollectionsInteractor {
         self.isMediaPlaying = true
         let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
         let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
     }
 
     @objc func didPauseAudio(_ notification: Notification) {
@@ -104,7 +104,7 @@ extension ToolsCollectionsInteractor {
         self.isMediaPlaying = false
         let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
         let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
     }
 
     @objc func didStopAudio(_ notification: Notification) {
@@ -114,6 +114,6 @@ extension ToolsCollectionsInteractor {
         self.isMediaPlaying = false
         let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
         let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioIsPlayingForCell(index: IndexPath(row: intOfIndex, section: 0))
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
     }
 }

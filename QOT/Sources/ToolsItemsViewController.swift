@@ -111,11 +111,11 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
         tableView.reloadData()
     }
 
-    func audioIsPlayingForCell(index: IndexPath) {
-        if let cell = tableView.cellForRow(at: index) as? ToolsCollectionsAudioTableViewCell {
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ToolsCollectionsAudioTableViewCell {
             cell.itemDelegate = self
         }
-        tableView.reloadRows(at: [index], with: UITableViewRowAnimation.none)
+        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
     }
 }
 

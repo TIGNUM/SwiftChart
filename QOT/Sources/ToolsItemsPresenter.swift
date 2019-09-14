@@ -32,7 +32,7 @@ extension ToolsItemsPresenter: ToolsItemsPresenterInterface {
         viewController?.reload()
     }
 
-    func audioIsPlayingForCell(index: IndexPath) {
-        viewController?.audioIsPlayingForCell(index: index)
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        viewController?.audioPlayStateChangedForCellAt(indexPath: indexPath)
     }
 }

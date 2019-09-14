@@ -11,13 +11,13 @@ import Foundation
 protocol ToolsItemsViewControllerInterface: class {
     func setupView()
     func reload()
-    func audioIsPlayingForCell(index: IndexPath)
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol ToolsItemsPresenterInterface {
     func setupView()
     func reload()
-    func audioIsPlayingForCell(index: IndexPath)
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol ToolsItemsInteractorInterface: Interactor {
