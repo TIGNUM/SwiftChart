@@ -361,7 +361,7 @@ extension UIViewController {
         button.setImage(isLight ? R.image.ic_close() : R.image.ic_close_rounded(), for: .normal)
         button.imageView?.contentMode = .center
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
-        ThemeButton.audioButton.apply(button)
+        ThemeButton.closeButton(isLight ? .light : .dark).apply(button)
         return UIBarButtonItem(customView: button)
     }
 

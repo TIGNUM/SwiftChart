@@ -21,7 +21,6 @@ protocol DailyBriefPresenterInterface {
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
-    func screenTitle() -> String
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     var rowCount: Int { get }
     var rowViewModelCount: Int { get }
@@ -55,6 +54,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func invalidateTimer(forCell: BaseDailyBriefCell)
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
+    func updateDailyBriefBucket()
 }
 
 protocol DailyBriefRouterInterface {

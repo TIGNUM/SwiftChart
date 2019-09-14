@@ -12,11 +12,11 @@ import qot_dal
 class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
 
     // MARK: - Properties
-    var interactor: DTInteractor?
-    var router: DTRouterInterface?
     var viewModel: DTViewModel?
-    private var navigationButton: NavigationButton?
-    weak var pageController: UIPageViewController?
+    var router: DTRouterInterface?
+    var interactor: DTInteractorInterface?
+    private weak var navigationButton: NavigationButton?
+    private weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
@@ -52,7 +52,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     // MARK: - Question Handling
-    func getAnswerFilter(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> String? {
+    func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return nil
     }
 
@@ -61,8 +61,8 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     func loadNextQuestion() {
-        let selectedAnswers = viewModel?.answers.filter { $0.selected } ?? []
-        let filter = getAnswerFilter(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let selectedAnswers = viewModel?.selectedAnswers ?? []
+        let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
@@ -130,7 +130,10 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     // MARK: - DTQuestionnaireViewControllerDelegate
-    func didTapBinarySelection(_ answer: DTViewModel.Answer) {}
+    func didTapBinarySelection(_ answer: DTViewModel.Answer) {
+        setAnswerNeedsSelection(answer)
+        loadNextQuestion()
+    }
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)

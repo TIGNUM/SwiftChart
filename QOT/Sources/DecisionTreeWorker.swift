@@ -17,7 +17,7 @@ final class DecisionTreeWorker {
     private let userService = qot_dal.UserService.main
     private let contentService = qot_dal.ContentService.main
     private let questionService = qot_dal.QuestionService.main
-    private var prepareKey: Prepare.Key = .perceived
+    private var prepareKey: PrepareResult.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
     private var answerFilterMindset: String?
@@ -270,7 +270,7 @@ extension DecisionTreeWorker {
             }
 
         case QuestionKey.MindsetShifter.ShowTBV,
-             QuestionKey.Prepare.ShowTBV:
+             Prepare.QuestionKey.ShowTBV:
             userService.getMyToBeVision { (vision, _, _) in
                 completion((question, vision?.text))
             }
@@ -308,8 +308,8 @@ extension DecisionTreeWorker {
         qot_dal.ContentService.main.getContentCollectionById(targetContentId) { [weak self] (content) in
             self?.recoveryModel?.fatigueContentItemId = fatigueContentItemId
             self?.recoveryModel?.causeAnwserId = causeAnwserId
-            self?.recoveryModel?.exclusiveContentCollectionIds = content?.relatedContentIdsRecoveryExclusive ?? []
-            self?.recoveryModel?.suggestedSolutionsContentCollectionIds = content?.suggestedContentIdsRecovery ?? []
+            self?.recoveryModel?.exclusiveContentCollectionIds = content?.exclusiveContentIds ?? []
+            self?.recoveryModel?.suggestedSolutionsContentCollectionIds = content?.suggestedContentIds ?? []
             self?.updateRecoveryModel(recovery: self?.recoveryModel)
         }
     }
@@ -350,8 +350,8 @@ extension DecisionTreeWorker {
     func createRecoveryModel(_ completion: @escaping (QDMRecovery3D?) -> Void) {
         let fatigueContentItemId = AnswerKey.Recovery.identifyFatigueSympton(decisionTreeAnswers).fatigueContentItemId
         qot_dal.ContentService.main.getContentCollectionById(recoveryCauseContentId ?? 0) { [weak self] (content) in
-            let exclusiveContentIds = content?.relatedContentIdsRecoveryExclusive ?? []
-            let suggestedContentIds = content?.suggestedContentIdsRecovery ?? []
+            let exclusiveContentIds = content?.exclusiveContentIds ?? []
+            let suggestedContentIds = content?.suggestedContentIds ?? []
             qot_dal.UserService.main.createRecovery3D(
                 fatigueContentItemId: fatigueContentItemId,
                 causeAnwserId: self?.recoveryCauseAnswerId ?? 0,

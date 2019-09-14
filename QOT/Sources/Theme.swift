@@ -61,6 +61,7 @@ enum ThemeView {
     case qotTools
     case syncedCalendarSeparator
     case audioPlaying
+    case tbvLowPerformance
 
     var color: UIColor {
         switch self {
@@ -110,6 +111,8 @@ enum ThemeView {
             return Palette.white40
         case .syncedCalendarSeparator:
             return Palette.sand40
+        case .tbvLowPerformance:
+            return Palette.carbon70
         }
     }
 
@@ -190,6 +193,16 @@ enum ThemeSwitch {
 enum ThemeButton {
     case accent40
     case audioButton
+    case closeButton(ThemeColorMode)
+
+    var defaultHeight: CGFloat {
+        get {
+            switch self {
+            default:
+                return 40.0
+            }
+        }
+    }
 
     func apply(_ button: UIButton, selected: Bool = false, selectedImage: UIImage? = nil, unSelectedImage: UIImage? = nil) {
         var colorSelected: UIColor = .clear
@@ -201,6 +214,10 @@ enum ThemeButton {
             colorBorder = Palette.accent40
         case .audioButton:
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
+            colorUnselected = colorSelected
+            colorBorder = .accent40
+        case .closeButton(let mode):
+            colorSelected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = colorSelected
             colorBorder = .accent40
         }
@@ -645,7 +662,7 @@ enum ThemeText {
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
-             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription, 
+             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody:
             return Fonts.fontRegular16
@@ -987,7 +1004,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow:
+        case .myDataHeatMapDetailCellValue:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)

@@ -19,7 +19,7 @@ struct MyQotSensorsModel {
         var title: String {
             switch self {
             case .oura:
-                return R.string.localized.sidebarSensorsMenuOuraRing ()
+                return R.string.localized.sidebarSensorsMenuOuraRing()
             case .healthKit:
                 return R.string.localized.sidebarSensorsMenuHealthKit()
             case .requestTracker:

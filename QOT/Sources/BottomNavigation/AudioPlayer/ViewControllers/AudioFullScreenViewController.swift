@@ -175,6 +175,25 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapDownloadButton() {
+        if QOTReachability().isReachableOnEthernetOrWiFi || download != nil {
+            continueDownload()
+            return
+        }
+
+        let cancel = QOTAlertAction(title: R.string.localized.buttonTitleCancel())
+        let buttonContinue = QOTAlertAction(title: R.string.localized.alertButtonTitleContinue()) { [weak self] (_) in
+            self?.continueDownload()
+        }
+        QOTAlert.show(title: R.string.localized.alertTitleUseMobileData(),
+                      message: R.string.localized.alertMessageUseMobileData(),
+                      bottomItems: [cancel, buttonContinue])
+    }
+}
+
+// Private methods
+
+extension AudioFullScreenViewController {
+    func continueDownload() {
         trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         guard let item = contentItem else {
             return
@@ -185,11 +204,12 @@ extension AudioFullScreenViewController {
             switch downloadStaus {
             case .NONE,
                  .WAITING: qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
-                self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
+                    self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
                 }
             case .DOWNLOADING: qot_dal.UserStorageService.main.deleteUserStorage(download) { [weak self] (error) in
                 self?.updateDownloadButtonState(.NONE)
-            }
+                self?.download = nil
+                }
             default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {

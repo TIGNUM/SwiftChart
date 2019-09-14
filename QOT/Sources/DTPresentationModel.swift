@@ -11,20 +11,20 @@ import qot_dal
 
 struct DTPresentationModel {
     var question: QDMQuestion?
-    var titleToUpdate: String?
+    var questionUpdate: String?
     var answerFilter: String?
     var tbv: QDMToBeVision?
 
-    init(question: QDMQuestion?, titleToUpdate: String?, answerFilter: String?, tbv: QDMToBeVision?) {
+    init(question: QDMQuestion?, questionUpdate: String?, answerFilter: String?, tbv: QDMToBeVision?) {
         self.question = question
-        self.titleToUpdate = titleToUpdate
+        self.questionUpdate = questionUpdate
         self.answerFilter = answerFilter
         self.tbv = tbv
     }
 
     init(question: QDMQuestion?) {
         self.question = question
-        self.titleToUpdate = nil
+        self.questionUpdate = nil
         self.answerFilter = nil
         self.tbv = nil
 

@@ -21,7 +21,7 @@ final class DTShortTBVConfigurator {
             viewController.shortTBVRouter = router
             viewController.interactor = interactor
             viewController.router = router
-            viewController.delegate = delegate
+            viewController.mindsetInteractor = delegate
         }
     }
 }

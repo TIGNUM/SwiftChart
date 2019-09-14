@@ -281,7 +281,7 @@ extension PrepareResultsWorker {
         }
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
+    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key) {
         switch key {
         case .perceived:
             preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }

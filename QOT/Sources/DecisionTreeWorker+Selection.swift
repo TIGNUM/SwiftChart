@@ -122,10 +122,10 @@ extension DecisionTreeWorker {
             interactor?.dismiss()
         case .prepare:
             switch currentQuestion?.key {
-            case QuestionKey.Prepare.CalendarEventSelectionCritical,
-                 QuestionKey.Prepare.CalendarEventSelectionDaily:
+            case Prepare.QuestionKey.CalendarEventSelectionCritical,
+                 Prepare.QuestionKey.CalendarEventSelectionDaily:
                 interactor?.presentAddEventController(EKEventStore.shared)
-            case QuestionKey.Prepare.ShowTBV:
+            case Prepare.QuestionKey.ShowTBV:
                 nextQuestion()
                 return
             default:
@@ -181,7 +181,7 @@ extension DecisionTreeWorker {
         if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
             currentQuestion?.key == QuestionKey.MindsetShifterTBV.Review {
             interactor?.dismiss()
-        } else if currentQuestion?.key == QuestionKey.Prepare.BenefitsInput,
+        } else if currentQuestion?.key == Prepare.QuestionKey.BenefitsInput,
             let answer = currentQuestion?.answers.first {
                 handleSingleSelection(for: answer)
         } else {
@@ -315,44 +315,44 @@ private extension DecisionTreeWorker {
 private extension DecisionTreeWorker {
     func handleSelectionPrepare(_ answer: QDMAnswer) {
         switch currentQuestion?.key {
-        case QuestionKey.Prepare.Intro:
-            if answer.keys.contains(AnswerKey.Prepare.OpenCheckList) {
+        case Prepare.QuestionKey.Intro:
+            if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
                 if let contentId = answer.targetId(.content) {
                     showResultView(for: answer, contentID: contentId)
                 }
             } else if
-                (answer.keys.contains(AnswerKey.Prepare.EventTypeSelectionDaily)
-                || answer.keys.contains(AnswerKey.Prepare.EventTypeSelectionCritical)),
+                (answer.keys.contains(Prepare.AnswerKey.EventTypeSelectionDaily)
+                || answer.keys.contains(Prepare.AnswerKey.EventTypeSelectionCritical)),
                 let permissionType = getCalendarPermissionType() {
                     interactor?.presentPermissionView(permissionType)
             } else {
                 showNextQuestionIfExist(answer)
             }
 
-        case QuestionKey.Prepare.BuildCritical:
+        case Prepare.QuestionKey.BuildCritical:
             if let targetQuestionId = answer.targetId(.question) {
                 showTBV(targetQuestionId: targetQuestionId)
             }
 
-        case QuestionKey.Prepare.EventTypeSelectionCritical:
+        case Prepare.QuestionKey.EventTypeSelectionCritical:
             setTargetContentID(for: answer)
             prepareEventType = answer.subtitle ?? ""
             showNextQuestionIfExist(answer)
 
-        case QuestionKey.Prepare.EventTypeSelectionDaily:
+        case Prepare.QuestionKey.EventTypeSelectionDaily:
             prepareEventType = answer.subtitle ?? ""
             if let contentId = answer.targetId(.content) {
                 showResultView(for: answer, contentID: contentId)
             }
 
-        case QuestionKey.Prepare.BenefitsInput:
+        case Prepare.QuestionKey.BenefitsInput:
             if let contentId = answer.targetId(.content) {
                 showResultView(for: answer, contentID: contentId)
             }
-        case QuestionKey.Prepare.CalendarEventSelectionCritical,
-             QuestionKey.Prepare.CalendarEventSelectionDaily,
-             QuestionKey.Prepare.SelectExisting,
-             QuestionKey.Prepare.ShowTBV:
+        case Prepare.QuestionKey.CalendarEventSelectionCritical,
+             Prepare.QuestionKey.CalendarEventSelectionDaily,
+             Prepare.QuestionKey.SelectExisting,
+             Prepare.QuestionKey.ShowTBV:
                 showNextQuestionIfExist(answer)
         default:
             return

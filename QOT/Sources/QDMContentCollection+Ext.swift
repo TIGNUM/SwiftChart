@@ -24,12 +24,12 @@ extension QDMContentCollection {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }.compactMap { $0.contentID }
     }
 
-    var relatedContentIdsRecoveryExclusive: [Int] {
+    var exclusiveContentIds: [Int] {
         return relatedContentList.filter { $0.type == "EXCLUSIVE_CONTENT" }.compactMap { $0.contentID }
     }
 
-    var suggestedContentIdsRecovery: [Int] {
-        return relatedContentList.filter { $0.type != "EXCLUSIVE_CONTENT" }.compactMap { $0.contentID }
+    var suggestedContentIds: [Int] {
+        return relatedContentList.filter { $0.type == "RELATED_STRATEGY" }.compactMap { $0.contentID }
     }
 }
 

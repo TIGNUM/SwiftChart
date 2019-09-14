@@ -23,14 +23,14 @@ final class AnimatedAnswerTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: Configuration
 extension AnimatedAnswerTableViewCell {
-    func configure(with question: String?, html: String?, questionTitleUpdate: String?, textColor: UIColor, animateTextDuration: Double = 0.0) {
+    func configure(with question: String?, html: String?, questionUpdate: String?, textColor: UIColor, animateTextDuration: Double = 0.0) {
         var updatedTitle: String
         var attributedString = NSMutableAttributedString()
         if let html = html {
-            updatedTitle = updateTextIfNeeded(html, questionTitleUpdate)
+            updatedTitle = updateTextIfNeeded(html, questionUpdate)
             attributedString = NSMutableAttributedString(attributedString: updatedTitle.convertHtml() ?? NSAttributedString())
         } else if let question = question {
-            updatedTitle = updateTextIfNeeded(question, questionTitleUpdate)
+            updatedTitle = updateTextIfNeeded(question, questionUpdate)
             attributedString = NSMutableAttributedString(string: updatedTitle)
         }
         let paragraphStyle = NSMutableParagraphStyle()

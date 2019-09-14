@@ -48,7 +48,7 @@ final class MySprintsListWorker {
     }()
 
     lazy var continueTitle: String = {
-        return R.string.localized.buttonTitleYesContinue()
+        return R.string.localized.alertButtonTitleContinue()
     }()
 
     lazy var saveTitle: String = {

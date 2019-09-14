@@ -28,8 +28,8 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
         ThemeView.chatbot.apply(view)
+        interactor?.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {

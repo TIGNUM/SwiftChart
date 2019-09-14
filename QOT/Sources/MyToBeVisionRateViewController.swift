@@ -53,7 +53,7 @@ final class MyToBeVisionRateViewController: UIViewController, ScreenZLevel3 {
             return NSNotFound
         }
         let id = vc.questionID()
-        guard let filteredIndices = tracks.indices.filter ({tracks[$0].remoteID == id}).first else { return 0 }
+        guard let filteredIndices = tracks.indices.filter({tracks[$0].remoteID == id}).first else { return 0 }
         return filteredIndices
     }
 

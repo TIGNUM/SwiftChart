@@ -45,8 +45,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableHeader: UIView!
-    @IBOutlet weak var screenTitleLabel: UILabel!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -670,6 +668,7 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
+        cell.delegate = self
         return cell
     }
 }
@@ -739,12 +738,12 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
-        ThemeText.navigationBarHeader.apply(interactor?.screenTitle(), to: screenTitleLabel)
     }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func didChangeLocationPermission(granted: Bool) {
+        interactor?.updateDailyBriefBucket()
     }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {

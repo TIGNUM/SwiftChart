@@ -12,7 +12,7 @@ import qot_dal
 final class DTSprintViewController: DTViewController {
 
     // MARK: - Properties
-    var sprintInteractor: DTSprintInteractor?
+    var sprintInteractor: DTSprintInteractorInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTSprintViewController>) {

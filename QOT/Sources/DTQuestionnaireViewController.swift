@@ -146,7 +146,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: viewModel.question.title,
                            html: nil,
-                           questionTitleUpdate: nil,
+                           questionUpdate: nil,
                            textColor: .carbon)
             return cell
         case .answer:
@@ -189,7 +189,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
         let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: title ?? "",
                        html: nil,
-                       questionTitleUpdate: nil,
+                       questionUpdate: nil,
                        textColor: .carbon,
                        animateTextDuration: viewModel.typingAnimationDuration)
         cell.delegate = self

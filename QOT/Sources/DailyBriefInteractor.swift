@@ -78,16 +78,12 @@ extension DailyBriefInteractor {
 extension DailyBriefInteractor {
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
-        }
+        updateDailyBriefBucket()
     }
 //  Display the expand/collapse of the guided close track
     @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
         guidedClosedTrack = !guidedClosedTrack
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
-        }
+        updateDailyBriefBucket()
     }
 
     @objc func didGetScrollNotificationToBucket(_ notification: Notification) {
@@ -103,9 +99,6 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-    func screenTitle() -> String {
-        return worker.screenTitle()
-    }
 
 //    Invoke the prepare screen in the coach screen.
     func displayCoachPreparationScreen() {
@@ -217,6 +210,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func presentMyDataScreen() {
         router.presentMyDataScreen()
+    }
+
+    func updateDailyBriefBucket() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
+        }
     }
 
     var rowCount: Int {
