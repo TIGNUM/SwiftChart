@@ -318,6 +318,7 @@ extension MyVisionViewController: MyVisionNullStateViewProtocol {
 
 extension MyVisionViewController {
     @objc func continueUpdatingTBV() {
+        removeBottomNavigation()
         trackUserEvent(.OPEN, valueType: "ToBeVisionGeneratorFromUpdateModal", action: .TAP)
         interactor?.openToBeVisionGenerator()
     }
