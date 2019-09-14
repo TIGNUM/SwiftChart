@@ -29,7 +29,7 @@ final class DTShortTBVViewController: DTViewController {
     override func didTapNext() {
         switch viewModel?.question.key {
         case ShortTBV.QuestionKey.Review:
-            mindsetInteractor?.didDismissShortTBVScene(tbv: interactor?.getTBV())
+            mindsetInteractor?.didDismissShortTBVScene(tbv: shortTBVInteractor?.getTBV())
             shortTBVRouter?.dismiss()
         case ShortTBV.QuestionKey.Home:
             generateTBV()
@@ -58,7 +58,9 @@ private extension DTShortTBVViewController {
         let answers = viewModel?.selectedAnswers ?? []
         let update = SelectedAnswer(question: viewModel?.question, answers: answers)
         selectedAnswers.append(update)
-        shortTBVInteractor?.generateTBV(selectedAnswers) { [weak self] in
+        shortTBVInteractor?.generateTBV(selectedAnswers: selectedAnswers,
+                                        questionKeyWork: ShortTBV.QuestionKey.Work,
+                                        questionKeyHome: ShortTBV.QuestionKey.Home) { [weak self] _ in
             self?.loadNextQuestion()
         }
     }

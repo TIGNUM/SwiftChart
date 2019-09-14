@@ -170,7 +170,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
 //                return cell
             case .noAnswerRequired:
                 if let answer = viewModel.answers.first {
-                    return getTypingCell(indexPath, tableView, title: answer.title)
+                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
             default:
                 break

@@ -29,7 +29,6 @@ protocol DTPresenterInterface {
 }
 
 protocol DTInteractorInterface: Interactor {
-    func getTBV() -> QDMToBeVision?
     func getSelectedAnswers() -> [SelectedAnswer]
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()

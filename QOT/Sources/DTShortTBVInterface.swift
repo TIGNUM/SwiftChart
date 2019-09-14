@@ -7,13 +7,18 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTShortTBVViewControllerInterface: class {}
 
 protocol DTShortTBVPresenterInterface {}
 
 protocol DTShortTBVInteractorInterface: Interactor {
-    func generateTBV(_ selectedAnswers: [SelectedAnswer], _ completion: @escaping () -> Void)
+    func getTBV() -> QDMToBeVision?
+    func generateTBV(selectedAnswers: [SelectedAnswer],
+                     questionKeyWork: String,
+                     questionKeyHome: String,
+                     _ completion: @escaping (QDMToBeVision?) -> Void)
 }
 
 protocol DTShortTBVRouterInterface {

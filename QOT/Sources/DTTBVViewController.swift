@@ -10,7 +10,7 @@ import UIKit
 
 final class DTTBVViewController: DTViewController {
 
-    var tbvInteractor: DTShortTBVInteractorInterface?
+    var tbvInteractor: DTTBVInteractorInterface?
 
     // MARK: - Init
     init(configure: Configurator<DTTBVViewController>) {
@@ -26,10 +26,11 @@ final class DTTBVViewController: DTViewController {
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {}
 
     override func didTapNext() {
-        if viewModel?.question.key == TBV.QuestionKey.Home {
+        switch viewModel?.question.key {
+        case TBV.QuestionKey.Home?:
             generateTBV()
-        } else {
-            setAnswerNeedsSelection()
+        default:
+            setAnswerSelectedIfNeeded()
             loadNextQuestion()
         }
     }
@@ -57,8 +58,23 @@ private extension DTTBVViewController {
         let answers = viewModel?.selectedAnswers ?? []
         let update = SelectedAnswer(question: viewModel?.question, answers: answers)
         selectedAnswers.append(update)
-        tbvInteractor?.generateTBV(selectedAnswers) { [weak self] in
+        tbvInteractor?.generateTBV(selectedAnswers: selectedAnswers,
+                                    questionKeyWork: TBV.QuestionKey.Work,
+                                    questionKeyHome: TBV.QuestionKey.Home) { [weak self] _ in
             self?.loadNextQuestion()
+        }
+    }
+
+    func setAnswerSelectedIfNeeded() {
+        switch viewModel?.question.key {
+        case ShortTBV.QuestionKey.IntroMindSet?,
+             ShortTBV.QuestionKey.Home?:
+            if var answer = viewModel?.answers.first {
+                answer.setSelected(true)
+                viewModel?.setSelectedAnswer(answer)
+            }
+        default:
+            setAnswerNeedsSelection()
         }
     }
 }

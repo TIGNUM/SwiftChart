@@ -7,12 +7,33 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTTBVInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var tbvWorker: DTShortTBVWorker? = DTShortTBVWorker()
+    private lazy var tbvWorker: TBVWorker? = TBVWorker()
+    private var tbv: QDMToBeVision?
+
+    override func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
+        if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {
+            return tbv
+        }
+        return nil
+    }
 }
 
 // MARK: - DTTBVInteractorInterface
-extension DTTBVInteractor: DTTBVInteractorInterface {}
+extension DTTBVInteractor: DTTBVInteractorInterface {
+    func generateTBV(selectedAnswers: [SelectedAnswer],
+                     questionKeyWork: String,
+                     questionKeyHome: String,
+                     _ completion: @escaping (QDMToBeVision?) -> Void) {
+        tbvWorker?.createVision(selectedAnswers: selectedAnswers,
+                                questionKeyWork: TBV.QuestionKey.Work,
+                                questionKeyHome: TBV.QuestionKey.Home) { [weak self] (tbv) in
+            self?.tbv = tbv
+            completion(tbv)
+        }
+    }
+}

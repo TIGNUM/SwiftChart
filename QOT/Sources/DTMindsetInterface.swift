@@ -17,6 +17,7 @@ protocol DTMindsetInteractorInterface: Interactor {
     func didDismissShortTBVScene(tbv: QDMToBeVision?)
     func didDismissMindsetResults()
     func getMindsetShifter(_ completion: @escaping (QDMMindsetShifter?) -> Void)
+    func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
 }
 
 protocol DTMindsetRouterInterface {

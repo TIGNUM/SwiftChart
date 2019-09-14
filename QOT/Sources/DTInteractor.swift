@@ -22,7 +22,6 @@ class DTInteractor: DTInteractorInterface {
     var questions: [QDMQuestion] = []
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
-    var tbv: QDMToBeVision?
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -45,10 +44,6 @@ class DTInteractor: DTInteractorInterface {
     }
 
     // MARK: - DTInteractorInterface
-    func getTBV() -> QDMToBeVision? {
-        return tbv
-    }
-
     func getSelectedAnswers() -> [SelectedAnswer] {
         return selectedAnswers
     }
@@ -93,7 +88,7 @@ class DTInteractor: DTInteractorInterface {
                                  questionUpdate: String?,
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
-        let tbv = question?.answerType == AnswerType.text.rawValue ? self.tbv : nil
+        let tbv = getTBV(questionAnswerType: question?.answerType)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: answerFilter,
@@ -103,7 +98,7 @@ class DTInteractor: DTInteractorInterface {
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
-        let tbv = question?.answerType == AnswerType.text.rawValue ? self.tbv : nil
+        let tbv = getTBV(questionAnswerType: question?.answerType)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: selection.answerFilter,
@@ -119,10 +114,13 @@ class DTInteractor: DTInteractorInterface {
         return nil
     }
 
+    func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
+        return nil
+    }
+
     // MARK: - TBV
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        worker?.getUsersTBV { [weak self] (tbv, initiated) in
-            self?.tbv = tbv
+        worker?.getUsersTBV { (tbv, initiated) in
             completion(tbv, initiated)
         }
     }

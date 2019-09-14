@@ -102,6 +102,7 @@
 		363B9CC4232BF34A00C1A29E /* DTTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */; };
 		363B9CC5232BF34A00C1A29E /* DTTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBD232BF34A00C1A29E /* DTTBV.swift */; };
 		363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */; };
+		363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */; };
 		363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363BB1762316EFB500B65065 /* ChoiceViewController.xib */; };
 		363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */; };
 		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
@@ -1446,6 +1447,7 @@
 		363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVInteractor.swift; sourceTree = "<group>"; };
 		363B9CBD232BF34A00C1A29E /* DTTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBV.swift; sourceTree = "<group>"; };
 		363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVConfigurator.swift; sourceTree = "<group>"; };
+		363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVWorker.swift; sourceTree = "<group>"; };
 		363BB1762316EFB500B65065 /* ChoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
 		363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
@@ -2944,6 +2946,14 @@
 			name = TBV;
 			sourceTree = "<group>";
 		};
+		363B9CC7232D0B5200C1A29E /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */,
+			);
+			name = Workers;
+			sourceTree = "<group>";
+		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -3111,6 +3121,7 @@
 				367A58642326B85B0089A082 /* DTWorker.swift */,
 				367A585E2326A4350089A082 /* DTViewController.xib */,
 				36103325232AC794008A8205 /* Models */,
+				363B9CC7232D0B5200C1A29E /* Workers */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -4631,7 +4642,6 @@
 		ACB0ED4B225FC28500BBF243 /* DecisionTree */ = {
 			isa = PBXGroup;
 			children = (
-				363B9CB6232BF2FF00C1A29E /* TBV */,
 				ACF0B94C225FC436008CFAEC /* __Core */,
 				367A585B2326A1900089A082 /* Base */,
 				ACF0B94E225FC46E008CFAEC /* Cells */,
@@ -4642,6 +4652,7 @@
 				3658254D2327ABEA00AC3F4A /* ShortTBV */,
 				367A584A2326A13D0089A082 /* Solve */,
 				36EC22F82323F43C00DB5696 /* Sprint */,
+				363B9CB6232BF2FF00C1A29E /* TBV */,
 				ACB449922260E13700B0E79F /* Views */,
 			);
 			name = DecisionTree;
@@ -7325,6 +7336,7 @@
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				B86E744D22A9519900B0AE75 /* MyLibraryCategoryListViewController.swift in Sources */,
 				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
+				363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
