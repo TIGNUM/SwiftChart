@@ -59,6 +59,6 @@ extension DTPrepareViewController: AskPermissionDelegate {
 // MARK: - DTPrepareViewControllerInterface
 extension DTPrepareViewController: DTPrepareViewControllerInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
-        prepareRouter?.presentCalendarPermission(permissionType)        
+        prepareRouter?.presentCalendarPermission(permissionType)
     }
 }
