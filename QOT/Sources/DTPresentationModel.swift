@@ -15,7 +15,7 @@ struct DTPresentationModel {
     let answerFilter: String?
     let tbv: QDMToBeVision?
     let events: [QDMUserCalendarEvent]
-    let preparations: [QDMUserPreparation]
+    let preparations: [QDMUserPreparation]    
 
     init(question: QDMQuestion?,
          questionUpdate: String?,

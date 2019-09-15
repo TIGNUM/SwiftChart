@@ -93,9 +93,11 @@ class DTInteractor: DTInteractorInterface {
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
         let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selectedAnswers.last?.answers.first?.keys)
+        let filter = getAnswerFilter(questionKey: question?.key,
+                                     answerFilter: answerFilter)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
-                                   answerFilter: answerFilter,
+                                   answerFilter: filter,
                                    tbv: tbv,
                                    events: events,
                                    preparations: preparations)
@@ -107,9 +109,11 @@ class DTInteractor: DTInteractorInterface {
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
         let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
+        let answerFilter = getAnswerFilter(questionKey: question?.key,
+                                           answerFilter: selection.answerFilter)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
-                                   answerFilter: selection.answerFilter,
+                                   answerFilter: answerFilter,
                                    tbv: tbv,
                                    events: events,
                                    preparations: preparations)
@@ -134,6 +138,10 @@ class DTInteractor: DTInteractorInterface {
 
     func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
         return []
+    }
+
+    func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
+        return answerFilter
     }
 
     // MARK: - TBV
