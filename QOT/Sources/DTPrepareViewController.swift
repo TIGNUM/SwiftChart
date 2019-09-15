@@ -29,7 +29,7 @@ final class DTPrepareViewController: DTViewController {
     override func didTapNext() {
         setAnswerNeedsSelection()
         if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
-            prepareInteractor?.getUserPreparation(userInput: nil,
+            prepareInteractor?.getUserPreparation(userInput: "FIXME we are my benefis?",
                                                   event: selectedEvent) { [weak self] (preparation) in
                                                     self?.prepareRouter?.presentPrepareResults(preparation,
                                                                                                canDelete: false)

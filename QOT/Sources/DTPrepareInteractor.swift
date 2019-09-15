@@ -66,8 +66,30 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     func getUserPreparation(userInput: String?,
                             event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        let serviceModel = getServiceModel(answers: selectedAnswers, event: event, userInput: userInput)
-        prepareWorker?.createUserPreparation(serviceModel: serviceModel, completion)
+        let answers = selectedAnswers.flatMap { $0.answers }
+        let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
+        let event = events.filter { $0.remoteID == event?.remoteId }.first ?? QDMUserCalendarEvent()
+        let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
+        let knowIds = getAnswerIds(.know, selectedAnswers)
+        let feelIds = getAnswerIds(.feel, selectedAnswers)
+        prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
+            self?.prepareWorker?.createUserPreparation(level: .LEVEL_CRITICAL,
+                                                       benefits: userInput,
+                                                       answerFilter: Prepare.AnswerFilter,
+                                                       contentCollectionId: QDMUserPreparation.Level.LEVEL_CRITICAL.contentID,
+                                                       relatedStrategyId: eventAnswer?.targetId(.content) ?? 0,
+                                                       strategyIds: strategyIds,
+                                                       preceiveAnswerIds: perceivedIds,
+                                                       knowAnswerIds: knowIds,
+                                                       feelAnswerIds: feelIds,
+                                                       eventType: eventAnswer?.title ?? "",
+                                                       event: event,
+                                                       completion)
+        }
+    }
+
+    private func getAnswerIds(_ key: Prepare.Key, _ answers: [SelectedAnswer]) -> [Int] {
+        return answers.filter { $0.question?.remoteId == key.questionID }.flatMap { $0.answers }.compactMap { $0.remoteId }
     }
 
     func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation? {
@@ -86,25 +108,6 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                                               eventType: eventType,
                                               event: userEvent,
                                               completion)
-    }
-}
-
-// MARK: -
-private extension DTPrepareInteractor {
-    func getServiceModel(answers: [SelectedAnswer],
-                         event: DTViewModel.Event?,
-                         userInput: String?) -> PrepServiceModel {
-        return PrepServiceModel(level: .LEVEL_ON_THE_GO,
-                                benefits: nil,
-                                answerFilter: nil,
-                                contentCollectionId: 0,
-                                relatedStrategyId: 0,
-                                strategyIds: [],
-                                preceiveAnswerIds: [],
-                                knowAnswerIds: [],
-                                feelAnswerIds: [],
-                                eventType: "",
-                                event: QDMUserCalendarEvent())
     }
 }
 

@@ -56,6 +56,8 @@ struct Prepare {
         return String(format: "Created %@", DateFormatter.mediumDate.string(from: date))
     }
 
+    static let AnswerFilter = "prepare_peak_prep_relationship_intentions_"
+
     enum Key: String {
         case perceived = "prepare_peak_prep_relationship_intentions_preceived"
         case know = "prepare_peak_prep_relationship_intentions_know"

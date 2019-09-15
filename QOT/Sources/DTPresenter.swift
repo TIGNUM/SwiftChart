@@ -77,7 +77,9 @@ class DTPresenter: DTPresenterInterface {
 
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
-        let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
+        let answers = getAnswers(presentationModel.answerFilter,
+                                 question: presentationModel.question,
+                                 hasPreparations: !presentationModel.preparations.isEmpty)
         let events = Prepare.isCalendarEventSelection(question.key) ? getEvents(presentationModel.events)
             : getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
@@ -104,8 +106,8 @@ class DTPresenter: DTPresenterInterface {
                                     maxSelections: question?.maxPossibleSelections ?? 0)
     }
 
-    func getAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [DTViewModel.Answer] {
-        let filteredAnswers = getFilteredAnswers(answerFilter, question: question)
+    func getAnswers(_ answerFilter: String?, question: QDMQuestion?, hasPreparations: Bool) -> [DTViewModel.Answer] {
+        let filteredAnswers = getFilteredAnswers(answerFilter, question: question, hasPreparations: hasPreparations)
         return filteredAnswers.compactMap { (answer) -> DTViewModel.Answer in
             let selected = answer.subtitle?.isEmpty == true && question?.answerType == AnswerType.accept.rawValue
             return DTViewModel.Answer(remoteId: answer.remoteID ?? 0,
@@ -145,7 +147,10 @@ class DTPresenter: DTPresenterInterface {
         }
     }
 
-    func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?) -> [QDMAnswer] {
+    func getFilteredAnswers(_ answerFilter: String?, question: QDMQuestion?, hasPreparations: Bool) -> [QDMAnswer] {
+        if question?.key == Prepare.QuestionKey.BuildCritical && hasPreparations == false {
+            return question?.answers.filter { $0.keys.contains(Prepare.AnswerKey.PeakPlanNew) } ?? []
+        }
         guard let filter = answerFilter else { return question?.answers ?? [] }
         return question?.answers.filter { $0.keys.contains(filter) } ?? []
     }

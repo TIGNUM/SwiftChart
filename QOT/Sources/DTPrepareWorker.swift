@@ -51,22 +51,39 @@ final class DTPrepareWorker: DTWorker {
         }
     }
 
-    func createUserPreparation(serviceModel: PrepServiceModel, _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        UserService.main.createUserPreparation(level: serviceModel.level,
-                                               benefits: serviceModel.benefits,
-                                               answerFilter: serviceModel.answerFilter,
-                                               contentCollectionId: serviceModel.contentCollectionId,
-                                               relatedStrategyId: serviceModel.relatedStrategyId,
-                                               strategyIds: serviceModel.strategyIds,
-                                               preceiveAnswerIds: serviceModel.preceiveAnswerIds,
-                                               knowAnswerIds: serviceModel.knowAnswerIds,
-                                               feelAnswerIds: serviceModel.feelAnswerIds,
-                                               eventType: serviceModel.eventType,
-                                               event: serviceModel.event) { (preparation, error) in
+    func createUserPreparation(level: QDMUserPreparation.Level,
+                               benefits: String?,
+                               answerFilter: String?,
+                               contentCollectionId: Int,
+                               relatedStrategyId: Int,
+                               strategyIds: [Int],
+                               preceiveAnswerIds: [Int],
+                               knowAnswerIds: [Int],
+                               feelAnswerIds: [Int],
+                               eventType: String,
+                               event: QDMUserCalendarEvent,
+                               _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        UserService.main.createUserPreparation(level: level,
+                                               benefits: benefits,
+                                               answerFilter: answerFilter,
+                                               contentCollectionId: contentCollectionId,
+                                               relatedStrategyId: relatedStrategyId,
+                                               strategyIds: strategyIds,
+                                               preceiveAnswerIds: preceiveAnswerIds,
+                                               knowAnswerIds: knowAnswerIds,
+                                               feelAnswerIds: feelAnswerIds,
+                                               eventType: eventType,
+                                               event: event) { (preparation, error) in
                                                 if let error = error {
                                                     log("Error createUserPreparation: \(error.localizedDescription)", level: .error)
                                                 }
                                                 completion(preparation)
+        }
+    }
+
+    func getRelatedStrategies(_ strategyId: Int, _ completion: @escaping ([Int]) -> Void) {
+        ContentService.main.getContentCollectionById(strategyId) { (contentCollection) in
+            completion(contentCollection?.relatedContentIDsPrepareDefault ?? [])
         }
     }
 }
