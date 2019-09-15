@@ -60,5 +60,3 @@ struct PrepServiceModel {
         self.event = event ?? QDMUserCalendarEvent()
     }
 }
-
-
