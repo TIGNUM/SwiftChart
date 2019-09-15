@@ -21,13 +21,13 @@ final class DTRecoveryInteractor: DTInteractor {
         return nil
     }
 
-    override func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {
+    override func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
         if let nextQuestionKey = nextQuestionKey {
             let nextQuestion = questions.filter { $0.key == nextQuestionKey }.first
             self.nextQuestionKey = nil
             return nextQuestion
         } else {
-            let targetQuestionId = selectedAnswer?.targetId(.question)
+            let targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
             return questions.filter { $0.remoteID == targetQuestionId }.first
         }
     }

@@ -78,7 +78,8 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
-        let events = getEvents(calendarEvents: presentationModel.events, preparations: presentationModel.preparations)
+        let events = Prepare.isCalendarEventSelection(question.key) ? getEvents(presentationModel.events)
+            : getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
                            events: events,
@@ -116,25 +117,22 @@ class DTPresenter: DTPresenterInterface {
         }
     }
 
-    func getEvents(calendarEvents: [QDMUserCalendarEvent], preparations: [QDMUserPreparation]) -> [DTViewModel.Event] {
-        var events: [DTViewModel.Event] = []
-        if calendarEvents.isEmpty == false {
-            events = calendarEvents.compactMap { (event) -> DTViewModel.Event in
-                return DTViewModel.Event(remoteId: event.remoteID,
-                                         title: event.title,
-                                         dateString: Prepare.dateString(for: event.startDate),
-                                         isCalendarEvent: true)
-            }
+    func getEvents(_ calendarEvents: [QDMUserCalendarEvent]) -> [DTViewModel.Event] {
+        return calendarEvents.compactMap { (event) -> DTViewModel.Event in
+            return DTViewModel.Event(remoteId: event.remoteID,
+                                     title: event.title,
+                                     dateString: Prepare.dateString(for: event.startDate),
+                                     isCalendarEvent: true)
         }
-        if preparations.isEmpty == false {
-            events = preparations.compactMap { (preparation) -> DTViewModel.Event in
-                return DTViewModel.Event(remoteId: preparation.remoteID,
-                                         title: preparation.name,
-                                         dateString: Prepare.prepareDateString(preparation.createdAt),
-                                         isCalendarEvent: false)
-            }
+    }
+
+    func getPreparations(_ preparations: [QDMUserPreparation]) ->  [DTViewModel.Event] {
+        return preparations.compactMap { (preparation) -> DTViewModel.Event in
+            return DTViewModel.Event(remoteId: preparation.remoteID,
+                                     title: preparation.name,
+                                     dateString: Prepare.prepareDateString(preparation.createdAt),
+                                     isCalendarEvent: false)
         }
-        return events
     }
 
     func getDecisions(answer: QDMAnswer) -> [DTViewModel.Answer.Decision] {

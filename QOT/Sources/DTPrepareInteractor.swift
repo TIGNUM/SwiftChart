@@ -13,11 +13,11 @@ final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
-    var preparePresenter: DTPreparePresenterInterface?
     private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
     private var eventsInitiated = false
     private var preparationsInitiated = false
+    var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
     override func viewDidLoad() {

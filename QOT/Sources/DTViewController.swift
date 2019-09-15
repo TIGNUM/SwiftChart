@@ -61,7 +61,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
-    func getEvent(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> DTViewModel.Event? {
+    func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
         return nil
     }
 
@@ -69,7 +69,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         let selectedAnswers = viewModel?.selectedAnswers ?? []
         let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
-        let event = getEvent(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let event = getEvent(answerType: viewModel?.question.answerType)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
                                               event: event,

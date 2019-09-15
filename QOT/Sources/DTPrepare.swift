@@ -31,6 +31,11 @@ struct Prepare {
         static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
     }
 
+    static func isCalendarEventSelection(_ questionKey: String) -> Bool {
+        return questionKey == QuestionKey.CalendarEventSelectionDaily
+            || questionKey == QuestionKey.CalendarEventSelectionCritical
+    }
+
     static func dateString(for date: Date?) -> String? {
         guard let date = date else { return nil }
         if date.isToday == true {

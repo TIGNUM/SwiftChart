@@ -11,6 +11,7 @@ import UIKit
 final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
+    var prepareInteractor: DTPrepareInteractor?
     var prepareRouter: DTPrepareRouterInterface?
     private var selectedEvent: DTViewModel.Event?
 
@@ -43,14 +44,16 @@ final class DTPrepareViewController: DTViewController {
 
     override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
         self.selectedEvent = event
+        setAnswerNeedsSelection()
+        loadNextQuestion()
     }
 
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         super.didDeSelectAnswer(answer)
     }
 
-    override func getEvent(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> DTViewModel.Event? {
-        return nil
+    override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
+        return answerType == .openCalendarEvents ? selectedEvent : nil
     }
 }
 
