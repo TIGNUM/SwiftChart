@@ -17,7 +17,7 @@ struct DTViewModel {
     let typingAnimationDuration: Double
     let previousButtonIsHidden: Bool
     let dismissButtonIsHidden: Bool
-    let showNextQuestionAutomated: Bool    
+    let showNextQuestionAutomated: Bool
 
     // -ReadOnly
     var selectedAnswers: [DTViewModel.Answer] {

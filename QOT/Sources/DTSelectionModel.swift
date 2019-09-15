@@ -28,7 +28,7 @@ struct DTSelectionModel {
         self.userInput = userInput
         self.question = question
         self.trigger = trigger
-        self.event = event        
+        self.event = event
     }
 
     init(selectedAnswers: [DTViewModel.Answer], question: DTViewModel.Question?, userInput: String?) {
