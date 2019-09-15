@@ -19,12 +19,12 @@ final class DTRecoveryWorker: DTWorker {
         let causeContentItemId = causeAnswer?.targetId(.contentItem) ?? 0
         let causeContentId = causeAnswer?.targetId(.content) ?? 0
 
-        contentService.getContentCollectionById(causeContentId) { [weak self] (content) in
-            self?.userService.createRecovery3D(fatigueContentItemId: fatigueContentItemId,
-                                               causeAnwserId: causeAnswerId,
-                                               causeContentItemId: causeContentItemId,
-                                               exclusiveContentCollectionIds: content?.exclusiveContentIds ?? [],
-                                               suggestedSolutionsContentCollectionIds: content?.suggestedContentIds ?? []) { (recovery, error) in
+        ContentService.main.getContentCollectionById(causeContentId) { (content) in
+            UserService.main.createRecovery3D(fatigueContentItemId: fatigueContentItemId,
+                                              causeAnwserId: causeAnswerId,
+                                              causeContentItemId: causeContentItemId,
+                                              exclusiveContentCollectionIds: content?.exclusiveContentIds ?? [],
+                                              suggestedSolutionsContentCollectionIds: content?.suggestedContentIds ?? []) { (recovery, error) in
                                                 if let error = error {
                                                     log("Error createRecovery: \(error.localizedDescription)", level: .error)
                                                 }

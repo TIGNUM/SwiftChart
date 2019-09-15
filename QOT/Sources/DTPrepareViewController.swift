@@ -12,6 +12,7 @@ final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
     var prepareRouter: DTPrepareRouterInterface?
+    private var selectedEvent: DTViewModel.Event?
 
     // MARK: - Init
     init(configure: Configurator<DTPrepareViewController>) {
@@ -40,8 +41,16 @@ final class DTPrepareViewController: DTViewController {
         }
     }
 
+    override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+        self.selectedEvent = event
+    }
+
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         super.didDeSelectAnswer(answer)
+    }
+
+    override func getEvent(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> DTViewModel.Event? {
+        return nil
     }
 }
 

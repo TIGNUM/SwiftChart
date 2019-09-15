@@ -10,16 +10,25 @@ import Foundation
 import qot_dal
 
 struct DTPresentationModel {
-    var question: QDMQuestion?
-    var questionUpdate: String?
-    var answerFilter: String?
-    var tbv: QDMToBeVision?
+    let question: QDMQuestion?
+    let questionUpdate: String?
+    let answerFilter: String?
+    let tbv: QDMToBeVision?
+    let events: [QDMUserCalendarEvent]
+    let preparations: [QDMUserPreparation]
 
-    init(question: QDMQuestion?, questionUpdate: String?, answerFilter: String?, tbv: QDMToBeVision?) {
+    init(question: QDMQuestion?,
+         questionUpdate: String?,
+         answerFilter: String?,
+         tbv: QDMToBeVision?,
+         events: [QDMUserCalendarEvent],
+         preparations: [QDMUserPreparation]) {
         self.question = question
         self.questionUpdate = questionUpdate
         self.answerFilter = answerFilter
         self.tbv = tbv
+        self.events = events
+        self.preparations = preparations
     }
 
     init(question: QDMQuestion?) {
@@ -27,7 +36,8 @@ struct DTPresentationModel {
         self.questionUpdate = nil
         self.answerFilter = nil
         self.tbv = nil
-
+        self.events = []
+        self.preparations = []
     }
 
     func getNavigationButton(isHidden: Bool) -> NavigationButton? {

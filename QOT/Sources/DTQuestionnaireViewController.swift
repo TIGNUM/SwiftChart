@@ -13,6 +13,7 @@ protocol DTQuestionnaireViewControllerDelegate: class {
     func didTapBinarySelection(_ answer: DTViewModel.Answer)
     func didSelectAnswer(_ answer: DTViewModel.Answer)
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?)
 }
 
 class DTQuestionnaireViewController: UIViewController {
@@ -172,6 +173,12 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 if let answer = viewModel.answers.first {
                     return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
+            case .openCalendarEvents:
+                let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+                let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+                cell.configure(tableViewHeight: tableViewHeight, events: viewModel.events)
+                cell.delegate = delegate
+                return cell
             default:
                 break
             }

@@ -12,15 +12,40 @@ import qot_dal
 final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
+    private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
     var preparePresenter: DTPreparePresenterInterface?
+    private var events: [QDMUserCalendarEvent] = []
+    private var preparations: [QDMUserPreparation] = []
+    private var eventsInitiated = false
+    private var preparationsInitiated = false
 
     // MARK: - DTInteractor
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        prepareWorker?.getEvents { [weak self] (events, initiated) in
+            self?.events = events
+            self?.eventsInitiated = initiated
+        }
+        prepareWorker?.getPreparations { [weak self] (preparations, initiated) in
+            self?.preparations = preparations
+            self?.preparationsInitiated = initiated
+        }
+    }
+
     override func loadNextQuestion(selection: DTSelectionModel) {
         if selection.question?.key == Prepare.QuestionKey.Intro {
             checkCalendarPermissionForSelection(selection)
         } else {
             super.loadNextQuestion(selection: selection)
         }
+    }
+
+    override func getEvents(questionAnswerType: String?, questionKey: String?) -> [QDMUserCalendarEvent] {
+        return events
+    }
+
+    override func getPreparations(questionKey: String?, answerKeys: [String]?) -> [QDMUserPreparation] {
+        return preparations
     }
 }
 

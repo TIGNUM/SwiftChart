@@ -37,7 +37,9 @@ class DTInteractor: DTInteractorInterface {
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
             let presentationModel = DTPresentationModel(question: firstQuestion)
-            let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil, titleUpdate: nil)
+            let node = Node(questionId: firstQuestion?.remoteID,
+                            answerFilter: nil,
+                            titleUpdate: nil)
             self?.presentedNodes.append(node)
             self?.presenter?.showNextQuestion(presentationModel)
         }
@@ -89,20 +91,30 @@ class DTInteractor: DTInteractorInterface {
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
         let tbv = getTBV(questionAnswerType: question?.answerType)
+        let events = getEvents(questionAnswerType: question?.answerType, questionKey: question?.key)
+        let preparations = getPreparations(questionKey: question?.key,
+                                           answerKeys: selectedAnswers.last?.answers.first?.keys)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: answerFilter,
-                                   tbv: tbv)
+                                   tbv: tbv,
+                                   events: events,
+                                   preparations: preparations)
     }
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
         let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
         let tbv = getTBV(questionAnswerType: question?.answerType)
+        let events = getEvents(questionAnswerType: question?.answerType, questionKey: question?.key)
+        let preparations = getPreparations(questionKey: question?.key,
+                                           answerKeys: selection.selectedAnswers.first?.keys)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: selection.answerFilter,
-                                   tbv: tbv)
+                                   tbv: tbv,
+                                   events: events,
+                                   preparations: preparations)
     }
 
     func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {
@@ -116,6 +128,14 @@ class DTInteractor: DTInteractorInterface {
 
     func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
         return nil
+    }
+
+    func getEvents(questionAnswerType: String?, questionKey: String?) -> [QDMUserCalendarEvent] {
+        return []
+    }
+
+    func getPreparations(questionKey: String?, answerKeys: [String]?) -> [QDMUserPreparation] {
+        return []
     }
 
     // MARK: - TBV

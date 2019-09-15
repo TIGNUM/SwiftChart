@@ -61,12 +61,18 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
+    func getEvent(selectedAnswer: DTViewModel.Answer?, questionKey: String?) -> DTViewModel.Event? {
+        return nil
+    }
+
     func loadNextQuestion() {
         let selectedAnswers = viewModel?.selectedAnswers ?? []
         let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let event = getEvent(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
+                                              event: event,
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
@@ -147,6 +153,8 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
     }
+
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
 
     /**
      An answer contains the decision about the next question to load or needed content.

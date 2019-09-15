@@ -30,4 +30,23 @@ struct Prepare {
         static let PeakPlanNew = "prepare_peak_prep_plan_new"
         static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
     }
+
+    static func dateString(for date: Date?) -> String? {
+        guard let date = date else { return nil }
+        if date.isToday == true {
+            return String(format: "Today at %@", date.time)
+        }
+        if date.isTomorrow == true {
+            return String(format: "Tomorrow at %@", date.time)
+        }
+        if date.isInCurrentWeek == true {
+            return String(format: "%@ at %@", date.weekDayName, date.time)
+        }
+        return DateFormatter.mediumDate.string(from: date)
+    }
+
+    static func prepareDateString(_ date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return String(format: "Created %@", DateFormatter.mediumDate.string(from: date))
+    }
 }
