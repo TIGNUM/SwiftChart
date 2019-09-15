@@ -63,6 +63,13 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
+    func getUserPreparation(userInput: String?,
+                            event: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        let serviceModel = getServiceModel(answers: selectedAnswers, event: event, userInput: userInput)
+        prepareWorker?.createUserPreparation(serviceModel: serviceModel, completion)
+    }
+
     func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation? {
         return preparations.filter { $0.remoteID == event?.remoteId }.first
     }
@@ -82,7 +89,26 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     }
 }
 
-// MARK: - Private
+// MARK: -
+private extension DTPrepareInteractor {
+    func getServiceModel(answers: [SelectedAnswer],
+                         event: DTViewModel.Event?,
+                         userInput: String?) -> PrepServiceModel {
+        return PrepServiceModel(level: .LEVEL_ON_THE_GO,
+                                benefits: nil,
+                                answerFilter: nil,
+                                contentCollectionId: 0,
+                                relatedStrategyId: 0,
+                                strategyIds: [],
+                                preceiveAnswerIds: [],
+                                knowAnswerIds: [],
+                                feelAnswerIds: [],
+                                eventType: "",
+                                event: QDMUserCalendarEvent())
+    }
+}
+
+// MARK: - CalendarPermission
 private extension DTPrepareInteractor {
     func checkCalendarPermissionForSelection(_ selection: DTSelectionModel) {
         let answerKeys = selection.selectedAnswers.first?.keys ?? []

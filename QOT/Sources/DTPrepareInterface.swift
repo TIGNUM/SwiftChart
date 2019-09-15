@@ -22,7 +22,10 @@ protocol DTPrepareInteractorInterface: Interactor {
                             event: DTViewModel.Event?,
                             completion: @escaping (QDMUserPreparation?) -> Void)
     func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation?
-    func getUSerPreparation(selectedAnswers: [SelectedAnswer], _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func getUserPreparation(userInput: String?,
+                            event: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol DTPrepareRouterInterface {

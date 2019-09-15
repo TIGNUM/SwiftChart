@@ -50,4 +50,23 @@ final class DTPrepareWorker: DTWorker {
                                                 completion(preparation)
         }
     }
+
+    func createUserPreparation(serviceModel: PrepServiceModel, _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        UserService.main.createUserPreparation(level: serviceModel.level,
+                                               benefits: serviceModel.benefits,
+                                               answerFilter: serviceModel.answerFilter,
+                                               contentCollectionId: serviceModel.contentCollectionId,
+                                               relatedStrategyId: serviceModel.relatedStrategyId,
+                                               strategyIds: serviceModel.strategyIds,
+                                               preceiveAnswerIds: serviceModel.preceiveAnswerIds,
+                                               knowAnswerIds: serviceModel.knowAnswerIds,
+                                               feelAnswerIds: serviceModel.feelAnswerIds,
+                                               eventType: serviceModel.eventType,
+                                               event: serviceModel.event) { (preparation, error) in
+                                                if let error = error {
+                                                    log("Error createUserPreparation: \(error.localizedDescription)", level: .error)
+                                                }
+                                                completion(preparation)
+        }
+    }
 }

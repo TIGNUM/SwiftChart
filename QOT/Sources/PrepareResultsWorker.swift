@@ -240,13 +240,13 @@ private extension PrepareResultsWorker {
         }
     }
 
-//    func updateAnswerIds(_ answers: [DecisionTreeModel.SelectedAnswer],
-//                         _ completion: @escaping (QDMUserPreparation?) -> Void) {
-//        preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
-//        knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
-//        feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
-//        updatePreparation(completion)
-//    }
+    func updateAnswerIds(_ answers: [DecisionTreeModel.SelectedAnswer],
+                         _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
+        knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
+        feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
+        updatePreparation(completion)
+    }
 
     func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }

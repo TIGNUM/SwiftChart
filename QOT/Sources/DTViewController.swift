@@ -85,6 +85,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
+        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
@@ -170,6 +171,16 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         } else if var answer = viewModel?.answers.first {
             answer.setSelected(true)
             viewModel?.setSelectedAnswer(answer)
+        }
+    }
+}
+
+extension DTViewController {
+    func handleAutomatedQuestion(viewModel: DTViewModel) {
+        guard viewModel.showNextQuestionAutomated == true else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
+            self?.setAnswerNeedsSelection()
+            self?.loadNextQuestion()
         }
     }
 }

@@ -34,8 +34,8 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
                      questionKeyHome: String,
                      _ completion: @escaping (QDMToBeVision?) -> Void) {
         tbvWorker?.createVision(selectedAnswers: selectedAnswers,
-                                questionKeyWork: TBV.QuestionKey.Work,
-                                questionKeyHome: TBV.QuestionKey.Home) { [weak self] (tbv) in
+                                questionKeyWork: ShortTBV.QuestionKey.Work,
+                                questionKeyHome: ShortTBV.QuestionKey.Home) { [weak self] (tbv) in
                                     self?.tbv = tbv
                                     completion(tbv)
         }

@@ -153,6 +153,7 @@
 		366B6D2E23018980003FA63E /* QDMTermData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */; };
 		366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D04F322C65EE30081258E /* FatigueTableViewCell.swift */; };
 		366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366D04F422C65EE30081258E /* FatigueTableViewCell.xib */; };
+		366EE2A0232EB001008F3DD8 /* PrepServiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366EE29F232EB001008F3DD8 /* PrepServiceModel.swift */; };
 		366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */; };
 		366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */; };
 		36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */; };
@@ -1490,6 +1491,7 @@
 		366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTermData+Ext.swift"; sourceTree = "<group>"; };
 		366D04F322C65EE30081258E /* FatigueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatigueTableViewCell.swift; sourceTree = "<group>"; };
 		366D04F422C65EE30081258E /* FatigueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FatigueTableViewCell.xib; sourceTree = "<group>"; };
+		366EE29F232EB001008F3DD8 /* PrepServiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepServiceModel.swift; sourceTree = "<group>"; };
 		366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationTableViewCell.swift; sourceTree = "<group>"; };
 		366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoundationTableViewCell.xib; sourceTree = "<group>"; };
 		36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubsriptionReminderViewController.xib; sourceTree = "<group>"; };
@@ -3268,6 +3270,7 @@
 				36E12EBC232B57F0009E96EA /* DTPrepareRouter.swift */,
 				36E12EBE232B57F0009E96EA /* DTPrepareViewController.swift */,
 				36E12EBB232B57F0009E96EA /* DTPrepareWorker.swift */,
+				366EE29F232EB001008F3DD8 /* PrepServiceModel.swift */,
 			);
 			name = Prepare;
 			sourceTree = "<group>";
@@ -7284,6 +7287,7 @@
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
+				366EE2A0232EB001008F3DD8 /* PrepServiceModel.swift in Sources */,
 				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
