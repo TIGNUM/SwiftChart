@@ -34,7 +34,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPRINT CHALLENGE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPr-CM-EID">
-                    <rect key="frame" x="20" y="57" width="182" height="24"/>
+                    <rect key="frame" x="24" y="57" width="182" height="24"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="24" id="fyT-rp-Z8U"/>
                     </constraints>
@@ -49,7 +49,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nAA-TH-Axd">
-                    <rect key="frame" x="20" y="48" width="16" height="1"/>
+                    <rect key="frame" x="24" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="16" id="9Qu-kc-umq"/>
@@ -133,7 +133,7 @@
                 <constraint firstItem="a2X-cN-vE8" firstAttribute="leading" secondItem="ZCW-d6-H8F" secondAttribute="leading" id="9Ld-75-C7H"/>
                 <constraint firstItem="ZCW-d6-H8F" firstAttribute="trailing" secondItem="a2X-cN-vE8" secondAttribute="trailing" id="A6N-7P-J9W"/>
                 <constraint firstItem="ZCW-d6-H8F" firstAttribute="trailing" secondItem="pLQ-bh-3pJ" secondAttribute="trailing" constant="55" id="DIS-gj-zMV"/>
-                <constraint firstItem="nAA-TH-Axd" firstAttribute="leading" secondItem="h1K-Pb-kvU" secondAttribute="leading" constant="20" id="HHt-hP-ln5"/>
+                <constraint firstItem="nAA-TH-Axd" firstAttribute="leading" secondItem="h1K-Pb-kvU" secondAttribute="leading" constant="24" id="HHt-hP-ln5"/>
                 <constraint firstItem="nAA-TH-Axd" firstAttribute="top" secondItem="h1K-Pb-kvU" secondAttribute="top" constant="48" id="Isd-zW-PIM"/>
                 <constraint firstItem="ZCW-d6-H8F" firstAttribute="bottom" secondItem="wmj-Xn-Nxm" secondAttribute="bottom" constant="74" id="ItI-qb-KsK"/>
                 <constraint firstItem="WPr-CM-EID" firstAttribute="top" secondItem="nAA-TH-Axd" secondAttribute="bottom" constant="8" id="J5t-ep-05o"/>
@@ -150,7 +150,7 @@
                 <constraint firstItem="KVg-Nh-YGZ" firstAttribute="top" relation="greaterThanOrEqual" secondItem="U1h-PT-9Yd" secondAttribute="bottom" constant="30" id="wZi-C9-ezp"/>
                 <constraint firstItem="wmj-Xn-Nxm" firstAttribute="top" secondItem="a2X-cN-vE8" secondAttribute="bottom" constant="20" id="xfU-Zu-DGF"/>
                 <constraint firstItem="x9V-Gw-Aha" firstAttribute="top" secondItem="WPr-CM-EID" secondAttribute="bottom" constant="24" id="yMe-jK-hQI"/>
-                <constraint firstItem="WPr-CM-EID" firstAttribute="leading" secondItem="ZCW-d6-H8F" secondAttribute="leading" constant="20" id="zsh-Dy-7jb"/>
+                <constraint firstItem="WPr-CM-EID" firstAttribute="leading" secondItem="ZCW-d6-H8F" secondAttribute="leading" constant="24" id="zsh-Dy-7jb"/>
                 <constraint firstItem="U1h-PT-9Yd" firstAttribute="top" secondItem="x9V-Gw-Aha" secondAttribute="bottom" constant="20" id="zuV-bL-Uoo"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
