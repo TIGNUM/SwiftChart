@@ -28,7 +28,11 @@ final class DTPrepareViewController: DTViewController {
     // MARK: - Answer Handling
     override func didTapNext() {
         setAnswerNeedsSelection()
-        loadNextQuestion()
+        if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
+            prepareInteractor?.getUserPreparation(event: <#T##DTViewModel.Event?#>)
+        } else {
+            loadNextQuestion()
+        }
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
@@ -37,7 +41,12 @@ final class DTPrepareViewController: DTViewController {
             if let contentId = answer.targetId(.content) {
                 handleAnswerSelection(answer, contentId: contentId)
             } else {
-                loadNextQuestion()
+                switch viewModel?.question.key {
+                case Prepare.QuestionKey.BuildCritical?:
+                    handleTBVSelection(answer)
+                default:
+                    loadNextQuestion()
+                }
             }
         }
     }
@@ -45,7 +54,7 @@ final class DTPrepareViewController: DTViewController {
     override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
         if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
             let preparation = prepareInteractor?.getUserPreparation(event: event)
-            prepareRouter?.presentPrepareResults(preparation)
+            prepareRouter?.presentPrepareResults(preparation, canDelete: false)
         } else {
             self.selectedEvent = event
             setAnswerNeedsSelection()
@@ -69,10 +78,23 @@ private extension DTPrepareViewController {
             prepareRouter?.presentPrepareResults(contentId)
         } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
             prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
-                self?.prepareRouter?.presentPrepareResults(preparation)
+                self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
             }
         } else {
             loadNextQuestion()
+        }
+    }
+
+    func handleTBVSelection(_ answer: DTViewModel.Answer) {
+        prepareInteractor?.getUsersTBV { [weak self] (tbv, initiated) in
+            if initiated && tbv?.text != nil {
+                self?.loadNextQuestion()
+            } else {
+                self?.prepareRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroPrepare,
+                                                           delegate: self?.prepareInteractor) { [weak self] in
+                                                            self?.loadNextQuestion()
+                }
+            }
         }
     }
 }

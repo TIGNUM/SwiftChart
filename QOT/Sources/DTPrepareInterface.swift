@@ -22,16 +22,17 @@ protocol DTPrepareInteractorInterface: Interactor {
                             event: DTViewModel.Event?,
                             completion: @escaping (QDMUserPreparation?) -> Void)
     func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation?
+    func getUSerPreparation(selectedAnswers: [SelectedAnswer], _ completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol DTPrepareRouterInterface {
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
     func presentPrepareResults(_ contentId: Int)
-    func presentPrepareResults(_ preparation: QDMUserPreparation?)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
 
     func openArticle(with contentID: Int)
     func openVideo(from url: URL, item: QDMContentItem?)
-    func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
 
     func dismissAll()

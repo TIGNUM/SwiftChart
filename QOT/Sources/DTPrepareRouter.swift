@@ -25,10 +25,6 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
 
     }
 
-    func openShortTBVGenerator(completion: (() -> Void)?) {
-
-    }
-
     func openImagePicker() {
 
     }
@@ -45,14 +41,20 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
 
     }
 
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
+        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroPrepare, delegate: delegate)
+        let controller = DTShortTBVViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: completion)
+    }
+
     func presentPrepareResults(_ contentId: Int) {
         let configurator = PrepareResultsConfigurator.configurate(contentId)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 
-    func presentPrepareResults(_ preparation: QDMUserPreparation?) {
-        let configurator = PrepareResultsConfigurator.make(preparation, canDelete: true)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool) {
+        let configurator = PrepareResultsConfigurator.make(preparation, canDelete: canDelete)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }

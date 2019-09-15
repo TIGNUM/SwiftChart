@@ -14,14 +14,13 @@ protocol DTMindsetViewControllerInterface: class {}
 protocol DTMindsetPresenterInterface {}
 
 protocol DTMindsetInteractorInterface: Interactor {
-    func didDismissShortTBVScene(tbv: QDMToBeVision?)
     func didDismissMindsetResults()
     func getMindsetShifter(_ completion: @escaping (QDMMindsetShifter?) -> Void)
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
 }
 
 protocol DTMindsetRouterInterface {
-    func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?)
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?, completion: (() -> Void)?)
     func dismiss()
 }

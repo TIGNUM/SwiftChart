@@ -17,6 +17,7 @@ final class DTPrepareInteractor: DTInteractor {
     private var preparations: [QDMUserPreparation] = []
     private var eventsInitiated = false
     private var preparationsInitiated = false
+    private var tbv: QDMToBeVision?
     var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
@@ -32,12 +33,23 @@ final class DTPrepareInteractor: DTInteractor {
         }
     }
 
+    override func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
+        super.getUsersTBV { (tbv, initiated) in
+            self.tbv = tbv
+            completion(tbv, initiated)
+        }
+    }
+
     override func loadNextQuestion(selection: DTSelectionModel) {
         if selection.question?.key == Prepare.QuestionKey.Intro {
             checkCalendarPermissionForSelection(selection)
         } else {
             super.loadNextQuestion(selection: selection)
         }
+    }
+
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
+        return questionKey == Prepare.QuestionKey.ShowTBV ? tbv : nil
     }
 
     override func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
@@ -86,5 +98,12 @@ private extension DTPrepareInteractor {
                 super.loadNextQuestion(selection: selection)
             }
         }
+    }
+}
+
+// MARK: - DTShortTBVDelegate
+extension DTPrepareInteractor: DTShortTBVDelegate {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        self.tbv = tbv
     }
 }

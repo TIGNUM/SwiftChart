@@ -13,6 +13,10 @@ protocol DTShortTBVViewControllerInterface: class {}
 
 protocol DTShortTBVPresenterInterface {}
 
+protocol DTShortTBVDelegate: class {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?)
+}
+
 protocol DTShortTBVInteractorInterface: Interactor {
     func getTBV() -> QDMToBeVision?
     func generateTBV(selectedAnswers: [SelectedAnswer],

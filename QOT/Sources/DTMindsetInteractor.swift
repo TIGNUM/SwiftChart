@@ -23,13 +23,15 @@ final class DTMindsetInteractor: DTInteractor {
     }
 }
 
+extension DTMindsetInteractor: DTShortTBVDelegate {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        self.tbv = tbv
+    }
+}
+
 extension DTMindsetInteractor: DTMindsetInteractorInterface {
     func getMindsetShifter(_ completion: @escaping (QDMMindsetShifter?) -> Void) {
         mindsetWorker?.getMindsetShifter(tbv: tbv, selectedAnswers: selectedAnswers, completion: completion)
-    }
-
-    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
-        self.tbv = tbv
     }
 
     func didDismissMindsetResults() {
