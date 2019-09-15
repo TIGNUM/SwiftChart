@@ -51,8 +51,18 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
-    func setUserCalendarEvent(event: QDMUserCalendarEvent) {
-
+    func getUserPreparation(answer: DTViewModel.Answer,
+                            event: DTViewModel.Event?,
+                            completion: @escaping (QDMUserPreparation?) -> Void) {
+        let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
+        let relatedStrategyId = answer.targetId(.content) ?? 0
+        let eventType = answer.title
+        let userEvent = events.filter { $0.remoteID == event?.remoteId }.first ?? QDMUserCalendarEvent()
+        prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
+                                              relatedStategyId: relatedStrategyId,
+                                              eventType: eventType,
+                                              event: userEvent,
+                                              completion)
     }
 }
 

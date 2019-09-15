@@ -35,7 +35,7 @@ final class DTPrepareViewController: DTViewController {
         viewModel?.setSelectedAnswer(answer)
         if viewModel?.question.answerType == .singleSelection {
             if let contentId = answer.targetId(.content) {
-                prepareRouter?.presentPrepareResults(contentId)
+                handleAnswerSelection(answer, contentId: contentId)
             } else {
                 loadNextQuestion()
             }
@@ -58,7 +58,17 @@ final class DTPrepareViewController: DTViewController {
 }
 
 // MARK: - Private
-private extension DTPrepareViewController {}
+private extension DTPrepareViewController {
+    func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
+        if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
+            prepareRouter?.presentPrepareResults(contentId)
+        } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
+            prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
+                self?.prepareRouter?.presentPrepareResults(preparation)
+            }
+        }
+    }
+}
 
 extension DTPrepareViewController: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {

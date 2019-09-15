@@ -21,6 +21,7 @@ final class DTPrepareConfigurator {
             presenter.prepareViewController = viewController
             interactor.preparePresenter = presenter
             viewController.interactor = interactor
+            viewController.prepareInteractor = interactor
             viewController.prepareRouter = router
         }
     }

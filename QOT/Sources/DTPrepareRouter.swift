@@ -51,13 +51,10 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         viewController?.present(controller, animated: true)
     }
 
-    func presentPrepareResults(_ preparation: QDMUserPreparation, _ answers: [SelectedAnswer]) {
-//        let configurator = PrepareResultsConfigurator.configurate(preparation,
-//                                                                  answers,
-//                                                                  canDelete: answers.isEmpty == false,
-//                                                                  true)
-//        let controller = PrepareResultsViewController(configure: configurator)
-//        viewController?.present(controller, animated: true)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?) {
+        let configurator = PrepareResultsConfigurator.make(preparation, canDelete: true)
+        let controller = PrepareResultsViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {

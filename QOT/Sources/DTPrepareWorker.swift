@@ -27,4 +27,27 @@ final class DTPrepareWorker: DTWorker {
             completion(preparations ?? [], initiated)
         }
     }
+
+    func createPreparationDaily(answerFilter: String,
+                                relatedStategyId: Int,
+                                eventType: String,
+                                event: QDMUserCalendarEvent,
+                                _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        UserService.main.createUserPreparation(level: QDMUserPreparation.Level.LEVEL_DAILY,
+                                               benefits: nil,
+                                               answerFilter: nil,
+                                               contentCollectionId: QDMUserPreparation.Level.LEVEL_DAILY.contentID,
+                                               relatedStrategyId: relatedStategyId,
+                                               strategyIds: [],
+                                               preceiveAnswerIds: [],
+                                               knowAnswerIds: [],
+                                               feelAnswerIds: [],
+                                               eventType: eventType,
+                                               event: event) { (preparation, error) in
+                                                if let error = error {
+                                                    log("Error createUserPreparation DAILY: \(error.localizedDescription)", level: .error)
+                                                }
+                                                completion(preparation)
+        }
+    }
 }

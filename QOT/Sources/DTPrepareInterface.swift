@@ -18,12 +18,14 @@ protocol DTPreparePresenterInterface {
 }
 
 protocol DTPrepareInteractorInterface: Interactor {
-    func setUserCalendarEvent(event: QDMUserCalendarEvent)
+    func getUserPreparation(answer: DTViewModel.Answer,
+                            event: DTViewModel.Event?,
+                            completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol DTPrepareRouterInterface {
     func presentPrepareResults(_ contentId: Int)
-    func presentPrepareResults(_ preparation: QDMUserPreparation, _ answers: [SelectedAnswer])
+    func presentPrepareResults(_ preparation: QDMUserPreparation?)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
 
     func openArticle(with contentID: Int)
