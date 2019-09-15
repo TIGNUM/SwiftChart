@@ -1056,6 +1056,7 @@
 		BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */; };
 		BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */; };
 		BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */; };
+		BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
@@ -2376,6 +2377,7 @@
 		BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarTableViewCell.xib; sourceTree = "<group>"; };
 		BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTResultBaseTableViewCell.swift; sourceTree = "<group>"; };
 		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
+		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
@@ -4663,6 +4665,7 @@
 			children = (
 				ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */,
 				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
+				BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -6179,6 +6182,7 @@
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
+				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
