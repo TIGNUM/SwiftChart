@@ -20,8 +20,11 @@ protocol DTPreparePresenterInterface {
 protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(answer: DTViewModel.Answer,
                             event: DTViewModel.Event?,
-                            completion: @escaping (QDMUserPreparation?) -> Void)
-    func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation?
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func getUserPreparation(event: DTViewModel.Event?,
+                            calendarEvent: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
 
     func getUserPreparation(userInput: String?,
                             event: DTViewModel.Event?,

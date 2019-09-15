@@ -57,8 +57,11 @@ final class DTPrepareViewController: DTViewController {
 
     override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
         if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
-            let preparation = prepareInteractor?.getUserPreparation(event: event)
-            prepareRouter?.presentPrepareResults(preparation, canDelete: false)
+            prepareInteractor?.getUserPreparation(event: event,
+                                                  calendarEvent: selectedEvent) { [weak self] (preparation) in
+                                                    self?.prepareRouter?.presentPrepareResults(preparation,
+                                                                                               canDelete: true)
+            }
         } else {
             self.selectedEvent = event
             setAnswerNeedsSelection()

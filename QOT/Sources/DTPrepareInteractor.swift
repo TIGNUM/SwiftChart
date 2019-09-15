@@ -70,6 +70,7 @@ final class DTPrepareInteractor: DTInteractor {
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
+    //TODO Unify to one single createPrep func with ServiceModel.
     func getUserPreparation(userInput: String?,
                             event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
@@ -99,13 +100,30 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         return answers.filter { $0.question?.remoteId == key.questionID }.flatMap { $0.answers }.compactMap { $0.remoteId }
     }
 
-    func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation? {
-        return preparations.filter { $0.remoteID == event?.remoteId }.first
+    func getUserPreparation(event: DTViewModel.Event?,
+                            calendarEvent: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
+        let existingPrep = preparations.filter { $0.remoteID == event?.remoteId }.first
+        let calendarEvent = events.filter { $0.remoteID == calendarEvent?.remoteId }.first
+        let answers = selectedAnswers.flatMap { $0.answers }
+        let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
+        self.prepareWorker?.createUserPreparation(level: existingPrep?.type ?? .LEVEL_CRITICAL,
+                                                  benefits: existingPrep?.benefits,
+                                                  answerFilter: existingPrep?.answerFilter,
+                                                  contentCollectionId: existingPrep?.contentCollectionId ?? 0,
+                                                  relatedStrategyId: existingPrep?.relatedStrategyId ?? 0,
+                                                  strategyIds: existingPrep?.strategyIds ?? [],
+                                                  preceiveAnswerIds: existingPrep?.preceiveAnswerIds ?? [],
+                                                  knowAnswerIds: existingPrep?.knowAnswerIds ?? [],
+                                                  feelAnswerIds: existingPrep?.feelAnswerIds ?? [],
+                                                  eventType: eventAnswer?.title ?? "",
+                                                  event: calendarEvent ?? QDMUserCalendarEvent(),
+                                                  completion)
     }
 
     func getUserPreparation(answer: DTViewModel.Answer,
                             event: DTViewModel.Event?,
-                            completion: @escaping (QDMUserPreparation?) -> Void) {
+                            _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
         let eventType = answer.title
