@@ -27,7 +27,7 @@ struct DTViewModel {
     struct Event {
         let remoteId: Int?
         let title: String?
-        let dateString: String?        
+        let dateString: String?
         let isCalendarEvent: Bool
     }
 
