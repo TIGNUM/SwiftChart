@@ -91,9 +91,8 @@ class DTInteractor: DTInteractorInterface {
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
         let tbv = getTBV(questionAnswerType: question?.answerType)
-        let events = getEvents(questionAnswerType: question?.answerType, questionKey: question?.key)
-        let preparations = getPreparations(questionKey: question?.key,
-                                           answerKeys: selectedAnswers.last?.answers.first?.keys)
+        let events = getEvents(questionKey: question?.key)
+        let preparations = getPreparations(answerKeys: selectedAnswers.last?.answers.first?.keys)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: answerFilter,
@@ -106,9 +105,8 @@ class DTInteractor: DTInteractorInterface {
         let question = getNextQuestion(selection: selection, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
         let tbv = getTBV(questionAnswerType: question?.answerType)
-        let events = getEvents(questionAnswerType: question?.answerType, questionKey: question?.key)
-        let preparations = getPreparations(questionKey: question?.key,
-                                           answerKeys: selection.selectedAnswers.first?.keys)
+        let events = getEvents(questionKey: question?.key)
+        let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: selection.answerFilter,
@@ -130,11 +128,11 @@ class DTInteractor: DTInteractorInterface {
         return nil
     }
 
-    func getEvents(questionAnswerType: String?, questionKey: String?) -> [QDMUserCalendarEvent] {
+    func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
         return []
     }
 
-    func getPreparations(questionKey: String?, answerKeys: [String]?) -> [QDMUserPreparation] {
+    func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
         return []
     }
 

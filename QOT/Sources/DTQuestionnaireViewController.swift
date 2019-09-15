@@ -160,10 +160,10 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return cell
             case .singleSelection,
                  .multiSelection:
-                let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: viewModel.answers, maxPossibleSelections: viewModel.question.maxSelections, collectionHeight: heightOfCollection)
-                cell.delegate = self
-                return cell
+                if viewModel.question.key == Prepare.QuestionKey.SelectExisting {
+                    return getEventCell(indexPath, tableView)
+                }
+                return getSelectionCell(indexPath, tableView)
             case .text:
                 return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
 //                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -174,11 +174,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                     return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
             case .openCalendarEvents:
-                let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
-                let tableViewHeight = view.frame.height - (cell.frame.height + 64)
-                cell.configure(tableViewHeight: tableViewHeight, events: viewModel.events)
-                cell.delegate = delegate
-                return cell
+                return getEventCell(indexPath, tableView)
             default:
                 break
             }
@@ -191,7 +187,10 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
+}
 
+// MARK: - Private
+private extension DTQuestionnaireViewController {
     func getTypingCell(_ indexPath: IndexPath, _ tableView: UITableView, title: String?) -> AnimatedAnswerTableViewCell {
         let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: title ?? "",
@@ -199,6 +198,23 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                        questionUpdate: nil,
                        textColor: .carbon,
                        animateTextDuration: viewModel.typingAnimationDuration)
+        cell.delegate = self
+        return cell
+    }
+
+    func getEventCell(_ indexPath: IndexPath, _ tableView: UITableView) -> CalendarEventsTableViewCell {
+        let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+        let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+        cell.configure(tableViewHeight: tableViewHeight, events: viewModel.events)
+        cell.delegate = delegate
+        return cell
+    }
+
+    func getSelectionCell(_ indexPath: IndexPath, _ tableView: UITableView) -> MultipleSelectionTableViewCell {
+        let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(for: viewModel.answers,
+                       maxPossibleSelections: viewModel.question.maxSelections,
+                       collectionHeight: heightOfCollection)
         cell.delegate = self
         return cell
     }

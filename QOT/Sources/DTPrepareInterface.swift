@@ -21,6 +21,7 @@ protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(answer: DTViewModel.Answer,
                             event: DTViewModel.Event?,
                             completion: @escaping (QDMUserPreparation?) -> Void)
+    func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation?
 }
 
 protocol DTPrepareRouterInterface {

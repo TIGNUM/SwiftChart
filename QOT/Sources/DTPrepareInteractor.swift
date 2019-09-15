@@ -40,17 +40,21 @@ final class DTPrepareInteractor: DTInteractor {
         }
     }
 
-    override func getEvents(questionAnswerType: String?, questionKey: String?) -> [QDMUserCalendarEvent] {
-        return events
+    override func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
+        return Prepare.isCalendarEventSelection(questionKey ?? "") ? events : []
     }
 
-    override func getPreparations(questionKey: String?, answerKeys: [String]?) -> [QDMUserPreparation] {
-        return preparations
+    override func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
+        return answerKeys?.contains(Prepare.AnswerKey.PeakPlanTemplate) == true ? preparations : []
     }
 }
 
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
+    func getUserPreparation(event: DTViewModel.Event?) -> QDMUserPreparation? {
+        return preparations.filter { $0.remoteID == event?.remoteId }.first
+    }
+
     func getUserPreparation(answer: DTViewModel.Answer,
                             event: DTViewModel.Event?,
                             completion: @escaping (QDMUserPreparation?) -> Void) {

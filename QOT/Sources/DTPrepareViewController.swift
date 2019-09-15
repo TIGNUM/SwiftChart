@@ -43,9 +43,14 @@ final class DTPrepareViewController: DTViewController {
     }
 
     override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
-        self.selectedEvent = event
-        setAnswerNeedsSelection()
-        loadNextQuestion()
+        if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
+            let preparation = prepareInteractor?.getUserPreparation(event: event)
+            prepareRouter?.presentPrepareResults(preparation)
+        } else {
+            self.selectedEvent = event
+            setAnswerNeedsSelection()
+            loadNextQuestion()
+        }
     }
 
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
@@ -66,6 +71,8 @@ private extension DTPrepareViewController {
             prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
                 self?.prepareRouter?.presentPrepareResults(preparation)
             }
+        } else {
+            loadNextQuestion()
         }
     }
 }
