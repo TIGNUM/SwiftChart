@@ -19,7 +19,7 @@ final class DTTBVPresenter: DTPresenter {
         if typingAnimationState {
             hideNavigationButtonForAnimation()
         }
-        return typingAnimationState  
+        return typingAnimationState
     }
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
