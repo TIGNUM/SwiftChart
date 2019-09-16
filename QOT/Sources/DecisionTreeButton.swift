@@ -163,16 +163,7 @@ final class NavigationButton: AbstractTreeButton {
     private var maxCount = 1
 
     private var spacerWidth: CGFloat = 0.0
-
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//        setup()
-//    }
-//
-//    required init?(coder aDecoder: NSCoder) {
-//        super.init(coder: aDecoder)
-//        setup()
-//    }
+    private var completion:(() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -233,6 +224,14 @@ final class NavigationButton: AbstractTreeButton {
         UIView.animate(withDuration: 0.25) {
             self.setShadow(isEnough)  //this already calls self.layoutIfNeeded()
         }
+    }
+
+    func setOnPressed(completion: @escaping () -> Void) {
+        self.completion = completion
+    }
+
+    @IBAction func didPressButton() {
+        completion?()
     }
 }
 
