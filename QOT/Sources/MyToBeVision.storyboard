@@ -573,7 +573,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="i5j-L3-Okf" firstAttribute="bottom" secondItem="qAA-fz-qZu" secondAttribute="bottom" id="2yT-s0-xFV"/>
                             <constraint firstItem="qAA-fz-qZu" firstAttribute="top" secondItem="DfM-O5-NAp" secondAttribute="top" constant="44" id="5ry-De-0v8"/>

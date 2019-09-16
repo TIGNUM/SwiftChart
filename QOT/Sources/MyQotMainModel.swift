@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import DifferenceKit
 
-enum MyQotSection: Int, CaseIterable {
+enum MyQotSection: Int, CaseIterable, Differentiable {
     case profile = 0
     case library
     case preps
@@ -20,10 +21,23 @@ enum MyQotSection: Int, CaseIterable {
 struct MyQotViewModel {
     let myQotItems: [Item]
 
-    struct Item {
+    struct Item: Differentiable {
+        typealias DifferenceIdentifier = String
+
+        func isContentEqual(to source: MyQotViewModel.Item) -> Bool {
+            return myQotSections == source.myQotSections &&
+                    title == source.title &&
+                    subtitle == source.subtitle
+        }
+
+        var differenceIdentifier: DifferenceIdentifier {
+            return "\(myQotSections)"
+        }
+
         let myQotSections: MyQotSection
         let title: String?
-        let subtitle: String?
+        var subtitle: String?
+        var showSubtitleInRed: Bool
     }
 
     // MARK: - Properties
@@ -32,7 +46,7 @@ struct MyQotViewModel {
         return MyQotSection.allCases.at(index: indexPath.row) ?? .profile
     }
 
-    enum Section: Int, CaseIterable {
+    enum Section: Int, CaseIterable, Differentiable {
         case header = 0
         case body
 

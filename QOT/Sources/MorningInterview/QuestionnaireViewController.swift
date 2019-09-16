@@ -437,16 +437,16 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title, to: hintLabel)
+                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title?.lowercased(), to: hintLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title, to: hintLabel)
+                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title?.lowercased(), to: hintLabel)
                  }
             }
         } else {
             indexLabel.text = String(items - index)
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
-            ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
+            ThemeText.questionHintLabel.apply(subtitles[items - index - 1].lowercased(), to: hintLabel)
         }
 
         if isTouch == true {
@@ -639,6 +639,8 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             return [dismissNavigationItem()]
+        case .dailyCheckin:
+            return [dismissNavigationItemLight()]
         default:
             return nil
         }

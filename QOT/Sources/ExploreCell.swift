@@ -18,7 +18,7 @@ final class ExploreCell: BaseDailyBriefCell {
 
     func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: self.bucketTitle)
-        ThemeText.bespokeText.apply(introText, to: introTextLabel)
+        ThemeText.dailyBriefSubtitle.apply(introText, to: introTextLabel)
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)
         timeOfDayPosition.constant = labelPosition ?? 0
     }

@@ -42,7 +42,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func configure(with: Level5ViewModel?) {
         ThemeText.dailyBriefTitle.apply(with?.title, to: titleLabel)
-        ThemeText.dailyBriefLevelContent.apply(with?.intro, to: introLabel)
+        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: introLabel)
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []

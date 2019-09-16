@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DifferenceKit
 
 final class MyQotMainPresenter {
 
@@ -28,7 +29,7 @@ extension MyQotMainPresenter: MyQotMainPresenterInterface {
         viewController?.setupView()
     }
 
-    func present(for myQotSection: MyQotViewModel) {
-        viewController?.setup(for: myQotSection)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
+        viewController?.updateViewNew(differenceList)
     }
 }

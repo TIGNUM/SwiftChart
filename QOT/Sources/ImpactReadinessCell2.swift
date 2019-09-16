@@ -55,8 +55,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                 self.removeLoadingSkeleton()
         }
 
-        ThemeText.sprintText.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
-        ThemeText.asterix.apply(viewModel?.asteriskText, to: asterickText)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
 
         sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),

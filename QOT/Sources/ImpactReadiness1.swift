@@ -54,7 +54,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
-        ThemeText.sprintText.apply(viewModel?.readinessIntro, to: content)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.readinessIntro, to: content)
         let score: Int = viewModel?.readinessScore ?? 0
         if score == -1 {
             ThemeText.readinessScore.apply(" - ", to: impactReadinessScore)
