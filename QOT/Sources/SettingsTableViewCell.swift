@@ -188,6 +188,7 @@ private extension SettingsTableViewCell {
 	}
 
     func setTitle(title: String) {
+        ThemeText.accountHeader.apply(title, to: titleLabel)
         titleLabel.text = title
         titleLabel.lineBreakMode = .byTruncatingTail
     }
