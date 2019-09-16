@@ -59,7 +59,7 @@
                                     <constraint firstAttribute="height" constant="40" id="20e-6x-y5X"/>
                                     <constraint firstAttribute="width" constant="40" id="OMp-w5-z7d"/>
                                 </constraints>
-                                <state key="normal" image="ic_minimize"/>
+                                <state key="normal" image="arrowDown"/>
                                 <connections>
                                     <action selector="didTapCloseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="bmT-OD-KBI"/>
                                 </connections>
@@ -129,9 +129,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrowDown" width="16" height="16"/>
         <image name="ic_bookmark" width="14" height="16"/>
         <image name="ic_bookmark_fill" width="16" height="16"/>
-        <image name="ic_minimize" width="23" height="12"/>
         <image name="ic_pause_sand" width="16" height="16"/>
         <image name="ic_play_sand" width="16" height="16"/>
         <image name="ic_save" width="16" height="16"/>
