@@ -11,10 +11,13 @@ import qot_dal
 
 final class WeatherCell: BaseDailyBriefCell {
     //Header section
+    @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var bucketTitleLabel: UILabel!
     @IBOutlet weak var introLabel: UILabel!
 
     //WeatherView section
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint?
+    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherTitleLabel: UILabel!
@@ -34,6 +37,11 @@ final class WeatherCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        hourlyStackView.removeAllArrangedSubviews()
     }
 
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
@@ -77,11 +85,11 @@ final class WeatherCell: BaseDailyBriefCell {
             return
         }
 
-        nowHourlyView.setTime(text: R.string.localized.weatherNow())
+        nowHourlyView.setTime(text: R.string.localized.weatherNow(), isNow: true)
         setupHourlyImage(for: nowHourlyView,
                          isNight: isNight(currentDate: weatherModel.currentDate, sunriseDate: weatherModel.sunriseDate, sunsetDate: weatherModel.sunsetDate),
                          and: weatherModel.imageURL,
-                         and: weatherModel.shortDescription)
+                         and: weatherModel.shortDescription, isNow: true)
         hourlyStackView.addArrangedSubview(nowHourlyView)
 
         for forecastModel in forecast {
@@ -89,11 +97,12 @@ final class WeatherCell: BaseDailyBriefCell {
                 let date = forecastModel.date else {
                 return
             }
-            hourlyView.setTime(text: DateFormatter.HH.string(from: date))
+            hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
             setupHourlyImage(for: hourlyView,
                              isNight: isNight(currentDate: forecastModel.date, sunriseDate: weatherModel.sunriseDate, sunsetDate: weatherModel.sunsetDate),
                              and: forecastModel.imageURL,
-                             and: forecastModel.shortDescription)
+                             and: forecastModel.shortDescription,
+                             isNow: false)
             hourlyStackView.addArrangedSubview(hourlyView)
         }
     }
@@ -102,6 +111,7 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
+        var shouldHideHeader = false
         switch viewModel?.locationPermissionStatus {
         case .notSet?:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
@@ -112,21 +122,30 @@ final class WeatherCell: BaseDailyBriefCell {
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
         default:
-            break
+            shouldHideHeader = true
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
         accessButtonHeightConstraint.constant = accessButtonHeight
+        for constraint in verticalHeaderConstraints {
+            constraint.isActive = !shouldHideHeader
+        }
+        bucketTitleLabel.isHidden = shouldHideHeader
+        introLabel.isHidden = shouldHideHeader
+        lineView.isHidden = shouldHideHeader
+        headerViewHeightConstraint?.isActive = shouldHideHeader
+        layoutIfNeeded()
 
     }
 
     private func setupHourlyImage(for hourlyView: WeatherHourlyView,
                                   isNight: Bool,
                                   and imageURL: URL?,
-                                  and shortDescription: String?) {
+                                  and shortDescription: String?,
+                                  isNow: Bool) {
         if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
             let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
-            hourlyView.set(image: hourlyImage)
+            hourlyView.set(image: hourlyImage, isNow: isNow)
         } else {
             if let url = imageURL {
                 hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
