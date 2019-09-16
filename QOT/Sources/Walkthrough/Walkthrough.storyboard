@@ -39,6 +39,9 @@
                                 <state key="normal" title="Got it">
                                     <color key="titleColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="didTapGotItButton" destination="moA-L3-89Y" eventType="touchUpInside" id="S1n-Lz-x8w"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
