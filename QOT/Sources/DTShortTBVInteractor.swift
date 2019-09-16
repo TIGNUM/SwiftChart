@@ -15,7 +15,7 @@ final class DTShortTBVInteractor: DTInteractor {
     private lazy var tbvWorker: TBVWorker? = TBVWorker()
     private var tbv: QDMToBeVision?
 
-    override func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {
             return tbv
         }
@@ -34,8 +34,8 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
                      questionKeyHome: String,
                      _ completion: @escaping (QDMToBeVision?) -> Void) {
         tbvWorker?.createVision(selectedAnswers: selectedAnswers,
-                                questionKeyWork: TBV.QuestionKey.Work,
-                                questionKeyHome: TBV.QuestionKey.Home) { [weak self] (tbv) in
+                                questionKeyWork: ShortTBV.QuestionKey.Work,
+                                questionKeyHome: ShortTBV.QuestionKey.Home) { [weak self] (tbv) in
                                     self?.tbv = tbv
                                     completion(tbv)
         }

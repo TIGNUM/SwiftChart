@@ -12,12 +12,14 @@ import qot_dal
 struct DTSelectionModel {
     let selectedAnswers: [DTViewModel.Answer]
     let question: DTViewModel.Question?
+    let event: DTViewModel.Event?
     let answerFilter: String?
     let userInput: String?
     let trigger: String?
 
     init(selectedAnswers: [DTViewModel.Answer],
          question: DTViewModel.Question?,
+         event: DTViewModel.Event?,
          trigger: String?,
          answerFilter: String?,
          userInput: String?) {
@@ -26,6 +28,7 @@ struct DTSelectionModel {
         self.userInput = userInput
         self.question = question
         self.trigger = trigger
+        self.event = event
     }
 
     init(selectedAnswers: [DTViewModel.Answer], question: DTViewModel.Question?, userInput: String?) {
@@ -34,6 +37,7 @@ struct DTSelectionModel {
         self.question = question
         self.answerFilter = nil
         self.trigger = nil
+        self.event = nil
     }
 
     init(selectedAnswers: [DTViewModel.Answer], question: DTViewModel.Question?) {
@@ -42,5 +46,15 @@ struct DTSelectionModel {
         self.answerFilter = nil
         self.userInput = nil
         self.trigger = nil
+        self.event = nil
+    }
+
+    init(event: DTViewModel.Event, question: DTViewModel.Question?) {
+        self.selectedAnswers = []
+        self.question = question
+        self.answerFilter = nil
+        self.userInput = nil
+        self.trigger = nil
+        self.event = event
     }
 }

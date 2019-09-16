@@ -61,12 +61,18 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
+    func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
+        return nil
+    }
+
     func loadNextQuestion() {
         let selectedAnswers = viewModel?.selectedAnswers ?? []
         let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let event = getEvent(answerType: viewModel?.question.answerType)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
+                                              event: event,
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
@@ -79,6 +85,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
+        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
@@ -154,6 +161,8 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         viewModel?.setSelectedAnswer(answer)
     }
 
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
+
     /**
      An answer contains the decision about the next question to load or needed content.
      Some questions will be displayed without answers. If the an answer can not be
@@ -168,6 +177,16 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         } else if var answer = viewModel?.answers.first {
             answer.setSelected(true)
             viewModel?.setSelectedAnswer(answer)
+        }
+    }
+}
+
+extension DTViewController {
+    func handleAutomatedQuestion(viewModel: DTViewModel) {
+        guard viewModel.showNextQuestionAutomated == true else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
+            self?.setAnswerNeedsSelection()
+            self?.loadNextQuestion()
         }
     }
 }

@@ -19,7 +19,7 @@ extension DTMindsetRouter: DTMindsetRouterInterface {
         viewController?.present(controller, animated: true, completion: completion)
     }
 
-    func loadShortTBVGenerator(introKey: String, delegate: DTMindsetInteractorInterface?, completion: (() -> Void)?) {
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
         let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: delegate)
         let controller = DTShortTBVViewController(configure: configurator)
         viewController?.present(controller, animated: true, completion: completion)

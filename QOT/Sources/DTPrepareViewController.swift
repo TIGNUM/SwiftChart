@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 
 final class DTPrepareViewController: DTViewController {
 
     // MARK: - Properties
+    var prepareInteractor: DTPrepareInteractor?
     var prepareRouter: DTPrepareRouterInterface?
+    private var selectedEvent: DTViewModel.Event?
 
     // MARK: - Init
     init(configure: Configurator<DTPrepareViewController>) {
@@ -26,27 +30,119 @@ final class DTPrepareViewController: DTViewController {
     // MARK: - Answer Handling
     override func didTapNext() {
         setAnswerNeedsSelection()
-        loadNextQuestion()
+        switch viewModel?.question.key {
+        case Prepare.QuestionKey.BenefitsInput?:
+            createPreparationAndPresent()
+        case Prepare.QuestionKey.CalendarEventSelectionCritical?,
+             Prepare.QuestionKey.CalendarEventSelectionDaily?:
+            prepareRouter?.presentEditEventController()
+        default:
+            loadNextQuestion()
+        }
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
         if viewModel?.question.answerType == .singleSelection {
             if let contentId = answer.targetId(.content) {
-                prepareRouter?.presentPrepareResults(contentId)
+                handleAnswerSelection(answer, contentId: contentId)
             } else {
-                loadNextQuestion()
+                switch viewModel?.question.key {
+                case Prepare.QuestionKey.BuildCritical?:
+                    handleTBVSelection(answer)
+                default:
+                    loadNextQuestion()
+                }
             }
+        }
+    }
+
+    override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+        if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
+            prepareInteractor?.getUserPreparation(event: event,
+                                                  calendarEvent: selectedEvent) { [weak self] (preparation) in
+                                                    self?.prepareRouter?.presentPrepareResults(preparation,
+                                                                                               canDelete: true)
+            }
+        } else {
+            self.selectedEvent = event
+            setAnswerNeedsSelection()
+            loadNextQuestion()
         }
     }
 
     override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         super.didDeSelectAnswer(answer)
     }
+
+    override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
+        return answerType == .openCalendarEvents ? selectedEvent : nil
+    }
 }
 
 // MARK: - Private
-private extension DTPrepareViewController {}
+private extension DTPrepareViewController {
+    func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
+        if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
+            prepareRouter?.presentPrepareResults(contentId)
+        } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
+            prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
+                self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
+            }
+        } else {
+            loadNextQuestion()
+        }
+    }
+
+    func handleTBVSelection(_ answer: DTViewModel.Answer) {
+        prepareInteractor?.getUsersTBV { [weak self] (tbv, initiated) in
+            if initiated && tbv?.text != nil {
+                self?.loadNextQuestion()
+            } else {
+                self?.prepareRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroPrepare,
+                                                           delegate: self?.prepareInteractor) { [weak self] in
+                                                            self?.loadNextQuestion()
+                }
+            }
+        }
+    }
+
+    func createPreparationAndPresent() {
+        prepareInteractor?.getUserPreparation(userInput: "FIXME we are my benefis?",
+                                              event: selectedEvent) { [weak self] (preparation) in
+                                                self?.prepareRouter?.presentPrepareResults(preparation,
+                                                                                           canDelete: false)
+        }
+    }
+}
+
+extension DTPrepareViewController: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        if granted {
+            loadNextQuestion()
+        }
+    }
+}
 
 // MARK: - DTPrepareViewControllerInterface
-extension DTPrepareViewController: DTPrepareViewControllerInterface {}
+extension DTPrepareViewController: DTPrepareViewControllerInterface {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        prepareRouter?.presentCalendarPermission(permissionType)
+    }
+}
+
+extension DTPrepareViewController: EKEventEditViewDelegate {
+    func eventEditViewController(_ controller: EKEventEditViewController,
+                                 didCompleteWith action: EKEventEditViewAction) {
+        switch action {
+        case .canceled,
+             .deleted:
+            controller.dismiss(animated: true)
+        case .saved:
+            prepareInteractor?.setCreatedCalendarEvent(controller.event)
+            controller.dismiss(animated: true) { [weak self] in
+                self?.loadNextQuestion()
+            }
+        }
+    }
+}

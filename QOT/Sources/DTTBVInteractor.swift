@@ -15,7 +15,7 @@ final class DTTBVInteractor: DTInteractor {
     private lazy var tbvWorker: TBVWorker? = TBVWorker()
     private var tbv: QDMToBeVision?
 
-    override func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {
             return tbv
         }

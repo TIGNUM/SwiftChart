@@ -37,7 +37,9 @@ class DTInteractor: DTInteractorInterface {
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
             let presentationModel = DTPresentationModel(question: firstQuestion)
-            let node = Node(questionId: firstQuestion?.remoteID, answerFilter: nil, titleUpdate: nil)
+            let node = Node(questionId: firstQuestion?.remoteID,
+                            answerFilter: nil,
+                            titleUpdate: nil)
             self?.presentedNodes.append(node)
             self?.presenter?.showNextQuestion(presentationModel)
         }
@@ -88,25 +90,37 @@ class DTInteractor: DTInteractorInterface {
                                  questionUpdate: String?,
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
-        let tbv = getTBV(questionAnswerType: question?.answerType)
+        let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
+        let events = getEvents(questionKey: question?.key)
+        let preparations = getPreparations(answerKeys: selectedAnswers.last?.answers.first?.keys)
+        let filter = getAnswerFilter(questionKey: question?.key,
+                                     answerFilter: answerFilter)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
-                                   answerFilter: answerFilter,
-                                   tbv: tbv)
+                                   answerFilter: filter,
+                                   tbv: tbv,
+                                   events: events,
+                                   preparations: preparations)
     }
 
     func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
-        let question = getNextQuestion(selectedAnswer: selection.selectedAnswers.first, questions: questions)
+        let question = getNextQuestion(selection: selection, questions: questions)
         let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
-        let tbv = getTBV(questionAnswerType: question?.answerType)
+        let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
+        let events = getEvents(questionKey: question?.key)
+        let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
+        let answerFilter = getAnswerFilter(questionKey: question?.key,
+                                           answerFilter: selection.answerFilter)
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
-                                   answerFilter: selection.answerFilter,
-                                   tbv: tbv)
+                                   answerFilter: answerFilter,
+                                   tbv: tbv,
+                                   events: events,
+                                   preparations: preparations)
     }
 
-    func getNextQuestion(selectedAnswer: DTViewModel.Answer?, questions: [QDMQuestion]) -> QDMQuestion? {
-        let targetQuestionId = selectedAnswer?.targetId(.question)
+    func getNextQuestion(selection: DTSelectionModel, questions: [QDMQuestion]) -> QDMQuestion? {
+        let targetQuestionId = selection.selectedAnswers.first?.targetId(.question)
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
 
@@ -114,8 +128,20 @@ class DTInteractor: DTInteractorInterface {
         return nil
     }
 
-    func getTBV(questionAnswerType: String?) -> QDMToBeVision? {
+    func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         return nil
+    }
+
+    func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
+        return []
+    }
+
+    func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
+        return []
+    }
+
+    func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
+        return answerFilter
     }
 
     // MARK: - TBV

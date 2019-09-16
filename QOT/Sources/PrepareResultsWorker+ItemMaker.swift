@@ -22,9 +22,9 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
-    func dailyItems(_ prepare: QDMUserPreparation, _ suggestedStrategyId: Int?, completion: @escaping ItemCompletion) {
+    func dailyItems(_ prepare: QDMUserPreparation, completion: @escaping ItemCompletion) {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
-            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
+            self?.getStrategyItems(prepare.strategyIds, prepare.relatedStrategyId) { strategyItems in
                 self?.getEkEvent(completion: { ekEvent in
                     var items = [Int: [PrepareResultsType]]()
                     items[PrepareResult.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])

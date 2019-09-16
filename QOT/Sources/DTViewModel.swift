@@ -11,6 +11,7 @@ import Foundation
 struct DTViewModel {
     let question: Question
     var answers: [Answer]
+    let events: [Event]
     let tbvText: String?
     let hasTypingAnimation: Bool
     let typingAnimationDuration: Double
@@ -21,6 +22,13 @@ struct DTViewModel {
     // -ReadOnly
     var selectedAnswers: [DTViewModel.Answer] {
         return answers.filter { $0.selected }
+    }
+
+    struct Event {
+        let remoteId: Int?
+        let title: String?
+        let dateString: String?
+        let isCalendarEvent: Bool
     }
 
     struct Question {
