@@ -162,6 +162,7 @@ final class NavigationButton: AbstractTreeButton {
     private var titleFirst = ""
     private var titleNext = ""
     private var maxCount = 1
+    private var minCount = 1
 
     private var spacerWidth: CGFloat = 0.0
     private var completion:(() -> Void)?
@@ -171,7 +172,7 @@ final class NavigationButton: AbstractTreeButton {
         addObserver()
         spacerWidth = constraintSpacerWidth.constant
         containerView.cornerDefault()
-        configure(title: "", isDark: isDark)
+        configure(title: "", minSelection: 1, isDark: isDark)
     }
 
     static func instantiateFromNib() -> NavigationButton {
@@ -181,9 +182,10 @@ final class NavigationButton: AbstractTreeButton {
         return view
     }
 
-    func configure(title: String, titleNext: String = "", staticWidth: Bool = false, isDark: Bool) {
+    func configure(title: String, titleNext: String = "", minSelection: Int, staticWidth: Bool = false, isDark: Bool) {
         self.titleFirst = title
         self.titleNext = titleNext.isEmpty ? titleFirst : titleNext
+        self.minCount = minSelection
         self.isDark = isDark
 
         if staticWidth {
@@ -198,14 +200,14 @@ final class NavigationButton: AbstractTreeButton {
         update(count: 0, maxSelections: 1)
     }
 
-    func update(count: Int, minSelection: Int = 0, maxSelections: Int? = nil) {
+    func update(count: Int, maxSelections: Int? = nil) {
         if let maxSelections = maxSelections {
             maxCount = maxSelections
         }
 
         isHidden = maxCount == 0
 
-        let isEnough = count >= minSelection
+        let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
 
         if count == 0 {
