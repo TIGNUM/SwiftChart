@@ -19,7 +19,7 @@ enum PrepareResultsType {
     case eventItem(title: String, date: Date, type: String)
     case strategy(title: String, durationString: String, readMoreID: Int)
     case reminder(title: String, subbtitle: String, active: Bool, type: ReminderType)
-    case intentionContentItem(format: ContentFormat, title: String?, key: PrepareResult.Key)
+    case intentionContentItem(format: ContentFormat, title: String?, key: Prepare.Key)
     case intentionItem(title: String)
     case benefitContentItem(format: ContentFormat, title: String?, benefits: String?, questionID: Int)
     case benefitItem(benefits: String?)

@@ -96,7 +96,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         }
     }
 
-    func presentEditIntentions(_ key: PrepareResult.Key) {
+    func presentEditIntentions(_ key: Prepare.Key) {
         var ids = [Int]()
         switch key {
         case .perceived: ids = worker.preceiveAnswerIds
