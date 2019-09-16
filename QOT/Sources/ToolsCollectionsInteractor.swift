@@ -85,6 +85,7 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     }
 }
 
+// FIX ME: Refactor all logics in one place
 extension ToolsCollectionsInteractor {
 
     @objc func didStartAudio(_ notification: Notification) {
