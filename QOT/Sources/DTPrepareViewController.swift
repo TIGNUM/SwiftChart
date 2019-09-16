@@ -109,8 +109,7 @@ private extension DTPrepareViewController {
 
     func createPreparationAndPresent() {
         prepareInteractor?.getUserPreparation(event: selectedEvent) { [weak self] (preparation) in
-                                                self?.prepareRouter?.presentPrepareResults(preparation,
-                                                                                           canDelete: false)
+            self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
         }
     }
 }
@@ -138,9 +137,16 @@ extension DTPrepareViewController: EKEventEditViewDelegate {
              .deleted:
             controller.dismiss(animated: true)
         case .saved:
-            prepareInteractor?.setCreatedCalendarEvent(controller.event)
-            controller.dismiss(animated: true) { [weak self] in
-                self?.loadNextQuestion()
+            DispatchQueue.main.async { [weak self] in
+                self?.prepareInteractor?.setCreatedCalendarEvent(controller.event) { [weak self] (success) in
+                    controller.dismiss(animated: true) { [weak self] in
+                        if success {
+                            self?.loadNextQuestion()
+                        } else {
+                            self?.showAlert(type: .calendarNotSynced)
+                        }
+                    }
+                }
             }
         }
     }

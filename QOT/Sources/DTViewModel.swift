@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct DTViewModel {
     let question: Question
@@ -71,6 +72,15 @@ struct DTViewModel {
             self.decisions = [Decision(answer, newTargetId)]
         }
 
+        init?(qdmAnswer: QDMAnswer) {
+            self.remoteId = qdmAnswer.remoteID ?? 0
+            self.title = qdmAnswer.title ?? ""
+            self.keys = qdmAnswer.keys
+            self.selected = true
+            self.backgroundColor = .carbonNew
+            self.decisions = qdmAnswer.decisions.compactMap { Decision(qdmDecision: $0) }
+        }
+
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
             return lhs.remoteId == rhs.remoteId && lhs.title == rhs.title && lhs.keys == rhs.keys
         }
@@ -104,6 +114,14 @@ struct DTViewModel {
                 self.questionGroupId = answer.decisions.first?.questionGroupId
                 self.targetGroupId = answer.decisions.first?.targetGroupId
                 self.targetGroupName = answer.decisions.first?.targetGroupName
+            }
+
+            init(qdmDecision: QDMAnswerDecision?) {
+                self.targetType = .question
+                self.targetTypeId = qdmDecision?.targetTypeId
+                self.questionGroupId = qdmDecision?.questionGroupId
+                self.targetGroupId = qdmDecision?.targetGroupId
+                self.targetGroupName = qdmDecision?.targetGroupName
             }
         }
 

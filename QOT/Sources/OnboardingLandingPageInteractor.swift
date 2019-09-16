@@ -23,10 +23,9 @@ final class OnboardingLandingPageInteractor {
 
     // Has to be reallocated because it keeps a state
     private var tbvController: UIViewController {
-        let tbvConfigurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBVOnboarding)
-        let tbvController = DecisionTreeViewController(configure: tbvConfigurator)
-        tbvController.delegate = self
-        return tbvController
+        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding,
+                                                       delegate: self)
+        return DTShortTBVViewController(configure: configurator)
     }
 
     private lazy var createAccountController: CreateAccountInfoViewController = {
@@ -132,6 +131,14 @@ extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
     func createToBeVision(_ toBeVision: QDMToBeVision) {
         print("ZZ:\n\n________ EUREKA!!!________\n\n")
         cachedToBeVision = toBeVision
+        didTapSaveTBV()
+    }
+}
+
+extension OnboardingLandingPageInteractor: DTShortTBVDelegate {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        print("ZZ:\n\n________ EUREKA!!!________\n\n")
+        cachedToBeVision = tbv
         didTapSaveTBV()
     }
 }

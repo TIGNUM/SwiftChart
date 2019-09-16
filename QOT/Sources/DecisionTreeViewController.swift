@@ -55,27 +55,27 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
 
-    private lazy var editEventHandler: EditEventHandler = {
-        let delegate = EditEventHandler()
-        delegate.handler = { [weak self] (controller, action) in
-            switch action {
-            case .saved:
-                if let ekEvent = controller.event {
-                    controller.dismiss(animated: true)
-                    let selectedEvent = QDMUserCalendarEvent(event: ekEvent)
-                    self?.interactor?.setUserCalendarEvent(event: selectedEvent)
-                    self?.trackUserEvent(.EDIT,
-                                         stringValue: selectedEvent.qotId,
-                                         valueType: .CALENDAR_EVENT,
-                                         action: .KEYBOARD)
-                    self?.interactor?.loadEventQuestion()
-                }
-            case .canceled, .deleted:
-                controller.dismiss(animated: true)
-            }
-        }
-        return delegate
-    }()
+//    private lazy var editEventHandler: EditEventHandler = {
+//        let delegate = EditEventHandler()
+//        delegate.handler = { [weak self] (controller, action) in
+//            switch action {
+//            case .saved:
+//                if let ekEvent = controller.event {
+//                    controller.dismiss(animated: true)
+//                    let selectedEvent = QDMUserCalendarEvent(event: ekEvent)
+//                    self?.interactor?.setUserCalendarEvent(event: selectedEvent)
+//                    self?.trackUserEvent(.EDIT,
+//                                         stringValue: selectedEvent.qotId,
+//                                         valueType: .CALENDAR_EVENT,
+//                                         action: .KEYBOARD)
+//                    self?.interactor?.loadEventQuestion()
+//                }
+//            case .canceled, .deleted:
+//                controller.dismiss(animated: true)
+//            }
+//        }
+//        return delegate
+//    }()
 
     private lazy var isOnboardingDecisionTree: Bool = {
         if case .mindsetShifterTBVOnboarding? = interactor?.type {
@@ -374,10 +374,10 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func presentAddEventController(_ eventStore: EKEventStore) {
-        let eventEditVC = EKEventEditViewController()
-        eventEditVC.eventStore = eventStore
-        eventEditVC.editViewDelegate = editEventHandler
-        present(eventEditVC, animated: true)
+//        let eventEditVC = EKEventEditViewController()
+//        eventEditVC.eventStore = eventStore
+//        eventEditVC.editViewDelegate = editEventHandler
+//        present(eventEditVC, animated: true)
     }
 
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {
@@ -407,14 +407,14 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 }
 
-private class EditEventHandler: NSObject, EKEventEditViewDelegate {
-    var handler: ((EKEventEditViewController, EKEventEditViewAction) -> Void)?
-
-    func eventEditViewController(_ controller: EKEventEditViewController,
-                                 didCompleteWith action: EKEventEditViewAction) {
-        handler?(controller, action)
-    }
-}
+//private class EditEventHandler: NSObject, EKEventEditViewDelegate {
+//    var handler: ((EKEventEditViewController, EKEventEditViewAction) -> Void)?
+//
+//    func eventEditViewController(_ controller: EKEventEditViewController,
+//                                 didCompleteWith action: EKEventEditViewAction) {
+//        handler?(controller, action)
+//    }
+//}
 
 // MARK: - SolveResultsViewControllerDelegate
 extension DecisionTreeViewController: SolveResultsViewControllerDelegate {

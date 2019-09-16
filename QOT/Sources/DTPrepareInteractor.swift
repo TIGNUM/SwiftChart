@@ -20,7 +20,7 @@ final class DTPrepareInteractor: DTInteractor {
     private var eventsInitiated = false
     private var preparationsInitiated = false
     private var tbv: QDMToBeVision?
-    private var event: EKEvent?
+    private var createdUserCalendarEvent: QDMUserCalendarEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
@@ -78,7 +78,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
-        let event = events.filter { $0.remoteID == event?.remoteId }.first ?? QDMUserCalendarEvent()
+        let event = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
         let perceivedIds = getAnswerIds(.perceived, selectedAnswers)
         let knowIds = getAnswerIds(.know, selectedAnswers)
         let feelIds = getAnswerIds(.feel, selectedAnswers)
@@ -93,7 +93,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                                                        knowAnswerIds: knowIds,
                                                        feelAnswerIds: feelIds,
                                                        eventType: eventAnswer?.title ?? "",
-                                                       event: event,
+                                                       event: event ?? QDMUserCalendarEvent(),
                                                        completion)
         }
     }
@@ -106,7 +106,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                             calendarEvent: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let existingPrep = preparations.filter { $0.remoteID == event?.remoteId }.first
-        let calendarEvent = events.filter { $0.remoteID == calendarEvent?.remoteId }.first
+        let calendarEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == calendarEvent?.remoteId }.first
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
         self.prepareWorker?.createUserPreparation(level: existingPrep?.type ?? .LEVEL_CRITICAL,
@@ -129,16 +129,19 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let answerFilter = answer.keys.filter { $0.contains("_relationship_") }.first ?? ""
         let relatedStrategyId = answer.targetId(.content) ?? 0
         let eventType = answer.title
-        let userEvent = events.filter { $0.remoteID == event?.remoteId }.first ?? QDMUserCalendarEvent()
+        let userEvent = createdUserCalendarEvent ?? events.filter { $0.remoteID == event?.remoteId }.first
         prepareWorker?.createPreparationDaily(answerFilter: answerFilter,
                                               relatedStategyId: relatedStrategyId,
                                               eventType: eventType,
-                                              event: userEvent,
+                                              event: userEvent ?? QDMUserCalendarEvent(),
                                               completion)
     }
 
-    func setCreatedCalendarEvent(_ event: EKEvent?) {
-        self.event = event
+    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
+        prepareWorker?.importCalendarEvents(event) {  [weak self] (userCalendarEvent) in
+            self?.createdUserCalendarEvent = userCalendarEvent
+            completion(userCalendarEvent != nil)
+        }
     }
 }
 

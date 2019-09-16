@@ -49,7 +49,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
-    @objc func didTapNext() {
+    @IBAction func didTapNext() {
         setAnswerNeedsSelection()
         loadNextQuestion()
     }
@@ -108,6 +108,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
             navigationButton.topAnchor.constraint(equalTo: navigationButtonContainer.topAnchor).isActive = true
             navigationButton.bottomAnchor.constraint(equalTo: navigationButtonContainer.bottomAnchor).isActive = true
             navigationButton.rightAnchor.constraint(equalTo: navigationButtonContainer.rightAnchor).isActive = true
+            navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
             navigationButton.setOnPressed(completion: { [weak self] in
                 self?.didTapNext()
             })

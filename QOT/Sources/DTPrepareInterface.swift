@@ -31,7 +31,7 @@ protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
 
-    func setCreatedCalendarEvent(_ event: EKEvent?)
+    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol DTPrepareRouterInterface {

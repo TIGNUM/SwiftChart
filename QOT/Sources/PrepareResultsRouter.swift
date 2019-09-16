@@ -28,10 +28,14 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
                                                   viewController))
     }
 
-    func presentEditIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                               _ key: PrepareResult.Key,
+    func presentEditIntentions(_ selectedAnswers: [SelectedAnswer],
+                               _ key: Prepare.Key,
                                answerFilter: String?) {
-        presentDecisionTree(for: .prepareIntentions(selectedAnswers, answerFilter, key, viewController))
+        let configurator = DTPrepareConfigurator.make(selectedAnswers: selectedAnswers,
+                                                      introKey: key,
+                                                      answerFilter: answerFilter)
+        let controller = DTPrepareViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 
     func presentRelatedArticle(readMoreID: Int) {
