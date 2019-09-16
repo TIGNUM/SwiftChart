@@ -46,10 +46,10 @@
                                 <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Customize your benchmark value for your sleep quantity here according to time amount you want to reach." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ija-7r-kOP">
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Customize your benchmark value for your sleep quantity here according to time amount you want to reach." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ija-7r-kOP">
                                 <rect key="frame" x="24" y="97" width="327" height="80"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Zi0-13-pz5"/>
+                                    <constraint firstAttribute="height" constant="70" id="Zi0-13-pz5"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -239,7 +239,6 @@
                             <constraint firstItem="eLZ-Ck-Uiv" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="48" id="5Xj-0y-tpe"/>
                             <constraint firstItem="irz-At-l75" firstAttribute="top" secondItem="QGs-RT-bhr" secondAttribute="bottom" constant="358.00000000000006" id="6dI-Yt-z4m"/>
                             <constraint firstItem="rNb-KL-Z8H" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="BjF-eJ-1Va"/>
-                            <constraint firstItem="ZSG-Sa-kqJ" firstAttribute="top" relation="lessThanOrEqual" secondItem="Ija-7r-kOP" secondAttribute="bottom" constant="49" id="CHe-es-PD5"/>
                             <constraint firstItem="QGs-RT-bhr" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="COR-YI-LfZ"/>
                             <constraint firstItem="7th-Xx-vP4" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.4" id="CRW-Xo-aQK"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="EPw-Ou-SDF"/>
