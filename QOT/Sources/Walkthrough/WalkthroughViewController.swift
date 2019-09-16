@@ -13,13 +13,12 @@ final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Properties
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
-    @IBOutlet private weak var buttonGotIt: UIButton!
+    @IBOutlet private weak var buttonGotIt: RoundedButton!
 
-    private let gotItAppearDelay: Double = 2
+    private let gotItAppearDelay: Double = 0
     private let animationDuration: Double = Animation.duration_3
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
-    private var timer: Timer?
     private var viewedControllers = Set<Int>() {
         didSet {
             checkViewedControllers()
@@ -42,33 +41,11 @@ final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presetTimer()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        invalidateTimer()
-    }
 }
 
 // MARK: - Private
 
 private extension WalkthroughViewController {
-
-    func presetTimer() {
-        invalidateTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: true) { [unowned self] (_) in
-            self.goToNextController()
-        }
-    }
-
-    func invalidateTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
 
     func goToNextController() {
         guard let current = pageController?.viewControllers?.first,
@@ -107,7 +84,7 @@ extension WalkthroughViewController: WalkthroughViewControllerInterface {
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
-        pageIndicator.pageColor = .sand
+        pageIndicator.pageColor = .sand40
         pageIndicator.pageCount = interactor?.controllerCount ?? 3
         pageIndicator.currentPageIndex = 0
 
@@ -124,7 +101,8 @@ extension WalkthroughViewController: WalkthroughViewControllerInterface {
             pageController.setViewControllers([controller], direction: .forward, animated: false, completion: nil)
         }
 
-        buttonGotIt.corner(radius: buttonGotIt.bounds.size.height * 0.5, borderColor: .accent70)
+        buttonGotIt.isHidden = true
+        ThemableButton.walkthroughGotIt.apply(buttonGotIt, title: interactor?.buttonGotItTitle)
     }
 
     func show(controller: UIViewController) {
@@ -149,7 +127,6 @@ extension WalkthroughViewController: UIPageViewControllerDelegate {
         if let hash = pageViewController.viewControllers?.first?.hash {
             viewedControllers.insert(hash)
         }
-        presetTimer()
     }
 }
 

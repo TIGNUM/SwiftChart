@@ -8,11 +8,25 @@
 
 import Foundation
 
-final class MyPeakPerformanceTitleCell: UITableViewCell, Dequeueable {
+final class MyPeakPerformanceTitleCell: UIView {
 
     @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var containerView: UIView!
 
-    func configure(with: MypeakperformanceTitleModel?) {
-        ThemeText.dailyBriefTitleBlack.apply(with?.title ?? "", to: title)
+    static func instantiateFromNib() -> MyPeakPerformanceTitleCell? {
+        guard let header = R.nib.myPeakPerformanceTitleCell
+            .instantiate(withOwner: self).first as? MyPeakPerformanceTitleCell else {
+                preconditionFailure("Cannot load view \(#function)")
+        }
+        return header
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        containerView.maskCorners(corners: [.topRight, .topLeft], radius: Layout.cornerRadius08)
+    }
+
+    func configure(bucketTitle: String?) {
+        ThemeText.dailyBriefTitleBlack.apply(bucketTitle, to: title)
     }
 }

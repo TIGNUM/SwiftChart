@@ -40,6 +40,7 @@ protocol MyDataScreenInteractorInterface: Interactor, JTAppleCalendarViewDataSou
                          _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void)
     func setDailySelected(_ selectedMode: HeatMapMode)
     func getDailySelected() -> HeatMapMode
+    func getSwitchButtonsTitles() -> [String]
     func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection)
 }
 

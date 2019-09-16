@@ -43,6 +43,7 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     }
 
     func reloadCalendarData() {
+        self.calendarView.deselectAllDates()
         self.calendarView.reloadData()
     }
 
@@ -65,6 +66,8 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
         showTodaysWeekdayLabel(asHighlighted: true)
         ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendHighTitle(), to: topColorLabel)
         ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendLowTitle(), to: bottomColorLabel)
+        ThemeView.myDataHeatMapLegendHigh.apply(topColorView)
+        ThemeView.myDataHeatMapLegendLow.apply(bottomColorView)
     }
 }
 

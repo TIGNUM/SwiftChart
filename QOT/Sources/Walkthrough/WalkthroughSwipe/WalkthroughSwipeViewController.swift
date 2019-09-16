@@ -33,22 +33,6 @@ final class WalkthroughSwipeViewController: UIViewController, ScreenZLevelOverla
         interactor?.viewDidLoad()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-
-        leftArrows.stopAnimating()
-        rightArrows.stopAnimating()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        let interval = 2 * leftArrows.totalDuration
-        leftArrows.startAnimating(repeatingInterval: interval)
-        DispatchQueue.main.asyncAfter(deadline: .now() + leftArrows.totalDuration) {
-            self.rightArrows.startAnimating(repeatingInterval: interval)
-        }
-    }
 }
 
 // MARK: - Private
@@ -67,7 +51,12 @@ private extension WalkthroughSwipeViewController {
 extension WalkthroughSwipeViewController: WalkthroughSwipeViewControllerInterface {
 
     func setupView() {
+        rightArrows.presentStationary()
         rightArrows.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi)
+        rightArrows.alpha = 0.25
+
+        leftArrows.presentStationary()
+        leftArrows.alpha = 0.25
 
         ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }

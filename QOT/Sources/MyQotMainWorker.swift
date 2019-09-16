@@ -29,7 +29,8 @@ final class MyQotMainWorker {
         let myQotItems =  MyQotSection.allCases.map {
             return MyQotViewModel.Item(myQotSections: $0,
                                    title: ScreenTitleService.main.myQotSectionTitles(for: $0),
-                                   subtitle: "temp")}
+                                   subtitle: "",
+                                   showSubtitleInRed: false)}
         return MyQotViewModel(myQotItems: myQotItems)
     }
 

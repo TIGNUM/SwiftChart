@@ -19,6 +19,7 @@ protocol WalkthroughPresenterInterface {
 }
 
 protocol WalkthroughInteractorInterface: Interactor {
+    var buttonGotItTitle: String { get }
     var firstController: UIViewController { get }
     var controllerCount: Int { get }
     func index(of controller: UIViewController?) -> Int?

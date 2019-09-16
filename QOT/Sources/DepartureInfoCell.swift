@@ -22,7 +22,7 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        ThemeText.bespokeText.apply(viewModel?.text, to: departureText)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.text, to: departureText)
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {

@@ -29,16 +29,8 @@ final class StreamVideoWorker {
         self.content = content
 
         bookmark = content?.userStorages?.filter { $0.userStorageType == .BOOKMARK }.first
-        download = content?.userStorages?.filter { $0.userStorageType == .DOWNLOAD }.first
-
-        if let status = download?.downloadStaus {
-            switch status {
-            case .NONE: downloadStatus = .NONE
-            case .WAITING: downloadStatus = .WAITING
-            case .DOWNLOADING: downloadStatus = .DOWNLOADING
-            case .DONE: downloadStatus = .DOWNLOADED
-            }
-        }
+        download = downloadItem(for: content)
+        downloadStatus = downloadStatus(for: download)
     }
 
     var isLoggedIn: Bool {
@@ -74,7 +66,7 @@ final class StreamVideoWorker {
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return R.string.localized.buttonTitleYesContinue()
+        return R.string.localized.alertButtonTitleContinue()
     }()
 
     lazy var contentItemId: Int? = {
@@ -141,6 +133,36 @@ extension StreamVideoWorker {
                     completion(status)
                 }
             }
+        }
+    }
+
+    func updateItemDownloadStatus(_ completion: @escaping (() -> Void)) {
+        guard let itemId = content?.remoteID else {
+            return
+        }
+        ContentService.main.getContentItemById(itemId) { [weak self] (item) in
+            guard let strongSelf = self else { return }
+            strongSelf.content = item
+            strongSelf.download = strongSelf.downloadItem(for: item)
+            strongSelf.downloadStatus = strongSelf.downloadStatus(for: strongSelf.download)
+            completion()
+        }
+    }
+}
+
+private extension StreamVideoWorker {
+
+    func downloadItem(for item: QDMContentItem?) -> QDMUserStorage? {
+        return item?.userStorages?.filter { $0.userStorageType == .DOWNLOAD }.first
+    }
+
+    func downloadStatus(for download: QDMUserStorage?) -> QOTDownloadStatus {
+        guard let status = download?.downloadStaus else { return .NONE }
+        switch status {
+        case .NONE: return .NONE
+        case .WAITING: return .WAITING
+        case .DOWNLOADING: return .DOWNLOADING
+        case .DONE: return .DOWNLOADED
         }
     }
 }

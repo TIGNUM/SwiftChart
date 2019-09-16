@@ -18,7 +18,7 @@ final class GoodToKnowCell: BaseDailyBriefCell {
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         goodToKnowImage.kf.setImage(with: viewModel?.image, placeholder: R.image.preloading())
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.goodToKnow.apply(viewModel?.fact, to: goodToKnowFact)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.fact, to: goodToKnowFact)
         self.goodToKnowModel = viewModel
     }
 }

@@ -51,6 +51,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
             iconVideo.isHidden = format != .video
             iconAudio.isHidden = format != .audio
         }
+
         if numberOfItems > 1 {
             duration = String(numberOfItems) + " items"
         } else { duration = ( durationString ?? "")
