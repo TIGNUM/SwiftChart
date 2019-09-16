@@ -22,6 +22,7 @@ class DTInteractor: DTInteractorInterface {
     var questions: [QDMQuestion] = []
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
+    var inputText: String = ""
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -150,4 +151,9 @@ class DTInteractor: DTInteractorInterface {
             completion(tbv, initiated)
         }
     }
+
+    func didUpdateUserInput(_ text: String) {
+        inputText = text
+    }
+
 }

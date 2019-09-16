@@ -21,10 +21,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
     @IBOutlet weak var pageControllerContainer: UIView!
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeView.chatbot.apply(view)
         interactor?.viewDidLoad()
     }
 
@@ -85,7 +87,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
-        handleAutomatedQuestion(viewModel: viewModel)
+//        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
@@ -124,8 +126,16 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     // MARK: Configuration
     func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor) {
-        view.backgroundColor = backgroundColor
         setupPageViewController(backgroundColor)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: Notification.Name.UIKeyboardWillHide,
+                                               object: nil)
     }
 
     func updateView(viewModel: DTViewModel) {
@@ -181,7 +191,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 }
 
-extension DTViewController {
+extension DTViewController {        //TODO - this looks to be redundant now
     func handleAutomatedQuestion(viewModel: DTViewModel) {
         guard viewModel.showNextQuestionAutomated == true else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
@@ -195,5 +205,28 @@ extension DTViewController {
 extension DTViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
+    }
+}
+
+//Handle keyboard notifications
+extension DTViewController {
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            constraintBottom.constant = keyboardSize.height
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            constraintBottom.constant = 0.0
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
+        }
     }
 }

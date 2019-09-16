@@ -282,11 +282,11 @@ private extension DecisionTreeViewController {
     }
 
     func setShouldEndEditingTrue() {
-        guard let questionnaireController = self.pageController?.viewControllers?.first as? DecisionTreeQuestionnaireViewController,
-            let userInputCell = questionnaireController.getUserInputCell() else {
-                return
-        }
-        userInputCell.shouldEndEditing = true
+//        guard let questionnaireController = self.pageController?.viewControllers?.first as? DecisionTreeQuestionnaireViewController,
+//            let userInputCell = questionnaireController.getUserInputCell() else {
+//                return
+//        }
+//        userInputCell.shouldEndEditing = true
     }
 }
 

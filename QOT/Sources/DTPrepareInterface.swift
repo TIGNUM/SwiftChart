@@ -28,8 +28,7 @@ protocol DTPrepareInteractorInterface: Interactor {
                             calendarEvent: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
 
-    func getUserPreparation(userInput: String?,
-                            event: DTViewModel.Event?,
+    func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
 
     func setCreatedCalendarEvent(_ event: EKEvent?)
