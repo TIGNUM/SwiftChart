@@ -22,7 +22,6 @@ class WalkthroughAnimatedArrows: UIView {
     private let visible: Double = 0.5
     private let fadeOut: Double = 0.35
     private let overlap: Double = 0.2
-    private var shouldAnimate: Bool = true
 
     lazy var totalDuration: Double = {
         return fadeIn + Double(arrows.count) * visible + fadeOut
@@ -64,7 +63,6 @@ class WalkthroughAnimatedArrows: UIView {
 extension WalkthroughAnimatedArrows {
 
     func startAnimating(repeatingInterval: Double? = nil) {
-        shouldAnimate = true
         pauseAnimations()
 
         let minInterval = (totalDuration + 1.5 * timerTolerance)
@@ -90,7 +88,6 @@ extension WalkthroughAnimatedArrows {
 
     func presentStationary() {
         pauseAnimations()
-        shouldAnimate = false
         showAllArrows()
     }
 }
