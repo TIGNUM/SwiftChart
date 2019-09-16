@@ -54,7 +54,7 @@ final class MyToBeVisionTrackerViewController: UIViewController, ScreenZLevel3 {
 
     func reloadSubHeadingSection() {
         let indexPath = IndexPath(item: 0, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
 }
 
