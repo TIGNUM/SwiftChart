@@ -308,7 +308,6 @@ private extension DailyBriefViewController {
             cell.impactReadinessButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
         }
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -318,7 +317,6 @@ private extension DailyBriefViewController {
         let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
         cell.configure(viewModel: impactReadinessScoreViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -331,7 +329,6 @@ private extension DailyBriefViewController {
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
         let cell: QuestionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: questionCellViewModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -345,7 +342,6 @@ private extension DailyBriefViewController {
                          _ thoughtsCellViewModel: ThoughtsCellViewModel?) -> UITableViewCell {
         let cell: ThoughtsCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: thoughtsCellViewModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -360,7 +356,6 @@ private extension DailyBriefViewController {
         let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: goodToKnowCellViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -375,7 +370,6 @@ private extension DailyBriefViewController {
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {
         let cell: FromTignumCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: fromTignumMessageViewModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -389,7 +383,6 @@ private extension DailyBriefViewController {
                               _ departureInfoViewModel: DepartureInfoCellViewModel?) -> UITableViewCell {
         let cell: DepartureInfoCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: departureInfoViewModel)
-        cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }
@@ -404,7 +397,6 @@ private extension DailyBriefViewController {
                              _ coachMessageModel: FromMyCoachCellViewModel) -> UITableViewCell {
         let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: coachMessageModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -419,7 +411,6 @@ private extension DailyBriefViewController {
         let cell: FeastCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: feastForEyesViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -434,7 +425,6 @@ private extension DailyBriefViewController {
         let cell: BeSpokeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: beSpokeViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -448,7 +438,6 @@ private extension DailyBriefViewController {
                         _ aboutMeViewModel: AboutMeViewModel?) -> UITableViewCell {
         let cell: AboutMeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: aboutMeViewModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -463,7 +452,6 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -478,7 +466,6 @@ private extension DailyBriefViewController {
         let cell: MeAtMyBestEmptyCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: meAtMyBestCellEmptyViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -493,7 +480,6 @@ private extension DailyBriefViewController {
         let cell: SprintChallengeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: sprintChallengeModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
     /**
@@ -507,7 +493,6 @@ private extension DailyBriefViewController {
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
         let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: whatsHotViewModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -522,7 +507,6 @@ private extension DailyBriefViewController {
         let cell: SolveReminderCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: solveReminderViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -537,7 +521,6 @@ private extension DailyBriefViewController {
         let cell: SolveTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: solveReminderTableCellViewModel?.title, date: solveReminderTableCellViewModel?.date, solve: solveReminderTableCellViewModel?.solve)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -552,7 +535,6 @@ private extension DailyBriefViewController {
         let cell: Level5Cell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: level5ViewModel!)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -567,7 +549,6 @@ private extension DailyBriefViewController {
         let cell: LeaderWisdomTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: leadersWisdomViewModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -581,7 +562,6 @@ private extension DailyBriefViewController {
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
         let cell: DailyCheckinInsightsSHPICell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheck2SHPIModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -596,7 +576,6 @@ private extension DailyBriefViewController {
         let cell: DailyCheckinInsightsTBVCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheckIn2TBVModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -612,7 +591,6 @@ private extension DailyBriefViewController {
             let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: dailyCheckIn2PeakPerformanceModel)
             cell.delegate = self
-            cell.selectionStyle = .none
             return cell
     }
 
@@ -628,7 +606,6 @@ private extension DailyBriefViewController {
         let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
         cell.appDelegate = self
         cell.configure(with: peakPerformanceModel)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -659,7 +636,6 @@ private extension DailyBriefViewController {
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -675,14 +651,12 @@ private extension DailyBriefViewController {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: guidedtrackModel)
             cell.button.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
-            cell.selectionStyle = .none
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel)
         cell.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-        cell.selectionStyle = .none
         return cell
     }
 
@@ -692,7 +666,6 @@ private extension DailyBriefViewController {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
         cell.delegate = self
-        cell.selectionStyle = .none
         return cell
     }
 }
