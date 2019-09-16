@@ -30,15 +30,6 @@ final class WalkthroughSearchViewController: UIViewController, ScreenZLevelOverl
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-//        arrows.startAnimating()
-    }
 }
 
 // MARK: - Private
