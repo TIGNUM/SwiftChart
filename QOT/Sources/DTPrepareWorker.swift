@@ -9,16 +9,8 @@
 import UIKit
 import qot_dal
 
+// MARK: - UserPreparations
 final class DTPrepareWorker: DTWorker {
-    func getEvents(_ completion: @escaping ([QDMUserCalendarEvent], Bool) -> Void) {
-        CalendarService.main.getCalendarEvents { (events, initiated, error) in
-            if let error = error {
-                log("Error getCalendarEvents: \(error.localizedDescription)", level: .error)
-            }
-            completion(events ?? [], initiated ?? false)
-        }
-    }
-
     func getPreparations(_ completion: @escaping ([QDMUserPreparation], Bool) -> Void) {
         UserService.main.getUserPreparations { (preparations, initiated, error) in
             if let error = error {
@@ -84,6 +76,29 @@ final class DTPrepareWorker: DTWorker {
     func getRelatedStrategies(_ strategyId: Int, _ completion: @escaping ([Int]) -> Void) {
         ContentService.main.getContentCollectionById(strategyId) { (contentCollection) in
             completion(contentCollection?.relatedContentIDsPrepareDefault ?? [])
+        }
+    }
+}
+
+// MARK: - Calendar Events
+extension DTPrepareWorker {
+    func getEvents(_ completion: @escaping ([QDMUserCalendarEvent], Bool) -> Void) {
+        CalendarService.main.getCalendarEvents { (events, initiated, error) in
+            if let error = error {
+                log("Error getCalendarEvents: \(error.localizedDescription)", level: .error)
+            }
+            completion(events ?? [], initiated ?? false)
+        }
+    }
+
+    func importCalendarEvents(_ newEvent: EKEvent?) {
+        CalendarService.main.importCalendarEvents { (events, initiated, error) in
+            let filteredEvents = events?.filter {
+                $0.startDate == newEvent?.startDate
+                    && $0.endDate == newEvent?.endDate
+                    && $0.title == newEvent?.title
+            }
+            print(filteredEvents)
         }
     }
 }

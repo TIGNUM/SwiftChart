@@ -139,6 +139,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     }
 
     func setCreatedCalendarEvent(_ event: EKEvent?) {
+        prepareWorker?.importCalendarEvents(event)
         self.event = event
     }
 }
