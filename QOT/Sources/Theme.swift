@@ -61,6 +61,8 @@ enum ThemeView {
     case qotTools
     case syncedCalendarSeparator
     case tbvLowPerformance
+    case myDataHeatMapLegendHigh
+    case myDataHeatMapLegendLow
 
     var color: UIColor {
         switch self {
@@ -110,6 +112,10 @@ enum ThemeView {
             return Palette.sand40
         case .tbvLowPerformance:
             return Palette.carbon70
+        case .myDataHeatMapLegendHigh:
+            return Palette.heatMapBrightRed
+        case .myDataHeatMapLegendLow:
+            return Palette.heatMapDarkBlue
         }
     }
 
@@ -1293,6 +1299,14 @@ private struct Palette {
 
     static var white40: UIColor {
         return UIColor.white.withAlphaComponent(0.4)
+    }
+
+    static var heatMapDarkBlue: UIColor {
+        return UIColor.heatMapDarkBlue
+    }
+
+    static var heatMapBrightRed: UIColor {
+        return UIColor.heatMapBrightRed
     }
 
     static func light(_ lightColor: UIColor, or darkColor: UIColor, forcedColorMode: ThemeColorMode? = nil) -> UIColor {
