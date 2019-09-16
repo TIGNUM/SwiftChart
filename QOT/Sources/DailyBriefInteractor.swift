@@ -944,11 +944,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            _  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
-            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: performanceString)
+            let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
+            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: replacedString)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
         }
