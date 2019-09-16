@@ -19,7 +19,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     private let largePointSize: CGFloat = 10.0
     private let normalPointSize: CGFloat = 5.0
     private let largeGraphWidth: CGFloat = 4.0
-
+    private let defaultAverage: Double = 70.0
     // MARK: Lifecycle
 
     override func awakeFromNib() {
@@ -47,6 +47,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.showXLabelsAndGrid = false
         chartView.showYLabelsAndGrid = true
         chartView.isUserInteractionEnabled = false
+        chartView.yLabels = [33, 67]
     }
 
     // MARK: Public
@@ -61,10 +62,22 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         for noDataView in noDataViewsCollection {
             noDataView.alpha = hasData ? 0.0 : 1.0
         }
+        var averageData: [(x: Double, y: Double)] = []
         guard let firstModelDate = withModels.first?.key else {
+            for index in 0...6 {
+                averageData.append((x: Double(index), y: defaultAverage))
+            }
+            let averageSeries = ChartSeries(data: averageData)
+            averageSeries.color = .sand40
+            averageSeries.dashed = true
+            chartView.add(averageSeries)
+            let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
+            addSubview(irAverageLabel)
+            addedViews.append(irAverageLabel)
+            setup(irAverageLabel: irAverageLabel, forValue: defaultAverage)
             return
         }
-        let average = withModels.first?.value.averageUsersImpactReadiness ?? 70
+        let average = withModels.first?.value.averageUsersImpactReadiness ?? defaultAverage
         let futureLoad = withModels.first?.value.tenDaysFutureLoad
         chartView.yLabels = [33, 67]
         //chartSeries creation
@@ -75,7 +88,6 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         var fiveDRLdata: [(x: Double, y: Double)] = []
         var fiveDIRdata: [(x: Double, y: Double)] = []
         var irData: [(x: Double, y: Double)] = []
-        var averageData: [(x: Double, y: Double)] = []
         let datesOfCurrentWeek = datesOfTheWeek(thatContains: firstModelDate)
         for (index, day) in datesOfCurrentWeek.enumerated() {
             if let model = withModels[day] {
@@ -150,13 +162,19 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.add(ir)
         chartView.add(averageSeries)
         let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
-        ThemeText.myDataChartIRAverageLabel.apply(ScreenTitleService.main.myDataGraphIrAverageTitle(), to: irAverageLabel)
+
         addSubview(irAverageLabel)
         addedViews.append(irAverageLabel)
+        setup(irAverageLabel: irAverageLabel, forValue: average)
+
+    }
+
+    func setup(irAverageLabel: UILabel, forValue: Double) {
+        ThemeText.myDataChartIRAverageLabel.apply(ScreenTitleService.main.myDataGraphIrAverageTitle(), to: irAverageLabel)
         for view in noDataViewsCollection where view.tag == 1 {
             createPositionConstraints(forView: irAverageLabel,
                                       and: view,
-                                      with: calculateBottomConstraintDifference(for: average) - 10.0,
+                                      with: calculateBottomConstraintDifference(for: forValue) - 10.0,
                                       toLeadingOfView: true,
                                       centeredCompensation: false)
         }
