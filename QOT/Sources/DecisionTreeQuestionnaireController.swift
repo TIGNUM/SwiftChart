@@ -230,30 +230,30 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 //                cell.configure(for: question, type: interactor?.type, selectedAnswers: selectedAnswers)
 //                cell.delegate = self
                 return cell
-            case AnswerType.singleSelection.rawValue,
-                 AnswerType.multiSelection.rawValue:
-                switch question.key {
-                case Prepare.QuestionKey.SelectExisting:
-                    let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
-                    let tableViewHeight = view.frame.height - (cell.frame.height + 64)
-                    cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
-                    return cell
-                default:
-                    let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-//                    cell.configure(for: filteredAnswers,
-//                                   question: question,
-//                                   selectedAnswers: selectedAnswers,
-//                                   maxPossibleSelections: maxPossibleSelections)
-//                    cell.delegate = self
-                    return cell
-                }
-            case AnswerType.userInput.rawValue:
-                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                let text = question.key == Prepare.QuestionKey.BenefitsInput ? interactor?.userInput : nil
-                cell.configure(inputText: text,
-                               maxCharacters: QuestionKey.maxCharacter(question.key),
-                               delegate: delegate)
-                return cell
+//            case AnswerType.singleSelection.rawValue,
+//                 AnswerType.multiSelection.rawValue:
+//                switch question.key {
+//                case Prepare.QuestionKey.SelectExisting:
+//                    let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+//                    let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+//                    cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
+//                    return cell
+//                default:
+//                    let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
+////                    cell.configure(for: filteredAnswers,
+////                                   question: question,
+////                                   selectedAnswers: selectedAnswers,
+////                                   maxPossibleSelections: maxPossibleSelections)
+////                    cell.delegate = self
+//                    return cell
+//                }
+//            case AnswerType.userInput.rawValue:
+//                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
+//                let text = question.key == Prepare.QuestionKey.BenefitsInput ? interactor?.userInput : nil
+//                cell.configure(inputText: text,
+//                               maxCharacters: QuestionKey.maxCharacter(question.key),
+//                               delegate: delegate)
+//                return cell
             case AnswerType.noAnswerRequired.rawValue,
                  AnswerType.text.rawValue,
                  AnswerType.lastQuestion.rawValue:
@@ -262,11 +262,11 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                                textColor: interactor?.type.textColor)
                 notifyCellDidAppearIfNeeded()
                 return cell
-            case AnswerType.openCalendarEvents.rawValue:
-                let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
-                let tableViewHeight = view.frame.height - (cell.frame.height + 64)
-                cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
-                return cell
+//            case AnswerType.openCalendarEvents.rawValue:
+//                let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+//                let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+//                cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
+//                return cell
             default:
                 preconditionFailure()
             }

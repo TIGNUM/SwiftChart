@@ -24,10 +24,68 @@ struct Prepare {
 
     struct AnswerKey {
         static let OpenCheckList = "open_preparation_check_list_on_the_go"
-        static let OpenCalendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
         static let EventTypeSelectionDaily = "open_preparation_event_selection_daily"
         static let EventTypeSelectionCritical = "open_preparation_event_selection_critical"
+        static let KindOfEventSelectionDaily = "prepare_event_type_selection_daily"
+        static let KindOfEvenSelectionCritical = "prepare_event_type_selection_critical"
         static let PeakPlanNew = "prepare_peak_prep_plan_new"
         static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
+    }
+
+    static func isCalendarEventSelection(_ questionKey: String) -> Bool {
+        return questionKey == QuestionKey.CalendarEventSelectionDaily
+            || questionKey == QuestionKey.CalendarEventSelectionCritical
+    }
+
+    static func dateString(for date: Date?) -> String? {
+        guard let date = date else { return nil }
+        if date.isToday == true {
+            return String(format: "Today at %@", date.time)
+        }
+        if date.isTomorrow == true {
+            return String(format: "Tomorrow at %@", date.time)
+        }
+        if date.isInCurrentWeek == true {
+            return String(format: "%@ at %@", date.weekDayName, date.time)
+        }
+        return DateFormatter.mediumDate.string(from: date)
+    }
+
+    static func prepareDateString(_ date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return String(format: "Created %@", DateFormatter.mediumDate.string(from: date))
+    }
+
+    static let AnswerFilter = "prepare_peak_prep_relationship_intentions_"
+
+    enum Key: String {
+        case perceived = "prepare_peak_prep_relationship_intentions_preceived"
+        case know = "prepare_peak_prep_relationship_intentions_know"
+        case feel = "prepare_peak_prep_relationship_intentions_feel"
+        case benefits = "prepare_peak_prep_benefits_input"
+        case benefitsTitle = "prepare_check_list_critical_benefits_title"
+        case eventType = "prepare-event-type-selection-critical"
+
+        var questionID: Int {
+            switch self {
+            case .perceived: return 100326
+            case .know: return 100330
+            case .feel: return 100331
+            case .benefits: return 100332
+            case .benefitsTitle: return 0
+            case .eventType: return 100339
+            }
+        }
+
+        var tag: String {
+            switch self {
+            case .perceived: return "PERCEIVED"
+            case .know: return "KNOW"
+            case .feel: return "FEEL"
+            case .benefits: return "BENEFITS"
+            case .benefitsTitle,
+                 .eventType: return ""
+            }
+        }
     }
 }

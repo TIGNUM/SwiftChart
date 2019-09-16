@@ -18,6 +18,11 @@ extension UIViewController {
             NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
         }
     }
+
+    func removeBottomNavigation() {
+        let item = BottomNavigationItem(leftBarButtonItems: [], rightBarButtonItems: [], backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: item)
+    }
 }
 
 // MARK: - UIBarButtonItem

@@ -55,6 +55,7 @@ enum ThemeView {
     case imageOverlap
     case qSearch
     case chatbot
+    case chatbotProgress(Bool)
     case toolSeparator
     case askPermissions
     case resultWhite
@@ -95,6 +96,12 @@ enum ThemeView {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
             return Palette.sand
+        case .chatbotProgress(let active):
+            if active {
+                return Palette.carbon
+            } else {
+                return Palette.carbon30
+            }
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .separator:
@@ -639,7 +646,8 @@ enum ThemeText {
     case accountDetailEmail
     case accountDetailAge
 
-    case chatBotButton
+    case chatbotButton
+    case chatbotProgress(Bool)
 
     case resultDate
     case resultTitle
@@ -696,7 +704,8 @@ enum ThemeText {
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .chatBotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink:
+        case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink,
+             .chatbotProgress:
             return Fonts.fontSemiBold14
         case .registrationCodeDescriptionEmail, .walkthroughMessage:
             return Fonts.fontSemiBold16
@@ -830,7 +839,9 @@ enum ThemeText {
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleMarkRead, .articleAudioBar, .coachTitle, .audioLabel, .chatBotButton:
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
+             .articleMarkRead, .articleAudioBar, .coachTitle,
+             .audioLabel:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax:
@@ -914,6 +925,12 @@ enum ThemeText {
             return Palette.carbon30
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
+        case .chatbotProgress(let active):
+            if active {
+                return Palette.accent
+            } else {
+                return Palette.carbon70
+            }
         }
     }
 
@@ -1026,7 +1043,7 @@ enum ThemeText {
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
-        case .chatBotButton, .resultCounter, .resultCounterMax:
+        case .chatbotButton, .resultCounter, .resultCounterMax, .chatbotProgress:
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)

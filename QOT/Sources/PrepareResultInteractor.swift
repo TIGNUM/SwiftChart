@@ -96,7 +96,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         }
     }
 
-    func presentEditIntentions(_ key: PrepareResult.Key) {
+    func presentEditIntentions(_ key: Prepare.Key) {
         var ids = [Int]()
         switch key {
         case .perceived: ids = worker.preceiveAnswerIds
@@ -117,7 +117,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
        worker.updateStrategies(selectedIds: selectedIds)
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key) {
+    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
         worker.updateIntentions(answers, key)
     }
 
