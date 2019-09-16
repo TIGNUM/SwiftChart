@@ -117,7 +117,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
        worker.updateStrategies(selectedIds: selectedIds)
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key) {
+    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
         worker.updateIntentions(answers, key)
     }
 

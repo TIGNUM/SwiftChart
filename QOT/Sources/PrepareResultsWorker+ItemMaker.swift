@@ -147,7 +147,7 @@ extension PrepareResultsWorker {
     }
 
     func getBenefitTitle(_ contentItems: [QDMContentItem],
-                         _ key: PrepareResult.Key,
+                         _ key: Prepare.Key,
                          _ benefits: String?) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isTitle && $0.valueText.contains(key.tag) }.forEach {
@@ -199,7 +199,7 @@ extension PrepareResultsWorker {
     }
 
     func getSelectedIntentionItems(_ answersIds: [Int],
-                                   _ tag: PrepareResult.Key,
+                                   _ tag: Prepare.Key,
                                    completion: @escaping (([PrepareResultsType]) -> Void)) {
         var items = [PrepareResultsType]()
         QuestionService.main.questions(with: tag.rawValue) { (questions) in
@@ -210,7 +210,7 @@ extension PrepareResultsWorker {
         }
     }
 
-    func filteredAnswers(_ tag: PrepareResult.Key,
+    func filteredAnswers(_ tag: Prepare.Key,
                          _ answers: [DecisionTreeModel.SelectedAnswer]) -> [DecisionTreeModel.SelectedAnswer] {
         return answers.filter { $0.questionID == tag.questionID }
     }

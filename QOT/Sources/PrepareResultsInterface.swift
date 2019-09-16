@@ -36,7 +36,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func presentEditIntentions(_ key: Prepare.Key)
     func presentEditBenefits(benefits: String?, questionID: Int)
     func updateStrategies(selectedIds: [Int])
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key)
+    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
     func updateBenefits(_ benefits: String)
     func openConfirmationView()
     func didClickSaveAndContinue()

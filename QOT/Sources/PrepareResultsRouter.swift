@@ -24,7 +24,7 @@ final class PrepareResultsRouter {
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
         presentDecisionTree(for: .prepareBenefits(benefits: benefits,
-                                                  questionID: PrepareResult.Key.benefits.questionID,
+                                                  questionID: Prepare.Key.benefits.questionID,
                                                   viewController))
     }
 

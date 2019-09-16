@@ -128,37 +128,6 @@ struct PrepareResult {
         static let REMINDER_LIST = 15
         static let REMINDER_ITEMS = 16
     }
-
-    enum Key: String {
-        case perceived = "prepare_peak_prep_relationship_intentions_preceived"
-        case know = "prepare_peak_prep_relationship_intentions_know"
-        case feel = "prepare_peak_prep_relationship_intentions_feel"
-        case benefits = "prepare_peak_prep_benefits_input"
-        case benefitsTitle = "prepare_check_list_critical_benefits_title"
-        case eventType = "prepare-event-type-selection-critical"
-
-        var questionID: Int {
-            switch self {
-            case .perceived: return 100326
-            case .know: return 100330
-            case .feel: return 100331
-            case .benefits: return 100332
-            case .benefitsTitle: return 0
-            case .eventType: return 100339
-            }
-        }
-
-        var tag: String {
-            switch self {
-            case .perceived: return "PERCEIVED"
-            case .know: return "KNOW"
-            case .feel: return "FEEL"
-            case .benefits: return "BENEFITS"
-            case .benefitsTitle,
-                 .eventType: return ""
-            }
-        }
-    }
 }
 
 extension QDMUserPreparation.Level {
