@@ -216,7 +216,7 @@ extension QuestionnaireViewController {
             questionToTop.constant = 120
         case .dailyCheckin:
             topConstraint.constant = 90
-            questionToTop.constant = 0
+            questionToTop.constant = 15
         case .vision:
             topConstraint.constant = 20
             questionToTop.constant = 20
