@@ -117,7 +117,7 @@ private extension DTPrepareViewController {
 extension DTPrepareViewController: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
-            loadNextQuestion()
+            self.prepareRouter?.presentCalendarSettings()
         }
     }
 }
@@ -126,6 +126,15 @@ extension DTPrepareViewController: AskPermissionDelegate {
 extension DTPrepareViewController: DTPrepareViewControllerInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
         prepareRouter?.presentCalendarPermission(permissionType)
+    }
+}
+
+// MARK: - SyncedCalendarsDelegate
+extension DTPrepareViewController: SyncedCalendarsDelegate {
+    func didFinishSyncingCalendars(hasEvents: Bool) {
+        if hasEvents {
+            loadNextQuestion()
+        }
     }
 }
 

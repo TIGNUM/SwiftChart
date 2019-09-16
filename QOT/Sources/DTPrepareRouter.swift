@@ -44,6 +44,14 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         viewController?.present(controller, animated: true, completion: nil)
     }
 
+    func presentCalendarSettings() {
+        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+        SyncedCalendarsConfigurator.configure(viewController: controller,
+                                              isInitialCalendarSelection: true,
+                                              delegate: prepareViewController)
+        viewController?.present(controller, animated: true)
+    }
+
     func presentEditEventController() {
         let eventEditVC = EKEventEditViewController()
         eventEditVC.eventStore = EKEventStore.shared
