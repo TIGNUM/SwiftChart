@@ -13,7 +13,6 @@ final class WalkthroughCoachViewController: UIViewController, ScreenZLevelOverla
     // MARK: - Properties
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var textView: UITextView!
-    @IBOutlet private weak var coach: WalkthroughAnimatedCoach!
 
     var interactor: WalkthroughCoachInteractorInterface?
 
@@ -30,16 +29,6 @@ final class WalkthroughCoachViewController: UIViewController, ScreenZLevelOverla
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        coach.stopAnimating()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        coach.startAnimating()
     }
 }
 
@@ -59,8 +48,6 @@ private extension WalkthroughCoachViewController {
 extension WalkthroughCoachViewController: WalkthroughCoachViewControllerInterface {
 
     func setupView() {
-        coach.alpha = 0.25
-
         ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }
 }
