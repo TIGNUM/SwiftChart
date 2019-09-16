@@ -24,18 +24,18 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4EI-Wh-wfe" userLabel="Spacer View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="403"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="537.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HwN-Te-NdQ">
-                                <rect key="frame" x="63" y="403" width="288" height="33"/>
+                                <rect key="frame" x="63" y="537.5" width="288" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2G-kE-Tgv">
-                                <rect key="frame" x="63" y="403" width="288" height="0.0"/>
+                                <rect key="frame" x="52" y="537.5" width="310" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -52,19 +52,18 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="gRo-Rb-84h" firstAttribute="trailing" secondItem="hLN-J5-3gk" secondAttribute="trailing" constant="28" id="AvH-0i-I1z"/>
-                            <constraint firstItem="J2G-kE-Tgv" firstAttribute="leading" secondItem="CfN-fa-ZDl" secondAttribute="leading" constant="63" id="SXa-6V-oPr"/>
+                            <constraint firstItem="J2G-kE-Tgv" firstAttribute="leading" secondItem="CfN-fa-ZDl" secondAttribute="leading" constant="52" id="SXa-6V-oPr"/>
                             <constraint firstItem="HwN-Te-NdQ" firstAttribute="top" secondItem="4EI-Wh-wfe" secondAttribute="bottom" id="UHl-6b-eL2"/>
                             <constraint firstItem="J2G-kE-Tgv" firstAttribute="top" secondItem="4EI-Wh-wfe" secondAttribute="bottom" id="cDk-Mq-iLR"/>
                             <constraint firstItem="gRo-Rb-84h" firstAttribute="trailing" secondItem="HwN-Te-NdQ" secondAttribute="trailing" constant="63" id="dv9-U0-TU8"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="jHI-12-w46"/>
-                            <constraint firstItem="J2G-kE-Tgv" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="jzH-35-ZoX"/>
                             <constraint firstItem="HwN-Te-NdQ" firstAttribute="leading" secondItem="gRo-Rb-84h" secondAttribute="leading" constant="63" id="v70-Zb-XTx"/>
                             <constraint firstItem="gRo-Rb-84h" firstAttribute="bottom" secondItem="hLN-J5-3gk" secondAttribute="bottom" constant="37" id="vx4-ub-Ma8"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="top" secondItem="CfN-fa-ZDl" secondAttribute="top" id="xOU-Zk-Q8e"/>
                             <constraint firstItem="4EI-Wh-wfe" firstAttribute="width" secondItem="CfN-fa-ZDl" secondAttribute="width" id="yQB-2J-K7k"/>
                             <constraint firstItem="HwN-Te-NdQ" firstAttribute="centerX" secondItem="gRo-Rb-84h" secondAttribute="centerX" id="zaq-Rc-1Kg"/>
-                            <constraint firstItem="4EI-Wh-wfe" firstAttribute="height" secondItem="CfN-fa-ZDl" secondAttribute="height" multiplier="0.45" id="zcr-do-8sv"/>
-                            <constraint firstAttribute="trailing" secondItem="J2G-kE-Tgv" secondAttribute="trailing" constant="63" id="zxt-hD-MxU"/>
+                            <constraint firstItem="4EI-Wh-wfe" firstAttribute="height" secondItem="CfN-fa-ZDl" secondAttribute="height" multiplier="0.6" id="zcr-do-8sv"/>
+                            <constraint firstAttribute="trailing" secondItem="J2G-kE-Tgv" secondAttribute="trailing" constant="52" id="zxt-hD-MxU"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gRo-Rb-84h"/>
                     </view>

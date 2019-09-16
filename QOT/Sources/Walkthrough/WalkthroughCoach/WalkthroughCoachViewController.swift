@@ -59,6 +59,8 @@ private extension WalkthroughCoachViewController {
 extension WalkthroughCoachViewController: WalkthroughCoachViewControllerInterface {
 
     func setupView() {
+        coach.alpha = 0.25
+
         ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }
 }

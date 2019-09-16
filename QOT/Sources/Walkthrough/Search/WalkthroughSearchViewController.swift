@@ -33,12 +33,11 @@ final class WalkthroughSearchViewController: UIViewController, ScreenZLevelOverl
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        arrows.stopAnimating()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        arrows.startAnimating()
+//        arrows.startAnimating()
     }
 }
 
@@ -58,7 +57,9 @@ private extension WalkthroughSearchViewController {
 extension WalkthroughSearchViewController: WalkthroughSearchViewControllerInterface {
 
     func setupView() {
+        arrows.presentStationary()
         arrows.transform = CGAffineTransform.init(rotationAngle: CGFloat.pi * 0.5)
+        arrows.alpha = 0.25
 
         ThemeText.walkthroughMessage.apply(interactor?.text, to: textLabel)
     }

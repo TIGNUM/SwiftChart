@@ -22,6 +22,7 @@ class WalkthroughAnimatedArrows: UIView {
     private let visible: Double = 0.5
     private let fadeOut: Double = 0.35
     private let overlap: Double = 0.2
+    private var shouldAnimate: Bool = true
 
     lazy var totalDuration: Double = {
         return fadeIn + Double(arrows.count) * visible + fadeOut
@@ -63,7 +64,8 @@ class WalkthroughAnimatedArrows: UIView {
 extension WalkthroughAnimatedArrows {
 
     func startAnimating(repeatingInterval: Double? = nil) {
-        stopAnimating()
+        shouldAnimate = true
+        pauseAnimations()
 
         let minInterval = (totalDuration + 1.5 * timerTolerance)
         let interval: Double
@@ -81,11 +83,19 @@ extension WalkthroughAnimatedArrows {
         timer?.fire()
     }
 
-    func stopAnimating() {
+    func pauseAnimations() {
         timer?.invalidate()
         timer = nil
     }
+
+    func presentStationary() {
+        pauseAnimations()
+        shouldAnimate = false
+        showAllArrows()
+    }
 }
+
+// Animation
 
 private extension WalkthroughAnimatedArrows {
     @objc func animate() {
@@ -111,6 +121,12 @@ private extension WalkthroughAnimatedArrows {
                     view.alpha = 0
                 })
             })
+        }
+    }
+
+    func showAllArrows() {
+        UIView.animate(withDuration: fadeIn) { [weak self] in
+            self?.arrows.forEach { $0.alpha = 1 }
         }
     }
 }
