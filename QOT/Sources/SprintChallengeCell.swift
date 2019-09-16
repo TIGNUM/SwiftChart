@@ -15,12 +15,13 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var sprintTitle: UILabel!
     @IBOutlet private weak var sprintInfo: UILabel!
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var sprintStepNumber: UILabel!
     @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
 
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
         gotItButton.isHidden = true

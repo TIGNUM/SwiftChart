@@ -87,11 +87,11 @@
                     </connections>
                 </tableView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="335" y="566" width="55" height="40"/>
+                    <rect key="frame" x="321" y="566" width="69" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="87U-1V-ceJ"/>
-                        <constraint firstAttribute="width" constant="55" id="8AM-NP-gsv"/>
                     </constraints>
+                    <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                     <state key="normal" title="Got it">
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
@@ -163,6 +163,7 @@
                 <outlet property="sprintStepNumber" destination="pLQ-bh-3pJ" id="rmB-84-RM3"/>
                 <outlet property="sprintTitle" destination="x9V-Gw-Aha" id="A3c-nD-UdA"/>
                 <outlet property="tableView" destination="a2X-cN-vE8" id="JXO-wE-Sjb"/>
+                <outlet property="tableViewHeight" destination="ZmT-dw-wk2" id="LzV-GS-5iK"/>
             </connections>
             <point key="canvasLocation" x="263.768115942029" y="-180.80357142857142"/>
         </view>

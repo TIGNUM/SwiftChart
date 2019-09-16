@@ -464,6 +464,10 @@ private extension DailyBriefViewController {
                     _ indexPath: IndexPath,
                     _ sprintChallengeModel: SprintChallengeViewModel?) -> UITableViewCell {
         let cell: SprintChallengeCell = tableView.dequeueCell(for: indexPath)
+        if sprintChallengeModel?.relatedStrategiesModels.isEmpty == true {
+            cell.tableView.isHidden = true
+            cell.tableViewHeight.constant = 0
+        }
         cell.configure(with: sprintChallengeModel)
         cell.delegate = self
         return cell
