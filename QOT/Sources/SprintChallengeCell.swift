@@ -22,12 +22,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
     var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
-    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintContainerBottom: NSLayoutConstraint!
+
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
+    private var observers: [NSKeyValueObservation] = []
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        gotItButton.isHidden = true
-        gotItButtonHeight.constant = 0
+        hideGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -44,6 +46,15 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
+        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
+            self?.checkScroll()
+            }
+        ]
+    }
+
+    private func checkScroll() {
+        constraintContainerHeight.constant = tableView.contentSize.height + constraintContainerBottom.constant
+        tableView.setNeedsUpdateConstraints()
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
@@ -52,7 +63,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeView.level2.apply(self)
         if viewModel?.relatedStrategiesModels.isEmpty == true {
             tableView.isHidden = true
-            tableViewHeight.constant = 0
+            constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
@@ -62,7 +73,17 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
         self.currentSprint = viewModel?.sprint
-        gotItButton.isHidden = self.currentSprint?.doneForToday == true
+        hideGotItButton()
+    }
+
+    private func hideGotItButton() {
+        if self.currentSprint?.doneForToday == true {
+            gotItButton.isHidden = true
+            constraintContainerBottom.constant = 48
+        } else {
+            gotItButton.isHidden = false
+            constraintContainerBottom.constant = 109
+        }
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -79,7 +100,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
                        section: relatedStrategiesModels?[indexPath.row].section,
                        format: relatedStrategiesModels?[indexPath.row].format,
                        numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)
-        cell.backgroundColor = .carbon
         cell.delegate = self.delegate
         return cell
     }

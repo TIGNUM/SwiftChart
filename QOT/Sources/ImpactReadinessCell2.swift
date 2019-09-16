@@ -39,7 +39,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeView.level1Selected.apply(self)
         self.showLoadingSkeleton(with: [.dailyCheckInHeader,
                                         .dailyCheckInRow,
                                         .dailyCheckInRow,
@@ -50,11 +49,9 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
-
         if viewModel?.domainModel?.dailyCheckInResult != nil {
                 self.removeLoadingSkeleton()
         }
-
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)

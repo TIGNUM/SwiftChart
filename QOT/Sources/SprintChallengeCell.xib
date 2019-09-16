@@ -103,36 +103,47 @@
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="a2X-cN-vE8">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="195"/>
                             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="195" id="3ul-l7-YMm"/>
-                            </constraints>
+                            <color key="separatorColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.10223137842465753" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
                                 <outlet property="dataSource" destination="h1K-Pb-kvU" id="pCR-wJ-GAR"/>
                                 <outlet property="delegate" destination="h1K-Pb-kvU" id="NWf-Qc-bx4"/>
                             </connections>
                         </tableView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="321" y="219" width="69" height="40"/>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r93-fe-WWh">
+                            <rect key="frame" x="0.0" y="195" width="414" height="109"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmj-Xn-Nxm" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                                    <rect key="frame" x="321" y="24" width="69" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="87U-1V-ceJ"/>
+                                    </constraints>
+                                    <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
+                                    <state key="normal" title="Got it">
+                                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="gotItPressed:" destination="h1K-Pb-kvU" eventType="touchUpInside" id="bkQ-ox-hZa"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="40" id="87U-1V-ceJ"/>
+                                <constraint firstAttribute="height" constant="109" id="dL1-fp-GHu"/>
+                                <constraint firstItem="wmj-Xn-Nxm" firstAttribute="top" secondItem="r93-fe-WWh" secondAttribute="top" constant="24" id="l3C-mJ-U5W"/>
+                                <constraint firstAttribute="trailing" secondItem="wmj-Xn-Nxm" secondAttribute="trailing" constant="24" id="mGf-lx-rD2"/>
                             </constraints>
-                            <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                            <state key="normal" title="Got it">
-                                <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </state>
-                            <connections>
-                                <action selector="gotItPressed:" destination="h1K-Pb-kvU" eventType="touchUpInside" id="bkQ-ox-hZa"/>
-                            </connections>
-                        </button>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="304" id="0q0-4R-Foz"/>
                         <constraint firstAttribute="trailing" secondItem="a2X-cN-vE8" secondAttribute="trailing" id="8eR-Sz-IhR"/>
                         <constraint firstItem="a2X-cN-vE8" firstAttribute="top" secondItem="3wU-tC-exG" secondAttribute="top" id="956-6o-CF2"/>
-                        <constraint firstAttribute="trailing" secondItem="wmj-Xn-Nxm" secondAttribute="trailing" constant="24" id="OC6-aU-vfF"/>
-                        <constraint firstItem="wmj-Xn-Nxm" firstAttribute="top" secondItem="a2X-cN-vE8" secondAttribute="bottom" constant="24" id="YLj-TS-P73"/>
+                        <constraint firstItem="r93-fe-WWh" firstAttribute="leading" secondItem="3wU-tC-exG" secondAttribute="leading" id="IDK-QO-VQ9"/>
+                        <constraint firstAttribute="bottom" secondItem="r93-fe-WWh" secondAttribute="bottom" id="trb-7Y-jQy"/>
+                        <constraint firstAttribute="trailing" secondItem="r93-fe-WWh" secondAttribute="trailing" id="wDX-zc-WyG"/>
                         <constraint firstItem="a2X-cN-vE8" firstAttribute="leading" secondItem="3wU-tC-exG" secondAttribute="leading" id="x4m-h3-aWr"/>
+                        <constraint firstItem="r93-fe-WWh" firstAttribute="top" secondItem="a2X-cN-vE8" secondAttribute="bottom" id="x9E-ha-twI"/>
                     </constraints>
                 </view>
             </subviews>
@@ -166,6 +177,8 @@
             <viewLayoutGuide key="safeArea" id="ZCW-d6-H8F"/>
             <connections>
                 <outlet property="bucketTitle" destination="WPr-CM-EID" id="vUC-5K-aBz"/>
+                <outlet property="constraintContainerBottom" destination="dL1-fp-GHu" id="qXx-cV-DJq"/>
+                <outlet property="constraintContainerHeight" destination="0q0-4R-Foz" id="NiN-H5-LIZ"/>
                 <outlet property="gotItButton" destination="wmj-Xn-Nxm" id="8tt-PB-UHz"/>
                 <outlet property="gotItButtonHeight" destination="87U-1V-ceJ" id="Mcf-Ga-oxA"/>
                 <outlet property="showMoreButton" destination="KVg-Nh-YGZ" id="qZa-i0-NRw"/>
@@ -173,7 +186,6 @@
                 <outlet property="sprintStepNumber" destination="pLQ-bh-3pJ" id="rmB-84-RM3"/>
                 <outlet property="sprintTitle" destination="x9V-Gw-Aha" id="A3c-nD-UdA"/>
                 <outlet property="tableView" destination="a2X-cN-vE8" id="JXO-wE-Sjb"/>
-                <outlet property="tableViewHeight" destination="0q0-4R-Foz" id="NiN-H5-LIZ"/>
             </connections>
             <point key="canvasLocation" x="263.768115942029" y="-239.73214285714283"/>
         </view>
