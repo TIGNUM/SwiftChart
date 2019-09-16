@@ -276,6 +276,7 @@ enum ThemableButton {
     case myLibraryNotes
     case askPermissions
     case syncedCalendar
+    case walkthroughGotIt
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -285,14 +286,16 @@ enum ThemableButton {
              .myLibraryNotes,
              .askPermissions,
              .fullscreenAudioPlayerDownloadLight,
-             .syncedCalendar:
+             .syncedCalendar,
+             .walkthroughGotIt:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
 
     var normal: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar:
+        case .myLibrary, .askPermissions, .syncedCalendar,
+             .walkthroughGotIt:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -305,7 +308,8 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar:
+        case .myLibrary, .askPermissions, .syncedCalendar,
+             .walkthroughGotIt:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)

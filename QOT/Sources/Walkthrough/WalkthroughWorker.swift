@@ -26,4 +26,9 @@ final class WalkthroughWorker {
         emails.append(email)
         UserDefault.didShowCoachMarks.setObject(emails)
     }
+
+    // Texts
+    var buttonGotIt: String = {
+        return R.string.localized.walkthroughButtonGotIt()
+    }()
 }
