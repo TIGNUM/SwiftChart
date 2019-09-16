@@ -206,7 +206,7 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            topConstraint.constant = 50
+            topConstraint.constant = 40
             labelCustomizeView.isHidden = false
             customizeTargetTitle.isHidden = false
             ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
@@ -215,8 +215,8 @@ extension QuestionnaireViewController {
             hintLabel.isHidden = true
             questionToTop.constant = 120
         case .dailyCheckin:
-            topConstraint.constant = 80
-            questionToTop.constant = 20
+            topConstraint.constant = 90
+            questionToTop.constant = 0
         case .vision:
             topConstraint.constant = 20
             questionToTop.constant = 20
