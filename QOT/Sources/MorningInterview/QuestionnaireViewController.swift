@@ -215,7 +215,7 @@ extension QuestionnaireViewController {
             hintLabel.isHidden = true
             questionToTop.constant = 120
         case .dailyCheckin:
-            topConstraint.constant = 90
+            topConstraint.constant = UIScreen.main.bounds.height * 0.10
             questionToTop.constant = 15
         case .vision:
             topConstraint.constant = 20
