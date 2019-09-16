@@ -10,10 +10,16 @@ import UIKit
 
 final class DTPreparePresenter: DTPresenter {
 
+    // MARK: - Properties
+    weak var prepareViewController: DTPrepareViewControllerInterface?
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
     }
 }
 
 // MARK: - DTPrepareInterface
-extension DTPreparePresenter: DTPreparePresenterInterface {}
+extension DTPreparePresenter: DTPreparePresenterInterface {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        prepareViewController?.presentCalendarPermission(permissionType)
+    }
+}

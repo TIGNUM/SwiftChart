@@ -30,6 +30,7 @@ extension SolveHeaderTableViewCell {
     func configure(title: String, solutionText: String, hideShowMoreButton: Bool) {
         ThemeText.resultHeader1.apply(title.uppercased(), to: titleLabel)
         ThemeText.resultHeader2.apply(solutionText, to: solutionTextLabel)
+        showMoreButton.isHidden = hideShowMoreButton
         constraintShowMoreHeight.constant = hideShowMoreButton ? 0.0 : 40.0
         setNeedsUpdateConstraints()
         selectionStyle = .none

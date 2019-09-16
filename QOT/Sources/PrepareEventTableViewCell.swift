@@ -11,7 +11,6 @@ import UIKit
 final class PrepareEventTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var dateIcon: UIImageView!

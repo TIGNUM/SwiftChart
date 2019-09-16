@@ -17,7 +17,7 @@ final class DecisionTreeWorker {
     private let userService = qot_dal.UserService.main
     private let contentService = qot_dal.ContentService.main
     private let questionService = qot_dal.QuestionService.main
-    private var prepareKey: PrepareResult.Key = .perceived
+    private var prepareKey: Prepare.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
     private var answerFilterMindset: String?

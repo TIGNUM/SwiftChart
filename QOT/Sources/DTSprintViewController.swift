@@ -64,7 +64,6 @@ final class DTSprintViewController: DTViewController {
             return
         }
     }
-
 }
 
 // MARK: - Actions
@@ -82,7 +81,7 @@ private extension DTSprintViewController {
 }
 
 // MARK: - DTSprintPresenterInterface
-extension DTSprintViewController: DTSprintPresenterInterface {
+extension DTSprintViewController: DTSprintViewControllerInterface {
     func presentPermissionView(_ permissionType: AskPermission.Kind) {
         guard let router = router as? DTSprintRouter else { return }
         router.openPermissionView(permissionType)

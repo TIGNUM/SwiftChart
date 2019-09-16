@@ -20,7 +20,7 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var pageControl: PageControl!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var headerBackgroundView: UIView!
-    weak var delegate: SigningInfoDelegate?
+    var delegate: SigningInfoDelegate?
 
     // MARK: - Init
     init() {

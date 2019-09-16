@@ -40,11 +40,10 @@ final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
 
-final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
+final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
-    @IBOutlet weak var tableView: UITableView!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -240,6 +239,21 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             return getWeatherCell(tableView, indexPath, weatherModel)
         default:
            return UITableViewCell()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section)
+        let bucketList = bucketModel?.elements
+        let bucketItem = bucketList?[indexPath.row]
+        switch bucketItem?.domainModel?.bucketName {
+        case .LATEST_WHATS_HOT?:
+             didSelectRow(at: indexPath)
+             interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in
+                self?.interactor?.presentWhatsHotArticle(selectedID: model?.remoteID ?? 0)
+             })
+        default:
+            break
         }
     }
 
@@ -478,10 +492,7 @@ private extension DailyBriefViewController {
     func getWhatsHot(_ tableView: UITableView,
                      _ indexPath: IndexPath,
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
-        //check this for some reasons there is null pointer exceoption
         let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction))
-        cell.addGestureRecognizer(gesture)
         cell.configure(with: whatsHotViewModel)
         return cell
     }
@@ -626,7 +637,6 @@ private extension DailyBriefViewController {
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
-
         return cell
     }
 
@@ -698,6 +708,8 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     }
 
     func setupView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.registerDequeueable(WhatsHotLatestCell.self)
         tableView.registerDequeueable(QuestionCell.self)
@@ -791,7 +803,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.configurate(qdmUserPreparation, [], canDelete: false)
+        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, canDelete: false)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
     }
