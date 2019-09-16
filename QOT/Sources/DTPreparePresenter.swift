@@ -12,7 +12,6 @@ final class DTPreparePresenter: DTPresenter {
 
     // MARK: - Properties
     weak var prepareViewController: DTPrepareViewControllerInterface?
-
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
     }

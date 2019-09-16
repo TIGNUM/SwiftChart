@@ -4960,13 +4960,6 @@
 			path = ExternalLinkImporter;
 			sourceTree = "<group>";
 		};
-		BB13CCC5232FDFC800C0BF63 /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = "Recovered References";
-			sourceTree = "<group>";
-		};
 		BB5E76B3230C048C0054AF17 /* CustomSegue */ = {
 			isa = PBXGroup;
 			children = (
@@ -5139,7 +5132,6 @@
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				CBB238031E6FFF1200AB5AEF /* QOTTests */,
-				BB13CCC5232FDFC800C0BF63 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
