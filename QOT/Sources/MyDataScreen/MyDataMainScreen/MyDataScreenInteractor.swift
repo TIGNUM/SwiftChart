@@ -79,6 +79,10 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
         return worker.firstLoad
     }
 
+    func getSwitchButtonsTitles() -> [String] {
+        return worker.myDataHeatMapButtonTitles()
+    }
+
     func passDataToScene(segue: UIStoryboardSegue, withType: MyDataSection) {
         router.passDataToScene(segue: segue, withType: withType)
     }

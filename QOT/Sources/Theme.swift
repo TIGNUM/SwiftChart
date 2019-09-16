@@ -60,7 +60,10 @@ enum ThemeView {
     case resultWhite
     case qotTools
     case syncedCalendarSeparator
+    case audioPlaying
     case tbvLowPerformance
+    case myDataHeatMapLegendHigh
+    case myDataHeatMapLegendLow
 
     var color: UIColor {
         switch self {
@@ -76,6 +79,8 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
+        case .audioPlaying:
+            return Palette.accent40
         case .onboarding:
             return Palette.carbon
         case .toolSeparator:
@@ -110,6 +115,10 @@ enum ThemeView {
             return Palette.sand40
         case .tbvLowPerformance:
             return Palette.carbon70
+        case .myDataHeatMapLegendHigh:
+            return Palette.heatMapBrightRed
+        case .myDataHeatMapLegendLow:
+            return Palette.heatMapDarkBlue
         }
     }
 
@@ -267,6 +276,7 @@ enum ThemableButton {
     case myLibraryNotes
     case askPermissions
     case syncedCalendar
+    case walkthroughGotIt
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -276,14 +286,16 @@ enum ThemableButton {
              .myLibraryNotes,
              .askPermissions,
              .fullscreenAudioPlayerDownloadLight,
-             .syncedCalendar:
+             .syncedCalendar,
+             .walkthroughGotIt:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
 
     var normal: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar:
+        case .myLibrary, .askPermissions, .syncedCalendar,
+             .walkthroughGotIt:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -296,7 +308,8 @@ enum ThemableButton {
 
     var highlight: ButtonTheme? {
         switch self {
-        case .myLibrary, .askPermissions, .syncedCalendar:
+        case .myLibrary, .askPermissions, .syncedCalendar,
+             .walkthroughGotIt:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
@@ -599,6 +612,8 @@ enum ThemeText {
     case qotToolsSubtitle
     case qotToolsTitle
     case qotToolsSectionSubtitle
+    case audioLabel
+
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
     case myDataMonthYearTitle
@@ -663,7 +678,7 @@ enum ThemeText {
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody:
+             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -751,6 +766,8 @@ enum ThemeText {
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
              .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
             return Fonts.fontLight11
+        case .audioLabel:
+            return Fonts.fontSemiBold12
         case .articleQuote:
             switch textScale {
             case .scale: return Fonts.fontLight20
@@ -813,8 +830,7 @@ enum ThemeText {
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatBotButton,
-             .articleMarkRead, .articleAudioBar, .coachTitle:
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .articleMarkRead, .articleAudioBar, .coachTitle, .audioLabel, .chatBotButton:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax:
@@ -912,7 +928,7 @@ enum ThemeText {
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
-        case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
+        case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
@@ -1293,6 +1309,14 @@ private struct Palette {
 
     static var white40: UIColor {
         return UIColor.white.withAlphaComponent(0.4)
+    }
+
+    static var heatMapDarkBlue: UIColor {
+        return UIColor.heatMapDarkBlue
+    }
+
+    static var heatMapBrightRed: UIColor {
+        return UIColor.heatMapBrightRed
     }
 
     static func light(_ lightColor: UIColor, or darkColor: UIColor, forcedColorMode: ThemeColorMode? = nil) -> UIColor {

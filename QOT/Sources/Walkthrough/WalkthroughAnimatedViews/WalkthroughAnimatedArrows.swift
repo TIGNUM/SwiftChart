@@ -63,7 +63,7 @@ class WalkthroughAnimatedArrows: UIView {
 extension WalkthroughAnimatedArrows {
 
     func startAnimating(repeatingInterval: Double? = nil) {
-        stopAnimating()
+        pauseAnimations()
 
         let minInterval = (totalDuration + 1.5 * timerTolerance)
         let interval: Double
@@ -81,11 +81,18 @@ extension WalkthroughAnimatedArrows {
         timer?.fire()
     }
 
-    func stopAnimating() {
+    func pauseAnimations() {
         timer?.invalidate()
         timer = nil
     }
+
+    func presentStationary() {
+        pauseAnimations()
+        showAllArrows()
+    }
 }
+
+// Animation
 
 private extension WalkthroughAnimatedArrows {
     @objc func animate() {
@@ -111,6 +118,12 @@ private extension WalkthroughAnimatedArrows {
                     view.alpha = 0
                 })
             })
+        }
+    }
+
+    func showAllArrows() {
+        UIView.animate(withDuration: fadeIn) { [weak self] in
+            self?.arrows.forEach { $0.alpha = 1 }
         }
     }
 }

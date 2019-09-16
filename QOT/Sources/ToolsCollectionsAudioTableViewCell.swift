@@ -15,7 +15,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
-    @IBOutlet private weak var audioView: UIView!
+    @IBOutlet weak var audioView: AudioButton!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
     private var mediaURL: URL?
@@ -23,10 +23,17 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var remoteID: Int = 0
     private var categoryTitle = ""
     private var duration: Double = 0
+    weak var delegate: ToolsCollectionsViewController?
+    weak var itemDelegate: ToolsItemsViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         audioView.corner(radius: 20)
+        if let isPlaying = delegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        } else if let isPlaying = itemDelegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
     }
 
     override func prepareForReuse() {
@@ -39,7 +46,9 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
                    timeToWatch: String,
                    mediaURL: URL?,
                    duration: Double,
-                   remoteID: Int) {
+                   remoteID: Int,
+                   delegate: ToolsCollectionsViewController?,
+                   itemDelegate: ToolsItemsViewControllerDelegate?) {
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
@@ -47,14 +56,15 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
         self.duration = duration
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
-        setAudioAsCompleteIfNeeded(remoteID: remoteID)
         mediaIconImageView.image = R.image.ic_audio_grey()
+        if let isPlaying = delegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        } else if let isPlaying = itemDelegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
-        audioLabel.attributedText = NSAttributedString(string: mediaDescription,
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 12),
-                                                       textColor: .accent,
-                                                       alignment: .center)
+        ThemeText.audioLabel.apply(mediaDescription, to: audioLabel)
+        setAudioAsCompleteIfNeeded(remoteID: remoteID)
     }
 }
 
@@ -81,7 +91,6 @@ extension ToolsCollectionsAudioTableViewCell {
 
 private extension ToolsCollectionsAudioTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
-        audioView.backgroundColor = .carbon
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             audioView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
         }
