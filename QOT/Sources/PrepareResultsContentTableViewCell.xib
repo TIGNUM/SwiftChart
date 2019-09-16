@@ -48,7 +48,7 @@
                             <constraint firstAttribute="height" constant="16" id="DOG-8t-N5c"/>
                         </constraints>
                     </imageView>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="V4n-8d-CIH">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4n-8d-CIH">
                         <rect key="frame" x="24" y="42.5" width="296" height="1"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -60,10 +60,12 @@
                 <constraints>
                     <constraint firstItem="V4n-8d-CIH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pAr-1F-Ks5" secondAttribute="bottom" constant="8" id="0kR-4h-Vx4"/>
                     <constraint firstItem="hnY-Fh-8Zf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2vs-pR-Cd8"/>
+                    <constraint firstItem="V4n-8d-CIH" firstAttribute="leading" secondItem="pAr-1F-Ks5" secondAttribute="leading" id="IJh-Xf-Kx6"/>
                     <constraint firstItem="nAy-OB-Isz" firstAttribute="centerY" secondItem="hnY-Fh-8Zf" secondAttribute="centerY" id="IyX-wr-ybD"/>
                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pAr-1F-Ks5" secondAttribute="trailing" constant="16" id="Lh0-6o-Oq6"/>
                     <constraint firstItem="hNz-Ag-gX3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Rea-nw-xU0"/>
                     <constraint firstAttribute="trailing" secondItem="V4n-8d-CIH" secondAttribute="trailing" id="Smp-vs-Gok"/>
+                    <constraint firstItem="hNz-Ag-gX3" firstAttribute="leading" secondItem="pAr-1F-Ks5" secondAttribute="leading" id="UKk-Pl-R7e"/>
                     <constraint firstItem="hnY-Fh-8Zf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aDD-gf-GKp"/>
                     <constraint firstAttribute="trailing" secondItem="nAy-OB-Isz" secondAttribute="trailing" constant="16" id="aOb-JV-WfX"/>
                     <constraint firstItem="pAr-1F-Ks5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="iMa-MC-pHO"/>

@@ -74,8 +74,7 @@ final class DTPrepareInteractor: DTInteractor {
 // MARK: - DTPrepareInteractorInterface
 extension DTPrepareInteractor: DTPrepareInteractorInterface {
     //TODO Unify to one single createPrep func with ServiceModel.
-    func getUserPreparation(userInput: String?,
-                            event: DTViewModel.Event?,
+    func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void) {
         let answers = selectedAnswers.flatMap { $0.answers }
         let eventAnswer = answers.filter { $0.keys.contains(Prepare.AnswerKey.KindOfEvenSelectionCritical) }.first
@@ -85,7 +84,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         let feelIds = getAnswerIds(.feel, selectedAnswers)
         prepareWorker?.getRelatedStrategies(eventAnswer?.targetId(.content) ?? 0) { [weak self] (strategyIds) in
             self?.prepareWorker?.createUserPreparation(level: .LEVEL_CRITICAL,
-                                                       benefits: userInput,
+                                                       benefits: self?.inputText,
                                                        answerFilter: Prepare.AnswerFilter,
                                                        contentCollectionId: QDMUserPreparation.Level.LEVEL_CRITICAL.contentID,
                                                        relatedStrategyId: eventAnswer?.targetId(.content) ?? 0,

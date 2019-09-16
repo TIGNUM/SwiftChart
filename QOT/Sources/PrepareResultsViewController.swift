@@ -125,7 +125,7 @@ private extension PrepareResultsViewController {
         resultInfoWeAreDoneHereView.delegate = self
         view.addSubview(resultInfoWeAreDoneHereView)
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
-//        resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
+        resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
         self.resultView = resultInfoWeAreDoneHereView
         showDone = true
         refreshBottomNavigationItems()

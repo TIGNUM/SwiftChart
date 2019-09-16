@@ -108,8 +108,7 @@ private extension DTPrepareViewController {
     }
 
     func createPreparationAndPresent() {
-        prepareInteractor?.getUserPreparation(userInput: "FIXME we are my benefis?",
-                                              event: selectedEvent) { [weak self] (preparation) in
+        prepareInteractor?.getUserPreparation(event: selectedEvent) { [weak self] (preparation) in
                                                 self?.prepareRouter?.presentPrepareResults(preparation,
                                                                                            canDelete: false)
         }

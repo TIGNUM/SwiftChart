@@ -8,24 +8,27 @@
 
 import UIKit
 
+protocol UserInputTableViewCellProtocol: class {
+    func didUpdateUserInput(_ text: String)
+}
+
 final class UserInputTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var maxCharactersLabel: UILabel!
-    private weak var delegate: DecisionTreeQuestionnaireDelegate?
+    private weak var delegate: UserInputTableViewCellProtocol?
     private var inputText: String?
     private var maxCharacters = 100
-    public var shouldEndEditing = false
+//    public var shouldEndEditing = false
 
     // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        showKeyBoard()
     }
 
-    func configure(inputText: String?, maxCharacters: Int, delegate: DecisionTreeQuestionnaireDelegate?) {
+    func configure(inputText: String?, maxCharacters: Int, delegate: UserInputTableViewCellProtocol?) {
         self.maxCharacters = maxCharacters
         self.inputText = inputText
         self.delegate = delegate
@@ -36,10 +39,12 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
             ThemeText.resultCounter.apply(String(format: "%d", textView.text.count), to: counterLabel)
         }
 
-        self.showKeyBoard()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            self.showKeyBoard()
+        }
     }
 
-    func showKeyBoard() {
+    private func showKeyBoard() {
         textView.becomeFirstResponder()
     }
 }
@@ -51,7 +56,7 @@ extension UserInputTableViewCell: UITextViewDelegate {
     }
 
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
-        return shouldEndEditing
+        return true
     }
 
     func textViewDidChange(_ textView: UITextView) {
