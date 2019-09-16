@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 
 final class DTPrepareViewController: DTViewController {
 
@@ -28,13 +30,13 @@ final class DTPrepareViewController: DTViewController {
     // MARK: - Answer Handling
     override func didTapNext() {
         setAnswerNeedsSelection()
-        if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
-            prepareInteractor?.getUserPreparation(userInput: "FIXME we are my benefis?",
-                                                  event: selectedEvent) { [weak self] (preparation) in
-                                                    self?.prepareRouter?.presentPrepareResults(preparation,
-                                                                                               canDelete: false)
-            }
-        } else {
+        switch viewModel?.question.key {
+        case Prepare.QuestionKey.BenefitsInput?:
+            createPreparationAndPresent()
+        case Prepare.QuestionKey.CalendarEventSelectionCritical?,
+             Prepare.QuestionKey.CalendarEventSelectionDaily?:
+            prepareRouter?.presentEditEventController()
+        default:
             loadNextQuestion()
         }
     }
@@ -104,6 +106,14 @@ private extension DTPrepareViewController {
             }
         }
     }
+
+    func createPreparationAndPresent() {
+        prepareInteractor?.getUserPreparation(userInput: "FIXME we are my benefis?",
+                                              event: selectedEvent) { [weak self] (preparation) in
+                                                self?.prepareRouter?.presentPrepareResults(preparation,
+                                                                                           canDelete: false)
+        }
+    }
 }
 
 extension DTPrepareViewController: AskPermissionDelegate {
@@ -118,5 +128,21 @@ extension DTPrepareViewController: AskPermissionDelegate {
 extension DTPrepareViewController: DTPrepareViewControllerInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
         prepareRouter?.presentCalendarPermission(permissionType)
+    }
+}
+
+extension DTPrepareViewController: EKEventEditViewDelegate {
+    func eventEditViewController(_ controller: EKEventEditViewController,
+                                 didCompleteWith action: EKEventEditViewAction) {
+        switch action {
+        case .canceled,
+             .deleted:
+            controller.dismiss(animated: true)
+        case .saved:
+            prepareInteractor?.setCreatedCalendarEvent(controller.event)
+            controller.dismiss(animated: true) { [weak self] in
+                self?.loadNextQuestion()
+            }
+        }
     }
 }

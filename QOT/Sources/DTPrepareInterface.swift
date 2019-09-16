@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import EventKit
+import EventKitUI
 import qot_dal
 
 protocol DTPrepareViewControllerInterface: class {
@@ -29,6 +31,8 @@ protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(userInput: String?,
                             event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func setCreatedCalendarEvent(_ event: EKEvent?)
 }
 
 protocol DTPrepareRouterInterface {
@@ -36,12 +40,5 @@ protocol DTPrepareRouterInterface {
     func presentPrepareResults(_ contentId: Int)
     func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-
-    func openArticle(with contentID: Int)
-    func openVideo(from url: URL, item: QDMContentItem?)
-    func openImagePicker()
-
-    func dismissAll()
-
-    func presentAddEventController(_ eventStore: EKEventStore)
+    func presentEditEventController()
 }

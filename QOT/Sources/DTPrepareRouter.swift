@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 import qot_dal
 
 final class DTPrepareRouter: DTRouter {
@@ -17,30 +19,6 @@ final class DTPrepareRouter: DTRouter {
 
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
-    func openArticle(with contentID: Int) {
-
-    }
-
-    func openVideo(from url: URL, item: QDMContentItem?) {
-
-    }
-
-    func openImagePicker() {
-
-    }
-
-    func dismissAll() {
-
-    }
-
-    func presentPermissionView(_ permissionType: AskPermission.Kind) {
-
-    }
-
-    func presentAddEventController(_ eventStore: EKEventStore) {
-
-    }
-
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
         let configurator = DTShortTBVConfigurator.make(introKey: introKey, delegate: delegate)
         let controller = DTShortTBVViewController(configure: configurator)
@@ -64,5 +42,12 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
             AskPermissionViewController else { return }
         AskPermissionConfigurator.make(viewController: controller, type: permissionType, delegate: prepareViewController)
         viewController?.present(controller, animated: true, completion: nil)
+    }
+
+    func presentEditEventController() {
+        let eventEditVC = EKEventEditViewController()
+        eventEditVC.eventStore = EKEventStore.shared
+        eventEditVC.editViewDelegate = prepareViewController
+        viewController?.present(eventEditVC, animated: true)
     }
 }

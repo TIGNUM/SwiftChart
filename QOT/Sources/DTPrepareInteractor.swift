@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 import qot_dal
 
 final class DTPrepareInteractor: DTInteractor {
@@ -18,6 +20,7 @@ final class DTPrepareInteractor: DTInteractor {
     private var eventsInitiated = false
     private var preparationsInitiated = false
     private var tbv: QDMToBeVision?
+    private var event: EKEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
@@ -133,6 +136,10 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
                                               eventType: eventType,
                                               event: userEvent,
                                               completion)
+    }
+
+    func setCreatedCalendarEvent(_ event: EKEvent?) {
+        self.event = event
     }
 }
 
