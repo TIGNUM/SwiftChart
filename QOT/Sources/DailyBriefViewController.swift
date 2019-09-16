@@ -756,9 +756,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        if let cellIndexPath = tableView.indexPath(for: cell) {
-            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
-        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func showSolveResults(solve: QDMSolve) {
