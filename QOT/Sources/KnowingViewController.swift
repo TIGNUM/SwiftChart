@@ -29,6 +29,7 @@ final class KnowingViewController: HomeViewController {
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesAndTwoColumns, .threeLinesAndTwoColumns, .threeLinesLeftColumn])
         ThemeView.level1.apply(self.view)
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -165,10 +166,14 @@ extension KnowingViewController {
         switch section {
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: 0)
-        case Knowing.Section.strategies.rawValue:
-            return CGSize(width: view.frame.width, height: 155)
         default:
-            return CGSize(width: view.frame.width, height: 140)
+            if let componentHeader = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionElementKindSectionHeader, at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
+            let sectionType = Knowing.Section(rawValue: section),
+            let header = interactor?.header(for: sectionType) {
+                componentHeader.configure(title: header.title, subtitle: header.subtitle, secondary: true)
+                return CGSize(width: view.frame.width, height: componentHeader.calculateHeight(for: self.collectionView.frame.size.width))
+            }
+            return CGSize(width: view.frame.width, height: 155)
         }
     }
 
