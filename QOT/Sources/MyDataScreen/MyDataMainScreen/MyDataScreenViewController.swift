@@ -130,13 +130,16 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
             return chartLegendCell
         case MyDataRowType.heatMapInfo.rawValue:
             let heatMapInfoCell: MyDataInfoTableViewCell = tableView.dequeueCell(for: indexPath)
-            heatMapInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].title, subtitle: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].subtitle)
+            heatMapInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].title,
+                                      subtitle: myDataScreenModel?.myDataItems[MyDataSection.heatMap.rawValue].subtitle)
             heatMapInfoCell.delegate = self
 
             return heatMapInfoCell
         case MyDataRowType.heatMapButtons.rawValue:
             let heatMapButtonsCell: MyDataHeatMapButtonsTableViewCell = tableView.dequeueCell(for: indexPath)
             heatMapButtonsCell.delegate = self
+            heatMapButtonsCell.configure(with: interactor?.getSwitchButtonsTitles().first,
+                                         and: interactor?.getSwitchButtonsTitles()[1])
 
             return heatMapButtonsCell
         case MyDataRowType.heatMap.rawValue:

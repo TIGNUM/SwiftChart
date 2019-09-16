@@ -117,10 +117,11 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         averageSeries.color = .sand40
         averageSeries.dashed = true
 
-        //HERE handle single points drawing (i.e. first use case)
-        drawRectangles(forIsolatedPoints: findIsolatedValues(inModels: withModels))
+        var selectedParameters: [MyDataParameter] = []
+
         //selected chart display logic
         for selection in selectionModel.myDataSelectionItems where selection.selected {
+            selectedParameters.append(selection.myDataExplanationSection)
             switch selection.myDataExplanationSection {
             case .fiveDIR:
                 chartView.add(fiveDIR)
@@ -147,6 +148,10 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 break
             }
         }
+
+        //HERE handle single points drawing (i.e. first use case)
+        drawRectangles(forIsolatedPoints: findIsolatedValues(inModels: withModels, with: selectedParameters))
+
         chartView.add(ir)
         chartView.add(averageSeries)
         let irAverageLabel = UILabel.init(frame: CGRect(x: 0, y: 0, width: 100, height: 20))
@@ -171,13 +176,15 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         return dates
     }
 
-    func findIsolatedValues(inModels: [Date: MyDataDailyCheckInModel]) -> [MyDataParameter: [(x: Double, y: Double)]] {
+    func findIsolatedValues(inModels: [Date: MyDataDailyCheckInModel], with selectedParameters: [MyDataParameter]) -> [MyDataParameter: [(x: Double, y: Double)]] {
         var resultsDictionary: [MyDataParameter: [(x: Double, y: Double)]] = [:]
+        var selectedResults: [MyDataParameter] = [.IR]
+        selectedResults.append(contentsOf: selectedParameters)
         for dictModel in inModels {
             let model = dictModel.value
             if inModels[model.date.dateAfterDays(1)] == nil && inModels[model.date.dateAfterDays(-1)] == nil {
                 let datesOfCurrentWeek = datesOfTheWeek(thatContains: model.date)
-                for parameter in MyDataParameter.allCases {
+                for parameter in selectedResults {
                     var pointsArray: [(x: Double, y: Double)] = []
                     var parameterValue: Double?
                     switch parameter {
