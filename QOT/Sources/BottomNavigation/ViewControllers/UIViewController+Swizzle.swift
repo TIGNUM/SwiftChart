@@ -160,7 +160,7 @@ extension UIViewController {
         if self is ScreenZLevel1 || self is ScreenZLevelBottom {
             NotificationCenter.default.post(name: .stopAudio, object: nil)
         } else if self is ScreenZLevel2 || self is ScreenZLevel3 {
-//            addGestureSwipeBack()
+            addGestureSwipeBack()
         }
 
         let viewControllerName = NSStringFromClass(type(of: self))
