@@ -14,6 +14,7 @@ class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
+        selectionStyle = .none
     }
 
     func setTimer(with timeInterval: TimeInterval, completion: @escaping() -> Void) {
