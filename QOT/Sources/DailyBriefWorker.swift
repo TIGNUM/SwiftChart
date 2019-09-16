@@ -37,9 +37,6 @@ final class DailyBriefWorker {
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
-    var rowCount: Int {
-        return buckets.count
-    }
 
     // Get Daily Brief bucket
     func getDailyBriefBucketsForViewModel(completion: @escaping ([QDMDailyBriefBucket]) -> Void) {
@@ -51,10 +48,6 @@ final class DailyBriefWorker {
                 completion(bucketsList)
             }
         })
-    }
-
-    func screenTitle() -> String {
-        return ScreenTitleService.main.localizedString(for: .DailyBriefTitle)
     }
 }
 

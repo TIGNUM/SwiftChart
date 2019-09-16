@@ -69,13 +69,11 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
     }
 
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
-        // TODO: Replace with QOT alert: https://tignum.atlassian.net/browse/QOT-1748
-        let alert = UIAlertController(title: interactor.noWifiTitle, message: interactor.noWifiMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: interactor.cancelButtonTitle, style: .cancel, handler: nil))
-        alert.addAction(UIAlertAction(title: interactor.yesContinueButtonTitle, style: .default, handler: { (_) in
-            interactor.didTapDownloadWithoutWiFi()
-        }))
-        self.present(alert, animated: true, completion: nil)
+        let cancel = QOTAlertAction(title: interactor.cancelButtonTitle)
+        let buttonContinue = QOTAlertAction(title: interactor.yesContinueButtonTitle) { [weak self] (_) in
+            self?.interactor?.didTapDownloadWithoutWiFi()
+        }
+        QOTAlert.show(title: interactor.noWifiTitle, message: interactor.noWifiMessage, bottomItems: [cancel, buttonContinue])
     }
 }
 

@@ -20,6 +20,7 @@ final class ToolsCollectionsInteractor {
     // MARK: - Init
     private var toolItems = [Tool.Item]()
     private var videoToolItems = [Tool.Item]()
+    private var isMediaPlaying = false
 
     init(worker: ToolsCollectionsWorker,
          presenter: ToolsCollectionsPresenterInterface,
@@ -27,6 +28,10 @@ final class ToolsCollectionsInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(didStartAudio(_:)), name: .didStartAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didPauseAudio(_:)), name: .didPauseAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
     }
 
     // MARK: - Interactor
@@ -46,6 +51,11 @@ final class ToolsCollectionsInteractor {
 // MARK: - ToolsInteractorInterface
 
 extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
+
+    var isPlaying: Bool {
+        return self.isMediaPlaying
+    }
+
     var headerTitle: String {
         return worker.headerTitle
     }
@@ -72,5 +82,39 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
 
     func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void) {
         return worker.contentItem(for: id, completion)
+    }
+}
+
+// FIXME: Refactor all logics in one place
+extension ToolsCollectionsInteractor {
+
+    @objc func didStartAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = true
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didPauseAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didStopAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
     }
 }

@@ -63,7 +63,7 @@ extension MyQotAccountSettingsWorker {
     }
 
     var emailText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsEmail)
+        return ScreenTitleService.main.localizedString(for: .MyProfileEmail)
     }
 
     var dateOfBirthText: String {

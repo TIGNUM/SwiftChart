@@ -45,8 +45,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var tableHeader: UIView!
-    @IBOutlet weak var screenTitleLabel: UILabel!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -235,7 +233,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
         case .GUIDE_TRACK?:
             guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
-            return getGuidedTrack(tableView, indexPath, guidedtrackModel)
+            let showDivider = indexPath.row == (bucketList?.count ?? 0) - 1
+            return getGuidedTrack(tableView, indexPath, showDivider, guidedtrackModel)
         case .WEATHER?:
             guard let weatherModel = bucketItem as? WeatherViewModel else { return UITableViewCell()}
             return getWeatherCell(tableView, indexPath, weatherModel)
@@ -594,23 +593,10 @@ private extension DailyBriefViewController {
     func getMyPeakPerformance(_ tableView: UITableView,
                               _ indexPath: IndexPath,
                               _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
-        let cell: MyPeakPerformanceTableCell = tableView.dequeueCell(for: indexPath)
-        let peakPerformanceList = peakPerformanceModel?.peakPerformanceSectionList ?? []
-        let tableViewHeight = getPeakPerformanceTableViewHeight(peakPerformanceList, peakPerformanceModel)
-        cell.peakPerformanceList = peakPerformanceList
-        cell.configure(with: peakPerformanceModel,
-                       tableViewHeight: tableViewHeight)
-        cell.delegate = self
+        let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
+        cell.appDelegate = self
+        cell.configure(with: peakPerformanceModel)
         return cell
-    }
-
-    func getPeakPerformanceTableViewHeight(_ modelItems: [MyPerformanceModelItem],
-                                           _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> CGFloat {
-        let headerHeight: CGFloat = 78
-        let rowHeight: CGFloat = 99 * CGFloat(modelItems.filter { $0.type == .ROW }.count)
-        let sections = peakPerformanceModel?.peakPerformanceSectionList.filter { $0.type == .SECTION }
-        let sectionHeight: CGFloat = 200 * CGFloat(sections?.count ?? 0)
-        return headerHeight + rowHeight + sectionHeight
     }
 
     /**
@@ -651,6 +637,7 @@ private extension DailyBriefViewController {
      */
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
+                        _ hideDivider: Bool,
                         _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
@@ -659,7 +646,7 @@ private extension DailyBriefViewController {
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: guidedtrackModel)
+        cell.configure(with: guidedtrackModel, hideDivider)
         cell.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
@@ -670,6 +657,7 @@ private extension DailyBriefViewController {
                         _ weatherModel: WeatherViewModel?) -> UITableViewCell {
         let cell: WeatherCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: weatherModel)
+        cell.delegate = self
         return cell
     }
 }
@@ -728,7 +716,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(Level5Cell.self)
         tableView.registerDequeueable(FromMyCoachCell.self)
         tableView.registerDequeueable(LeaderWisdomTableViewCell.self)
-        tableView.registerDequeueable(MyPeakPerformanceTableCell.self)
+        tableView.registerDequeueable(MyPeakPerformanceCell.self)
         tableView.registerDequeueable(MeAtMyBestEmptyCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
@@ -739,12 +727,12 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
-        ThemeText.navigationBarHeader.apply(interactor?.screenTitle(), to: screenTitleLabel)
     }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func didChangeLocationPermission(granted: Bool) {
+        interactor?.updateDailyBriefBucket()
     }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
@@ -770,9 +758,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        if let cellIndexPath = tableView.indexPath(for: cell) {
-            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
-        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func showSolveResults(solve: QDMSolve) {

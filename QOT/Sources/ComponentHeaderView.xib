@@ -22,7 +22,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQb-Bt-EwV">
-                    <rect key="frame" x="24" y="40" width="16" height="1"/>
+                    <rect key="frame" x="24" y="30" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="eDW-8f-Ylf"/>
@@ -30,13 +30,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-4e-jYi">
-                    <rect key="frame" x="24" y="53" width="327" height="15"/>
+                    <rect key="frame" x="24" y="43" width="327" height="15"/>
                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="15"/>
                     <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds7-VQ-mul">
-                    <rect key="frame" x="24" y="76" width="327" height="14"/>
+                    <rect key="frame" x="24" y="66" width="327" height="14"/>
                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="14"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="24" id="YGO-Ow-KQD"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ds7-VQ-mul" secondAttribute="bottom" constant="10" id="iYx-eH-8et"/>
                 <constraint firstItem="ds7-VQ-mul" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="24" id="jEj-WS-umG"/>
-                <constraint firstItem="eQb-Bt-EwV" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" constant="40" id="l7g-sx-Pyo"/>
+                <constraint firstItem="eQb-Bt-EwV" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" constant="30" id="l7g-sx-Pyo"/>
                 <constraint firstAttribute="trailing" secondItem="ds7-VQ-mul" secondAttribute="trailing" constant="24" id="rLk-97-tx5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

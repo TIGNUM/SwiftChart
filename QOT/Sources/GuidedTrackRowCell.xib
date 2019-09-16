@@ -86,6 +86,7 @@
             <connections>
                 <outlet property="button" destination="lTu-tU-c9b" id="QkN-C7-iNn"/>
                 <outlet property="content" destination="FO1-gG-Tdb" id="Xa3-7x-lcp"/>
+                <outlet property="dividerView" destination="VTr-zE-Ggc" id="eaB-Zr-w4f"/>
                 <outlet property="subtitle" destination="DAN-6L-GwM" id="rNE-6N-9zs"/>
                 <outlet property="title" destination="3ah-n4-3CE" id="Lzn-aV-8zC"/>
             </connections>

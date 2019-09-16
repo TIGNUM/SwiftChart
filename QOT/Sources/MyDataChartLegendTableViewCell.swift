@@ -26,12 +26,13 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeButton.accent40.apply(addButton)
-        resetAllHeightConstraints()
+        resetContent()
+
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        resetAllHeightConstraints()
+        resetContent()
     }
 
     func configure(selectionModel: MyDataSelectionModel?) {
@@ -59,9 +60,12 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: Helpers
 
-    func resetAllHeightConstraints() {
+    func resetContent() {
         for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") != 0 {
             constraint.constant = 0
+        }
+        for label in labelsCollection {
+            label.text = nil
         }
     }
 

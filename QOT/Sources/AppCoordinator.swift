@@ -139,6 +139,9 @@ final class AppCoordinator {
             return
         }
 
+        // set invalid bucket name with GUIDE_TRACK if user selected fast track
+        // DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
+
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
             let rootNavigationController = rootViewController as? UINavigationController else {

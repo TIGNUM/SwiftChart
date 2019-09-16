@@ -276,7 +276,7 @@
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
 "Alert.Message.signinMissingConnection" = "Turn on mobile data or use Wi-Fi to access data.";
 "Alert.Title.UseMobileData" = "USE MOBILE DATA";
-"Alert.Message.UseMobileData" = "No wi-fi found. Are you sure you want to download the file using mobile data?";
+"Alert.Message.UseMobileData" = "If you continue, this download will use your mobile data connection. Standard data fees imposed by your mobile carrier may apply.";
 "Alert.Button.Title.Ok" = "OK";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
@@ -478,7 +478,7 @@
 "MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \nWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
 "MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
-"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
+"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Plans?";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
@@ -529,8 +529,8 @@
 "MySprints.EditTitle" = "EDIT SPRINTS";
 "MySprints.SprintPlan" = "SPRINT PLAN";
 "MySprints.Complete" = "COMPLETE";
-"MySprints.Alert.Remove.Title" = "DELETE SELECTED ITEMS";
-"MySprints.Alert.Remove.Message" = "Are you sure you want to delete the selected items from your Sprints?";
+"MySprints.Alert.Remove.Title" = "DELETE";
+"MySprints.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
 "MySprints.Alert.Empty.Title" = "YOUR SPRINTS WILL APPEAR HERE";
 "MySprints.Alert.Empty.Message" = "Tap the Q button to enter Coach Mode and plan a sprint.";
 "MySprints.Status.Active" = "Active";
@@ -567,3 +567,7 @@
 
 "SyncedCalendars.Button.Skip" = "Skip";
 "SyncedCalendars.Button.Save" = "Save";
+
+"Weather.Now" = "Now";
+
+"Walkthrough.Button.GotIt" = "Got it";

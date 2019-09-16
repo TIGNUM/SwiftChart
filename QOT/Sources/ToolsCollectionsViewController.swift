@@ -9,6 +9,10 @@
 import UIKit
 import qot_dal
 
+protocol ToolsCollectionsViewControllerDelegate: class {
+    func isPlaying() -> Bool
+}
+
 final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -106,6 +110,13 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
     func reload() {
         tableView.reloadData()
     }
+
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? ToolsCollectionsAudioTableViewCell {
+            cell.delegate = self
+        }
+        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+    }
 }
 
 extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -163,7 +174,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           delegate: self,
+                           itemDelegate: nil)
+            cell.delegate = self
             cell.addTopLine(for: indexPath.row)
             return cell
         } else {
@@ -174,7 +188,9 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            timeToWatch: tool?.durationString ?? "",
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
-                           remoteID: tool?.remoteID ?? 0)
+                           remoteID: tool?.remoteID ?? 0,
+                           delegate: self,
+                           itemDelegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
@@ -183,27 +199,14 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let tool = interactor?.tools[indexPath.item]
+       let tool = interactor?.tools[indexPath.item]
         if tool?.isCollection == true {
             trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
         } else {
-            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT_ITEM, action: .TAP)
-            if tool?.type == "video" {
-                guard
-                    let videoTool = interactor?.videoTools[indexPath.row],
-                    let videoURL = videoTool.mediaURL else { return }
-                stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
-            } else if tool?.type == "audio" {
-                let media = MediaPlayerModel(title: tool?.title ?? "",
-                                             subtitle: tool?.categoryTitle ?? "",
-                                             url: tool?.mediaURL,
-                                             totalDuration: 0, progress: 0, currentTime: 0, mediaRemoteId: tool?.remoteID ?? 0)
-                NotificationCenter.default.post(name: .playPauseAudio, object: media)
-            } else if tool?.type == "pdf" {
-                if let pdfURL = tool?.mediaURL {
-                    self.showPDFReader(withURL: pdfURL, title: tool?.title ?? "", itemID: tool?.remoteID ?? 0)
-                }
+            if let contentItemId = tool?.remoteID,
+                let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
         }
     }
@@ -231,5 +234,12 @@ private extension ToolsCollectionsViewController {
         let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension ToolsCollectionsViewController: ToolsCollectionsViewControllerDelegate {
+
+    func isPlaying() -> Bool {
+        return interactor?.isPlaying ?? false
     }
 }

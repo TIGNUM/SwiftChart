@@ -38,6 +38,8 @@ final class StreamVideoInteractor {
 
     init(content: QDMContentItem?) {
         worker = StreamVideoWorker(content: content)
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
+                                               name: .didUpdateDownloadStatus, object: nil)
     }
 
     var downloadButtonTitle: String {
@@ -107,6 +109,26 @@ private extension StreamVideoInteractor {
         worker.downloadItem { [weak self] (_) in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+        }
+    }
+
+    @objc func didUpdateDownloadStatus(_ notification: Notification) {
+        guard let map = notification.object as? [String: QDMDownloadStatus] else {
+            return
+        }
+        let passiveItems = map.values.filter { (status) -> Bool in
+            switch status.status {
+            case .DOWNLOADED, .NONE:
+                return true
+            case .DOWNLOADING, .WAITING:
+                return false
+            }
+        }
+        if !passiveItems.isEmpty {
+            worker.updateItemDownloadStatus { [weak self] in
+                guard let strongSelf = self else { return }
+                strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+            }
         }
     }
 }

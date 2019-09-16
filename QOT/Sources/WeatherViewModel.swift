@@ -9,6 +9,12 @@
 import Foundation
 import qot_dal
 
+enum LocationPermissionStatus {
+    case allowed
+    case notSet
+    case denied
+}
+
 enum WeatherType: String {
     case clearSky = "Clear sky"
     case cloudy = "Cloudy"
@@ -27,6 +33,8 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var requestLocationPermissionButtonTitle: String?
     var deniedLocationPermissionDescription: String?
     var deniedLocationPermissionButtonTitle: String?
+    var locationPermissionStatus: LocationPermissionStatus = .notSet
+    private var locationPermission = LocationPermission()
 
     // MARK: - Init
     internal init(bucketTitle: String = "",
@@ -43,6 +51,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
         self.deniedLocationPermissionButtonTitle = deniedLocationPermissionButtonTitle
         super.init(domain)
+        self.updateLocationPermissionStatus { (_) in}
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -55,7 +64,39 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             requestLocationPermissionDescription == source.requestLocationPermissionDescription &&
             requestLocationPermissionButtonTitle == source.requestLocationPermissionButtonTitle &&
             deniedLocationPermissionDescription == source.deniedLocationPermissionDescription &&
-            deniedLocationPermissionButtonTitle == source.deniedLocationPermissionButtonTitle
+            deniedLocationPermissionButtonTitle == source.deniedLocationPermissionButtonTitle &&
+            locationPermissionStatus == source.locationPermissionStatus
 
+    }
+
+    public func updateLocationPermissionStatus(completion: @escaping (LocationPermissionStatus) -> Void ) {
+        locationPermission.authorizationStatusDescription { [weak self] (string) in
+            guard let strongSelf = self else {
+                return
+            }
+            let status = strongSelf.convertStatusFrom(string: string)
+            strongSelf.locationPermissionStatus = status
+            completion(status)
+        }
+    }
+
+    public func requestLocationPermission(completion: @escaping (Bool) -> Void) {
+        locationPermission.askPermission { [weak self] (granted) in
+            guard let strongSelf = self else {
+                return
+            }
+            strongSelf.locationPermissionStatus = granted ? .allowed : .denied
+            completion(granted)
+        }
+    }
+
+    func convertStatusFrom(string: String) -> LocationPermissionStatus {
+        if string == "notDetermined" {
+            return .notSet
+        } else if string == "authorizedWhenInUse" || string == "authorizedAlways" {
+            return .allowed
+        } else {
+            return .denied
+        }
     }
 }

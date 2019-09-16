@@ -8,14 +8,22 @@
 
 import Foundation
 
-final class MyPeakPerformanceSectionCell: UITableViewCell, Dequeueable {
+final class MyPeakPerformanceSectionCell: UIView {
 
     @IBOutlet weak var myPeakPerformanceSectionTitle: UILabel!
 
     @IBOutlet weak var myPeakperformanceSectionContent: UILabel!
 
-    func configure(with: MyPeakPerformanceSectionModel?) {
-        ThemeText.performanceSections.apply((with?.sectionSubtitle ?? "").uppercased(), to: myPeakPerformanceSectionTitle)
-        ThemeText.performanceSectionText.apply(with?.sectionContent, to: myPeakperformanceSectionContent)
+    static func instantiateFromNib() -> MyPeakPerformanceSectionCell? {
+        guard let section = R.nib.myPeakPerformanceSectionCell
+            .instantiate(withOwner: self).first as? MyPeakPerformanceSectionCell else {
+                preconditionFailure("Cannot load view \(#function)")
+        }
+        return section
+    }
+
+    func configure(with: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow) {
+        ThemeText.performanceSections.apply((with.sectionSubtitle ?? "").uppercased(), to: myPeakPerformanceSectionTitle)
+        ThemeText.performanceSectionText.apply(with.sectionContent, to: myPeakperformanceSectionContent)
     }
 }

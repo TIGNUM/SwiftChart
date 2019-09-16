@@ -312,8 +312,8 @@ extension MySprintDetailsInteractor {
         router.presentNoteEditing(for: worker.sprint, action: type)
     }
 
-    private func showSprintInProgressAlert(with endDate: Date) {
-        let text = worker.infoSprintInProgressMessage(endDate: endDate)
+    private func showSprintInProgressAlert(with sprint: QDMSprint) {
+        let text = worker.infoSprintInProgressMessage(sprintInProgressTitle: sprint.title)
         presenter.presentAlert(title: worker.infoSprintInProgressTitle,
                                message: text,
                                buttons: [cancelBarButton, continuePreviousActionButton])
@@ -334,10 +334,10 @@ extension MySprintDetailsInteractor {
     }
 
     private func checkSprintInProgress(with action: @escaping () -> Void) {
-        worker.anySprintInProgress { [weak self] (inProgress, date) in
-            if inProgress, let date = date {
+        worker.isSprintInProgress { [weak self] (sprint, _) in
+            if let sprint = sprint {
                 self?.actionToContinueOnActiveSprint = action
-                self?.showSprintInProgressAlert(with: date)
+                self?.showSprintInProgressAlert(with: sprint)
             } else {
                 action()
             }

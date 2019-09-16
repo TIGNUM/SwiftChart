@@ -78,16 +78,12 @@ extension DailyBriefInteractor {
 extension DailyBriefInteractor {
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
-        }
+        updateDailyBriefBucket()
     }
 //  Display the expand/collapse of the guided close track
     @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
         guidedClosedTrack = !guidedClosedTrack
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
-        }
+        updateDailyBriefBucket()
     }
 
     @objc func didGetScrollNotificationToBucket(_ notification: Notification) {
@@ -103,9 +99,6 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-    func screenTitle() -> String {
-        return worker.screenTitle()
-    }
 
 //    Invoke the prepare screen in the coach screen.
     func displayCoachPreparationScreen() {
@@ -219,9 +212,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.presentMyDataScreen()
     }
 
-    var rowCount: Int {
-        return worker.rowCount
+    func updateDailyBriefBucket() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
+        }
     }
+
     var rowViewModelCount: Int {
         return viewModelOldList.count
     }
@@ -819,17 +815,19 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
         let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
         let calendar = Calendar.current
         var contentSentence: String = ""
+        var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
+        var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
                 contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
-                    let inThreeDaysDate = $0.eventDate ?? Date()
-                    if 2..<3 ~= inThreeDaysDate.daysTo() {
+                    guard let inThreeDaysDate = $0.eventDate, inThreeDaysDate.isFuture() else { return false }
+                    let inThreeDaysRange = NSRange(location: 2, length: 1)
+                    if inThreeDaysRange.contains(abs(inThreeDaysDate.daysTo())) {
                         return true
                     }
                     return false
@@ -848,19 +846,20 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     calendar.isDateInYesterday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
             }
             if localPreparationList.count > 0 {
-                // add the tile cell
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: bucketTitle))
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueDescription, sectionContent: contentSentence))
-                localPreparationList.forEach({ (localPreparationList) in
-                    let subtitle: String = localPreparationList.eventType ?? "" + DateFormatter.tbvTracker.string(from: localPreparationList.eventDate ?? Date())
-                    peakPerformanceViewModel.peakPerformanceSectionList.append(
-                        MyPeakPerformanceRowModel(qdmUserPreparation: localPreparationList,
-                                                  title: localPreparationList.name,
-                                                  subtitle: subtitle))
+                localPreparationList.forEach({ (prepareItem) in
+                    let subtitle: String = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
+                    rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.name,
+                                                                                    subtitle: subtitle,
+                                                                                    qdmUserPreparation: prepareItem))
                 })
+                sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow(sectionSubtitle: contentItem.valueText,
+                                                                                                                                                                    sectionContent: contentSentence), rows: rows))
             }
+
         })
-        createMyPeakPerformanceList.append(peakPerformanceViewModel)
+        createMyPeakPerformanceList.append( MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
+                                                                                sections: sectionsModels ,
+                                                                                domainModel: myPeakperformance))
         return createMyPeakPerformanceList
     }
 
@@ -888,11 +887,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            _  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
-            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: performanceString)
+            let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
+            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: replacedString)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
         }

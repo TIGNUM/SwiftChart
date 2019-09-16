@@ -116,9 +116,11 @@ final class MySprintDetailsWorker {
         return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
     }()
 
-    func infoSprintInProgressMessage(endDate: Date) -> String {
-        return String(format: ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessageSprintInProgress),
-                      DateFormatter.ddMMMyyyy.string(from: endDate))
+    func infoSprintInProgressMessage(sprintInProgressTitle: String?) -> String {
+        let message = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
+        return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? "",
+                                          newSprintTitle: self.sprint.title ?? "",
+                                          message: message)
     }
 
     var sprintStatus: MySprintStatus {
@@ -128,10 +130,8 @@ final class MySprintDetailsWorker {
 
 extension MySprintDetailsWorker {
 
-    func anySprintInProgress(_ completion: @escaping (Bool, Date?) -> Void) {
-        service.isSprintAlreadyInProgress { (sprint, date) in
-            completion(sprint != nil, date)
-        }
+    func isSprintInProgress(_ completion: @escaping (QDMSprint?, Date?) -> Void) {
+        qot_dal.UserService.main.isSprintAlreadyInProgress(completion)
     }
 
     func startSprint(_ completion: @escaping (Error?) -> Void) {
@@ -176,5 +176,10 @@ extension MySprintDetailsWorker {
         }
         notificationCenter.post(name: .didUpdateMySprintsData, object: nil)
         completion(nil)
+    }
+
+    func replaceMessagePlaceHolders(sprintInProgressTitle: String, newSprintTitle: String, message: String) -> String {
+        let tempMessage = message.replacingOccurrences(of: "[NAME of SPRINT IN PROGRESS]", with: sprintInProgressTitle.uppercased())
+        return tempMessage.replacingOccurrences(of: "[NAME OF NEW SPRINT]", with: newSprintTitle.uppercased())
     }
 }

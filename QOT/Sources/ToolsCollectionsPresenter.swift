@@ -37,4 +37,8 @@ extension ToolsCollectionsPresenter: ToolsCollectionsPresenterInterface {
     func selectedCategoryId() -> Int {
         return self.selectedToolID
     }
+
+    func  audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        viewController?.audioPlayStateChangedForCellAt(indexPath: indexPath)
+    }
 }
