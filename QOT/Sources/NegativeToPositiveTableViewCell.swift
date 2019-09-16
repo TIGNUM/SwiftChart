@@ -61,9 +61,9 @@ extension NegativeToPositiveTableViewCell {
         ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_03 not set"], to: lowThirdItemLabel)
 
         ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
-        ThemeText.resultHeader2.apply(lowItems[0, default: "highItem_01 not set"], to: highFirstItemLabel)
-        ThemeText.resultHeader2.apply(lowItems[1, default: "highItem_02 not set"], to: highSecondItemLabel)
-        ThemeText.resultHeader2.apply(lowItems[2, default: "highItem_03 not set"], to: highThirdItemLabel)
+        ThemeText.resultHeader2.apply(highItems[0, default: "highItem_01 not set"], to: highFirstItemLabel)
+        ThemeText.resultHeader2.apply(highItems[1, default: "highItem_02 not set"], to: highSecondItemLabel)
+        ThemeText.resultHeader2.apply(highItems[2, default: "highItem_03 not set"], to: highThirdItemLabel)
     }
 }
 
