@@ -20,15 +20,20 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
-
+    var showMore = false
+    @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
         gotItButton.isHidden = true
+        gotItButtonHeight.constant = 0
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
-        self.sprintInfo?.numberOfLines = 0
+        showMore = !showMore
+        self.sprintInfo?.numberOfLines = showMore ? 0 : 3
+        self.showMoreButton.setTitle(showMore ? "Show Less" : "Show More", for: .normal)
         self.sprintInfo?.sizeToFit()
         delegate?.reloadSprintCell(cell: self)
     }
@@ -45,6 +50,11 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         tableView.delegate = self
         tableView.dataSource = self
         ThemeView.level2.apply(self)
+        if viewModel?.relatedStrategiesModels.isEmpty == true {
+            tableView.isHidden = true
+            tableViewHeight.constant = 0
+            tableView.setNeedsLayout()
+        }
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
         let lowercaseTitle = viewModel?.sprintTitle?.lowercased()
         ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
@@ -53,7 +63,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
         self.currentSprint = viewModel?.sprint
         gotItButton.isHidden = self.currentSprint?.doneForToday == true
-        }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return relatedStrategiesModels?.count ?? 0
