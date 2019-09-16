@@ -23,6 +23,7 @@ class DTInteractor: DTInteractorInterface {
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
     var inputText: String = ""
+    var isDark: Bool = true
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -42,7 +43,7 @@ class DTInteractor: DTInteractorInterface {
                             answerFilter: nil,
                             titleUpdate: nil)
             self?.presentedNodes.append(node)
-            self?.presenter?.showNextQuestion(presentationModel)
+            self?.presenter?.showNextQuestion(presentationModel, isDark: self?.isDark ?? false)
         }
     }
 
@@ -63,7 +64,7 @@ class DTInteractor: DTInteractorInterface {
     func loadNextQuestion(selection: DTSelectionModel) {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         let presentationModel = createPresentationModel(selection: selection, questions: questions)
-        presenter?.showNextQuestion(presentationModel)
+        presenter?.showNextQuestion(presentationModel, isDark: isDark)
         let node = Node(questionId: presentationModel.question?.remoteID,
                         answerFilter: selection.answerFilter,
                         titleUpdate: presentationModel.questionUpdate)
@@ -81,7 +82,7 @@ class DTInteractor: DTInteractorInterface {
                                                             answerFilter: lastNode?.answerFilter,
                                                             questionUpdate: lastNode?.titleUpdate,
                                                             questions: questions)
-            presenter?.showPreviosQuestion(presentationModel)
+            presenter?.showPreviosQuestion(presentationModel, isDark: isDark)
         }
     }
 

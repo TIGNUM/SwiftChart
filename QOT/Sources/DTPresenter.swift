@@ -24,15 +24,15 @@ class DTPresenter: DTPresenterInterface {
         viewController?.setupView(.sand, .carbonDark)
     }
 
-    func showNextQuestion(_ presentationModel: DTPresentationModel) {
-        let button = presentationModel.getNavigationButton(isHidden: false)
+    func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showNextQuestion(viewModel)
     }
 
-    func showPreviosQuestion(_ presentationModel: DTPresentationModel) {
-        let button = presentationModel.getNavigationButton(isHidden: false)
+    func showPreviosQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showPreviosQuestion(viewModel)

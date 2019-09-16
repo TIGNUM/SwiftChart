@@ -18,6 +18,8 @@
                 <outlet property="pageControllerContainer" destination="11e-bw-5N1" id="4ea-8r-da9"/>
                 <outlet property="previousButton" destination="a9Z-Fd-slD" id="44v-q5-BdH"/>
                 <outlet property="view" destination="vm2-T3-MVz" id="Lc4-di-cFf"/>
+                <outlet property="viewNavBottom" destination="eF3-zN-Uqf" id="Z6U-GG-jcw"/>
+                <outlet property="viewNavTop" destination="vJd-jZ-SnL" id="BVb-Wh-QrW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

@@ -71,7 +71,8 @@ class DTQuestionnaireViewController: UIViewController {
 
 private extension DTQuestionnaireViewController {
     func setupView() {
-        ThemeView.chatbot.apply(view)
+        let theme: ThemeView = (interactor?.isDark ?? true) ? .chatbotDark : .chatbot
+        theme.apply(view)
         tableView.contentInset = .zero      //this takes off an automatic 49.0 pixel top inset that is not needed
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
@@ -106,7 +107,8 @@ private extension DTQuestionnaireViewController {
     }
 
     func attachBottomShadow() {
-        let imageView = UIImageView(image: R.image.lightBottomGradient())
+        let isDark = interactor?.isDark ?? true
+        let imageView = UIImageView(image: isDark ? R.image.bottomGradient() : R.image.lightBottomGradient())
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
@@ -147,7 +149,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
             cell.configure(with: viewModel.question.title,
                            html: nil,
                            questionUpdate: nil,
-                           textColor: .carbon)
+                           textColor: (interactor?.isDark ?? true) ? .sand : .carbon)
             return cell
         case .answer:
             switch viewModel.question.answerType {
@@ -203,7 +205,7 @@ private extension DTQuestionnaireViewController {
         cell.configure(with: title ?? "",
                        html: nil,
                        questionUpdate: nil,
-                       textColor: .carbon,
+                       textColor: (interactor?.isDark ?? false) ? .sand : .carbon,
                        animateTextDuration: viewModel.typingAnimationDuration)
         cell.delegate = self
         return cell
