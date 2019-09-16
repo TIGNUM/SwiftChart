@@ -53,6 +53,11 @@ class DTQuestionnaireViewController: UIViewController {
         setupView()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        checkScroll()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -121,7 +126,6 @@ extension DTQuestionnaireViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-//        return shouldWaitFotTBVAnimationCompleted && CellType.allCases[indexPath.section] == .answer ? 0 : UITableViewAutomaticDimension
     }
 }
 
@@ -171,6 +175,13 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 }
             case .openCalendarEvents:
                 return getEventCell(indexPath, tableView)
+            case .userInput:
+                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
+                let text = viewModel.question.key == Prepare.QuestionKey.BenefitsInput ? "" : nil
+                cell.configure(inputText: text,
+                               maxCharacters: QuestionKey.maxCharacter(viewModel.question.key),
+                               delegate: self)
+                return cell
             default:
                 break
             }
@@ -260,5 +271,12 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
         } else {
             interactor?.didStopTypingAnimation()
         }
+    }
+}
+
+// MARK: UserInputTableViewCellProtocol
+extension DTQuestionnaireViewController: UserInputTableViewCellProtocol {
+    func didUpdateUserInput(_ text: String) {
+        interactor?.didUpdateUserInput(text)
     }
 }

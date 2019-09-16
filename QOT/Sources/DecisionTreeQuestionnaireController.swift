@@ -247,13 +247,13 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 ////                    cell.delegate = self
 //                    return cell
 //                }
-            case AnswerType.userInput.rawValue:
-                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                let text = question.key == Prepare.QuestionKey.BenefitsInput ? interactor?.userInput : nil
-                cell.configure(inputText: text,
-                               maxCharacters: QuestionKey.maxCharacter(question.key),
-                               delegate: delegate)
-                return cell
+//            case AnswerType.userInput.rawValue:
+//                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
+//                let text = question.key == Prepare.QuestionKey.BenefitsInput ? interactor?.userInput : nil
+//                cell.configure(inputText: text,
+//                               maxCharacters: QuestionKey.maxCharacter(question.key),
+//                               delegate: delegate)
+//                return cell
             case AnswerType.noAnswerRequired.rawValue,
                  AnswerType.text.rawValue,
                  AnswerType.lastQuestion.rawValue:
