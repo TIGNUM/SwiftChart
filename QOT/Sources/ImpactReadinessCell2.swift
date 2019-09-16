@@ -114,6 +114,9 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
            let theme3 = theme3 {
             combine.append(theme3.attributedString(text3))
         }
+        let style = NSMutableParagraphStyle()
+        style.alignment = .right
+        combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
 }
