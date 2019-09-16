@@ -196,7 +196,7 @@ final class NavigationButton: AbstractTreeButton {
         update(count: 0, maxSelections: 1)
     }
 
-    func update(count: Int, minSelection: Int = 1, maxSelections: Int? = nil) {
+    func update(count: Int, minSelection: Int = 0, maxSelections: Int? = nil) {
         if let maxSelections = maxSelections {
             maxCount = maxSelections
         }

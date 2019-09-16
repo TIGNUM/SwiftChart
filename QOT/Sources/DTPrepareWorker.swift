@@ -91,14 +91,26 @@ extension DTPrepareWorker {
         }
     }
 
-    func importCalendarEvents(_ newEvent: EKEvent?) {
+    func importCalendarEvents(_ newEvent: EKEvent?, _ completion: @escaping (QDMUserCalendarEvent?) -> Void) {
         CalendarService.main.importCalendarEvents { (events, initiated, error) in
-            let filteredEvents = events?.filter {
-                $0.startDate == newEvent?.startDate
-                    && $0.endDate == newEvent?.endDate
-                    && $0.title == newEvent?.title
-            }
-            print(filteredEvents)
+            let userEvent = events?.filter { $0.hasSameContent(from: newEvent) }.first
+            completion(userEvent)
         }
+    }
+}
+
+private extension QDMUserCalendarEvent {
+    func hasSameContent(from event: EKEvent?) -> Bool {
+        return event?.title == title &&
+            event?.startDate == startDate &&
+            event?.endDate == endDate &&
+            event?.location == location &&
+            event?.calendar.title == calendarName &&
+            event?.location == location &&
+            event?.notes == notes &&
+            event?.timeZone?.identifier == timeZoneId &&
+            event?.occurrenceDate == occurrenceDate &&
+            event?.isAllDay == isAllDay &&
+            event?.isDetached == isDetached
     }
 }

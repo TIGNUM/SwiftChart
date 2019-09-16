@@ -255,7 +255,6 @@
 		36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
 		36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
 		36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */; };
-		36CB721822B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */; };
 		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
 		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
 		36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */; };
@@ -1593,7 +1592,6 @@
 		36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentCollection+Ext.swift"; sourceTree = "<group>"; };
 		36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentItem+Ext.swift"; sourceTree = "<group>"; };
 		36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Ext.swift"; sourceTree = "<group>"; };
-		36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Ext.swift"; sourceTree = "<group>"; };
 		36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTableViewCell.swift; sourceTree = "<group>"; };
 		36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInputTableViewCell.xib; sourceTree = "<group>"; };
 		36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
@@ -3243,7 +3241,6 @@
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
-				36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */,
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
@@ -6640,7 +6637,6 @@
 				B856B47E22B0E29D0017A249 /* MyLibraryCellViewModel.swift in Sources */,
 				8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */,
 				36B5BD2E23142B4A00439A64 /* AskPermissionRouter.swift in Sources */,
-				36CB721822B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift in Sources */,
 				F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */,
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */,

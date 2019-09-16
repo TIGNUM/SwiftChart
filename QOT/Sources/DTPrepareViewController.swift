@@ -139,9 +139,16 @@ extension DTPrepareViewController: EKEventEditViewDelegate {
              .deleted:
             controller.dismiss(animated: true)
         case .saved:
-            prepareInteractor?.setCreatedCalendarEvent(controller.event)
-            controller.dismiss(animated: true) { [weak self] in
-                self?.loadNextQuestion()
+            DispatchQueue.main.async { [weak self] in
+                self?.prepareInteractor?.setCreatedCalendarEvent(controller.event) { [weak self] (success) in
+                    controller.dismiss(animated: true) { [weak self] in
+                        if success {
+                            self?.loadNextQuestion()
+                        } else {
+                            self?.showAlert(type: .calendarNotSynced)
+                        }
+                    }
+                }
             }
         }
     }

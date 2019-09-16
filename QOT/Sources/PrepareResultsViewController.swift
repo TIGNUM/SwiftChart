@@ -38,6 +38,7 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeView.chatbot.apply(view)
         interactor?.viewDidLoad()
     }
 
@@ -124,6 +125,7 @@ private extension PrepareResultsViewController {
         resultInfoWeAreDoneHereView.delegate = self
         view.addSubview(resultInfoWeAreDoneHereView)
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
+//        resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
         self.resultView = resultInfoWeAreDoneHereView
         showDone = true
         refreshBottomNavigationItems()
@@ -152,6 +154,8 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 
     func setupView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -171,7 +175,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
         }
         tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
         tableView.estimatedSectionHeaderHeight = 100
-        view.backgroundColor = .sand
         view.layoutIfNeeded()
     }
 
@@ -223,25 +226,6 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return contentItemCell(format: .listitem,
                                    title: benefits,
                                    indexPath: indexPath)
-        }
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let item = interactor?.item(at: indexPath) else { return 0 }
-        switch item {
-        case .contentItem(let format, _): return format.rowHeight
-        case .eventItem,
-             .strategy,
-             .reminder:
-            return ContentFormat.unknown.rowHeight
-        case .intentionContentItem(let format, _, _):
-            return format.rowHeight
-        case .intentionItem:
-            return ContentFormat.listitem.rowHeight
-        case .benefitContentItem(let format, _, _, _):
-            return format.rowHeight
-        case .benefitItem:
-            return ContentFormat.listitem.rowHeight
         }
     }
 

@@ -32,7 +32,7 @@ protocol DTPrepareInteractorInterface: Interactor {
                             event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
 
-    func setCreatedCalendarEvent(_ event: EKEvent?)
+    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol DTPrepareRouterInterface {
