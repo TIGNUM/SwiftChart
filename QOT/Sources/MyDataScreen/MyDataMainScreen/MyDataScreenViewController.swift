@@ -108,7 +108,9 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
         switch indexPath.row {
         case MyDataRowType.dailyImpactInfo.rawValue:
             let dailyImpactInfoCell: MyDataInfoTableViewCell = tableView.dequeueCell(for: indexPath)
-            dailyImpactInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].title, subtitle: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].subtitle)
+            dailyImpactInfoCell.configure(title: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].title,
+                                          subtitle: myDataScreenModel?.myDataItems[MyDataSection.dailyImpact.rawValue].subtitle,
+                                          showInfoLink: true)
             dailyImpactInfoCell.delegate = self
 
             return dailyImpactInfoCell

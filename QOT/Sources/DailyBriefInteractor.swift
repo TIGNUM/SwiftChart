@@ -820,7 +820,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var contentSentence: String = ""
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
-
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
@@ -859,7 +858,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         })
         createMyPeakPerformanceList.append( MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
-                                                                                sections:sectionsModels, domainModel: myPeakperformance))
+                                                                                sections: sectionsModels ,
+                                                                                domainModel: myPeakperformance))
         return createMyPeakPerformanceList
     }
 

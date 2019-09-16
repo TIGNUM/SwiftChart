@@ -478,7 +478,7 @@
 "MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \nWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
 "MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
-"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
+"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Plans?";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
