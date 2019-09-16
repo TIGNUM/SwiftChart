@@ -19,7 +19,6 @@ final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
     private let animationDuration: Double = Animation.duration_3
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
-    private var timer: Timer?
     private var viewedControllers = Set<Int>() {
         didSet {
             checkViewedControllers()
@@ -42,33 +41,11 @@ final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        presetTimer()
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        invalidateTimer()
-    }
 }
 
 // MARK: - Private
 
 private extension WalkthroughViewController {
-
-    func presetTimer() {
-        invalidateTimer()
-        timer = Timer.scheduledTimer(withTimeInterval: animationDuration, repeats: true) { [unowned self] (_) in
-            self.goToNextController()
-        }
-    }
-
-    func invalidateTimer() {
-        timer?.invalidate()
-        timer = nil
-    }
 
     func goToNextController() {
         guard let current = pageController?.viewControllers?.first,
@@ -149,7 +126,6 @@ extension WalkthroughViewController: UIPageViewControllerDelegate {
         if let hash = pageViewController.viewControllers?.first?.hash {
             viewedControllers.insert(hash)
         }
-        presetTimer()
     }
 }
 

@@ -27,8 +27,8 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-Va-Dxb">
-                                <rect key="frame" x="87" y="601.5" width="240" height="2"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-Va-Dxb">
+                                <rect key="frame" x="52" y="497.5" width="50" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="9CR-Ce-Yel"/>
@@ -36,7 +36,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZf-3h-A2F">
-                                <rect key="frame" x="23" y="786" width="70" height="41"/>
+                                <rect key="frame" x="53" y="786" width="70" height="41"/>
                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                 <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="12"/>
                                 <state key="normal" title="Got it">
@@ -50,10 +50,10 @@
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="T7L-SH-3Yu" secondAttribute="bottom" id="7WW-xJ-Mh0"/>
-                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerY" secondItem="7Lh-eS-XQY" secondAttribute="centerY" multiplier="1.33" id="ANL-OQ-opa"/>
+                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerY" secondItem="7Lh-eS-XQY" secondAttribute="centerY" multiplier="1.1" id="ANL-OQ-opa"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" id="C4c-DO-bgr"/>
-                            <constraint firstItem="iZf-3h-A2F" firstAttribute="leading" secondItem="7Lh-eS-XQY" secondAttribute="leading" constant="23" id="M4E-Lv-MIQ"/>
-                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerX" secondItem="7Lh-eS-XQY" secondAttribute="centerX" id="PZA-xV-tdx"/>
+                            <constraint firstItem="iZf-3h-A2F" firstAttribute="leading" secondItem="7Lh-eS-XQY" secondAttribute="leading" constant="53" id="M4E-Lv-MIQ"/>
+                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" constant="52" id="TmS-Yt-1pY"/>
                             <constraint firstItem="7Lh-eS-XQY" firstAttribute="bottom" secondItem="iZf-3h-A2F" secondAttribute="bottom" constant="35" id="fQA-W0-DBf"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="top" secondItem="tv1-Wk-0L9" secondAttribute="top" id="ubb-qU-6J5"/>
                             <constraint firstAttribute="trailing" secondItem="T7L-SH-3Yu" secondAttribute="trailing" id="yZ7-Pu-4aw"/>
