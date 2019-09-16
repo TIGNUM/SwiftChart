@@ -16,6 +16,7 @@ class BaseWithTableViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        tableView.isUserInteractionEnabled = true
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
             selectedIndexPath = nil
@@ -24,9 +25,9 @@ class BaseWithTableViewController: UIViewController {
 
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
+        tableView.isUserInteractionEnabled = false
     }
 }
-
 class BaseWithGroupedTableViewController: UIViewController {
 
     private var selectedIndexPath: IndexPath?
