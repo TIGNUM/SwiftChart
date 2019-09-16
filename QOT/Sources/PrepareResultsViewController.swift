@@ -38,6 +38,7 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ThemeView.chatbot.apply(view)
         interactor?.viewDidLoad()
     }
 
@@ -152,6 +153,8 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 
     func setupView() {
         view.addSubview(tableView)
+        tableView.backgroundColor = .clear
+        tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
 
@@ -171,7 +174,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
         }
         tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
         tableView.estimatedSectionHeaderHeight = 100
-        view.backgroundColor = .sand
         view.layoutIfNeeded()
     }
 
