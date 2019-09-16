@@ -233,7 +233,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
         case .GUIDE_TRACK?:
             guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
-            return getGuidedTrack(tableView, indexPath, guidedtrackModel)
+            let showDivider = indexPath.row == (bucketList?.count ?? 0) - 1
+            return getGuidedTrack(tableView, indexPath, showDivider, guidedtrackModel)
         case .WEATHER?:
             guard let weatherModel = bucketItem as? WeatherViewModel else { return UITableViewCell()}
             return getWeatherCell(tableView, indexPath, weatherModel)
@@ -636,6 +637,7 @@ private extension DailyBriefViewController {
      */
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
+                        _ hideDivider: Bool,
                         _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
@@ -644,7 +646,7 @@ private extension DailyBriefViewController {
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: guidedtrackModel)
+        cell.configure(with: guidedtrackModel, hideDivider)
         cell.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
