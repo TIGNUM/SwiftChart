@@ -109,8 +109,7 @@ private extension DTPrepareViewController {
 
     func createPreparationAndPresent() {
         prepareInteractor?.getUserPreparation(event: selectedEvent) { [weak self] (preparation) in
-                                                self?.prepareRouter?.presentPrepareResults(preparation,
-                                                                                           canDelete: false)
+            self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
         }
     }
 }
