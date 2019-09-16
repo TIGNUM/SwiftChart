@@ -100,6 +100,7 @@ private extension OnboardingLoginViewController {
 
         emailField.textField.layer.borderColor = UIColor.sand20.cgColor
         ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
+        emailInstructionsLabel.alpha = didHideEmail ? 0 : 1
     }
 
     func loadDigitTextFieldsDefaultUI() {
@@ -243,7 +244,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
 
         guard let textField = textField as? TextField, digitTextFields.index(of: textField) != nil else { return }
 
-        if sendButtonYPosition.constant == 0 {
+        if !didHideEmail {
             moveCodeInputToTop()
         }
         if interactor?.viewModel.codeError != nil {
