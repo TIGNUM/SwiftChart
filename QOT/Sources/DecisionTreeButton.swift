@@ -210,7 +210,7 @@ final class NavigationButton: AbstractTreeButton {
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
 
-        if count == 0 {
+        if count == 0 && !isEnough {
             let title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
             ThemeView.chatbotProgress(false, isDark).apply(containerView)
