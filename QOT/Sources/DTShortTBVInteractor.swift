@@ -29,6 +29,10 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
         return presentedNodes.isEmpty == false
     }
 
+    var canDismiss: Bool {
+        return ShortTBV.QuestionKey.IntroOnboarding == introKey
+    }
+
     func getTBV() -> QDMToBeVision? {
         return tbv
     }
