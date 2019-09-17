@@ -131,7 +131,7 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
     }
 
     func trackSprintContinue() {
-        trackUserEvent(QDMUserEventTracking.Name.CONTINUE, action: QDMUserEventTracking.Action.TAP)        
+        trackUserEvent(QDMUserEventTracking.Name.CONTINUE, action: QDMUserEventTracking.Action.TAP)
     }
 
     func trackSprintStart() {
