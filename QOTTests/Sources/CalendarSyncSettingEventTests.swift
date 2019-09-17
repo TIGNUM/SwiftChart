@@ -7,7 +7,6 @@
 //
 
 import XCTest
-@testable import QOT
 
 class CalendarSyncSettingEventTests: XCTestCase {
     
