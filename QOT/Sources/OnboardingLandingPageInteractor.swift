@@ -98,7 +98,7 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
         presenter.present(controller: controller, direction: .forward)
     }
 
-    func didTapBack() {
+    func didTapBackInternal() {
         navigateBack()
     }
 
@@ -113,31 +113,12 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
     }
 }
 
-// MARK: - DecisionTreeViewControllerDelegate
-
-extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
-    func toBeVisionDidChange() {
-        // noop
-    }
-
-    func didDismiss() {
-        // noop
-    }
-
-    func dismissOnMoveBackwards() {
-        navigateBack()
-    }
-
-    func createToBeVision(_ toBeVision: QDMToBeVision) {
-        print("ZZ:\n\n________ EUREKA!!!________\n\n")
-        cachedToBeVision = toBeVision
-        didTapSaveTBV()
-    }
-}
-
 extension OnboardingLandingPageInteractor: DTShortTBVDelegate {
+    func didTapBack() {
+        didTapBackInternal()
+    }
+
     func didDismissShortTBVScene(tbv: QDMToBeVision?) {
-        print("ZZ:\n\n________ EUREKA!!!________\n\n")
         cachedToBeVision = tbv
         didTapSaveTBV()
     }
@@ -148,7 +129,7 @@ extension OnboardingLandingPageInteractor: DTShortTBVDelegate {
 extension OnboardingLandingPageInteractor: CreateAccountInfoViewControllerDelegate {
 
     func didTapBack(_ controller: CreateAccountInfoViewController) {
-        didTapBack()
+        didTapBackInternal()
     }
 
     func didTapCreate() {
