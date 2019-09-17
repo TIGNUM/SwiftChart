@@ -395,7 +395,7 @@
 "MySprintDetailsNotes.Info.Title.Leave" = "LEAVE WITHOUT SAVING";
 "MySprintDetailsNotes.Info.Message.Leave" = "Are you sure you want to leave without saving? The changes will not be applied.";
 "MySprintDetailsNotes.Button.Save" = "Save";
-"Impact.ReadinessCell.Button.GetStarted" = "Get started";
+"Impact.ReadinessCell.Button.GetStarted" = "Start your Daily Check-In";
 "Impact.ReadinessCell.Button.Explore" = "Explore your score";
 
 "DailyBrief.Customize.Sleep.Intro" = "Only you know how much sleep you really need to feel fully recovered. Customize your sleep quanity target here.";
