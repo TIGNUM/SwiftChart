@@ -105,23 +105,6 @@ extension PrepareResultsWorker {
         }
     }
 
-    func generateSelectedAnswers(_ ids: [Int],
-                                 _ key: Prepare.Key,
-                                 _ completion: @escaping (([SelectedAnswer]) -> Void)) {
-        QuestionService.main.questions(with: key.rawValue) { (questions) in
-            let question = DTViewModel.Question(remoteId: questions?.first?.remoteID ?? 0,
-                                                title: questions?.first?.title ?? "",
-                                                key: questions?.first?.key ?? "",
-                                                answerType: .multiSelection,
-                                                duration: 0,
-                                                maxSelections: questions?.first?.maxPossibleSelections ?? 0)
-            let qdmAnswers = questions?.first?.answers.filter { ids.contains(obj: $0.remoteID ?? 0) }
-            let answers = qdmAnswers?.compactMap { DTViewModel.Answer(qdmAnswer: $0) } ?? []
-            let selectedAnswers: [SelectedAnswer] = [SelectedAnswer(question: question, answers: answers)]
-            completion(selectedAnswers)
-        }
-    }
-
     func getHeaderItems(_ contentItems: [QDMContentItem]) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isHeader }.forEach {

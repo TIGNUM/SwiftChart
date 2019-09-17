@@ -149,16 +149,3 @@ extension QDMUserPreparation.Level {
         }
     }
 }
-
-extension QDMUserPreparation {
-    typealias AnswerFilter = String
-}
-
-extension QDMUserPreparation.AnswerFilter {
-    static let perceived = "prepare_peak_prep_relationship_intentions_preceived"
-    static let know = "prepare_peak_prep_relationship_intentions_know"
-    static let feel = "prepare_peak_prep_relationship_intentions_feel"
-    static let benefits = "prepare_peak_prep_benefits_input"
-    static let benefitsTitle = "prepare_check_list_critical_benefits_title"
-    static let eventType = "prepare-event-type-selection-critical"
-}

@@ -97,15 +97,8 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func presentEditIntentions(_ key: Prepare.Key) {
-        var ids = [Int]()
-        switch key {
-        case .perceived: ids = worker.preceiveAnswerIds
-        case .know: ids = worker.knowAnswerIds
-        case .feel: ids = worker.feelAnswerIds
-        default: break
-        }
-        worker.generateSelectedAnswers(ids, key) { [weak self] (answers) in
-            self?.router.presentEditIntentions(answers, key, answerFilter: self?.worker.answerFilter)
+        worker.getDTViewModel(key) { [weak self] (viewModel, question) in
+            self?.router.presentEditIntentions(viewModel, question: question)
         }
     }
 
@@ -117,8 +110,8 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
        worker.updateStrategies(selectedIds: selectedIds)
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
-        worker.updateIntentions(answers, key)
+    func updateIntentions(_ answerIds: [Int]) {
+        worker.updateIntentions(answerIds)
     }
 
     func updateBenefits(_ benefits: String) {

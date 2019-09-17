@@ -21,6 +21,7 @@ final class PrepareResultsWorker {
     private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false
+    private var currentEditKey: Prepare.Key?
 
     // MARK: - Init
     init(_ contentId: Int) {
@@ -257,17 +258,18 @@ extension PrepareResultsWorker {
         }
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
-        switch key {
-        case .perceived:
-            preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
-        case .know:
-            knowAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
-        case .feel:
-            feelAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
+    func updateIntentions(_ answerIds: [Int]) {
+        switch currentEditKey {
+        case .perceived?:
+            preparation?.preceiveAnswerIds = answerIds
+        case .know?:
+            preparation?.knowAnswerIds = answerIds
+        case .feel?:
+            preparation?.feelAnswerIds = answerIds
         default:
             break
         }
+        currentEditKey = nil
         generateCriticalItemsAndUpdateView(preparation)
     }
 
@@ -314,5 +316,34 @@ extension PrepareResultsWorker {
         } else {
             completion()
         }
+    }
+}
+
+// MARK: - DTViewModel
+extension PrepareResultsWorker {
+    func getDTViewModel(_ key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+        currentEditKey = key
+        let answerFilter = getFilter()
+        QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
+            guard let qdmQuestion = qdmQuestion else { return }
+            let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
+            let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
+            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0) }
+            completion(DTViewModel(question: question,
+                                   answers: answers,
+                                   events: [],
+                                   tbvText: nil,
+                                   hasTypingAnimation: false,
+                                   typingAnimationDuration: 0,
+                                   previousButtonIsHidden: true,
+                                   dismissButtonIsHidden: false,
+                                   showNextQuestionAutomated: false),
+                       qdmQuestion)
+        }
+    }
+
+    func getFilter() -> String {
+        let updatedTitle = preparation?.eventType?.lowercased().replacingOccurrences(of: " ", with: "_") ?? ""
+        return Prepare.AnswerFilter + updatedTitle
     }
 }

@@ -15,7 +15,7 @@ protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
+    func didUpdateIntentions(_ answerIds: [Int])
     func didUpdateBenefits(_ benefits: String)
 }
 
@@ -259,8 +259,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
-        interactor?.updateIntentions(selectedAnswers, key)
+    func didUpdateIntentions(_ answerIds: [Int]) {
+        interactor?.updateIntentions(answerIds)
         refreshBottomNavigationItems()
     }
 
