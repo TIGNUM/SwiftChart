@@ -21,6 +21,10 @@ final class DTMindsetInteractor: DTInteractor {
             completion(tbv, initiated)
         }
     }
+
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
+        return questionAnswerType == AnswerType.text.rawValue && questionKey == Mindset.QuestionKey.ShowTBV ? tbv : nil
+    }
 }
 
 extension DTMindsetInteractor: DTShortTBVDelegate {
