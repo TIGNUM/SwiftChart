@@ -97,8 +97,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
      * Description: method which is used to trigger the preparation in the coach screen.
      */
     func displayCoachPreparationScreen() {
-        let configurator = DecisionTreeConfigurator.make(for: .prepare)
-        let controller = DecisionTreeViewController(configure: configurator)
+        let configurator = DTPrepareConfigurator.make()
+        let controller = DTPrepareViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 
