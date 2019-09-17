@@ -33,7 +33,7 @@
                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQC-U6-n0Z" userLabel="HeaderView">
                         <rect key="frame" x="0.0" y="0.0" width="510" height="117"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 DAYS OF DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkS-1q-JJp">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 DAYS ROLLING DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkS-1q-JJp">
                                 <rect key="frame" x="24" y="32" width="462" height="17"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -358,7 +358,7 @@
                 <outlet property="loadSubtitle" destination="bsD-GU-oFc" id="ghw-7A-35N"/>
                 <outlet property="loadTitle" destination="GK8-ZS-BA2" id="SGH-TZ-ecD"/>
                 <outlet property="moreData" destination="7iz-cZ-qYd" id="OBh-AY-RYF"/>
-                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5kz-2h-MNv"/>
+                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5Cq-yy-2CQ"/>
                 <outlet property="sleepQuality" destination="gpZ-rP-fVA" id="u2r-et-nFo"/>
                 <outlet property="sleepQualityRefrence" destination="ZhC-mg-22S" id="nrF-SD-n01"/>
                 <outlet property="sleepQualitySubtitle" destination="L3o-bN-0qM" id="ulz-O0-kj6"/>
