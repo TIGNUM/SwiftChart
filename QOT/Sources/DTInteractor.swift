@@ -82,7 +82,7 @@ class DTInteractor: DTInteractorInterface {
                                                             answerFilter: lastNode?.answerFilter,
                                                             questionUpdate: lastNode?.titleUpdate,
                                                             questions: questions)
-            presenter?.showPreviosQuestion(presentationModel, isDark: isDark)
+            presenter?.showPreviousQuestion(presentationModel, isDark: isDark)
         }
     }
 

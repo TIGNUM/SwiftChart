@@ -31,7 +31,7 @@ class DTPresenter: DTPresenterInterface {
         viewController?.showNextQuestion(viewModel)
     }
 
-    func showPreviosQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
         let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)

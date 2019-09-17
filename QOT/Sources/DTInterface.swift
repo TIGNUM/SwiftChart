@@ -22,7 +22,7 @@ protocol DTViewControllerInterface: class {
 protocol DTPresenterInterface {
     func setupView()
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
-    func showPreviosQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func showNavigationButtonAfterAnimation()
     func hideNavigationButtonForAnimation()
