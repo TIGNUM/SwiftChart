@@ -9,7 +9,7 @@
 import Foundation
 
 final class DecisionTreeConfigurator {
-    static func make(for type: DecisionTreeType) -> (DecisionTreeViewController) -> Void {
+    static func dontMake(for type: DecisionTreeType) -> (DecisionTreeViewController) -> Void {
         return { (viewController) in
             let router = DecisionTreeRouter(viewController: viewController)
             let presenter = DecisionTreePresenter(viewController: viewController)
