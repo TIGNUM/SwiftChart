@@ -23,6 +23,7 @@ extension DTShortTBVDelegate {
 
 protocol DTShortTBVInteractorInterface: Interactor {
     var canGoBack: Bool { get }
+    var shouldDismissOnContinue: Bool { get }
     func getTBV() -> QDMToBeVision?
     func generateTBV(selectedAnswers: [SelectedAnswer],
                      questionKeyWork: String,
