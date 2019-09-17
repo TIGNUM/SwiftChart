@@ -54,4 +54,10 @@ extension UIViewController {
         subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
+
+    func isModal() -> Bool {
+        return self.presentingViewController?.presentedViewController == self
+            || (self.navigationController != nil && self.navigationController?.presentingViewController?.presentedViewController == self.navigationController)
+            || self.tabBarController?.presentingViewController is UITabBarController
+    }
 }

@@ -105,7 +105,7 @@ final class DTPrepareViewController: DTViewController {
 
 // MARK: - Private
 private extension DTPrepareViewController {
-    func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
+        func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
         if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
             prepareRouter?.presentPrepareResults(contentId)
         } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {

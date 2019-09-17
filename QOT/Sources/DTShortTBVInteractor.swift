@@ -25,6 +25,20 @@ final class DTShortTBVInteractor: DTInteractor {
 
 // MARK: - DTShortTBVInteractorInterface
 extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
+    var canGoBack: Bool {
+        return presentedNodes.isEmpty == false
+    }
+
+    var shouldDismissOnContinue: Bool {
+        switch introKey {
+        case ShortTBV.QuestionKey.IntroOnboarding,
+             ShortTBV.QuestionKey.IntroPrepare:
+            return true
+        default:
+            return false
+        }
+    }
+
     func getTBV() -> QDMToBeVision? {
         return tbv
     }

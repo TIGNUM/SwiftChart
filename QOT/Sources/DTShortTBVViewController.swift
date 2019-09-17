@@ -30,12 +30,22 @@ final class DTShortTBVViewController: DTViewController {
         switch viewModel?.question.key {
         case ShortTBV.QuestionKey.Review:
             delegate?.didDismissShortTBVScene(tbv: shortTBVInteractor?.getTBV())
-            shortTBVRouter?.dismiss()
+            if shortTBVInteractor?.shouldDismissOnContinue ?? true {
+                shortTBVRouter?.dismissShortTBVFlow()
+            }
         case ShortTBV.QuestionKey.Home:
             generateTBV()
         default:
             setAnswerSelectedIfNeeded()
             loadNextQuestion()
+        }
+    }
+
+    override func didTapPrevious() {
+        if shortTBVInteractor?.canGoBack ?? true {
+            super.didTapPrevious()
+        } else {
+            delegate?.didTapBack()
         }
     }
 }

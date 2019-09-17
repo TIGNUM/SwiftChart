@@ -22,11 +22,22 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     @IBOutlet weak var navigationButtonContainer: UIView!
     @IBOutlet weak var pageControllerContainer: UIView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
+    @IBOutlet weak var viewNavBottom: UIView!
+    @IBOutlet weak var viewNavTop: UIView!
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        ThemeView.chatbot.apply(view)
+        let isDark = interactor?.isDark ?? true
+
+        let theme: ThemeView = isDark ? .chatbotDark : .chatbot
+        theme.apply(view)
+
+        let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
+        closeButton.setImage(image, for: .normal)
+
+        navigationController?.setNeedsStatusBarAppearanceUpdate()
+
         interactor?.viewDidLoad()
     }
 
@@ -150,7 +161,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         pageController.view.backgroundColor = backgroundColor
         addChildViewController(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
-        pageController.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         self.pageController = pageController
     }
 

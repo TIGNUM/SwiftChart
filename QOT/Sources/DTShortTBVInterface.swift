@@ -14,10 +14,16 @@ protocol DTShortTBVViewControllerInterface: class {}
 protocol DTShortTBVPresenterInterface {}
 
 protocol DTShortTBVDelegate: class {
+    func didTapBack()
     func didDismissShortTBVScene(tbv: QDMToBeVision?)
+}
+extension DTShortTBVDelegate {
+    func didTapBack() { /* nop - making the method optional as it's used only in onboarding */ }
 }
 
 protocol DTShortTBVInteractorInterface: Interactor {
+    var canGoBack: Bool { get }
+    var shouldDismissOnContinue: Bool { get }
     func getTBV() -> QDMToBeVision?
     func generateTBV(selectedAnswers: [SelectedAnswer],
                      questionKeyWork: String,
@@ -26,5 +32,5 @@ protocol DTShortTBVInteractorInterface: Interactor {
 }
 
 protocol DTShortTBVRouterInterface {
-    func dismiss()
+    func dismissShortTBVFlow()
 }

@@ -158,6 +158,7 @@ final class NavigationButton: AbstractTreeButton {
     @IBOutlet private weak var constraintSpacerWidth: NSLayoutConstraint!
     @IBOutlet private weak var constraintLeftMargin: NSLayoutConstraint!
 
+    private var isDark = false
     private var titleFirst = ""
     private var titleNext = ""
     private var maxCount = 1
@@ -171,7 +172,7 @@ final class NavigationButton: AbstractTreeButton {
         addObserver()
         spacerWidth = constraintSpacerWidth.constant
         containerView.cornerDefault()
-        configure(title: "", minSelection: 1)
+        configure(title: "", minSelection: 1, isDark: isDark)
     }
 
     static func instantiateFromNib() -> NavigationButton {
@@ -181,14 +182,15 @@ final class NavigationButton: AbstractTreeButton {
         return view
     }
 
-    func configure(title: String, titleNext: String = "", minSelection: Int, staticWidth: Bool = false) {
+    func configure(title: String, titleNext: String = "", minSelection: Int, staticWidth: Bool = false, isDark: Bool) {
         self.titleFirst = title
         self.titleNext = titleNext.isEmpty ? titleFirst : titleNext
         self.minCount = minSelection
+        self.isDark = isDark
 
         if staticWidth {
-            let width1 = ThemeText.chatbotProgress(false).attributedString(titleFirst).size().width
-            let width2 = ThemeText.chatbotProgress(false).attributedString(titleNext + "3/3").size().width + spacerWidth
+            let width1 = ThemeText.chatbotProgress(false, isDark).attributedString(titleFirst).size().width
+            let width2 = ThemeText.chatbotProgress(false, isDark).attributedString(titleNext + "3/3").size().width + spacerWidth
             let designerMargin: CGFloat = constraintLeftMargin.constant * 2
             constraintTotalWidthMin.constant = max(width1, width2) + designerMargin
         } else {
@@ -208,18 +210,18 @@ final class NavigationButton: AbstractTreeButton {
         let isEnough = count >= minCount
         counterButton.isUserInteractionEnabled = isEnough
 
-        if count == 0 {
+        if count == 0 && !isEnough {
             let title = substitute(titleFirst)
-            ThemeText.chatbotProgress(false).apply(title, to: continueLabel)
-            ThemeView.chatbotProgress(false).apply(containerView)
+            ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
+            ThemeView.chatbotProgress(false, isDark).apply(containerView)
             counterLabel.text = ""
             constraintSpacerWidth.constant = 0.0
         } else {
             let title = substitute(titleNext)
-            ThemeView.chatbotProgress(isEnough).apply(containerView)
-            ThemeText.chatbotProgress(isEnough).apply(title, to: continueLabel)
+            ThemeView.chatbotProgress(isEnough, isDark).apply(containerView)
+            ThemeText.chatbotProgress(isEnough, isDark).apply(title, to: continueLabel)
             let counterText = maxCount <= 1 ? "" : "\(count)/\(maxCount)"
-            ThemeText.chatbotProgress(isEnough).apply(counterText, to: counterLabel)
+            ThemeText.chatbotProgress(isEnough, isDark).apply(counterText, to: counterLabel)
             constraintSpacerWidth.constant = counterText.isEmpty ? 0.0 : spacerWidth
         }
 

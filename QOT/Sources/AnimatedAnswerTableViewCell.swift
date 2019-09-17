@@ -19,6 +19,13 @@ final class AnimatedAnswerTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var answerLabel: UILabel!
     private var typingAnimation: DotsLoadingView?
     private var textToDisplay: NSAttributedString?
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        typingAnimation = nil
+        delegate = nil
+        typingAnimation?.removeFromSuperview()
+    }
 }
 
 // MARK: Configuration
@@ -42,7 +49,7 @@ extension AnimatedAnswerTableViewCell {
 
         if animateTextDuration > 0 {
             let dots = DotsLoadingView(frame: CGRect(x: 24, y: 0, width: 20, height: .TypingFooter))
-            dots.configure(dotsColor: .carbonNew)
+            dots.configure(dotsColor: textColor)
             dots.translatesAutoresizingMaskIntoConstraints = false
             addSubview(dots)
             dots.leftAnchor.constraint(equalTo: leftAnchor, constant: 24).isActive = true
@@ -83,6 +90,7 @@ extension AnimatedAnswerTableViewCell {
             typingAnimation.startAnimation(withDuration: Animation.duration_3) {
                 self?.answerLabel.attributedText = self?.textToDisplay
                 self?.delegate?.didFinishTypeAnimation()
+                self?.delegate = nil
             }
         }
     }

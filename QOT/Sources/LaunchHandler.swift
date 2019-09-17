@@ -65,12 +65,12 @@ final class LaunchHandler {
         case .coachMode: presentCoachModeScreen()
         case .createSolveAChallenge,
              .prepareProblem:
-            let configurator = DecisionTreeConfigurator.make(for: .solve)
-            let controller = DecisionTreeViewController(configure: configurator)
+            let configurator = DTSolveConfigurator.make()
+            let controller = DTSolveViewController(configure: configurator)
             present(viewController: controller)
         case .planASprint:
-            let configurator = DecisionTreeConfigurator.make(for: .sprint)
-            let controller = DecisionTreeViewController(configure: configurator)
+            let configurator = DTSprintConfigurator.make()
+            let controller = DTSprintViewController(configure: configurator)
             present(viewController: controller)
         case .tools,
              .library:
@@ -79,8 +79,8 @@ final class LaunchHandler {
             present(viewController: controller)
         case .prepareEvent,
              .prepareDay:
-            let configurator = DecisionTreeConfigurator.make(for: .prepare)
-            let controller = DecisionTreeViewController(configure: configurator)
+            let configurator = DTPrepareConfigurator.make()
+            let controller = DTPrepareViewController(configure: configurator)
             present(viewController: controller)
         case .preparation: break // TODO: open specific preparation with QDMUserPreparation's local id
         case .myPreparations,

@@ -23,18 +23,20 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var remoteID: Int = 0
     private var duration: Double = 0
     private var categoryTitle = ""
+    weak var delegate: StrategyListViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeView.audioBar.apply(audioView)
-
+        audioView.corner(radius: 20)
         ThemeView.level2.apply(self)
         contentView.backgroundColor = .clear
-
         selectionStyle = .gray
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
+        if let isPlaying = delegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
     }
 
     override func prepareForReuse() {
@@ -53,11 +55,15 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.title = title
         self.remoteID = mediaItemId
         self.duration = duration
-        setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
+
         ThemeText.articleRelatedTitleInStrategy.apply(title, to: titleLabel)
         ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         showDuration(duration)
+        if let isPlaying = delegate?.isPlaying() {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.sprints.apply(audioView)
+        }
+         setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
     }
 }
 
@@ -83,9 +89,8 @@ private extension StrategyContentTableViewCell {
     }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
-        audioView.backgroundColor = .carbon
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
-            audioView.backgroundColor = .sand30
+            ThemeView.audioPlaying.apply(audioView)
         }
     }
 }

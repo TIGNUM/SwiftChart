@@ -123,6 +123,8 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     weak var answerDelegate: QuestionnaireAnswer?
     weak var dailyCheckinDelegate: DailyBriefViewControllerDelegate?
 
+    @IBOutlet weak var questionToTableView: NSLayoutConstraint!
+    @IBOutlet weak var titleContainerHeight: NSLayoutConstraint!
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
                                   dailyCheckinDelegate: DailyBriefViewControllerDelegate? = nil,
@@ -152,8 +154,6 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
-        labelCustomizeView.isHidden = true
-        customizeTargetTitle.isHidden = true
         setupView()
         adjustUI()
         progressView.backgroundColor = UIColor.clear
@@ -206,20 +206,18 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            topConstraint.constant = 40
-            labelCustomizeView.isHidden = false
-            customizeTargetTitle.isHidden = false
             ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
             ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-            questionToTop.constant = 120
+            titleContainerHeight.constant = 500
+            questionToTableView.constant = 60
         case .dailyCheckin:
-            topConstraint.constant = 90
-            questionToTop.constant = 0
+            titleContainerHeight.constant = 0
+            questionToTableView.constant = 150
         case .vision:
-            topConstraint.constant = 20
-            questionToTop.constant = 20
+           titleContainerHeight.constant = 0
+           questionToTableView.constant = 150
         }
 
     }

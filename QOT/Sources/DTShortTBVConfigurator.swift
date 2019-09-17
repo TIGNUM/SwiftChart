@@ -17,6 +17,7 @@ final class DTShortTBVConfigurator {
             let interactor = DTShortTBVInteractor(presenter,
                                                   questionGroup: .MindsetShifterToBeVision,
                                                   introKey: introKey)
+            router.shortTBVViewController = viewController
             viewController.shortTBVInteractor = interactor
             viewController.shortTBVRouter = router
             viewController.interactor = interactor

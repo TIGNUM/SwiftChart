@@ -31,4 +31,8 @@ extension StrategyListPresenter: StrategyListPresenterInterface {
     func reload() {
         viewController?.reload()
     }
+
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        viewController?.audioPlayStateChangedForCellAt(indexPath: indexPath)
+    }
 }

@@ -32,10 +32,10 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
                                                                    action: #selector(didPanOrLongPressCalendarView(gesture:)))
     //Graph helper views and constants
     private var chartSnapshot = UIImageView.init(frame: .zero)
-    private var originalCenter: CGPoint?
+    private var scale: CGFloat = 0.0
     private var isZooming = false
     private let zoomBackAnimationDuration = 0.3
-    private let maxZoomScale: CGFloat = 5.0
+    private let maxZoomScale: CGFloat = 4.0
     private let minZoomScale: CGFloat = 1.0
     private let scaleStepForTableViewAlpha: CGFloat = 1.5
 
@@ -193,44 +193,39 @@ extension MyDataScreenViewController: UIGestureRecognizerDelegate {
             chartSnapshot.backgroundColor = ThemeView.level2.color
             chartSnapshot.frame = tableView.convert(chartCell.frame, to: view)
             view.addSubview(chartSnapshot)
-            self.originalCenter = chartSnapshot.center
             isZooming = true
             setupInteractionFor(zooming: isZooming)
         case .changed:
-            let currentScale = self.chartSnapshot.frame.size.width / self.chartSnapshot.bounds.size.width
-            var newScale = currentScale * sender.scale
-            if newScale < minZoomScale {
-                newScale = minZoomScale
+            if sender.scale > minZoomScale && sender.scale < maxZoomScale {
+                scale = sender.scale
+                transform(view: chartSnapshot, withTranslation: .zero)
+                tableView.alpha = scaleStepForTableViewAlpha - scale
             }
-            if newScale > maxZoomScale {
-                newScale = maxZoomScale
-            }
-            tableView.alpha = scaleStepForTableViewAlpha - newScale
-            let transform = CGAffineTransform(scaleX: newScale, y: newScale)
-            self.chartSnapshot.transform = transform
-            sender.scale = 1
         default:
-            guard let center = self.originalCenter else { return }
             self.isZooming = false
             setupInteractionFor(zooming: isZooming)
-            performZoomBackAnimation(forOriginalCenter: center)
+            performZoomBackAnimation()
         }
     }
 
     @objc func pan(sender: UIPanGestureRecognizer) {
         if self.isZooming && sender.state == .began {
-            self.originalCenter = chartSnapshot.center
         } else if self.isZooming && sender.state == .changed {
-            let translation = sender.translation(in: self.view)
-                chartSnapshot.center = CGPoint(x: chartSnapshot.center.x + translation.x,
-                                               y: chartSnapshot.center.y + translation.y)
-            sender.setTranslation(CGPoint.zero, in: chartSnapshot.superview)
+            if scale > 1.0 {
+                transform(view: chartSnapshot, withTranslation: sender.translation(in: self.view))
+            }
         } else if self.isZooming && (sender.state == .ended || sender.state == .failed || sender.state == .cancelled) {
-            guard let center = self.originalCenter else { return }
             self.isZooming = false
             setupInteractionFor(zooming: isZooming)
-            performZoomBackAnimation(forOriginalCenter: center)
+            performZoomBackAnimation()
         }
+    }
+
+    private func transform(view: UIImageView, withTranslation translation: CGPoint) {
+        var transform = CATransform3DIdentity
+        transform = CATransform3DScale(transform, scale, scale, 1.01)
+        transform = CATransform3DTranslate(transform, translation.x, translation.y, 0)
+        view.layer.transform = transform
     }
 
     // MARK: Gesture recognizer Delegate
@@ -241,10 +236,9 @@ extension MyDataScreenViewController: UIGestureRecognizerDelegate {
 
     // MARK: Gesture recognizer Helpers
 
-    func performZoomBackAnimation(forOriginalCenter: CGPoint) {
+    func performZoomBackAnimation() {
         UIView.animate(withDuration: zoomBackAnimationDuration, animations: { [weak self] in
-            self?.chartSnapshot.transform = CGAffineTransform.identity
-            self?.chartSnapshot.center = forOriginalCenter
+            self?.chartSnapshot.transform = .identity
             self?.tableView.alpha = 1.0
             }, completion: { [weak self] _ in
                 self?.chartSnapshot.removeFromSuperview()

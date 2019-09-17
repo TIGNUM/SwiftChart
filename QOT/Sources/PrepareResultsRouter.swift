@@ -23,9 +23,10 @@ final class PrepareResultsRouter {
 // MARK: - PrepareResultsRouterInterface
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
-        presentDecisionTree(for: .prepareBenefits(benefits: benefits,
-                                                  questionID: Prepare.Key.benefits.questionID,
-                                                  viewController))
+        //TODO: Hook up DT to edit prepare benefits.
+//        presentDecisionTree(for: .prepareBenefits(benefits: benefits,
+//                                                  questionID: Prepare.Key.benefits.questionID,
+//                                                  viewController))
     }
 
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?) {
@@ -55,14 +56,5 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
 
     func dismiss() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
-    }
-}
-
-// MARK: - DecisionTreeViewController
-private extension PrepareResultsRouter {
-    func presentDecisionTree(for type: DecisionTreeType) {
-        let configurator = DecisionTreeConfigurator.make(for: type)
-        let controller = DecisionTreeViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
     }
 }

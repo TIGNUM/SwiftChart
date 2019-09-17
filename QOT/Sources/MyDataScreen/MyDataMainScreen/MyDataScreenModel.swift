@@ -54,6 +54,7 @@ struct MyDataDailyCheckInModel: Codable {
         tenDayLoad = min((withDailyCheckInResult.load ?? 0) * 10, 100)
         fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? 0), 100)
         averageUsersImpactReadiness = min(max(average, MyDataDailyCheckInModel.defaultAverageValue), 100)
+        tenDaysFutureLoad = (withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10
     }
 }
 

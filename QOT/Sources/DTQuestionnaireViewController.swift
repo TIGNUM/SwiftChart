@@ -71,7 +71,8 @@ class DTQuestionnaireViewController: UIViewController {
 
 private extension DTQuestionnaireViewController {
     func setupView() {
-        ThemeView.chatbot.apply(view)
+        let theme: ThemeView = (interactor?.isDark ?? true) ? .chatbotDark : .chatbot
+        theme.apply(view)
         tableView.contentInset = .zero      //this takes off an automatic 49.0 pixel top inset that is not needed
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
@@ -106,7 +107,8 @@ private extension DTQuestionnaireViewController {
     }
 
     func attachBottomShadow() {
-        let imageView = UIImageView(image: R.image.lightBottomGradient())
+        let isDark = interactor?.isDark ?? true
+        let imageView = UIImageView(image: isDark ? R.image.darkBottomGradient() : R.image.lightBottomGradient())
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
@@ -147,7 +149,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
             cell.configure(with: viewModel.question.title,
                            html: nil,
                            questionUpdate: nil,
-                           textColor: .carbon)
+                           textColor: (interactor?.isDark ?? true) ? .sand : .carbon)
             return cell
         case .answer:
             switch viewModel.question.answerType {
@@ -165,12 +167,9 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getSelectionCell(indexPath, tableView)
             case .text:
                 return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
-//                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-//                cell.configure(with: viewModel.tbvText ?? "", textColor: .carbonNew)
-//                return cell
             case .noAnswerRequired,
                  .onlyExistingAnswer:
-                if let answer = viewModel.answers.first {
+                if let answer = viewModel.answers.first, viewModel.hasTypingAnimation {
                     return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
             case .openCalendarEvents:
@@ -203,7 +202,7 @@ private extension DTQuestionnaireViewController {
         cell.configure(with: title ?? "",
                        html: nil,
                        questionUpdate: nil,
-                       textColor: .carbon,
+                       textColor: (interactor?.isDark ?? false) ? .sand : .carbon,
                        animateTextDuration: viewModel.typingAnimationDuration)
         cell.delegate = self
         return cell
@@ -256,10 +255,8 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 // MARK: - QuestionCellDelegate
 extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
     func didFinishTypeAnimation() {
-        if let answer = viewModel.answers.first { //TODO ShortTBV Generator has not a final answwer.
-            if answer.title.isEmpty {
-                interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
-            } else {
+        if let answer = viewModel.answers.first {
+            if viewModel.tbvText?.isEmpty == false || !answer.title.isEmpty {
                 interactor?.didStopTypingAnimation()
 
                 UIView.animate(withDuration: 0.25, animations: {
@@ -267,6 +264,8 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
                     self.tableView.endUpdates()
                     self.checkScroll()
                 })
+            } else {
+                interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
             }
         } else {
             interactor?.didStopTypingAnimation()
