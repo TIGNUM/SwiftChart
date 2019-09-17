@@ -23,13 +23,16 @@ class DTInteractor: DTInteractorInterface {
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
     var inputText: String = ""
-    var isDark: Bool = true
+    var isDark: Bool = false
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
         self.introKey = introKey
         self.presenter = presenter
         self.questionGroup = questionGroup
+        if questionGroup == .MindsetShifterToBeVision && introKey == ShortTBV.QuestionKey.IntroOnboarding {
+            isDark = true
+        }
     }
 
     // MARK: - Interactor
