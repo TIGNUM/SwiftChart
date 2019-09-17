@@ -89,6 +89,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     @objc func autogenerateMyVisionAction() {
         trackUserEvent(.OPEN, valueType: "TBVGeneratorFromNullState", action: .TAP)
+        removeBottomNavigation()
         interactor?.openToBeVisionGenerator()
     }
 
@@ -246,6 +247,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 }
 
+// MARK: - MyVisionViewControllerScrollViewDelegate
+extension MyVisionViewController: MyVisionViewControllerScrollViewDelegate {
+    func scrollToTop(_ animated: Bool) {
+        scrollView.scrollToTop(animated)
+    }
+}
+
 // MARK: - UIScrollViewDelegate
 extension MyVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -310,6 +318,7 @@ extension MyVisionViewController: MyVisionNullStateViewProtocol {
 
 extension MyVisionViewController {
     @objc func continueUpdatingTBV() {
+        removeBottomNavigation()
         trackUserEvent(.OPEN, valueType: "ToBeVisionGeneratorFromUpdateModal", action: .TAP)
         interactor?.openToBeVisionGenerator()
     }

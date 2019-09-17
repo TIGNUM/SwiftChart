@@ -483,6 +483,9 @@
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
 "MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without setting a coach follow-up?";
+"Solve.LeaveAlert.Title" = "SOLVE FOLLOW-UP";
+"Solve.LeaveAlert.Message" = "We want to help you reflect on what works for you. If you continue, you will not receive coach follow-up.";
+"solve.LeaveAlert.ContinueButton" = "Continue";
 
 "MyLibrary.Items.Button.Add" = "Add";
 "MyLibrary.Items.Title.All" = "ALL";

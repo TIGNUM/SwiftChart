@@ -11,10 +11,11 @@ import UIKit
 
 extension UIScrollView {
     func scrollToBottom(_ animated: Bool = true) {
-        let rect = CGRect(x: 0,
-                          y: contentSize.height - bounds.size.height,
-                          width: bounds.size.width,
-                          height: bounds.size.height)
-        scrollRectToVisible(rect, animated: animated)
+        let point = CGPoint(x: 0, y: contentSize.height - bounds.size.height)
+        setContentOffset(point, animated: animated)
+    }
+
+    func scrollToTop(_ animated: Bool = true) {
+        setContentOffset(.zero, animated: animated)
     }
 }

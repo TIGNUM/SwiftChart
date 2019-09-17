@@ -88,7 +88,7 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
 
         let label = UILabel(frame: CGRect(center: .zero, size: CGSize(width: collectionView.bounds.width - offset, height: .AnswerButtonBig)))
         label.numberOfLines = 2
-        label.attributedText = ThemeText.chatBotButton.attributedString(answerText)
+        label.attributedText = ThemeText.chatbotButton.attributedString(answerText)
         label.sizeToFit()
 
         let width: CGFloat = label.bounds.width
