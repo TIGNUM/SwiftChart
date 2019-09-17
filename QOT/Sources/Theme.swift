@@ -1022,7 +1022,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .trackSelectionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
-             .dailyBriefSubtitle, .weatherHourlyLabelNow:
+             .dailyBriefSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
             var alignment: NSTextAlignment = .left
@@ -1036,7 +1036,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .myDataHeatMapDetailCellValue:
+        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
