@@ -16,6 +16,7 @@ final class DTMindsetViewController: DTViewController {
     var mindsetInteractor: DTMindsetInteractorInterface?
     weak var shortTBVDelegate: DTShortTBVDelegate?
     private var introFilter: String?
+    private var mindsetTrigger: String?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -35,11 +36,12 @@ final class DTMindsetViewController: DTViewController {
             introFilter = firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
             return introFilter
         case Mindset.QuestionKey.MoreInfo?:
-            return firstAnswer?.keys
+            mindsetTrigger = firstAnswer?.keys
                 .filter { $0.starts(with: Mindset.Filter.TriggerRelationship) && $0 != introFilter }
                 .first
+            return mindsetTrigger
         case Mindset.QuestionKey.GutReactions?:
-            return firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            return mindsetTrigger
         default:
             return nil
         }
