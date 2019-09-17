@@ -31,7 +31,7 @@ final class DTShortTBVViewController: DTViewController {
         case ShortTBV.QuestionKey.Review:
             delegate?.didDismissShortTBVScene(tbv: shortTBVInteractor?.getTBV())
             if shortTBVInteractor?.shouldDismissOnContinue ?? true {
-                shortTBVRouter?.dismiss()
+                shortTBVRouter?.dismissShortTBVFlow()
             }
         case ShortTBV.QuestionKey.Home:
             generateTBV()

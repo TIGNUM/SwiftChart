@@ -32,5 +32,5 @@ protocol DTShortTBVInteractorInterface: Interactor {
 }
 
 protocol DTShortTBVRouterInterface {
-    func dismiss()
+    func dismissShortTBVFlow()
 }
