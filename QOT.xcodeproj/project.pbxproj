@@ -318,6 +318,14 @@
 		36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
+		38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */; };
+		38290B872330F825004B5C14 /* DTSprintReflectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */; };
+		38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */; };
+		38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B812330F825004B5C14 /* DTSprintReflectionInterface.swift */; };
+		38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B822330F825004B5C14 /* DTSprintReflectionViewController.swift */; };
+		38290B8B2330F825004B5C14 /* DTSprintReflectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B832330F825004B5C14 /* DTSprintReflectionInteractor.swift */; };
+		38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B842330F825004B5C14 /* DTSprintReflection.swift */; };
+		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1656,6 +1664,14 @@
 		36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTQuestionnaireViewController.swift; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
+		38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionPresenter.swift; sourceTree = "<group>"; };
+		38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionWorker.swift; sourceTree = "<group>"; };
+		38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionRouter.swift; sourceTree = "<group>"; };
+		38290B812330F825004B5C14 /* DTSprintReflectionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionInterface.swift; sourceTree = "<group>"; };
+		38290B822330F825004B5C14 /* DTSprintReflectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionViewController.swift; sourceTree = "<group>"; };
+		38290B832330F825004B5C14 /* DTSprintReflectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionInteractor.swift; sourceTree = "<group>"; };
+		38290B842330F825004B5C14 /* DTSprintReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflection.swift; sourceTree = "<group>"; };
+		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
 		5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsPresenter.swift; sourceTree = "<group>"; };
@@ -3341,6 +3357,21 @@
 			name = Sprint;
 			sourceTree = "<group>";
 		};
+		38290B7D2330F602004B5C14 /* SprintReflection */ = {
+			isa = PBXGroup;
+			children = (
+				38290B842330F825004B5C14 /* DTSprintReflection.swift */,
+				38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */,
+				38290B832330F825004B5C14 /* DTSprintReflectionInteractor.swift */,
+				38290B812330F825004B5C14 /* DTSprintReflectionInterface.swift */,
+				38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */,
+				38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */,
+				38290B822330F825004B5C14 /* DTSprintReflectionViewController.swift */,
+				38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */,
+			);
+			name = SprintReflection;
+			sourceTree = "<group>";
+		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
 			isa = PBXGroup;
 			children = (
@@ -4622,6 +4653,7 @@
 				3658254D2327ABEA00AC3F4A /* ShortTBV */,
 				367A584A2326A13D0089A082 /* Solve */,
 				36EC22F82323F43C00DB5696 /* Sprint */,
+				38290B7D2330F602004B5C14 /* SprintReflection */,
 				363B9CB6232BF2FF00C1A29E /* TBV */,
 				ACB449922260E13700B0E79F /* Views */,
 			);
@@ -6967,6 +6999,7 @@
 				B86E744A22A9519900B0AE75 /* MyLibraryCategoryListWorker.swift in Sources */,
 				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
 				8D6E058B22D7466E00EC2AEF /* MyLibraryNotesInterface.swift in Sources */,
+				38290B872330F825004B5C14 /* DTSprintReflectionWorker.swift in Sources */,
 				8D25326D22E9AA2700FE4205 /* SprintButtonParameters.swift in Sources */,
 				8DF7870622FEB50800CDE0A9 /* RegistrationCodePresenter.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
@@ -6990,6 +7023,7 @@
 				9CB9B7A3230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift in Sources */,
 				9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */,
 				B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */,
+				38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */,
 				8D5668BD22DCAD4800AA172F /* MySprintsListConfigurator.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */,
@@ -7067,6 +7101,7 @@
 				8D66E8A12305A0E500BE78C7 /* TrackSelectionInteractor.swift in Sources */,
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */,
+				38290B8B2330F825004B5C14 /* DTSprintReflectionInteractor.swift in Sources */,
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
@@ -7102,6 +7137,7 @@
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
+				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */,
 				B4AB48CA230BF982003B3C1F /* MyDataExplanationViewController.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
@@ -7142,6 +7178,7 @@
 				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
+				38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */,
 				8D9F6D27230E85A400DCC241 /* WalkthroughAnimatedArrows.swift in Sources */,
 				F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */,
 				8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */,
@@ -7161,6 +7198,7 @@
 				5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
+				38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */,
 				B856B47F22B0E29D0017A249 /* MyLibraryUserStorageConfigurator.swift in Sources */,
@@ -7340,6 +7378,7 @@
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
+				38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */,
 				367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
@@ -7528,6 +7567,7 @@
 				B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */,
 				3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
+				38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				367CD18122EF4EDE00AF2187 /* OnboardingLoginRouter.swift in Sources */,
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,

@@ -23,7 +23,7 @@ final class SolveStrategyTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 extension SolveStrategyTableViewCell {
 
     func configure(hasHeader: Bool, title: String, minsToRead: String, headerTitle: String) {
-        ThemeText.resultHeader1.apply(title, to: strategyTitleLabel)
+        ThemeText.resultHeader2.apply(title, to: strategyTitleLabel)
         ThemeText.resultDate.apply(minsToRead, to: minsToReadLabel)
         ThemeText.resultList.apply(headerTitle, to: headerLabel)
 

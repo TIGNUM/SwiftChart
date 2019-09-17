@@ -142,7 +142,7 @@ extension SolveResultsViewController: UITableViewDataSource {
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)
