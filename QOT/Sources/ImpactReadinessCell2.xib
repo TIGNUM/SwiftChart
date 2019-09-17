@@ -358,7 +358,7 @@
                 <outlet property="loadSubtitle" destination="bsD-GU-oFc" id="ghw-7A-35N"/>
                 <outlet property="loadTitle" destination="GK8-ZS-BA2" id="SGH-TZ-ecD"/>
                 <outlet property="moreData" destination="7iz-cZ-qYd" id="OBh-AY-RYF"/>
-                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5kz-2h-MNv"/>
+                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5Cq-yy-2CQ"/>
                 <outlet property="sleepQuality" destination="gpZ-rP-fVA" id="u2r-et-nFo"/>
                 <outlet property="sleepQualityRefrence" destination="ZhC-mg-22S" id="nrF-SD-n01"/>
                 <outlet property="sleepQualitySubtitle" destination="L3o-bN-0qM" id="ulz-O0-kj6"/>

@@ -574,3 +574,6 @@
 "Weather.Now" = "Now";
 
 "Walkthrough.Button.GotIt" = "Got it";
+"DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
+"DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
+

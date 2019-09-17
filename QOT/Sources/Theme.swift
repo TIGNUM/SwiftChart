@@ -531,6 +531,7 @@ enum ThemeText {
     case quotationSlash
     case dailyBriefTitle
     case dailyBriefSubtitle
+    case dailyBriefImpactReadinessRolling
     case sprintName
     case quoteAuthor
     case sprintText
@@ -750,7 +751,7 @@ enum ThemeText {
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
-             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription:
+             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -834,7 +835,7 @@ enum ThemeText {
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
-             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader:
+             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .dailyBriefImpactReadinessRolling:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -968,7 +969,7 @@ enum ThemeText {
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
-             .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription:
+             .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
              .dailyBriefLevelTitle:
