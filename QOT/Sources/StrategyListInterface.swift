@@ -11,14 +11,17 @@ import Foundation
 protocol StrategyListViewControllerInterface: class {
     func setupView()
     func reload()
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol StrategyListPresenterInterface {
     func setupView()
     func reload()
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol StrategyListInteractorInterface: class, Interactor {
+    var isPlaying: Bool { get }
     var isFoundation: Bool { get }
     var foundationStrategies: [Strategy.Item] { get }
     var strategies: [Strategy.Item] { get }

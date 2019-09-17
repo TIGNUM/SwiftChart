@@ -331,10 +331,10 @@ extension LaunchHandler {
             return
         }
         guard let coachController = baseRootViewController?.QOTVisibleViewController() as? CoachViewController else {
-            mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {}
+            mainNavi.dismissAllPresentedViewControllers(mainNavi, false) {}
             return
         }
-        mainNavi.dismissAllPresentedViewControllers(coachController, true) {}
+        mainNavi.dismissAllPresentedViewControllers(coachController, false) {}
     }
 
     func showLearnStrategy(_ category: qot_dal.ContentCategory?) {
