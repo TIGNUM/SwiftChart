@@ -38,6 +38,14 @@ final class DTShortTBVViewController: DTViewController {
             loadNextQuestion()
         }
     }
+
+    override func didTapPrevious() {
+        if shortTBVInteractor?.canGoBack ?? true {
+            super.didTapPrevious()
+        } else {
+            delegate?.didTapBack()
+        }
+    }
 }
 
 private extension DTShortTBVViewController {
