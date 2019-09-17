@@ -22,8 +22,8 @@ struct MyQotAboutUsModel {
             switch self {
             case .benefits: return 100101
             case .about: return 100092
-            case .privacy: return 100163
-            case .terms: return 100102
+            case .privacy: return 102360
+            case .terms: return 102361
             case .copyright: return 100105
             }
         }
