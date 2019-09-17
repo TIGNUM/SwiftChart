@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 
 final class DTSprintReflectionInteractor: DTInteractor {
-    
+
     // MARK: - Properties
     var sprint: QDMSprint?
     weak var sprintRefelctionPresenter: DTSprintReflectionPresenter?
@@ -31,7 +31,7 @@ final class DTSprintReflectionInteractor: DTInteractor {
         presentedNodes.append(node)
         sprintRefelctionPresenter?.showNextQuestion(presentationModel, isDark: isDark)
     }
-    
+
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return sprint?.title
     }

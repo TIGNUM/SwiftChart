@@ -128,12 +128,10 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
 
     func trackSprintPause() {
         trackUserEvent(QDMUserEventTracking.Name.PAUSE, action: QDMUserEventTracking.Action.TAP)
-        interactor?.didTapItemAction(1)
     }
 
     func trackSprintContinue() {
-        trackUserEvent(QDMUserEventTracking.Name.CONTINUE, action: QDMUserEventTracking.Action.TAP)
-        interactor?.didTapItemAction(2)
+        trackUserEvent(QDMUserEventTracking.Name.CONTINUE, action: QDMUserEventTracking.Action.TAP)        
     }
 
     func trackSprintStart() {
