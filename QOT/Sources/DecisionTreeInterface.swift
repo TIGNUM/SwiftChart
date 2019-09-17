@@ -111,7 +111,9 @@ protocol DecisionTreeRouterInterface {
     func openArticle(with contentID: Int)
     func openVideo(from url: URL, item: QDMContentItem?)
     func openShortTBVGenerator(completion: (() -> Void)?)
+
     func openImagePicker()
+
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
     func openRecoveryResults(_ recovery: QDMRecovery3D?)

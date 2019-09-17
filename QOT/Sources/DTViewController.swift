@@ -21,10 +21,23 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     @IBOutlet weak var closeButton: UIButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
     @IBOutlet weak var pageControllerContainer: UIView!
+    @IBOutlet weak var constraintBottom: NSLayoutConstraint!
+    @IBOutlet weak var viewNavBottom: UIView!
+    @IBOutlet weak var viewNavTop: UIView!
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        let isDark = interactor?.isDark ?? true
+
+        let theme: ThemeView = isDark ? .chatbotDark : .chatbot
+        theme.apply(view)
+
+        let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
+        closeButton.setImage(image, for: .normal)
+
+        navigationController?.setNeedsStatusBarAppearanceUpdate()
+
         interactor?.viewDidLoad()
     }
 
@@ -47,8 +60,9 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
-    @objc func didTapNext() {
-
+    @IBAction func didTapNext() {
+        setAnswerNeedsSelection()
+        loadNextQuestion()
     }
 
     // MARK: - Question Handling
@@ -60,12 +74,18 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         return nil
     }
 
+    func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
+        return nil
+    }
+
     func loadNextQuestion() {
         let selectedAnswers = viewModel?.selectedAnswers ?? []
         let filter = getAnswerFilter(selectedAnswers: selectedAnswers, questionKey: viewModel?.question.key)
         let trigger = getTrigger(selectedAnswer: selectedAnswers.first, questionKey: viewModel?.question.key)
+        let event = getEvent(answerType: viewModel?.question.answerType)
         let selectionModel = DTSelectionModel(selectedAnswers: selectedAnswers,
                                               question: viewModel?.question,
+                                              event: event,
                                               trigger: trigger,
                                               answerFilter: filter,
                                               userInput: nil)
@@ -78,6 +98,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
+//        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
@@ -93,8 +114,15 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         navigationButtonContainer.removeSubViews()
         if let navigationButton = button {
             self.navigationButton = navigationButton
+            navigationButton.translatesAutoresizingMaskIntoConstraints = false
             navigationButtonContainer.addSubview(navigationButton)
+            navigationButton.topAnchor.constraint(equalTo: navigationButtonContainer.topAnchor).isActive = true
+            navigationButton.bottomAnchor.constraint(equalTo: navigationButtonContainer.bottomAnchor).isActive = true
+            navigationButton.rightAnchor.constraint(equalTo: navigationButtonContainer.rightAnchor).isActive = true
             navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
+            navigationButton.setOnPressed(completion: { [weak self] in
+                self?.didTapNext()
+            })
         }
     }
 
@@ -110,8 +138,16 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     // MARK: Configuration
     func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor) {
-        view.backgroundColor = backgroundColor
         setupPageViewController(backgroundColor)
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow),
+                                               name: Notification.Name.UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide),
+                                               name: Notification.Name.UIKeyboardWillHide,
+                                               object: nil)
     }
 
     func updateView(viewModel: DTViewModel) {
@@ -146,16 +182,9 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
         viewModel?.setSelectedAnswer(answer)
     }
-}
 
-// MARK: - Bottom Navigation
-extension DTViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-}
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
 
-extension DTViewController {
     /**
      An answer contains the decision about the next question to load or needed content.
      Some questions will be displayed without answers. If the an answer can not be
@@ -170,6 +199,46 @@ extension DTViewController {
         } else if var answer = viewModel?.answers.first {
             answer.setSelected(true)
             viewModel?.setSelectedAnswer(answer)
+        }
+    }
+}
+
+extension DTViewController {        //TODO - this looks to be redundant now
+    func handleAutomatedQuestion(viewModel: DTViewModel) {
+        guard viewModel.showNextQuestionAutomated == true else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
+            self?.setAnswerNeedsSelection()
+            self?.loadNextQuestion()
+        }
+    }
+}
+
+// MARK: - Bottom Navigation
+extension DTViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+}
+
+//Handle keyboard notifications
+extension DTViewController {
+    @objc func keyboardWillShow(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            constraintBottom.constant = keyboardSize.height
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+
+            }
+        }
+    }
+
+    @objc func keyboardWillHide(notification: Notification) {
+        if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
+            constraintBottom.constant = 0.0
+            UIView.animate(withDuration: duration) {
+                self.view.layoutIfNeeded()
+            }
         }
     }
 }

@@ -19,6 +19,10 @@ protocol MyVisionViewControllerInterface: class {
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
 
+protocol MyVisionViewControllerScrollViewDelegate: class {
+    func scrollToTop(_ animated: Bool)
+}
+
 protocol MyVisionPresenterInterface {
     func showScreenLoader()
     func hideScreenLoader()

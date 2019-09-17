@@ -13,10 +13,13 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DTViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="closeButton" destination="47a-82-tV1" id="624-Sb-750"/>
+                <outlet property="constraintBottom" destination="Evk-kA-MDh" id="Qz9-rF-FwZ"/>
                 <outlet property="navigationButtonContainer" destination="g5G-g8-DRI" id="5dn-R0-3BX"/>
                 <outlet property="pageControllerContainer" destination="11e-bw-5N1" id="4ea-8r-da9"/>
                 <outlet property="previousButton" destination="a9Z-Fd-slD" id="44v-q5-BdH"/>
                 <outlet property="view" destination="vm2-T3-MVz" id="Lc4-di-cFf"/>
+                <outlet property="viewNavBottom" destination="eF3-zN-Uqf" id="Z6U-GG-jcw"/>
+                <outlet property="viewNavTop" destination="vJd-jZ-SnL" id="BVb-Wh-QrW"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -64,10 +67,10 @@
                             </connections>
                         </button>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g5G-g8-DRI">
-                            <rect key="frame" x="222" y="22" width="168" height="40"/>
+                            <rect key="frame" x="140" y="22" width="250" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="168" id="1KP-QU-oEm"/>
+                                <constraint firstAttribute="width" constant="250" id="1Fu-YD-TBq"/>
                                 <constraint firstAttribute="height" constant="40" id="Gb0-nw-eRu"/>
                             </constraints>
                         </view>
@@ -85,12 +88,12 @@
             <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.0" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="11e-bw-5N1" firstAttribute="top" secondItem="vJd-jZ-SnL" secondAttribute="bottom" id="A7j-0G-X2o"/>
+                <constraint firstItem="11e-bw-5N1" firstAttribute="bottom" secondItem="eF3-zN-Uqf" secondAttribute="bottom" id="EMx-BO-juK"/>
                 <constraint firstItem="QCm-Ox-GWq" firstAttribute="trailing" secondItem="vJd-jZ-SnL" secondAttribute="trailing" id="Epp-X3-ZcH"/>
                 <constraint firstItem="QCm-Ox-GWq" firstAttribute="bottom" secondItem="eF3-zN-Uqf" secondAttribute="bottom" id="Evk-kA-MDh"/>
                 <constraint firstItem="11e-bw-5N1" firstAttribute="leading" secondItem="QCm-Ox-GWq" secondAttribute="leading" id="IHM-Ah-vWw"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="leading" secondItem="QCm-Ox-GWq" secondAttribute="leading" id="PMA-0K-W7B"/>
                 <constraint firstAttribute="trailing" secondItem="eF3-zN-Uqf" secondAttribute="trailing" id="WkO-L1-5Cs"/>
-                <constraint firstItem="QCm-Ox-GWq" firstAttribute="bottom" secondItem="11e-bw-5N1" secondAttribute="bottom" id="bbD-Ll-WRz"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="height" secondItem="QCm-Ox-GWq" secondAttribute="height" multiplier="0.1" id="k51-im-XGy"/>
                 <constraint firstItem="eF3-zN-Uqf" firstAttribute="leading" secondItem="vm2-T3-MVz" secondAttribute="leading" id="lDP-Zb-8fv"/>
                 <constraint firstItem="vJd-jZ-SnL" firstAttribute="top" secondItem="QCm-Ox-GWq" secondAttribute="top" id="lOG-vB-EDq"/>

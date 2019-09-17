@@ -15,6 +15,20 @@ final class DTShortTBVPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        return answerType == .text
+        let typingAnimationState = answerType == .noAnswerRequired || answerType == .text || answerType == .onlyExistingAnswer
+        if typingAnimationState {
+            hideNavigationButtonForAnimation()
+        }
+        return typingAnimationState
+    }
+
+    override func showNextQuestionAutomated(questionKey: String) -> Bool {
+        switch questionKey {
+        case ShortTBV.QuestionKey.IntroOnboarding,
+             ShortTBV.QuestionKey.IntroPrepare:
+            return true
+        default:
+            return false
+        }
     }
 }

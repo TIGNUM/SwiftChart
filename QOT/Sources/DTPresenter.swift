@@ -24,15 +24,15 @@ class DTPresenter: DTPresenterInterface {
         viewController?.setupView(.sand, .carbonDark)
     }
 
-    func showNextQuestion(_ presentationModel: DTPresentationModel) {
-        let button = presentationModel.getNavigationButton(isHidden: false)
+    func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showNextQuestion(viewModel)
     }
 
-    func showPreviosQuestion(_ presentationModel: DTPresentationModel) {
-        let button = presentationModel.getNavigationButton(isHidden: false)
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
+        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showPreviosQuestion(viewModel)
@@ -78,8 +78,11 @@ class DTPresenter: DTPresenterInterface {
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
+        let events = Prepare.isCalendarEventSelection(question.key) ? getEvents(presentationModel.events)
+            : getPreparations(presentationModel.preparations)
         return DTViewModel(question: question,
                            answers: answers,
+                           events: events,
                            tbvText: presentationModel.tbv?.text,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
                            typingAnimationDuration: question.duration,
@@ -111,6 +114,24 @@ class DTPresenter: DTPresenterInterface {
                                       selected: selected,
                                       backgroundColor: answerBackgroundColor(answer: answer),
                                       decisions: getDecisions(answer: answer))
+        }
+    }
+
+    func getEvents(_ calendarEvents: [QDMUserCalendarEvent]) -> [DTViewModel.Event] {
+        return calendarEvents.compactMap { (event) -> DTViewModel.Event in
+            return DTViewModel.Event(remoteId: event.remoteID,
+                                     title: event.title,
+                                     dateString: Prepare.dateString(for: event.startDate),
+                                     isCalendarEvent: true)
+        }
+    }
+
+    func getPreparations(_ preparations: [QDMUserPreparation]) ->  [DTViewModel.Event] {
+        return preparations.compactMap { (preparation) -> DTViewModel.Event in
+            return DTViewModel.Event(remoteId: preparation.remoteID,
+                                     title: preparation.name,
+                                     dateString: Prepare.prepareDateString(preparation.createdAt),
+                                     isCalendarEvent: false)
         }
     }
 

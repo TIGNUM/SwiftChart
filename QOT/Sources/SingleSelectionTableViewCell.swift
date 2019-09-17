@@ -41,13 +41,15 @@ extension SingleSelectionTableViewCell {
 // MARK: - Actions
 extension SingleSelectionTableViewCell {
     @IBAction func didTapRightOption() {
-        if let answer = rightAnswer {
+        if var answer = rightAnswer {
+            answer.setSelected(true)
             delegate?.didSelect(answer)
         }
     }
 
     @IBAction func didTapLeftOption() {
-        if let answer = leftAnswer {
+        if var answer = leftAnswer {
+            answer.setSelected(true)
             delegate?.didSelect(answer)
         }
     }

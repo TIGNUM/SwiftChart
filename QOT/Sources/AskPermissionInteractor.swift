@@ -41,6 +41,7 @@ extension AskPermissionInteractor: AskPermissionInteractorInterface {
     var placeholderImage: UIImage? {
         let image: UIImage?
         switch worker.getPermissionType {
+        case .notification, .notificationOpenSettings: image = R.image.notification_permission()
         default: image = R.image.preloading()
         }
         return image

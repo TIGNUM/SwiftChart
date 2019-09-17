@@ -16,46 +16,59 @@ final class PrepareResultsWorker {
     typealias ListItems = [Int: [PrepareResultsType]]
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
-    private var answers: [DecisionTreeModel.SelectedAnswer] = []
+//    private var answers: [DecisionTreeModel.SelectedAnswer] = []
     private var preparation: QDMUserPreparation?
     private var canDelete: Bool = false
-    private var level: QDMUserPreparation.Level
+    private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false
 
-    // MARK: - Init
-    init(_ preparation: QDMUserPreparation?,
-         _ answers: [DecisionTreeModel.SelectedAnswer],
-         _ canDelete: Bool,
-         _ dataModified: Bool = false) {
-        self.canDelete = canDelete
-        self.answers = answers
-        self.preparation = preparation
-        self.level = preparation?.type ?? .LEVEL_DAILY
-        self.dataModified = dataModified
-
-        switch level {
-        case .LEVEL_CRITICAL:
-            if answers.isEmpty {
-                generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-            } else {
-                updateAnswerIds(answers) { [unowned self] (preparation) in
-                    self.preparation = preparation
-                    self.generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: self.suggestedStrategyId)
-                }
-            }
-        case .LEVEL_DAILY:
-            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-        default:
-            self.dataModified = true
-        }
-    }
+//    // MARK: - Init
+//    init(_ preparation: QDMUserPreparation?,
+//         _ answers: [DecisionTreeModel.SelectedAnswer],
+//         _ canDelete: Bool,
+//         _ dataModified: Bool = false) {
+//        self.canDelete = canDelete
+//        self.answers = answers
+//        self.preparation = preparation
+//        self.level = preparation?.type ?? .LEVEL_DAILY
+//        self.dataModified = dataModified
+//
+//        switch level {
+//        case .LEVEL_CRITICAL:
+//            if answers.isEmpty {
+//                generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+//            } else {
+//                updateAnswerIds(answers) { [unowned self] (preparation) in
+//                    self.preparation = preparation
+//                    self.generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: self.suggestedStrategyId)
+//                }
+//            }
+//        case .LEVEL_DAILY:
+//            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+//        default:
+//            self.dataModified = true
+//        }
+//    }
 
     init(_ contentId: Int) {
         level = .LEVEL_ON_THE_GO
         onTheGoItems(contentId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
+        }
+    }
+
+    init(_ preparation: QDMUserPreparation?, canDelete: Bool) {
+        self.canDelete = true
+        self.preparation = preparation
+        if let prepType = preparation?.type {
+            level = prepType
+            if prepType == .LEVEL_DAILY {
+                generateDailyItemsAndUpdateView(preparation)
+            } else if prepType == .LEVEL_CRITICAL {
+                generateCriticalItemsAndUpdateView(preparation)
+            }
         }
     }
 
@@ -77,14 +90,7 @@ final class PrepareResultsWorker {
     }()
 
     lazy var answerFilter: String? = {
-        if level == .LEVEL_CRITICAL && preparation?.answerFilter?.isEmpty == false {
-            return preparation?.answerFilter
-        }
-        return
-            filteredAnswers(.eventType, getSelectedAnswers)
-            .first?.answer.keys
-            .filter { $0.contains(DecisionTreeModel.Filter.Relationship) }
-            .first
+        return preparation?.answerFilter
     }()
 }
 
@@ -140,10 +146,6 @@ extension PrepareResultsWorker {
 
     var getType: QDMUserPreparation.Level {
         return level
-    }
-
-    var getSelectedAnswers: [DecisionTreeModel.SelectedAnswer] {
-        return answers
     }
 
     var suggestedStrategyId: Int {
@@ -246,7 +248,7 @@ private extension PrepareResultsWorker {
         updatePreparation(completion)
     }
 
-    func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?, suggestedStrategyId: Int?) {
+    func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
         criticalItems(prepare, prepare.answerFilter ?? "", suggestedStrategyId) { [weak self] items in
             self?.items = items
@@ -254,9 +256,9 @@ private extension PrepareResultsWorker {
         }
     }
 
-    func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?, suggestedStrategyId: Int?) {
+    func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
-        dailyItems(prepare, suggestedStrategyId) { [weak self] items in
+        dailyItems(prepare) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
         }
@@ -273,15 +275,15 @@ extension PrepareResultsWorker {
         strategyIds = selectedIds.isEmpty ? [-1] : selectedIds
         switch level {
         case .LEVEL_DAILY:
-            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: nil)
+            generateDailyItemsAndUpdateView(preparation)
         case .LEVEL_CRITICAL:
-            generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: nil)
+            generateCriticalItemsAndUpdateView(preparation)
         default:
             break
         }
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: PrepareResult.Key) {
+    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
         switch key {
         case .perceived:
             preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
@@ -292,12 +294,12 @@ extension PrepareResultsWorker {
         default:
             break
         }
-        generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+        generateCriticalItemsAndUpdateView(preparation)
     }
 
     func updateBenefits(_ benefits: String) {
         self.benefits = benefits
-        generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
+        generateCriticalItemsAndUpdateView(preparation)
     }
 
     func handleReminders() {

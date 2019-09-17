@@ -10,7 +10,6 @@ import Foundation
 
 final class ImpactReadinessCell2: BaseDailyBriefCell {
 
-    @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterickText: UILabel!
 //// sleepQuantity
@@ -36,6 +35,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 ////  delagate
    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
+    @IBOutlet weak var rollingDataLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,6 +52,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         if viewModel?.domainModel?.dailyCheckInResult != nil {
                 self.removeLoadingSkeleton()
         }
+        ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
@@ -114,6 +115,9 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
            let theme3 = theme3 {
             combine.append(theme3.attributedString(text3))
         }
+        let style = NSMutableParagraphStyle()
+        style.alignment = .right
+        combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
 }

@@ -883,7 +883,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: 0)
+            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.first?.userAnswerValue ?? "0")
+            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating)
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""

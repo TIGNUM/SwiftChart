@@ -159,7 +159,7 @@ extension UIViewController {
     @objc func viewDidAppearSwizzled(animated: Bool) {
         if self is ScreenZLevel1 || self is ScreenZLevelBottom {
             NotificationCenter.default.post(name: .stopAudio, object: nil)
-        } else if self is ScreenZLevel2 {
+        } else if self is ScreenZLevel2 || self is ScreenZLevel3 {
             addGestureSwipeBack()
         }
 
