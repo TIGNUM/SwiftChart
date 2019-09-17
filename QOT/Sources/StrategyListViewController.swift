@@ -9,6 +9,10 @@
 import UIKit
 import qot_dal
 
+protocol StrategyListViewControllerDelegate: class {
+      func isPlaying() -> Bool
+}
+
 final class StrategyListViewController: BaseWithTableViewController, ScreenZLevel2 {
 
     // MARK: - Properties
@@ -79,6 +83,13 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
         tableView.reloadData()
         self.removeLoadingSkeleton()
     }
+
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
+        if let cell = tableView.cellForRow(at: indexPath) as? StrategyContentTableViewCell {
+            cell.delegate = self
+        }
+        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+    }
 }
 
 extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource {
@@ -104,6 +115,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                            mediaURL: strategy?.mediaURL,
                            duration: strategy?.duration ?? 0,
                            mediaItemId: strategy?.mediaItem?.remoteID ?? 0)
+            cell.delegate = self
             return cell
         }
     }
@@ -148,5 +160,12 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 extension StrategyListViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+}
+
+extension StrategyListViewController: StrategyListViewControllerDelegate {
+
+    func isPlaying() -> Bool {
+        return interactor?.isPlaying ?? false
     }
 }

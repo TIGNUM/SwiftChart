@@ -26,24 +26,15 @@ extension SearchRouter: SearchRouterInterface {
         if searchResult.displayType == .pdf, let url = searchResult.mediaURL {
             searchViewController.showPDFReader(withURL: url, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
         }
-        if let section = searchResult.section {
-            switch section {
-            case .LearnStrategies,
-                 .WhatsHot,
-                 .QOTLibrary,
-                 .Tools:
-                if let contentItemID = searchResult.contentItemID, let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {
-                    UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-                } else if let contentCollectionID = searchResult.contentID {
-                    if searchResult.section == .LearnStrategies {
-                        presentStrategyList(selectedStrategyID: contentCollectionID)
-                    } else if searchResult.section == .QOTLibrary {
-                        presentToolsItems(selectedToolID: contentCollectionID)
-                    } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionID)) {
-                        UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-                    }
-                }
-            default: return
+        if let contentItemID = searchResult.contentItemID, let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {
+            UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+        } else if let contentCollectionID = searchResult.contentID {
+            if searchResult.section == .LearnStrategies {
+                presentStrategyList(selectedStrategyID: contentCollectionID)
+            } else if searchResult.section == .QOTLibrary {
+                presentToolsItems(selectedToolID: contentCollectionID)
+            } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionID)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
         }
     }
