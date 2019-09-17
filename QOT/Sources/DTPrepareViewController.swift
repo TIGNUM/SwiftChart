@@ -87,7 +87,7 @@ final class DTPrepareViewController: DTViewController {
     override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
         return answerType == .openCalendarEvents ? selectedEvent : nil
     }
-    
+
     override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         if questionKey == Prepare.QuestionKey.EventTypeSelectionCritical {
             answerFilter = selectedAnswers.flatMap { $0.keys }.filter { $0.contains(Prepare.AnswerFilter) }.first

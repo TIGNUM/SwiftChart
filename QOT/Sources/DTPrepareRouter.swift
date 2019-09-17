@@ -22,7 +22,7 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
     func didUpdatePrepareResults() {
         viewController?.dismiss(animated: true, completion: nil)
     }
-    
+
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
         let configurator = DTShortTBVConfigurator.make(introKey: introKey, delegate: delegate)
         let controller = DTShortTBVViewController(configure: configurator)
