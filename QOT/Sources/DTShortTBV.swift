@@ -18,4 +18,8 @@ struct ShortTBV {
         static let Review = "mindsetshifter-tbv-generator-key-review"
         static let Learn = "mindsetshifter-tbv-generator-key-learn"
     }
+
+    struct AnswerKey {
+        static let Review = "short-tbv-review"
+    }
 }
