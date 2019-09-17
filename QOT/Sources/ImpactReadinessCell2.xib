@@ -349,6 +349,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="asterickText" destination="vXb-tO-SMh" id="hg3-bF-TQO"/>
+                <outlet property="dividerView" destination="8z4-Ej-ZJM" id="4b2-nQ-o4W"/>
+                <outlet property="dividerView1" destination="NH1-eb-z0H" id="zbf-Ga-5cS"/>
+                <outlet property="dividerView2" destination="wzn-iG-QS3" id="IVu-4f-FtH"/>
+                <outlet property="dividerView3" destination="i2D-6G-Fsh" id="E3P-Co-ajd"/>
                 <outlet property="futureLoad" destination="hAs-nk-1tF" id="AyG-Pd-3zd"/>
                 <outlet property="futureLoadRefrence" destination="fnT-YY-q6T" id="Asa-O9-muD"/>
                 <outlet property="futureLoadSubtitle" destination="X9c-9s-jX3" id="M5u-R3-BxO"/>
@@ -359,7 +363,10 @@
                 <outlet property="loadSubtitle" destination="bsD-GU-oFc" id="ghw-7A-35N"/>
                 <outlet property="loadTitle" destination="GK8-ZS-BA2" id="SGH-TZ-ecD"/>
                 <outlet property="moreData" destination="7iz-cZ-qYd" id="OBh-AY-RYF"/>
-                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5Cq-yy-2CQ"/>
+                <outlet property="refLabel1" destination="7Pd-sS-Feo" id="XaE-hh-rRF"/>
+                <outlet property="refLabel2" destination="Iyu-z4-6kN" id="VYo-2b-awR"/>
+                <outlet property="refLabel3" destination="5Gp-UI-SyU" id="UFb-Wl-xKG"/>
+                <outlet property="rollingDataLabel" destination="PkS-1q-JJp" id="5kz-2h-MNv"/>
                 <outlet property="sleepQuality" destination="gpZ-rP-fVA" id="u2r-et-nFo"/>
                 <outlet property="sleepQualityRefrence" destination="ZhC-mg-22S" id="nrF-SD-n01"/>
                 <outlet property="sleepQualitySubtitle" destination="L3o-bN-0qM" id="ulz-O0-kj6"/>
@@ -368,6 +375,7 @@
                 <outlet property="sleepQuantitySubtitle" destination="FmY-Lw-ihX" id="6Fc-WF-L82"/>
                 <outlet property="sleepQuantityTarget" destination="aRR-Ip-F4R" id="YHe-HV-hIe"/>
                 <outlet property="sleepQuantityTitle" destination="2nn-gt-HYO" id="83T-xc-Z7K"/>
+                <outlet property="targetLabel" destination="jiN-WT-uaH" id="zwT-Mg-k6L"/>
             </connections>
             <point key="canvasLocation" x="-3825.5999999999999" y="156.2807881773399"/>
         </tableViewCell>

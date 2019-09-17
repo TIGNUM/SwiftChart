@@ -41,6 +41,10 @@ final class DailyBriefInteractor {
         self.presenter = presenter
         self.router = router
 
+        // Listen about UpSync Daily Check In User Answers
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
+                                               name: .requestSynchronization, object: nil)
+
         // Listen about Expend/Collapse
         NotificationCenter.default.addObserver(self, selector: #selector(didGetImpactReadinessCellSizeChanges(_ :)),
                                                name: .dispayDailyCheckInScore, object: nil)
@@ -76,6 +80,14 @@ extension DailyBriefInteractor {
 
 // MARK: Notification Listeners
 extension DailyBriefInteractor {
+    @objc func didGetDataSyncRequest(_ notification: Notification) {
+        guard let request = notification.object as? SyncRequestContext,
+            request.dataType == .DAILY_CHECK_IN,
+            request.syncRequestType == .UP_SYNC else { return }
+        expendImpactReadiness = true
+        updateDailyBriefBucket()
+    }
+
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
         updateDailyBriefBucket()
@@ -556,18 +568,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
 
-//        If the dailyCheck is not done
+//If the daily check in completed update the ImpactReadinessCellViewModel
+        let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
+
         if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false {
             expendImpactReadiness = false
-            impactReadinessList.append(ImpactReadinessCellViewModel(title: bucketTitle,
-                                                                    dailyCheckImageURL: impactReadinessImageURL,
-                                                                    readinessScore: -1,
-                                                                    readinessIntro: readinessIntro,
-                                                                    domainModel: impactReadiness))
-            return impactReadinessList
         }
-//If the daily check in completed update the ImpactReadinessCellViewModel
-        let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
@@ -589,10 +595,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
-//  If the daily check is in progress add the default ImpactReadinessScoreViewModel for the loading indicator.
-        if impactReadiness.dailyCheckInResult == nil &&
-            impactReadiness.dailyCheckInAnswerIds?.isEmpty == false {
-            expendImpactReadiness = true
+        if expendImpactReadiness {
             impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
                                                                           asteriskText: asteriskText,
                                                                           sleepQuantityValue: sleepQuantity,
@@ -606,23 +609,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                           impactDataModels: models,
                                                                           domainModel: impactReadiness, "detail"))
         }
-
-        guard expendImpactReadiness else {
-            return impactReadinessList
-        }
-//        If the daily check in completed update the ImpactReadinessScoreViewModel which contains all the impact readiness  score
-        impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
-                                                                      asteriskText: asteriskText,
-                                                                      sleepQuantityValue: sleepQuantity,
-                                                                      sleepQualityValue: sleepQuality,
-                                                                      loadValue: load,
-                                                                      futureLoadValue: futureLoad,
-                                                                      targetSleepQuality: targetSleepQuantity,
-                                                                      sleepQualityReference: sleepQualityReference,
-                                                                      loadReference: loadReference,
-                                                                      futureLoadReference: futureLoadReference,
-                                                                      impactDataModels: models,
-                                                                      domainModel: impactReadiness, "detail"))
 
         return impactReadinessList
     }
