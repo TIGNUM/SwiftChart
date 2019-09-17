@@ -167,9 +167,6 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getSelectionCell(indexPath, tableView)
             case .text:
                 return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
-//                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-//                cell.configure(with: viewModel.tbvText ?? "", textColor: .carbonNew)
-//                return cell
             case .noAnswerRequired,
                  .onlyExistingAnswer:
                 if let answer = viewModel.answers.first {
@@ -258,7 +255,7 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 // MARK: - QuestionCellDelegate
 extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
     func didFinishTypeAnimation() {
-        if let answer = viewModel.answers.first { //TODO ShortTBV Generator has not a final answwer.
+        if let answer = viewModel.answers.first {
             if answer.title.isEmpty {
                 interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
             } else {
