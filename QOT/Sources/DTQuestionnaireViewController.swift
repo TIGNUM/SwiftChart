@@ -256,9 +256,7 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
     func didFinishTypeAnimation() {
         if let answer = viewModel.answers.first {
-            if answer.title.isEmpty {
-                interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
-            } else {
+            if viewModel.tbvText?.isEmpty == false || !answer.title.isEmpty {
                 interactor?.didStopTypingAnimation()
 
                 UIView.animate(withDuration: 0.25, animations: {
@@ -266,6 +264,8 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
                     self.tableView.endUpdates()
                     self.checkScroll()
                 })
+            } else {
+                interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
             }
         } else {
             interactor?.didStopTypingAnimation()
