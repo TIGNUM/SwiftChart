@@ -18,7 +18,7 @@ target 'QOT' do
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
-  pod "SwiftChart", :git => 'git@github.com:voicusimu/SwiftChart.git'
+  pod 'SwiftChart', :git => 'git@github.com:voicusimu/SwiftChart.git'
 end
 
 post_install do |installer|

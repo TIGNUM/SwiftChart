@@ -200,7 +200,7 @@ extension PrepareResultsWorker {
 
     func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
         qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
-            let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventQotId ?? "" }.first
+            let selectedEvent = events?.filter { $0.storedExternalIdentifier == self?.preparation?.eventExternalUniqueIdentifierId ?? "" }.first
             if let event = selectedEvent {
                 completion(EKEventStore.shared.event(with: event))
             } else {

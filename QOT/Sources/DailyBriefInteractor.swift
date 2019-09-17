@@ -868,7 +868,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //        return createMyPeakPerformanceList
 //    }
 
-
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
         //        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
