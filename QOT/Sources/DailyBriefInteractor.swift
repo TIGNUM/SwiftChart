@@ -571,7 +571,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
 
-        if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false {
+        if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
+            impactReadiness.dailyCheckInResult == nil {
             expendImpactReadiness = false
         }
 
