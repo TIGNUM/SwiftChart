@@ -56,7 +56,7 @@ final class MyQotMainInteractor {
         }
         item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
         item.showSubtitleInRed = true
-        
+
         return [item]
     }
 

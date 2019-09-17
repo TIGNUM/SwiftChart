@@ -15,6 +15,10 @@ final class DTPrepareRouter: DTRouter {
 
     // MARK: - Properties
     weak var prepareViewController: DTPrepareViewController?
+
+    override func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
 }
 
 // MARK: - DTPrepareRouterInterface

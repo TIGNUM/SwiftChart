@@ -16,41 +16,13 @@ final class PrepareResultsWorker {
     typealias ListItems = [Int: [PrepareResultsType]]
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
-//    private var answers: [DecisionTreeModel.SelectedAnswer] = []
     private var preparation: QDMUserPreparation?
     private var canDelete: Bool = false
     private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false
 
-//    // MARK: - Init
-//    init(_ preparation: QDMUserPreparation?,
-//         _ answers: [DecisionTreeModel.SelectedAnswer],
-//         _ canDelete: Bool,
-//         _ dataModified: Bool = false) {
-//        self.canDelete = canDelete
-//        self.answers = answers
-//        self.preparation = preparation
-//        self.level = preparation?.type ?? .LEVEL_DAILY
-//        self.dataModified = dataModified
-//
-//        switch level {
-//        case .LEVEL_CRITICAL:
-//            if answers.isEmpty {
-//                generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-//            } else {
-//                updateAnswerIds(answers) { [unowned self] (preparation) in
-//                    self.preparation = preparation
-//                    self.generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: self.suggestedStrategyId)
-//                }
-//            }
-//        case .LEVEL_DAILY:
-//            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-//        default:
-//            self.dataModified = true
-//        }
-//    }
-
+    // MARK: - Init
     init(_ contentId: Int) {
         level = .LEVEL_ON_THE_GO
         onTheGoItems(contentId) { [weak self] items in
@@ -60,14 +32,16 @@ final class PrepareResultsWorker {
     }
 
     init(_ preparation: QDMUserPreparation?, canDelete: Bool) {
-        self.canDelete = true
+        self.canDelete = canDelete
         self.preparation = preparation
         if let prepType = preparation?.type {
             level = prepType
             if prepType == .LEVEL_DAILY {
-                generateDailyItemsAndUpdateView(preparation)
+                self.preparation?.contentCollectionId = prepType.contentID
+                generateDailyItemsAndUpdateView(self.preparation)
             } else if prepType == .LEVEL_CRITICAL {
-                generateCriticalItemsAndUpdateView(preparation)
+                self.preparation?.contentCollectionId = prepType.contentID
+                generateCriticalItemsAndUpdateView(self.preparation)
             }
         }
     }
