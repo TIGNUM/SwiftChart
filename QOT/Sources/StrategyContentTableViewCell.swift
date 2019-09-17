@@ -90,7 +90,7 @@ private extension StrategyContentTableViewCell {
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
-            audioView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
+            ThemeView.audioPlaying.apply(audioView)
         }
     }
 }
