@@ -301,7 +301,8 @@ private extension DailyBriefViewController {
                         }, tapRight: { [weak self] in
                             self?.delegate?.moveToCell(item: 2)
                     })
-        if impactReadinessCellViewModel?.readinessScore == -1 {
+        if impactReadinessCellViewModel?.domainModel?.dailyCheckInResult == nil,
+            impactReadinessCellViewModel?.domainModel?.dailyCheckInAnswerIds?.isEmpty != false {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)

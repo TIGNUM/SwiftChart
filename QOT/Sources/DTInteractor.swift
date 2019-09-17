@@ -41,13 +41,17 @@ class DTInteractor: DTInteractorInterface {
         worker?.getQuestions(questionGroup: questionGroup) { [weak self] (questions) in
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first
-            let presentationModel = DTPresentationModel(question: firstQuestion)
-            let node = Node(questionId: firstQuestion?.remoteID,
-                            answerFilter: nil,
-                            titleUpdate: nil)
-            self?.presentedNodes.append(node)
-            self?.presenter?.showNextQuestion(presentationModel, isDark: self?.isDark ?? false)
+            self?.loadIntroQuestion(firstQuestion)
         }
+    }
+
+    func loadIntroQuestion(_ firstQuestion: QDMQuestion?) {
+        let presentationModel = DTPresentationModel(question: firstQuestion)
+        let node = Node(questionId: firstQuestion?.remoteID,
+                        answerFilter: nil,
+                        titleUpdate: nil)
+        presentedNodes.append(node)
+        presenter?.showNextQuestion(presentationModel, isDark: isDark)
     }
 
     // MARK: - DTInteractorInterface
