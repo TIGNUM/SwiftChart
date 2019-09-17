@@ -10,7 +10,6 @@ import Foundation
 
 final class ImpactReadinessCell2: BaseDailyBriefCell {
 
-    @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterickText: UILabel!
 //// sleepQuantity
@@ -34,7 +33,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var futureLoad: UILabel!
     @IBOutlet weak var futureLoadRefrence: UILabel!
 ////  delagate
-   weak var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
     @IBOutlet weak var targetLabel: UILabel!
     @IBOutlet weak var dividerView: UIView!
@@ -44,6 +43,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var refLabel1: UILabel!
     @IBOutlet weak var refLabel2: UILabel!
     @IBOutlet weak var refLabel3: UILabel!
+    @IBOutlet weak var rollingDataLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
@@ -91,6 +92,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                             .dailyCheckInRow,
                                             .dailyCheckInFooter])
         }
+
+        ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
 
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)

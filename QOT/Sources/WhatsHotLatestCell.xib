@@ -116,6 +116,7 @@
                 <outlet property="bucketTitle" destination="4GX-rG-vxI" id="cc3-Vj-ipb"/>
                 <outlet property="dateAndDurationLabel" destination="C7t-wy-J8N" id="Jgf-u6-smS"/>
                 <outlet property="newLabel" destination="s88-AK-sjm" id="WJK-VA-YM6"/>
+                <outlet property="subtitle" destination="3gq-d2-29A" id="iUj-vt-GAi"/>
                 <outlet property="whatsHotImage" destination="owJ-Y4-wnU" id="HsV-OY-NgJ"/>
                 <outlet property="whatsHotTitle" destination="5jM-NN-SAe" id="03Q-7t-O2c"/>
             </connections>

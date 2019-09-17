@@ -55,7 +55,8 @@ enum ThemeView {
     case imageOverlap
     case qSearch
     case chatbot
-    case chatbotProgress(Bool)
+    case chatbotDark
+    case chatbotProgress(Bool, Bool)
     case toolSeparator
     case askPermissions
     case resultWhite
@@ -96,11 +97,13 @@ enum ThemeView {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
             return Palette.sand
-        case .chatbotProgress(let active):
-            if active {
-                return Palette.carbon
+        case .chatbotDark:
+            return ThemeView.level1.color
+        case .chatbotProgress(let active, let isDark):
+            if isDark {
+                return active ? Palette.sand : Palette.sand30
             } else {
-                return Palette.carbon30
+                return active ? Palette.carbon : Palette.carbon30
             }
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
@@ -531,6 +534,7 @@ enum ThemeText {
     case quotationSlash
     case dailyBriefTitle
     case dailyBriefSubtitle
+    case dailyBriefImpactReadinessRolling
     case sprintName
     case quoteAuthor
     case sprintText
@@ -647,7 +651,7 @@ enum ThemeText {
     case accountDetailAge
 
     case chatbotButton
-    case chatbotProgress(Bool)
+    case chatbotProgress(Bool, Bool)
 
     case resultDate
     case resultTitle
@@ -750,7 +754,7 @@ enum ThemeText {
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
-             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription:
+             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -834,7 +838,7 @@ enum ThemeText {
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
-             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader:
+             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .dailyBriefImpactReadinessRolling:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -925,11 +929,11 @@ enum ThemeText {
             return Palette.carbon30
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
-        case .chatbotProgress(let active):
+        case .chatbotProgress(let active, let isDark):
             if active {
                 return Palette.accent
             } else {
-                return Palette.carbon70
+                return isDark ? Palette.sand70 : Palette.carbon70
             }
         }
     }
@@ -968,7 +972,7 @@ enum ThemeText {
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
-             .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription:
+             .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
              .dailyBriefLevelTitle:
