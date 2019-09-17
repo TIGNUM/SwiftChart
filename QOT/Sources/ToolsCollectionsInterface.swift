@@ -18,7 +18,7 @@ protocol ToolsCollectionsViewControllerInterface: class {
 protocol ToolsCollectionsPresenterInterface {
     func setupView()
     func reload()
-    func audioPlayStateChangedForCellAt(indexPath: IndexPath) 
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol ToolsCollectionsInteractorInterface: Interactor {

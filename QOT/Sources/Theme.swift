@@ -55,7 +55,8 @@ enum ThemeView {
     case imageOverlap
     case qSearch
     case chatbot
-    case chatbotProgress(Bool)
+    case chatbotDark
+    case chatbotProgress(Bool, Bool)
     case toolSeparator
     case askPermissions
     case resultWhite
@@ -96,11 +97,13 @@ enum ThemeView {
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
             return Palette.sand
-        case .chatbotProgress(let active):
-            if active {
-                return Palette.carbon
+        case .chatbotDark:
+            return ThemeView.level1.color
+        case .chatbotProgress(let active, let isDark):
+            if isDark {
+                return active ? Palette.sand : Palette.sand30
             } else {
-                return Palette.carbon30
+                return active ? Palette.carbon : Palette.carbon30
             }
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
@@ -648,7 +651,7 @@ enum ThemeText {
     case accountDetailAge
 
     case chatbotButton
-    case chatbotProgress(Bool)
+    case chatbotProgress(Bool, Bool)
 
     case resultDate
     case resultTitle
@@ -926,11 +929,11 @@ enum ThemeText {
             return Palette.carbon30
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
-        case .chatbotProgress(let active):
+        case .chatbotProgress(let active, let isDark):
             if active {
                 return Palette.accent
             } else {
-                return Palette.carbon70
+                return isDark ? Palette.sand70 : Palette.carbon70
             }
         }
     }
