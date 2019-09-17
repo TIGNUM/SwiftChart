@@ -29,7 +29,7 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
         return presentedNodes.isEmpty == false
     }
 
-    var canDismiss: Bool {
+    var shouldDismissOnContinue: Bool {
         return ShortTBV.QuestionKey.IntroOnboarding == introKey
     }
 
