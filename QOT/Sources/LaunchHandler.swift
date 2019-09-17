@@ -82,7 +82,8 @@ final class LaunchHandler {
             let configurator = DTPrepareConfigurator.make()
             let controller = DTPrepareViewController(configure: configurator)
             present(viewController: controller)
-        case .preparation: break // TODO: open specific preparation with QDMUserPreparation's local id
+        case .preparation:
+            showPreparationWith(identifier: (queries[scheme.queryName] as? String) ?? "" )
         case .myPreparations,
              .myPreps,
              .comingEvent,
@@ -323,6 +324,16 @@ extension LaunchHandler {
         coachScreenNavigationController.view.backgroundColor = .clear
         mainNavi.dismissAllPresentedViewControllers(mainNavi, true) {
             self.present(viewController: coachScreenNavigationController)
+        }
+    }
+
+    func showPreparationWith(identifier: String) {
+        UserService.main.getUserPreparationWith(qotId: identifier) { (preparation, initialized, _) in
+            if let qdmUserPreparation = preparation {
+                let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, canDelete: false)
+                let controller = PrepareResultsViewController(configure: configurator)
+                self.present(viewController: controller)
+            }
         }
     }
 

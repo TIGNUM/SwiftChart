@@ -24,7 +24,6 @@ protocol PrepareResultsPresenterInterface {
 }
 
 protocol PrepareResultsInteractorInterface: Interactor {
-    var saveToICal: Bool { get set }
     var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
     var dataModified: Bool { get }

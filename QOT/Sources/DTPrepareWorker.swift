@@ -83,7 +83,7 @@ final class DTPrepareWorker: DTWorker {
 // MARK: - Calendar Events
 extension DTPrepareWorker {
     func getEvents(_ completion: @escaping ([QDMUserCalendarEvent], Bool) -> Void) {
-        CalendarService.main.getCalendarEvents { (events, initiated, error) in
+        CalendarService.main.getCalendarEvents(from: Date().beginingOfDate()) { (events, initiated, error) in
             if let error = error {
                 log("Error getCalendarEvents: \(error.localizedDescription)", level: .error)
             }
