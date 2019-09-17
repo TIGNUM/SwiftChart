@@ -17,6 +17,7 @@ final class DTPrepareViewController: DTViewController {
     var prepareInteractor: DTPrepareInteractor?
     var prepareRouter: DTPrepareRouterInterface?
     private var selectedEvent: DTViewModel.Event?
+    private var answerFilter: String?
 
     // MARK: - Init
     init(configure: Configurator<DTPrepareViewController>) {
@@ -33,9 +34,10 @@ final class DTPrepareViewController: DTViewController {
         if resultsDelegate != nil {
             let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
             resultsDelegate?.didUpdateIntentions(answerIds)
+            prepareRouter?.didUpdatePrepareResults()
             return
         }
-        
+
         setAnswerNeedsSelection()
         switch viewModel?.question.key {
         case Prepare.QuestionKey.BenefitsInput?:
@@ -84,6 +86,20 @@ final class DTPrepareViewController: DTViewController {
 
     override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
         return answerType == .openCalendarEvents ? selectedEvent : nil
+    }
+    
+    override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+        if questionKey == Prepare.QuestionKey.EventTypeSelectionCritical {
+            answerFilter = selectedAnswers.flatMap { $0.keys }.filter { $0.contains(Prepare.AnswerFilter) }.first
+        }
+        switch questionKey {
+        case Prepare.QuestionKey.ShowTBV?,
+             Prepare.Key.know.rawValue?,
+             Prepare.Key.perceived.rawValue?:
+            return answerFilter
+        default:
+            return nil
+        }
     }
 }
 

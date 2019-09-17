@@ -21,7 +21,7 @@ final class DTPreparePresenter: DTPresenter {
         viewController?.setNavigationButton(navigationButton)
         viewController?.showNextQuestion(viewModel)
     }
-    
+
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
     }

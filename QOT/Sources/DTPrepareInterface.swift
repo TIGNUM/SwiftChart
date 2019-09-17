@@ -40,4 +40,5 @@ protocol DTPrepareRouterInterface {
     func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
     func presentEditEventController()
+    func didUpdatePrepareResults()
 }
