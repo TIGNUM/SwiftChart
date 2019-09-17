@@ -161,7 +161,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         pageController.view.backgroundColor = backgroundColor
         addChildViewController(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
-        pageController.setViewControllers([UIViewController()], direction: .forward, animated: false, completion: nil)
         self.pageController = pageController
     }
 

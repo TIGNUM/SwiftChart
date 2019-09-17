@@ -169,7 +169,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
             case .noAnswerRequired,
                  .onlyExistingAnswer:
-                if let answer = viewModel.answers.first {
+                if let answer = viewModel.answers.first, viewModel.hasTypingAnimation {
                     return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
             case .openCalendarEvents:
