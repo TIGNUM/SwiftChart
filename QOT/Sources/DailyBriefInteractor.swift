@@ -892,7 +892,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let aboutMeContent = aboutMeModel.stringValue ?? ""
         let aboutMeAdditionalContent = aboutMeModel.additionalDescription
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
-                                            aboutMeContent: aboutMeAdditionalContent,
+                                            aboutMeContent: aboutMeContent,
                                             aboutMeMoreInfo: aboutMeAdditionalContent,
                                             domainModel: aboutMeModel))
         return aboutMeList
