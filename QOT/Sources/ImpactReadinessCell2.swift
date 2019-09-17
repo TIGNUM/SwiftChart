@@ -36,22 +36,62 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 ////  delagate
    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
-
+    @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var dividerView: UIView!
+    @IBOutlet weak var dividerView1: UIView!
+    @IBOutlet weak var dividerView2: UIView!
+    @IBOutlet weak var dividerView3: UIView!
+    @IBOutlet weak var refLabel1: UILabel!
+    @IBOutlet weak var refLabel2: UILabel!
+    @IBOutlet weak var refLabel3: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.showLoadingSkeleton(with: [.dailyCheckInHeader,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInFooter])
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+    }
+
+    func hide(_ hidden: Bool) {
+        rollingDataLabel.isHidden = hidden
+        howYouFeelToday.isHidden = hidden
+        asterickText.isHidden = hidden
+        sleepQuantityTitle.isHidden = hidden
+        sleepQuantitySubtitle.isHidden = hidden
+        sleepQuantity.isHidden = hidden
+        sleepQuantityTarget.isHidden = hidden
+        sleepQualityTitle.isHidden = hidden
+        sleepQualitySubtitle.isHidden = hidden
+        sleepQuality.isHidden = hidden
+        sleepQualityRefrence.isHidden = hidden
+        loadTitle.isHidden = hidden
+        loadSubtitle.isHidden = hidden
+        load.isHidden = hidden
+        loadRefrence.isHidden = hidden
+        futureLoadTitle.isHidden = hidden
+        futureLoadSubtitle.isHidden = hidden
+        futureLoad.isHidden = hidden
+        futureLoadRefrence.isHidden = hidden
+        moreData.isHidden = hidden
+        targetLabel.isHidden = hidden
+        dividerView.isHidden = hidden
+        dividerView1.isHidden = hidden
+        dividerView2.isHidden = hidden
+        dividerView3.isHidden = hidden
+        refLabel1.isHidden = hidden
+        refLabel2.isHidden = hidden
+        refLabel3.isHidden = hidden
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
         if viewModel?.domainModel?.dailyCheckInResult != nil {
-                self.removeLoadingSkeleton()
+            hide(false)
+            self.removeLoadingSkeleton()
+        } else {
+            hide(true)
+            self.showLoadingSkeleton(with: [.dailyCheckInHeader,
+                                            .dailyCheckInRow,
+                                            .dailyCheckInRow,
+                                            .dailyCheckInFooter])
         }
+
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
