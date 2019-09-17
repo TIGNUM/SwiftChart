@@ -56,6 +56,12 @@ final class WalkthroughInteractor {
     func viewDidLoad() {
         presenter.setupView()
     }
+
+    // MARK: - Texts
+
+    var buttonGotItTitle: String {
+        return worker.buttonGotIt
+    }
 }
 
 // MARK: - WalkthroughInteractorInterface

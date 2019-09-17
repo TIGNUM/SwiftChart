@@ -14,6 +14,7 @@ final class DTMindsetViewController: DTViewController {
     // MARK: - Properties
     var mindsetRouter: DTMindsetRouterInterface?
     var mindsetInteractor: DTMindsetInteractorInterface?
+    weak var shortTBVDelegate: DTShortTBVDelegate?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -77,14 +78,14 @@ final class DTMindsetViewController: DTViewController {
 // MARK: - Private
 private extension DTMindsetViewController {
     func handleTBVCase() {
-        interactor?.getUsersTBV { [weak self] (tbv, initiated) in
+        mindsetInteractor?.getUsersTBV { [weak self] (tbv, initiated) in
             if initiated && tbv?.text != nil {
                 let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.ShowTBV)
                 self?.setAnswerNeedsSelection(targetAnswer)
                 self?.loadNextQuestion()
             } else {
                 self?.mindsetRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroMindSet,
-                                                           delegate: self?.mindsetInteractor) { [weak self] in
+                                                           delegate: self?.shortTBVDelegate) { [weak self] in
                                                             let targetAnswer = self?.getAnswerToSelect(Mindset.AnswerKey.CheckPlan)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()

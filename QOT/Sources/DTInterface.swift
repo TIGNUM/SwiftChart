@@ -21,23 +21,26 @@ protocol DTViewControllerInterface: class {
 
 protocol DTPresenterInterface {
     func setupView()
-    func showNextQuestion(_ presentationModel: DTPresentationModel)
-    func showPreviosQuestion(_ presentationModel: DTPresentationModel)
+    func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
+    func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func showNavigationButtonAfterAnimation()
     func hideNavigationButtonForAnimation()
 }
 
 protocol DTInteractorInterface: Interactor {
-    func getTBV() -> QDMToBeVision?
     func getSelectedAnswers() -> [SelectedAnswer]
     func didStopTypingAnimationPresentNextPage(viewModel: DTViewModel?)
     func didStopTypingAnimation()
     func loadNextQuestion(selection: DTSelectionModel)
     func loadPreviousQuestion()
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
+    func didUpdateUserInput(_ text: String)
+    var isDark: Bool { get set }
 }
 
 protocol DTRouterInterface {
     func dismiss()
+    func presentContent(_ contentId: Int)
+    func playMediaItem(_ contentItemId: Int)
 }

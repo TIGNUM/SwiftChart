@@ -47,7 +47,6 @@ final class ProfileSettingsWorker {
     }
 
     func getData(_ completion: @escaping (_ userData: QDMUser?) -> Void) {
-        personalDataTitle()
         contactTitle()
         nameTitle()
         surnameTitle()

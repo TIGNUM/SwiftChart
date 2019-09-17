@@ -9,47 +9,32 @@
 import UIKit
 import qot_dal
 
-final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEventSelectionTableViewCellInterface {
+final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable {
 
-    var interactor: PrepareEventSelectionInteractorInterface?
+    // MARK: - Properties
+    weak var delegate: DTQuestionnaireViewControllerDelegate?
+    private var events: [DTViewModel.Event] = []
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableViewHeight: NSLayoutConstraint!
 
+    // MARK: - Life Cycle
     override func awakeFromNib() {
         super.awakeFromNib()
         tableView.tableFooterView = UIView()
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
     }
 
-    func configure(delegate: DecisionTreeQuestionnaireDelegate?, tableViewHeight: CGFloat, question: QDMQuestion) {
+    // MARK: Configuration
+    func configure(tableViewHeight: CGFloat, events: [DTViewModel.Event]) {
         self.tableViewHeight.constant = tableViewHeight
-        switch question.key {
-        case QuestionKey.Prepare.SelectExisting:
-            qot_dal.UserService.main.getUserPreparations { [weak self] (preparations, _, _) in
-                PrepareEventSelectionConfigurator.make(self,
-                                                       delegate: delegate,
-                                                       question: question,
-                                                       events: [],
-                                                       preparations: preparations ?? [])
-                self?.tableView.reloadDataWithAnimation()
-            }
-        default:
-            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, _, error) in
-                PrepareEventSelectionConfigurator.make(self,
-                                                       delegate: delegate,
-                                                       question: question,
-                                                       events: events ?? [],
-                                                       preparations: [])
-                self?.tableView.reloadDataWithAnimation()
-            }
-        }
+        self.events = events
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.rowCount ?? 0
+        return events.count
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -58,14 +43,13 @@ extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
-        let event = interactor?.event(at: indexPath)
+        let event = events.at(index: indexPath.row)
         cell.configure(title: event?.title, dateString: event?.dateString)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let event = interactor?.event(at: indexPath) else { return }
-        interactor?.didSelect(event)
+        delegate?.didSelectPreparationEvent(events.at(index: indexPath.row))
     }
 }

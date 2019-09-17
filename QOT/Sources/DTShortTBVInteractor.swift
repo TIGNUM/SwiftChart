@@ -7,19 +7,45 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTShortTBVInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var shortTBVWorker: DTShortTBVWorker? = DTShortTBVWorker()
+    private lazy var tbvWorker: TBVWorker? = TBVWorker()
+    private var tbv: QDMToBeVision?
+
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
+        if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {
+            return tbv
+        }
+        return nil
+    }
 }
 
 // MARK: - DTShortTBVInteractorInterface
 extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
-    func generateTBV(_ selectedAnswers: [SelectedAnswer], _ completion: @escaping () -> Void) {
-        shortTBVWorker?.createVision(selectedAnswers: selectedAnswers) { [weak self] (tbv) in
-            self?.tbv = tbv
-            completion()
+    var canGoBack: Bool {
+        return presentedNodes.isEmpty == false
+    }
+
+    var shouldDismissOnContinue: Bool {
+        return ShortTBV.QuestionKey.IntroOnboarding == introKey
+    }
+
+    func getTBV() -> QDMToBeVision? {
+        return tbv
+    }
+
+    func generateTBV(selectedAnswers: [SelectedAnswer],
+                     questionKeyWork: String,
+                     questionKeyHome: String,
+                     _ completion: @escaping (QDMToBeVision?) -> Void) {
+        tbvWorker?.createVision(selectedAnswers: selectedAnswers,
+                                questionKeyWork: ShortTBV.QuestionKey.Work,
+                                questionKeyHome: ShortTBV.QuestionKey.Home) { [weak self] (tbv) in
+                                    self?.tbv = tbv
+                                    completion(tbv)
         }
     }
 }

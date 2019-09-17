@@ -10,7 +10,6 @@ import Foundation
 
 final class ImpactReadinessCell2: BaseDailyBriefCell {
 
-    @IBOutlet weak var rollingDataLabel: UILabel!
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterickText: UILabel!
 //// sleepQuantity
@@ -34,26 +33,67 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var futureLoad: UILabel!
     @IBOutlet weak var futureLoadRefrence: UILabel!
 ////  delagate
-   weak var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
+    @IBOutlet weak var targetLabel: UILabel!
+    @IBOutlet weak var dividerView: UIView!
+    @IBOutlet weak var dividerView1: UIView!
+    @IBOutlet weak var dividerView2: UIView!
+    @IBOutlet weak var dividerView3: UIView!
+    @IBOutlet weak var refLabel1: UILabel!
+    @IBOutlet weak var refLabel2: UILabel!
+    @IBOutlet weak var refLabel3: UILabel!
+    @IBOutlet weak var rollingDataLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeView.level1Selected.apply(self)
-        self.showLoadingSkeleton(with: [.dailyCheckInHeader,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInRow,
-                                        .dailyCheckInFooter])
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
-    func configure(viewModel: ImpactReadinessScoreViewModel?) {
+    func hide(_ hidden: Bool) {
+        rollingDataLabel.isHidden = hidden
+        howYouFeelToday.isHidden = hidden
+        asterickText.isHidden = hidden
+        sleepQuantityTitle.isHidden = hidden
+        sleepQuantitySubtitle.isHidden = hidden
+        sleepQuantity.isHidden = hidden
+        sleepQuantityTarget.isHidden = hidden
+        sleepQualityTitle.isHidden = hidden
+        sleepQualitySubtitle.isHidden = hidden
+        sleepQuality.isHidden = hidden
+        sleepQualityRefrence.isHidden = hidden
+        loadTitle.isHidden = hidden
+        loadSubtitle.isHidden = hidden
+        load.isHidden = hidden
+        loadRefrence.isHidden = hidden
+        futureLoadTitle.isHidden = hidden
+        futureLoadSubtitle.isHidden = hidden
+        futureLoad.isHidden = hidden
+        futureLoadRefrence.isHidden = hidden
+        moreData.isHidden = hidden
+        targetLabel.isHidden = hidden
+        dividerView.isHidden = hidden
+        dividerView1.isHidden = hidden
+        dividerView2.isHidden = hidden
+        dividerView3.isHidden = hidden
+        refLabel1.isHidden = hidden
+        refLabel2.isHidden = hidden
+        refLabel3.isHidden = hidden
+    }
 
+    func configure(viewModel: ImpactReadinessScoreViewModel?) {
         if viewModel?.domainModel?.dailyCheckInResult != nil {
-                self.removeLoadingSkeleton()
+            hide(false)
+            self.removeLoadingSkeleton()
+        } else {
+            hide(true)
+            self.showLoadingSkeleton(with: [.dailyCheckInHeader,
+                                            .dailyCheckInRow,
+                                            .dailyCheckInRow,
+                                            .dailyCheckInFooter])
         }
+
+        ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
 
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
@@ -117,6 +157,9 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
            let theme3 = theme3 {
             combine.append(theme3.attributedString(text3))
         }
+        let style = NSMutableParagraphStyle()
+        style.alignment = .right
+        combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
 }

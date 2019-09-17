@@ -40,11 +40,10 @@ final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
 
-final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
+final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
-    @IBOutlet weak var tableView: UITableView!
     var interactor: DailyBriefInteractorInterface?
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
@@ -233,12 +232,28 @@ final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITa
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
         case .GUIDE_TRACK?:
             guard let guidedtrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
-            return getGuidedTrack(tableView, indexPath, guidedtrackModel)
+            let showDivider = indexPath.row == (bucketList?.count ?? 0) - 1
+            return getGuidedTrack(tableView, indexPath, showDivider, guidedtrackModel)
         case .WEATHER?:
             guard let weatherModel = bucketItem as? WeatherViewModel else { return UITableViewCell()}
             return getWeatherCell(tableView, indexPath, weatherModel)
         default:
            return UITableViewCell()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section)
+        let bucketList = bucketModel?.elements
+        let bucketItem = bucketList?[indexPath.row]
+        switch bucketItem?.domainModel?.bucketName {
+        case .LATEST_WHATS_HOT?:
+             didSelectRow(at: indexPath)
+             interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in
+                self?.interactor?.presentWhatsHotArticle(selectedID: model?.remoteID ?? 0)
+             })
+        default:
+            break
         }
     }
 
@@ -286,7 +301,8 @@ private extension DailyBriefViewController {
                         }, tapRight: { [weak self] in
                             self?.delegate?.moveToCell(item: 2)
                     })
-        if impactReadinessCellViewModel?.readinessScore == -1 {
+        if impactReadinessCellViewModel?.domainModel?.dailyCheckInResult == nil,
+            impactReadinessCellViewModel?.domainModel?.dailyCheckInAnswerIds?.isEmpty != false {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
             cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
@@ -477,10 +493,7 @@ private extension DailyBriefViewController {
     func getWhatsHot(_ tableView: UITableView,
                      _ indexPath: IndexPath,
                      _ whatsHotViewModel: WhatsHotLatestCellViewModel?) -> UITableViewCell {
-        //check this for some reasons there is null pointer exceoption
         let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
-        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction))
-        cell.addGestureRecognizer(gesture)
         cell.configure(with: whatsHotViewModel)
         return cell
     }
@@ -625,7 +638,6 @@ private extension DailyBriefViewController {
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
-
         return cell
     }
 
@@ -636,6 +648,7 @@ private extension DailyBriefViewController {
      */
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
+                        _ hideDivider: Bool,
                         _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
         if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
             let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
@@ -644,7 +657,7 @@ private extension DailyBriefViewController {
             return cell
         }
         let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: guidedtrackModel)
+        cell.configure(with: guidedtrackModel, hideDivider)
         cell.delegate = self
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
@@ -696,6 +709,8 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     }
 
     func setupView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.registerDequeueable(WhatsHotLatestCell.self)
         tableView.registerDequeueable(QuestionCell.self)
@@ -756,9 +771,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        if let cellIndexPath = tableView.indexPath(for: cell) {
-            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
-        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func showSolveResults(solve: QDMSolve) {
@@ -790,7 +804,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.configurate(qdmUserPreparation, [], canDelete: false)
+        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, canDelete: false)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
     }

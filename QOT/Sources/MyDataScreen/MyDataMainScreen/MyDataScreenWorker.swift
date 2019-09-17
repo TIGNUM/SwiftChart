@@ -32,6 +32,10 @@ final class MyDataScreenWorker {
 }
 
 extension MyDataScreenWorker: MyDataWorkerInterface {
+    func myDataHeatMapButtonTitles() -> [String] {
+        return [ScreenTitleService.main.localizedString(for: .myDataHeatMapDailyButtonTitle),
+                ScreenTitleService.main.localizedString(for: .myDataHeatMapFiveDayButtonTitle)]
+    }
     func myDataSections() -> MyDataScreenModel {
         return MyDataScreenModel(myDataItems: MyDataSection.allCases.map {
                         return MyDataScreenModel.Item(myDataSection: $0,

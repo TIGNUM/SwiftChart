@@ -8,12 +8,7 @@
 
 import UIKit
 
-final class DTShortTBVRouter: DTRouter {
-
-    override func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-}
+final class DTShortTBVRouter: DTRouter {}
 
 // MARK: - DTShortTBVRouterInterface
 extension DTShortTBVRouter: DTShortTBVRouterInterface {}

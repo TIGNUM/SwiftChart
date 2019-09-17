@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Semibold.otf">
-            <string>SFProText-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Walkthrough View Controller-->
         <scene sceneID="wtH-I1-ASU">
@@ -23,45 +18,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="walkthrough_background" translatesAutoresizingMaskIntoConstraints="NO" id="OAC-IT-GDg" userLabel="Background Image View">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T7L-SH-3Yu">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-Va-Dxb">
-                                <rect key="frame" x="87" y="601.5" width="240" height="2"/>
+                            <view contentMode="scaleToFill" placeholderIntrinsicWidth="50" placeholderIntrinsicHeight="infinite" translatesAutoresizingMaskIntoConstraints="NO" id="Qi8-Va-Dxb">
+                                <rect key="frame" x="52" y="497.5" width="50" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="9CR-Ce-Yel"/>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" id="a4L-ny-3hk"/>
                                 </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZf-3h-A2F">
-                                <rect key="frame" x="23" y="786" width="70" height="41"/>
-                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
-                                <inset key="contentEdgeInsets" minX="16" minY="12" maxX="16" maxY="12"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hnj-hP-rLh" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="52" y="793" width="45" height="34"/>
                                 <state key="normal" title="Got it">
-                                    <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
-                                    <action selector="didTapGotItButton" destination="moA-L3-89Y" eventType="touchUpInside" id="aLm-zB-y25"/>
+                                    <action selector="didTapGotItButton" destination="moA-L3-89Y" eventType="touchUpInside" id="S1n-Lz-x8w"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="OAC-IT-GDg" firstAttribute="top" secondItem="tv1-Wk-0L9" secondAttribute="top" id="3tf-8c-SMX"/>
                             <constraint firstAttribute="bottom" secondItem="T7L-SH-3Yu" secondAttribute="bottom" id="7WW-xJ-Mh0"/>
-                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerY" secondItem="7Lh-eS-XQY" secondAttribute="centerY" multiplier="1.33" id="ANL-OQ-opa"/>
+                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerY" secondItem="7Lh-eS-XQY" secondAttribute="centerY" multiplier="1.1" id="ANL-OQ-opa"/>
+                            <constraint firstItem="7Lh-eS-XQY" firstAttribute="bottom" secondItem="Hnj-hP-rLh" secondAttribute="bottom" constant="35" id="BlT-Sj-yEa"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" id="C4c-DO-bgr"/>
-                            <constraint firstItem="iZf-3h-A2F" firstAttribute="leading" secondItem="7Lh-eS-XQY" secondAttribute="leading" constant="23" id="M4E-Lv-MIQ"/>
-                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="centerX" secondItem="7Lh-eS-XQY" secondAttribute="centerX" id="PZA-xV-tdx"/>
-                            <constraint firstItem="7Lh-eS-XQY" firstAttribute="bottom" secondItem="iZf-3h-A2F" secondAttribute="bottom" constant="35" id="fQA-W0-DBf"/>
+                            <constraint firstItem="Hnj-hP-rLh" firstAttribute="leading" secondItem="7Lh-eS-XQY" secondAttribute="leading" constant="52" id="DAh-I5-5H3"/>
+                            <constraint firstAttribute="trailing" secondItem="OAC-IT-GDg" secondAttribute="trailing" id="OPF-GS-baR"/>
+                            <constraint firstItem="Qi8-Va-Dxb" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" constant="52" id="TmS-Yt-1pY"/>
+                            <constraint firstAttribute="bottom" secondItem="OAC-IT-GDg" secondAttribute="bottom" id="qYn-tg-jKU"/>
                             <constraint firstItem="T7L-SH-3Yu" firstAttribute="top" secondItem="tv1-Wk-0L9" secondAttribute="top" id="ubb-qU-6J5"/>
+                            <constraint firstItem="OAC-IT-GDg" firstAttribute="leading" secondItem="tv1-Wk-0L9" secondAttribute="leading" id="y7e-nL-Rt1"/>
                             <constraint firstAttribute="trailing" secondItem="T7L-SH-3Yu" secondAttribute="trailing" id="yZ7-Pu-4aw"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="7Lh-eS-XQY"/>
                     </view>
                     <connections>
-                        <outlet property="buttonGotIt" destination="iZf-3h-A2F" id="1pH-Z9-LfT"/>
+                        <outlet property="buttonGotIt" destination="Hnj-hP-rLh" id="IZn-am-sIg"/>
                         <outlet property="pageContainerView" destination="T7L-SH-3Yu" id="6Ik-yv-IbB"/>
                         <outlet property="pageIndicatorView" destination="Qi8-Va-Dxb" id="NdB-6R-ZHB"/>
                     </connections>
@@ -71,4 +72,7 @@
             <point key="canvasLocation" x="165" y="238"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="walkthrough_background" width="375" height="812"/>
+    </resources>
 </document>

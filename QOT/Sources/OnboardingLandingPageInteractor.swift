@@ -23,10 +23,9 @@ final class OnboardingLandingPageInteractor {
 
     // Has to be reallocated because it keeps a state
     private var tbvController: UIViewController {
-        let tbvConfigurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBVOnboarding)
-        let tbvController = DecisionTreeViewController(configure: tbvConfigurator)
-        tbvController.delegate = self
-        return tbvController
+        let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroOnboarding,
+                                                       delegate: self)
+        return DTShortTBVViewController(configure: configurator)
     }
 
     private lazy var createAccountController: CreateAccountInfoViewController = {
@@ -99,7 +98,7 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
         presenter.present(controller: controller, direction: .forward)
     }
 
-    func didTapBack() {
+    func didTapBackInternal() {
         navigateBack()
     }
 
@@ -114,24 +113,13 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
     }
 }
 
-// MARK: - DecisionTreeViewControllerDelegate
-
-extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
-    func toBeVisionDidChange() {
-        // noop
+extension OnboardingLandingPageInteractor: DTShortTBVDelegate {
+    func didTapBack() {
+        didTapBackInternal()
     }
 
-    func didDismiss() {
-        // noop
-    }
-
-    func dismissOnMoveBackwards() {
-        navigateBack()
-    }
-
-    func createToBeVision(_ toBeVision: QDMToBeVision) {
-        print("ZZ:\n\n________ EUREKA!!!________\n\n")
-        cachedToBeVision = toBeVision
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        cachedToBeVision = tbv
         didTapSaveTBV()
     }
 }
@@ -141,7 +129,7 @@ extension OnboardingLandingPageInteractor: DecisionTreeViewControllerDelegate {
 extension OnboardingLandingPageInteractor: CreateAccountInfoViewControllerDelegate {
 
     func didTapBack(_ controller: CreateAccountInfoViewController) {
-        didTapBack()
+        didTapBackInternal()
     }
 
     func didTapCreate() {

@@ -7,28 +7,38 @@
 //
 
 import Foundation
+import EventKit
+import EventKitUI
 import qot_dal
 
-protocol DTPrepareViewControllerInterface: class {}
+protocol DTPrepareViewControllerInterface: class {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+}
 
-protocol DTPreparePresenterInterface {}
+protocol DTPreparePresenterInterface {
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+}
 
 protocol DTPrepareInteractorInterface: Interactor {
-    func getCalendarPermissionType() -> AskPermission.Kind?
-    func setUserCalendarEvent(event: QDMUserCalendarEvent)
+    func getUserPreparation(answer: DTViewModel.Answer,
+                            event: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func getUserPreparation(event: DTViewModel.Event?,
+                            calendarEvent: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func getUserPreparation(event: DTViewModel.Event?,
+                            _ completion: @escaping (QDMUserPreparation?) -> Void)
+
+    func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
 }
 
 protocol DTPrepareRouterInterface {
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
     func presentPrepareResults(_ contentId: Int)
-    func presentPrepareResults(_ preparation: QDMUserPreparation, _ answers: [SelectedAnswer])
-
-    func openArticle(with contentID: Int)
-    func openVideo(from url: URL, item: QDMContentItem?)
-    func openShortTBVGenerator(completion: (() -> Void)?)
-    func openImagePicker()
-
-    func dismissAll()
-    func presentPermissionView(_ permissionType: AskPermission.Kind)
-
-    func presentAddEventController(_ eventStore: EKEventStore)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool)
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+    func presentCalendarSettings()
+    func presentEditEventController()
 }

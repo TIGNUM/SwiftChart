@@ -11,7 +11,7 @@ import qot_dal
 
 extension PrepareResultsWorker {
     func onTheGoItems(_ contentId: Int, completion: @escaping ItemCompletion) {
-        qot_dal.ContentService.main.getContentCollectionById(contentId) { content in
+        ContentService.main.getContentCollectionById(contentId) { content in
             var checkListItems = [PrepareResultsType]()
             content?.contentItems.sorted { $0.sortOrder < $1.sortOrder }.forEach {
                 checkListItems.append(.contentItem(format: $0.format, title: $0.valueText))
@@ -22,9 +22,9 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
-    func dailyItems(_ prepare: QDMUserPreparation, _ suggestedStrategyId: Int?, completion: @escaping ItemCompletion) {
+    func dailyItems(_ prepare: QDMUserPreparation, completion: @escaping ItemCompletion) {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
-            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
+            self?.getStrategyItems(prepare.strategyIds, prepare.relatedStrategyId) { strategyItems in
                 self?.getEkEvent(completion: { ekEvent in
                     var items = [Int: [PrepareResultsType]]()
                     items[PrepareResult.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
@@ -105,14 +105,19 @@ extension PrepareResultsWorker {
         }
     }
 
-    func generateSelectedAnswers(_ ids: [Int], _ key: PrepareResult.Key, _ completion: @escaping (([DecisionTreeModel.SelectedAnswer]) -> Void)) {
-        qot_dal.QuestionService.main.questions(with: key.rawValue) { (questions) in
-            var selectedAnswers = [DecisionTreeModel.SelectedAnswer]()
-            let dqmAnswers = questions?.first?.answers.filter { ids.contains(obj: $0.remoteID ?? 0) }
-            dqmAnswers?.forEach {
-                selectedAnswers.append(DecisionTreeModel.SelectedAnswer(questionID: key.questionID,
-                                                                        answer: $0))
-            }
+    func generateSelectedAnswers(_ ids: [Int],
+                                 _ key: Prepare.Key,
+                                 _ completion: @escaping (([SelectedAnswer]) -> Void)) {
+        QuestionService.main.questions(with: key.rawValue) { (questions) in
+            let question = DTViewModel.Question(remoteId: questions?.first?.remoteID ?? 0,
+                                                title: questions?.first?.title ?? "",
+                                                key: questions?.first?.key ?? "",
+                                                answerType: .multiSelection,
+                                                duration: 0,
+                                                maxSelections: questions?.first?.maxPossibleSelections ?? 0)
+            let qdmAnswers = questions?.first?.answers.filter { ids.contains(obj: $0.remoteID ?? 0) }
+            let answers = qdmAnswers?.compactMap { DTViewModel.Answer(qdmAnswer: $0) } ?? []
+            let selectedAnswers: [SelectedAnswer] = [SelectedAnswer(question: question, answers: answers)]
             completion(selectedAnswers)
         }
     }
@@ -133,7 +138,7 @@ extension PrepareResultsWorker {
         return items
     }
 
-    func getIntentionTitle(_ contentItems: [QDMContentItem], _ key: PrepareResult.Key) -> [PrepareResultsType] {
+    func getIntentionTitle(_ contentItems: [QDMContentItem], _ key: Prepare.Key) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isTitle && $0.valueText.contains(key.tag) }.forEach {
             items.append(.intentionContentItem(format: $0.format, title: $0.valueText, key: key))
@@ -142,7 +147,7 @@ extension PrepareResultsWorker {
     }
 
     func getBenefitTitle(_ contentItems: [QDMContentItem],
-                         _ key: PrepareResult.Key,
+                         _ key: Prepare.Key,
                          _ benefits: String?) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isTitle && $0.valueText.contains(key.tag) }.forEach {
@@ -194,10 +199,10 @@ extension PrepareResultsWorker {
     }
 
     func getSelectedIntentionItems(_ answersIds: [Int],
-                                   _ tag: PrepareResult.Key,
+                                   _ tag: Prepare.Key,
                                    completion: @escaping (([PrepareResultsType]) -> Void)) {
         var items = [PrepareResultsType]()
-        qot_dal.QuestionService.main.questions(with: tag.rawValue) { (questions) in
+        QuestionService.main.questions(with: tag.rawValue) { (questions) in
             questions?.first?.answers.filter { answersIds.contains($0.remoteID ?? 0) }.forEach {
                 items.append(.intentionItem(title: $0.subtitle   ?? ""))
             }
@@ -205,14 +210,14 @@ extension PrepareResultsWorker {
         }
     }
 
-    func filteredAnswers(_ tag: PrepareResult.Key,
+    func filteredAnswers(_ tag: Prepare.Key,
                          _ answers: [DecisionTreeModel.SelectedAnswer]) -> [DecisionTreeModel.SelectedAnswer] {
         return answers.filter { $0.questionID == tag.questionID }
     }
 
     func strategyIDsAll(_ relatedStrategyID: Int?, _ completion: @escaping (([Int]) -> Void)) {
         if let relatedStrategyID = relatedStrategyID {
-            qot_dal.ContentService.main.getContentCollectionById(relatedStrategyID) { content in
+            ContentService.main.getContentCollectionById(relatedStrategyID) { content in
                 completion(content?.relatedContentIDsPrepareAll ?? [])
             }
         } else {
@@ -224,7 +229,7 @@ extension PrepareResultsWorker {
 private extension PrepareResultsWorker {
     func makeStrategyItems(_ ids: [Int], _ completion: @escaping (([PrepareResultsType]) -> Void)) {
         var items = [PrepareResultsType]()
-        qot_dal.ContentService.main.getContentCollectionsByIds(ids) { contentCollections in
+        ContentService.main.getContentCollectionsByIds(ids) { contentCollections in
             contentCollections?.forEach {
                 items.append(.strategy(title: $0.title,
                                        durationString: $0.durationString,
@@ -236,7 +241,7 @@ private extension PrepareResultsWorker {
 
     func strategyIDsDefault(_ relatedStrategyID: Int?, _ completion: @escaping (([Int]) -> Void)) {
         if let relatedStrategyID = relatedStrategyID {
-            qot_dal.ContentService.main.getContentCollectionById(relatedStrategyID) { content in
+            ContentService.main.getContentCollectionById(relatedStrategyID) { content in
                 completion(content?.relatedContentIDsPrepareDefault ?? [])
             }
         } else {

@@ -12,14 +12,17 @@ import qot_dal
 protocol ToolsCollectionsViewControllerInterface: class {
     func setupView()
     func reload()
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol ToolsCollectionsPresenterInterface {
     func setupView()
     func reload()
+    func audioPlayStateChangedForCellAt(indexPath: IndexPath)
 }
 
 protocol ToolsCollectionsInteractorInterface: Interactor {
+    var isPlaying: Bool { get }
     var videoTools: [Tool.Item] { get }
     var tools: [Tool.Item] { get }
     var rowCount: Int { get }

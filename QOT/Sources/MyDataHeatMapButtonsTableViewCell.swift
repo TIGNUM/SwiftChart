@@ -33,6 +33,11 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
         setupButtons()
     }
 
+    func configure(with firstTitle: String?, and secondTitle: String?) {
+        dailyIRButton.setTitle(firstTitle ?? "", for: .normal)
+        fiveDaysRollingIRButton.setTitle(secondTitle ?? "", for: .normal)
+    }
+
     // MARK: UI Setup
 
     private func setupButtons() {

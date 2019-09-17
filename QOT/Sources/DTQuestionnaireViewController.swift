@@ -13,6 +13,7 @@ protocol DTQuestionnaireViewControllerDelegate: class {
     func didTapBinarySelection(_ answer: DTViewModel.Answer)
     func didSelectAnswer(_ answer: DTViewModel.Answer)
     func didDeSelectAnswer(_ answer: DTViewModel.Answer)
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?)
 }
 
 class DTQuestionnaireViewController: UIViewController {
@@ -54,7 +55,7 @@ class DTQuestionnaireViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
+        checkScroll()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -70,7 +71,8 @@ class DTQuestionnaireViewController: UIViewController {
 
 private extension DTQuestionnaireViewController {
     func setupView() {
-        ThemeView.chatbot.apply(view)
+        let theme: ThemeView = (interactor?.isDark ?? true) ? .chatbotDark : .chatbot
+        theme.apply(view)
         tableView.contentInset = .zero      //this takes off an automatic 49.0 pixel top inset that is not needed
         tableView.backgroundColor = .clear
         tableView.allowsSelection = false
@@ -105,7 +107,8 @@ private extension DTQuestionnaireViewController {
     }
 
     func attachBottomShadow() {
-        let imageView = UIImageView(image: R.image.lightBottomGradient())
+        let isDark = interactor?.isDark ?? true
+        let imageView = UIImageView(image: isDark ? R.image.darkBottomGradient() : R.image.lightBottomGradient())
         imageView.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(imageView)
         imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
@@ -125,7 +128,6 @@ extension DTQuestionnaireViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
-//        return shouldWaitFotTBVAnimationCompleted && CellType.allCases[indexPath.section] == .answer ? 0 : UITableViewAutomaticDimension
     }
 }
 
@@ -147,7 +149,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
             cell.configure(with: viewModel.question.title,
                            html: nil,
                            questionUpdate: nil,
-                           textColor: .carbon)
+                           textColor: (interactor?.isDark ?? true) ? .sand : .carbon)
             return cell
         case .answer:
             switch viewModel.question.answerType {
@@ -159,19 +161,29 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return cell
             case .singleSelection,
                  .multiSelection:
-                let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: viewModel.answers, maxPossibleSelections: viewModel.question.maxSelections, collectionHeight: heightOfCollection)
-                cell.delegate = self
-                return cell
+                if viewModel.question.key == Prepare.QuestionKey.SelectExisting {
+                    return getEventCell(indexPath, tableView)
+                }
+                return getSelectionCell(indexPath, tableView)
             case .text:
                 return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? "")
 //                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
 //                cell.configure(with: viewModel.tbvText ?? "", textColor: .carbonNew)
 //                return cell
-            case .noAnswerRequired:
+            case .noAnswerRequired,
+                 .onlyExistingAnswer:
                 if let answer = viewModel.answers.first {
-                    return getTypingCell(indexPath, tableView, title: answer.title)
+                    return getTypingCell(indexPath, tableView, title: viewModel.tbvText ?? answer.title)
                 }
+            case .openCalendarEvents:
+                return getEventCell(indexPath, tableView)
+            case .userInput:
+                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
+                let text = viewModel.question.key == Prepare.QuestionKey.BenefitsInput ? "" : nil
+                cell.configure(inputText: text,
+                               maxCharacters: QuestionKey.maxCharacter(viewModel.question.key),
+                               delegate: self)
+                return cell
             default:
                 break
             }
@@ -184,14 +196,34 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
     }
+}
 
+// MARK: - Private
+private extension DTQuestionnaireViewController {
     func getTypingCell(_ indexPath: IndexPath, _ tableView: UITableView, title: String?) -> AnimatedAnswerTableViewCell {
         let cell: AnimatedAnswerTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: title ?? "",
                        html: nil,
                        questionUpdate: nil,
-                       textColor: .carbon,
+                       textColor: (interactor?.isDark ?? false) ? .sand : .carbon,
                        animateTextDuration: viewModel.typingAnimationDuration)
+        cell.delegate = self
+        return cell
+    }
+
+    func getEventCell(_ indexPath: IndexPath, _ tableView: UITableView) -> CalendarEventsTableViewCell {
+        let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+        let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+        cell.configure(tableViewHeight: tableViewHeight, events: viewModel.events)
+        cell.delegate = delegate
+        return cell
+    }
+
+    func getSelectionCell(_ indexPath: IndexPath, _ tableView: UITableView) -> MultipleSelectionTableViewCell {
+        let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(for: viewModel.answers,
+                       maxPossibleSelections: viewModel.question.maxSelections,
+                       collectionHeight: heightOfCollection)
         cell.delegate = self
         return cell
     }
@@ -226,7 +258,7 @@ extension DTQuestionnaireViewController: MultipleSelectionCellDelegate {
 // MARK: - QuestionCellDelegate
 extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
     func didFinishTypeAnimation() {
-        if let answer = viewModel.answers.first {
+        if let answer = viewModel.answers.first { //TODO ShortTBV Generator has not a final answwer.
             if answer.title.isEmpty {
                 interactor?.didStopTypingAnimationPresentNextPage(viewModel: viewModel)
             } else {
@@ -238,6 +270,15 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
                     self.checkScroll()
                 })
             }
+        } else {
+            interactor?.didStopTypingAnimation()
         }
+    }
+}
+
+// MARK: UserInputTableViewCellProtocol
+extension DTQuestionnaireViewController: UserInputTableViewCellProtocol {
+    func didUpdateUserInput(_ text: String) {
+        interactor?.didUpdateUserInput(text)
     }
 }

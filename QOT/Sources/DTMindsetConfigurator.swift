@@ -20,6 +20,7 @@ final class DTMindsetConfigurator {
             viewController.mindsetRouter = router
             viewController.interactor = interactor
             viewController.router = router
+            viewController.shortTBVDelegate = interactor
         }
     }
 }

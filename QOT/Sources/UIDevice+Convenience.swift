@@ -15,10 +15,10 @@ extension UIDevice {
     }
 
     static var isSmallScreenDevice: Bool {
-        let isFourSeries = UIDevice.current.deviceName.lowercased().range(of: "iphone 4") != nil
-        let isFiveSeries = UIDevice.current.deviceName.lowercased().range(of: "iphone 5") != nil
-        let isSEiPhone = UIDevice.current.deviceName.lowercased().range(of: "iphone SE") != nil
-        let isiPod = UIDevice.current.deviceName.lowercased().range(of: "ipod") != nil
+        let isFourSeries = UIDevice.current.deviceName.lowercased().contains("iphone 4")
+        let isFiveSeries = UIDevice.current.deviceName.lowercased().contains("iphone 5")
+        let isSEiPhone = UIDevice.current.deviceName.lowercased().contains("iphone se")
+        let isiPod = UIDevice.current.deviceName.lowercased().contains("ipod")
 
         return isFourSeries || isFiveSeries || isiPod || isSEiPhone
     }

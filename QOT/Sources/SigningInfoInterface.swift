@@ -30,7 +30,7 @@ protocol SigningInfoRouterInterface {
 
 }
 
-protocol SigningInfoDelegate: class {
+protocol SigningInfoDelegate {
     func didTapLogin()
     func didTapStart()
 }

@@ -15,11 +15,6 @@ enum CoachSection: Int, CaseIterable {
     case sprint
     case event
     case challenge
-    case recovery
-    case recoveryResult
-    case shortTBVMindSet
-    case shortTBVPrepare
-    case shortTBVOnBoarding
 
     func tag() -> Tags {
         switch self {
@@ -33,7 +28,6 @@ enum CoachSection: Int, CaseIterable {
             return .CoachEvent
         case .challenge:
             return .CoachChallenge
-        default: return .CoachSprint //TODO: Please DELETE ME later WHen u are done :D
         }
     }
 

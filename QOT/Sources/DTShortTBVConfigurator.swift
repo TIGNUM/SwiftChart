@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 final class DTShortTBVConfigurator {
-    static func make(introKey: String, delegate: DTMindsetInteractorInterface?) -> (DTShortTBVViewController) -> Void {
+    static func make(introKey: String, delegate: DTShortTBVDelegate?) -> (DTShortTBVViewController) -> Void {
         return { (viewController) in
             let router = DTShortTBVRouter(viewController: viewController)
             let presenter = DTShortTBVPresenter(viewController: viewController)
@@ -21,7 +21,7 @@ final class DTShortTBVConfigurator {
             viewController.shortTBVRouter = router
             viewController.interactor = interactor
             viewController.router = router
-            viewController.mindsetInteractor = delegate
+            viewController.delegate = delegate
         }
     }
 }

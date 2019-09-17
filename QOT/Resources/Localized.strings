@@ -478,11 +478,14 @@
 "MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \nWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
 "MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
-"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
+"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Plans?";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
 "MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without setting a coach follow-up?";
+"Solve.LeaveAlert.Title" = "SOLVE FOLLOW-UP";
+"Solve.LeaveAlert.Message" = "We want to help you reflect on what works for you. If you continue, you will not receive coach follow-up.";
+"solve.LeaveAlert.ContinueButton" = "Continue";
 
 "MyLibrary.Items.Button.Add" = "Add";
 "MyLibrary.Items.Title.All" = "ALL";
@@ -569,3 +572,8 @@
 "SyncedCalendars.Button.Save" = "Save";
 
 "Weather.Now" = "Now";
+
+"Walkthrough.Button.GotIt" = "Got it";
+"DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
+"DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
+

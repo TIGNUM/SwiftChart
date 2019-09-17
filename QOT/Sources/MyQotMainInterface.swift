@@ -7,15 +7,16 @@
 //
 
 import Foundation
+import DifferenceKit
 
 protocol MyQotMainViewControllerInterface: class {
     func setupView()
-    func setup(for myQotSection: MyQotViewModel)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
 }
 
 protocol MyQotMainPresenterInterface {
     func setupView()
-    func present(for myQotSection: MyQotViewModel)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>)
 }
 
 protocol MyQotMainInteractorInterface: Interactor {
@@ -24,13 +25,10 @@ protocol MyQotMainInteractorInterface: Interactor {
     func presentMySprints()
     func presentMyToBeVision()
     func presentMyLibrary()
-    func getImpactReadinessScore(completion: @escaping(Double?) -> Void)
     func presentMyDataScreen()
-    func nextPrep(completion: @escaping (String?) -> Void)
-    func nextPrepType(completion: @escaping (String?) -> Void)
-    func toBeVisionDate(completion: @escaping (Date?) -> Void)
-    func getSubtitles(completion: @escaping ([String?]) -> Void)
-    func getUserName(completion: @escaping (String?) -> Void)
+    func qotViewModelNew() -> [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]?
+    func updateViewModelListNew(_ list: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>])
+    func refreshParams()
 }
 
 protocol MyQotMainRouterInterface {

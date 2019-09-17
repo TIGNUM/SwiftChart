@@ -15,19 +15,27 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var sprintTitle: UILabel!
     @IBOutlet private weak var sprintInfo: UILabel!
-    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var sprintStepNumber: UILabel!
     @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
+    var showMore = false
+    @IBOutlet weak var showMoreButton: AnimatedButton!
+    @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
+    @IBOutlet weak var constraintContainerBottom: NSLayoutConstraint!
 
+    @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
+    private var observers: [NSKeyValueObservation] = []
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        gotItButton.isHidden = true
+        hideGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
-        self.sprintInfo?.numberOfLines = 0
+        showMore = !showMore
+        self.sprintInfo?.numberOfLines = showMore ? 0 : 3
+        self.showMoreButton.setTitle(showMore ? "Show Less" : "Show More", for: .normal)
         self.sprintInfo?.sizeToFit()
         delegate?.reloadSprintCell(cell: self)
     }
@@ -38,12 +46,26 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
+        observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
+            self?.checkScroll()
+            }
+        ]
+    }
+
+    private func checkScroll() {
+        constraintContainerHeight.constant = tableView.contentSize.height + constraintContainerBottom.constant
+        tableView.setNeedsUpdateConstraints()
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
         tableView.delegate = self
         tableView.dataSource = self
         ThemeView.level2.apply(self)
+        if viewModel?.relatedStrategiesModels.isEmpty == true {
+            tableView.isHidden = true
+            constraintContainerHeight.constant = 0
+            tableView.setNeedsLayout()
+        }
         ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
         let lowercaseTitle = viewModel?.sprintTitle?.lowercased()
         ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
@@ -51,8 +73,18 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
         self.currentSprint = viewModel?.sprint
-        gotItButton.isHidden = self.currentSprint?.doneForToday == true
+        hideGotItButton()
+    }
+
+    private func hideGotItButton() {
+        if self.currentSprint?.doneForToday == true {
+            gotItButton.isHidden = true
+            constraintContainerBottom.constant = 48
+        } else {
+            gotItButton.isHidden = false
+            constraintContainerBottom.constant = 109
         }
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return relatedStrategiesModels?.count ?? 0
@@ -68,7 +100,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
                        section: relatedStrategiesModels?[indexPath.row].section,
                        format: relatedStrategiesModels?[indexPath.row].format,
                        numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)
-        cell.backgroundColor = .carbon
         cell.delegate = self.delegate
         return cell
     }

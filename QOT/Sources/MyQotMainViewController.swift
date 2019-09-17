@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import DifferenceKit
 
 final class MyQotNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyQotNavigationController.classForCoder())
@@ -20,13 +21,6 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
     var interactor: MyQotMainInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var myQotModel: MyQotViewModel?
-    private var dateOfPrep: String?
-    private var eventType: String?
-    private var toBeVisionModified: Date?
-    private var timeSinceMonth: Int?
-    private var subtitleVision: String?
-    private var impactReadinessScore: Int?
     private var indexPathDeselect: IndexPath?
 
     private var qotBoxSize: CGSize {
@@ -51,21 +45,13 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
         interactor?.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
-
-        nextPrepDate(completion: { [weak self] (dateString) in
-            self?.dateOfPrep = dateString
-        })
-        nextPrepType(completion: { [weak self] (eventType) in
-            self?.eventType = eventType
-        })
-        refreshParams(updateCell: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
-        refreshParams(updateCell: true)
+        interactor?.refreshParams()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -96,42 +82,40 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
         layout.sectionInset = .init(top: 0, left: 24, bottom: 0, right: 24)
     }
 
-    func setup(for myQotSection: MyQotViewModel) {
-        myQotModel = myQotSection
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
+        if differenceList.count > 0 {
+            self.removeLoadingSkeleton()
+        }
+        collectionView.reload(using: differenceList) { [weak self] (data) in
+            self?.interactor?.updateViewModelListNew(data)
+        }
     }
 
-    func refreshParams(updateCell: Bool) {
-        getImpactReadinessScore(completion: { [weak self] (score) in
-            self?.impactReadinessScore = Int(score ?? 0)
-            self?.removeLoadingSkeleton()
-            if updateCell {
-                self?.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.data.rawValue, section: 1)])
+    func getCell(_ collectionView: UICollectionView,
+                _ indexPath: IndexPath,
+                _ myQotViewModelItem: MyQotViewModel.Item?) -> UICollectionViewCell {
+            switch indexPath.section {
+            case MyQotViewModel.Section.header.rawValue:
+                let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                let title = R.string.localized.myQOTTitle()
+                cell.configure(title: title, tapLeft: { [weak self] in
+                    self?.delegate?.moveToCell(item: 1)
+                })
+                return cell
+            default:
+                let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+                cell.configure(title: myQotViewModelItem?.title ?? "",
+                               subtitle: myQotViewModelItem?.subtitle ?? "",
+                               isRed: myQotViewModelItem?.showSubtitleInRed ?? false)
+                return cell
             }
-        })
-        toBeVisionDate(completion: { [weak self] (date) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.toBeVisionModified = date
-            strongSelf.timeSinceMonth = Int(strongSelf.timeElapsed(date: date).rounded())
-            if let time = strongSelf.timeSinceMonth {
-                if time == 1 {
-                    self?.subtitleVision = "One month ago"
-                } else if time  > 1 {
-                    self?.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
-                } else { self?.subtitleVision = R.string.localized.myQotVisionLessThan()}
-            }
-            if updateCell {
-                strongSelf.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.toBeVision.rawValue, section: 1)])
-            }
-        })
     }
 }
 
 extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return MyQotViewModel.Section.allCases.count
+        return interactor?.qotViewModelNew()?.count ?? 0
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -139,70 +123,24 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         case MyQotViewModel.Section.header.rawValue:
             return 1
         default:
-            return myQotModel?.myQotItems.count ?? 0
+            return interactor?.qotViewModelNew()?[section].elements.count ?? 0
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch indexPath.section {
-        case MyQotViewModel.Section.header.rawValue:
-            let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            let title = R.string.localized.myQOTTitle()
-            cell.configure(title: title, tapLeft: { [weak self] in
-                self?.delegate?.moveToCell(item: 1)
-            })
-            return cell
-        default:
-            let qotSection = MyQotSection.allCases[indexPath.row]
-            let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            switch qotSection {
-            case .profile:
-                interactor?.getUserName(completion: {(name) in
-                    self.interactor?.getSubtitles(completion: {(subtitles) in
-                        if subtitles.count > 0 {
-                        cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "Hello " + (name ?? "") + ",\n" + (subtitles[indexPath.row]?.lowercased() ?? ""))
-                        }
-                    })
-                })
-            case .library:
-                cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
-            case .preps:
-                nextPrepDate(completion: { [weak self] (dateString) in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateString ?? "") + " " + (strongSelf.eventType ?? ""))
-                })
-            case .sprints:
-                interactor?.getSubtitles(completion: { [weak self] (subtitles) in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    if subtitles.count > 0 {
-                        cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
-                    }
-                })
-            case .data:
-                let subtitle = R.string.localized.myQotDataImpact()
-                cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: String(impactReadinessScore ?? 0) + subtitle)
-            case .toBeVision:
-                interactor?.getSubtitles(completion: { [weak self] (subtitles) in
-                    guard let strongSelf = self else {
-                        return
-                    }
-                    if subtitles.count > 0 {
-                        cell.configure(title: (strongSelf.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: strongSelf.subtitleVision ?? subtitles[indexPath.row] ?? "", isRed: true)
-                    }
-                })
-            }
-            return cell
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let model: MyQotViewModel.Item?
+        if let dataSource = interactor?.qotViewModelNew()?.at(index: indexPath.section)?.elements,
+            dataSource.count > 0 {
+            model = dataSource[indexPath.item]
+            return getCell(collectionView, indexPath, model)
         }
+        return getCell(collectionView, indexPath, nil)
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 layout collectionViewLayout: UICollectionViewLayout,
-                                 sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case MyQotViewModel.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
@@ -240,31 +178,5 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
-    }
-}
-
-extension MyQotMainViewController {
-
-    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
-        interactor?.getImpactReadinessScore(completion: completion)
-    }
-
-    func nextPrepDate(completion: @escaping (String?) -> Void) {
-        interactor?.nextPrep(completion: completion)
-    }
-
-    func nextPrepType(completion: @escaping (String?) -> Void) {
-        interactor?.nextPrepType(completion: completion)
-    }
-
-    func toBeVisionDate(completion: @escaping (Date?) -> Void) {
-        interactor?.toBeVisionDate(completion: completion)
-    }
-
-    func timeElapsed(date: Date?) -> Double {
-        if let monthSince = date?.months(to: Date()), monthSince > 1 {
-            return Double(monthSince)
-        }
-        return 0
     }
 }

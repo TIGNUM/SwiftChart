@@ -20,15 +20,16 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
     @IBOutlet private weak var subtitleTextView: UITextView!
     private let infoText = " ⓘ "
 
-    func configure(title: String?, subtitle: String?) {
+    func configure(title: String?, subtitle: String?, showInfoLink: Bool = false) {
         guard let title = title, let subtitle = subtitle else {
             return
         }
         ThemeText.myDataSectionHeaderTitle.apply(title, to: titleLabel)
         ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleTextView)
 
-        addInfoLink()
-        subtitleTextView.delegate = self
+        if showInfoLink {
+            addInfoLink()
+        }
     }
 
     // MARK: Add the circle info charcter with tap action
@@ -48,6 +49,7 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         subtitleMutable.append(infoLinkAttributtedString)
         subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
         subtitleTextView.attributedText = subtitleMutable
+        subtitleTextView.delegate = self
     }
 }
 

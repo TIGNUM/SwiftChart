@@ -25,6 +25,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
     var trackState: Bool = false
+    var showDailyCheckInScreen = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,12 +36,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
-        if score != -1 {
+        if showDailyCheckInScreen {
+            delegate?.showDailyCheckIn()
+        } else {
             trackState = !trackState
             impactReadinessButton.flipImage(trackState)
             NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
-        } else {
-            delegate?.showDailyCheckIn()
         }
     }
 
@@ -53,6 +54,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
+        showDailyCheckInScreen = (viewModel?.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
+            viewModel?.domainModel?.dailyCheckInResult == nil)
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.readinessIntro, to: content)
         let score: Int = viewModel?.readinessScore ?? 0

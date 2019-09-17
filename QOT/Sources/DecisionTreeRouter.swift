@@ -49,9 +49,9 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
-        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV)
-        let decisionTreeVC = DecisionTreeViewController(configure: configurator)
-        viewController?.present(decisionTreeVC, animated: true, completion: completion)
+//        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV)
+//        let decisionTreeVC = DecisionTreeViewController(configure: configurator)
+//        viewController?.present(decisionTreeVC, animated: true, completion: completion)
     }
 
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
@@ -99,10 +99,10 @@ extension DecisionTreeRouter {
 
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer]) {
-        presentPrepareResults(PrepareResultsConfigurator.configurate(preparation,
-                                                                     answers,
-                                                                     canDelete: answers.isEmpty == false,
-                                                                     true))
+//        presentPrepareResults(PrepareResultsConfigurator.configurate(preparation,
+//                                                                     answers,
+//                                                                     canDelete: answers.isEmpty == false,
+//                                                                     true))
     }
 
     private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {

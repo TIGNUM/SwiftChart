@@ -46,7 +46,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
         tableView.addHeader(with: .level2)
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
-        ThemeView.sprints.apply(view)
+        ThemeView.level2.apply(view)
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)

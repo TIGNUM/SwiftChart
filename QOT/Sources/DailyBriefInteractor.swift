@@ -41,6 +41,10 @@ final class DailyBriefInteractor {
         self.presenter = presenter
         self.router = router
 
+        // Listen about UpSync Daily Check In User Answers
+        NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
+                                               name: .requestSynchronization, object: nil)
+
         // Listen about Expend/Collapse
         NotificationCenter.default.addObserver(self, selector: #selector(didGetImpactReadinessCellSizeChanges(_ :)),
                                                name: .dispayDailyCheckInScore, object: nil)
@@ -76,6 +80,14 @@ extension DailyBriefInteractor {
 
 // MARK: Notification Listeners
 extension DailyBriefInteractor {
+    @objc func didGetDataSyncRequest(_ notification: Notification) {
+        guard let request = notification.object as? SyncRequestContext,
+            request.dataType == .DAILY_CHECK_IN,
+            request.syncRequestType == .UP_SYNC else { return }
+        expendImpactReadiness = true
+        updateDailyBriefBucket()
+    }
+
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
         updateDailyBriefBucket()
@@ -218,9 +230,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    var rowCount: Int {
-        return worker.rowCount
-    }
     var rowViewModelCount: Int {
         return viewModelOldList.count
     }
@@ -559,18 +568,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
 
-//        If the dailyCheck is not done
-        if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false {
-            expendImpactReadiness = false
-            impactReadinessList.append(ImpactReadinessCellViewModel(title: bucketTitle,
-                                                                    dailyCheckImageURL: impactReadinessImageURL,
-                                                                    readinessScore: -1,
-                                                                    readinessIntro: readinessIntro,
-                                                                    domainModel: impactReadiness))
-            return impactReadinessList
-        }
 //If the daily check in completed update the ImpactReadinessCellViewModel
-        let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)
+        let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
+
+        if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
+            impactReadiness.dailyCheckInResult == nil {
+            expendImpactReadiness = false
+        }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
                                                                      dailyCheckImageURL: impactReadinessImageURL,
@@ -592,10 +596,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
-//  If the daily check is in progress add the default ImpactReadinessScoreViewModel for the loading indicator.
-        if impactReadiness.dailyCheckInResult == nil &&
-            impactReadiness.dailyCheckInAnswerIds?.isEmpty == false {
-            expendImpactReadiness = true
+        if expendImpactReadiness {
             impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
                                                                           asteriskText: asteriskText,
                                                                           sleepQuantityValue: sleepQuantity,
@@ -609,23 +610,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                           impactDataModels: models,
                                                                           domainModel: impactReadiness, "detail"))
         }
-
-        guard expendImpactReadiness else {
-            return impactReadinessList
-        }
-//        If the daily check in completed update the ImpactReadinessScoreViewModel which contains all the impact readiness  score
-        impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
-                                                                      asteriskText: asteriskText,
-                                                                      sleepQuantityValue: sleepQuantity,
-                                                                      sleepQualityValue: sleepQuality,
-                                                                      loadValue: load,
-                                                                      futureLoadValue: futureLoad,
-                                                                      targetSleepQuality: targetSleepQuantity,
-                                                                      sleepQualityReference: sleepQualityReference,
-                                                                      loadReference: loadReference,
-                                                                      futureLoadReference: futureLoadReference,
-                                                                      impactDataModels: models,
-                                                                      domainModel: impactReadiness, "detail"))
 
         return impactReadinessList
     }
@@ -815,70 +799,14 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                      section: ContentSection.Unkown))
         return exploreModelList
     }
-//
-//    func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-//        var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-//        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
-//        let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
-//        let calendar = Calendar.current
-//        var contentSentence: String = ""
-//        var isTitleAdded: Bool = true
-//        myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
-//            var localPreparationList = [QDMUserPreparation]()
-//            if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
-//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
-//                localPreparationList = myPeakperformance.preparations?.filter({
-//                    guard let inThreeDaysDate = $0.eventDate, inThreeDaysDate.isFuture() else { return false }
-//                    let inThreeDaysRange = NSRange(location: 2, length: 1)
-//                    if inThreeDaysRange.contains(abs(inThreeDaysDate.daysTo())) {
-//                        return true
-//                    }
-//                    return false
-//                }) ?? [QDMUserPreparation]()
-//            } else if contentItem.searchTags.contains(obj: "TOMORROW") {
-//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
-//                localPreparationList = myPeakperformance.preparations?.filter({
-//                    calendar.isDateInTomorrow($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
-//            } else if contentItem.searchTags.contains(obj: "TODAY") {
-//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_SAME_DAY")}.randomElement()?.contentItems.first?.valueText ?? ""
-//                localPreparationList = myPeakperformance.preparations?.filter({
-//                    calendar.isDateInToday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
-//            } else if contentItem.searchTags.contains(obj: "REFLECT") {
-//                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_AFTER")}.randomElement()?.contentItems.first?.valueText ?? ""
-//                localPreparationList = myPeakperformance.preparations?.filter({
-//                    calendar.isDateInYesterday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
-//            }
-//            if localPreparationList.count > 0 {
-//                // add the tile cell
-//                if isTitleAdded {
-//                    peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: bucketTitle))
-//                    isTitleAdded = false
-//                }
-//                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueText, sectionContent: contentSentence))
-//                localPreparationList.forEach({ (localPreparationList) in
-//                    let subtitle: String = localPreparationList.eventType ?? "" + DateFormatter.tbvTracker.string(from: localPreparationList.eventDate ?? Date())
-//                    peakPerformanceViewModel.peakPerformanceSectionList.append(
-//                        MyPeakPerformanceRowModel(qdmUserPreparation: localPreparationList,
-//                                                  title: localPreparationList.name,
-//                                                  subtitle: subtitle))
-//                })
-//            }
-//        })
-//        createMyPeakPerformanceList.append(peakPerformanceViewModel)
-//        return createMyPeakPerformanceList
-//    }
 
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-        //        let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
         let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
         let calendar = Calendar.current
         var contentSentence: String = ""
-        var isTitleAdded: Bool = true
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
-        var sections: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow
         var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
-
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
@@ -917,7 +845,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         })
         createMyPeakPerformanceList.append( MyPeakPerformanceCellViewModel.init(title: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle(title: bucketTitle),
-                                                                                sections:sectionsModels ,
+                                                                                sections: sectionsModels ,
                                                                                 domainModel: myPeakperformance))
         return createMyPeakPerformanceList
     }
@@ -942,15 +870,16 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: 0)
+            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.first?.userAnswerValue ?? "0")
+            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating)
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            _  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
-            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: performanceString)
+            let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
+            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: replacedString)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
         }

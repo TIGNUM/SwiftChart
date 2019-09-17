@@ -17,7 +17,6 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
     @IBOutlet private weak var contactHeaderLabel: UILabel!
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
-    @IBOutlet private weak var personalDataHeaderLabel: UILabel!
     @IBOutlet private weak var genderHeaderLabel: UILabel!
     @IBOutlet private weak var dobHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
@@ -105,19 +104,18 @@ private extension MyQotAccountSettingsViewController {
         ThemeText.myQOTSectionHeader.apply(interactor?.accountSettingsText, to: accountSettingsHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.contactText, to: contactHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.emailText, to: emailHeaderLabel)
-        dobHeaderLabel.text = interactor?.dateOfBirthText
+        ThemeText.accountHeader.apply(interactor?.dateOfBirthText, to: dobHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.companyText, to: companyHeaderLabel)
-        ThemeText.accountHeader.apply(interactor?.personalDataText, to: personalDataHeaderLabel)
         ThemeText.accountHeaderTitle.apply(interactor?.logoutQotText, to: logoutQotHeaderLabel)
         ThemeText.accountDetail.apply(interactor?.withoutDeletingAccountText, to: logoutQotTitleLabel)
     }
 
     func setDataOnView() {
         interactor?.userProfile({[weak self] (profile) in
-            ThemeText.accountDetail.apply(profile?.email, to: self?.userEmailLabel)
-            ThemeText.accountDetail.apply(profile?.company, to: self?.userCompanyLabel)
-            ThemeText.accountDetail.apply(profile?.yearOfBirth, to: self?.userDobLabel)
-            ThemeText.accountDetail.apply(profile?.name, to: self?.userNameLabel)
+            ThemeText.accountDetailEmail.apply(profile?.email, to: self?.userEmailLabel)
+            ThemeText.accountDetailEmail.apply(profile?.company, to: self?.userCompanyLabel)
+            ThemeText.accountDetailAge.apply(profile?.yearOfBirth, to: self?.userDobLabel)
+            ThemeText.accountUserName.apply(profile?.name, to: self?.userNameLabel)
         })
     }
 }

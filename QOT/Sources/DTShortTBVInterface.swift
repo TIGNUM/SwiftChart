@@ -7,13 +7,28 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DTShortTBVViewControllerInterface: class {}
 
 protocol DTShortTBVPresenterInterface {}
 
+protocol DTShortTBVDelegate: class {
+    func didTapBack()
+    func didDismissShortTBVScene(tbv: QDMToBeVision?)
+}
+extension DTShortTBVDelegate {
+    func didTapBack() { /* nop - making the method optional as it's used only in onboarding */ }
+}
+
 protocol DTShortTBVInteractorInterface: Interactor {
-    func generateTBV(_ selectedAnswers: [SelectedAnswer], _ completion: @escaping () -> Void)
+    var canGoBack: Bool { get }
+    var shouldDismissOnContinue: Bool { get }
+    func getTBV() -> QDMToBeVision?
+    func generateTBV(selectedAnswers: [SelectedAnswer],
+                     questionKeyWork: String,
+                     questionKeyHome: String,
+                     _ completion: @escaping (QDMToBeVision?) -> Void)
 }
 
 protocol DTShortTBVRouterInterface {

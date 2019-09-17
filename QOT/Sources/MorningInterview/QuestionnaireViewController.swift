@@ -123,6 +123,8 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     weak var answerDelegate: QuestionnaireAnswer?
     weak var dailyCheckinDelegate: DailyBriefViewControllerDelegate?
 
+    @IBOutlet weak var questionToTableView: NSLayoutConstraint!
+    @IBOutlet weak var titleContainerHeight: NSLayoutConstraint!
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
                                   dailyCheckinDelegate: DailyBriefViewControllerDelegate? = nil,
@@ -152,8 +154,6 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
-        labelCustomizeView.isHidden = true
-        customizeTargetTitle.isHidden = true
         setupView()
         adjustUI()
         progressView.backgroundColor = UIColor.clear
@@ -206,20 +206,18 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            topConstraint.constant = 50
-            labelCustomizeView.isHidden = false
-            customizeTargetTitle.isHidden = false
             ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
             ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-            questionToTop.constant = 120
+            titleContainerHeight.constant = 500
+            questionToTableView.constant = 60
         case .dailyCheckin:
-            topConstraint.constant = 80
-            questionToTop.constant = 20
+            titleContainerHeight.constant = 0
+            questionToTableView.constant = 150
         case .vision:
-            topConstraint.constant = 20
-            questionToTop.constant = 20
+           titleContainerHeight.constant = 0
+           questionToTableView.constant = 150
         }
 
     }
@@ -437,16 +435,16 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title, to: hintLabel)
+                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title?.lowercased(), to: hintLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title, to: hintLabel)
+                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title?.lowercased(), to: hintLabel)
                  }
             }
         } else {
             indexLabel.text = String(items - index)
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
-            ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
+            ThemeText.questionHintLabel.apply(subtitles[items - index - 1].lowercased(), to: hintLabel)
         }
 
         if isTouch == true {
@@ -639,6 +637,8 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             return [dismissNavigationItem()]
+        case .dailyCheckin:
+            return [dismissNavigationItemLight()]
         default:
             return nil
         }

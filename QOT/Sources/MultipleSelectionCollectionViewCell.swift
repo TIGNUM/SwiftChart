@@ -41,7 +41,8 @@ extension MultipleSelectionCollectionViewCell {
         self.answer = answer
         self.maxSelections = maxSelections
         self.selectionCounter = selectionCounter
-        selectionButton.configure(title: answer.title, isSelected: answer.selected)
+        self.isAnswered = answer.selected
+        selectionButton.configure(title: answer.title, isSelected: isAnswered)
     }
 }
 
