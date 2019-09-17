@@ -8,7 +8,15 @@
 
 import UIKit
 
-final class DTShortTBVRouter: DTRouter {}
+final class DTShortTBVRouter: DTRouter {
+
+    // MARK: - Properties
+    weak var shortTBVViewController: DTShortTBVViewController?
+}
 
 // MARK: - DTShortTBVRouterInterface
-extension DTShortTBVRouter: DTShortTBVRouterInterface {}
+extension DTShortTBVRouter: DTShortTBVRouterInterface {
+    func dismissShortTBVFlow() {
+        shortTBVViewController?.dismiss(animated: true, completion: nil)
+    }
+}
