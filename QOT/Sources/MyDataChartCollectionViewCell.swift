@@ -11,7 +11,7 @@ import qot_dal
 
 final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var chartView: Chart!
-    @IBOutlet private var noDataViewsCollection: [UIImageView]!
+    @IBOutlet private var alignmentViewsCollection: [UIView]!
     @IBOutlet private weak var upperValueLabel: UILabel!
     @IBOutlet private weak var lowerValueLabel: UILabel!
     @IBOutlet private weak var chartViewBottomConstraint: NSLayoutConstraint!
@@ -43,8 +43,8 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         chartView.minX = 0
         chartView.maxX = 6
         chartView.showYGridDashed = false
-        chartView.showXGridDashed = false
-        chartView.showXLabelsAndGrid = false
+        chartView.showXGridDashed = true
+        chartView.showXLabelsAndGrid = true
         chartView.showYLabelsAndGrid = true
         chartView.isUserInteractionEnabled = false
         chartView.yLabels = [33, 67]
@@ -58,10 +58,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         for view in addedViews {
             view.removeFromSuperview()
         }
-        let hasData: Bool = withModels.count > 0
-        for noDataView in noDataViewsCollection {
-            noDataView.alpha = hasData ? 0.0 : 1.0
-        }
+
         var averageData: [(x: Double, y: Double)] = []
         guard let firstModelDate = withModels.first?.key else {
             for index in 0...6 {
@@ -77,6 +74,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
             setup(irAverageLabel: irAverageLabel, forValue: defaultAverage)
             return
         }
+
         let average = withModels.first?.value.averageUsersImpactReadiness ?? defaultAverage
         let futureLoad = withModels.first?.value.tenDaysFutureLoad
         chartView.yLabels = [33, 67]
@@ -100,11 +98,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
                 if let irValue = model.impactReadiness { irData.append((x: Double(index), y: irValue)) }
                 //look if there is data for the previous day. If not mark the previous space with no data
                 if index > 0 && withModels[datesOfCurrentWeek[index - 1]] == nil {
-                    noDataViewsCollection[index - 1].alpha = 1.0
-                }
-            } else {
-                for noDataView in noDataViewsCollection where noDataView.tag == index {
-                    noDataView.alpha = 1.0
+                    alignmentViewsCollection[index - 1].alpha = 1.0
                 }
             }
             averageData.append((x: Double(index), y: average))
@@ -162,7 +156,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         }
 
         //HERE handle single points drawing (i.e. first use case)
-        drawRectangles(forIsolatedPoints: findIsolatedValues(inModels: withModels, with: selectedParameters))
+        drawRectangles(forDataPoints: getDataParameters(inModels: withModels, with: selectedParameters))
 
         chartView.add(ir)
         chartView.add(averageSeries)
@@ -176,7 +170,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func setup(irAverageLabel: UILabel, forValue: Double) {
         ThemeText.myDataChartIRAverageLabel.apply(ScreenTitleService.main.myDataGraphIrAverageTitle(), to: irAverageLabel)
-        for view in noDataViewsCollection where view.tag == 1 {
+        for view in alignmentViewsCollection where view.tag == 0 {
             createPositionConstraints(forView: irAverageLabel,
                                       and: view,
                                       with: calculateBottomConstraintDifference(for: forValue) - 10.0,
@@ -194,70 +188,65 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
         return dates
     }
 
-    func findIsolatedValues(inModels: [Date: MyDataDailyCheckInModel], with selectedParameters: [MyDataParameter]) -> [MyDataParameter: [(x: Double, y: Double)]] {
+    func getDataParameters(inModels: [Date: MyDataDailyCheckInModel], with selectedParameters: [MyDataParameter]) -> [MyDataParameter: [(x: Double, y: Double)]] {
         var resultsDictionary: [MyDataParameter: [(x: Double, y: Double)]] = [:]
         var selectedResults: [MyDataParameter] = [.IR]
         selectedResults.append(contentsOf: selectedParameters)
         for dictModel in inModels {
             let model = dictModel.value
-            if inModels[model.date.dateAfterDays(1)] == nil && inModels[model.date.dateAfterDays(-1)] == nil {
-                let datesOfCurrentWeek = datesOfTheWeek(thatContains: model.date)
-                for parameter in selectedResults {
-                    var pointsArray: [(x: Double, y: Double)] = []
-                    var parameterValue: Double?
-                    switch parameter {
-                    case .IR:
-                        parameterValue = model.impactReadiness
-                    case .fiveDIR:
-                        parameterValue = model.fiveDayImpactReadiness
-                    case .fiveDRR:
-                        parameterValue = model.fiveDayRecovery
-                    case .fiveDRL:
-                        parameterValue = model.fiveDayLoad
-                    case .tenDL:
-                        parameterValue = model.tenDayLoad
-                    case .SQL:
-                        parameterValue = model.sleepQuality
-                    case .SQN:
-                        parameterValue = model.sleepQuantity
-                    }
-                    if let value = parameterValue {
-                        pointsArray.append((x: Double(datesOfCurrentWeek.index(of: model.date) ?? model.date.dayOfWeek - 1), y: value))
-                    }
+            let datesOfCurrentWeek = datesOfTheWeek(thatContains: model.date)
+            for parameter in selectedResults {
+                var pointsArray: [(x: Double, y: Double)] = []
+                var parameterValue: Double?
+                switch parameter {
+                case .IR:
+                    parameterValue = model.impactReadiness
+                case .fiveDIR:
+                    parameterValue = model.fiveDayImpactReadiness
+                case .fiveDRR:
+                    parameterValue = model.fiveDayRecovery
+                case .fiveDRL:
+                    parameterValue = model.fiveDayLoad
+                case .tenDL:
+                    parameterValue = model.tenDayLoad
+                case .SQL:
+                    parameterValue = model.sleepQuality
+                case .SQN:
+                    parameterValue = model.sleepQuantity
+                }
+                if let value = parameterValue {
+                    pointsArray.append((x: Double(datesOfCurrentWeek.index(of: model.date) ?? model.date.dayOfWeek - 1), y: value))
+                }
+                if resultsDictionary[parameter] == nil {
                     resultsDictionary[parameter] = pointsArray
+                } else {
+                    resultsDictionary[parameter]?.append(contentsOf: pointsArray)
                 }
             }
         }
         return resultsDictionary
     }
 
-    func drawRectangles(forIsolatedPoints: [MyDataParameter: [(x: Double, y: Double)]]) {
+    func drawRectangles(forDataPoints: [MyDataParameter: [(x: Double, y: Double)]]) {
         for parameter in MyDataParameter.allCases {
-            if let existingPoints = forIsolatedPoints[parameter] {
+            if let existingPoints = forDataPoints[parameter] {
                 for point in existingPoints {
                     let pointView = UIView.init(frame: .zero)
                     pointView.backgroundColor = MyDataExplanationModel.color(for: parameter)
                     addSubview(pointView)
                     bringSubview(toFront: pointView)
                     addedViews.append(pointView)
-                    var alignmentView: UIImageView = UIImageView()
-                    var toLeading = true
-                    if point.x == 6 {
-                        toLeading = false
-                        for view in noDataViewsCollection where view.tag == 6 {
-                            alignmentView = view
-                        }
-                    } else {
-                        for view in noDataViewsCollection where view.tag == Int(point.x) + 1 {
-                            alignmentView = view
-                        }
+                    var alignmentView: UIView = UIView()
+                    for view in alignmentViewsCollection where view.tag == Int(point.x) {
+                        alignmentView = view
                     }
                     let width: CGFloat = parameter == .IR ? largePointSize: normalPointSize
                     pointView.frame = CGRect(x: 0, y: 0, width: width, height: width)
+                    pointView.circle()
                     createPositionConstraints(for: pointView,
                                               andPointViewWidth: width,
                                               and: alignmentView,
-                                              toLeadingOfView: toLeading,
+                                              toLeadingOfView: true,
                                               with: calculateBottomConstraintDifference(for: point.y))
                 }
             }
