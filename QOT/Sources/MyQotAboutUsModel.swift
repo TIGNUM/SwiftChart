@@ -24,7 +24,7 @@ struct MyQotAboutUsModel {
             case .about: return 100092
             case .privacy: return 102360
             case .terms: return 102361
-            case .copyright: return 100105
+            case .copyright: return 102362
             }
         }
 
