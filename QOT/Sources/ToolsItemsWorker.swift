@@ -52,13 +52,12 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
             self?.selectedTool = contentCollection
             let count = contentCollection?.contentItems.count ?? 0
             let firstItemFormat = contentCollection?.contentItems.first?.format.rawValue ?? ""
-            let imageURL = URL(string: contentCollection?.contentItems.first?.valueImageURL ?? "")
             self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in
                 Tool.Item(remoteID: contentItem.remoteID ?? 0,
                           categoryTitle: "",
                           title: contentItem.valueText,
                           durationString: contentItem.durationString,
-                          imageURL: imageURL,
+                          imageURL: URL(string: contentItem.valueImageURL ?? ""),
                           mediaURL: URL(string: (contentItem.valueMediaURL ?? "")),
                           duration: contentItem.valueDuration ?? 0,
                           isCollection: false,
