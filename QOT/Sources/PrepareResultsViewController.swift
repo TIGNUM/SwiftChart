@@ -23,7 +23,6 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?
-    private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
 
     // MARK: - Init
@@ -127,7 +126,6 @@ private extension PrepareResultsViewController {
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
         resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
         self.resultView = resultInfoWeAreDoneHereView
-        showDone = true
         refreshBottomNavigationItems()
     }
 }
@@ -135,7 +133,7 @@ private extension PrepareResultsViewController {
 // MARK: - PrepareResultsViewControllerInterface
 extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     func reloadView() {
-        tableView.reloadData()
+        reloadData()
     }
 
     func registerTableViewCell(_ type: QDMUserPreparation.Level) {
@@ -270,7 +268,8 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
     }
 
     func reloadData() {
-        tableView.reloadData()
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
@@ -315,7 +314,7 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
             return nil
         }
         return [dismissNavigationItem(action: #selector(openConfirmationView))]
@@ -323,12 +322,6 @@ extension PrepareResultsViewController {
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(dismissView))]
-        }
-        if !(interactor?.dataModified ?? false) {
-            return []
-        }
-        if showDone {
             return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
