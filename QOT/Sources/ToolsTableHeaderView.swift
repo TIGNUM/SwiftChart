@@ -37,6 +37,5 @@ final class ToolsTableHeaderView: UIView {
     func configure(title: String, subtitle: String) {
         ThemeText.qotToolsTitle.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSubtitle.apply(subtitle, to: subtitleLabel)
-        subtitle == "" ? (subtitleLabel.isHidden = true) : (subtitleLabel.isHidden = false)
     }
 }
