@@ -55,7 +55,7 @@ final class PreparationWithMissingEventWorker {
     }
 
     func events(_ completion: @escaping ([QDMUserCalendarEvent]) -> Void) {
-        CalendarService.main.getCalendarEvents { (events, _, _) in
+        CalendarService.main.getCalendarEvents(from: Date().beginingOfDate()) { (events, _, _) in
             completion(events ?? [])
         }
     }

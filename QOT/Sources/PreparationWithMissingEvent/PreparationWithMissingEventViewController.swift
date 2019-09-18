@@ -33,6 +33,7 @@ final class PreparationWithMissingEventViewController: BaseWithTableViewControll
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        setupView()
     }
 }
 
@@ -41,6 +42,7 @@ final class PreparationWithMissingEventViewController: BaseWithTableViewControll
 private extension PreparationWithMissingEventViewController {
 
     func setupView() {
+        tableView.tableFooterView = UIView()
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(tableView)
@@ -87,7 +89,6 @@ private extension PreparationWithMissingEventViewController {
 
 extension PreparationWithMissingEventViewController: PreparationWithMissingEventViewControllerInterface {
     func reloadEvents() {
-        tableView.scrollToTop(animated: true)
         tableView.reloadData()
     }
 
@@ -98,8 +99,8 @@ extension PreparationWithMissingEventViewController: PreparationWithMissingEvent
         keepButtonItem = roundedBarButtonItem(title: keepButtonTitle,
                                               buttonWidth: .Keep,
                                               action: #selector(didTapKeepButton(_:)))
-        ThemeText.resultListHeader.apply(title, to: titleLabel)
-        ThemeText.resultList.apply(text, to: descriptionLabel)
+        ThemeText.qotAlertTitle.apply(title, to: titleLabel)
+        ThemeText.qotAlertMessage.apply(text, to: descriptionLabel)
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
