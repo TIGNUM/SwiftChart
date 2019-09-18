@@ -28,6 +28,10 @@ final class PreparationWithMissingEventInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(applicationWillResignActive(_:)),
+                                               name: .UIApplicationWillResignActive, object: nil)
     }
 
     // MARK: - Interactor
@@ -50,6 +54,10 @@ final class PreparationWithMissingEventInteractor {
         } else {
             router.dismiss()
         }
+    }
+
+    @objc func applicationWillResignActive(_ notification: Notification) {
+        router.dismiss()
     }
 }
 

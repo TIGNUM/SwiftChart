@@ -35,8 +35,8 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-hr-uMG">
-                    <rect key="frame" x="20" y="171" width="394" height="671"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-hr-uMG">
+                    <rect key="frame" x="0.0" y="107" width="414" height="695"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bj4-bD-PnP"/>
@@ -48,9 +48,9 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yu0-hr-uMG" secondAttribute="trailing" id="6Gv-Fm-6Kk"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="rQd-pO-S5m" secondAttribute="top" id="FIy-DZ-gB2"/>
-                <constraint firstItem="yu0-hr-uMG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="TJv-RR-Frj"/>
-                <constraint firstItem="yu0-hr-uMG" firstAttribute="top" secondItem="dRi-fY-bTr" secondAttribute="bottom" constant="84" id="WhD-yV-xAV"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yu0-hr-uMG" secondAttribute="bottom" constant="20" id="ZAW-nJ-K1p"/>
+                <constraint firstItem="yu0-hr-uMG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TJv-RR-Frj"/>
+                <constraint firstItem="yu0-hr-uMG" firstAttribute="top" secondItem="dRi-fY-bTr" secondAttribute="bottom" constant="20" id="WhD-yV-xAV"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yu0-hr-uMG" secondAttribute="bottom" constant="60" id="ZAW-nJ-K1p"/>
                 <constraint firstItem="dRi-fY-bTr" firstAttribute="trailing" secondItem="rQd-pO-S5m" secondAttribute="trailing" id="a4I-GM-1Cb"/>
                 <constraint firstItem="rQd-pO-S5m" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="mQg-eH-nvl"/>
                 <constraint firstItem="dRi-fY-bTr" firstAttribute="top" secondItem="rQd-pO-S5m" secondAttribute="bottom" constant="43" id="mkN-XT-ChF"/>

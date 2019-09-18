@@ -385,7 +385,7 @@ extension AppCoordinator {
             case .PREPARATION:
                 if syncResult.syncRequestType == .DOWN_SYNC {
                     UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                        guard let preps = preps else { return }
+                        guard let preps = preps, preps.count > 0 else { return }
                         log("preps with missing events : \(preps)")
                         let configurator = PreparationWithMissingEventConfigurator.make(preps)
                         let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
