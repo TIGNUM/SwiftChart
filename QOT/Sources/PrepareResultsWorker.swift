@@ -131,7 +131,7 @@ extension PrepareResultsWorker {
         get { return preparation?.setICalDeepLink ?? false }
         set {
             dataModified = true
-            preparation?.setICalDeepLink = newValue
+            preparation?.setReminder = newValue
             updateCalendarEventLink(isOn: newValue)
         }
     }
@@ -177,7 +177,7 @@ extension PrepareResultsWorker {
 
     func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
         CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
-            let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventQotId ?? "" }.first
+            let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventExternalUniqueIdentifierId ?? "" }.first
             if let event = selectedEvent {
                 completion(EKEventStore.shared.event(with: event))
             } else {
