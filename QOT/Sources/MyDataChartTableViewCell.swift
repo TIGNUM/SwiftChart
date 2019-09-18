@@ -10,9 +10,10 @@ import UIKit
 
 final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Properties
+    @IBOutlet weak var graphContentView: UIView!
     @IBOutlet weak var graphCollectionView: UICollectionView!
-    @IBOutlet weak var collectionViewLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var collectionViewTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionContentViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var collectionContentViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackViewTrailingConstraint: NSLayoutConstraint!
     @IBOutlet weak var stackViewLeadingConstraint: NSLayoutConstraint!
 
@@ -21,6 +22,7 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupGraphCollectionView()
+        skeletonManager.addOtherView(graphContentView)
     }
 
     override func prepareForReuse() {
@@ -44,7 +46,7 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Private
     private func setupGraphCollectionView() {
         //general setup of GraphCollectionView
-        let collectionViewWidth = screenWidth - (collectionViewLeadingConstraint.constant + collectionViewTrailingConstraint.constant)
+        let collectionViewWidth = screenWidth - (collectionContentViewLeadingConstraint.constant + collectionContentViewTrailingConstraint.constant)
         let height = self.graphCollectionView.frame.size.height
         self.graphCollectionView.registerDequeueable(MyDataChartCollectionViewCell.self)
         self.graphCollectionView.isPagingEnabled = true

@@ -55,7 +55,6 @@ final class MyDataScreenViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         initialSetupForHeatMapDetailView()
-        showLoadingSkeleton(with: [.oneLineHeading, .myDataGraph, .twoLinesAndTag])
         setupZoomingGestureRecognizers()
     }
 
@@ -339,12 +338,12 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
     }
 
     func dataSourceFinished(firstLoad: Bool) {
-        removeLoadingSkeleton()
         if let heatMapCell = getHeatMapCell() {
             heatMapCell.reloadCalendarData()
             if firstLoad {
                 heatMapCell.calendarView.scrollToDate(Date())
             }
+            heatMapCell.skeletonManager.hide()
         }
         if let chartCell = getChartCell() {
             chartCell.graphCollectionView.reloadData()
@@ -354,6 +353,7 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
                                                            at: .right,
                                                            animated: false)
             }
+            chartCell.skeletonManager.hide()
         }
     }
 }

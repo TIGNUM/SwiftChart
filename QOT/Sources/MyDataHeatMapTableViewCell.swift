@@ -12,6 +12,8 @@ import qot_dal
 
 final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Properties
+
+    @IBOutlet weak var calendarContentView: UIView!
     @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet private weak var topColorView: UIView!
     @IBOutlet private weak var bottomColorView: UIView!
@@ -29,6 +31,11 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addSubtitle(topColorLabel)
+        skeletonManager.addSubtitle(bottomColorLabel)
+        skeletonManager.addOtherView(topColorView)
+        skeletonManager.addOtherView(bottomColorView)
+        skeletonManager.addOtherView(calendarContentView)
         setupCalendarView()
         ThemeView.level2.apply(self)
     }

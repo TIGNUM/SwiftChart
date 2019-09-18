@@ -938,6 +938,7 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
+		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
 		B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACCC2328EAE1006BA566 /* WeatherCell.swift */; };
 		B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49EACCD2328EAE1006BA566 /* WeatherCell.xib */; };
 		B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACD0232902C3006BA566 /* WeatherViewModel.swift */; };
@@ -2271,6 +2272,7 @@
 		B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenWorker.swift; sourceTree = "<group>"; };
 		B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenViewController.swift; sourceTree = "<group>"; };
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
+		B4993F48233243D4001E5676 /* SkeletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonManager.swift; sourceTree = "<group>"; };
 		B49EACCC2328EAE1006BA566 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		B49EACCD2328EAE1006BA566 /* WeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
 		B49EACD0232902C3006BA566 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -3482,6 +3484,7 @@
 				5F78965B22A929D100D2DBAD /* Skeleton */,
 				5F78962D22A929C100D2DBAD /* Extensions */,
 				5F78963022A929C100D2DBAD /* Loaders */,
+				B4993F48233243D4001E5676 /* SkeletonManager.swift */,
 			);
 			name = LoadingSkeleton;
 			sourceTree = "<group>";
@@ -6468,6 +6471,7 @@
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/SkeletonView/SkeletonView.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
 				"${BUILT_PRODUCTS_DIR}/UrbanAirship-iOS-SDK/AirshipKit.framework",
@@ -6487,6 +6491,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SkeletonView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirshipKit.framework",
@@ -7021,6 +7026,7 @@
 				8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */,
 				7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */,
 				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
+				B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
 				F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */,
 				8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */,

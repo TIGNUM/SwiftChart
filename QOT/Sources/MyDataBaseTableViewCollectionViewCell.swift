@@ -12,6 +12,11 @@ class MyDataBaseTableViewCollectionViewCell: MyDataBaseTableViewCell {
     @IBOutlet private weak var monthYearLabel: UILabel!
     @IBOutlet private var weekDaysLabelsCollection: [UILabel]!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(monthYearLabel)
+    }
+
     // MARK: - Public
 
     func setMonthAndYear(text: String) {
