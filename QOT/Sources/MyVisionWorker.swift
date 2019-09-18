@@ -82,6 +82,10 @@ final class MyVisionWorker {
         return R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
     }()
 
+    lazy var emptyTBVTextPlaceholder: String = {
+        return ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
+    }()
+
     private func getNullStateSubtitle() {
         nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
     }
@@ -173,9 +177,9 @@ final class MyVisionWorker {
         notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
     }
 
-    func updateRateButton() -> (String?, Bool, Bool) {
+    func updateRateButton() -> (String?, Bool?, Bool) {
         guard let tracks = self.tracks, tracks.count > 0 else {
-            return (syncingText, true, false)
+            return (syncingText, nil, false)
         }
         guard let report = self.report, report.days.count > 0 else {
             return (notRatedText, true, true)
