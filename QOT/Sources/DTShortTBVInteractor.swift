@@ -39,7 +39,8 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
     var shouldDismissOnContinue: Bool {
         switch introKey {
         case ShortTBV.QuestionKey.IntroOnboarding,
-             ShortTBV.QuestionKey.IntroPrepare:
+             ShortTBV.QuestionKey.IntroPrepare,
+             ShortTBV.QuestionKey.IntroMindSet:
             return true
         default:
             return false
