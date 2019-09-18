@@ -208,7 +208,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         userImageView.image = R.image.circlesWarning()
     }
 
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool) {
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
             interactor?.showNullState(with: interactor?.nullStateTitle ?? "", message: interactor?.nullStateSubtitle ?? "")
             return
@@ -218,7 +218,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 
         ThemeText.tbvVisionHeader.apply(myVision?.headline, to: headerLabel)
-        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(myVision?.text)
+        let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor?.emptyTBVTextPlaceholder
+        detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
@@ -235,8 +236,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
-        singleMessageRatingView.isHidden = !shouldShowSingleMessage
-        doubleMessageRatingView.isHidden = shouldShowSingleMessage
+        if let shouldShowSingleMessage = shouldShowSingleMessageRating {
+            singleMessageRatingView.isHidden = !shouldShowSingleMessage
+            doubleMessageRatingView.isHidden = shouldShowSingleMessage
+        } else {
+            singleMessageRatingView.isHidden = true
+            doubleMessageRatingView.isHidden = true
+        }
         guard let shouldShowWarningIcon = interactor?.shouldShowWarningIcon() else { return }
         warningImageView.isHidden = !shouldShowWarningIcon
     }
