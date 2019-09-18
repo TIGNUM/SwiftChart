@@ -23,7 +23,13 @@ final class SearchWorker {
                 }
                 var searchArray = [Search.Result]()
                 if let collections = contentCollections {
-                    searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .article))
+                    collections.forEach { (content) in
+                        if content.section == .QOTLibrary {
+                             searchArray.append(contentsOf: Search.resultFrom([content], filter: searchFilter, displayType: .files))
+                        } else {
+                            searchArray.append(contentsOf: Search.articleResultFrom([content], filter: searchFilter, displayType: .article)
+                            )}
+                    }
                 }
                 if let items = contentItems {
                     searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
@@ -37,7 +43,12 @@ final class SearchWorker {
                 }
                 var searchArray = [Search.Result]()
                 if let collections = contentCollections {
-                    searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .article))
+                    collections.forEach { (content) in
+                        if content.section != .QOTLibrary {
+                    searchArray.append(contentsOf: Search.articleResultFrom([content], filter: searchFilter, displayType: .article))
+
+                        }
+                    }
                 }
                 if let items = contentItems {
                     searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
