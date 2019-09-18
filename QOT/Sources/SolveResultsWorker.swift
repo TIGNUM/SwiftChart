@@ -109,13 +109,13 @@ extension SolveResultsWorker {
 // MARK: - Private
 private extension SolveResultsWorker {
     func contentCollection(_ contentId: Int? = nil, _ completion: @escaping (QDMContentCollection?) -> Void) {
-        qot_dal.ContentService.main.getContentCollectionById(contentId ?? solutionCollectionId, completion)
+        ContentService.main.getContentCollectionById(contentId ?? solutionCollectionId, completion)
     }
 
     func relatedStrategies(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentCollection]) -> Void) {
         contentCollection(contentId) { (content) in
             if let content = content {
-                qot_dal.ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { (related) in
+                ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { (related) in
                     completion(related ?? [])
                 }
             }
@@ -221,20 +221,17 @@ private extension SolveResultsWorker {
 private extension SolveResultsWorker {
     func createRecoveryItems(_ completion: @escaping (SolveResults) -> Void) {
         var items: [SolveResults.Item] = []
+        let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [])
+        let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [])
         recoveryHeader { [weak self] (headerItem) in
             self?.fatigueSymptom { [weak self] (fatigueItem) in
-                self?.cause { [weak self] (causeItem) in
-                    self?.exclusiveContent { [weak self] (exclusiveItems) in
-                        let contentId = self?.recovery?.causeAnwser?.targetId(.content)
-                        self?.relatedStrategyItems(contentId) { (strategyItems) in
-                            items.append(headerItem)
-                            items.append(fatigueItem)
-                            items.append(causeItem)
-                            items.append(contentsOf: exclusiveItems)
-                            items.append(contentsOf: strategyItems)
-                            completion(SolveResults(type: .recovery, items: items))
-                        }
-                    }
+                self?.cause { (causeItem) in
+                    items.append(headerItem)
+                    items.append(fatigueItem)
+                    items.append(causeItem)
+                    items.append(contentsOf: exclusiveItems)
+                    items.append(contentsOf: relatedItems)
+                    completion(SolveResults(type: .recovery, items: items))
                 }
             }
         }
@@ -264,22 +261,21 @@ private extension SolveResultsWorker {
         }
     }
 
-    func exclusiveContent(_ completion: @escaping ([SolveResults.Item]) -> Void) {
-        let ids = recovery?.exclusiveContentCollectionIds ?? []
-        var exclusiveContent: [SolveResults.Item] = []
-        qot_dal.ContentService.main.getContentCollectionsByIds(ids) { (exclusiveCollections) in
-            if let exclusiveCollections = exclusiveCollections {
-                for (index, collection) in exclusiveCollections.enumerated() {
-                    exclusiveContent.append(.strategy(id: collection.remoteID ?? 0,
-                                                      title: collection.title,
-                                                      minsToRead: collection.durationString,
-                                                      hasHeader: index == 0,
-                                                      headerTitle: R.string.localized.headerTitleExclusiveContent()))
-                }
-                completion(exclusiveContent)
-            } else {
-                completion([])
-            }
+    func strategyItems(_ contentCollections: [QDMContentCollection]) -> [SolveResults.Item] {
+        var strategyItem: [SolveResults.Item] = []
+        for (index, collection) in contentCollections.enumerated() {
+            strategyItem.append(.strategy(id: collection.remoteID ?? 0,
+                                          title: collection.title,
+                                          minsToRead: collection.durationString,
+                                          hasHeader: index == 0,
+                                          headerTitle: R.string.localized.headerTitleExclusiveContent()))
+        }
+        return strategyItem
+    }
+
+    func exclusiveContent(_ ids: [Int], _ completion: @escaping ([SolveResults.Item]) -> Void) {
+        ContentService.main.getContentCollectionsByIds(ids) { [weak self] (exclusiveCollections) in
+            completion(self?.strategyItems(exclusiveCollections ?? []) ?? [])
         }
     }
 }

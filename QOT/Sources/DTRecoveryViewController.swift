@@ -29,7 +29,8 @@ final class DTRecoveryViewController: DTViewController {
         switch viewModel?.question.key {
         case Recovery.QuestionKey.Intro?:
             setNextQuestionForFatigueSymptoms()
-        case Recovery.QuestionKey.GeneratePlan?:
+        case Recovery.QuestionKey.GeneratePlan?,
+             Recovery.QuestionKey.SymptomGeneral?:
             presentRecoveryResults()
         case Recovery.QuestionKey.Last?:
             router?.dismiss()

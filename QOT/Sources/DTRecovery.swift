@@ -58,17 +58,52 @@ struct Recovery {
     }
 
     static func getFatigueSymptom(_ selectedAnswers: [DTViewModel.Answer]) -> Recovery.FatigueSymptom {
-        let keys = selectedAnswers.flatMap { $0.keys }
-        let referenceValue = selectedAnswers.count < 3 ? selectedAnswers.count : 2
-        if (keys.filter { $0.contains(Recovery.AnswerKey.Cognitive) }).count == referenceValue {
+        let keys = selectedAnswers.flatMap { $0.keys.filter { $0.contains("-item") } }
+
+        if keys.count == 1 {
+            return symptomForKey(keys.first ?? "")
+        }
+
+        if keys.count == 2 {
+            if keys.first == keys.last {
+                return symptomForKey(keys.first ?? "")
+            }
+            return .general
+        }
+
+        let cognitiveCount = keys.filter { $0.contains(FatigueSymptom.cognitive.answerFilter) }.count
+        let emotionalCount = keys.filter { $0.contains(FatigueSymptom.emotional.answerFilter) }.count
+        let physicalCount = keys.filter { $0.contains(FatigueSymptom.physical.answerFilter) }.count
+
+        if cognitiveCount == emotionalCount && cognitiveCount == physicalCount {
+            return .general
+        }
+
+        if cognitiveCount == 2 || cognitiveCount == 3 {
             return .cognitive
         }
-        if (keys.filter { $0.contains(Recovery.AnswerKey.Emotional) }).count == referenceValue {
+
+        if emotionalCount == 2 || emotionalCount == 3 {
             return .emotional
         }
-        if (keys.filter { $0.contains(Recovery.AnswerKey.Physical) }).count == referenceValue {
+
+        if physicalCount == 2 || physicalCount == 3 {
             return .physical
         }
+
         return .general
     }
-}
+
+    private static func symptomForKey(_ key: String) -> Recovery.FatigueSymptom {
+        switch key {
+        case Recovery.AnswerKey.Cognitive:
+            return .cognitive
+        case Recovery.AnswerKey.Emotional:
+            return .emotional
+        case Recovery.AnswerKey.Physical:
+            return .physical
+        default:
+            return .general
+        }
+    }
+ }

@@ -132,13 +132,13 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             let headerTitle = interactor?.headerTitle ?? ""
             guard headerTitle.count > 0 else { return nil }
             let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
-            return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "Introduction for section")
+            return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "")
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

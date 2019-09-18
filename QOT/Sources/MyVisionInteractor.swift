@@ -63,8 +63,8 @@ final class MyVisionInteractor {
 
     func viewWillAppear() {
         worker.getData {[weak self] (initialized) in
-            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
-            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
+            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", nil, false)
+            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessageRating: shouldShowSingleMessage)
             self?.worker.updateWidget()
         }
     }
@@ -77,8 +77,8 @@ final class MyVisionInteractor {
             }
 
             self?.presenter.hideScreenLoader()
-            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
-            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
+            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", nil, false)
+            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessageRating: shouldShowSingleMessage)
             self?.worker.updateWidget()
         }
     }
@@ -135,6 +135,10 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
 
     var myVision: QDMToBeVision? {
         return worker.myVision
+    }
+
+    var emptyTBVTextPlaceholder: String {
+        return worker.emptyTBVTextPlaceholder
     }
 
     func lastUpdatedVision() -> String? {

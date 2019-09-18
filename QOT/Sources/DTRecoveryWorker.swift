@@ -14,7 +14,9 @@ final class DTRecoveryWorker: DTWorker {
         let answers = selectedAnswers.flatMap { $0.answers }
         let fatigueContentItemId = Recovery.getFatigueSymptom(answers).fatigueContentItemId
         let causeAnswer = selectedAnswers
-            .filter { $0.question?.key == Recovery.QuestionKey.Symptom }.first?.answers.first
+            .filter { $0.question?.key == Recovery.QuestionKey.Symptom
+                || $0.question?.key == Recovery.QuestionKey.SymptomGeneral }
+            .first?.answers.first
         let causeAnswerId = causeAnswer?.remoteId ?? 0
         let causeContentItemId = causeAnswer?.targetId(.contentItem) ?? 0
         let causeContentId = causeAnswer?.targetId(.content) ?? 0
