@@ -29,14 +29,11 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
 //                                                  viewController))
     }
 
-    func presentEditIntentions(_ selectedAnswers: [SelectedAnswer],
-                               _ key: Prepare.Key,
-                               answerFilter: String?) {
-        let configurator = DTPrepareConfigurator.make(selectedAnswers: selectedAnswers,
-                                                      introKey: key,
-                                                      answerFilter: answerFilter)
+    func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?) {
+        let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
         let controller = DTPrepareViewController(configure: configurator)
-        viewController?.present(controller, animated: true, completion: nil)
+        controller.resultsDelegate = viewController
+        viewController?.present(controller, animated: true)
     }
 
     func presentRelatedArticle(readMoreID: Int) {

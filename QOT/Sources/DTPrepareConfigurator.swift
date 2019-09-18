@@ -23,24 +23,20 @@ final class DTPrepareConfigurator {
             viewController.interactor = interactor
             viewController.prepareInteractor = interactor
             viewController.prepareRouter = router
+            viewController.router = router
         }
     }
 
-    static func make(selectedAnswers: [SelectedAnswer],
-                     introKey: Prepare.Key,
-                     answerFilter: String?) -> (DTPrepareViewController) -> Void {
+    static func make(viewModel: DTViewModel, question: QDMQuestion?) -> (DTPrepareViewController) -> Void {
         return { (viewController) in
             let router = DTPrepareRouter(viewController: viewController)
             let presenter = DTPreparePresenter(viewController: viewController)
-            let interactor = DTPrepareInteractor(presenter,
-                                                 questionGroup: .Prepare_3_0,
-                                                 introKey: introKey.rawValue)
-            router.prepareViewController = viewController
-            presenter.prepareViewController = viewController
-            interactor.preparePresenter = presenter
-            viewController.interactor = interactor
-            viewController.prepareInteractor = interactor
+            presenter.intensionViewModel = viewModel
+            let interactor = DTPrepareInteractor(presenter, questionGroup: .Prepare_3_0, introKey: question?.key ?? "")
+            viewController.router = router
             viewController.prepareRouter = router
+            viewController.interactor = interactor
+            router.prepareViewController = viewController
         }
     }
 }

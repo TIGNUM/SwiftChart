@@ -19,6 +19,14 @@ final class DTPrepareRouter: DTRouter {
 
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
+    func didUpdatePrepareResults() {
+        dismissResultView()
+    }
+
+    func dismissResultView() {
+        viewController?.dismiss(animated: true)
+    }
+
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
         let configurator = DTShortTBVConfigurator.make(introKey: introKey, delegate: delegate)
         let controller = DTShortTBVViewController(configure: configurator)

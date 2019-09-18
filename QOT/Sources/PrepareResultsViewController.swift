@@ -15,7 +15,7 @@ protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
+    func didUpdateIntentions(_ answerIds: [Int])
     func didUpdateBenefits(_ benefits: String)
 }
 
@@ -23,7 +23,6 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?
-    private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
 
     // MARK: - Init
@@ -127,7 +126,6 @@ private extension PrepareResultsViewController {
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
         resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
         self.resultView = resultInfoWeAreDoneHereView
-        showDone = true
         refreshBottomNavigationItems()
     }
 }
@@ -135,7 +133,7 @@ private extension PrepareResultsViewController {
 // MARK: - PrepareResultsViewControllerInterface
 extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     func reloadView() {
-        tableView.reloadData()
+        reloadData()
     }
 
     func registerTableViewCell(_ type: QDMUserPreparation.Level) {
@@ -259,8 +257,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
-    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
-        interactor?.updateIntentions(selectedAnswers, key)
+    func didUpdateIntentions(_ answerIds: [Int]) {
+        interactor?.updateIntentions(answerIds)
         refreshBottomNavigationItems()
     }
 
@@ -314,7 +312,7 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
             return nil
         }
         return [dismissNavigationItem(action: #selector(openConfirmationView))]
@@ -322,12 +320,6 @@ extension PrepareResultsViewController {
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(dismissView))]
-        }
-        if !(interactor?.dataModified ?? false) {
-            return []
-        }
-        if showDone {
             return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),

@@ -23,7 +23,7 @@ class DTInteractor: DTInteractorInterface {
     var presentedNodes: [Node] = []
     var selectedAnswers: [SelectedAnswer] = []
     var inputText: String = ""
-    var isDark: Bool = false
+    var isDark: Bool = false    //TODO Maybe we wanna have ThemeModel in the future…
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {

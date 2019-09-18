@@ -35,7 +35,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func presentEditIntentions(_ key: Prepare.Key)
     func presentEditBenefits(benefits: String?, questionID: Int)
     func updateStrategies(selectedIds: [Int])
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
+    func updateIntentions(_ answersIds: [Int])
     func updateBenefits(_ benefits: String)
     func openConfirmationView()
     func didClickSaveAndContinue()
@@ -48,8 +48,6 @@ protocol PrepareResultsRouterInterface {
     func didClickSaveAndContinue()
     func dismiss()
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
-    func presentEditIntentions(_ selectedAnswers: [SelectedAnswer],
-                               _ key: Prepare.Key,
-                               answerFilter: String?)
+    func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)
 }
