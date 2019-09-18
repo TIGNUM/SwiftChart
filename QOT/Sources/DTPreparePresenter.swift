@@ -13,13 +13,10 @@ final class DTPreparePresenter: DTPresenter {
 
     // MARK: - Properties
     weak var prepareViewController: DTPrepareViewControllerInterface?
+    var intensionViewModel: DTViewModel?
 
-    func showResultEditIntensionQuestion(viewModel: DTViewModel, question: QDMQuestion?) {
-        let presentationModel = DTPresentationModel(question: question)
-        let navigationButton = presentationModel.getNavigationButton(isHidden: false)
-        setupView()
-        viewController?.setNavigationButton(navigationButton)
-        viewController?.showNextQuestion(viewModel)
+    override func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
+        return intensionViewModel ?? super.createViewModel(presentationModel)
     }
 
     override func previousIsHidden(questionKey: String) -> Bool {

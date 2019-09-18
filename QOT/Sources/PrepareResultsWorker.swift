@@ -176,7 +176,7 @@ extension PrepareResultsWorker {
     }
 
     func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
-        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
+        CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
             let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventQotId ?? "" }.first
             if let event = selectedEvent {
                 completion(EKEventStore.shared.event(with: event))
@@ -323,7 +323,7 @@ extension PrepareResultsWorker {
 extension PrepareResultsWorker {
     func getDTViewModel(_ key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         currentEditKey = key
-        let answerFilter = getFilter()
+        let answerFilter = preparation?.answerFilter ?? ""
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
@@ -340,10 +340,5 @@ extension PrepareResultsWorker {
                                    showNextQuestionAutomated: false),
                        qdmQuestion)
         }
-    }
-
-    func getFilter() -> String {
-        let updatedTitle = preparation?.eventType?.lowercased().replacingOccurrences(of: " ", with: "_") ?? ""
-        return Prepare.AnswerFilter + updatedTitle
     }
 }
