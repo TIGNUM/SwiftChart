@@ -36,6 +36,7 @@ final class DTPrepareConfigurator {
             viewController.router = router
             viewController.prepareRouter = router
             viewController.interactor = interactor
+            router.prepareViewController = viewController
         }
     }
 }

@@ -30,10 +30,19 @@ final class DTPrepareViewController: DTViewController {
     }
 
     // MARK: - Answer Handling
+    override func didTapClose() {
+        if resultsDelegate != nil {
+            prepareRouter?.dismissResultView()
+        } else {
+            super.didTapClose()
+        }
+    }
+
     override func didTapNext() {
         if resultsDelegate != nil {
             let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
             resultsDelegate?.didUpdateIntentions(answerIds)
+            prepareRouter?.dismissResultView()
             return
         }
 

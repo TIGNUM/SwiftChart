@@ -20,7 +20,11 @@ final class DTPrepareRouter: DTRouter {
 // MARK: - DTPrepareRouterInterface
 extension DTPrepareRouter: DTPrepareRouterInterface {
     func didUpdatePrepareResults() {
-        viewController?.dismiss(animated: true, completion: nil)
+        dismissResultView()
+    }
+
+    func dismissResultView() {
+        viewController?.dismiss(animated: true)
     }
 
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {

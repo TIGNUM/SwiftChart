@@ -42,4 +42,5 @@ protocol DTPrepareRouterInterface {
     func presentCalendarSettings()
     func presentEditEventController()
     func didUpdatePrepareResults()
+    func dismissResultView()
 }
