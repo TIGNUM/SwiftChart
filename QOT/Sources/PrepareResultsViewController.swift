@@ -268,8 +268,7 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
     }
 
     func reloadData() {
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        tableView.reloadData()
     }
 
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
