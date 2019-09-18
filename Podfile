@@ -19,6 +19,7 @@ target 'QOT' do
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:voicusimu/SwiftChart.git'
+  pod 'SkeletonView'
 end
 
 post_install do |installer|

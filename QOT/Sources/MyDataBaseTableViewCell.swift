@@ -7,10 +7,22 @@
 //
 
 import Foundation
+import SkeletonView
 
 class MyDataBaseTableViewCell: UITableViewCell, Dequeueable {
+    var skeletonManager = SkeletonManager()
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear
+        SkeletonAppearance.default.multilineHeight = 14.0
+        SkeletonAppearance.default.multilineSpacing = 3.0
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        skeletonManager = SkeletonManager()
+        SkeletonAppearance.default.multilineHeight = 14.0
+        SkeletonAppearance.default.multilineSpacing = 3.0
     }
 }
