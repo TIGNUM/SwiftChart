@@ -213,6 +213,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
             interactor?.showNullState(with: interactor?.nullStateTitle ?? "", message: interactor?.nullStateSubtitle ?? "")
             return
         }
+        removeLoadingSkeleton()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 
