@@ -34,7 +34,6 @@ final class DTPrepareViewController: DTViewController {
         if resultsDelegate != nil {
             let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
             resultsDelegate?.didUpdateIntentions(answerIds)
-            prepareRouter?.didUpdatePrepareResults()
             return
         }
 

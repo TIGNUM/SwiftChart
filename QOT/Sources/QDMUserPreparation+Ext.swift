@@ -9,7 +9,6 @@
 import Foundation
 import qot_dal
 
-
 protocol EditResult {
     var answerFilter: String? { get }
 }
