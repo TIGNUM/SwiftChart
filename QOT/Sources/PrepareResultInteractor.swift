@@ -42,11 +42,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         return worker.getType
     }
 
-    var saveToICal: Bool {
-        get { return worker.saveToICal }
-        set { worker.saveToICal = newValue }
-    }
-
     var setReminder: Bool {
         get { return worker.setReminder }
         set { worker.setReminder = newValue }

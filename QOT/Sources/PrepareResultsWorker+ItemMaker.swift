@@ -37,9 +37,8 @@ extension PrepareResultsWorker {
                     items[PrepareResult.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
                     items[PrepareResult.Daily.STRATEGY_ITEMS] = strategyItems
                     items[PrepareResult.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                    items[PrepareResult.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
-                                                                                 prepare.setReminder,
-                                                                                 ekEvent: ekEvent)
+                    items[PrepareResult.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder,
+                                                                                       ekEvent: ekEvent)
                     completion(items)
                 })
             }
@@ -85,9 +84,8 @@ extension PrepareResultsWorker {
                                 items[PrepareResult.Critical.STRATEGY_ITEMS] = strategyItems
 
                                 items[PrepareResult.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                                items[PrepareResult.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
-                                                                                             prepare.setReminder,
-                                                                                             ekEvent: ekEvent)
+                                items[PrepareResult.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setReminder,
+                                                                                                      ekEvent: ekEvent)
                                 completion(items)
                             })
                         })
@@ -160,18 +158,11 @@ extension PrepareResultsWorker {
     }
 
     //TODO: no hardcoded strings
-    func getReminderItems(_ saveToICal: Bool, _ setReminder: Bool, ekEvent: EKEvent?) -> [PrepareResultsType] {
+    func getReminderItems(_ setReminder: Bool, ekEvent: EKEvent?) -> [PrepareResultsType] {
         let setReminderItem = PrepareResultsType.reminder(title: "SET REMINDER",
                                                           subbtitle: "To help you remember planned events",
                                                           active: setReminder,
                                                           type: .reminder)
-        let saveToIcalItem = PrepareResultsType.reminder(title: "SAVE TO ICAL",
-                                                         subbtitle: "Save in your calendar events",
-                                                         active: saveToICal,
-                                                         type: .iCal)
-        if ekEvent != nil {
-            return [setReminderItem, saveToIcalItem]
-        }
         return [setReminderItem]
     }
 }

@@ -392,7 +392,7 @@ extension AppDelegate {
         let authStatus = EKEventStore.authorizationStatus(for: .event)
         switch authStatus {
         case .authorized:
-            qot_dal.CalendarService.main.importCalendarEvents()
+            CalendarService.main.importCalendarEvents()
         default:
             return
         }

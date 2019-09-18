@@ -52,7 +52,7 @@ final class ReadVisionView: UIView {
 
     func configure(imageURL: URL?, headline: String?, text: String?) {
         visionImageView.setImage(from: imageURL, placeholder: UIImage(named: "tbv_placeholder"))
-        headlineLabel.text = headline ?? "MY HEADLINE"
+        headlineLabel.text = headline ?? "ME AT MY BEST"
         textLabel.text = text
     }
 }
