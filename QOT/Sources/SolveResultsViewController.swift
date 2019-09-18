@@ -105,9 +105,10 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
     }
 
     func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String) {
-        let stay = QOTAlertAction(title: stayTitle)
-        let leave = QOTAlertAction(title: leaveTitle, target: self, action: #selector(didTapLeave))
-        QOTAlert.show(title: title, message: message, bottomItems: [stay, leave])
+//        let stay = QOTAlertAction(title: stayTitle)
+//        let leave = QOTAlertAction(title: leaveTitle, target: self, action: #selector(didTapLeave))
+//        QOTAlert.show(title: title, message: message, bottomItems: [stay, leave])
+        didTapLeave()
     }
 }
 
