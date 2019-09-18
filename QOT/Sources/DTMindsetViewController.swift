@@ -56,7 +56,7 @@ final class DTMindsetViewController: DTViewController {
         case Mindset.QuestionKey.PresentResult:
             presentMindsetShifterResult()
         default:
-            setAnswerNeedsSelection()
+            setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
             loadNextQuestion()
         }
     }

@@ -200,6 +200,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
             viewModel?.setSelectedAnswer(answer)
         }
     }
+
+    func setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready() {
+        if viewModel?.answers.filter({ $0.selected }).isEmpty ?? true {
+            setAnswerNeedsSelection()
+        }
+    }
 }
 
 extension DTViewController {        //TODO - this looks to be redundant now
