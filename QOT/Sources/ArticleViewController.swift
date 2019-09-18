@@ -659,7 +659,6 @@ extension ArticleViewController: UIScrollViewDelegate {
             checkMarkAsReadButton(true)
             didScrollToRead = true
         }
-
         navigationBarAutoShowHide(scrollView)
     }
 }

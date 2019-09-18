@@ -20,8 +20,8 @@ struct MyQotAboutUsModel {
 
         var primaryKey: Int {
             switch self {
-            case .benefits: return 100101
-            case .about: return 100092
+            case .benefits: return 102364
+            case .about: return 102363
             case .privacy: return 102360
             case .terms: return 102361
             case .copyright: return 102362
