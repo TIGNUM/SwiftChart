@@ -22,7 +22,7 @@ class DTRouter {
 // MARK: - DTRouterInterface
 extension DTRouter: DTRouterInterface {
     @objc func dismiss() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
+        viewController?.dismiss(animated: true, completion: nil)
     }
 
     func presentContent(_ contentId: Int) {
