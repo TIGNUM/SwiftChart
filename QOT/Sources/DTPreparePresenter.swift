@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTPreparePresenter: DTPresenter {
 
     // MARK: - Properties
     weak var prepareViewController: DTPrepareViewControllerInterface?
+    var intensionViewModel: DTViewModel?
+
+    override func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
+        return intensionViewModel ?? super.createViewModel(presentationModel)
+    }
+
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
     }

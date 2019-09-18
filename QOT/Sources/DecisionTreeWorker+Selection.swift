@@ -112,7 +112,7 @@ extension DecisionTreeWorker {
                 return
             }
         case .prepareIntentions:
-            didUpdatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
+//            didUpdatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
             return

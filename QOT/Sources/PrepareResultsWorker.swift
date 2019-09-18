@@ -16,41 +16,14 @@ final class PrepareResultsWorker {
     typealias ListItems = [Int: [PrepareResultsType]]
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
-//    private var answers: [DecisionTreeModel.SelectedAnswer] = []
     private var preparation: QDMUserPreparation?
     private var canDelete: Bool = false
     private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false
+    private var currentEditKey: Prepare.Key?
 
-//    // MARK: - Init
-//    init(_ preparation: QDMUserPreparation?,
-//         _ answers: [DecisionTreeModel.SelectedAnswer],
-//         _ canDelete: Bool,
-//         _ dataModified: Bool = false) {
-//        self.canDelete = canDelete
-//        self.answers = answers
-//        self.preparation = preparation
-//        self.level = preparation?.type ?? .LEVEL_DAILY
-//        self.dataModified = dataModified
-//
-//        switch level {
-//        case .LEVEL_CRITICAL:
-//            if answers.isEmpty {
-//                generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-//            } else {
-//                updateAnswerIds(answers) { [unowned self] (preparation) in
-//                    self.preparation = preparation
-//                    self.generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: self.suggestedStrategyId)
-//                }
-//            }
-//        case .LEVEL_DAILY:
-//            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
-//        default:
-//            self.dataModified = true
-//        }
-//    }
-
+    // MARK: - Init
     init(_ contentId: Int) {
         level = .LEVEL_ON_THE_GO
         onTheGoItems(contentId) { [weak self] items in
@@ -60,14 +33,16 @@ final class PrepareResultsWorker {
     }
 
     init(_ preparation: QDMUserPreparation?, canDelete: Bool) {
-        self.canDelete = true
+        self.canDelete = canDelete
         self.preparation = preparation
         if let prepType = preparation?.type {
             level = prepType
             if prepType == .LEVEL_DAILY {
-                generateDailyItemsAndUpdateView(preparation)
+                self.preparation?.contentCollectionId = prepType.contentID
+                generateDailyItemsAndUpdateView(self.preparation)
             } else if prepType == .LEVEL_CRITICAL {
-                generateCriticalItemsAndUpdateView(preparation)
+                self.preparation?.contentCollectionId = prepType.contentID
+                generateCriticalItemsAndUpdateView(self.preparation)
             }
         }
     }
@@ -271,17 +246,18 @@ extension PrepareResultsWorker {
         }
     }
 
-    func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
-        switch key {
-        case .perceived:
-            preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
-        case .know:
-            knowAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
-        case .feel:
-            feelAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
+    func updateIntentions(_ answerIds: [Int]) {
+        switch currentEditKey {
+        case .perceived?:
+            preparation?.preceiveAnswerIds = answerIds
+        case .know?:
+            preparation?.knowAnswerIds = answerIds
+        case .feel?:
+            preparation?.feelAnswerIds = answerIds
         default:
             break
         }
+        currentEditKey = nil
         generateCriticalItemsAndUpdateView(preparation)
     }
 
@@ -305,6 +281,30 @@ extension PrepareResultsWorker {
             PreparationManager.main.delete(preparation: preparation, completion: completion)
         } else {
             completion()
+        }
+    }
+}
+
+// MARK: - DTViewModel
+extension PrepareResultsWorker {
+    func getDTViewModel(_ key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+        currentEditKey = key
+        let answerFilter = preparation?.answerFilter ?? ""
+        QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
+            guard let qdmQuestion = qdmQuestion else { return }
+            let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
+            let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
+            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0) }
+            completion(DTViewModel(question: question,
+                                   answers: answers,
+                                   events: [],
+                                   tbvText: nil,
+                                   hasTypingAnimation: false,
+                                   typingAnimationDuration: 0,
+                                   previousButtonIsHidden: true,
+                                   dismissButtonIsHidden: false,
+                                   showNextQuestionAutomated: false),
+                       qdmQuestion)
         }
     }
 }

@@ -57,7 +57,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     @IBAction func didTapClose() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
+        router?.dismiss()
     }
 
     @IBAction func didTapNext() {

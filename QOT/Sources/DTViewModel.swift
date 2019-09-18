@@ -33,12 +33,35 @@ struct DTViewModel {
     }
 
     struct Question {
-        let remoteId: Int
-        let title: String
-        let key: String
-        let answerType: AnswerType
-        let duration: Double
-        let maxSelections: Int
+        var remoteId: Int
+        var title: String
+        var key: String
+        var answerType: AnswerType
+        var duration: Double
+        var maxSelections: Int
+
+        init(remoteId: Int,
+             title: String,
+             key: String,
+             answerType: AnswerType,
+             duration: Double,
+             maxSelections: Int) {
+            self.remoteId = remoteId
+            self.title = title
+            self.key = key
+            self.answerType = answerType
+            self.duration = duration
+            self.maxSelections = maxSelections
+        }
+
+        init(qdmQuestion: QDMQuestion) {
+            self.remoteId = qdmQuestion.remoteID ?? 0
+            self.title = qdmQuestion.title
+            self.key = qdmQuestion.key ?? ""
+            self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? "") ?? .multiSelection
+            self.duration = qdmQuestion.layout?.animation?.duration ?? 0
+            self.maxSelections = qdmQuestion.maxPossibleSelections ?? 0
+        }
     }
 
     struct Answer: Equatable {
@@ -72,13 +95,13 @@ struct DTViewModel {
             self.decisions = [Decision(answer, newTargetId)]
         }
 
-        init?(qdmAnswer: QDMAnswer) {
+        init(qdmAnswer: QDMAnswer) {
             self.remoteId = qdmAnswer.remoteID ?? 0
-            self.title = qdmAnswer.title ?? ""
+            self.title = qdmAnswer.subtitle ?? ""
             self.keys = qdmAnswer.keys
-            self.selected = true
-            self.backgroundColor = .carbonNew
-            self.decisions = qdmAnswer.decisions.compactMap { Decision(qdmDecision: $0) }
+            self.selected = false
+            self.backgroundColor = .clear
+            self.decisions = []
         }
 
         static func == (lhs: DTViewModel.Answer, rhs: DTViewModel.Answer) -> Bool {
@@ -114,14 +137,6 @@ struct DTViewModel {
                 self.questionGroupId = answer.decisions.first?.questionGroupId
                 self.targetGroupId = answer.decisions.first?.targetGroupId
                 self.targetGroupName = answer.decisions.first?.targetGroupName
-            }
-
-            init(qdmDecision: QDMAnswerDecision?) {
-                self.targetType = .question
-                self.targetTypeId = qdmDecision?.targetTypeId
-                self.questionGroupId = qdmDecision?.questionGroupId
-                self.targetGroupId = qdmDecision?.targetGroupId
-                self.targetGroupName = qdmDecision?.targetGroupName
             }
         }
 
