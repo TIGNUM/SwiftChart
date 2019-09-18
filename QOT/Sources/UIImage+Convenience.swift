@@ -23,3 +23,13 @@ extension UIImage {
         self.init(cgImage: cgImage)
     }
 }
+
+extension UIImage {
+    func imageWithAlpha(alpha: CGFloat) -> UIImage {
+        UIGraphicsBeginImageContextWithOptions(size, false, scale)
+        draw(at: CGPoint(), blendMode: .normal, alpha: alpha)
+        guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return UIImage() }
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+}

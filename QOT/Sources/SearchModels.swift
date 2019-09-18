@@ -39,6 +39,7 @@ struct Search {
     }
 
     enum DisplayType: String {
+        case files
         case article
         case audio
         case video
@@ -47,14 +48,16 @@ struct Search {
 
         func mediaIcon() -> UIImage? {
             switch self {
+            case .files:
+                return R.image.ic_group()?.imageWithAlpha(alpha: 0.5)
             case .video:
-                return R.image.my_library_camera()
+                return R.image.ic_camera_sand()
             case .audio:
-                return R.image.my_library_listen()
+                return R.image.ic_audio_grey_light()
             case .pdf, .article:
-                return R.image.my_library_read()
+                return R.image.read()?.imageWithAlpha(alpha: 0.5)
             case .tool:
-                return R.image.ic_group_sand()
+                return R.image.ic_group()?.imageWithAlpha(alpha: 0.5)
             }
         }
 
@@ -78,6 +81,23 @@ struct Search {
     }
 
     static func resultFrom(_ contentCollections: [QDMContentCollection],
+                           filter: Filter,
+                           displayType: DisplayType) -> [Search.Result] {
+            return contentCollections.compactMap({
+                Search.Result(filter: filter,
+                              title: $0.title,
+                              contentID: $0.remoteID ?? 0,
+                              contentItemID: nil,
+                              createdAt: $0.createdAt ?? Date(),
+                              searchTags: "",
+                              section: ContentSection(rawValue: $0.section.rawValue),
+                              mediaURL: nil,
+                              displayType: displayType,
+                              duration: $0.contentItems.count > 1 ? String($0.contentItems.count) + " items" : "1 item")
+            })
+    }
+
+    static func articleResultFrom(_ contentCollections: [QDMContentCollection],
                            filter: Filter,
                            displayType: DisplayType) -> [Search.Result] {
         return contentCollections.compactMap({

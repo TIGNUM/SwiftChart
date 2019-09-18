@@ -10,6 +10,15 @@ import UIKit
 
 final class DTShortTBVPresenter: DTPresenter {
 
+    var shouldHideDismissButton: Bool = false
+
+    override func dismissButtonIsHidden(questionKey: String) -> Bool {
+        if shouldHideDismissButton {
+            return true
+        }
+        return super.dismissButtonIsHidden(questionKey: questionKey)
+    }
+
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == ShortTBV.QuestionKey.IntroMindSet
     }

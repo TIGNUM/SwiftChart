@@ -129,36 +129,3 @@ struct PrepareResult {
         static let REMINDER_ITEMS = 16
     }
 }
-
-extension QDMUserPreparation.Level {
-    var contentID: Int {
-        switch self {
-        case .LEVEL_ON_THE_GO: return 101256
-        case .LEVEL_DAILY: return 101258
-        case .LEVEL_CRITICAL: return 101260
-        default: return 0
-        }
-    }
-
-    var key: String? {
-        switch self {
-        case .LEVEL_ON_THE_GO: return nil
-        case .LEVEL_DAILY: return Prepare.AnswerKey.EventTypeSelectionDaily
-        case .LEVEL_CRITICAL: return Prepare.AnswerKey.EventTypeSelectionCritical
-        default: return nil
-        }
-    }
-}
-
-extension QDMUserPreparation {
-    typealias AnswerFilter = String
-}
-
-extension QDMUserPreparation.AnswerFilter {
-    static let perceived = "prepare_peak_prep_relationship_intentions_preceived"
-    static let know = "prepare_peak_prep_relationship_intentions_know"
-    static let feel = "prepare_peak_prep_relationship_intentions_feel"
-    static let benefits = "prepare_peak_prep_benefits_input"
-    static let benefitsTitle = "prepare_check_list_critical_benefits_title"
-    static let eventType = "prepare-event-type-selection-critical"
-}

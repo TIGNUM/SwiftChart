@@ -169,9 +169,9 @@ extension DecisionTreeWorker {
         return nil
     }
 
-    func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
-        prepareDelegate?.didUpdateIntentions(answers, prepareKey)
-    }
+//    func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
+//        prepareDelegate?.didUpdateIntentions(answersy)
+//    }
 
     func didUpdateBenefits(_ benefits: String) {
         prepareDelegate?.didUpdateBenefits(benefits)

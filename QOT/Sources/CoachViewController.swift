@@ -25,7 +25,8 @@ final class CoachViewController: BaseWithTableViewController, ScreenZLevelCoach 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .sand
+        ThemeView.qotTools.apply(view)
+        ThemeView.qotTools.apply(tableView)
         interactor?.viewDidLoad()
     }
 
@@ -52,7 +53,7 @@ extension CoachViewController {
 private extension CoachViewController {
 
     func setupTableView() {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 80, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.registerDequeueable(CoachTableViewCell.self)
     }
 }
@@ -84,6 +85,10 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
                                                            subtitle: coachModel?.headerSubtitle ?? "")
         default: return nil
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 90
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

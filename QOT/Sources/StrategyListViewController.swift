@@ -87,8 +87,8 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
         if let cell = tableView.cellForRow(at: indexPath) as? StrategyContentTableViewCell {
             cell.delegate = self
+            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
         }
-        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
     }
 }
 

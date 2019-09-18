@@ -56,14 +56,15 @@ extension NegativeToPositiveTableViewCell {
         ThemeText.resultTitle.apply(title, to: titleLabel)
 
         ThemeText.tbvQuestionLight.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_01 not set"], to: lowFirstItemLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[1, default: "lowItem_02 not set"], to: lowSecondItemLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_03 not set"], to: lowThirdItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[1, default: "lowItem_\(1) not set"], to: lowSecondItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_\(2) not set"], to: lowThirdItemLabel)
 
+        let indexHi = randomSet(max: highItems.count)
         ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
-        ThemeText.resultHeader2.apply(highItems[0, default: "highItem_01 not set"], to: highFirstItemLabel)
-        ThemeText.resultHeader2.apply(highItems[1, default: "highItem_02 not set"], to: highSecondItemLabel)
-        ThemeText.resultHeader2.apply(highItems[2, default: "highItem_03 not set"], to: highThirdItemLabel)
+        ThemeText.resultHeader2.apply(highItems[indexHi.index1, default: "highItem_\(indexHi.index1) not set"], to: highFirstItemLabel)
+        ThemeText.resultHeader2.apply(highItems[indexHi.index2, default: "highItem_\(indexHi.index2) not set"], to: highSecondItemLabel)
+        ThemeText.resultHeader2.apply(highItems[indexHi.index3, default: "highItem_\(indexHi.index3) not set"], to: highThirdItemLabel)
     }
 }
 
@@ -76,6 +77,23 @@ private extension NegativeToPositiveTableViewCell {
         highPerformanceView.layer.shadowOpacity = 0.2
         highPerformanceView.layer.shadowRadius = 5
         highPerformanceView.layer.shadowOffset = CGSize(width: -10, height: 0)
+    }
+
+    func randomSet(max: Int) -> (index1: Int, index2: Int, index3: Int) {
+        guard max >= 3 else {
+            return (0, 0, 0)
+        }
+
+        let index1 = Int.random(in: 0..<max)
+        var index2: Int = -1
+        while index2 < 0 || index2 == index1 {
+            index2 = Int.random(in: 0..<max)
+        }
+        var index3: Int = -1
+        while index3 < 0 || index3 == index1 || index3 == index2 {
+            index3 = Int.random(in: 0..<max)
+        }
+        return(index1, index2, index3)
     }
 
     func endSlide(for position: CGFloat) {

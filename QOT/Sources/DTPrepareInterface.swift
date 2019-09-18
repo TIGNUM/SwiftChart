@@ -41,4 +41,6 @@ protocol DTPrepareRouterInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
     func presentCalendarSettings()
     func presentEditEventController()
+    func didUpdatePrepareResults()
+    func dismissResultView()
 }
