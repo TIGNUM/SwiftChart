@@ -179,11 +179,11 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
-        let cancel = QOTAlertAction(title: cancelTitle)
-        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
-            self?.interactor?.didTapLeaveWithoutSaving()
-        }
-        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
+//        let cancel = QOTAlertAction(title: cancelTitle)
+//        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
+            interactor?.didTapLeaveWithoutSaving()
+//        }
+//        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
     }
 }
 
