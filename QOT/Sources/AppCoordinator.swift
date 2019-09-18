@@ -380,15 +380,18 @@ extension AppCoordinator {
                                                               shareableLink: latest.shareableLink)
                     ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
                 })
-            case .CALENDAR_EVENT:
-                if syncResult.syncRequestType == .UP_SYNC {
+            case .PREPARATION:
+                if syncResult.syncRequestType == .DOWN_SYNC {
                     UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                        log("preps with missing events : \(preps ?? [])")
+                        guard let preps = preps else { return }
+                        log("preps with missing events : \(preps)")
+                        let configurator = PreparationWithMissingEventConfigurator.make(preps)
+                        let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
+                        baseRootViewController?.present(viewController, animated: true, completion: nil)
                     })
                 }
             default: break
             }
-
         }
     }
 }

@@ -68,6 +68,7 @@ extension UIViewController {
         case is MyPrepsViewController: return "myqot.mypreps"
         case is AudioFullScreenViewController: return "fullscreen.audioplayer"
         case is PrepareResultsViewController: return "prepare.results"
+        case is PreparationWithMissingEventViewController: return "prepare.missing.event"
         case is MyLibraryCategoryListViewController: return "mylibrary"
         case is DailyCheckinStartViewController: return "dailyCheckin.start"
         case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
