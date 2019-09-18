@@ -15,6 +15,13 @@ final class DTShortTBVInteractor: DTInteractor {
     private lazy var tbvWorker: TBVWorker? = TBVWorker()
     private var tbv: QDMToBeVision?
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let presenter = self.presenter as? DTShortTBVPresenter, introKey == ShortTBV.QuestionKey.IntroOnboarding {
+            presenter.shouldHideDismissButton = true
+        }
+    }
+
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {
             return tbv
