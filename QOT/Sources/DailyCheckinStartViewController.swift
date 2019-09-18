@@ -30,6 +30,7 @@ final class DailyCheckinStartViewController: UIViewController, ScreenZLevel3 {
         dotsLoadingView.configure(dotsColor: .carbonDark)
         dotsLoadingView.startAnimation()
         interactor?.viewDidLoad()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -51,12 +52,12 @@ final class DailyCheckinStartViewController: UIViewController, ScreenZLevel3 {
 
 private extension DailyCheckinStartViewController {
 
-    func generateBottomNavigationBarRighButtonItems() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: buttonTitle,
-                                     buttonWidth: 121,
-                                     action: #selector(letsStartAction),
-                                     backgroundColor: .carbonDark,
-                                     borderColor: .clear)]
+    func generateBottomNavigationBarRighButtonItems() -> [UIBarButtonItem]? {
+        return [roundedBarButtonItem(title: self.buttonTitle,
+                                         buttonWidth: 121,
+                                         action: #selector(letsStartAction),
+                                         backgroundColor: .carbonDark,
+                                         borderColor: .clear)]
     }
 
     @objc func letsStartAction() {
@@ -76,7 +77,7 @@ private extension DailyCheckinStartViewController {
 extension DailyCheckinStartViewController: DailyCheckinStartViewControllerInterface {
 
     func setupView(title: String?, subtitle: String, buttonTitle: String?) {
-        isLoading = false
+
         titleLabel.text = title
         subtitleLabel.text = subtitle
         self.buttonTitle = buttonTitle ?? ""
@@ -90,6 +91,7 @@ extension DailyCheckinStartViewController: DailyCheckinStartViewControllerInterf
         }, completion: {[weak self] (value: Bool) in
             self?.dotsLoadingView.stopAnimation(nil)
             self?.lineView.isHidden = false
+            self?.isLoading = false
             self?.dotsLoadingView.isHidden = true
             self?.refreshBottomNavigationItems()
         })
