@@ -127,15 +127,6 @@ extension PrepareResultsWorker {
         return preparation?.relatedStrategyId ?? 0
     }
 
-    var saveToICal: Bool {
-        get { return preparation?.setICalDeepLink ?? false }
-        set {
-            dataModified = true
-            preparation?.setReminder = newValue
-            updateCalendarEventLink(isOn: newValue)
-        }
-    }
-
     var setReminder: Bool {
         get { return preparation?.setReminder ?? false }
         set {
@@ -176,8 +167,8 @@ extension PrepareResultsWorker {
     }
 
     func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
-        CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
-            let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventExternalUniqueIdentifierId ?? "" }.first
+        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
+            let selectedEvent = events?.filter { $0.storedExternalIdentifier == self?.preparation?.eventExternalUniqueIdentifierId ?? "" }.first
             if let event = selectedEvent {
                 completion(EKEventStore.shared.event(with: event))
             } else {
@@ -190,20 +181,17 @@ extension PrepareResultsWorker {
 // MARK: - Generate
 private extension PrepareResultsWorker {
     func updateCalendarEventLink(isOn: Bool) {
-        getEkEvent { [weak self] (ekEvent) in
+        getEkEvent { (ekEvent) in
             if isOn == true, let permissionsManager = AppCoordinator.permissionsManager {
-                permissionsManager.askPermission(for: [.calendar], completion: { [weak self] status in
+                permissionsManager.askPermission(for: [.calendar], completion: { status in
                     guard let status = status[.calendar] else { return }
                     switch status {
-                    case .granted:
-                        ekEvent?.addPreparationLink(preparationID: self?.preparation?.qotId ?? "")
                     case .later:
                         permissionsManager.updateAskStatus(.canAsk, for: .calendar)
                     default:
                         break
                     }
                 })
-                ekEvent?.addPreparationLink(preparationID: self?.preparation?.qotId ?? "")
             } else {
                 do {
                     try ekEvent?.removePreparationLink()
@@ -277,35 +265,13 @@ extension PrepareResultsWorker {
         self.benefits = benefits
         generateCriticalItemsAndUpdateView(preparation)
     }
-
-    func handleReminders() {
-        if saveToICal == true {
-            addPreparationLink(preparationID: preparation?.qotId)
-        } else {
-            removePreparationLink()
-        }
-    }
-
-    func addPreparationLink(preparationID: String?) {
-        guard let permissionManager = AppCoordinator.permissionsManager else { return }
-        getEKEvent()?.addPreparationLink(preparationID: preparationID, permissionsManager: permissionManager)
-    }
-
-    func removePreparationLink() {
-        do {
-            try getEKEvent()?.removePreparationLink()
-        } catch {
-            log("Error while trying to remove PreparationLink error: \(error.localizedDescription)", level: .debug)
-        }
-    }
 }
 
 // MARK: - Update, Delete
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
         guard let preparation = preparation else { return }
-        PreparationManager.main.update(preparation) { [weak self] (preparation) in
-            self?.handleReminders()
+        PreparationManager.main.update(preparation) { (preparation) in
             completion(preparation)
         }
     }

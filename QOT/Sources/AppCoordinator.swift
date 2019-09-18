@@ -342,7 +342,7 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION]
         guard let syncResult = notification.object as? SyncResultContext,
             syncResult.hasUpdatedContent,
             dataTypes.contains(obj: syncResult.dataType) else { return }
@@ -380,6 +380,12 @@ extension AppCoordinator {
                                                               shareableLink: latest.shareableLink)
                     ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
                 })
+            case .CALENDAR_EVENT:
+                if syncResult.syncRequestType == .UP_SYNC {
+                    UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
+                        log("preps with missing events : \(preps ?? [])")
+                    })
+                }
             default: break
             }
 

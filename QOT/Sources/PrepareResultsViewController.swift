@@ -273,10 +273,9 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
 
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
         switch type {
-        case .iCal:
-            interactor?.saveToICal = isOn
         case .reminder:
             interactor?.setReminder = isOn
+        default: break
         }
         refreshBottomNavigationItems()
     }

@@ -3155,6 +3155,7 @@
 				5F8A89882296CA530011A05C /* MyToBeVision */,
 				F9A5C93E22B7CD1C00AB2E94 /* Payment  */,
 				E813F0A02130053700C0723E /* PDFReader */,
+				DB51215423317907009BFF22 /* PreparationWithMissingEvent */,
 				AC103E362285AF4700F426F0 /* ResultsMindsetShifter  */,
 				3693539822983A78008BBB72 /* ResultsPrepare */,
 				AC1A40D122A54DC90022156C /* ResultsSolve */,
@@ -5575,6 +5576,13 @@
 				DB2969F222C64CB600B8A590 /* FullScreenBackgroundCircleView.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		DB51215423317907009BFF22 /* PreparationWithMissingEvent */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = PreparationWithMissingEvent;
 			sourceTree = "<group>";
 		};
 		DB5E5E5421763264006BA438 /* RestartRouteHandler */ = {
