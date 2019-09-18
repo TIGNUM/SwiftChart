@@ -45,14 +45,18 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.durationString.apply(durationString, to: durationLabel)
         var duration: String
         if numberOfItems > 1 {
-            iconFiles.isHidden = false
+            if format == .prepare {
+                iconRead.isHidden = false
+            } else { iconFiles.isHidden = false
+            }
         } else {
             iconRead.isHidden = format != .pdf
+            iconRead.isHidden = format != .prepare
             iconVideo.isHidden = format != .video
             iconAudio.isHidden = format != .audio
         }
 
-        if numberOfItems > 1 {
+        if numberOfItems > 1 && section == .QOTLibrary {
             duration = String(numberOfItems) + " items"
         } else { duration = ( durationString ?? "")
         }
