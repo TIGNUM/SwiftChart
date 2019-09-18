@@ -76,6 +76,7 @@
             <viewLayoutGuide key="safeArea" id="UKN-Gn-3Pf"/>
             <connections>
                 <outlet property="bucketTitle" destination="rjY-Qr-wDb" id="2Qj-nu-Jj6"/>
+                <outlet property="copyrightLabel" destination="Bgt-tp-HhS" id="DeT-jP-AXn"/>
                 <outlet property="feastImage" destination="38T-gA-UaZ" id="gs6-WE-ix2"/>
             </connections>
             <point key="canvasLocation" x="26.811594202898554" y="-131.25"/>

@@ -13,16 +13,18 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
-    @IBOutlet private weak var copyrightLabel: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
     var copyrightURL: String?
+    @IBOutlet private weak var copyrightLabel: UIButton!
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         ThemeText.dailyBriefSubtitle.apply(viewModel?.text, to: departureText)
+        copyrightURL = departureModel?.copyright ?? ""
+        copyrightLabel.isHidden = (copyrightURL == "")
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {

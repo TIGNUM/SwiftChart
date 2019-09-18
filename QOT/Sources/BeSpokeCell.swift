@@ -19,6 +19,7 @@ final class BeSpokeCell: BaseDailyBriefCell {
     @IBOutlet private weak var descriptionContainerView: UIView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
+    @IBOutlet private weak var copyrightLabel: UIButton!
 
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
@@ -30,5 +31,6 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.dailyBriefSubtitle.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         copyrightURL = viewModel?.copyright ?? ""
+        copyrightLabel.isHidden = (copyrightURL == "")
     }
 }

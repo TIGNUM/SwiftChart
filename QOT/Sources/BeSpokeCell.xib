@@ -141,6 +141,7 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="copyrightLabel" destination="jVf-cD-770" id="DKY-HB-Tku"/>
                 <outlet property="descriptionLabel" destination="VN7-Lf-srl" id="DzL-ma-Jh8"/>
                 <outlet property="firstImageView" destination="PTR-3c-Sm1" id="IKn-fn-B2V"/>
                 <outlet property="headingLabel" destination="MJM-he-tep" id="u4s-Ta-Job"/>
