@@ -29,7 +29,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     private var observers: [NSKeyValueObservation] = []
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        hideGotItButton()
+        updateGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -73,16 +73,19 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
         self.currentSprint = viewModel?.sprint
-        hideGotItButton()
+        updateGotItButton()
     }
 
-    private func hideGotItButton() {
+    private func updateGotItButton() {
         if self.currentSprint?.doneForToday == true {
-            gotItButton.isHidden = true
-            constraintContainerBottom.constant = 48
-        } else {
-            gotItButton.isHidden = false
+            ThemeView.audioPlaying.apply(gotItButton)
+            gotItButton.layer.borderWidth = 0
             constraintContainerBottom.constant = 109
+            gotItButton.isEnabled = false
+        } else {
+            ThemeView.sprints.apply(gotItButton)
+            constraintContainerBottom.constant = 109
+            gotItButton.isEnabled = true
         }
     }
 
