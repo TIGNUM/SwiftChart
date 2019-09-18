@@ -93,9 +93,10 @@ extension ToolsCollectionsInteractor {
             return
         }
         self.isMediaPlaying = true
-        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
-        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
+            let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        }
     }
 
     @objc func didPauseAudio(_ notification: Notification) {
@@ -103,9 +104,10 @@ extension ToolsCollectionsInteractor {
             return
         }
         self.isMediaPlaying = false
-        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
-        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
+            let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        }
     }
 
     @objc func didStopAudio(_ notification: Notification) {
@@ -113,8 +115,9 @@ extension ToolsCollectionsInteractor {
             return
         }
         self.isMediaPlaying = false
-        let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId})
-        let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool ?? 0)
-        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
+            let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
+            presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+        }
     }
 }
