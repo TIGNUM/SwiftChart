@@ -155,6 +155,12 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
+        content?.contentItems.filter { $0.tabs.isEmpty
+            && content?.contentCategoryTitle == "Exclusive 3DRecovery"
+            && $0.format != .pdf
+            && $0.format != .video }.forEach { item in
+                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+        }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
