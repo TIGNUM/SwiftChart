@@ -45,19 +45,21 @@ final class MyQotMainInteractor {
 
     private func createToBeVision(date: Date?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.toBeVision.rawValue]
-        let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
-        var subtitleVision: String?
-        if timeSinceMonth == 1 {
-            subtitleVision = "One month ago"
-        } else if timeSinceMonth  > 1 {
-            subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+        if date == nil {
+            item.subtitle = ""
+            return [item]
         } else {
-            subtitleVision = R.string.localized.myQotVisionLessThan()
+            let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
+            var subtitleVision: String?
+            if timeSinceMonth >= 3 {
+                item.showSubtitleInRed = true
+                subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+            } else {
+                subtitleVision = R.string.localized.myQotVisionLessThan()
+            }
+            item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
+            return [item]
         }
-        item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
-        item.showSubtitleInRed = true
-
-        return [item]
     }
 
     private func createProfile(userName: String?) -> [MyQotViewModel.Item] {

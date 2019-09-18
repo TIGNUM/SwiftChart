@@ -15,6 +15,7 @@ final class StrategyListInteractor {
     private let worker: StrategyListWorker
     private let presenter: StrategyListPresenterInterface
     private let router: StrategyListRouterInterface
+    private var isMediaPlaying = false
 
     // MARK: - Init
 
@@ -24,6 +25,10 @@ final class StrategyListInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        let notificationCenter = NotificationCenter.default
+        notificationCenter.addObserver(self, selector: #selector(didStartAudio(_:)), name: .didStartAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didPauseAudio(_:)), name: .didPauseAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
     }
 
     // MARK: - Interactor
@@ -36,6 +41,10 @@ final class StrategyListInteractor {
 // MARK: - StrategyListInteractorInterface
 
 extension StrategyListInteractor: StrategyListInteractorInterface {
+
+    var isPlaying: Bool {
+        return self.isMediaPlaying
+    }
 
     var headerTitle: String {
         return worker.headerTitle()
@@ -67,5 +76,39 @@ extension StrategyListInteractor: StrategyListInteractorInterface {
 
     func selectedStrategyId() -> Int {
         return worker.selectedStrategyId()
+    }
+}
+
+// FIXME: Refactor all logics in one place
+extension StrategyListInteractor {
+
+    @objc func didStartAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = true
+        let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didPauseAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
+    }
+
+    @objc func didStopAudio(_ notification: Notification) {
+        guard let mediaModel = notification.object as? MediaPlayerModel else {
+            return
+        }
+        self.isMediaPlaying = false
+        let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId})
+        let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool ?? 0)
+        presenter.audioPlayStateChangedForCellAt(indexPath: IndexPath(row: intOfIndex, section: 0))
     }
 }

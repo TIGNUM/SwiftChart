@@ -30,7 +30,13 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
     }
 
     var shouldDismissOnContinue: Bool {
-        return ShortTBV.QuestionKey.IntroOnboarding == introKey
+        switch introKey {
+        case ShortTBV.QuestionKey.IntroOnboarding,
+             ShortTBV.QuestionKey.IntroPrepare:
+            return true
+        default:
+            return false
+        }
     }
 
     func getTBV() -> QDMToBeVision? {

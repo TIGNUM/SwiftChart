@@ -39,6 +39,7 @@ class CreateAccountInfoViewController: UIViewController, ScreenZLevel3 {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+        refreshBottomNavigationItems()
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {

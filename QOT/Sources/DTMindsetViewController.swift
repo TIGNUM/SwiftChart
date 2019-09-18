@@ -15,6 +15,8 @@ final class DTMindsetViewController: DTViewController {
     var mindsetRouter: DTMindsetRouterInterface?
     var mindsetInteractor: DTMindsetInteractorInterface?
     weak var shortTBVDelegate: DTShortTBVDelegate?
+    private var introFilter: String?
+    private var mindsetTrigger: String?
 
     // MARK: - Init
     init(configure: Configurator<DTMindsetViewController>) {
@@ -31,13 +33,15 @@ final class DTMindsetViewController: DTViewController {
         let firstAnswer = selectedAnswers.first
         switch questionKey {
         case Mindset.QuestionKey.Intro?:
-            return firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            introFilter = firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            return introFilter
         case Mindset.QuestionKey.MoreInfo?:
-            var tempTitle = firstAnswer?.title.replacingOccurrences(of: " ", with: "_") ?? ""
-            tempTitle = tempTitle.replacingOccurrences(of: "\'", with: "")
-            return Mindset.Filter.TriggerRelationship + tempTitle
+            mindsetTrigger = firstAnswer?.keys
+                .filter { $0.starts(with: Mindset.Filter.TriggerRelationship) && $0 != introFilter }
+                .first
+            return mindsetTrigger
         case Mindset.QuestionKey.GutReactions?:
-            return firstAnswer?.keys.filter { $0.contains(Mindset.Filter.Relationship) }.first
+            return mindsetTrigger
         default:
             return nil
         }
