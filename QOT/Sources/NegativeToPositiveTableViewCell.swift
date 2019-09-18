@@ -55,11 +55,10 @@ extension NegativeToPositiveTableViewCell {
         ThemeView.tbvLowPerformance.apply(lowPerformanceView)
         ThemeText.resultTitle.apply(title, to: titleLabel)
 
-        let indexLo = randomSet(max: lowItems.count)
         ThemeText.tbvQuestionLight.apply(lowTitle, to: lowTitleLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[indexLo.index1, default: "lowItem_\(indexLo.index1) not set"], to: lowFirstItemLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[indexLo.index2, default: "lowItem_\(indexLo.index2) not set"], to: lowSecondItemLabel)
-        ThemeText.tbvQuestionLight.apply(lowItems[indexLo.index3, default: "lowItem_\(indexLo.index3) not set"], to: lowThirdItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[0, default: "lowItem_\(0) not set"], to: lowFirstItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[1, default: "lowItem_\(1) not set"], to: lowSecondItemLabel)
+        ThemeText.tbvQuestionLight.apply(lowItems[2, default: "lowItem_\(2) not set"], to: lowThirdItemLabel)
 
         let indexHi = randomSet(max: highItems.count)
         ThemeText.resultTitle.apply(highTitle, to: highTitleLabel)
@@ -81,6 +80,10 @@ private extension NegativeToPositiveTableViewCell {
     }
 
     func randomSet(max: Int) -> (index1: Int, index2: Int, index3: Int) {
+        guard max >= 3 else {
+            return (0, 0, 0)
+        }
+
         let index1 = Int.random(in: 0..<max)
         var index2: Int = -1
         while index2 < 0 || index2 == index1 {
