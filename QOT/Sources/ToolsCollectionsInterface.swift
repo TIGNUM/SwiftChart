@@ -23,7 +23,6 @@ protocol ToolsCollectionsPresenterInterface {
 
 protocol ToolsCollectionsInteractorInterface: Interactor {
     var isPlaying: Bool { get }
-    var videoTools: [Tool.Item] { get }
     var tools: [Tool.Item] { get }
     var rowCount: Int { get }
     var headerTitle: String { get }
@@ -39,6 +38,5 @@ protocol ToolsCollectionsRouterInterface {
 protocol ToolsCollectionsWorkerInterface {
     var headerTitle: String { get }
     func tools(_ completion: @escaping ([Tool.Item]) -> Void)
-    func videoTools(_ completion: @escaping ([Tool.Item]) -> Void)
     func selectedCategoryId() -> Int
 }

@@ -397,7 +397,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .About, .FAQ_3_0: return true
+        case .ToBeVisionGenerator, .FAQ_3_0: return true
         default: break
         }
         return false

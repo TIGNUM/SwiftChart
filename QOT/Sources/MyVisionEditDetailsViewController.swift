@@ -176,11 +176,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
             myVision.headline = titleTextView.text
         }
 
-        if descriptionTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            myVision.text = interactor.visionPlaceholderDescription
-        } else {
-            myVision.text = descriptionTextView.text
-        }
+        myVision.text = descriptionTextView.text
 
         myVision.modifiedAt = Date()
         return myVision

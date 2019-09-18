@@ -323,7 +323,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
         sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
             relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
-                                                                                           content.contentItems.first?.durationString,
+                                                                                           content.durationString,
                                                                                            content.remoteID ?? 0,
                                                                                            nil,
                                                                                            content.section,

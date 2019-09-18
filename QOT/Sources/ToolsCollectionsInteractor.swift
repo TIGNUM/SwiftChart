@@ -40,10 +40,7 @@ final class ToolsCollectionsInteractor {
         presenter.setupView()
         worker.tools { [weak self] tools in
             self?.toolItems = tools
-            self?.worker.videoTools({ (videos) in
-                self?.videoToolItems = videos
-                self?.presenter.reload()
-            })
+            self?.presenter.reload()
         }
     }
 }
@@ -64,9 +61,6 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
         return toolItems
     }
 
-    var videoTools: [Tool.Item] {
-        return videoToolItems
-    }
 
     var rowCount: Int {
         return toolItems.count
