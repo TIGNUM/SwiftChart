@@ -117,6 +117,7 @@ private extension PrepareResultsViewController {
         interactor?.didTapDismissView()
     }
 
+    //TODO This will not dismiss the last page.
     @objc func saveAndContinue() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
