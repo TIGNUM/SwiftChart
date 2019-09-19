@@ -29,7 +29,7 @@ extension MyQotSupportRouter: MyQotSupportRouterInterface {
         case .contactSupport: showNovartisSupportIfNeeded(email: email, for: item)
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
                                                   subject: "ID: Feature", id: item)
-        case .tutorial: presentTutorial()
+//        case .tutorial: presentTutorial()
         case .faq: presentFAQ()
         }
     }
