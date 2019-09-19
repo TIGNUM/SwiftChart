@@ -15,6 +15,13 @@ final class DTPreparePresenter: DTPresenter {
     weak var prepareViewController: DTPrepareViewControllerInterface?
     var intensionViewModel: DTViewModel?
 
+    override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
+        if answerType == .userInput {
+            hideNavigationButtonForAnimation()
+        }
+        return super.hasTypingAnimation(answerType: answerType, answers: answers)
+    }
+
     override func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         return intensionViewModel ?? super.createViewModel(presentationModel)
     }

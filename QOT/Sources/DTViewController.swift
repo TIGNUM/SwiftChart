@@ -98,7 +98,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
-//        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
