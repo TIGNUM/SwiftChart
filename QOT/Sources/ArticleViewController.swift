@@ -142,10 +142,14 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
                     nightModeBarButtonItem,
                     textScaleBarButtonItem,
                     shareBarButtonItem]
-        }
+        } else if interactor?.categoryTitle == "ABOUT US 3.0" {
+            return [nightModeBarButtonItem,
+                    textScaleBarButtonItem]
+        } else {
         return [bookMarkBarButtonItem,
                 nightModeBarButtonItem,
                 textScaleBarButtonItem]
+        }
     }()
 
     private var lastScrollViewOffsetY: CGFloat = 0.0

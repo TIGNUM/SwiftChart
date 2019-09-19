@@ -21,7 +21,9 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(articleHeader: Article.Header?) {
         guard let articleHeader = articleHeader else { return }
-        ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+        if articleHeader.categoryTitle != "ABOUT US 3.0" {
+            ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+        }
         ThemeText.articleTitle.apply(articleHeader.title.uppercased(), to: titleLabel)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
