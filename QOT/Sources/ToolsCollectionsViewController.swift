@@ -24,7 +24,7 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
         case sections
     }
     @IBOutlet weak var backButton: UIButton!
-    
+
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)

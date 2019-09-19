@@ -313,14 +313,14 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
+        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
             return nil
         }
         return [dismissNavigationItem(action: #selector(openConfirmationView))]
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
+        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
             return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),

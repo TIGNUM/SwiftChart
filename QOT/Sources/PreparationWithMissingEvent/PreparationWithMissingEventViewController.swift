@@ -137,7 +137,7 @@ extension PreparationWithMissingEventViewController: UITableViewDelegate {
         didSelectRow(at: indexPath)
         interactor!.updatePreparation(with: interactor!.eventAt(indexPath.row))
     }
-    
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 95
     }
