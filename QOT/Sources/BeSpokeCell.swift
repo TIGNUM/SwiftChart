@@ -32,8 +32,8 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.bespokeTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        let copyrightURL = viewModel?.copyright
-        if copyrightURL?.isEmpty ?? true {
+        self.copyrightURL = viewModel?.copyright
+        if self.copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0
             labelToTop.constant = 22
             copyrightLabel.isHidden = true
