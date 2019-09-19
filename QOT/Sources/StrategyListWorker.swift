@@ -90,7 +90,7 @@ final class StrategyListWorker {
                                            imageURL: nil,
                                            mediaItem: firstAudioItem,
                                            contentItems: contentCollection.contentItems,
-                                           valueDuration: contentCollection.secondsRequired))
+                                           valueDuration: Int(firstAudioItem?.valueDuration ?? 0)))
             }
             self?.strategies = items
             self?.interactor?.reloadData()
