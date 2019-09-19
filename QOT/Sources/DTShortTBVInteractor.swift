@@ -13,7 +13,6 @@ final class DTShortTBVInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var tbvWorker: TBVWorker? = TBVWorker()
-    private var tbv: QDMToBeVision?
 
     override func viewDidLoad() {
         super.viewDidLoad()

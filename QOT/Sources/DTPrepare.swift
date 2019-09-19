@@ -22,6 +22,10 @@ struct Prepare {
         static let Last = "prepare_key_last"
     }
 
+    struct QuestionTargetId {
+        static let IntentionPerceived = 100326
+    }
+
     struct AnswerKey {
         static let OpenCheckList = "open_preparation_check_list_on_the_go"
         static let EventTypeSelectionDaily = "open_preparation_event_selection_daily"

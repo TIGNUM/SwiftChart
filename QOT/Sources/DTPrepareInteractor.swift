@@ -19,7 +19,6 @@ final class DTPrepareInteractor: DTInteractor {
     private var preparations: [QDMUserPreparation] = []
     private var eventsInitiated = false
     private var preparationsInitiated = false
-    private var tbv: QDMToBeVision?
     private var createdUserCalendarEvent: QDMUserCalendarEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
@@ -33,13 +32,6 @@ final class DTPrepareInteractor: DTInteractor {
         prepareWorker?.getPreparations { [weak self] (preparations, initiated) in
             self?.preparations = preparations
             self?.preparationsInitiated = initiated
-        }
-    }
-
-    override func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        super.getUsersTBV { (tbv, initiated) in
-            self.tbv = tbv
-            completion(tbv, initiated)
         }
     }
 

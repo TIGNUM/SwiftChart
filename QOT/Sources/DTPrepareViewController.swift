@@ -40,9 +40,14 @@ final class DTPrepareViewController: DTViewController {
 
     override func didTapNext() {
         if resultsDelegate != nil {
-            let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
-            resultsDelegate?.didUpdateIntentions(answerIds)
-            prepareRouter?.dismissResultView()
+            if viewModel?.question.key == Prepare.QuestionKey.BenefitsInput {
+                resultsDelegate?.didUpdateBenefits(prepareInteractor?.inputText ?? "")
+                prepareRouter?.dismissResultView()
+            } else {
+                let answerIds = viewModel?.selectedAnswers.compactMap { $0.remoteId } ?? []
+                resultsDelegate?.didUpdateIntentions(answerIds)
+                prepareRouter?.dismissResultView()
+            }
             return
         }
 
@@ -133,6 +138,9 @@ private extension DTPrepareViewController {
             } else {
                 self?.prepareRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroPrepare,
                                                            delegate: self?.prepareInteractor) { [weak self] in
+                                                            let targetAnswer = DTViewModel.Answer(answer: answer,
+                                                                                                  newTargetId: Prepare.QuestionTargetId.IntentionPerceived)
+                                                            self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }
             }
