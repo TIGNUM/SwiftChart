@@ -15,13 +15,20 @@ final class FeastCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addOtherView(feastImage)
+    }
+
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     func configure(with viewModel: FeastCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
-        feastImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        copyrightURL = viewModel?.copyright ?? ""
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        copyrightURL = model.copyright ?? ""
     }
 }

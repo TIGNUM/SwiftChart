@@ -21,14 +21,20 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addSubtitle(title)
+        skeletonManager.addSubtitle(subtitle)
+        skeletonManager.addSubtitle(content)
+        skeletonManager.addOtherView(button)
     }
 
     func configure(with: GuidedTrackViewModel?, _ hideDivider: Bool) {
-        title.text = with?.bucketTitle
-        subtitle.text = with?.levelTitle
-        content.text = with?.content
-        self.appLink = with?.appLink
-        button.setTitle(with?.buttonText, for: .normal)
+        guard let model = with else { return }
+        skeletonManager.hide()
+        title.text = model.bucketTitle
+        subtitle.text = model.levelTitle
+        content.text = model.content
+        self.appLink = model.appLink
+        button.setTitle(model.buttonText, for: .normal)
         dividerView.isHidden = hideDivider
     }
 

@@ -13,9 +13,17 @@ final class ThoughtsCell: BaseDailyBriefCell {
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(authorLabel)
+        skeletonManager.addSubtitle(thoughtLabel)
+    }
+
     func configure(with viewModel: ThoughtsCellViewModel?) {
-        ThemeText.quotation.apply(viewModel?.thought, to: thoughtLabel)
-        ThemeText.quoteAuthor.apply(viewModel?.author, to: authorLabel)
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.quotation.apply(model.thought, to: thoughtLabel)
+        ThemeText.quoteAuthor.apply(model.author, to: authorLabel)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
     }
 }

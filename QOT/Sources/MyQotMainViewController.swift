@@ -44,7 +44,6 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
     }
 
     override func viewWillAppear(_ animated: Bool) {

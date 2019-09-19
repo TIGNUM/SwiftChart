@@ -16,10 +16,17 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var introTextLabel: UILabel!
     @IBOutlet weak var strategyView: UIView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(introTextLabel)
+        skeletonManager.addOtherView(strategyView)
+    }
+
     func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: self.bucketTitle)
         ThemeText.dailyBriefSubtitle.apply(introText, to: introTextLabel)
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)
         timeOfDayPosition.constant = labelPosition ?? 0
+        skeletonManager.hide()
     }
 }

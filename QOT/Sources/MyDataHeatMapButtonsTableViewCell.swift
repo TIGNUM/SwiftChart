@@ -30,6 +30,7 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupButtons()
         skeletonManager.addOtherView(dailyIRButton)
         skeletonManager.addOtherView(fiveDaysRollingIRButton)
     }

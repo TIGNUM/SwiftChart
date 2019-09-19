@@ -79,6 +79,10 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
         return worker.firstLoad
     }
 
+    func getDatasourceLoaded() -> Bool {
+        return worker.datasourceLoaded
+    }
+
     func getSwitchButtonsTitles() -> [String] {
         return worker.myDataHeatMapButtonTitles()
     }

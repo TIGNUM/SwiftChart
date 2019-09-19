@@ -362,6 +362,7 @@
                 <outlet property="loadRefrence" destination="2uj-Yp-X4s" id="uTY-LA-QQF"/>
                 <outlet property="loadSubtitle" destination="bsD-GU-oFc" id="ghw-7A-35N"/>
                 <outlet property="loadTitle" destination="GK8-ZS-BA2" id="SGH-TZ-ecD"/>
+                <outlet property="mainStackView" destination="oE2-5Z-F6x" id="xFu-aO-Xus"/>
                 <outlet property="moreData" destination="7iz-cZ-qYd" id="OBh-AY-RYF"/>
                 <outlet property="refLabel1" destination="7Pd-sS-Feo" id="XaE-hh-rRF"/>
                 <outlet property="refLabel2" destination="Iyu-z4-6kN" id="VYo-2b-awR"/>

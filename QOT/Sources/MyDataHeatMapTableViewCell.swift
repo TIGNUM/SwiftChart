@@ -31,13 +31,14 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupCalendarView()
+        ThemeView.level2.apply(self)
         skeletonManager.addSubtitle(topColorLabel)
         skeletonManager.addSubtitle(bottomColorLabel)
         skeletonManager.addOtherView(topColorView)
         skeletonManager.addOtherView(bottomColorView)
         skeletonManager.addOtherView(calendarContentView)
-        setupCalendarView()
-        ThemeView.level2.apply(self)
+        skeletonManager.addSubtitle(monthYearLabel)
     }
 
     // MARK: - Public

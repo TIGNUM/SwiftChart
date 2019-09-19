@@ -65,7 +65,6 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
                                                name: .didUpdateDailyBriefBuckets, object: nil)
-        self.showLoadingSkeleton(with: [.dailyBrief])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -280,7 +279,7 @@ private extension DailyBriefViewController {
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
         interactor?.getDailyBriefBucketsForViewModel()
-        removeLoadingSkeleton()
+//        removeLoadingSkeleton()
     }
 }
 
@@ -301,14 +300,6 @@ private extension DailyBriefViewController {
                         }, tapRight: { [weak self] in
                             self?.delegate?.moveToCell(item: 2)
                     })
-        if impactReadinessCellViewModel?.domainModel?.dailyCheckInResult == nil,
-            impactReadinessCellViewModel?.domainModel?.dailyCheckInAnswerIds?.isEmpty != false {
-            cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
-        } else {
-            cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
-            cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
-            cell.impactReadinessButton.imageEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: -8.0)
-        }
         cell.delegate = self
         return cell
     }
@@ -679,7 +670,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
         if differenceList.count > 0 {
-            self.removeLoadingSkeleton()
+//            self.removeLoadingSkeleton()
         }
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor?.updateViewModelListNew(data)
@@ -733,7 +724,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(MeAtMyBestEmptyCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
-        tableView.registerDequeueable(GuidedTrackTableViewCell.self)
         tableView.registerDequeueable(GuidedTrackSectionCell.self)
         tableView.registerDequeueable(GuidedTrackRowCell.self)
         tableView.registerDequeueable(ImpactReadiness1.self)

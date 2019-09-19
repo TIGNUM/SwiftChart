@@ -13,16 +13,24 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
-    @IBOutlet private weak var copyrightLabel: UILabel!
+
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
     var copyrightURL: String?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(departureText)
+        skeletonManager.addOtherView(departureImage)
+    }
+
     func configure(with viewModel: DepartureInfoCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
-        self.departureModel = viewModel
-        departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.text, to: departureText)
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        self.departureModel = model
+        departureImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        ThemeText.dailyBriefSubtitle.apply(model.text, to: departureText)
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {
