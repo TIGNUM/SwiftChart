@@ -51,7 +51,6 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
         qot_dal.ContentService.main.getContentCollectionById(contentCollectionId) { [weak self] (contentCollection) in
             self?.selectedTool = contentCollection
             let count = contentCollection?.contentItems.count ?? 0
-            let firstItemFormat = contentCollection?.contentItems.first?.format.rawValue ?? ""
             self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in
                 Tool.Item(remoteID: contentItem.remoteID ?? 0,
                           categoryTitle: "",
@@ -63,7 +62,7 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
                           isCollection: false,
                           contentCollectionId: contentCollection?.remoteID ?? 0,
                           numberOfItems: count,
-                          type: firstItemFormat)
+                          type: contentItem.format.rawValue)
             }) ?? []
             completion()
         }
