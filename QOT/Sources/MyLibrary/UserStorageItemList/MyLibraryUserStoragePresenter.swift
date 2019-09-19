@@ -41,4 +41,8 @@ extension MyLibraryUserStoragePresenter: MyLibraryUserStoragePresenterInterface 
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
         viewController?.presentAlert(title: title, message: message, buttons: buttons)
     }
+
+    func presentNoInternetAlert() {
+        viewController?.showNoInternetConnectionAlert()
+    }
 }

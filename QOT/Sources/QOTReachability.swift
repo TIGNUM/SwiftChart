@@ -16,6 +16,7 @@ enum ReachabilityStatus {
 
 protocol QOTReachabilityInterface {
 
+    var status: ReachabilityStatus { get }
     var isReachableOnEthernetOrWiFi: Bool { get }
     var isReachable: Bool { get }
     var onStatusChange: ((ReachabilityStatus) -> Void)? { get }
@@ -26,6 +27,10 @@ class QOTReachability: QOTReachabilityInterface {
     var onStatusChange: ((ReachabilityStatus) -> Void)?
 
     private let reachability = Reachability(hostName: environment.baseURL.host ?? "http://google.com")
+
+    var status: ReachabilityStatus {
+        return convert(reachability?.currentReachabilityStatus())
+    }
 
     var isReachableOnEthernetOrWiFi: Bool {
         guard let status = reachability?.currentReachabilityStatus() else {
@@ -56,12 +61,18 @@ class QOTReachability: QOTReachabilityInterface {
     @objc func checkForReachability(notification: NSNotification) {
         guard let networkReachability = notification.object as? Reachability else { return }
         let remoteHostStatus = networkReachability.currentReachabilityStatus()
-        let status: ReachabilityStatus
-        switch remoteHostStatus {
-        case .NotReachable: status = .notReachable
-        case .ReachableViaWiFi: status = .ethernetOrWiFi
-        case .ReachableViaWWAN: status = .wwan
+        onStatusChange?(convert(remoteHostStatus))
+    }
+}
+
+// MARK: - Private methods
+private extension QOTReachability {
+    func convert(_ status: NetworkStatus?) -> ReachabilityStatus {
+        guard let status = status else { return .notReachable }
+        switch status {
+        case .NotReachable: return .notReachable
+        case .ReachableViaWiFi: return .ethernetOrWiFi
+        case .ReachableViaWWAN: return .wwan
         }
-        onStatusChange?(status)
     }
 }
