@@ -13,19 +13,19 @@ struct MyQotSupportModel {
 
     enum MyQotSupportModelItem: Int {
         case featureRequest
-        case tutorial
+//        Tutorial will be added back later
+//        case tutorial
         case contactSupport
         case faq
 
         static var supportValues: [MyQotSupportModelItem] {
-            return [.featureRequest, .tutorial, .contactSupport, .faq]
+            return [.featureRequest, .contactSupport, .faq]
         }
 
         var primaryKey: Int {
             switch self {
             case .contactSupport: return 101192
-            case .featureRequest,
-                 .tutorial: return 0
+            case .featureRequest: return 0
             case .faq: return 100704
             }
         }
@@ -36,8 +36,8 @@ struct MyQotSupportModel {
                 return Tags.SupportContactSupport
             case .featureRequest:
                 return Tags.SupportFeatureRequest
-            case .tutorial:
-                return Tags.SupportTutorial
+//            case .tutorial:
+//                return Tags.SupportTutorial
             case .faq:
                 return Tags.SupportFaq
             }
@@ -49,8 +49,8 @@ struct MyQotSupportModel {
                 return Tags.SupportAreYouMissingSomething
             case .featureRequest:
                 return Tags.SupportLearnHowToUseQot
-            case .tutorial:
-                return Tags.SupportContactUsForAnyQuestion
+//            case .tutorial:
+//                return Tags.SupportContactUsForAnyQuestion
             case .faq:
                 return Tags.SupportCheckTheMostAskedQuestion
             }
@@ -74,7 +74,8 @@ struct MyQotSupportModel {
                 contentService.getContentCollectionById(primaryKey) { (collection) in
                     completion(collection)
                 }
-            case .featureRequest, .tutorial:
+            case .featureRequest:
+//                 .tutorial:
                  completion(nil)
             case .faq:
                 contentService.getContentCollectionById(primaryKey) { (collection) in
