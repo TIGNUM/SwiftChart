@@ -54,7 +54,8 @@ private extension DTShortTBVViewController {
     func setAnswerSelectedIfNeeded() {
         switch viewModel?.question.key {
         case ShortTBV.QuestionKey.IntroMindSet?,
-             ShortTBV.QuestionKey.Home?:
+             ShortTBV.QuestionKey.Home?,
+             ShortTBV.QuestionKey.IntroOnboarding?:
             if var answer = viewModel?.answers.first {
                 answer.setSelected(true)
                 viewModel?.setSelectedAnswer(answer)

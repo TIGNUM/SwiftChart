@@ -79,9 +79,9 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func loadPreviousQuestion() {
-        if presentedNodes.isEmpty == false {
+        if !presentedNodes.isEmpty {
             presentedNodes.removeLast()
-            if selectedAnswers.isEmpty == false {
+            if !selectedAnswers.isEmpty {
                 selectedAnswers.removeLast()
             }
             let lastNode = presentedNodes.last
