@@ -14,6 +14,7 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
 
     // MARK: - Properties
     let digitsActiveOffset: CGFloat = -230
+    let codeEntryViewsDisabledAlpha: CGFloat = 0.3
 
     private let helpEmail = Defaults.firstLevelSupportEmail
     private let viewTheme = ThemeView.onboarding
@@ -32,6 +33,7 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
     @IBOutlet var sendButtonYPosition: NSLayoutConstraint!
     @IBOutlet weak var buttonSendCode: UIButton!
     @IBOutlet weak var buttonGetHelp: UIButton!
+    @IBOutlet var codeEntryViews: [UIView]!
 
     var preSetUserEmail: String?
     var cachedToBeVision: QDMToBeVision?
@@ -93,6 +95,7 @@ private extension OnboardingLoginViewController {
             digitTextField.textFieldDelegate = self
             digitTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
         }
+        updateCodeEntry(isEnabled: false)
     }
 
     func loadEmailTextFieldDefaultUI() {
@@ -143,6 +146,7 @@ private extension OnboardingLoginViewController {
             self.buttonSendCode.alpha = 0
             self.emailField.alpha = 0
             self.emailInstructionsLabel.alpha = 0
+            self.updateCodeEntry(isEnabled: true)
         }
     }
 
@@ -155,6 +159,7 @@ private extension OnboardingLoginViewController {
             self.emailInstructionsLabel.alpha = 1
         }
 
+        updateCodeEntry(isEnabled: false)
         buttonGetHelp.setTitle(R.string.localized.onboardingLoginButtonGetHelp(), for: .normal)
         buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
         buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
@@ -186,6 +191,13 @@ private extension OnboardingLoginViewController {
         mail.mailComposeDelegate = self
         mail.setToRecipients([helpEmail])
         present(mail, animated: true)
+    }
+
+    func updateCodeEntry(isEnabled: Bool) {
+        codeEntryViews.forEach {
+            $0.alpha = isEnabled ? 1 : codeEntryViewsDisabledAlpha
+            $0.isUserInteractionEnabled = isEnabled
+        }
     }
 }
 
@@ -335,6 +347,7 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
     }
 
     func beginCodeEntry() {
+        updateCodeEntry(isEnabled: true)
         emailField.textField.resignFirstResponder()
         digitTextFields.first?.becomeFirstResponder()
     }
