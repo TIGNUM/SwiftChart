@@ -87,6 +87,7 @@
             <viewLayoutGuide key="safeArea" id="E4y-S7-qPw"/>
             <connections>
                 <outlet property="bucketTitle" destination="ldI-hy-OZt" id="jUC-PJ-VuW"/>
+                <outlet property="copyrightButtonHeight" destination="fAc-7Z-5FA" id="2mm-w2-KN2"/>
                 <outlet property="copyrightLabel" destination="iEN-DF-pwm" id="86a-qd-Cmg"/>
                 <outlet property="departureImage" destination="y6D-ng-z8U" id="YpZ-wZ-WRI"/>
                 <outlet property="departureText" destination="rzr-sH-xjU" id="4rq-fu-Frs"/>

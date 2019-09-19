@@ -76,6 +76,7 @@
             <viewLayoutGuide key="safeArea" id="UKN-Gn-3Pf"/>
             <connections>
                 <outlet property="bucketTitle" destination="rjY-Qr-wDb" id="2Qj-nu-Jj6"/>
+                <outlet property="copyrightButtonHeight" destination="Ov3-du-GgK" id="YGr-Hk-Vhn"/>
                 <outlet property="copyrightLabel" destination="Bgt-tp-HhS" id="DeT-jP-AXn"/>
                 <outlet property="feastImage" destination="38T-gA-UaZ" id="gs6-WE-ix2"/>
                 <outlet property="imageToBottom" destination="ZUF-Bc-MLI" id="Ho7-5M-bGw"/>

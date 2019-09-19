@@ -17,6 +17,7 @@ final class BeSpokeCell: BaseDailyBriefCell {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var tilteContainerView: UIView!
     @IBOutlet private weak var descriptionContainerView: UIView!
+    @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
     @IBOutlet private weak var copyrightLabel: UIButton!
@@ -31,9 +32,9 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.bespokeTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        copyrightURL = viewModel?.copyright ?? ""
-        if copyrightURL == "" {
-            copyrightLabel.frame.size.height = 0
+        let copyrightURL = viewModel?.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
             labelToTop.constant = 22
             copyrightLabel.isHidden = true
         }
