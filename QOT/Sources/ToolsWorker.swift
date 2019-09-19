@@ -53,9 +53,4 @@ extension ToolsWorker: ToolsWorkerInterface {
                                                   title: ScreenTitleService.main.toolSectionTitles(for: $0),
                                                   subtitle: "Number of Tools") })
     }
-
-    func trackingKeys(at indexPath: IndexPath) -> String {
-        guard let item = ToolSection.sectionValues.at(index: indexPath.row) else { return "UNKNOWN_TOOL_TRACKING_KEYS" }
-        return item.trackingKeys()
-    }
 }

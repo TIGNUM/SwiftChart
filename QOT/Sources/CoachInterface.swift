@@ -20,7 +20,6 @@ protocol CoachPresenterInterface {
 
 protocol CoachInteractorInterface: Interactor {
     func handleTap(coachSection: CoachSection)
-    func trackingKeys(at indexPath: IndexPath) -> String
 }
 
 protocol CoachRouterInterface {

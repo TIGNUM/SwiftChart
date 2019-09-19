@@ -15,25 +15,6 @@ enum CoachSection: Int, CaseIterable {
     case sprint
     case event
     case challenge
-
-    func tag() -> Tags {
-        switch self {
-        case .search:
-            return .CoachSearch
-        case .tools:
-            return .CoachTools
-        case .sprint:
-            return .CoachSprint
-        case .event:
-            return .CoachEvent
-        case .challenge:
-            return .CoachChallenge
-        }
-    }
-
-    func trackingKeys() -> String {
-        return tag().rawValue
-    }
 }
 
 struct CoachModel {

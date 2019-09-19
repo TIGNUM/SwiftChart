@@ -41,8 +41,4 @@ extension CoachInteractor: CoachInteractorInterface {
     func handleTap(coachSection: CoachSection) {
         router.handleTap(coachSection: coachSection)
     }
-
-    func trackingKeys(at indexPath: IndexPath) -> String {
-        return worker.trackingKeys(at: indexPath)
-    }
 }
