@@ -53,7 +53,7 @@ final class MyQotMainInteractor {
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
                 item.showSubtitleInRed = true
-                subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+                subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: timeSinceMonth) + R.string.localized.myQotVisionMonthsSince()
             } else {
                 subtitleVision = R.string.localized.myQotVisionLessThan()
             }
