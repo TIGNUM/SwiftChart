@@ -221,8 +221,10 @@ private extension SolveResultsWorker {
 private extension SolveResultsWorker {
     func createRecoveryItems(_ completion: @escaping (SolveResults) -> Void) {
         var items: [SolveResults.Item] = []
-        let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [])
-        let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [])
+        let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [],
+                                           headerTitle: R.string.localized.headerTitleExclusiveContent())
+        let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [],
+                                         headerTitle: R.string.localized.headerTitleSuggestedStrategies())
         recoveryHeader { [weak self] (headerItem) in
             self?.fatigueSymptom { [weak self] (fatigueItem) in
                 self?.cause { (causeItem) in
@@ -261,21 +263,15 @@ private extension SolveResultsWorker {
         }
     }
 
-    func strategyItems(_ contentCollections: [QDMContentCollection]) -> [SolveResults.Item] {
+    func strategyItems(_ contentCollections: [QDMContentCollection], headerTitle: String) -> [SolveResults.Item] {
         var strategyItem: [SolveResults.Item] = []
         for (index, collection) in contentCollections.enumerated() {
             strategyItem.append(.strategy(id: collection.remoteID ?? 0,
                                           title: collection.title,
                                           minsToRead: collection.durationString,
                                           hasHeader: index == 0,
-                                          headerTitle: R.string.localized.headerTitleExclusiveContent()))
+                                          headerTitle: headerTitle))
         }
         return strategyItem
-    }
-
-    func exclusiveContent(_ ids: [Int], _ completion: @escaping ([SolveResults.Item]) -> Void) {
-        ContentService.main.getContentCollectionsByIds(ids) { [weak self] (exclusiveCollections) in
-            completion(self?.strategyItems(exclusiveCollections ?? []) ?? [])
-        }
     }
 }
