@@ -71,9 +71,9 @@ struct Recovery {
             return .general
         }
 
-        let cognitiveCount = keys.filter { $0.contains(FatigueSymptom.cognitive.answerFilter) }.count
-        let emotionalCount = keys.filter { $0.contains(FatigueSymptom.emotional.answerFilter) }.count
-        let physicalCount = keys.filter { $0.contains(FatigueSymptom.physical.answerFilter) }.count
+        let cognitiveCount = keys.filter { $0.contains(Recovery.AnswerKey.Cognitive) }.count
+        let emotionalCount = keys.filter { $0.contains(Recovery.AnswerKey.Emotional) }.count
+        let physicalCount = keys.filter { $0.contains(Recovery.AnswerKey.Physical) }.count
 
         if cognitiveCount == emotionalCount && cognitiveCount == physicalCount {
             return .general
