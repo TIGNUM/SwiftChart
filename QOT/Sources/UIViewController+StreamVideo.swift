@@ -75,6 +75,10 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
         }
         QOTAlert.show(title: interactor.noWifiTitle, message: interactor.noWifiMessage, bottomItems: [cancel, buttonContinue])
     }
+
+    func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface) {
+        self.showNoInternetConnectionAlert()
+    }
 }
 
 extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
