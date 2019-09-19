@@ -61,7 +61,6 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
         return toolItems
     }
 
-
     var rowCount: Int {
         return toolItems.count
     }
