@@ -22,14 +22,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RsR-cq-Hfn">
-                    <rect key="frame" x="24" y="697.5" width="366" height="76.5"/>
-                    <string key="text">Great work in developing your prepare plan to rule your impact (text to be added). This preparation will be saved for you in MyQOT so that you can review it as needed.</string>
+                    <rect key="frame" x="24" y="661.5" width="366" height="76.5"/>
+                    <string key="text">!!!Great work in developing your prepare plan to rule your impact (text to be added). This preparation will be saved for you in MyQOT so that you can review it as needed.</string>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PAD-Tm-Udg">
-                    <rect key="frame" x="24" y="680.5" width="16" height="1"/>
+                    <rect key="frame" x="24" y="644.5" width="16" height="1"/>
                     <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="eEd-AQ-seN"/>
@@ -41,7 +41,7 @@
             <constraints>
                 <constraint firstItem="PAD-Tm-Udg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Wsf-oT-hI8"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="RsR-cq-Hfn" secondAttribute="trailing" constant="24" id="Zmf-Mu-lXl"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RsR-cq-Hfn" secondAttribute="bottom" constant="88" id="eop-iR-zcc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="RsR-cq-Hfn" secondAttribute="bottom" constant="124" id="eop-iR-zcc"/>
                 <constraint firstItem="RsR-cq-Hfn" firstAttribute="top" secondItem="PAD-Tm-Udg" secondAttribute="bottom" constant="16" id="q1j-cd-GS3"/>
                 <constraint firstItem="RsR-cq-Hfn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="qV8-Rg-fyS"/>
             </constraints>

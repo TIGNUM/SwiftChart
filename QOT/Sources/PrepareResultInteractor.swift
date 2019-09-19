@@ -82,7 +82,11 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didTapDismissView() {
-        router.dismiss()
+        if worker.canDelete {
+            router.dismissChatBotFlow()
+        } else {
+            router.dismiss()
+        }
     }
 
     func didTapLeaveWithoutSaving() {
