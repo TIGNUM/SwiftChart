@@ -11,7 +11,6 @@ import Anchorage
 import qot_dal
 
 protocol PrepareResultsDelegatge: class {
-    func dismissResultView()
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
@@ -117,12 +116,10 @@ private extension PrepareResultsViewController {
         interactor?.didTapDismissView()
     }
 
-    //TODO This will not dismiss the last page.
     @objc func saveAndContinue() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
         let resultInfoWeAreDoneHereView = PrepareResultsInfoView.instantiateFromNib()
-        resultInfoWeAreDoneHereView.delegate = self
         view.addSubview(resultInfoWeAreDoneHereView)
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
         resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
@@ -286,7 +283,6 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
         refreshBottomNavigationItems()
     }
 
-    //TODO Add nice animation
     func dismissResultView() {
         interactor?.didTapDismissView()
     }

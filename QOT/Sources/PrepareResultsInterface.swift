@@ -23,7 +23,7 @@ protocol PrepareResultsPresenterInterface {
     func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
-protocol PrepareResultsInteractorInterface: Interactor {
+protocol PrepareResultsInteractorInterface: Interactor {    
     var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
     var dataModified: Bool { get }
@@ -47,6 +47,7 @@ protocol PrepareResultsRouterInterface {
     func presentRelatedArticle(readMoreID: Int)
     func didClickSaveAndContinue()
     func dismiss()
+    func dismissChatBotFlow()
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)

@@ -43,8 +43,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func didClickSaveAndContinue() {
-        viewController?.dismissResultView()
-        dismiss()
+        dismissChatBotFlow()
     }
 
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
@@ -55,6 +54,10 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func dismissChatBotFlow() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 }

@@ -17,7 +17,7 @@ final class PrepareResultsWorker {
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
     private var preparation: QDMUserPreparation?
-    private var canDelete: Bool = false
+    var canDelete: Bool = false
     private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false

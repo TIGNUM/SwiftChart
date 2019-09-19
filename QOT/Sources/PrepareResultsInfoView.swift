@@ -11,7 +11,6 @@ import UIKit
 final class PrepareResultsInfoView: UIView {
 
     @IBOutlet private weak var textLabel: UILabel!
-    weak var delegate: PrepareResultsDelegatge?
 
     static func instantiateFromNib() -> PrepareResultsInfoView {
         guard let resultView = R.nib.prepareResultsInfoView.instantiate(withOwner: self)
@@ -22,12 +21,6 @@ final class PrepareResultsInfoView: UIView {
     }
 
     func configure(text: String) {
-        textLabel.text = text
-    }
-}
-
-private extension PrepareResultsInfoView {
-    @IBAction func didSelectDoneButton() {
-        delegate?.dismissResultView()
+        ThemeText.resultClosingText.apply(text, to: textLabel)
     }
 }
