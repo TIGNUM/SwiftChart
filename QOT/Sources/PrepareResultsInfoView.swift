@@ -22,5 +22,7 @@ final class PrepareResultsInfoView: UIView {
 
     func configure(text: String) {
         ThemeText.resultClosingText.apply(text, to: textLabel)
+        ThemeView.chatbot.apply(self)
+        textLabel.text = text
     }
 }
