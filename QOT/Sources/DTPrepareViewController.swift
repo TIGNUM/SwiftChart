@@ -46,7 +46,8 @@ final class DTPrepareViewController: DTViewController {
             return
         }
 
-        setAnswerNeedsSelection()
+        //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
+        setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
         switch viewModel?.question.key {
         case Prepare.QuestionKey.BenefitsInput?:
             createPreparationAndPresent()
