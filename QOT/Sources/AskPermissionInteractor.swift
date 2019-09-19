@@ -42,7 +42,8 @@ extension AskPermissionInteractor: AskPermissionInteractorInterface {
         let image: UIImage?
         switch worker.getPermissionType {
         case .notification, .notificationOpenSettings: image = R.image.notification_permission()
-        default: image = R.image.preloading()
+        case .location: image = R.image.location_permission()
+        case .calendar, .calendarOpenSettings: image = R.image.calendar_permission()
         }
         return image
     }
