@@ -46,6 +46,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
+        updateGotItButton()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
             self?.checkScroll()
             }
@@ -73,18 +74,15 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
         self.currentSprint = viewModel?.sprint
-        updateGotItButton()
     }
 
     private func updateGotItButton() {
         if self.currentSprint?.doneForToday == true {
             ThemeView.audioPlaying.apply(gotItButton)
             gotItButton.layer.borderWidth = 0
-            constraintContainerBottom.constant = 109
             gotItButton.isEnabled = false
         } else {
             ThemeView.sprints.apply(gotItButton)
-            constraintContainerBottom.constant = 109
             gotItButton.isEnabled = true
         }
     }
@@ -99,7 +97,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
         cell.configure(title: relatedStrategiesModels?[indexPath.row].title,
                        durationString: relatedStrategiesModels?[indexPath.row].durationString,
-                       remoteID: relatedStrategiesModels?[indexPath.row].contentId,
+                       remoteID: relatedStrategiesModels?[indexPath.row].contentId ?? relatedStrategiesModels?[indexPath.row].contentItemId,
                        section: relatedStrategiesModels?[indexPath.row].section,
                        format: relatedStrategiesModels?[indexPath.row].format,
                        numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)

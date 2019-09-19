@@ -17,14 +17,20 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     private var departureModel: DepartureInfoCellViewModel?
     var copyrightURL: String?
     @IBOutlet private weak var copyrightLabel: UIButton!
+    @IBOutlet private weak var labelToTop: NSLayoutConstraint!
+    @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         ThemeText.dailyBriefSubtitle.apply(viewModel?.text, to: departureText)
-        copyrightURL = departureModel?.copyright ?? ""
-        copyrightLabel.isHidden = (copyrightURL == "")
+        let copyrightURL = viewModel?.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
+            labelToTop.constant = 21
+            copyrightLabel.isHidden = true
+        }
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {

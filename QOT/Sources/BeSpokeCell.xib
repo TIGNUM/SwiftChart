@@ -124,6 +124,7 @@
                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.0" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="tmM-Ni-UAe" secondAttribute="trailing" id="1uV-Ds-dpR"/>
+                    <constraint firstItem="J2y-h3-G3R" firstAttribute="top" secondItem="PTR-3c-Sm1" secondAttribute="bottom" constant="60" id="81i-qF-Ccs"/>
                     <constraint firstAttribute="bottom" secondItem="VN7-Lf-srl" secondAttribute="bottom" constant="38" id="8Bo-gK-Ej3"/>
                     <constraint firstItem="J2y-h3-G3R" firstAttribute="top" secondItem="jVf-cD-770" secondAttribute="bottom" constant="15" id="AJY-ve-9Ur"/>
                     <constraint firstAttribute="trailing" secondItem="J2y-h3-G3R" secondAttribute="trailing" constant="24" id="G2G-YM-8mG"/>
@@ -140,11 +141,13 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="copyrightButtonHeight" destination="P8o-0j-vJa" id="FPq-zX-bOT"/>
                 <outlet property="copyrightLabel" destination="jVf-cD-770" id="DKY-HB-Tku"/>
                 <outlet property="descriptionLabel" destination="VN7-Lf-srl" id="DzL-ma-Jh8"/>
                 <outlet property="firstImageView" destination="PTR-3c-Sm1" id="IKn-fn-B2V"/>
                 <outlet property="headingLabel" destination="MJM-he-tep" id="u4s-Ta-Job"/>
                 <outlet property="imageContainerView" destination="afw-wz-Q4p" id="3rc-VF-b7a"/>
+                <outlet property="labelToTop" destination="81i-qF-Ccs" id="h71-ki-ubM"/>
                 <outlet property="titleLabel" destination="J2y-h3-G3R" id="hkv-CW-q9c"/>
             </connections>
             <point key="canvasLocation" x="294.92753623188406" y="21.428571428571427"/>
