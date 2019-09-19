@@ -64,7 +64,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func presentToolsItems(selectedToolID: Int?) {
         if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
             ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
+
             viewController?.present(controller, animated: true, completion: nil)
+            controller.backButton.isHidden = true
         }
     }
 
