@@ -23,7 +23,7 @@ protocol PrepareResultsPresenterInterface {
     func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
-protocol PrepareResultsInteractorInterface: Interactor {    
+protocol PrepareResultsInteractorInterface: Interactor {
     var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
     var dataModified: Bool { get }
