@@ -24,6 +24,7 @@ final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
     var bookmark: QDMUserStorage?
     var download: QDMUserStorage?
     private var colorMode: ColorMode = .dark
+    private let reachability: QOTReachability = QOTReachability()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -175,11 +176,27 @@ extension AudioFullScreenViewController {
     }
 
     @IBAction func didTapDownloadButton() {
-        if QOTReachability().isReachableOnEthernetOrWiFi || download != nil {
+        if download != nil {
             continueDownload()
             return
         }
 
+        switch reachability.status {
+        case .ethernetOrWiFi:
+            continueDownload()
+        case .wwan:
+            showMobileDataDownloadAlert()
+        case .notReachable:
+            showNoInternetConnectionAlert()
+        }
+    }
+}
+
+// Private methods
+
+private extension AudioFullScreenViewController {
+
+    func showMobileDataDownloadAlert() {
         let cancel = QOTAlertAction(title: R.string.localized.buttonTitleCancel())
         let buttonContinue = QOTAlertAction(title: R.string.localized.alertButtonTitleContinue()) { [weak self] (_) in
             self?.continueDownload()
@@ -188,11 +205,7 @@ extension AudioFullScreenViewController {
                       message: R.string.localized.alertMessageUseMobileData(),
                       bottomItems: [cancel, buttonContinue])
     }
-}
 
-// Private methods
-
-extension AudioFullScreenViewController {
     func continueDownload() {
         trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         guard let item = contentItem else {

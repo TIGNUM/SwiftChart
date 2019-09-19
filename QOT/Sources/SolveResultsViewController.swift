@@ -136,9 +136,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         switch results?.items[indexPath.row] {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           solutionText: solution,
-                           hideShowMoreButton: interactor?.hideShowMoreButton ?? false)
+            cell.configure(title: title, solutionText: solution)
             cell.delegate = self
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?:

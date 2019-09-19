@@ -12,6 +12,7 @@ import qot_dal
 protocol StreamVideoInteractorDelegate: class {
     func didUpdateData(interactor: StreamVideoInteractorInterface)
     func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface)
+    func showNoInternetConnectionAlert(interactor: StreamVideoInteractorInterface)
 }
 
 protocol StreamVideoInteractorInterface {
@@ -85,10 +86,18 @@ final class StreamVideoInteractor {
 extension StreamVideoInteractor: StreamVideoInteractorInterface {
 
     func didTapDownload() {
-        if worker.isConnectedToWiFi || worker.downloadStatus == .DOWNLOADING {
+        if worker.downloadStatus == .DOWNLOADING {
             downloadItem()
-        } else {
+            return
+        }
+
+        switch worker.reachabilityStatus {
+        case .ethernetOrWiFi:
+            downloadItem()
+        case .wwan:
             delegate?.askUserToDownloadWithoutWiFi(interactor: self)
+        case .notReachable:
+            delegate?.showNoInternetConnectionAlert(interactor: self)
         }
     }
 

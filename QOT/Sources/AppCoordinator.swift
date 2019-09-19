@@ -344,18 +344,19 @@ extension AppCoordinator {
     @objc func didFinishSynchronization(_ notification: Notification) {
         let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION]
         guard let syncResult = notification.object as? SyncResultContext,
-            syncResult.hasUpdatedContent,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             switch syncResult.dataType {
             case .MY_TO_BE_VISION:
+                guard syncResult.hasUpdatedContent else { return }
                 UserService.main.getMyToBeVision({ (vision, initiated, error) in
                     guard error == nil, initiated == true, let vision = vision else { return }
                     let data = ExtensionModel.ToBeVision(headline: vision.headline, text: vision.text, imageURL: vision.profileImageResource?.url())
                     ExtensionUserDefaults.set(data, for: .toBeVision)
                 })
             case .DAILY_CHECK_IN_RESULT:
+                guard syncResult.hasUpdatedContent else { return }
                 MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
                     guard error == nil, initiated == true, let result = results?.first else { return }
 
@@ -365,6 +366,7 @@ extension AppCoordinator {
                     ExtensionUserDefaults.set(data, for: .dailyPrep)
                 })
             case .CONTENT_COLLECTION:
+                guard syncResult.hasUpdatedContent else { return }
                 ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
                     guard let latest = items?.first else { return }
                     let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
@@ -380,15 +382,18 @@ extension AppCoordinator {
                                                               shareableLink: latest.shareableLink)
                     ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
                 })
-            case .CALENDAR_EVENT:
-                if syncResult.syncRequestType == .UP_SYNC {
+            case .PREPARATION:
+                if syncResult.syncRequestType == .DOWN_SYNC {
                     UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                        log("preps with missing events : \(preps ?? [])")
+                        guard let preps = preps, preps.count > 0 else { return }
+                        log("preps with missing events : \(preps)")
+                        let configurator = PreparationWithMissingEventConfigurator.make(preps)
+                        let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
+                        baseRootViewController?.present(viewController, animated: true, completion: nil)
                     })
                 }
             default: break
             }
-
         }
     }
 }
