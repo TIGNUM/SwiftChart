@@ -175,7 +175,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
             guard let sprintChallengeModel = bucketItem as? SprintChallengeViewModel else {return UITableViewCell()}
             return getSprints(tableView, indexPath, sprintChallengeModel)
         case .ME_AT_MY_BEST?:
-            if bucketItem?.domainModel?.toBeVision == nil {
+            if bucketItem?.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
                 guard  let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellEmptyViewModel else {return UITableViewCell() }
                 return getMeAtMyBestEmpty(tableView, indexPath, meAtMyBestCellEmptyViewModel)
             } else {
