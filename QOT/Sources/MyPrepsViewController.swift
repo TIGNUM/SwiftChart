@@ -59,9 +59,10 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         cancelButton.isHidden = true
         removeButton.isHidden = true
-        tableView.allowsMultipleSelectionDuringEditing = true
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
-        self.tableView.tableFooterView = UIView()
+        tableView.allowsMultipleSelectionDuringEditing = true
+        tableView.tableFooterView = UIView()
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         setupView()
         updateIndicator()
         interactor?.viewDidLoad()

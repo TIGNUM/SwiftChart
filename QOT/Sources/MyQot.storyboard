@@ -310,7 +310,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNCED CALENDARS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-UY-efQ">
-                                                <rect key="frame" x="0.0" y="17" width="192.5" height="24"/>
+                                                <rect key="frame" x="0.0" y="17" width="327" height="24"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -328,6 +328,7 @@
                                             <constraint firstAttribute="trailing" secondItem="k91-5u-lhP" secondAttribute="trailing" id="I5B-W9-Cjb"/>
                                             <constraint firstItem="6AV-1Q-0xE" firstAttribute="top" secondItem="GsT-gQ-oyC" secondAttribute="top" id="SNy-cl-cfe"/>
                                             <constraint firstItem="0SW-UY-efQ" firstAttribute="leading" secondItem="GsT-gQ-oyC" secondAttribute="leading" id="Toh-cB-beD"/>
+                                            <constraint firstAttribute="trailing" secondItem="0SW-UY-efQ" secondAttribute="trailing" id="kai-cB-Xcq"/>
                                             <constraint firstItem="k91-5u-lhP" firstAttribute="leading" secondItem="GsT-gQ-oyC" secondAttribute="leading" id="qfq-Do-4hG"/>
                                             <constraint firstItem="6AV-1Q-0xE" firstAttribute="leading" secondItem="GsT-gQ-oyC" secondAttribute="leading" id="uXx-80-ViY"/>
                                             <constraint firstItem="k91-5u-lhP" firstAttribute="top" secondItem="0SW-UY-efQ" secondAttribute="bottom" constant="12" id="vCp-oT-v0N"/>
