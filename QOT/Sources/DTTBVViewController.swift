@@ -50,7 +50,8 @@ final class DTTBVViewController: DTViewController {
         case TBV.QuestionKey.Review?:
             tbvRouter?.dismiss()
         default:
-            setAnswerSelectedIfNeeded()
+            //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
+            setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
             loadNextQuestion()
         }
     }
