@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol ArticleViewControllerInterface: class {
     func setupView()
@@ -25,6 +26,7 @@ protocol ArticlePresenterInterface {
 }
 
 protocol ArticleInteractorInterface: class, Interactor {
+    var section: ContentSection { get }
     var sectionCount: Int { get }
     var sectionHeaderHeight: CGFloat { get }
     var sectionNeedsLine: Bool { get }

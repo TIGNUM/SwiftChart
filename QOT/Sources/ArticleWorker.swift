@@ -38,6 +38,10 @@ final class ArticleWorker {
 
     var bookmark: QDMUserStorage?
 
+    var section: ContentSection {
+        return content?.section ?? .Unkown
+    }
+
     var categoryTitle: String {
         return content?.contentCategoryTitle ?? ""
     }
