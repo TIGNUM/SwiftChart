@@ -22,7 +22,6 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupTextView()
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleTextView)
     }
@@ -31,9 +30,9 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         guard let title = title, let subtitle = subtitle else {
             return
         }
-        skeletonManager.hide()
         ThemeText.myDataSectionHeaderTitle.apply(title, to: titleLabel)
         ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleTextView)
+        skeletonManager.hide()
 
         if showInfoLink {
             addInfoLink()
@@ -58,11 +57,6 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
         subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
         subtitleTextView.attributedText = subtitleMutable
         subtitleTextView.delegate = self
-    }
-
-    private func setupTextView() {
-        subtitleTextView.textContainerInset = .zero
-        subtitleTextView.textContainer.lineFragmentPadding = 0.0
     }
 }
 

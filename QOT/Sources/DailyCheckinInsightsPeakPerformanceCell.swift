@@ -10,6 +10,7 @@ import Foundation
 
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet private weak var peakEventsLabel: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -17,10 +18,13 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addSubtitle(peakEventsLabel)
+        skeletonManager.addOtherView(button)
     }
 
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
         ThemeText.dailyBriefDailyCheckInSights.apply(with?.intro, to: peakEventsLabel)
+        skeletonManager.hide()
     }
 
     @IBAction func preparations(_ sender: Any) {

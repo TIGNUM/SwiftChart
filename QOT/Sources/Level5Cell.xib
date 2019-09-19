@@ -26,11 +26,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="990" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="449" height="783"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1032" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="825"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDp-CU-ckE" id="6GX-fH-l8Z">
-                <rect key="frame" x="0.0" y="0.0" width="449" height="782.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="824.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-4e-Eb4" userLabel="HeaderView">
@@ -186,7 +186,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYI-XA-d9f" userLabel="BottomView">
-                        <rect key="frame" x="0.0" y="370.5" width="449" height="330"/>
+                        <rect key="frame" x="0.0" y="412.5" width="449" height="330"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y6n-RW-tYH">
                                 <rect key="frame" x="24" y="24" width="401" height="282"/>
@@ -354,7 +354,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VH1-hy-l0l" userLabel="ButtonView">
-                        <rect key="frame" x="0.0" y="700.5" width="449" height="82"/>
+                        <rect key="frame" x="0.0" y="742.5" width="449" height="82"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-U2-IS7" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="353" y="0.0" width="72" height="40"/>
@@ -408,6 +408,7 @@
                 <outlet property="levelText" destination="9cA-6V-Miz" id="Zgn-jO-O8O"/>
                 <outlet property="levelTitle" destination="QFx-8r-FSh" id="qVK-cJ-ZsN"/>
                 <outlet property="masteryProgress" destination="UhM-lT-a3n" id="6nI-GB-46L"/>
+                <outlet property="progressStackView" destination="Y6n-RW-tYH" id="GRf-kt-4xY"/>
                 <outlet property="questionLabel" destination="uTO-4s-8R2" id="SVT-j3-m5b"/>
                 <outlet property="readinessProgress" destination="pBq-Kz-zzd" id="2EC-5Y-O2b"/>
                 <outlet property="saveButton" destination="fcW-U2-IS7" id="bEN-7W-7tr"/>
@@ -418,7 +419,7 @@
                 <outletCollection property="buttons" destination="TbP-Wf-sAH" collectionClass="NSMutableArray" id="2gM-3X-U4b"/>
                 <outletCollection property="buttons" destination="ofJ-fR-mm0" collectionClass="NSMutableArray" id="d4a-2y-nrq"/>
             </connections>
-            <point key="canvasLocation" x="-599.0625" y="88.204225352112672"/>
+            <point key="canvasLocation" x="-599.0625" y="110.38732394366197"/>
         </tableViewCell>
     </objects>
 </document>

@@ -22,12 +22,17 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(dateLabel)
+        skeletonManager.addOtherView(button)
     }
 
     func configure(title: String?, date: String?, solve: QDMSolve?) {
-        ThemeText.durationString.apply(date, to: dateLabel)
-        ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
-        self.solve = solve
+        guard let titleText = title, let dateString = date, let qdmSolve = solve else { return }
+
+        ThemeText.durationString.apply(dateString, to: dateLabel)
+        ThemeText.sprintTitle.apply(titleText.uppercased(), to: titleLabel)
+        self.solve = qdmSolve
     }
 
     @IBAction func checkIt(_ sender: Any) {

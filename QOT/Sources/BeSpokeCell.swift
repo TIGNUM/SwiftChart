@@ -23,20 +23,24 @@ final class BeSpokeCell: BaseDailyBriefCell {
     @IBOutlet private weak var copyrightLabel: UIButton!
     @IBOutlet private weak var labelToTop: NSLayoutConstraint!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(descriptionLabel)
+        skeletonManager.addOtherView(firstImageView)
+    }
+
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     func configure(with viewModel: BeSpokeCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: headingLabel)
-        ThemeText.bespokeTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.description, to: descriptionLabel)
-        firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        self.copyrightURL = viewModel?.copyright
-        if self.copyrightURL?.isEmpty ?? true {
-            copyrightButtonHeight.constant = 0
-            labelToTop.constant = 22
-            copyrightLabel.isHidden = true
-        }
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: headingLabel)
+        ThemeText.bespokeTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
+        firstImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        copyrightURL = model.copyright
     }
 }

@@ -182,6 +182,7 @@
                 <outlet property="constraintContainerHeight" destination="0q0-4R-Foz" id="NiN-H5-LIZ"/>
                 <outlet property="gotItButton" destination="wmj-Xn-Nxm" id="8tt-PB-UHz"/>
                 <outlet property="gotItButtonHeight" destination="87U-1V-ceJ" id="Mcf-Ga-oxA"/>
+                <outlet property="outOf5Label" destination="6dx-6V-Q68" id="bIe-7f-cuf"/>
                 <outlet property="showMoreButton" destination="KVg-Nh-YGZ" id="qZa-i0-NRw"/>
                 <outlet property="sprintInfo" destination="U1h-PT-9Yd" id="467-wf-fvV"/>
                 <outlet property="sprintStepNumber" destination="pLQ-bh-3pJ" id="rmB-84-RM3"/>

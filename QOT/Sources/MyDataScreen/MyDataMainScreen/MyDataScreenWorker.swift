@@ -15,6 +15,7 @@ final class MyDataScreenWorker {
     private let dataService: qot_dal.MyDataService
     var initialDataSelectionSections = MyDataSelectionModel(myDataSelectionItems: [])
     var firstLoad: Bool = true
+    var datasourceLoaded: Bool = false
     var oldestAvailableDate: Date = Date().dateAfterYears(-1)
     var heatMapFirstDayOfVisibleMonth: Date = Date().firstDayOfMonth()
     var heatMapLastDayOfVisibleMonth: Date = Date().lastDayOfMonth()
@@ -73,6 +74,7 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                 completion(nil, error)
                 return
             }
+            s.datasourceLoaded = true
             let convertedResults = results.map({ (result) -> MyDataDailyCheckInModel in
                 return MyDataDailyCheckInModel.init(withDailyCheckInResult: result)
             })

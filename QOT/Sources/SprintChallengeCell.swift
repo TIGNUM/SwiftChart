@@ -17,6 +17,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet private weak var sprintInfo: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var sprintStepNumber: UILabel!
+    @IBOutlet weak var outOf5Label: UILabel!
     @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
@@ -51,6 +52,13 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             self?.checkScroll()
             }
         ]
+        skeletonManager.addSubtitle(sprintTitle)
+        skeletonManager.addSubtitle(sprintInfo)
+        skeletonManager.addOtherView(tableView)
+        skeletonManager.addOtherView(gotItButton)
+        skeletonManager.addOtherView(sprintStepNumber)
+        skeletonManager.addOtherView(outOf5Label)
+        skeletonManager.addOtherView(showMoreButton)
     }
 
     private func checkScroll() {
@@ -59,16 +67,18 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
         tableView.delegate = self
         tableView.dataSource = self
         ThemeView.level2.apply(self)
-        if viewModel?.relatedStrategiesModels.isEmpty == true {
+        if model.relatedStrategiesModels.isEmpty == true {
             tableView.isHidden = true
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }
-        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
-        let lowercaseTitle = viewModel?.sprintTitle?.lowercased()
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
+        let lowercaseTitle = model.sprintTitle?.lowercased()
         ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
         ThemeText.sprintText.apply(viewModel?.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)

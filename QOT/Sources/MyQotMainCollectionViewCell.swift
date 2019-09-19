@@ -12,16 +12,12 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = ""
-        subtitleLabel.text = ""
-    }
+    @IBOutlet weak var subtitleLabel: UILabel!
+    let skeletonManager = SkeletonManager()
 
     func configure(title: String, subtitle: String, isRed: Bool = false) {
+        skeletonManager.hide()
         ThemeText.myQOTBoxTitle.apply(title.uppercased(), to: titleLabel)
 
         let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
@@ -42,5 +38,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1
+        
+        skeletonManager.addSubtitle(subtitleLabel)
     }
 }

@@ -22,12 +22,16 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addSubtitle(intro)
+        skeletonManager.addOtherView(buttonText)
     }
 
     func configure(with: MeAtMyBestCellEmptyViewModel?) {
-        ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: title)
-        ThemeText.sprintText.apply(with?.intro, to: intro)
-        buttonText.setTitle(with?.buttonText ?? "none", for: .normal)
+        guard let model = with else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: title)
+        ThemeText.sprintText.apply(model.intro, to: intro)
+        buttonText.setTitle(model.buttonText ?? "none", for: .normal)
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 }

@@ -97,8 +97,8 @@
             <viewLayoutGuide key="safeArea" id="War-05-zvi"/>
             <connections>
                 <outlet property="adviceText" destination="3XV-ES-B1T" id="zA9-az-wiV"/>
+                <outlet property="bucketTitle" destination="TXs-bw-HDl" id="i27-qR-xaA"/>
                 <outlet property="button" destination="nkR-EF-LfG" id="OII-dU-A9M"/>
-                <outlet property="introText" destination="Nj4-u2-Kz0" id="PsE-rj-Uh1"/>
                 <outlet property="tbvSentence" destination="5a5-dW-Fuu" id="XPy-sv-RtY"/>
                 <outlet property="tbvText" destination="Nj4-u2-Kz0" id="KQz-dg-XB9"/>
             </connections>

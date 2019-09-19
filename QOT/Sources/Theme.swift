@@ -944,7 +944,9 @@ enum ThemeText {
         let string: NSAttributedString
 
         switch self {
-        case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
+        case .navigationBarHeader:
+            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
+        case .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,

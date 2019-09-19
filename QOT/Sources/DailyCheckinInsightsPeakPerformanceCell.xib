@@ -74,6 +74,7 @@
             <connections>
                 <outlet property="button" destination="J2g-Ge-Z5X" id="wRq-nl-6O6"/>
                 <outlet property="peakEventsLabel" destination="yft-xx-ovk" id="TGS-R8-sfU"/>
+                <outlet property="titleLabel" destination="iLE-Yv-qe8" id="yXX-ta-g1x"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="-70.982142857142847"/>
         </view>

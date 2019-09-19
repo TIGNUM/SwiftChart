@@ -23,6 +23,7 @@ final class MyDataChartTableViewCell: MyDataBaseTableViewCollectionViewCell {
         super.awakeFromNib()
         setupGraphCollectionView()
         skeletonManager.addOtherView(graphContentView)
+        skeletonManager.addSubtitle(monthYearLabel)
     }
 
     override func prepareForReuse() {
