@@ -322,15 +322,25 @@ extension MyLibraryUserStorageInteractor {
     }
 
     private func tryResumingDownload(for item: MyLibraryCellViewModel) {
-        if worker.isConnectedToWiFi {
+        switch worker.reachabilityStatus {
+        case .ethernetOrWiFi:
             resumeDownload(for: item)
-            return
+        case .wwan:
+            showMobileDataAlert(with: item)
+        case .notReachable:
+            showNoInternetAlert()
         }
+    }
 
+    private func showMobileDataAlert(with item: MyLibraryCellViewModel) {
         itemForDownload = item
         presenter.presentAlert(title: worker.cellullarDownloadTitle,
                                message: worker.cellullarDownloadMessage,
                                buttons: cellularDownloadButtons)
+    }
+
+    private func showNoInternetAlert() {
+        presenter.presentNoInternetAlert()
     }
 
     private func resumeDownload(for item: MyLibraryCellViewModel) {

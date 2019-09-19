@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol MyLibraryUserStorageViewControllerInterface: class {
+protocol MyLibraryUserStorageViewControllerInterface: UIViewController {
     func update()
     func reloadData()
     func deleteRow(at indexPath: IndexPath)
@@ -21,6 +21,7 @@ protocol MyLibraryUserStoragePresenterInterface {
     func presentData()
     func deleteRow(at index: Int)
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
+    func presentNoInternetAlert()
 }
 
 protocol MyLibraryUserStorageInteractorInterface: Interactor {

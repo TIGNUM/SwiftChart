@@ -217,8 +217,8 @@ extension MyLibraryUserStorageWorker {
         service.resumeDownload(item, completion: completion)
     }
 
-    var isConnectedToWiFi: Bool {
-        return reachability.isReachableOnEthernetOrWiFi
+    var reachabilityStatus: ReachabilityStatus {
+        return reachability.status
     }
 }
 
