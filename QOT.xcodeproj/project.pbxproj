@@ -1144,6 +1144,15 @@
 		DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969F222C64CB600B8A590 /* FullScreenBackgroundCircleView.swift */; };
 		DB34725221594560004F17D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725121594560004F17D6 /* Realm.framework */; };
 		DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725321594560004F17D6 /* RealmSwift.framework */; };
+		DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5121552331945F009BFF22 /* PreparationWithMissingEventPresenter.swift */; };
+		DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5121562331945F009BFF22 /* PreparationWithMissingEventWorker.swift */; };
+		DB51215F2331945F009BFF22 /* PreparationWithMissingEventRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5121572331945F009BFF22 /* PreparationWithMissingEventRouter.swift */; };
+		DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5121582331945F009BFF22 /* PreparationWithMissingEventInterface.swift */; };
+		DB5121612331945F009BFF22 /* PreparationWithMissingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5121592331945F009BFF22 /* PreparationWithMissingEventViewController.swift */; };
+		DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51215A2331945F009BFF22 /* PreparationWithMissingEventInteractor.swift */; };
+		DB5121632331945F009BFF22 /* PreparationWithMissingEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51215B2331945F009BFF22 /* PreparationWithMissingEventModel.swift */; };
+		DB5121642331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */; };
+		DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB512167233258D5009BFF22 /* PreparationWithMissingEventViewController.xib */; };
 		DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB84AF1F231AAA1A005487BD /* UIImageView+Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */; };
@@ -2477,6 +2486,15 @@
 		DB2969F222C64CB600B8A590 /* FullScreenBackgroundCircleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullScreenBackgroundCircleView.swift; sourceTree = "<group>"; };
 		DB34725121594560004F17D6 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB34725321594560004F17D6 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB5121552331945F009BFF22 /* PreparationWithMissingEventPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventPresenter.swift; sourceTree = "<group>"; };
+		DB5121562331945F009BFF22 /* PreparationWithMissingEventWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventWorker.swift; sourceTree = "<group>"; };
+		DB5121572331945F009BFF22 /* PreparationWithMissingEventRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventRouter.swift; sourceTree = "<group>"; };
+		DB5121582331945F009BFF22 /* PreparationWithMissingEventInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventInterface.swift; sourceTree = "<group>"; };
+		DB5121592331945F009BFF22 /* PreparationWithMissingEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventViewController.swift; sourceTree = "<group>"; };
+		DB51215A2331945F009BFF22 /* PreparationWithMissingEventInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventInteractor.swift; sourceTree = "<group>"; };
+		DB51215B2331945F009BFF22 /* PreparationWithMissingEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventModel.swift; sourceTree = "<group>"; };
+		DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationWithMissingEventConfigurator.swift; sourceTree = "<group>"; };
+		DB512167233258D5009BFF22 /* PreparationWithMissingEventViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PreparationWithMissingEventViewController.xib; sourceTree = "<group>"; };
 		DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartRouteHandler.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Kingfisher.swift"; sourceTree = "<group>"; };
@@ -5581,6 +5599,15 @@
 		DB51215423317907009BFF22 /* PreparationWithMissingEvent */ = {
 			isa = PBXGroup;
 			children = (
+				DB5121552331945F009BFF22 /* PreparationWithMissingEventPresenter.swift */,
+				DB5121562331945F009BFF22 /* PreparationWithMissingEventWorker.swift */,
+				DB5121572331945F009BFF22 /* PreparationWithMissingEventRouter.swift */,
+				DB5121582331945F009BFF22 /* PreparationWithMissingEventInterface.swift */,
+				DB5121592331945F009BFF22 /* PreparationWithMissingEventViewController.swift */,
+				DB51215A2331945F009BFF22 /* PreparationWithMissingEventInteractor.swift */,
+				DB51215B2331945F009BFF22 /* PreparationWithMissingEventModel.swift */,
+				DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */,
+				DB512167233258D5009BFF22 /* PreparationWithMissingEventViewController.xib */,
 			);
 			path = PreparationWithMissingEvent;
 			sourceTree = "<group>";
@@ -6375,6 +6402,7 @@
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
+				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
@@ -6654,6 +6682,7 @@
 			files = (
 				8D8AA76822FDCB6700B59A81 /* RegistrationEmailConfigurator.swift in Sources */,
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
+				DB5121642331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift in Sources */,
 				3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */,
 				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
 				8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */,
@@ -6756,6 +6785,7 @@
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				8D04FA3423041E9C00AE7CA0 /* RegistrationAgeViewController.swift in Sources */,
+				DB5121612331945F009BFF22 /* PreparationWithMissingEventViewController.swift in Sources */,
 				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
@@ -6776,6 +6806,7 @@
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
 				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
 				B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */,
+				DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */,
 				F9B102A622D336EE00F99E85 /* WhatsHotLatestCellViewModel.swift in Sources */,
 				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
 				B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */,
@@ -7017,6 +7048,7 @@
 				363B9CC1232BF34A00C1A29E /* DTTBVRouter.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
+				DB5121632331945F009BFF22 /* PreparationWithMissingEventModel.swift in Sources */,
 				8D008F07230EFA45006D7263 /* WalkthroughSearchInteractor.swift in Sources */,
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
@@ -7080,6 +7112,7 @@
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
 				36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */,
+				DB5121622331945F009BFF22 /* PreparationWithMissingEventInteractor.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
 				8DC849B32326463900C4D4A3 /* Reachability.m in Sources */,
 				B4AB48C8230BF982003B3C1F /* MyDataExplanationRouter.swift in Sources */,
@@ -7184,6 +7217,7 @@
 				38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */,
 				8D9F6D27230E85A400DCC241 /* WalkthroughAnimatedArrows.swift in Sources */,
 				F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */,
+				DB51215F2331945F009BFF22 /* PreparationWithMissingEventRouter.swift in Sources */,
 				8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */,
 				8D110CF2230FCEDE000181BA /* WalkthroughSwipeViewController.swift in Sources */,
 				9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */,
@@ -7343,6 +7377,7 @@
 				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
+				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
 				3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */,
 				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
@@ -7379,6 +7414,7 @@
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				BB7B318C230AB337004A5E52 /* SkeletonOneLineBlock.swift in Sources */,
+				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
