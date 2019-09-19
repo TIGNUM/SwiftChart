@@ -16,7 +16,7 @@ final class PrepareResultsInfoView: UIView {
     static func instantiateFromNib() -> PrepareResultsInfoView {
         guard let resultView = R.nib.prepareResultsInfoView.instantiate(withOwner: self)
             .first as? PrepareResultsInfoView else {
-            fatalError("Cannot load audio player view")
+            fatalError("Cannot load PrepareResultsInfoView")
         }
         return resultView
     }

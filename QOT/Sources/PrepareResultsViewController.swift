@@ -288,7 +288,7 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
 
     //TODO Add nice animation
     func dismissResultView() {
-        resultView?.removeFromSuperview()
+        interactor?.didTapDismissView()
     }
 }
 
