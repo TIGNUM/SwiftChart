@@ -63,6 +63,7 @@
                 <constraint firstAttribute="trailing" secondItem="38T-gA-UaZ" secondAttribute="trailing" id="8DB-qd-i4L"/>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" id="9Bc-ZD-Xr9"/>
                 <constraint firstAttribute="bottom" secondItem="Bgt-tp-HhS" secondAttribute="bottom" constant="46" id="EKe-8p-mxs"/>
+                <constraint firstAttribute="bottom" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="90" id="ZUF-Bc-MLI"/>
                 <constraint firstItem="Bgt-tp-HhS" firstAttribute="top" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="20" id="bJw-Cr-zjx"/>
                 <constraint firstItem="rjY-Qr-wDb" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="20" id="g0V-Tw-c5X"/>
                 <constraint firstItem="M30-VM-Zxo" firstAttribute="leading" secondItem="axe-l6-9r4" secondAttribute="leading" constant="20" id="iwi-wN-bjo"/>
@@ -77,6 +78,7 @@
                 <outlet property="bucketTitle" destination="rjY-Qr-wDb" id="2Qj-nu-Jj6"/>
                 <outlet property="copyrightLabel" destination="Bgt-tp-HhS" id="DeT-jP-AXn"/>
                 <outlet property="feastImage" destination="38T-gA-UaZ" id="gs6-WE-ix2"/>
+                <outlet property="imageToBottom" destination="ZUF-Bc-MLI" id="Ho7-5M-bGw"/>
             </connections>
             <point key="canvasLocation" x="26.811594202898554" y="-131.25"/>
         </view>

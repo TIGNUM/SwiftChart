@@ -15,6 +15,7 @@ final class FeastCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
     @IBOutlet private weak var copyrightLabel: UIButton!
+    @IBOutlet private weak var imageToBottom: NSLayoutConstraint!
 
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
@@ -24,6 +25,10 @@ final class FeastCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         feastImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         copyrightURL = viewModel?.copyright ?? ""
-        copyrightLabel.isHidden = (copyrightURL == "")
+        if copyrightURL == "" {
+            copyrightLabel.frame.size.height = 0
+            imageToBottom.constant = 48
+            copyrightLabel.isHidden = true
+        }
     }
 }

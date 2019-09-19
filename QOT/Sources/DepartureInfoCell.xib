@@ -70,6 +70,7 @@
                 <constraint firstItem="ldI-hy-OZt" firstAttribute="top" secondItem="gex-9p-hZg" secondAttribute="bottom" constant="8" id="1h3-cg-oG7"/>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="1qc-ea-buc"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="rzr-sH-xjU" secondAttribute="trailing" constant="20" id="2hF-Hl-nGW"/>
+                <constraint firstItem="rzr-sH-xjU" firstAttribute="top" secondItem="y6D-ng-z8U" secondAttribute="bottom" constant="61" id="8B7-IW-LDN"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="ldI-hy-OZt" secondAttribute="trailing" constant="24" id="9RL-sy-t8L"/>
                 <constraint firstItem="gex-9p-hZg" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="24" id="FKL-Pn-Go6"/>
                 <constraint firstItem="iEN-DF-pwm" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="GAZ-NH-M72"/>
@@ -89,6 +90,7 @@
                 <outlet property="copyrightLabel" destination="iEN-DF-pwm" id="86a-qd-Cmg"/>
                 <outlet property="departureImage" destination="y6D-ng-z8U" id="YpZ-wZ-WRI"/>
                 <outlet property="departureText" destination="rzr-sH-xjU" id="4rq-fu-Frs"/>
+                <outlet property="labelToTop" destination="8B7-IW-LDN" id="qiT-92-4ib"/>
             </connections>
             <point key="canvasLocation" x="637.68115942028987" y="-19.754464285714285"/>
         </view>
