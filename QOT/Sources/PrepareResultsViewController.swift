@@ -164,7 +164,7 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
             tableView.leftAnchor == view.leftAnchor
             tableView.rightAnchor == view.rightAnchor
             tableView.contentInset.top = 84
-            tableView.contentInset.bottom = view.safeMargins.bottom
+            tableView.contentInset.bottom = 40
         } else {
             tableView.topAnchor == view.topAnchor
             tableView.bottomAnchor == view.bottomAnchor
