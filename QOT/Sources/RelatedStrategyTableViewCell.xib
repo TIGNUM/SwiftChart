@@ -46,27 +46,17 @@
                         <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wu0-s6-t1s">
-                        <rect key="frame" x="24" y="93.5" width="296" height="1"/>
-                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="cfS-UG-zq5"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="b0o-Fz-H7a" firstAttribute="centerY" secondItem="r6b-SA-5iC" secondAttribute="centerY" id="1WX-4d-LxI"/>
                     <constraint firstAttribute="trailing" secondItem="b0o-Fz-H7a" secondAttribute="trailing" constant="24" id="7XD-ps-o06"/>
                     <constraint firstItem="r6b-SA-5iC" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="MN3-3t-dCE"/>
-                    <constraint firstItem="Wu0-s6-t1s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="POC-Qj-UnQ"/>
-                    <constraint firstAttribute="trailing" secondItem="Wu0-s6-t1s" secondAttribute="trailing" id="PQa-0W-jY1"/>
                     <constraint firstItem="KIP-F0-MPj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="YcR-6y-fzc"/>
-                    <constraint firstItem="Wu0-s6-t1s" firstAttribute="top" secondItem="b0o-Fz-H7a" secondAttribute="bottom" constant="22.5" id="Z1L-FT-FHJ"/>
                     <constraint firstItem="r6b-SA-5iC" firstAttribute="top" secondItem="KIP-F0-MPj" secondAttribute="bottom" constant="12" id="ZCX-DX-eff"/>
                     <constraint firstItem="KIP-F0-MPj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="jAV-H4-Kbt"/>
                     <constraint firstAttribute="trailing" secondItem="KIP-F0-MPj" secondAttribute="trailing" constant="24" id="qo1-6S-NPd"/>
-                    <constraint firstAttribute="bottom" secondItem="Wu0-s6-t1s" secondAttribute="bottom" id="vKz-bi-QAH"/>
+                    <constraint firstAttribute="bottom" secondItem="r6b-SA-5iC" secondAttribute="bottom" constant="23" id="t7J-38-6N6"/>
                     <constraint firstItem="b0o-Fz-H7a" firstAttribute="leading" secondItem="r6b-SA-5iC" secondAttribute="trailing" constant="8" id="yc2-1F-Axg"/>
                 </constraints>
             </tableViewCellContentView>

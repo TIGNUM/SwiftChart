@@ -82,7 +82,11 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didTapDismissView() {
-        router.dismiss()
+        if worker.canDelete {
+            router.dismissChatBotFlow()
+        } else {
+            router.dismiss()
+        }
     }
 
     func didTapLeaveWithoutSaving() {
@@ -98,7 +102,9 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func presentEditBenefits(benefits: String?, questionID: Int) {
-        router.presentEditBenefits(benefits: benefits, questionID: questionID)
+        worker.getDTViewModel(Prepare.Key.benefits) { [weak self] (viewModel, question) in
+            self?.router.presentEditIntentions(viewModel, question: question)
+        }
     }
 
     func updateStrategies(selectedIds: [Int]) {

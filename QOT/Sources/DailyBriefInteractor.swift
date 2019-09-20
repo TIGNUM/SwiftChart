@@ -61,6 +61,7 @@ final class DailyBriefInteractor {
     }
     func viewDidLoad() {
         presenter.setupView()
+        NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }
 }
 
@@ -323,7 +324,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
         sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
             relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
-                                                                                           content.contentItems.first?.durationString,
+                                                                                           content.durationString,
                                                                                            content.remoteID ?? 0,
                                                                                            nil,
                                                                                            content.section,
@@ -412,7 +413,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
         let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
-        if meAtMyBest.toBeVision == nil {
+        if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
             let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
             let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be Vision"
             meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))

@@ -19,7 +19,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hNz-Ag-gX3">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNz-Ag-gX3">
                         <rect key="frame" x="24" y="0.0" width="16" height="2"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                         <constraints>
@@ -77,6 +77,8 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="bottomSeperator" destination="V4n-8d-CIH" id="5X6-Os-VCF"/>
+                <outlet property="constraintBottom" destination="0kR-4h-Vx4" id="02D-Tg-mAS"/>
+                <outlet property="constraintTop" destination="vuu-Cp-LlD" id="LHm-Ch-kOG"/>
                 <outlet property="editImageView" destination="nAy-OB-Isz" id="pjn-nY-5Dl"/>
                 <outlet property="headerMark" destination="hNz-Ag-gX3" id="MV9-uA-ti0"/>
                 <outlet property="listMark" destination="hnY-Fh-8Zf" id="mUQ-fy-jUS"/>

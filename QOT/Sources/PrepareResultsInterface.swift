@@ -47,6 +47,7 @@ protocol PrepareResultsRouterInterface {
     func presentRelatedArticle(readMoreID: Int)
     func didClickSaveAndContinue()
     func dismiss()
+    func dismissChatBotFlow()
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)

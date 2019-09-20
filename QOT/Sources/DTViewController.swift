@@ -53,6 +53,8 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     // MARK: - Actions
     @IBAction func didTapPrevious() {
+        constraintBottom.constant = 0
+        self.view.layoutIfNeeded()
         interactor?.loadPreviousQuestion()
     }
 
@@ -98,7 +100,6 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         controller.delegate = self
         controller.interactor = interactor
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
-//        handleAutomatedQuestion(viewModel: viewModel)
     }
 
     // MARK: - DTViewControllerInterface
@@ -159,6 +160,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     private func setupPageViewController(_ backgroundColor: UIColor) {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = backgroundColor
+        pageController.automaticallyAdjustsScrollViewInsets = false
         addChildViewController(pageController)
         view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         self.pageController = pageController
@@ -185,7 +187,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
 
     /**
-     An answer contains the decision about the next question to load or needed content.
+     An answer contains the decision about the next question to load or needed  .
      Some questions will be displayed without answers. If the an answer can not be
      selected by the user, the selection will happen here on `didTapNext()`.
 
@@ -198,6 +200,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         } else if var answer = viewModel?.answers.first {
             answer.setSelected(true)
             viewModel?.setSelectedAnswer(answer)
+        }
+    }
+
+    func setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready() {
+        if viewModel?.answers.filter({ $0.selected }).isEmpty ?? true {
+            setAnswerNeedsSelection()
         }
     }
 }
@@ -227,7 +235,6 @@ extension DTViewController {
             constraintBottom.constant = keyboardSize.height
             UIView.animate(withDuration: duration) {
                 self.view.layoutIfNeeded()
-
             }
         }
     }

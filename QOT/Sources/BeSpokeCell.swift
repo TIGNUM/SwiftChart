@@ -17,8 +17,11 @@ final class BeSpokeCell: BaseDailyBriefCell {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var tilteContainerView: UIView!
     @IBOutlet private weak var descriptionContainerView: UIView!
+    @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
+    @IBOutlet private weak var copyrightLabel: UIButton!
+    @IBOutlet private weak var labelToTop: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,5 +45,10 @@ final class BeSpokeCell: BaseDailyBriefCell {
             self?.skeletonManager.hide()
         }
         copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
+            labelToTop.constant = 22
+            copyrightLabel.isHidden = true
+        }
     }
 }

@@ -11,6 +11,7 @@ import qot_dal
 
 protocol ArticleDelegate: class {
     func didTapMarkAsRead(_ read: Bool)
+    func section() -> ContentSection
 }
 
 var colorMode = ColorMode.dark
@@ -142,10 +143,14 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
                     nightModeBarButtonItem,
                     textScaleBarButtonItem,
                     shareBarButtonItem]
-        }
+        } else if interactor?.section == .About {
+            return [nightModeBarButtonItem,
+                    textScaleBarButtonItem]
+        } else {
         return [bookMarkBarButtonItem,
                 nightModeBarButtonItem,
                 textScaleBarButtonItem]
+        }
     }()
 
     private var lastScrollViewOffsetY: CGFloat = 0.0
@@ -494,6 +499,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         switch item.type {
         case .headerText(let header):
             let cell: ArticleTextHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.delegate = self
             cell.configure(articleHeader: header)
             return cell
         case .headerImage(let imageURLString):
@@ -659,7 +665,6 @@ extension ArticleViewController: UIScrollViewDelegate {
             checkMarkAsReadButton(true)
             didScrollToRead = true
         }
-
         navigationBarAutoShowHide(scrollView)
     }
 }
@@ -740,6 +745,10 @@ extension ArticleViewController: ArticleDelegate {
             self?.checkMarkAsReadButton(read)
         }
         didScrollToRead = read
+    }
+
+    func section() -> ContentSection {
+        return interactor?.section ?? .Unkown
     }
 }
 

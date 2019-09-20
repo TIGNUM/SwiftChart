@@ -25,7 +25,7 @@ final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsItemsInteractorInterface?
-
+    @IBOutlet weak var backButton: UIButton!
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }

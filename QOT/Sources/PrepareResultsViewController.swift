@@ -11,7 +11,6 @@ import Anchorage
 import qot_dal
 
 protocol PrepareResultsDelegatge: class {
-    func dismissResultView()
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
@@ -121,7 +120,6 @@ private extension PrepareResultsViewController {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
         let resultInfoWeAreDoneHereView = PrepareResultsInfoView.instantiateFromNib()
-        resultInfoWeAreDoneHereView.delegate = self
         view.addSubview(resultInfoWeAreDoneHereView)
         resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
         resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
@@ -163,7 +161,7 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
             tableView.leftAnchor == view.leftAnchor
             tableView.rightAnchor == view.rightAnchor
             tableView.contentInset.top = 84
-            tableView.contentInset.bottom = view.safeMargins.bottom
+            tableView.contentInset.bottom = 40
         } else {
             tableView.topAnchor == view.topAnchor
             tableView.bottomAnchor == view.bottomAnchor
@@ -285,9 +283,8 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
         refreshBottomNavigationItems()
     }
 
-    //TODO Add nice animation
     func dismissResultView() {
-        resultView?.removeFromSuperview()
+        interactor?.didTapDismissView()
     }
 }
 
@@ -312,14 +309,14 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
+        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
             return nil
         }
         return [dismissNavigationItem(action: #selector(openConfirmationView))]
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
+        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
             return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),

@@ -16,8 +16,7 @@ extension DTMindsetWorker {
     func getMindsetShifter(tbv: QDMToBeVision?,
                            selectedAnswers: [SelectedAnswer],
                            completion: @escaping (QDMMindsetShifter?) -> Void) {
-        let answers = selectedAnswers.flatMap { $0.answers }
-        getMindsetShifterItems(answers: answers, tbv: tbv) { [weak self] (mindsetItem) in
+        getMindsetShifterItems(selectedAnswers: selectedAnswers, tbv: tbv) { [weak self] (mindsetItem) in
             self?.createMindsetShifter(mindsetItem: mindsetItem, completion: completion)
         }
     }
@@ -39,17 +38,18 @@ private extension DTMindsetWorker {
         }
     }
 
-    func getMindsetShifterItems(answers: [DTViewModel.Answer],
+    func getMindsetShifterItems(selectedAnswers: [SelectedAnswer],
                                 tbv: QDMToBeVision?,
                                 completion: @escaping (MindsetResult.Item) -> Void) {
-        let triggerAnswers = filteredAnswers([answers[0]], filter: Mindset.Filter.Trigger)
+        let answers = selectedAnswers.flatMap { $0.answers }
+        let triggerAnswer = selectedAnswers.filter { $0.question?.key == Mindset.QuestionKey.MoreInfo }.first
         let reactionAnswers = filteredAnswers(answers, filter: Mindset.Filter.Reaction)
         let lowAnswers = filteredAnswers(answers, filter: Mindset.Filter.LowPerfomance)
         let lowAnswersContentIDs = lowAnswers.compactMap { $0.targetId(.content) }
 
         ContentService.main.getContentCollectionsByIds(lowAnswersContentIDs) { (contentCollections) in
             let highContentItemIds = contentCollections?.flatMap { $0.contentItems }.map { $0.remoteID ?? 0 } ?? []
-            let resultItem = MindsetResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteId }.first ?? 0,
+            let resultItem = MindsetResult.Item(triggerAnswerId: triggerAnswer?.answers.first?.remoteId,
                                                 toBeVisionText: tbv?.text,
                                                 reactionsAnswerIds: reactionAnswers.map { $0.remoteId },
                                                 lowPerformanceAnswerIds: lowAnswers.map { $0.remoteId },

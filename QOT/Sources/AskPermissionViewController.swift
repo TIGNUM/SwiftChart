@@ -30,7 +30,6 @@ final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-//        bottomConstraint.constant = BottomNavigationContainer.height - 30
         interactor?.viewDidLoad()
         ThemeView.askPermissions.apply(view)
     }

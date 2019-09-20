@@ -30,7 +30,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     private var observers: [NSKeyValueObservation] = []
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        hideGotItButton()
+        updateGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -47,6 +47,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         self.sprintInfo?.lineBreakMode = .byWordWrapping
         self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
+        updateGotItButton()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
             self?.checkScroll()
             }
@@ -83,16 +84,16 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
-        hideGotItButton()
     }
 
-    private func hideGotItButton() {
+    private func updateGotItButton() {
         if self.currentSprint?.doneForToday == true {
-            gotItButton.isHidden = true
-            constraintContainerBottom.constant = 48
+            ThemeView.audioPlaying.apply(gotItButton)
+            gotItButton.layer.borderWidth = 0
+            gotItButton.isEnabled = false
         } else {
-            gotItButton.isHidden = false
-            constraintContainerBottom.constant = 109
+            ThemeView.sprints.apply(gotItButton)
+            gotItButton.isEnabled = true
         }
     }
 
@@ -106,7 +107,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
         cell.configure(title: relatedStrategiesModels?[indexPath.row].title,
                        durationString: relatedStrategiesModels?[indexPath.row].durationString,
-                       remoteID: relatedStrategiesModels?[indexPath.row].contentId,
+                       remoteID: relatedStrategiesModels?[indexPath.row].contentId ?? relatedStrategiesModels?[indexPath.row].contentItemId,
                        section: relatedStrategiesModels?[indexPath.row].section,
                        format: relatedStrategiesModels?[indexPath.row].format,
                        numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)

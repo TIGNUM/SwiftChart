@@ -38,6 +38,10 @@ final class ArticleWorker {
 
     var bookmark: QDMUserStorage?
 
+    var section: ContentSection {
+        return content?.section ?? .Unkown
+    }
+
     var categoryTitle: String {
         return content?.contentCategoryTitle ?? ""
     }
@@ -154,6 +158,12 @@ final class ArticleWorker {
         }
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+        }
+        content?.contentItems.filter { $0.tabs.isEmpty
+            && content?.contentCategoryTitle == "Exclusive 3DRecovery"
+            && $0.format != .pdf
+            && $0.format != .video }.forEach { item in
+                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
@@ -391,7 +401,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .About, .FAQ_3_0: return true
+        case .ToBeVisionGenerator, .FAQ_3_0: return true
         default: break
         }
         return false

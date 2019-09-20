@@ -14,6 +14,9 @@ final class FeastCell: BaseDailyBriefCell {
     @IBOutlet private weak var feastImage: UIImageView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
+    @IBOutlet private weak var copyrightLabel: UIButton!
+    @IBOutlet private weak var imageToBottom: NSLayoutConstraint!
+    @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -32,6 +35,11 @@ final class FeastCell: BaseDailyBriefCell {
         feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
             self?.skeletonManager.hide()
         }
-        copyrightURL = model.copyright ?? ""
+        copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
+            imageToBottom.constant = 48
+            copyrightLabel.isHidden = true
+        }
     }
 }

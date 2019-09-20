@@ -32,27 +32,22 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, durationString: String?, remoteID: Int?, section: ContentSection?, format: ContentFormat?, numberOfItems: Int) {
-        if section == .LearnStrategies {
-            self.selectedStrategyID = remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(openStrategy))
-            self.addGestureRecognizer(gesture)
-        } else if section == .QOTLibrary {
-            self.selectedToolID = remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(openTool))
-            self.addGestureRecognizer(gesture)
-        }
         ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
         ThemeText.durationString.apply(durationString, to: durationLabel)
         var duration: String
         if numberOfItems > 1 {
-            iconFiles.isHidden = false
+            if format == .prepare {
+                iconRead.isHidden = false
+            } else { iconFiles.isHidden = false
+            }
         } else {
             iconRead.isHidden = format != .pdf
+            iconRead.isHidden = format != .prepare
             iconVideo.isHidden = format != .video
             iconAudio.isHidden = format != .audio
         }
 
-        if numberOfItems > 1 {
+        if numberOfItems > 1 && section == .QOTLibrary {
             duration = String(numberOfItems) + " items"
         } else { duration = ( durationString ?? "")
         }

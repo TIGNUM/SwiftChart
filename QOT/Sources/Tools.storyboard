@@ -87,6 +87,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="BQB-8Y-mMd"/>
                     <connections>
+                        <outlet property="backButton" destination="Cti-Zd-6jD" id="XZJ-Sl-l5Q"/>
                         <outlet property="tableView" destination="xRI-V9-qF2" id="Xnc-Vk-xCX"/>
                         <segue destination="txY-qR-zaF" kind="show" identifier="collections.items.segue.identifier" id="d4K-o6-qzX"/>
                     </connections>
@@ -138,6 +139,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="4sg-76-C2W"/>
                     <connections>
+                        <outlet property="backButton" destination="WZi-Yw-SDe" id="DTk-zV-6J1"/>
                         <outlet property="tableView" destination="Asb-IU-eEH" id="1wI-jH-RTa"/>
                     </connections>
                 </viewController>

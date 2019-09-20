@@ -24,6 +24,7 @@ class DTInteractor: DTInteractorInterface {
     var selectedAnswers: [SelectedAnswer] = []
     var inputText: String = ""
     var isDark: Bool = false    //TODO Maybe we wanna have ThemeModel in the future…
+    var tbv: QDMToBeVision?
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -79,9 +80,9 @@ class DTInteractor: DTInteractorInterface {
     }
 
     func loadPreviousQuestion() {
-        if presentedNodes.isEmpty == false {
+        if !presentedNodes.isEmpty {
             presentedNodes.removeLast()
-            if selectedAnswers.isEmpty == false {
+            if !selectedAnswers.isEmpty {
                 selectedAnswers.removeLast()
             }
             let lastNode = presentedNodes.last
@@ -155,13 +156,22 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - TBV
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        worker?.getUsersTBV { (tbv, initiated) in
-            completion(tbv, initiated)
+        if tbv != nil {
+            completion(tbv, true)
+        } else {
+            worker?.getUsersTBV { (tbv, initiated) in
+                self.tbv = tbv
+                completion(tbv, initiated)
+            }
         }
     }
 
     func didUpdateUserInput(_ text: String) {
         inputText = text
+        if text.isEmpty {
+            presenter?.hideNavigationButtonForAnimation()
+        } else {
+            presenter?.showNavigationButtonAfterAnimation()
+        }
     }
-
 }

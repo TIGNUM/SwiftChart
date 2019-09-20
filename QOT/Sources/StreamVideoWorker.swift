@@ -37,8 +37,8 @@ final class StreamVideoWorker {
         return qot_dal.SessionService.main.getCurrentSession() != nil
     }
 
-    var isConnectedToWiFi: Bool {
-        return reachability.isReachableOnEthernetOrWiFi
+    var reachabilityStatus: ReachabilityStatus {
+        return reachability.status
     }
 
     lazy var downloadButtonTitle: String = {

@@ -17,6 +17,9 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureModel: DepartureInfoCellViewModel?
     var copyrightURL: String?
+    @IBOutlet private weak var copyrightLabel: UIButton!
+    @IBOutlet private weak var labelToTop: NSLayoutConstraint!
+    @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +37,12 @@ final class DepartureInfoCell: BaseDailyBriefCell {
             self?.skeletonManager.hide()
         }
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureText)
+        copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
+            labelToTop.constant = 21
+            copyrightLabel.isHidden = true
+        }
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {

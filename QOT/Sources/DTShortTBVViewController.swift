@@ -36,7 +36,8 @@ final class DTShortTBVViewController: DTViewController {
         case ShortTBV.QuestionKey.Home:
             generateTBV()
         default:
-            setAnswerSelectedIfNeeded()
+            //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
+            setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
             loadNextQuestion()
         }
     }
@@ -54,7 +55,8 @@ private extension DTShortTBVViewController {
     func setAnswerSelectedIfNeeded() {
         switch viewModel?.question.key {
         case ShortTBV.QuestionKey.IntroMindSet?,
-             ShortTBV.QuestionKey.Home?:
+             ShortTBV.QuestionKey.Home?,
+             ShortTBV.QuestionKey.IntroOnboarding?:
             if var answer = viewModel?.answers.first {
                 answer.setSelected(true)
                 viewModel?.setSelectedAnswer(answer)

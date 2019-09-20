@@ -42,8 +42,11 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool) {
-        viewController?.load(myVision, rateText: rateText, isRateEnabled: isRateEnabled, shouldShowSingleMessage: shouldShowSingleMessage)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+        viewController?.load(myVision,
+                             rateText: rateText,
+                             isRateEnabled: isRateEnabled,
+                             shouldShowSingleMessageRating: shouldShowSingleMessageRating)
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String) {

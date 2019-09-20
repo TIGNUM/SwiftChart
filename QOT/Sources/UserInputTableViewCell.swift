@@ -18,20 +18,20 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var maxCharactersLabel: UILabel!
+    @IBOutlet weak var constraintHeight: NSLayoutConstraint!
     private weak var delegate: UserInputTableViewCellProtocol?
     private var inputText: String?
     private var maxCharacters = 100
-//    public var shouldEndEditing = false
-
-    // MARK: - Life Cycle
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+    private var observers: [NSKeyValueObservation] = []
 
     func configure(inputText: String?, maxCharacters: Int, delegate: UserInputTableViewCellProtocol?) {
         self.maxCharacters = maxCharacters
         self.inputText = inputText
         self.delegate = delegate
+        observers = [textView.observe(\.contentSize, options: [.new]) { [weak self] (_, _) in
+            self?.refreshHeight()
+            }
+        ]
 
         ThemeText.resultCounterMax.apply(String(format: "/%d", maxCharacters), to: maxCharactersLabel)
         if let inputText = inputText {
@@ -46,6 +46,16 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
 
     private func showKeyBoard() {
         textView.becomeFirstResponder()
+    }
+}
+
+// MARK: - Private
+private extension UserInputTableViewCell {
+    func refreshHeight() {
+        constraintHeight.constant = textView.contentSize.height + 8
+        UIView.animate(withDuration: 0.25) {
+            self.layoutIfNeeded()
+        }
     }
 }
 

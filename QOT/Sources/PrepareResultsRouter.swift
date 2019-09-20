@@ -23,7 +23,6 @@ final class PrepareResultsRouter {
 // MARK: - PrepareResultsRouterInterface
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
-        //TODO: Hook up DT to edit prepare benefits.
 //        presentDecisionTree(for: .prepareBenefits(benefits: benefits,
 //                                                  questionID: Prepare.Key.benefits.questionID,
 //                                                  viewController))
@@ -43,8 +42,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func didClickSaveAndContinue() {
-        viewController?.dismissResultView()
-        dismiss()
+        dismissChatBotFlow()
     }
 
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
@@ -55,6 +53,10 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+
+    func dismissChatBotFlow() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 }

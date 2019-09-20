@@ -28,7 +28,8 @@ final class DTSprintViewController: DTViewController {
         if viewModel?.question.key == Sprint.QuestionKey.Last {
             didTapClose()
         } else {
-            setAnswerNeedsSelection()
+            //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
+            setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
             loadNextQuestion()
         }
     }

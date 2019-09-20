@@ -23,7 +23,6 @@ protocol ToolsPresenterInterface {
 protocol ToolsInteractorInterface: Interactor {
     func tools() -> [ToolItem]
     func presentToolsCollections(selectedToolID: Int?)
-    func trackingKeys(at indexPath: IndexPath) -> String
 }
 
 protocol ToolsRouterInterface {

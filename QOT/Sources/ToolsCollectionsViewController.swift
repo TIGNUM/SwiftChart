@@ -23,6 +23,7 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
         case header = 0
         case sections
     }
+    @IBOutlet weak var backButton: UIButton!
 
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -130,15 +131,18 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         switch cellType {
         case .header:
             let headerTitle = interactor?.headerTitle ?? ""
-            guard headerTitle.count > 0 else { return nil }
-            let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
-            return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "Introduction for section")
-        default: return nil
+            if headerTitle.count > 0 {
+                let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
+                return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "")
+            }
+        default:
+            break
         }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

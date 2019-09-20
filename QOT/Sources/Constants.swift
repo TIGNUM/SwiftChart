@@ -113,6 +113,8 @@ extension CGFloat.Button.Width {
     static let DecisionTree: CGFloat = 168
     static let DecisionTreeContent: CGFloat = 120
     static let Cancel: CGFloat = 88
+    static let Remove: CGFloat = .Cancel
+    static let Keep: CGFloat = .Done
     static let Continue: CGFloat = 100
 }
 

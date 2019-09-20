@@ -25,7 +25,10 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="characterWrap" translatesAutoresizingMaskIntoConstraints="NO" id="FxB-ZH-KQT">
-                            <rect key="frame" x="33" y="599" width="351" height="34"/>
+                            <rect key="frame" x="33" y="599" width="351" height="50"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="50" id="qcx-Rq-Oii"/>
+                            </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="18"/>
                             <state key="normal">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

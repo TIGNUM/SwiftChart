@@ -82,7 +82,7 @@ private extension AnimatedAnswerTableViewCell {
 extension AnimatedAnswerTableViewCell {
     func typingAnimationStart() {
         guard let typingAnimation = typingAnimation else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_1_5) { [weak self] in
             UIView.animate(withDuration: Animation.duration_06, animations: {
                 typingAnimation.alpha = 1.0
             })

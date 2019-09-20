@@ -37,6 +37,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
             return
         }
         qot_dal.ContentService.main.getContentCategoryById(selectedID) { (contentCategory) in
+            self.selectedTool = contentCategory
             guard let category = contentCategory else {
                 completion([])
                 return
@@ -54,36 +55,6 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                                  isCollection: isCollection,
                                  contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: collection.contentItems.count,
-                                 type: collection.contentItems.first?.format.rawValue ?? "")
-            })
-            completion(items)
-        }
-    }
-
-    func videoTools(_ completion: @escaping ([Tool.Item]) -> Void) {
-        guard let selectedID = selectedToolID else {
-            completion([])
-            return
-        }
-        qot_dal.ContentService.main.getContentCategoryById(selectedID) { [weak self] (contentCategory) in
-            self?.selectedTool = contentCategory
-            guard let category = contentCategory else {
-                completion([])
-                return
-            }
-            let items = category.contentCollections.filter({ $0.section == .QOTLibrary }).compactMap({ (collection) -> Tool.Item? in
-                let firstItem = collection.contentItems.filter { $0.format == .video }.first
-                let imageURL = URL(string: firstItem?.valueImageURL ?? "")
-                return Tool.Item(remoteID: collection.remoteID ?? 0,
-                                 categoryTitle: collection.contentCategoryTitle ?? "",
-                                 title: collection.title,
-                                 durationString: collection.durationString,
-                                 imageURL: imageURL,
-                                 mediaURL: URL(string: (firstItem?.valueMediaURL ?? "")),
-                                 duration: firstItem?.valueDuration ?? 0,
-                                 isCollection: false,
-                                 contentCollectionId: collection.remoteID ?? 0,
-                                 numberOfItems: 1,
                                  type: collection.contentItems.first?.format.rawValue ?? "")
             })
             completion(items)

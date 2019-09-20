@@ -12,16 +12,16 @@ import qot_dal
 struct MyQotAboutUsModel {
 
     enum MyQotAboutUsModelItem: Int, CaseIterable {
-        case benefits = 0
-        case about
-        case privacy
-        case terms
+        case privacy = 0
         case copyright
+        case terms
+        case about
+        case benefits
 
         var primaryKey: Int {
             switch self {
-            case .benefits: return 100101
-            case .about: return 100092
+            case .benefits: return 102364
+            case .about: return 102363
             case .privacy: return 102360
             case .terms: return 102361
             case .copyright: return 102362
@@ -29,11 +29,11 @@ struct MyQotAboutUsModel {
         }
 
         static var allKeys: [Int] {
-            return [MyQotAboutUsModelItem.benefits.primaryKey,
-                    MyQotAboutUsModelItem.about.primaryKey,
-                    MyQotAboutUsModelItem.privacy.primaryKey,
+            return [MyQotAboutUsModelItem.privacy.primaryKey,
+                    MyQotAboutUsModelItem.copyright.primaryKey,
                     MyQotAboutUsModelItem.terms.primaryKey,
-                    MyQotAboutUsModelItem.copyright.primaryKey]
+                    MyQotAboutUsModelItem.about.primaryKey,
+                    MyQotAboutUsModelItem.benefits.primaryKey]
         }
 
         func tag() -> Tags {

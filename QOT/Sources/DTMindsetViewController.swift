@@ -56,7 +56,8 @@ final class DTMindsetViewController: DTViewController {
         case Mindset.QuestionKey.PresentResult:
             presentMindsetShifterResult()
         default:
-            setAnswerNeedsSelection()
+            //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
+            setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
             loadNextQuestion()
         }
     }

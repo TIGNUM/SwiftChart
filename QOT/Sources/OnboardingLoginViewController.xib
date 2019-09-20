@@ -37,6 +37,13 @@
                 <outletCollection property="digitTextFields" destination="zm3-4e-5WS" collectionClass="NSMutableArray" id="yRE-Aq-LTv"/>
                 <outletCollection property="digitTextFields" destination="o0S-Jm-pjd" collectionClass="NSMutableArray" id="ZMs-tl-Kq1"/>
                 <outletCollection property="digitTextFields" destination="PwT-sI-vg7" collectionClass="NSMutableArray" id="hzm-Ps-eTI"/>
+                <outletCollection property="codeEntryViews" destination="uX7-Am-z8w" collectionClass="NSMutableArray" id="NXC-TA-YeR"/>
+                <outletCollection property="codeEntryViews" destination="OhO-lt-yI7" collectionClass="NSMutableArray" id="pgD-eb-nWP"/>
+                <outletCollection property="codeEntryViews" destination="6M7-N0-NEO" collectionClass="NSMutableArray" id="Eko-th-Vem"/>
+                <outletCollection property="codeEntryViews" destination="zm3-4e-5WS" collectionClass="NSMutableArray" id="dw7-o0-OaR"/>
+                <outletCollection property="codeEntryViews" destination="o0S-Jm-pjd" collectionClass="NSMutableArray" id="ifY-xM-i4f"/>
+                <outletCollection property="codeEntryViews" destination="PwT-sI-vg7" collectionClass="NSMutableArray" id="DvW-5W-Hxn"/>
+                <outletCollection property="codeEntryViews" destination="Dwk-pD-HYZ" collectionClass="NSMutableArray" id="5BR-wX-VNG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
