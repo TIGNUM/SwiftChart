@@ -64,10 +64,9 @@ extension DecisionTreeWorker {
 
         qot_dal.UserService.main.generateToBeVisionWith(homeKeywordIds, workKeywordIds) { [weak self] (vision, error) in
             guard var newVision = vision else { return }
+
             if qot_dal.SessionService.main.getCurrentSession() != nil {
                 qot_dal.UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
-            } else {
-                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
             }
             self?.createdTBV = newVision
             completion(vision?.text ?? "")

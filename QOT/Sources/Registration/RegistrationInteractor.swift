@@ -169,7 +169,10 @@ private extension RegistrationInteractor {
 
     func handleSuccess() {
         // Save ToBeVision
-        if let tbv = cachedTBV {
+        if var tbv = cachedTBV {
+            if tbv.headline?.isEmpty != false {
+                tbv.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+            }
             worker.updateToBeVision(with: tbv)
         }
 

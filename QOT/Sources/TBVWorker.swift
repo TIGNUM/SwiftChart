@@ -27,8 +27,6 @@ class TBVWorker {
             guard var newVision = vision else { return }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
                 UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
-            } else {
-                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
             }
         }
     }

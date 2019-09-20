@@ -84,7 +84,6 @@ final class AppCoordinator {
         if UserDefault.firstInstallationTimestamp.object == nil {
             UserDefault.firstInstallationTimestamp.setObject(Date())
         }
-        AppCoordinator.permissionsManager = self.permissionsManager
         self.setupBugLife()
 
         if qot_dal.SessionService.main.getCurrentSession() != nil {
@@ -93,6 +92,9 @@ final class AppCoordinator {
         } else {
             UserDefault.clearAllDataLogOut()
             self.showSigning()
+        }
+        DispatchQueue.main.async {
+            AppCoordinator.permissionsManager = self.permissionsManager
         }
     }
 
