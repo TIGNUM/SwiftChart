@@ -19,13 +19,11 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var leadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var trailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        skeletonManager.addSubtitle(label)
     }
 
     func setInsets(insets: UIEdgeInsets, spacing: CGFloat = 12) {

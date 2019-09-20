@@ -9,7 +9,7 @@
 import Foundation
 
 class SkeletonManager: NSObject {
-    /*
+    /**
      In order to use this manager to apply skeleton loading feature to different views all you have to do is call the addTitle, addSubtitle or addOtherView methods.
      This will automatically setup the skeleton according to the type of view and start animating it
 
