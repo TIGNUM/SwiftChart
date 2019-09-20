@@ -27,7 +27,6 @@ final class KnowingViewController: HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesAndTwoColumns, .threeLinesAndTwoColumns, .threeLinesLeftColumn])
         ThemeView.level1.apply(self.view)
 
     }
@@ -82,7 +81,6 @@ extension KnowingViewController: KnowingViewControllerInterface {
     }
 
     func reload() {
-        self.removeLoadingSkeleton()
         collectionView.reloadData()
     }
 }

@@ -82,9 +82,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
-        if differenceList.count > 0 {
-            self.removeLoadingSkeleton()
-        }
         collectionView.reload(using: differenceList) { [weak self] (data) in
             self?.interactor?.updateViewModelListNew(data)
         }

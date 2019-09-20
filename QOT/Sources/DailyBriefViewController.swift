@@ -279,7 +279,6 @@ private extension DailyBriefViewController {
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
         interactor?.getDailyBriefBucketsForViewModel()
-//        removeLoadingSkeleton()
     }
 }
 
@@ -669,9 +668,6 @@ private extension DailyBriefViewController {
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
-        if differenceList.count > 0 {
-//            self.removeLoadingSkeleton()
-        }
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor?.updateViewModelListNew(data)
         }
