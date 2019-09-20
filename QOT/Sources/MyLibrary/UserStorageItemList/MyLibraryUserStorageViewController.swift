@@ -177,23 +177,33 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = interactor?.items[indexPath.row]
         let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.NOTE
-        let placeholder = UIImage(named: "preloading")
+        let placeholder = R.image.preloading()
 
         var returnCell: BaseMyLibraryTableViewCellInterface?
         switch cellType {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
+                cell.skeletonManager.hide()
+            }
             cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
+                cell.skeletonManager.hide()
+            }
             cell.playButton.setTitle(item?.duration, for: .normal)
             cell.playButton.tag = indexPath.row
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
+                cell.skeletonManager.hide()
+            }
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)

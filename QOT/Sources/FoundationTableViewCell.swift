@@ -16,6 +16,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewImageView: UIImageView!
     @IBOutlet private weak var previewPlayImageView: UIImageView!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
+    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,8 +31,10 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, timeToWatch: String, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
         ThemeText.articleRelatedTitle(forcedColorMode).apply(title, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeToWatch, to: detailLabel)
-
-        previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
+        skeletonManager.addOtherView(previewImageView)
+        previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)

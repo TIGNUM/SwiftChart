@@ -14,7 +14,7 @@ class SkeletonManager: NSObject {
      This will automatically setup the skeleton according to the type of view and start animating it
 
      When the data has been loaded, in order to stop the skeleton hide() must be called
-     CAUTION - hide() method needs to be called BEFORE setting the text values for labels, textViews or doing any other setup for displaying views in order to display their content correctly
+
  */
     // MARK: Properties
     private var skeletonableTitles: [UIView] = []
@@ -45,11 +45,6 @@ class SkeletonManager: NSObject {
     }
 
     func hide() {
-//        perform(#selector(tempHide), with: nil, afterDelay: 5.0)
-//        tempHide()
-    }
-
-    @objc func tempHide() {
         for view in self.skeletonableTitles {
             self.removeShimmerView(from: view, withAnimationDuration: SkeletonManager.dissolveAnimationDuration)
         }
@@ -67,13 +62,15 @@ class SkeletonManager: NSObject {
 
     // MARK: Private
     private func addShimmerView(to view: UIView, withBackgroundColor: UIColor, lighterShimmer: Bool) {
-        if let button = view as? UIButton {
+        if view.isKind(of: UIButton.self) {
+            guard let button = view as? UIButton else { return }
             button.titleLabel?.isHidden = true
+            button.layer.borderWidth = 0
         }
         let shimmerView = ShimmerAnimatedView.init(frame: view.frame, color: withBackgroundColor, animationDuration: SkeletonManager.shimmerAnimationDuration, lighterShimmer: lighterShimmer)
         shimmerView.isUserInteractionEnabled = true
         UIView.transition(with: view, duration: SkeletonManager.dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
-            view.fill(subview: shimmerView)
+            shimmerView.fillOverLayerBorder(withSuperview: view)
             view.bringSubview(toFront: shimmerView)
         }, completion: nil)
     }
@@ -82,6 +79,7 @@ class SkeletonManager: NSObject {
         for shimmerView in view.subviews where shimmerView as? ShimmerAnimatedView != nil {
             if let button = view as? UIButton {
                 button.titleLabel?.isHidden = false
+                button.layer.borderWidth = 1
             }
             UIView.transition(with: view, duration: withAnimationDuration, options: [.transitionCrossDissolve], animations: {
                 shimmerView.removeFromSuperview()
@@ -90,7 +88,7 @@ class SkeletonManager: NSObject {
     }
 }
 
-class ShimmerAnimatedView: UIView {
+private class ShimmerAnimatedView: UIView {
     private var gradientLayer = CAGradientLayer()
 
     required init?(coder aDecoder: NSCoder) {
@@ -129,7 +127,6 @@ class ShimmerAnimatedView: UIView {
         gradientLayer.frame = toView.bounds
         toView.layer.addSublayer(gradientLayer)
         toView.layer.masksToBounds = true
-        toView.layer.cornerRadius = 3.0
 
         if animated {
             let animation = CABasicAnimation(keyPath: "transform.translation.x")
@@ -141,14 +138,50 @@ class ShimmerAnimatedView: UIView {
             gradientLayer.add(animation, forKey: "")
         }
     }
+
+    func fillOverLayerBorder(withSuperview: UIView) {
+        if self.superview != withSuperview {
+            withSuperview.addSubview(self)
+        }
+
+        self.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint(item: self,
+                           attribute: .centerX,
+                           relatedBy: .equal,
+                           toItem: withSuperview,
+                           attribute: .centerX,
+                           multiplier: 1,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .centerY,
+                           relatedBy: .equal,
+                           toItem: withSuperview,
+                           attribute: .centerY,
+                           multiplier: 1,
+                           constant: 0).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .width,
+                           relatedBy: .equal,
+                           toItem: withSuperview,
+                           attribute: .width,
+                           multiplier: 1,
+                           constant: 2).isActive = true
+        NSLayoutConstraint(item: self,
+                           attribute: .height,
+                           relatedBy: .equal,
+                           toItem: withSuperview,
+                           attribute: .height,
+                           multiplier: 1,
+                           constant: 2).isActive = true
+    }
 }
 
-extension UIColor {
-    public var lighter: UIColor {
+private extension UIColor {
+    var lighter: UIColor {
         return adjust(by: 1.35)
     }
 
-    public var darker: UIColor {
+    var darker: UIColor {
         return adjust(by: 0.7)
     }
 

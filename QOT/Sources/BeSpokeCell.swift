@@ -37,7 +37,10 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: headingLabel)
         ThemeText.bespokeTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
-        firstImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        skeletonManager.addOtherView(firstImageView)
+        firstImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         copyrightURL = model.copyright
     }
 }

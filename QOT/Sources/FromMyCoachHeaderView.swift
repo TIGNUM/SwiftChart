@@ -13,6 +13,7 @@ final class FromMyCoachHeaderView: UIView {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var coachImageView: UIImageView!
     @IBOutlet private weak var containerView: UIView!
+    let skeletonManager = SkeletonManager()
 
     static func instantiateFromNib() -> FromMyCoachHeaderView? {
         guard let header = R.nib.fromMyCoachHeaderView
@@ -31,7 +32,10 @@ final class FromMyCoachHeaderView: UIView {
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
         ThemeView.level1.apply(self)
         ThemeText.fromCoachTitle.apply(data.title.uppercased(), to: title)
-        coachImageView.kf.setImage(with: data.imageUrl, placeholder: R.image.placeholder_user())
+        skeletonManager.addOtherView(coachImageView)
+        coachImageView.kf.setImage(with: data.imageUrl, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         coachImageView.circle()
     }
 }

@@ -28,7 +28,10 @@ final class FeastCell: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
-        feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        skeletonManager.addOtherView(feastImage)
+        feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         copyrightURL = model.copyright ?? ""
     }
 }

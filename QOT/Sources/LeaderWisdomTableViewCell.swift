@@ -56,7 +56,10 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
         videoThumbnailImageView.isHidden = model.format != .video
-        videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading())
+        skeletonManager.addOtherView(videoThumbnailImageView)
+        videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         videoTitle.isHidden = model.format != .video
     }
 

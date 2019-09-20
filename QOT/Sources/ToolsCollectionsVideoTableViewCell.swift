@@ -18,6 +18,7 @@ final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var previewImageView: UIImageView!
     @IBOutlet private weak var playIcon: UIImageView!
     @IBOutlet private weak var playIconBackground: UIView!
+    let skeletonManager = SkeletonManager()
 
     // MARK: - Lifecycle
 
@@ -29,7 +30,10 @@ final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeuea
     func configure(title: String, timeToWatch: String, imageURL: URL?) {
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
-        previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
+        skeletonManager.addOtherView(previewImageView)
+        previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         mediaIconImageView.image = R.image.ic_camera_tools()?.withRenderingMode(.alwaysTemplate)
     }
 }

@@ -17,7 +17,7 @@ final class ArticleHeaderView: UIView {
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
-
+    let skeletonManager = SkeletonManager()
     // MARK: - Lifecycle
 
     static func instantiateFromNib() -> ArticleHeaderView {
@@ -78,7 +78,10 @@ private extension ArticleHeaderView {
 
     func setImage(imageURL: String?) {
         if let imageURL = imageURL {
-            imageView.kf.setImage(with: URL(string: imageURL), placeholder: R.image.preloading())
+            skeletonManager.addOtherView(imageView)
+            imageView.kf.setImage(with: URL(string: imageURL), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+                self?.skeletonManager.hide()
+            }
         } else {
             imageView.isHidden = true
         }
