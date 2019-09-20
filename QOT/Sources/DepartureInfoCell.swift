@@ -32,7 +32,10 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
         self.departureModel = model
-        departureImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading())
+        skeletonManager.addOtherView(departureImage)
+        departureImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureText)
         self.copyrightURL = viewModel?.copyright
         if self.copyrightURL?.isEmpty ?? true {

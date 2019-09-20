@@ -24,7 +24,10 @@ final class GoodToKnowCell: BaseDailyBriefCell {
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        goodToKnowImage.kf.setImage(with: model.image, placeholder: R.image.preloading())
+        skeletonManager.addOtherView(goodToKnowImage)
+        goodToKnowImage.kf.setImage(with: model.image, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)
         self.goodToKnowModel = model

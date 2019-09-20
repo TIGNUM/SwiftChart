@@ -37,6 +37,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
+    let skeletonManager = SkeletonManager()
 
     var didShowNullStateView = false
 
@@ -292,6 +293,10 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         tempImageURL = nil
         saveToBeVisionImageAndData()
         userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
+        skeletonManager.addOtherView(userImageView)
+        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
+            self?.skeletonManager.hide()
+        }
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }
