@@ -29,10 +29,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-i8-2Ke">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.66666666666663"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.33333333333337"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1124:2436" id="GqP-UU-Uxj"/>
+                        <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1024:2218" id="GqP-UU-Uxj"/>
                     </constraints>
                 </view>
                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBN-FH-QrV">

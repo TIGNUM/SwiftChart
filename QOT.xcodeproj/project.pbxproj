@@ -669,7 +669,7 @@
 		8D8AA76A22FDCB6700B59A81 /* RegistrationEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75A22FDCB6700B59A81 /* RegistrationEmailRouter.swift */; };
 		8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */; };
 		8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */; };
-		8D8FE32A2334F9F4004F79C4 /* LoginVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FE3292334F9F4004F79C4 /* LoginVideo.mp4 */; };
+		8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */; };
 		8D9F6D1C230E80EB00DCC241 /* WalkthroughPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */; };
 		8D9F6D1D230E80EB00DCC241 /* WalkthroughWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */; };
 		8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */; };
@@ -2025,7 +2025,7 @@
 		8D8AA75A22FDCB6700B59A81 /* RegistrationEmailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailRouter.swift; sourceTree = "<group>"; };
 		8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailWorker.swift; sourceTree = "<group>"; };
 		8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
-		8D8FE3292334F9F4004F79C4 /* LoginVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoginVideo.mp4; sourceTree = "<group>"; };
+		8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoginVideo.mp4; sourceTree = "<group>"; };
 		8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPresenter.swift; sourceTree = "<group>"; };
 		8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughWorker.swift; sourceTree = "<group>"; };
 		8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughRouter.swift; sourceTree = "<group>"; };
@@ -5157,7 +5157,7 @@
 		CB78D3361F9F674A0068A54A /* BundledMedia */ = {
 			isa = PBXGroup;
 			children = (
-				8D8FE3292334F9F4004F79C4 /* LoginVideo.mp4 */,
+				8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */,
 			);
 			name = BundledMedia;
 			sourceTree = "<group>";
@@ -6352,7 +6352,6 @@
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
-				8D8FE32A2334F9F4004F79C4 /* LoginVideo.mp4 in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
@@ -6375,6 +6374,7 @@
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				8D110D0A230FDB82000181BA /* WalkthroughCoach.storyboard in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
+				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
