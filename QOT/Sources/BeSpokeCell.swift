@@ -30,13 +30,6 @@ final class BeSpokeCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(firstImageView)
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        skeletonManager.addSubtitle(titleLabel)
-        skeletonManager.addSubtitle(descriptionLabel)
-        skeletonManager.addOtherView(firstImageView)
-    }
-
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
@@ -52,5 +45,10 @@ final class BeSpokeCell: BaseDailyBriefCell {
             self?.skeletonManager.hide()
         }
         copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
+            copyrightButtonHeight.constant = 0
+            labelToTop.constant = 22
+            copyrightLabel.isHidden = true
+        }
     }
 }

@@ -35,8 +35,8 @@ final class FeastCell: BaseDailyBriefCell {
         feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
             self?.skeletonManager.hide()
         }
-        self.copyrightURL = viewModel?.copyright
-        if self.copyrightURL?.isEmpty ?? true {
+        copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0
             imageToBottom.constant = 48
             copyrightLabel.isHidden = true

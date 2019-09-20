@@ -27,12 +27,6 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(departureImage)
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        skeletonManager.addSubtitle(departureText)
-        skeletonManager.addOtherView(departureImage)
-    }
-
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
@@ -43,8 +37,8 @@ final class DepartureInfoCell: BaseDailyBriefCell {
             self?.skeletonManager.hide()
         }
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureText)
-        self.copyrightURL = viewModel?.copyright
-        if self.copyrightURL?.isEmpty ?? true {
+        copyrightURL = model.copyright
+        if copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0
             labelToTop.constant = 21
             copyrightLabel.isHidden = true
