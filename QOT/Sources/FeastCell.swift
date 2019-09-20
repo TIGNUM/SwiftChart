@@ -33,7 +33,7 @@ final class FeastCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
         skeletonManager.addOtherView(feastImage)
         feastImage.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-        self?.skeletonManager.hide()
+            self?.skeletonManager.hide()
         }
         self.copyrightURL = viewModel?.copyright
         if self.copyrightURL?.isEmpty ?? true {

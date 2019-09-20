@@ -27,6 +27,12 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(departureImage)
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(departureText)
+        skeletonManager.addOtherView(departureImage)
+    }
+
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()

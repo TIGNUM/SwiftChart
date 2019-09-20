@@ -30,6 +30,13 @@ final class BeSpokeCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(firstImageView)
     }
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(descriptionLabel)
+        skeletonManager.addOtherView(firstImageView)
+    }
+
     @IBAction func copyrightPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
