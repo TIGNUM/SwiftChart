@@ -23,7 +23,6 @@ final class PrepareResultsRouter {
 // MARK: - PrepareResultsRouterInterface
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
-        //TODO: Hook up DT to edit prepare benefits.
 //        presentDecisionTree(for: .prepareBenefits(benefits: benefits,
 //                                                  questionID: Prepare.Key.benefits.questionID,
 //                                                  viewController))

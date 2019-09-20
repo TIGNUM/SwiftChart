@@ -24,6 +24,7 @@ class DTInteractor: DTInteractorInterface {
     var selectedAnswers: [SelectedAnswer] = []
     var inputText: String = ""
     var isDark: Bool = false    //TODO Maybe we wanna have ThemeModel in the future…
+    var tbv: QDMToBeVision?
 
     // MARK: - Init
     init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
@@ -155,8 +156,13 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - TBV
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        worker?.getUsersTBV { (tbv, initiated) in
-            completion(tbv, initiated)
+        if tbv != nil {
+            completion(tbv, true)
+        } else {
+            worker?.getUsersTBV { (tbv, initiated) in
+                self.tbv = tbv
+                completion(tbv, initiated)
+            }
         }
     }
 
@@ -168,5 +174,4 @@ class DTInteractor: DTInteractorInterface {
             presenter?.showNavigationButtonAfterAnimation()
         }
     }
-
 }

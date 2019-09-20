@@ -13,14 +13,6 @@ final class DTMindsetInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var mindsetWorker: DTMindsetWorker? = DTMindsetWorker()
-    private var tbv: QDMToBeVision?
-
-    override func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void) {
-        super.getUsersTBV { (tbv, initiated) in
-            self.tbv = tbv
-            completion(tbv, initiated)
-        }
-    }
 
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         return questionAnswerType == AnswerType.text.rawValue && questionKey == Mindset.QuestionKey.ShowTBV ? tbv : nil
