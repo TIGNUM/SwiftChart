@@ -11,7 +11,6 @@ import UIKit
 final class DTShortTBVPresenter: DTPresenter {
 
     var shouldHideDismissButton: Bool = false
-    var introKey: String?
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
         if shouldHideDismissButton {
@@ -25,10 +24,6 @@ final class DTShortTBVPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        if introKey == ShortTBV.QuestionKey.IntroOnboarding {
-            return false
-        }
-
         let typingAnimationState = answerType == .text
         if typingAnimationState {
             hideNavigationButtonForAnimation()
