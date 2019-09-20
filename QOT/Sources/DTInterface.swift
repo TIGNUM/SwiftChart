@@ -18,7 +18,7 @@ protocol DTViewControllerInterface: class {
     func hideNavigationButtonForAnimation()
 }
 
-protocol DTPresenterInterface {    
+protocol DTPresenterInterface {
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
