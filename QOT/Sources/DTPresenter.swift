@@ -20,10 +20,6 @@ class DTPresenter: DTPresenterInterface {
     }
 
     // MARK: - DTPresenterInterface
-    func setupView() {
-        viewController?.setupView(.sand, .carbonDark)
-    }
-
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
         let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
         viewController?.setNavigationButton(button)

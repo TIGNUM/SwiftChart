@@ -38,7 +38,6 @@ class DTInteractor: DTInteractorInterface {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter?.setupView()
         worker?.getQuestions(questionGroup: questionGroup) { [weak self] (questions) in
             self?.questions = questions ?? []
             let firstQuestion = questions?.filter { $0.key == self?.introKey }.first

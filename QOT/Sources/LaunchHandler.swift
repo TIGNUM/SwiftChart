@@ -345,7 +345,7 @@ extension LaunchHandler {
             mainNavi.dismissAllPresentedViewControllers(mainNavi, false) {}
             return
         }
-        mainNavi.dismissAllPresentedViewControllers(coachController, false) {}
+        mainNavi.dismissAllPresentedViewControllers(coachController, true) {}
     }
 
     func showLearnStrategy(_ category: qot_dal.ContentCategory?) {
