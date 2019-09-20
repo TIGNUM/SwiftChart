@@ -37,7 +37,7 @@ final class MyQotMainInteractor {
         presenter.setupView()
     }
 
-    private func createMyData(irScore: Double?) -> [MyQotViewModel.Item] {
+    private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
         item.subtitle = String(irScore ?? 0) + R.string.localized.myQotDataImpact()
         return [item]
@@ -113,7 +113,7 @@ final class MyQotMainInteractor {
             completion(toBeVisionDate)
         }
     }
-    private func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+    private func getImpactReadinessScore(completion: @escaping(Int?) -> Void) {
         worker.getImpactReadinessScore(completion: completion)
     }
 
