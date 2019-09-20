@@ -33,7 +33,7 @@ final class DTRecoveryViewController: DTViewController {
              Recovery.QuestionKey.SymptomGeneral?:
             presentRecoveryResults()
         case Recovery.QuestionKey.Last?:
-            router?.dismiss()
+            router?.dismissChatBotFlow()
         default:
             loadNextQuestion()
         }
