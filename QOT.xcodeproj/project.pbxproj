@@ -938,6 +938,8 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
+		B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */; };
+		B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */; };
 		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
 		B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACCC2328EAE1006BA566 /* WeatherCell.swift */; };
 		B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49EACCD2328EAE1006BA566 /* WeatherCell.xib */; };
@@ -2272,6 +2274,8 @@
 		B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenWorker.swift; sourceTree = "<group>"; };
 		B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenViewController.swift; sourceTree = "<group>"; };
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
+		B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleEmptyTableViewCell.xib; sourceTree = "<group>"; };
+		B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		B4993F48233243D4001E5676 /* SkeletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonManager.swift; sourceTree = "<group>"; };
 		B49EACCC2328EAE1006BA566 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		B49EACCD2328EAE1006BA566 /* WeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
@@ -2851,6 +2855,8 @@
 				360CC3C92268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib */,
 				360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */,
 				360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */,
+				B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */,
+				B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */,
 				3662433D227C56E500FFED3A /* AudioButton.swift */,
 				3662433F227C570200FFED3A /* AudioButton.xib */,
 				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
@@ -6201,6 +6207,7 @@
 				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
 				754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
+				B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
 				367A585F2326A4350089A082 /* DTViewController.xib in Resources */,
@@ -6562,7 +6569,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6871,6 +6878,7 @@
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */,
+				B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
@@ -8687,7 +8695,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
