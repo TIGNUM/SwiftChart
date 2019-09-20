@@ -20,32 +20,20 @@ final class SigningInfoWorker {
         self.model = model
         self.contentCategory = contentCategory
     }
+
+    // MARK: - Texts
+    lazy var title: String? = {
+        return "contentItem(at: item, format: .title)?.valueText.uppercased()"
+    }()
+
+    var body: String? = {
+        return "contentItem(at: item, format: .body)?.valueText.uppercased()"
+    }()
 }
 
 // MARK: - Public
 extension SigningInfoWorker {
-    var numberOfSlides: Int {
-        return SigningInfoModel.Slide.allSlides.count
-    }
-
-    func title(at item: Int) -> String? {
-        return contentItem(at: item, format: .title)?.valueText.uppercased()
-    }
-
-    func body(at item: Int) -> String? {
-        return contentItem(at: item, format: .body)?.valueText.uppercased()
-    }
-
     func shouldShowUnoptimizedScreenWarning() -> Bool {
         return UIDevice.isPad || UIDevice.isSmallScreenDevice
-    }
-}
-
-// MARK: - Private
-private extension SigningInfoWorker {
-    func contentItem(at item: Int, format: ContentFormat) -> QDMContentItem? {
-        let contentID = SigningInfoModel.Slide.allSlides[item].contentID
-        let contentCollection = contentCategory?.contentCollections.filter { $0.remoteID == contentID }.first
-        return Array(contentCollection?.contentItems ?? []).filter { $0.format == format }.first
     }
 }

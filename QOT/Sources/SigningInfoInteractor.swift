@@ -51,12 +51,12 @@ final class SigningInfoInteractor {
 
 extension SigningInfoInteractor: SigningInfoInteractorInterface {
 
-    func title(at item: Int) -> String? {
-        return worker.title(at: item)
+    var title: String? {
+        return worker.title
     }
 
-    func body(at item: Int) -> String? {
-        return worker.body(at: item)
+    var body: String? {
+        return worker.body
     }
 
     func didTapLoginButton() {

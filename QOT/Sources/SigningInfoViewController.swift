@@ -7,17 +7,29 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
+    let mediaName = "LoginVideo"
+    let mediaExtension = "mp4"
+
     var interactor: SigningInfoInteractorInterface?
+    var player: AVPlayer
+    @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var startButton: UIButton!
     var delegate: SigningInfoDelegate?
 
     // MARK: - Init
     init() {
+        var item: AVPlayerItem? = nil
+        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension) {
+            item = AVPlayerItem(url: media)
+        }
+        player = AVPlayer(playerItem: item)
+        
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -89,6 +101,7 @@ private extension SigningInfoViewController {
 // MARK: - SigningInfoViewControllerInterface
 extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
+        ThemeView.level1.apply(view)
         setupButtons()
     }
 

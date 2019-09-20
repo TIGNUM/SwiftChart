@@ -19,6 +19,7 @@
             <connections>
                 <outlet property="loginButton" destination="7Zc-MD-3Ih" id="16c-7p-FLa"/>
                 <outlet property="startButton" destination="pEJ-dl-5zv" id="B8z-cN-2Nt"/>
+                <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
                 <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
             </connections>
         </placeholder>
@@ -27,6 +28,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-i8-2Ke">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.66666666666663"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1124:2436" id="GqP-UU-Uxj"/>
+                    </constraints>
+                </view>
                 <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBN-FH-QrV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                     <subviews>
@@ -59,20 +67,24 @@
                             </connections>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" red="0.0" green="0.047058823529411764" blue="0.086274509803921567" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="7Zc-MD-3Ih" firstAttribute="leading" secondItem="QBN-FH-QrV" secondAttribute="leading" constant="24" id="3lx-vC-wR1"/>
+                        <constraint firstAttribute="width" secondItem="QBN-FH-QrV" secondAttribute="height" multiplier="375:812" id="6Bm-TG-ATO"/>
                         <constraint firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" constant="42" id="ff9-f9-XoM"/>
                         <constraint firstAttribute="trailing" secondItem="pEJ-dl-5zv" secondAttribute="trailing" constant="24" id="lOI-M3-QSi"/>
                         <constraint firstItem="pEJ-dl-5zv" firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" id="xuI-xo-ALe"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="1Dx-R3-fx9"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="QBN-FH-QrV" secondAttribute="trailing" id="77D-NS-7Lg"/>
+                <constraint firstItem="muA-i8-2Ke" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="9M2-oh-H48"/>
+                <constraint firstItem="muA-i8-2Ke" firstAttribute="centerX" secondItem="rYY-wO-Y1g" secondAttribute="centerX" id="Hlw-dz-iqe"/>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Jls-hW-lYF"/>
+                <constraint firstItem="muA-i8-2Ke" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="gti-Za-C3y"/>
                 <constraint firstAttribute="bottom" secondItem="QBN-FH-QrV" secondAttribute="bottom" id="s5g-lo-Jaf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="rYY-wO-Y1g"/>
