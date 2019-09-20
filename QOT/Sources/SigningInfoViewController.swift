@@ -14,9 +14,13 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Properties
     let mediaName = "LoginVideo"
     let mediaExtension = "mp4"
-
+    // Video player
     var interactor: SigningInfoInteractorInterface?
-    var player: AVPlayer
+    let player: AVQueuePlayer = AVQueuePlayer()
+    let playerLayer: AVPlayerLayer?
+    let playerLooper: AVPlayerLooper?
+
+    // Outlets
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var startButton: UIButton!
@@ -24,12 +28,15 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Init
     init() {
-        var item: AVPlayerItem? = nil
         if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension) {
-            item = AVPlayerItem(url: media)
+            let playerItem = AVPlayerItem(url: media)
+            playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
+        } else {
+            playerLooper = nil
         }
-        player = AVPlayer(playerItem: item)
-        
+
+        playerLayer = AVPlayerLayer(player: player)
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -40,6 +47,11 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let playerLayer = playerLayer {
+            videoContainerView.layer.addSublayer(playerLayer)
+        }
+
         interactor?.viewDidLoad()
         NotificationHandler.postNotification(withName: .showSigningInfoView)
     }
@@ -53,6 +65,8 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         refreshBottomNavigationItems()
+        player.play()
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -67,6 +81,7 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         view.alpha = 1
+        player.pause()
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -76,6 +91,11 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return nil
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = videoContainerView.bounds
+    }
 }
 
 // MARK: - Private
@@ -83,6 +103,11 @@ private extension SigningInfoViewController {
     func setupButtons() {
         ThemeBorder.accent.apply(loginButton)
         ThemeBorder.accent.apply(startButton)
+    }
+
+    func setupVideo() {
+
+        player.play()
     }
 }
 
