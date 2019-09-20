@@ -13,7 +13,7 @@ class TBVWorker {
     func createVision(selectedAnswers: [SelectedAnswer],
                       questionKeyWork: String,
                       questionKeyHome: String,
-                      shouldSave: Bool = false,
+                      shouldSave: Bool = true,
                       completion: @escaping (QDMToBeVision?) -> Void) {
         let workIds = getSelectedIds(selectedAnswers, questionKeyWork)
         let homeIds = getSelectedIds(selectedAnswers, questionKeyHome)
@@ -24,7 +24,7 @@ class TBVWorker {
             }
 
             completion(vision)
-            guard var newVision = vision else { return }
+            guard let newVision = vision else { return }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
                 UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
             }
