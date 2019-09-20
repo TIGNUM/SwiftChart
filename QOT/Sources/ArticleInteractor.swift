@@ -87,6 +87,10 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.isTopBarHidden
     }
 
+    var shouldHideBookmarkItem: Bool {
+        return worker.isBookmarkItemHidden
+    }
+
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         return worker.relatedArticle(at: indexPath)
     }

@@ -139,10 +139,14 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     private lazy var topBarButtonItems: [UIBarButtonItem] = {
         if interactor?.isShareable == true {
-            return [bookMarkBarButtonItem,
-                    nightModeBarButtonItem,
-                    textScaleBarButtonItem,
-                    shareBarButtonItem]
+            var items = [bookMarkBarButtonItem,
+                         nightModeBarButtonItem,
+                         textScaleBarButtonItem,
+                         shareBarButtonItem]
+            if interactor?.shouldHideBookmarkItem == true {
+                items.remove(object: bookMarkBarButtonItem)
+            }
+            return items
         } else if interactor?.section == .About {
             return [nightModeBarButtonItem,
                     textScaleBarButtonItem]

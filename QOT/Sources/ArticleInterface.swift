@@ -37,6 +37,7 @@ protocol ArticleInteractorInterface: class, Interactor {
     var remoteID: Int { get }
     var audioURL: URL? { get }
     var isShareable: Bool { get }
+    var shouldHideBookmarkItem: Bool { get }
     var shouldHideTopBar: Bool { get }
     func itemCount(in section: Int) -> Int
     func headerTitle(for section: Int) -> String?

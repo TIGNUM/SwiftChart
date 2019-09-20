@@ -77,6 +77,8 @@ final class ArticleWorker {
 
     var isTopBarHidden: Bool = false
 
+    var isBookmarkItemHidden: Bool = false
+
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
@@ -125,6 +127,7 @@ final class ArticleWorker {
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? false
+            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
         }
 
@@ -159,8 +162,9 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
-        content?.contentItems.filter { $0.tabs.isEmpty
-            && content?.contentCategoryTitle == "Exclusive 3DRecovery"
+        content?.contentItems.filter {
+            $0.tabs.isEmpty
+            && content?.section == .ExclusiveRecoveryContent
             && $0.format != .pdf
             && $0.format != .video }.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
@@ -412,8 +416,12 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary, .About, .FAQ_3_0: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .ExclusiveRecoveryContent: return true
         default: return false
         }
+    }
+
+    func shouldHideBookmarkButton() -> Bool {
+        return content?.section == .ExclusiveRecoveryContent
     }
 }
