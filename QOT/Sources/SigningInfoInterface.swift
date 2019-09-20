@@ -20,8 +20,8 @@ protocol SigningInfoPresenterInterface {
 }
 
 protocol SigningInfoInteractorInterface: Interactor {
-    var title: String? { get }
-    var body: String? { get }
+    var titleText: String? { get }
+    var bodyText: String? { get }
     func didTapLoginButton()
     func didTapStartButton()
 }

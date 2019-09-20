@@ -17,8 +17,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SigningInfoViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="bodyLabel" destination="vSM-mr-lrB" id="QPr-8U-RhC"/>
                 <outlet property="loginButton" destination="7Zc-MD-3Ih" id="16c-7p-FLa"/>
                 <outlet property="startButton" destination="pEJ-dl-5zv" id="B8z-cN-2Nt"/>
+                <outlet property="titleLabel" destination="sYp-yY-lbk" id="7lw-Gp-xXg"/>
                 <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
                 <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
             </connections>
@@ -76,14 +78,32 @@
                         <constraint firstItem="pEJ-dl-5zv" firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" id="xuI-xo-ALe"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
+                    <rect key="frame" x="24" y="534.33333333333337" width="327" height="20.333333333333371"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-mr-lrB">
+                    <rect key="frame" x="24" y="572.66666666666663" width="327" height="20.333333333333371"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="1Dx-R3-fx9"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="bottom" secondItem="vSM-mr-lrB" secondAttribute="bottom" constant="185" id="5oc-Mg-w7G"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="QBN-FH-QrV" secondAttribute="trailing" id="77D-NS-7Lg"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="9M2-oh-H48"/>
+                <constraint firstItem="vSM-mr-lrB" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="Aav-aT-RnD"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="sYp-yY-lbk" secondAttribute="trailing" constant="24" id="BCB-K2-b3g"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="vSM-mr-lrB" secondAttribute="trailing" constant="24" id="Fql-V9-UwC"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="centerX" secondItem="rYY-wO-Y1g" secondAttribute="centerX" id="Hlw-dz-iqe"/>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Jls-hW-lYF"/>
+                <constraint firstItem="sYp-yY-lbk" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="WDu-1u-D1E"/>
+                <constraint firstItem="vSM-mr-lrB" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" constant="18" id="ag2-aK-vdl"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="gti-Za-C3y"/>
                 <constraint firstAttribute="bottom" secondItem="QBN-FH-QrV" secondAttribute="bottom" id="s5g-lo-Jaf"/>
             </constraints>

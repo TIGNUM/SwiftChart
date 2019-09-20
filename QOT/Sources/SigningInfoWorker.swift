@@ -22,11 +22,11 @@ final class SigningInfoWorker {
     }
 
     // MARK: - Texts
-    lazy var title: String? = {
+    lazy var titleText: String? = {
         return R.string.localized.onboardingIntroTitle()
     }()
 
-    var body: String? = {
+    var bodyText: String? = {
         return R.string.localized.onboardingIntroBody()
     }()
 }
