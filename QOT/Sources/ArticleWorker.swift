@@ -166,7 +166,8 @@ final class ArticleWorker {
             $0.tabs.isEmpty
             && content?.section == .ExclusiveRecoveryContent
             && $0.format != .pdf
-            && $0.format != .video }.forEach { item in
+            && $0.format != .video
+            && $0.format != .title }.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
@@ -283,7 +284,8 @@ final class ArticleWorker {
         case .WhatsHot:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
         case .FAQ_3_0,
-             .About:
+             .About,
+             .ExclusiveRecoveryContent:
             return 1
         default:
             return 3
