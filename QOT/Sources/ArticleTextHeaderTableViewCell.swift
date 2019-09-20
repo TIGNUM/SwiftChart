@@ -16,12 +16,17 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
+    weak var delegate: ArticleViewController?
 
     // MARK: - Life Cycle
 
     func configure(articleHeader: Article.Header?) {
         guard let articleHeader = articleHeader else { return }
-        ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+        if delegate?.section() == .About {
+            ThemeText.articleCategory.apply("", to: categoryTitleLabel)
+        } else {
+            ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+        }
         ThemeText.articleTitle.apply(articleHeader.title.uppercased(), to: titleLabel)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
