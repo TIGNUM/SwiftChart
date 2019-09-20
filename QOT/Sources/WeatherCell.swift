@@ -33,6 +33,8 @@ final class WeatherCell: BaseDailyBriefCell {
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
+    private let formatter = MeasurementFormatter()
+    private let numberFormatter = NumberFormatter()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,6 +44,8 @@ final class WeatherCell: BaseDailyBriefCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         hourlyStackView.removeAllArrangedSubviews()
+        numberFormatter.maximumFractionDigits = 1
+        numberFormatter.minimumFractionDigits = 1
     }
 
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
@@ -64,7 +68,14 @@ final class WeatherCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
         if let weather = viewModel?.domainModel?.weather {
-            ThemeText.weatherDescription.apply(weather.shortDescription, to: weatherDescriptionLabel)
+            var temperature = ""
+            if let celcius = weather.currentTempInCelcius,
+                let value = numberFormatter.number(from: numberFormatter.string(for: celcius) ?? "") as? Double {
+                let measurement = Measurement(value: value, unit: UnitTemperature.celsius)
+                temperature = formatter.string(from: measurement)
+            }
+            let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
+            ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
             ThemeText.weatherTitle.apply(weather.title, to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weather.body, to: weatherBodyLabel)
             if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
@@ -80,24 +91,20 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: Private
     private func populateHourlyViews() {
         guard let weatherModel = viewModel?.domainModel?.weather,
-            let forecast = weatherModel.forecast,
-            let nowHourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView else {
+            let forecast = weatherModel.forecast else {
             return
         }
 
-        nowHourlyView.setTime(text: R.string.localized.weatherNow(), isNow: true)
-        setupHourlyImage(for: nowHourlyView,
-                         isNight: isNight(currentDate: weatherModel.currentDate, sunriseDate: weatherModel.sunriseDate, sunsetDate: weatherModel.sunsetDate),
-                         and: weatherModel.imageURL,
-                         and: weatherModel.shortDescription, isNow: true)
-        hourlyStackView.addArrangedSubview(nowHourlyView)
-
-        for forecastModel in forecast {
+        for (index, forecastModel) in forecast.enumerated() {
             guard let hourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView,
                 let date = forecastModel.date else {
-                return
+                    return
             }
-            hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
+            if index == 0 {
+                hourlyView.setTime(text: R.string.localized.weatherNow(), isNow: true)
+            } else {
+                hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
+            }
             setupHourlyImage(for: hourlyView,
                              isNight: isNight(currentDate: forecastModel.date, sunriseDate: weatherModel.sunriseDate, sunsetDate: weatherModel.sunsetDate),
                              and: forecastModel.imageURL,
