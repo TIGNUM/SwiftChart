@@ -25,8 +25,8 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
         ThemeText.dailyBriefSubtitle.apply(viewModel?.text, to: departureText)
-        let copyrightURL = viewModel?.copyright
-        if copyrightURL?.isEmpty ?? true {
+        self.copyrightURL = viewModel?.copyright
+        if self.copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0
             labelToTop.constant = 21
             copyrightLabel.isHidden = true

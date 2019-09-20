@@ -25,8 +25,8 @@ final class FeastCell: BaseDailyBriefCell {
     func configure(with viewModel: FeastCellViewModel?) {
         ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         feastImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        let copyrightURL = viewModel?.copyright
-        if copyrightURL?.isEmpty ?? true {
+        self.copyrightURL = viewModel?.copyright
+        if self.copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0
             imageToBottom.constant = 48
             copyrightLabel.isHidden = true
