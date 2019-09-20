@@ -29,7 +29,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
     func configure(with: DailyCheckIn2TBVModel?) {
         guard let model = with else { return }
-#warning("The title is hardcoded in the xib for this cell, need to change to localized string ASAP")
+//TO DO: title label text should not be hardcoded in the xib file
         skeletonManager.hide()
         tbvText.text = model.introText
         tbvSentence.text = model.tbvSentence

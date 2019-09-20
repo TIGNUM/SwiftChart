@@ -23,6 +23,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     }
 
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
+//TO DO: title label text should not be hardcoded in the xib file
         ThemeText.dailyBriefDailyCheckInSights.apply(with?.intro, to: peakEventsLabel)
         skeletonManager.hide()
     }

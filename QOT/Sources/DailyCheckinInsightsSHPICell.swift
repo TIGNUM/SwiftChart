@@ -29,7 +29,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
         skeletonManager.addOtherView(barsStackView)
 
     }
-#warning("This cell has hardcoded adviceLabel and titleLabel texts in the xib")
+//TO DO: title label and adviceLabel texts should not be hardcoded in the xib file
     func configure(with: DailyCheck2SHPIModel?) {
         updateView(text: with?.shpiContent, rating: with?.shpiRating ?? 0)
         skeletonManager.hide()
