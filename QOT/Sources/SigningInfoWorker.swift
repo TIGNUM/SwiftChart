@@ -23,11 +23,11 @@ final class SigningInfoWorker {
 
     // MARK: - Texts
     lazy var title: String? = {
-        return "contentItem(at: item, format: .title)?.valueText.uppercased()"
+        return R.string.localized.onboardingIntroTitle()
     }()
 
     var body: String? = {
-        return "contentItem(at: item, format: .body)?.valueText.uppercased()"
+        return R.string.localized.onboardingIntroBody()
     }()
 }
 
