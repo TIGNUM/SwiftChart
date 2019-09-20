@@ -17,33 +17,20 @@ final class SolveReminderCellViewModel: BaseDailyBriefViewModel {
     var question1: String?
     var question2: String?
     var question3: String?
-    var solveModels: [SolveViewModel]
 
     struct SolveViewModel {
         var title: String?
         var date: String?
         var solve: QDMSolve?
-
-        init() {}
-
-        init(title: String?,
-             date: String?,
-             solve: QDMSolve?,
-             domainModel: QDMDailyBriefBucket) {
-            self.title = title
-            self.date = date
-            self.solve = solve
-        }
     }
 
     // MARK: - Init
-    init(bucketTitle: String?, twoDayAgo: String?, question1: String?, question2: String?, question3: String?, solveModels: [SolveViewModel], domainModel: QDMDailyBriefBucket?) {
+    init(bucketTitle: String?, twoDayAgo: String?, question1: String?, question2: String?, question3: String?, domainModel: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
         self.twoDayAgo = twoDayAgo
         self.question1 = question1
         self.question2 = question2
         self.question3 = question3
-        self.solveModels = solveModels
         super.init(domainModel)
     }
 

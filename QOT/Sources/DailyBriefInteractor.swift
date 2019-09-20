@@ -707,14 +707,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSolveList: [BaseDailyBriefViewModel] = []
-        var solveViewModels: [SolveReminderCellViewModel.SolveViewModel] = []
         guard (solveBucket.solves?.first) != nil else {
             createSolveList.append(SolveReminderCellViewModel(bucketTitle: "",
                                                               twoDayAgo: "",
                                                               question1: "",
                                                               question2: "",
                                                               question3: "",
-                                                              solveModels: solveViewModels,
                                                               domainModel: solveBucket))
             return createSolveList
         }
@@ -725,18 +723,17 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let filteredQuestions2 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }
         let question2 = filteredQuestions2?.at(index: 1)?.valueText ?? ""
         let question3 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }.last?.valueText ?? ""
-        solveBucket.solves?.forEach {(solve) in
-            solveViewModels.append(SolveReminderCellViewModel.SolveViewModel(title: solve.solveTitle,
-                                                                        date: DateFormatter.solveDate.string(from: solve.createdAt ?? Date()),
-                                                                        solve: solve,
-                                                                        domainModel: solveBucket))
         createSolveList.append(SolveReminderCellViewModel(bucketTitle: bucketTitle,
                                                           twoDayAgo: twoDaysAgo,
                                                           question1: question1,
                                                           question2: question2,
                                                           question3: question3,
-                                                          solveModels: solveViewModels,
                                                           domainModel: solveBucket))
+        solveBucket.solves?.forEach {(solve) in
+            createSolveList.append(SolveReminderTableCellViewModel(title: solve.solveTitle,
+                                                                   date: DateFormatter.solveDate.string(from: solve.createdAt ?? Date()),
+                                                                   solve: solve,
+                                                                   domainModel: solveBucket))
         }
         return createSolveList
     }
