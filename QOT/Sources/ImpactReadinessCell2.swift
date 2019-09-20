@@ -48,6 +48,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeView.level2.apply(self)
     }
 
     func hide(_ hidden: Bool) {
@@ -94,7 +95,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         }
 
         ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
-
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
