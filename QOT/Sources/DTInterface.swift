@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 protocol DTViewControllerInterface: class {
-    func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor)
     func showNextQuestion(_ viewModel: DTViewModel)
     func showPreviosQuestion(_ viewModel: DTViewModel)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
@@ -20,7 +19,6 @@ protocol DTViewControllerInterface: class {
 }
 
 protocol DTPresenterInterface {
-    func setupView()
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool)
     func presentInfoView(icon: UIImage?, title: String?, text: String?)
