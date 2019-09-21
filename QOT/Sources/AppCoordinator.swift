@@ -145,18 +145,18 @@ final class AppCoordinator {
         // DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
 
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
-            let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
-            let rootNavigationController = rootViewController as? UINavigationController else {
+            let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
+            let baseRootViewController = R.storyboard.bottomNavigation.baseRootViewController() else {
                 return
         }
-        if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
-            baseVC.setContent(viewController: coachCollectionViewController)
-        }
-
-        self.windowManager.show(rootNavigationController, animated: true, completion: nil)
+        naviController.viewControllers = [baseRootViewController]
+        self.windowManager.show(naviController, animated: true, completion: nil)
 
         self.canProcessRemoteNotifications = true
         self.canProcessLocalNotifications = true
+        DispatchQueue.main.async {
+            baseRootViewController.setContent(viewController: coachCollectionViewController)
+        }
     }
 
     func isReadyToOpenURL() -> Bool {

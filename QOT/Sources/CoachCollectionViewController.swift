@@ -147,7 +147,8 @@ extension CoachCollectionViewController {
 extension CoachCollectionViewController {
 
     private func updatePan(currentY: CGFloat) {
-        bottomSearchViewConstraint.constant = panActive ? -currentY : 0.0
+        let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+        bottomSearchViewConstraint.constant = panActive ? -currentY : -currentViewsYPositionInWindow
         let duration: Double = panSearchShowing ? 0.25 : 0.0
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
@@ -240,7 +241,8 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     func didTapCancel() {
         panSearchShowing = false
         if let searchViewController = searchViewController {
-            bottomSearchViewConstraint.constant = 0
+            let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+            bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
             UIView.animate(withDuration: 0.25) {
                 self.refreshCoachButton()
                 searchViewController.view.superview?.layoutIfNeeded()
