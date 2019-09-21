@@ -120,6 +120,9 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         if bottomSearchViewConstraint.constant == 0 {
             let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
+        }
+
+        if heightSearchViewConstraint.constant != view.bounds.height {
             heightSearchViewConstraint.constant = view.bounds.height
         }
     }
