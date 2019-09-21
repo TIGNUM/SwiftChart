@@ -570,6 +570,8 @@ enum ThemeText {
     case questionHintLabelDark
     case questionHintLabelRed
 
+    case onboardingInfoTitle
+    case onboardingInfoBody
     case onboardingInputText
     case onboardingInputPlaceholder
     case loginEmailTitle
@@ -755,7 +757,8 @@ enum ThemeText {
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
-             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
+             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
+             .onboardingInfoBody:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -814,6 +817,8 @@ enum ThemeText {
             return Fonts.fontSemiBold16
         case .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
+        case .onboardingInfoTitle:
+            return Fonts.fontDisplaySemiBold32
         default:
             return Fonts.fontRegular20
         }
@@ -832,7 +837,8 @@ enum ThemeText {
              .dailyBriefLevelTitle, .searchSuggestion,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
              .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
-             .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge:
+             .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge,
+             .onboardingInfoTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -861,7 +867,8 @@ enum ThemeText {
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
              .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels:
+             .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels,
+             .onboardingInfoBody:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle:
@@ -1052,6 +1059,10 @@ enum ThemeText {
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .onboardingInfoTitle:
+            string = NSAttributedString(string: text, letterSpacing: -0.21, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .onboardingInfoBody:
+            string = NSAttributedString(string: text, letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
@@ -1142,6 +1153,7 @@ private struct Fonts {
     static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
+    static let fontDisplaySemiBold32 = UIFont.sfProtextSemibold(ofSize: 32.0)
 }
 
 private struct Palette {
