@@ -94,8 +94,12 @@ final class AppCoordinator {
             self.showSigning()
         }
         DispatchQueue.main.async {
-            AppCoordinator.permissionsManager = self.permissionsManager
+            self.setupPermissionsManager()
         }
+    }
+
+    func setupPermissionsManager() {
+        AppCoordinator.permissionsManager = self.permissionsManager
     }
 
     func restart() {

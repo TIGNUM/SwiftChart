@@ -24,18 +24,22 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL,
-                 searchViewController: SearchViewController? = nil) {
+    func process(url: URL) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
             return
         }
 
-        if !appDelegate.appCoordinator.isReadyToOpenURL() || qot_dal.SessionService.main.getCurrentSession() == nil {
-            RestartHelper.setRestartURL(url)
-            return
+        guard appDelegate.appCoordinator.isReadyToOpenURL(),
+            qot_dal.SessionService.main.getCurrentSession() != nil else {
+                RestartHelper.setRestartURL(url)
+                return
         }
         RestartHelper.clearRestartRouteInfo()
+
+        if AppCoordinator.permissionsManager == nil {
+            appDelegate.appCoordinator.setupPermissionsManager()
+        }
 
         var queries: [String: String?] = [:]
         for queryItem in url.queryItems() {
