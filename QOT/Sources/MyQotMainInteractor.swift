@@ -35,6 +35,27 @@ final class MyQotMainInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
+        createInitialData()
+    }
+
+    private func createInitialData() {
+        var sectionDataList: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = [ArraySection(model: .header,
+                                                                                                         elements: [])]
+        var elements: [MyQotViewModel.Item] = []
+        for index in 0...5 {
+            let section = MyQotSection.init(rawValue: index) ?? .profile
+            elements.append(MyQotViewModel.Item(myQotSections: section,
+                                                title: worker.myQOTTitle(for: section),
+                                                subtitle: nil,
+                                                showSubtitleInRed: false))
+        }
+
+        sectionDataList.append(ArraySection(model: .body,
+                                            elements: elements))
+
+        let changeSet = StagedChangeset(source: self.viewModelOldListModels, target: sectionDataList)
+        self.presenter.updateViewNew(changeSet)
+
     }
 
     private func createMyData(irScore: Double?) -> [MyQotViewModel.Item] {
@@ -46,7 +67,6 @@ final class MyQotMainInteractor {
     private func createToBeVision(date: Date?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.toBeVision.rawValue]
         if date == nil {
-            item.subtitle = ""
             return [item]
         } else {
             let timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
@@ -64,28 +84,28 @@ final class MyQotMainInteractor {
 
     private func createProfile(userName: String?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.profile.rawValue]
-        item.subtitle = "Hello " + (userName ?? "") + ",\n" + (subtitles[MyQotSection.profile.rawValue]?.lowercased() ?? "")
-
+        if userName != nil {
+            item.subtitle = "Hello " + (userName ?? "") + ",\n" + (subtitles[MyQotSection.profile.rawValue]?.lowercased() ?? "")
+        }
         return [item]
     }
 
     private func createLibrary() -> [MyQotViewModel.Item] {
         let item = worker.myQotSections().myQotItems[MyQotSection.library.rawValue]
-
         return [item]
     }
 
     private func createPreps(dateString: String?, eventType: String?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.preps.rawValue]
-        item.subtitle = (dateString ?? "") + " " + (eventType ?? "")
-
+        if dateString != nil && eventType != nil {
+            item.subtitle = (dateString ?? "") + " " + (eventType ?? "")
+        }
         return [item]
     }
 
     private func createSprints() -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.sprints.rawValue]
         item.subtitle = subtitles[MyQotSection.sprints.rawValue] ?? ""
-
         return [item]
     }
 

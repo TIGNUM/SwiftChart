@@ -100,8 +100,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                 return cell
             default:
                 let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                cell.configure(title: myQotViewModelItem?.title ?? "",
-                               subtitle: myQotViewModelItem?.subtitle ?? "",
+                cell.configure(title: myQotViewModelItem?.title,
+                               subtitle: myQotViewModelItem?.subtitle,
                                isRed: myQotViewModelItem?.showSubtitleInRed ?? false)
                 return cell
             }
