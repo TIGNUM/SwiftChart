@@ -18,6 +18,7 @@ final class AboutMeCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(title)
         skeletonManager.addSubtitle(aboutMeContent)
         skeletonManager.addSubtitle(aboutMeMoreInfo)
     }

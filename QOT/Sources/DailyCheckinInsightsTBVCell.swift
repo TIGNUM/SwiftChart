@@ -21,6 +21,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addTitle(tbvText)
         skeletonManager.addSubtitle(tbvSentence)
         skeletonManager.addSubtitle(adviceText)

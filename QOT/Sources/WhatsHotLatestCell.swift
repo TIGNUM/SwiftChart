@@ -20,6 +20,7 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         newLabel.isHidden = true
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(subtitle)
         skeletonManager.addOtherView(whatsHotImage)
         skeletonManager.addSubtitle(whatsHotTitle)

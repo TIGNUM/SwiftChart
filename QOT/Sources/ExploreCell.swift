@@ -15,11 +15,18 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introTextLabel: UILabel!
     @IBOutlet weak var strategyView: UIView!
+    @IBOutlet private weak var lineView: UIView!
+    @IBOutlet private var hourLabels: [UILabel]!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(introTextLabel)
         skeletonManager.addOtherView(strategyView)
+        skeletonManager.addOtherView(lineView)
+        for label in hourLabels {
+            skeletonManager.addOtherView(label)
+        }
     }
 
     func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {

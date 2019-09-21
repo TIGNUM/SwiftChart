@@ -30,14 +30,15 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        toBeVisionImage.gradientBackground(top: true)
+        toBeVisionImage.gradientBackground(top: false)
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(impactReadinessScore)
         skeletonManager.addSubtitle(impactReadinessOutOf100Label)
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
-        impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        toBeVisionImage.gradientBackground(top: true)
-        toBeVisionImage.gradientBackground(top: false)
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {

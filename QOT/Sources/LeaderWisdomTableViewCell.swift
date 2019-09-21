@@ -28,6 +28,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         super.awakeFromNib()
         audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(audioView)

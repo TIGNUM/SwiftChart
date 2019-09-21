@@ -24,6 +24,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         meAtMyBestButtonText.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(meAtMyBestTitle)
         skeletonManager.addSubtitle(meAtMyBestLabel)
         skeletonManager.addSubtitle(meAtMyBestContent)
         skeletonManager.addOtherView(meAtMyBestFuture)

@@ -15,6 +15,7 @@ final class ThoughtsCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(authorLabel)
         skeletonManager.addSubtitle(thoughtLabel)
     }

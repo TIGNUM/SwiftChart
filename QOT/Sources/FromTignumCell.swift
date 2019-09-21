@@ -21,6 +21,7 @@ final class FromTignumCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(fromTignumText)
         skeletonManager.addSubtitle(fromTignumTitle)
         skeletonManager.addOtherView(button)

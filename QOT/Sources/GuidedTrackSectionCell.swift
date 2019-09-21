@@ -17,7 +17,7 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        skeletonManager.addSubtitle(title)
+        skeletonManager.addTitle(title)
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(button)
     }

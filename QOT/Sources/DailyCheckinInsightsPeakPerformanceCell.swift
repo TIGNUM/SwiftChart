@@ -18,6 +18,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(peakEventsLabel)
         skeletonManager.addOtherView(button)
     }

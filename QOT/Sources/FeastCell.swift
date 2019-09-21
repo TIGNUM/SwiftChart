@@ -20,6 +20,7 @@ final class FeastCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addOtherView(feastImage)
     }
 

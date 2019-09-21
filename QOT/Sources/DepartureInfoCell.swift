@@ -23,6 +23,7 @@ final class DepartureInfoCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(departureText)
         skeletonManager.addOtherView(departureImage)
     }

@@ -25,6 +25,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
             bar.frame = CGRect(x: 0, y: 0, width: 1, height: 35)
         }
         super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(SHPIText)
         skeletonManager.addOtherView(barsStackView)
 

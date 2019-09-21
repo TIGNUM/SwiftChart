@@ -19,6 +19,7 @@ final class SolveReminderCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(twoDayAgo)
         skeletonManager.addSubtitle(question1)
         skeletonManager.addSubtitle(question2)

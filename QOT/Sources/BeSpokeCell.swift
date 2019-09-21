@@ -25,7 +25,7 @@ final class BeSpokeCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(firstImageView)
     }

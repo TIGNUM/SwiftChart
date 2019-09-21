@@ -37,6 +37,7 @@ final class WeatherCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(bucketTitleLabel)
         skeletonManager.addSubtitle(introLabel)
         skeletonManager.addSubtitle(weatherDescriptionLabel)
         skeletonManager.addSubtitle(weatherTitleLabel)

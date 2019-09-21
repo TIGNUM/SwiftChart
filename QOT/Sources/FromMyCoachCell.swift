@@ -12,10 +12,17 @@ final class FromMyCoachCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var stackView: UIStackView!
 
-    func configure(with data: FromMyCoachCellViewModel) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addOtherView(stackView)
+    }
+
+    func configure(with data: FromMyCoachCellViewModel?) {
+        guard let model = data else { return }
+        skeletonManager.hide()
         stackView.removeSubViews()
-        formHeaderView(with: data.detail )
-        for (index, message) in data.messages.enumerated() {
+        formHeaderView(with: model.detail )
+        for (index, message) in model.messages.enumerated() {
             formMessageView(isFirst: index == 0, with: message)
         }
     }
