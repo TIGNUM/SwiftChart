@@ -61,7 +61,7 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
             router?.openRecovery()
         }
     }
-    
+
     func deleteModel() {
         worker.deleteModel()
     }
