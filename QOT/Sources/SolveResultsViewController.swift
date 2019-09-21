@@ -62,13 +62,12 @@ private extension SolveResultsViewController {
     @objc func didTapDone() {
         switch interactor?.resultType {
         case .recovery?:
-            interactor?.didTapDone()
+            interactor?.presentFeedback()
         case .solve?:
             if isFollowUpActive == true {
                 interactor?.save()
-            } else {
-                openConfirmationView()
             }
+            interactor?.dismiss()
         case .none:
             return
         }

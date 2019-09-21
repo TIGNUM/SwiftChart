@@ -48,14 +48,6 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     func setupView() {
         registerCells()
     }
-
-    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
-//        let cancel = QOTAlertAction(title: cancelTitle)
-//        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
-            interactor?.didTapClose()
-//        }
-//        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
-    }
 }
 
 // MARK: - Private
@@ -74,12 +66,12 @@ private extension ShifterResultViewController {
 private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        dismiss(animated: true)
+        interactor?.presentFeedback()
     }
 
     @objc func openConfirmationView() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.openConfirmationView()
+        interactor?.didTapClose()
     }
 }
 
