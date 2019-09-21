@@ -11,13 +11,13 @@ import Foundation
 protocol SolveResultsViewControllerInterface: class {
     func load(_ results: SolveResults)
     func setupView()
-    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
+//    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
 }
 
 protocol SolveResultsPresenterInterface {
     func present(_ results: SolveResults)
     func setupView()
-    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
+//    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
 }
 
 protocol SolveResultsInteractorInterface: Interactor {
@@ -26,8 +26,8 @@ protocol SolveResultsInteractorInterface: Interactor {
     func save()
     func didTapStrategy(with id: Int)
     func didTapTrigger(_ type: SolveTriggerType)
-    func openConfirmationView()
-    func deleteModelAndDismiss()
+//    func openConfirmationView()
+    func deleteModel()
     func dismiss()
     func didTapDone()
     func isPresentingExistingSolve() -> Bool

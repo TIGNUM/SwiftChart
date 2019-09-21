@@ -11,7 +11,7 @@ import UIKit
 final class ShifterResultRouter {
 
     // MARK: - Properties
-    private let viewController: ShifterResultViewController
+    private weak var viewController: ShifterResultViewController?
 
     // MARK: - Init
     init(viewController: ShifterResultViewController) {
@@ -23,5 +23,8 @@ final class ShifterResultRouter {
 extension ShifterResultRouter: ShifterResultRouterInterface {
     func dismiss() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
+    }
+
+    func presentFeedback() {
     }
 }

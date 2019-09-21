@@ -70,14 +70,14 @@ extension SolveResultsWorker {
 
     func save(_ completion: @escaping () -> Void) {
         if let solve = existingSolve {
-            qot_dal.UserService.main.updateSolve(solve) { (solve, error) in
+            UserService.main.updateSolve(solve) { (solve, error) in
                 completion()
             }
         } else {
             let contentId = recovery?.fatigueContentItemId
             relatedStrategies(contentId) { [weak self] (relatedStrategies) in
                 let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-                qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
+                UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
                                                      solutionCollectionId: self?.solutionCollectionId ?? 0,
                                                      strategyIds: relatedStragyIds,
                                                      followUp: true) { (solve, error) in
@@ -91,9 +91,9 @@ extension SolveResultsWorker {
         switch type {
         case .recovery:
             guard let recovery = recovery else { return }
-            qot_dal.UserService.main.deleteRecovery3D(recovery) { error in
+            UserService.main.deleteRecovery3D(recovery) { error in
                 if let error = error {
-                    qot_dal.log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
+                    log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
                 }
             }
         case .solve:

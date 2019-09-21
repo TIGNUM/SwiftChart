@@ -33,15 +33,12 @@ final class ShifterResultInteractor {
 
 // MARK: - ShifterResultInteractorInterface
 extension ShifterResultInteractor: ShifterResultInteractorInterface {
-    func didTapClose() {
-        worker.deleteMindsetShifter()
+    func didTapSave() {
         router.dismiss()
     }
 
-    func openConfirmationView() {
-        presenter.presentAlert(title: worker.leaveAlertTitle,
-                               message: worker.leaveAlertMessage,
-                               cancelTitle: worker.cancelButtonTitle,
-                               leaveTitle: worker.leaveButtonTitle)
+    func didTapDismiss() {
+        worker.deleteMindsetShifter()
+        router.dismiss()
     }
 }

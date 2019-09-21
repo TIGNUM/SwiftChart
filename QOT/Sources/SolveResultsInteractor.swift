@@ -44,9 +44,7 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     }
 
     func save() {
-        worker.save { [weak self] in
-            self?.router?.dismiss()
-        }
+        worker.save {}
     }
 
     func didTapStrategy(with id: Int) {
@@ -63,16 +61,8 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
             router?.openRecovery()
         }
     }
-
-    func openConfirmationView() {
-        presenter?.presentAlert(title: worker.leaveAlertTitle,
-                               message: worker.leaveAlertMessage,
-                               stayTitle: worker.leaveAlertStayButton,
-                               leaveTitle: worker.leaveAlertLeaveButton)
-    }
-
-    func deleteModelAndDismiss() {
-        router?.dismiss()
+    
+    func deleteModel() {
         worker.deleteModel()
     }
 
