@@ -121,7 +121,9 @@ extension SolveResultsViewController: UITableViewDelegate {
              .exclusiveContent(let id, _, _, _, _)?:
             interactor?.didTapStrategy(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
-        default: return
+        default:
+            tableView.isUserInteractionEnabled = true
+            return
         }
     }
 }
