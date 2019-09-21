@@ -150,16 +150,14 @@ final class AppCoordinator {
 
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
-            let baseRootViewController = R.storyboard.bottomNavigation.baseRootViewController() else {
+            let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        naviController.viewControllers = [baseRootViewController]
         self.windowManager.show(naviController, animated: true, completion: nil)
-
-        self.canProcessRemoteNotifications = true
-        self.canProcessLocalNotifications = true
         DispatchQueue.main.async {
             baseRootViewController.setContent(viewController: coachCollectionViewController)
+            self.canProcessRemoteNotifications = true
+            self.canProcessLocalNotifications = true
         }
     }
 
