@@ -24,7 +24,10 @@ class TBVWorker {
             }
 
             completion(vision)
-            guard let newVision = vision else { return }
+            guard var newVision = vision else { return }
+            if newVision.headline?.isEmpty == true {
+                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+            }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
                 UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})
             }
