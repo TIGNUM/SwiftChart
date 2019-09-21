@@ -76,6 +76,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
+    private var topBarButtonItems: [UIBarButtonItem] = []
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
@@ -136,24 +137,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         }
         return 0.25
     }
-
-    private lazy var topBarButtonItems: [UIBarButtonItem] = {
-        if interactor?.isShareable == true {
-            var items = [bookMarkBarButtonItem, nightModeBarButtonItem, textScaleBarButtonItem, shareBarButtonItem]
-            if interactor?.shouldHideBookmarkItem == true {
-                items.remove(object: bookMarkBarButtonItem)
-            }
-            return items
-        } else if interactor?.section == .About {
-            return [nightModeBarButtonItem, textScaleBarButtonItem]
-        } else {
-            var items = [bookMarkBarButtonItem, nightModeBarButtonItem, textScaleBarButtonItem]
-            if interactor?.shouldHideBookmarkItem == true {
-                items.remove(object: bookMarkBarButtonItem)
-            }
-            return items
-        }
-    }()
 
     private var lastScrollViewOffsetY: CGFloat = 0.0
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
@@ -326,6 +309,16 @@ private extension ArticleViewController {
 // MARK: - ArticleViewControllerInterface
 
 extension ArticleViewController: ArticleViewControllerInterface {
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
+        topBarButtonItems = [nightModeBarButtonItem, textScaleBarButtonItem]
+        if isShareable == true {
+            topBarButtonItems.append(shareBarButtonItem)
+        }
+        if hasBookMarkItem == true {
+            topBarButtonItems.insert(bookMarkBarButtonItem, at: 0)
+        }
+    }
+
     func reloadData() {
         self.view.removeLoadingSkeleton()
         navigationBar(show: true)

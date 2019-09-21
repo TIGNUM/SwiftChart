@@ -15,6 +15,7 @@ protocol ArticleViewControllerInterface: class {
     func reloadData()
     func hasBookmark(_ hasBookmark: Bool)
     func dataUpdated()
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
 }
 
 protocol ArticlePresenterInterface {
@@ -23,6 +24,7 @@ protocol ArticlePresenterInterface {
     func reloadData()
     func updateBookmark(_ hasBookmark: Bool)
     func dataUpdated()
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
 }
 
 protocol ArticleInteractorInterface: class, Interactor {

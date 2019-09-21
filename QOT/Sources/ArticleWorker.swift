@@ -92,7 +92,7 @@ final class ArticleWorker {
     init(selectedID: Int) {
         self.selectedID = selectedID
 
-        qot_dal.ContentService.main.getContentCollectionById(selectedID, { [weak self] (content) in
+        ContentService.main.getContentCollectionById(selectedID, { [weak self] (content) in
             self?.content = content
             self?.setup()
         })
@@ -131,7 +131,7 @@ final class ArticleWorker {
             self?.interactor?.dataUpdated()
         }
 
-        qot_dal.ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
+        ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
