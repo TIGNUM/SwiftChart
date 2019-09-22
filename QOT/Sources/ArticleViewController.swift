@@ -67,6 +67,13 @@ enum ColorMode {
         case .darkNot: return .default
         }
     }
+
+    var cellHighlight: UIColor {
+        switch self {
+        case .dark: return .accent10
+        case .darkNot: return .accent10
+        }
+    }
 }
 
 final class ArticleViewController: UIViewController, ScreenZLevel3 {
