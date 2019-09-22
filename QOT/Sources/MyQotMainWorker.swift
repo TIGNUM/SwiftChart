@@ -54,6 +54,13 @@ final class MyQotMainWorker {
         }
     }
 
+    func getCurrentSprintName(completion: @escaping (String?) -> Void) {
+        qot_dal.UserService.main.getSprints {(sprints, initialized, error) in
+            let sprint = sprints?.filter { $0.isInProgress == true }.first
+            completion(sprint?.title)
+        }
+    }
+
     func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
         qot_dal.MyDataService.main.getDailyCheckInResults(from: nil, to: nil, {(result, initialized, error) in
             let score = result?.last?.impactReadiness
