@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import Kingfisher
 
 protocol ArticleDelegate: class {
     func didTapMarkAsRead(_ read: Bool)
@@ -315,9 +316,29 @@ private extension ArticleViewController {
 
     @objc func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
-        guard let whatsHotShareable = interactor?.whatsHotShareable else { return }
-        let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
-        present(activityVC, animated: true, completion: nil)
+        guard let share = interactor?.whatsHotShareable else { return }
+        guard let title = share.message else { return }
+        guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
+        let dispatchGroup = DispatchGroup()
+        var items: [Any] = [title, url]
+
+        dispatchGroup.enter()
+        if let imageURL = share.imageURL {
+            KingfisherManager.shared.retrieveImage(with: imageURL) { result in
+                switch result {
+                case .success(let image): // if there is cached image share with image.
+                    items.append(image)
+                default: break
+                }
+
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self?.present(activityVC, animated: true, completion: nil)
+        }
     }
 }
 
