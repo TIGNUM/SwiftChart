@@ -94,6 +94,7 @@ class DTPresenter: DTPresenterInterface {
         }
         return DTViewModel.Question(remoteId: question?.remoteID ?? 0,
                                     title: title ?? "",
+                                    htmlTitleString: question?.htmlTitleString,
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
                                     duration: question?.layout?.animation?.duration ?? 5.0,

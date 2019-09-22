@@ -35,6 +35,7 @@ struct DTViewModel {
     struct Question {
         var remoteId: Int
         var title: String
+        var htmlTitleString: String?
         var key: String
         var answerType: AnswerType
         var duration: Double
@@ -42,12 +43,14 @@ struct DTViewModel {
 
         init(remoteId: Int,
              title: String,
+             htmlTitleString: String?,
              key: String,
              answerType: AnswerType,
              duration: Double,
              maxSelections: Int) {
             self.remoteId = remoteId
             self.title = title
+            self.htmlTitleString = htmlTitleString
             self.key = key
             self.answerType = answerType
             self.duration = duration
@@ -57,6 +60,7 @@ struct DTViewModel {
         init(qdmQuestion: QDMQuestion) {
             self.remoteId = qdmQuestion.remoteID ?? 0
             self.title = qdmQuestion.title
+            self.htmlTitleString = qdmQuestion.htmlTitleString
             self.key = qdmQuestion.key ?? ""
             self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? "") ?? .multiSelection
             self.duration = qdmQuestion.layout?.animation?.duration ?? 0
