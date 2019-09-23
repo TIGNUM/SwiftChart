@@ -55,7 +55,7 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
+        controller.configure(text: R.string.localized.resultsFeedbackRecovery())
         viewController?.removeBottomNavigation()
     }
 }
