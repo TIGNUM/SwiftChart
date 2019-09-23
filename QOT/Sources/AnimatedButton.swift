@@ -44,6 +44,11 @@ class AnimatedButton: UIButton {
     }
 
     func willShowUnpressed() {
+        isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.isUserInteractionEnabled = true
+        }
+
         if !shouldAnimate { return }
         if let delegate = delegate {
             delegate.willShowUnpressed()
