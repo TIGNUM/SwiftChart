@@ -42,6 +42,10 @@ final class ArticleWorker {
         return content?.section ?? .Unkown
     }
 
+    var alwaysHideTopBar: Bool {
+         return shouldAlwaysHideTopBar()
+    }
+
     var categoryTitle: String {
         return content?.contentCategoryTitle ?? ""
     }
@@ -77,6 +81,8 @@ final class ArticleWorker {
 
     var isTopBarHidden: Bool = false
 
+    var isBookmarkItemHidden: Bool = false
+
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
@@ -90,7 +96,7 @@ final class ArticleWorker {
     init(selectedID: Int) {
         self.selectedID = selectedID
 
-        qot_dal.ContentService.main.getContentCollectionById(selectedID, { [weak self] (content) in
+        ContentService.main.getContentCollectionById(selectedID, { [weak self] (content) in
             self?.content = content
             self?.setup()
         })
@@ -124,11 +130,12 @@ final class ArticleWorker {
             self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
-            self?.isTopBarHidden = self?.shouldHideTopBar() ?? false
+            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
+            self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
             self?.interactor?.dataUpdated()
         }
 
-        qot_dal.ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
+        ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
             self?.relatedContent = relatedContens ?? []
 
             if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
@@ -159,10 +166,12 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
-        content?.contentItems.filter { $0.tabs.isEmpty
-            && content?.contentCategoryTitle == "Exclusive 3DRecovery"
+        content?.contentItems.filter {
+            $0.tabs.isEmpty
+            && content?.section == .ExclusiveRecoveryContent
             && $0.format != .pdf
-            && $0.format != .video }.forEach { item in
+            && $0.format != .video
+            && $0.format != .title }.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
@@ -279,7 +288,8 @@ final class ArticleWorker {
         case .WhatsHot:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
         case .FAQ_3_0,
-             .About:
+             .About,
+             .ExclusiveRecoveryContent:
             return 1
         default:
             return 3
@@ -398,10 +408,22 @@ private extension ArticleWorker {
 
     func shouldHideTopBar() -> Bool {
         // Handle most frequent case
-        guard let content = content, content.section != .Generic else { return false }
+        guard let content = content,
+            content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .FAQ_3_0: return true
+        case .ToBeVisionGenerator, .FAQ_3_0, .About: return true
+        default: break
+        }
+        return false
+    }
+
+    func shouldAlwaysHideTopBar() -> Bool {
+        guard let content = content,
+            content.section != .Generic else { return false }
+
+        switch content.section {
+        case .About: return true
         default: break
         }
         return false
@@ -412,8 +434,12 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary, .About, .FAQ_3_0: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .ExclusiveRecoveryContent: return true
         default: return false
         }
+    }
+
+    func shouldHideBookmarkButton() -> Bool {
+        return content?.section == .ExclusiveRecoveryContent
     }
 }

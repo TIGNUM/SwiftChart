@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTShortTBVPresenter: DTPresenter {
 
@@ -29,6 +30,13 @@ final class DTShortTBVPresenter: DTPresenter {
             hideNavigationButtonForAnimation()
         }
         return typingAnimationState
+    }
+
+    override func getHtmlTitleString(_ qdmQuestion: QDMQuestion?) -> String? {
+        if qdmQuestion?.key == ShortTBV.QuestionKey.IntroOnboarding {
+            return qdmQuestion?.htmlTitleString
+        }
+        return nil
     }
 
     override func showNextQuestionAutomated(questionKey: String) -> Bool {

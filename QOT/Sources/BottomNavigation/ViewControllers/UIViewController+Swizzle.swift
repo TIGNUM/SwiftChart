@@ -400,7 +400,8 @@ extension UIViewController {
                                          textColor: UIColor = .accent,
                                          backgroundColor: UIColor = .carbonNew,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
-        let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default)))
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default))
         button.backgroundColor = backgroundColor
         button.setAttributedTitle(NSAttributedString(string: title,
                                                      letterSpacing: 0.2,

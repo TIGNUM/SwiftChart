@@ -10,6 +10,7 @@ import Foundation
 
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var peakEventsLabel: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -21,6 +22,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
         ThemeText.dailyBriefDailyCheckInSights.apply(with?.intro, to: peakEventsLabel)
+        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
     }
 
     @IBAction func preparations(_ sender: Any) {

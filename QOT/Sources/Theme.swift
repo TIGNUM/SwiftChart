@@ -287,6 +287,7 @@ enum ThemableButton {
     case askPermissions
     case syncedCalendar
     case walkthroughGotIt
+    case myPlans
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -297,7 +298,8 @@ enum ThemableButton {
              .askPermissions,
              .fullscreenAudioPlayerDownloadLight,
              .syncedCalendar,
-             .walkthroughGotIt:
+             .walkthroughGotIt,
+             .myPlans:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -305,7 +307,8 @@ enum ThemableButton {
     var normal: ButtonTheme? {
         switch self {
         case .myLibrary, .askPermissions, .syncedCalendar,
-             .walkthroughGotIt:
+             .walkthroughGotIt,
+             .myPlans:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -319,7 +322,8 @@ enum ThemableButton {
     var highlight: ButtonTheme? {
         switch self {
         case .myLibrary, .askPermissions, .syncedCalendar,
-             .walkthroughGotIt:
+             .walkthroughGotIt,
+             .myPlans:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
@@ -344,7 +348,8 @@ enum ThemableButton {
 
     var disabled: ButtonTheme? {
         switch self {
-        case .myLibrary:
+        case .myLibrary,
+             .myPlans:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
@@ -577,6 +582,8 @@ enum ThemeText {
     case questionHintLabelDark
     case questionHintLabelRed
 
+    case onboardingInfoTitle
+    case onboardingInfoBody
     case onboardingInputText
     case onboardingInputPlaceholder
     case loginEmailTitle
@@ -762,7 +769,8 @@ enum ThemeText {
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
-             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling:
+             .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
+             .onboardingInfoBody:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -821,6 +829,8 @@ enum ThemeText {
             return Fonts.fontSemiBold16
         case .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
+        case .onboardingInfoTitle:
+            return Fonts.fontDisplaySemiBold32
         default:
             return Fonts.fontRegular20
         }
@@ -839,14 +849,15 @@ enum ThemeText {
              .dailyBriefLevelTitle, .searchSuggestion,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
              .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
-             .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge:
+             .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
+             .onboardingInfoTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
-             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .dailyBriefImpactReadinessRolling:
+             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -868,7 +879,8 @@ enum ThemeText {
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
              .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels:
+             .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels,
+             .onboardingInfoBody:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle:
@@ -1059,6 +1071,10 @@ enum ThemeText {
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .onboardingInfoTitle:
+            string = NSAttributedString(string: text, letterSpacing: -0.21, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .onboardingInfoBody:
+            string = NSAttributedString(string: text, letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
@@ -1149,6 +1165,7 @@ private struct Fonts {
     static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
+    static let fontDisplaySemiBold32 = UIFont.sfProtextSemibold(ofSize: 32.0)
 }
 
 private struct Palette {

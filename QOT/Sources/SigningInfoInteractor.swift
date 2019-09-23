@@ -39,9 +39,9 @@ final class SigningInfoInteractor {
 
     func presentUnoptimizedAlertViewIfNeeded() {
         if UIDevice.isPad || UIDevice.isSmallScreenDevice {
-            let title = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertMessage)
-            let message = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertTitle)
-            let dismissButtonTitle = ScreenTitleService.main.localizedString(for: .ButtonTitleDone)
+            let title = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertTitle)
+            let message = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertMessage)
+            let dismissButtonTitle = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceButtonGotIt)
             presenter.presentUnoptimizedAlertView(title: title, message: message, dismissButtonTitle: dismissButtonTitle)
         }
     }
@@ -51,12 +51,12 @@ final class SigningInfoInteractor {
 
 extension SigningInfoInteractor: SigningInfoInteractorInterface {
 
-    func title(at item: Int) -> String? {
-        return worker.title(at: item)
+    var titleText: String? {
+        return worker.titleText
     }
 
-    func body(at item: Int) -> String? {
-        return worker.body(at: item)
+    var bodyText: String? {
+        return worker.bodyText
     }
 
     func didTapLoginButton() {

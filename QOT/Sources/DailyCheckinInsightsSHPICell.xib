@@ -475,7 +475,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSP-Px-wmT">
-                    <rect key="frame" x="443" y="417" width="45" height="17"/>
+                    <rect key="frame" x="457" y="417" width="45" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -485,11 +485,11 @@
             <constraints>
                 <constraint firstItem="FuO-3N-w9t" firstAttribute="trailing" secondItem="zd4-wa-MhM" secondAttribute="trailing" constant="20" id="0fp-eJ-cGv"/>
                 <constraint firstItem="Xws-ox-yjU" firstAttribute="leading" secondItem="FuO-3N-w9t" secondAttribute="leading" constant="20" id="3aA-qd-yaF"/>
+                <constraint firstItem="FuO-3N-w9t" firstAttribute="trailing" secondItem="HSP-Px-wmT" secondAttribute="trailing" constant="20" id="62n-be-NjN"/>
                 <constraint firstItem="FuO-3N-w9t" firstAttribute="trailing" secondItem="Xws-ox-yjU" secondAttribute="trailing" constant="20" id="8eJ-jy-KCO"/>
                 <constraint firstItem="NgW-bi-Vgj" firstAttribute="top" secondItem="UHN-Ev-Uoj" secondAttribute="bottom" constant="44" id="8ie-5V-35S"/>
                 <constraint firstItem="UHN-Ev-Uoj" firstAttribute="top" secondItem="IpA-hZ-HKE" secondAttribute="bottom" constant="40" id="ARx-Us-fkn"/>
                 <constraint firstItem="NgW-bi-Vgj" firstAttribute="trailing" secondItem="FuO-3N-w9t" secondAttribute="trailing" constant="-24" id="HaJ-Xc-N5i"/>
-                <constraint firstItem="HSP-Px-wmT" firstAttribute="trailing" secondItem="NgW-bi-Vgj" secondAttribute="trailing" constant="-10" id="McX-hF-gft"/>
                 <constraint firstItem="IpA-hZ-HKE" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="20" id="N4I-7Z-gzr"/>
                 <constraint firstItem="iJ5-aQ-5Xi" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="20" id="PKL-n2-dCc"/>
                 <constraint firstItem="zd4-wa-MhM" firstAttribute="top" secondItem="Xws-ox-yjU" secondAttribute="bottom" constant="24" id="SuH-if-8Pj"/>
@@ -510,6 +510,7 @@
             <viewLayoutGuide key="safeArea" id="FuO-3N-w9t"/>
             <connections>
                 <outlet property="SHPIText" destination="zd4-wa-MhM" id="PK4-EQ-hfp"/>
+                <outlet property="bucketTitle" destination="Xws-ox-yjU" id="JEv-Vt-X3e"/>
                 <outletCollection property="labels" destination="qhB-tC-Sbd" collectionClass="NSMutableArray" id="f0a-Ir-NfH"/>
                 <outletCollection property="labels" destination="3r8-Zt-T9D" collectionClass="NSMutableArray" id="eKK-sR-1oo"/>
                 <outletCollection property="heights" destination="mHl-Nn-1gr" collectionClass="NSMutableArray" id="Vw4-4V-31d"/>

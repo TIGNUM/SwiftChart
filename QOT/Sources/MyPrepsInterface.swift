@@ -36,4 +36,5 @@ protocol MyPrepsInteractorInterface: Interactor {
 
 protocol MyPrepsRouterInterface {
     func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
+    func dismiss()
 }
