@@ -238,6 +238,17 @@ extension UIViewController {
             vc = naviController
         }
 
+        switch vc.modalPresentationStyle {
+        case .currentContext,
+             .overFullScreen,
+             .overCurrentContext,
+             .pageSheet,
+             .formSheet,
+             .popover,
+             .custom: break
+        default: vc.modalPresentationStyle = .fullScreen
+        }
+
         baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
     }
 
