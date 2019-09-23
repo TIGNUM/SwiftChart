@@ -23,6 +23,7 @@ class Level5ViewModel: BaseDailyBriefViewModel {
                   comeBackText: String?,
                   levelMessages: [LevelDetail],
                   confirmationMessage: String?,
+                  latestSavedValue: Int?,
                   domainModel: QDMDailyBriefBucket) {
         self.title = title
         self.intro = intro
@@ -32,6 +33,7 @@ class Level5ViewModel: BaseDailyBriefViewModel {
         self.comeBackText = comeBackText
         self.levelMessages = levelMessages
         self.confirmationMessage = confirmationMessage
+        self.latestSavedValue = latestSavedValue
         super.init(domainModel)
     }
 
@@ -45,6 +47,6 @@ class Level5ViewModel: BaseDailyBriefViewModel {
     var comeBackText: String?
     var currentLevel: Int?
     var confirmationMessage: String?
+    var latestSavedValue: Int?
     var levelMessages: [LevelDetail]
-
 }
