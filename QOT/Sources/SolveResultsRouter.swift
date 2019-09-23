@@ -13,6 +13,7 @@ final class SolveResultsRouter {
 
     // MARK: - Properties
     private weak var viewController: SolveResultsViewController?
+    weak var delegate: ResultsFeedbackDismissDelegate?
 
     // MARK: - Init
     init(viewController: SolveResultsViewController) {
@@ -55,7 +56,8 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
+        controller.configure(text: R.string.localized.resultsFeedbackRecovery())
+        controller.delegate = delegate
         viewController?.removeBottomNavigation()
     }
 }

@@ -66,7 +66,7 @@ private extension SolveResultsViewController {
             if isFollowUpActive == true {
                 interactor?.save()
             }
-            interactor?.dismiss()
+            handleDismiss()
         case .none:
             return
         }
@@ -74,6 +74,10 @@ private extension SolveResultsViewController {
 
     @objc func didTapDismiss() {
         interactor?.deleteModel()
+        handleDismiss()
+    }
+
+    func handleDismiss() {
         if delegate != nil {
             delegate?.didTapDismiss()
         } else {

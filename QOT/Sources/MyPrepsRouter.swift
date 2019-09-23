@@ -11,19 +11,16 @@ import UIKit
 final class MyPrepsRouter {
 
     // MARK: - Properties
-
-    private let viewController: MyPrepsViewController
+    private weak var viewController: MyPrepsViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
-
     init(viewController: MyPrepsViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - MyPrepsRouterInterface
-
 extension MyPrepsRouter: MyPrepsRouterInterface {
 
     func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
@@ -33,4 +30,7 @@ extension MyPrepsRouter: MyPrepsRouterInterface {
 //TODO - QOT Alert goes here 
     }
 
+    func dismiss() {
+        viewController?.dismiss(animated: true)
+    }
 }

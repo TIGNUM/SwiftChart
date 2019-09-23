@@ -26,13 +26,16 @@ final class SolveResultsConfigurator {
         }
     }
 
-    static func make(from recoveryModel: QDMRecovery3D?, canDelete: Bool) -> (SolveResultsViewController) -> Void {
+    static func make(from recoveryModel: QDMRecovery3D?,
+                     canDelete: Bool,
+                     delegate: ResultsFeedbackDismissDelegate? = nil) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
             let router = SolveResultsRouter(viewController: viewController)
             let worker = SolveResultsWorker(recovery: recoveryModel, canDelete: canDelete)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
+            router.delegate = delegate
         }
     }
 
