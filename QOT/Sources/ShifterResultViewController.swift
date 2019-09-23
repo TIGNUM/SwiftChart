@@ -12,6 +12,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ShifterResultInteractorInterface?
+    weak var delegate: ResultsViewControllerDelegate?
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 
@@ -66,12 +67,12 @@ private extension ShifterResultViewController {
 private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.presentFeedback()
+        interactor?.didTapSave()
     }
 
-    @objc func openConfirmationView() {
-        trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.didTapClose()
+    @objc func didTapDismiss() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        interactor?.didTapDismiss()
     }
 }
 
@@ -120,7 +121,7 @@ extension ShifterResultViewController: UITableViewDataSource {
 // MARK: - BottomNavigation Items
 extension ShifterResultViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+        return [dismissNavigationItem(action: #selector(didTapDismiss))]
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

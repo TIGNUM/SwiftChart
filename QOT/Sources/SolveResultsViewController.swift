@@ -9,9 +9,8 @@
 import UIKit
 import qot_dal
 
-protocol SolveResultsViewControllerDelegate: class {
-    func didFinishSolve()
-    func didFinishRec()
+protocol ResultsViewControllerDelegate: class {
+    func didTapDismiss()
 }
 
 // TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..
@@ -19,7 +18,7 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 
     // MARK: - Properties
     var interactor: SolveResultsInteractorInterface?
-    weak var delegate: SolveResultsViewControllerDelegate?
+    weak var delegate: ResultsViewControllerDelegate?
     var isFollowUpActive = false
     private var results: SolveResults?
 
@@ -74,20 +73,12 @@ private extension SolveResultsViewController {
     }
 
     @objc func didTapDismiss() {
-        switch interactor?.resultType {
-        case .recovery?:
-            didTapDismissButton()
-        default:
+        interactor?.deleteModel()
+        if delegate != nil {
+            delegate?.didTapDismiss()
+        } else {
             interactor?.dismiss()
         }
-    }
-
-    @objc func openConfirmationView() {
-        interactor?.openConfirmationView()
-    }
-
-    @objc func didTapLeave() {
-        interactor?.deleteModelAndDismiss()
     }
 }
 
@@ -101,13 +92,6 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
     func load(_ results: SolveResults) {
         self.results = results
         tableView.reloadData()
-    }
-
-    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String) {
-//        let stay = QOTAlertAction(title: stayTitle)
-//        let leave = QOTAlertAction(title: leaveTitle, target: self, action: #selector(didTapLeave))
-//        QOTAlert.show(title: title, message: message, bottomItems: [stay, leave])
-        didTapLeave()
     }
 }
 
@@ -203,11 +187,7 @@ extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
 
 extension SolveResultsViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.isPresentingExistingSolve() == true {
-            return [dismissNavigationItem(action: #selector(didTapDismiss))]
-        } else {
-            return [dismissNavigationItem(action: #selector(openConfirmationView))]
-        }
+        return [dismissNavigationItem(action: #selector(didTapDismiss))]
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

@@ -19,8 +19,8 @@ protocol ShifterResultPresenterInterface {
 }
 
 protocol ShifterResultInteractorInterface: Interactor {
-    func didTapClose()
-    func presentFeedback()
+    func didTapSave()
+    func didTapDismiss()
 }
 
 protocol ShifterResultRouterInterface {

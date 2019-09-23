@@ -23,13 +23,11 @@ final class SolveResultsRouter {
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
     func dismiss() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
+        viewController?.dismiss(animated: true, completion: nil)
     }
 
     func didTapDone() {
-        viewController?.dismiss(animated: true, completion: {
-            self.viewController?.delegate?.didFinishRec()
-        })
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func openStrategy(with id: Int) {

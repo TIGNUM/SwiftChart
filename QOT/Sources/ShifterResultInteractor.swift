@@ -33,12 +33,12 @@ final class ShifterResultInteractor {
 
 // MARK: - ShifterResultInteractorInterface
 extension ShifterResultInteractor: ShifterResultInteractorInterface {
-    func didTapClose() {
-        worker.deleteMindsetShifter()
-        router.dismiss()
+    func didTapSave() {
+        router.presentFeedback()
     }
 
-    func presentFeedback() {
-        router.presentFeedback()
+    func didTapDismiss() {
+        worker.deleteMindsetShifter()
+        router.dismiss()
     }
 }
