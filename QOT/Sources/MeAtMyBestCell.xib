@@ -60,9 +60,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="333" y="287.5" width="69" height="40"/>
+                                <rect key="frame" x="252" y="287.5" width="150" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dvw-lH-XlC"/>
+                                    <constraint firstAttribute="width" constant="150" id="zLB-N4-Gjb"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <state key="normal" title="Rate">
