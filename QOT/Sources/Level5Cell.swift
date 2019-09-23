@@ -38,6 +38,7 @@ final class Level5Cell: BaseDailyBriefCell {
         saveButton.setTitle("Saved", for: .normal)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         QOTAlert.show(title: nil, message: confirmationMessage)
+        updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
     }
 
     func configure(with: Level5ViewModel?) {
