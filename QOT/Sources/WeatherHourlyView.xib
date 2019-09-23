@@ -35,6 +35,7 @@
                 </label>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" tag="-1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurricane" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.40000000596046448" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-gM-7Zu">
                     <rect key="frame" x="-7.5" y="21.5" width="65" height="17"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -63,6 +64,6 @@
         </view>
     </objects>
     <resources>
-        <image name="placeholder_small" width="20" height="20"/>
+        <image name="placeholder_small" width="30" height="20"/>
     </resources>
 </document>
