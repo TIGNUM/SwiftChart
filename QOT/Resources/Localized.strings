@@ -464,7 +464,7 @@
 "Onboarding.Registration.NotificationPermission.Alert.Settings" = "Settings";
 "Onboarding.Registration.NotificationPermission.Alert.Skip" = "Skip";
 
-"Onboarding.Registration.TrackSelection.Title" = "YOUR ACCOUNT IS CREATED";
+"Onboarding.Registration.TrackSelection.Title" = "WELCOME TO QOT V3.0";
 "Onboarding.Registration.TrackSelection.Message" = "Since QOT is quite rich in content and use cases, we created two options for you to start:\n\n1. Fast Track - this will lead you right into QOT so that you can explore it yourself.\n\n2. Guided Track - we created a roadmap for you with recommended steps.";
 "Onboarding.Registration.TrackSelection.Button.FastTrack" = "Fast track";
 "Onboarding.Registration.TrackSelection.Button.GuidedTrack" = "Guided track";

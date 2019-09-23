@@ -112,14 +112,44 @@ extension DailyBriefInteractor {
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
+    // MARK: Properties
 
-//    Invoke the prepare screen in the coach screen.
-    func displayCoachPreparationScreen() {
-        router.displayCoachPreparationScreen()
+    var rowViewModelCount: Int {
+        return viewModelOldList.count
     }
 
-    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]) {
-        viewModelOldListModels = list
+    var rowViewSectionCount: Int {
+        return viewModelOldListModels.count
+    }
+
+    var shpiAnswer: QDMDailyCheckInAnswer? {
+        return worker.shpiAnswer
+    }
+
+    var peakPerformanceCount: Int? {
+        return worker.peakPerformanceCount
+    }
+
+    // MARK: Retrieve methods
+
+    func bucket(at row: Int) -> QDMDailyBriefBucket? {
+        return worker.bucket(at: row)
+    }
+
+    func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel? {
+        return viewModelOldList.at(index: row)
+    }
+
+    func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
+        return viewModelOldListModels
+    }
+
+    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
+        worker.latestWhatsHotCollectionID(completion: completion)
+    }
+
+    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
+        worker.latestWhatsHotContent(completion: completion)
     }
 
     func getDailyBriefBucketsForViewModel() {
@@ -217,65 +247,22 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func presentCopyRight(copyrightURL: String?) {
-        router.presentCopyRight(copyrightURL: copyrightURL)
+    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
+        worker.getContentCollection(completion: completion)
     }
+
+    func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
+        worker.getToBeVisionImage(completion: completion)
+    }
+
+    // MARK: Present methods
 
     func presentMyDataScreen() {
         router.presentMyDataScreen()
     }
 
-    func updateDailyBriefBucket() {
-        DispatchQueue.main.async {
-            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
-        }
-    }
-
-    var rowViewModelCount: Int {
-        return viewModelOldList.count
-    }
-
-    var rowViewSectionCount: Int {
-        return viewModelOldListModels.count
-    }
-
-    var shpiAnswer: QDMDailyCheckInAnswer? {
-        return worker.shpiAnswer
-    }
-
-    var peakPerformanceCount: Int? {
-        return worker.peakPerformanceCount
-    }
-
-    func bucket(at row: Int) -> QDMDailyBriefBucket? {
-        return worker.bucket(at: row)
-    }
-
-    func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel? {
-        return viewModelOldList.at(index: row)
-    }
-
-    func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
-        return viewModelOldListModels
-    }
-
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        worker.latestWhatsHotCollectionID(completion: completion)
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        worker.latestWhatsHotContent(completion: completion)
-    }
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        worker.getContentCollection(completion: completion)
-    }
-
     func presentWhatsHotArticle(selectedID: Int) {
         router.presentWhatsHotArticle(selectedID: selectedID)
-    }
-
-    func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
-        worker.getToBeVisionImage(completion: completion)
     }
 
     func presentMyToBeVision() {
@@ -290,12 +277,20 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.presentToolsItems(selectedToolID: selectedToolID)
     }
 
+    func presentCopyRight(copyrightURL: String?) {
+        router.presentCopyRight(copyrightURL: copyrightURL)
+    }
+
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
+        router.openGuidedTrackAppLink(appLink)
+    }
+
     func showSolveResults(solve: QDMSolve) {
         router.showSolveResults(solve: solve)
     }
 
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
-        worker.createLatestWhatsHotModel(completion: completion)
+    func showDailyCheckIn() {
+        router.showDailyCheckIn()
     }
 
     func showCustomizeTarget() {
@@ -304,243 +299,51 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createSprintChanllengeList: [BaseDailyBriefViewModel] = []
-
-        guard sprintBucket.sprint != nil else {
-            let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
-            createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: "",
-                                                                       sprintTitle: "",
-                                                                       sprintInfo: "",
-                                                                       sprintStepNumber: 0,
-                                                                       relatedStrategiesModels: relatedStrategiesModels,
-                                                                       domainModel: sprintBucket,
-                                                                       sprint: sprintBucket.sprint!))
-            return createSprintChanllengeList
-        }
-        let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)
-        let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
-        let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
-        var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
-        sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
-            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
-                                                                                           content.durationString,
-                                                                                           content.remoteID ?? 0,
-                                                                                           nil,
-                                                                                           content.section,
-                                                                                           content.contentItems.first?.format,
-                                                                                           content.contentItems.count))
-        }
-        sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
-            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(contentItem.valueText,
-                                                                                           contentItem.durationString,
-                                                                                           nil,
-                                                                                           contentItem.remoteID,
-                                                                                           .Unkown,
-                                                                                           contentItem.format, 1))
-        }
-
-        createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
-                                                                   sprintTitle: sprintBucket.sprint?.title,
-                                                                   sprintInfo: sprintInfo,
-                                                                   sprintStepNumber: sprintBucket.sprint?.currentDay,
-                                                                   relatedStrategiesModels: relatedStrategiesModels,
-                                                                   domainModel: sprintBucket,
-                                                                   sprint: sprintBucket.sprint!))
-        return createSprintChanllengeList
+    func displayCoachPreparationScreen() {
+        router.displayCoachPreparationScreen()
     }
 
+    // MARK: Save methods
+
+    func saveAnswerValue(_ value: Int) {
+        worker.saveAnswerValue(value)
+    }
+
+    func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
+        _ = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
+        //        check this implementation
+        //        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
+    }
+
+    func saveTargetValue(value: Int?) {
+        worker.saveTargetValue(value: value)
+    }
+
+    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
+        worker.customzieSleepQuestion(completion: completion)
+    }
+
+    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]) {
+        viewModelOldListModels = list
+    }
+
+    func updateDailyBriefBucket() {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
+        }
+    }
+
+    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
+        worker.createLatestWhatsHotModel(completion: completion)
+    }
+}
+extension DailyBriefInteractor {
+
+    // MARK: Helpers
     func getSprintInfo(_ bucket: QDMDailyBriefBucket, _ tag1: String, _ tag2: String) -> String {
         return bucket.contentCollections?.filter {
             $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)
             }.first?.contentItems.first?.valueText ?? ""
-    }
-
-    func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFromTignumList: [BaseDailyBriefViewModel] = []
-        let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
-        guard (fromTignum.contentCollections?.first) != nil else {
-            createFromTignumList.append( FromTignumCellViewModel(title: "",
-                                                                 text: "",
-                                                                 subtitle: "",
-                                                                 domainModel: fromTignum))
-            return createFromTignumList
-
-        }
-        fromTignum.contentCollections?.forEach {(fromTignumModel) in
-            createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
-                                                                text: fromTignumModel.contentItems.first?.valueText ?? "",
-                                                                subtitle: fromTignumModel.title,
-                                                                domainModel: fromTignum))
-        }
-        return createFromTignumList
-    }
-
-    func createLeaderWisdom(createLeadersWisdom leadersWisdom: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var leadersWisdomList: [BaseDailyBriefViewModel] = []
-        guard let collection = leadersWisdom.contentCollections?.first else {
-            leadersWisdomList.append(LeaderWisdomCellViewModel(title: "",
-                                                               subtitle: "",
-                                                               description: "",
-                                                               audioDuration: 0,
-                                                               audioLink: URL(string: ""),
-                                                               videoTitle: "",
-                                                               videoDuration: 0.0,
-                                                               videoThumbnail: URL(string: ""),
-                                                               format: .unknown,
-                                                               remoteID: 0,
-                                                               durationString: "",
-                                                               domainModel: nil))
-
-            return leadersWisdomList
-        }
-
-        leadersWisdomList.append(LeaderWisdomCellViewModel(title: leadersWisdom.bucketText?.contentItems.first?.valueText ?? "",
-                                                           subtitle: "\(leadersWisdom.bucketText?.contentItems[1].valueText ?? "") \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
-            description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
-            audioDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
-            audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.link ?? ""),
-            videoTitle: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDescription ?? "",
-            videoDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
-            videoThumbnail: URL(string: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueMediaURL ?? ""),
-            format: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.format ?? .unknown,
-            remoteID: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.remoteID ?? 0,
-            durationString: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.durationString ?? "",
-            domainModel: leadersWisdom))
-        return leadersWisdomList
-    }
-
-    func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var meAtMyBestList: [BaseDailyBriefViewModel] = []
-        let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
-        if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
-            let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
-            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be Vision"
-            meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
-            return meAtMyBestList
-        } else {
-            let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? ""
-            let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
-            let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? " "
-            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
-            meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
-                                                          intro: tbvIntro,
-                                                          tbvStatement: tbvSentence,
-                                                          intro2: tbvIntro2,
-                                                          buttonText: ctaTBVButtonText,
-                                                          domainModel: meAtMyBest))
-            return meAtMyBestList
-        }
-
-    }
-
-    func createThoughtsToPonder(thoughtsToPonderBucket thoughtsToPonder: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = thoughtsToPonder.contentCollections?.first else {
-            createThoughtsToPonderList.append(ThoughtsCellViewModel(title: "",
-                                                                    thought: "",
-                                                                    author: "String?",
-                                                                    domainModel: thoughtsToPonder))
-            return createThoughtsToPonderList}
-        createThoughtsToPonderList.append(ThoughtsCellViewModel(title: thoughtsToPonder.bucketText?.contentItems.first?.valueText,
-                                                                thought: collection.contentItems.first?.valueText ?? "",
-                                                                author: collection.author ?? "",
-                                                                domainModel: thoughtsToPonder))
-        return createThoughtsToPonderList
-    }
-
-    func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createGoodToKnowList: [BaseDailyBriefViewModel] = []
-        guard let collection = createGoodToKnow.contentCollections?.first else {
-            createGoodToKnowList.append(GoodToKnowCellViewModel(title: "", fact: "",
-                                                                image: URL(string: ""),
-                                                                copyright: "",
-                                                                domainModel: createGoodToKnow))
-            return createGoodToKnowList }
-        createGoodToKnowList.append(GoodToKnowCellViewModel(title: createGoodToKnow.bucketText?.contentItems.first?.valueText,
-                                                            fact: collection.contentItems.first?.valueText,
-                                                            image: URL(string: (collection.thumbnailURLString ?? "")),
-                                                            copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                            domainModel: createGoodToKnow))
-        return createGoodToKnowList
-    }
-
-    func createLatestWhatsHot(whatsHotLatestCell whatsHotLatest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var latestWhatsHotList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = whatsHotLatest.contentCollections?.first else {
-            latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "",
-                                                                  title: "",
-                                                                  image: URL(string: "") ?? URL(string: "")!,
-                                                                  author: "", publisheDate: Date(), timeToRead: 0,
-                                                                  isNew: false, remoteID: 0,
-                                                                  domainModel: whatsHotLatest))
-            return latestWhatsHotList
-        }
-        latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
-                                                              title: collection.title,
-                                                              image: URL(string: collection.thumbnailURLString ?? "") ?? URL(string: "")!,
-                                                              author: collection.author ?? "",
-                                                              publisheDate: collection.contentItems.first?.createdAt ?? Date(),
-                                                              timeToRead: collection.secondsRequired,
-                                                              isNew: self.isNew(collection),
-                                                              remoteID: collection.remoteID ?? 0,
-                                                              domainModel: whatsHotLatest))
-        return latestWhatsHotList
-    }
-
-    func createFeastForEyesModel(feastForEyesBucket feastForEyes: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFeastForEyesList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = feastForEyes.contentCollections?.first else {
-            createFeastForEyesList.append(FeastCellViewModel(title: "",
-                                                             image: "",
-                                                             remoteID: 1,
-                                                             copyright: "",
-                                                             domainModel: feastForEyes))
-            return createFeastForEyesList
-
-        }
-        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText ?? "",
-                                                         image: collection.thumbnailURLString ?? "",
-                                                         remoteID: collection.contentItems.first?.remoteID,
-                                                         copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                         domainModel: feastForEyes))
-        return createFeastForEyesList
-    }
-
-    func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
-        var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
-        fromCoach.coachMessages?.forEach {(message) in
-            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!),
-                                                                             text: message.body ?? ""))
-        }
-        createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
-        return createFromMyCoachModelList
-    }
-
-    func createBeSpokeModel(beSpokeModelBucket beSpoke: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createBeSpokeModelList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = beSpoke.contentCollections?.first else {
-            createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: "",
-                                                               title: "",
-                                                               description: "",
-                                                               image: "",
-                                                               copyright: "",
-                                                               domainModel: nil))
-            return createBeSpokeModelList
-
-        }
-        createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: beSpoke.bucketText?.contentItems.first?.valueText,
-                                                           title: collection.title,
-                                                           description: collection.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
-                                                           image: collection.thumbnailURLString ?? "",
-                                                           copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                           domainModel: beSpoke))
-        return createBeSpokeModelList
     }
 
     func isNew(_ collection: QDMContentCollection) -> Bool {
@@ -551,6 +354,39 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return isNewArticle
     }
 
+    func didPressGotItSprint(sprint: QDMSprint) {
+        worker.didPressGotItSprint(sprint: sprint)
+    }
+
+    func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
+        forCell.setTimer(with: 3.0) { [weak self] in
+            self?.setVisibleBucketsAsSeenIfNeeded(indexPath: indexPath)
+        }
+    }
+
+    func invalidateTimer(forCell: BaseDailyBriefCell) {
+        forCell.stopTimer()
+    }
+
+    func forceReloadWeatherModel() {
+        let newWeatherModel: ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel> = ArraySection(model: .weather,
+                                                                                                              elements: self.createWeatherViewModel(weatherBucket: nil))
+        var newSectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
+        for model in viewModelOldListModels {
+            if model.model == .weather {
+                (model.elements.first as? WeatherViewModel)?.locationPermissionStatus = .denied
+            }
+            newSectionDataList.append(model)
+        }
+
+        for var weatherModel in newSectionDataList where weatherModel.model == .weather {
+            weatherModel = newWeatherModel
+        }
+        let changeSet = StagedChangeset(source: viewModelOldListModels, target: newSectionDataList)
+        self.presenter.updateViewNew(changeSet)
+    }
+
+    // MARK: Create buckets models
     /**
      * Method name: createImpactReadinessCell.
      * Description: Create the impact readiness model which is required for the dailyCheck in Bucket.
@@ -613,24 +449,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
 
         return impactReadinessList
-    }
-
-    func saveAnswerValue(_ value: Int) {
-        worker.saveAnswerValue(value)
-    }
-
-    func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
-        _ = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
-//        check this implementation
-//        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
-    }
-
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
-        worker.customzieSleepQuestion(completion: completion)
-    }
-
-    func saveTargetValue(value: Int?) {
-        worker.saveTargetValue(value: value)
     }
 
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
@@ -902,30 +720,30 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return aboutMeList
     }
 
-    func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+    func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        let title = weatherBucket.bucketText?.contentItems.filter({
+        let title = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_TITLE")
         }).first?.valueText ?? "BUCKET_TITLE"
 
-        let intro = weatherBucket.bucketText?.contentItems.filter({
+        let intro = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_INTRO")
         }).first?.valueText ?? "BUCKET_INTRO"
 
-        let requestLocationPermissionDescription = weatherBucket.bucketText?.contentItems.filter({
+        let requestLocationPermissionDescription = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_TEXT")
         }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_TEXT"
 
-        let requestLocationPermissionButtonTitle = weatherBucket.bucketText?.contentItems.filter({
+        let requestLocationPermissionButtonTitle = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE")
         }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE"
 
-        let deniedLocationPermissionDescription = weatherBucket.bucketText?.contentItems.filter({
+        let deniedLocationPermissionDescription = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_TEXT")
         }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_TEXT"
 
-        let deniedLocationPermissionButtonTitle = weatherBucket.bucketText?.contentItems.filter({
+        let deniedLocationPermissionButtonTitle = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
         }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
 
@@ -985,25 +803,236 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return guidedtrackList
     }
 
-    func showDailyCheckIn() {
-        router.showDailyCheckIn()
-    }
+    func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createFromTignumList: [BaseDailyBriefViewModel] = []
+        let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
+        guard (fromTignum.contentCollections?.first) != nil else {
+            createFromTignumList.append( FromTignumCellViewModel(title: "",
+                                                                 text: "",
+                                                                 subtitle: "",
+                                                                 domainModel: fromTignum))
+            return createFromTignumList
 
-    func didPressGotItSprint(sprint: QDMSprint) {
-        worker.didPressGotItSprint(sprint: sprint)
-    }
-
-    func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
-        forCell.setTimer(with: 3.0) { [weak self] in
-            self?.setVisibleBucketsAsSeenIfNeeded(indexPath: indexPath)
         }
+        fromTignum.contentCollections?.forEach {(fromTignumModel) in
+            createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
+                                                                text: fromTignumModel.contentItems.first?.valueText ?? "",
+                                                                subtitle: fromTignumModel.title,
+                                                                domainModel: fromTignum))
+        }
+        return createFromTignumList
     }
 
-    func invalidateTimer(forCell: BaseDailyBriefCell) {
-        forCell.stopTimer()
+    func createLeaderWisdom(createLeadersWisdom leadersWisdom: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var leadersWisdomList: [BaseDailyBriefViewModel] = []
+        guard let collection = leadersWisdom.contentCollections?.first else {
+            leadersWisdomList.append(LeaderWisdomCellViewModel(title: "",
+                                                               subtitle: "",
+                                                               description: "",
+                                                               audioDuration: 0,
+                                                               audioLink: URL(string: ""),
+                                                               videoTitle: "",
+                                                               videoDuration: 0.0,
+                                                               videoThumbnail: URL(string: ""),
+                                                               format: .unknown,
+                                                               remoteID: 0,
+                                                               durationString: "",
+                                                               domainModel: nil))
+
+            return leadersWisdomList
+        }
+
+        leadersWisdomList.append(LeaderWisdomCellViewModel(title: leadersWisdom.bucketText?.contentItems.first?.valueText ?? "",
+                                                           subtitle: "\(leadersWisdom.bucketText?.contentItems[1].valueText ?? "") \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
+            description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
+            audioDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
+            audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.link ?? ""),
+            videoTitle: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDescription ?? "",
+            videoDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
+            videoThumbnail: URL(string: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueMediaURL ?? ""),
+            format: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.format ?? .unknown,
+            remoteID: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.remoteID ?? 0,
+            durationString: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.durationString ?? "",
+            domainModel: leadersWisdom))
+        return leadersWisdomList
     }
 
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        router.openGuidedTrackAppLink(appLink)
+    func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var meAtMyBestList: [BaseDailyBriefViewModel] = []
+        let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
+        if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
+            let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
+            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be Vision"
+            meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
+            return meAtMyBestList
+        } else {
+            let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? ""
+            let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
+            let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? " "
+            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
+            meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
+                                                          intro: tbvIntro,
+                                                          tbvStatement: tbvSentence,
+                                                          intro2: tbvIntro2,
+                                                          buttonText: ctaTBVButtonText,
+                                                          domainModel: meAtMyBest))
+            return meAtMyBestList
+        }
+
+    }
+
+    func createThoughtsToPonder(thoughtsToPonderBucket thoughtsToPonder: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
+
+        guard let collection = thoughtsToPonder.contentCollections?.first else {
+            createThoughtsToPonderList.append(ThoughtsCellViewModel(title: "",
+                                                                    thought: "",
+                                                                    author: "String?",
+                                                                    domainModel: thoughtsToPonder))
+            return createThoughtsToPonderList}
+        createThoughtsToPonderList.append(ThoughtsCellViewModel(title: thoughtsToPonder.bucketText?.contentItems.first?.valueText,
+                                                                thought: collection.contentItems.first?.valueText ?? "",
+                                                                author: collection.author ?? "",
+                                                                domainModel: thoughtsToPonder))
+        return createThoughtsToPonderList
+    }
+
+    func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createGoodToKnowList: [BaseDailyBriefViewModel] = []
+        guard let collection = createGoodToKnow.contentCollections?.first else {
+            createGoodToKnowList.append(GoodToKnowCellViewModel(title: "", fact: "",
+                                                                image: URL(string: ""),
+                                                                copyright: "",
+                                                                domainModel: createGoodToKnow))
+            return createGoodToKnowList }
+        createGoodToKnowList.append(GoodToKnowCellViewModel(title: createGoodToKnow.bucketText?.contentItems.first?.valueText,
+                                                            fact: collection.contentItems.first?.valueText,
+                                                            image: URL(string: (collection.thumbnailURLString ?? "")),
+                                                            copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
+                                                            domainModel: createGoodToKnow))
+        return createGoodToKnowList
+    }
+
+    func createLatestWhatsHot(whatsHotLatestCell whatsHotLatest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var latestWhatsHotList: [BaseDailyBriefViewModel] = []
+
+        guard let collection = whatsHotLatest.contentCollections?.first else {
+            latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "",
+                                                                  title: "",
+                                                                  image: URL(string: "") ?? URL(string: "")!,
+                                                                  author: "", publisheDate: Date(), timeToRead: 0,
+                                                                  isNew: false, remoteID: 0,
+                                                                  domainModel: whatsHotLatest))
+            return latestWhatsHotList
+        }
+        latestWhatsHotList.append(WhatsHotLatestCellViewModel(bucketTitle: "test",
+                                                              title: collection.title,
+                                                              image: URL(string: collection.thumbnailURLString ?? "") ?? URL(string: "")!,
+                                                              author: collection.author ?? "",
+                                                              publisheDate: collection.contentItems.first?.createdAt ?? Date(),
+                                                              timeToRead: collection.secondsRequired,
+                                                              isNew: self.isNew(collection),
+                                                              remoteID: collection.remoteID ?? 0,
+                                                              domainModel: whatsHotLatest))
+        return latestWhatsHotList
+    }
+
+    func createFeastForEyesModel(feastForEyesBucket feastForEyes: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createFeastForEyesList: [BaseDailyBriefViewModel] = []
+
+        guard let collection = feastForEyes.contentCollections?.first else {
+            createFeastForEyesList.append(FeastCellViewModel(title: "",
+                                                             image: "",
+                                                             remoteID: 1,
+                                                             copyright: "",
+                                                             domainModel: feastForEyes))
+            return createFeastForEyesList
+
+        }
+        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText ?? "",
+                                                         image: collection.thumbnailURLString ?? "",
+                                                         remoteID: collection.contentItems.first?.remoteID,
+                                                         copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
+                                                         domainModel: feastForEyes))
+        return createFeastForEyesList
+    }
+
+    func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
+        var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
+        fromCoach.coachMessages?.forEach {(message) in
+            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!),
+                                                                             text: message.body ?? ""))
+        }
+        createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
+        return createFromMyCoachModelList
+    }
+
+    func createBeSpokeModel(beSpokeModelBucket beSpoke: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createBeSpokeModelList: [BaseDailyBriefViewModel] = []
+
+        guard let collection = beSpoke.contentCollections?.first else {
+            createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: "",
+                                                               title: "",
+                                                               description: "",
+                                                               image: "",
+                                                               copyright: "",
+                                                               domainModel: nil))
+            return createBeSpokeModelList
+
+        }
+        createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: beSpoke.bucketText?.contentItems.first?.valueText,
+                                                           title: collection.title,
+                                                           description: collection.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
+                                                           image: collection.thumbnailURLString ?? "",
+                                                           copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
+                                                           domainModel: beSpoke))
+        return createBeSpokeModelList
+    }
+
+    func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var createSprintChanllengeList: [BaseDailyBriefViewModel] = []
+
+        guard sprintBucket.sprint != nil else {
+            let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
+            createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: "",
+                                                                       sprintTitle: "",
+                                                                       sprintInfo: "",
+                                                                       sprintStepNumber: 0,
+                                                                       relatedStrategiesModels: relatedStrategiesModels,
+                                                                       domainModel: sprintBucket,
+                                                                       sprint: sprintBucket.sprint!))
+            return createSprintChanllengeList
+        }
+        let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)
+        let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
+        let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
+        var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
+        sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
+            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
+                                                                                           content.durationString,
+                                                                                           content.remoteID ?? 0,
+                                                                                           nil,
+                                                                                           content.section,
+                                                                                           content.contentItems.first?.format,
+                                                                                           content.contentItems.count))
+        }
+        sprintBucket.sprint?.dailyBriefRelatedContentItems.forEach { (contentItem) in
+            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(contentItem.valueText,
+                                                                                           contentItem.durationString,
+                                                                                           nil,
+                                                                                           contentItem.remoteID,
+                                                                                           .Unkown,
+                                                                                           contentItem.format, 1))
+        }
+
+        createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
+                                                                   sprintTitle: sprintBucket.sprint?.title,
+                                                                   sprintInfo: sprintInfo,
+                                                                   sprintStepNumber: sprintBucket.sprint?.currentDay,
+                                                                   relatedStrategiesModels: relatedStrategiesModels,
+                                                                   domainModel: sprintBucket,
+                                                                   sprint: sprintBucket.sprint!))
+        return createSprintChanllengeList
     }
 }

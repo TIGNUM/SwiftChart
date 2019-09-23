@@ -202,6 +202,7 @@ private extension MyPrepsViewController {
         ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoRecoveryComment(), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
+        tableView.alpha = 0
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
         setupSegementedControl()
         showEmptyStateViewIfNeeded(segmentedControl)
@@ -229,6 +230,9 @@ private extension MyPrepsViewController {
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func dataUpdated() {
         hideAllViews()
+        if tableView.alpha == 0 {
+            UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
+        }
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
         self.removeLoadingSkeleton()
