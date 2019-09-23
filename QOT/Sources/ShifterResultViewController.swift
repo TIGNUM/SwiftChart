@@ -72,7 +72,13 @@ private extension ShifterResultViewController {
 
     @objc func didTapDismiss() {
         trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.didTapDismiss()
+        if delegate != nil {
+            interactor?.deleteModel()
+            delegate?.didTapDismiss()
+        } else {
+            interactor?.deleteModel()
+            interactor?.didTapDismiss()
+        }
     }
 }
 

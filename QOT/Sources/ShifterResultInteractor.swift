@@ -37,8 +37,11 @@ extension ShifterResultInteractor: ShifterResultInteractorInterface {
         router.presentFeedback()
     }
 
-    func didTapDismiss() {
+    func deleteModel() {
         worker.deleteMindsetShifter()
+    }
+
+    func didTapDismiss() {
         router.dismiss()
     }
 }

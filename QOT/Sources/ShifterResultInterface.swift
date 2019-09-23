@@ -20,6 +20,7 @@ protocol ShifterResultPresenterInterface {
 
 protocol ShifterResultInteractorInterface: Interactor {
     func didTapSave()
+    func deleteModel()
     func didTapDismiss()
 }
 
