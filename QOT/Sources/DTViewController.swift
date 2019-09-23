@@ -98,12 +98,14 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         interactor?.loadNextQuestion(selection: selectionModel)
     }
 
-    func showQuestion(viewModel: DTViewModel, direction: UIPageViewController.NavigationDirection) {
+    func showQuestion(viewModel: DTViewModel,
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool = true) {
         updateView(viewModel: viewModel)
         let controller = DTQuestionnaireViewController(viewModel: viewModel)
         controller.delegate = self
         controller.interactor = interactor
-        pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
+        pageController?.setViewControllers([controller], direction: direction, animated: animated, completion: nil)
     }
 
     // MARK: - DTViewControllerInterface
