@@ -28,6 +28,7 @@ protocol SolveResultsInteractorInterface: Interactor {
     func dismiss()
     func didTapDone()
     func isPresentingExistingSolve() -> Bool
+    func presentFeedback()
 }
 
 protocol SolveResultsRouterInterface {
@@ -37,4 +38,5 @@ protocol SolveResultsRouterInterface {
     func openVisionGenerator()
     func openMindsetShifter()
     func openRecovery()
+    func presentFeedback()
 }

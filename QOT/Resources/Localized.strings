@@ -477,8 +477,8 @@
 "MyPrep.NoMindset.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your mindset. We'll save your Mindset Shifter work here.";
 "MyPrep.NoRecovery.Title" = "YOUR 3D RECOVERY PLANS \nWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "Tap the Q button to enter Coach Mode. Solve a challenge and dig deeper into your recovery. We'll save your 3D Recovery work here.";
-"MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
-"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Plans?";
+"MyPreps.DeleteItemsAlert.Title" = "DELETE";
+"MyPreps.DeleteItemsAlert.Message" = "If you continue, these item(s) will be deleted.";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
@@ -577,3 +577,5 @@
 "DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
 "DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
 
+"Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
+"Onboarding.Intro.Body" = "From merely present to totally prepared.";

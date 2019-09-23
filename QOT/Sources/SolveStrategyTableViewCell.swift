@@ -15,6 +15,7 @@ final class SolveStrategyTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var strategyTitleLabel: UILabel!
     @IBOutlet private weak var minsToReadLabel: UILabel!
+    @IBOutlet private weak var topSeperatorView: UIView!
     @IBOutlet private weak var constraintHeaderHeight: NSLayoutConstraint!
 }
 
@@ -29,6 +30,7 @@ extension SolveStrategyTableViewCell {
 
         let designerTopBottomMargin: CGFloat = 24 + 28
         constraintHeaderHeight.constant = hasHeader ? designerTopBottomMargin + headerLabel.bounds.height : 24
+        topSeperatorView.isHidden = hasHeader
         updateConstraints()
     }
 }
