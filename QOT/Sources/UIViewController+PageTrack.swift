@@ -37,10 +37,9 @@ extension UIViewController {
 extension UIViewController {
     var pageKey: String {
         switch self {
-        case is DecisionTreeViewController: return decisionTreePageKey
+        case is DTViewController: return decisionTreePageKey
         case is MyLibraryUserStorageViewController: return userStoragePageKey
         case is MyLibraryNotesViewController: return myLibraryNoteKey
-        case is DecisionTreeQuestionnaireViewController: return decisionTreeQuestionnaireKeys
         case is ShifterResultViewController: return "decisiontree.mindsetshifter.results"
         case is MyQotProfileViewController: return "myprofile.home"
         case is MyQotAccountSettingsViewController: return "myprofile.accountsettings"
@@ -123,21 +122,48 @@ private extension UIViewController {
 // MARK: - DecisionTree IDs
 private extension UIViewController {
     var decisionTreePageKey: String {
-        switch (self as? DecisionTreeViewController)?.interactor?.type {
-        case .toBeVisionGenerator?: return "decisiontree.tobevisiongenerator"
-        case .mindsetShifter?: return "decisiontree.mindsetshifter"
-        case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
-        case .mindsetShifterTBVOnboarding?: return "decisiontree.onboarding.tobevisiongenerator"
-        case .prepare?: return "decisiontree.mindsetshifter.prepare"
-        case .solve?: return "decisiontree.solve"
-        case .prepareIntentions?: return "decisiontree.prepare.edit.intentions"
-        case .prepareBenefits?: return "decisiontree.prepare.edit.benefits"
-        case .recovery?: return "decisiontree.3drecovery"
-        case .sprint?: return "decisiontree.sprint"
-        case .sprintReflection?: return "decisiontree.sprint.reflection"
-        case .takeaways?: return "decisiontree.sprint.takeaways"
+        switch self {
+        case is DTMindsetViewController: return "decisiontree.mindsetshifter"
+        case is DTPrepareViewController: return preparePageKey
+        case is DTRecoveryViewController: return "decisiontree.3drecovery"
+        case is DTShortTBVViewController: return shortTBVPageKey
+        case is DTSolveViewController: return "decisiontree.solve"
+        case is DTSprintViewController: return "decisiontree.sprint"
+        case is DTSprintReflectionViewController: return "decisiontree.sprint.reflection"
+        case is DTTBVViewController: return "decisiontree.tobevisiongenerator"
+
         default: preconditionFailure()
         }
+    }
+}
+
+private extension UIViewController {
+    var preparePageKey: String {
+        if let introKey = (self as? DTPrepareViewController)?.interactor?.getIntroKey {
+            switch introKey {
+            case Prepare.QuestionKey.Intro: return "decisiontree.prepare"
+            case Prepare.QuestionKey.BenefitsInput: return "decisiontree.prepare.edit.benefits"
+            case Prepare.Key.feel.rawValue: return "decisiontree.prepare.edit.intentions.feel"
+            case Prepare.Key.know.rawValue: return "decisiontree.prepare.edit.intentions.know"
+            case Prepare.Key.perceived.rawValue: return "decisiontree.prepare.edit.intentions.perceived"
+            default: preconditionFailure()
+            }
+        }
+        preconditionFailure()
+    }
+}
+
+private extension UIViewController {
+    var shortTBVPageKey: String {
+        if let introKey = (self as? DTShortTBVViewController)?.interactor?.getIntroKey {
+            switch introKey {
+            case ShortTBV.QuestionKey.IntroMindSet: return "decisiontree.mindsetshifter.tobevisiongenerator"
+            case ShortTBV.QuestionKey.IntroPrepare: return "decisiontree.prepare.tobevisiongenerator"
+            case ShortTBV.QuestionKey.IntroOnboarding: return "decisiontree.onboarding.tobevisiongenerator"
+            default: preconditionFailure()
+            }
+        }
+        preconditionFailure()
     }
 }
 
@@ -176,15 +202,5 @@ private extension UIViewController {
             return "mylibrary.notes.newnote"
         }
         return "mylibrary.notes.savednote"
-    }
-}
-
-// MARK: - DecisionTreeQuestionnaire IDs
-private extension UIViewController {
-    var decisionTreeQuestionnaireKeys: String {
-        if let onboarding = (self as? DecisionTreeQuestionnaireViewController)?.isOnboarding, onboarding == true {
-            return "onboarding.mytobevision"
-        }
-        return "tobevision"
     }
 }
