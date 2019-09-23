@@ -35,12 +35,18 @@ extension MyQotAboutUsRouter: MyQotAboutUsRouterInterface {
 }
 
 private extension MyQotAboutUsRouter {
+
     func presentContentItem(id: Int) {
         guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
             assertionFailure("Failed to initialize `ArticleViewController`")
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController.present(articleViewController, animated: true, completion: nil)
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.type = kCATransitionMoveIn
+        transition.subtype = kCATransitionFromTop
+        viewController.view.window?.layer.add(transition, forKey: kCATransition)
+        viewController.present(articleViewController, animated: false, completion: nil)
     }
 }

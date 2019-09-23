@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ArticleInteractor {
 
@@ -37,6 +38,7 @@ final class ArticleInteractor {
 // MARK: - ArticleInteractorInterface
 
 extension ArticleInteractor: ArticleInteractorInterface {
+
     var isShareable: Bool {
         return worker.isShareable
     }
@@ -47,6 +49,10 @@ extension ArticleInteractor: ArticleInteractorInterface {
 
     var sectionHeaderHeight: CGFloat {
         return worker.sectionHeaderHeight
+    }
+
+    var section: ContentSection {
+        return worker.section
     }
 
     var sectionNeedsLine: Bool {

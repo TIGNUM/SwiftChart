@@ -28,6 +28,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         let isDark = interactor?.isDark ?? true
 
         let theme: ThemeView = isDark ? .chatbotDark : .chatbot
@@ -37,7 +38,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         closeButton.setImage(image, for: .normal)
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
-
+        setupPageViewController(view.backgroundColor)
         interactor?.viewDidLoad()
     }
 
@@ -138,9 +139,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {}
 
     // MARK: Configuration
-    func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor) {
-        setupPageViewController(backgroundColor)
-
+    private func addObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: Notification.Name.UIKeyboardWillShow,
@@ -157,7 +156,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         closeButton.isHidden = viewModel.dismissButtonIsHidden
     }
 
-    private func setupPageViewController(_ backgroundColor: UIColor) {
+    private func setupPageViewController(_ backgroundColor: UIColor?) {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = backgroundColor
         pageController.automaticallyAdjustsScrollViewInsets = false
