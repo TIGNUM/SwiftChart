@@ -321,7 +321,7 @@ private extension SearchViewController {
 
     func handleMediaSelection(mediaURL: URL, contentItem: QDMContentItem?) {
         let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem)
-        if let playerItem = playerViewController.player?.currentItem {
+        if let playerViewController = playerViewController, let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in
                 if playerItem.error != nil {
