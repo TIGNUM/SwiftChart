@@ -32,6 +32,13 @@ final class DTShortTBVPresenter: DTPresenter {
         return typingAnimationState
     }
 
+    override func getHtmlTitleString(_ qdmQuestion: QDMQuestion?) -> String? {
+        if qdmQuestion?.key == ShortTBV.QuestionKey.IntroOnboarding {
+            return qdmQuestion?.htmlTitleString
+        }
+        return nil
+    }
+
     override func showNextQuestionAutomated(questionKey: String) -> Bool {
         switch questionKey {
         case ShortTBV.QuestionKey.IntroOnboarding,

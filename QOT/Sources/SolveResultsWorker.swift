@@ -17,6 +17,7 @@ final class SolveResultsWorker {
     private var solutionCollectionId: Int = 0
     private let type: ResultType
     private var existingSolve: QDMSolve? = nil
+    private var canDelete: Bool = false
 
     // MARK: - Init
     init(selectedAnswerId: Int, solutionCollectionId: Int, type: ResultType, solve: QDMSolve? = nil) {
@@ -26,8 +27,9 @@ final class SolveResultsWorker {
         self.existingSolve = solve
     }
 
-    init(recovery: QDMRecovery3D?) {
+    init(recovery: QDMRecovery3D?, canDelete: Bool) {
         self.recovery = recovery
+        self.canDelete = canDelete
         self.type = .recovery
     }
 
@@ -70,14 +72,14 @@ extension SolveResultsWorker {
 
     func save(_ completion: @escaping () -> Void) {
         if let solve = existingSolve {
-            qot_dal.UserService.main.updateSolve(solve) { (solve, error) in
+            UserService.main.updateSolve(solve) { (solve, error) in
                 completion()
             }
         } else {
             let contentId = recovery?.fatigueContentItemId
             relatedStrategies(contentId) { [weak self] (relatedStrategies) in
                 let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-                qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
+                UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
                                                      solutionCollectionId: self?.solutionCollectionId ?? 0,
                                                      strategyIds: relatedStragyIds,
                                                      followUp: true) { (solve, error) in
@@ -90,10 +92,10 @@ extension SolveResultsWorker {
     func deleteModel() {
         switch type {
         case .recovery:
-            guard let recovery = recovery else { return }
-            qot_dal.UserService.main.deleteRecovery3D(recovery) { error in
+            guard let recovery = recovery, canDelete == true else { return }
+            UserService.main.deleteRecovery3D(recovery) { error in
                 if let error = error {
-                    qot_dal.log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
+                    log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
                 }
             }
         case .solve:

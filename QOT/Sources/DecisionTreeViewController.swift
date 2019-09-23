@@ -416,15 +416,15 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
 //    }
 //}
 
-// MARK: - SolveResultsViewControllerDelegate
-extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
-    func didFinishSolve() {
-        dismiss()
-    }
-
-    func didFinishRec() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        delegate?.didDismiss()
-        dismiss(animated: true)
-    }
-}
+// MARK: - ResultsViewControllerDelegate
+//extension DecisionTreeViewController: ResultsViewControllerDelegate {
+//    func didFinishSolve() {
+//        dismiss()
+//    }
+//
+//    func didFinishRec() {
+//        trackUserEvent(.CLOSE, action: .TAP)
+//        delegate?.didDismiss()
+//        dismiss(animated: true)
+//    }
+//}

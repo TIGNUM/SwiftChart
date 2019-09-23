@@ -90,13 +90,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             if let url = launchOptions?[.url] as? URL {
                 RestartHelper.setRestartURL(url)
             }
-            appCoordinator.start(completion: {
-                if qot_dal.SessionService.main.getCurrentSession() != nil {
-                    self.importHealthKitDataIfAuthorized()
-                    self.importCalendarEventsIfAuthorized()
-                    ExternalLinkImporter.main.importLink()
-                }
-            })
+            appCoordinator.start(completion: { /* DONE */})
 
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
@@ -143,6 +137,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             sendSiriEventsIfNeeded()
             qot_dal.QOTService.main.reportAppStatus(.didBecomeActive)
             if qot_dal.SessionService.main.getCurrentSession() != nil {
+                self.importHealthKitDataIfAuthorized()
+                self.importCalendarEventsIfAuthorized()
+                ExternalLinkImporter.main.importLink()
                 NotificationCenter.default.post(name: .requestSynchronization, object: nil)
             }
         #endif //#if UNIT_TEST

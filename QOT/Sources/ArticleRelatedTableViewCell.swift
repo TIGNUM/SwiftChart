@@ -16,11 +16,17 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var iconImageView: UIImageView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        selectedBackgroundView = UIView()
+    }
+
     func configure(title: String, durationString: String, icon: UIImage?) {
         ThemeText.articleRelatedTitle(nil).apply(title, to: titleLabel)
         ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
         iconImageView.image = icon
         contentView.backgroundColor = colorMode.background
+        selectedBackgroundView?.backgroundColor = colorMode.cellHighlight
     }
 }
 

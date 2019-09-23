@@ -26,13 +26,16 @@ final class SolveResultsConfigurator {
         }
     }
 
-    static func make(from recoveryModel: QDMRecovery3D?) -> (SolveResultsViewController) -> Void {
+    static func make(from recoveryModel: QDMRecovery3D?,
+                     canDelete: Bool,
+                     delegate: ResultsFeedbackDismissDelegate? = nil) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
             let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(recovery: recoveryModel)
+            let worker = SolveResultsWorker(recovery: recoveryModel, canDelete: canDelete)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
+            router.delegate = delegate
         }
     }
 
@@ -47,20 +50,6 @@ final class SolveResultsConfigurator {
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
             viewController.isFollowUpActive = solve.followUp
-        }
-    }
-
-    static func make(from mindsetShifter: QDMMindsetShifter) -> (SolveResultsViewController) -> Void {
-        return { (viewController) in
-            let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(selectedAnswerId: mindsetShifter.triggerAnswerId ?? 0,
-                                            solutionCollectionId: mindsetShifter.triggerAnswer?.targetId(.content) ?? 0,
-                                            type: .solve,
-                                            solve: nil)
-            let presenter = SolveResultsPresenter(viewController: viewController)
-            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
-            viewController.interactor = interactor
-            viewController.isFollowUpActive = true
         }
     }
 }

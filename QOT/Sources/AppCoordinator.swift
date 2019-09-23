@@ -94,8 +94,12 @@ final class AppCoordinator {
             self.showSigning()
         }
         DispatchQueue.main.async {
-            AppCoordinator.permissionsManager = self.permissionsManager
+            self.setupPermissionsManager()
         }
+    }
+
+    func setupPermissionsManager() {
+        AppCoordinator.permissionsManager = self.permissionsManager
     }
 
     func restart() {
@@ -145,18 +149,16 @@ final class AppCoordinator {
         // DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
 
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
-            let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
-            let rootNavigationController = rootViewController as? UINavigationController else {
+            let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
+            let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
-            baseVC.setContent(viewController: coachCollectionViewController)
+        self.windowManager.show(naviController, animated: true, completion: nil)
+        DispatchQueue.main.async {
+            baseRootViewController.setContent(viewController: coachCollectionViewController)
+            self.canProcessRemoteNotifications = true
+            self.canProcessLocalNotifications = true
         }
-
-        self.windowManager.show(rootNavigationController, animated: true, completion: nil)
-
-        self.canProcessRemoteNotifications = true
-        self.canProcessLocalNotifications = true
     }
 
     func isReadyToOpenURL() -> Bool {

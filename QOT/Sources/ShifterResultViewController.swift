@@ -12,6 +12,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ShifterResultInteractorInterface?
+    weak var delegate: ResultsViewControllerDelegate?
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 
@@ -48,14 +49,6 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     func setupView() {
         registerCells()
     }
-
-    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
-//        let cancel = QOTAlertAction(title: cancelTitle)
-//        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
-            interactor?.didTapClose()
-//        }
-//        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
-    }
 }
 
 // MARK: - Private
@@ -74,12 +67,13 @@ private extension ShifterResultViewController {
 private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        dismiss(animated: true)
+        interactor?.didTapSave()
     }
 
-    @objc func openConfirmationView() {
-        trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.openConfirmationView()
+    @objc func didTapDismiss() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        interactor?.deleteModel()
+        interactor?.didTapDismiss()
     }
 }
 
@@ -128,7 +122,7 @@ extension ShifterResultViewController: UITableViewDataSource {
 // MARK: - BottomNavigation Items
 extension ShifterResultViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+        return [dismissNavigationItem(action: #selector(didTapDismiss))]
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

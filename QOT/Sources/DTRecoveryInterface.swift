@@ -20,4 +20,5 @@ protocol DTRecoveryInteractorInterface: Interactor {
 
 protocol DTRecoveryRouterInterface {
     func presentRecoveryResults(_ recovery: QDMRecovery3D?, _ completion: (() -> Void)?)
+    func dimissRecoveryFlow()
 }

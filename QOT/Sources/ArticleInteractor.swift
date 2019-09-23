@@ -91,6 +91,10 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.isTopBarHidden
     }
 
+    var shouldHideBookmarkItem: Bool {
+        return worker.isBookmarkItemHidden
+    }
+
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         return worker.relatedArticle(at: indexPath)
     }
@@ -135,6 +139,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         presenter.reloadData()
         presenter.updateBookmark(worker.bookmark != nil)
         presenter.dataUpdated()
+        presenter.setTopBarButtonItems(isShareable: worker.isShareable, hasBookMarkItem: !worker.isBookmarkItemHidden)
     }
 
     func toggleBookmark() {

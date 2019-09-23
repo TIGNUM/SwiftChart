@@ -23,7 +23,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var constraintContainerBottom: NSLayoutConstraint!
 
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     private var observers: [NSKeyValueObservation] = []
@@ -41,12 +40,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        tableView.tableFooterView = UIView()
+        self.sprintInfo?.numberOfLines = 3
         contentView.backgroundColor = .carbon
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
         self.sprintInfo?.lineBreakMode = .byWordWrapping
-        self.sprintInfo?.sizeToFit()
         ThemeBorder.accent.apply(gotItButton)
         updateGotItButton()
+        tableView.setNeedsLayout()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
             self?.checkScroll()
             }
@@ -54,7 +55,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     private func checkScroll() {
-        constraintContainerHeight.constant = tableView.contentSize.height + constraintContainerBottom.constant
+        constraintContainerHeight.constant = tableView.contentSize.height
         tableView.setNeedsUpdateConstraints()
     }
 
@@ -63,7 +64,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         tableView.dataSource = self
         ThemeView.level2.apply(self)
         if viewModel?.relatedStrategiesModels.isEmpty == true {
-            tableView.isHidden = true
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }

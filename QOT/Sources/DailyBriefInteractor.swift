@@ -680,6 +680,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                 comeBackText: comeBackText,
                                                 levelMessages: levelMessageModels,
                                                 confirmationMessage: confirmationMessage,
+                                                latestSavedValue: level5.latestGetToLevel5Value,
                                                 domainModel: level5))
         return createLevel5List
     }

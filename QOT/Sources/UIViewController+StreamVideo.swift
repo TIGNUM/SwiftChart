@@ -94,14 +94,14 @@ extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
 
 extension UIViewController {
     @discardableResult
-    func stream(videoURL: URL, contentItem: QDMContentItem?) -> MediaPlayerViewController {
-        let player = AVPlayer(url: videoURL)
-        let playerController = MediaPlayerViewController(contentItem: contentItem)
+    func stream(videoURL: URL, contentItem: QDMContentItem?) -> MediaPlayerViewController? {
         let interactor = StreamVideoInteractor(content: contentItem)
         guard QOTReachability().isReachable || interactor.isDownloaded else {
             self.showNoInternetConnectionAlert()
-            return playerController
+            return nil
         }
+        let player = AVPlayer(url: videoURL)
+        let playerController = MediaPlayerViewController(contentItem: contentItem)
         playerController.interactor = interactor
         playerController.player = player
 

@@ -54,7 +54,7 @@ private extension SearchRouter {
     }
 
     func presentArticle(with link: URL) {
-        LaunchHandler().process(url: link, searchViewController: searchViewController)
+        LaunchHandler().process(url: link)
     }
 
     func presentStrategyList(selectedStrategyID: Int) {
