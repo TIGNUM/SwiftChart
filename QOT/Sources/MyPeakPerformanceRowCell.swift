@@ -15,6 +15,7 @@ final class MyPeakPerformanceRowCell: UIView {
     @IBOutlet weak var peakPerformanceRowSubtitle: UILabel!
     private var qdmUserPreparation: QDMUserPreparation?
     weak var delegate: DailyBriefViewControllerDelegate?
+    weak var tapGestureRecognizer: UITapGestureRecognizer?
 
     static func instantiateFromNib() -> MyPeakPerformanceRowCell? {
         guard let header = R.nib.myPeakPerformanceRowCell
@@ -25,8 +26,11 @@ final class MyPeakPerformanceRowCell: UIView {
     }
 
     func configure(with: MyPeakPerformanceCellViewModel.MyPeakPerformanceRow) {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-        addGestureRecognizer(tap)
+        if tapGestureRecognizer == nil {
+            let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
+            addGestureRecognizer(tap)
+            tapGestureRecognizer = tap
+        }
         isUserInteractionEnabled = true
         qdmUserPreparation = with.qdmUserPreparation
         ThemeText.performanceBucketTitle.apply(with.title ?? "", to: peakPerformanceRowTitle)
