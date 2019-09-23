@@ -111,13 +111,13 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: toolModel?.headerSubtitle ?? "")
+            return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: "")
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
