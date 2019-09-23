@@ -58,7 +58,13 @@ private extension MySprintDetailsViewController {
     private func updateHeader(for tableView: UITableView, with viewModel: MySprintDetailsViewModel) {
         tableHeaderView.set(title: viewModel.title, description: viewModel.description, progress: viewModel.progress)
         tableView.tableHeaderView = tableHeaderView
-        tableHeaderView.widthAnchor.constraint(equalToConstant: tableView.bounds.size.width).isActive = true
+        NSLayoutConstraint.init(item: tableHeaderView,
+                                attribute: .width,
+                                relatedBy: .equal,
+                                toItem: tableView,
+                                attribute: .width,
+                                multiplier: 1.0,
+                                constant: 0).isActive = true
         tableView.setNeedsLayout()
         tableView.layoutIfNeeded()
     }
