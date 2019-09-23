@@ -67,6 +67,7 @@ extension MyToBeVisionTrackerViewController: MyToBeVisionTrackerViewControllerIn
         tableView.registerDequeueable(TBVDataGraphAnswersTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphHeaderView.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()

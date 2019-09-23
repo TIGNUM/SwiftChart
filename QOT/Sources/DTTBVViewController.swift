@@ -35,7 +35,7 @@ final class DTTBVViewController: DTViewController {
 
     // MARK: - DTViewController
     override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         if viewModel?.question.key == TBV.QuestionKey.Picture && answer.keys.contains(TBV.AnswerKey.UploadImage) {
             showImageSelectionAlert()
         } else {
@@ -62,7 +62,7 @@ final class DTTBVViewController: DTViewController {
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         switch viewModel?.question.key {
         case TBV.QuestionKey.Instructions?:
             if let contentId = answer.targetId(.content) {
@@ -88,19 +88,6 @@ private extension DTTBVViewController {
                                    questionKeyWork: TBV.QuestionKey.Work,
                                    questionKeyHome: TBV.QuestionKey.Home) { [weak self] _ in
                                     self?.loadNextQuestion()
-        }
-    }
-
-    func setAnswerSelectedIfNeeded() {
-        switch viewModel?.question.key {
-        case ShortTBV.QuestionKey.IntroMindSet?,
-             ShortTBV.QuestionKey.Home?:
-            if var answer = viewModel?.answers.first {
-                answer.setSelected(true)
-                viewModel?.setSelectedAnswer(answer)
-            }
-        default:
-            setAnswerNeedsSelection()
         }
     }
 

@@ -44,6 +44,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         updateBottomNavigation([], [])
     }
 
@@ -57,10 +58,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
         interactor?.loadPreviousQuestion()
+        trackQuestionInteraction(.PREVIOUS)
     }
 
     @IBAction func didTapClose() {
         router?.dismiss()
+        trackQuestionInteraction()
     }
 
     @IBAction func didTapNext() {
@@ -172,7 +175,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         guard let viewModel = viewModel else { return }
         if viewModel.question.answerType == .singleSelection {
             loadNextQuestion()
@@ -180,10 +183,22 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
     }
 
-    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+        trackUserEvent(.SELECT,
+                       value: event?.remoteId,
+                       stringValue: event?.title,
+                       valueType: .USER_PREPARATION,
+                       action: .TAP)
+    }
+
+    func setSelectedAnswer(_ answer: DTViewModel.Answer) {
+        viewModel?.setSelectedAnswer(answer)
+        let name: QDMUserEventTracking.Name = answer.selected == true ? .SELECT : .DESELECT
+        trackAnswerSelection(answer, name)
+    }
 
     /**
      An answer contains the decision about the next question to load or needed  .
@@ -194,18 +209,43 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
      */
     func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
         if var answer = answer {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
+            setAnswerSelected(&answer)
         } else if var answer = viewModel?.answers.first {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
+            setAnswerSelected(&answer)
         }
+    }
+
+    private func setAnswerSelected(_ answer: inout DTViewModel.Answer) {
+        answer.setSelected(true)
+        setSelectedAnswer(answer)
+        trackAnswerSelection(answer, .ANSWER_DECISION)
     }
 
     func setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready() {
         if viewModel?.answers.filter({ $0.selected }).isEmpty ?? true {
             setAnswerNeedsSelection()
         }
+    }
+}
+
+// MARK: - User Event Tracking
+extension DTViewController {
+    func trackAnswerSelection(_ answer: DTViewModel.Answer,
+                              _ name: QDMUserEventTracking.Name = .SELECT,
+                              _ valueType: QDMUserEventTracking.ValueType = .USER_ANSWER) {
+        trackUserEvent(name,
+                       value: answer.remoteId,
+                       stringValue: viewModel?.question.answerType.rawValue,
+                       valueType: valueType,
+                       action: .TAP)
+    }
+
+    func trackQuestionInteraction(_ name: QDMUserEventTracking.Name = .CLOSE) {
+        trackUserEvent(name,
+                       value: viewModel?.question.remoteId,
+                       stringValue: viewModel?.question.title,
+                       valueType: .QUESTION,
+                       action: .TAP)
     }
 }
 

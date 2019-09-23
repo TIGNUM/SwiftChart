@@ -151,7 +151,7 @@ extension KnowingViewController {
             return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
-                return CGSize(width: view.frame.width, height: 80)
+                return CGSize(width: view.frame.width, height: 96)
             } else {
                 return CGSize(width: view.frame.width * 0.5, height: 96)
             }

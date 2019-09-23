@@ -187,6 +187,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func setupView() {
+        scrollView.alpha = 0
+
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
@@ -212,6 +214,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         if myVision == nil {
             interactor?.showNullState(with: interactor?.nullStateTitle ?? "", message: interactor?.nullStateSubtitle ?? "")
             return
+        }
+        if scrollView.alpha == 0 {
+            UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
         removeLoadingSkeleton()
         interactor?.hideNullState()

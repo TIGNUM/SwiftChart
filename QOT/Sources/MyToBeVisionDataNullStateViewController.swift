@@ -33,6 +33,11 @@ final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLe
         setupEmptySate()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     @objc func doneAction() {
         trackUserEvent(.OPEN, action: .TAP)
         dismiss(animated: true) {[weak self] in
@@ -63,15 +68,6 @@ private extension MyToBeVisionDataNullStateViewController {
         ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc), to: headingDescriptionLabel)
         ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased(), to: titleLabel)
         ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc), to: titleDescriptionLabel)
-    }
-
-    func formatted(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title,
-                                  letterSpacing: 0.4,
-                                  font: .sfProDisplayLight(ofSize: 24),
-                                  lineSpacing: 7,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
     }
 }
 

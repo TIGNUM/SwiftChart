@@ -32,8 +32,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTv-oU-Syp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="191.5"/>
                         <subviews>
-                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9J-XC-m3j">
-                                <rect key="frame" x="24" y="12" width="366" height="120"/>
+                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium" translatesAutoresizingMaskIntoConstraints="NO" id="A9J-XC-m3j">
+                                <rect key="frame" x="24" y="19" width="366" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
@@ -48,20 +48,20 @@
                                 </connections>
                             </textView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRw-OX-4sH" userLabel="Line Break View">
-                                <rect key="frame" x="24" y="140" width="366" height="2"/>
+                                <rect key="frame" x="24" y="139" width="366" height="2"/>
                                 <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="Rgk-nL-1Ph"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDv-bk-wX6">
-                                <rect key="frame" x="365" y="154" width="25" height="13.5"/>
+                                <rect key="frame" x="365" y="153" width="25" height="14.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                                 <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="59l-jk-xY6">
-                                <rect key="frame" x="357" y="154" width="8" height="14"/>
+                                <rect key="frame" x="357" y="153.5" width="8" height="14"/>
                                 <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
                                 <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -78,7 +78,7 @@
                             <constraint firstItem="59l-jk-xY6" firstAttribute="centerY" secondItem="fDv-bk-wX6" secondAttribute="centerY" id="IV4-Q5-caZ"/>
                             <constraint firstItem="fDv-bk-wX6" firstAttribute="top" secondItem="dRw-OX-4sH" secondAttribute="bottom" constant="12" id="JeN-hf-YnU"/>
                             <constraint firstItem="A9J-XC-m3j" firstAttribute="top" relation="greaterThanOrEqual" secondItem="HTv-oU-Syp" secondAttribute="top" constant="12" id="Xcc-oa-Nhg"/>
-                            <constraint firstItem="dRw-OX-4sH" firstAttribute="top" secondItem="A9J-XC-m3j" secondAttribute="bottom" constant="8" id="tbr-LX-82f"/>
+                            <constraint firstItem="dRw-OX-4sH" firstAttribute="top" secondItem="A9J-XC-m3j" secondAttribute="bottom" id="tbr-LX-82f"/>
                             <constraint firstAttribute="trailing" secondItem="dRw-OX-4sH" secondAttribute="trailing" constant="24" id="wiJ-0F-FuD"/>
                         </constraints>
                     </view>

@@ -52,7 +52,7 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Private
 private extension UserInputTableViewCell {
     func refreshHeight() {
-        constraintHeight.constant = textView.contentSize.height + 8
+        constraintHeight.constant = textView.contentSize.height + 16
         UIView.animate(withDuration: 0.25) {
             self.layoutIfNeeded()
         }
