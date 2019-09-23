@@ -7,23 +7,38 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
+    let mediaName = "LoginVideo"
+    let mediaExtension = "mp4"
+    // Video player
     var interactor: SigningInfoInteractorInterface?
-    private var timer: Timer?
-    @IBOutlet private weak var webView: UIWebView!
-    @IBOutlet private weak var bottomButton: UIButton!
+    let player: AVQueuePlayer = AVQueuePlayer()
+    let playerLayer: AVPlayerLayer?
+    let playerLooper: AVPlayerLooper?
+
+    // Outlets
+    @IBOutlet private weak var videoContainerView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var loginButton: UIButton!
     @IBOutlet private weak var startButton: UIButton!
-    @IBOutlet private weak var pageControl: PageControl!
-    @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var headerBackgroundView: UIView!
     var delegate: SigningInfoDelegate?
 
     // MARK: - Init
     init() {
+        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension) {
+            let playerItem = AVPlayerItem(url: media)
+            playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
+        } else {
+            playerLooper = nil
+        }
+
+        playerLayer = AVPlayerLayer(player: player)
+
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -34,6 +49,11 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        if let playerLayer = playerLayer {
+            videoContainerView.layer.addSublayer(playerLayer)
+        }
+
         interactor?.viewDidLoad()
         NotificationHandler.postNotification(withName: .showSigningInfoView)
     }
@@ -46,8 +66,9 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
-        setupAutoScroll()
         refreshBottomNavigationItems()
+        player.play()
+
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,6 +83,7 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         view.alpha = 1
+        player.pause()
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -71,84 +93,36 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return nil
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        playerLayer?.frame = videoContainerView.bounds
+    }
 }
 
 // MARK: - Private
 private extension SigningInfoViewController {
     func setupButtons() {
-        let attributedTitle = NSMutableAttributedString(string: "Sign In",
-                                                        letterSpacing: 0.8,
-                                                        font: .DPText,
-                                                        textColor: .white90,
-                                                        alignment: .left)
-        bottomButton.backgroundColor = .azure
-        bottomButton.corner(radius: Layout.CornerRadius.eight.rawValue)
-        bottomButton.setAttributedTitle(attributedTitle, for: .normal)
-        bottomButton.setAttributedTitle(attributedTitle, for: .selected)
-
+        ThemeText.onboardingInfoTitle.apply(interactor?.titleText, to: titleLabel)
+        ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
         ThemeBorder.accent.apply(loginButton)
         ThemeBorder.accent.apply(startButton)
     }
 
-    func setupCollectionView() {
-        collectionView.registerDequeueable(SigningInfoCollectionViewCell.self)
-        collectionView.delegate = self
-        collectionView.dataSource = self
-    }
+    func setupVideo() {
 
-    func setupAutoScroll() {
-        timer = Timer.scheduledTimer(withTimeInterval: Animation.duration_6, repeats: true) { [unowned self] (_) in
-            let nextItem = self.currentPageIndex() + 1 < SigningInfoModel.Slide.allSlides.count ? self.currentPageIndex() + 1 : 0
-            let indexPath = IndexPath(item: nextItem, section: 0)
-            UIView.animate(withDuration: 0.8) { [weak self] in
-                self?.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
-            }
-        }
-    }
-
-    func setupWebViewBackground() {
-        headerBackgroundView.backgroundColor = .clear
-        view.backgroundColor = .navy
-        webView.backgroundColor = .navy
-        let htmlPath = Bundle.main.path(forResource: "WebViewContent", ofType: "html")
-        let htmlURL = URL(fileURLWithPath: htmlPath!)
-        let html = try? Data(contentsOf: htmlURL)
-        webView.load(html!, mimeType: "text/html",
-                          textEncodingName: "UTF-8",
-                          baseURL: htmlURL.deletingLastPathComponent())
-        webView.scalesPageToFit = true
-        webView.contentMode = .scaleAspectFit
-    }
-
-    func currentPageIndex() -> Int {
-        let pageWidth = collectionView.frame.size.width
-        let centerOffsetX = collectionView.contentOffset.x + (pageWidth * 0.5)
-        let page = Int(centerOffsetX / pageWidth)
-        return page.constrainedTo(min: 0, max: SigningInfoModel.Slide.allSlides.count - 1)
-    }
-
-    func syncControlsForCurrentPage() {
-        let index = currentPageIndex()
-        syncPageControl(page: index)
-    }
-
-    func syncPageControl(page: Int) {
-        pageControl.currentPage = page
+        player.play()
     }
 }
 
 // MARK: - Actions
 private extension SigningInfoViewController {
-    @IBAction func didTapBottomButton() {
-        // REMOMVE ME
-    }
 
     @IBAction func didTapLogin() {
         interactor?.didTapLoginButton()
     }
 
     @IBAction func didTapStart() {
-        //TODO: https://tignum.atlassian.net/browse/QOT-1625
         interactor?.didTapStartButton()
     }
 }
@@ -156,9 +130,8 @@ private extension SigningInfoViewController {
 // MARK: - SigningInfoViewControllerInterface
 extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
-        setupWebViewBackground()
+        ThemeView.level1.apply(view)
         setupButtons()
-        setupCollectionView()
     }
 
     func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String) {
@@ -166,41 +139,5 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
         QOTAlert.show(title: title,
                       message: message,
                       bottomItems: [doneButton])
-    }
-}
-
-// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-extension SigningInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return SigningInfoModel.Slide.allSlides.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell: SigningInfoCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(title: interactor?.title(at: indexPath.item), body: interactor?.body(at: indexPath.item))
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: view.frame.width, height: collectionView.frame.height - 100)
-    }
-}
-
-extension SigningInfoViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        syncControlsForCurrentPage()
-    }
-
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        if timer != nil {
-            timer?.invalidate()
-            timer = nil
-        }
-    }
-
-    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
-        setupAutoScroll()
     }
 }

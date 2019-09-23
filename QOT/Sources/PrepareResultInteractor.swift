@@ -118,4 +118,8 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     func updateBenefits(_ benefits: String) {
        worker.updateBenefits(benefits)
     }
+
+    func presentFeedback() {
+        router.presentFeedback()
+    }
 }

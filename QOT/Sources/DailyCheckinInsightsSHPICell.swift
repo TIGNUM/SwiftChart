@@ -10,6 +10,7 @@ import Foundation
 
 final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var SHPIText: UILabel!
     @IBOutlet private var bars: [UIView]?
     @IBOutlet private var labels: [UILabel]?
@@ -25,6 +26,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
     func configure(with: DailyCheck2SHPIModel?) {
         updateView(text: with?.shpiContent, rating: with?.shpiRating ?? 0)
+        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
     }
 }
 
