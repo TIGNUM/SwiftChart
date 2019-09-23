@@ -34,6 +34,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
+    private var heightSearchViewConstraint: NSLayoutConstraint!
     private var preSelectedItem: Pages? = .dailyBrief
     private var panActive = false
     private var panSearchShowing: Bool = false {
@@ -113,6 +114,18 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
         // Handle stored link when it's ready to handle
         RestartHelper().checkRestartURLAndRoute()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if bottomSearchViewConstraint.constant == 0 {
+            let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+            bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
+        }
+
+        if heightSearchViewConstraint.constant != view.bounds.height {
+            heightSearchViewConstraint.constant = view.bounds.height
+        }
+    }
 }
 
 // MARK: - Notification
@@ -147,7 +160,8 @@ extension CoachCollectionViewController {
 extension CoachCollectionViewController {
 
     private func updatePan(currentY: CGFloat) {
-        bottomSearchViewConstraint.constant = panActive ? -currentY : 0.0
+        let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+        bottomSearchViewConstraint.constant = panActive ? -currentY : -currentViewsYPositionInWindow
         let duration: Double = panSearchShowing ? 0.25 : 0.0
         UIView.animate(withDuration: duration) {
             self.view.layoutIfNeeded()
@@ -167,11 +181,14 @@ extension CoachCollectionViewController {
         if targetView.superview != parentView {
             parentView.addSubview(targetView)
         }
-        bottomSearchViewConstraint = targetView.bottomAnchor.constraint(equalTo: parentView.topAnchor, constant: 0)
+        let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+        bottomSearchViewConstraint = targetView.bottomAnchor.constraint(equalTo: parentView.topAnchor,
+                                                                        constant: -currentViewsYPositionInWindow)
+        heightSearchViewConstraint = targetView.heightAnchor.constraint(equalToConstant: parentView.bounds.height)
         NSLayoutConstraint.activate([
             targetView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 0),
             targetView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: 0),
-            targetView.heightAnchor.constraint(equalToConstant: parentView.bounds.height - 20),
+            heightSearchViewConstraint,
             bottomSearchViewConstraint,
             targetView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0)
             ])
@@ -240,7 +257,8 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     func didTapCancel() {
         panSearchShowing = false
         if let searchViewController = searchViewController {
-            bottomSearchViewConstraint.constant = 0
+            let currentViewsYPositionInWindow = view.convert(view.frame, to: view.window).minY
+            bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
             UIView.animate(withDuration: 0.25) {
                 self.refreshCoachButton()
                 searchViewController.view.superview?.layoutIfNeeded()

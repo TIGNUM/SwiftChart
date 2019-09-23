@@ -144,7 +144,13 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 let videoURL = foundation.mediaURL else { return }
             trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             let contentItem = foundation.contentItems?.filter({ $0.format == .video }).first
-            stream(videoURL: videoURL, contentItem: contentItem) // TODO Set correct pageName
+            let playerController = stream(videoURL: videoURL, contentItem: contentItem)
+            if playerController == nil {
+                tableView.isUserInteractionEnabled = true
+                if let selectedRow = tableView.indexPathForSelectedRow {
+                    tableView.deselectRow(at: selectedRow, animated: true)
+                }
+            }
         } else {
             let strategy = interactor?.strategies[indexPath.item]
             interactor?.presentArticle(selectedID: strategy?.remoteID)

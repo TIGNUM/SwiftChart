@@ -50,7 +50,7 @@ final class DTMindsetViewController: DTViewController {
     @IBAction override func didTapNext() {
         switch viewModel?.question.key {
         case Mindset.QuestionKey.Last:
-            mindsetRouter?.dismiss()
+            router?.dismissChatBotFlow()
         case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
         case Mindset.QuestionKey.PresentResult:

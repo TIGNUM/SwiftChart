@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SolveResultsRouter {
 
@@ -22,13 +23,11 @@ final class SolveResultsRouter {
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
     func dismiss() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
+        viewController?.dismiss(animated: true, completion: nil)
     }
 
     func didTapDone() {
-        viewController?.dismiss(animated: true, completion: {
-            self.viewController?.delegate?.didFinishRec()
-        })
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func openStrategy(with id: Int) {
@@ -51,5 +50,12 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         let configurator = DTRecoveryConfigurator.make()
         let controller = DTRecoveryViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+    }
+
+    func presentFeedback() {
+        guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
+        viewController?.present(controller, animated: true)
+        controller.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
+        viewController?.removeBottomNavigation()
     }
 }

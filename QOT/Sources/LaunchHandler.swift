@@ -24,18 +24,22 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL,
-                 searchViewController: SearchViewController? = nil) {
+    func process(url: URL) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
             return
         }
 
-        if !appDelegate.appCoordinator.isReadyToOpenURL() || qot_dal.SessionService.main.getCurrentSession() == nil {
-            RestartHelper.setRestartURL(url)
-            return
+        guard appDelegate.appCoordinator.isReadyToOpenURL(),
+            qot_dal.SessionService.main.getCurrentSession() != nil else {
+                RestartHelper.setRestartURL(url)
+                return
         }
         RestartHelper.clearRestartRouteInfo()
+
+        if AppCoordinator.permissionsManager == nil {
+            appDelegate.appCoordinator.setupPermissionsManager()
+        }
 
         var queries: [String: String?] = [:]
         for queryItem in url.queryItems() {
@@ -338,14 +342,7 @@ extension LaunchHandler {
     }
 
     func dismissChatBotFlow() {
-        guard let mainNavi = baseRootViewController?.navigationController else {
-            return
-        }
-        guard let coachController = baseRootViewController?.QOTVisibleViewController() as? CoachViewController else {
-            mainNavi.dismissAllPresentedViewControllers(mainNavi, false) {}
-            return
-        }
-        mainNavi.dismissAllPresentedViewControllers(coachController, true) {}
+        baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true, completion: nil)
     }
 
     func showLearnStrategy(_ category: qot_dal.ContentCategory?) {

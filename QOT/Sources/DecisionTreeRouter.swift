@@ -60,7 +60,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
                                                          type: type,
                                                          solve: nil)
         let solveResultsController = SolveResultsViewController(configure: configurator)
-        solveResultsController.delegate = viewController
+//        solveResultsController.delegate = viewController
         viewController?.present(solveResultsController, animated: true)
     }
 
@@ -114,10 +114,10 @@ extension DecisionTreeRouter {
 // MARK: - Recovery
 extension DecisionTreeRouter {
     func openRecoveryResults(_ recovery: QDMRecovery3D?) {
-        let configurator = SolveResultsConfigurator.make(from: recovery)
-        let solveResultsController = SolveResultsViewController(configure: configurator)
-        solveResultsController.delegate = viewController
-        viewController?.present(solveResultsController, animated: true)
+//        let configurator = SolveResultsConfigurator.make(from: recovery)
+//        let solveResultsController = SolveResultsViewController(configure: configurator)
+//        solveResultsController.delegate = viewController
+//        viewController?.present(solveResultsController, animated: true)
     }
 }
 

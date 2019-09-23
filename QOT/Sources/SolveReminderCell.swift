@@ -9,6 +9,7 @@
 import UIKit
 
 final class SolveReminderCell: BaseDailyBriefCell {
+
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var twoDayAgo: UILabel!
     @IBOutlet private weak var question1: UILabel!
@@ -27,5 +28,6 @@ final class SolveReminderCell: BaseDailyBriefCell {
         ThemeText.solveQuestions.apply(viewModel?.question2, to: question2)
         ThemeText.solveQuestions.apply(viewModel?.question3, to: question3)
         ThemeText.sprintText.apply(viewModel?.twoDayAgo, to: twoDayAgo)
+        ThemeView.level2.apply(contentView)
     }
 }

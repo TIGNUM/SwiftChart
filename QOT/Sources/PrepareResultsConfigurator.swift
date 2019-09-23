@@ -30,6 +30,7 @@ final class PrepareResultsConfigurator {
             let interactor = PrepareResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
             worker.delegate = viewController
+            worker.canDelete = true
         }
     }
 }

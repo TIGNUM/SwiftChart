@@ -71,6 +71,10 @@ class DTPresenter: DTPresenterInterface {
         return false
     }
 
+    func getHtmlTitleString(_ qdmQuestion: QDMQuestion?) -> String? {
+        return nil
+    }
+
     func createViewModel(_ presentationModel: DTPresentationModel) -> DTViewModel {
         let question = getQuestion(presentationModel.question, questionUpdate: presentationModel.questionUpdate)
         let answers = getAnswers(presentationModel.answerFilter, question: presentationModel.question)
@@ -92,8 +96,10 @@ class DTPresenter: DTPresenterInterface {
         if let update = updatedQuestionTitle(question, replacement: questionUpdate) {
             title = update
         }
+        let htmlTitleString = getHtmlTitleString(question)
         return DTViewModel.Question(remoteId: question?.remoteID ?? 0,
                                     title: title ?? "",
+                                    htmlTitleString: htmlTitleString,
                                     key: question?.key ?? "",
                                     answerType: AnswerType(rawValue: question?.answerType ?? "") ?? .accept,
                                     duration: question?.layout?.animation?.duration ?? 5.0,

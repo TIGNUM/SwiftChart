@@ -23,11 +23,12 @@ final class ShifterResultWorker {
     private var visionTitle = ""
     private var mindsetResultModel: MindsetResult?
     private var mindsetShifter: QDMMindsetShifter? = nil
-    private lazy var contentService = qot_dal.ContentService.main
+    private var canDelete = false
 
     // MARK: - Init
-    init(_ mindsetShifter: QDMMindsetShifter?) {
+    init(_ mindsetShifter: QDMMindsetShifter?, canDelete: Bool) {
         self.mindsetShifter = mindsetShifter
+        self.canDelete = canDelete
         setTitles()
     }
 
@@ -59,7 +60,7 @@ extension ShifterResultWorker {
     }
 
     func deleteMindsetShifter() {
-        guard let mindsetShifter = mindsetShifter else { return }
+        guard let mindsetShifter = mindsetShifter, canDelete == true else { return }
         UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
             if let error = error {
                 log("Error causedeleteMindsetShifter: \(error.localizedDescription)", level: .error)

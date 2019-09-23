@@ -21,11 +21,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SolveReminderCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="403" height="348"/>
+            <rect key="frame" x="0.0" y="0.0" width="403" height="333"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-gR-kMz">
-                    <rect key="frame" x="0.0" y="0.0" width="403" height="348"/>
+                    <rect key="frame" x="0.0" y="0.0" width="403" height="333"/>
                     <subviews>
                         <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwq-nu-K1r">
                             <rect key="frame" x="24" y="48" width="10" height="1"/>
@@ -48,13 +48,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Hope the suggested solution has worked for you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-4w-PHD">
-                            <rect key="frame" x="24" y="186.5" width="355" height="47"/>
+                            <rect key="frame" x="24" y="186.5" width="355" height="38.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you apply it next time?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IoC-QV-JDo">
-                            <rect key="frame" x="24" y="257.5" width="355" height="20"/>
+                            <rect key="frame" x="24" y="249" width="355" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="20" id="tOm-p5-UfN"/>
                             </constraints>
@@ -63,13 +63,13 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How could you tweak it to make it yours? " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJc-X2-PJ2">
-                            <rect key="frame" x="24" y="301.5" width="355" height="19.5"/>
+                            <rect key="frame" x="24" y="293" width="355" height="19.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nPk-IS-ZnT">
-                            <rect key="frame" x="24" y="345" width="379" height="1"/>
+                            <rect key="frame" x="24" y="330" width="379" height="1"/>
                             <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="3NS-c3-3J8"/>
@@ -111,13 +111,13 @@
                         <constraint firstItem="IoC-QV-JDo" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="HOa-ZF-1fc"/>
                         <constraint firstItem="uTu-zZ-9re" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="Tsk-qW-Kdf"/>
                         <constraint firstItem="ZBF-4w-PHD" firstAttribute="top" secondItem="uTu-zZ-9re" secondAttribute="bottom" constant="24" id="UHr-7L-xe7"/>
-                        <constraint firstItem="nPk-IS-ZnT" firstAttribute="top" secondItem="NJc-X2-PJ2" secondAttribute="bottom" constant="24" id="V1D-aR-Pdt"/>
                         <constraint firstItem="IoC-QV-JDo" firstAttribute="top" secondItem="ZBF-4w-PHD" secondAttribute="bottom" constant="24" id="XPv-5k-n6N"/>
                         <constraint firstItem="Gwq-nu-K1r" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="ZGD-sf-Ay1"/>
                         <constraint firstItem="NJc-X2-PJ2" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="aPY-ti-BM4"/>
                         <constraint firstItem="Ibp-jg-x3D" firstAttribute="top" secondItem="Lay-gR-kMz" secondAttribute="top" constant="204" id="cb1-jf-izU"/>
                         <constraint firstItem="ecL-Bg-eCc" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="e9s-m6-w1z"/>
                         <constraint firstAttribute="trailing" secondItem="IoC-QV-JDo" secondAttribute="trailing" constant="24" id="eDe-J3-Jtt"/>
+                        <constraint firstItem="nPk-IS-ZnT" firstAttribute="top" secondItem="NJc-X2-PJ2" secondAttribute="bottom" constant="17.5" id="eN3-Cm-4ne"/>
                         <constraint firstItem="Gwq-nu-K1r" firstAttribute="top" secondItem="Lay-gR-kMz" secondAttribute="top" constant="48" id="eSq-tp-slc"/>
                         <constraint firstAttribute="trailing" secondItem="uTu-zZ-9re" secondAttribute="trailing" constant="24" id="eey-z7-3OZ"/>
                         <constraint firstItem="uTu-zZ-9re" firstAttribute="top" secondItem="JKU-8H-YUQ" secondAttribute="bottom" constant="24" id="guR-DD-DjU"/>
@@ -143,7 +143,7 @@
                 <outlet property="question3" destination="NJc-X2-PJ2" id="4jZ-v1-XCd"/>
                 <outlet property="twoDayAgo" destination="uTu-zZ-9re" id="UsP-ZN-SdD"/>
             </connections>
-            <point key="canvasLocation" x="129.71014492753625" y="-30.133928571428569"/>
+            <point key="canvasLocation" x="129.71014492753625" y="-35.15625"/>
         </view>
     </objects>
 </document>

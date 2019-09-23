@@ -39,6 +39,7 @@ protocol DTInteractorInterface: Interactor {
 
 protocol DTRouterInterface {
     func dismiss()
+    func dismissChatBotFlow()
     func presentContent(_ contentId: Int)
     func playMediaItem(_ contentItemId: Int)
 }

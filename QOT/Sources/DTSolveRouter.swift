@@ -36,11 +36,9 @@ extension DTSolveRouter: DTSolveRouterInterface {
     }
 }
 
-// MARK: - SolveResultsViewControllerDelegate
-extension DTSolveRouter: SolveResultsViewControllerDelegate {
-    func didFinishSolve() {
-        solveResultsController?.dismiss(animated: true, completion: nil)
+// MARK: - ResultsViewControllerDelegate
+extension DTSolveRouter: ResultsViewControllerDelegate {
+    func didTapDismiss() {
+         dismissChatBotFlow()
     }
-
-    func didFinishRec() {}
 }

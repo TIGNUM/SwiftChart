@@ -15,6 +15,7 @@ protocol ArticleViewControllerInterface: class {
     func reloadData()
     func hasBookmark(_ hasBookmark: Bool)
     func dataUpdated()
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
 }
 
 protocol ArticlePresenterInterface {
@@ -23,6 +24,7 @@ protocol ArticlePresenterInterface {
     func reloadData()
     func updateBookmark(_ hasBookmark: Bool)
     func dataUpdated()
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool)
 }
 
 protocol ArticleInteractorInterface: class, Interactor {
@@ -37,6 +39,7 @@ protocol ArticleInteractorInterface: class, Interactor {
     var remoteID: Int { get }
     var audioURL: URL? { get }
     var isShareable: Bool { get }
+    var shouldHideBookmarkItem: Bool { get }
     var shouldHideTopBar: Bool { get }
     func itemCount(in section: Int) -> Int
     func headerTitle(for section: Int) -> String?

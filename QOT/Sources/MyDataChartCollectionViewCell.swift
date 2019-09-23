@@ -16,7 +16,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var lowerValueLabel: UILabel!
     @IBOutlet private weak var chartViewBottomConstraint: NSLayoutConstraint!
     private var addedViews: [UIView] = []
-    private let largePointSize: CGFloat = 10.0
+    private let largePointSize: CGFloat = 7.5
     private let normalPointSize: CGFloat = 5.0
     private let largeGraphWidth: CGFloat = 4.0
     private let defaultAverage: Double = 70.0

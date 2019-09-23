@@ -25,6 +25,10 @@ extension DTRouter: DTRouterInterface {
         viewController?.dismiss(animated: true, completion: nil)
     }
 
+    func dismissChatBotFlow() {
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
+    }
+
     func presentContent(_ contentId: Int) {
         AppDelegate.current.launchHandler.showContentCollection(contentId)
     }
