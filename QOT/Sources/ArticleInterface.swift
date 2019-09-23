@@ -28,6 +28,7 @@ protocol ArticlePresenterInterface {
 }
 
 protocol ArticleInteractorInterface: class, Interactor {
+    var alwaysHideTopBar: Bool { get }
     var section: ContentSection { get }
     var sectionCount: Int { get }
     var sectionHeaderHeight: CGFloat { get }
