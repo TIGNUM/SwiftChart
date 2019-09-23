@@ -28,7 +28,7 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     public var shouldMoveBottomBarWithKeyboard: Bool = false
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
     private weak var contentView: UIView?
-    internal var lastBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
+    internal var lastestBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                                                        rightBarButtonItems: [],
                                                                                        backgroundColor: .black)
 
