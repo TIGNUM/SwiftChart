@@ -38,10 +38,7 @@ extension ShifterResultInteractor: ShifterResultInteractorInterface {
         router.dismiss()
     }
 
-    func openConfirmationView() {
-        presenter.presentAlert(title: worker.leaveAlertTitle,
-                               message: worker.leaveAlertMessage,
-                               cancelTitle: worker.cancelButtonTitle,
-                               leaveTitle: worker.leaveButtonTitle)
+    func presentFeedback() {
+        router.presentFeedback()
     }
 }

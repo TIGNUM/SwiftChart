@@ -53,7 +53,7 @@ final class MySprintDetailsInteractor {
 
     /// Shows continue paused sprint alert
     private lazy var continueSprintButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonContinue,
+        return SprintButtonParameters(title: worker.buttonContinueSprint,
                                       icon: R.image.my_sprints_play(),
                                       target: self,
                                       action: #selector(didTapContinueSprint))

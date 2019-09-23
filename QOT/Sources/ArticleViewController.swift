@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import Kingfisher
 
 protocol ArticleDelegate: class {
     func didTapMarkAsRead(_ read: Bool)
@@ -65,6 +66,13 @@ enum ColorMode {
         switch self {
         case .dark: return .lightContent
         case .darkNot: return .default
+        }
+    }
+
+    var cellHighlight: UIColor {
+        switch self {
+        case .dark: return .accent10
+        case .darkNot: return .accent10
         }
     }
 }
@@ -198,7 +206,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
         tableView.backgroundColor = .clear
     }
@@ -300,9 +308,29 @@ private extension ArticleViewController {
 
     @objc func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
-        guard let whatsHotShareable = interactor?.whatsHotShareable else { return }
-        let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
-        present(activityVC, animated: true, completion: nil)
+        guard let share = interactor?.whatsHotShareable else { return }
+        guard let title = share.message else { return }
+        guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
+        let dispatchGroup = DispatchGroup()
+        var items: [Any] = [title, url]
+
+        dispatchGroup.enter()
+        if let imageURL = share.imageURL {
+            KingfisherManager.shared.retrieveImage(with: imageURL) { result in
+                switch result {
+                case .success(let image): // if there is cached image share with image.
+                    items.append(image)
+                default: break
+                }
+
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self?.present(activityVC, animated: true, completion: nil)
+        }
     }
 }
 
@@ -320,8 +348,12 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData() {
+        reloadData(showNavigationBar: true)
+    }
+
+    func reloadData(showNavigationBar: Bool) {
         self.view.removeLoadingSkeleton()
-        navigationBar(show: true)
+        navigationBar(show: showNavigationBar)
         tableView.reloadData()
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
         setupAudioItem()
@@ -354,7 +386,7 @@ extension ArticleViewController {
         }
 
         interactor?.showRelatedArticle(remoteID: remoteID)
-        reloadData()
+        reloadData(showNavigationBar: false)
     }
 
     func dataUpdated() {

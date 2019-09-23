@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTShortTBVPresenter: DTPresenter {
 
