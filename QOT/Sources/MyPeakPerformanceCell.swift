@@ -15,18 +15,18 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
 
     func configure(with data: MyPeakPerformanceCellViewModel?) {
         stackView.removeSubViews()
-        formHeaderView(with: data?.title)
+        addFormHeaderView(with: data?.title)
         for message in data?.sections ?? [] {
-            formSectionView(with: message.sections)
+            addFormSectionView(with: message.sections)
             for row in message.rows {
-                formRowView(with: row)
+                addFormRowView(with: row)
             }
-            formDividerView()
+            addFormDividerView()
         }
-        formFooterView()
+        addFormFooterView()
     }
 
-    private func formHeaderView(with data: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle?) {
+    private func addFormHeaderView(with data: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle?) {
         guard let view = MyPeakPerformanceTitleCell.instantiateFromNib() else {
             return
         }
@@ -34,7 +34,7 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
         stackView.addArrangedSubview(view)
     }
 
-    private func formSectionView(with data: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow) {
+    private func addFormSectionView(with data: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow) {
         guard let view = MyPeakPerformanceSectionCell.instantiateFromNib() else {
             return
         }
@@ -42,7 +42,7 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
         stackView.addArrangedSubview(view)
     }
 
-    private func formRowView(with data: MyPeakPerformanceCellViewModel.MyPeakPerformanceRow) {
+    private func addFormRowView(with data: MyPeakPerformanceCellViewModel.MyPeakPerformanceRow) {
         guard let view = MyPeakPerformanceRowCell.instantiateFromNib() else {
             return
         }
@@ -51,14 +51,14 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
         stackView.addArrangedSubview(view)
     }
 
-    private func formFooterView() {
+    private func addFormFooterView() {
         guard let view = MyPeakPerformanceFooter.instantiateFromNib() else {
             return
         }
         stackView.addArrangedSubview(view)
     }
 
-    private func formDividerView() {
+    private func addFormDividerView() {
         guard let view = MyPeakPerformanceDividerView.instantiateFromNib() else {
             return
         }
