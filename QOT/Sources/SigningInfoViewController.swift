@@ -24,8 +24,8 @@ final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
-    @IBOutlet private weak var loginButton: UIButton!
-    @IBOutlet private weak var startButton: UIButton!
+    @IBOutlet private weak var loginButton: RoundedButton!
+    @IBOutlet private weak var startButton: RoundedButton!
     var delegate: SigningInfoDelegate?
 
     // MARK: - Init
@@ -105,8 +105,8 @@ private extension SigningInfoViewController {
     func setupButtons() {
         ThemeText.onboardingInfoTitle.apply(interactor?.titleText, to: titleLabel)
         ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
-        ThemeBorder.accent.apply(loginButton)
-        ThemeBorder.accent.apply(startButton)
+        ThemableButton.signinInfo.apply(loginButton, title: R.string.localized.onboardingIntroButtonLogin())
+        ThemableButton.signinInfo.apply(startButton, title: R.string.localized.onboardingIntroButtonRegister())
     }
 
     func setupVideo() {
