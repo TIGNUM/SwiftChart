@@ -52,7 +52,7 @@ final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        UIApplication.shared.statusBarView?.backgroundColor = .carbon
+        setStatusBar(color: .carbon)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

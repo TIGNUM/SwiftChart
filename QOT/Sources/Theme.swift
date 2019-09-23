@@ -416,10 +416,17 @@ enum ThemeSearchBar {
 
             view.tintColor = Palette.accent
             view.keyboardAppearance = .dark
-            if let searchField = view.value(forKey: "_searchField") as? UITextField {
+            if #available(iOS 13, *) {
+                let searchField = view.searchTextField
                 searchField.corner(radius: 20)
                 searchField.backgroundColor = Palette.sand10
                 searchField.textColor = Palette.sand
+            } else {
+                if let searchField = view.value(forKey: "_searchField") as? UITextField {
+                    searchField.corner(radius: 20)
+                    searchField.backgroundColor = Palette.sand10
+                    searchField.textColor = Palette.sand
+                }
             }
             view.setShowsCancelButton(true, animated: false)
         }

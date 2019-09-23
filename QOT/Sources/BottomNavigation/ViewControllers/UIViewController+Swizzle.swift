@@ -140,6 +140,9 @@ extension UIViewController {
     }
 
     @objc func getPreferredStatusBarStyleSwizzled() -> UIStatusBarStyle {
+        if #available(iOS 13, *) {
+            return isLightBackground() ? .darkContent : .lightContent
+        }
         return isLightBackground() ? .default : .lightContent
     }
 
@@ -179,9 +182,8 @@ extension UIViewController {
     }
 
     func setStatusBar(color: UIColor?) {
-        guard let statusBar = UIApplication.shared.statusBarView,
-            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) else {
-                return
+        guard let statusBar = UIApplication.shared.statusBarView else {
+            return
         }
         statusBar.backgroundColor = color
     }
@@ -242,9 +244,6 @@ extension UIViewController {
         case .currentContext,
              .overFullScreen,
              .overCurrentContext,
-             .pageSheet,
-             .formSheet,
-             .popover,
              .custom: break
         default: vc.modalPresentationStyle = .fullScreen
         }

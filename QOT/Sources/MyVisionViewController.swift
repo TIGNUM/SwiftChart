@@ -61,7 +61,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = .carbon
+        setStatusBar(color: .carbon)
         QuestionnaireViewController.hasArrowsAnimated = false
         interactor?.viewWillAppear()
     }

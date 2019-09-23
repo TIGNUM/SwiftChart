@@ -28,7 +28,7 @@ final class MyQotAboutUsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = .carbon
+        setStatusBar(color: .carbon)
     }
 
     override func viewDidAppear(_ animated: Bool) {
