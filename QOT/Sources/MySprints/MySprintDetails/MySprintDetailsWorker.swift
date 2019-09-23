@@ -105,7 +105,7 @@ final class MySprintDetailsWorker {
     }()
 
     lazy var buttonContinueSprint: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
+        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinueSprint)
     }()
 
     lazy var buttonRestartSprint: String = {
@@ -153,7 +153,7 @@ extension MySprintDetailsWorker {
     }
 
     func continueSprint(_ completion: @escaping (Error?) -> Void) {
-        service.startSprint(sprint) { [weak self] (sprint, error) in
+        service.continueSprint(sprint) { [weak self] (sprint, error) in
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }

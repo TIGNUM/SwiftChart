@@ -41,6 +41,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func didClickSaveAndContinue()
     func didTapLeaveWithoutSaving()
     func didTapDismissView()
+    func presentFeedback()
 }
 
 protocol PrepareResultsRouterInterface {
@@ -51,4 +52,5 @@ protocol PrepareResultsRouterInterface {
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)
+    func presentFeedback()
 }

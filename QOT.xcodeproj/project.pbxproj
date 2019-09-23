@@ -169,15 +169,12 @@
 		36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A4D20D3C4B700B55429 /* SigningInfoRouter.swift */; };
 		36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A4E20D3C4B700B55429 /* SigningInfoInterface.swift */; };
 		36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36796A4F20D3C4B700B55429 /* SigningInfoViewController.xib */; };
-		36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36796A5020D3C4B800B55429 /* SigningInfoCollectionViewCell.xib */; };
 		36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5120D3C4B800B55429 /* SigningInfoInteractor.swift */; };
 		36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5220D3C4B800B55429 /* SigningInfoWorker.swift */; };
-		36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5320D3C4B800B55429 /* SigningInfoCollectionViewCell.swift */; };
 		36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5420D3C4B800B55429 /* SigningInfoViewController.swift */; };
 		36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */; };
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
 		3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E02175E3BA00DF761A /* WebViewContent.html */; };
-		3679A4E32175E45300DF761A /* qot_clip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E22175E45200DF761A /* qot_clip.gif */; };
 		367A58532326A15D0089A082 /* DTSolvePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584B2326A15D0089A082 /* DTSolvePresenter.swift */; };
 		367A58542326A15D0089A082 /* DTSolveWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584C2326A15D0089A082 /* DTSolveWorker.swift */; };
 		367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367A584D2326A15D0089A082 /* DTSolveRouter.swift */; };
@@ -326,6 +323,8 @@
 		38290B8B2330F825004B5C14 /* DTSprintReflectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B832330F825004B5C14 /* DTSprintReflectionInteractor.swift */; };
 		38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B842330F825004B5C14 /* DTSprintReflection.swift */; };
 		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
+		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
+		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
@@ -672,6 +671,7 @@
 		8D8AA76A22FDCB6700B59A81 /* RegistrationEmailRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75A22FDCB6700B59A81 /* RegistrationEmailRouter.swift */; };
 		8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */; };
 		8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */; };
+		8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */; };
 		8D9F6D1C230E80EB00DCC241 /* WalkthroughPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */; };
 		8D9F6D1D230E80EB00DCC241 /* WalkthroughWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */; };
 		8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */; };
@@ -1526,15 +1526,12 @@
 		36796A4D20D3C4B700B55429 /* SigningInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoRouter.swift; sourceTree = "<group>"; };
 		36796A4E20D3C4B700B55429 /* SigningInfoInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoInterface.swift; sourceTree = "<group>"; };
 		36796A4F20D3C4B700B55429 /* SigningInfoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SigningInfoViewController.xib; sourceTree = "<group>"; };
-		36796A5020D3C4B800B55429 /* SigningInfoCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SigningInfoCollectionViewCell.xib; sourceTree = "<group>"; };
 		36796A5120D3C4B800B55429 /* SigningInfoInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoInteractor.swift; sourceTree = "<group>"; };
 		36796A5220D3C4B800B55429 /* SigningInfoWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoWorker.swift; sourceTree = "<group>"; };
-		36796A5320D3C4B800B55429 /* SigningInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		36796A5420D3C4B800B55429 /* SigningInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoViewController.swift; sourceTree = "<group>"; };
 		36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoConfigurator.swift; sourceTree = "<group>"; };
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
 		3679A4E02175E3BA00DF761A /* WebViewContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewContent.html; sourceTree = "<group>"; };
-		3679A4E22175E45200DF761A /* qot_clip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = qot_clip.gif; path = Media/qot_clip.gif; sourceTree = "<group>"; };
 		367A584B2326A15D0089A082 /* DTSolvePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolvePresenter.swift; sourceTree = "<group>"; };
 		367A584C2326A15D0089A082 /* DTSolveWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveWorker.swift; sourceTree = "<group>"; };
 		367A584D2326A15D0089A082 /* DTSolveRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSolveRouter.swift; sourceTree = "<group>"; };
@@ -1682,6 +1679,8 @@
 		38290B832330F825004B5C14 /* DTSprintReflectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionInteractor.swift; sourceTree = "<group>"; };
 		38290B842330F825004B5C14 /* DTSprintReflection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflection.swift; sourceTree = "<group>"; };
 		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
+		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
+		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -2030,6 +2029,7 @@
 		8D8AA75A22FDCB6700B59A81 /* RegistrationEmailRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailRouter.swift; sourceTree = "<group>"; };
 		8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailWorker.swift; sourceTree = "<group>"; };
 		8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
+		8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoginVideo.mp4; sourceTree = "<group>"; };
 		8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPresenter.swift; sourceTree = "<group>"; };
 		8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughWorker.swift; sourceTree = "<group>"; };
 		8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughRouter.swift; sourceTree = "<group>"; };
@@ -3104,7 +3104,6 @@
 		36796A4B20D3C4A800B55429 /* SigningInfo */ = {
 			isa = PBXGroup;
 			children = (
-				36796A5320D3C4B800B55429 /* SigningInfoCollectionViewCell.swift */,
 				36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */,
 				36796A5120D3C4B800B55429 /* SigningInfoInteractor.swift */,
 				36796A4E20D3C4B700B55429 /* SigningInfoInterface.swift */,
@@ -3113,7 +3112,6 @@
 				36796A4D20D3C4B700B55429 /* SigningInfoRouter.swift */,
 				36796A5420D3C4B800B55429 /* SigningInfoViewController.swift */,
 				36796A5220D3C4B800B55429 /* SigningInfoWorker.swift */,
-				36796A5020D3C4B800B55429 /* SigningInfoCollectionViewCell.xib */,
 				36796A4F20D3C4B700B55429 /* SigningInfoViewController.xib */,
 			);
 			name = SigningInfo;
@@ -3238,6 +3236,8 @@
 				369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */,
 				369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */,
 				369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */,
+				3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */,
+				3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -5163,7 +5163,7 @@
 		CB78D3361F9F674A0068A54A /* BundledMedia */ = {
 			isa = PBXGroup;
 			children = (
-				3679A4E22175E45200DF761A /* qot_clip.gif */,
+				8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */,
 			);
 			name = BundledMedia;
 			sourceTree = "<group>";
@@ -6226,7 +6226,6 @@
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
-				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
 				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
@@ -6286,7 +6285,6 @@
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
 				8D66E8A52305A18300BE78C7 /* TrackSelection.storyboard in Resources */,
 				BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */,
-				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				BB5E76C0230C393D0054AF17 /* SkeletonMyQOT.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
@@ -6348,6 +6346,7 @@
 				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
+				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,
 				9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
 				B4AB48D1230C0002003B3C1F /* MyDataInfoTableViewCell.xib in Resources */,
@@ -6382,6 +6381,7 @@
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				8D110D0A230FDB82000181BA /* WalkthroughCoach.storyboard in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
+				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
@@ -6949,7 +6949,6 @@
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
 				369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
-				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
@@ -6978,6 +6977,7 @@
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				363B9CC5232BF34A00C1A29E /* DTTBV.swift in Sources */,
+				3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */,
 				F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
 				3655F2E023270B9500334719 /* DTRouter.swift in Sources */,

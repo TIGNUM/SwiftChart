@@ -43,4 +43,8 @@ extension ArticlePresenter: ArticlePresenterInterface {
     func dataUpdated() {
         viewController?.dataUpdated()
     }
+
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
+        viewController?.setTopBarButtonItems(isShareable: isShareable, hasBookMarkItem: hasBookMarkItem)
+    }
 }

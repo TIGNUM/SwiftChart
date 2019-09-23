@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WxZ-9g-5K7">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Results Feedback View Controller-->
+        <scene sceneID="1ol-YJ-Jib">
+            <objects>
+                <viewController id="WxZ-9g-5K7" customClass="ResultsFeedbackViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iJg-rF-WeX">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bGC-WK-EFE">
+                                <rect key="frame" x="24" y="644.5" width="16" height="1"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="27Q-gc-N9e"/>
+                                    <constraint firstAttribute="width" constant="16" id="z8a-du-kld"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zem-Vr-GZX">
+                                <rect key="frame" x="24" y="661.5" width="366" height="76.5"/>
+                                <string key="text">!!!Great work in developing your prepare plan to rule your impact (text to be added). This preparation will be saved for you in MyQOT so that you can review it as needed.</string>
+                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                                <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="bGC-WK-EFE" firstAttribute="leading" secondItem="iJg-rF-WeX" secondAttribute="leading" constant="24" id="62I-6X-Nao"/>
+                            <constraint firstItem="Zem-Vr-GZX" firstAttribute="leading" secondItem="Kkh-20-odQ" secondAttribute="leading" constant="24" id="JDB-K9-eEu"/>
+                            <constraint firstItem="Kkh-20-odQ" firstAttribute="trailing" secondItem="Zem-Vr-GZX" secondAttribute="trailing" constant="24" id="QZh-Gw-3V6"/>
+                            <constraint firstItem="Kkh-20-odQ" firstAttribute="bottom" secondItem="Zem-Vr-GZX" secondAttribute="bottom" constant="124" id="Yb0-dW-tn6"/>
+                            <constraint firstItem="Zem-Vr-GZX" firstAttribute="top" secondItem="bGC-WK-EFE" secondAttribute="bottom" constant="16" id="wU7-rO-lCi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Kkh-20-odQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="textLabel" destination="Zem-Vr-GZX" id="JGe-Ue-LMc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MqX-YB-TfQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-600" y="140"/>
+        </scene>
+    </scenes>
+</document>

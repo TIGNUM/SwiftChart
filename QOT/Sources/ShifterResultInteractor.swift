@@ -34,7 +34,7 @@ final class ShifterResultInteractor {
 // MARK: - ShifterResultInteractorInterface
 extension ShifterResultInteractor: ShifterResultInteractorInterface {
     func didTapSave() {
-        router.dismiss()
+        router.presentFeedback()
     }
 
     func deleteModel() {

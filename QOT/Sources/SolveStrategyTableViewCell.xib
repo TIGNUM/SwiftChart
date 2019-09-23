@@ -30,6 +30,13 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6lg-7w-NW4">
                         <rect key="frame" x="0.0" y="0.0" width="446" height="69"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-9F-nG3">
+                                <rect key="frame" x="24" y="0.0" width="422" height="1"/>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KwW-Mi-3z5"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUGGESTED STRATEGIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1FU-4h-CjK">
                                 <rect key="frame" x="24" y="24" width="398" height="17"/>
                                 <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
@@ -40,8 +47,11 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1FU-4h-CjK" firstAttribute="top" secondItem="6lg-7w-NW4" secondAttribute="top" constant="24" id="2Dg-7x-uJs"/>
+                            <constraint firstItem="ib7-9F-nG3" firstAttribute="top" secondItem="6lg-7w-NW4" secondAttribute="top" id="9Ni-1f-F8e"/>
+                            <constraint firstAttribute="trailing" secondItem="ib7-9F-nG3" secondAttribute="trailing" id="NgF-bb-9nX"/>
                             <constraint firstItem="1FU-4h-CjK" firstAttribute="leading" secondItem="6lg-7w-NW4" secondAttribute="leading" constant="24" id="gsS-Vf-X6v"/>
                             <constraint firstAttribute="trailing" secondItem="1FU-4h-CjK" secondAttribute="trailing" constant="24" id="hCn-EW-oJs"/>
+                            <constraint firstItem="ib7-9F-nG3" firstAttribute="leading" secondItem="6lg-7w-NW4" secondAttribute="leading" constant="24" id="oDZ-gn-XFk"/>
                             <constraint firstAttribute="height" constant="69" id="tha-hf-L5A"/>
                         </constraints>
                     </view>
@@ -87,6 +97,7 @@
                 <outlet property="headerLabel" destination="1FU-4h-CjK" id="Eaa-jT-L6Z"/>
                 <outlet property="minsToReadLabel" destination="30C-lp-hyk" id="c8S-5k-hcB"/>
                 <outlet property="strategyTitleLabel" destination="vNM-yc-f2h" id="9t0-ar-zCf"/>
+                <outlet property="topSeperatorView" destination="ib7-9F-nG3" id="7VF-on-khD"/>
             </connections>
             <point key="canvasLocation" x="228.98550724637684" y="183.81696428571428"/>
         </tableViewCell>

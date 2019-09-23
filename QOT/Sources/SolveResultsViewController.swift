@@ -61,14 +61,12 @@ private extension SolveResultsViewController {
     @objc func didTapDone() {
         switch interactor?.resultType {
         case .recovery?:
-            interactor?.didTapDone()
+            interactor?.presentFeedback()
         case .solve?:
             if isFollowUpActive == true {
                 interactor?.save()
-                interactor?.didTapDone()
-            } else {
-                interactor?.didTapDone()
             }
+            interactor?.dismiss()
         case .none:
             return
         }
@@ -106,7 +104,9 @@ extension SolveResultsViewController: UITableViewDelegate {
              .exclusiveContent(let id, _, _, _, _)?:
             interactor?.didTapStrategy(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
-        default: return
+        default:
+            tableView.isUserInteractionEnabled = true
+            return
         }
     }
 }
