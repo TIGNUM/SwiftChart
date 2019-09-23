@@ -147,7 +147,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: viewModel.question.title,
-                           html: nil,
+                           html: viewModel.question.htmlTitleString,
                            questionUpdate: nil,
                            textColor: (interactor?.isDark ?? true) ? .sand : .carbon)
             return cell
