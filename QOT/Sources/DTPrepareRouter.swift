@@ -64,6 +64,8 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         let eventEditVC = EKEventEditViewController()
         eventEditVC.eventStore = EKEventStore.shared
         eventEditVC.editViewDelegate = prepareViewController
+        eventEditVC.event?.title = R.string.localized.preparePrepareEventsAddNewEventTitle()
+        eventEditVC.event?.notes = R.string.localized.preparePrepareEventsAddNewEventNote()
         viewController?.present(eventEditVC, animated: true)
     }
 }
