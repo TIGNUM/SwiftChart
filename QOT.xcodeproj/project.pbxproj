@@ -5599,14 +5599,14 @@
 		DB51215423317907009BFF22 /* PreparationWithMissingEvent */ = {
 			isa = PBXGroup;
 			children = (
-				DB5121552331945F009BFF22 /* PreparationWithMissingEventPresenter.swift */,
-				DB5121562331945F009BFF22 /* PreparationWithMissingEventWorker.swift */,
-				DB5121572331945F009BFF22 /* PreparationWithMissingEventRouter.swift */,
-				DB5121582331945F009BFF22 /* PreparationWithMissingEventInterface.swift */,
-				DB5121592331945F009BFF22 /* PreparationWithMissingEventViewController.swift */,
-				DB51215A2331945F009BFF22 /* PreparationWithMissingEventInteractor.swift */,
-				DB51215B2331945F009BFF22 /* PreparationWithMissingEventModel.swift */,
 				DB51215C2331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift */,
+				DB51215A2331945F009BFF22 /* PreparationWithMissingEventInteractor.swift */,
+				DB5121582331945F009BFF22 /* PreparationWithMissingEventInterface.swift */,
+				DB51215B2331945F009BFF22 /* PreparationWithMissingEventModel.swift */,
+				DB5121552331945F009BFF22 /* PreparationWithMissingEventPresenter.swift */,
+				DB5121572331945F009BFF22 /* PreparationWithMissingEventRouter.swift */,
+				DB5121592331945F009BFF22 /* PreparationWithMissingEventViewController.swift */,
+				DB5121562331945F009BFF22 /* PreparationWithMissingEventWorker.swift */,
 				DB512167233258D5009BFF22 /* PreparationWithMissingEventViewController.xib */,
 			);
 			path = PreparationWithMissingEvent;
