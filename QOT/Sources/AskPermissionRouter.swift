@@ -79,9 +79,14 @@ private extension AskPermissionRouter {
 
     func dismiss(type: AskPermission.Kind, granted: Bool) {
         DispatchQueue.main.async {
-            self.viewController?.dismiss(animated: true, completion: {
+            if granted == true {
+                self.viewController?.dismiss(animated: true) {
+                    self.delegate?.didFinishAskingForPermission(type: type, granted: granted)
+                }
+            } else {
                 self.delegate?.didFinishAskingForPermission(type: type, granted: granted)
-            })
+                self.viewController?.dismiss(animated: true)
+            }
         }
     }
 }
