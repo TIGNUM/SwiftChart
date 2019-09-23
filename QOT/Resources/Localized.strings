@@ -134,6 +134,8 @@
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";
+"Prepare.PrepareEvents.AddNewEvent.Title" = "QOT PREPARE";
+"Prepare.PrepareEvents.AddNewEvent.Note" = "Here is a checklist to help you quickly show up at your best:\nSet your intentions\n_How do you want to be perceived?\n_How do you want them to feel?\n_What do you want them to know?\nQuick reminders\n_Grab a snack\n_Hydrate\n_Move\n_Dial into the right emotional state for this meeting";
 "Prepare.PrepareEvents.SyncCalendarEvents" = "Sync Calendars";
 "Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
 "Prepare.PrepareEvents.UpcomingEvents" = "UPCOMING EVENTS";

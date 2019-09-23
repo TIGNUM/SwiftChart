@@ -858,7 +858,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         if dailyCheckIn2.toBeVisionTrackId != nil {
             // for TBV
             let title: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let intro: String = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText ?? ""
+            let tbvRating: Int = dailyCheckIn2.toBeVisionTrack?.ratings.first?.rating ?? 0
+            let intro: String = (dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText ?? "") + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV

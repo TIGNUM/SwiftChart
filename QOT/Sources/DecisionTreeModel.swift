@@ -223,7 +223,7 @@ extension DecisionTreeModel.Filter {
 }
 
 // MARK: - ModelInterface
-extension DecisionTreeModel: DecisionTreeModelInterface {
+extension DecisionTreeModel {
     mutating func add(_ question: QDMQuestion) {
         if extendedQuestions.filter({ $0.question.remoteID == question.remoteID }).isEmpty {
             extendedQuestions.append(ExtendedQuestion(userInput: nil, question: question))

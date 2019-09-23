@@ -60,8 +60,9 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="252" y="220" width="131" height="40"/>
+                    <rect key="frame" x="233" y="220" width="150" height="40"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="150" id="Shh-xa-dEy"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Sux-yG-yCB"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>

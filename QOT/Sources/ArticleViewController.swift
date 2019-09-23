@@ -165,6 +165,12 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         tableView.reloadData()
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
+
+        guard let navBar = navigationController?.navigationBar else { return }
+        if interactor?.alwaysHideTopBar ?? true {
+            navBar.isHidden = true
+            moreBarButtonItem.tintColor = .clear
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -705,6 +711,10 @@ extension ArticleViewController {
             shouldHideNavBar == false else {
             return
         }
+        if interactor?.alwaysHideTopBar ?? true {
+            navBar.isHidden = true
+            return
+        }
 
         let pixelBuffer: CGFloat = 50
         let scrollViewOffsetY = scrollView.contentOffset.y
@@ -722,7 +732,7 @@ extension ArticleViewController {
             }
         } else {
             if navBar.isHidden {
-                let atBottom = scrollViewOffsetY >= scrollView.contentSize.height - scrollView.bounds.height
+                let atBottom = Int(scrollViewOffsetY) >= Int(scrollView.contentSize.height - scrollView.bounds.height)
                 if !atBottom {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
                     if offset > pixelBuffer || scrollViewOffsetY <= 0 {

@@ -39,14 +39,6 @@ final class DTRecoveryViewController: DTViewController {
         }
     }
 
-    override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didSelectAnswer(answer)
-    }
-
-    override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didDeSelectAnswer(answer)
-    }
-
     // MARK: - Question Handling
     override func getAnswerFilter(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         if questionKey == Recovery.QuestionKey.Intro {
