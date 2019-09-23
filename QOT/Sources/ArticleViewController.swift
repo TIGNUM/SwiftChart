@@ -68,6 +68,13 @@ enum ColorMode {
         case .darkNot: return .default
         }
     }
+
+    var cellHighlight: UIColor {
+        switch self {
+        case .dark: return .accent10
+        case .darkNot: return .accent10
+        }
+    }
 }
 
 final class ArticleViewController: UIViewController, ScreenZLevel3 {
@@ -214,7 +221,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
         tableView.backgroundColor = .clear
     }
@@ -345,9 +352,14 @@ private extension ArticleViewController {
 // MARK: - ArticleViewControllerInterface
 
 extension ArticleViewController: ArticleViewControllerInterface {
+
     func reloadData() {
+        reloadData(showNavigationBar: true)
+    }
+
+    func reloadData(showNavigationBar: Bool) {
         self.view.removeLoadingSkeleton()
-        navigationBar(show: true)
+        navigationBar(show: showNavigationBar)
         tableView.reloadData()
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
         setupAudioItem()
@@ -380,7 +392,7 @@ extension ArticleViewController {
         }
 
         interactor?.showRelatedArticle(remoteID: remoteID)
-        reloadData()
+        reloadData(showNavigationBar: false)
     }
 
     func dataUpdated() {
