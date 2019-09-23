@@ -11,7 +11,7 @@ import Foundation
 final class MyPeakPerformanceCell: BaseDailyBriefCell {
 
     @IBOutlet weak var stackView: UIStackView!
-    weak var appDelegate: DailyBriefViewControllerDelegate?
+    weak var dailyBriefViewControllerDelegate: DailyBriefViewControllerDelegate?
 
     func configure(with data: MyPeakPerformanceCellViewModel?) {
         stackView.removeSubViews()
@@ -46,7 +46,7 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
         guard let view = MyPeakPerformanceRowCell.instantiateFromNib() else {
             return
         }
-        view.delegate = appDelegate
+        view.delegate = dailyBriefViewControllerDelegate
         view.configure(with: data)
         stackView.addArrangedSubview(view)
     }
