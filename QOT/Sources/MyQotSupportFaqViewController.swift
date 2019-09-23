@@ -38,6 +38,7 @@ extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface 
     func setupView() {
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleTableViewCell.self)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
         ThemeText.myQOTSectionHeader.apply(interactor?.faqHeaderText, to: headerLabel)
