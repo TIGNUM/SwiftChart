@@ -27,6 +27,7 @@ final class WeatherCell: BaseDailyBriefCell {
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
+    @IBOutlet weak var accessImageView: UIImageView!
     @IBOutlet weak var accessButton: UIButton!
     @IBOutlet weak var accessButtonHeightConstraint: NSLayoutConstraint!
 
@@ -39,6 +40,7 @@ final class WeatherCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeView.level1.apply(accessImageView)
     }
 
     override func prepareForReuse() {
@@ -51,14 +53,13 @@ final class WeatherCell: BaseDailyBriefCell {
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
         viewModel?.updateLocationPermissionStatus { [weak self] (status) in
             switch status {
-            case .notSet:
-                self?.viewModel?.requestLocationPermission { [weak self] (granted) in
-                    self?.delegate?.didChangeLocationPermission(granted: granted)
-                }
             case .denied:
                 UIApplication.openAppSettings()
             default:
-                break
+                self?.viewModel?.requestLocationPermission { [weak self] (granted) in
+                    self?.delegate?.didChangeLocationPermission(granted: granted)
+                    self?.setupUIAccordingToLocationPermissions()
+                }
             }
         }
     }
@@ -79,7 +80,11 @@ final class WeatherCell: BaseDailyBriefCell {
             ThemeText.weatherTitle.apply(weather.title, to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weather.body, to: weatherBodyLabel)
             if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
-                weatherImageView.image = image(for: weatherType, largeSize: true, isNight: isNight(currentDate: weather.currentDate, sunriseDate: weather.sunriseDate, sunsetDate: weather.sunsetDate))
+                weatherImageView.image = image(for: weatherType,
+                                               largeSize: true,
+                                               isNight: isNight(currentDate: weather.currentDate,
+                                                                sunriseDate: weather.sunriseDate,
+                                                                sunsetDate: weather.sunsetDate))
             } else {
                 weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large"))
             }
@@ -106,7 +111,9 @@ final class WeatherCell: BaseDailyBriefCell {
                 hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
             }
             setupHourlyImage(for: hourlyView,
-                             isNight: isNight(currentDate: forecastModel.date, sunriseDate: weatherModel.sunriseDate, sunsetDate: weatherModel.sunsetDate),
+                             isNight: isNight(currentDate: forecastModel.date,
+                                              sunriseDate: weatherModel.sunriseDate,
+                                              sunsetDate: weatherModel.sunsetDate),
                              and: forecastModel.imageURL,
                              and: forecastModel.shortDescription,
                              isNow: false)
@@ -124,12 +131,15 @@ final class WeatherCell: BaseDailyBriefCell {
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
             accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
+            accessImageView.image = R.image.location_permission()
         case .denied?:
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
+            accessImageView.image = R.image.location_permission()
         default:
             shouldHideHeader = true
+            accessImageView.image = nil
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
@@ -137,12 +147,12 @@ final class WeatherCell: BaseDailyBriefCell {
         for constraint in verticalHeaderConstraints {
             constraint.isActive = !shouldHideHeader
         }
+        accessImageView.isHidden = shouldHideHeader
         bucketTitleLabel.isHidden = shouldHideHeader
         introLabel.isHidden = shouldHideHeader
         lineView.isHidden = shouldHideHeader
         headerViewHeightConstraint?.isActive = shouldHideHeader
         layoutIfNeeded()
-
     }
 
     private func setupHourlyImage(for hourlyView: WeatherHourlyView,
@@ -166,9 +176,11 @@ final class WeatherCell: BaseDailyBriefCell {
         let imageName: String
         switch type {
         case .clearSky:
-            imageName = isNight ? (largeSize ? "night_clear_sky_large" : "night_clear_sky_small") : (largeSize ? "day_clear_sky_large" : "day_clear_sky_small")
+            imageName = isNight ? (largeSize ? "night_clear_sky_large" : "night_clear_sky_small") :
+                                  (largeSize ? "day_clear_sky_large" : "day_clear_sky_small")
         case .cloudy:
-            imageName = isNight ? (largeSize ? "night_cloudy_large" : "night_cloudy_small") : (largeSize ? "day_cloudy_large" : "day_cloudy_small")
+            imageName = isNight ? (largeSize ? "night_cloudy_large" : "night_cloudy_small") :
+                                  (largeSize ? "day_cloudy_large" : "day_cloudy_small")
         case .rain:
             imageName = largeSize ? "rain_large" : "rain_small"
         case .thunderStorm:
