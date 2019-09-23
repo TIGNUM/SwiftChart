@@ -30,7 +30,7 @@ final class DTSolveViewController: DTViewController {
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         if viewModel?.question.answerType == .singleSelection {
             if answer.targetId(.content) != nil {
                 solveRouter?.presentSolveResults(selectedAnswer: answer)

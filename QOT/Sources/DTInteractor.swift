@@ -93,6 +93,10 @@ class DTInteractor: DTInteractorInterface {
         }
     }
 
+    var getIntroKey: String {
+        return introKey
+    }
+
     // MARK: - Create DTPresentationModel
     func createPresentationModel(questionId: Int??,
                                  answerFilter: String?,

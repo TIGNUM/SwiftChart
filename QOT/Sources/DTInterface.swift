@@ -35,6 +35,7 @@ protocol DTInteractorInterface: Interactor {
     func getUsersTBV(_ completion: @escaping (QDMToBeVision?, Bool) -> Void)
     func didUpdateUserInput(_ text: String)
     var isDark: Bool { get set }
+    var getIntroKey: String { get }
 }
 
 protocol DTRouterInterface {
