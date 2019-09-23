@@ -10,6 +10,7 @@ import Foundation
 
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     var interactor: DailyBriefInteractorInterface?
@@ -27,6 +28,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
         tbvText.text = with?.introText
         tbvSentence.text = with?.tbvSentence
         self.adviceText.text = with?.adviceText
+        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
     }
 }
 
