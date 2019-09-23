@@ -42,6 +42,10 @@ final class ArticleWorker {
         return content?.section ?? .Unkown
     }
 
+    var alwaysHideTopBar: Bool {
+         return shouldAlwaysHideTopBar()
+    }
+
     var categoryTitle: String {
         return content?.contentCategoryTitle ?? ""
     }
@@ -124,7 +128,7 @@ final class ArticleWorker {
             self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
-            self?.isTopBarHidden = self?.shouldHideTopBar() ?? false
+            self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.interactor?.dataUpdated()
         }
 
@@ -398,10 +402,22 @@ private extension ArticleWorker {
 
     func shouldHideTopBar() -> Bool {
         // Handle most frequent case
-        guard let content = content, content.section != .Generic else { return false }
+        guard let content = content,
+            content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .FAQ_3_0: return true
+        case .ToBeVisionGenerator, .FAQ_3_0, .About: return true
+        default: break
+        }
+        return false
+    }
+
+    func shouldAlwaysHideTopBar() -> Bool {
+        guard let content = content,
+            content.section != .Generic else { return false }
+
+        switch content.section {
+        case .About: return true
         default: break
         }
         return false

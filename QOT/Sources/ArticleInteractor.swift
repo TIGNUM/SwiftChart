@@ -39,6 +39,10 @@ final class ArticleInteractor {
 
 extension ArticleInteractor: ArticleInteractorInterface {
 
+    var alwaysHideTopBar: Bool {
+        return worker.alwaysHideTopBar
+    }
+
     var isShareable: Bool {
         return worker.isShareable
     }
