@@ -100,7 +100,7 @@ extension PreparationWithMissingEventViewController: PreparationWithMissingEvent
                                               buttonWidth: .Keep,
                                               action: #selector(didTapKeepButton(_:)))
         ThemeText.qotToolsTitle.apply(title, to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply(text, to: descriptionLabel)
+        ThemeText.resultClosingText.apply(text, to: descriptionLabel)
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
