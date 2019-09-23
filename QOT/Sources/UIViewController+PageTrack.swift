@@ -92,6 +92,7 @@ extension UIViewController {
         case is PDFReaderViewController: return "fullscreen.pdfreader"
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
+        case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
         default: preconditionFailure()
         }
     }
