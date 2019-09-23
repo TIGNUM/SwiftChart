@@ -48,7 +48,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        ThemeView.level2.apply(self)
+        ThemeView.level2.apply(contentView)
     }
 
     func hide(_ hidden: Bool) {
