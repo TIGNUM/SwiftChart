@@ -74,7 +74,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         setupView()
         updateIndicator()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
+//        self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -235,7 +235,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         }
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 }
 

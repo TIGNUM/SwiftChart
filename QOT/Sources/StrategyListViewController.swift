@@ -76,12 +76,12 @@ extension StrategyListViewController {
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         setupTableView()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage])
+//        self.showLoadingSkeleton(with: [.oneLineHeading, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage])
     }
 
     func reload() {
         tableView.reloadData()
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {

@@ -22,7 +22,6 @@ final class MyQotProfileInteractor {
     private let worker: MyQotProfileWorker
     private let presenter: MyQotProfilePresenterInterface
     private let router: MyQotProfileRouterInterface
-
     // MARK: - Init
 
     init(worker: MyQotProfileWorker,
@@ -37,12 +36,7 @@ final class MyQotProfileInteractor {
 
     func viewDidLoad() {
         getData({ [weak self] (profile) in
-            guard let userProfile = profile, let menuItems = self?.worker.menuItems else {
-                self?.showLoaderView()
-                return
-            }
-            self?.hideLoaderView()
-            self?.presenter.setupView(profile: userProfile, menuItems: menuItems)
+            self?.presenter.updateView()
         })
     }
 }
@@ -50,21 +44,20 @@ final class MyQotProfileInteractor {
 // MARK: - MyQotInteractorInterface
 
 extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
-
-    func showLoaderView() {
-        presenter.showLoaderView()
+    func getProfile() -> UserProfileModel? {
+        return worker.userProfile
     }
 
-    func hideLoaderView() {
-        presenter.hideLoaderView()
+    func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData] {
+        return worker.menuItems
     }
 
     func memberSinceText() -> String {
-        return worker.memberSinceTxt
+        return worker.memberSinceText
     }
 
     func myProfileText() -> String {
-        return worker.myProfileTxt
+        return worker.myProfileText
     }
 
     func getData(_ completion: @escaping (UserProfileModel?) -> Void) {

@@ -45,7 +45,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .level2)
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
+//        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
         ThemeView.level2.apply(view)
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -137,7 +137,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 
     func reloadData() {
         tableView.reloadData()
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {

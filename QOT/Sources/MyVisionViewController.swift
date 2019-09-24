@@ -54,7 +54,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
+//        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         interactor?.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
@@ -170,7 +170,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
     func hideScreenLoader() {
         loaderView.isHidden = true
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 
     func showNullState(with title: String, message: String) {
@@ -219,7 +219,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         if scrollView.alpha == 0 {
             UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
-        removeLoadingSkeleton()
+//        removeLoadingSkeleton()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 

@@ -24,16 +24,7 @@ final class MyQotProfilePresenter {
 // MARK: - MyQotInterface
 
 extension MyQotProfilePresenter: MyQotProfilePresenterInterface {
-
-    func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
-        viewController?.setupView(profile: profile, menuItems: menuItems)
-    }
-
-    func showLoaderView() {
-        viewController?.showLoaderView()
-    }
-
-    func hideLoaderView() {
-        viewController?.hideLoaderView()
+    func updateView() {
+        viewController?.updateView()
     }
 }

@@ -360,17 +360,6 @@
 		5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */; };
 		5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */; };
 		5F6B38592284079800704676 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38582284079800704676 /* UserProfileModel.swift */; };
-		5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */; };
-		5F78965322A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963E22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift */; };
-		5F78965422A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963F22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib */; };
-		5F78965522A929C100D2DBAD /* SkeletonTwoLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964122A929C100D2DBAD /* SkeletonTwoLinesAndImage.swift */; };
-		5F78965622A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78964222A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib */; };
-		5F78965722A929C100D2DBAD /* SkeletonLoader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78964422A929C100D2DBAD /* SkeletonLoader.xib */; };
-		5F78965822A929C100D2DBAD /* SkeletonLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964522A929C100D2DBAD /* SkeletonLoader.swift */; };
-		5F78966122A929E300D2DBAD /* LoadingSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78965D22A929E200D2DBAD /* LoadingSkeleton.swift */; };
-		5F78966222A929E300D2DBAD /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78965E22A929E200D2DBAD /* Skeleton.swift */; };
-		5F78966522A929F800D2DBAD /* SkeletonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78966422A929F800D2DBAD /* SkeletonType.swift */; };
-		5F78966922A9478400D2DBAD /* SkeletonAnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78966822A9478400D2DBAD /* SkeletonAnimationType.swift */; };
 		5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE77D2289586E00BA5DCF /* MyQotSupportInterface.swift */; };
 		5F7BE7802289588100BA5DCF /* MyQotSupportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE77F2289588100BA5DCF /* MyQotSupportInteractor.swift */; };
 		5F7BE7822289588F00BA5DCF /* MyQotSupportWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE7812289588F00BA5DCF /* MyQotSupportWorker.swift */; };
@@ -556,7 +545,6 @@
 		8D04FA3723041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04FA2F23041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift */; };
 		8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */; };
 		8D0500B3232AAFFE00D357D1 /* BaseWithTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */; };
-		8D0500B4232AB04700D357D1 /* SkeletonDailyCheckInFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BE23215690004D657F /* SkeletonDailyCheckInFooter.xib */; };
 		8D0500B5232AB11800D357D1 /* WalkthroughConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D1B230E80EB00DCC241 /* WalkthroughConfigurator.swift */; };
 		8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */; };
 		8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */; };
@@ -762,11 +750,6 @@
 		9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */; };
 		9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */; };
 		9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */; };
-		9C6E48B9232155DC004D657F /* SkeletonDailyCheckInHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48B7232155DC004D657F /* SkeletonDailyCheckInHeader.swift */; };
-		9C6E48BA232155DC004D657F /* SkeletonDailyCheckInHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48B8232155DC004D657F /* SkeletonDailyCheckInHeader.xib */; };
-		9C6E48BF23215690004D657F /* SkeletonDailyCheckInFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */; };
-		9C6E48C023215690004D657F /* SkeletonDailyCheckInRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C6E48BC23215690004D657F /* SkeletonDailyCheckInRow.xib */; };
-		9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48BD23215690004D657F /* SkeletonDailyCheckInRow.swift */; };
 		9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */; };
 		9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */; };
 		9C7F4199232BB9C7007E4B5D /* MyPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C7F4198232BB9C7007E4B5D /* MyPeakPerformanceCell.swift */; };
@@ -778,8 +761,6 @@
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
 		9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */; };
-		9CB9B7A1230C433700DA9938 /* SkeletonThreeLinesAndTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A0230C433700DA9938 /* SkeletonThreeLinesAndTwoColumns.xib */; };
-		9CB9B7A3230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A2230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift */; };
 		9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */; };
 		9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */; };
 		9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */; };
@@ -967,8 +948,6 @@
 		B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */; };
 		B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */; };
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
-		B4B0EBA6231543E10029BB40 /* SkeletonMyDataGraph.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EBA4231543E00029BB40 /* SkeletonMyDataGraph.xib */; };
-		B4B0EBA7231543E10029BB40 /* SkeletonMyDataGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA5231543E00029BB40 /* SkeletonMyDataGraph.swift */; };
 		B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */; };
 		B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */; };
 		B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */; };
@@ -1019,30 +998,9 @@
 		BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
 		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
-		BB5E76BB230C29A10054AF17 /* SkeletonDailyBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B9230C29A10054AF17 /* SkeletonDailyBrief.swift */; };
-		BB5E76BC230C29A10054AF17 /* SkeletonDailyBrief.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BA230C29A10054AF17 /* SkeletonDailyBrief.xib */; };
-		BB5E76C0230C393D0054AF17 /* SkeletonMyQOT.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BE230C393D0054AF17 /* SkeletonMyQOT.xib */; };
-		BB5E76C1230C393D0054AF17 /* SkeletonMyQOT.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76BF230C393D0054AF17 /* SkeletonMyQOT.swift */; };
-		BB5E76C5230C401C0054AF17 /* SkeletonPadHeading.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76C3230C401C0054AF17 /* SkeletonPadHeading.xib */; };
-		BB5E76C6230C401C0054AF17 /* SkeletonPadHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76C4230C401C0054AF17 /* SkeletonPadHeading.swift */; };
-		BB5E76D1230C4A690054AF17 /* SkeletonMyQOTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76CF230C4A690054AF17 /* SkeletonMyQOTCell.xib */; };
-		BB5E76D2230C4A690054AF17 /* SkeletonMyQOTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D0230C4A690054AF17 /* SkeletonMyQOTCell.swift */; };
-		BB5E76D5230D29A30054AF17 /* SkeletonMyPrepsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D3230D29A30054AF17 /* SkeletonMyPrepsCell.xib */; };
-		BB5E76D6230D29A30054AF17 /* SkeletonMyPrepsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D4230D29A30054AF17 /* SkeletonMyPrepsCell.swift */; };
-		BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D7230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib */; };
-		BB5E76DA230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D8230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift */; };
 		BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB667EF72313D76A007C2AC8 /* Theme.swift */; };
 		BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */; };
 		BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */; };
-		BB7B317A230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift */; };
-		BB7B317B230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib */; };
-		BB7B317F230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib */; };
-		BB7B3180230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B317E230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.swift */; };
-		BB7B3182230A9662004A5E52 /* SkeletonBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3181230A9662004A5E52 /* SkeletonBaseView.swift */; };
-		BB7B3186230AA8BE004A5E52 /* SkeletonOneLineHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3184230AA8BD004A5E52 /* SkeletonOneLineHeading.swift */; };
-		BB7B3187230AA8BE004A5E52 /* SkeletonOneLineHeading.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3185230AA8BD004A5E52 /* SkeletonOneLineHeading.xib */; };
-		BB7B318B230AB337004A5E52 /* SkeletonOneLineBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3189230AB337004A5E52 /* SkeletonOneLineBlock.xib */; };
-		BB7B318C230AB337004A5E52 /* SkeletonOneLineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B318A230AB337004A5E52 /* SkeletonOneLineBlock.swift */; };
 		BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */; };
 		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
 		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
@@ -1708,17 +1666,6 @@
 		5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsConfigurator.swift; sourceTree = "<group>"; };
 		5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsRouter.swift; sourceTree = "<group>"; };
 		5F6B38582284079800704676 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
-		5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		5F78963E22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonFiveLinesWithTopBroad.swift; sourceTree = "<group>"; };
-		5F78963F22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonFiveLinesWithTopBroad.xib; sourceTree = "<group>"; };
-		5F78964122A929C100D2DBAD /* SkeletonTwoLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonTwoLinesAndImage.swift; sourceTree = "<group>"; };
-		5F78964222A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonTwoLinesAndImage.xib; sourceTree = "<group>"; };
-		5F78964422A929C100D2DBAD /* SkeletonLoader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonLoader.xib; sourceTree = "<group>"; };
-		5F78964522A929C100D2DBAD /* SkeletonLoader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonLoader.swift; sourceTree = "<group>"; };
-		5F78965D22A929E200D2DBAD /* LoadingSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingSkeleton.swift; sourceTree = "<group>"; };
-		5F78965E22A929E200D2DBAD /* Skeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
-		5F78966422A929F800D2DBAD /* SkeletonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonType.swift; sourceTree = "<group>"; };
-		5F78966822A9478400D2DBAD /* SkeletonAnimationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonAnimationType.swift; sourceTree = "<group>"; };
 		5F7BE77D2289586E00BA5DCF /* MyQotSupportInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportInterface.swift; sourceTree = "<group>"; };
 		5F7BE77F2289588100BA5DCF /* MyQotSupportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportInteractor.swift; sourceTree = "<group>"; };
 		5F7BE7812289588F00BA5DCF /* MyQotSupportWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportWorker.swift; sourceTree = "<group>"; };
@@ -2109,12 +2056,6 @@
 		9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTitleCell.swift; sourceTree = "<group>"; };
 		9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionCell.swift; sourceTree = "<group>"; };
 		9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowCell.swift; sourceTree = "<group>"; };
-		9C6E48B7232155DC004D657F /* SkeletonDailyCheckInHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyCheckInHeader.swift; sourceTree = "<group>"; };
-		9C6E48B8232155DC004D657F /* SkeletonDailyCheckInHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyCheckInHeader.xib; sourceTree = "<group>"; };
-		9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyCheckInFooter.swift; sourceTree = "<group>"; };
-		9C6E48BC23215690004D657F /* SkeletonDailyCheckInRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyCheckInRow.xib; sourceTree = "<group>"; };
-		9C6E48BD23215690004D657F /* SkeletonDailyCheckInRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyCheckInRow.swift; sourceTree = "<group>"; };
-		9C6E48BE23215690004D657F /* SkeletonDailyCheckInFooter.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyCheckInFooter.xib; sourceTree = "<group>"; };
 		9C6E48C32328D970004D657F /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
 		9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Animations.swift"; sourceTree = "<group>"; };
 		9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceCell.xib; sourceTree = "<group>"; };
@@ -2127,8 +2068,6 @@
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
-		9CB9B7A0230C433700DA9938 /* SkeletonThreeLinesAndTwoColumns.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SkeletonThreeLinesAndTwoColumns.xib; sourceTree = "<group>"; };
-		9CB9B7A2230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonThreeLinesAndTwoColumns.swift; sourceTree = "<group>"; };
 		9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackSectionCell.xib; sourceTree = "<group>"; };
 		9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackSectionCell.swift; sourceTree = "<group>"; };
 		9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackSectionViewModel.swift; sourceTree = "<group>"; };
@@ -2290,8 +2229,6 @@
 		B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
-		B4B0EBA4231543E00029BB40 /* SkeletonMyDataGraph.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyDataGraph.xib; sourceTree = "<group>"; };
-		B4B0EBA5231543E00029BB40 /* SkeletonMyDataGraph.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyDataGraph.swift; sourceTree = "<group>"; };
 		B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyView.swift; sourceTree = "<group>"; };
 		B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyView.xib; sourceTree = "<group>"; };
@@ -2341,30 +2278,9 @@
 		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
-		BB5E76B9230C29A10054AF17 /* SkeletonDailyBrief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyBrief.swift; sourceTree = "<group>"; };
-		BB5E76BA230C29A10054AF17 /* SkeletonDailyBrief.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonDailyBrief.xib; sourceTree = "<group>"; };
-		BB5E76BE230C393D0054AF17 /* SkeletonMyQOT.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyQOT.xib; sourceTree = "<group>"; };
-		BB5E76BF230C393D0054AF17 /* SkeletonMyQOT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyQOT.swift; sourceTree = "<group>"; };
-		BB5E76C3230C401C0054AF17 /* SkeletonPadHeading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonPadHeading.xib; sourceTree = "<group>"; };
-		BB5E76C4230C401C0054AF17 /* SkeletonPadHeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonPadHeading.swift; sourceTree = "<group>"; };
-		BB5E76CF230C4A690054AF17 /* SkeletonMyQOTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyQOTCell.xib; sourceTree = "<group>"; };
-		BB5E76D0230C4A690054AF17 /* SkeletonMyQOTCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyQOTCell.swift; sourceTree = "<group>"; };
-		BB5E76D3230D29A30054AF17 /* SkeletonMyPrepsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyPrepsCell.xib; sourceTree = "<group>"; };
-		BB5E76D4230D29A30054AF17 /* SkeletonMyPrepsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyPrepsCell.swift; sourceTree = "<group>"; };
-		BB5E76D7230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonMyPrepsHeader.xib; sourceTree = "<group>"; };
-		BB5E76D8230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonMyPrepsHeader.swift; sourceTree = "<group>"; };
 		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimatedAnswerTableViewCell.xib; sourceTree = "<group>"; };
-		BB7B3178230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonTwoLinesAndTag.swift; sourceTree = "<group>"; };
-		BB7B3179230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonTwoLinesAndTag.xib; sourceTree = "<group>"; };
-		BB7B317D230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
-		BB7B317E230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonThreeLinesLeftColumn.swift; sourceTree = "<group>"; };
-		BB7B3181230A9662004A5E52 /* SkeletonBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonBaseView.swift; sourceTree = "<group>"; };
-		BB7B3184230AA8BD004A5E52 /* SkeletonOneLineHeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonOneLineHeading.swift; sourceTree = "<group>"; };
-		BB7B3185230AA8BD004A5E52 /* SkeletonOneLineHeading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonOneLineHeading.xib; sourceTree = "<group>"; };
-		BB7B3189230AB337004A5E52 /* SkeletonOneLineBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SkeletonOneLineBlock.xib; sourceTree = "<group>"; };
-		BB7B318A230AB337004A5E52 /* SkeletonOneLineBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonOneLineBlock.swift; sourceTree = "<group>"; };
 		BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarTableViewCell.swift; sourceTree = "<group>"; };
@@ -3462,91 +3378,9 @@
 		5F78962C22A9292800D2DBAD /* LoadingSkeleton */ = {
 			isa = PBXGroup;
 			children = (
-				5F78965B22A929D100D2DBAD /* Skeleton */,
-				5F78962D22A929C100D2DBAD /* Extensions */,
-				5F78963022A929C100D2DBAD /* Loaders */,
 				B4993F48233243D4001E5676 /* SkeletonManager.swift */,
 			);
 			name = LoadingSkeleton;
-			sourceTree = "<group>";
-		};
-		5F78962D22A929C100D2DBAD /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		5F78963022A929C100D2DBAD /* Loaders */ = {
-			isa = PBXGroup;
-			children = (
-				BB7B3181230A9662004A5E52 /* SkeletonBaseView.swift */,
-				9CDA59A22321556700FE32B7 /* DailyCheckIn */,
-				BB7B3183230AA88F004A5E52 /* OneLineHeading */,
-				BB7B3188230AB2F5004A5E52 /* OneLineBlock */,
-				BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */,
-				5F78964022A929C100D2DBAD /* TwoLinesAndImage */,
-				5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */,
-				BB7B317C230A94E1004A5E52 /* ThreeLinesLeftColumn */,
-				5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */,
-				5F78964322A929C100D2DBAD /* Loader */,
-				BB5E76B8230C29580054AF17 /* DailyBrief */,
-				BB5E76BD230C39100054AF17 /* MyQOT */,
-				BB5E76C2230C3FDA0054AF17 /* PadHeading */,
-				BB5E76CD230C49C50054AF17 /* MyQOTCell */,
-				BB5E76CB230C49A80054AF17 /* MyPrepsHeader */,
-				BB5E76CA230C499C0054AF17 /* MyPrepsCell */,
-				B4B0EBA3231543E00029BB40 /* MyData */,
-			);
-			path = Loaders;
-			sourceTree = "<group>";
-		};
-		5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */ = {
-			isa = PBXGroup;
-			children = (
-				9CB9B7A2230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift */,
-				9CB9B7A0230C433700DA9938 /* SkeletonThreeLinesAndTwoColumns.xib */,
-			);
-			path = ThreeLinesTwoColumns;
-			sourceTree = "<group>";
-		};
-		5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */ = {
-			isa = PBXGroup;
-			children = (
-				5F78963E22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift */,
-				5F78963F22A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib */,
-			);
-			path = FiveLinesWithTopBroad;
-			sourceTree = "<group>";
-		};
-		5F78964022A929C100D2DBAD /* TwoLinesAndImage */ = {
-			isa = PBXGroup;
-			children = (
-				5F78964122A929C100D2DBAD /* SkeletonTwoLinesAndImage.swift */,
-				5F78964222A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib */,
-			);
-			path = TwoLinesAndImage;
-			sourceTree = "<group>";
-		};
-		5F78964322A929C100D2DBAD /* Loader */ = {
-			isa = PBXGroup;
-			children = (
-				5F78964522A929C100D2DBAD /* SkeletonLoader.swift */,
-				5F78964422A929C100D2DBAD /* SkeletonLoader.xib */,
-			);
-			path = Loader;
-			sourceTree = "<group>";
-		};
-		5F78965B22A929D100D2DBAD /* Skeleton */ = {
-			isa = PBXGroup;
-			children = (
-				5F78966422A929F800D2DBAD /* SkeletonType.swift */,
-				5F78966822A9478400D2DBAD /* SkeletonAnimationType.swift */,
-				5F78965D22A929E200D2DBAD /* LoadingSkeleton.swift */,
-				5F78965E22A929E200D2DBAD /* Skeleton.swift */,
-			);
-			path = Skeleton;
 			sourceTree = "<group>";
 		};
 		5F7BE77B2289581F00BA5DCF /* MyQotSupport */ = {
@@ -4520,19 +4354,6 @@
 			name = GuidedTrack;
 			sourceTree = "<group>";
 		};
-		9CDA59A22321556700FE32B7 /* DailyCheckIn */ = {
-			isa = PBXGroup;
-			children = (
-				9C6E48BB23215690004D657F /* SkeletonDailyCheckInFooter.swift */,
-				9C6E48BE23215690004D657F /* SkeletonDailyCheckInFooter.xib */,
-				9C6E48BD23215690004D657F /* SkeletonDailyCheckInRow.swift */,
-				9C6E48BC23215690004D657F /* SkeletonDailyCheckInRow.xib */,
-				9C6E48B7232155DC004D657F /* SkeletonDailyCheckInHeader.swift */,
-				9C6E48B8232155DC004D657F /* SkeletonDailyCheckInHeader.xib */,
-			);
-			path = DailyCheckIn;
-			sourceTree = "<group>";
-		};
 		AC103E362285AF4700F426F0 /* ResultsMindsetShifter  */ = {
 			isa = PBXGroup;
 			children = (
@@ -4796,15 +4617,6 @@
 			path = MyDataExplanation;
 			sourceTree = "<group>";
 		};
-		B4B0EBA3231543E00029BB40 /* MyData */ = {
-			isa = PBXGroup;
-			children = (
-				B4B0EBA5231543E00029BB40 /* SkeletonMyDataGraph.swift */,
-				B4B0EBA4231543E00029BB40 /* SkeletonMyDataGraph.xib */,
-			);
-			path = MyData;
-			sourceTree = "<group>";
-		};
 		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {
 			isa = PBXGroup;
 			children = (
@@ -4984,96 +4796,6 @@
 				BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */,
 			);
 			name = CustomSegue;
-			sourceTree = "<group>";
-		};
-		BB5E76B8230C29580054AF17 /* DailyBrief */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76B9230C29A10054AF17 /* SkeletonDailyBrief.swift */,
-				BB5E76BA230C29A10054AF17 /* SkeletonDailyBrief.xib */,
-			);
-			path = DailyBrief;
-			sourceTree = "<group>";
-		};
-		BB5E76BD230C39100054AF17 /* MyQOT */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76BF230C393D0054AF17 /* SkeletonMyQOT.swift */,
-				BB5E76BE230C393D0054AF17 /* SkeletonMyQOT.xib */,
-			);
-			path = MyQOT;
-			sourceTree = "<group>";
-		};
-		BB5E76C2230C3FDA0054AF17 /* PadHeading */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76C4230C401C0054AF17 /* SkeletonPadHeading.swift */,
-				BB5E76C3230C401C0054AF17 /* SkeletonPadHeading.xib */,
-			);
-			path = PadHeading;
-			sourceTree = "<group>";
-		};
-		BB5E76CA230C499C0054AF17 /* MyPrepsCell */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76D4230D29A30054AF17 /* SkeletonMyPrepsCell.swift */,
-				BB5E76D3230D29A30054AF17 /* SkeletonMyPrepsCell.xib */,
-			);
-			path = MyPrepsCell;
-			sourceTree = "<group>";
-		};
-		BB5E76CB230C49A80054AF17 /* MyPrepsHeader */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76D8230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift */,
-				BB5E76D7230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib */,
-			);
-			path = MyPrepsHeader;
-			sourceTree = "<group>";
-		};
-		BB5E76CD230C49C50054AF17 /* MyQOTCell */ = {
-			isa = PBXGroup;
-			children = (
-				BB5E76D0230C4A690054AF17 /* SkeletonMyQOTCell.swift */,
-				BB5E76CF230C4A690054AF17 /* SkeletonMyQOTCell.xib */,
-			);
-			path = MyQOTCell;
-			sourceTree = "<group>";
-		};
-		BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */ = {
-			isa = PBXGroup;
-			children = (
-				BB7B3178230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift */,
-				BB7B3179230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib */,
-			);
-			path = TwoLinesAndTag;
-			sourceTree = "<group>";
-		};
-		BB7B317C230A94E1004A5E52 /* ThreeLinesLeftColumn */ = {
-			isa = PBXGroup;
-			children = (
-				BB7B317E230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.swift */,
-				BB7B317D230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib */,
-			);
-			path = ThreeLinesLeftColumn;
-			sourceTree = "<group>";
-		};
-		BB7B3183230AA88F004A5E52 /* OneLineHeading */ = {
-			isa = PBXGroup;
-			children = (
-				BB7B3184230AA8BD004A5E52 /* SkeletonOneLineHeading.swift */,
-				BB7B3185230AA8BD004A5E52 /* SkeletonOneLineHeading.xib */,
-			);
-			path = OneLineHeading;
-			sourceTree = "<group>";
-		};
-		BB7B3188230AB2F5004A5E52 /* OneLineBlock */ = {
-			isa = PBXGroup;
-			children = (
-				BB7B318A230AB337004A5E52 /* SkeletonOneLineBlock.swift */,
-				BB7B3189230AB337004A5E52 /* SkeletonOneLineBlock.xib */,
-			);
-			path = OneLineBlock;
 			sourceTree = "<group>";
 		};
 		CB026FC41F6967DB00FC5076 /* APNS Device Token */ = {
@@ -6167,7 +5889,6 @@
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
-				BB7B317F230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.xib in Resources */,
 				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */,
@@ -6175,7 +5896,6 @@
 				F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */,
-				BB7B317B230A8C65004A5E52 /* SkeletonTwoLinesAndTag.xib in Resources */,
 				B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
@@ -6214,14 +5934,12 @@
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
-				9CB9B7A1230C433700DA9938 /* SkeletonThreeLinesAndTwoColumns.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */,
-				8D0500B4232AB04700D357D1 /* SkeletonDailyCheckInFooter.xib in Resources */,
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,
 				ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */,
@@ -6232,7 +5950,6 @@
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
-				9C6E48C023215690004D657F /* SkeletonDailyCheckInRow.xib in Resources */,
 				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
@@ -6240,14 +5957,11 @@
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
-				B4B0EBA6231543E10029BB40 /* SkeletonMyDataGraph.xib in Resources */,
 				8D110CF7230FD0F5000181BA /* WalkthroughSwipe.storyboard in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */,
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
 				8D66E8A52305A18300BE78C7 /* TrackSelection.storyboard in Resources */,
-				BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */,
-				BB5E76C0230C393D0054AF17 /* SkeletonMyQOT.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
@@ -6260,9 +5974,7 @@
 				368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */,
 				9C7F419F232CB521007E4B5D /* MyPeakPerformanceDividerView.xib in Resources */,
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
-				5F78965422A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
-				BB5E76BC230C29A10054AF17 /* SkeletonDailyBrief.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
@@ -6300,11 +6012,9 @@
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
-				5F78965622A929C100D2DBAD /* SkeletonTwoLinesAndImage.xib in Resources */,
 				B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */,
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
-				BB5E76D1230C4A690054AF17 /* SkeletonMyQOTCell.xib in Resources */,
 				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
@@ -6316,7 +6026,6 @@
 				8D5668BF22DCC53100AA172F /* MySprints.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
-				BB5E76C5230C401C0054AF17 /* SkeletonPadHeading.xib in Resources */,
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
@@ -6329,11 +6038,9 @@
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
-				9C6E48BA232155DC004D657F /* SkeletonDailyCheckInHeader.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */,
-				BB7B3187230AA8BE004A5E52 /* SkeletonOneLineHeading.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
@@ -6349,13 +6056,10 @@
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
 				F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */,
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
-				5F78965722A929C100D2DBAD /* SkeletonLoader.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
-				BB7B318B230AB337004A5E52 /* SkeletonOneLineBlock.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
-				BB5E76D5230D29A30054AF17 /* SkeletonMyPrepsCell.xib in Resources */,
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */,
 				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,
@@ -6655,7 +6359,6 @@
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
 				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
-				5F78965522A929C100D2DBAD /* SkeletonTwoLinesAndImage.swift in Sources */,
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
@@ -6737,11 +6440,9 @@
 				8D008F04230EFA45006D7263 /* WalkthroughSearchRouter.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
 				367CD18322EF4EDE00AF2187 /* OnboardingLoginViewController.swift in Sources */,
-				BB7B3182230A9662004A5E52 /* SkeletonBaseView.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				36E12EC4232B57F0009E96EA /* DTPrepareRouter.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
-				BB5E76D6230D29A30054AF17 /* SkeletonMyPrepsCell.swift in Sources */,
 				B86E744C22A9519900B0AE75 /* MyLibraryCategoryListInterface.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
@@ -6866,7 +6567,6 @@
 				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				DBFD7EED230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift in Sources */,
 				8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */,
-				5F78966122A929E300D2DBAD /* LoadingSkeleton.swift in Sources */,
 				8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */,
 				8D008F02230EFA45006D7263 /* WalkthroughSearchPresenter.swift in Sources */,
 				8D8AA76322FDCB6700B59A81 /* RegistrationConfigurator.swift in Sources */,
@@ -6924,12 +6624,10 @@
 				9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */,
 				36EC23032323F45700DB5696 /* DTSprintRouter.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
-				9C6E48B9232155DC004D657F /* SkeletonDailyCheckInHeader.swift in Sources */,
 				F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */,
-				BB7B317A230A8C65004A5E52 /* SkeletonTwoLinesAndTag.swift in Sources */,
 				367A58582326A15D0089A082 /* DTSolveInteractor.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetResult.swift in Sources */,
@@ -6969,13 +6667,11 @@
 				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
 				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
-				BB5E76C6230C401C0054AF17 /* SkeletonPadHeading.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				36EC23012323F45700DB5696 /* DTSprintPresenter.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
-				5F78965822A929C100D2DBAD /* SkeletonLoader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
 				8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */,
 				7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */,
@@ -6986,7 +6682,6 @@
 				8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
 				3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */,
-				5F78966522A929F800D2DBAD /* SkeletonType.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
@@ -7014,7 +6709,6 @@
 				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
-				9CB9B7A3230C436400DA9938 /* SkeletonThreeLinesAndTwoColumns.swift in Sources */,
 				9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */,
 				B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */,
 				38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */,
@@ -7056,7 +6750,6 @@
 				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
-				BB5E76D2230C4A690054AF17 /* SkeletonMyQOTCell.swift in Sources */,
 				B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */,
 				8DBE1ED922F46B7400BB1086 /* OnboardingLandingPageRouter.swift in Sources */,
 				B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */,
@@ -7079,9 +6772,6 @@
 				5FA66642229C207B0027EE74 /* MyVisionEditDetailsWorker.swift in Sources */,
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
-				B4B0EBA7231543E10029BB40 /* SkeletonMyDataGraph.swift in Sources */,
-				BB7B3186230AA8BE004A5E52 /* SkeletonOneLineHeading.swift in Sources */,
-				BB5E76C1230C393D0054AF17 /* SkeletonMyQOT.swift in Sources */,
 				8D110D0C230FDDC2000181BA /* WalkthroughAnimatedCoach.swift in Sources */,
 				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
@@ -7099,7 +6789,6 @@
 				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				367A58552326A15D0089A082 /* DTSolveRouter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
-				9C6E48C123215690004D657F /* SkeletonDailyCheckInRow.swift in Sources */,
 				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
@@ -7151,7 +6840,6 @@
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
-				5F78966922A9478400D2DBAD /* SkeletonAnimationType.swift in Sources */,
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
 				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
@@ -7189,7 +6877,6 @@
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
-				5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
 				38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */,
@@ -7215,7 +6902,6 @@
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
 				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
-				BB7B3180230A9520004A5E52 /* SkeletonThreeLinesLeftColumn.swift in Sources */,
 				8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */,
 				8D5668BB22DCAD4800AA172F /* MySprintsListInteractor.swift in Sources */,
 				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
@@ -7362,13 +7048,11 @@
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
 				8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */,
 				9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */,
-				9C6E48BF23215690004D657F /* SkeletonDailyCheckInFooter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
-				BB7B318C230AB337004A5E52 /* SkeletonOneLineBlock.swift in Sources */,
 				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -7471,9 +7155,7 @@
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
-				BB5E76BB230C29A10054AF17 /* SkeletonDailyBrief.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
-				BB5E76DA230D29AC0054AF17 /* SkeletonMyPrepsHeader.swift in Sources */,
 				5FA66640229C206D0027EE74 /* MyVisionEditDetailsInteractor.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				8DF7E5B9230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift in Sources */,
@@ -7566,7 +7248,6 @@
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
 				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
-				5F78966222A929E300D2DBAD /* Skeleton.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */,
 				B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */,
@@ -7583,7 +7264,6 @@
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
-				5F78965322A929C100D2DBAD /* SkeletonFiveLinesWithTopBroad.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,
 				8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */,
