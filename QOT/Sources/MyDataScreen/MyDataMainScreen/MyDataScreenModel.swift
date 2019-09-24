@@ -44,9 +44,7 @@ struct MyDataDailyCheckInModel: Codable {
         }
         if let fiveDaySleepQuality = withDailyCheckInResult.fiveDaysSleepQuality,
            let fiveDaySleepQuantity = withDailyCheckInResult.fiveDaysSleepQuantity,
-           let target = withDailyCheckInResult.targetSleepQuantity,
-            withDailyCheckInResult.hasFiveDaysDataForSleepQuality,
-            withDailyCheckInResult.hasFiveDaysDataForSleepQuantity {
+           let target = withDailyCheckInResult.targetSleepQuantity {
             fiveDayRecovery = min((fiveDaySleepQuantity/5/target*100 + fiveDaySleepQuality*10)/2, 100)
         }
 

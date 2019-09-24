@@ -744,9 +744,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
-    func didChangeLocationPermission(granted: Bool) {
-        interactor?.forceReloadWeatherModel()
-    }
+    func didChangeLocationPermission(granted: Bool) {}
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         interactor?.openGuidedTrackAppLink(appLink)

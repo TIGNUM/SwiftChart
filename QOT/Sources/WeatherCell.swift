@@ -58,7 +58,7 @@ final class WeatherCell: BaseDailyBriefCell {
             default:
                 self?.viewModel?.requestLocationPermission { [weak self] (granted) in
                     self?.delegate?.didChangeLocationPermission(granted: granted)
-                    self?.setupUIAccordingToLocationPermissions()
+                    granted ? self?.accessButton.isHidden = true : self?.setupUIAccordingToLocationPermissions()
                 }
             }
         }
