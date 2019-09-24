@@ -371,24 +371,6 @@ extension DailyBriefInteractor {
         forCell.stopTimer()
     }
 
-    func forceReloadWeatherModel() {
-        let newWeatherModel: ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel> = ArraySection(model: .weather,
-                                                                                                              elements: self.createWeatherViewModel(weatherBucket: nil))
-        var newSectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-        for model in viewModelOldListModels {
-            if model.model == .weather {
-                (model.elements.first as? WeatherViewModel)?.locationPermissionStatus = .denied
-            }
-            newSectionDataList.append(model)
-        }
-
-        for var weatherModel in newSectionDataList where weatherModel.model == .weather {
-            weatherModel = newWeatherModel
-        }
-        let changeSet = StagedChangeset(source: viewModelOldListModels, target: newSectionDataList)
-        self.presenter.updateViewNew(changeSet)
-    }
-
     // MARK: Create buckets models
     /**
      * Method name: createImpactReadinessCell.
