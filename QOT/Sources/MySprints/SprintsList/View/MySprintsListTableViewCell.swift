@@ -16,7 +16,7 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var statusIcon: UIImageView!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var progressLabel: UILabel!
-
+    let skeletonManager = SkeletonManager()
     private var editingOverlay: UIView!
 
     private lazy var reorderImage: UIImage? = {
@@ -30,22 +30,28 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
         editingOverlay = UIView()
         self.addSubview(editingOverlay)
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(statusLabel)
+        skeletonManager.addOtherView(progressLabel)
+        skeletonManager.addOtherView(statusIcon)
     }
 
-    func set(title: String?, status: MySprintStatus, description: String?, progress: String?) {
+    func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
+        guard let titleText = title, let sprintStatus = status else { return }
+        skeletonManager.hide()
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 6
-        titleLabel.attributedText = NSAttributedString(string: title ?? "",
+        titleLabel.attributedText = NSAttributedString(string: titleText,
                                                        attributes: [.kern: CharacterSpacing.kern05,
                                                                     .paragraphStyle: style])
-        statusIcon.image = image(for: status)
+        statusIcon.image = image(for: sprintStatus)
         statusLabel.attributedText = NSAttributedString(string: description ?? "",
                                                         attributes: [.kern: CharacterSpacing.kern04])
         progressLabel.attributedText = NSAttributedString(string: progress ?? "",
                                                           attributes: [.kern: CharacterSpacing.kern02])
 
         let color: UIColor
-        if case MySprintStatus.active = status {
+        if case MySprintStatus.active = sprintStatus {
             color = .carbonNew
         } else {
             color = .clear

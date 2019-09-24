@@ -14,7 +14,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
-    @IBOutlet private weak var loaderView: UIView!
     @IBOutlet private weak var nullStateView: MyVisionNullStateView!
     @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -54,10 +53,11 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         interactor?.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
+        showNullState(with: " ", message: " ")
+        showSkeleton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -98,6 +98,18 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
         guard let remoteId = interactor?.myVision?.remoteID else { return }
         trackUserEvent(.OPEN, valueType: "QuestionnaireView", action: .TAP)
         interactor?.showRateScreen(with: remoteId)
+    }
+
+    private func showSkeleton() {
+        skeletonManager.addTitle(headerLabel)
+        skeletonManager.addSubtitle(toBeVisionLabel)
+        skeletonManager.addOtherView(cameraButton)
+        skeletonManager.addOtherView(userImageView)
+        skeletonManager.addTitle(nullStateView.headerLabel)
+        skeletonManager.addSubtitle(nullStateView.detailLabel)
+        skeletonManager.addSubtitle(nullStateView.toBeVisionLabel)
+        skeletonManager.addOtherView(nullStateView.writeButton)
+        skeletonManager.addOtherView(nullStateView.autoGenerateButton)
     }
 }
 
@@ -164,12 +176,7 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-    func showScreenLoader() {
-        loaderView.isHidden = false
-    }
-
     func hideScreenLoader() {
-        loaderView.isHidden = true
 //        self.removeLoadingSkeleton()
     }
 
@@ -219,7 +226,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         if scrollView.alpha == 0 {
             UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
-//        removeLoadingSkeleton()
+        skeletonManager.hide()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 
