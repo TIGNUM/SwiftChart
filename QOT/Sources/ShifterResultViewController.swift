@@ -11,8 +11,7 @@ import UIKit
 final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    var interactor: ShifterResultInteractorInterface?
-    weak var delegate: ResultsViewControllerDelegate?
+    var interactor: ShifterResultInteractorInterface?    
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 

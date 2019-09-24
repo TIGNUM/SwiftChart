@@ -13,7 +13,7 @@ final class SolveResultsRouter {
 
     // MARK: - Properties
     private weak var viewController: SolveResultsViewController?
-    weak var delegate: ResultsFeedbackDismissDelegate?
+
 
     // MARK: - Init
     init(viewController: SolveResultsViewController) {
@@ -24,10 +24,6 @@ final class SolveResultsRouter {
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func didTapDone() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
@@ -57,7 +53,6 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
         controller.configure(text: R.string.localized.resultsFeedbackRecovery())
-        controller.delegate = delegate
         viewController?.removeBottomNavigation()
     }
 }

@@ -25,11 +25,7 @@ extension SolveResultsPresenter: SolveResultsPresenterInterface {
         viewController?.setupView()
     }
 
-    func present(_ results: SolveResults) {
-        viewController?.load(results)
-    }
-
-    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
-        viewController?.setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
+    func present(_ results: SolveResults, isFollowUpActive: Bool) {
+        viewController?.load(results, isFollowUpActive: isFollowUpActive)
     }
 }

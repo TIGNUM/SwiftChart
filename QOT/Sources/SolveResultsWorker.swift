@@ -16,8 +16,7 @@ final class SolveResultsWorker {
     private var recovery: QDMRecovery3D?
     private var selectedAnswerId: Int = 0
     private var solutionCollectionId: Int = 0
-    private let type: ResultType
-    private var canSave: Bool = false
+    private let type: ResultType    
 
     // MARK: - Init
     init(selectedAnswerId: Int, solutionCollectionId: Int) {
@@ -26,9 +25,8 @@ final class SolveResultsWorker {
         self.type = .solve
     }
 
-    init(recovery: QDMRecovery3D?, canSave: Bool) {
+    init(recovery: QDMRecovery3D?) {
         self.recovery = recovery
-        self.canSave = canSave
         self.type = .recovery
     }
 
@@ -59,10 +57,6 @@ final class SolveResultsWorker {
 
 // MARK: - Public
 extension SolveResultsWorker {
-    var showSaveButton: Bool {
-        return canSave
-    }
-
     var hideShowMoreButton: Bool {
         return type == .recovery
     }
@@ -71,18 +65,20 @@ extension SolveResultsWorker {
         return type
     }
 
-    func results(_ completion: @escaping (SolveResults) -> Void) {
+    func results(_ completion: @escaping (SolveResults, Bool) -> Void) {
         switch type {
-        case .recovery:
-            createRecoveryItems(completion)
-        case .solve:
-            createSolveItems(completion)
+        case .recovery: createRecoveryItems(completion)
+        case .solve: createSolveItems(completion)
         }
     }
 
-    func save(_ completion: @escaping () -> Void) {
-        if let solve = solve {
-            UserService.main.updateSolve(solve) { (solve, error) in
+    func save(followUp: Bool, _ completion: @escaping () -> Void) {
+        if var solve = solve {
+            solve.followUp = followUp
+            UserService.main.updateSolve(solve) { (_, error) in
+                if let error = error {
+                    log("Error updateSolve: \(error.localizedDescription)", level: .error)
+                }
                 completion()
             }
         } else {
@@ -101,24 +97,6 @@ extension SolveResultsWorker {
                 }
             }
         }
-    }
-
-    func deleteModel() {
-        switch type {
-        case .recovery:
-            guard let recovery = recovery, canSave == true else { return }
-            UserService.main.deleteRecovery3D(recovery) { error in
-                if let error = error {
-                    log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
-                }
-            }
-        case .solve:
-            return
-        }
-    }
-
-    func hasExistingSolve() -> Bool {
-        return solve != nil
     }
 }
 
@@ -167,7 +145,7 @@ private extension SolveResultsWorker {
 
 // MARK: - Private Solve
 private extension SolveResultsWorker {
-    func createSolveItems(_ completion: @escaping (SolveResults) -> Void) {
+    func createSolveItems(_ completion: @escaping (SolveResults, Bool) -> Void) {
         var items: [SolveResults.Item] = []
         solveHeader { [weak self] (headerItem) in
             self?.relatedStrategyItems { [weak self] (strategyItems) in
@@ -179,7 +157,7 @@ private extension SolveResultsWorker {
                             if let trigger = triggerItem { items.append(trigger) }
                             if !fiveDayPlanItems.isEmpty { items.append(contentsOf: fiveDayPlanItems) }
                             items.append(followUpItem)
-                            completion(SolveResults(type: .solve, items: items))
+                            completion(SolveResults(type: .solve, items: items), self?.solve?.followUp == true)
                         }
                     }
                 }
@@ -235,7 +213,7 @@ private extension SolveResultsWorker {
 
 // MARK: - Private 3DRecover
 private extension SolveResultsWorker {
-    func createRecoveryItems(_ completion: @escaping (SolveResults) -> Void) {
+    func createRecoveryItems(_ completion: @escaping (SolveResults, Bool) -> Void) {
         var items: [SolveResults.Item] = []
         let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [],
                                            headerTitle: R.string.localized.headerTitleExclusiveContent())
@@ -249,7 +227,7 @@ private extension SolveResultsWorker {
                     items.append(causeItem)
                     items.append(contentsOf: exclusiveItems)
                     items.append(contentsOf: relatedItems)
-                    completion(SolveResults(type: .recovery, items: items))
+                    completion(SolveResults(type: .recovery, items: items), false)
                 }
             }
         }

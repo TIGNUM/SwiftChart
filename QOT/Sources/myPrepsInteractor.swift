@@ -84,31 +84,24 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController) {
-        let configurator = PrepareResultsConfigurator.make(item, canDelete: false, delegate: self)
+        let configurator = PrepareResultsConfigurator.make(item, canDelete: false)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
 
     func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController) {
-        let configurator = SolveResultsConfigurator.make(from: item, canSave: false, delegate: self)
+        let configurator = SolveResultsConfigurator.make(from: item, showSaveButton: false)
         let controller = SolveResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
 
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
-        let configurator = ShifterResultConfigurator.make(mindsetShifter: item, canDelete: false, delegate: self)
+        let configurator = ShifterResultConfigurator.make(mindsetShifter: item, canDelete: false)
         let controller = ShifterResultViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
 
    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
         router.showDeleteConfirmation(delegate: delegate)
-    }
-}
-
-// MARK: - ResultsFeedbackDismissDelegate
-extension MyPrepsInteractor: ResultsFeedbackDismissDelegate {
-    func dismissResultPage() {
-        router.dismiss()
     }
 }

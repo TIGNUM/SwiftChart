@@ -13,7 +13,6 @@ final class ShifterResultRouter {
 
     // MARK: - Properties
     private weak var viewController: ShifterResultViewController?
-    weak var delegate: ResultsFeedbackDismissDelegate?
 
     // MARK: - Init
     init(viewController: ShifterResultViewController) {
@@ -31,7 +30,6 @@ extension ShifterResultRouter: ShifterResultRouterInterface {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
         controller.configure(text: R.string.localized.resultsFeedbackMindsetShifter())
-        controller.delegate = delegate
         viewController?.removeBottomNavigation()
     }
 }

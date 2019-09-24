@@ -9,19 +9,16 @@
 import UIKit
 import qot_dal
 
-protocol ResultsViewControllerDelegate: class {
-    func didTapDismiss()
-}
-
 // TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..
 final class SolveResultsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
+    private lazy var router: SolveResultsRouterInterface? = SolveResultsRouter(viewController: self)
     var interactor: SolveResultsInteractorInterface?
-    weak var delegate: ResultsViewControllerDelegate?
-    var isFollowUpActive = false
-    private var results: SolveResults?
+    var showSaveButton: Bool = false
     private var rightBarItems: [UIBarButtonItem] = []
+    private var results: SolveResults?
+    private var isFollowUpActive = true
 
     private lazy var barButtonItemDone: UIBarButtonItem = {
         return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
@@ -60,7 +57,35 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 
 // MARK: - Private
 private extension SolveResultsViewController {
-    func registerCells() {
+    @objc func didTapDone() {
+        switch interactor?.resultType {
+        case .recovery?: handleDidTapDoneRecovery()
+        case .solve?: handleDidTapDoneSolve()
+        default: break
+        }
+    }
+
+    func handleDidTapDoneRecovery() {
+        if showSaveButton == true {
+            router?.presentFeedback()
+        } else {
+            router?.dismiss()
+        }
+    }
+
+    func handleDidTapDoneSolve() {
+        interactor?.save(solveFollowUp: isFollowUpActive)
+        router?.dismiss()
+    }
+
+    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
+        rightBarItems = showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
+    }
+}
+
+// MARK: - SolveResultsViewControllerInterface
+extension SolveResultsViewController: SolveResultsViewControllerInterface {
+    func setupView() {
         tableView.registerDequeueable(SolveHeaderTableViewCell.self)
         tableView.registerDequeueable(SolveStrategyTableViewCell.self)
         tableView.registerDequeueable(SolveTriggerTableViewCell.self)
@@ -68,51 +93,12 @@ private extension SolveResultsViewController {
         tableView.registerDequeueable(SolveDayPlanTableViewCell.self)
         tableView.registerDequeueable(FatigueTableViewCell.self)
         tableView.registerDequeueable(CauseTableViewCell.self)
-    }
-}
-
-// MARK: - Actions
-private extension SolveResultsViewController {
-    @objc func didTapDone() {
-        switch interactor?.resultType {
-        case .recovery?:
-            interactor?.presentFeedback()
-        case .solve?:
-            if isFollowUpActive == true {
-                interactor?.save()
-            }
-            handleDismiss()
-        case .none:
-            return
-        }
-    }
-
-    @objc func didTapDismiss() {
-        interactor?.deleteModel()
-        handleDismiss()
-    }
-
-    func handleDismiss() {
-        if delegate != nil {
-            delegate?.didTapDismiss()
-        } else {
-            interactor?.dismiss()
-        }
-    }
-}
-
-// MARK: - SolveResultsViewControllerInterface
-extension SolveResultsViewController: SolveResultsViewControllerInterface {
-    func setupView() {
-        registerCells()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
+        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
     }
 
-    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
-        rightBarItems = showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
-    }
-
-    func load(_ results: SolveResults) {
+    func load(_ results: SolveResults, isFollowUpActive: Bool) {
+        self.isFollowUpActive = isFollowUpActive
         self.results = results
         tableView.reloadData()
     }
@@ -125,7 +111,7 @@ extension SolveResultsViewController: UITableViewDelegate {
         switch results?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
-            interactor?.didTapStrategy(with: id)
+            router?.openStrategy(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         default:
             tableView.isUserInteractionEnabled = true
@@ -187,7 +173,11 @@ extension SolveResultsViewController: UITableViewDataSource {
 extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
     func didTapStart(_ type: SolveTriggerType) {
         trackUserEvent(.SELECT, valueType: "START \(type.rawValue)", action: .TAP)
-        interactor?.didTapTrigger(type)
+        switch type {
+        case .midsetShifter: router?.openMindsetShifter()
+        case .tbvGenerator: router?.openRecovery()
+        case .recoveryPlaner: router?.openRecovery()
+        }
     }
 }
 
@@ -205,7 +195,7 @@ extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
         isFollowUpActive = isOn
-        setupRightBottomNavigationBarItems(showSaveButton: isFollowUpActive == true)
+        setupRightBottomNavigationBarItems(showSaveButton: isOn)
         UIView.animate(withDuration: 0.25) {
             self.updateBottomNavigation([], self.rightBarItems)
         }

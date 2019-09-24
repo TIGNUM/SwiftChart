@@ -16,7 +16,6 @@ extension DTMindsetRouter: DTMindsetRouterInterface {
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?, completion: (() -> Void)?) {
         let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter, canDelete: true)
         let controller = ShifterResultViewController(configure: configurator)
-        controller.delegate = self
         viewController?.present(controller, animated: true, completion: completion)
     }
 
@@ -36,12 +35,5 @@ private extension DTMindsetRouter {
             }
         }
         viewController?.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - ResultsViewControllerDelegate
-extension DTMindsetRouter: ResultsViewControllerDelegate {
-    func didTapDismiss() {
-        dimissMindsetFlow()
     }
 }
