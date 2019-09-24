@@ -11,11 +11,13 @@ import Foundation
 protocol SolveResultsViewControllerInterface: class {
     func load(_ results: SolveResults)
     func setupView()
+    func setupRightBottomNavigationBarItems(showSaveButton: Bool)
 }
 
 protocol SolveResultsPresenterInterface {
     func present(_ results: SolveResults)
     func setupView()
+    func setupRightBottomNavigationBarItems(showSaveButton: Bool)
 }
 
 protocol SolveResultsInteractorInterface: Interactor {

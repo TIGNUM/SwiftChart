@@ -28,4 +28,8 @@ extension SolveResultsPresenter: SolveResultsPresenterInterface {
     func present(_ results: SolveResults) {
         viewController?.load(results)
     }
+
+    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
+        viewController?.setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
+    }
 }

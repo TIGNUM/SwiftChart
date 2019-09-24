@@ -8,11 +8,7 @@
 
 import UIKit
 
-final class DTSolveRouter: DTRouter {
-
-    // MARK: - Properties
-    private weak var solveResultsController: SolveResultsViewController?
-}
+final class DTSolveRouter: DTRouter {}
 
 // MARK: - DTSolveRouterInterface
 extension DTSolveRouter: DTSolveRouterInterface {
@@ -22,16 +18,11 @@ extension DTSolveRouter: DTSolveRouterInterface {
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = self
         viewController?.present(solveResultsController, animated: true)
-        self.solveResultsController = solveResultsController
     }
 
-    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?) {
+    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?) {}
 
-    }
-
-    func dismissFlowAndGoToMyTBV() {
-
-    }
+    func dismissFlowAndGoToMyTBV() {}
 }
 
 // MARK: - ResultsViewControllerDelegate

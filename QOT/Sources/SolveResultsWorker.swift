@@ -17,7 +17,7 @@ final class SolveResultsWorker {
     private var selectedAnswerId: Int = 0
     private var solutionCollectionId: Int = 0
     private let type: ResultType
-    private var canDelete: Bool = false
+    private var canSave: Bool = false
 
     // MARK: - Init
     init(selectedAnswerId: Int, solutionCollectionId: Int) {
@@ -26,9 +26,9 @@ final class SolveResultsWorker {
         self.type = .solve
     }
 
-    init(recovery: QDMRecovery3D?, canDelete: Bool) {
+    init(recovery: QDMRecovery3D?, canSave: Bool) {
         self.recovery = recovery
-        self.canDelete = canDelete
+        self.canSave = canSave
         self.type = .recovery
     }
 
@@ -59,6 +59,10 @@ final class SolveResultsWorker {
 
 // MARK: - Public
 extension SolveResultsWorker {
+    var showSaveButton: Bool {
+        return canSave
+    }
+
     var hideShowMoreButton: Bool {
         return type == .recovery
     }
@@ -102,7 +106,7 @@ extension SolveResultsWorker {
     func deleteModel() {
         switch type {
         case .recovery:
-            guard let recovery = recovery, canDelete == true else { return }
+            guard let recovery = recovery, canSave == true else { return }
             UserService.main.deleteRecovery3D(recovery) { error in
                 if let error = error {
                     log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)

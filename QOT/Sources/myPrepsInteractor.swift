@@ -90,7 +90,7 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController) {
-        let configurator = SolveResultsConfigurator.make(from: item, canDelete: false, delegate: self)
+        let configurator = SolveResultsConfigurator.make(from: item, canSave: false, delegate: self)
         let controller = SolveResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }

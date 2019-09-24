@@ -27,6 +27,7 @@ final class SolveResultsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter?.setupView()
+        presenter?.setupRightBottomNavigationBarItems(showSaveButton: worker.showSaveButton)
         worker.results { [weak self] (solveResults) in
             self?.presenter?.present(solveResults)
         }

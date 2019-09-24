@@ -21,6 +21,21 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
     weak var delegate: ResultsViewControllerDelegate?
     var isFollowUpActive = false
     private var results: SolveResults?
+    private var rightBarItems: [UIBarButtonItem] = []
+
+    private lazy var barButtonItemDone: UIBarButtonItem = {
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
+                                    buttonWidth: .Done,
+                                    action: #selector(didTapDone),
+                                    backgroundColor: .carbon)
+    }()
+
+    private lazy var barButtonItemSaveAndContinue: UIBarButtonItem = {
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue),
+                                    buttonWidth: .SaveAndContinue,
+                                    action: #selector(didTapDone),
+                                    backgroundColor: .carbon)
+    }()
 
     // MARK: - Init
     init(configure: Configurator<SolveResultsViewController>) {
@@ -91,6 +106,10 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
     func setupView() {
         registerCells()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
+    }
+
+    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
+        rightBarItems = showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
     }
 
     func load(_ results: SolveResults) {
@@ -181,24 +200,25 @@ extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
     }
 }
 
-// MARK: - SolveFollowUpTableViewCell
+// MARK: - SolveFollowUpTableViewCellDelegate
 extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
         isFollowUpActive = isOn
+        setupRightBottomNavigationBarItems(showSaveButton: isFollowUpActive == true)
+        UIView.animate(withDuration: 0.25) {
+            self.updateBottomNavigation([], self.rightBarItems)
+        }
     }
 }
 
 extension SolveResultsViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem(action: #selector(didTapDismiss))]
+        return nil
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: R.string.localized.buttonTitleDone(),
-                                      buttonWidth: .DecisionTree,
-                                      action: #selector(didTapDone),
-                                      backgroundColor: .carbon)]
+        return rightBarItems
     }
 
     override func showTransitionBackButton() -> Bool {
