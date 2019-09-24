@@ -388,15 +388,15 @@ extension AppCoordinator {
                     ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
                 })
             case .PREPARATION:
-                if syncResult.syncRequestType == .DOWN_SYNC {
-                    UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                        guard let preps = preps, preps.count > 0 else { return }
-                        log("preps with missing events : \(preps)")
-                        let configurator = PreparationWithMissingEventConfigurator.make(preps)
-                        let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
-                        baseRootViewController?.present(viewController, animated: true, completion: nil)
-                    })
-                }
+                guard syncResult.syncRequestType == .DOWN_SYNC,
+                    EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
+                UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
+                    guard let preps = preps, preps.count > 0 else { return }
+                    log("preps with missing events : \(preps)")
+                    let configurator = PreparationWithMissingEventConfigurator.make(preps)
+                    let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
+                    baseRootViewController?.present(viewController, animated: true, completion: nil)
+                })
             default: break
             }
         }
