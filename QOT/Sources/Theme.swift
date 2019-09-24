@@ -289,6 +289,7 @@ enum ThemableButton {
     case walkthroughGotIt
     case myPlans
     case signinInfo
+    case myTbvDataRate
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -301,7 +302,8 @@ enum ThemableButton {
              .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
-             .signinInfo:
+             .signinInfo,
+             .myTbvDataRate:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -311,7 +313,8 @@ enum ThemableButton {
         case .myLibrary, .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
-             .signinInfo:
+             .signinInfo,
+             .myTbvDataRate:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -327,7 +330,8 @@ enum ThemableButton {
         case .myLibrary, .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
-             .signinInfo:
+             .signinInfo,
+             .myTbvDataRate:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
@@ -353,7 +357,8 @@ enum ThemableButton {
     var disabled: ButtonTheme? {
         switch self {
         case .myLibrary,
-             .myPlans:
+             .myPlans,
+             .myTbvDataRate:
             return ButtonTheme(foreground: .sand08, background: .carbon, border: .sand08)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .sand08, background: .carbonNew80, border: .accent10)
