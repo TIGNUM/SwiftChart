@@ -88,8 +88,7 @@ private extension MySprintNotesViewController {
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let save = RoundedButton(title: interactor?.saveTitle ?? "Save", target: self, action: #selector(didTapSaveButton))
         saveButton = save
-        let saveBarButton = UIBarButtonItem(customView: save)
-        toolbar.items = [dismissButton, space, saveBarButton]
+        toolbar.items = [dismissButton, space, save.barButton]
         return toolbar
     }
 
