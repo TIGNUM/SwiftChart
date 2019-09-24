@@ -96,10 +96,6 @@ final class DTPrepareViewController: DTViewController {
         }
     }
 
-    override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didDeSelectAnswer(answer)
-    }
-
     override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
         return answerType == .openCalendarEvents ? selectedEvent : nil
     }
@@ -160,6 +156,11 @@ extension DTPrepareViewController: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
             self.prepareRouter?.presentCalendarSettings()
+        } else {
+            if var viewModel = viewModel {
+                viewModel.resetSelectedAnswers()
+                showQuestion(viewModel: viewModel, direction: .forward, animated: false)
+            }
         }
     }
 }

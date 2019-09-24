@@ -606,7 +606,7 @@ private extension DailyBriefViewController {
                               _ indexPath: IndexPath,
                               _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
         let cell: MyPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
-        cell.appDelegate = self
+        cell.dailyBriefViewControllerDelegate = self
         cell.configure(with: peakPerformanceModel)
         return cell
     }
@@ -745,7 +745,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func didChangeLocationPermission(granted: Bool) {
-        interactor?.updateDailyBriefBucket()
+        interactor?.forceReloadWeatherModel()
     }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {

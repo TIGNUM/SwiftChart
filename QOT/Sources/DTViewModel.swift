@@ -166,6 +166,14 @@ extension DTViewModel {
             }
         }
     }
+
+    mutating func resetSelectedAnswers() {
+        selectedAnswers.forEach { (answer) in
+            var answerToReset = answer
+            answerToReset.selected = false
+            setSelectedAnswer(answerToReset)
+        }
+    }
 }
 
 private extension DTViewModel {

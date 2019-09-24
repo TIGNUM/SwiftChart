@@ -44,6 +44,7 @@ final class AppCoordinator {
         return qot_dal.SessionService.main.getCurrentSession() != nil
     }()
 
+    private var reachability = QOTReachability()
     // MARK: - Life Cycle
 
     init(windowManager: WindowManager,

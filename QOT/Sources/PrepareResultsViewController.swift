@@ -239,8 +239,10 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .strategy(_, _, let readMoreID):
             interactor?.presentRelatedArticle(readMoreID: readMoreID)
         case .intentionContentItem(_, _, let key):
+            removeBottomNavigation()
             interactor?.presentEditIntentions(key)
         case .benefitContentItem(_, _, let benefits, let questionID):
+            removeBottomNavigation()
             interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
         default:
             return

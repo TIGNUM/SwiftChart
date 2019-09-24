@@ -581,6 +581,8 @@
 
 "Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
 "Onboarding.Intro.Body" = "From merely present to totally prepared.";
+"Onboarding.Intro.Button.Login" = "Log in";
+"Onboarding.Intro.Button.Register" = "New user";
 
 "Results.Feedback.Recovery" = "Great work in developing your Recovery Plan. It will be saved for you in MY QOT so that you can review it as needed.";
 "Results.Feedback.Mindset.Shifter" = "Great work in developing your plan to shift your mindset from low impact to high impact when you face this mindset killer. This mindset shifter will be saved for you in MY QOT so that you can review it as needed.";

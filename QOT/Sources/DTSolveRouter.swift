@@ -18,9 +18,7 @@ final class DTSolveRouter: DTRouter {
 extension DTSolveRouter: DTSolveRouterInterface {
     func presentSolveResults(selectedAnswer: DTViewModel.Answer) {
         let configurator = SolveResultsConfigurator.make(from: selectedAnswer.remoteId,
-                                                         solutionCollectionId: selectedAnswer.targetId(.content) ?? 0,
-                                                         type: .solve,
-                                                         solve: nil)
+                                                         solutionCollectionId: selectedAnswer.targetId(.content) ?? 0)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = self
         viewController?.present(solveResultsController, animated: true)
