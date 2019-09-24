@@ -291,6 +291,7 @@ enum ThemableButton {
     case signinInfo
     case myTbvDataRate
     case createAccountInfo
+    case trackSelection
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -305,7 +306,8 @@ enum ThemableButton {
              .myPlans,
              .signinInfo,
              .myTbvDataRate,
-             .createAccountInfo:
+             .createAccountInfo,
+             .trackSelection:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -317,7 +319,8 @@ enum ThemableButton {
              .myPlans,
              .signinInfo,
              .myTbvDataRate,
-             .createAccountInfo:
+             .createAccountInfo,
+             .trackSelection:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -335,7 +338,8 @@ enum ThemableButton {
              .myPlans,
              .signinInfo,
              .myTbvDataRate,
-             .createAccountInfo:
+             .createAccountInfo,
+             .trackSelection:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
