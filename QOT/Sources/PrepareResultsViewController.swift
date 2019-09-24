@@ -22,7 +22,6 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?
-    private var resultView: PrepareResultsInfoView?
 
     // MARK: - Init
     init(configure: Configurator<PrepareResultsViewController>) {
@@ -119,12 +118,7 @@ private extension PrepareResultsViewController {
     @objc func saveAndContinue() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
-        let resultInfoWeAreDoneHereView = PrepareResultsInfoView.instantiateFromNib()
-        view.addSubview(resultInfoWeAreDoneHereView)
-        resultInfoWeAreDoneHereView.edgeAnchors == view.edgeAnchors
-        resultInfoWeAreDoneHereView.configure(text: ScreenTitleService.main.localizedString(for: .PrepareResultGreatWork))
-        self.resultView = resultInfoWeAreDoneHereView
-        refreshBottomNavigationItems()
+        interactor?.presentFeedback()
     }
 }
 
@@ -245,8 +239,10 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .strategy(_, _, let readMoreID):
             interactor?.presentRelatedArticle(readMoreID: readMoreID)
         case .intentionContentItem(_, _, let key):
+            removeBottomNavigation()
             interactor?.presentEditIntentions(key)
         case .benefitContentItem(_, _, let benefits, let questionID):
+            removeBottomNavigation()
             interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
         default:
             return
@@ -309,14 +305,14 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
             return nil
         }
         return [dismissNavigationItem(action: #selector(openConfirmationView))]
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO || resultView != nil {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
             return [doneButtonItem(#selector(dismissView))]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),

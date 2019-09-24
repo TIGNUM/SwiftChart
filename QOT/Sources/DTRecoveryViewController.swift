@@ -33,18 +33,10 @@ final class DTRecoveryViewController: DTViewController {
              Recovery.QuestionKey.SymptomGeneral?:
             presentRecoveryResults()
         case Recovery.QuestionKey.Last?:
-            router?.dismiss()
+            router?.dismissChatBotFlow()
         default:
             loadNextQuestion()
         }
-    }
-
-    override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didSelectAnswer(answer)
-    }
-
-    override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didDeSelectAnswer(answer)
     }
 
     // MARK: - Question Handling

@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTShortTBVPresenter: DTPresenter {
 
     var shouldHideDismissButton: Bool = false
-    var introKey: String?
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
         if shouldHideDismissButton {
@@ -25,15 +25,18 @@ final class DTShortTBVPresenter: DTPresenter {
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {
-        if introKey == ShortTBV.QuestionKey.IntroOnboarding {
-            return false
-        }
-
         let typingAnimationState = answerType == .text
         if typingAnimationState {
             hideNavigationButtonForAnimation()
         }
         return typingAnimationState
+    }
+
+    override func getHtmlTitleString(_ qdmQuestion: QDMQuestion?) -> String? {
+        if qdmQuestion?.key == ShortTBV.QuestionKey.IntroOnboarding {
+            return qdmQuestion?.htmlTitleString
+        }
+        return nil
     }
 
     override func showNextQuestionAutomated(questionKey: String) -> Bool {

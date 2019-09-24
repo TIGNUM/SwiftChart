@@ -21,39 +21,44 @@ protocol DailyBriefPresenterInterface {
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
-    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     var rowViewModelCount: Int { get }
     var rowViewSectionCount: Int { get }
     var shpiAnswer: QDMDailyCheckInAnswer? { get }
     var peakPerformanceCount: Int? { get }
+
     func bucket(at row: Int) -> QDMDailyBriefBucket?
     func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel?
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
     func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void))
     func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void))
+    func getDailyBriefBucketsForViewModel()
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void))
+    func getToBeVisionImage(completion: @escaping (URL?) -> Void)
+
+    func presentMyDataScreen()
     func presentWhatsHotArticle(selectedID: Int)
     func presentMyToBeVision()
-    func getToBeVisionImage(completion: @escaping (URL?) -> Void)
     func presentStrategyList(selectedStrategyID: Int)
     func presentToolsItems(selectedToolID: Int?)
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void)
-    func showCustomizeTarget()
-    func getDailyBriefBucketsForViewModel()
-    func saveAnswerValue(_ value: Int)
-    func saveUpdatedDailyCheckInSleepTarget(_ value: Double)
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
-    func saveTargetValue(value: Int?)
+    func presentCopyRight(copyrightURL: String?)
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
-    func presentCopyRight(copyrightURL: String?)
-    func didPressGotItSprint(sprint: QDMSprint)
+    func showCustomizeTarget()
     func displayCoachPreparationScreen()
+
+    func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
-    func presentMyDataScreen()
+    func forceReloadWeatherModel()
+    
+    func saveAnswerValue(_ value: Int)
+    func saveUpdatedDailyCheckInSleepTarget(_ value: Double)
+    func saveTargetValue(value: Int?)
+    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
+    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
+    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void)
 }
 
 protocol DailyBriefRouterInterface {

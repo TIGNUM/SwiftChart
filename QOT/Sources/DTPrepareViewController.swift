@@ -33,6 +33,7 @@ final class DTPrepareViewController: DTViewController {
     override func didTapClose() {
         if resultsDelegate != nil {
             prepareRouter?.dismissResultView()
+            trackQuestionInteraction()
         } else {
             super.didTapClose()
         }
@@ -65,7 +66,7 @@ final class DTPrepareViewController: DTViewController {
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         if viewModel?.question.answerType == .singleSelection {
             if let contentId = answer.targetId(.content) {
                 handleAnswerSelection(answer, contentId: contentId)
@@ -81,6 +82,7 @@ final class DTPrepareViewController: DTViewController {
     }
 
     override func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+        super.didSelectPreparationEvent(event)
         if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
             prepareInteractor?.getUserPreparation(event: event,
                                                   calendarEvent: selectedEvent) { [weak self] (preparation) in
@@ -92,10 +94,6 @@ final class DTPrepareViewController: DTViewController {
             setAnswerNeedsSelection()
             loadNextQuestion()
         }
-    }
-
-    override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        super.didDeSelectAnswer(answer)
     }
 
     override func getEvent(answerType: AnswerType?) -> DTViewModel.Event? {
@@ -158,6 +156,11 @@ extension DTPrepareViewController: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
             self.prepareRouter?.presentCalendarSettings()
+        } else {
+            if var viewModel = viewModel {
+                viewModel.resetSelectedAnswers()
+                showQuestion(viewModel: viewModel, direction: .forward, animated: false)
+            }
         }
     }
 }

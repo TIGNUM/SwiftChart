@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import Kingfisher
 
 protocol ArticleDelegate: class {
     func didTapMarkAsRead(_ read: Bool)
@@ -67,6 +68,13 @@ enum ColorMode {
         case .darkNot: return .default
         }
     }
+
+    var cellHighlight: UIColor {
+        switch self {
+        case .dark: return .accent10
+        case .darkNot: return .accent10
+        }
+    }
 }
 
 final class ArticleViewController: UIViewController, ScreenZLevel3 {
@@ -76,6 +84,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
+    private var topBarButtonItems: [UIBarButtonItem] = []
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
@@ -137,22 +146,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         return 0.25
     }
 
-    private lazy var topBarButtonItems: [UIBarButtonItem] = {
-        if interactor?.isShareable == true {
-            return [bookMarkBarButtonItem,
-                    nightModeBarButtonItem,
-                    textScaleBarButtonItem,
-                    shareBarButtonItem]
-        } else if interactor?.section == .About {
-            return [nightModeBarButtonItem,
-                    textScaleBarButtonItem]
-        } else {
-        return [bookMarkBarButtonItem,
-                nightModeBarButtonItem,
-                textScaleBarButtonItem]
-        }
-    }()
-
     private var lastScrollViewOffsetY: CGFloat = 0.0
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
     private var didScrollToRead = false
@@ -172,6 +165,12 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         tableView.reloadData()
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
+
+        guard let navBar = navigationController?.navigationBar else { return }
+        if interactor?.alwaysHideTopBar ?? true {
+            navBar.isHidden = true
+            moreBarButtonItem.tintColor = .clear
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -214,7 +213,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
         tableView.backgroundColor = .clear
     }
@@ -316,17 +315,47 @@ private extension ArticleViewController {
 
     @objc func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
-        guard let whatsHotShareable = interactor?.whatsHotShareable else { return }
-        let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
-        present(activityVC, animated: true, completion: nil)
+        guard let share = interactor?.whatsHotShareable else { return }
+        guard let title = share.message else { return }
+        guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
+        let dispatchGroup = DispatchGroup()
+        var items: [Any] = [title, url]
+
+        dispatchGroup.enter()
+        if let imageURL = share.imageURL {
+            KingfisherManager.shared.retrieveImage(with: imageURL) { result in
+                switch result {
+                case .success(let image): // if there is cached image share with image.
+                    items.append(image)
+                default: break
+                }
+
+                dispatchGroup.leave()
+            }
+        }
+
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            let activityVC = UIActivityViewController(activityItems: items, applicationActivities: nil)
+            self?.present(activityVC, animated: true, completion: nil)
+        }
     }
 }
 
 // MARK: - ArticleViewControllerInterface
 
 extension ArticleViewController: ArticleViewControllerInterface {
-    func reloadData() {
-        navigationBar(show: true)
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
+        topBarButtonItems = [nightModeBarButtonItem, textScaleBarButtonItem]
+        if isShareable == true {
+            topBarButtonItems.append(shareBarButtonItem)
+        }
+        if hasBookMarkItem == true {
+            topBarButtonItems.insert(bookMarkBarButtonItem, at: 0)
+        }
+    }
+
+    func reloadData(showNavigationBar: Bool) {
+        navigationBar(show: showNavigationBar)
         tableView.reloadData()
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
         setupAudioItem()
@@ -358,7 +387,7 @@ extension ArticleViewController {
         }
 
         interactor?.showRelatedArticle(remoteID: remoteID)
-        reloadData()
+        reloadData(showNavigationBar: false)
     }
 
     func dataUpdated() {
@@ -675,6 +704,10 @@ extension ArticleViewController {
             shouldHideNavBar == false else {
             return
         }
+        if interactor?.alwaysHideTopBar ?? true {
+            navBar.isHidden = true
+            return
+        }
 
         let pixelBuffer: CGFloat = 50
         let scrollViewOffsetY = scrollView.contentOffset.y
@@ -692,7 +725,7 @@ extension ArticleViewController {
             }
         } else {
             if navBar.isHidden {
-                let atBottom = scrollViewOffsetY >= scrollView.contentSize.height - scrollView.bounds.height
+                let atBottom = Int(scrollViewOffsetY) >= Int(scrollView.contentSize.height - scrollView.bounds.height)
                 if !atBottom {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
                     if offset > pixelBuffer || scrollViewOffsetY <= 0 {

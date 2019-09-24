@@ -43,7 +43,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
                   requestLocationPermissionButtonTitle: String?,
                   deniedLocationPermissionDescription: String?,
                   deniedLocationPermissionButtonTitle: String?,
-                  domain: QDMDailyBriefBucket) {
+                  domain: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
         self.intro = intro
         self.requestLocationPermissionDescription = requestLocationPermissionDescription
@@ -65,7 +65,9 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             requestLocationPermissionButtonTitle == source.requestLocationPermissionButtonTitle &&
             deniedLocationPermissionDescription == source.deniedLocationPermissionDescription &&
             deniedLocationPermissionButtonTitle == source.deniedLocationPermissionButtonTitle &&
-            locationPermissionStatus == source.locationPermissionStatus
+            locationPermissionStatus == source.locationPermissionStatus &&
+            domainModel?.weather?.currentDate == source.domainModel?.weather?.currentDate &&
+            domainModel?.weather?.currentTempInCelcius == source.domainModel?.weather?.currentTempInCelcius
 
     }
 

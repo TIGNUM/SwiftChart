@@ -10,6 +10,7 @@ import Foundation
 
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     var interactor: DailyBriefInteractorInterface?
@@ -30,11 +31,11 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
     func configure(with: DailyCheckIn2TBVModel?) {
         guard let model = with else { return }
-//TO DO: title label text should not be hardcoded in the xib file
         skeletonManager.hide()
         tbvText.text = model.introText
         tbvSentence.text = model.tbvSentence
         self.adviceText.text = model.adviceText
+        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 }
 

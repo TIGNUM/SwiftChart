@@ -32,6 +32,9 @@ final class DTShortTBVInteractor: DTInteractor {
 // MARK: - DTShortTBVInteractorInterface
 extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
     var canGoBack: Bool {
+        if introKey == ShortTBV.QuestionKey.IntroOnboarding {
+            return presentedNodes.count > 1
+        }
         return presentedNodes.isEmpty == false
     }
 

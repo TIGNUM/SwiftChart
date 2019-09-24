@@ -56,6 +56,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             skeletonManager.addOtherView(view)
         }
         skeletonManager.addOtherView(moreData)
+        ThemeView.level2.apply(contentView)
     }
 
     func hide(_ hidden: Bool) {
@@ -96,7 +97,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         }
 
         ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
-
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)

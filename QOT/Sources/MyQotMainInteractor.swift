@@ -58,7 +58,7 @@ final class MyQotMainInteractor {
 
     }
 
-    private func createMyData(irScore: Double?) -> [MyQotViewModel.Item] {
+    private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
         item.subtitle = String(irScore ?? 0) + R.string.localized.myQotDataImpact()
         return [item]
@@ -103,9 +103,9 @@ final class MyQotMainInteractor {
         return [item]
     }
 
-    private func createSprints() -> [MyQotViewModel.Item] {
+    private func createSprints(sprintName: String?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.sprints.rawValue]
-        item.subtitle = subtitles[MyQotSection.sprints.rawValue] ?? ""
+        item.subtitle = sprintName?.capitalizingFirstLetter() ?? ""
         return [item]
     }
 
@@ -122,6 +122,12 @@ final class MyQotMainInteractor {
         }
     }
 
+    private func getCurrentSprintName(completion: @escaping (String?) -> Void) {
+        worker.getCurrentSprintName { (sprint) in
+            completion(sprint)
+        }
+    }
+
     private func nextPrepType(completion: @escaping (String?) -> Void) {
         worker.nextPrepType { ( preparation) in
             completion(preparation)
@@ -133,7 +139,7 @@ final class MyQotMainInteractor {
             completion(toBeVisionDate)
         }
     }
-    private func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+    private func getImpactReadinessScore(completion: @escaping(Int?) -> Void) {
         worker.getImpactReadinessScore(completion: completion)
     }
 
@@ -209,18 +215,23 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
                                 guard let strongSelf = self else {
                                     return
                                 }
-                                elements.append(contentsOf: strongSelf.createProfile(userName: name))
-                                elements.append(contentsOf: strongSelf.createLibrary())
-                                elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
-                                elements.append(contentsOf: strongSelf.createSprints())
-                                elements.append(contentsOf: strongSelf.createMyData(irScore: score))
-                                elements.append(contentsOf: strongSelf.createToBeVision(date: date))
+                                strongSelf.getCurrentSprintName(completion: { [weak self] (sprintName) in
+                                    guard let strongSelf = self else {
+                                        return
+                                    }
+                                    elements.append(contentsOf: strongSelf.createProfile(userName: name))
+                                    elements.append(contentsOf: strongSelf.createLibrary())
+                                    elements.append(contentsOf: strongSelf.createPreps(dateString: dateString, eventType: eventType))
+                                    elements.append(contentsOf: strongSelf.createSprints(sprintName: sprintName))
+                                    elements.append(contentsOf: strongSelf.createMyData(irScore: score))
+                                    elements.append(contentsOf: strongSelf.createToBeVision(date: date))
 
-                                sectionDataList.append(ArraySection(model: .body,
-                                                                    elements: elements))
+                                    sectionDataList.append(ArraySection(model: .body,
+                                                                        elements: elements))
 
-                                let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
-                                strongSelf.presenter.updateViewNew(changeSet)
+                                    let changeSet = StagedChangeset(source: strongSelf.viewModelOldListModels, target: sectionDataList)
+                                    strongSelf.presenter.updateViewNew(changeSet)
+                                })
                             })
                         })
                     })

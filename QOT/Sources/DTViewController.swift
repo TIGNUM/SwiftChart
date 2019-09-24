@@ -28,6 +28,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObservers()
         let isDark = interactor?.isDark ?? true
 
         let theme: ThemeView = isDark ? .chatbotDark : .chatbot
@@ -37,12 +38,13 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         closeButton.setImage(image, for: .normal)
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
-
+        setupPageViewController(view.backgroundColor)
         interactor?.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         updateBottomNavigation([], [])
     }
 
@@ -56,10 +58,12 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         constraintBottom.constant = 0
         self.view.layoutIfNeeded()
         interactor?.loadPreviousQuestion()
+        trackQuestionInteraction(.PREVIOUS)
     }
 
     @IBAction func didTapClose() {
         router?.dismiss()
+        trackQuestionInteraction()
     }
 
     @IBAction func didTapNext() {
@@ -94,12 +98,14 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         interactor?.loadNextQuestion(selection: selectionModel)
     }
 
-    func showQuestion(viewModel: DTViewModel, direction: UIPageViewController.NavigationDirection) {
+    func showQuestion(viewModel: DTViewModel,
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool = true) {
         updateView(viewModel: viewModel)
         let controller = DTQuestionnaireViewController(viewModel: viewModel)
         controller.delegate = self
         controller.interactor = interactor
-        pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
+        pageController?.setViewControllers([controller], direction: direction, animated: animated, completion: nil)
     }
 
     // MARK: - DTViewControllerInterface
@@ -138,9 +144,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {}
 
     // MARK: Configuration
-    func setupView(_ backgroundColor: UIColor, _ dotsColor: UIColor) {
-        setupPageViewController(backgroundColor)
-
+    private func addObservers() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow),
                                                name: Notification.Name.UIKeyboardWillShow,
@@ -157,7 +161,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
         closeButton.isHidden = viewModel.dismissButtonIsHidden
     }
 
-    private func setupPageViewController(_ backgroundColor: UIColor) {
+    private func setupPageViewController(_ backgroundColor: UIColor?) {
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController.view.backgroundColor = backgroundColor
         pageController.automaticallyAdjustsScrollViewInsets = false
@@ -173,7 +177,7 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         guard let viewModel = viewModel else { return }
         if viewModel.question.answerType == .singleSelection {
             loadNextQuestion()
@@ -181,10 +185,22 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
     }
 
     func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
     }
 
-    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {}
+    func didSelectPreparationEvent(_ event: DTViewModel.Event?) {
+        trackUserEvent(.SELECT,
+                       value: event?.remoteId,
+                       stringValue: event?.title,
+                       valueType: .USER_PREPARATION,
+                       action: .TAP)
+    }
+
+    func setSelectedAnswer(_ answer: DTViewModel.Answer) {
+        viewModel?.setSelectedAnswer(answer)
+        let name: QDMUserEventTracking.Name = answer.selected == true ? .SELECT : .DESELECT
+        trackAnswerSelection(answer, name)
+    }
 
     /**
      An answer contains the decision about the next question to load or needed  .
@@ -195,18 +211,43 @@ class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionn
      */
     func setAnswerNeedsSelection(_ answer: DTViewModel.Answer? = nil) {
         if var answer = answer {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
+            setAnswerSelected(&answer)
         } else if var answer = viewModel?.answers.first {
-            answer.setSelected(true)
-            viewModel?.setSelectedAnswer(answer)
+            setAnswerSelected(&answer)
         }
+    }
+
+    private func setAnswerSelected(_ answer: inout DTViewModel.Answer) {
+        answer.setSelected(true)
+        setSelectedAnswer(answer)
+        trackAnswerSelection(answer, .ANSWER_DECISION)
     }
 
     func setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready() {
         if viewModel?.answers.filter({ $0.selected }).isEmpty ?? true {
             setAnswerNeedsSelection()
         }
+    }
+}
+
+// MARK: - User Event Tracking
+extension DTViewController {
+    func trackAnswerSelection(_ answer: DTViewModel.Answer,
+                              _ name: QDMUserEventTracking.Name = .SELECT,
+                              _ valueType: QDMUserEventTracking.ValueType = .USER_ANSWER) {
+        trackUserEvent(name,
+                       value: answer.remoteId,
+                       stringValue: viewModel?.question.answerType.rawValue,
+                       valueType: valueType,
+                       action: .TAP)
+    }
+
+    func trackQuestionInteraction(_ name: QDMUserEventTracking.Name = .CLOSE) {
+        trackUserEvent(name,
+                       value: viewModel?.question.remoteId,
+                       stringValue: viewModel?.question.title,
+                       valueType: .QUESTION,
+                       action: .TAP)
     }
 }
 

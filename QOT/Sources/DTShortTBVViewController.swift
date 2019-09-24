@@ -47,24 +47,12 @@ final class DTShortTBVViewController: DTViewController {
             super.didTapPrevious()
         } else {
             delegate?.didTapBack()
+            trackQuestionInteraction(.PREVIOUS)
         }
     }
 }
 
 private extension DTShortTBVViewController {
-    func setAnswerSelectedIfNeeded() {
-        switch viewModel?.question.key {
-        case ShortTBV.QuestionKey.IntroMindSet?,
-             ShortTBV.QuestionKey.Home?,
-             ShortTBV.QuestionKey.IntroOnboarding?:
-            if var answer = viewModel?.answers.first {
-                answer.setSelected(true)
-                viewModel?.setSelectedAnswer(answer)
-            }
-        default: break
-        }
-    }
-
     func generateTBV() {
         var selectedAnswers = interactor?.getSelectedAnswers() ?? []
         let answers = viewModel?.selectedAnswers ?? []

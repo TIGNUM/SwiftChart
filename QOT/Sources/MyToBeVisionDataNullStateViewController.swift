@@ -20,7 +20,11 @@ final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLe
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var titleDescriptionLabel: UILabel!
 
-    private var tbvRateButton: UIButton?
+    private lazy var tbvRateButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
+        ThemableButton.myTbvDataRate.apply(button, title: R.string.localized.rateViewControllerRateMyTBVButton())
+        return button.barButton
+    }()
     private let userService = qot_dal.UserService.main
     private let contentService = qot_dal.ContentService.main
     weak var delegate: MyToBeVisionDataNullStateViewControllerProtocol?
@@ -31,6 +35,11 @@ final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLe
         addObserver()
         getVisionTracks()
         setupEmptySate()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     @objc func doneAction() {
@@ -44,8 +53,11 @@ final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLe
 private extension MyToBeVisionDataNullStateViewController {
     func getVisionTracks() {
         userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
-            guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) else { return }
-            self?.tbvRateButton?.isEnabled = finalTracks.count > 0
+            guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) else {
+                self?.tbvRateButton.isEnabled = false
+                return
+            }
+            self?.tbvRateButton.isEnabled = finalTracks.count > 0
         }
     }
 
@@ -64,15 +76,6 @@ private extension MyToBeVisionDataNullStateViewController {
         ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased(), to: titleLabel)
         ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc), to: titleDescriptionLabel)
     }
-
-    func formatted(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title,
-                                  letterSpacing: 0.4,
-                                  font: .sfProDisplayLight(ofSize: 24),
-                                  lineSpacing: 7,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
-    }
 }
 
 // MARK: - TBV TRACKER DID FINISH SYNC
@@ -80,7 +83,7 @@ extension MyToBeVisionDataNullStateViewController {
     @objc func didFinishSynchronization(_ notification: Notification) {
         guard let syncResult = notification.object as? SyncResultContext else { return }
         if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
-            tbvRateButton?.isEnabled = true
+            getVisionTracks()
         }
     }
 }
@@ -88,10 +91,6 @@ extension MyToBeVisionDataNullStateViewController {
 // MARK: - Bottom Navigation Items
 extension MyToBeVisionDataNullStateViewController {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerRateMyTBVButton(),
-                                     buttonWidth: .RateTBV,
-                                     action: #selector(doneAction),
-                                     backgroundColor: .carbon,
-                                     borderColor: .accent)]
+        return [tbvRateButton]
     }
 }

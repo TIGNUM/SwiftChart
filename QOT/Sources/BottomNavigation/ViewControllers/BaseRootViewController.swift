@@ -24,10 +24,11 @@ final class BaseRootViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet weak var bottomNavigationBar: UINavigationBar!
     @IBOutlet weak var audioPlayerContainer: UIView!
     @IBOutlet weak var bottomNavigationBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var contentContainer: UIView!
     public var shouldMoveBottomBarWithKeyboard: Bool = false
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
     private weak var contentView: UIView?
-    internal var lastBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
+    internal var lastestBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                                                        rightBarButtonItems: [],
                                                                                        backgroundColor: .black)
 
@@ -92,7 +93,7 @@ extension BaseRootViewController {
         contentView?.removeFromSuperview()
         childViewControllers.forEach({ $0.removeFromParentViewController() })
         addChildViewController(viewController)
-        view.fill(subview: viewController.view)
+        contentContainer.fill(subview: viewController.view)
         contentView = viewController.view
     }
 

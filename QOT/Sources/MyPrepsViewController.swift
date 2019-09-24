@@ -35,8 +35,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var editButton: UIButton!
-    @IBOutlet private weak var removeButton: UIButton!
-    @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var noPreparationsView: UIView!
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
@@ -53,12 +51,22 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
 
+    lazy var cancelButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
+        ThemableButton.myPlans.apply(button, title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
+        return button.barButton
+    }()
+
+    lazy var deleteButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
+        ThemableButton.myPlans.apply(button, title: R.string.localized.buttonTitleRemove())
+        return button.barButton
+    }()
+
     // MARK: - LifeCycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        cancelButton.isHidden = true
-        removeButton.isHidden = true
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
@@ -194,6 +202,7 @@ private extension MyPrepsViewController {
         ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoRecoveryComment(), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
+        tableView.alpha = 0
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
         setupSegementedControl()
         showEmptyStateViewIfNeeded(segmentedControl)
@@ -221,6 +230,9 @@ private extension MyPrepsViewController {
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func dataUpdated() {
         hideAllViews()
+        if tableView.alpha == 0 {
+            UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
+        }
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
         self.removeLoadingSkeleton()
@@ -296,9 +308,7 @@ extension MyPrepsViewController {
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         guard editPressed else { return nil }
-
-        return [roundedBarBurtonItem(title: R.string.localized.buttonTitleRemove(), action: #selector(removeRows(_:))),
-                roundedBarBurtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel), action: #selector(cancelButton(_:)))]
+        return [deleteButton, cancelButton]
     }
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {

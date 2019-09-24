@@ -50,7 +50,7 @@ final class DTMindsetViewController: DTViewController {
     @IBAction override func didTapNext() {
         switch viewModel?.question.key {
         case Mindset.QuestionKey.Last:
-            mindsetRouter?.dismiss()
+            router?.dismissChatBotFlow()
         case Mindset.QuestionKey.OpenTBV:
             handleTBVCase()
         case Mindset.QuestionKey.PresentResult:
@@ -68,15 +68,11 @@ final class DTMindsetViewController: DTViewController {
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
+        setSelectedAnswer(answer)
         guard let viewModel = viewModel else { return }
         if viewModel.question.answerType == .singleSelection && answer.targetId(.question) != nil {
             loadNextQuestion()
         }
-    }
-
-    override func didDeSelectAnswer(_ answer: DTViewModel.Answer) {
-        viewModel?.setSelectedAnswer(answer)
     }
 }
 

@@ -44,4 +44,18 @@ final class MyPeakPerformanceCellViewModel: BaseDailyBriefViewModel {
         self.sections = sections
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? MyPeakPerformanceCellViewModel else {
+            return false
+        }
+
+        let eventDates = Set(domainModel?.preparations?.compactMap({ $0.eventDate }) ?? [])
+        let sourceEventDates = Set(source.domainModel?.preparations?.compactMap({ $0.eventDate }) ?? [])
+
+        let eventTitles = Set(domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
+        let sourceEventTitles = Set(source.domainModel?.preparations?.compactMap({ $0.eventTitle }) ?? [])
+
+        return eventDates == sourceEventDates && eventTitles == sourceEventTitles
+    }
 }

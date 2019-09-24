@@ -75,6 +75,10 @@ after action review is a high performance tool. </string>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="U0U-c9-J01"/>
+            <connections>
+                <outlet property="myPeakPerformanceSectionTitle" destination="IXz-tv-d2p" id="1XQ-oN-iwz"/>
+                <outlet property="myPeakperformanceSectionContent" destination="xKL-SJ-VzL" id="hmC-9b-iiO"/>
+            </connections>
             <point key="canvasLocation" x="-1612.3188405797102" y="99.776785714285708"/>
         </view>
     </objects>
