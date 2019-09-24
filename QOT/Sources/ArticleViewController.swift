@@ -344,14 +344,17 @@ private extension ArticleViewController {
 // MARK: - ArticleViewControllerInterface
 
 extension ArticleViewController: ArticleViewControllerInterface {
-    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
-        topBarButtonItems = [nightModeBarButtonItem, textScaleBarButtonItem]
-        if isShareable == true {
-            topBarButtonItems.append(shareBarButtonItem)
-        }
-        if hasBookMarkItem == true {
-            topBarButtonItems.insert(bookMarkBarButtonItem, at: 0)
-        }
+    func setupView() {
+        setupTableView()
+        setColorMode()
+    }
+
+    func setupArticleHeader(header: Article.Header) {
+        self.header = header
+    }
+
+    func reloadData() {
+        reloadData(showNavigationBar: true)
     }
 
     func reloadData(showNavigationBar: Bool) {
@@ -362,17 +365,18 @@ extension ArticleViewController: ArticleViewControllerInterface {
         refreshBottomNavigationItems()
     }
 
-    func setupArticleHeader(header: Article.Header) {
-        self.header = header
-    }
-
-    func setupView() {
-        setupTableView()
-        setColorMode()
-    }
-
     func hasBookmark(_ hasBookmark: Bool) {
         bookMarkBarButtonItem.image = hasBookmark ? R.image.ic_bookmark_fill() : R.image.ic_bookmark()
+    }
+
+    func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
+        topBarButtonItems = [nightModeBarButtonItem, textScaleBarButtonItem]
+        if isShareable == true {
+            topBarButtonItems.append(shareBarButtonItem)
+        }
+        if hasBookMarkItem == true {
+            topBarButtonItems.insert(bookMarkBarButtonItem, at: 0)
+        }
     }
 }
 

@@ -23,19 +23,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="116"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Seen of 5" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GZo-ZF-xKd">
-                        <rect key="frame" x="284" y="46" width="65" height="14.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_sand" translatesAutoresizingMaskIntoConstraints="NO" id="cbW-aM-03R">
-                        <rect key="frame" x="256" y="48" width="16" height="10"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="2jd-qO-vLg"/>
-                            <constraint firstAttribute="height" constant="10" id="eHP-O2-x4m"/>
-                        </constraints>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PERFORMANCE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yKv-vg-8Eu">
                         <rect key="frame" x="26" y="8" width="341" height="17"/>
                         <fontDescription key="fontDescription" type="system" weight="light" pointSize="14"/>

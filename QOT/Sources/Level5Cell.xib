@@ -26,11 +26,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="1032" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="449" height="825"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="943" id="eDp-CU-ckE" customClass="Level5Cell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="449" height="736"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eDp-CU-ckE" id="6GX-fH-l8Z">
-                <rect key="frame" x="0.0" y="0.0" width="449" height="824.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="449" height="735.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vVH-4e-Eb4" userLabel="HeaderView">
@@ -211,7 +211,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZYI-XA-d9f" userLabel="BottomView">
-                        <rect key="frame" x="0.0" y="412.5" width="449" height="330"/>
+                        <rect key="frame" x="0.0" y="426.5" width="449" height="167.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Y6n-RW-tYH">
                                 <rect key="frame" x="24" y="0.0" width="401" height="282"/>
@@ -379,30 +379,6 @@
                             <constraint firstItem="Y6n-RW-tYH" firstAttribute="leading" secondItem="ZYI-XA-d9f" secondAttribute="leading" constant="24" id="9b6-yq-cpR"/>
                             <constraint firstAttribute="height" constant="167.5" id="Nze-f9-kJS"/>
                             <constraint firstAttribute="trailing" secondItem="Y6n-RW-tYH" secondAttribute="trailing" constant="24" id="ooq-QE-CT7"/>
-                        </constraints>
-                    </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VH1-hy-l0l" userLabel="ButtonView">
-                        <rect key="frame" x="0.0" y="742.5" width="449" height="82"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-U2-IS7" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="353" y="0.0" width="72" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="CJY-Pu-G5c"/>
-                                </constraints>
-                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
-                                <state key="normal" title="Save">
-                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="save:" destination="eDp-CU-ckE" eventType="touchUpInside" id="V4t-W5-rjI"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="fcW-U2-IS7" firstAttribute="top" secondItem="VH1-hy-l0l" secondAttribute="top" id="Khg-8Q-bpZ"/>
-                            <constraint firstAttribute="trailing" secondItem="fcW-U2-IS7" secondAttribute="trailing" constant="24" id="R0J-zp-4mb"/>
-                            <constraint firstAttribute="bottom" secondItem="fcW-U2-IS7" secondAttribute="bottom" constant="42" id="xxh-mK-W13"/>
                         </constraints>
                     </view>
                 </subviews>

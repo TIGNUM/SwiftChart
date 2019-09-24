@@ -14,7 +14,6 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     var interactor: DailyBriefInteractorInterface?
-    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
