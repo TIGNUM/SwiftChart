@@ -64,7 +64,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
-            model.domainModel?.dailyCheckInResult == nil)
+                                  model.domainModel?.dailyCheckInResult == nil)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
         ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
         let score: Int = model.readinessScore ?? 0
@@ -83,8 +83,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
-        if model.domainModel?.dailyCheckInResult == nil,
-            model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false {
+        if showDailyCheckInScreen {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
