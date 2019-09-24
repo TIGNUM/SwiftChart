@@ -7,7 +7,7 @@
 
 import UIKit
 
-class RoundedButton: UIButton, ButtonThemeable {
+class RoundedButton: AnimatedButton, ButtonThemeable {
 
     // Default values are for backwards compatibility until all instances get "Themed"
     var titleAttributes: [NSAttributedStringKey: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]

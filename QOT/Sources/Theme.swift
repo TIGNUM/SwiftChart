@@ -288,6 +288,7 @@ enum ThemableButton {
     case syncedCalendar
     case walkthroughGotIt
     case myPlans
+    case signinInfo
     case myTbvDataRate
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
@@ -301,6 +302,7 @@ enum ThemableButton {
              .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
+             .signinInfo,
              .myTbvDataRate:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
@@ -311,6 +313,7 @@ enum ThemableButton {
         case .myLibrary, .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
+             .signinInfo,
              .myTbvDataRate:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
@@ -327,6 +330,7 @@ enum ThemableButton {
         case .myLibrary, .askPermissions, .syncedCalendar,
              .walkthroughGotIt,
              .myPlans,
+             .signinInfo,
              .myTbvDataRate:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
