@@ -144,7 +144,7 @@ extension DailyBriefWorker {
 
     func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
         contentService.getContentCollectionBySection(.WhatsHot, { (items) in
-            completion(items?.first?.remoteID)
+            completion(items?.sorted { ($0.publishedDate ?? Date()) > ($1.publishedDate ?? Date())}.first?.remoteID)
         })
     }
 
