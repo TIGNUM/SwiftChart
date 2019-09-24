@@ -34,18 +34,21 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
         let controller = DTShortTBVViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func openMindsetShifter() {
         let configurator = DTMindsetConfigurator.make()
         let controller = DTMindsetViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func openRecovery() {
         let configurator = DTRecoveryConfigurator.make()
         let controller = DTRecoveryViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func presentFeedback() {

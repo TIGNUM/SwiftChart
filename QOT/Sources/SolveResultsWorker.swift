@@ -157,7 +157,8 @@ private extension SolveResultsWorker {
                             if let trigger = triggerItem { items.append(trigger) }
                             if !fiveDayPlanItems.isEmpty { items.append(contentsOf: fiveDayPlanItems) }
                             items.append(followUpItem)
-                            completion(SolveResults(type: .solve, items: items), self?.solve?.followUp == true)
+                            let followUp = self?.solve == nil ? true : self?.solve?.followUp == true
+                            completion(SolveResults(type: .solve, items: items), followUp)
                         }
                     }
                 }

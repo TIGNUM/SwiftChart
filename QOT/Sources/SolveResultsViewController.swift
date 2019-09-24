@@ -94,10 +94,10 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
         tableView.registerDequeueable(FatigueTableViewCell.self)
         tableView.registerDequeueable(CauseTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
-        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
     }
 
     func load(_ results: SolveResults, isFollowUpActive: Bool) {
+        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton || results.type == .solve)
         self.isFollowUpActive = isFollowUpActive
         self.results = results
         tableView.reloadData()
@@ -194,11 +194,7 @@ extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
 extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
-        isFollowUpActive = isOn
-        setupRightBottomNavigationBarItems(showSaveButton: isOn)
-        UIView.animate(withDuration: 0.25) {
-            self.updateBottomNavigation([], self.rightBarItems)
-        }
+        isFollowUpActive = isOn        
     }
 }
 
