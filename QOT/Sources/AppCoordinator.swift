@@ -347,12 +347,22 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             switch syncResult.dataType {
+            case .USER:
+                UserService.main.getUserData({ (user) in
+                    guard var user = user else { return }
+                    if user.timeZone != TimeZone.hoursFromGMT {
+                        user.timeZone = TimeZone.hoursFromGMT
+                        UserService.main.updateUserData(user, { (_) in
+                            /* */
+                        })
+                    }
+                })
             case .MY_TO_BE_VISION:
                 guard syncResult.hasUpdatedContent else { return }
                 UserService.main.getMyToBeVision({ (vision, initiated, error) in
