@@ -13,15 +13,11 @@ final class ShifterResultInteractor {
     // MARK: - Properties
     private let worker: ShifterResultWorker
     private let presenter: ShifterResultPresenterInterface
-    private let router: ShifterResultRouterInterface
 
     // MARK: - Init
-    init(worker: ShifterResultWorker,
-        presenter: ShifterResultPresenterInterface,
-        router: ShifterResultRouterInterface) {
+    init(worker: ShifterResultWorker, presenter: ShifterResultPresenterInterface) {
         self.worker = worker
-        self.presenter = presenter
-        self.router = router
+        self.presenter = presenter        
     }
 
     // MARK: - Interactor
@@ -32,16 +28,4 @@ final class ShifterResultInteractor {
 }
 
 // MARK: - ShifterResultInteractorInterface
-extension ShifterResultInteractor: ShifterResultInteractorInterface {
-    func didTapSave() {
-        router.presentFeedback()
-    }
-
-    func deleteModel() {
-        worker.deleteMindsetShifter()
-    }
-
-    func didTapDismiss() {
-        router.dismiss()
-    }
-}
+extension ShifterResultInteractor: ShifterResultInteractorInterface {}

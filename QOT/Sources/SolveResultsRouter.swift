@@ -14,7 +14,6 @@ final class SolveResultsRouter {
     // MARK: - Properties
     private weak var viewController: SolveResultsViewController?
 
-
     // MARK: - Init
     init(viewController: SolveResultsViewController) {
         self.viewController = viewController

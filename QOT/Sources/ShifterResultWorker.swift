@@ -22,32 +22,13 @@ final class ShifterResultWorker {
     private var highTitle = ""
     private var visionTitle = ""
     private var mindsetResultModel: MindsetResult?
-    private var mindsetShifter: QDMMindsetShifter? = nil
-    private var canDelete = false
+    private let mindsetShifter: QDMMindsetShifter?
 
     // MARK: - Init
-    init(_ mindsetShifter: QDMMindsetShifter?, canDelete: Bool) {
+    init(_ mindsetShifter: QDMMindsetShifter?) {
         self.mindsetShifter = mindsetShifter
-        self.canDelete = canDelete
         setTitles()
     }
-
-    // Texts
-    lazy var leaveAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
-    }()
-
-    lazy var leaveAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
-    }()
-
-    lazy var leaveButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue)
-    }()
-
-    lazy var cancelButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
-    }()
 }
 
 // MARK: - Public
@@ -57,15 +38,6 @@ extension ShifterResultWorker {
         let model = MindsetResult(sections: sections, buttonTitle: buttonTitle)
         mindsetResultModel = model
         return model
-    }
-
-    func deleteMindsetShifter() {
-        guard let mindsetShifter = mindsetShifter, canDelete == true else { return }
-        UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
-            if let error = error {
-                log("Error causedeleteMindsetShifter: \(error.localizedDescription)", level: .error)
-            }
-        }
     }
 }
 

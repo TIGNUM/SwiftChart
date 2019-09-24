@@ -18,11 +18,7 @@ protocol ShifterResultPresenterInterface {
     func setupView()
 }
 
-protocol ShifterResultInteractorInterface: Interactor {
-    func didTapSave()
-    func deleteModel()
-    func didTapDismiss()
-}
+protocol ShifterResultInteractorInterface: Interactor {}
 
 protocol ShifterResultRouterInterface {
     func dismiss()

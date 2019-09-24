@@ -16,7 +16,7 @@ final class SolveResultsWorker {
     private var recovery: QDMRecovery3D?
     private var selectedAnswerId: Int = 0
     private var solutionCollectionId: Int = 0
-    private let type: ResultType    
+    private let type: ResultType
 
     // MARK: - Init
     init(selectedAnswerId: Int, solutionCollectionId: Int) {

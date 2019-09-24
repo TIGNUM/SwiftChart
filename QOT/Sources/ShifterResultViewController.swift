@@ -7,13 +7,34 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    var interactor: ShifterResultInteractorInterface?    
+    private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)
+    var interactor: ShifterResultInteractorInterface?
+    var showSaveButton: Bool = false
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
+
+    private lazy var barButtonItemDone: UIBarButtonItem = {
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
+                                    buttonWidth: .Done,
+                                    action: #selector(didTapDone),
+                                    backgroundColor: .carbon)
+    }()
+
+    private lazy var barButtonItemSaveAndContinue: UIBarButtonItem = {
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue),
+                                    buttonWidth: .SaveAndContinue,
+                                    action: #selector(didTapSave),
+                                    backgroundColor: .carbon)
+    }()
+
+    private lazy var rightBarItems: [UIBarButtonItem] = {
+        return showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
+    }()
 
     // MARK: - Init
     init(configure: Configurator<ShifterResultViewController>) {
@@ -46,13 +67,6 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     }
 
     func setupView() {
-        registerCells()
-    }
-}
-
-// MARK: - Private
-private extension ShifterResultViewController {
-    func registerCells() {
         tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
         tableView.registerDequeueable(MindsetShifterHeaderCell.self)
         tableView.registerDequeueable(TriggerTableViewCell.self)
@@ -62,17 +76,16 @@ private extension ShifterResultViewController {
     }
 }
 
-// MARK: - Actions
+// MARK: - Private
 private extension ShifterResultViewController {
-    @objc func didTapSave() {
-        trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.didTapSave()
+    @objc func didTapDone() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        router?.dismiss()
     }
 
-    @objc func didTapDismiss() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.deleteModel()
-        interactor?.didTapDismiss()
+    @objc func didTapSave() {
+        trackUserEvent(.CONFIRM, action: .TAP)
+        router?.presentFeedback()
     }
 }
 
@@ -121,13 +134,10 @@ extension ShifterResultViewController: UITableViewDataSource {
 // MARK: - BottomNavigation Items
 extension ShifterResultViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem(action: #selector(didTapDismiss))]
+        return nil
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedBarButtonItem(title: model?.buttonTitle ?? R.string.localized.buttonTitleSaveContinue(),
-                                     buttonWidth: .DecisionTree,
-                                     action: #selector(didTapSave),
-                                     backgroundColor: .carbonDark)]
+        return rightBarItems
     }
 }

@@ -10,13 +10,13 @@ import Foundation
 import qot_dal
 
 final class ShifterResultConfigurator {
-    static func make(mindsetShifter: QDMMindsetShifter?, canDelete: Bool) -> (ShifterResultViewController) -> Void {
+    static func make(mindsetShifter: QDMMindsetShifter?, showSaveButton: Bool) -> (ShifterResultViewController) -> Void {
         return { viewController in
-            let router = ShifterResultRouter(viewController: viewController)
-            let worker = ShifterResultWorker(mindsetShifter, canDelete: canDelete)
+            let worker = ShifterResultWorker(mindsetShifter)
             let presenter = ShifterResultPresenter(viewController: viewController)
-            let interactor = ShifterResultInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = ShifterResultInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
+            viewController.showSaveButton = showSaveButton
         }
     }
 }
