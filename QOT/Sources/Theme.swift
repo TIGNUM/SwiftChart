@@ -35,6 +35,7 @@ enum ThemeView {
     case level2
     case level3
     case sprints
+    case sprintsHeader
     case level1Secondary
     case level1Selected
     case level2Selected
@@ -129,6 +130,8 @@ enum ThemeView {
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
             return Palette.heatMapDarkBlue
+        case .sprintsHeader:
+            return .carbonNew
         }
     }
 
