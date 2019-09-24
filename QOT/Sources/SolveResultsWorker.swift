@@ -12,25 +12,31 @@ import qot_dal
 final class SolveResultsWorker {
 
     // MARK: - Properties
+    private var solve: QDMSolve?
     private var recovery: QDMRecovery3D?
     private var selectedAnswerId: Int = 0
     private var solutionCollectionId: Int = 0
     private let type: ResultType
-    private var existingSolve: QDMSolve? = nil
     private var canDelete: Bool = false
 
     // MARK: - Init
-    init(selectedAnswerId: Int, solutionCollectionId: Int, type: ResultType, solve: QDMSolve? = nil) {
+    init(selectedAnswerId: Int, solutionCollectionId: Int) {
         self.selectedAnswerId = selectedAnswerId
         self.solutionCollectionId = solutionCollectionId
-        self.type = type
-        self.existingSolve = solve
+        self.type = .solve
     }
 
     init(recovery: QDMRecovery3D?, canDelete: Bool) {
         self.recovery = recovery
         self.canDelete = canDelete
         self.type = .recovery
+    }
+
+    init(solve: QDMSolve?) {
+        self.solve = solve
+        self.type = .solve
+        selectedAnswerId = solve?.selectedAnswerId ?? 0
+        solutionCollectionId = solve?.solutionCollectionId ?? 0
     }
 
     // Texts
@@ -71,19 +77,23 @@ extension SolveResultsWorker {
     }
 
     func save(_ completion: @escaping () -> Void) {
-        if let solve = existingSolve {
+        if let solve = solve {
             UserService.main.updateSolve(solve) { (solve, error) in
                 completion()
             }
         } else {
-            let contentId = recovery?.fatigueContentItemId
-            relatedStrategies(contentId) { [weak self] (relatedStrategies) in
+            let contentId = solutionCollectionId
+            let answerId = selectedAnswerId
+            relatedStrategies(contentId) { (relatedStrategies) in
                 let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-                UserService.main.createSolve(selectedAnswerId: self?.selectedAnswerId ?? 0,
-                                                     solutionCollectionId: self?.solutionCollectionId ?? 0,
-                                                     strategyIds: relatedStragyIds,
-                                                     followUp: true) { (solve, error) in
-                                                        completion()
+                UserService.main.createSolve(selectedAnswerId: answerId,
+                                             solutionCollectionId: contentId,
+                                             strategyIds: relatedStragyIds,
+                                             followUp: true) { (_, error) in
+                                                if let error = error {
+                                                    log("Error createSolve: \(error.localizedDescription)", level: .error)
+                                                }
+                                                completion()
                 }
             }
         }
@@ -104,7 +114,7 @@ extension SolveResultsWorker {
     }
 
     func hasExistingSolve() -> Bool {
-        return existingSolve != nil
+        return solve != nil
     }
 }
 

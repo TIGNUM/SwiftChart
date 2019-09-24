@@ -17,10 +17,13 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
 
     static func barButton(title: String, target: Any, action: Selector) -> UIBarButtonItem {
-        return UIBarButtonItem(customView: RoundedButton(title: title, target: target, action: action))
+        let button = RoundedButton(title: title, target: target, action: action)
+        button.shouldAnimate = false
+        return UIBarButtonItem(customView: button)
     }
 
     var barButton: UIBarButtonItem {
+        shouldAnimate = false
         return UIBarButtonItem(customView: self)
     }
 

@@ -60,7 +60,7 @@ struct DTViewModel {
         init(qdmQuestion: QDMQuestion) {
             self.remoteId = qdmQuestion.remoteID ?? 0
             self.title = qdmQuestion.title
-            self.htmlTitleString = qdmQuestion.htmlTitleString
+            self.htmlTitleString = nil
             self.key = qdmQuestion.key ?? ""
             self.answerType = AnswerType(rawValue: qdmQuestion.answerType ?? "") ?? .multiSelection
             self.duration = qdmQuestion.layout?.animation?.duration ?? 0
