@@ -79,7 +79,7 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
         let data = interactor?.categoryItems[indexPath.row]
         categoryCell.categoryName.text = data?.title
-        categoryCell.iconView.image = UIImage(named: data?.iconName ?? "")
+        categoryCell.iconView.image = data?.icon
         categoryCell.infoText.text = data?.infoText()
         return categoryCell
     }

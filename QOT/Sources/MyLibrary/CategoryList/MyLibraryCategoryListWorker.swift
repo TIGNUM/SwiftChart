@@ -41,21 +41,36 @@ final class MyLibraryCategoryListWorker {
             let links = sorted?.compactMap({ (storage) -> QDMUserStorage? in
                 storage.userStorageType == .EXTERNAL_LINK ? storage : nil
             })
-            // FIXME: change to localized string
 
-            userStorages.append(strongSelf.viewModelWith(title: "ALL", items: sorted, icon: "my_library_group", type: .ALL))
-            userStorages.append(strongSelf.viewModelWith(title: "Bookmarks", items: bookmarks, icon: "my_library_bookmark", type: .BOOKMARKS))
-            userStorages.append(strongSelf.viewModelWith(title: "Downloads", items: downloads, icon: "my_library_download", type: .DOWNLOADS))
-            userStorages.append(strongSelf.viewModelWith(title: "Links", items: links, icon: "my_library_link", type: .LINKS))
-            userStorages.append(strongSelf.viewModelWith(title: "Notes", items: notes, icon: "my_library_note_light", type: .NOTES))
+            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleAll(),
+                                                         items: sorted,
+                                                         icon: R.image.my_library_group(),
+                                                         type: .ALL))
+            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleBookmarks(),
+                                                         items: bookmarks,
+                                                         icon: R.image.my_library_bookmark(),
+                                                         type: .BOOKMARKS))
+            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleDownloads(),
+                                                         items: downloads,
+                                                         icon: R.image.my_library_download(),
+                                                         type: .DOWNLOADS))
+            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleLinks(),
+                                                         items: links,
+                                                         icon: R.image.my_library_link(),
+                                                         type: .LINKS))
+            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleNotes(),
+                                                         items: notes,
+                                                         icon: R.image.my_library_note_light(),
+                                                         type: .NOTES))
             completion(initiated, userStorages)
         }
     }
 
-    func viewModelWith(title: String, items: [QDMUserStorage]?, icon: String, type: MyLibraryCategoryType) -> MyLibraryCategoryListModel {
+    func viewModelWith(title: String, items: [QDMUserStorage]?, icon: UIImage?, type: MyLibraryCategoryType) -> MyLibraryCategoryListModel {
         return MyLibraryCategoryListModel(title: title,
                                           itemCount: items?.count ?? 0,
                                           lastUpdated: items?.first?.modifiedAt,
-                                          iconName: icon, type: type)
+                                          icon: icon,
+                                          type: type)
     }
 }
