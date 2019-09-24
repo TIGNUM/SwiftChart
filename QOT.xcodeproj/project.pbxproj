@@ -1189,7 +1189,6 @@
 		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
 		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
-		F91F6A46233A5F5E00DF6AA1 /* ArrowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A45233A5F5D00DF6AA1 /* ArrowButton.swift */; };
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
@@ -2522,7 +2521,6 @@
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
-		F91F6A45233A5F5D00DF6AA1 /* ArrowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowButton.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
@@ -3270,7 +3268,6 @@
 			children = (
 				8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */,
 				9C6E48C32328D970004D657F /* AnimatedButton.swift */,
-				F91F6A45233A5F5D00DF6AA1 /* ArrowButton.swift */,
 			);
 			name = BaseViews;
 			sourceTree = "<group>";
@@ -7526,7 +7523,6 @@
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
 				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
 				36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */,
-				F91F6A46233A5F5E00DF6AA1 /* ArrowButton.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */,
 				75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */,
