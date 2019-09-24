@@ -29,7 +29,7 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
         }
         skeletonManager.hide()
         self.categoryName.text = model.title
-        self.iconView.image = UIImage(named: model.iconName ?? "")
+        self.iconView.image = UIImage(named: model.iconName)
         self.infoText.text = model.infoText()
     }
 }

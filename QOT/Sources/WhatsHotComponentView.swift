@@ -49,21 +49,28 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
                    author: String?,
                    timeToRead: String?,
                    imageURL: URL?,
-                   isNew: Bool,
+                   isNew: Bool?,
                    forcedColorMode: ThemeColorMode?) {
+        guard let titleText = title,
+                let date = publishDate,
+                let authorName = author,
+                let time = timeToRead,
+                let new = isNew else {
+                return
+        }
         skeletonManager.hide()
-        newIndicatorView.isHidden = (isNew == false)
+        newIndicatorView.isHidden = (new == false)
         skeletonManager.addOtherView(whatsHotImageView)
         whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
             self?.skeletonManager.hide()
         }
 
-        ThemeText.whatsHotHeader(forcedColorMode).apply(title ?? "", to: titleLabel)
+        ThemeText.whatsHotHeader(forcedColorMode).apply(titleText, to: titleLabel)
         let dateFormatter = DateFormatter.whatsHot
-        let displayDate = dateFormatter.string(from: publishDate ?? Date())
-        let detailText = String(format: "%@ | %@", displayDate, timeToRead ?? "")
+        let displayDate = dateFormatter.string(from: date)
+        let detailText = String(format: "%@ | %@", displayDate, time)
         ThemeText.articleDatestamp(forcedColorMode).apply(detailText, to: detailLabel)
-        ThemeText.articleAuthor(forcedColorMode).apply(author ?? "", to: authorLabel)
+        ThemeText.articleAuthor(forcedColorMode).apply(authorName, to: authorLabel)
         ThemeView.articleBackground(forcedColorMode).apply(self)
         ThemeView.articleSeparator(forcedColorMode).apply(seperator)
     }

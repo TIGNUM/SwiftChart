@@ -32,6 +32,6 @@ final class PrepareResultsContentTableViewCell: UITableViewCell, Dequeueable {
 
         let margin: CGFloat = format.isTitle ? 23 : 8
         constraintTop.constant = margin
-        constraintBottom.constant = margin 
+        constraintBottom.constant = margin
     }
 }

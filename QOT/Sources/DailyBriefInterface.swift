@@ -51,7 +51,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
     func forceReloadWeatherModel()
-    
+
     func saveAnswerValue(_ value: Int)
     func saveUpdatedDailyCheckInSleepTarget(_ value: Double)
     func saveTargetValue(value: Int?)
