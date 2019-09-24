@@ -36,9 +36,8 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title.uppercased(), to: whatsHotTitle)
         ThemeText.dailyBriefSubtitle.apply(R.string.localized.dailyBriefWhatsHotSubtitle(), to: subtitle)
         skeletonManager.addOtherView(whatsHotImage)
-        whatsHotImage.kf.setImage(with: model.image, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        whatsHotImage.setImage(url: model.image,
+                               skeletonManager: self.skeletonManager)
         ThemeText.author.apply(model.author, to: authorLabel)
         dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: model.publisheDate) + " | "  + "\((model.timeToRead) / 60)" + " min read"
         if model.isNew == true { newLabel.isHidden = false }

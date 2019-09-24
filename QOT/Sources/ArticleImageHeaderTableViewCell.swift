@@ -17,13 +17,7 @@ final class ArticleImageHeaderTableViewCell: UITableViewCell, Dequeueable {
     func configure(imageURLString: String?) {
         guard let urlString = imageURLString else { return }
         skeletonManager.addOtherView(headerImageView)
-        headerImageView?.kf.setImage(with: URL(string: urlString),
-                                     placeholder: R.image.preloading(),
-                                     options: nil,
-                                     progressBlock: nil,
-                                     completionHandler: { [weak self] (_) in
-                                        guard let strongSelf = self else { return }
-                                        strongSelf.skeletonManager.hide()
-        })
+        headerImageView?.setImage(url: URL(string: urlString),
+                                  skeletonManager: skeletonManager)
     }
 }

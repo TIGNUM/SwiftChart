@@ -304,11 +304,10 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         tempImage = nil
         tempImageURL = nil
         saveToBeVisionImageAndData()
-        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
         skeletonManager.addOtherView(userImageView)
-        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        userImageView.setImage(url: tempImageURL,
+                               placeholder: R.image.circlesWarning(),
+                               skeletonManager: self.skeletonManager)
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }

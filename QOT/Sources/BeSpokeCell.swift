@@ -41,9 +41,8 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.bespokeTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
         skeletonManager.addOtherView(firstImageView)
-        firstImageView.kf.setImage(with: URL(string: model.image ?? ""), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        firstImageView.setImage(url: URL(string: model.image ?? ""),
+                                skeletonManager: self.skeletonManager)
         copyrightURL = model.copyright
         if copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0

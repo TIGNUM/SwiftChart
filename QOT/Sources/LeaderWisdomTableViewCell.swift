@@ -58,9 +58,8 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         audioButton.setTitle(mediaDescription, for: .normal)
         videoThumbnailImageView.isHidden = model.format != .video
         skeletonManager.addOtherView(videoThumbnailImageView)
-        videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        videoThumbnailImageView.setImage(url: mediaURL,
+                                         skeletonManager: self.skeletonManager)
         videoTitle.isHidden = model.format != .video
     }
 

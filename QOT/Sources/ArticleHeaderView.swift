@@ -79,9 +79,8 @@ private extension ArticleHeaderView {
     func setImage(imageURL: String?) {
         if let imageURL = imageURL {
             skeletonManager.addOtherView(imageView)
-            imageView.kf.setImage(with: URL(string: imageURL), placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-                self?.skeletonManager.hide()
-            }
+            imageView.setImage(url: URL(string: imageURL),
+                               skeletonManager: self.skeletonManager)
         } else {
             imageView.isHidden = true
         }

@@ -33,9 +33,8 @@ final class FromMyCoachHeaderView: UIView {
         ThemeView.level1.apply(self)
         ThemeText.fromCoachTitle.apply(data.title.uppercased(), to: title)
         skeletonManager.addOtherView(coachImageView)
-        coachImageView.kf.setImage(with: data.imageUrl, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        coachImageView.setImage(url: data.imageUrl,
+                                skeletonManager: self.skeletonManager)
         coachImageView.circle()
     }
 }

@@ -86,9 +86,7 @@ extension AskPermissionViewController: AskPermissionViewControllerInterface {
         ThemeText.askPermissionTitle.apply(viewModel.title, to: titleLabel)
         ThemeText.askPermissionMessage.apply(viewModel.description, to: descriptionLabel)
         skeletonManager.addOtherView(imageView)
-        imageView.kf.setImage(with: viewModel.imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        imageView.setImage(url: viewModel.imageURL, skeletonManager: self.skeletonManager)
         rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
                                cancelButton(viewModel.buttonTitleCancel ?? " ")]
         updateBottomNavigation([], rightBarButtonItems)

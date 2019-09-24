@@ -40,9 +40,8 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         skeletonManager.addOtherView(previewImageView)
-        previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { [weak self] (_) in
-            self?.skeletonManager.hide()
-        }
+        previewImageView.setImage(url: previewImageURL,
+                                  skeletonManager: self.skeletonManager)
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased()).attributedString()

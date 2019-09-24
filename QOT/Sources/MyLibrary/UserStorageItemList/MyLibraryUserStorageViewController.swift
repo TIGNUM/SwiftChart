@@ -184,26 +184,19 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
-                cell.skeletonManager.hide()
-            }
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
-                cell.skeletonManager.hide()
-            }
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             cell.playButton.setTitle(item?.duration, for: .normal)
             cell.playButton.tag = indexPath.row
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil) { (_) in
-                cell.skeletonManager.hide()
-            }
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
