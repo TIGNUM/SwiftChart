@@ -141,45 +141,7 @@ extension DailyBriefWorker {
             }
         })
     }
-
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        contentService.getContentCollectionBySection(.WhatsHot, { (items) in
-            completion(items?.sorted { ($0.publishedDate ?? Date()) > ($1.publishedDate ?? Date())}.first?.remoteID)
-        })
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
-            self?.contentService.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
-                completion(item?.first)
-            })
-        })
-    }
-
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
-            self?.contentService.getContentCollectionById(collectionID ?? 0, completion)
-
-        })
-    }
-
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
-        latestWhatsHotContent(completion: { [weak self] (item) in
-            self?.getContentCollection(completion: { [weak self] (collection) in
-                if let collection = collection {
-                    completion(WhatsHotLatestCellViewModel(bucketTitle: "WHAT'S HOT",
-                                                           title: collection.title,
-                                                           image: URL(string: collection.thumbnailURLString ?? ""),
-                                                           author: collection.author ?? "",
-                                                           publisheDate: item?.createdAt ?? Date(),
-                                                           timeToRead: collection.secondsRequired,
-                                                           isNew: self?.isNew(collection) ?? false,
-                                                           remoteID: collection.remoteID ?? 0, domainModel: nil))
-                }
-            })
-        })
-    }
-
+    
         func isNew(_ collection: QDMContentCollection) -> Bool {
             var isNewArticle = collection.viewedAt == nil
             if let firstInstallTimeStamp = self.firstInstallTimeStamp {
