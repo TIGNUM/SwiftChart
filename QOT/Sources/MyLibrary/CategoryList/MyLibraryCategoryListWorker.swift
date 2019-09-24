@@ -13,6 +13,10 @@ final class MyLibraryCategoryListWorker {
 
     private let service = UserStorageService.main
 
+    lazy var titleText: String = {
+        return R.string.localized.myLibraryTitle()
+    }()
+
     func loadData(_ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
         service.getUserStorages { [weak self] (storages, initiated, error) in
             guard let strongSelf = self else {

@@ -10,16 +10,17 @@ import Foundation
 import qot_dal
 
 protocol MyLibraryCategoryListViewControllerInterface: class {
+    func setupView()
     func update()
 }
 
 protocol MyLibraryCategoryListPresenterInterface {
-    func presentLoadingStatus()
-    func presentEmptyStatus()
+    func setupView()
     func presentStorages()
 }
 
 protocol MyLibraryCategoryListInteractorInterface: Interactor {
+    var titleText: String { get }
     var categoryItems: [MyLibraryCategoryListModel] { get }
     func handleSelectedItem(at index: Int)
 }

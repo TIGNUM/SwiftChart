@@ -43,8 +43,8 @@
                                                     <constraint firstAttribute="width" constant="16" id="kw7-FZ-B97"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY LIBRARY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-91-pyp">
-                                                <rect key="frame" x="0.0" y="17" width="109" height="24"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JG5-91-pyp">
+                                                <rect key="frame" x="0.0" y="17" width="0.0" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -165,6 +165,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="ljn-eo-sUe" id="z31-YL-ziQ"/>
+                        <outlet property="titleLabel" destination="JG5-91-pyp" id="drM-Sg-Ea3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="f8O-vV-Onv" userLabel="First Responder" sceneMemberID="firstResponder"/>

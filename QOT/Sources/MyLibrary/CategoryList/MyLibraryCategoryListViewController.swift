@@ -13,6 +13,7 @@ final class MyLibraryCategoryListViewController: UIViewController, ScreenZLevel2
     // MARK: - Properties
 
     var interactor: MyLibraryCategoryListInteractorInterface?
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
@@ -56,8 +57,12 @@ private extension MyLibraryCategoryListViewController {
 // MARK: - MyLibraryCategoryListViewControllerInterface
 
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
-    func update() {
+    func setupView() {
         ThemeView.level2.apply(view)
+        ThemeText.myLibraryTitle.apply(interactor?.titleText, to: titleLabel)
+    }
+
+    func update() {
         tableView.reloadData()
         self.removeLoadingSkeleton()
     }
