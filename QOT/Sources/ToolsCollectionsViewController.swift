@@ -17,6 +17,7 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var backArrow: UIButton!
     @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsCollectionsInteractorInterface?
     private enum CellType: Int, CaseIterable {
@@ -48,6 +49,9 @@ final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if self == self.navigationController?.viewControllers.first {
+            backArrow.isHidden = true
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {

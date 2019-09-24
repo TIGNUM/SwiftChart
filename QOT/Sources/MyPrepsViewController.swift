@@ -312,7 +312,7 @@ extension MyPrepsViewController {
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {
         let button = RoundedButton(title: title, target: self, action: action)
-        let item = UIBarButtonItem(customView: button)
+        let item = button.barButton
         item.tintColor = colorMode.tint
         return item
     }

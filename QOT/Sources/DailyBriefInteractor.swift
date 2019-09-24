@@ -408,24 +408,6 @@ extension DailyBriefInteractor {
         forCell.stopTimer()
     }
 
-    func forceReloadWeatherModel() {
-        let newWeatherModel: ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel> = ArraySection(model: .weather,
-                                                                                                              elements: self.createWeatherViewModel(weatherBucket: nil))
-        var newSectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-        for model in viewModelOldListModels {
-            if model.model == .weather {
-                (model.elements.first as? WeatherViewModel)?.locationPermissionStatus = .denied
-            }
-            newSectionDataList.append(model)
-        }
-
-        for var weatherModel in newSectionDataList where weatherModel.model == .weather {
-            weatherModel = newWeatherModel
-        }
-        let changeSet = StagedChangeset(source: viewModelOldListModels, target: newSectionDataList)
-        self.presenter.updateViewNew(changeSet)
-    }
-
     // MARK: Create buckets models
     /**
      * Method name: createImpactReadinessCell.
@@ -667,7 +649,7 @@ extension DailyBriefInteractor {
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
-        let yesterday = -1, today = 0, tomorrow = 1, twoDays = 2, threeDays = 3
+        let yesterday = -1, today = 0, tomorrow = 1, threeDays = 3
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
@@ -678,7 +660,7 @@ extension DailyBriefInteractor {
                 localPreparationList = myPeakperformance.preparations?.filter {
                     guard let date = $0.eventDate else { return false }
                     let remainingDays = beginingOfToday.days(to: date)
-                    return remainingDays == twoDays || remainingDays == threeDays
+                    return remainingDays == threeDays
                 } ?? [QDMUserPreparation]()
             } else if contentItem.searchTags.contains(obj: "TOMORROW") {
                 contentSentence = myPeakperformance.contentCollections?.filter {
