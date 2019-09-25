@@ -25,7 +25,7 @@ extension SolveResultsPresenter: SolveResultsPresenterInterface {
         viewController?.setupView()
     }
 
-    func present(_ results: SolveResults, isFollowUpActive: Bool) {
+    func present(_ results: SolveResult, isFollowUpActive: Bool) {
         viewController?.load(results, isFollowUpActive: isFollowUpActive)
     }
 }

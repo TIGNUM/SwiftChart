@@ -9,12 +9,12 @@
 import Foundation
 
 protocol SolveResultsViewControllerInterface: class {
-    func load(_ results: SolveResults, isFollowUpActive: Bool)
+    func load(_ resultViewModel: SolveResult, isFollowUpActive: Bool)
     func setupView()
 }
 
 protocol SolveResultsPresenterInterface {
-    func present(_ results: SolveResults, isFollowUpActive: Bool)
+    func present(_ resultViewModel: SolveResult, isFollowUpActive: Bool)
     func setupView()
 }
 

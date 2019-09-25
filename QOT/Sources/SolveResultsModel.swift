@@ -38,7 +38,7 @@ enum ButtonItem {
 
     var backgroundColor: UIColor {
         switch self {
-        case .cancel: return .clear
+        case .cancel: return .sand
         case .done: return .carbon
         case .save: return .carbon
         }
@@ -47,8 +47,8 @@ enum ButtonItem {
     var borderColor: UIColor {
         switch self {
         case .cancel: return .accent40
-        case .done: return .clear
-        case .save: return .clear
+        case .done: return .carbon
+        case .save: return .carbon
         }
     }
 }
@@ -79,9 +79,9 @@ enum ResultType {
     }
 }
 
-struct SolveResults {
+struct SolveResult {
     let type: ResultType
-    let items: [Item]
+    let items: [Item]    
 
     enum Item {
         case header(title: String, solution: String)

@@ -23,8 +23,8 @@ final class SolveResultsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         presenter?.setupView()
-        worker.results { [weak self] (solveResults, isFollowUpActive) in
-            self?.presenter?.present(solveResults, isFollowUpActive: isFollowUpActive)
+        worker.getResultViewModel { [weak self] (resultViewModel, isFollowUpActive) in
+            self?.presenter?.present(resultViewModel, isFollowUpActive: isFollowUpActive)
         }
     }
 }

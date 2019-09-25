@@ -17,30 +17,8 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
     var interactor: SolveResultsInteractorInterface?
     var showSaveButton: Bool = false
     private var rightBarItems: [UIBarButtonItem] = []
-    private var results: SolveResults?
+    private var resultViewModel: SolveResult?
     private var isFollowUpActive = true
-
-    private lazy var barButtonItemDone: UIBarButtonItem = {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
-                                    buttonWidth: .Done,
-                                    action: #selector(didTapDone),
-                                    backgroundColor: .carbon)
-    }()
-
-    private lazy var barButtonItemSaveAndContinue: UIBarButtonItem = {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue),
-                                    buttonWidth: .SaveAndContinue,
-                                    action: #selector(didTapDone),
-                                    backgroundColor: .carbon)
-    }()
-
-    private lazy var barButtonItemCancel: UIBarButtonItem = {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
-                                    buttonWidth: .Cancel,
-                                    action: #selector(didTapCancel),
-                                    backgroundColor: .clear,
-                                    borderColor: .accent40)
-    }()
 
     // MARK: - Init
     init(configure: Configurator<SolveResultsViewController>) {
@@ -79,6 +57,10 @@ private extension SolveResultsViewController {
         router?.dismiss()
     }
 
+    @objc func didTapSave() {
+        router?.dismiss()
+    }
+
     func handleDidTapDoneRecovery() {
         if showSaveButton == true {
             router?.presentFeedback()
@@ -92,11 +74,23 @@ private extension SolveResultsViewController {
         router?.dismiss()
     }
 
-    func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
-        if showSaveButton == true {
-            rightBarItems = [barButtonItemSaveAndContinue, barButtonItemCancel]
-        } else {
-            rightBarItems = [barButtonItemDone]
+    func setupBarButtonItems(resultType: ResultType) {
+        resultType.buttonItems.forEach { (buttonItem) in
+            rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
+                                                      buttonWidth: buttonItem.width,
+                                                      action: getSelector(buttonItem),
+                                                      backgroundColor: buttonItem.backgroundColor,
+                                                      borderColor: buttonItem.borderColor))
+        }
+
+        updateBottomNavigation([], rightBarItems)
+    }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+        switch buttonItem {
+        case .cancel: return #selector(didTapCancel)
+        case .done: return #selector(didTapDone)
+        case .save: return #selector(didTapSave)
         }
     }
 }
@@ -114,11 +108,11 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
     }
 
-    func load(_ results: SolveResults, isFollowUpActive: Bool) {
-        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
+    func load(_ resultViewModel: SolveResult, isFollowUpActive: Bool) {
         self.isFollowUpActive = isFollowUpActive
-        self.results = results
+        self.resultViewModel = resultViewModel
         tableView.reloadData()
+        setupBarButtonItems(resultType: resultViewModel.type)
     }
 }
 
@@ -126,7 +120,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
 extension SolveResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectRow(at: indexPath)
-        switch results?.items[indexPath.row] {
+        switch resultViewModel?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
             router?.openStrategy(with: id)
@@ -141,11 +135,11 @@ extension SolveResultsViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 extension SolveResultsViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return results?.items.count ?? 0
+        return resultViewModel?.items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch results?.items[indexPath.row] {
+        switch resultViewModel?.items[indexPath.row] {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
@@ -223,9 +217,5 @@ extension SolveResultsViewController {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rightBarItems
-    }
-
-    override func showTransitionBackButton() -> Bool {
-        return false
     }
 }
