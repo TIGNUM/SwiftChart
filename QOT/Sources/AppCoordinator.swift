@@ -172,15 +172,17 @@ final class AppCoordinator {
 private extension AppCoordinator {
 
     func showSubscriptionReminderIfNeeded() {
-//        guard let user = services?.userService.user() else { return }
-//        let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
-//        if user.subscriptionExpired == true {
-//            windowManager.showSubscriptionReminder(isExpired: true)
-//        } else if user.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
-//            UserDefault.subscriptionInfoShow.setObject(Date())
-//            windowManager.showSubscriptionReminder(isExpired: false)
-//        }
-        // CHANGE ME
+        UserService.main.getUserData({ (userData) in
+            let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
+            if userData?.subscriptionExpired == true {
+                // CHANGE ME
+//                windowManager.showSubscriptionReminder(isExpired: true)
+            } else if userData?.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
+                UserDefault.subscriptionInfoShow.setObject(Date())
+                // CHANGE ME
+//                windowManager.showSubscriptionReminder(isExpired: false)
+            }
+        })
     }
 }
 
@@ -354,6 +356,7 @@ extension AppCoordinator {
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             switch syncResult.dataType {
             case .USER:
+                guard syncResult.syncRequestType == .DOWN_SYNC else { break }
                 UserService.main.getUserData({ (user) in
                     guard var user = user else { return }
                     if user.timeZone != TimeZone.hoursFromGMT {
@@ -363,6 +366,7 @@ extension AppCoordinator {
                         })
                     }
                 })
+                self.showSubscriptionReminderIfNeeded()
             case .MY_TO_BE_VISION:
                 guard syncResult.hasUpdatedContent else { return }
                 UserService.main.getMyToBeVision({ (vision, initiated, error) in
