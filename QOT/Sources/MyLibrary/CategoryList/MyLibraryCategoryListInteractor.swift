@@ -34,9 +34,16 @@ final class MyLibraryCategoryListInteractor {
                                                name: .didUpdateMyLibraryData, object: nil)
     }
 
+    // MARK: - Texts
+
+    var titleText: String {
+        return worker.titleText
+    }
+
     // MARK: - Interactor
 
     func viewDidLoad() {
+        presenter.setupView()
         load()
     }
 
