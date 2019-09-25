@@ -422,7 +422,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .headerText: articleTopNavBar.title = header?.title 
+        case .headerText: articleTopNavBar.title = header?.title
         default: return
         }
     }
