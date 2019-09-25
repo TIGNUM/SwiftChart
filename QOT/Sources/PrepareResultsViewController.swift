@@ -264,9 +264,9 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .intentionContentItem(_, _, let key):
             removeBottomNavigation()
             interactor?.presentEditIntentions(key)
-        case .benefitContentItem(_, _, let benefits, let questionID):
+        case .benefitContentItem(_, _, let benefits, _):
             removeBottomNavigation()
-            interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
+            interactor?.presentEditBenefits(benefits: benefits)
         default:
             return
         }
@@ -275,6 +275,7 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
     func setupBarButtonItems(resultType: ResultType) {
+        rightBarItems.removeAll()
         resultType.buttonItems.forEach { (buttonItem) in
             rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
                                                       buttonWidth: buttonItem.width,

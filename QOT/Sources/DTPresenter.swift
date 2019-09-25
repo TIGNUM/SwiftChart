@@ -84,6 +84,7 @@ class DTPresenter: DTPresenterInterface {
                            answers: answers,
                            events: events,
                            tbvText: presentationModel.tbv?.text,
+                           userInputText: presentationModel.userInputText,
                            hasTypingAnimation: hasTypingAnimation(answerType: question.answerType, answers: answers),
                            typingAnimationDuration: question.duration,
                            previousButtonIsHidden: previousIsHidden(questionKey: question.key),
