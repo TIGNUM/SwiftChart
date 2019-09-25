@@ -24,7 +24,7 @@ enum UserDefault: String {
     case finishedAudioItems = "qot.userdefault.key.finished.audio.items.dictionary"
     case myDataSelectedItems = "qot.userdefault.key.my.data.selected.items.dictionary"
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
-    case showGuideTrackBucket = "qot.userdefault.key.hideGuideTrackBuckets"
+    case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
 }
 
 extension UserDefault {
@@ -38,8 +38,7 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems,
-                .showGuideTrackBucket]
+                .myDataSelectedItems]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -55,8 +54,7 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems,
-                .showGuideTrackBucket]
+                .myDataSelectedItems]
     }
 
     var boolValue: Bool {
