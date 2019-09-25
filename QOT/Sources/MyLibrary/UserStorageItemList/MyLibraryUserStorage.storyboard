@@ -226,7 +226,7 @@
                                                         <constraint firstAttribute="height" constant="72" id="2Tm-Cn-YT1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCf-3O-qAV">
+                                                <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vCf-3O-qAV">
                                                     <rect key="frame" x="323.5" y="40" width="40" height="40"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="vCf-3O-qAV" secondAttribute="height" id="xsi-8Y-Zsj"/>
