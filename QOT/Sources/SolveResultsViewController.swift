@@ -194,7 +194,7 @@ extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
 extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
-        isFollowUpActive = isOn        
+        isFollowUpActive = isOn
     }
 }
 
