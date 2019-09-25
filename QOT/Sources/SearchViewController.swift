@@ -236,6 +236,10 @@ extension SearchViewController: UISearchBarDelegate {
     func updateSearchResults() {
         interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
     }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
