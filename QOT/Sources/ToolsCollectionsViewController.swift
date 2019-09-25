@@ -9,17 +9,13 @@
 import UIKit
 import qot_dal
 
-protocol ToolsCollectionsViewControllerDelegate: class {
-    func isPlaying() -> Bool
-}
-
-final class ToolsCollectionsViewController: BaseViewController, ScreenZLevel3 {
+final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
     @IBOutlet private weak var backArrow: UIButton!
-    @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsCollectionsInteractorInterface?
+    private var lastAudioIndexPath: IndexPath?
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -117,10 +113,12 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
     }
 
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? ToolsCollectionsAudioTableViewCell {
-            cell.delegate = self
+        var array: [IndexPath] = [indexPath]
+        if let oldIndexPath = lastAudioIndexPath {
+            array.append(oldIndexPath)
         }
-        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        lastAudioIndexPath = indexPath
+        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
     }
 }
 
@@ -183,9 +181,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           delegate: self,
-                           itemDelegate: nil)
-            cell.delegate = self
+                           delegate: self)
             cell.addTopLine(for: indexPath.row)
             return cell
         } else {
@@ -197,8 +193,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           delegate: self,
-                           itemDelegate: nil)
+                           delegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
@@ -206,8 +201,8 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-       let tool = interactor?.tools[indexPath.item]
+        didSelectRow(at: indexPath)
+        let tool = interactor?.tools[indexPath.item]
         if tool?.isCollection == true {
             trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
@@ -245,9 +240,9 @@ private extension ToolsCollectionsViewController {
     }
 }
 
-extension ToolsCollectionsViewController: ToolsCollectionsViewControllerDelegate {
+extension ToolsCollectionsViewController: IsPlayingDelegate {
 
-    func isPlaying() -> Bool {
-        return interactor?.isPlaying ?? false
+    func isPlaying(remoteID: Int?) -> Bool {
+        return interactor?.isPlaying(remoteID: remoteID) ?? false
     }
 }

@@ -15,20 +15,20 @@ private enum ToolType: String {
     case pdf
 }
 
-protocol ToolsItemsViewControllerDelegate: class {
-    func isPlaying() -> Bool
+protocol IsPlayingDelegate: class {
+    func isPlaying(remoteID: Int?) -> Bool
 }
 
-final class ToolsItemsViewController: BaseViewController, ScreenZLevel3 {
+final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsItemsInteractorInterface?
     @IBOutlet weak var backButton: UIButton!
     @IBAction func backButton(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    private var lastAudioIndexPath: IndexPath?
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -115,10 +115,12 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     }
 
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? ToolsCollectionsAudioTableViewCell {
-            cell.itemDelegate = self
+        var array: [IndexPath] = [indexPath]
+        if let oldIndexPath = lastAudioIndexPath {
+            array.append(oldIndexPath)
         }
-        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        lastAudioIndexPath = indexPath
+        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
     }
 }
 
@@ -164,10 +166,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           delegate: nil,
-                           itemDelegate: self)
+                           delegate: self)
             cell.addTopLine(for: indexPath.row)
-            cell.itemDelegate = self
             return cell
         default:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -178,8 +178,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                            mediaURL: tool?.mediaURL,
                            duration: tool?.duration ?? 0,
                            remoteID: tool?.remoteID ?? 0,
-                           delegate: nil,
-                           itemDelegate: self)
+                           delegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
             return cell
@@ -187,7 +186,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        didSelectRow(at: indexPath)
         let tool = interactor?.tools[indexPath.item]
         trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT_ITEM, action: .TAP)
         if let contentItemId = tool?.remoteID,
@@ -207,9 +206,9 @@ extension ToolsItemsViewController {
     }
 }
 
-extension ToolsItemsViewController: ToolsItemsViewControllerDelegate {
+extension ToolsItemsViewController: IsPlayingDelegate {
 
-    func isPlaying() -> Bool {
-        return interactor?.isPlaying ?? false
+    func isPlaying(remoteID: Int?) -> Bool {
+        return interactor?.isPlaying(remoteID: remoteID) ?? false
     }
 }

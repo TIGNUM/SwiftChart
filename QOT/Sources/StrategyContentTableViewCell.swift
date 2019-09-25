@@ -23,7 +23,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var remoteID: Int = 0
     private var duration: Double = 0
     private var categoryTitle = ""
-    weak var delegate: StrategyListViewController?
+    private weak var delegate: IsPlayingDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,14 +34,19 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
+        checkIfPlaying()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
+        checkIfPlaying()
+    }
+
+    private func checkIfPlaying() {
+        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
     }
 
     func configure(categoryTitle: String,
@@ -49,21 +54,20 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
                    timeToWatch: String,
                    mediaURL: URL?,
                    duration: Double,
-                   mediaItemId: Int) {
+                   mediaItemId: Int,
+                   delegate: IsPlayingDelegate?) {
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
         self.remoteID = mediaItemId
         self.duration = duration
-
+        self.delegate = delegate
         ThemeText.articleRelatedTitleInStrategy.apply(title, to: titleLabel)
         ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         showDuration(duration)
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.sprints.apply(audioView)
-        }
-         setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
+        checkIfPlaying()
+        setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
     }
 }
 
