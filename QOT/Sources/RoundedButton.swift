@@ -9,6 +9,7 @@ import UIKit
 
 class RoundedButton: AnimatedButton, ButtonThemeable {
 
+    // MARK: - Properties
     // Default values are for backwards compatibility until all instances get "Themed"
     var titleAttributes: [NSAttributedStringKey: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     var normal: ButtonTheme? = ButtonTheme(foreground: .accent, background: nil, border: .accent40)
@@ -16,20 +17,10 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     var select: ButtonTheme? = nil
     var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
 
-    static func barButton(title: String, target: Any, action: Selector) -> UIBarButtonItem {
-        let button = RoundedButton(title: title, target: target, action: action)
-        button.shouldAnimate = false
-        return UIBarButtonItem(customView: button)
-    }
-
-    var barButton: UIBarButtonItem {
-        shouldAnimate = false
-        return UIBarButtonItem(customView: self)
-    }
-
     /// Closure used in specific cases (see `QOTAlert` implementation)
     var handler: ((UIButton) -> Void)?
 
+    // MARK: - Observers for UI appearance
     override var isEnabled: Bool {
         didSet {
             if let normal = normal?.foregroundColor, let disabled = disabled?.foregroundColor {
@@ -63,6 +54,7 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
         }
     }
 
+    // MARK: - Initializers and overrides
     init(title: String?, target: Any, action: Selector) {
         super.init(frame: .zero)
         setTitle(title, for: .normal)
@@ -74,6 +66,21 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
         super.init(coder: aDecoder)
         setup()
     }
+
+    override func didMoveToSuperview() {
+        super.didMoveToSuperview()
+        let expectedSize = self.sizeThatFits(CGSize(width: 1000, height: 1000))
+        self.frame = CGRect(origin: self.frame.origin, size: expectedSize)
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        layer.cornerRadius = fmin(self.frame.size.width, self.frame.size.height)/2.0
+    }
+}
+
+// MARK: - Public methods
+extension RoundedButton {
 
     func setTitle(_ title: String?) {
         setTitle(title, for: .normal)
@@ -113,8 +120,21 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
             setTheme(disabled, for: .disabled, with: title)
         }
     }
+}
 
-    private func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
+// MARK: - Bar button helpers
+extension RoundedButton {
+
+    var barButton: UIBarButtonItem {
+        return UIBarButtonItem(customView: embeddedInView(self))
+    }
+}
+
+// MARK: - Private methods
+
+private extension RoundedButton {
+
+    func setTheme(_ theme: ButtonTheme, for state: UIControl.State, with title: NSAttributedString?) {
         var attributes: [NSAttributedStringKey: Any] = titleAttributes ?? [NSAttributedStringKey: Any]()
         attributes[.foregroundColor] = theme.foregroundColor
         let attributedTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
@@ -125,7 +145,7 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
         }
     }
 
-    private func setup() {
+    func setup() {
         clipsToBounds = true
         layer.borderWidth = 1.0
         imageView?.contentMode = .center
@@ -138,14 +158,9 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
         }
     }
 
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        let expectedSize = self.sizeThatFits(CGSize(width: 1000, height: 1000))
-        self.frame = CGRect(origin: self.frame.origin, size: expectedSize)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        layer.cornerRadius = fmin(self.frame.size.width, self.frame.size.height)/2.0
+    func embeddedInView(_ button: RoundedButton) -> UIView {
+        let view = UIView()
+        view.fill(subview: button)
+        return view
     }
 }

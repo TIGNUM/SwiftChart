@@ -22,8 +22,8 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     private var bottomConstraintInitialValue: CGFloat = 0
     var interactor: RegistrationAgeInteractorInterface?
 
-    lazy private var saveButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: interactor?.createButtonTitle ?? "",
+    lazy private var saveButton: RoundedButton = {
+        return RoundedButton(title: interactor?.createButtonTitle ?? "",
                                        target: self,
                                        action: #selector(didTapCreateAccountButton))
     }()
@@ -36,7 +36,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         saveButton.isEnabled = false
-        toolbar.items = [space, saveButton]
+        toolbar.items = [space, saveButton.barButton]
         return toolbar
     }()
 
@@ -63,9 +63,8 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         return picker
     }()
 
-    private lazy var createAccountButton: UIBarButtonItem = {
-        return RoundedButton.barButton(
-            title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
+    private lazy var createAccountButton: RoundedButton = {
+        return RoundedButton(title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
     }()
 
     // MARK: - Init
@@ -97,7 +96,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         createAccountButton.isEnabled = !(ageInputField.text?.isEmpty ?? true)
-        return [createAccountButton]
+        return [createAccountButton.barButton]
     }
 }
 
