@@ -12,7 +12,7 @@ protocol ResultsFeedbackDismissDelegate: class {
     func dismissResultPage()
 }
 
-final class ResultsFeedbackViewController: UIViewController, ScreenZLevel3 {
+final class ResultsFeedbackViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var textLabel: UILabel!

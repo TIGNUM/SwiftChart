@@ -13,7 +13,7 @@ protocol PopUpCopyrightViewControllerProtocol: class {
     func cancelAction()
 }
 
-final class PopUpCopyrightViewController: UIViewController, ScreenZLevelOverlay {
+final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverlay {
 
     struct Config {
         let description: String

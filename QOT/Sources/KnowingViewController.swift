@@ -52,7 +52,7 @@ final class KnowingViewController: HomeViewController {
         if let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? StrategyListViewController {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: sender as? Int)
         } else if
-            let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
+            let controller = segue.destination as? ArticleViewController,
             let selectedID = sender as? Int {
                 ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
         }

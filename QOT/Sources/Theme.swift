@@ -16,7 +16,7 @@ struct ThemeAppearance {
 
     static func setNavigation(bar: UINavigationBar?, theme: ThemeView) {
         bar?.barTintColor = theme.color
-        bar?.isTranslucent = false
+        bar?.isTranslucent = true
     }
 }
 
@@ -213,6 +213,7 @@ enum ThemeButton {
     case accent40
     case audioButton
     case closeButton(ThemeColorMode)
+    case clear
 
     var defaultHeight: CGFloat {
         get {
@@ -239,6 +240,9 @@ enum ThemeButton {
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = colorSelected
             colorBorder = .accent40
+        case .clear:
+            colorSelected = .clear
+            colorBorder = .clear
         }
 
         if let color = colorBorder {

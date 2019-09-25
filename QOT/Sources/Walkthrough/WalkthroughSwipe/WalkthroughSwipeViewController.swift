@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WalkthroughSwipeViewController: UIViewController, ScreenZLevelOverlay {
+final class WalkthroughSwipeViewController: BaseViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     @IBOutlet private weak var leftArrows: WalkthroughAnimatedArrows!

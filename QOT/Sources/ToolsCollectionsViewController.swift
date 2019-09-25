@@ -13,7 +13,7 @@ protocol ToolsCollectionsViewControllerDelegate: class {
     func isPlaying() -> Bool
 }
 
-final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
+final class ToolsCollectionsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

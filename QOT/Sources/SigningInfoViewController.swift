@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 
-final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
+final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     let mediaName = "LoginVideo"

@@ -1014,6 +1014,8 @@
 		B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */; };
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
 		BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */; };
+		BB15775A233A0E0500202978 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB157759233A0E0500202978 /* BaseViewController.swift */; };
+		BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB15775B233A1D1D00202978 /* ArticleTopNavBar.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
 		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
 		BB5E76BB230C29A10054AF17 /* SkeletonDailyBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B9230C29A10054AF17 /* SkeletonDailyBrief.swift */; };
@@ -2333,6 +2335,8 @@
 		B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+ShareExtension.swift"; sourceTree = "<group>"; };
 		B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkImporter.swift; sourceTree = "<group>"; };
 		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
+		BB157759233A0E0500202978 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		BB15775B233A1D1D00202978 /* ArticleTopNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTopNavBar.swift; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
 		BB5E76B9230C29A10054AF17 /* SkeletonDailyBrief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonDailyBrief.swift; sourceTree = "<group>"; };
@@ -2688,6 +2692,7 @@
 				36083822225F3ED000664B9B /* ArticleViewController.swift */,
 				3608381F225F3ED000664B9B /* ArticleWorker.swift */,
 				3681A5222260C99700E3F4B8 /* ArticleHeaderView.xib */,
+				BB15775B233A1D1D00202978 /* ArticleTopNavBar.swift */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -3128,6 +3133,7 @@
 			isa = PBXGroup;
 			children = (
 				367BB013223956A700282AB6 /* Main.storyboard */,
+				BB157759233A0E0500202978 /* BaseViewController.swift */,
 				3608381D225F3E9E00664B9B /* Article */,
 				36B5BD152314295E00439A64 /* AskPermission */,
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
@@ -6675,6 +6681,7 @@
 				36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */,
 				36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */,
 				759AB42322C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.swift in Sources */,
+				BB15775A233A0E0500202978 /* BaseViewController.swift in Sources */,
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				8D110D08230FDA41000181BA /* WalkthroughCoachConfigurator.swift in Sources */,
@@ -6905,6 +6912,7 @@
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				DBA3921B23247B2D0017E7F6 /* QuestionaireCellIndicator.swift in Sources */,
 				75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */,
+				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,
 				75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */,
 				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
