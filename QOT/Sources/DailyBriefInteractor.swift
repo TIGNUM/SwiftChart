@@ -143,7 +143,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
     }
-    
+
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true
