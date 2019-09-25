@@ -82,10 +82,9 @@ private extension MyLibraryUserStorageViewController {
         bottomNavigationItems.leftBarButtonItems = nil
         bottomNavigationItems.rightBarButtonItems = buttons.map {
             let button = RoundedButton(title: $0.title, target: $0.target, action: $0.action)
+            button.isEnabled = $0.isEnabled
             ThemableButton.myLibrary.apply(button, title: $0.title)
-            let barButton = button.barButton
-            barButton.isEnabled = $0.isEnabled
-            return barButton
+            return button.barButton
         }
         refreshBottomNavigationItems()
     }

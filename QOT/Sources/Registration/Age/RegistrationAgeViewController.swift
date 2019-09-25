@@ -63,9 +63,8 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         return picker
     }()
 
-    private lazy var createAccountButton: UIBarButtonItem = {
-        return RoundedButton.barButton(
-            title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
+    private lazy var createAccountButton: RoundedButton = {
+        return RoundedButton(title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
     }()
 
     // MARK: - Init
@@ -97,7 +96,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         createAccountButton.isEnabled = !(ageInputField.text?.isEmpty ?? true)
-        return [createAccountButton]
+        return [createAccountButton.barButton]
     }
 }
 
