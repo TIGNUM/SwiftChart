@@ -10,6 +10,7 @@ import Foundation
 import qot_dal
 
 protocol MyLibraryUserStorageViewControllerInterface: UIViewController {
+    func setupView()
     func update()
     func reloadData()
     func deleteRow(at indexPath: IndexPath)
@@ -17,6 +18,7 @@ protocol MyLibraryUserStorageViewControllerInterface: UIViewController {
 }
 
 protocol MyLibraryUserStoragePresenterInterface {
+    func setupView()
     func present()
     func presentData()
     func deleteRow(at index: Int)
