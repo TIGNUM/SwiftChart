@@ -264,9 +264,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         switch bucketItem?.domainModel?.bucketName {
         case .LATEST_WHATS_HOT?:
              didSelectRow(at: indexPath)
-             interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in
-                self?.interactor?.presentWhatsHotArticle(selectedID: model?.remoteID ?? 0)
-             })
+             guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
+             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticleId)
         default:
             break
         }
@@ -695,12 +694,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
         interactor?.saveUpdatedDailyCheckInSleepTarget(value)
         tableView.reloadData()
-    }
-
-    @objc func checkAction(sender: UITapGestureRecognizer) {
-        interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in
-            self?.interactor?.presentWhatsHotArticle(selectedID: model?.remoteID ?? 0)
-        })
     }
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {

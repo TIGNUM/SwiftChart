@@ -532,18 +532,18 @@
                 <outletCollection property="bars" destination="Z96-3n-dWg" collectionClass="NSMutableArray" id="GBM-96-Th2"/>
                 <outletCollection property="heights" destination="d3k-Zc-a6C" collectionClass="NSMutableArray" id="HI6-sG-GMC"/>
                 <outletCollection property="labels" destination="mp2-8c-JcU" collectionClass="NSMutableArray" id="KPB-oo-vTU"/>
-                <outletCollection property="bars" destination="KiQ-NN-dwW" collectionClass="NSMutableArray" id="8F4-Kv-5HG"/>
-                <outletCollection property="heights" destination="2OS-NI-3il" collectionClass="NSMutableArray" id="H5G-f3-wTv"/>
-                <outletCollection property="labels" destination="ZAk-uW-itE" collectionClass="NSMutableArray" id="rpx-Q4-Poc"/>
-                <outletCollection property="bars" destination="rsg-J3-RCa" collectionClass="NSMutableArray" id="Pw3-3g-pG3"/>
-                <outletCollection property="heights" destination="BoO-44-lwh" collectionClass="NSMutableArray" id="OmW-5I-rbh"/>
-                <outletCollection property="labels" destination="Eew-T3-kay" collectionClass="NSMutableArray" id="tfA-Ot-MM1"/>
-                <outletCollection property="bars" destination="zBR-G8-pbF" collectionClass="NSMutableArray" id="EK9-iR-3hM"/>
-                <outletCollection property="heights" destination="ziu-Bq-YL7" collectionClass="NSMutableArray" id="d1J-Cq-sSC"/>
-                <outletCollection property="labels" destination="xYE-L4-RHb" collectionClass="NSMutableArray" id="vJa-ma-hDZ"/>
-                <outletCollection property="bars" destination="FZX-Pa-tS4" collectionClass="NSMutableArray" id="UUb-Ip-EUj"/>
-                <outletCollection property="heights" destination="BAJ-2W-1u8" collectionClass="NSMutableArray" id="hCh-wk-SDB"/>
-                <outletCollection property="labels" destination="3hz-bp-Q4O" collectionClass="NSMutableArray" id="dL1-9i-tVi"/>
+                <outletCollection property="bars" destination="rsg-J3-RCa" collectionClass="NSMutableArray" id="O6I-DP-wqB"/>
+                <outletCollection property="heights" destination="BoO-44-lwh" collectionClass="NSMutableArray" id="EMv-Ma-wcW"/>
+                <outletCollection property="labels" destination="Eew-T3-kay" collectionClass="NSMutableArray" id="46k-Dw-GUf"/>
+                <outletCollection property="labels" destination="ZAk-uW-itE" collectionClass="NSMutableArray" id="Uwa-Ya-nRm"/>
+                <outletCollection property="heights" destination="2OS-NI-3il" collectionClass="NSMutableArray" id="mye-4B-e7q"/>
+                <outletCollection property="bars" destination="KiQ-NN-dwW" collectionClass="NSMutableArray" id="Y6X-bH-NSg"/>
+                <outletCollection property="labels" destination="xYE-L4-RHb" collectionClass="NSMutableArray" id="NXK-0p-Hgt"/>
+                <outletCollection property="bars" destination="zBR-G8-pbF" collectionClass="NSMutableArray" id="rsW-P8-bpR"/>
+                <outletCollection property="heights" destination="ziu-Bq-YL7" collectionClass="NSMutableArray" id="lAF-5i-K4o"/>
+                <outletCollection property="labels" destination="3hz-bp-Q4O" collectionClass="NSMutableArray" id="Hh3-qs-0GH"/>
+                <outletCollection property="bars" destination="FZX-Pa-tS4" collectionClass="NSMutableArray" id="NVx-3v-gYJ"/>
+                <outletCollection property="heights" destination="BAJ-2W-1u8" collectionClass="NSMutableArray" id="aRe-7R-Ax0"/>
             </connections>
             <point key="canvasLocation" x="-2040.5797101449277" y="398.4375"/>
         </view>

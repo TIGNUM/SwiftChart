@@ -36,6 +36,8 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     }
 
     @IBAction func checkIt(_ sender: Any) {
+        ThemeView.audioPlaying.apply(button)
+        button.layer.borderWidth = 0
         if let solve = solve {
             delegate?.showSolveResults(solve: solve)
         }
