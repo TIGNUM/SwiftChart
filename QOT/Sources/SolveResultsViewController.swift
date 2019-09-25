@@ -45,7 +45,7 @@ private extension SolveResultsViewController {
     @objc func didTapDone() {
         switch interactor?.resultType {
         case .recoveryDecisionTree?,
-             .recoveryMyPlans?: handleDidTapDoneRecovery()
+             .recoveryMyPlans?: router?.dismiss()
         case .solveDailyBrief?,
              .solveDecisionTree?: handleDidTapDoneSolve()
         default: break
@@ -57,7 +57,7 @@ private extension SolveResultsViewController {
     }
 
     @objc func didTapSave() {
-        router?.dismiss()
+        router?.presentFeedback()
     }
 
     func handleDidTapDoneRecovery() {
@@ -69,8 +69,44 @@ private extension SolveResultsViewController {
     }
 
     func handleDidTapDoneSolve() {
+        switch (resultViewModel?.type, isFollowUpActive) {
+        case (.solveDecisionTree?, true): saveSolveAndDismiss()
+        case (.solveDecisionTree?, false): showAlert()
+        case (.solveDailyBrief?, false): showAlert()
+        case (.solveDailyBrief?, true): router?.dismiss()
+        default: return
+        }
+    }
+
+    func saveSolveAndDismiss() {
         interactor?.save(solveFollowUp: isFollowUpActive)
         router?.dismiss()
+    }
+
+    func updateSolveAndDismiss() {
+        interactor?.save(solveFollowUp: isFollowUpActive)
+        router?.dismiss()
+    }
+
+    func showAlert() {
+        let activate = QOTAlertAction(title: R.string.localized.solveLeaveAlertActivate()) { [weak self] _ in
+            self?.isFollowUpActive = true
+            if self?.resultViewModel?.type == .solveDecisionTree {
+                self?.saveSolveAndDismiss()
+            } else {
+                self?.router?.dismiss()
+            }
+        }
+        let leave = QOTAlertAction(title: R.string.localized.solveLeaveAlertContinueButton()) { [weak self] _ in
+            if self?.resultViewModel?.type == .solveDecisionTree {
+                self?.router?.dismiss()
+            } else {
+                self?.updateSolveAndDismiss()
+            }
+        }
+        QOTAlert.show(title: R.string.localized.solveLeaveAlertTitle(),
+                      message: R.string.localized.solveLeaveAlertMessage(),
+                      bottomItems: [activate, leave])
     }
 
     func setupBarButtonItems(resultType: ResultType) {
@@ -81,7 +117,6 @@ private extension SolveResultsViewController {
                                                       backgroundColor: buttonItem.backgroundColor,
                                                       borderColor: buttonItem.borderColor))
         }
-
         updateBottomNavigation([], rightBarItems)
     }
 

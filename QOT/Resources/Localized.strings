@@ -488,6 +488,7 @@
 "Solve.LeaveAlert.Title" = "SOLVE FOLLOW-UP";
 "Solve.LeaveAlert.Message" = "We want to help you reflect on what works for you. If you continue, you will not receive coach follow-up.";
 "solve.LeaveAlert.ContinueButton" = "Continue";
+"solve.LeaveAlert.Activate" = "Activate";
 
 "MyLibrary.Items.Button.Add" = "Add";
 "MyLibrary.Items.Title.All" = "ALL";

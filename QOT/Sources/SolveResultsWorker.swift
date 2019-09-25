@@ -34,23 +34,6 @@ final class SolveResultsWorker {
         self.solve = solve
         self.resultType = resultType
     }
-
-    // Texts
-    lazy var leaveAlertTitle: String = {
-        return R.string.localized.solveLeaveAlertTitle()
-    }()
-
-    lazy var leaveAlertMessage: String = {
-        return R.string.localized.solveLeaveAlertMessage()
-    }()
-
-    lazy var leaveAlertLeaveButton: String = {
-        return R.string.localized.solveLeaveAlertContinueButton()
-    }()
-
-    lazy var leaveAlertStayButton: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
-    }()
 }
 
 // MARK: - Public
@@ -69,6 +52,7 @@ extension SolveResultsWorker {
              .recoveryMyPlans: createRecoveryItems(completion)
         case .solveDecisionTree,
              .solveDailyBrief: createSolveItems(completion)
+        default: break
         }
     }
 
@@ -91,7 +75,8 @@ extension SolveResultsWorker {
                                              strategyIds: relatedStragyIds,
                                              followUp: true) { (_, error) in
                                                 if let error = error {
-                                                    log("Error createSolve: \(error.localizedDescription)", level: .error)
+                                                    log("Error createSolve: \(error.localizedDescription)",
+                                                        level: .error)
                                                 }
                                                 completion()
                 }
@@ -125,6 +110,8 @@ private extension SolveResultsWorker {
         case .solveDecisionTree,
              .solveDailyBrief:
             header = R.string.localized.headerTitleStrategies()
+        default:
+            header = ""
         }
         relatedStrategies(contentId) { (related) in
             var relatedStrategyItems: [SolveResult.Item] = []
@@ -249,14 +236,14 @@ private extension SolveResultsWorker {
 
     func fatigueSymptom(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? 0
-        qot_dal.ContentService.main.getContentItemById(contentItemId) { (contentItem) in
+        ContentService.main.getContentItemById(contentItemId) { (contentItem) in
             completion(.fatigue(sympton: contentItem?.valueText ?? ""))
         }
     }
 
     func cause(_ completion: @escaping (SolveResult.Item) -> Void) {
         let contentId = recovery?.causeAnwser?.targetId(.content) ?? 0
-        qot_dal.ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
+        ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
             let cause = self?.recovery?.causeAnwser?.subtitle ?? ""
             let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? ""
             completion(.cause(cause: cause, explanation: fatigueCauseExplanation))
