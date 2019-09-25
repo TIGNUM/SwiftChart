@@ -40,12 +40,8 @@ final class MySprintsListInteractor {
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
     private lazy var removeButtons: [UIBarButtonItem] = {
-        return [RoundedButton.barButton(title: worker.cancelTitle,
-                                        target: self,
-                                        action: #selector(cancelRemovingTapped)),
-                RoundedButton.barButton(title: worker.continueTitle,
-                                        target: self,
-                                        action: #selector(continueRemovingTapped))]
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)).barButton,
+                RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)).barButton]
     }()
 
     private lazy var reorderingButtons: [ButtonParameters] = {

@@ -22,11 +22,8 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     private let errorBorderColor = UIColor.redOrange.cgColor
     private let defaultBorderColor = UIColor.sand40.cgColor
 
-    private lazy var buttonNext: UIBarButtonItem = {
-        let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
-                                             target: self,
-                                             action: #selector(didTapNextButton))
-        return button
+    private lazy var buttonNext: RoundedButton = {
+        return RoundedButton(title: interactor?.nextButtonTitle ?? "", target: self, action: #selector(didTapNextButton))
     }()
 
     var interactor: RegistrationNamesInteractorInterface?
@@ -55,7 +52,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         buttonNext.isEnabled = !(firstNameField.text?.isEmpty ?? true)
-        return [buttonNext]
+        return [buttonNext.barButton]
     }
 
     override func didTapBackButton() {

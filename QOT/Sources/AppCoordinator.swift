@@ -139,15 +139,6 @@ final class AppCoordinator {
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)
         add3DTouchShortcuts()
-        // Show coach marks on first launch (of v3.0 app)
-        let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
-        if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-            showTrackChoice()
-            return
-        }
-
-        // set invalid bucket name with GUIDE_TRACK if user selected fast track
-        // DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
 
         guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let naviController = R.storyboard.bottomNavigation().instantiateInitialViewController() as? UINavigationController,
@@ -156,9 +147,15 @@ final class AppCoordinator {
         }
         self.windowManager.show(naviController, animated: true, completion: nil)
         DispatchQueue.main.async {
-            baseRootViewController.setContent(viewController: coachCollectionViewController)
-            self.canProcessRemoteNotifications = true
-            self.canProcessLocalNotifications = true
+            // Show coach marks on first launch (of v3.0 app)
+            let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+            if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
+                self.showTrackChoice()
+            } else {
+                baseRootViewController.setContent(viewController: coachCollectionViewController)
+                self.canProcessRemoteNotifications = true
+                self.canProcessLocalNotifications = true
+            }
         }
     }
 

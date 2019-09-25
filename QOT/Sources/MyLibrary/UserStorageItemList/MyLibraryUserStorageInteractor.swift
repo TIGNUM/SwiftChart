@@ -35,20 +35,12 @@ final class MyLibraryUserStorageInteractor {
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
     private lazy var removeButtons: [UIBarButtonItem] = {
-        return [RoundedButton.barButton(title: worker.cancelTitle,
-                                        target: self,
-                                        action: #selector(cancelRemovingTapped)),
-                RoundedButton.barButton(title: worker.continueTitle,
-                                        target: self,
-                                        action: #selector(continueRemovingTapped))]
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)).barButton,
+                RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)).barButton]
     }()
     private lazy var cellularDownloadButtons: [UIBarButtonItem] = {
-        return [RoundedButton.barButton(title: worker.cancelTitle,
-                                        target: self,
-                                        action: #selector(cancelCellularDownload)),
-                RoundedButton.barButton(title: worker.continueTitle,
-                                        target: self,
-                                        action: #selector(continueCellularDownload))]
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelCellularDownload)).barButton,
+                RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueCellularDownload)).barButton]
     }()
 
     // MARK: - Init
