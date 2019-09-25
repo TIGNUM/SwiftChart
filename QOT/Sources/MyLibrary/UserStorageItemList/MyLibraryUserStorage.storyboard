@@ -54,7 +54,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </label>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                                 <rect key="frame" x="326" y="9" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="32d-1n-7OU"/>
@@ -73,8 +73,8 @@
                                                     <action selector="didTapEditButtonWithSender:" destination="hQZ-Se-pf1" eventType="touchUpInside" id="zlo-zL-suJ"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-ks-QwL" userLabel="Add Button" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
-                                                <rect key="frame" x="272" y="14" width="30" height="30"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hbe-ks-QwL" userLabel="Add Button" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                                <rect key="frame" x="269" y="12" width="33" height="34"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="vht-mQ-hqz"/>
                                                 </constraints>

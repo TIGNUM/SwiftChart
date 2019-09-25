@@ -19,7 +19,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: AnimatedButton!
     @IBOutlet private weak var addButton: RoundedButton!
 
     private var bottomNavigationItems = UINavigationItem()
@@ -44,6 +44,10 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+
+        editButton.tintColor = .accent
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+
         interactor?.viewDidLoad()
     }
 
@@ -130,18 +134,16 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     func setupView() {
         ThemeView.level3.apply(view)
 
-        editButton.tintColor = .accent
-        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.isHidden = !(interactor?.showAddButton ?? false)
-        addButton.setTitle(" " + (interactor?.addTitle ?? ""), for: .normal)
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+        ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
     }
 
     func update() {
-        let isEditing = interactor?.isEditing ?? false
+        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: titleLabel)
 
-        titleLabel.text = interactor?.title
+        let isEditing = interactor?.isEditing ?? false
         editButton.isHidden = !(interactor?.showEditButton ?? true)
         setEditButton(enabled: interactor?.canEdit ?? false)
         addButton.isEnabled = !isEditing
