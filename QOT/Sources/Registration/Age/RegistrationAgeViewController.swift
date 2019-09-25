@@ -22,8 +22,8 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     private var bottomConstraintInitialValue: CGFloat = 0
     var interactor: RegistrationAgeInteractorInterface?
 
-    lazy private var saveButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: interactor?.createButtonTitle ?? "",
+    lazy private var saveButton: RoundedButton = {
+        return RoundedButton(title: interactor?.createButtonTitle ?? "",
                                        target: self,
                                        action: #selector(didTapCreateAccountButton))
     }()
@@ -36,7 +36,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
         let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         saveButton.isEnabled = false
-        toolbar.items = [space, saveButton]
+        toolbar.items = [space, saveButton.barButton]
         return toolbar
     }()
 

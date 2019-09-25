@@ -22,13 +22,13 @@ final class MyLibraryNotesInteractor {
     private var text: String?
 
     private lazy var dismissButtons: [UIBarButtonItem] = {
-        return [RoundedButton.barButton(title: worker.cancelTitle, target: self, action: #selector(cancelDismissingTapped)),
-                RoundedButton.barButton(title: worker.leaveButtonTitle, target: self, action: #selector(continueDismissingTapped))]
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelDismissingTapped)).barButton,
+                RoundedButton(title: worker.leaveButtonTitle, target: self, action: #selector(continueDismissingTapped)).barButton]
     }()
 
     private lazy var removeButtons: [UIBarButtonItem] = {
-        return [RoundedButton.barButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)),
-                RoundedButton.barButton(title: worker.removeButtonTitle, target: self, action: #selector(continueRemovingTapped))]
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)).barButton,
+                RoundedButton(title: worker.removeButtonTitle, target: self, action: #selector(continueRemovingTapped)).barButton]
     }()
 
     // MARK: - Init

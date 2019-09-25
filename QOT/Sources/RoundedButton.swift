@@ -125,11 +125,6 @@ extension RoundedButton {
 // MARK: - Bar button helpers
 extension RoundedButton {
 
-    static func barButton(title: String, target: Any, action: Selector) -> UIBarButtonItem {
-        let button = RoundedButton(title: title, target: target, action: action)
-        return UIBarButtonItem(customView: button.embeddedInView(button))
-    }
-
     var barButton: UIBarButtonItem {
         return UIBarButtonItem(customView: embeddedInView(self))
     }
