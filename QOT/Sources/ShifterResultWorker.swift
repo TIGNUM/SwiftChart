@@ -12,7 +12,6 @@ import qot_dal
 final class ShifterResultWorker {
 
     // MARK: - Properties
-    private var buttonTitle = ""
     private var headerTitle = ""
     private var headerSubTitle = ""
     private var triggerTitle = ""
@@ -21,12 +20,13 @@ final class ShifterResultWorker {
     private var lowTitle = ""
     private var highTitle = ""
     private var visionTitle = ""
-    private var mindsetResultModel: MindsetResult?
     private let mindsetShifter: QDMMindsetShifter?
+    private let resultType: ResultType
 
     // MARK: - Init
-    init(_ mindsetShifter: QDMMindsetShifter?) {
+    init(_ mindsetShifter: QDMMindsetShifter?, resultType: ResultType) {
         self.mindsetShifter = mindsetShifter
+        self.resultType = resultType
         setTitles()
     }
 }
@@ -35,16 +35,13 @@ final class ShifterResultWorker {
 extension ShifterResultWorker {
     func getMindsetShifterResultModel() -> MindsetResult {
         let sections = [getHeader, getTrigger, getReactions, getLowToHigh, getVision]
-        let model = MindsetResult(sections: sections, buttonTitle: buttonTitle)
-        mindsetResultModel = model
-        return model
+        return MindsetResult(resultType: resultType, sections: sections)
     }
 }
 
 // MARK: - Private
 private extension ShifterResultWorker {
     func setTitles() {
-        buttonTitle = ScreenTitleService.main.localizedString(for: .ShifterResultButtonTitle)
         headerSubTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderSubtitle)
         headerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderTitle)
         highTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHighTitle)

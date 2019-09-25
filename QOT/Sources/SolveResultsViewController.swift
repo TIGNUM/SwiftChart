@@ -15,7 +15,6 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
     // MARK: - Properties
     private lazy var router: SolveResultsRouterInterface? = SolveResultsRouter(viewController: self)
     var interactor: SolveResultsInteractorInterface?
-    var showSaveButton: Bool = false
     private var rightBarItems: [UIBarButtonItem] = []
     private var resultViewModel: SolveResult?
     private var isFollowUpActive = true
@@ -62,7 +61,7 @@ private extension SolveResultsViewController {
     }
 
     func handleDidTapDoneRecovery() {
-        if showSaveButton == true {
+        if resultViewModel?.type == .recoveryDecisionTree {
             router?.presentFeedback()
         } else {
             router?.dismiss()

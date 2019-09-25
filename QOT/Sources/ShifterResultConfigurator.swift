@@ -10,9 +10,9 @@ import Foundation
 import qot_dal
 
 final class ShifterResultConfigurator {
-    static func make(mindsetShifter: QDMMindsetShifter?, showSaveButton: Bool) -> (ShifterResultViewController) -> Void {
+    static func make(mindsetShifter: QDMMindsetShifter?, resultType: ResultType) -> (ShifterResultViewController) -> Void {
         return { viewController in
-            let worker = ShifterResultWorker(mindsetShifter)
+            let worker = ShifterResultWorker(mindsetShifter, resultType: resultType)
             let presenter = ShifterResultPresenter(viewController: viewController)
             let interactor = ShifterResultInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor

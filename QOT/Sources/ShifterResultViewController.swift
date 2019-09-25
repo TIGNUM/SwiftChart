@@ -14,22 +14,9 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)
     var interactor: ShifterResultInteractorInterface?
+    private var rightBarItems: [UIBarButtonItem] = []
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
-
-    private lazy var barButtonItemDone: UIBarButtonItem = {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
-                                    buttonWidth: .Done,
-                                    action: #selector(didTapDone),
-                                    backgroundColor: .carbon)
-    }()
-
-    private lazy var barButtonItemSaveAndContinue: UIBarButtonItem = {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue),
-                                    buttonWidth: .SaveAndContinue,
-                                    action: #selector(didTapSave),
-                                    backgroundColor: .carbon)
-    }()
 
     // MARK: - Init
     init(configure: Configurator<ShifterResultViewController>) {

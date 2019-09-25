@@ -58,6 +58,8 @@ enum ResultType {
     case solveDecisionTree
     case recoveryDecisionTree
     case recoveryMyPlans
+    case mindsetShifterDecisionTree
+    case mindsetShifterMyPlans
 
     var contentId: Int {
         switch self {
@@ -71,17 +73,19 @@ enum ResultType {
 
     var buttonItems: [ButtonItem] {
         switch self {
-        case .solveDailyBrief: return [.save, .cancel]
-        case .solveDecisionTree: return [.save]
+        case .solveDailyBrief: return [.done]
+        case .solveDecisionTree: return [.done]
         case .recoveryDecisionTree: return [.save, .cancel]
         case .recoveryMyPlans: return [.done]
+        case .mindsetShifterMyPlans: return [.done]
+        case .mindsetShifterDecisionTree: return [.save, .cancel]
         }
     }
 }
 
 struct SolveResult {
     let type: ResultType
-    let items: [Item]    
+    let items: [Item]
 
     enum Item {
         case header(title: String, solution: String)

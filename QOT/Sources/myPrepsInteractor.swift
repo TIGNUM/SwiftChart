@@ -96,7 +96,7 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController) {
-        let configurator = ShifterResultConfigurator.make(mindsetShifter: item, showSaveButton: false)
+        let configurator = ShifterResultConfigurator.make(mindsetShifter: item, resultType: .mindsetShifterMyPlans)
         let controller = ShifterResultViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }

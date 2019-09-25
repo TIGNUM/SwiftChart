@@ -14,7 +14,8 @@ final class DTMindsetRouter: DTRouter {}
 // MARK: - DTMindsetRouterInterface
 extension DTMindsetRouter: DTMindsetRouterInterface {
     func presentMindsetResults(_ mindsetShifter: QDMMindsetShifter?, completion: (() -> Void)?) {
-        let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter, showSaveButton: true)
+        let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
+                                                          resultType: .mindsetShifterDecisionTree)
         let controller = ShifterResultViewController(configure: configurator)
         viewController?.present(controller, animated: true, completion: completion)
     }
