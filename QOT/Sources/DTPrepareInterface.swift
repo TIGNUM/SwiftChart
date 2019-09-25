@@ -37,7 +37,7 @@ protocol DTPrepareInteractorInterface: Interactor {
 protocol DTPrepareRouterInterface {
     func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
     func presentPrepareResults(_ contentId: Int)
-    func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
     func presentCalendarSettings()
     func presentEditEventController()

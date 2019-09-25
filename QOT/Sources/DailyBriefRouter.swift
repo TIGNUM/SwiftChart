@@ -80,7 +80,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func showSolveResults(solve: QDMSolve) {
-        let configurator = SolveResultsConfigurator.make(from: solve)
+        let configurator = SolveResultsConfigurator.make(from: solve, resultType: .solveDailyBrief)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         viewController?.present(solveResultsController, animated: true)
     }

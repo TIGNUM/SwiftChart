@@ -86,8 +86,7 @@ final class DTPrepareViewController: DTViewController {
         if event?.isCalendarEvent == false && viewModel?.question.key == Prepare.QuestionKey.SelectExisting {
             prepareInteractor?.getUserPreparation(event: event,
                                                   calendarEvent: selectedEvent) { [weak self] (preparation) in
-                                                    self?.prepareRouter?.presentPrepareResults(preparation,
-                                                                                               canDelete: true)
+                                                    self?.prepareRouter?.presentPrepareResults(preparation)
             }
         } else {
             self.selectedEvent = event
@@ -122,7 +121,7 @@ private extension DTPrepareViewController {
             prepareRouter?.presentPrepareResults(contentId)
         } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
             prepareInteractor?.getUserPreparation(answer: answer, event: selectedEvent) { [weak self] (preparation) in
-                self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
+                self?.prepareRouter?.presentPrepareResults(preparation)
             }
         } else {
             loadNextQuestion()
@@ -147,7 +146,7 @@ private extension DTPrepareViewController {
 
     func createPreparationAndPresent() {
         prepareInteractor?.getUserPreparation(event: selectedEvent) { [weak self] (preparation) in
-            self?.prepareRouter?.presentPrepareResults(preparation, canDelete: true)
+            self?.prepareRouter?.presentPrepareResults(preparation)
         }
     }
 }

@@ -13,7 +13,6 @@ final class SolveResultsRouter {
 
     // MARK: - Properties
     private weak var viewController: SolveResultsViewController?
-    weak var delegate: ResultsFeedbackDismissDelegate?
 
     // MARK: - Init
     init(viewController: SolveResultsViewController) {
@@ -24,10 +23,6 @@ final class SolveResultsRouter {
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func didTapDone() {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
@@ -39,25 +34,27 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
         let controller = DTShortTBVViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func openMindsetShifter() {
         let configurator = DTMindsetConfigurator.make()
         let controller = DTMindsetViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func openRecovery() {
         let configurator = DTRecoveryConfigurator.make()
         let controller = DTRecoveryViewController(configure: configurator)
         viewController?.present(controller, animated: true)
+        viewController?.removeBottomNavigation()
     }
 
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
         controller.configure(text: R.string.localized.resultsFeedbackRecovery())
-        controller.delegate = delegate
         viewController?.removeBottomNavigation()
     }
 }

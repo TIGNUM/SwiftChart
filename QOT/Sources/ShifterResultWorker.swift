@@ -12,7 +12,6 @@ import qot_dal
 final class ShifterResultWorker {
 
     // MARK: - Properties
-    private var buttonTitle = ""
     private var headerTitle = ""
     private var headerSubTitle = ""
     private var triggerTitle = ""
@@ -21,49 +20,30 @@ final class ShifterResultWorker {
     private var lowTitle = ""
     private var highTitle = ""
     private var visionTitle = ""
-    private var mindsetResultModel: MindsetResult?
-    private var mindsetShifter: QDMMindsetShifter? = nil
-    private var canDelete = false
+    private let mindsetShifter: QDMMindsetShifter?
+    private let resultType: ResultType
 
     // MARK: - Init
-    init(_ mindsetShifter: QDMMindsetShifter?, canDelete: Bool) {
+    init(_ mindsetShifter: QDMMindsetShifter?, resultType: ResultType) {
         self.mindsetShifter = mindsetShifter
-        self.canDelete = canDelete
+        self.resultType = resultType
         setTitles()
     }
-
-    // Texts
-    lazy var leaveAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
-    }()
-
-    lazy var leaveAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
-    }()
-
-    lazy var leaveButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue)
-    }()
-
-    lazy var cancelButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
-    }()
 }
 
 // MARK: - Public
 extension ShifterResultWorker {
     func getMindsetShifterResultModel() -> MindsetResult {
         let sections = [getHeader, getTrigger, getReactions, getLowToHigh, getVision]
-        let model = MindsetResult(sections: sections, buttonTitle: buttonTitle)
-        mindsetResultModel = model
-        return model
+        return MindsetResult(resultType: resultType, sections: sections)
     }
 
     func deleteMindsetShifter() {
-        guard let mindsetShifter = mindsetShifter, canDelete == true else { return }
-        UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
-            if let error = error {
-                log("Error causedeleteMindsetShifter: \(error.localizedDescription)", level: .error)
+        if let mindsetShifter = mindsetShifter {
+            UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
+                if let error = error {
+                    log("Error deleteMindsetShifter: \(error.localizedDescription)", level: .error)
+                }
             }
         }
     }
@@ -72,7 +52,6 @@ extension ShifterResultWorker {
 // MARK: - Private
 private extension ShifterResultWorker {
     func setTitles() {
-        buttonTitle = ScreenTitleService.main.localizedString(for: .ShifterResultButtonTitle)
         headerSubTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderSubtitle)
         headerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderTitle)
         highTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHighTitle)

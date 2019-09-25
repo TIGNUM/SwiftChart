@@ -9,8 +9,8 @@
 import UIKit
 
 struct MindsetResult {
+    let resultType: ResultType
     let sections: [Section]
-    let buttonTitle: String
 
     enum Section {
         case header(title: String, subtitle: String)
