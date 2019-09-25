@@ -15,10 +15,9 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMd-oc-ueo">
-                        <rect key="frame" x="184" y="24" width="112" height="40"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xMd-oc-ueo" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="242" y="24" width="54" height="40"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="112" id="ULd-Dn-wvd"/>
                             <constraint firstAttribute="height" constant="40" id="wti-kX-uP7"/>
                         </constraints>
                         <state key="normal" title="Button"/>

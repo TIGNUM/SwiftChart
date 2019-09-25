@@ -44,8 +44,6 @@ enum ThemeView {
     case articleBackground(ThemeColorMode?)
     case articleSeparator(ThemeColorMode?)
     case articleAudioBar
-    case articleMarkRead
-    case articleMarkUnread
     case audioBar
     case fade
     case separator
@@ -110,8 +108,6 @@ enum ThemeView {
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .separator:
             return Palette.light(Palette.carbon10, or: Palette.sand10)
-        case .articleMarkRead, .articleMarkUnread:
-            return Palette.light(Palette.sand, or: Palette.carbon)
         case .accentBackground, .prepsSegmentSelected:
             return Palette.accent30
         case .qotAlert, .sprints:
@@ -299,6 +295,7 @@ enum ThemableButton {
     case myTbvDataRate
     case createAccountInfo
     case trackSelection
+    case articleMarkAsRead
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -314,7 +311,8 @@ enum ThemableButton {
              .signinInfo,
              .myTbvDataRate,
              .createAccountInfo,
-             .trackSelection:
+             .trackSelection,
+             .articleMarkAsRead:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -335,6 +333,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
+        case .articleMarkAsRead:
+            return ButtonTheme(foreground: .accent, background: nil, border: .accent30)
         }
     }
 
@@ -354,6 +354,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
+        case .articleMarkAsRead:
+            return ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
 
         }
     }
@@ -523,7 +525,6 @@ enum ThemeText {
     case articleSub
     case articleNum
     case articleSector
-    case articleMarkRead
 
     case placeholder
 
@@ -742,7 +743,7 @@ enum ThemeText {
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
              .resultDate, .resultFollowUp,
-             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels,
+             .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
@@ -893,7 +894,7 @@ enum ThemeText {
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
-             .articleMarkRead, .articleAudioBar, .coachTitle,
+             .articleAudioBar, .coachTitle,
              .audioLabel,
              .myLibraryGroupName:
             return Palette.accent
@@ -995,7 +996,7 @@ enum ThemeText {
 
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
-             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
+             .author, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader,
