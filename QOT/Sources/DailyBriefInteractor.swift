@@ -143,15 +143,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
     }
-
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        worker.latestWhatsHotCollectionID(completion: completion)
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        worker.latestWhatsHotContent(completion: completion)
-    }
-
+    
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true
@@ -249,10 +241,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        worker.getContentCollection(completion: completion)
-    }
-
     func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
         worker.getToBeVisionImage(completion: completion)
     }
@@ -333,10 +321,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
-    }
-
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
-        worker.createLatestWhatsHotModel(completion: completion)
     }
 }
 
