@@ -20,7 +20,7 @@ protocol CoachCollectionViewControllerDelegate: class {
     func moveToCell(item: Int)
 }
 
-final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
+final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
 
     enum Pages: Int, CaseIterable {
         case know = 0

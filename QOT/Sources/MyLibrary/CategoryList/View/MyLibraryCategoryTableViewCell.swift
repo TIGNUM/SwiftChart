@@ -15,7 +15,9 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+
+        let selectedBackground = UIView(frame: bounds)
+        ThemeView.level2Selected.apply(selectedBackground)
+        selectedBackgroundView = selectedBackground
     }
 }

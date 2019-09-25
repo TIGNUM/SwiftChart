@@ -9,7 +9,7 @@
 import UIKit
 import Anchorage
 
-class HomeViewController: UIViewController, ScreenZLevelBottom {
+class HomeViewController: BaseViewController, ScreenZLevelBottom {
 
     // MARK: - Properties
 

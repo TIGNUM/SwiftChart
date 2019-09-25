@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
+final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

@@ -77,6 +77,7 @@ final class MyLibraryUserStorageInteractor {
     // MARK: Interactor
 
     func viewDidLoad() {
+        presenter.setupView()
         load()
     }
 

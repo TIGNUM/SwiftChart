@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
+final class ShifterResultViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)

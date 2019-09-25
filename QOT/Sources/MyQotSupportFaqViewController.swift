@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MyQotSupportFaqViewController: UIViewController, ScreenZLevel3 {
+final class MyQotSupportFaqViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

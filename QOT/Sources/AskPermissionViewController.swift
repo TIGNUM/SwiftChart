@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class AskPermissionViewController: UIViewController, ScreenZLevel1 {
+final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
 
     // MARK: - Properties
     var interactor: AskPermissionInteractorInterface?

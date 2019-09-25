@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationNamesViewController: UIViewController, ScreenZLevel3 {
+final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var scrollView: UIScrollView!

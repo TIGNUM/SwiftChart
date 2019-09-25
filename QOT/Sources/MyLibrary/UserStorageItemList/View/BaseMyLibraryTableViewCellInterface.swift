@@ -19,16 +19,10 @@ protocol BaseMyLibraryTableViewCellInterface: UITableViewCell {
 
 extension BaseMyLibraryTableViewCellInterface {
     func setTitle(_ title: String?) {
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 6
-        style.lineBreakMode = .byTruncatingTail
-        let attributedString = NSAttributedString(string: title ?? " ",
-                                                  attributes: [.paragraphStyle: style, .kern: CharacterSpacing.kern1])
-        self.contentTitle.attributedText = attributedString
+        ThemeText.myLibraryItemsItemName.apply(title?.uppercased(), to: contentTitle)
     }
 
     func setInfoText(_ text: String?) {
-        self.infoText.attributedText = NSAttributedString(string: text ?? " ",
-                                                          attributes: [.kern: CharacterSpacing.kern05])
+        ThemeText.myLibraryItemsItemDescription.apply(text ?? " ", to: infoText)
     }
 }

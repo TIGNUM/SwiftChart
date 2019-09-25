@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingLandingPageViewController: UIViewController, ScreenZLevelIgnore {
+final class OnboardingLandingPageViewController: BaseViewController, ScreenZLevelIgnore {
 
     // MARK: - Properties
 

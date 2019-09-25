@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyQotProfileViewController: UIViewController, ScreenZLevel2 {
+final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 

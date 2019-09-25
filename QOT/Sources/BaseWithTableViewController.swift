@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseWithTableViewController: UIViewController {
+class BaseWithTableViewController: BaseViewController {
 
     private var selectedIndexPath: IndexPath?
     @IBOutlet weak var tableView: UITableView!
@@ -28,7 +28,8 @@ class BaseWithTableViewController: UIViewController {
         tableView.isUserInteractionEnabled = false
     }
 }
-class BaseWithGroupedTableViewController: UIViewController {
+
+class BaseWithGroupedTableViewController: BaseViewController {
 
     private var selectedIndexPath: IndexPath?
     lazy var tableView: UITableView = {
