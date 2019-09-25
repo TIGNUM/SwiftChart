@@ -14,7 +14,7 @@ protocol ChoiceViewControllerDelegate: class {
     func didTapRow(_ viewController: UIViewController, contentId: Int)
 }
 
-final class ChoiceViewController: UIViewController, ScreenZLevel3 {
+final class ChoiceViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!

@@ -38,9 +38,9 @@ enum ControllerType {
         }
 
         static func customize() -> Config {
-            return Config(currentIndexColor: .redOrange,
-                          aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40)
+            return Config(currentIndexColor: .accent,
+                          aboveCurrentIndexColor: .accent70,
+                          belowCurrentIndexColor: .accent70)
         }
 
         static func dailyCheckin() -> Config {
@@ -73,7 +73,7 @@ enum ControllerType {
     }
 }
 
-final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
+final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var customizeTargetTitle: UILabel!

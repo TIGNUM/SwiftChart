@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MySprintNotesViewController: UIViewController, ScreenZLevel3 {
+final class MySprintNotesViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

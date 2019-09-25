@@ -116,7 +116,7 @@ protocol QOTAlertViewControllerDelegate: class {
     func dismiss()
 }
 
-class QOTAlertViewController: UIViewController {
+class QOTAlertViewController: BaseViewController {
 
     enum ButtonsAlignment {
         case right

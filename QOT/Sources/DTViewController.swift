@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-class DTViewController: UIViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
+class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestionnaireViewControllerDelegate, ScreenZLevelChatBot {
 
     // MARK: - Properties
     var viewModel: DTViewModel?

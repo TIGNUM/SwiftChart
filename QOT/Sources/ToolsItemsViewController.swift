@@ -19,7 +19,7 @@ protocol ToolsItemsViewControllerDelegate: class {
     func isPlaying() -> Bool
 }
 
-final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
+final class ToolsItemsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

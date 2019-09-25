@@ -17,7 +17,7 @@ protocol MyPrepsViewControllerDelegate: class {
      func confirmDeleteButton(_ sender: Any)
 }
 
-final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
+final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     enum SegmentView: Int {
         case myPreps = 0

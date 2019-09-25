@@ -16,7 +16,7 @@ protocol DTQuestionnaireViewControllerDelegate: class {
     func didSelectPreparationEvent(_ event: DTViewModel.Event?)
 }
 
-class DTQuestionnaireViewController: UIViewController {
+class DTQuestionnaireViewController: BaseViewController {
 
     // MARK: - Properties
     private let viewModel: DTViewModel
