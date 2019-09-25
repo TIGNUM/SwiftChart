@@ -12,7 +12,7 @@ protocol DailyCheckinStartViewControllerDelegate: class {
     func showQuestions()
 }
 
-final class DailyCheckinStartViewController: UIViewController, ScreenZLevel3 {
+final class DailyCheckinStartViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!

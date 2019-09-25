@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import Kingfisher
 
-final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 {
+final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

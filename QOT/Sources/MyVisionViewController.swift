@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import Kingfisher
 
-final class MyVisionViewController: UIViewController, ScreenZLevel2 {
+final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 

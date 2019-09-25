@@ -17,7 +17,7 @@ protocol ScreenZLevelOverlay: ScreenZLevel {}
 protocol ScreenZLevelIgnore: ScreenZLevel {}
 protocol ScreenZLevelChatBot: ScreenZLevel {}
 
-final class BaseRootViewController: UIViewController, ScreenZLevel1 {
+final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
 
     @IBOutlet weak var bottomNavigationPlaceholder: UIView!
     @IBOutlet var bottomNavigationContainer: UIView!
