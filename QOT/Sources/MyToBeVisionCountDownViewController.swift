@@ -13,7 +13,7 @@ protocol MyToBeVisionCountDownViewControllerProtocol: class {
     func shouldDismiss()
 }
 
-final class MyToBeVisionCountDownViewController: UIViewController, ScreenZLevel3 {
+final class MyToBeVisionCountDownViewController: BaseViewController, ScreenZLevel3 {
 
     @IBOutlet weak var skipSwitch: UISwitch!
     @IBOutlet weak var topCounterLabel: UILabel!

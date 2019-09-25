@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MySprintDetailsViewController: UIViewController, ScreenZLevel3 {
+final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

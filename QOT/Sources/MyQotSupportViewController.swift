@@ -10,7 +10,7 @@ import UIKit
 import MessageUI
 import qot_dal
 
-final class MyQotSupportViewController: UIViewController, ScreenZLevel3 {
+final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

@@ -37,7 +37,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if
-            let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
+            let controller = segue.destination as? ArticleViewController,
             let selectedID = sender as? Int {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
         }

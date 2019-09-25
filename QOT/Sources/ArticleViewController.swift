@@ -77,7 +77,7 @@ enum ColorMode {
     }
 }
 
-final class ArticleViewController: UIViewController, ScreenZLevel3 {
+final class ArticleViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ArticleInteractorInterface?
@@ -87,64 +87,8 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     private var topBarButtonItems: [UIBarButtonItem] = []
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
-    @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
-
-    private lazy var customMoreButton: UIButton = {
-        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
-        button.setImage(R.image.ic_more_unselected(), for: .normal)
-        button.backgroundColor = UIColor.accent.withAlphaComponent(0.3)
-        button.corner(radius: button.frame.width * 0.5)
-        button.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var bookMarkBarButtonItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.ic_bookmark(),
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(didTapBookmarkItem))
-        item.width = view.frame.width * multiplier
-        item.tintColor = colorMode.tint
-        return item
-    }()
-
-    private lazy var nightModeBarButtonItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.ic_night_mode_unselected(),
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(didTapDarkModeItem))
-        item.width = view.frame.width * multiplier
-        item.tintColor = colorMode.tint
-        return item
-    }()
-
-    private lazy var textScaleBarButtonItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.ic_text_scale(),
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(didTapTextScaleItem))
-        item.width = view.frame.width * multiplier
-        item.tintColor = colorMode.tint
-        return item
-    }()
-
-    private lazy var shareBarButtonItem: UIBarButtonItem = {
-        let item = UIBarButtonItem(image: R.image.ic_share_sand(),
-                                   style: .plain,
-                                   target: self,
-                                   action: #selector(didTapShareItem))
-        item.width = view.frame.width * multiplier
-        item.tintColor = colorMode.tint
-        return item
-    }()
-
-    private var multiplier: CGFloat {
-        if interactor?.isShareable == true {
-            return 0.2
-        }
-        return 0.25
-    }
+    @IBOutlet private weak var articleTopNavBar: ArticleTopNavBar!
+    @IBOutlet private weak var constraintNavBar: NSLayoutConstraint!
 
     private var lastScrollViewOffsetY: CGFloat = 0.0
     private var lastScrollViewActionOffsetY: CGFloat = 0.0
@@ -155,7 +99,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        navigationController?.navigationBar.shadowImage = UIImage()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
     }
@@ -166,10 +109,8 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
 
-        guard let navBar = navigationController?.navigationBar else { return }
         if interactor?.alwaysHideTopBar ?? true {
-            navBar.isHidden = true
-            moreBarButtonItem.tintColor = .clear
+            articleTopNavBar.isHidden = true
         }
     }
 
@@ -229,35 +170,12 @@ private extension ArticleViewController {
 
     func setColorMode() {
         colorModeIsActive = true
-        ThemeAppearance.setNavigationBar()
         setStatusBar(colorMode: colorMode)
         ThemeView.articleBackground(nil).apply(view)
-        ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
-
+        setNeedsStatusBarAppearanceUpdate()
         audioButton.setColorMode()
         view.bringSubview(toFront: audioButton)
         refreshBottomNavigationItems()
-    }
-
-    func updateMoreButton(customView: UIView?) {
-        moreBarButtonItem.customView = customView
-    }
-
-    func moreTopNavAdd() {
-        updateMoreButton(customView: customMoreButton)
-        topTitleNavigationItem.setLeftBarButtonItems(topBarButtonItems, animated: true)
-        topTitleNavigationItem.title = nil
-    }
-
-    func moreTopNavRemove() {
-        updateMoreButton(customView: nil)
-        topTitleNavigationItem.setLeftBarButtonItems([], animated: true)
-        if topTitleNavigationItem.title == nil {
-            if (tableView.visibleCells.filter { $0.tag == 111 }).isEmpty == true {
-                topTitleNavigationItem.title = header?.title
-            }
-        }
-        setNeedsStatusBarAppearanceUpdate()
     }
 }
 
@@ -282,37 +200,31 @@ extension ArticleViewController {
 
 // MARK: - Actions
 
-private extension ArticleViewController {
+extension ArticleViewController: ArticleTopNavBarProtocol {
 
-    @IBAction func didTapMoreButton() {
-        if topTitleNavigationItem.leftBarButtonItems == nil || topTitleNavigationItem.leftBarButtonItems?.isEmpty == true {
-            moreTopNavAdd()
-        } else {
-            moreTopNavRemove()
-        }
-    }
-
-    @objc func didTapBookmarkItem() {
+    func didTapBookmarkItem() {
         trackUserEvent(.BOOKMARK, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         interactor?.toggleBookmark()
+        articleTopNavBar.updateBookmark(interactor?.shouldHideBookmarkItem ?? false)
     }
 
-    @objc func didTapDarkModeItem() {
+    func didTapDarkModeItem() {
         trackUserEvent(.COLOR_MODE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        moreTopNavRemove()
+        articleTopNavBar.allOff()
+        navigationBar(show: false)
     }
 
-    @objc func didTapTextScaleItem() {
+    func didTapTextScaleItem() {
         trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        moreTopNavRemove()
+        navigationBar(show: false)
     }
 
-    @objc func didTapShareItem() {
+    func didTapShareItem() {
         trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         guard let share = interactor?.whatsHotShareable else { return }
         guard let title = share.message else { return }
@@ -344,13 +256,7 @@ private extension ArticleViewController {
 
 extension ArticleViewController: ArticleViewControllerInterface {
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
-        topBarButtonItems = [nightModeBarButtonItem, textScaleBarButtonItem]
-        if isShareable == true {
-            topBarButtonItems.append(shareBarButtonItem)
-        }
-        if hasBookMarkItem == true {
-            topBarButtonItems.insert(bookMarkBarButtonItem, at: 0)
-        }
+        articleTopNavBar.configure(self, isShareable: isShareable, isBookMarkable: hasBookMarkItem)
     }
 
     func reloadData() {
@@ -377,7 +283,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func hasBookmark(_ hasBookmark: Bool) {
-        bookMarkBarButtonItem.image = hasBookmark ? R.image.ic_bookmark_fill() : R.image.ic_bookmark()
+        articleTopNavBar.updateBookmark(hasBookmark)
     }
 }
 
@@ -396,7 +302,6 @@ extension ArticleViewController {
     }
 
     func dataUpdated() {
-        navigationController?.setNavigationBarHidden(interactor?.shouldHideTopBar ?? false, animated: true)
         if let imageViewShot = self.view.viewWithTag(871234) {
             UIView.animate(withDuration: 0.5, animations: {
                 imageViewShot.alpha = 0.0
@@ -510,7 +415,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .headerText: topTitleNavigationItem.title = nil
+        case .headerText: articleTopNavBar.title = nil
         default: break
         }
     }
@@ -518,9 +423,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .headerText:
-            topTitleNavigationItem.setLeftBarButtonItems([], animated: true)
-            topTitleNavigationItem.title = header?.title
+        case .headerText: articleTopNavBar.title = header?.title 
         default: return
         }
     }
@@ -706,22 +609,16 @@ extension ArticleViewController: UIScrollViewDelegate {
 
 extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
-        guard let navBar = navigationController?.navigationBar,
-            let shouldHideNavBar = interactor?.shouldHideTopBar,
-            shouldHideNavBar == false else {
-            return
-        }
-        if interactor?.alwaysHideTopBar ?? true {
-            navBar.isHidden = true
+        guard let shouldHideNavBar = interactor?.shouldHideTopBar,
+            !shouldHideNavBar else {
             return
         }
 
         let pixelBuffer: CGFloat = 50
         let scrollViewOffsetY = scrollView.contentOffset.y
         let movingUp = lastScrollViewOffsetY < scrollViewOffsetY
-        navBar.isTranslucent = false
         if movingUp {
-            if !navBar.isHidden && scrollViewOffsetY > 0 {
+            if !navBarIsHidden && scrollViewOffsetY > 0 {
                 let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
                 if offset > pixelBuffer {
                     navigationBar(show: false)
@@ -731,7 +628,7 @@ extension ArticleViewController {
                 lastScrollViewActionOffsetY = scrollViewOffsetY
             }
         } else {
-            if navBar.isHidden {
+            if navBarIsHidden {
                 let atBottom = Int(scrollViewOffsetY) >= Int(scrollView.contentSize.height - scrollView.bounds.height)
                 if !atBottom {
                     let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
@@ -747,17 +644,18 @@ extension ArticleViewController {
         lastScrollViewOffsetY = scrollViewOffsetY
     }
 
+    var navBarIsHidden: Bool {
+        return constraintNavBar.constant != 0
+    }
+
     func navigationBar(show: Bool) {
-        guard let nav = navigationController else {
-            return
+        constraintNavBar.constant = show ? 0 : -80
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
         }
-        nav.setNavigationBarHidden(!show, animated: true)
-        let height = show ? nav.navigationBar.frame.size.height : 0
-        UIView.animate(withDuration: Double(UINavigationControllerHideShowBarDuration)) {
-            self.tableView.contentInset = UIEdgeInsets(top: -height, left: 0.0, bottom: 0.0, right: 0.0)
-        }
+
         if !show {
-            moreTopNavRemove()
+            articleTopNavBar.allOff()
         }
     }
 }

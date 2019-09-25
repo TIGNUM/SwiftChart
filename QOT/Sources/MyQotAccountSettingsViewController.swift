@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 {
+final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

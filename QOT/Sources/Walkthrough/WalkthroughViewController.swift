@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WalkthroughViewController: UIViewController, ScreenZLevelOverlay {
+final class WalkthroughViewController: BaseViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     @IBOutlet private weak var pageContainerView: UIView!

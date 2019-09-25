@@ -41,16 +41,17 @@ func swizzleUIViewController() {
 }
 
 func swizzleUIViewControllerPreferredStatusBarStyle() {
-    let originalSelector = NSSelectorFromString("preferredStatusBarStyle")
-    let swizzledSelector = NSSelectorFromString("getPreferredStatusBarStyleSwizzled")
-    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
-    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+//    let originalSelector = NSSelectorFromString("preferredStatusBarStyle")
+//    let swizzledSelector = NSSelectorFromString("getPreferredStatusBarStyleSwizzled")
+//    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
+//    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+//
+//    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+//        // switch implementation..
+//        method_exchangeImplementations(originalMethod, swizzledMethod)
+//        preferredStatusBarStyleIsSwizzled = !preferredStatusBarStyleIsSwizzled
+//    }
 
-    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
-        // switch implementation..
-        method_exchangeImplementations(originalMethod, swizzledMethod)
-        preferredStatusBarStyleIsSwizzled = !preferredStatusBarStyleIsSwizzled
-    }
 }
 
 func swizzleUIViewControllerViewWillAppear() {

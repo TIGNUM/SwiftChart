@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
+final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     let viewTheme = ThemeView.onboarding

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
+final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 

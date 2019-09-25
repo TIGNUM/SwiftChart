@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MyVisionEditDetailsViewController: UIViewController, ScreenZLevelOverlay {
+final class MyVisionEditDetailsViewController: BaseViewController, ScreenZLevelOverlay {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var titleTextField: UITextField!
