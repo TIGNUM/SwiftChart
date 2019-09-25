@@ -80,11 +80,6 @@ private extension SolveResultsViewController {
         router?.dismiss()
     }
 
-    func updateSolveAndDismiss() {
-        interactor?.save(solveFollowUp: isFollowUpActive)
-        router?.dismiss()
-    }
-
     func showAlert() {
         let activate = QOTAlertAction(title: R.string.localized.solveLeaveAlertActivate()) { [weak self] _ in
             self?.isFollowUpActive = true
@@ -95,11 +90,7 @@ private extension SolveResultsViewController {
             }
         }
         let leave = QOTAlertAction(title: R.string.localized.solveLeaveAlertContinueButton()) { [weak self] _ in
-            if self?.resultViewModel?.type == .solveDecisionTree {
-                self?.router?.dismiss()
-            } else {
-                self?.updateSolveAndDismiss()
-            }
+            self?.saveSolveAndDismiss()
         }
         QOTAlert.show(title: R.string.localized.solveLeaveAlertTitle(),
                       message: R.string.localized.solveLeaveAlertMessage(),
@@ -216,24 +207,11 @@ extension SolveResultsViewController: UITableViewDataSource {
 extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
     func didTapStart(_ type: SolveTriggerType) {
         trackUserEvent(.SELECT, valueType: "START \(type.rawValue)", action: .TAP)
+        interactor?.save(solveFollowUp: isFollowUpActive)
         switch type {
-        case .midsetShifter:
-            handleSolveFollowUpOnTrigger()
-            router?.openMindsetShifter()
-        case .recoveryPlaner:
-            handleSolveFollowUpOnTrigger()
-            router?.openRecovery()
-        default:
-            break
-        }
-    }
-
-    func handleSolveFollowUpOnTrigger() {
-        if isFollowUpActive == true && resultViewModel?.type == .solveDecisionTree {
-            interactor?.save(solveFollowUp: true)
-        }
-        if isFollowUpActive == false && resultViewModel?.type == .solveDailyBrief {
-            interactor?.updateSolve(followUp: false)
+        case .midsetShifter: router?.openMindsetShifter()
+        case .recoveryPlaner: router?.openRecovery()
+        default: break
         }
     }
 }

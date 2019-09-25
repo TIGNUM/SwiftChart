@@ -50,8 +50,14 @@ extension SolveResultsWorker {
         switch resultType {
         case .recoveryDecisionTree,
              .recoveryMyPlans: createRecoveryItems(completion)
-        case .solveDecisionTree,
-             .solveDailyBrief: createSolveItems(completion)
+        case .solveDecisionTree:
+            getSolve { [weak self] (solve) in
+                if solve != nil {
+                    self?.solve = solve
+                }
+                self?.createSolveItems(completion)
+            }
+        case .solveDailyBrief: createSolveItems(completion)
         default: break
         }
     }
@@ -68,6 +74,14 @@ extension SolveResultsWorker {
     }
 
     func save(followUp: Bool, _ completion: @escaping () -> Void) {
+        if solve != nil {
+            updateSolve(followUp: followUp)
+        } else {
+            createSolve(followUp: followUp)
+        }
+    }
+
+    func createSolve(followUp: Bool) {
         let contentId = solutionCollectionId
         let answerId = selectedAnswerId
         relatedStrategies(contentId) { (relatedStrategies) in
@@ -75,12 +89,28 @@ extension SolveResultsWorker {
             UserService.main.createSolve(selectedAnswerId: answerId,
                                          solutionCollectionId: contentId,
                                          strategyIds: relatedStragyIds,
-                                         followUp: true) { (_, error) in
+                                         followUp: followUp) { (solve, error) in
                                             if let error = error {
                                                 log("Error createSolve: \(error.localizedDescription)", level: .error)
                                             }
-                                            completion()
             }
+        }
+    }
+
+    func getSolve(_ completion: @escaping (QDMSolve?) -> Void) {
+        let contentId = solutionCollectionId
+        let answerId = selectedAnswerId
+        UserService.main.getSolves { (solves, _, error) in
+            if let error = error {
+                log("Error getSolves: \(error.localizedDescription)", level: .error)
+            }
+            let existingSolveForToday = solves?.filter({ (solve) -> Bool in
+                if let createdAt = solve.createdAt, createdAt.isSameDay(Date()) {
+                    return solve.selectedAnswerId == answerId && solve.solutionCollectionId == contentId
+                }
+                return false
+            }).first
+            completion(existingSolveForToday)
         }
     }
 

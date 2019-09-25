@@ -43,10 +43,6 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
         worker.save(followUp: solveFollowUp) {}
     }
 
-    func updateSolve(followUp: Bool) {
-        worker.updateSolve(followUp: followUp)
-    }
-
     func deleteRecovery() {
         worker.deleteRecovery()
     }
