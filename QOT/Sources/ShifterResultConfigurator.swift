@@ -16,7 +16,6 @@ final class ShifterResultConfigurator {
             let presenter = ShifterResultPresenter(viewController: viewController)
             let interactor = ShifterResultInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
-            viewController.showSaveButton = showSaveButton
         }
     }
 }

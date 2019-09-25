@@ -21,19 +21,18 @@ final class SolveResultsConfigurator {
         }
     }
 
-    static func make(from recoveryModel: QDMRecovery3D?, showSaveButton: Bool) -> (SolveResultsViewController) -> Void {
+    static func make(from recoveryModel: QDMRecovery3D?, resultType: ResultType) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
-            let worker = SolveResultsWorker(recovery: recoveryModel)
+            let worker = SolveResultsWorker(recovery: recoveryModel, resultType: resultType)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter)
-            viewController.showSaveButton = showSaveButton
             viewController.interactor = interactor
         }
     }
 
-    static func make(from solve: QDMSolve) -> (SolveResultsViewController) -> Void {
+    static func make(from solve: QDMSolve, resultType: ResultType) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
-            let worker = SolveResultsWorker(solve: solve)
+            let worker = SolveResultsWorker(solve: solve, resultType: resultType)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor

@@ -34,6 +34,14 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
                                     backgroundColor: .carbon)
     }()
 
+    private lazy var barButtonItemCancel: UIBarButtonItem = {
+        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+                                    buttonWidth: .Cancel,
+                                    action: #selector(didTapCancel),
+                                    backgroundColor: .clear,
+                                    borderColor: .accent40)
+    }()
+
     // MARK: - Init
     init(configure: Configurator<SolveResultsViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -59,10 +67,16 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 private extension SolveResultsViewController {
     @objc func didTapDone() {
         switch interactor?.resultType {
-        case .recovery?: handleDidTapDoneRecovery()
-        case .solve?: handleDidTapDoneSolve()
+        case .recoveryDecisionTree?,
+             .recoveryMyPlans?: handleDidTapDoneRecovery()
+        case .solveDailyBrief?,
+             .solveDecisionTree?: handleDidTapDoneSolve()
         default: break
         }
+    }
+
+    @objc func didTapCancel() {
+        router?.dismiss()
     }
 
     func handleDidTapDoneRecovery() {
@@ -79,7 +93,11 @@ private extension SolveResultsViewController {
     }
 
     func setupRightBottomNavigationBarItems(showSaveButton: Bool) {
-        rightBarItems = showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
+        if showSaveButton == true {
+            rightBarItems = [barButtonItemSaveAndContinue, barButtonItemCancel]
+        } else {
+            rightBarItems = [barButtonItemDone]
+        }
     }
 }
 
@@ -97,7 +115,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
     }
 
     func load(_ results: SolveResults, isFollowUpActive: Bool) {
-        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton || results.type == .solve)
+        setupRightBottomNavigationBarItems(showSaveButton: showSaveButton)
         self.isFollowUpActive = isFollowUpActive
         self.results = results
         tableView.reloadData()

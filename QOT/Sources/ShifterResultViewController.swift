@@ -14,7 +14,6 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)
     var interactor: ShifterResultInteractorInterface?
-    var showSaveButton: Bool = false
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
 
@@ -30,10 +29,6 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
                                     buttonWidth: .SaveAndContinue,
                                     action: #selector(didTapSave),
                                     backgroundColor: .carbon)
-    }()
-
-    private lazy var rightBarItems: [UIBarButtonItem] = {
-        return showSaveButton == true ? [barButtonItemSaveAndContinue] : [barButtonItemDone]
     }()
 
     // MARK: - Init
@@ -138,6 +133,6 @@ extension ShifterResultViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return rightBarItems
+        return []
     }
 }

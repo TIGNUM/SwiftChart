@@ -36,7 +36,7 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     }
 
     var resultType: ResultType {
-        return worker.resultType
+        return worker.type
     }
 
     func save(solveFollowUp: Bool) {

@@ -16,25 +16,23 @@ final class SolveResultsWorker {
     private var recovery: QDMRecovery3D?
     private var selectedAnswerId: Int = 0
     private var solutionCollectionId: Int = 0
-    private let type: ResultType
+    private let resultType: ResultType
 
     // MARK: - Init
     init(selectedAnswerId: Int, solutionCollectionId: Int) {
         self.selectedAnswerId = selectedAnswerId
         self.solutionCollectionId = solutionCollectionId
-        self.type = .solve
+        self.resultType = .solveDecisionTree
     }
 
-    init(recovery: QDMRecovery3D?) {
+    init(recovery: QDMRecovery3D?, resultType: ResultType) {
         self.recovery = recovery
-        self.type = .recovery
+        self.resultType = resultType
     }
 
-    init(solve: QDMSolve?) {
+    init(solve: QDMSolve?, resultType: ResultType) {
         self.solve = solve
-        self.type = .solve
-        selectedAnswerId = solve?.selectedAnswerId ?? 0
-        solutionCollectionId = solve?.solutionCollectionId ?? 0
+        self.resultType = resultType
     }
 
     // Texts
@@ -58,17 +56,19 @@ final class SolveResultsWorker {
 // MARK: - Public
 extension SolveResultsWorker {
     var hideShowMoreButton: Bool {
-        return type == .recovery
+        return true
     }
 
-    var resultType: ResultType {
-        return type
+    var type: ResultType {
+        return resultType
     }
 
     func results(_ completion: @escaping (SolveResults, Bool) -> Void) {
-        switch type {
-        case .recovery: createRecoveryItems(completion)
-        case .solve: createSolveItems(completion)
+        switch resultType {
+        case .recoveryDecisionTree,
+             .recoveryMyPlans: createRecoveryItems(completion)
+        case .solveDecisionTree,
+             .solveDailyBrief: createSolveItems(completion)
         }
     }
 
@@ -118,10 +118,12 @@ private extension SolveResultsWorker {
 
     func relatedStrategyItems(_ contentId: Int? = nil, _ completion: @escaping ([SolveResults.Item]) -> Void) {
         let header: String
-        switch type {
-        case .recovery:
+        switch resultType {
+        case .recoveryDecisionTree,
+             .recoveryMyPlans:
             header = R.string.localized.headerTitleSuggestedStrategies()
-        case .solve:
+        case .solveDecisionTree,
+             .solveDailyBrief:
             header = R.string.localized.headerTitleStrategies()
         }
         relatedStrategies(contentId) { (related) in
@@ -145,8 +147,10 @@ private extension SolveResultsWorker {
 
 // MARK: - Private Solve
 private extension SolveResultsWorker {
+    //TODO: Refactore -> No need to do any DB calls. The item should already have what we need.
     func createSolveItems(_ completion: @escaping (SolveResults, Bool) -> Void) {
         var items: [SolveResults.Item] = []
+        let type = resultType
         solveHeader { [weak self] (headerItem) in
             self?.relatedStrategyItems { [weak self] (strategyItems) in
                 self?.trigger { [weak self] (triggerItem) in
@@ -158,7 +162,7 @@ private extension SolveResultsWorker {
                             if !fiveDayPlanItems.isEmpty { items.append(contentsOf: fiveDayPlanItems) }
                             items.append(followUpItem)
                             let followUp = self?.solve == nil ? true : self?.solve?.followUp == true
-                            completion(SolveResults(type: .solve, items: items), followUp)
+                            completion(SolveResults(type: type, items: items), followUp)
                         }
                     }
                 }
@@ -220,6 +224,7 @@ private extension SolveResultsWorker {
                                            headerTitle: R.string.localized.headerTitleExclusiveContent())
         let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [],
                                          headerTitle: R.string.localized.headerTitleSuggestedStrategies())
+        let type = resultType
         recoveryHeader { [weak self] (headerItem) in
             self?.fatigueSymptom { [weak self] (fatigueItem) in
                 self?.cause { (causeItem) in
@@ -228,14 +233,14 @@ private extension SolveResultsWorker {
                     items.append(causeItem)
                     items.append(contentsOf: exclusiveItems)
                     items.append(contentsOf: relatedItems)
-                    completion(SolveResults(type: .recovery, items: items), false)
+                    completion(SolveResults(type: type, items: items), false)
                 }
             }
         }
     }
 
     func recoveryHeader(_ completion: @escaping (SolveResults.Item) -> Void) {
-        contentCollection(type.contentId) { [weak self] content in
+        contentCollection(resultType.contentId) { [weak self] content in
             let title = self?.valueText(for: "recovery-header-title", content: content) ?? ""
             let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? ""
             completion(.header(title: title, solution: solution))
