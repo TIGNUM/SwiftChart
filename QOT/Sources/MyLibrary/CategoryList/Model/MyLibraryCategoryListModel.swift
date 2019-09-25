@@ -20,19 +20,20 @@ struct MyLibraryCategoryListModel {
     var title: String
     var itemCount: Int
     var lastUpdated: Date?
-    var iconName: String
+    var icon: UIImage?
     var type: MyLibraryCategoryType
 
     func infoText() -> String {
-        // FIXME: change to localized string
-        var info = "\(itemCount) item"
-        if itemCount != 1 {
-            info += "s"
+        var info: String
+        if itemCount == 1 {
+            info = R.string.localized.myLibraryGroupItemCountSingular("\(itemCount)")
+        } else {
+            info = R.string.localized.myLibraryGroupItemCountPlural("\(itemCount)")
         }
 
         if let date = lastUpdated {
-            // FIXME: change to localized string
-            info += "| Last update \(DateFormatter.ddMMM.string(from: date))"
+            let stringDate = DateFormatter.ddMMM.string(from: date)
+            info += R.string.localized.myLibraryGroupLastUpdate(stringDate)
         }
 
         return info

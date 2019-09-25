@@ -586,3 +586,13 @@
 
 "Results.Feedback.Recovery" = "Great work in developing your Recovery Plan. It will be saved for you in MY QOT so that you can review it as needed.";
 "Results.Feedback.Mindset.Shifter" = "Great work in developing your plan to shift your mindset from low impact to high impact when you face this mindset killer. This mindset shifter will be saved for you in MY QOT so that you can review it as needed.";
+
+"MyLibrary.Title" = "MY LIBRARY";
+"MyLibrary.GroupTitle.All" = "ALL";
+"MyLibrary.GroupTitle.Bookmarks" = "Bookmarks";
+"MyLibrary.GroupTitle.Downloads" = "Downloads";
+"MyLibrary.GroupTitle.Links" = "Links";
+"MyLibrary.GroupTitle.Notes" = "Notes";
+"MyLibrary.GroupItemCount.Singular" = "%@ item";
+"MyLibrary.GroupItemCount.Plural" = "%@ items";
+"MyLibrary.GroupLastUpdate" = " | Last update %@";

@@ -143,15 +143,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
     }
-
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        worker.latestWhatsHotCollectionID(completion: completion)
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        worker.latestWhatsHotContent(completion: completion)
-    }
-
+    
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true
@@ -249,10 +241,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        worker.getContentCollection(completion: completion)
-    }
-
     func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
         worker.getToBeVisionImage(completion: completion)
     }
@@ -334,10 +322,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
     }
-
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
-        worker.createLatestWhatsHotModel(completion: completion)
-    }
 }
 
 extension DailyBriefInteractor {
@@ -406,7 +390,7 @@ extension DailyBriefInteractor {
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
-        let sleepQuality = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0
+        let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
