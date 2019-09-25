@@ -707,6 +707,8 @@ enum ThemeText {
     case weatherHourlyLabelNow
 
     case myLibraryTitle
+    case myLibraryGroupName
+    case myLibraryGroupDescription
 
     private var font: UIFont {
         switch self {
@@ -733,9 +735,11 @@ enum ThemeText {
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
              .resultDate, .resultFollowUp,
-             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels:
+             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels,
+             .myLibraryGroupDescription:
             return Fonts.fontMedium12
-        case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle:
+        case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
+             .myLibraryGroupName:
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
@@ -874,14 +878,16 @@ enum ThemeText {
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
-             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader:
+             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader,
+             .myLibraryGroupDescription:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
              .articleMarkRead, .articleAudioBar, .coachTitle,
-             .audioLabel:
+             .audioLabel,
+             .myLibraryGroupName:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax:
@@ -985,7 +991,8 @@ enum ThemeText {
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader,
-             .myLibraryTitle:
+             .myLibraryTitle,
+             .myLibraryGroupName, .myLibraryGroupDescription:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)

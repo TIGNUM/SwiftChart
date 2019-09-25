@@ -78,9 +78,9 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
         let data = interactor?.categoryItems[indexPath.row]
-        categoryCell.categoryName.text = data?.title
+        ThemeText.myLibraryGroupName.apply(data?.title, to: categoryCell.categoryName)
+        ThemeText.myLibraryGroupDescription.apply(data?.infoText(), to: categoryCell.infoText)
         categoryCell.iconView.image = data?.icon
-        categoryCell.infoText.text = data?.infoText()
         return categoryCell
     }
 }
