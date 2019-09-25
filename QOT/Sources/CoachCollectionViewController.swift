@@ -122,8 +122,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
             bottomSearchViewConstraint.constant = -currentViewsYPositionInWindow
         }
 
-        if heightSearchViewConstraint.constant != view.bounds.height {
-            heightSearchViewConstraint.constant = view.bounds.height
+        if heightSearchViewConstraint.constant != view.frame.height {
+            heightSearchViewConstraint.constant = view.frame.height
         }
     }
 }

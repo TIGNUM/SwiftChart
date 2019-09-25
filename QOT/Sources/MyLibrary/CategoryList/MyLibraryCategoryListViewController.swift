@@ -13,6 +13,7 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
     // MARK: - Properties
 
     var interactor: MyLibraryCategoryListInteractorInterface?
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
@@ -56,8 +57,12 @@ private extension MyLibraryCategoryListViewController {
 // MARK: - MyLibraryCategoryListViewControllerInterface
 
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
-    func update() {
+    func setupView() {
         ThemeView.level2.apply(view)
+        ThemeText.myLibraryTitle.apply(interactor?.titleText, to: titleLabel)
+    }
+
+    func update() {
         tableView.reloadData()
         self.removeLoadingSkeleton()
     }
@@ -74,7 +79,7 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
         let data = interactor?.categoryItems[indexPath.row]
         categoryCell.categoryName.text = data?.title
-        categoryCell.iconView.image = UIImage(named: data?.iconName ?? "")
+        categoryCell.iconView.image = data?.icon
         categoryCell.infoText.text = data?.infoText()
         return categoryCell
     }

@@ -28,6 +28,5 @@ final class SolveReminderCell: BaseDailyBriefCell {
         ThemeText.solveQuestions.apply(viewModel?.question2, to: question2)
         ThemeText.solveQuestions.apply(viewModel?.question3, to: question3)
         ThemeText.sprintText.apply(viewModel?.twoDayAgo, to: twoDayAgo)
-        ThemeView.level2.apply(contentView)
     }
 }

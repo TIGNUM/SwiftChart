@@ -143,15 +143,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
     }
-
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        worker.latestWhatsHotCollectionID(completion: completion)
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        worker.latestWhatsHotContent(completion: completion)
-    }
-
+    
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true
@@ -249,10 +241,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        worker.getContentCollection(completion: completion)
-    }
-
     func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
         worker.getToBeVisionImage(completion: completion)
     }
@@ -334,10 +322,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
     }
-
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
-        worker.createLatestWhatsHotModel(completion: completion)
-    }
 }
 
 extension DailyBriefInteractor {
@@ -369,24 +353,6 @@ extension DailyBriefInteractor {
 
     func invalidateTimer(forCell: BaseDailyBriefCell) {
         forCell.stopTimer()
-    }
-
-    func forceReloadWeatherModel() {
-        let newWeatherModel: ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel> = ArraySection(model: .weather,
-                                                                                                              elements: self.createWeatherViewModel(weatherBucket: nil))
-        var newSectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-        for model in viewModelOldListModels {
-            if model.model == .weather {
-                (model.elements.first as? WeatherViewModel)?.locationPermissionStatus = .denied
-            }
-            newSectionDataList.append(model)
-        }
-
-        for var weatherModel in newSectionDataList where weatherModel.model == .weather {
-            weatherModel = newWeatherModel
-        }
-        let changeSet = StagedChangeset(source: viewModelOldListModels, target: newSectionDataList)
-        self.presenter.updateViewNew(changeSet)
     }
 
     // MARK: Create buckets models
@@ -424,7 +390,7 @@ extension DailyBriefInteractor {
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
-        let sleepQuality = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0
+        let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
@@ -630,7 +596,7 @@ extension DailyBriefInteractor {
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
-        let yesterday = -1, today = 0, tomorrow = 1, twoDays = 2, threeDays = 3
+        let yesterday = -1, today = 0, tomorrow = 1, threeDays = 3
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
@@ -641,7 +607,7 @@ extension DailyBriefInteractor {
                 localPreparationList = myPeakperformance.preparations?.filter {
                     guard let date = $0.eventDate else { return false }
                     let remainingDays = beginingOfToday.days(to: date)
-                    return remainingDays == twoDays || remainingDays == threeDays
+                    return remainingDays == threeDays
                 } ?? [QDMUserPreparation]()
             } else if contentItem.searchTags.contains(obj: "TOMORROW") {
                 contentSentence = myPeakperformance.contentCollections?.filter {

@@ -99,7 +99,7 @@ private extension MySprintDetailsViewController {
                     button.setImage(icon, for: .normal)
                     button.setTitle(" \($0.title)", for: .normal)
                 }
-                return UIBarButtonItem(customView: button)
+                return button.barButton
             }
         } else {
             bottomNavigationItems.rightBarButtonItems = []

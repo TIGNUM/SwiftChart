@@ -33,27 +33,17 @@ struct MyDataDailyCheckInModel: Codable {
     var averageUsersImpactReadiness: Double?
     var tenDaysFutureLoad: Double?
 
-    init(withDailyCheckInResult: QDMDailyCheckInResult, _ average: Double = MyDataDailyCheckInModel.defaultAverageValue) {
+    init(withDailyCheckInResult: QDMDailyCheckInResult) {
         date = withDailyCheckInResult.date
         impactReadiness = min((withDailyCheckInResult.impactReadiness ?? 0), 100)
         sleepQuality = min((withDailyCheckInResult.sleepQuality ?? 0) * 10, 100)
-        if let quantity = withDailyCheckInResult.sleepQuantity,
-            let target = withDailyCheckInResult.targetSleepQuantity,
-            quantity > 0 {
-            sleepQuantity = quantity/target*100
-        }
-        if let fiveDaySleepQuality = withDailyCheckInResult.fiveDaysSleepQuality,
-           let fiveDaySleepQuantity = withDailyCheckInResult.fiveDaysSleepQuantity,
-           let target = withDailyCheckInResult.targetSleepQuantity,
-            withDailyCheckInResult.hasFiveDaysDataForSleepQuality,
-            withDailyCheckInResult.hasFiveDaysDataForSleepQuantity {
-            fiveDayRecovery = min((fiveDaySleepQuantity/5/target*100 + fiveDaySleepQuality*10)/2, 100)
-        }
-
+        sleepQuantity = min((withDailyCheckInResult.sleepQuantity ?? 0) * 10, 100)
+        fiveDayRecovery = min((withDailyCheckInResult.fiveDaysRecovery ?? 0), 100)
         fiveDayLoad = min((withDailyCheckInResult.fiveDaysload ?? 0) * 10, 100)
-        tenDayLoad = min((withDailyCheckInResult.load ?? 0) * 10, 100)
+        tenDayLoad = min((withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10, 100)
         fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? 0), 100)
-        averageUsersImpactReadiness = min(max(average, MyDataDailyCheckInModel.defaultAverageValue), 100)
+        let realAverage = withDailyCheckInResult.impactReadinessAverageMinimumThreshold ?? MyDataDailyCheckInModel.defaultAverageValue
+        averageUsersImpactReadiness = min(realAverage, 100)
         tenDaysFutureLoad = (withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10
     }
 }

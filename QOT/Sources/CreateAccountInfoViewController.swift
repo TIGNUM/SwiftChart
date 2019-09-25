@@ -20,12 +20,9 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var textLabel: UILabel!
 
     lazy var buttonCreate: UIBarButtonItem = {
-        return roundedBarButtonItem(title: R.string.localized.onboardingCreateInfoButtonCreateAccount(),
-                                    image: nil,
-                                    buttonWidth: 140,
-                                    action: #selector(didTapCreate),
-                                    backgroundColor: .carbonDark,
-                                    borderColor: .carbonDark)
+        let button = RoundedButton(title: nil, target: self, action: #selector(didTapCreate))
+        ThemableButton.createAccountInfo.apply(button, title: R.string.localized.onboardingCreateInfoButtonCreateAccount())
+        return button.barButton
     }()
 
     override func viewDidLoad() {

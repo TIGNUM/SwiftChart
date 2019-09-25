@@ -53,6 +53,9 @@ final class ToolsItemsViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        if self == self.navigationController?.viewControllers.first {
+            backButton.isHidden = true
+        }
         super.viewWillAppear(animated)
         setCustomBackButton()
         setStatusBar(colorMode: ColorMode.darkNot)
