@@ -6,46 +6,56 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PaymentTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="550" height="176"/>
+        <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="iN0-l3-epB" customClass="PaymentTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="550" height="111"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCV-NR-3OL">
-                    <rect key="frame" x="20" y="64" width="510" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BE PREPARED" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mCV-NR-3OL">
+                    <rect key="frame" x="20" y="25" width="510" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="scc-yO-kma"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-Ik-5nS">
-                    <rect key="frame" x="20" y="101.5" width="510" height="20.5"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prepare a meeting or max two lines" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nbs-Ik-5nS">
+                    <rect key="frame" x="20" y="54" width="510" height="34"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="QJp-wA-Q4E"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="nbs-Ik-5nS" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="5uA-vF-MeW"/>
-                <constraint firstItem="nbs-Ik-5nS" firstAttribute="top" secondItem="mCV-NR-3OL" secondAttribute="bottom" constant="17" id="EgF-YG-7qM"/>
-                <constraint firstItem="mCV-NR-3OL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="PQj-ZL-a06"/>
-                <constraint firstItem="mCV-NR-3OL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="gHw-4Y-o1K"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nbs-Ik-5nS" secondAttribute="trailing" constant="20" id="lmv-6l-Ahw"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mCV-NR-3OL" secondAttribute="trailing" constant="20" id="rhn-qx-FBe"/>
+                <constraint firstAttribute="bottom" secondItem="nbs-Ik-5nS" secondAttribute="bottom" constant="23" id="2Od-7N-lXV"/>
+                <constraint firstItem="nbs-Ik-5nS" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="5uA-vF-MeW"/>
+                <constraint firstItem="nbs-Ik-5nS" firstAttribute="top" secondItem="mCV-NR-3OL" secondAttribute="bottom" constant="5" id="EgF-YG-7qM"/>
+                <constraint firstItem="mCV-NR-3OL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="25" id="PQj-ZL-a06"/>
+                <constraint firstItem="mCV-NR-3OL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="gHw-4Y-o1K"/>
+                <constraint firstAttribute="trailing" secondItem="nbs-Ik-5nS" secondAttribute="trailing" constant="20" id="lmv-6l-Ahw"/>
+                <constraint firstAttribute="trailing" secondItem="mCV-NR-3OL" secondAttribute="trailing" constant="20" id="rhn-qx-FBe"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="subtitlelabel" destination="nbs-Ik-5nS" id="HGl-Et-PWB"/>
                 <outlet property="titleLabel" destination="mCV-NR-3OL" id="dba-5K-ify"/>
             </connections>
-            <point key="canvasLocation" x="132.60869565217394" y="-92.410714285714278"/>
+            <point key="canvasLocation" x="131.8840579710145" y="-114.17410714285714"/>
         </view>
     </objects>
 </document>

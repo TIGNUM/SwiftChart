@@ -925,6 +925,11 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
+		B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */; };
+		B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */; };
+		B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */; };
+		B49AC293233BA5DC009AC1CF /* PaymentFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */; };
+		B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BE660233B9BFB008CAED0 /* PaymentReminderViewController.xib */; };
 		B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACCC2328EAE1006BA566 /* WeatherCell.swift */; };
 		B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49EACCD2328EAE1006BA566 /* WeatherCell.xib */; };
 		B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACD0232902C3006BA566 /* WeatherViewModel.swift */; };
@@ -1253,7 +1258,6 @@
 		F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94B22B7D09800AB2E94 /* PaymentReminderRouter.swift */; };
 		F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94D22B7D0B100AB2E94 /* PaymentReminderViewController.swift */; };
 		F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94F22B7D0E000AB2E94 /* PaymentReminderWorker.swift */; };
-		F9A5C95222B7D10B00AB2E94 /* PaymentReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95122B7D10B00AB2E94 /* PaymentReminderViewController.xib */; };
 		F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95322B7DFD900AB2E94 /* PaymentHeaderView.swift */; };
 		F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */; };
 		F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */; };
@@ -2247,6 +2251,11 @@
 		B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenWorker.swift; sourceTree = "<group>"; };
 		B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenViewController.swift; sourceTree = "<group>"; };
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
+		B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentSwitchAccountTableViewCell.xib; sourceTree = "<group>"; };
+		B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSwitchAccountTableViewCell.swift; sourceTree = "<group>"; };
+		B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFooterView.swift; sourceTree = "<group>"; };
+		B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentFooterView.xib; sourceTree = "<group>"; };
+		B49BE660233B9BFB008CAED0 /* PaymentReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentReminderViewController.xib; sourceTree = "<group>"; };
 		B49EACCC2328EAE1006BA566 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		B49EACCD2328EAE1006BA566 /* WeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
 		B49EACD0232902C3006BA566 /* WeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewModel.swift; sourceTree = "<group>"; };
@@ -2585,7 +2594,6 @@
 		F9A5C94B22B7D09800AB2E94 /* PaymentReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderRouter.swift; sourceTree = "<group>"; };
 		F9A5C94D22B7D0B100AB2E94 /* PaymentReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderViewController.swift; sourceTree = "<group>"; };
 		F9A5C94F22B7D0E000AB2E94 /* PaymentReminderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderWorker.swift; sourceTree = "<group>"; };
-		F9A5C95122B7D10B00AB2E94 /* PaymentReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentReminderViewController.xib; sourceTree = "<group>"; };
 		F9A5C95322B7DFD900AB2E94 /* PaymentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHeaderView.swift; sourceTree = "<group>"; };
 		F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentHeaderView.xib; sourceTree = "<group>"; };
 		F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
@@ -2886,6 +2894,10 @@
 				F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */,
 				F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */,
 				F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */,
+				B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */,
+				B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */,
+				B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */,
+				B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */,
 				360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */,
 				360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */,
 				8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */,
@@ -5823,7 +5835,7 @@
 				F9A5C94B22B7D09800AB2E94 /* PaymentReminderRouter.swift */,
 				F9A5C94D22B7D0B100AB2E94 /* PaymentReminderViewController.swift */,
 				F9A5C94F22B7D0E000AB2E94 /* PaymentReminderWorker.swift */,
-				F9A5C95122B7D10B00AB2E94 /* PaymentReminderViewController.xib */,
+				B49BE660233B9BFB008CAED0 /* PaymentReminderViewController.xib */,
 			);
 			name = "Payment ";
 			sourceTree = "<group>";
@@ -6191,6 +6203,7 @@
 				F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */,
 				9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
+				B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				9C24237922F08A6200B911E6 /* MeAtMyBestCell.xib in Resources */,
@@ -6202,6 +6215,7 @@
 				B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
 				F98D8ED222D374DB0072FC73 /* QuestionCell.xib in Resources */,
+				B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
@@ -6245,6 +6259,7 @@
 				BB5E76D9230D29AC0054AF17 /* SkeletonMyPrepsHeader.xib in Resources */,
 				BB5E76C0230C393D0054AF17 /* SkeletonMyQOT.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
+				B49AC293233BA5DC009AC1CF /* PaymentFooterView.xib in Resources */,
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
@@ -6290,7 +6305,6 @@
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
 				759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */,
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
-				F9A5C95222B7D10B00AB2E94 /* PaymentReminderViewController.xib in Resources */,
 				8D8AA76922FDCB6700B59A81 /* RegistrationEmail.storyboard in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
@@ -7040,6 +7054,7 @@
 				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
+				B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
@@ -7112,6 +7127,7 @@
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
+				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
 				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
 				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
 				8D8AA76022FDCB6700B59A81 /* RegistrationPresenter.swift in Sources */,

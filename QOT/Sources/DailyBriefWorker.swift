@@ -142,13 +142,13 @@ extension DailyBriefWorker {
         })
     }
     
-        func isNew(_ collection: QDMContentCollection) -> Bool {
-            var isNewArticle = collection.viewedAt == nil
-            if let firstInstallTimeStamp = self.firstInstallTimeStamp {
-                isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
-            }
-            return isNewArticle
+    func isNew(_ collection: QDMContentCollection) -> Bool {
+        var isNewArticle = collection.viewedAt == nil
+        if let firstInstallTimeStamp = self.firstInstallTimeStamp {
+            isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
         }
+        return isNewArticle
+    }
 
 }
 

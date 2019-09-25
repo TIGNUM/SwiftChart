@@ -111,6 +111,10 @@ extension ScreenTitleService {
             return localizedString(for: .paymentGrowSectionTitle)
         case .data:
             return localizedString(for: .paymentDataSectionTitle)
+        case .switchAccount:
+            return localizedString(for: .paymentSwitchAccountTitle)
+        case .footer:
+            return localizedString(for: .paymentContactInfoTitle)
         }
     }
 
@@ -124,6 +128,10 @@ extension ScreenTitleService {
             return localizedString(for: .paymentGrowSectionSubtitle)
         case .data:
             return localizedString(for: .paymentDataSectionSubtitle)
+        case .switchAccount:
+            return localizedString(for: .paymentSwitchAccountButtonTitle)
+        case .footer:
+            return localizedString(for: .paymentContactButtonTitle)
         }
     }
 

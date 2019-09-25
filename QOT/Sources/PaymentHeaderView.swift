@@ -14,27 +14,20 @@ final class PaymentHeaderView: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
-    static func instantiateFromNib(title: String, subtitle: String) -> PaymentHeaderView {
+    
+    static func instantiateFromNib(title: String?, subtitle: String?) -> PaymentHeaderView {
         guard let headerView = R.nib.paymentHeaderView.instantiate(withOwner: self).first as? PaymentHeaderView else {
             fatalError("Cannot load header view")
         }
-        headerView.backgroundColor = .sand
+
+        ThemeView.paymentReminder.apply(headerView)
         headerView.configure(title: title, subtitle: subtitle)
         return headerView
     }
 
-    func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.2,
-                                                       font: .apercuRegular(ofSize: 20),
-                                                       lineSpacing: 8,
-                                                       textColor: .carbon,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.3,
-                                                          font: .apercuRegular(ofSize: 20),
-                                                          lineSpacing: 8,
-                                                          textColor: .carbon,
-                                                          alignment: .left)
+    func configure(title: String?, subtitle: String?) {
+        guard let titleText = title, let subtitleText = subtitle else { return }
+        ThemeText.paymentReminderHeaderTitle.apply(titleText, to: titleLabel)
+        ThemeText.paymentReminderHeaderSubtitle.apply(subtitleText, to: subtitleLabel)
     }
 }

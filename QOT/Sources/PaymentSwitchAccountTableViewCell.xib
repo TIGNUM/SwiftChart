@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="97" id="ITX-oD-vTs" customClass="PaymentSwitchAccountTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="603" height="97"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ITX-oD-vTs" id="WDa-R8-jv4">
+                <rect key="frame" x="0.0" y="0.0" width="603" height="96.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sbv-N9-Rrb">
+                        <rect key="frame" x="438" y="41.5" width="130" height="32"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                        <inset key="titleEdgeInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="different account">
+                            <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapSwitchAccountButton:" destination="ITX-oD-vTs" eventType="touchUpInside" id="x9s-uY-xU5"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P29-2F-Wod">
+                        <rect key="frame" x="329" y="47" width="101" height="20.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="sbv-N9-Rrb" firstAttribute="leading" secondItem="P29-2F-Wod" secondAttribute="trailing" constant="8" id="9L5-gt-ybL"/>
+                    <constraint firstItem="sbv-N9-Rrb" firstAttribute="centerY" secondItem="P29-2F-Wod" secondAttribute="centerY" id="Bzc-lF-T0r"/>
+                    <constraint firstAttribute="trailing" secondItem="sbv-N9-Rrb" secondAttribute="trailing" constant="35" id="FHD-50-ABs"/>
+                    <constraint firstItem="P29-2F-Wod" firstAttribute="top" secondItem="WDa-R8-jv4" secondAttribute="top" constant="47" id="Tey-iS-RAG"/>
+                    <constraint firstAttribute="bottom" secondItem="P29-2F-Wod" secondAttribute="bottom" constant="29" id="m7q-Y9-kYf"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="signInLabel" destination="P29-2F-Wod" id="dx6-l5-HPH"/>
+                <outlet property="switchAccountButton" destination="sbv-N9-Rrb" id="BBo-BQ-L2i"/>
+            </connections>
+            <point key="canvasLocation" x="132.60869565217394" y="-130.91517857142856"/>
+        </tableViewCell>
+    </objects>
+</document>
