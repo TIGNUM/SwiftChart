@@ -25,6 +25,10 @@ final class MyLibraryUserStoragePresenter {
 
 extension MyLibraryUserStoragePresenter: MyLibraryUserStoragePresenterInterface {
 
+    func setupView() {
+        viewController?.setupView()
+    }
+
     func present() {
         viewController?.update()
     }

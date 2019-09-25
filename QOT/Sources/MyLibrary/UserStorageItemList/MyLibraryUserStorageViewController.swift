@@ -45,14 +45,6 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         interactor?.viewDidLoad()
-        view.backgroundColor = .carbon
-
-        editButton.tintColor = .accent
-        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addButton.isHidden = !(interactor?.showAddButton ?? false)
-        addButton.setTitle(" " + (interactor?.addTitle ?? ""), for: .normal)
-        addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -135,6 +127,17 @@ private extension MyLibraryUserStorageViewController {
 // MARK: - MyLibraryUserStorageViewControllerInterface
 
 extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewControllerInterface {
+    func setupView() {
+        ThemeView.level3.apply(view)
+
+        editButton.tintColor = .accent
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addButton.isHidden = !(interactor?.showAddButton ?? false)
+        addButton.setTitle(" " + (interactor?.addTitle ?? ""), for: .normal)
+        addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+    }
+
     func update() {
         let isEditing = interactor?.isEditing ?? false
 
