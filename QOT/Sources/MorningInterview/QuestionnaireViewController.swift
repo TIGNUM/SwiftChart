@@ -38,9 +38,9 @@ enum ControllerType {
         }
 
         static func customize() -> Config {
-            return Config(currentIndexColor: .redOrange,
-                          aboveCurrentIndexColor: .redOrange40,
-                          belowCurrentIndexColor: .accent40)
+            return Config(currentIndexColor: .accent,
+                          aboveCurrentIndexColor: .accent70,
+                          belowCurrentIndexColor: .accent70)
         }
 
         static func dailyCheckin() -> Config {
