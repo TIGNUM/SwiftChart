@@ -15,7 +15,6 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
-    @IBOutlet weak var audioView: AudioButton!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
     private var mediaURL: URL?
@@ -24,10 +23,10 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var categoryTitle = ""
     private var duration: Double = 0
     weak var delegate: IsPlayingDelegate?
+    @IBOutlet weak var audioLabelView: AudioButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        audioView.corner(radius: 20)
         checkIfPlaying()
     }
 
@@ -39,7 +38,7 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
 
     private func checkIfPlaying() {
         if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+            isPlaying ? ThemeView.audioPlaying.apply(audioLabelView) : ThemeView.level1.apply(audioLabelView)
         }
     }
 
@@ -50,6 +49,8 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
                    duration: Double,
                    remoteID: Int,
                    delegate: IsPlayingDelegate?) {
+        audioLabelView.isHidden = false
+        audioLabelView.isUserInteractionEnabled = true
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
@@ -80,7 +81,7 @@ extension ToolsCollectionsAudioTableViewCell {
 
     func makePDFCell() {
         mediaIconImageView.image = R.image.ic_read_grey()
-        audioView.isHidden = true
+        audioLabelView.isHidden = true
         audioButton.isHidden = true
     }
 }
@@ -89,8 +90,9 @@ extension ToolsCollectionsAudioTableViewCell {
 
 private extension ToolsCollectionsAudioTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
+//        audioLabelView.isHidden = false
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
-            audioView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
+            audioLabelView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
         }
     }
 }

@@ -21,6 +21,16 @@ final class AudioButton: UIView {
     private var audioRemoteID: Int = 0
     private var duration: Int = 0
 
+    override var isHidden: Bool {
+        get {
+            return super.isHidden
+        }
+        set(v) {
+            super.isHidden = v
+            print("YOU DID HIDE THIS BUTTON!!!")
+        }
+    }
+
     static func instantiateFromNib() -> AudioButton {
         guard let audioButton = R.nib.audioButton.instantiate(withOwner: self).first as? AudioButton else {
             fatalError("Cannot load audio button view")
