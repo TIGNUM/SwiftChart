@@ -43,10 +43,11 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        tableView.addHeader(with: .level2)
+        tableView.addHeader(with: .sprintsHeader)
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
-        ThemeView.level2.apply(view)
+        ThemeView.sprintsHeader.apply(view)
+        ThemeView.level2.apply(tableView)
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)

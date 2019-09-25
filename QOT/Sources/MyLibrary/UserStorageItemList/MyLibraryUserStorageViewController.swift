@@ -177,7 +177,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = interactor?.items[indexPath.row]
         let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.NOTE
-        let placeholder = UIImage(named: "preloading")
+        let placeholder = R.image.preloading()
 
         var returnCell: BaseMyLibraryTableViewCellInterface?
         switch cellType {

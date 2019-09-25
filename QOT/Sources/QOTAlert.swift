@@ -308,7 +308,7 @@ private extension QOTAlertViewController {
         }
         let button = RoundedButton(title: item.title ?? "  ", target: pair.0, action: pair.1)
         button.handler = item.handler
-        return UIBarButtonItem(customView: button)
+        return button.barButton
     }
 }
 

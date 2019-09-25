@@ -35,6 +35,7 @@ enum ThemeView {
     case level2
     case level3
     case sprints
+    case sprintsHeader
     case level1Secondary
     case level1Selected
     case level2Selected
@@ -129,6 +130,8 @@ enum ThemeView {
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
             return Palette.heatMapDarkBlue
+        case .sprintsHeader:
+            return .carbonNew
         }
     }
 
@@ -290,6 +293,8 @@ enum ThemableButton {
     case myPlans
     case signinInfo
     case myTbvDataRate
+    case createAccountInfo
+    case trackSelection
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -303,7 +308,9 @@ enum ThemableButton {
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
-             .myTbvDataRate:
+             .myTbvDataRate,
+             .createAccountInfo,
+             .trackSelection:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -314,7 +321,9 @@ enum ThemableButton {
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
-             .myTbvDataRate:
+             .myTbvDataRate,
+             .createAccountInfo,
+             .trackSelection:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -331,7 +340,9 @@ enum ThemableButton {
              .walkthroughGotIt,
              .myPlans,
              .signinInfo,
-             .myTbvDataRate:
+             .myTbvDataRate,
+             .createAccountInfo,
+             .trackSelection:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
@@ -695,6 +706,8 @@ enum ThemeText {
     case weatherHourlyLabels
     case weatherHourlyLabelNow
 
+    case myLibraryTitle
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax:
@@ -702,7 +715,8 @@ enum ThemeText {
         case .asterix:
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
-          .askPermissionTitle, .syncedCalendarTitle, .weatherTitle:
+          .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
+          .myLibraryTitle:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
@@ -852,7 +866,8 @@ enum ThemeText {
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
              .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
              .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
-             .onboardingInfoTitle:
+             .onboardingInfoTitle,
+             .myLibraryTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -969,7 +984,8 @@ enum ThemeText {
              .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
-             .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader:
+             .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader,
+             .myLibraryTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)

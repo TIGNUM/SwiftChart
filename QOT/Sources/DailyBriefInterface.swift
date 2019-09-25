@@ -29,10 +29,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func bucket(at row: Int) -> QDMDailyBriefBucket?
     func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel?
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void))
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void))
     func getDailyBriefBucketsForViewModel()
-    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void))
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
 
     func presentMyDataScreen()
@@ -50,15 +47,13 @@ protocol DailyBriefInteractorInterface: Interactor {
     func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
-    func forceReloadWeatherModel()
-    
+
     func saveAnswerValue(_ value: Int)
     func saveUpdatedDailyCheckInSleepTarget(_ value: Double)
     func saveTargetValue(value: Int?)
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
-    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void)
 }
 
 protocol DailyBriefRouterInterface {

@@ -347,12 +347,22 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
             switch syncResult.dataType {
+            case .USER:
+                UserService.main.getUserData({ (user) in
+                    guard var user = user else { return }
+                    if user.timeZone != TimeZone.hoursFromGMT {
+                        user.timeZone = TimeZone.hoursFromGMT
+                        UserService.main.updateUserData(user, { (_) in
+                            /* */
+                        })
+                    }
+                })
             case .MY_TO_BE_VISION:
                 guard syncResult.hasUpdatedContent else { return }
                 UserService.main.getMyToBeVision({ (vision, initiated, error) in
@@ -388,15 +398,15 @@ extension AppCoordinator {
                     ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
                 })
             case .PREPARATION:
-                if syncResult.syncRequestType == .DOWN_SYNC {
-                    UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                        guard let preps = preps, preps.count > 0 else { return }
-                        log("preps with missing events : \(preps)")
-                        let configurator = PreparationWithMissingEventConfigurator.make(preps)
-                        let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
-                        baseRootViewController?.present(viewController, animated: true, completion: nil)
-                    })
-                }
+                guard syncResult.syncRequestType == .DOWN_SYNC,
+                    EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
+                UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
+                    guard let preps = preps, preps.count > 0 else { return }
+                    log("preps with missing events : \(preps)")
+                    let configurator = PreparationWithMissingEventConfigurator.make(preps)
+                    let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
+                    baseRootViewController?.present(viewController, animated: true, completion: nil)
+                })
             default: break
             }
         }

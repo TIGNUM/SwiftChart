@@ -21,17 +21,15 @@ final class TrackSelectionViewController: UIViewController, ScreenZLevel1 {
     var interactor: TrackSelectionInteractorInterface?
 
     lazy var fastTrackButton: UIBarButtonItem = {
-        let button = RoundedButton(title: interactor?.fastTrackButton ?? "",
-                                   target: self,
-                                   action: #selector(didTapFastTrackButton))
-        return UIBarButtonItem(customView: button)
+        let button = RoundedButton(title: nil, target: self, action: #selector(didTapFastTrackButton))
+        ThemableButton.trackSelection.apply(button, title: interactor?.fastTrackButton ?? "")
+        return button.barButton
     }()
 
     lazy var guidedTrackButton: UIBarButtonItem = {
-        let button = RoundedButton(title: interactor?.guidedTrackButton ?? "",
-                                   target: self,
-                                   action: #selector(didTapGuidedTrackButton))
-        return UIBarButtonItem(customView: button)
+        let button = RoundedButton(title: nil, target: self, action: #selector(didTapGuidedTrackButton))
+        ThemableButton.trackSelection.apply(button, title: interactor?.guidedTrackButton ?? "")
+        return button.barButton
     }()
 
     // MARK: - Init

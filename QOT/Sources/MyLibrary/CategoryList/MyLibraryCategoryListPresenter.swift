@@ -25,12 +25,8 @@ final class MyLibraryCategoryListPresenter {
 // MARK: - MyLibraryCategoryListInterface
 
 extension MyLibraryCategoryListPresenter: MyLibraryCategoryListPresenterInterface {
-    func presentLoadingStatus() {
-
-    }
-
-    func presentEmptyStatus() {
-
+    func setupView() {
+        viewController?.setupView()
     }
 
     func presentStorages() {
