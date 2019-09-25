@@ -84,7 +84,7 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController) {
-        let configurator = PrepareResultsConfigurator.make(item, canDelete: false)
+        let configurator = PrepareResultsConfigurator.make(item, resultType: .prepareMyPlans)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }

@@ -795,7 +795,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, canDelete: false)
+        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDecisionTree)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
     }

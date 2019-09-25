@@ -14,6 +14,7 @@ protocol PrepareResultsDelegatge: class {
     func openEditStrategyView()
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
     func reloadData()
+    func setupBarButtonItems(resultType: ResultType)
     func didUpdateIntentions(_ answerIds: [Int])
     func didUpdateBenefits(_ benefits: String)
 }
@@ -22,6 +23,7 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?
+    private var rightBarItems: [UIBarButtonItem] = []
 
     // MARK: - Init
     init(configure: Configurator<PrepareResultsViewController>) {
@@ -39,23 +41,23 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
         interactor?.viewDidLoad()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(dismissView),
-                                               name: .didTapDismissBottomNavigation,
-                                               object: nil)
-    }
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(dismissView),
+//                                               name: .didTapDismissBottomNavigation,
+//                                               object: nil)
+//    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        NotificationCenter.default.removeObserver(self, name: .didTapDismissBottomNavigation, object: nil)
-    }
+//
+//    override func viewDidDisappear(_ animated: Bool) {
+//        super.viewDidDisappear(animated)
+//        NotificationCenter.default.removeObserver(self, name: .didTapDismissBottomNavigation, object: nil)
+//    }
 }
 
 // MARK: - Private
@@ -101,24 +103,32 @@ private extension PrepareResultsViewController {
 
 // MARK: - Actions
 private extension PrepareResultsViewController {
-    @objc func openConfirmationView() {
-        trackUserEvent(.CONFIRM, action: .TAP)
+    @objc func didTapCancel() {
+        trackUserEvent(.CANCEL, action: .TAP)
         if interactor?.dataModified ?? false {
             interactor?.openConfirmationView()
         } else {
-            dismissView()
+            interactor?.didTapDismissView()
         }
     }
 
-    @objc func dismissView() {
+    @objc func didTapDone() {
         trackUserEvent(.CLOSE, action: .TAP)
         interactor?.didTapDismissView()
     }
 
-    @objc func saveAndContinue() {
+    @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didClickSaveAndContinue()
         interactor?.presentFeedback()
+    }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+        switch buttonItem {
+        case .cancel: return #selector(didTapCancel)
+        case .done: return #selector(didTapDone)
+        case .save: return #selector(didTapSave)
+        }
     }
 }
 
@@ -251,6 +261,17 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
+    func setupBarButtonItems(resultType: ResultType) {
+        resultType.buttonItems.forEach { (buttonItem) in
+            rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
+                                                      buttonWidth: buttonItem.width,
+                                                      action: getSelector(buttonItem),
+                                                      backgroundColor: buttonItem.backgroundColor,
+                                                      borderColor: buttonItem.borderColor))
+        }
+        updateBottomNavigation([], rightBarItems)
+    }
+
     func didUpdateIntentions(_ answerIds: [Int]) {
         interactor?.updateIntentions(answerIds)
         refreshBottomNavigationItems()
@@ -305,19 +326,13 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 // MARK: - Bottom Navigation
 extension PrepareResultsViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
-            return nil
-        }
-        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+        return nil
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(dismissView))]
+            return [doneButtonItem(#selector(didTapDone))]
         }
-        return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
-                                      buttonWidth: .SaveAndContinue,
-                                      action: #selector(saveAndContinue),
-                                      backgroundColor: .carbonDark)]
+        return rightBarItems
     }
 }

@@ -82,7 +82,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didTapDismissView() {
-        if worker.canDelete {
+        if worker.getResultType == .prepareDecisionTree {
             router.dismissChatBotFlow()
         } else {
             router.dismiss()

@@ -60,6 +60,9 @@ enum ResultType {
     case recoveryMyPlans
     case mindsetShifterDecisionTree
     case mindsetShifterMyPlans
+    case prepareDecisionTree
+    case prepareMyPlans
+    case prepareDailyBrief
 
     var contentId: Int {
         switch self {
@@ -73,12 +76,15 @@ enum ResultType {
 
     var buttonItems: [ButtonItem] {
         switch self {
-        case .solveDailyBrief: return [.done]
-        case .solveDecisionTree: return [.done]
-        case .recoveryDecisionTree: return [.save, .cancel]
-        case .recoveryMyPlans: return [.done]
-        case .mindsetShifterMyPlans: return [.done]
-        case .mindsetShifterDecisionTree: return [.save, .cancel]
+        case .solveDailyBrief,
+             .solveDecisionTree,
+             .recoveryMyPlans,
+             .mindsetShifterMyPlans,
+             .prepareMyPlans,
+             .prepareDailyBrief: return [.done]
+        case .recoveryDecisionTree,
+             .mindsetShifterDecisionTree,
+             .prepareDecisionTree: return [.save, .cancel]
         }
     }
 }

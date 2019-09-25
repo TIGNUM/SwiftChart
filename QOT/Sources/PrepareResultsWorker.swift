@@ -22,18 +22,20 @@ final class PrepareResultsWorker {
     weak var delegate: PrepareResultsDelegatge?
     var dataModified: Bool = false
     private var currentEditKey: Prepare.Key?
+    private let resultType: ResultType
 
     // MARK: - Init
     init(_ contentId: Int) {
         level = .LEVEL_ON_THE_GO
+        resultType = .prepareDecisionTree
         onTheGoItems(contentId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
         }
     }
 
-    init(_ preparation: QDMUserPreparation?, canDelete: Bool) {
-        self.canDelete = canDelete
+    init(_ preparation: QDMUserPreparation?, resultType: ResultType) {
+        self.resultType = resultType
         self.preparation = preparation
         if let prepType = preparation?.type {
             level = prepType
@@ -71,6 +73,10 @@ final class PrepareResultsWorker {
 
 // MARK: - Getter & Setter
 extension PrepareResultsWorker {
+    var getResultType: ResultType? {
+        return resultType
+    }
+
     var getEventType: String? {
         return preparation?.eventType
     }
@@ -213,17 +219,21 @@ private extension PrepareResultsWorker {
 
     func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
+        let type = resultType
         criticalItems(prepare, prepare.answerFilter ?? "", suggestedStrategyId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
+            self?.delegate?.setupBarButtonItems(resultType: type)
         }
     }
 
     func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
+        let type = resultType
         dailyItems(prepare) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
+            self?.delegate?.setupBarButtonItems(resultType: type)
         }
     }
 

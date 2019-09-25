@@ -32,7 +32,7 @@ extension UIViewController {
         return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
                                     buttonWidth: .Done,
                                     action: action,
-                                    backgroundColor: .carbonNew)
+                                    backgroundColor: .carbon)
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {
