@@ -21,14 +21,14 @@ class DTPresenter: DTPresenterInterface {
 
     // MARK: - DTPresenterInterface
     func showNextQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
-        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
+        let button = getNavigationButton(presentationModel, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showNextQuestion(viewModel)
     }
 
     func showPreviousQuestion(_ presentationModel: DTPresentationModel, isDark: Bool) {
-        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
+        let button = getNavigationButton(presentationModel, isDark: isDark)
         viewController?.setNavigationButton(button)
         let viewModel = createViewModel(presentationModel)
         viewController?.showPreviosQuestion(viewModel)
@@ -44,6 +44,10 @@ class DTPresenter: DTPresenterInterface {
 
     func presentInfoView(icon: UIImage?, title: String?, text: String?) {
         viewController?.presentInfoView(icon: icon, title: title, text: text)
+    }
+
+    func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
+        return presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
     }
 
     // MARK: - Create DTViewModel
