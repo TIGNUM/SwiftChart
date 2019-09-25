@@ -12,18 +12,15 @@ import qot_dal
 final class PrepareResultsPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: PrepareResultsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: PrepareResultsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - PrepareResultsInterface
-
 extension PrepareResultsPresenter: PrepareResultsPresenterInterface {
     func reloadView() {
         viewController?.reloadView()
@@ -35,9 +32,5 @@ extension PrepareResultsPresenter: PrepareResultsPresenterInterface {
 
     func setupView() {
         viewController?.setupView()
-    }
-
-    func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
-        viewController?.showAlert(title: title, message: message, cancelTitle: cancelTitle, leaveTitle: leaveTitle)
     }
 }

@@ -34,8 +34,8 @@ final class PrepareResultInteractor {
 
 // MARK: - PrepareCheckListInteractorInterface
 extension PrepareResultInteractor: PrepareResultsInteractorInterface {
-    var dataModified: Bool {
-        return worker.dataModified
+    var getResultType: ResultType {
+        return worker.getResultType
     }
 
     var getType: QDMUserPreparation.Level {
@@ -63,17 +63,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         router.presentRelatedArticle(readMoreID: readMoreID)
     }
 
-    func didClickSaveAndContinue() {
-        worker.updatePreparation { _ in }
-    }
-
-    func openConfirmationView() {
-        presenter.presentAlert(title: worker.leaveAlertTitle,
-                               message: worker.leaveAlertMessage,
-                               cancelTitle: worker.cancelButtonTitle,
-                               leaveTitle: worker.leaveButtonTitle)
-    }
-
     func presentEditStrategyView() {
         let relatedId = worker.suggestedStrategyId
         worker.getSelectedIDs { [weak self] (selectedIds) in
@@ -86,12 +75,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
             router.dismissChatBotFlow()
         } else {
             router.dismiss()
-        }
-    }
-
-    func didTapLeaveWithoutSaving() {
-        worker.deletePreparationIfNeeded { [unowned self] in
-            self.didTapDismissView()
         }
     }
 
@@ -121,5 +104,17 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
 
     func presentFeedback() {
         router.presentFeedback()
+    }
+
+    func deletePreparation() {
+        worker.deletePreparation()
+    }
+
+    func updatePreparation() {
+        worker.updatePreparation { _ in }
+    }
+
+    func didClickSaveAndContinue() {
+        updatePreparation()
     }
 }

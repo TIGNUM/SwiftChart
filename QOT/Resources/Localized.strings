@@ -178,6 +178,11 @@
 "Prepare.header.reflect.on.success" = "REFLECT ON SUCCESS";
 "Prepare.edit.preparation.list" = "EDIT PREPARATION LIST";
 
+"Prepare.Alert.Reminder.Title" = "ACTIVATE REMINDER?";
+"Prepare.Alert.Reminder.Message" = "You are saving your preparation without a reminder. Would you like to add a reminder now?";
+"Prepare.Alert.Reminder.Button.Title.Confirm" = "Yes";
+"Prepare.Alert.Reminder.Button.Title.Decline" = "No";
+
 "Weekly.Choices.No.Content" = "No weekly choices\nhave been saved yet.";
 
 "Learn.Content.Item.Title.Related.Articles" = "RELATED ARTICLES";

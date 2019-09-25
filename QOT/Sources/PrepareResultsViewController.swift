@@ -41,23 +41,10 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
         interactor?.viewDidLoad()
     }
 
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(dismissView),
-//                                               name: .didTapDismissBottomNavigation,
-//                                               object: nil)
-//    }
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
-//
-//    override func viewDidDisappear(_ animated: Bool) {
-//        super.viewDidDisappear(animated)
-//        NotificationCenter.default.removeObserver(self, name: .didTapDismissBottomNavigation, object: nil)
-//    }
 }
 
 // MARK: - Private
@@ -105,22 +92,33 @@ private extension PrepareResultsViewController {
 private extension PrepareResultsViewController {
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
-        if interactor?.dataModified ?? false {
-            interactor?.openConfirmationView()
-        } else {
-            interactor?.didTapDismissView()
-        }
+        interactor?.deletePreparation()
+        interactor?.didTapDismissView()
     }
 
-    @objc func didTapDone() {
+    @objc func didTapDismiss() {
         trackUserEvent(.CLOSE, action: .TAP)
         interactor?.didTapDismissView()
     }
 
+    @objc func didTapDone() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        if interactor?.setReminder == false {
+            showAlert()
+        } else {
+            interactor?.updatePreparation()
+            interactor?.didTapDismissView()
+        }
+    }
+
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.didClickSaveAndContinue()
-        interactor?.presentFeedback()
+        if interactor?.setReminder == false {
+            showAlert()
+        } else {
+            interactor?.didClickSaveAndContinue()
+            interactor?.presentFeedback()
+        }
     }
 
     func getSelector(_ buttonItem: ButtonItem) -> Selector {
@@ -129,6 +127,29 @@ private extension PrepareResultsViewController {
         case .done: return #selector(didTapDone)
         case .save: return #selector(didTapSave)
         }
+    }
+
+    func showAlert() {
+        let confirm = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleConfirm()) { [weak self] (_) in
+            self?.interactor?.setReminder = true
+            self?.interactor?.updatePreparation()
+            if self?.interactor?.getResultType == .prepareDecisionTree {
+                self?.interactor?.presentFeedback()
+            } else {
+                self?.interactor?.didTapDismissView()
+            }
+        }
+        let decline = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleDecline()) { [weak self] (_) in
+            self?.interactor?.updatePreparation()
+            if self?.interactor?.getResultType == .prepareDecisionTree {
+                self?.interactor?.presentFeedback()
+            } else {
+                self?.interactor?.didTapDismissView()
+            }
+        }
+        QOTAlert.show(title: R.string.localized.prepareAlertReminderTitle(),
+                      message: R.string.localized.prepareAlertReminderMessage(),
+                      bottomItems: [confirm, decline])
     }
 }
 
@@ -176,14 +197,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
         tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
         tableView.estimatedSectionHeaderHeight = 100
         view.layoutIfNeeded()
-    }
-
-    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
-//        let cancel = QOTAlertAction(title: cancelTitle)
-//        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
-            interactor?.didTapLeaveWithoutSaving()
-//        }
-//        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
     }
 }
 
@@ -331,7 +344,7 @@ extension PrepareResultsViewController {
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(didTapDone))]
+            return [doneButtonItem(#selector(didTapDismiss))]
         }
         return rightBarItems
     }
