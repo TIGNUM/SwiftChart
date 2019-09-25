@@ -709,6 +709,9 @@ enum ThemeText {
     case myLibraryTitle
     case myLibraryGroupName
     case myLibraryGroupDescription
+    case myLibraryItemsTitle
+    case myLibraryItemsItemName
+    case myLibraryItemsItemDescription
 
     private var font: UIFont {
         switch self {
@@ -718,7 +721,7 @@ enum ThemeText {
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
-          .myLibraryTitle:
+          .myLibraryTitle, .myLibraryItemsTitle:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
@@ -736,7 +739,7 @@ enum ThemeText {
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
              .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead, .myDataChartValueLabels,
-             .myLibraryGroupDescription:
+             .myLibraryGroupDescription, .myLibraryItemsItemDescription:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
              .myLibraryGroupName:
@@ -785,7 +788,8 @@ enum ThemeText {
              .resultTitle, .resultHeader2,
              .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent,
-             .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText:
+             .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
+             .myLibraryItemsItemName:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -871,7 +875,7 @@ enum ThemeText {
              .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
              .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
              .onboardingInfoTitle,
-             .myLibraryTitle:
+             .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -879,7 +883,7 @@ enum ThemeText {
              .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
              .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader,
-             .myLibraryGroupDescription:
+             .myLibraryGroupDescription, .myLibraryItemsItemDescription:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -992,7 +996,7 @@ enum ThemeText {
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader,
              .myLibraryTitle,
-             .myLibraryGroupName, .myLibraryGroupDescription:
+             .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
@@ -1100,6 +1104,8 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: -0.21, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .onboardingInfoBody:
             string = NSAttributedString(string: text, letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .myLibraryItemsItemName:
+            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: .byTruncatingTail)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
