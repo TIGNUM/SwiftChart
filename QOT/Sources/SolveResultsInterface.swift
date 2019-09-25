@@ -22,6 +22,7 @@ protocol SolveResultsInteractorInterface: Interactor {
     var hideShowMoreButton: Bool { get }
     var resultType: ResultType { get }
     func save(solveFollowUp: Bool)
+    func updateSolve(followUp: Bool)
 }
 
 protocol SolveResultsRouterInterface {

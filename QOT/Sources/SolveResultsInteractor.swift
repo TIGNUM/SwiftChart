@@ -42,4 +42,8 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     func save(solveFollowUp: Bool) {
         worker.save(followUp: solveFollowUp) {}
     }
+
+    func updateSolve(followUp: Bool) {
+        worker.updateSolve(followUp: followUp)
+    }
 }

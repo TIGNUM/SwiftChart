@@ -56,29 +56,39 @@ extension SolveResultsWorker {
         }
     }
 
-    func save(followUp: Bool, _ completion: @escaping () -> Void) {
+    func updateSolve(followUp: Bool) {
         if var solve = solve {
             solve.followUp = followUp
             UserService.main.updateSolve(solve) { (_, error) in
                 if let error = error {
                     log("Error updateSolve: \(error.localizedDescription)", level: .error)
                 }
-                completion()
             }
-        } else {
-            let contentId = solutionCollectionId
-            let answerId = selectedAnswerId
-            relatedStrategies(contentId) { (relatedStrategies) in
-                let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-                UserService.main.createSolve(selectedAnswerId: answerId,
-                                             solutionCollectionId: contentId,
-                                             strategyIds: relatedStragyIds,
-                                             followUp: true) { (_, error) in
-                                                if let error = error {
-                                                    log("Error createSolve: \(error.localizedDescription)",
-                                                        level: .error)
-                                                }
-                                                completion()
+        }
+    }
+
+    func save(followUp: Bool, _ completion: @escaping () -> Void) {
+        let contentId = solutionCollectionId
+        let answerId = selectedAnswerId
+        relatedStrategies(contentId) { (relatedStrategies) in
+            let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
+            UserService.main.createSolve(selectedAnswerId: answerId,
+                                         solutionCollectionId: contentId,
+                                         strategyIds: relatedStragyIds,
+                                         followUp: true) { (_, error) in
+                                            if let error = error {
+                                                log("Error createSolve: \(error.localizedDescription)", level: .error)
+                                            }
+                                            completion()
+            }
+        }
+    }
+
+    func deleteRecovery() {
+        if let recovery = recovery {
+            UserService.main.deleteRecovery3D(recovery) { (error) in
+                if let error = error {
+                    log("Error deleteRecovery3D: \(error.localizedDescription)", level: .error)
                 }
             }
         }
