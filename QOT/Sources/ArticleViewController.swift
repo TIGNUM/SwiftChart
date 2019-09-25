@@ -205,7 +205,6 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
     func didTapBookmarkItem() {
         trackUserEvent(.BOOKMARK, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         interactor?.toggleBookmark()
-        articleTopNavBar.updateBookmark(interactor?.shouldHideBookmarkItem ?? false)
     }
 
     func didTapDarkModeItem() {

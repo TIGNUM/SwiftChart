@@ -19,8 +19,9 @@ final class ArticleTopNavBar: UIView {
     private weak var delegate: ArticleTopNavBarProtocol?
 
     private let bottomMargin: CGFloat = -10
-    private let spacing: CGFloat = -30
-    private let buttonSize: CGFloat = 44
+    private let rightMargin: CGFloat = -10
+    private var spacing: CGFloat = -30
+    private let buttonSize: CGFloat = 40
 
     private var arrayViews: [Weak<UIView>] = []
     private var arrayViewsCount = 0
@@ -44,7 +45,6 @@ final class ArticleTopNavBar: UIView {
 // MARK: - Private
 
 private extension ArticleTopNavBar {
-
     func setupContainers() {
         weak var lastContainer: UIView?
         for _ in 0..<5 {
@@ -60,7 +60,7 @@ private extension ArticleTopNavBar {
             if let last = lastContainer {
                 addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: last, attribute: .leading, multiplier: 1.0, constant: spacing))
             } else {
-                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: -10))
+                addConstraint(NSLayoutConstraint(item: container, attribute: .trailing, relatedBy: .equal, toItem: self, attribute: .trailing, multiplier: 1.0, constant: rightMargin))
             }
             lastContainer = container
         }
@@ -99,8 +99,7 @@ private extension ArticleTopNavBar {
             self.labelTitle.alpha = 1 - alpha
         }
 
-        let theme = isShowingAll ? ThemeButton.accent40 : ThemeButton.clear
-        theme.apply(buttonMore)
+        buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
     }
 
     func refreshColor() {
@@ -128,10 +127,15 @@ extension ArticleTopNavBar {
         self.delegate = delegate
 
         if arrayViewsCount > 0 { return }
+
+        let expectedButtonCount: CGFloat = 3 + (isShareable ? 1 : 0) + (isBookMarkable ? 1 : 0)
+        spacing = -(bounds.width - expectedButtonCount * buttonSize - rightMargin * 2) / expectedButtonCount
+
         setupContainers()
 
         setupButton(buttonMore, image: R.image.ic_more_unselected())
         buttonMore.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
+        buttonMore.corner(radius: buttonSize / 2)
 
         if isBookMarkable {
             setupButton(buttonBookmark, image: nil)
@@ -167,7 +171,6 @@ extension ArticleTopNavBar {
 // MARK: - Actions
 
 private extension ArticleTopNavBar {
-
     @IBAction func didTapMoreButton() {
         isShowingAll.toggle()
         refresh()
