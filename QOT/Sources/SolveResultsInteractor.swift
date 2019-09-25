@@ -46,4 +46,8 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     func updateSolve(followUp: Bool) {
         worker.updateSolve(followUp: followUp)
     }
+
+    func deleteRecovery() {
+        worker.deleteRecovery()
+    }
 }

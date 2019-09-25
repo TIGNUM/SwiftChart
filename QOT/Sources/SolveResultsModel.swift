@@ -24,7 +24,7 @@ enum ButtonItem {
         switch self {
         case .cancel: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
         case .done: return ScreenTitleService.main.localizedString(for: .ButtonTitleDone)
-        case .save: return ScreenTitleService.main.localizedString(for: .ButtonTitleSaveContinue)
+        case .save: return R.string.localized.alertButtonTitleSave()
         }
     }
 
@@ -32,7 +32,7 @@ enum ButtonItem {
         switch self {
         case .cancel: return .Cancel
         case .done: return .Done
-        case .save: return .SaveAndContinue
+        case .save: return .Save
         }
     }
 

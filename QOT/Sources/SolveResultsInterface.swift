@@ -23,6 +23,7 @@ protocol SolveResultsInteractorInterface: Interactor {
     var resultType: ResultType { get }
     func save(solveFollowUp: Bool)
     func updateSolve(followUp: Bool)
+    func deleteRecovery()
 }
 
 protocol SolveResultsRouterInterface {

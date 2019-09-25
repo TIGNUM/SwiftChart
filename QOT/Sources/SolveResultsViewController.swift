@@ -53,6 +53,7 @@ private extension SolveResultsViewController {
     }
 
     @objc func didTapCancel() {
+        interactor?.deleteRecovery()
         router?.dismiss()
     }
 
@@ -220,9 +221,23 @@ extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
     func didTapStart(_ type: SolveTriggerType) {
         trackUserEvent(.SELECT, valueType: "START \(type.rawValue)", action: .TAP)
         switch type {
-        case .midsetShifter: router?.openMindsetShifter()
-        case .tbvGenerator: router?.openRecovery()
-        case .recoveryPlaner: router?.openRecovery()
+        case .midsetShifter:
+            handleSolveFollowUpOnTrigger()
+            router?.openMindsetShifter()
+        case .recoveryPlaner:
+            handleSolveFollowUpOnTrigger()
+            router?.openRecovery()
+        default:
+            break
+        }
+    }
+
+    func handleSolveFollowUpOnTrigger() {
+        if isFollowUpActive == true && resultViewModel?.type == .solveDecisionTree {
+            interactor?.save(solveFollowUp: true)
+        }
+        if isFollowUpActive == false && resultViewModel?.type == .solveDailyBrief {
+            interactor?.updateSolve(followUp: false)
         }
     }
 }

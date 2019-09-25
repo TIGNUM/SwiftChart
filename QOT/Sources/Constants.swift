@@ -116,6 +116,7 @@ extension CGFloat.Button.Width {
     static let Remove: CGFloat = .Cancel
     static let Keep: CGFloat = .Done
     static let Continue: CGFloat = 100
+    static let Save: CGFloat = 80
 }
 
 extension CGRect {
