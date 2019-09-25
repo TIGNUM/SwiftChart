@@ -693,12 +693,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.reloadData()
     }
 
-//    @objc func checkAction(sender: UITapGestureRecognizer) {
-//        interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in
-//            self?.interactor?.presentWhatsHotArticle(selectedID: model?.remoteID ?? 0)
-//        })
-//    }
-
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
     }
