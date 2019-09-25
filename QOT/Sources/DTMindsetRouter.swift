@@ -17,6 +17,7 @@ extension DTMindsetRouter: DTMindsetRouterInterface {
         let configurator = ShifterResultConfigurator.make(mindsetShifter: mindsetShifter,
                                                           resultType: .mindsetShifterDecisionTree)
         let controller = ShifterResultViewController(configure: configurator)
+        controller.resultDelegate = self
         viewController?.present(controller, animated: true, completion: completion)
     }
 

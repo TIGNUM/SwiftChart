@@ -15,6 +15,7 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
     // MARK: - Properties
     private lazy var router: SolveResultsRouterInterface? = SolveResultsRouter(viewController: self)
     var interactor: SolveResultsInteractorInterface?
+    var resultDelegate: DTRouterInterface?
     private var rightBarItems: [UIBarButtonItem] = []
     private var resultViewModel: SolveResult?
     private var isFollowUpActive = true
@@ -43,6 +44,7 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 // MARK: - Private
 private extension SolveResultsViewController {
     @objc func didTapDone() {
+        trackUserEvent(.CLOSE, action: .TAP)
         switch interactor?.resultType {
         case .recoveryDecisionTree?,
              .recoveryMyPlans?: router?.dismiss()
@@ -53,20 +55,14 @@ private extension SolveResultsViewController {
     }
 
     @objc func didTapCancel() {
+        trackUserEvent(.CANCEL, action: .TAP)
         interactor?.deleteRecovery()
-        router?.dismiss()
+        resultDelegate?.goBackToSolveResult()
     }
 
     @objc func didTapSave() {
+        trackUserEvent(.CONFIRM, action: .TAP)
         router?.presentFeedback()
-    }
-
-    func handleDidTapDoneRecovery() {
-        if resultViewModel?.type == .recoveryDecisionTree {
-            router?.presentFeedback()
-        } else {
-            router?.dismiss()
-        }
     }
 
     func handleDidTapDoneSolve() {

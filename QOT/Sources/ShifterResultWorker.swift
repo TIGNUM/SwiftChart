@@ -37,6 +37,16 @@ extension ShifterResultWorker {
         let sections = [getHeader, getTrigger, getReactions, getLowToHigh, getVision]
         return MindsetResult(resultType: resultType, sections: sections)
     }
+
+    func deleteMindsetShifter() {
+        if let mindsetShifter = mindsetShifter {
+            UserService.main.deleteMindsetShifter(mindsetShifter) { (error) in
+                if let error = error {
+                    log("Error deleteMindsetShifter: \(error.localizedDescription)", level: .error)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Private

@@ -18,7 +18,9 @@ protocol ShifterResultPresenterInterface {
     func setupView()
 }
 
-protocol ShifterResultInteractorInterface: Interactor {}
+protocol ShifterResultInteractorInterface: Interactor {
+    func deleteMindsetShifter()
+}
 
 protocol ShifterResultRouterInterface {
     func dismiss()

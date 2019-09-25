@@ -14,6 +14,7 @@ final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
     private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)
     var interactor: ShifterResultInteractorInterface?
+    var resultDelegate: DTRouterInterface?
     private var rightBarItems: [UIBarButtonItem] = []
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
@@ -46,6 +47,7 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     func load(_ model: MindsetResult) {
         self.model = model
         tableView.reloadData()
+        setupBarButtonItems(resultType: model.resultType)
     }
 
     func setupView() {
@@ -68,6 +70,31 @@ private extension ShifterResultViewController {
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         router?.presentFeedback()
+    }
+
+    @objc func didTapCancel() {
+        trackUserEvent(.CANCEL, action: .TAP)
+        interactor?.deleteMindsetShifter()
+        resultDelegate?.goBackToSolveResult()
+    }
+
+    func setupBarButtonItems(resultType: ResultType) {
+        resultType.buttonItems.forEach { (buttonItem) in
+            rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
+                                                      buttonWidth: buttonItem.width,
+                                                      action: getSelector(buttonItem),
+                                                      backgroundColor: buttonItem.backgroundColor,
+                                                      borderColor: buttonItem.borderColor))
+        }
+        updateBottomNavigation([], rightBarItems)
+    }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+        switch buttonItem {
+        case .cancel: return #selector(didTapCancel)
+        case .done: return #selector(didTapDone)
+        case .save: return #selector(didTapSave)
+        }
     }
 }
 
@@ -120,6 +147,6 @@ extension ShifterResultViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return []
+        return rightBarItems
     }
 }

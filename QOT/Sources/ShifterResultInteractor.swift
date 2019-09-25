@@ -17,7 +17,7 @@ final class ShifterResultInteractor {
     // MARK: - Init
     init(worker: ShifterResultWorker, presenter: ShifterResultPresenterInterface) {
         self.worker = worker
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor
@@ -28,4 +28,8 @@ final class ShifterResultInteractor {
 }
 
 // MARK: - ShifterResultInteractorInterface
-extension ShifterResultInteractor: ShifterResultInteractorInterface {}
+extension ShifterResultInteractor: ShifterResultInteractorInterface {
+    func deleteMindsetShifter() {
+        worker.deleteMindsetShifter()
+    }
+}
