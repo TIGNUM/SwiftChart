@@ -155,10 +155,8 @@ extension MySprintsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = interactor?.viewModel.displayData.count, section < count else {
-            return 5
-        }
-        return count
+        guard section < (interactor?.viewModel.displayData.count ?? 0) else { return 0 }
+        return interactor?.viewModel.displayData[section].items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
