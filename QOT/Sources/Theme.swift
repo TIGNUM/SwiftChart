@@ -314,7 +314,7 @@ enum ThemableButton {
              .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
-             .paymentReminder:
+             .paymentReminder,
              .articleMarkAsRead:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
