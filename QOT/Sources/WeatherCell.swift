@@ -40,6 +40,18 @@ final class WeatherCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(bucketTitleLabel)
+        skeletonManager.addSubtitle(introLabel)
+        skeletonManager.addSubtitle(weatherDescriptionLabel)
+        skeletonManager.addSubtitle(weatherTitleLabel)
+        skeletonManager.addSubtitle(weatherBodyLabel)
+        skeletonManager.addOtherView(hourlyStackView)
+        skeletonManager.addOtherView(weatherImageView)
+        skeletonManager.addSubtitle(accessLabel)
+        skeletonManager.addOtherView(accessButton)
+        for arrangedView in hourlyStackView.arrangedSubviews {
+            arrangedView.isHidden = true
+        }
         ThemeView.level1.apply(accessImageView)
     }
 
@@ -65,7 +77,12 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     func configure(with model: WeatherViewModel?) {
-        viewModel = model
+        guard let weatherViewModel = model else { return }
+        for arrangedView in hourlyStackView.arrangedSubviews {
+            arrangedView.isHidden = false
+        }
+        skeletonManager.hide()
+        viewModel = weatherViewModel
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
         if let weather = viewModel?.domainModel?.weather {

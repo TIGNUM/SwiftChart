@@ -61,6 +61,7 @@ final class DailyBriefInteractor {
     }
     func viewDidLoad() {
         presenter.setupView()
+        getDailyBriefDummySectionModels()
         NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }
 }
@@ -143,7 +144,43 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
     }
-    
+
+    func getDailyBriefDummySectionModels() {
+        var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
+        sectionDataList.append(ArraySection(model: .impactReadiness,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .dailyCheckIn2,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .meAtMyBest,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .goodToKnow,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .explore,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .leaderswisdom,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .feastForYourEyes,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .thoughts,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .departureInfo,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .aboutMe,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .whatsHotLatest,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .getToLevel5,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .fromTignum,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .weather,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
+        presenter.updateViewNew(changeSet)
+    }
+
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true

@@ -14,7 +14,6 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: AnimatedButton!
     var interactor: DailyBriefInteractorInterface?
-    @IBOutlet private weak var introText: UILabel!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -22,13 +21,20 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(bucketTitle)
+        skeletonManager.addTitle(tbvText)
+        skeletonManager.addSubtitle(tbvSentence)
+        skeletonManager.addSubtitle(adviceText)
+        skeletonManager.addOtherView(button)
     }
 
     func configure(with: DailyCheckIn2TBVModel?) {
-        tbvText.text = with?.introText
-        tbvSentence.text = with?.tbvSentence
-        self.adviceText.text = with?.adviceText
-        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
+        guard let model = with else { return }
+        skeletonManager.hide()
+        tbvText.text = model.introText
+        tbvSentence.text = model.tbvSentence
+        self.adviceText.text = model.adviceText
+        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 }
 

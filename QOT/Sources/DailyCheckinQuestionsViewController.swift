@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class DailyCheckinQuestionsViewController: UIViewController, ScreenZLevel3 {
+final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

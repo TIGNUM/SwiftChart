@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
+final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     let viewTheme = ThemeView.onboarding
@@ -20,12 +20,8 @@ final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
 
     private var bottomConstraintInitialValue: CGFloat = 0
 
-    private lazy var buttonNext: UIBarButtonItem = {
-        let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
-                                             target: self,
-                                             action: #selector(didTapNextButton))
-        button.isEnabled = false
-        return button
+    private lazy var buttonNext: RoundedButton = {
+        return RoundedButton(title: interactor?.nextButtonTitle ?? "", target: self, action: #selector(didTapNextButton))
     }()
 
     var interactor: RegistrationEmailInteractorInterface?
@@ -56,7 +52,7 @@ final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         buttonNext.isEnabled = emailField.textField.isFirstResponder ? false : (interactor?.isNextButtonEnabled ?? false)
-        return [buttonNext]
+        return [buttonNext.barButton]
     }
 
     override func didTapBackButton() {

@@ -78,6 +78,7 @@
                 <outlet property="componentContentView" destination="kQF-0z-f7x" id="9uF-J1-mCg"/>
                 <outlet property="performanceLabel" destination="Nkw-Bh-e3p" id="DRJ-Fu-yOG"/>
                 <outlet property="progressLabel" destination="xCD-YD-CvM" id="Bvq-IL-IKK"/>
+                <outlet property="seenIcon" destination="9WX-ra-lJx" id="od1-NM-iB8"/>
             </connections>
             <point key="canvasLocation" x="28" y="123.23838080959521"/>
         </collectionViewCell>

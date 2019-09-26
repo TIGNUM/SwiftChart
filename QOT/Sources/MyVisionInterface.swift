@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 protocol MyVisionViewControllerInterface: class {
-    func showScreenLoader()
     func hideScreenLoader()
     func showNullState(with title: String, message: String)
     func hideNullState()
@@ -24,7 +23,6 @@ protocol MyVisionViewControllerScrollViewDelegate: class {
 }
 
 protocol MyVisionPresenterInterface {
-    func showScreenLoader()
     func hideScreenLoader()
     func showNullState(with title: String, message: String)
     func hideNullState()

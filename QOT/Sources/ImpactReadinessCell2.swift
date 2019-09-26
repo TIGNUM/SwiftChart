@@ -33,6 +33,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var futureLoad: UILabel!
     @IBOutlet weak var futureLoadRefrence: UILabel!
 ////  delagate
+    @IBOutlet weak var mainStackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var moreData: AnimatedButton!
     @IBOutlet weak var targetLabel: UILabel!
@@ -48,6 +49,13 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addSubtitle(rollingDataLabel)
+        skeletonManager.addSubtitle(howYouFeelToday)
+        skeletonManager.addSubtitle(asterickText)
+        for view in mainStackView.arrangedSubviews {
+            skeletonManager.addOtherView(view)
+        }
+        skeletonManager.addOtherView(moreData)
         ThemeView.level2.apply(contentView)
     }
 
@@ -85,13 +93,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
         if viewModel?.domainModel?.dailyCheckInResult != nil {
             hide(false)
-            self.removeLoadingSkeleton()
-        } else {
-            hide(true)
-            self.showLoadingSkeleton(with: [.dailyCheckInHeader,
-                                            .dailyCheckInRow,
-                                            .dailyCheckInRow,
-                                            .dailyCheckInFooter])
+            skeletonManager.hide()
         }
 
         ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)

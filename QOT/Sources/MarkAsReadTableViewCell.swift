@@ -10,7 +10,7 @@ import UIKit
 
 final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet private weak var markAsReadButton: UIButton!
+    @IBOutlet private weak var markAsReadButton: RoundedButton!
     private var isRead = false
     weak var delegate: ArticleDelegate?
 
@@ -23,13 +23,8 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     func configure(selected: Bool) {
         isRead = selected
 
-        let theme: ThemeView = selected ? ThemeView.articleMarkUnread : ThemeView.articleMarkRead
-        theme.apply(markAsReadButton)
-
         let text = selected ? R.string.localized.markAsUnread() : R.string.localized.markAsRead()
-        let attrText = ThemeText.articleMarkRead.attributedString(text)
-        markAsReadButton.setAttributedTitle(attrText, for: .normal)
-        markAsReadButton.setNeedsDisplay()
+        ThemableButton.articleMarkAsRead.apply(markAsReadButton, title: text)
     }
 }
 

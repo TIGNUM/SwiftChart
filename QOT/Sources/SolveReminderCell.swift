@@ -20,13 +20,21 @@ final class SolveReminderCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
+        skeletonManager.addSubtitle(twoDayAgo)
+        skeletonManager.addSubtitle(question1)
+        skeletonManager.addSubtitle(question2)
+        skeletonManager.addSubtitle(question3)
     }
 
     func configure(with viewModel: SolveReminderCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
-        ThemeText.solveQuestions.apply(viewModel?.question1, to: question1)
-        ThemeText.solveQuestions.apply(viewModel?.question2, to: question2)
-        ThemeText.solveQuestions.apply(viewModel?.question3, to: question3)
-        ThemeText.sprintText.apply(viewModel?.twoDayAgo, to: twoDayAgo)
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
+        ThemeText.solveQuestions.apply(model.question1, to: question1)
+        ThemeText.solveQuestions.apply(model.question2, to: question2)
+        ThemeText.solveQuestions.apply(model.question3, to: question3)
+        ThemeText.sprintText.apply(model.twoDayAgo, to: twoDayAgo)
+        ThemeView.level2.apply(contentView)
     }
 }

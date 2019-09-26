@@ -27,7 +27,6 @@ final class KnowingViewController: HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesAndTwoColumns, .threeLinesAndTwoColumns, .threeLinesLeftColumn])
         ThemeView.level1.apply(self.view)
 
     }
@@ -52,7 +51,7 @@ final class KnowingViewController: HomeViewController {
         if let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? StrategyListViewController {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: sender as? Int)
         } else if
-            let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
+            let controller = segue.destination as? ArticleViewController,
             let selectedID = sender as? Int {
                 ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
         }
@@ -82,7 +81,6 @@ extension KnowingViewController: KnowingViewControllerInterface {
     }
 
     func reload() {
-        self.removeLoadingSkeleton()
         collectionView.reloadData()
     }
 }
@@ -97,9 +95,15 @@ extension KnowingViewController {
         case Knowing.Section.header.rawValue:
             return 1
         case Knowing.Section.strategies.rawValue:
-            return interactor?.strategies().count ?? 0
+            guard let strategies = interactor?.strategies().count, strategies > 0 else {
+                return 6
+            }
+            return strategies
         default:
-            return interactor?.whatsHotArticles().count ?? 0
+            guard let articles = interactor?.whatsHotArticles().count, articles > 0 else {
+                return 15
+            }
+            return articles
         }
     }
 
@@ -117,27 +121,45 @@ extension KnowingViewController {
             if indexPath.item == 0 {
                 let cell: StrategyFoundationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 let strategy = interactor?.foundationStrategy()
-                cell.configure(categoryTitle: strategy?.title ?? "",
-                               viewCount: strategy?.viewedCount ?? 0,
-                               itemCount: strategy?.itemCount ?? 0)
+                cell.configure(categoryTitle: strategy?.title,
+                               viewCount: strategy?.viewedCount,
+                               itemCount: strategy?.itemCount)
                 return cell
             } else {
                 let cell: StrategyCategoryCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1]
-                cell.configure(categoryTitle: strategy?.title ?? "",
-                               viewCount: strategy?.viewedCount ?? 0,
-                               itemCount: strategy?.itemCount ?? 0)
+                guard
+                    interactor?.fiftyFiveStrategies().count ?? 0 > indexPath.item - 1,
+                    let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1] else {
+                        cell.configure(categoryTitle: nil,
+                                       viewCount: nil,
+                                       itemCount: nil)
+                        return cell
+                }
+                cell.configure(categoryTitle: strategy.title,
+                               viewCount: strategy.viewedCount,
+                               itemCount: strategy.itemCount)
                 return cell
             }
         default:
             let cell: WhatsHotCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            cell.configure(title: whatsHotArticle?.title,
-                           publishDate: whatsHotArticle?.publishDate,
-                           author: whatsHotArticle?.author,
-                           timeToRead: whatsHotArticle?.timeToRead,
-                           imageURL: whatsHotArticle?.image,
-                           isNew: whatsHotArticle?.isNew ?? false,
+            guard
+                interactor?.whatsHotArticles().count ?? 0 > indexPath.item,
+                let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item] else {
+                    cell.configure(title: nil,
+                                   publishDate: nil,
+                                   author: nil,
+                                   timeToRead: nil,
+                                   imageURL: nil,
+                                   isNew: false,
+                                   forcedColorMode: .dark)
+                    return cell
+            }
+            cell.configure(title: whatsHotArticle.title,
+                           publishDate: whatsHotArticle.publishDate,
+                           author: whatsHotArticle.author,
+                           timeToRead: whatsHotArticle.timeToRead,
+                           imageURL: whatsHotArticle.image,
+                           isNew: whatsHotArticle.isNew,
                            forcedColorMode: .dark)
             return cell
         }

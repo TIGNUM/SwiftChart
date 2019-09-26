@@ -17,7 +17,7 @@ final class MyVisionEditDetailsKeyboardInputView: UIView {
 
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet private weak var closeButton: UIButton!
-    @IBOutlet private weak var fadeView: UIView!
+    @IBOutlet private weak var fadeView: UIImageView!
 
     weak var delegate: MyVisionEditDetailsKeyboardInputViewProtocol?
 
@@ -25,7 +25,6 @@ final class MyVisionEditDetailsKeyboardInputView: UIView {
         super.awakeFromNib()
         saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         closeButton.corner(radius: closeButton.frame.size.width/2, borderColor: .accent40)
-        fadeView.addFadeView(at: .bottom, height: frame.size.height, primaryColor: .carbon, fadeColor: colorMode.fade)
     }
 
     @IBAction func closeButtonAction(_ sender: Any) {

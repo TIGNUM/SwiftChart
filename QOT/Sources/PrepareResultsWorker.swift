@@ -17,23 +17,23 @@ final class PrepareResultsWorker {
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
     private var preparation: QDMUserPreparation?
-    var canDelete: Bool = false
     private var level: QDMUserPreparation.Level = .LEVEL_DAILY
     weak var delegate: PrepareResultsDelegatge?
-    var dataModified: Bool = false
     private var currentEditKey: Prepare.Key?
+    private let resultType: ResultType
 
     // MARK: - Init
     init(_ contentId: Int) {
         level = .LEVEL_ON_THE_GO
+        resultType = .prepareDecisionTree
         onTheGoItems(contentId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
         }
     }
 
-    init(_ preparation: QDMUserPreparation?, canDelete: Bool) {
-        self.canDelete = canDelete
+    init(_ preparation: QDMUserPreparation?, resultType: ResultType) {
+        self.resultType = resultType
         self.preparation = preparation
         if let prepType = preparation?.type {
             level = prepType
@@ -48,22 +48,6 @@ final class PrepareResultsWorker {
     }
 
     // Texts
-    lazy var leaveAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
-    }()
-
-    lazy var leaveAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
-    }()
-
-    lazy var leaveButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsNotesButtonLeave)
-    }()
-
-    lazy var cancelButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
-    }()
-
     lazy var answerFilter: String? = {
         return preparation?.answerFilter
     }()
@@ -71,6 +55,10 @@ final class PrepareResultsWorker {
 
 // MARK: - Getter & Setter
 extension PrepareResultsWorker {
+    var getResultType: ResultType {
+        return resultType
+    }
+
     var getEventType: String? {
         return preparation?.eventType
     }
@@ -81,42 +69,27 @@ extension PrepareResultsWorker {
 
     var feelAnswerIds: [Int] {
         get { return preparation?.feelAnswerIds ?? [] }
-        set {
-            dataModified = true
-            preparation?.feelAnswerIds = newValue
-
-        }
+        set { preparation?.feelAnswerIds = newValue }
     }
 
     var preceiveAnswerIds: [Int] {
         get { return preparation?.preceiveAnswerIds ?? [] }
-        set {
-            preparation?.preceiveAnswerIds = newValue
-        }
+        set { preparation?.preceiveAnswerIds = newValue }
     }
 
     var knowAnswerIds: [Int] {
         get { return preparation?.knowAnswerIds ?? [] }
-        set {
-            dataModified = true
-            preparation?.knowAnswerIds = newValue
-        }
+        set { preparation?.knowAnswerIds = newValue }
     }
 
     var benefits: String? {
         get { return preparation?.benefits }
-        set {
-            dataModified = true
-            preparation?.benefits = newValue
-        }
+        set { preparation?.benefits = newValue }
     }
 
     var strategyIds: [Int] {
         get { return preparation?.strategyIds ?? [] }
-        set {
-            dataModified = true
-            preparation?.strategyIds = newValue
-        }
+        set { preparation?.strategyIds = newValue }
     }
 
     var getType: QDMUserPreparation.Level {
@@ -129,10 +102,7 @@ extension PrepareResultsWorker {
 
     var setReminder: Bool {
         get { return preparation?.setReminder ?? false }
-        set {
-            dataModified = true
-            preparation?.setReminder = newValue
-        }
+        set { preparation?.setReminder = newValue }
     }
 
     func getSelectedIDs(_ completion: @escaping (([Int]) -> Void)) {
@@ -150,7 +120,7 @@ extension PrepareResultsWorker {
 
     func getRelatedStrategies(_ completion: @escaping (([QDMContentCollection]?) -> Void)) {
         strategyIDsAll(suggestedStrategyId) {
-            qot_dal.ContentService.main.getContentCollectionsByIds($0, completion)
+            ContentService.main.getContentCollectionsByIds($0, completion)
         }
     }
 
@@ -165,44 +135,10 @@ extension PrepareResultsWorker {
     func item(at indexPath: IndexPath) -> PrepareResultsType? {
         return items[indexPath.section]?[indexPath.row]
     }
-
-    func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
-        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
-            let selectedEvent = events?.filter { $0.storedExternalIdentifier == self?.preparation?.eventExternalUniqueIdentifierId ?? "" }.first
-            if let event = selectedEvent {
-                completion(EKEventStore.shared.event(with: event))
-            } else {
-                completion(nil)
-            }
-        }
-    }
 }
 
 // MARK: - Generate
 private extension PrepareResultsWorker {
-    func updateCalendarEventLink(isOn: Bool) {
-        getEkEvent { (ekEvent) in
-            if isOn == true, let permissionsManager = AppCoordinator.permissionsManager {
-                permissionsManager.askPermission(for: [.calendar], completion: { status in
-                    guard let status = status[.calendar] else { return }
-                    switch status {
-                    case .later:
-                        permissionsManager.updateAskStatus(.canAsk, for: .calendar)
-                    default:
-                        break
-                    }
-                })
-            } else {
-                do {
-                    try ekEvent?.removePreparationLink()
-                } catch {
-                    qot_dal.log("Error while trying to remove link from event: \(error.localizedDescription)",
-                        level: .error)
-                }
-            }
-        }
-    }
-
     func updateAnswerIds(_ answers: [DecisionTreeModel.SelectedAnswer],
                          _ completion: @escaping (QDMUserPreparation?) -> Void) {
         preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
@@ -213,22 +149,22 @@ private extension PrepareResultsWorker {
 
     func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
+        let type = resultType
         criticalItems(prepare, prepare.answerFilter ?? "", suggestedStrategyId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
+            self?.delegate?.setupBarButtonItems(resultType: type)
         }
     }
 
     func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
+        let type = resultType
         dailyItems(prepare) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
+            self?.delegate?.setupBarButtonItems(resultType: type)
         }
-    }
-
-    func getEKEvent() -> EKEvent? {
-        return nil// EKEventStore.shared.even
     }
 }
 
@@ -271,23 +207,27 @@ extension PrepareResultsWorker {
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
         guard let preparation = preparation else { return }
-        PreparationManager.main.update(preparation) { (preparation) in
-            completion(preparation)
+        UserService.main.updateUserPreparation(preparation) { (_, error) in
+            if let error = error {
+                log("Error updateUserPreparation \(error.localizedDescription)", level: .error)
+            }
         }
     }
 
-    func deletePreparationIfNeeded(_ completion: @escaping () -> Void) {
-        if let preparation = preparation, canDelete == true {
-            PreparationManager.main.delete(preparation: preparation, completion: completion)
-        } else {
-            completion()
+    func deletePreparation() {
+        if let preparation = preparation {
+            UserService.main.deleteUserPreparation(preparation) { (error) in
+                if let error = error {
+                    log("Error deleteUserPreparation \(error.localizedDescription)", level: .error)
+                }
+            }
         }
     }
 }
 
 // MARK: - DTViewModel
 extension PrepareResultsWorker {
-    func getDTViewModel(_ key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+    func getDTViewModel(_ key: Prepare.Key, benefits: String?, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         currentEditKey = key
         let answerFilter = preparation?.answerFilter ?? ""
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
@@ -299,6 +239,7 @@ extension PrepareResultsWorker {
                                    answers: answers,
                                    events: [],
                                    tbvText: nil,
+                                   userInputText: benefits,
                                    hasTypingAnimation: false,
                                    typingAnimationDuration: 0,
                                    previousButtonIsHidden: true,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class WalkthroughCoachViewController: UIViewController, ScreenZLevelOverlay {
+final class WalkthroughCoachViewController: BaseViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     @IBOutlet private weak var textLabel: UILabel!

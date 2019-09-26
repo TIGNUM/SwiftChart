@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" allowsMultipleSelection="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="hvU-ex-T62">
-                                <rect key="frame" x="0.0" y="246" width="414" height="616"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="650"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="0.41077161815068491" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -257,7 +257,7 @@
                             <constraint firstItem="hvU-ex-T62" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="P1G-Ou-2hO"/>
                             <constraint firstItem="b73-zI-Hri" firstAttribute="leading" secondItem="PdG-Uy-sIm" secondAttribute="leading" constant="20" symbolic="YES" id="PhX-jn-1Zh"/>
                             <constraint firstItem="FQX-We-ykg" firstAttribute="trailing" secondItem="izd-Ti-FEs" secondAttribute="trailing" id="Qad-fC-CC2"/>
-                            <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="hvU-ex-T62" secondAttribute="bottom" id="RZ8-Nk-9oS"/>
+                            <constraint firstAttribute="bottom" secondItem="hvU-ex-T62" secondAttribute="bottom" id="RZ8-Nk-9oS"/>
                             <constraint firstItem="RIe-hX-AO4" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="T9u-tK-OCP"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="dEq-o1-iv8" secondAttribute="bottom" constant="150" id="aV1-7N-aGk"/>
                             <constraint firstAttribute="trailing" secondItem="RIe-hX-AO4" secondAttribute="trailing" id="bPP-fp-hGJ"/>

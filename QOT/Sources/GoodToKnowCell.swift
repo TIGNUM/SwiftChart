@@ -15,10 +15,21 @@ final class GoodToKnowCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var goodToKnowModel: GoodToKnowCellViewModel?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(goodToKnowFact)
+        skeletonManager.addOtherView(goodToKnowImage)
+    }
+
     func configure(with viewModel: GoodToKnowCellViewModel?) {
-        goodToKnowImage.kf.setImage(with: viewModel?.image, placeholder: R.image.preloading())
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.fact, to: goodToKnowFact)
-        self.goodToKnowModel = viewModel
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        skeletonManager.addOtherView(goodToKnowImage)
+        goodToKnowImage.setImage(url: model.image,
+                                 skeletonManager: self.skeletonManager)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)
+        self.goodToKnowModel = model
     }
 }

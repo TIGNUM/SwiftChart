@@ -16,11 +16,19 @@ final class AboutMeCell: BaseDailyBriefCell {
     @IBOutlet weak var dividerView: UIView!
     @IBOutlet weak var dividerHeight: NSLayoutConstraint!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(title)
+        skeletonManager.addSubtitle(aboutMeContent)
+        skeletonManager.addSubtitle(aboutMeMoreInfo)
+    }
+
     @IBOutlet weak var stackView: UIStackView!
     func configure(with viewModel: AboutMeViewModel?) {
         guard let viewModel = viewModel else {
             return
         }
+        skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: title)
         self.aboutMeContent.text = viewModel.aboutMeContent
         self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo

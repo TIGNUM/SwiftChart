@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AbstractFormViewController: UIViewController {
+class AbstractFormViewController: BaseViewController {
 
     // MARK: - Properties
 

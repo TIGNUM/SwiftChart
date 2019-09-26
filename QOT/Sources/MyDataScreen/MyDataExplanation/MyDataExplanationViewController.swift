@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
+final class MyDataExplanationViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyDataExplanationInteractorInterface?
@@ -16,6 +16,7 @@ final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerLine: UIView!
     @IBOutlet private weak var tableView: UITableView!
+    private let skeletonManager = SkeletonManager()
     private var myDataExplanationModel: MyDataExplanationModel?
 
     // MARK: - Init
@@ -30,6 +31,7 @@ final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        skeletonManager.addTitle(headerTitleLabel)
         interactor?.viewDidLoad()
     }
 
@@ -77,6 +79,7 @@ extension MyDataExplanationViewController: MyDataExplanationViewControllerInterf
     }
 
     func setup(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String) {
+        skeletonManager.hide()
         myDataExplanationModel = myDataExplanationSection
         ThemeView.headerLine.apply(headerLine)
         ThemeText.myDataSectionHeaderTitle.apply(myDataExplanationHeaderTitle, to: headerTitleLabel)

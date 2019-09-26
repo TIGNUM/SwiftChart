@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchViewControllerInterface {
+final class SearchViewController: BaseViewController, ScreenZLevelOverlay, SearchViewControllerInterface {
 
     var interactor: SearchInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
@@ -235,6 +235,10 @@ extension SearchViewController: UISearchBarDelegate {
 
     func updateSearchResults() {
         interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
     }
 }
 

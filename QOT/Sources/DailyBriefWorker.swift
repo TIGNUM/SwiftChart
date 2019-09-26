@@ -29,8 +29,10 @@ final class DailyBriefWorker {
         self.contentService = contentService
         self.questionService = questionService
 
-        if UserDefault.showGuideTrackBucket.boolValue != true {
-            DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK])
+        if let emails = UserDefault.showGuideTrackBucket.object as? [String],
+            let currentAccount = SessionService.main.getCurrentSession()?.useremail,
+            emails.contains(obj: currentAccount) != true { // if emails for showing guide track isn't set.
+            DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK]) // hide guide track
         }
     }
 
@@ -141,15 +143,14 @@ extension DailyBriefWorker {
             }
         })
     }
-    
-        func isNew(_ collection: QDMContentCollection) -> Bool {
-            var isNewArticle = collection.viewedAt == nil
-            if let firstInstallTimeStamp = self.firstInstallTimeStamp {
-                isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
-            }
-            return isNewArticle
-        }
 
+    func isNew(_ collection: QDMContentCollection) -> Bool {
+        var isNewArticle = collection.viewedAt == nil
+        if let firstInstallTimeStamp = self.firstInstallTimeStamp {
+            isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
+        }
+        return isNewArticle
+    }
 }
 
     // MARK: - Get to level 5

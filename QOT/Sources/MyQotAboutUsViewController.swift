@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyQotAboutUsViewController: UIViewController, ScreenZLevel3 {
+final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

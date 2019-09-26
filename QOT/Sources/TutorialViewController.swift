@@ -13,7 +13,7 @@ enum TutorialOrigin {
     case settings
 }
 
-final class TutorialViewController: UIViewController {
+final class TutorialViewController: BaseViewController {
 
     // MARK: - Properties
 

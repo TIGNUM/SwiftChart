@@ -137,9 +137,9 @@ extension ArticleInteractor: ArticleInteractorInterface {
     func dataUpdated() {
         presenter.setupArticleHeader(header: worker.articleHeader)
         presenter.reloadData()
-        presenter.updateBookmark(worker.bookmark != nil)
         presenter.dataUpdated()
         presenter.setTopBarButtonItems(isShareable: worker.isShareable, hasBookMarkItem: !worker.isBookmarkItemHidden)
+        presenter.updateBookmark(worker.bookmark != nil)
     }
 
     func toggleBookmark() {

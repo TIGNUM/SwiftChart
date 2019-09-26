@@ -21,11 +21,6 @@ final class MyVisionPresenter {
 }
 
 extension MyVisionPresenter: MyVisionPresenterInterface {
-
-    func showScreenLoader() {
-        viewController?.showScreenLoader()
-    }
-
     func hideScreenLoader() {
         viewController?.hideScreenLoader()
     }

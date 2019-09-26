@@ -16,10 +16,17 @@ class ComponentHeaderView: UICollectionReusableView {
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private var verticalConstraints: [NSLayoutConstraint]!
     @IBOutlet private var horizontalConstraints: [NSLayoutConstraint]!
+    let skeletonManager = SkeletonManager()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
+    }
 
     func configure(title: String?, subtitle: String?, secondary: Bool) {
         guard let title = title, let subtitle = subtitle else { return }
-
+        skeletonManager.hide()
         let theme = secondary ? ThemeView.level1Secondary : ThemeView.level1
         ThemeText.strategyHeader.apply(title.uppercased(), to: titleLabel)
         ThemeText.strategySubHeader.apply(subtitle, to: subtitleLabel)

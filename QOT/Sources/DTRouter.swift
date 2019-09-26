@@ -29,6 +29,15 @@ extension DTRouter: DTRouterInterface {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
+    func goBackToSolveResult() {
+        if let pageViewController = viewController?.childViewControllers.first as? UIPageViewController {
+            pageViewController.childViewControllers.forEach { (viewController) in
+                viewController.dismiss(animated: false, completion: nil)
+            }
+        }
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+
     func presentContent(_ contentId: Int) {
         AppDelegate.current.launchHandler.showContentCollection(contentId)
     }

@@ -16,7 +16,7 @@ protocol DTQuestionnaireViewControllerDelegate: class {
     func didSelectPreparationEvent(_ event: DTViewModel.Event?)
 }
 
-class DTQuestionnaireViewController: UIViewController {
+class DTQuestionnaireViewController: BaseViewController {
 
     // MARK: - Properties
     private let viewModel: DTViewModel
@@ -183,8 +183,7 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getEventCell(indexPath, tableView)
             case .userInput:
                 let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                let text = viewModel.question.key == Prepare.QuestionKey.BenefitsInput ? "" : nil
-                cell.configure(inputText: text,
+                cell.configure(inputText: viewModel.userInputText,
                                maxCharacters: QuestionKey.maxCharacter(viewModel.question.key),
                                delegate: self)
                 return cell

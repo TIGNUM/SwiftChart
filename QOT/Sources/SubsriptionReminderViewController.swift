@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SubsriptionReminderViewController: UIViewController {
+final class SubsriptionReminderViewController: BaseViewController {
 
     // MARK: - Properties
 

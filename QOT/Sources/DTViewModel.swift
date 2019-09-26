@@ -14,6 +14,7 @@ struct DTViewModel {
     var answers: [Answer]
     let events: [Event]
     let tbvText: String?
+    let userInputText: String?
     let hasTypingAnimation: Bool
     let typingAnimationDuration: Double
     let previousButtonIsHidden: Bool

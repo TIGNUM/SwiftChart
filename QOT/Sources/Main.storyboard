@@ -46,8 +46,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="KNOW" leftItemsSupplementBackButton="YES" id="oME-34-RNc"/>
                     <connections>
-                        <segue destination="zMF-70-Y2W" kind="custom" identifier="know.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" id="fOE-9g-Xpx"/>
                         <segue destination="Pvj-WC-qnD" kind="show" identifier="know.strategy.list.segue.identifier" id="PvS-nB-a28"/>
+                        <segue destination="QAz-4J-ciw" kind="presentation" identifier="know.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" modalPresentationStyle="fullScreen" id="Wow-uG-vpq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeH-8r-sFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -452,7 +452,7 @@
                     <navigationItem key="navigationItem" id="dzz-tC-J7n"/>
                     <connections>
                         <outlet property="tableView" destination="cge-Eh-dWl" id="tCA-ZG-st1"/>
-                        <segue destination="zMF-70-Y2W" kind="custom" identifier="know.strategy.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" id="9IF-6c-jgj"/>
+                        <segue destination="QAz-4J-ciw" kind="presentation" identifier="know.strategy.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" modalPresentationStyle="fullScreen" id="ZjF-iI-cV2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR8-eA-w9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -464,11 +464,11 @@
             <objects>
                 <viewController storyboardIdentifier="QOT.ArticleViewController" id="QAz-4J-ciw" customClass="ArticleViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kvd-Oy-kcI">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="q5I-mU-13Q">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="q5I-mU-13Q">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -476,13 +476,23 @@
                                     <outlet property="delegate" destination="QAz-4J-ciw" id="WHE-ic-b0j"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fNv-xl-wMm" customClass="ArticleTopNavBar" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="10f-Xo-wob"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="q5I-mU-13Q" firstAttribute="leading" secondItem="zKG-z1-m0k" secondAttribute="leading" id="7Xs-DE-ZCb"/>
+                            <constraint firstItem="fNv-xl-wMm" firstAttribute="top" secondItem="q5I-mU-13Q" secondAttribute="top" id="DCR-QU-P5D"/>
                             <constraint firstItem="q5I-mU-13Q" firstAttribute="top" secondItem="Kvd-Oy-kcI" secondAttribute="top" id="LqI-zo-w9t"/>
                             <constraint firstItem="q5I-mU-13Q" firstAttribute="bottom" secondItem="zKG-z1-m0k" secondAttribute="bottom" id="bhV-xp-F4E"/>
+                            <constraint firstAttribute="trailing" secondItem="fNv-xl-wMm" secondAttribute="trailing" id="jum-sA-30u"/>
                             <constraint firstItem="zKG-z1-m0k" firstAttribute="trailing" secondItem="q5I-mU-13Q" secondAttribute="trailing" id="sFf-gw-OPZ"/>
+                            <constraint firstItem="fNv-xl-wMm" firstAttribute="leading" secondItem="Kvd-Oy-kcI" secondAttribute="leading" id="whU-jL-E31"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="zKG-z1-m0k"/>
                     </view>
@@ -490,20 +500,18 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_more_unselected" id="Zge-vj-d2V">
                             <inset key="imageInsets" minX="0.0" minY="0.0" maxX="12" maxY="0.0"/>
                             <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                            <connections>
-                                <action selector="didTapMoreButton" destination="QAz-4J-ciw" id="lM0-WA-NgD"/>
-                            </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
-                        <outlet property="moreBarButtonItem" destination="Zge-vj-d2V" id="3SF-eY-21v"/>
+                        <outlet property="articleTopNavBar" destination="fNv-xl-wMm" id="9c6-di-5pU"/>
+                        <outlet property="constraintNavBar" destination="DCR-QU-P5D" id="enC-1E-cmN"/>
                         <outlet property="tableView" destination="q5I-mU-13Q" id="QMG-Fr-IBo"/>
-                        <outlet property="topTitleNavigationItem" destination="xxo-w0-mtW" id="szY-O1-eBL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7qC-Xx-h9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92" y="3827"/>
+            <point key="canvasLocation" x="-143" y="2929"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GGY-Jt-bGl">
@@ -521,25 +529,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2jo-Kh-awf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-1313" y="2166"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="WTe-i6-lS6">
-            <objects>
-                <navigationController id="zMF-70-Y2W" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="GE7-sb-8mM"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="1dG-Ql-ehs">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="barTintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="QAz-4J-ciw" kind="relationship" relationship="rootViewController" id="Unf-PV-EMI"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="nfm-HQ-hqi" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-207" y="2929"/>
         </scene>
         <!--MY QOT-->
         <scene sceneID="xcM-Dj-9Ja">
@@ -593,6 +582,6 @@
         <image name="img1.png" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="9IF-6c-jgj"/>
+        <segue reference="Wow-uG-vpq"/>
     </inferredMetricsTieBreakers>
 </document>

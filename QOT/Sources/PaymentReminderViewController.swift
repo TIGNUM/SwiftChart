@@ -9,29 +9,25 @@
 import UIKit
 import MessageUI
 
-final class PaymentReminderViewController: UIViewController, ScreenZLevel3 {
+final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
+
+    private enum CellType: Int, CaseIterable {
+        case header = 0
+        case sections
+        case selectAccount
+        case footer
+    }
 
     // MARK: - Properties
 
     @IBOutlet private weak var tableView: UITableView!
-//    @IBOutlet private weak var switchAccountButton: UIButton!
-    private var paymentModel: PaymentModel?
-    @IBOutlet private weak var signInLabel: UILabel!
-    @IBOutlet private weak var switchAccountsButton: UIButton!
-    private enum CellType: Int, CaseIterable {
-        case header = 0
-        case sections
-    }
-    @IBOutlet private weak var contactButton: UIButton!
     var interactor: PaymentReminderInteractorInterface?
-    @IBAction func switchAccounts(_ sender: Any) {
-         interactor?.didTapSwitchAccounts()
-    }
+    private var paymentModel: PaymentModel?
 
     // MARK: - Init
 
     init(configure: Configurator<PaymentReminderViewController>) {
-        super.init(nibName: nil, bundle: nil)
+        super.init(nibName: R.nib.paymentReminderViewController.name, bundle: R.nib.paymentReminderViewController.bundle)
         configure(self)
     }
 
@@ -41,29 +37,19 @@ final class PaymentReminderViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        contactButton.corner(radius: 20)
         interactor?.viewDidLoad()
+        ThemeView.paymentReminder.apply(self.view)
     }
 
-    @IBAction func didTapContact(_ sender: Any) {
-        sendEmail()
+    // MARK: - Private
+
+    private func setupTableView() {
+        tableView.registerDequeueable(PaymentTableViewCell.self)
+        tableView.registerDequeueable(PaymentSwitchAccountTableViewCell.self)
+        tableView.registerDequeueable(PaymentFooterView.self)
     }
 
-    @IBAction func didClose(_ sender: Any) {
-         dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - Private
-
-extension PaymentReminderViewController {
-
-    func setupButtons() {
-        switchAccountsButton.isHidden = interactor?.showSwitchAccountButton == false
-        signInLabel.isHidden = interactor?.showSwitchAccountButton == false
-    }
-
-    func sendEmail() {
+    private func sendEmail() {
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
@@ -81,27 +67,10 @@ extension PaymentReminderViewController {
     }
 }
 
-// MARK: - Actions
-
-private extension PaymentReminderViewController {
-//    @IBAction func close() {
-//        interactor?.didTapMinimiseButton()
-//    }
-
-    @IBAction func switchAccount() {
-        interactor?.didTapSwitchAccounts()
-    }
-
-    func setupTableView() {
-        tableView.registerDequeueable(PaymentTableViewCell.self)
-    }
-}
-
 // MARK: - PaymentReminderViewControllerInterface
 
 extension PaymentReminderViewController: PaymentReminderViewControllerInterface {
     func setupView() {
-//        setupButtons()
         setupTableView()
     }
 
@@ -111,30 +80,60 @@ extension PaymentReminderViewController: PaymentReminderViewControllerInterface 
 }
 
 extension PaymentReminderViewController: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return paymentModel?.paymentItems.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let cellType = CellType.allCases[section]
-        switch cellType {
-        case .header:
-            return PaymentHeaderView.instantiateFromNib(title: paymentModel?.headerTitle ?? "",
-                                                           subtitle: paymentModel?.headerSubtitle ?? "")
-        default: return nil
-        }
+        return PaymentHeaderView.instantiateFromNib(title: paymentModel?.headerTitle ?? "",
+                                                    subtitle: paymentModel?.headerSubtitle ?? "")
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 150
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: PaymentTableViewCell = tableView.dequeueCell(for: indexPath)
         let item = paymentModel?.paymentItems[indexPath.row]
-        cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
-        cell.backgroundColor = .sand
-        return cell
+        switch item?.paymentSection {
+        case .switchAccount?:
+            let cell: PaymentSwitchAccountTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: item?.title, buttonTitle: item?.subtitle)
+            cell.delegate = self
+            return cell
+        case .footer?:
+            let cell: PaymentFooterView = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: item?.title, buttonTitle: item?.subtitle)
+            cell.delegate = self
+            return cell
+        default:
+            let cell: PaymentTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: item?.title?.uppercased(), subtitle: item?.subtitle)
+            return cell
+        }
+    }
+}
+
+// MARK: Cell custom delegates
+
+extension PaymentReminderViewController: PaymentSwitchAccountTableViewCellDelegate, PaymentFooterViewDelegate {
+    func didTapSwitchAccountButton() {
+        interactor?.didTapSwitchAccounts()
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func didTapContactButton() {
+        sendEmail()
+    }
+}
+
+// MARK: Bottom Navigation
+
+extension PaymentReminderViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return interactor?.showCloseButton ?? true ? [dismissNavigationItem()] : nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }

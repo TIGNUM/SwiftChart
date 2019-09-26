@@ -12,7 +12,7 @@ protocol MyDataSelectionViewControllerDelegate: class {
     func didChangeSelected(options: [MyDataSelectionModel.SelectionItem])
 }
 
-final class MyDataSelectionViewController: UIViewController, ScreenZLevel3 {
+final class MyDataSelectionViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyDataSelectionInteractorInterface?
@@ -22,6 +22,7 @@ final class MyDataSelectionViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private var myDataSelectionModel: MyDataSelectionModel?
+    private let skeletonManager = SkeletonManager()
     weak var delegate: MyDataSelectionViewControllerDelegate?
 
     // MARK: - Init
@@ -38,6 +39,8 @@ final class MyDataSelectionViewController: UIViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
         interactor?.viewDidLoad()
     }
 
@@ -110,6 +113,7 @@ extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface 
     func setup(for myDataSelectionSection: MyDataSelectionModel,
                myDataSelectionHeaderTitle: String,
                myDataSelectionHeaderSubtitle: String) {
+        skeletonManager.hide()
         myDataSelectionModel = myDataSelectionSection
         ThemeText.myDataSectionHeaderTitle.apply(myDataSelectionHeaderTitle, to: titleLabel)
         ThemeText.myDataSectionHeaderSubTitle.apply(myDataSelectionHeaderSubtitle, to: subtitleLabel)

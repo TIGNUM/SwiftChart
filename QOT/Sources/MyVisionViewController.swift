@@ -10,11 +10,10 @@ import UIKit
 import qot_dal
 import Kingfisher
 
-final class MyVisionViewController: UIViewController, ScreenZLevel2 {
+final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
-    @IBOutlet private weak var loaderView: UIView!
     @IBOutlet private weak var nullStateView: MyVisionNullStateView!
     @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -37,6 +36,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
+    let skeletonManager = SkeletonManager()
 
     var didShowNullStateView = false
 
@@ -53,10 +53,11 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         interactor?.viewDidLoad()
         userImageView.gradientBackground(top: true)
         userImageView.gradientBackground(top: false)
+        showNullState(with: " ", message: " ")
+        showSkeleton()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -97,6 +98,18 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
         guard let remoteId = interactor?.myVision?.remoteID else { return }
         trackUserEvent(.OPEN, valueType: "QuestionnaireView", action: .TAP)
         interactor?.showRateScreen(with: remoteId)
+    }
+
+    private func showSkeleton() {
+        skeletonManager.addTitle(headerLabel)
+        skeletonManager.addSubtitle(toBeVisionLabel)
+        skeletonManager.addOtherView(cameraButton)
+        skeletonManager.addOtherView(userImageView)
+        skeletonManager.addTitle(nullStateView.headerLabel)
+        skeletonManager.addSubtitle(nullStateView.detailLabel)
+        skeletonManager.addSubtitle(nullStateView.toBeVisionLabel)
+        skeletonManager.addOtherView(nullStateView.writeButton)
+        skeletonManager.addOtherView(nullStateView.autoGenerateButton)
     }
 }
 
@@ -163,13 +176,8 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-    func showScreenLoader() {
-        loaderView.isHidden = false
-    }
-
     func hideScreenLoader() {
-        loaderView.isHidden = true
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 
     func showNullState(with title: String, message: String) {
@@ -218,7 +226,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         if scrollView.alpha == 0 {
             UIView.animate(withDuration: Animation.duration_04) { self.scrollView.alpha = 1 }
         }
-        removeLoadingSkeleton()
+        skeletonManager.hide()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
 
@@ -253,8 +261,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
-        let createNew = RoundedButton.barButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV))
-        let edit = RoundedButton.barButton(title: editTitle, target: self, action: #selector(editTBV))
+        let createNew = RoundedButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV)).barButton
+        let edit = RoundedButton(title: editTitle, target: self, action: #selector(editTBV)).barButton
         QOTAlert.show(title: title, message: message, bottomItems: [createNew, edit])
     }
 }
@@ -296,7 +304,10 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         tempImage = nil
         tempImageURL = nil
         saveToBeVisionImageAndData()
-        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
+        skeletonManager.addOtherView(userImageView)
+        userImageView.setImage(url: tempImageURL,
+                               placeholder: R.image.circlesWarning(),
+                               skeletonManager: self.skeletonManager)
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }

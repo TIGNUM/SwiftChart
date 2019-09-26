@@ -116,7 +116,7 @@ protocol QOTAlertViewControllerDelegate: class {
     func dismiss()
 }
 
-class QOTAlertViewController: UIViewController {
+class QOTAlertViewController: BaseViewController {
 
     enum ButtonsAlignment {
         case right
@@ -287,7 +287,7 @@ private extension QOTAlertViewController {
                 tempItems.append(fixedSpace)
             }
             // Item
-            if let button = item.customView as? UIButton {
+            if let button = findButton(in: item.customView) {
                 button.addTarget(self, action: #selector(didTapDismiss), for: .touchUpInside)
             }
             tempItems.append(item)
@@ -309,6 +309,19 @@ private extension QOTAlertViewController {
         let button = RoundedButton(title: item.title ?? "  ", target: pair.0, action: pair.1)
         button.handler = item.handler
         return button.barButton
+    }
+
+    func findButton(in view: UIView?) -> UIButton? {
+        guard let view = view else { return nil }
+        if let button = view as? UIButton {
+            return button
+        }
+        for tempView in view.subviews {
+            if let button = findButton(in: tempView) {
+                return button
+            }
+        }
+        return nil
     }
 }
 

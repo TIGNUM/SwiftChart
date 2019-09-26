@@ -15,7 +15,6 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
-    @IBOutlet weak var audioView: AudioButton!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
     private var mediaURL: URL?
@@ -23,22 +22,24 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
     private var remoteID: Int = 0
     private var categoryTitle = ""
     private var duration: Double = 0
-    weak var delegate: ToolsCollectionsViewController?
-    weak var itemDelegate: ToolsItemsViewController?
+    weak var delegate: IsPlayingDelegate?
+    @IBOutlet weak var audioLabelView: AudioButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        audioView.corner(radius: 20)
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        } else if let isPlaying = itemDelegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
+        checkIfPlaying()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
+        checkIfPlaying()
+    }
+
+    private func checkIfPlaying() {
+        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
+            isPlaying ? ThemeView.audioPlaying.apply(audioLabelView) : ThemeView.level1.apply(audioLabelView)
+        }
     }
 
     func configure(categoryTitle: String,
@@ -47,21 +48,19 @@ final class ToolsCollectionsAudioTableViewCell: BaseToolsTableViewCell, Dequeuea
                    mediaURL: URL?,
                    duration: Double,
                    remoteID: Int,
-                   delegate: ToolsCollectionsViewController?,
-                   itemDelegate: ToolsItemsViewControllerDelegate?) {
+                   delegate: IsPlayingDelegate?) {
+        audioLabelView.isHidden = false
+        audioLabelView.isUserInteractionEnabled = true
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
         self.remoteID = remoteID
         self.duration = duration
+        self.delegate = delegate
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_audio_grey()
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        } else if let isPlaying = itemDelegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
+        checkIfPlaying()
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60, Int(duration) % 60)
         ThemeText.audioLabel.apply(mediaDescription, to: audioLabel)
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
@@ -82,7 +81,7 @@ extension ToolsCollectionsAudioTableViewCell {
 
     func makePDFCell() {
         mediaIconImageView.image = R.image.ic_read_grey()
-        audioView.isHidden = true
+        audioLabelView.isHidden = true
         audioButton.isHidden = true
     }
 }
@@ -91,8 +90,9 @@ extension ToolsCollectionsAudioTableViewCell {
 
 private extension ToolsCollectionsAudioTableViewCell {
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
+//        audioLabelView.isHidden = false
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
-            audioView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
+            audioLabelView.backgroundColor = UIColor.accent.withAlphaComponent(0.4)
         }
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 import SafariServices
 
-class CopyRightBucketsViewController: UIViewController, ScreenZLevelOverlay {
+class CopyRightBucketsViewController: BaseViewController, ScreenZLevelOverlay {
 
     @IBOutlet weak var copyrightButton: UIButton!
     var copyrightURL: String?

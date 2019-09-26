@@ -14,6 +14,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
+    let skeletonManager = SkeletonManager()
 
     // MARK: - Initialisers
 
@@ -38,7 +39,9 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
     func setupView(title: String, subTitle: String, previewImageURL: URL?) {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading())
+        skeletonManager.addOtherView(previewImageView)
+        previewImageView.setImage(url: previewImageURL,
+                                  skeletonManager: self.skeletonManager)
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased()).attributedString()

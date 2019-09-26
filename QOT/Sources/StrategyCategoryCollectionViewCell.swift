@@ -14,13 +14,19 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
     @IBOutlet private weak var performanceLabel: UILabel!
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     @IBOutlet private weak var progressLabel: UILabel!
+    @IBOutlet private weak var seenIcon: UIImageView?
     @IBOutlet private weak var bottomSeperator: UIView!
+    let skeletonManager = SkeletonManager()
 
-    func configure(categoryTitle: String, viewCount: Int, itemCount: Int) {
+    func configure(categoryTitle: String?, viewCount: Int?, itemCount: Int?) {
+        guard let title = categoryTitle, let views = viewCount, let items = itemCount else {
+            return
+        }
+        skeletonManager.hide()
         ThemeText.performanceStaticTitle.apply(R.string.localized.strategyPerformanceTitle(), to: performanceLabel)
-        let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
-        ThemeText.linkMenuItem.apply(title.uppercased(), to: categoryTitleLabel)
-        let progress = String(format: "%d Seen of %d", viewCount, itemCount)
+        let titleText = title.replacingOccurrences(of: "Performance ", with: "")
+        ThemeText.linkMenuItem.apply(titleText.uppercased(), to: categoryTitleLabel)
+        let progress = String(format: "%d Seen of %d", views, items)
         ThemeText.datestamp.apply(progress, to: progressLabel)
     }
 
@@ -31,5 +37,11 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         let bkView = UIView()
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
+        skeletonManager.addSubtitle(performanceLabel)
+        skeletonManager.addSubtitle(categoryTitleLabel)
+        skeletonManager.addOtherView(progressLabel)
+        if let icon = seenIcon {
+            skeletonManager.addOtherView(icon)
+        }
     }
 }
