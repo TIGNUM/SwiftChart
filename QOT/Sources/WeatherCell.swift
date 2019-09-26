@@ -27,6 +27,7 @@ final class WeatherCell: BaseDailyBriefCell {
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
+    @IBOutlet weak var accessImageContainerView: UIView!
     @IBOutlet weak var accessImageView: UIImageView!
     @IBOutlet weak var accessButton: UIButton!
     @IBOutlet weak var accessButtonHeightConstraint: NSLayoutConstraint!
@@ -40,19 +41,11 @@ final class WeatherCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        skeletonManager.addTitle(bucketTitleLabel)
-        skeletonManager.addSubtitle(introLabel)
-        skeletonManager.addSubtitle(weatherDescriptionLabel)
-        skeletonManager.addSubtitle(weatherTitleLabel)
-        skeletonManager.addSubtitle(weatherBodyLabel)
-        skeletonManager.addOtherView(hourlyStackView)
-        skeletonManager.addOtherView(weatherImageView)
-        skeletonManager.addSubtitle(accessLabel)
-        skeletonManager.addOtherView(accessButton)
+        startSkeleton()
         for arrangedView in hourlyStackView.arrangedSubviews {
             arrangedView.isHidden = true
         }
-        ThemeView.level1.apply(accessImageView)
+        ThemeView.level1.apply(accessImageContainerView)
     }
 
     override func prepareForReuse() {
@@ -70,7 +63,7 @@ final class WeatherCell: BaseDailyBriefCell {
             default:
                 self?.viewModel?.requestLocationPermission { [weak self] (granted) in
                     self?.delegate?.didChangeLocationPermission(granted: granted)
-                    granted ? self?.accessButton.isHidden = true : self?.setupUIAccordingToLocationPermissions()
+                    granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
                 }
             }
         }
@@ -111,6 +104,19 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     // MARK: Private
+    private func startSkeleton() {
+        skeletonManager.addTitle(bucketTitleLabel)
+        skeletonManager.addSubtitle(introLabel)
+        skeletonManager.addSubtitle(weatherDescriptionLabel)
+        skeletonManager.addSubtitle(weatherTitleLabel)
+        skeletonManager.addSubtitle(weatherBodyLabel)
+        skeletonManager.addOtherView(hourlyStackView)
+        skeletonManager.addOtherView(weatherImageView)
+        skeletonManager.addSubtitle(accessLabel)
+        skeletonManager.addOtherView(accessImageView)
+        skeletonManager.addOtherView(accessButton)
+    }
+
     private func populateHourlyViews() {
         guard let weatherModel = viewModel?.domainModel?.weather,
             let forecast = weatherModel.forecast else {
@@ -165,6 +171,7 @@ final class WeatherCell: BaseDailyBriefCell {
             constraint.isActive = !shouldHideHeader
         }
         accessImageView.isHidden = shouldHideHeader
+        accessImageContainerView.isHidden = shouldHideHeader
         bucketTitleLabel.isHidden = shouldHideHeader
         introLabel.isHidden = shouldHideHeader
         lineView.isHidden = shouldHideHeader
