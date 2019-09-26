@@ -167,7 +167,7 @@ extension MySprintsListViewController: UITableViewDataSource {
             sprintCell.set(title: nil, status: nil, description: nil, progress: nil)
             return sprintCell
         }
-        sprintCell.set(title: item.title, status: item.status, description: item.statusDescription, progress: item.progress)
+        sprintCell.set(title: item.title.uppercased(), status: item.status, description: item.statusDescription, progress: item.progress)
         return sprintCell
     }
 }
