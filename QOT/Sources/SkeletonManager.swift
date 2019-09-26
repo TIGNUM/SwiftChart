@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SkeletonManager: NSObject {
+class SkeletonManager {
     /**
      In order to use this manager to apply skeleton loading feature to different views all you have to do is call the addTitle, addSubtitle or addOtherView methods.
      This will automatically setup the skeleton according to the type of view and start animating it
@@ -20,10 +20,26 @@ class SkeletonManager: NSObject {
     private var skeletonableTitles: [UIView] = []
     private var skeletonableSubtitles: [UIView] = []
     private var skeletonableOtherViews: [UIView] = []
-    static let shimmerAnimationDuration: CFTimeInterval = 1.5
-    static let dissolveAnimationDuration: Double = 0.75
+    private var titleColor: UIColor = UIColor.skeletonTitleColor
+    private var subtitleColor: UIColor = UIColor.skeletonSubtitleColor
+    private var otherViewColor: UIColor = UIColor.skeletonOtherViewsColor
+    private var shimmerAnimationDuration: CFTimeInterval = 1.5
+    private var dissolveAnimationDuration: Double = 0.75
 
     // MARK: Lifecycle
+
+    init(titleColor: UIColor = .skeletonTitleColor,
+         subtitleColor: UIColor = .skeletonTitleColor,
+         otherViewColor: UIColor = .skeletonTitleColor,
+         shimmerAnimationDuration: CFTimeInterval = 1.5,
+         dissolveAnimationDuration: Double = 0.75) {
+        self.titleColor = titleColor
+        self.subtitleColor = subtitleColor
+        self.otherViewColor = otherViewColor
+        self.shimmerAnimationDuration = shimmerAnimationDuration
+        self.dissolveAnimationDuration = dissolveAnimationDuration
+    }
+
     deinit {
         hide()
     }
@@ -31,29 +47,29 @@ class SkeletonManager: NSObject {
     // MARK: Public
     func addTitle(_ view: UIView) {
         skeletonableTitles.append(view)
-        addShimmerView(to: view, withBackgroundColor: .skeletonTitleColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: titleColor, lighterShimmer: true)
     }
 
     func addSubtitle(_ view: UIView) {
         skeletonableSubtitles.append(view)
-        addShimmerView(to: view, withBackgroundColor: .skeletonSubtitleColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: subtitleColor, lighterShimmer: true)
     }
 
     func addOtherView(_ view: UIView) {
         skeletonableOtherViews.append(view)
-        addShimmerView(to: view, withBackgroundColor: .skeletonOtherViewsColor, lighterShimmer: true)
+        addShimmerView(to: view, withBackgroundColor: otherViewColor, lighterShimmer: true)
     }
 
     func hide() {
         for view in self.skeletonableTitles {
-            self.removeShimmerView(from: view, withAnimationDuration: SkeletonManager.dissolveAnimationDuration)
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
         }
         for view in self.skeletonableSubtitles {
-            self.removeShimmerView(from: view, withAnimationDuration: SkeletonManager.dissolveAnimationDuration)
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
         }
 
         for view in self.skeletonableOtherViews {
-            self.removeShimmerView(from: view, withAnimationDuration: SkeletonManager.dissolveAnimationDuration)
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
         }
         self.skeletonableTitles.removeAll()
         self.skeletonableSubtitles.removeAll()
@@ -67,9 +83,9 @@ class SkeletonManager: NSObject {
             button.titleLabel?.isHidden = true
             button.layer.borderWidth = 0
         }
-        let shimmerView = ShimmerAnimatedView.init(frame: view.frame, color: withBackgroundColor, animationDuration: SkeletonManager.shimmerAnimationDuration, lighterShimmer: lighterShimmer)
+        let shimmerView = ShimmerAnimatedView.init(frame: view.frame, color: withBackgroundColor, animationDuration: shimmerAnimationDuration, lighterShimmer: lighterShimmer)
         shimmerView.isUserInteractionEnabled = true
-        UIView.transition(with: view, duration: SkeletonManager.dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
+        UIView.transition(with: view, duration: dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
             shimmerView.fillOverLayerBorder(withSuperview: view)
             view.bringSubview(toFront: shimmerView)
         }, completion: nil)
@@ -116,7 +132,7 @@ private class ShimmerAnimatedView: UIView {
     private func addGradientLayer(toView: UIView,
                                  withColor: UIColor = .white,
                                  lighterShimmer: Bool = false,
-                                 animationDuration: CFTimeInterval = SkeletonManager.shimmerAnimationDuration,
+                                 animationDuration: CFTimeInterval,
                                  animated: Bool = true) {
 
         gradientLayer.colors = [withColor.cgColor,
