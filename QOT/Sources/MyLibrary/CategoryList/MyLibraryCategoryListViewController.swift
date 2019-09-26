@@ -13,6 +13,7 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
     // MARK: - Properties
 
     var interactor: MyLibraryCategoryListInteractorInterface?
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
 
@@ -58,6 +59,7 @@ private extension MyLibraryCategoryListViewController {
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
     func setupView() {
         ThemeView.level2.apply(view)
+        ThemeView.headerLine.apply(headerLine)
         ThemeText.myLibraryTitle.apply(interactor?.titleText, to: titleLabel)
     }
 
