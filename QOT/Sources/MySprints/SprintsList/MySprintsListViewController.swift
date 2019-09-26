@@ -121,6 +121,9 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
         ThemeView.sprintsActive.apply(view)
         ThemeView.level2.apply(tableView)
 
+        ThemeView.headerLine.apply(headerLine)
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
+
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)
@@ -129,7 +132,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
     }
 
     func update() {
-        titleLabel.text = interactor?.title ?? ""
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
 
         let isEditing = interactor?.viewModel.isEditing ?? false
         tableView.setEditing(isEditing, animated: true)
