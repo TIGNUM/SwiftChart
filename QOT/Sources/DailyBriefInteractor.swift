@@ -145,14 +145,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return viewModelOldListModels
     }
 
-    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        worker.latestWhatsHotCollectionID(completion: completion)
-    }
-
-    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        worker.latestWhatsHotContent(completion: completion)
-    }
-
     func getDailyBriefDummySectionModels() {
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         sectionDataList.append(ArraySection(model: .impactReadiness,
