@@ -8,15 +8,10 @@
 
 import UIKit
 
-protocol ResultsFeedbackDismissDelegate: class {
-    func dismissResultPage()
-}
-
 final class ResultsFeedbackViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var textLabel: UILabel!
-    weak var delegate: ResultsFeedbackDismissDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +27,7 @@ final class ResultsFeedbackViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Actions
     @objc func didTapDone() {
-        if delegate != nil {
-            delegate?.dismissResultPage()
-        } else {
-            AppDelegate.current.launchHandler.dismissChatBotFlow()
-        }
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 }
 
