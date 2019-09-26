@@ -65,6 +65,7 @@ enum ThemeView {
     case tbvLowPerformance
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
+    case paymentReminder
 
     var color: UIColor {
         switch self {
@@ -94,7 +95,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder:
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color
@@ -295,6 +296,7 @@ enum ThemableButton {
     case myTbvDataRate
     case createAccountInfo
     case trackSelection
+    case paymentReminder
     case articleMarkAsRead
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
@@ -312,6 +314,7 @@ enum ThemableButton {
              .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
+             .paymentReminder:
              .articleMarkAsRead:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
@@ -329,7 +332,7 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
@@ -350,7 +353,7 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
-        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload:
+        case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
@@ -718,6 +721,11 @@ enum ThemeText {
     case myLibraryItemsItemName
     case myLibraryItemsItemDescription
 
+    case paymentReminderHeaderTitle
+    case paymentReminderHeaderSubtitle
+    case paymentReminderCellTitle
+    case paymentReminderCellSubtitle
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax:
@@ -731,7 +739,7 @@ enum ThemeText {
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle:
+             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -799,7 +807,7 @@ enum ThemeText {
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
-             .onboardingInfoBody:
+             .onboardingInfoBody, .paymentReminderHeaderSubtitle:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -808,7 +816,7 @@ enum ThemeText {
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
             return Fonts.fontDisplayRegular20
-        case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName:
+        case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle:
             return Fonts.fontDisplayLight24
         case .articlePostTitle, .articlePostTitleNight:
             return Fonts.fontLight36
@@ -899,10 +907,10 @@ enum ThemeText {
              .myLibraryGroupName:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
-             .resultCounter, .resultCounterMax:
+             .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle:
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
-             .resultTitle, .resultHeader1, .resultClosingText:
+             .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode,
@@ -915,7 +923,7 @@ enum ThemeText {
              .onboardingInfoBody:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
-             .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle:
+             .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
             return Palette.carbon70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:
@@ -1001,7 +1009,7 @@ enum ThemeText {
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
              .coachHeader, .coachTitle, .syncedCalendarTitle, .accountUserName, .accountHeader,
              .myLibraryTitle,
-             .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription:
+             .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription, .paymentReminderCellTitle, .paymentReminderCellSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)

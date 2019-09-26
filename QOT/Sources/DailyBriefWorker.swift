@@ -143,7 +143,7 @@ extension DailyBriefWorker {
             }
         })
     }
-
+    
     func isNew(_ collection: QDMContentCollection) -> Bool {
         var isNewArticle = collection.viewedAt == nil
         if let firstInstallTimeStamp = self.firstInstallTimeStamp {

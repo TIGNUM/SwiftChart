@@ -167,18 +167,27 @@ final class AppCoordinator {
 // MARK: - private
 
 private extension AppCoordinator {
-
     func showSubscriptionReminderIfNeeded() {
-        UserService.main.getUserData({ (userData) in
+        UserService.main.getUserData({ [weak self] (userData) in
             let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
             if userData?.subscriptionExpired == true {
                 // CHANGE ME
-//                windowManager.showSubscriptionReminder(isExpired: true)
-            } else if userData?.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
+                self?.showSubscriptionReminder(isExpired: true)
+            } else if userData?.subscriptionExpireSoon == true &&
+                        (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
                 // CHANGE ME
-//                windowManager.showSubscriptionReminder(isExpired: false)
+                self?.showSubscriptionReminder(isExpired: false)
             }
+        })
+    }
+
+    func showSubscriptionReminder(isExpired: Bool) {
+        let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
+        let controller = PaymentReminderViewController(configure: configurator)
+        let topViewController = AppDelegate.topViewController()
+        topViewController?.present(controller, animated: false, completion: {
+
         })
     }
 }

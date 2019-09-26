@@ -16,17 +16,14 @@ final class PaymentTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var subtitlelabel: UILabel!
     // MARK: - Lifecycle
 
-    func configure(title: String, subtitle: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 20),
-                                                       textColor: UIColor.accent,
-                                                       alignment: .left)
-        subtitlelabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.2,
-                                                          font: .apercuLight(ofSize: 12),
-                                                          lineSpacing: 4,
-                                                          textColor: UIColor.carbon,
-                                                          alignment: .left)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        ThemeView.paymentReminder.apply(self)
+    }
+
+    func configure(title: String?, subtitle: String?) {
+        guard let titleText = title, let subtitleText = subtitle else { return }
+        ThemeText.paymentReminderCellTitle.apply(titleText, to: titleLabel)
+        ThemeText.paymentReminderCellSubtitle.apply(subtitleText, to: subtitlelabel)
     }
 }

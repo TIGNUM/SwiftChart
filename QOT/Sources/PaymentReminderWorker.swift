@@ -29,8 +29,9 @@ final class PaymentReminderWorker {
     func paymentSections() -> PaymentModel {
         let headerTitle = ScreenTitleService.main.paymentHeaderTitle()
         let headerSubtitle = ScreenTitleService.main.paymentHeaderSubtitle()
-        let paymentItems =  PaymentSection.allCases.map {
-            return PaymentModel.Item(paymentSections: $0,
+        let sections = isExpired ? PaymentSection.expiredSectionValues : PaymentSection.notExpiredSectionValues
+        let paymentItems =  sections.map {
+            return PaymentModel.Item(paymentSection: $0,
                                    title: ScreenTitleService.main.paymentSectionTitles(for: $0),
                                    subtitle: ScreenTitleService.main.paymentSectionSubtitles(for: $0)) }
         return PaymentModel(headerTitle: headerTitle, headerSubtitle: headerSubtitle, paymentItems: paymentItems)
