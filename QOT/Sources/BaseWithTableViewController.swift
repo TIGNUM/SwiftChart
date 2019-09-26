@@ -16,7 +16,6 @@ class BaseWithTableViewController: BaseViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        tableView.isUserInteractionEnabled = true
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
             selectedIndexPath = nil
@@ -26,6 +25,9 @@ class BaseWithTableViewController: BaseViewController {
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
         tableView.isUserInteractionEnabled = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
+            self.tableView.isUserInteractionEnabled = true
+        }
     }
 }
 

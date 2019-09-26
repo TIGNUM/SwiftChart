@@ -9,15 +9,12 @@
 import UIKit
 import qot_dal
 
-protocol StrategyListViewControllerDelegate: class {
-      func isPlaying() -> Bool
-}
-
 final class StrategyListViewController: BaseWithTableViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
     var interactor: StrategyListInteractorInterface?
+    private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Life Cycle
 
@@ -85,10 +82,14 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     }
 
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? StrategyContentTableViewCell {
-            cell.delegate = self
-            tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        var array: [IndexPath] = [indexPath]
+        if let oldIndexPath = lastAudioIndexPath {
+            array.append(oldIndexPath)
         }
+        lastAudioIndexPath = indexPath
+        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 }
 
@@ -114,8 +115,8 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                            timeToWatch: strategy?.durationString ?? "",
                            mediaURL: strategy?.mediaURL,
                            duration: strategy?.duration ?? 0,
-                           mediaItemId: strategy?.mediaItem?.remoteID ?? 0)
-            cell.delegate = self
+                           mediaItemId: strategy?.mediaItem?.remoteID ?? 0,
+                           delegate: self)
             return cell
         }
     }
@@ -169,9 +170,9 @@ extension StrategyListViewController {
     }
 }
 
-extension StrategyListViewController: StrategyListViewControllerDelegate {
+extension StrategyListViewController: IsPlayingDelegate {
 
-    func isPlaying() -> Bool {
-        return interactor?.isPlaying ?? false
+    func isPlaying(remoteID: Int?) -> Bool {
+        return interactor?.isPlaying(remoteID: remoteID) ?? false
     }
 }
