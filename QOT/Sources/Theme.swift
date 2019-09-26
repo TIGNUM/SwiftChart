@@ -35,7 +35,7 @@ enum ThemeView {
     case level2
     case level3
     case sprints
-    case sprintsHeader
+    case sprintsActive
     case level1Secondary
     case level1Selected
     case level2Selected
@@ -66,6 +66,7 @@ enum ThemeView {
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
     case paymentReminder
+    case clear
 
     var color: UIColor {
         switch self {
@@ -127,8 +128,10 @@ enum ThemeView {
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
             return Palette.heatMapDarkBlue
-        case .sprintsHeader:
+        case .sprintsActive:
             return .carbonNew
+        case .clear:
+            return .clear
         }
     }
 

@@ -44,7 +44,7 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        tableView.addHeader(with: .sprintsHeader)
+        tableView.addHeader(with: .sprintsActive)
         interactor?.viewDidLoad()
     }
 
@@ -118,7 +118,7 @@ private extension MySprintsListViewController {
 
 extension MySprintsListViewController: MySprintsListViewControllerInterface {
     func setupView() {
-        ThemeView.sprintsHeader.apply(view)
+        ThemeView.sprintsActive.apply(view)
         ThemeView.level2.apply(tableView)
 
         ThemeTint.accent.apply(editButton)

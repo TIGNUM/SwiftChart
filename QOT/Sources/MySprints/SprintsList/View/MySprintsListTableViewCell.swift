@@ -25,8 +25,9 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+        let selectedView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedView)
+        selectedBackgroundView = selectedView
 
         editingOverlay = UIView()
         self.addSubview(editingOverlay)
@@ -50,13 +51,11 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
         progressLabel.attributedText = NSAttributedString(string: progress ?? "",
                                                           attributes: [.kern: CharacterSpacing.kern02])
 
-        let color: UIColor
         if case MySprintStatus.active = sprintStatus {
-            color = .carbonNew
+            ThemeView.sprintsActive.apply(contentView)
         } else {
-            color = .clear
+            ThemeView.clear.apply(contentView)
         }
-        self.backgroundColor = color
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
