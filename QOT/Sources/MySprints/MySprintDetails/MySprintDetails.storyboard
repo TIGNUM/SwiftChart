@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9Hw-6x-0OA">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderDetailsItemCell" rowHeight="84" id="pyR-0e-EtW" userLabel="Header Table View Cell" customClass="HeaderDetailsItemCell" customModule="QOT" customModuleProvider="target">
@@ -154,7 +154,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="RBX-W4-Vt1" firstAttribute="bottom" secondItem="9Hw-6x-0OA" secondAttribute="bottom" id="5k8-qA-aRD"/>
+                            <constraint firstAttribute="bottom" secondItem="9Hw-6x-0OA" secondAttribute="bottom" id="5k8-qA-aRD"/>
                             <constraint firstItem="9Hw-6x-0OA" firstAttribute="top" secondItem="RBX-W4-Vt1" secondAttribute="top" id="aiz-i5-8GY"/>
                             <constraint firstItem="9Hw-6x-0OA" firstAttribute="width" secondItem="BmO-J0-AGL" secondAttribute="width" id="xIA-d9-4Gc"/>
                             <constraint firstItem="9Hw-6x-0OA" firstAttribute="centerX" secondItem="RBX-W4-Vt1" secondAttribute="centerX" id="zKM-ar-AZs"/>
