@@ -270,16 +270,16 @@ extension ArticleViewController: ArticleViewControllerInterface {
         setupAudioItem()
         refreshBottomNavigationItems()
     }
-    
+
     func setupArticleHeader(header: Article.Header) {
         self.header = header
     }
-  
+
     func setupView() {
         setupTableView()
         setColorMode()
     }
-  
+
     func hasBookmark(_ hasBookmark: Bool) {
         articleTopNavBar.updateBookmark(hasBookmark)
     }
