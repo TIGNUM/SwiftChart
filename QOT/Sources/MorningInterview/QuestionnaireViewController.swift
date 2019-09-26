@@ -321,17 +321,17 @@ extension QuestionnaireViewController {
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
         questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
         fillView.setNeedsUpdateConstraints()
-
+        var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
             labelCustomizeView.text = R.string.localized.dailyBriefCustomizeSleepIntro()
-            questionLabel.attributedText = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
+            attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
         case .dailyCheckin:
             if let question = questionHtml {
-                questionLabel.attributedText = question
+                attributedQuestion = question
                 questionLabel.font = UIFont.sfProtextLight(ofSize: 16)
             } else if let question = questionText {
-                questionLabel.attributedText = ThemeText.tbvQuestionMedium.attributedString(question)
+                attributedQuestion = ThemeText.tbvQuestionMedium.attributedString(question)
             }
         case .vision:
             if let question = questionText {
@@ -340,10 +340,10 @@ extension QuestionnaireViewController {
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
-                questionLabel.attributedText = combined
+                attributedQuestion = combined
             }
         }
-
+        questionLabel.attributedText = attributedQuestion
         UIView.animate(withDuration: Animation.duration_02,
                        delay: Animation.duration_02,
                        options: [.curveEaseInOut],
@@ -351,10 +351,13 @@ extension QuestionnaireViewController {
                         self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
                         self.questionLabel.alpha = 1
                         self.progressView.alpha = 1
-        }, completion: { finished in
-            self.setupImages()
-            self.tableView.isHidden = false
-            self.tableView.reloadData()
+        }, completion: { [weak self] finished in
+            self?.setupImages()
+            self?.questionLabel.alpha = 1
+            self?.questionLabel.isHidden = false
+            self?.tableView.isHidden = false
+            self?.questionLabel.attributedText = attributedQuestion
+            self?.tableView.reloadData()
         })
 
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
