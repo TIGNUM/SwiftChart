@@ -13,20 +13,18 @@ protocol PrepareResultsViewControllerInterface: class {
     func setupView()
     func registerTableViewCell(_ type: QDMUserPreparation.Level)
     func reloadView()
-    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol PrepareResultsPresenterInterface {
     func setupView()
     func registerTableViewCell(_ type: QDMUserPreparation.Level)
     func reloadView()
-    func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol PrepareResultsInteractorInterface: Interactor {
     var setReminder: Bool { get set }
     var getType: QDMUserPreparation.Level { get }
-    var dataModified: Bool { get }
+    var getResultType: ResultType { get }
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> PrepareResultsType?
@@ -37,11 +35,11 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func updateStrategies(selectedIds: [Int])
     func updateIntentions(_ answersIds: [Int])
     func updateBenefits(_ benefits: String)
-    func openConfirmationView()
     func didClickSaveAndContinue()
-    func didTapLeaveWithoutSaving()
     func didTapDismissView()
     func presentFeedback()
+    func deletePreparation()
+    func updatePreparation()
 }
 
 protocol PrepareResultsRouterInterface {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum SolveTriggerType: String {
     case midsetShifter
@@ -14,21 +15,81 @@ enum SolveTriggerType: String {
     case recoveryPlaner
 }
 
-enum ResultType {
-    case solve
-    case recovery
+enum ButtonItem {
+    case cancel
+    case done
+    case save
 
-    var contentId: Int {
+    var title: String {
         switch self {
-        case .recovery:
-            return 101291
-        case .solve:
-            return 0
+        case .cancel: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        case .done: return ScreenTitleService.main.localizedString(for: .ButtonTitleDone)
+        case .save: return R.string.localized.alertButtonTitleSave()
+        }
+    }
+
+    var width: CGFloat {
+        switch self {
+        case .cancel: return .Cancel
+        case .done: return .Done
+        case .save: return .Save
+        }
+    }
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .cancel: return .sand
+        case .done: return .carbon
+        case .save: return .carbon
+        }
+    }
+
+    var borderColor: UIColor {
+        switch self {
+        case .cancel: return .accent40
+        case .done: return .carbon
+        case .save: return .carbon
         }
     }
 }
 
-struct SolveResults {
+enum ResultType {
+    case solveDailyBrief
+    case solveDecisionTree
+    case recoveryDecisionTree
+    case recoveryMyPlans
+    case mindsetShifterDecisionTree
+    case mindsetShifterMyPlans
+    case prepareDecisionTree
+    case prepareMyPlans
+    case prepareDailyBrief
+
+    var contentId: Int {
+        switch self {
+        case .recoveryDecisionTree,
+             .recoveryMyPlans:
+            return 101291
+        default:
+            return 0
+        }
+    }
+
+    var buttonItems: [ButtonItem] {
+        switch self {
+        case .solveDailyBrief,
+             .solveDecisionTree,
+             .recoveryMyPlans,
+             .mindsetShifterMyPlans,
+             .prepareMyPlans,
+             .prepareDailyBrief: return [.done]
+        case .recoveryDecisionTree,
+             .mindsetShifterDecisionTree,
+             .prepareDecisionTree: return [.save, .cancel]
+        }
+    }
+}
+
+struct SolveResult {
     let type: ResultType
     let items: [Item]
 

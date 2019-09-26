@@ -13,11 +13,16 @@ enum PaymentSection: Int, CaseIterable {
     case impact
     case grow
     case data
+    case switchAccount
+    case footer
 
-    static var sectionValues: [PaymentSection] {
-        return [.prepared, .impact, .grow, .data]
+    static var expiredSectionValues: [PaymentSection] {
+        return [.prepared, .impact, .grow, .data, .switchAccount, .footer]
     }
 
+    static var notExpiredSectionValues: [PaymentSection] {
+        return [.prepared, .impact, .grow, .data, .footer]
+    }
 }
 
 struct PaymentModel {
@@ -26,14 +31,15 @@ struct PaymentModel {
     let paymentItems: [Item]
 
     struct Item {
-        let paymentSections: PaymentSection
+        let paymentSection: PaymentSection
         let title: String?
         let subtitle: String?
     }
 
     // MARK: - Properties
 
-    func sectionItem(at indexPath: IndexPath) -> PaymentSection {
-        return PaymentSection.sectionValues.at(index: indexPath.row) ?? .prepared
+    func sectionItem(at indexPath: IndexPath, expired: Bool) -> PaymentSection {
+        return expired ? PaymentSection.expiredSectionValues.at(index: indexPath.row) ?? .prepared :
+                         PaymentSection.notExpiredSectionValues.at(index: indexPath.row) ?? .prepared
     }
 }

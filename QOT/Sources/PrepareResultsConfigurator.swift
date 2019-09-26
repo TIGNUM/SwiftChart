@@ -10,17 +10,14 @@ import Foundation
 import qot_dal
 
 final class PrepareResultsConfigurator {
-    static func make(_ preparation: QDMUserPreparation?,
-                     canDelete: Bool,
-                     delegate: ResultsFeedbackDismissDelegate? = nil) -> (PrepareResultsViewController) -> Void {
+    static func make(_ preparation: QDMUserPreparation?, resultType: ResultType) -> (PrepareResultsViewController) -> Void {
         return { (viewController) in
             let router = PrepareResultsRouter(viewController: viewController)
-            let worker = PrepareResultsWorker(preparation, canDelete: canDelete)
+            let worker = PrepareResultsWorker(preparation, resultType: resultType)
             let presenter = PrepareResultsPresenter(viewController: viewController)
             let interactor = PrepareResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
             worker.delegate = viewController
-            router.delegate = delegate
         }
     }
 
@@ -33,7 +30,6 @@ final class PrepareResultsConfigurator {
             let interactor = PrepareResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
             worker.delegate = viewController
-            worker.canDelete = true
         }
     }
 }

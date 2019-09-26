@@ -61,8 +61,9 @@ private extension DTSolveViewController {
             } else {
                 self?.solveRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.Work,
                                                          delegate: self?.solveInteractor) { [weak self] in
+                                                            let targetId = Solve.QuestionTargetId.PostCreationShortTBV
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
-                                                                                                  newTargetId: Solve.QuestionTargetId.PostCreationShortTBV)
+                                                                                                  newTargetId: targetId)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }

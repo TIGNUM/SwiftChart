@@ -13,36 +13,29 @@ final class SolveResultsConfigurator {
     static func make(from selectedAnswerId: Int,
                      solutionCollectionId: Int) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
-            let router = SolveResultsRouter(viewController: viewController)
             let worker = SolveResultsWorker(selectedAnswerId: selectedAnswerId,
                                             solutionCollectionId: solutionCollectionId)
             let presenter = SolveResultsPresenter(viewController: viewController)
-            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
         }
     }
 
-    static func make(from recoveryModel: QDMRecovery3D?,
-                     canDelete: Bool,
-                     delegate: ResultsFeedbackDismissDelegate? = nil) -> (SolveResultsViewController) -> Void {
+    static func make(from recoveryModel: QDMRecovery3D?, resultType: ResultType) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
-            let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(recovery: recoveryModel, canDelete: canDelete)
+            let worker = SolveResultsWorker(recovery: recoveryModel, resultType: resultType)
             let presenter = SolveResultsPresenter(viewController: viewController)
-            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
-            router.delegate = delegate
         }
     }
 
-    static func make(from solve: QDMSolve) -> (SolveResultsViewController) -> Void {
+    static func make(from solve: QDMSolve, resultType: ResultType) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
-            let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(solve: solve)
+            let worker = SolveResultsWorker(solve: solve, resultType: resultType)
             let presenter = SolveResultsPresenter(viewController: viewController)
-            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
-            viewController.isFollowUpActive = solve.followUp
         }
     }
 }

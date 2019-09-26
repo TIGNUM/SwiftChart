@@ -13,14 +13,12 @@ final class PaymentReminderRouter {
 
     // MARK: - Properties
 
-    private let windowManager: WindowManager
     private weak var viewController: (PaymentReminderViewController & UIViewControllerInterface)?
     lazy var showSigningInfoViewNotificationHandler = NotificationHandler(name: .showSigningInfoView)
 
     // MARK: - Init
 
-    init(windowManager: WindowManager, viewController: PaymentReminderViewController & UIViewControllerInterface) {
-        self.windowManager = windowManager
+    init(viewController: PaymentReminderViewController & UIViewControllerInterface) {
         self.viewController = viewController
         showSigningInfoViewNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.dismiss()
@@ -32,9 +30,7 @@ final class PaymentReminderRouter {
 
 extension PaymentReminderRouter: PaymentReminderRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true) { [weak self] in
-            self?.windowManager.resignWindow(atLevel: .priority)
-        }
+        viewController?.dismiss(animated: true)
     }
 
     func showLogoutDialog() {

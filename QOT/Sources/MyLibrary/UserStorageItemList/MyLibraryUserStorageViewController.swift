@@ -19,7 +19,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: AnimatedButton!
     @IBOutlet private weak var addButton: RoundedButton!
 
     private var bottomNavigationItems = UINavigationItem()
@@ -44,15 +44,11 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        interactor?.viewDidLoad()
-        view.backgroundColor = .carbon
 
         editButton.tintColor = .accent
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addButton.isHidden = !(interactor?.showAddButton ?? false)
-        addButton.setTitle(" " + (interactor?.addTitle ?? ""), for: .normal)
-        addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+
+        interactor?.viewDidLoad()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -82,10 +78,9 @@ private extension MyLibraryUserStorageViewController {
         bottomNavigationItems.leftBarButtonItems = nil
         bottomNavigationItems.rightBarButtonItems = buttons.map {
             let button = RoundedButton(title: $0.title, target: $0.target, action: $0.action)
+            button.isEnabled = $0.isEnabled
             ThemableButton.myLibrary.apply(button, title: $0.title)
-            let barButton = button.barButton
-            barButton.isEnabled = $0.isEnabled
-            return barButton
+            return button.barButton
         }
         refreshBottomNavigationItems()
     }
@@ -135,10 +130,19 @@ private extension MyLibraryUserStorageViewController {
 // MARK: - MyLibraryUserStorageViewControllerInterface
 
 extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewControllerInterface {
-    func update() {
-        let isEditing = interactor?.isEditing ?? false
+    func setupView() {
+        ThemeView.level3.apply(view)
 
-        titleLabel.text = interactor?.title
+        addButton.isHidden = !(interactor?.showAddButton ?? false)
+        addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
+        ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
+    }
+
+    func update() {
+        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: titleLabel)
+
+        let isEditing = interactor?.isEditing ?? false
         editButton.isHidden = !(interactor?.showEditButton ?? true)
         setEditButton(enabled: interactor?.canEdit ?? false)
         addButton.isEnabled = !isEditing

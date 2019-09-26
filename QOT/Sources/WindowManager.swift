@@ -93,12 +93,6 @@ final class WindowManager {
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
 
-    func showSubscriptionReminder(isExpired: Bool) {
-        let configurator = PaymentReminderConfigurator.make(isExpired: isExpired, windowManager: self)
-        let controller = PaymentReminderViewController(configure: configurator)
-        showPriority(controller, animated: true, completion: nil)
-    }
-
     func showAlert(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.alert
         showWindow(atLevel: .alert)

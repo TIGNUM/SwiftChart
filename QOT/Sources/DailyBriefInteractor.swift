@@ -188,7 +188,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
         presenter.updateViewNew(changeSet)
     }
-  
+
     func getDailyBriefBucketsForViewModel() {
         if isLoadingBuckets {
             needToLoadBuckets = true

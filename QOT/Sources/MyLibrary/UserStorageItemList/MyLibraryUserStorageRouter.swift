@@ -31,13 +31,10 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        let articleNavigationController = UINavigationController(rootViewController: articleViewController)
-        articleNavigationController.navigationBar.isTranslucent = false
-        viewController.present(articleNavigationController, animated: true, completion: nil)
+        viewController.present(articleViewController, animated: true, completion: nil)
     }
 
     func presentVideo(url: URL, item: QDMContentItem?) {
-        // FIXME: Set correct pageName
         viewController.stream(videoURL: url, contentItem: item)
     }
 

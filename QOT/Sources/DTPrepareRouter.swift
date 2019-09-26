@@ -39,8 +39,8 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         viewController?.present(controller, animated: true)
     }
 
-    func presentPrepareResults(_ preparation: QDMUserPreparation?, canDelete: Bool) {
-        let configurator = PrepareResultsConfigurator.make(preparation, canDelete: canDelete)
+    func presentPrepareResults(_ preparation: QDMUserPreparation?) {
+        let configurator = PrepareResultsConfigurator.make(preparation, resultType: .prepareDecisionTree)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }

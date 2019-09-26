@@ -27,7 +27,7 @@ final class MySprintDetailsInteractor {
 
     /// Continues previous action
     private lazy var continuePreviousActionButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: worker.buttonContinue, target: self, action: #selector(continueAction))
+        return RoundedButton(title: worker.buttonContinue, target: self, action: #selector(continueAction)).barButton
     }()
 
     /// Starts the sprint
@@ -48,7 +48,7 @@ final class MySprintDetailsInteractor {
 
     /// Pauses the sprint
     private lazy var yesPauseButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: worker.buttonYesPause, target: self, action: #selector(pauseSprint))
+        return RoundedButton(title: worker.buttonYesPause, target: self, action: #selector(pauseSprint)).barButton
     }()
 
     /// Shows continue paused sprint alert
@@ -61,17 +61,17 @@ final class MySprintDetailsInteractor {
 
     /// Restarts paused sprint
     private lazy var restartPausedButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: worker.buttonRestartSprint, target: self, action: #selector(restartPausedSprint))
+        return RoundedButton(title: worker.buttonRestartSprint, target: self, action: #selector(restartPausedSprint)).barButton
     }()
 
     /// Continues paused sprint
     private lazy var continuePausedButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: worker.buttonContinueSprint, target: self, action: #selector(continuePausedSprint))
+        return RoundedButton(title: worker.buttonContinueSprint, target: self, action: #selector(continuePausedSprint)).barButton
     }()
 
     /// Cancels the action
     private lazy var cancelBarButton: UIBarButtonItem = {
-        return RoundedButton.barButton(title: worker.buttonCancel, target: self, action: #selector(cancelAction))
+        return RoundedButton(title: worker.buttonCancel, target: self, action: #selector(cancelAction)).barButton
     }()
 
     // MARK: - Init

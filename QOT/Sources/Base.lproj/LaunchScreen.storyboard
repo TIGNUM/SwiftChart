@@ -8,11 +8,6 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Semibold.otf">
-            <string>SFProText-Semibold</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--View Controller-->
         <scene sceneID="EHf-IW-A2E">
@@ -27,25 +22,13 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="qotLogo" translatesAutoresizingMaskIntoConstraints="NO" id="y1W-eh-LhS">
-                                <rect key="frame" x="148.5" y="318.5" width="78" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="1xt-J4-R4k"/>
-                                    <constraint firstAttribute="width" constant="78" id="7lc-MK-hmq"/>
-                                </constraints>
+                                <rect key="frame" x="112.5" y="293" width="150" height="81"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BY TIGNUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZJM-2a-41p">
-                                <rect key="frame" x="161.5" y="354.5" width="52" height="11"/>
-                                <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="9"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.066666666666666666" green="0.062745098039215685" blue="0.058823529411764705" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="y1W-eh-LhS" firstAttribute="centerY" secondItem="FwB-D4-leK" secondAttribute="centerY" id="Y4R-se-Y1X"/>
-                            <constraint firstItem="ZJM-2a-41p" firstAttribute="top" secondItem="y1W-eh-LhS" secondAttribute="bottom" constant="6" id="pub-HS-5ze"/>
                             <constraint firstItem="y1W-eh-LhS" firstAttribute="centerX" secondItem="FwB-D4-leK" secondAttribute="centerX" id="rTX-xB-br9"/>
-                            <constraint firstItem="ZJM-2a-41p" firstAttribute="centerX" secondItem="FwB-D4-leK" secondAttribute="centerX" id="rZ1-Dz-qaI"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -55,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="qotLogo" width="52" height="20"/>
+        <image name="qotLogo" width="150" height="81"/>
     </resources>
 </document>

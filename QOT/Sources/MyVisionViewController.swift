@@ -261,8 +261,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
-        let createNew = RoundedButton.barButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV))
-        let edit = RoundedButton.barButton(title: editTitle, target: self, action: #selector(editTBV))
+        let createNew = RoundedButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV)).barButton
+        let edit = RoundedButton(title: editTitle, target: self, action: #selector(editTBV)).barButton
         QOTAlert.show(title: title, message: message, bottomItems: [createNew, edit])
     }
 }

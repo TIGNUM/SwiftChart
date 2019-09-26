@@ -41,6 +41,7 @@ extension PaymentReminderInteractor: PaymentReminderInteractorInterface {
     var showCloseButton: Bool {
         return worker.expired == false
     }
+    
     var showSwitchAccountButton: Bool {
         return worker.expired == true
     }

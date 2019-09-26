@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import qot_dal
 
 final class TrackSelectionWorker {
 
@@ -47,6 +48,15 @@ final class TrackSelectionWorker {
     }
 
     func guideTrackBucketVisible(_ visible: Bool) {
-        UserDefaults.standard.set(visible, forKey: UserDefault.showGuideTrackBucket.rawValue)
+        guard let currentAccount = SessionService.main.getCurrentSession()?.useremail else {
+            return
+        }
+        var emails = UserDefault.showGuideTrackBucket.object as? [String] ?? [String]()
+        if visible, emails.contains(obj: currentAccount) != true {
+            emails.append(currentAccount)
+        } else if !visible, emails.contains(obj: currentAccount) == true {
+            emails.remove(object: currentAccount)
+        }
+        UserDefault.showGuideTrackBucket.setObject(emails)
     }
 }

@@ -76,7 +76,6 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
         categoryCell.configure(withModel: interactor?.categoryItems[indexPath.row])
-
         return categoryCell
     }
 }
