@@ -300,7 +300,7 @@
                                                     <constraint firstAttribute="width" constant="16" id="h1E-AF-nZf"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNCED CALENDARS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-UY-efQ">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SYNCED CALENDARS" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0SW-UY-efQ">
                                                 <rect key="frame" x="0.0" y="17" width="327" height="24"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -361,7 +361,7 @@
                             <constraint firstItem="oXZ-aP-5Xc" firstAttribute="leading" secondItem="lig-SH-6xX" secondAttribute="leading" id="Rsd-WW-XNV"/>
                             <constraint firstItem="c3R-At-CuN" firstAttribute="leading" secondItem="lig-SH-6xX" secondAttribute="leading" id="Syr-YV-GsZ"/>
                             <constraint firstItem="oXZ-aP-5Xc" firstAttribute="top" secondItem="lig-SH-6xX" secondAttribute="top" id="Vd4-1j-YL7"/>
-                            <constraint firstItem="lig-SH-6xX" firstAttribute="bottom" secondItem="c3R-At-CuN" secondAttribute="bottom" id="iOm-tI-dsi"/>
+                            <constraint firstAttribute="bottom" secondItem="c3R-At-CuN" secondAttribute="bottom" id="iOm-tI-dsi"/>
                             <constraint firstItem="c3R-At-CuN" firstAttribute="top" secondItem="oXZ-aP-5Xc" secondAttribute="bottom" id="lZQ-fZ-KVI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lig-SH-6xX"/>
