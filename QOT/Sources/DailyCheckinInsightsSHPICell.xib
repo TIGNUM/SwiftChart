@@ -510,6 +510,9 @@
             <viewLayoutGuide key="safeArea" id="FuO-3N-w9t"/>
             <connections>
                 <outlet property="SHPIText" destination="zd4-wa-MhM" id="PK4-EQ-hfp"/>
+                <outlet property="adviceLabel" destination="IpA-hZ-HKE" id="tfh-78-meQ"/>
+                <outlet property="barsStackView" destination="NgW-bi-Vgj" id="GWo-Iz-duu"/>
+                <outlet property="barsTitleLabel" destination="UHN-Ev-Uoj" id="Mlj-xB-42d"/>
                 <outlet property="bucketTitle" destination="Xws-ox-yjU" id="JEv-Vt-X3e"/>
                 <outletCollection property="labels" destination="qhB-tC-Sbd" collectionClass="NSMutableArray" id="f0a-Ir-NfH"/>
                 <outletCollection property="labels" destination="3r8-Zt-T9D" collectionClass="NSMutableArray" id="eKK-sR-1oo"/>

@@ -13,6 +13,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet weak var toBeVisionImage: UIImageView!
     @IBOutlet weak var bucketTitle: UILabel!
     @IBOutlet weak var impactReadinessScore: UILabel!
+    @IBOutlet weak var impactReadinessOutOf100Label: UILabel!
     @IBOutlet weak var content: UILabel!
     @IBOutlet weak var impactReadinessButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -32,6 +33,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         toBeVisionImage.gradientBackground(top: true)
         toBeVisionImage.gradientBackground(top: false)
+        skeletonManager.addTitle(bucketTitle)
+        skeletonManager.addSubtitle(impactReadinessScore)
+        skeletonManager.addSubtitle(impactReadinessOutOf100Label)
+        skeletonManager.addSubtitle(content)
+        skeletonManager.addOtherView(toBeVisionImage)
+        skeletonManager.addOtherView(impactReadinessButton)
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
@@ -54,18 +61,20 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
-        showDailyCheckInScreen = (viewModel?.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
-            viewModel?.domainModel?.dailyCheckInResult == nil)
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.readinessIntro, to: content)
-        let score: Int = viewModel?.readinessScore ?? 0
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
+                                  model.domainModel?.dailyCheckInResult == nil)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
+        let score: Int = model.readinessScore ?? 0
         if score == -1 {
             ThemeText.readinessScore.apply(" - ", to: impactReadinessScore)
         } else {
             ThemeText.readinessScore.apply(String(score), to: impactReadinessScore)
         }
-        toBeVisionImage.setImage(url: viewModel?.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
-        self.score = viewModel?.readinessScore ?? 0
+        toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
+        self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
         ThemeText.navigationBarHeader.apply(R.string.localized.dailyBriefTitle(), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
@@ -74,5 +83,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
+        if showDailyCheckInScreen {
+            impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
+        } else {
+            impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
+            impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
+            impactReadinessButton.layoutIfNeeded()
+        }
     }
 }

@@ -55,7 +55,6 @@ final class MyDataScreenViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         initialSetupForHeatMapDetailView()
-        showLoadingSkeleton(with: [.oneLineHeading, .myDataGraph, .twoLinesAndTag])
         setupZoomingGestureRecognizers()
     }
 
@@ -154,6 +153,9 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
                 heatMapCell.setCalendarDatasource(strongInteractor)
                 if interactor?.getFirstLoad() ?? false {
                     heatMapCell.calendarView.scrollToDate(Date())
+                }
+                if interactor?.getDatasourceLoaded() ?? false {
+                    heatMapCell.skeletonManager.hide()
                 }
             }
 
@@ -339,8 +341,8 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
     }
 
     func dataSourceFinished(firstLoad: Bool) {
-        removeLoadingSkeleton()
         if let heatMapCell = getHeatMapCell() {
+            heatMapCell.skeletonManager.hide()
             heatMapCell.reloadCalendarData()
             if firstLoad {
                 heatMapCell.calendarView.scrollToDate(Date())
@@ -348,6 +350,7 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
         }
         if let chartCell = getChartCell() {
             chartCell.graphCollectionView.reloadData()
+            chartCell.skeletonManager.hide()
             if firstLoad {
                 chartCell.graphCollectionView.scrollToItem(at: IndexPath(row: (interactor?.getFirstWeekdaysDatasource().count ?? 1) - 1,
                                                                          section: 0),

@@ -10,6 +10,7 @@ import Foundation
 
 class BaseDailyBriefCell: UITableViewCell, Dequeueable {
     private var markAsSeenTimer: Timer?
+    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()

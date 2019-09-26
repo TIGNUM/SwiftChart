@@ -69,8 +69,8 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PROFILE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yqD-Kt-DJl">
-                                                <rect key="frame" x="0.0" y="17" width="108" height="41"/>
-                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                                                <rect key="frame" x="0.0" y="17" width="118" height="41"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -94,23 +94,15 @@
                                     <constraint firstAttribute="bottom" secondItem="D7p-q2-t6F" secondAttribute="bottom" id="iLv-no-qyx"/>
                                 </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RO2-DT-6qg">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="8F6-JV-u3a" firstAttribute="leading" secondItem="UGX-qY-m7r" secondAttribute="leading" id="2vS-Ja-ZDV"/>
-                            <constraint firstItem="RO2-DT-6qg" firstAttribute="bottom" secondItem="Zel-MW-Fy7" secondAttribute="bottom" id="8YF-hf-c6s"/>
-                            <constraint firstItem="RO2-DT-6qg" firstAttribute="trailing" secondItem="Zel-MW-Fy7" secondAttribute="trailing" id="9vE-Vd-q2y"/>
                             <constraint firstItem="vYv-fI-E11" firstAttribute="top" secondItem="8F6-JV-u3a" secondAttribute="bottom" id="AUJ-pv-fTV"/>
-                            <constraint firstItem="RO2-DT-6qg" firstAttribute="leading" secondItem="Zel-MW-Fy7" secondAttribute="leading" id="ECb-qu-fCC"/>
                             <constraint firstItem="Zel-MW-Fy7" firstAttribute="bottom" secondItem="vYv-fI-E11" secondAttribute="bottom" constant="80" id="KNj-iv-f0w"/>
                             <constraint firstItem="vYv-fI-E11" firstAttribute="leading" secondItem="Zel-MW-Fy7" secondAttribute="leading" id="KbP-Hf-jxI"/>
                             <constraint firstItem="Zel-MW-Fy7" firstAttribute="trailing" secondItem="8F6-JV-u3a" secondAttribute="trailing" id="QV9-Na-9ml"/>
                             <constraint firstItem="8F6-JV-u3a" firstAttribute="top" secondItem="Zel-MW-Fy7" secondAttribute="top" id="gPa-Mh-2em"/>
-                            <constraint firstItem="RO2-DT-6qg" firstAttribute="top" secondItem="UGX-qY-m7r" secondAttribute="top" id="jWs-O1-FlH"/>
                             <constraint firstItem="vYv-fI-E11" firstAttribute="trailing" secondItem="Zel-MW-Fy7" secondAttribute="trailing" id="l86-Np-KN4"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Zel-MW-Fy7"/>
@@ -119,7 +111,6 @@
                         <outlet property="headerLabel" destination="yqD-Kt-DJl" id="P7G-Y0-Yp8"/>
                         <outlet property="headerLine" destination="83O-E9-gK2" id="VWM-8C-wYg"/>
                         <outlet property="headerView" destination="8F6-JV-u3a" id="AfZ-7j-zs4"/>
-                        <outlet property="loaderView" destination="RO2-DT-6qg" id="zzL-2g-FFl"/>
                         <outlet property="tableView" destination="vYv-fI-E11" id="hdY-rh-YKR"/>
                         <segue destination="BOZ-52-EXB" kind="show" identifier="myQot.accountSettings.segue.identifier" id="BoI-6B-UdO"/>
                         <segue destination="Hoi-oQ-X68" kind="show" identifier="myQot.appSettings.segue.identifier" id="zdm-dY-bvN"/>

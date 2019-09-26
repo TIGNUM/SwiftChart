@@ -16,6 +16,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
+    let skeletonManager = SkeletonManager()
 
     // MARK: - Init
     init() {
@@ -84,7 +85,8 @@ extension AskPermissionViewController: AskPermissionViewControllerInterface {
     func setupView(_ viewModel: AskPermission.ViewModel) {
         ThemeText.askPermissionTitle.apply(viewModel.title, to: titleLabel)
         ThemeText.askPermissionMessage.apply(viewModel.description, to: descriptionLabel)
-        imageView.image = interactor?.placeholderImage
+        skeletonManager.addOtherView(imageView)
+        imageView.setImage(url: viewModel.imageURL, skeletonManager: self.skeletonManager)
         rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
                                cancelButton(viewModel.buttonTitleCancel ?? " ")]
         updateBottomNavigation([], rightBarButtonItems)

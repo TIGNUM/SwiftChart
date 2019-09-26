@@ -45,12 +45,13 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .sprintsHeader)
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
+
         ThemeView.sprintsHeader.apply(view)
         ThemeView.level2.apply(tableView)
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)
+        reloadData()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -138,7 +139,6 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 
     func reloadData() {
         tableView.reloadData()
-        self.removeLoadingSkeleton()
     }
 
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
@@ -155,13 +155,18 @@ extension MySprintsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section < (interactor?.viewModel.displayData.count ?? 0) else { return 0 }
-        return interactor?.viewModel.displayData[section].items.count ?? 0
+        guard let count = interactor?.viewModel.displayData.count, section < count else {
+            return 5
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor?.viewModel.item(at: indexPath) else { return UITableViewCell() }
         let sprintCell: MySprintsListTableViewCell = tableView.dequeueCell(for: indexPath)
+        guard let item = interactor?.viewModel.item(at: indexPath) else {
+            sprintCell.set(title: nil, status: nil, description: nil, progress: nil)
+            return sprintCell
+        }
         sprintCell.set(title: item.title, status: item.status, description: item.statusDescription, progress: item.progress)
         return sprintCell
     }

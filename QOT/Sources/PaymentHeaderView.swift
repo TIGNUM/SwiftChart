@@ -14,7 +14,7 @@ final class PaymentHeaderView: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
-    
+
     static func instantiateFromNib(title: String?, subtitle: String?) -> PaymentHeaderView {
         guard let headerView = R.nib.paymentHeaderView.instantiate(withOwner: self).first as? PaymentHeaderView else {
             fatalError("Cannot load header view")

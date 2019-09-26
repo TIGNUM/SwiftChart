@@ -36,20 +36,6 @@
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="GYW-FM-S3L">
-                    <rect key="frame" x="27" y="90" width="196" height="236"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="236" id="kVr-sE-nPp"/>
-                    </constraints>
-                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EJx-d1-Rzm">
-                        <size key="itemSize" width="50" height="50"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                </collectionView>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qmU-Yk-ED4">
                     <rect key="frame" x="17" y="326" width="228" height="75"/>
                     <subviews>
@@ -114,28 +100,53 @@ Sun</string>
                         <constraint firstAttribute="height" constant="75" id="Tck-Hg-sO5"/>
                     </constraints>
                 </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rwn-Vb-vnz">
+                    <rect key="frame" x="27" y="90" width="196" height="236"/>
+                    <subviews>
+                        <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="GYW-FM-S3L">
+                            <rect key="frame" x="0.0" y="0.0" width="196" height="236"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="EJx-d1-Rzm">
+                                <size key="itemSize" width="50" height="50"/>
+                                <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </collectionViewFlowLayout>
+                        </collectionView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="236" id="VMy-sd-1Hm"/>
+                        <constraint firstAttribute="trailing" secondItem="GYW-FM-S3L" secondAttribute="trailing" id="gDq-tK-ajt"/>
+                        <constraint firstItem="GYW-FM-S3L" firstAttribute="leading" secondItem="rwn-Vb-vnz" secondAttribute="leading" id="h7x-YM-N4t"/>
+                        <constraint firstAttribute="bottom" secondItem="GYW-FM-S3L" secondAttribute="bottom" id="hFl-a7-drD"/>
+                        <constraint firstItem="GYW-FM-S3L" firstAttribute="top" secondItem="rwn-Vb-vnz" secondAttribute="top" id="uft-QS-rLK"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="GYW-FM-S3L" firstAttribute="leading" secondItem="5Oa-u1-uil" secondAttribute="leading" constant="27" id="0ey-FT-kSs"/>
-                <constraint firstItem="GYW-FM-S3L" firstAttribute="top" secondItem="5Oa-u1-uil" secondAttribute="top" constant="90" id="60w-eM-7zV"/>
-                <constraint firstItem="qmU-Yk-ED4" firstAttribute="top" secondItem="GYW-FM-S3L" secondAttribute="bottom" id="8WM-yh-0IL"/>
-                <constraint firstItem="qmU-Yk-ED4" firstAttribute="leading" secondItem="GYW-FM-S3L" secondAttribute="leading" constant="-10" id="H1N-vY-AiR"/>
+                <constraint firstItem="qmU-Yk-ED4" firstAttribute="top" secondItem="rwn-Vb-vnz" secondAttribute="bottom" id="DXK-Qx-j3M"/>
+                <constraint firstItem="5Oa-u1-uil" firstAttribute="trailing" secondItem="rwn-Vb-vnz" secondAttribute="trailing" constant="27" id="L61-QS-9FK"/>
+                <constraint firstItem="rwn-Vb-vnz" firstAttribute="top" secondItem="5Oa-u1-uil" secondAttribute="top" constant="90" id="Lvj-o3-x61"/>
                 <constraint firstItem="gTf-FF-WaW" firstAttribute="leading" secondItem="5Oa-u1-uil" secondAttribute="leading" constant="27" id="Rhv-1D-a2N"/>
                 <constraint firstItem="5Oa-u1-uil" firstAttribute="bottom" secondItem="qmU-Yk-ED4" secondAttribute="bottom" constant="40" id="Sk3-MR-ZoG"/>
-                <constraint firstItem="qmU-Yk-ED4" firstAttribute="trailing" secondItem="GYW-FM-S3L" secondAttribute="trailing" constant="22" id="koc-hj-zcc"/>
+                <constraint firstItem="rwn-Vb-vnz" firstAttribute="leading" secondItem="5Oa-u1-uil" secondAttribute="leading" constant="27" id="Sk7-C2-h7D"/>
+                <constraint firstItem="qmU-Yk-ED4" firstAttribute="leading" secondItem="rwn-Vb-vnz" secondAttribute="leading" constant="-10" id="c1C-oH-h6O"/>
+                <constraint firstItem="qmU-Yk-ED4" firstAttribute="trailing" secondItem="rwn-Vb-vnz" secondAttribute="trailing" constant="22" id="mlc-bf-vYQ"/>
                 <constraint firstItem="gTf-FF-WaW" firstAttribute="top" secondItem="5Oa-u1-uil" secondAttribute="top" constant="32" id="tOF-nx-Pme"/>
-                <constraint firstItem="5Oa-u1-uil" firstAttribute="trailing" secondItem="GYW-FM-S3L" secondAttribute="trailing" constant="27" id="yuw-Ai-xKo"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="5Oa-u1-uil"/>
             <connections>
-                <outlet property="collectionViewLeadingConstraint" destination="0ey-FT-kSs" id="uR3-bV-xHn"/>
-                <outlet property="collectionViewTrailingConstraint" destination="yuw-Ai-xKo" id="HLC-Zy-pON"/>
+                <outlet property="collectionContentViewLeadingConstraint" destination="Sk7-C2-h7D" id="XLn-J8-1mJ"/>
+                <outlet property="collectionContentViewTrailingConstraint" destination="L61-QS-9FK" id="U3q-UU-AZh"/>
                 <outlet property="graphCollectionView" destination="GYW-FM-S3L" id="qZm-Ef-xeV"/>
+                <outlet property="graphContentView" destination="rwn-Vb-vnz" id="afm-BN-zdm"/>
                 <outlet property="monthYearLabel" destination="gTf-FF-WaW" id="cvZ-N5-uIt"/>
-                <outlet property="stackViewLeadingConstraint" destination="H1N-vY-AiR" id="pyW-Oz-XWO"/>
-                <outlet property="stackViewTrailingConstraint" destination="koc-hj-zcc" id="N05-2C-g5a"/>
+                <outlet property="stackViewLeadingConstraint" destination="c1C-oH-h6O" id="Eej-7j-w2E"/>
+                <outlet property="stackViewTrailingConstraint" destination="mlc-bf-vYQ" id="tqW-zm-jme"/>
                 <outletCollection property="weekDaysLabelsCollection" destination="rJX-1j-ybY" collectionClass="NSMutableArray" id="Itx-Wb-8J6"/>
                 <outletCollection property="weekDaysLabelsCollection" destination="ozQ-Rw-eVC" collectionClass="NSMutableArray" id="5gi-VH-SpS"/>
                 <outletCollection property="weekDaysLabelsCollection" destination="rsE-dI-BSE" collectionClass="NSMutableArray" id="7HF-Ex-I7Z"/>

@@ -16,17 +16,17 @@ final class MyQotProfileWorker {
     private let contentService: qot_dal.ContentService
     private let dispatchGroup = DispatchGroup()
 
-    private var accountSettingsTxt = ""
-    private var manageYourProfileDetailsTxt = ""
-    private var appSettingsTxt = ""
-    private var enableNotificationsTxt = ""
-    private var supportTxt = ""
-    private var walkthroughOurFeaturesTxt = ""
-    private var aboutTignumTxt = ""
-    private var learnMoreAboutUsTxt = ""
-    var myProfileTxt = ""
-    var memberSinceTxt = ""
-    private var userProfile: UserProfileModel?
+    private var accountSettingsText = ""
+    private var manageYourProfileDetailsText = ""
+    private var appSettingsText = ""
+    private var enableNotificationsText = ""
+    private var supportText = ""
+    private var walkthroughOurFeaturesText = ""
+    private var aboutTignumText = ""
+    private var learnMoreAboutUsText = ""
+    var myProfileText = ""
+    var memberSinceText = ""
+    var userProfile: UserProfileModel?
 
     // MARK: - Init
 
@@ -37,26 +37,26 @@ final class MyQotProfileWorker {
 
     lazy var menuItems: [MyQotProfileModel.TableViewPresentationData] = {
         var items = [MyQotProfileModel.TableViewPresentationData]()
-        let accountSettings = MyQotProfileModel.TableViewPresentationData(headingKey: accountSettingsKey, heading: accountSettingsTxt, subHeading: manageYourProfileDetailsTxt)
-        let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsTxt, subHeading: enableNotificationsTxt)
-        let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportTxt, subHeading: walkthroughOurFeaturesTxt)
-        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumTxt, subHeading: learnMoreAboutUsTxt)
+        let accountSettings = MyQotProfileModel.TableViewPresentationData(headingKey: accountSettingsKey, heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
+        let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsText, subHeading: enableNotificationsText)
+        let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportText, subHeading: walkthroughOurFeaturesText)
+        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumText, subHeading: learnMoreAboutUsText)
         items = [accountSettings, appSettings, support, aboutTignum]
         return items
     }()
 
     func getData(_ completion: @escaping (UserProfileModel?) -> Void) {
         getUserProfile()
-        myProfileText()
-        memberSinceText()
-        accountSettingsText()
-        manageYourProfileDetailsText()
-        appSettingsText()
-        enableNotificationsText()
-        supportText()
-        walkthroughOurFeaturesText()
-        aboutTignumText()
-        learnMoreAboutUsText()
+        setupMyProfileText()
+        setupMemberSinceText()
+        setupAccountSettingsText()
+        setupManageYourProfileDetailsText()
+        setupAppSettingsText()
+        setupEnableNotificationsText()
+        setupSupportText()
+        setupWalkthroughOurFeaturesText()
+        setupAboutTignumText()
+        setupLearnMoreAboutUsText()
         dispatchGroup.notify(queue: .main) {
             completion(self.userProfile)
         }
@@ -79,44 +79,44 @@ private extension MyQotProfileWorker {
         return Tags.MyQotProfileAboutTignum.rawValue
     }
 
-    func myProfileText() {
-        myProfileTxt = ScreenTitleService.main.localizedString(for: .MyQotMyProfile)
+    func setupMyProfileText() {
+        myProfileText = ScreenTitleService.main.localizedString(for: .MyQotMyProfile)
     }
 
-    func memberSinceText() {
-        memberSinceTxt = ScreenTitleService.main.localizedString(for: .MyQotMemberSince)
+    func setupMemberSinceText() {
+        memberSinceText = ScreenTitleService.main.localizedString(for: .MyQotMemberSince)
     }
 
-    func accountSettingsText() {
-        accountSettingsTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAccountSettings)
+    func setupAccountSettingsText() {
+        accountSettingsText = ScreenTitleService.main.localizedString(for: .MyQotProfileAccountSettings)
     }
 
-    func manageYourProfileDetailsText() {
-        manageYourProfileDetailsTxt = ScreenTitleService.main.localizedString(for: .MyQotManageYourProfileDetails)
+    func setupManageYourProfileDetailsText() {
+        manageYourProfileDetailsText = ScreenTitleService.main.localizedString(for: .MyQotManageYourProfileDetails)
     }
 
-    func appSettingsText() {
-        appSettingsTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
+    func setupAppSettingsText() {
+        appSettingsText = ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
     }
 
-    func enableNotificationsText() {
-        enableNotificationsTxt = ScreenTitleService.main.localizedString(for: .MyQotEnableNotifications)
+    func setupEnableNotificationsText() {
+        enableNotificationsText = ScreenTitleService.main.localizedString(for: .MyQotEnableNotifications)
     }
 
-    func supportText() {
-        supportTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileSupport)
+    func setupSupportText() {
+        supportText = ScreenTitleService.main.localizedString(for: .MyQotProfileSupport)
     }
 
-    func walkthroughOurFeaturesText() {
-        walkthroughOurFeaturesTxt = ScreenTitleService.main.localizedString(for: .MyQotWalkthroughOurFeatures)
+    func setupWalkthroughOurFeaturesText() {
+        walkthroughOurFeaturesText = ScreenTitleService.main.localizedString(for: .MyQotWalkthroughOurFeatures)
     }
 
-    func aboutTignumText() {
-        aboutTignumTxt = ScreenTitleService.main.localizedString(for: .MyQotProfileAboutTignum)
+    func setupAboutTignumText() {
+        aboutTignumText = ScreenTitleService.main.localizedString(for: .MyQotProfileAboutTignum)
     }
 
-    func learnMoreAboutUsText() {
-        learnMoreAboutUsTxt = ScreenTitleService.main.localizedString(for: .MyQotLearnMoreAboutUs)
+    func setupLearnMoreAboutUsText() {
+        learnMoreAboutUsText = ScreenTitleService.main.localizedString(for: .MyQotLearnMoreAboutUs)
     }
 
     func getUserProfile() {

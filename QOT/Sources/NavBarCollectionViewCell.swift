@@ -16,6 +16,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var buttonLeft: UIButton!
     @IBOutlet weak var buttonRight: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
+    let skeletonManager = SkeletonManager()
 
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
