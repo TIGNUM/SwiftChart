@@ -23,7 +23,7 @@ final class PaymentTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String?, subtitle: String?) {
         guard let titleText = title, let subtitleText = subtitle else { return }
-        ThemeText.paymentReminderCellTitle.apply(titleText.uppercased(), to: titleLabel)
+        ThemeText.paymentReminderCellTitle.apply(titleText, to: titleLabel)
         ThemeText.paymentReminderCellSubtitle.apply(subtitleText, to: subtitlelabel)
     }
 }

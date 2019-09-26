@@ -108,7 +108,7 @@ extension PaymentReminderViewController: UITableViewDelegate, UITableViewDataSou
             return cell
         default:
             let cell: PaymentTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: item?.title, subtitle: item?.subtitle)
+            cell.configure(title: item?.title?.uppercased(), subtitle: item?.subtitle)
             return cell
         }
     }

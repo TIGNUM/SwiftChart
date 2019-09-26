@@ -192,9 +192,6 @@ private extension AppCoordinator {
         topViewController?.present(controller, animated: false, completion: {
 
         })
-//        viewController.view.frame = rootViewController.view.bounds
-//        rootViewController.presentedViewController?.dismiss(animated: false, completion: nil)
-//        rootViewController.present(viewController, animated: animated, completion: completion)
     }
 }
 
