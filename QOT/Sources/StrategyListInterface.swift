@@ -21,7 +21,7 @@ protocol StrategyListPresenterInterface {
 }
 
 protocol StrategyListInteractorInterface: class, Interactor {
-    var isPlaying: Bool { get }
+    func isPlaying(remoteID: Int?) -> Bool
     var isFoundation: Bool { get }
     var foundationStrategies: [Strategy.Item] { get }
     var strategies: [Strategy.Item] { get }

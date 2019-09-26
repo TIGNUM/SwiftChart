@@ -23,7 +23,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var remoteID: Int = 0
     private var duration: Double = 0
     private var categoryTitle = ""
-    weak var delegate: StrategyListViewController?
+    private weak var delegate: IsPlayingDelegate?
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -35,19 +35,25 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
+
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(detailLabel)
         skeletonManager.addOtherView(mediaIconImageView)
         skeletonManager.addOtherView(audioView)
         skeletonManager.addOtherView(audioLabel)
+        checkIfPlaying()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
+        checkIfPlaying()
+    }
+
+    private func checkIfPlaying() {
+        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
     }
 
     func configure(categoryTitle: String?,
@@ -55,14 +61,16 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
                    timeToWatch: String?,
                    mediaURL: URL?,
                    duration: Double?,
-                   mediaItemId: Int?) {
+                   mediaItemId: Int?,
+                   delegate: IsPlayingDelegate?) {
         guard let category = categoryTitle,
-              let titleText = title,
-              let timeText = timeToWatch,
-              let durationValue = duration,
-              let id = mediaItemId else {
+            let titleText = title,
+            let timeText = timeToWatch,
+            let durationValue = duration,
+            let id = mediaItemId else {
                 return
         }
+
         self.categoryTitle = category
         self.mediaURL = mediaURL
         self.title = titleText
@@ -73,11 +81,8 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         showDuration(durationValue)
-        if let isPlaying = delegate?.isPlaying() {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.sprints.apply(audioView)
-        }
-        audioView.corner(radius: 20)
-         setAudioAsCompleteIfNeeded(remoteID: id)
+        checkIfPlaying()
+        setAudioAsCompleteIfNeeded(remoteID: id)
     }
 }
 

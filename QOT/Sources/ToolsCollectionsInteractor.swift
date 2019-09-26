@@ -21,6 +21,7 @@ final class ToolsCollectionsInteractor {
     private var toolItems = [Tool.Item]()
     private var videoToolItems = [Tool.Item]()
     private var isMediaPlaying = false
+    private var remoteID: Int?
 
     init(worker: ToolsCollectionsWorker,
          presenter: ToolsCollectionsPresenterInterface,
@@ -49,8 +50,8 @@ final class ToolsCollectionsInteractor {
 
 extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
 
-    var isPlaying: Bool {
-        return self.isMediaPlaying
+    func isPlaying(remoteID: Int?) -> Bool {
+        return self.isMediaPlaying && remoteID == self.remoteID
     }
 
     var headerTitle: String {
@@ -85,6 +86,7 @@ extension ToolsCollectionsInteractor {
         guard let mediaModel = notification.object as? MediaPlayerModel else {
             return
         }
+        self.remoteID = mediaModel.mediaRemoteId
         self.isMediaPlaying = true
         if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)
@@ -107,6 +109,7 @@ extension ToolsCollectionsInteractor {
         guard let mediaModel = notification.object as? MediaPlayerModel else {
             return
         }
+        self.remoteID = nil
         self.isMediaPlaying = false
         if let indexOfTool = tools.firstIndex(where: {$0.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = tools.distance(from: tools.startIndex, to: indexOfTool)

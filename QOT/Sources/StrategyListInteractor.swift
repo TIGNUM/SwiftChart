@@ -16,6 +16,7 @@ final class StrategyListInteractor {
     private let presenter: StrategyListPresenterInterface
     private let router: StrategyListRouterInterface
     private var isMediaPlaying = false
+    private var remoteID: Int?
 
     // MARK: - Init
 
@@ -42,8 +43,8 @@ final class StrategyListInteractor {
 
 extension StrategyListInteractor: StrategyListInteractorInterface {
 
-    var isPlaying: Bool {
-        return self.isMediaPlaying
+    func isPlaying(remoteID: Int?) -> Bool {
+        return self.isMediaPlaying && remoteID == self.remoteID
     }
 
     var headerTitle: String {
@@ -86,6 +87,7 @@ extension StrategyListInteractor {
         guard let mediaModel = notification.object as? MediaPlayerModel else {
             return
         }
+        self.remoteID = mediaModel.mediaRemoteId
         self.isMediaPlaying = true
         if let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool)
@@ -108,6 +110,7 @@ extension StrategyListInteractor {
         guard let mediaModel = notification.object as? MediaPlayerModel else {
             return
         }
+        self.remoteID = nil
         self.isMediaPlaying = false
         if let indexOfTool = strategies.firstIndex(where: {$0.mediaItem?.remoteID == mediaModel.mediaRemoteId}) {
             let intOfIndex = strategies.distance(from: strategies.startIndex, to: indexOfTool)

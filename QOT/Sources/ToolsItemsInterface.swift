@@ -21,7 +21,7 @@ protocol ToolsItemsPresenterInterface {
 }
 
 protocol ToolsItemsInteractorInterface: Interactor {
-    var isPlaying: Bool { get }
+    func isPlaying(remoteID: Int?) -> Bool
     var tools: [Tool.Item] { get }
     var rowCount: Int { get }
     var headerTitle: String { get }
