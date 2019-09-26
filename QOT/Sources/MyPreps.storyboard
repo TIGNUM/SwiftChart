@@ -72,7 +72,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M">
-                                        <rect key="frame" x="354" y="58" width="40" height="40"/>
+                                        <rect key="frame" x="354" y="49" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="giH-rU-ibm"/>
                                             <constraint firstAttribute="width" constant="40" id="vU1-je-FKm"/>
@@ -92,13 +92,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="7BQ-4U-u9M" firstAttribute="top" secondItem="tod-5A-b5r" secondAttribute="bottom" constant="-27" id="D6j-lk-FFs"/>
                                     <constraint firstItem="ljU-hM-8eE" firstAttribute="top" secondItem="FQX-We-ykg" secondAttribute="top" constant="40" id="Tiu-UP-YsI"/>
                                     <constraint firstItem="ljU-hM-8eE" firstAttribute="leading" secondItem="FQX-We-ykg" secondAttribute="leading" constant="20" id="VAm-b0-luA"/>
                                     <constraint firstItem="tod-5A-b5r" firstAttribute="leading" secondItem="FQX-We-ykg" secondAttribute="leading" constant="20" id="VTt-Zw-eZE"/>
                                     <constraint firstAttribute="height" constant="130" id="Yb9-3N-iDN"/>
                                     <constraint firstAttribute="trailing" secondItem="7BQ-4U-u9M" secondAttribute="trailing" constant="20" id="iAS-UU-Byh"/>
                                     <constraint firstItem="tod-5A-b5r" firstAttribute="top" secondItem="ljU-hM-8eE" secondAttribute="bottom" constant="20" id="pNF-cP-xVH"/>
+                                    <constraint firstItem="7BQ-4U-u9M" firstAttribute="centerY" secondItem="tod-5A-b5r" secondAttribute="centerY" constant="-4" id="vR2-sO-wZA"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aH-l5-mKn">
