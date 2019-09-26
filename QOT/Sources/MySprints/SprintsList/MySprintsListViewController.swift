@@ -162,7 +162,7 @@ extension MySprintsListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let item = interactor?.viewModel.item(at: indexPath) else { return UITableViewCell() }
         let sprintCell: MySprintsListTableViewCell = tableView.dequeueCell(for: indexPath)
-        sprintCell.set(title: item.title, status: item.status, description: item.statusDescription, progress: item.progress)
+        sprintCell.set(title: item.title.uppercased(), status: item.status, description: item.statusDescription, progress: item.progress)
         return sprintCell
     }
 }
