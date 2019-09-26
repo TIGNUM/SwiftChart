@@ -20,12 +20,19 @@ final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
     @IBOutlet private weak var subtitleTextView: UITextView!
     private let infoText = " ⓘ "
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleTextView)
+    }
+
     func configure(title: String?, subtitle: String?, showInfoLink: Bool = false) {
         guard let title = title, let subtitle = subtitle else {
             return
         }
         ThemeText.myDataSectionHeaderTitle.apply(title, to: titleLabel)
         ThemeText.myDataSectionHeaderSubTitle.apply(subtitle, to: subtitleTextView)
+        skeletonManager.hide()
 
         if showInfoLink {
             addInfoLink()

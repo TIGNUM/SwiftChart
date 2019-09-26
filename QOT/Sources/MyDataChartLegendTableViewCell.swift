@@ -27,7 +27,10 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
         super.awakeFromNib()
         ThemeButton.accent40.apply(addButton)
         resetContent()
-
+        for label in labelsCollection {
+            skeletonManager.addSubtitle(label)
+        }
+        skeletonManager.addOtherView(addButton)
     }
 
     override func prepareForReuse() {
@@ -41,6 +44,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
             labelsCollection.first?.attributedText = attributedString
             return
         }
+        skeletonManager.hide()
         var indexes: [Int] = []
         for (index, sectionModel) in model.myDataSelectionItems.enumerated() {
             if let title = sectionModel.title {

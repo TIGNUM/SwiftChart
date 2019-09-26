@@ -58,6 +58,7 @@ private extension StrategyListViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
+        tableView.allowsSelection = false
     }
 }
 
@@ -73,12 +74,11 @@ extension StrategyListViewController {
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         setupTableView()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage])
     }
 
     func reload() {
+        tableView.allowsSelection = true
         tableView.reloadData()
-        self.removeLoadingSkeleton()
     }
 
     func audioPlayStateChangedForCellAt(indexPath: IndexPath) {
@@ -88,34 +88,53 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
         }
         lastAudioIndexPath = indexPath
         tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 }
 
 extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.rowCount ?? 0
+        guard let count = interactor?.rowCount, count > 0 else {
+            return 5
+        }
+        return count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isFoundation == true {
-            let strategy = interactor?.foundationStrategies[indexPath.item]
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: strategy?.title ?? "",
-                           timeToWatch: strategy?.durationString ?? "",
-                           imageURL: strategy?.imageURL,
+            guard interactor?.foundationStrategies.count ?? 0 > indexPath.row,
+                    let strategy = interactor?.foundationStrategies[indexPath.item] else {
+                cell.configure(title: nil,
+                               timeToWatch: nil,
+                               imageURL: nil,
+                               forcedColorMode: nil)
+                return cell
+            }
+
+            cell.configure(title: strategy.title,
+                           timeToWatch: strategy.durationString,
+                           imageURL: strategy.imageURL,
                            forcedColorMode: .dark)
             return cell
         } else {
-            let strategy = interactor?.strategies[indexPath.item]
             let cell: StrategyContentTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(categoryTitle: strategy?.categoryTitle ?? "",
-                           title: strategy?.title ?? "",
-                           timeToWatch: strategy?.durationString ?? "",
-                           mediaURL: strategy?.mediaURL,
-                           duration: strategy?.duration ?? 0,
-                           mediaItemId: strategy?.mediaItem?.remoteID ?? 0,
+            guard interactor?.strategies.count ?? 0 > indexPath.row,
+                    let strategy = interactor?.strategies[indexPath.item] else {
+                cell.configure(categoryTitle: nil,
+                               title: nil,
+                               timeToWatch: nil,
+                               mediaURL: nil,
+                               duration: nil,
+                               mediaItemId: nil,
+                               delegate: nil)
+                return cell
+            }
+            cell.configure(categoryTitle: strategy.categoryTitle,
+                           title: strategy.title,
+                           timeToWatch: strategy.durationString,
+                           mediaURL: strategy.mediaURL,
+                           duration: strategy.duration,
+                           mediaItemId: strategy.mediaItem?.remoteID,
                            delegate: self)
             return cell
         }
@@ -127,7 +146,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle ?? "", theme: .level2)
+            return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle, theme: .level2)
         }
         return nil
     }
@@ -137,12 +156,12 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        didSelectRow(at: indexPath)
-
         if interactor?.isFoundation == true {
             guard
+                interactor?.foundationStrategies.count ?? 0 > indexPath.row,
                 let foundation = interactor?.foundationStrategies[indexPath.row],
                 let videoURL = foundation.mediaURL else { return }
+            didSelectRow(at: indexPath)
             trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             let contentItem = foundation.contentItems?.filter({ $0.format == .video }).first
             let playerController = stream(videoURL: videoURL, contentItem: contentItem)
@@ -153,10 +172,14 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 }
             }
         } else {
-            let strategy = interactor?.strategies[indexPath.item]
-            interactor?.presentArticle(selectedID: strategy?.remoteID)
-            trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: .CONTENT, action: .TAP)
-            if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.mediaItem?.remoteID {
+            guard interactor?.strategies.count ?? 0 > indexPath.row,
+                let strategy = interactor?.strategies[indexPath.item] else {
+                    return
+            }
+            didSelectRow(at: indexPath)
+            interactor?.presentArticle(selectedID: strategy.remoteID)
+            trackUserEvent(.OPEN, value: strategy.remoteID, valueType: .CONTENT, action: .TAP)
+            if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy.mediaItem?.remoteID {
                 NotificationCenter.default.post(name: .stopAudio, object: nil)
             }
         }

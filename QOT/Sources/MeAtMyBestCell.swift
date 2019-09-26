@@ -24,13 +24,22 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         meAtMyBestButtonText.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(meAtMyBestTitle)
+        skeletonManager.addSubtitle(meAtMyBestLabel)
+        skeletonManager.addSubtitle(meAtMyBestContent)
+        skeletonManager.addOtherView(meAtMyBestFuture)
+        skeletonManager.addOtherView(meAtMyBestButtonText)
     }
 
     func configure(with viewModel: MeAtMyBestCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: meAtMyBestTitle)
-        ThemeText.sprintText.apply(viewModel?.intro, to: meAtMyBestLabel)
-        ThemeText.tbvStatement.apply(viewModel?.tbvStatement, to: meAtMyBestContent)
-        ThemeText.solveFuture.apply(viewModel?.intro2, to: meAtMyBestFuture)
-        meAtMyBestButtonText.setTitle(viewModel?.buttonText, for: .normal)
+        guard let model = viewModel else {
+            return
+        }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: meAtMyBestTitle)
+        ThemeText.sprintText.apply(model.intro, to: meAtMyBestLabel)
+        ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
+        ThemeText.solveFuture.apply(model.intro2, to: meAtMyBestFuture)
+        meAtMyBestButtonText.setTitle(model.buttonText, for: .normal)
     }
 }

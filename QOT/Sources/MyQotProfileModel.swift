@@ -24,13 +24,12 @@ struct MyQotProfileModel {
             return memberSinceTitle ?? ""
         }
 
-        var name: String {
-            guard let user = self.user else { return ""}
-            return user.name
+        var name: String? {
+            return user?.name
         }
 
-        var memberSince: String {
-            guard let user = self.user else { return "" }
+        var memberSince: String? {
+            guard let user = self.user else { return nil }
             let date = DateFormatter.memberSince.string(from: user.memberSince)
             return memberSinceContentTitle + " " + date
         }

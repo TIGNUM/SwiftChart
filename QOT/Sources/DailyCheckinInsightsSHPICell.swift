@@ -12,6 +12,10 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var SHPIText: UILabel!
+    @IBOutlet weak var adviceLabel: UILabel!
+    @IBOutlet weak var barsTitleLabel: UILabel!
+    @IBOutlet weak var barsStackView: UIStackView!
+
     @IBOutlet private var bars: [UIView]?
     @IBOutlet private var labels: [UILabel]?
     @IBOutlet private var heights: [NSLayoutConstraint]?
@@ -21,12 +25,17 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
             bar.frame = CGRect(x: 0, y: 0, width: 1, height: 35)
         }
         super.awakeFromNib()
+        skeletonManager.addTitle(bucketTitle)
+        skeletonManager.addSubtitle(SHPIText)
+        skeletonManager.addOtherView(barsStackView)
 
     }
-
+//TO DO: title label and adviceLabel texts should not be hardcoded in the xib file
     func configure(with: DailyCheck2SHPIModel?) {
-        updateView(text: with?.shpiContent, rating: with?.shpiRating ?? 0)
-        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
+        guard let model = with else { return }
+        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0)
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 }
 

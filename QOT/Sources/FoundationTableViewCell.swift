@@ -16,6 +16,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewImageView: UIImageView!
     @IBOutlet private weak var previewPlayImageView: UIImageView!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
+    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -25,13 +26,19 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(detailLabel)
+        skeletonManager.addOtherView(previewImageView)
+        skeletonManager.addOtherView(mediaIconImageView)
     }
 
-    func configure(title: String, timeToWatch: String, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
-        ThemeText.articleRelatedTitle(forcedColorMode).apply(title, to: titleLabel)
-        ThemeText.articleRelatedDetail(forcedColorMode).apply(timeToWatch, to: detailLabel)
-
-        previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
+    func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
+        guard let titleText = title, let timeText = timeToWatch else { return }
+        skeletonManager.hide()
+        ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
+        ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
+        skeletonManager.addOtherView(previewImageView)
+        previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)

@@ -1003,7 +1003,7 @@ enum ThemeText {
         let string: NSAttributedString
 
         switch self {
-        case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
+        case .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
              .author, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
@@ -1011,6 +1011,8 @@ enum ThemeText {
              .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription, .paymentReminderCellTitle, .paymentReminderCellSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
+        case .navigationBarHeader:
+            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:

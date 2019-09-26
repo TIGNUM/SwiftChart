@@ -18,12 +18,17 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var newIndicatorView: UIView!
     @IBOutlet private weak var seperator: UIView!
+    let skeletonManager = SkeletonManager()
 
     // MARK: - Lifecycle
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fromNib()
+        skeletonManager.addOtherView(whatsHotImageView)
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(authorLabel)
+        skeletonManager.addSubtitle(detailLabel)
     }
 
     override init(frame: CGRect) {
@@ -44,17 +49,26 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
                    author: String?,
                    timeToRead: String?,
                    imageURL: URL?,
-                   isNew: Bool,
+                   isNew: Bool?,
                    forcedColorMode: ThemeColorMode?) {
-        newIndicatorView.isHidden = (isNew == false)
-        whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
+        guard let titleText = title,
+                let date = publishDate,
+                let authorName = author,
+                let time = timeToRead,
+                let new = isNew else {
+                return
+        }
+        skeletonManager.hide()
+        newIndicatorView.isHidden = (new == false)
+        skeletonManager.addOtherView(whatsHotImageView)
+        whatsHotImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
 
-        ThemeText.whatsHotHeader(forcedColorMode).apply(title ?? "", to: titleLabel)
+        ThemeText.whatsHotHeader(forcedColorMode).apply(titleText, to: titleLabel)
         let dateFormatter = DateFormatter.whatsHot
-        let displayDate = dateFormatter.string(from: publishDate ?? Date())
-        let detailText = String(format: "%@ | %@", displayDate, timeToRead ?? "")
+        let displayDate = dateFormatter.string(from: date)
+        let detailText = String(format: "%@ | %@", displayDate, time)
         ThemeText.articleDatestamp(forcedColorMode).apply(detailText, to: detailLabel)
-        ThemeText.articleAuthor(forcedColorMode).apply(author ?? "", to: authorLabel)
+        ThemeText.articleAuthor(forcedColorMode).apply(authorName, to: authorLabel)
         ThemeView.articleBackground(forcedColorMode).apply(self)
         ThemeView.articleSeparator(forcedColorMode).apply(seperator)
     }
