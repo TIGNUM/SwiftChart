@@ -370,7 +370,7 @@
                             <constraint firstItem="oXZ-aP-5Xc" firstAttribute="leading" secondItem="lig-SH-6xX" secondAttribute="leading" id="Rsd-WW-XNV"/>
                             <constraint firstItem="c3R-At-CuN" firstAttribute="leading" secondItem="lig-SH-6xX" secondAttribute="leading" id="Syr-YV-GsZ"/>
                             <constraint firstItem="oXZ-aP-5Xc" firstAttribute="top" secondItem="lig-SH-6xX" secondAttribute="top" id="Vd4-1j-YL7"/>
-                            <constraint firstItem="lig-SH-6xX" firstAttribute="bottom" secondItem="c3R-At-CuN" secondAttribute="bottom" id="iOm-tI-dsi"/>
+                            <constraint firstAttribute="bottom" secondItem="c3R-At-CuN" secondAttribute="bottom" id="iOm-tI-dsi"/>
                             <constraint firstItem="c3R-At-CuN" firstAttribute="top" secondItem="oXZ-aP-5Xc" secondAttribute="bottom" id="lZQ-fZ-KVI"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lig-SH-6xX"/>

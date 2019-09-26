@@ -90,7 +90,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="55" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="iKy-XH-TT9">
-                                <rect key="frame" x="0.0" y="142" width="414" height="720"/>
+                                <rect key="frame" x="0.0" y="142" width="414" height="754"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="0.79955051369863017" colorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -200,7 +200,7 @@
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="top" secondItem="lKR-mS-uea" secondAttribute="top" id="DDu-RT-HiP"/>
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="top" secondItem="8rs-PO-Eew" secondAttribute="bottom" id="OnV-mZ-Zet"/>
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="leading" secondItem="lKR-mS-uea" secondAttribute="leading" id="RUK-Fr-ARx"/>
-                            <constraint firstItem="lKR-mS-uea" firstAttribute="bottom" secondItem="iKy-XH-TT9" secondAttribute="bottom" id="meO-nb-7Nz"/>
+                            <constraint firstAttribute="bottom" secondItem="iKy-XH-TT9" secondAttribute="bottom" id="meO-nb-7Nz"/>
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="trailing" secondItem="lKR-mS-uea" secondAttribute="trailing" id="sZM-Xf-GwS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lKR-mS-uea"/>
