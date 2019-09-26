@@ -10,12 +10,14 @@ import Foundation
 import qot_dal
 
 protocol MySprintsListViewControllerInterface: class {
+    func setupView()
     func update()
     func reloadData()
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
 }
 
 protocol MySprintsListPresenterInterface {
+    func setupView()
     func present()
     func presentData()
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])

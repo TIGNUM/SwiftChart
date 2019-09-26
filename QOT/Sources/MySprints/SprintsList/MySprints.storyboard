@@ -49,7 +49,7 @@
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H95-r5-5sw" userLabel="Edit Button">
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H95-r5-5sw" userLabel="Edit Button" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                                 <rect key="frame" x="326" y="-4" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="MdT-c0-vEf"/>
@@ -203,6 +203,7 @@
                     <connections>
                         <outlet property="editButton" destination="H95-r5-5sw" id="D5M-pl-yIC"/>
                         <outlet property="headerHeight" destination="Ros-ip-4dO" id="Kim-cu-Zn1"/>
+                        <outlet property="headerLine" destination="FTN-lX-w5y" id="RrX-2l-sgo"/>
                         <outlet property="tableView" destination="iKy-XH-TT9" id="6S1-bY-BAw"/>
                         <outlet property="titleLabel" destination="CQS-2r-FM8" id="lNm-iI-xrX"/>
                     </connections>
