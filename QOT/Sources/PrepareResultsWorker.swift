@@ -227,7 +227,7 @@ extension PrepareResultsWorker {
 
 // MARK: - DTViewModel
 extension PrepareResultsWorker {
-    func getDTViewModel(_ key: Prepare.Key, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
+    func getDTViewModel(_ key: Prepare.Key, benefits: String?, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         currentEditKey = key
         let answerFilter = preparation?.answerFilter ?? ""
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
@@ -239,6 +239,7 @@ extension PrepareResultsWorker {
                                    answers: answers,
                                    events: [],
                                    tbvText: nil,
+                                   userInputText: benefits,
                                    hasTypingAnimation: false,
                                    typingAnimationDuration: 0,
                                    previousButtonIsHidden: true,

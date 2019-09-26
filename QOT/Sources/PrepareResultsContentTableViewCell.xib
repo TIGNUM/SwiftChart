@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,18 +41,11 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAr-1F-Ks5">
-                        <rect key="frame" x="24" y="10" width="42" height="20.5"/>
+                        <rect key="frame" x="24" y="10" width="206" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="nAy-OB-Isz">
-                        <rect key="frame" x="288" y="14" width="16" height="16"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="16" id="CMW-yN-uBt"/>
-                            <constraint firstAttribute="height" constant="16" id="DOG-8t-N5c"/>
-                        </constraints>
-                    </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4n-8d-CIH">
                         <rect key="frame" x="24" y="42.5" width="296" height="1"/>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
@@ -55,19 +53,31 @@
                             <constraint firstAttribute="height" constant="1" id="zia-Qu-esF"/>
                         </constraints>
                     </view>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f9q-vM-Vgr">
+                        <rect key="frame" x="246" y="0.0" width="50" height="42.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="MB8-ud-L7R"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                        <inset key="imageEdgeInsets" minX="-8" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <state key="normal" title="Edit" image="ic_edit">
+                            <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                        </state>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="V4n-8d-CIH" firstAttribute="top" relation="greaterThanOrEqual" secondItem="pAr-1F-Ks5" secondAttribute="bottom" constant="8" id="0kR-4h-Vx4"/>
                     <constraint firstItem="hnY-Fh-8Zf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="2vs-pR-Cd8"/>
+                    <constraint firstItem="f9q-vM-Vgr" firstAttribute="leading" secondItem="pAr-1F-Ks5" secondAttribute="trailing" constant="16" id="5HH-Fx-dJl"/>
+                    <constraint firstAttribute="trailing" secondItem="f9q-vM-Vgr" secondAttribute="trailing" constant="24" id="5ka-qk-0Oh"/>
                     <constraint firstItem="V4n-8d-CIH" firstAttribute="leading" secondItem="pAr-1F-Ks5" secondAttribute="leading" id="IJh-Xf-Kx6"/>
-                    <constraint firstItem="nAy-OB-Isz" firstAttribute="centerY" secondItem="hnY-Fh-8Zf" secondAttribute="centerY" id="IyX-wr-ybD"/>
-                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="pAr-1F-Ks5" secondAttribute="trailing" constant="16" id="Lh0-6o-Oq6"/>
+                    <constraint firstItem="V4n-8d-CIH" firstAttribute="top" secondItem="f9q-vM-Vgr" secondAttribute="bottom" id="R81-Re-1Ao"/>
                     <constraint firstItem="hNz-Ag-gX3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Rea-nw-xU0"/>
                     <constraint firstAttribute="trailing" secondItem="V4n-8d-CIH" secondAttribute="trailing" id="Smp-vs-Gok"/>
                     <constraint firstItem="hNz-Ag-gX3" firstAttribute="leading" secondItem="pAr-1F-Ks5" secondAttribute="leading" id="UKk-Pl-R7e"/>
-                    <constraint firstItem="hnY-Fh-8Zf" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="aDD-gf-GKp"/>
-                    <constraint firstAttribute="trailing" secondItem="nAy-OB-Isz" secondAttribute="trailing" constant="16" id="aOb-JV-WfX"/>
+                    <constraint firstItem="f9q-vM-Vgr" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="Zyl-E7-f8q"/>
+                    <constraint firstItem="hnY-Fh-8Zf" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="21.5" id="dyr-Kq-xZv"/>
                     <constraint firstItem="pAr-1F-Ks5" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="iMa-MC-pHO"/>
                     <constraint firstItem="pAr-1F-Ks5" firstAttribute="top" secondItem="hNz-Ag-gX3" secondAttribute="bottom" constant="8" id="vuu-Cp-LlD"/>
                     <constraint firstAttribute="bottom" secondItem="V4n-8d-CIH" secondAttribute="bottom" id="xCP-x3-HwJ"/>
@@ -79,7 +89,7 @@
                 <outlet property="bottomSeperator" destination="V4n-8d-CIH" id="5X6-Os-VCF"/>
                 <outlet property="constraintBottom" destination="0kR-4h-Vx4" id="02D-Tg-mAS"/>
                 <outlet property="constraintTop" destination="vuu-Cp-LlD" id="LHm-Ch-kOG"/>
-                <outlet property="editImageView" destination="nAy-OB-Isz" id="pjn-nY-5Dl"/>
+                <outlet property="editButton" destination="f9q-vM-Vgr" id="TtU-2h-qCH"/>
                 <outlet property="headerMark" destination="hNz-Ag-gX3" id="MV9-uA-ti0"/>
                 <outlet property="listMark" destination="hnY-Fh-8Zf" id="mUQ-fy-jUS"/>
                 <outlet property="titleLabel" destination="pAr-1F-Ks5" id="Sau-jU-3wL"/>
