@@ -97,7 +97,7 @@
                             <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="JKU-8H-YUQ" secondAttribute="trailing" constant="24" id="0QD-OE-PrK"/>
                         <constraint firstItem="nPk-IS-ZnT" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="25H-J8-Wxk"/>
