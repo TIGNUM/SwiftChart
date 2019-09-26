@@ -29,8 +29,10 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     }
 
     func configure(with: GuidedTrackViewModel?) {
-        title.text = with?.bucketTitle
-        content.text = with?.content
-        button.setTitle(with?.buttonText, for: .normal)
+        guard let model = with else { return }
+        skeletonManager.hide()
+        title.text = model.bucketTitle
+        content.text = model.content
+        button.setTitle(model.buttonText, for: .normal)
     }
 }
