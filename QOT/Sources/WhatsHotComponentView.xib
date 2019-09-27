@@ -30,7 +30,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="214"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="preloading" translatesAutoresizingMaskIntoConstraints="NO" id="xlM-wO-waH">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xlM-wO-waH">
                     <rect key="frame" x="24" y="31" width="351" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="MRc-E0-Hye"/>
@@ -115,7 +115,4 @@
             <point key="canvasLocation" x="-351.19999999999999" y="-398.50074962518744"/>
         </view>
     </objects>
-    <resources>
-        <image name="preloading" width="283" height="189"/>
-    </resources>
 </document>

@@ -25,15 +25,19 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         fromNib()
-        skeletonManager.addOtherView(whatsHotImageView)
-        skeletonManager.addSubtitle(titleLabel)
-        skeletonManager.addSubtitle(authorLabel)
-        skeletonManager.addSubtitle(detailLabel)
     }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
         fromNib()
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addOtherView(whatsHotImageView)
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addSubtitle(authorLabel)
+        skeletonManager.addSubtitle(detailLabel)
     }
 
     override func layoutSubviews() {
@@ -60,7 +64,9 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
         }
         skeletonManager.hide()
         newIndicatorView.isHidden = (new == false)
-        skeletonManager.addOtherView(whatsHotImageView)
+        if whatsHotImageView.image == nil {
+            skeletonManager.addOtherView(whatsHotImageView)
+        }
         whatsHotImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
 
         ThemeText.whatsHotHeader(forcedColorMode).apply(titleText, to: titleLabel)

@@ -766,7 +766,6 @@
 		9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426232306B01100F8072E /* GuidedTrackItemType.swift */; };
 		9CC426262306D39200F8072E /* GuidedTrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */; };
 		9CC426282306D42200F8072E /* GuideTrackModelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426272306D42200F8072E /* GuideTrackModelItem.swift */; };
-		9CC4262A2306D83B00F8072E /* GuidedTrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CC426292306D83B00F8072E /* GuidedTrackTableViewCell.swift */; };
 		9CE28A2322E1C78C00013C44 /* DailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */; };
 		9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */; };
 		9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */; };
@@ -2075,7 +2074,6 @@
 		9CC426232306B01100F8072E /* GuidedTrackItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackItemType.swift; sourceTree = "<group>"; };
 		9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackViewModel.swift; sourceTree = "<group>"; };
 		9CC426272306D42200F8072E /* GuideTrackModelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTrackModelItem.swift; sourceTree = "<group>"; };
-		9CC426292306D83B00F8072E /* GuidedTrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidedTrackTableViewCell.swift; sourceTree = "<group>"; };
 		9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBriefViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceModelItemType.swift; sourceTree = "<group>"; };
 		9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2ViewModel.swift; sourceTree = "<group>"; };
@@ -4351,7 +4349,6 @@
 				9CC4261F2306A4DB00F8072E /* GuidedTrackRowViewModel.swift */,
 				9CC426172306A47500F8072E /* GuidedTrackSectionCell.swift */,
 				9CC426192306A48A00F8072E /* GuidedTrackSectionViewModel.swift */,
-				9CC426292306D83B00F8072E /* GuidedTrackTableViewCell.swift */,
 				9CC426252306D39200F8072E /* GuidedTrackViewModel.swift */,
 				9CC426272306D42200F8072E /* GuideTrackModelItem.swift */,
 				9CC4261D2306A4AE00F8072E /* GuidedTrackRowCell.xib */,
@@ -6957,7 +6954,6 @@
 				75423F0A22CF304F008EE726 /* BeSpokeCellViewModel.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
 				759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */,
-				9CC4262A2306D83B00F8072E /* GuidedTrackTableViewCell.swift in Sources */,
 				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
 				8D110CEE230FCEDE000181BA /* WalkthroughSwipePresenter.swift in Sources */,
