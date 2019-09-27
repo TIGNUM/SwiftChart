@@ -740,6 +740,12 @@ enum ThemeText {
     case mySprintDetailsTitle
     case mySprintDetailsDescription
     case mySprintDetailsProgress
+    case mySprintDetailsHeader
+    case mySprintDetailsTextRegular
+    case mySprintDetailsTextActive
+    case mySprintDetailsTextInfo
+    case mySprintDetailsCta
+    case mySprintDetailsCtaHighlight
 
     private var font: UIFont {
         switch self {
@@ -777,7 +783,8 @@ enum ThemeText {
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
         case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink,
-             .chatbotProgress:
+             .chatbotProgress,
+             .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
         case .registrationCodeDescriptionEmail, .walkthroughMessage:
             return Fonts.fontSemiBold16
@@ -820,13 +827,13 @@ enum ThemeText {
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent,
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName,
-             .mySprintsCellTitle, .mySprintDetailsDescription:
+             .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .onboardingInfoBody, .paymentReminderHeaderSubtitle,
-             .mySprintsTableHeader, .mySprintsCellProgress:
+             .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -910,7 +917,7 @@ enum ThemeText {
              .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
              .onboardingInfoTitle,
              .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName,
-             .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle:
+             .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -919,7 +926,7 @@ enum ThemeText {
              .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
              .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription,
-             .mySprintsTableHeader, .mySprintsCellStatus:
+             .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -927,7 +934,8 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
              .articleAudioBar, .coachTitle,
              .audioLabel,
-             .myLibraryGroupName, .customAlertAction:
+             .myLibraryGroupName, .customAlertAction,
+             .mySprintDetailsCta:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle:
@@ -944,7 +952,7 @@ enum ThemeText {
              .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels,
              .onboardingInfoBody,
-             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress:
+             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1011,6 +1019,8 @@ enum ThemeText {
             return Palette.sand70
         case .resultDate:
             return Palette.carbon30
+        case .mySprintDetailsCtaHighlight:
+            return Palette.accent30
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
         case .chatbotProgress(let active, let isDark):
@@ -1061,11 +1071,11 @@ enum ThemeText {
              .mySprintsTableHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed,
-             .mySprintDetailsProgress:
+             .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
-             .mySprintsCellProgress:
+             .mySprintsCellProgress, .mySprintDetailsHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleRelatedTitleInStrategy, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
              .dailyBriefLevelTitle:
@@ -1073,7 +1083,7 @@ enum ThemeText {
         case .articleBullet, .sectionHeader,
              .dailyBriefLevelContent,
              .weatherIntro,
-             .mySprintsCellTitle, .mySprintDetailsDescription:
+             .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextInfo, .mySprintDetailsTextActive:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleRelatedDetail, .articleRelatedDetailInStrategy, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
@@ -1170,7 +1180,7 @@ enum ThemeText {
             view.backgroundColor = .clear
         } else {
             view.attributedText = string
-            view.backgroundColor = .purple
+            view.backgroundColor = .clear
 
             switch self {
             case .settingsTitle, .settingsTitleFade:

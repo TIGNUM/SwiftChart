@@ -16,9 +16,6 @@
         <array key="SF-Pro-Text-Medium.otf">
             <string>SFProText-Medium</string>
         </array>
-        <array key="SF-Pro-Text-Semibold.otf">
-            <string>SFProText-Semibold</string>
-        </array>
     </customFonts>
     <scenes>
         <!--My Sprint Details View Controller-->
@@ -119,12 +116,11 @@
                                                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBR-ZK-fRE" userLabel="CTA Button">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mBR-ZK-fRE" userLabel="CTA Button" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                                     <rect key="frame" x="24" y="16" width="366" height="20"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="20" id="Gt5-a5-BZb"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                                                     <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                                                     <state key="normal" title="CTA Button">
                                                         <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
