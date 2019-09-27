@@ -114,7 +114,7 @@ final class MyToBeVisionTrackerWorker {
 
     private func getData(for ratings: [TBVGraph.Rating], and answers: [MYTBVDataAnswer]) -> MYTBVDataViewModel? {
         let graph = MYTBVDataGraph(heading: graphHeading, ratings: ratings)
-        let subHeading = MYTBVDataSubHeading(title: subTitle, isSelected: false)
+        let subHeading = MYTBVDataSubHeading(title: subTitle)
         return MYTBVDataViewModel(title: title ,
                                   subHeading: subHeading,
                                   graph: graph,

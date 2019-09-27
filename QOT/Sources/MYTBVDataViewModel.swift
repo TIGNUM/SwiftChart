@@ -36,7 +36,6 @@ struct MYTBVDataViewModel {
 
 struct MYTBVDataSubHeading {
     let title: String
-    var isSelected: Bool
 }
 struct MYTBVDataGraph {
     var heading: String?
