@@ -38,18 +38,13 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
-        guard let titleText = title, let sprintStatus = status else { return }
+        guard let title = title, let sprintStatus = status else { return }
         skeletonManager.hide()
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 6
-        titleLabel.attributedText = NSAttributedString(string: titleText,
-                                                       attributes: [.kern: CharacterSpacing.kern05,
-                                                                    .paragraphStyle: style])
+
+        ThemeText.mySprintsCellTitle.apply(title, to: titleLabel)
+        ThemeText.mySprintsCellStatus.apply(description, to: statusLabel)
+        ThemeText.mySprintsCellProgress.apply(progress, to: progressLabel)
         statusIcon.image = image(for: sprintStatus)
-        statusLabel.attributedText = NSAttributedString(string: description ?? "",
-                                                        attributes: [.kern: CharacterSpacing.kern04])
-        progressLabel.attributedText = NSAttributedString(string: progress ?? "",
-                                                          attributes: [.kern: CharacterSpacing.kern02])
 
         if case MySprintStatus.active = sprintStatus {
             ThemeView.sprintsActive.apply(contentView)
