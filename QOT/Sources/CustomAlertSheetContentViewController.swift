@@ -26,10 +26,7 @@ class CustomAlertSheetContentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
-        if isDestructive {
-            ThemeText.customAlertDestructiveAction.apply(titleText, to: titleLabel)
-        } else {
-            ThemeText.customAlertAction.apply(titleText, to: titleLabel)
-        }
+        let theme: ThemeText = isDestructive ? .customAlertDestructiveAction : .customAlertAction
+        theme.apply(titleText, to: titleLabel)
     }
 }
