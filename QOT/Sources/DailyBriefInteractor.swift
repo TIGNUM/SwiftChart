@@ -633,7 +633,7 @@ extension DailyBriefInteractor {
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
-        let yesterday = -1, today = 0, tomorrow = 1, threeDays = 3
+        let yesterday = -1, tomorrow = 1, threeDays = 3
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
@@ -660,7 +660,7 @@ extension DailyBriefInteractor {
                     }.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter {
                     guard let date = $0.eventDate else { return false }
-                    return beginingOfToday.days(to: date) == today
+                    return beginingOfToday == date.beginingOfDate()
                 } ?? [QDMUserPreparation]()
             } else if contentItem.searchTags.contains(obj: "REFLECT") {
                 contentSentence = myPeakperformance.contentCollections?.filter {

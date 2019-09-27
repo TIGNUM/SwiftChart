@@ -729,6 +729,8 @@ enum ThemeText {
     case paymentReminderCellTitle
     case paymentReminderCellSubtitle
 
+    case customAlertAction
+    case customAlertDestructiveAction
     case mySprintsTitle
 
     private var font: UIFont {
@@ -745,7 +747,7 @@ enum ThemeText {
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle:
+             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -910,7 +912,7 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
              .articleAudioBar, .coachTitle,
              .audioLabel,
-             .myLibraryGroupName:
+             .myLibraryGroupName, .customAlertAction:
             return Palette.accent
         case .performanceSections, .resultList, .resultFollowUp, .audioPlayerTimeLight, .resultListHeader,
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle:
@@ -979,7 +981,7 @@ enum ThemeText {
             return Palette.nightModeBlack40
         case .learnImage, .learnPDF:
             return Palette.nightModeBlackTwo
-        case .registrationCodeError:
+        case .registrationCodeError, .customAlertDestructiveAction:
             return Palette.redOrange70
         case .placeholder:
             return .sand10
@@ -1017,7 +1019,7 @@ enum ThemeText {
              .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription, .paymentReminderCellTitle, .paymentReminderCellSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
-        case .navigationBarHeader:
+        case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
