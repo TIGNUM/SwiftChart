@@ -119,6 +119,10 @@ private extension MySprintDetailsViewController {
 // MARK: - MySprintDetailsViewControllerInterface
 
 extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface {
+    func setupView() {
+        ThemeView.level3.apply(view)
+    }
+
     func update() {
         guard let viewModel = interactor?.viewModel else {
             return
