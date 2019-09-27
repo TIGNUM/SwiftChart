@@ -896,7 +896,8 @@ enum ThemeText {
              .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
              .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
              .onboardingInfoTitle,
-             .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName:
+             .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName,
+             .mySprintsTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
