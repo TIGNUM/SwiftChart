@@ -908,6 +908,8 @@
 		B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */; };
 		B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */; };
 		B49AC293233BA5DC009AC1CF /* PaymentFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */; };
+		B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AD8A0233D0624000C5DCF /* CustomAlertSheetContentViewController.swift */; };
+		B49AD8A3233D0CB5000C5DCF /* CustomAlertSheet.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AD8A2233D0CB5000C5DCF /* CustomAlertSheet.xib */; };
 		B49BE661233B9BFB008CAED0 /* PaymentReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49BE660233B9BFB008CAED0 /* PaymentReminderViewController.xib */; };
 		B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49EACCC2328EAE1006BA566 /* WeatherCell.swift */; };
 		B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49EACCD2328EAE1006BA566 /* WeatherCell.xib */; };
@@ -2190,6 +2192,8 @@
 		B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSwitchAccountTableViewCell.swift; sourceTree = "<group>"; };
 		B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFooterView.swift; sourceTree = "<group>"; };
 		B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PaymentFooterView.xib; sourceTree = "<group>"; };
+		B49AD8A0233D0624000C5DCF /* CustomAlertSheetContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAlertSheetContentViewController.swift; sourceTree = "<group>"; };
+		B49AD8A2233D0CB5000C5DCF /* CustomAlertSheet.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomAlertSheet.xib; sourceTree = "<group>"; };
 		B49BE660233B9BFB008CAED0 /* PaymentReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentReminderViewController.xib; sourceTree = "<group>"; };
 		B49EACCC2328EAE1006BA566 /* WeatherCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherCell.swift; sourceTree = "<group>"; };
 		B49EACCD2328EAE1006BA566 /* WeatherCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WeatherCell.xib; sourceTree = "<group>"; };
@@ -3821,6 +3825,8 @@
 				7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */,
 				7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */,
 				75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */,
+				B49AD8A0233D0624000C5DCF /* CustomAlertSheetContentViewController.swift */,
+				B49AD8A2233D0CB5000C5DCF /* CustomAlertSheet.xib */,
 			);
 			name = ImagePicker;
 			sourceTree = "<group>";
@@ -5999,6 +6005,7 @@
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */,
 				8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */,
+				B49AD8A3233D0CB5000C5DCF /* CustomAlertSheet.xib in Resources */,
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
 				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
@@ -6860,6 +6867,7 @@
 				DBA3921923247B2D0017E7F6 /* QuestionnaireViewController.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
+				B49AD8A1233D0624000C5DCF /* CustomAlertSheetContentViewController.swift in Sources */,
 				8DF717E4232A48C700BB0E18 /* SyncedCalendarsRouter.swift in Sources */,
 				9CC426242306B01100F8072E /* GuidedTrackItemType.swift in Sources */,
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
