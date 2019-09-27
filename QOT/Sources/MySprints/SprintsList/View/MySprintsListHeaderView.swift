@@ -22,6 +22,8 @@ class MySprintsListHeaderView: UIView {
 
     func configure(title: String, isActive: Bool) {
         titleLabel.attributedText = NSAttributedString(string: title, attributes: [.kern: 0.2])
-        self.backgroundColor = (isActive ? .carbonNew : .clear)
+        let theme = (isActive ? ThemeView.sprintsActive : ThemeView.clear)
+        theme.apply(self)
+        ThemeText.mySprintsTableHeader.apply(title, to: titleLabel)
     }
 }

@@ -13,8 +13,9 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Properties
 
     var interactor: MySprintsListInteractorInterface?
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: AnimatedButton!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
 
@@ -43,15 +44,8 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        tableView.addHeader(with: .sprintsHeader)
+        tableView.addHeader(with: .sprintsActive)
         interactor?.viewDidLoad()
-
-        ThemeView.sprintsHeader.apply(view)
-        ThemeView.level2.apply(tableView)
-        ThemeTint.accent.apply(editButton)
-        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
-        setEditButton(enabled: true)
-        reloadData()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -123,8 +117,22 @@ private extension MySprintsListViewController {
 // MARK: - MySprintsListViewControllerInterface
 
 extension MySprintsListViewController: MySprintsListViewControllerInterface {
+    func setupView() {
+        ThemeView.sprintsActive.apply(view)
+        ThemeView.level2.apply(tableView)
+
+        ThemeView.headerLine.apply(headerLine)
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
+
+        ThemeTint.accent.apply(editButton)
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        setEditButton(enabled: true)
+
+        reloadData()
+    }
+
     func update() {
-        titleLabel.text = interactor?.title ?? ""
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
 
         let isEditing = interactor?.viewModel.isEditing ?? false
         tableView.setEditing(isEditing, animated: true)
