@@ -25,4 +25,12 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTable
         super.setEditing(editing, animated: animated)
         playButton.isEnabled = !editing
     }
+
+    func configure(withUrl: URL?, playButtonTitle: String?, playButtonTag: Int = 0) {
+        guard let url = withUrl, let title = playButtonTitle else { return }
+        skeletonManager.hide()
+        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: skeletonManager)
+        playButton.setTitle(playButtonTitle, for: .normal)
+        playButton.tag = playButtonTag
+    }
 }

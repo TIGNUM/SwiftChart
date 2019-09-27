@@ -70,11 +70,16 @@ extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControll
 extension MyLibraryCategoryListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.categoryItems.count ?? 0
+        let count = interactor?.categoryItems.count ?? 0
+        return count > 0 ? count : 5
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let categoryCell: MyLibraryCategoryTableViewCell = tableView.dequeueCell(for: indexPath)
+        guard interactor?.categoryItems.count ?? 0 > 0 else {
+            categoryCell.configure(withModel: nil)
+            return categoryCell
+        }
         categoryCell.configure(withModel: interactor?.categoryItems[indexPath.row])
         return categoryCell
     }
@@ -83,6 +88,8 @@ extension MyLibraryCategoryListViewController: UITableViewDataSource {
 extension MyLibraryCategoryListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        interactor?.handleSelectedItem(at: indexPath.row)
+        if interactor?.categoryItems.count ?? 0 > 0 {
+            interactor?.handleSelectedItem(at: indexPath.row)
+        }
     }
 }
