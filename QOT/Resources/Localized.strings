@@ -410,7 +410,7 @@
 
 "Onboarding.Error.General" = "An error occurred, please try again";
 "Onboarding.Login.Email.Title" = "LOGIN";
-"Onboarding.Login.Email.Placeholder" = "Your email*";
+"Onboarding.Login.Email.Placeholder" = "Your email";
 "Onboarding.Login.Email.Description" = "We will send an email with your code";
 "Onboarding.Login.Email.Error" = "Enter email first, then tap “Send code” button";
 "Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
@@ -425,7 +425,7 @@
 "Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your To Be Vision, please create an account";
 
 "Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
-"Onboarding.Registration.Email.Placeholder" = "Email*";
+"Onboarding.Registration.Email.Placeholder" = "Email";
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
