@@ -8,18 +8,14 @@
 
 import UIKit
 
-class CtaItemDetailsItemCell: UITableViewCell, BaseMySprintDetailsItemCellInterface, Dequeueable {
+class CtaItemDetailsItemCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var itemTextLabel: UILabel!
-    @IBOutlet weak var ctaButton: UIButton!
-
-    var characterSpacing: CGFloat = {
-        return 0.2
-    }()
+    @IBOutlet weak var ctaButton: AnimatedButton!
 
     func setButton(tag: Int, title: String, target: Any, selector: Selector) {
         ctaButton.tag = tag
         ctaButton.addTarget(target, action: selector, for: .touchUpInside)
-        ctaButton.setAttributedTitle(NSAttributedString(string: title,
-                                                        attributes: [.kern: CharacterSpacing.kern02]), for: .normal)
+        ctaButton.setAttributedTitle(ThemeText.mySprintDetailsCta.attributedString(title), for: .normal)
+        ctaButton.setAttributedTitle(ThemeText.mySprintDetailsCtaHighlight.attributedString(title), for: .highlighted)
     }
 }

@@ -9,6 +9,7 @@
 import UIKit
 
 class BaseMyLibraryTableViewCell: UITableViewCell {
+    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()

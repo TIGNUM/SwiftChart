@@ -79,6 +79,7 @@ final class MySprintsListInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        presenter.setupView()
         load()
     }
 }

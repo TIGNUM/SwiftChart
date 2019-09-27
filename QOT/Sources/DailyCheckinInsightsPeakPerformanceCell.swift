@@ -18,11 +18,16 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        skeletonManager.addTitle(bucketTitle)
+        skeletonManager.addSubtitle(peakEventsLabel)
+        skeletonManager.addOtherView(button)
     }
 
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
-        ThemeText.dailyBriefDailyCheckInSights.apply(with?.intro, to: peakEventsLabel)
-        ThemeText.dailyBriefTitle.apply(with?.title, to: bucketTitle)
+        guard let model = with else { return }
+        ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: peakEventsLabel)
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 
     @IBAction func preparations(_ sender: Any) {

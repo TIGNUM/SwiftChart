@@ -16,18 +16,15 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var loaderView: UIView!
 
-    private var profile: UserProfileModel?
     var interactor: MyQotProfileInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
-    var menuItems: [MyQotProfileModel.TableViewPresentationData] = []
 
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell])
+        setupTableView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -62,6 +59,9 @@ private extension MyQotProfileViewController {
         ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
+        ThemeView.level2.apply(self.view)
+        ThemeText.sectionHeader.apply(interactor?.myProfileText(), to: headerLabel)
+        ThemeView.headerLine.apply(headerLine)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = UIView.headerView(with: .level2)
@@ -72,23 +72,8 @@ private extension MyQotProfileViewController {
 // MARK: - MyQotViewControllerInterface
 
 extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
-
-    func showLoaderView() {
-        loaderView.isHidden = false
-    }
-
-    func hideLoaderView() {
-        loaderView.isHidden = true
-    }
-
-    func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
-        ThemeView.level2.apply(self.view)
-        self.profile = profile
-        self.menuItems = menuItems
-        ThemeText.sectionHeader.apply(interactor?.myProfileText(), to: headerLabel)
-        ThemeView.headerLine.apply(headerLine)
-        setupTableView()
-        self.removeLoadingSkeleton()
+    func updateView() {
+        tableView.reloadData()
     }
 }
 
@@ -96,18 +81,26 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
 
 extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
+        guard let items = interactor?.getMenuItems(), items.count > 0 else {
+            return 5
+        }
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(menuItems[indexPath.row])
+        if let items = interactor?.getMenuItems(),
+                indexPath.row < items.count {
+            cell.configure(interactor?.getMenuItems()[indexPath.row])
+        } else {
+            cell.configure(nil)
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let key = menuItems[indexPath.row].headingKey
+        let key = interactor?.getMenuItems()[indexPath.row].headingKey
         trackUserEvent(.OPEN, valueType: key, action: .TAP)
         interactor?.presentController(for: indexPath.row)
     }
@@ -118,7 +111,9 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: MyQotProfileHeaderView = tableView.dequeueHeaderFooter()
-        headerView.configure(data: MyQotProfileModel.HeaderViewModel(user: profile, memberSinceTitle: interactor?.memberSinceText()))
+        let data = MyQotProfileModel.HeaderViewModel(user: interactor?.getProfile(),
+                                                     memberSinceTitle: interactor?.memberSinceText())
+        headerView.configure(data: data)
         return headerView
     }
 }

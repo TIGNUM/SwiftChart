@@ -69,7 +69,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ljn-eo-sUe">
-                                <rect key="frame" x="0.0" y="150" width="414" height="712"/>
+                                <rect key="frame" x="0.0" y="150" width="414" height="746"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -156,7 +156,7 @@
                             <constraint firstItem="ljn-eo-sUe" firstAttribute="centerX" secondItem="pOq-ML-dwW" secondAttribute="centerX" id="0Fg-0c-3Yl"/>
                             <constraint firstItem="asa-p6-Rvu" firstAttribute="width" secondItem="4uT-AZ-s9g" secondAttribute="width" id="6zH-vo-Nsc"/>
                             <constraint firstItem="ljn-eo-sUe" firstAttribute="top" secondItem="asa-p6-Rvu" secondAttribute="bottom" constant="8" id="B5X-TF-ew9"/>
-                            <constraint firstItem="pOq-ML-dwW" firstAttribute="bottom" secondItem="ljn-eo-sUe" secondAttribute="bottom" id="TGq-rU-4pF"/>
+                            <constraint firstAttribute="bottom" secondItem="ljn-eo-sUe" secondAttribute="bottom" id="TGq-rU-4pF"/>
                             <constraint firstItem="asa-p6-Rvu" firstAttribute="centerX" secondItem="pOq-ML-dwW" secondAttribute="centerX" id="Ug4-TY-2V8"/>
                             <constraint firstItem="ljn-eo-sUe" firstAttribute="width" secondItem="4uT-AZ-s9g" secondAttribute="width" id="aWi-zF-Icw"/>
                             <constraint firstItem="asa-p6-Rvu" firstAttribute="top" secondItem="pOq-ML-dwW" secondAttribute="top" id="kA3-OG-6qv"/>
@@ -164,6 +164,7 @@
                         <viewLayoutGuide key="safeArea" id="pOq-ML-dwW"/>
                     </view>
                     <connections>
+                        <outlet property="headerLine" destination="XmZ-qh-DBk" id="uWB-ru-xhx"/>
                         <outlet property="tableView" destination="ljn-eo-sUe" id="z31-YL-ziQ"/>
                         <outlet property="titleLabel" destination="JG5-91-pyp" id="drM-Sg-Ea3"/>
                     </connections>

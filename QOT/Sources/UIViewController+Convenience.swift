@@ -110,22 +110,6 @@ extension UIViewController {
         }
     }
 
-    func removeLoadingSkeleton() {
-        guard let view = view.viewWithTag(Skeleton.tag) else { return }
-        UIView.animate(withDuration: 0.5, animations: {
-            view.alpha = 0.0
-        }, completion: { (_) in
-            view.removeFromSuperview()
-        })
-    }
-
-    func showLoadingSkeleton(with types: [SkeletonType]) {
-        let skeleton = Skeleton.show(types, backgroundColor: self.view.backgroundColor)
-        view.addSubview(skeleton)
-        skeleton.layer.zPosition = 10000
-        skeleton.addConstraints(to: view)
-    }
-
     func showNoInternetConnectionAlert() {
         let OK = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone))
         QOTAlert.show(title: ScreenTitleService.main.localizedString(for: .NoInternetConnectionTitle),

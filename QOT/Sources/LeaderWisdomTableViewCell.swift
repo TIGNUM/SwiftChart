@@ -28,30 +28,39 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         super.awakeFromNib()
         audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
+        skeletonManager.addSubtitle(descriptionLabel)
+        skeletonManager.addOtherView(audioView)
+        skeletonManager.addOtherView(videoView)
     }
 
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
-        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.subtitle, to: subtitleLabel)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.description, to: descriptionLabel)
-        videoView.isHidden = viewModel?.format != .video
-        videoThumbnailImageView.isHidden = viewModel?.format != .video
-        audioView.isHidden = viewModel?.format != .audio
-        audioButton.isHidden = viewModel?.format != .audio
-        titleLabel.isHidden = viewModel?.title == nil
-        subtitleLabel.isHidden = viewModel?.subtitle == nil
-        descriptionLabel.isHidden = viewModel?.description == nil
-        videoTitle.text = viewModel?.videoTitle?.uppercased()
-        duration = viewModel?.audioDuration ?? viewModel?.videoDuration
-        remoteID = viewModel?.remoteID
-        mediaURL = viewModel?.videoThumbnail
-        videoDurationButton.isHidden = viewModel?.format != .video
-        videoDurationButton.setTitle(viewModel?.durationString, for: .normal)
+        guard let model = viewModel else { return }
+        skeletonManager.hide()
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: subtitleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
+        videoView.isHidden = model.format != .video
+        videoThumbnailImageView.isHidden = model.format != .video
+        audioView.isHidden = model.format != .audio
+        audioButton.isHidden = model.format != .audio
+        titleLabel.isHidden = model.title == nil
+        subtitleLabel.isHidden = model.subtitle == nil
+        descriptionLabel.isHidden = model.description == nil
+        videoTitle.text = model.videoTitle?.uppercased()
+        duration = model.audioDuration ?? model.videoDuration
+        remoteID = model.remoteID
+        mediaURL = model.videoThumbnail
+        videoDurationButton.isHidden = model.format != .video
+        videoDurationButton.setTitle(model.durationString, for: .normal)
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
-        videoThumbnailImageView.isHidden = viewModel?.format != .video
-        videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading())
-        videoTitle.isHidden = viewModel?.format != .video
+        videoThumbnailImageView.isHidden = model.format != .video
+        skeletonManager.addOtherView(videoThumbnailImageView)
+        videoThumbnailImageView.setImage(url: mediaURL,
+                                         skeletonManager: self.skeletonManager)
+        videoTitle.isHidden = model.format != .video
     }
 
     @IBAction func audioAction(_ sender: Any) {

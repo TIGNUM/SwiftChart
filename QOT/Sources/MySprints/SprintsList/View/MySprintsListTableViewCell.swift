@@ -16,7 +16,7 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var statusIcon: UIImageView!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var progressLabel: UILabel!
-
+    let skeletonManager = SkeletonManager()
     private var editingOverlay: UIView!
 
     private lazy var reorderImage: UIImage? = {
@@ -25,32 +25,32 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+        let selectedView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedView)
+        selectedBackgroundView = selectedView
 
         editingOverlay = UIView()
         self.addSubview(editingOverlay)
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(statusLabel)
+        skeletonManager.addOtherView(progressLabel)
+        skeletonManager.addOtherView(statusIcon)
     }
 
-    func set(title: String?, status: MySprintStatus, description: String?, progress: String?) {
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 6
-        titleLabel.attributedText = NSAttributedString(string: title ?? "",
-                                                       attributes: [.kern: CharacterSpacing.kern05,
-                                                                    .paragraphStyle: style])
-        statusIcon.image = image(for: status)
-        statusLabel.attributedText = NSAttributedString(string: description ?? "",
-                                                        attributes: [.kern: CharacterSpacing.kern04])
-        progressLabel.attributedText = NSAttributedString(string: progress ?? "",
-                                                          attributes: [.kern: CharacterSpacing.kern02])
+    func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
+        guard let title = title, let sprintStatus = status else { return }
+        skeletonManager.hide()
 
-        let color: UIColor
-        if case MySprintStatus.active = status {
-            color = .carbonNew
+        ThemeText.mySprintsCellTitle.apply(title, to: titleLabel)
+        ThemeText.mySprintsCellStatus.apply(description, to: statusLabel)
+        ThemeText.mySprintsCellProgress.apply(progress, to: progressLabel)
+        statusIcon.image = image(for: sprintStatus)
+
+        if case MySprintStatus.active = sprintStatus {
+            ThemeView.sprintsActive.apply(contentView)
         } else {
-            color = .clear
+            ThemeView.clear.apply(contentView)
         }
-        self.backgroundColor = color
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

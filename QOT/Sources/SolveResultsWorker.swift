@@ -33,6 +33,8 @@ final class SolveResultsWorker {
     init(solve: QDMSolve?, resultType: ResultType) {
         self.solve = solve
         self.resultType = resultType
+        self.solutionCollectionId = solve?.solutionCollectionId ?? 0
+        self.selectedAnswerId = solve?.selectedAnswerId ?? 0
     }
 }
 
@@ -137,6 +139,8 @@ private extension SolveResultsWorker {
                 ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { (related) in
                     completion(related ?? [])
                 }
+            } else {
+                completion([])
             }
         }
     }
