@@ -146,6 +146,9 @@ extension SolveResultsViewController: UITableViewDelegate {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
             router?.openStrategy(with: id)
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(id)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         default:
             tableView.isUserInteractionEnabled = true
