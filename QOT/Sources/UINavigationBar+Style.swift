@@ -49,38 +49,4 @@ extension UINavigationBar {
         isTranslucent = false
         barTintColor = .nightModeBackground
     }
-
-    private func pointTest(button: UIBarButtonItem, point: CGPoint, with event: UIEvent?) -> Bool {
-        if let view = button.value(forKey: "view") as? UIView {
-            let position = view.convert(point, from: self)
-            if view.point(inside: position, with: event) {
-                return true
-            }
-        }
-        return false
-    }
-
-    override open func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
-        guard let items = items else { return true }
-
-        for item in items {
-            for item in item.leftBarButtonItems ?? [] {
-                if pointTest(button: item, point: point, with: event) {
-                    return true
-                }
-            }
-            for item in item.rightBarButtonItems ?? [] {
-                if pointTest(button: item, point: point, with: event) {
-                    return true
-                }
-            }
-
-            if let backBarButtonItem = item.backBarButtonItem,
-                pointTest(button: backBarButtonItem, point: point, with: event) {
-                return true
-            }
-        }
-        return false
-    }
-
 }

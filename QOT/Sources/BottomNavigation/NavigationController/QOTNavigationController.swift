@@ -51,13 +51,14 @@ weak var baseRootViewController: BaseRootViewController?
 
 extension UINavigationController {
     @objc func pushViewControllerSwizzled(viewController: UIViewController, animated: Bool) {
-        viewController.refreshBottomNavigationItems()
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled pushViewController: \(viewControllerName)", level: .verbose)
         guard let navigationController = baseRootViewController?.navigationController else {
             pushViewControllerSwizzled(viewController: viewController, animated: animated)
             return
         }
+
+        viewController.refreshBottomNavigationItems()
 
         let currentTopViewController = navigationController.topViewController
         var currentPresentedViewController = navigationController.presentedViewController
