@@ -50,7 +50,8 @@ protocol OnboardingLoginRouterInterface {
     func showHomeScreen()
 }
 
-protocol OnboardingLoginDelegate {
+protocol OnboardingLoginDelegate: class {
+    func didFinishLogin()
     func showTrackSelection()
     func didTapBack()
 }

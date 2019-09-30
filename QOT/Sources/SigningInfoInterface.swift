@@ -11,6 +11,7 @@ import Foundation
 protocol SigningInfoViewControllerInterface: UIViewController {
     func setup()
     func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String)
+    func didFinishLogin()
     var delegate: SigningInfoDelegate? { get set }
 }
 
@@ -30,7 +31,7 @@ protocol SigningInfoRouterInterface {
 
 }
 
-protocol SigningInfoDelegate {
+protocol SigningInfoDelegate: class {
     func didTapLogin()
     func didTapStart()
 }
