@@ -44,7 +44,6 @@ final class MyQotMainViewController: BaseViewController, ScreenZLevelBottom {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
-        self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -83,9 +82,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
     }
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>]>) {
-        if differenceList.count > 0 {
-            self.removeLoadingSkeleton()
-        }
         collectionView.reload(using: differenceList) { [weak self] (data) in
             self?.interactor?.updateViewModelListNew(data)
         }
@@ -104,8 +100,8 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
                 return cell
             default:
                 let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                cell.configure(title: myQotViewModelItem?.title ?? "",
-                               subtitle: myQotViewModelItem?.subtitle ?? "",
+                cell.configure(title: myQotViewModelItem?.title,
+                               subtitle: myQotViewModelItem?.subtitle,
                                isRed: myQotViewModelItem?.showSubtitleInRed ?? false)
                 return cell
             }

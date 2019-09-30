@@ -74,12 +74,11 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         setupView()
         updateIndicator()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        noPreparationsView.isHidden = true
+        hideAllNoDataViews()
         updateIndicator()
         refreshBottomNavigationItems()
     }
@@ -131,13 +130,13 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
-        hideAllViews()
+        hideAllNoDataViews()
         updateIndicator()
         showEmptyStateViewIfNeeded(sender)
     }
 
     @objc func confirmDeleteTapped(_ sender: Any) {
-        hideAllViews()
+        hideAllNoDataViews()
         if let selectedRows = tableView.indexPathsForSelectedRows {
             let sortedArray = selectedRows.sorted { $1.row < $0.row }
             for indexPath in sortedArray {
@@ -212,7 +211,7 @@ private extension MyPrepsViewController {
         editButton.isHidden = hidden
     }
 
-    func hideAllViews() {
+    func hideAllNoDataViews() {
         noPreparationsView.isHidden = true
         noRecoveriesView.isHidden = true
         noMIndsetShiftersView.isHidden = true
@@ -229,13 +228,12 @@ private extension MyPrepsViewController {
 // MARK: - MyPrepsViewControllerInterface
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func dataUpdated() {
-        hideAllViews()
+        hideAllNoDataViews()
         if tableView.alpha == 0 {
             UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
         }
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
-        self.removeLoadingSkeleton()
     }
 }
 

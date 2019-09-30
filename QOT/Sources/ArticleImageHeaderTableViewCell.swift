@@ -11,11 +11,13 @@ import UIKit
 final class ArticleImageHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var headerImageView: UIImageView!
+    let skeletonManager = SkeletonManager()
 
     func configure(imageURLString: String?) {
         guard let urlString = imageURLString else { return }
-        headerImageView?.kf.setImage(with: URL(string: urlString), placeholder: R.image.preloading())
+        skeletonManager.addOtherView(headerImageView)
+        headerImageView?.setImage(url: URL(string: urlString),
+                                  skeletonManager: skeletonManager)
     }
 }

@@ -412,6 +412,7 @@
                 <outlet property="levelText" destination="9cA-6V-Miz" id="Zgn-jO-O8O"/>
                 <outlet property="levelTitle" destination="QFx-8r-FSh" id="qVK-cJ-ZsN"/>
                 <outlet property="masteryProgress" destination="UhM-lT-a3n" id="6nI-GB-46L"/>
+                <outlet property="progressStackView" destination="Y6n-RW-tYH" id="GRf-kt-4xY"/>
                 <outlet property="questionLabel" destination="uTO-4s-8R2" id="SVT-j3-m5b"/>
                 <outlet property="readinessProgress" destination="pBq-Kz-zzd" id="2EC-5Y-O2b"/>
                 <outlet property="saveButton" destination="fcW-U2-IS7" id="bEN-7W-7tr"/>
@@ -422,7 +423,7 @@
                 <outletCollection property="buttons" destination="TbP-Wf-sAH" collectionClass="NSMutableArray" id="2gM-3X-U4b"/>
                 <outletCollection property="buttons" destination="ofJ-fR-mm0" collectionClass="NSMutableArray" id="d4a-2y-nrq"/>
             </connections>
-            <point key="canvasLocation" x="-599.0625" y="63.380281690140848"/>
+            <point key="canvasLocation" x="-599.0625" y="110.38732394366197"/>
         </tableViewCell>
     </objects>
 </document>

@@ -94,6 +94,7 @@ final class MySprintDetailsInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        presenter.setupView()
         viewModel = viewModel(from: worker.sprint)
         presenter.present()
     }

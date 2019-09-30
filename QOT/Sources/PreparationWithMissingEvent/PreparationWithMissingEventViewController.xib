@@ -24,19 +24,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQd-pO-S5m" userLabel="Title">
-                    <rect key="frame" x="20" y="68" width="374" height="0.0"/>
+                    <rect key="frame" x="20" y="100" width="374" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dRi-fY-bTr" userLabel="Description">
-                    <rect key="frame" x="20" y="111" width="374" height="0.0"/>
+                    <rect key="frame" x="20" y="143" width="374" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yu0-hr-uMG">
-                    <rect key="frame" x="0.0" y="159" width="414" height="643"/>
+                    <rect key="frame" x="0.0" y="191" width="414" height="611"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="bj4-bD-PnP"/>
@@ -47,7 +47,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="yu0-hr-uMG" secondAttribute="trailing" id="6Gv-Fm-6Kk"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="rQd-pO-S5m" secondAttribute="top" constant="-24" id="FIy-DZ-gB2"/>
+                <constraint firstItem="rQd-pO-S5m" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="100" id="FIy-DZ-gB2"/>
                 <constraint firstItem="yu0-hr-uMG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="TJv-RR-Frj"/>
                 <constraint firstItem="yu0-hr-uMG" firstAttribute="top" secondItem="dRi-fY-bTr" secondAttribute="bottom" constant="48" id="WhD-yV-xAV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="yu0-hr-uMG" secondAttribute="bottom" constant="60" id="ZAW-nJ-K1p"/>

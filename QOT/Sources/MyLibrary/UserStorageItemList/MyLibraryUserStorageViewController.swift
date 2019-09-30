@@ -17,6 +17,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     var interactor: MyLibraryUserStorageInteractorInterface?
 
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var editButton: AnimatedButton!
@@ -132,6 +133,7 @@ private extension MyLibraryUserStorageViewController {
 extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
+        ThemeView.headerLine.apply(headerLine)
 
         addButton.isHidden = !(interactor?.showAddButton ?? false)
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -187,17 +189,20 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
         switch cellType {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             cell.playButton.setTitle(item?.duration, for: .normal)
             cell.playButton.tag = indexPath.row
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.preview.kf.setImage(with: item?.previewURL, placeholder: placeholder)
+            cell.skeletonManager.addOtherView(cell.preview)
+            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)

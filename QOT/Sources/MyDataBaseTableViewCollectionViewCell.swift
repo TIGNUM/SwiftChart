@@ -9,7 +9,7 @@
 import Foundation
 
 class MyDataBaseTableViewCollectionViewCell: MyDataBaseTableViewCell {
-    @IBOutlet private weak var monthYearLabel: UILabel!
+    @IBOutlet internal weak var monthYearLabel: UILabel!
     @IBOutlet private var weekDaysLabelsCollection: [UILabel]!
 
     // MARK: - Public

@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" allowsMultipleSelection="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="hvU-ex-T62">
-                                <rect key="frame" x="0.0" y="246" width="414" height="616"/>
+                                <rect key="frame" x="0.0" y="246" width="414" height="650"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="0.41077161815068491" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -72,7 +72,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M">
-                                        <rect key="frame" x="354" y="58" width="40" height="40"/>
+                                        <rect key="frame" x="354" y="49" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="giH-rU-ibm"/>
                                             <constraint firstAttribute="width" constant="40" id="vU1-je-FKm"/>
@@ -92,13 +92,13 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
-                                    <constraint firstItem="7BQ-4U-u9M" firstAttribute="top" secondItem="tod-5A-b5r" secondAttribute="bottom" constant="-27" id="D6j-lk-FFs"/>
                                     <constraint firstItem="ljU-hM-8eE" firstAttribute="top" secondItem="FQX-We-ykg" secondAttribute="top" constant="40" id="Tiu-UP-YsI"/>
                                     <constraint firstItem="ljU-hM-8eE" firstAttribute="leading" secondItem="FQX-We-ykg" secondAttribute="leading" constant="20" id="VAm-b0-luA"/>
                                     <constraint firstItem="tod-5A-b5r" firstAttribute="leading" secondItem="FQX-We-ykg" secondAttribute="leading" constant="20" id="VTt-Zw-eZE"/>
                                     <constraint firstAttribute="height" constant="130" id="Yb9-3N-iDN"/>
                                     <constraint firstAttribute="trailing" secondItem="7BQ-4U-u9M" secondAttribute="trailing" constant="20" id="iAS-UU-Byh"/>
                                     <constraint firstItem="tod-5A-b5r" firstAttribute="top" secondItem="ljU-hM-8eE" secondAttribute="bottom" constant="20" id="pNF-cP-xVH"/>
+                                    <constraint firstItem="7BQ-4U-u9M" firstAttribute="centerY" secondItem="tod-5A-b5r" secondAttribute="centerY" constant="-4" id="vR2-sO-wZA"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9aH-l5-mKn">
@@ -117,7 +117,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Sew-Ix-s4G">
-                                        <rect key="frame" x="45" y="-10.5" width="12" height="12"/>
+                                        <rect key="frame" x="44" y="-10.5" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="12" id="8B2-mA-6Wb"/>
                                             <constraint firstAttribute="width" constant="12" id="kgz-D9-tlV"/>
@@ -133,7 +133,7 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Sew-Ix-s4G" firstAttribute="leading" secondItem="9aH-l5-mKn" secondAttribute="leading" constant="45" id="41N-Nv-xmR"/>
+                                    <constraint firstItem="Sew-Ix-s4G" firstAttribute="centerX" secondItem="TRr-vx-lp0" secondAttribute="centerX" id="0Ow-8o-vJu"/>
                                     <constraint firstItem="Sew-Ix-s4G" firstAttribute="centerY" secondItem="TRr-vx-lp0" secondAttribute="centerY" id="8zo-In-GNA"/>
                                     <constraint firstAttribute="height" constant="197" id="Bjq-pW-Im1"/>
                                     <constraint firstItem="jy8-uU-DLS" firstAttribute="leading" secondItem="9aH-l5-mKn" secondAttribute="leading" constant="30" id="I4u-dt-Gv4"/>
@@ -162,7 +162,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GHy-11-mG8">
-                                        <rect key="frame" x="45" y="10" width="12" height="12"/>
+                                        <rect key="frame" x="44" y="10" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="12" id="bNF-LF-50V"/>
                                             <constraint firstAttribute="height" constant="12" id="ec7-Wa-2L9"/>
@@ -187,8 +187,8 @@
                                     <constraint firstAttribute="trailing" secondItem="1BL-RH-wnH" secondAttribute="trailing" constant="20" id="MQK-bD-lqR"/>
                                     <constraint firstItem="1BL-RH-wnH" firstAttribute="top" secondItem="XtY-LP-eBW" secondAttribute="bottom" constant="15" id="Quy-1q-svz"/>
                                     <constraint firstItem="tkq-ad-4io" firstAttribute="leading" secondItem="dEq-o1-iv8" secondAttribute="leading" constant="10" id="d1h-Gv-I3N"/>
+                                    <constraint firstItem="GHy-11-mG8" firstAttribute="centerX" secondItem="tkq-ad-4io" secondAttribute="centerX" id="dVd-Nh-LRA"/>
                                     <constraint firstItem="XtY-LP-eBW" firstAttribute="top" secondItem="dEq-o1-iv8" secondAttribute="top" constant="60" id="lBd-j9-EC5"/>
-                                    <constraint firstItem="GHy-11-mG8" firstAttribute="leading" secondItem="dEq-o1-iv8" secondAttribute="leading" constant="45" id="oIU-f1-Lhp"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RIe-hX-AO4" userLabel="No Recoveries View">
@@ -207,7 +207,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mqn-hs-beM">
-                                        <rect key="frame" x="45" y="10" width="12" height="12"/>
+                                        <rect key="frame" x="44" y="10" width="12" height="12"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="12" id="JtH-Qd-pX8"/>
                                             <constraint firstAttribute="height" constant="12" id="hOT-n8-Gnp"/>
@@ -226,9 +226,9 @@
                                     <constraint firstItem="7fL-9S-tVD" firstAttribute="top" secondItem="RIe-hX-AO4" secondAttribute="top" constant="60" id="04m-1r-8H7"/>
                                     <constraint firstItem="7fL-9S-tVD" firstAttribute="leading" secondItem="RIe-hX-AO4" secondAttribute="leading" constant="30" id="0en-cB-Q7n"/>
                                     <constraint firstAttribute="trailing" secondItem="lmD-nE-mtw" secondAttribute="trailing" constant="30" id="3fc-i8-cQj"/>
-                                    <constraint firstItem="Mqn-hs-beM" firstAttribute="leading" secondItem="RIe-hX-AO4" secondAttribute="leading" constant="45" id="7FL-ip-veF"/>
                                     <constraint firstItem="Mqn-hs-beM" firstAttribute="centerY" secondItem="keY-nR-jgg" secondAttribute="centerY" id="7Te-8w-DuV"/>
                                     <constraint firstItem="keY-nR-jgg" firstAttribute="leading" secondItem="RIe-hX-AO4" secondAttribute="leading" constant="10" id="IUt-MW-MbE"/>
+                                    <constraint firstItem="Mqn-hs-beM" firstAttribute="centerX" secondItem="keY-nR-jgg" secondAttribute="centerX" id="VLA-ph-djd"/>
                                     <constraint firstItem="lmD-nE-mtw" firstAttribute="leading" secondItem="RIe-hX-AO4" secondAttribute="leading" constant="30" id="WcS-Ru-vjl"/>
                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="7fL-9S-tVD" secondAttribute="trailing" constant="20" id="amE-7O-vHc"/>
                                     <constraint firstItem="lmD-nE-mtw" firstAttribute="top" secondItem="7fL-9S-tVD" secondAttribute="bottom" constant="15" id="e24-Er-jlq"/>
@@ -257,7 +257,7 @@
                             <constraint firstItem="hvU-ex-T62" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="P1G-Ou-2hO"/>
                             <constraint firstItem="b73-zI-Hri" firstAttribute="leading" secondItem="PdG-Uy-sIm" secondAttribute="leading" constant="20" symbolic="YES" id="PhX-jn-1Zh"/>
                             <constraint firstItem="FQX-We-ykg" firstAttribute="trailing" secondItem="izd-Ti-FEs" secondAttribute="trailing" id="Qad-fC-CC2"/>
-                            <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="hvU-ex-T62" secondAttribute="bottom" id="RZ8-Nk-9oS"/>
+                            <constraint firstAttribute="bottom" secondItem="hvU-ex-T62" secondAttribute="bottom" id="RZ8-Nk-9oS"/>
                             <constraint firstItem="RIe-hX-AO4" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="T9u-tK-OCP"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="dEq-o1-iv8" secondAttribute="bottom" constant="150" id="aV1-7N-aGk"/>
                             <constraint firstAttribute="trailing" secondItem="RIe-hX-AO4" secondAttribute="trailing" id="bPP-fp-hGJ"/>

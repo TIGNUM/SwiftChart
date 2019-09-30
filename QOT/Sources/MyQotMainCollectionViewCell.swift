@@ -12,20 +12,19 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var subtitleLabel: UILabel!
+    let skeletonManager = SkeletonManager()
 
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        titleLabel.text = ""
-        subtitleLabel.text = ""
-    }
+    func configure(title: String?, subtitle: String?, isRed: Bool = false) {
+        ThemeText.myQOTBoxTitle.apply((title ?? "").uppercased(), to: titleLabel)
 
-    func configure(title: String, subtitle: String, isRed: Bool = false) {
-        ThemeText.myQOTBoxTitle.apply(title.uppercased(), to: titleLabel)
-
+        guard let newSubtitle = subtitle else {
+            return
+        }
+        skeletonManager.hide()
         let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
-        theme.apply(subtitle, to: subtitleLabel)
+        theme.apply(newSubtitle, to: subtitleLabel)
     }
 
     // MARK: - Life Cycle
@@ -42,5 +41,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1
+
+        skeletonManager.addSubtitle(subtitleLabel)
     }
 }

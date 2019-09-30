@@ -9,8 +9,11 @@
 import Foundation
 
 class MyDataBaseTableViewCell: UITableViewCell, Dequeueable {
+    var skeletonManager = SkeletonManager()
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        skeletonManager = SkeletonManager()
         self.backgroundColor = .clear
     }
 }

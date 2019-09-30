@@ -108,7 +108,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" allowsMultipleSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ncy-Ae-bMl">
-                                <rect key="frame" x="0.0" y="150" width="414" height="712"/>
+                                <rect key="frame" x="0.0" y="150" width="414" height="746"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <prototypes>
@@ -515,7 +515,7 @@
                             <constraint firstItem="ncy-Ae-bMl" firstAttribute="width" secondItem="REE-o1-22V" secondAttribute="width" id="FVg-Pt-lQS"/>
                             <constraint firstItem="ncy-Ae-bMl" firstAttribute="top" secondItem="Ib4-MU-Wjo" secondAttribute="bottom" constant="8" id="RWJ-Y8-HrN"/>
                             <constraint firstItem="Ib4-MU-Wjo" firstAttribute="width" secondItem="REE-o1-22V" secondAttribute="width" id="VGB-2s-7B4"/>
-                            <constraint firstItem="z2A-31-qcn" firstAttribute="bottom" secondItem="ncy-Ae-bMl" secondAttribute="bottom" id="h2V-FQ-uzw"/>
+                            <constraint firstAttribute="bottom" secondItem="ncy-Ae-bMl" secondAttribute="bottom" id="h2V-FQ-uzw"/>
                             <constraint firstItem="ncy-Ae-bMl" firstAttribute="centerX" secondItem="z2A-31-qcn" secondAttribute="centerX" id="xwK-gO-Rc6"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="z2A-31-qcn"/>
@@ -524,6 +524,7 @@
                         <outlet property="addButton" destination="Hbe-ks-QwL" id="0u9-QN-dKl"/>
                         <outlet property="editButton" destination="NsV-cT-rre" id="re8-BJ-JPw"/>
                         <outlet property="headerHeight" destination="rqb-Ns-Ea4" id="ebG-8x-xcT"/>
+                        <outlet property="headerLine" destination="AO9-g0-mJC" id="j1p-ss-gkM"/>
                         <outlet property="tableView" destination="ncy-Ae-bMl" id="f6U-Ir-hhf"/>
                         <outlet property="titleLabel" destination="mOE-CO-Vyr" id="S1T-RE-HpN"/>
                     </connections>

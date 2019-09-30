@@ -72,7 +72,6 @@ final class MyVisionInteractor {
     private func didUpdateTBVRelatedData() {
         worker.getData {[weak self] (initialized) in
             if !initialized {
-                self?.presenter.showScreenLoader()
                 return
             }
 

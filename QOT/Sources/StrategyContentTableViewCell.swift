@@ -24,6 +24,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var duration: Double = 0
     private var categoryTitle = ""
     private weak var delegate: IsPlayingDelegate?
+    let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +35,12 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
+
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(detailLabel)
+        skeletonManager.addOtherView(mediaIconImageView)
+        skeletonManager.addOtherView(audioView)
+        skeletonManager.addOtherView(audioLabel)
         checkIfPlaying()
     }
 
@@ -49,25 +56,33 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         }
     }
 
-    func configure(categoryTitle: String,
-                   title: String,
-                   timeToWatch: String,
+    func configure(categoryTitle: String?,
+                   title: String?,
+                   timeToWatch: String?,
                    mediaURL: URL?,
-                   duration: Double,
-                   mediaItemId: Int,
+                   duration: Double?,
+                   mediaItemId: Int?,
                    delegate: IsPlayingDelegate?) {
-        self.categoryTitle = categoryTitle
+        guard let category = categoryTitle,
+            let titleText = title,
+            let timeText = timeToWatch,
+            let durationValue = duration,
+            let id = mediaItemId else {
+                return
+        }
+
+        self.categoryTitle = category
         self.mediaURL = mediaURL
-        self.title = title
-        self.remoteID = mediaItemId
-        self.duration = duration
-        self.delegate = delegate
-        ThemeText.articleRelatedTitleInStrategy.apply(title, to: titleLabel)
-        ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
+        self.title = titleText
+        self.remoteID = id
+        self.duration = durationValue
+        skeletonManager.hide()
+        ThemeText.articleRelatedTitleInStrategy.apply(titleText, to: titleLabel)
+        ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
-        showDuration(duration)
+        showDuration(durationValue)
         checkIfPlaying()
-        setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
+        setAudioAsCompleteIfNeeded(remoteID: id)
     }
 }
 

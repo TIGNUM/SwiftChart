@@ -23,6 +23,7 @@ final class DTSprintReflectionInteractor: DTInteractor {
         let questionUpdate = getTitleUpdate(selectedAnswers: [], questionKey: nil)
         let presentationModel = createPresentationModel(questionId: firstQuestion?.remoteID ?? 0,
                                                         answerFilter: introKey,
+                                                        userInputText: nil,
                                                         questionUpdate: questionUpdate,
                                                         questions: questions)
         let node = Node(questionId: firstQuestion?.remoteID,
