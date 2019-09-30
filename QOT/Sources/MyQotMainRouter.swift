@@ -12,7 +12,7 @@ final class MyQotMainRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotMainViewController
+    private weak var viewController: MyQotMainViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
@@ -33,7 +33,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             .myPreps().instantiateViewController(withIdentifier: storyboardID) as? MyPrepsViewController
         if let myPrepsViewController = myPrepsViewController {
             MyPrepsConfigurator.configure(viewController: myPrepsViewController, delegate: delegate)
-            viewController.pushToStart(childViewController: myPrepsViewController)
+            viewController?.pushToStart(childViewController: myPrepsViewController)
         }
     }
 
@@ -43,7 +43,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             .myQot().instantiateViewController(withIdentifier: storyboardID) as? MyQotProfileViewController
         if let myQotProfileViewController = myQotProfileViewController {
             MyQotProfileConfigurator.configure(delegate: delegate, viewController: myQotProfileViewController)
-            viewController.pushToStart(childViewController: myQotProfileViewController)
+            viewController?.pushToStart(childViewController: myQotProfileViewController)
         }
     }
 
@@ -53,7 +53,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
         let configurator = MySprintsListConfigurator.make()
         configurator(mySprintsController)
-        viewController.pushToStart(childViewController: mySprintsController)
+        viewController?.pushToStart(childViewController: mySprintsController)
     }
 
     func presentMyToBeVision() {
@@ -62,7 +62,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             .myToBeVision().instantiateViewController(withIdentifier: storyboardID) as? MyVisionViewController
         if let myVisionViewController = myVisionViewController {
             MyVisionConfigurator.configure(viewController: myVisionViewController)
-            viewController.pushToStart(childViewController: myVisionViewController)
+            viewController?.pushToStart(childViewController: myVisionViewController)
         }
     }
 
@@ -73,7 +73,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         if let myLibraryController = myLibraryController {
             let configurator = MyLibraryCategoryListConfigurator.make()
             configurator(myLibraryController)
-            viewController.pushToStart(childViewController: myLibraryController)
+            viewController?.pushToStart(childViewController: myLibraryController)
         }
     }
 
@@ -84,7 +84,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         if let myDataScreenViewController = myDataScreenViewController {
             let configurator = MyDataScreenConfigurator.make()
             configurator(myDataScreenViewController)
-            viewController.pushToStart(childViewController: myDataScreenViewController)
+            viewController?.pushToStart(childViewController: myDataScreenViewController)
         }
     }
 }

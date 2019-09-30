@@ -11,7 +11,7 @@ import qot_dal
 
 final class SearchRouter {
 
-    private let searchViewController: SearchViewController
+    private weak var searchViewController: SearchViewController?
 
     init(searchViewController: SearchViewController) {
         self.searchViewController = searchViewController
@@ -24,7 +24,7 @@ extension SearchRouter: SearchRouterInterface {
 
     func handleSelection(searchResult: Search.Result) {
         if searchResult.displayType == .pdf, let url = searchResult.mediaURL {
-            searchViewController.showPDFReader(withURL: url, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
+            searchViewController?.showPDFReader(withURL: url, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
         }
         if let contentItemID = searchResult.contentItemID, let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
@@ -40,7 +40,7 @@ extension SearchRouter: SearchRouterInterface {
     }
 
     func dismiss() {
-        searchViewController.dismiss(animated: true, completion: nil)
+        searchViewController?.dismiss(animated: true, completion: nil)
     }
 }
 
@@ -62,14 +62,14 @@ private extension SearchRouter {
         if let controller = R.storyboard.main()
             .instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
             ArticleConfigurator.configure(selectedID: selectedStrategyID, viewController: controller)
-            searchViewController.present(controller, animated: true, completion: nil)
+            searchViewController?.present(controller, animated: true, completion: nil)
         }
     }
 
     func presentToolsItems(selectedToolID: Int?) {
         if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
             ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
-            searchViewController.present(controller, animated: true, completion: nil)
+            searchViewController?.present(controller, animated: true, completion: nil)
         }
     }
 }

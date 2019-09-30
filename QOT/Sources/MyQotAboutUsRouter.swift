@@ -13,7 +13,7 @@ final class MyQotAboutUsRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotAboutUsViewController
+    private weak var viewController: MyQotAboutUsViewController?
 
     // MARK: - Init
 
@@ -46,7 +46,7 @@ private extension MyQotAboutUsRouter {
         transition.duration = 0.5
         transition.type = kCATransitionMoveIn
         transition.subtype = kCATransitionFromTop
-        viewController.view.window?.layer.add(transition, forKey: kCATransition)
-        viewController.present(articleViewController, animated: false, completion: nil)
+        viewController?.view.window?.layer.add(transition, forKey: kCATransition)
+        viewController?.present(articleViewController, animated: false, completion: nil)
     }
 }

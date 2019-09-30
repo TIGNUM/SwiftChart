@@ -11,7 +11,7 @@ import IntentsUI
 
 final class MyQotSiriShortcutsRouter {
 
-    private let viewController: MyQotSiriShortcutsViewController
+    private weak var viewController: MyQotSiriShortcutsViewController?
 
     init(viewController: MyQotSiriShortcutsViewController) {
         self.viewController = viewController
@@ -51,7 +51,7 @@ private extension MyQotSiriShortcutsRouter {
             if let shortcut = INShortcut(intent: intent) {
                 let vc = INUIAddVoiceShortcutViewController(shortcut: shortcut)
                 vc.delegate = viewController
-                viewController.present(vc, animated: true, completion: nil)
+                viewController?.present(vc, animated: true, completion: nil)
             }
         }
     }
