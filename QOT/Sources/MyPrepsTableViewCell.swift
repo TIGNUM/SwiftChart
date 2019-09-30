@@ -29,7 +29,7 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         setSelectedColor(.carbon, alphaComponent: 1)
         hasData = false
     }
-    
+
     // MARK: Configure
     func configure(title: String?, subtitle: String?) {
         guard let titleText = title else { return }

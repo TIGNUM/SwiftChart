@@ -288,7 +288,7 @@ extension AppCoordinator {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
-        log("handleIncommingNotificationDeepLinkURL: \(url)", level: .info)
+        log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
     }
 }
 
