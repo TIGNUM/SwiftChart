@@ -12,6 +12,7 @@ import qot_dal
 final class DTSprintReflectionConfigurator {
     static func make(sprint: QDMSprint) -> (DTSprintReflectionViewController) -> Void {
         return { (viewController) in
+            let router = DTSprintReflectionRouter(viewController: viewController)
             let presenter = DTSprintReflectionPresenter(viewController: viewController)
             let interactor = DTSprintReflectionInteractor(presenter,
                                                           questionGroup: .SprintPostReflection,
@@ -19,6 +20,8 @@ final class DTSprintReflectionConfigurator {
             interactor.sprintRefelctionPresenter = presenter
             interactor.sprint = sprint
             viewController.interactor = interactor
+            viewController.sprintInteractor = interactor
+            viewController.router = router
         }
     }
 }

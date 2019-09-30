@@ -88,6 +88,10 @@ final class MySprintsListInteractor {
 
 extension MySprintsListInteractor: MySprintsListInteractorInterface {
 
+    func getSprint() -> QDMSprint {
+        return worker.getSprint()
+    }
+
     var title: String {
         return isEditing ? worker.editingTitle : worker.title
     }
