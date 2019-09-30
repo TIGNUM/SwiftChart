@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol OnboardingLandingPageViewControllerInterface: class, SigningInfoDelegate, OnboardingLoginDelegate {
+protocol OnboardingLandingPageViewControllerInterface: SigningInfoDelegate, OnboardingLoginDelegate {
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
 }
 
@@ -19,6 +19,7 @@ protocol OnboardingLandingPagePresenterInterface {
 
 protocol OnboardingLandingPageInteractorInterface: Interactor {
     func didTapLogin(with email: String?, cachedToBeVision: QDMToBeVision?)
+    func didFinishLogin()
     func didTapStart()
     func didTapBack()
     func showTrackSelection()

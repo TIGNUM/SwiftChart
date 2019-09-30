@@ -15,7 +15,7 @@ final class RegistrationNamesInteractor {
     private let worker: RegistrationNamesWorker
     private let presenter: RegistrationNamesPresenterInterface
     private let router: RegistrationNamesRouterInterface
-    private let delegate: RegistrationDelegate
+    private weak var delegate: RegistrationDelegate?
 
     var hasFirstNameError: Bool = false
     var hasLastNameError: Bool = false
@@ -66,7 +66,7 @@ final class RegistrationNamesInteractor {
 extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
 
     func didTapBack() {
-        delegate.didTapBack()
+        delegate?.didTapBack()
     }
 
     func didTapNext(with firstName: String, lastName: String?) {
@@ -80,7 +80,7 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
             presenter.presentView()
             return
         }
-        delegate.didSave(firstName: firstName, lastName: lastName)
+        delegate?.didSave(firstName: firstName, lastName: lastName)
     }
 
     func resetErrors() {

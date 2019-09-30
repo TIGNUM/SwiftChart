@@ -34,7 +34,7 @@ protocol RegistrationRouterInterface {
     func popBack()
 }
 
-protocol RegistrationDelegate {
+protocol RegistrationDelegate: class {
     func didTapBack()
     func didVerifyEmail(_ email: String)
     func didVerifyCode(_ code: String)
