@@ -13,7 +13,7 @@ final class OnboardingLandingPageRouter {
 
     // MARK: - Properties
 
-    private let viewController: OnboardingLandingPageViewController
+    private weak var viewController: OnboardingLandingPageViewController?
 
     // MARK: - Init
 
@@ -29,17 +29,17 @@ extension OnboardingLandingPageRouter: OnboardingLandingPageRouterInterface {
         guard let controller = R.storyboard.registration.registrationViewController() else { return }
         let configurator = RegistrationConfigurator.make()
         configurator(controller, cachedTBV)
-        viewController.pushToStart(childViewController: controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 
     func popToRoot() {
-        viewController.navigationController?.popToRootViewController(animated: true)
+        viewController?.navigationController?.popToRootViewController(animated: true)
     }
 
     func showTrackSelection() {
         guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
         let configurator = TrackSelectionConfigurator.make()
         configurator(controller, TrackSelectionControllerType.registration)
-        viewController.pushToStart(childViewController: controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 }

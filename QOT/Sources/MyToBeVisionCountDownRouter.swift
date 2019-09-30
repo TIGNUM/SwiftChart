@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyToBeVisionCountDownRouter {
-    private let viewController: MyToBeVisionCountDownViewController
+    private weak var viewController: MyToBeVisionCountDownViewController?
 
     init(viewController: MyToBeVisionCountDownViewController) {
         self.viewController = viewController

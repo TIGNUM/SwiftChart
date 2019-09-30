@@ -12,7 +12,7 @@ final class SigningInfoRouter {
 
     // MARK: - Properties
 
-    private let viewController: SigningInfoViewController
+    private weak var viewController: SigningInfoViewController?
 
     // MARK: - Init
 

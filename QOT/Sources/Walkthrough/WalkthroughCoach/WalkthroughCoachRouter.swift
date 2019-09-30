@@ -12,7 +12,7 @@ final class WalkthroughCoachRouter {
 
     // MARK: - Properties
 
-    private let viewController: WalkthroughCoachViewController
+    private weak var viewController: WalkthroughCoachViewController?
 
     // MARK: - Init
 

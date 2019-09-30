@@ -15,15 +15,12 @@ final class OnboardingLandingPageWorker {
 
     let infoController: SigningInfoViewControllerInterface
     let loginController: OnboardingLoginViewControllerInterface
-    let tbvContentCategory: QDMContentCategory?
 
     // MARK: - Init
 
     init(infoController: SigningInfoViewControllerInterface,
-         loginController: OnboardingLoginViewControllerInterface,
-         tbvContentCategory: QDMContentCategory?) {
+         loginController: OnboardingLoginViewControllerInterface) {
         self.infoController = infoController
         self.loginController = loginController
-        self.tbvContentCategory = tbvContentCategory
     }
 }

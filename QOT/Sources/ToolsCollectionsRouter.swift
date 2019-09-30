@@ -12,7 +12,7 @@ final class ToolsCollectionsRouter {
 
     // MARK: - Properties
 
-    private let viewController: ToolsCollectionsViewController
+    private weak var viewController: ToolsCollectionsViewController?
 
     // MARK: - Init
 
@@ -26,7 +26,7 @@ final class ToolsCollectionsRouter {
 extension ToolsCollectionsRouter: ToolsCollectionsRouterInterface {
 
     func presentToolsItems(selectedToolID: Int?) {
-        viewController.performSegue(withIdentifier: R.segue.toolsCollectionsViewController.collectionsItemsSegueIdentifier,
+        viewController?.performSegue(withIdentifier: R.segue.toolsCollectionsViewController.collectionsItemsSegueIdentifier,
                                     sender: selectedToolID)
     }
 }

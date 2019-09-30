@@ -11,10 +11,10 @@ import qot_dal
 
 final class OnboardingLandingPageConfigurator {
 
-    static func make() -> (OnboardingLandingPageViewController, QDMContentCategory?) -> Void {
-        return { (viewController, contentCategory) in
+    static func make() -> (OnboardingLandingPageViewController) -> Void {
+        return { (viewController) in
             // Signin controller
-            let signinInfoConfigurator = SigningInfoConfigurator.make(contentCategory: contentCategory)
+            let signinInfoConfigurator = SigningInfoConfigurator.make()
             let signinInfoController = SigningInfoViewController()
             signinInfoConfigurator(signinInfoController, viewController)
             // Onboarding controller
@@ -25,8 +25,7 @@ final class OnboardingLandingPageConfigurator {
             // Landing classes
             let router = OnboardingLandingPageRouter(viewController: viewController)
             let worker = OnboardingLandingPageWorker(infoController: signinInfoController,
-                                                     loginController: onboardingController,
-                                                     tbvContentCategory: contentCategory)
+                                                     loginController: onboardingController)
             let presenter = OnboardingLandingPagePresenter(viewController: viewController)
             let interactor = OnboardingLandingPageInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

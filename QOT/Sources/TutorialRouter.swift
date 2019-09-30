@@ -12,7 +12,7 @@ final class TutorialRouter {
 
     // MARK: - Properties
 
-    private let viewController: TutorialViewController
+    private weak var viewController: TutorialViewController?
 
     // MARK: - Init
 
@@ -26,8 +26,8 @@ final class TutorialRouter {
 extension TutorialRouter: TutorialRouterInterface {
 
     func dismiss() {
-        if viewController.navigationController != nil {
-            viewController.navigationController?.popViewController(animated: true)
+        if viewController?.navigationController != nil {
+            viewController?.navigationController?.popViewController(animated: true)
         } else {
             // FIXME: THIS VIEW CONTROLLER IS NOT USED
         }

@@ -13,7 +13,7 @@ final class MyQotSupportRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotSupportViewController
+    private weak var viewController: MyQotSupportViewController?
 
     // MARK: - Init
 
@@ -51,28 +51,28 @@ private extension MyQotSupportRouter {
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController.present(articleViewController, animated: true, completion: nil)
+        viewController?.present(articleViewController, animated: true, completion: nil)
     }
 
     func presentFAQ() {
-        viewController.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportFaqSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportFaqSegueIdentifier, sender: nil)
     }
 
     func presentTutorial() {
         let configurator = TutorialConfigurator.make()
         let controller = TutorialViewController(configure: configurator, from: .settings)
-        viewController.pushToStart(childViewController: controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 
     func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
             return
         }
         let composer = MFMailComposeViewController()
         composer.setToRecipients(recipients)
         composer.setSubject(subject)
         composer.mailComposeDelegate = viewController
-        viewController.present(composer, animated: true, completion: nil)
+        viewController?.present(composer, animated: true, completion: nil)
     }
 }
