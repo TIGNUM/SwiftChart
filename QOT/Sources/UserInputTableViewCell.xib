@@ -32,7 +32,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HTv-oU-Syp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="191.5"/>
                         <subviews>
-                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" text="Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium" translatesAutoresizingMaskIntoConstraints="NO" id="A9J-XC-m3j">
+                            <textView multipleTouchEnabled="YES" contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A9J-XC-m3j">
                                 <rect key="frame" x="24" y="19" width="366" height="120"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
