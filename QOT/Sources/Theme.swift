@@ -62,6 +62,7 @@ enum ThemeView {
     case qotTools
     case syncedCalendarSeparator
     case audioPlaying
+    case selectedButton
     case tbvLowPerformance
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
@@ -82,7 +83,7 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
-        case .audioPlaying:
+        case .audioPlaying, .selectedButton:
             return Palette.accent40
         case .onboarding:
             return Palette.carbon
