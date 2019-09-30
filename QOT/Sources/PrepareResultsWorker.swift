@@ -230,11 +230,12 @@ extension PrepareResultsWorker {
     func getDTViewModel(_ key: Prepare.Key, benefits: String?, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         currentEditKey = key
         let answerFilter = preparation?.answerFilter ?? ""
+        let selectedIds: [Int] = getSelectedIds(key: key)
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
-            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0) }
+            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0, selectedIds: selectedIds) }
             completion(DTViewModel(question: question,
                                    answers: answers,
                                    events: [],
@@ -246,6 +247,15 @@ extension PrepareResultsWorker {
                                    dismissButtonIsHidden: false,
                                    showNextQuestionAutomated: false),
                        qdmQuestion)
+        }
+    }
+
+    func getSelectedIds(key: Prepare.Key) -> [Int] {
+        switch key {
+        case .feel: return feelAnswerIds
+        case .know: return knowAnswerIds
+        case .perceived: return preceiveAnswerIds
+        default: return []
         }
     }
 }
