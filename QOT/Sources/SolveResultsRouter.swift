@@ -30,6 +30,10 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         AppDelegate.current.launchHandler.showContentCollection(id)
     }
 
+    func openContentItem(with id: Int) {
+        AppDelegate.current.launchHandler.showContentItem(id)
+    }
+
     func openVisionGenerator() {
         let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
         let controller = DTShortTBVViewController(configure: configurator)
