@@ -78,10 +78,10 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.fetchItemsAndUpdateView()
         hideAllNoDataViews()
         updateIndicator()
         refreshBottomNavigationItems()
+        interactor?.fetchItemsAndUpdateView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
