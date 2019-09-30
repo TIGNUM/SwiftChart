@@ -12,7 +12,7 @@ final class WalkthroughSwipeRouter {
 
     // MARK: - Properties
 
-    private let viewController: WalkthroughSwipeViewController
+    private weak var viewController: WalkthroughSwipeViewController?
 
     // MARK: - Init
 

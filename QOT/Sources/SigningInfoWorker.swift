@@ -13,12 +13,10 @@ final class SigningInfoWorker {
 
     // MARK: - Properties
     private let model: SigningInfoModel
-    private let contentCategory: QDMContentCategory?
 
     // MARK: - Init
-    init(model: SigningInfoModel, contentCategory: QDMContentCategory?) {
+    init(model: SigningInfoModel) {
         self.model = model
-        self.contentCategory = contentCategory
     }
 
     // MARK: - Texts

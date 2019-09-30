@@ -12,7 +12,7 @@ final class MyQotProfileRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotProfileViewController
+    private weak var viewController: MyQotProfileViewController?
 
     // MARK: - Init
 
@@ -26,22 +26,22 @@ final class MyQotProfileRouter {
 extension MyQotProfileRouter: MyQotProfileRouterInterface {
 
     func presentAccountSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAccountSettingsSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAccountSettingsSegueIdentifier, sender: nil)
     }
 
     func presentAppSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAppSettingsSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAppSettingsSegueIdentifier, sender: nil)
     }
 
     func presentSupport() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotSupportSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotSupportSegueIdentifier, sender: nil)
     }
 
     func presentAboutTignum() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
     }
 
     func presentMyLibrary() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotMyLibrarySegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotMyLibrarySegueIdentifier, sender: nil)
     }
 }

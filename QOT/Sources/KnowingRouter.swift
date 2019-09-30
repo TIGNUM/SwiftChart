@@ -12,7 +12,7 @@ final class KnowingRouter {
 
     // MARK: - Properties
 
-    private let viewController: KnowingViewController
+    private weak var viewController: KnowingViewController?
 
     // MARK: - Init
 
@@ -25,7 +25,7 @@ final class KnowingRouter {
 
 extension KnowingRouter: KnowingRouterInterface {
     func presentWhatsHotArticle(selectedID: Int) {
-        viewController.performSegue(withIdentifier: R.segue.knowingViewController.knowArticleSegueIdentifier,
+        viewController?.performSegue(withIdentifier: R.segue.knowingViewController.knowArticleSegueIdentifier,
                                     sender: selectedID)
     }
 
@@ -34,7 +34,7 @@ extension KnowingRouter: KnowingRouterInterface {
         if let controller = R.storyboard.main()
             .instantiateViewController(withIdentifier: identifier) as? StrategyListViewController {
             StrategyListConfigurator.configure(viewController: controller, selectedStrategyID: selectedStrategyID)
-            viewController.pushToStart(childViewController: controller)
+            viewController?.pushToStart(childViewController: controller)
         }
     }
 }
