@@ -12,7 +12,7 @@ final class MyLibraryNotesRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyLibraryNotesViewController
+    private weak var viewController: MyLibraryNotesViewController?
 
     // MARK: - Init
 
@@ -25,6 +25,6 @@ final class MyLibraryNotesRouter {
 
 extension MyLibraryNotesRouter: MyLibraryNotesRouterInterface {
     func dismiss() {
-        viewController.didTapDismissButton()
+        viewController?.didTapDismissButton()
     }
 }
