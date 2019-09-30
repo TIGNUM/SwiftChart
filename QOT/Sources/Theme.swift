@@ -301,7 +301,7 @@ enum ThemableButton {
     case createAccountInfo
     case trackSelection
     case paymentReminder
-    case articleMarkAsRead
+    case articleMarkAsRead(selected: Bool)
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -340,8 +340,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
-        case .articleMarkAsRead:
-            return ButtonTheme(foreground: .accent, background: nil, border: .accent30)
+        case .articleMarkAsRead(let selected):
+            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: .accent30)
         }
     }
 
@@ -361,8 +361,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
-        case .articleMarkAsRead:
-            return ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
+        case .articleMarkAsRead(let selected):
+            return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
 
         }
     }
