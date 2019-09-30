@@ -17,6 +17,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     var interactor: MyLibraryUserStorageInteractorInterface?
 
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var editButton: AnimatedButton!
@@ -132,6 +133,7 @@ private extension MyLibraryUserStorageViewController {
 extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
+        ThemeView.headerLine.apply(headerLine)
         tableView.allowsSelection = false
         addButton.isHidden = !(interactor?.showAddButton ?? false)
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)

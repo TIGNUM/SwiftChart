@@ -24,6 +24,10 @@ final class MySprintDetailsPresenter {
 // MARK: - MySprintDetailsInterface
 
 extension MySprintDetailsPresenter: MySprintDetailsPresenterInterface {
+    func setupView() {
+        viewController?.setupView()
+    }
+
     func present() {
         viewController?.update()
     }

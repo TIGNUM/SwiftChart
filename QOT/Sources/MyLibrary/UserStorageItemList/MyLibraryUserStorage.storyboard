@@ -529,6 +529,7 @@
                         <outlet property="addButton" destination="Hbe-ks-QwL" id="0u9-QN-dKl"/>
                         <outlet property="editButton" destination="NsV-cT-rre" id="re8-BJ-JPw"/>
                         <outlet property="headerHeight" destination="rqb-Ns-Ea4" id="ebG-8x-xcT"/>
+                        <outlet property="headerLine" destination="AO9-g0-mJC" id="j1p-ss-gkM"/>
                         <outlet property="tableView" destination="ncy-Ae-bMl" id="f6U-Ir-hhf"/>
                         <outlet property="titleLabel" destination="mOE-CO-Vyr" id="S1T-RE-HpN"/>
                     </connections>

@@ -165,6 +165,7 @@
                         <viewLayoutGuide key="safeArea" id="pOq-ML-dwW"/>
                     </view>
                     <connections>
+                        <outlet property="headerLine" destination="XmZ-qh-DBk" id="uWB-ru-xhx"/>
                         <outlet property="tableView" destination="ljn-eo-sUe" id="z31-YL-ziQ"/>
                         <outlet property="titleLabel" destination="JG5-91-pyp" id="drM-Sg-Ea3"/>
                     </connections>

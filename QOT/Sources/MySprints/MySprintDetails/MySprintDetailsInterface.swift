@@ -10,6 +10,7 @@ import Foundation
 import qot_dal
 
 protocol MySprintDetailsViewControllerInterface: class {
+    func setupView()
     func update()
     func trackSprintPause()
     func trackSprintContinue()
@@ -18,6 +19,7 @@ protocol MySprintDetailsViewControllerInterface: class {
 }
 
 protocol MySprintDetailsPresenterInterface {
+    func setupView()
     func present()
     func trackSprintPause()
     func trackSprintContinue()

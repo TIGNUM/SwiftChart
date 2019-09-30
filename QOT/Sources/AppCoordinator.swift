@@ -343,7 +343,6 @@ extension AppCoordinator: PermissionManagerDelegate {
 }
 
 // MARK: Synchonization Update
-
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
@@ -355,62 +354,94 @@ extension AppCoordinator {
             switch syncResult.dataType {
             case .USER:
                 guard syncResult.syncRequestType == .DOWN_SYNC else { break }
-                UserService.main.getUserData({ (user) in
-                    guard var user = user else { return }
-                    if user.timeZone != TimeZone.hoursFromGMT {
-                        user.timeZone = TimeZone.hoursFromGMT
-                        UserService.main.updateUserData(user, { (_) in
-                            /* */
-                        })
-                    }
-                })
-                self.showSubscriptionReminderIfNeeded()
+                self.handleUserDataDownSync()
             case .MY_TO_BE_VISION:
                 guard syncResult.hasUpdatedContent else { return }
-                UserService.main.getMyToBeVision({ (vision, initiated, error) in
-                    guard error == nil, initiated == true, let vision = vision else { return }
-                    let data = ExtensionModel.ToBeVision(headline: vision.headline, text: vision.text, imageURL: vision.profileImageResource?.url())
-                    ExtensionUserDefaults.set(data, for: .toBeVision)
-                })
+                self.handleMyToBeVisionDownSync()
             case .DAILY_CHECK_IN_RESULT:
                 guard syncResult.hasUpdatedContent else { return }
-                MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
-                    guard error == nil, initiated == true, let result = results?.first else { return }
-
-                    let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? 0),
-                                                        recoveryValue: Float(result.impactReadiness ?? 0),
-                                                        feedback: result.feedback, displayDate: Date())
-                    ExtensionUserDefaults.set(data, for: .dailyPrep)
-                })
+                self.handleDailyCheckInResultDownSync()
             case .CONTENT_COLLECTION:
                 guard syncResult.hasUpdatedContent else { return }
-                ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
-                    guard let latest = items?.first else { return }
-                    let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
-                                                              title: latest.contentCategoryTitle ?? "",
-                                                              description: latest.title,
-                                                              date: latest.publishedDate ?? Date(),
-                                                              duration: latest.durationString,
-                                                              articleDate: latest.publishedDate ?? Date(),
-                                                              sortOrder: "0",
-                                                              previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
-                                                              contentCollectionID: latest.remoteID ?? 0,
-                                                              newArticle: true,
-                                                              shareableLink: latest.shareableLink)
-                    ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
-                })
+                self.handleContentDownSync()
             case .PREPARATION:
                 guard syncResult.syncRequestType == .DOWN_SYNC,
                     EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
-                UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
-                    guard let preps = preps, preps.count > 0 else { return }
-                    log("preps with missing events : \(preps)")
-                    let configurator = PreparationWithMissingEventConfigurator.make(preps)
-                    let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
-                    baseRootViewController?.present(viewController, animated: true, completion: nil)
-                })
+                self.handlePreparationDownSync()
             default: break
             }
         }
+    }
+
+    func handlePreparationDownSync() {
+        let dispatchGroup = DispatchGroup()
+        var didDownCalendarEvents = false
+        dispatchGroup.enter()
+        CalendarService.main.getCalendarEvents(from: Date(), { (_, initialized, _) in
+            didDownCalendarEvents = initialized ?? false
+            dispatchGroup.leave()
+        })
+        var preparations: [QDMUserPreparation]?
+        UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
+            preparations = preps
+        })
+
+        dispatchGroup.notify(queue: .main, execute: {
+            guard let preps = preparations, preps.count > 0, didDownCalendarEvents else { return }
+            log("preps with missing events : \(preps)")
+            let configurator = PreparationWithMissingEventConfigurator.make(preps)
+            let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
+            baseRootViewController?.present(viewController, animated: true, completion: nil)
+        })
+    }
+
+    func handleContentDownSync() {
+        ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+            guard let latest = items?.first else { return }
+            let item = ArticleCollectionViewData.Item(author: latest.author ?? "",
+                                                      title: latest.contentCategoryTitle ?? "",
+                                                      description: latest.title,
+                                                      date: latest.publishedDate ?? Date(),
+                                                      duration: latest.durationString,
+                                                      articleDate: latest.publishedDate ?? Date(),
+                                                      sortOrder: "0",
+                                                      previewImageURL: URL(string: latest.thumbnailURLString  ?? ""),
+                                                      contentCollectionID: latest.remoteID ?? 0,
+                                                      newArticle: true,
+                                                      shareableLink: latest.shareableLink)
+            ExtensionUserDefaults.set(ArticleCollectionViewData(items: [item]), for: .whatsHot)
+        })
+    }
+
+    func handleDailyCheckInResultDownSync() {
+        MyDataService.main.getDailyCheckInResults(from: Date().beginingOfDate(), to: nil, { (results, initiated, error) in
+            guard error == nil, initiated == true, let result = results?.first else { return }
+
+            let data = ExtensionModel.DailyPrep(loadValue: Float(result.load ?? 0),
+                                                recoveryValue: Float(result.impactReadiness ?? 0),
+                                                feedback: result.feedback, displayDate: Date())
+            ExtensionUserDefaults.set(data, for: .dailyPrep)
+        })
+    }
+
+    func handleMyToBeVisionDownSync() {
+        UserService.main.getMyToBeVision({ (vision, initiated, error) in
+            guard error == nil, initiated == true, let vision = vision else { return }
+            let data = ExtensionModel.ToBeVision(headline: vision.headline, text: vision.text, imageURL: vision.profileImageResource?.url())
+            ExtensionUserDefaults.set(data, for: .toBeVision)
+        })
+    }
+
+    func handleUserDataDownSync() {
+        UserService.main.getUserData({ (user) in
+            guard var user = user else { return }
+            if user.timeZone != TimeZone.hoursFromGMT {
+                user.timeZone = TimeZone.hoursFromGMT
+                UserService.main.updateUserData(user, { (_) in
+                    /* */
+                })
+            }
+        })
+        showSubscriptionReminderIfNeeded()
     }
 }

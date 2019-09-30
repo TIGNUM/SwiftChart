@@ -89,6 +89,7 @@
             <connections>
                 <outlet property="contentView" destination="s3m-A8-d02" id="CcN-eW-xZi"/>
                 <outlet property="descriptionLabel" destination="qsd-dJ-l55" id="XCP-E3-N5e"/>
+                <outlet property="headerLine" destination="1t1-mW-US1" id="V8z-vU-TEL"/>
                 <outlet property="progressLabel" destination="6dh-l0-Gu3" id="dco-dp-4ap"/>
                 <outlet property="titleLabel" destination="U3m-vF-TG7" id="jfj-Ro-fNs"/>
             </connections>

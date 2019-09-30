@@ -119,6 +119,10 @@ private extension MySprintDetailsViewController {
 // MARK: - MySprintDetailsViewControllerInterface
 
 extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface {
+    func setupView() {
+        ThemeView.level3.apply(view)
+    }
+
     func update() {
         guard let viewModel = interactor?.viewModel else {
             return
@@ -172,8 +176,7 @@ extension MySprintDetailsViewController: UITableViewDataSource {
             return cell
         case .listItem(appearance: let appearance):
             let cell: ListItemDetailsItemCell = tableView.dequeueCell(for: indexPath)
-            cell.setText(item.text)
-            cell.setAppearance(appearance)
+            cell.setText(text: item.text, appearance: appearance)
             return cell
         case .ctaItem(action: let tag):
             let cell: CtaItemDetailsItemCell = tableView.dequeueCell(for: indexPath)
