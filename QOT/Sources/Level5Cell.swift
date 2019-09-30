@@ -50,6 +50,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
+        saveButton.layer.borderWidth = 0
+        ThemeView.selectedButton.apply(saveButton)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         QOTAlert.show(title: nil, message: confirmationMessage)
         updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
@@ -97,6 +99,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func setButtonText(_ buttonText: String?) {
         saveButton.setTitle(buttonText, for: .normal)
+        ThemeView.level1.apply(saveButton)
+        saveButton.layer.borderWidth = 1
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
