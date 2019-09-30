@@ -20,19 +20,26 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var healthKitStatusLabel: UILabel!
     @IBOutlet private weak var sensorDescriptionLabel: UILabel!
     @IBOutlet private weak var sensorDescriptionHeaderabel: UILabel!
-    @IBOutlet private weak var requestActivityTrackerLabel: UILabel!
     @IBOutlet private weak var sensorHeaderLabel: UILabel!
+    @IBOutlet private weak var healthKitNoDataInfoLabel: UILabel!
+    @IBOutlet private weak var healthKitNoDataInfoHeightConstraint: NSLayoutConstraint!
     var interactor: MyQotSensorsInteractorInterface?
     var ouraRingAuthConfiguration: QDMOuraRingConfig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didUpdateData),
+                                               name: .requestSynchronization, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+    }
+
+    @objc func didUpdateData() {
+        interactor?.updateHealthKitStatus()
     }
 }
 
@@ -55,8 +62,8 @@ extension MyQotSensorsViewController {
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
-        ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
+        ThemeButton.accent40.apply(healthKitStatusButton)
+        ThemeButton.accent40.apply(ouraRingStatusButton)
     }
 
     func set(headerTitle: String, sensorTitle: String) {
@@ -64,17 +71,18 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         sensorHeaderLabel.text = sensorTitle
     }
 
-    func setHealthKit(title: String, status: String, labelStatus: String, buttonEnabled: Bool) {
-        healthKitStatusButton.isEnabled = buttonEnabled
+    func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool) {
+        ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitLabel)
+        ThemeText.mySensorsNoDataInfoLabel.apply(ScreenTitleService.main.localizedString(for: .MyQotTrackerNoDataInfo),
+                                                 to: healthKitNoDataInfoLabel)
         healthKitStatusButton.setTitle(status, for: .normal)
-        healthKitLabel.text = title
-        healthKitStatusLabel.text = labelStatus
+        healthKitStatusButton.isEnabled = buttonEnabled
+        healthKitNoDataInfoHeightConstraint.constant = showNoDataInfo ? 30 : 0
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
         ouraRingStatusButton.setTitle(status, for: .normal)
-        ouraRingLabel.text = title
-        ouraRingStatusLabel.text = labelStatus
+        ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingLabel)
     }
 
     func setSensor(title: String, description: String) {
