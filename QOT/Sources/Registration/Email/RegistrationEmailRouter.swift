@@ -12,7 +12,7 @@ final class RegistrationEmailRouter {
 
     // MARK: - Properties
 
-    private let viewController: RegistrationEmailViewController
+    private weak var viewController: RegistrationEmailViewController?
 
     // MARK: - Init
 

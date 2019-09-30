@@ -12,7 +12,7 @@ final class RegistrationCodeRouter {
 
     // MARK: - Properties
 
-    private let viewController: RegistrationCodeViewController
+    private weak var viewController: RegistrationCodeViewController?
 
     // MARK: - Init
 
@@ -43,6 +43,6 @@ private extension RegistrationCodeRouter {
                 return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: controller)
-        viewController.present(controller, animated: true, completion: nil)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }

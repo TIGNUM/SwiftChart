@@ -12,7 +12,7 @@ final class TrackSelectionRouter {
 
     // MARK: - Properties
 
-    private let viewController: TrackSelectionViewController
+    private weak var viewController: TrackSelectionViewController?
 
     // MARK: - Init
 
@@ -29,7 +29,7 @@ extension TrackSelectionRouter: TrackSelectionRouterInterface {
         guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
         let configurator = WalkthroughConfigurator.make()
         configurator(controller, trackType)
-        viewController.pushToStart(childViewController: controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 
     func showNotificationPersmission(type: AskPermission.Kind, completion: (() -> Void)?) {
@@ -37,6 +37,6 @@ extension TrackSelectionRouter: TrackSelectionRouterInterface {
             return
         }
         AskPermissionConfigurator.make(viewController: controller, type: type)
-        viewController.present(controller, animated: true, completion: completion)
+        viewController?.present(controller, animated: true, completion: completion)
     }
 }

@@ -13,7 +13,7 @@ final class ArticleRouter {
 
     // MARK: - Properties
 
-    private let viewController: ArticleViewController
+    private weak var viewController: ArticleViewController?
 
     // MARK: - Init
 
@@ -30,10 +30,10 @@ extension ArticleRouter: ArticleRouterInterface {
             UIApplication.shared.open(url)
         } else {
             do {
-                viewController.present(try WebViewController(url), animated: true, completion: nil)
+                viewController?.present(try WebViewController(url), animated: true, completion: nil)
             } catch {
                 log("Failed to open url. Error: \(error)", level: .error)
-                viewController.showAlert(type: .message(error.localizedDescription))
+                viewController?.showAlert(type: .message(error.localizedDescription))
             }
         }
     }

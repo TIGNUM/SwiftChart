@@ -13,7 +13,7 @@ final class MyQotAccountSettingsRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotAccountSettingsViewController
+    private weak var viewController: MyQotAccountSettingsViewController?
 
     // MARK: - Init
 
@@ -26,7 +26,7 @@ final class MyQotAccountSettingsRouter {
 
 extension MyQotAccountSettingsRouter: MyQotAccountSettingsRouterInterface {
     func showAlert(_ type: AlertType) {
-        viewController.showAlert(type: type)
+        viewController?.showAlert(type: type)
     }
 
     func showProgressHUD() {
@@ -38,6 +38,6 @@ extension MyQotAccountSettingsRouter: MyQotAccountSettingsRouterInterface {
     }
 
     func presentEditAccountSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotAccountSettingsViewController.myQotAccountSettingsEditAccountSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotAccountSettingsViewController.myQotAccountSettingsEditAccountSegueIdentifier, sender: nil)
     }
 }

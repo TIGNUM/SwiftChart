@@ -12,7 +12,7 @@ final class StrategyListRouter {
 
     // MARK: - Properties
 
-    private let viewController: StrategyListViewController
+    private weak var viewController: StrategyListViewController?
 
     // MARK: - Init
 
@@ -25,7 +25,7 @@ final class StrategyListRouter {
 
 extension StrategyListRouter: StrategyListRouterInterface {
     func presentArticle(selectedID: Int?) {
-        viewController.performSegue(withIdentifier: R.segue.strategyListViewController.knowStrategyArticleSegueIdentifier,
+        viewController?.performSegue(withIdentifier: R.segue.strategyListViewController.knowStrategyArticleSegueIdentifier,
                                     sender: selectedID)
     }
 }

@@ -12,7 +12,7 @@ final class MySprintNotesRouter {
 
     // MARK: - Properties
 
-    private let viewController: MySprintNotesViewController
+    private weak var viewController: MySprintNotesViewController?
 
     // MARK: - Init
 
@@ -25,6 +25,6 @@ final class MySprintNotesRouter {
 
 extension MySprintNotesRouter: MySprintNotesRouterInterface {
     func dismiss() {
-        viewController.didTapDismissButton()
+        viewController?.didTapDismissButton()
     }
 }

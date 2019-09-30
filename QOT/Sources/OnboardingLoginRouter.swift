@@ -12,7 +12,7 @@ final class OnboardingLoginRouter {
 
     // MARK: - Properties
 
-    private let viewController: OnboardingLoginViewController
+    private weak var viewController: OnboardingLoginViewController?
 
     // MARK: - Init
 

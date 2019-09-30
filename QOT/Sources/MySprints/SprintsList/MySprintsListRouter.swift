@@ -13,7 +13,7 @@ final class MySprintsListRouter {
 
     // MARK: - Properties
 
-    private let viewController: MySprintsListViewController
+    private weak var viewController: MySprintsListViewController?
 
     // MARK: - Init
 
@@ -31,6 +31,6 @@ extension MySprintsListRouter: MySprintsListRouterInterface {
         }
         let configurator = MySprintDetailsConfigurator.make()
         configurator(sprintDetailsController, sprint)
-        viewController.present(sprintDetailsController, animated: true)
+        viewController?.present(sprintDetailsController, animated: true)
     }
 }

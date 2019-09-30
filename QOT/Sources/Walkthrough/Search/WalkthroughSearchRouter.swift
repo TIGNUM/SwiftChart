@@ -12,7 +12,7 @@ final class WalkthroughSearchRouter {
 
     // MARK: - Properties
 
-    private let viewController: WalkthroughSearchViewController
+    private weak var viewController: WalkthroughSearchViewController?
 
     // MARK: - Init
 

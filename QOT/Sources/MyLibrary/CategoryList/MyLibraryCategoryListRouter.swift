@@ -13,7 +13,7 @@ final class MyLibraryCategoryListRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyLibraryCategoryListViewController
+    private weak var viewController: MyLibraryCategoryListViewController?
 
     // MARK: - Init
 
@@ -32,6 +32,6 @@ extension MyLibraryCategoryListRouter: MyLibraryCategoryListRouterInterface {
         }
         let configurator = MyLibraryUserStorageConfigurator.make()
         configurator(controller, item)
-        viewController.navigationController?.pushViewController(controller, animated: true)
+        viewController?.navigationController?.pushViewController(controller, animated: true)
     }
 }

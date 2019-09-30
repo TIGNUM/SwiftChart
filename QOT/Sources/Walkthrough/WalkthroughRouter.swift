@@ -12,7 +12,7 @@ final class WalkthroughRouter {
 
     // MARK: - Properties
 
-    private let viewController: WalkthroughViewController
+    private weak var viewController: WalkthroughViewController?
 
     // MARK: - Init
 
@@ -26,7 +26,7 @@ final class WalkthroughRouter {
 extension WalkthroughRouter: WalkthroughRouterInterface {
     func navigateToTrack(type: SelectedTrackType) {
         // Show app
-        viewController.dismiss(animated: true)
+        viewController?.dismiss(animated: true)
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.appCoordinator.showApp()
         // Guided

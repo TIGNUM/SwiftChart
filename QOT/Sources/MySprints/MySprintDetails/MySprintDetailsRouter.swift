@@ -13,7 +13,7 @@ final class MySprintDetailsRouter {
 
     // MARK: - Properties
 
-    private let viewController: MySprintDetailsViewController
+    private weak var viewController: MySprintDetailsViewController?
 
     // MARK: - Init
 
@@ -28,7 +28,7 @@ extension MySprintDetailsRouter: MySprintDetailsRouterInterface {
     func presentTakeawayCapture(for sprint: QDMSprint) {
         let configurator = DTSprintReflectionConfigurator.make(sprint: sprint)
         let controller = DTSprintReflectionViewController(configure: configurator)
-        viewController.present(controller, animated: true)
+        viewController?.present(controller, animated: true)
     }
 
     func presentNoteEditing(for sprint: QDMSprint, action: MySprintDetailsItem.Action) {
@@ -37,6 +37,6 @@ extension MySprintDetailsRouter: MySprintDetailsRouterInterface {
         }
         let configurator = MySprintNotesConfigurator.make()
         configurator(noteController, sprint, action)
-        viewController.present(noteController, animated: true, completion: nil)
+        viewController?.present(noteController, animated: true, completion: nil)
     }
 }

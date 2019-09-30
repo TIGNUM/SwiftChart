@@ -12,7 +12,7 @@ final class MyQotAppSettingsRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyQotAppSettingsViewController
+    private weak var viewController: MyQotAppSettingsViewController?
 
     // MARK: - Init
 
@@ -26,21 +26,21 @@ final class MyQotAppSettingsRouter {
 extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
 
     func openAppSettings() {
-        viewController.showAlert(type: .changeNotifications, handler: {
+        viewController?.showAlert(type: .changeNotifications, handler: {
             UIApplication.openAppSettings()
         }, handlerDestructive: nil)
     }
 
     func openCalendarSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSyncedCalendarSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSyncedCalendarSegueIdentifier, sender: nil)
     }
 
     func openActivityTrackerSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsActivityTrackerSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsActivityTrackerSegueIdentifier, sender: nil)
     }
 
     func openSiriSettings() {
-        viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSiriShortcutsSegueIdentifier, sender: nil)
+        viewController?.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSiriShortcutsSegueIdentifier, sender: nil)
     }
 
     func openCalendarPermission(_ type: AskPermission.Kind, delegate: AskPermissionDelegate) {
@@ -48,6 +48,6 @@ extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
             return
         }
         AskPermissionConfigurator.make(viewController: controller, type: type, delegate: delegate)
-        viewController.present(controller, animated: true, completion: nil)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 }

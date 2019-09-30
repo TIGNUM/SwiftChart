@@ -10,7 +10,7 @@ import Foundation
 
 final class MyToBeVisionRateRouter {
 
-    private let viewController: MyToBeVisionRateViewController
+    private weak var viewController: MyToBeVisionRateViewController?
 
     init(viewController: MyToBeVisionRateViewController) {
         self.viewController = viewController
@@ -19,6 +19,6 @@ final class MyToBeVisionRateRouter {
 
 extension MyToBeVisionRateRouter: MyToBeVisionRateRouterInterface {
     func dismiss() {
-        viewController.dismiss(animated: true)
+        viewController?.dismiss(animated: true)
     }
 }
