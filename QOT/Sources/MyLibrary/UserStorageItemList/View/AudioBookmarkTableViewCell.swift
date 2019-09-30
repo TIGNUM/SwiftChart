@@ -30,7 +30,7 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTable
         guard let url = withUrl, let title = playButtonTitle else { return }
         skeletonManager.hide()
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: skeletonManager)
-        playButton.setTitle(playButtonTitle, for: .normal)
+        playButton.setTitle(title, for: .normal)
         playButton.tag = playButtonTag
     }
 }
