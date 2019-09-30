@@ -23,6 +23,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     @IBOutlet weak var pageControllerContainer: UIView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     @IBOutlet weak var viewNavBottom: UIView!
+    @IBOutlet weak var navBottomGradientImageView: UIImageView!
     @IBOutlet weak var viewNavTop: UIView!
 
     // MARK: - Life Cycle
@@ -36,6 +37,10 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
         closeButton.setImage(image, for: .normal)
+
+        if isDark == true {
+            navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
+        }
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
