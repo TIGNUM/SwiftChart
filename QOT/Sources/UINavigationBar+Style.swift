@@ -74,6 +74,11 @@ extension UINavigationBar {
                     return true
                 }
             }
+
+            if let backBarButtonItem = item.backBarButtonItem,
+                pointTest(button: backBarButtonItem, point: point, with: event) {
+                return true
+            }
         }
         return false
     }
