@@ -11,10 +11,10 @@ import qot_dal
 
 final class MyLibraryUserStorageConfigurator {
 
-    static func make() -> (MyLibraryUserStorageViewController, UserStorageType) -> Void {
-        return { (viewController, type) in
+    static func make() -> (MyLibraryUserStorageViewController, MyLibraryCategoryListModel) -> Void {
+        return { (viewController, item) in
             let router = MyLibraryUserStorageRouter(viewController: viewController)
-            let worker = MyLibraryUserStorageWorker(type: type)
+            let worker = MyLibraryUserStorageWorker(item: item)
             let presenter = MyLibraryUserStoragePresenter(viewController: viewController)
             let interactor = MyLibraryUserStorageInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

@@ -48,14 +48,23 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
     func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Items? {
+        guard worker.model?.prepItems.count ?? 0 > indexPath.row else {
+            return nil
+        }
         return worker.model?.prepItems[indexPath.row]
     }
 
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Items? {
+        guard worker.recModel?.prepItems.count ?? 0 > indexPath.row else {
+            return nil
+        }
         return worker.recModel?.prepItems[indexPath.row]
     }
 
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Items? {
+        guard worker.mindModel?.prepItems.count ?? 0 > indexPath.row else {
+            return nil
+        }
         return worker.mindModel?.prepItems[indexPath.row]
     }
 

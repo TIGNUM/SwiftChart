@@ -15,12 +15,27 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var calendarIcon: UIImageView!
-    @IBOutlet weak var deleteButton: UIButton!
+
+    var skeletonManager = SkeletonManager()
+    var hasData = false
 
     // MARK: - Lifecycle
-
-    func configure(title: String, subtitle: String) {
-        ThemeText.myQOTPrepCellTitle.apply(title.uppercased(), to: titleLabel)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(subtitleLabel)
+        skeletonManager.addOtherView(calendarIcon)
+        ThemeView.level3.apply(self)
+        setSelectedColor(.carbon, alphaComponent: 1)
+        hasData = false
+    }
+    
+    // MARK: Configure
+    func configure(title: String?, subtitle: String?) {
+        guard let titleText = title else { return }
+        hasData = true
+        skeletonManager.hide()
+        ThemeText.myQOTPrepCellTitle.apply(titleText, to: titleLabel)
         ThemeText.datestamp.apply(subtitle, to: subtitleLabel)
     }
 }

@@ -134,11 +134,12 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.headerLine.apply(headerLine)
-
+        tableView.allowsSelection = false
         addButton.isHidden = !(interactor?.showAddButton ?? false)
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
         ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
+        tableView.isHidden = interactor?.itemCount == 0
     }
 
     func update() {
@@ -149,6 +150,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         setEditButton(enabled: interactor?.canEdit ?? false)
         addButton.isEnabled = !isEditing
 
+        tableView.isHidden = interactor?.itemCount == 0
+        tableView.allowsSelection = true
         tableView.allowsMultipleSelection = isEditing
         tableView.setEditing(isEditing, animated: true)
 
@@ -177,41 +180,47 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
 extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.items.count ?? 0
+        let count = interactor?.items.count ?? 0
+        return count > 0 ? count : 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = interactor?.items[indexPath.row]
-        let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.NOTE
-        let placeholder = R.image.preloading()
+        var item: MyLibraryCellViewModel? = nil
+        if interactor?.items.count ?? 0 > 0 {
+            item = interactor?.items[indexPath.row]
+        }
+
+        let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.DOWNLOAD
 
         var returnCell: BaseMyLibraryTableViewCellInterface?
         switch cellType {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
+            cell.configure(withUrl: item?.previewURL)
+
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
-            cell.playButton.setTitle(item?.duration, for: .normal)
-            cell.playButton.tag = indexPath.row
+            cell.configure(withUrl: item?.previewURL, playButtonTitle: item?.duration, playButtonTag: indexPath.row)
+
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.skeletonManager.addOtherView(cell.preview)
-            cell.preview.setImage(url: item?.previewURL, placeholder: placeholder, skeletonManager: cell.skeletonManager)
+            cell.configure(withUrl: item?.previewURL)
+
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
             returnCell = cell
         case .DOWNLOAD:
             let cell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.setStatus(item?.downloadStatus ?? .none)
+            if let itemModel = item {
+                cell.setStatus(itemModel.downloadStatus)
+            }
+
             returnCell = cell
         }
+
         returnCell?.setTitle(item?.title)
         returnCell?.icon.image = item?.icon
         returnCell?.setInfoText(item?.description)
