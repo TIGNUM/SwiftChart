@@ -79,7 +79,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         hideAllNoDataViews()
-        noPreparationsView.isHidden = false
         updateIndicator()
         refreshBottomNavigationItems()
     }

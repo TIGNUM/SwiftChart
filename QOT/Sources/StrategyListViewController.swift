@@ -88,8 +88,6 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
         }
         lastAudioIndexPath = indexPath
         tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 }
 

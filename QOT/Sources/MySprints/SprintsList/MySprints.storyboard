@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -29,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8rs-PO-Eew" userLabel="Header View">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="98"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="98"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1o-39-nFP">
                                         <rect key="frame" x="24" y="36" width="366" height="38"/>
@@ -191,12 +192,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="iKy-XH-TT9" secondAttribute="trailing" id="6hu-5s-Lv0"/>
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="leading" secondItem="NtN-5u-Fph" secondAttribute="leading" id="BiJ-7u-4xq"/>
-                            <constraint firstItem="8rs-PO-Eew" firstAttribute="top" secondItem="NtN-5u-Fph" secondAttribute="top" id="DDu-RT-HiP"/>
+                            <constraint firstItem="8rs-PO-Eew" firstAttribute="top" secondItem="akT-DL-HFB" secondAttribute="top" id="DDu-RT-HiP"/>
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="top" secondItem="8rs-PO-Eew" secondAttribute="bottom" id="OnV-mZ-Zet"/>
-                            <constraint firstItem="8rs-PO-Eew" firstAttribute="leading" secondItem="lKR-mS-uea" secondAttribute="leading" id="RUK-Fr-ARx"/>
+                            <constraint firstItem="8rs-PO-Eew" firstAttribute="leading" secondItem="NtN-5u-Fph" secondAttribute="leading" id="RUK-Fr-ARx"/>
                             <constraint firstAttribute="bottom" secondItem="iKy-XH-TT9" secondAttribute="bottom" id="meO-nb-7Nz"/>
-                            <constraint firstItem="8rs-PO-Eew" firstAttribute="trailing" secondItem="lKR-mS-uea" secondAttribute="trailing" id="sZM-Xf-GwS"/>
+                            <constraint firstItem="8rs-PO-Eew" firstAttribute="trailing" secondItem="NtN-5u-Fph" secondAttribute="trailing" id="sZM-Xf-GwS"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="akT-DL-HFB"/>
                     </view>
                     <connections>
                         <outlet property="editButton" destination="H95-r5-5sw" id="D5M-pl-yIC"/>

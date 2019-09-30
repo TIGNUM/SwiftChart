@@ -93,14 +93,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch MYTBVDataViewModel.Section.allCases[indexPath.section] {
         case .header:
             let cell: TBVDataGraphSubHeadingTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.delegate = self
-            let isShowMoreClicked = viewModel?.subHeading?.isSelected ?? false
-            let subHeading = viewModel?.subHeading?.title ?? ""
-            cell.configure(subHeading: subHeading, isShowMoreClicked: isShowMoreClicked)
-            cell.callback = {[weak self] newValue in
-                self?.viewModel?.subHeading?.isSelected = newValue
-                self?.reloadSubHeadingSection()
-            }
+            cell.configure(subHeading: viewModel?.subHeading?.title)
             return cell
         case .graph:
             let cell: TBVDataGraphTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -143,24 +136,6 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
             return headerView
         default:
             return nil
-        }
-    }
-}
-
-extension MyToBeVisionTrackerViewController: TBVDataGraphSubHeadingTableViewCellProtocol {
-    func showMore() {
-        if interactor?.controllerType == .tracker {
-            trackUserEvent(.SELECT, valueType: "TBVTrackerShowMore", action: .TAP)
-        } else {
-            trackUserEvent(.SELECT, valueType: "TBVDataShowMore", action: .TAP)
-        }
-    }
-
-    func showLess() {
-        if interactor?.controllerType == .tracker {
-            trackUserEvent(.SELECT, valueType: "TBVTrackerShowLess", action: .TAP)
-        } else {
-            trackUserEvent(.SELECT, valueType: "TBVDataShowLess", action: .TAP)
         }
     }
 }

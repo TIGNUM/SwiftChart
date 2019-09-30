@@ -82,7 +82,33 @@ final class UserNotificationsManager {
             dispatchGroup.leave()
         }
 
+        var preparationNotificationContents = [String]()
+        let PEAKPERFORMANCE_NOTIFICATION_CONTENT_ID = 102437
+        dispatchGroup.enter()
+        ContentService.main.getContentCollectionById(PEAKPERFORMANCE_NOTIFICATION_CONTENT_ID) { (content) in
+            preparationNotificationContents = content?.contentItems.compactMap({ $0.valueText }) ?? []
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        var ciriticalPreparations = [QDMUserPreparation]()
+        UserService.main.getUserPreparations { (preparations, initialized, error) in
+            guard let preparations = preparations, initialized == true, error == nil else {
+                dispatchGroup.leave()
+                return
+            }
+            ciriticalPreparations = preparations.filter({
+                guard $0.type == .LEVEL_CRITICAL, let eventDate = $0.eventDate else { return false }
+                return eventDate > Date().dayAfter(days: 1)
+            })
+            dispatchGroup.leave()
+        }
+
         dispatchGroup.notify(queue: .main) {
+            let preparationNotificationRequests = ciriticalPreparations.compactMap({
+                $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? "")
+            })
+            requests.append(contentsOf: preparationNotificationRequests)
             self._scheduleNotifciations(currentSprint, sprintNotificationConfig, requests)
             NotificationService.main.reportScheduledNotification(scheduledNotificationItems) { (error) in }
         }

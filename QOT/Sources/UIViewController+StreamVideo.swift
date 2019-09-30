@@ -135,7 +135,14 @@ extension UIViewController {
         playerController.overlayControls = overlay
         if let contentView = playerController.view {
             contentView.addSubview(overlay)
-            overlay.bottomAnchor == contentView.safeBottomAnchor - playerController.view.frame.height / 6
+
+            NSLayoutConstraint(item: overlay,
+                               attribute: .centerY,
+                               relatedBy: .equal,
+                               toItem: contentView,
+                               attribute: .centerY,
+                               multiplier: 1.45,
+                               constant: 0).isActive = true
             overlay.trailingAnchor == contentView.trailingAnchor
             overlay.leadingAnchor == contentView.leadingAnchor
             overlay.heightAnchor.constraint(equalToConstant: MediaPlayerOverlay.height).isActive = true

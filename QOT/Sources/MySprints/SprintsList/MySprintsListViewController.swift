@@ -87,6 +87,8 @@ private extension MySprintsListViewController {
     }
 
     private func updateInfoViewWithViewModel(_ model: MySprintsInfoAlertViewModel?) {
+        tableView.isHidden = model != nil
+
         guard let model = model else {
             infoAlertView?.dismiss()
             infoAlertView = nil
@@ -155,10 +157,8 @@ extension MySprintsListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let count = interactor?.viewModel.displayData.count, section < count else {
-            return 5
-        }
-        return count
+        guard section < (interactor?.viewModel.displayData.count ?? 0) else { return 0 }
+        return interactor?.viewModel.displayData[section].items.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -167,7 +167,7 @@ extension MySprintsListViewController: UITableViewDataSource {
             sprintCell.set(title: nil, status: nil, description: nil, progress: nil)
             return sprintCell
         }
-        sprintCell.set(title: item.title, status: item.status, description: item.statusDescription, progress: item.progress)
+        sprintCell.set(title: item.title.uppercased(), status: item.status, description: item.statusDescription, progress: item.progress)
         return sprintCell
     }
 }

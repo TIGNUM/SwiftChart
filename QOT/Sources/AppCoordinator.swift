@@ -290,15 +290,7 @@ extension AppCoordinator {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
-
-        switch scheme {
-        case .toBeVision:
-//            services?.userService.setMyToBeVisionReminder(true)
-            // REMOVE ME
-            break
-        default:
-            return
-        }
+        log("handleIncommingNotificationDeepLinkURL: \(url)", level: .info)
     }
 }
 
