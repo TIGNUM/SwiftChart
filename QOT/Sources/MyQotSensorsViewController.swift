@@ -68,7 +68,7 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
 
     func set(headerTitle: String, sensorTitle: String) {
         ThemeText.myQOTSectionHeader.apply(headerTitle, to: headerLabel)
-        sensorHeaderLabel.text = sensorTitle
+        ThemeText.mySensorsTitle.apply(sensorTitle, to: sensorHeaderLabel)
     }
 
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool) {
@@ -86,8 +86,8 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     }
 
     func setSensor(title: String, description: String) {
-        sensorDescriptionHeaderabel.text = title
-        sensorDescriptionLabel.setAttrText(text: description, font: .sfProtextRegular(ofSize: FontSize.fontSize14))
+        ThemeText.mySensorsDescriptionTitle.apply(title, to: sensorDescriptionHeaderabel)
+        ThemeText.mySensorsDescriptionBody.apply(description, to: sensorDescriptionLabel)
     }
 }
 
