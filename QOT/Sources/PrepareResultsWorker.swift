@@ -139,14 +139,6 @@ extension PrepareResultsWorker {
 
 // MARK: - Generate
 private extension PrepareResultsWorker {
-    func updateAnswerIds(_ answers: [DecisionTreeModel.SelectedAnswer],
-                         _ completion: @escaping (QDMUserPreparation?) -> Void) {
-        preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
-        knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
-        feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
-        updatePreparation(completion)
-    }
-
     func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
         guard let prepare = prepare else { return }
         let type = resultType
@@ -231,11 +223,12 @@ extension PrepareResultsWorker {
     func getDTViewModel(_ key: Prepare.Key, benefits: String?, _ completion: @escaping (DTViewModel, QDMQuestion?) -> Void) {
         currentEditKey = key
         let answerFilter = preparation?.answerFilter ?? ""
+        let selectedIds: [Int] = getSelectedIds(key: key)
         QuestionService.main.question(with: key.questionID, in: .Prepare_3_0) { (qdmQuestion) in
             guard let qdmQuestion = qdmQuestion else { return }
             let question = DTViewModel.Question(qdmQuestion: qdmQuestion)
             let filteredAnswers = qdmQuestion.answers.filter { $0.keys.contains(answerFilter) }
-            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0) }
+            let answers = filteredAnswers.compactMap { DTViewModel.Answer(qdmAnswer: $0, selectedIds: selectedIds) }
             completion(DTViewModel(question: question,
                                    answers: answers,
                                    events: [],
@@ -247,6 +240,15 @@ extension PrepareResultsWorker {
                                    dismissButtonIsHidden: false,
                                    showNextQuestionAutomated: false),
                        qdmQuestion)
+        }
+    }
+
+    func getSelectedIds(key: Prepare.Key) -> [Int] {
+        switch key {
+        case .feel: return feelAnswerIds
+        case .know: return knowAnswerIds
+        case .perceived: return preceiveAnswerIds
+        default: return []
         }
     }
 }
