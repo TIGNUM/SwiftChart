@@ -164,10 +164,10 @@ private class ShimmerAnimatedView: UIView {
 
     private func softenEdges(forView: UIView,
                              withColor: UIColor = .white) {
-        let gradientImage = UIImage(named: "skeletonGradient")?.resizableImage(withCapInsets: UIEdgeInsets(top: 20.0,
-                                                                                                           left: 20.0,
-                                                                                                           bottom: 20.0,
-                                                                                                           right: 20.0),
+        let gradientImage = UIImage(named: "skeletonGradient")?.resizableImage(withCapInsets: UIEdgeInsets(top: 10.0,
+                                                                                                           left: 10.0,
+                                                                                                           bottom: 10.0,
+                                                                                                           right: 10.0),
                                                                                resizingMode: .stretch)
         softEdgesImageView = UIImageView.init(frame: forView.bounds)
         softEdgesImageView.image = gradientImage
