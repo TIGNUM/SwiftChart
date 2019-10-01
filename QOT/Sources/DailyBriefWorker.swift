@@ -165,7 +165,6 @@ extension DailyBriefWorker {
             completion(finalQuestions)
         }
     }
-
 }
 
 // MARK: - Daily Checkin 2

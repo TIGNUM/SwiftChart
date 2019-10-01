@@ -112,9 +112,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func showQuestions(_ data: [RatingQuestionViewModel.Question]) {
-        guard let vieController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
-        DailyCheckinQuestionsConfigurator.configure(viewController: vieController, questions: data)
-        let navigationController = UINavigationController(rootViewController: vieController)
+        guard let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
+        DailyCheckinQuestionsConfigurator.configure(viewController: newController, questions: data)
+        let navigationController = UINavigationController(rootViewController: newController)
         navigationController.isNavigationBarHidden = true
         viewController?.present(navigationController, animated: true, completion: nil)
     }
