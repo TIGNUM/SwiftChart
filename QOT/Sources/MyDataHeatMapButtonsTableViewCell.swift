@@ -33,6 +33,7 @@ final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
         setupButtons()
         skeletonManager.addOtherView(dailyIRButton)
         skeletonManager.addOtherView(fiveDaysRollingIRButton)
+        selectionStyle = .none
     }
 
     func configure(with firstTitle: String?, and secondTitle: String?) {

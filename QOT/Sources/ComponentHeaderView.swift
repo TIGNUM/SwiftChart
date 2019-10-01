@@ -22,10 +22,12 @@ class ComponentHeaderView: UICollectionReusableView {
         super.awakeFromNib()
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
+        selectionStyle = .none
     }
 
     func configure(title: String?, subtitle: String?, secondary: Bool) {
         guard let title = title, let subtitle = subtitle else { return }
+        selectionStyle = .default
         skeletonManager.hide()
         let theme = secondary ? ThemeView.level1Secondary : ThemeView.level1
         ThemeText.strategyHeader.apply(title.uppercased(), to: titleLabel)
