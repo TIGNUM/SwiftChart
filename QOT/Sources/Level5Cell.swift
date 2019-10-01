@@ -35,6 +35,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        saveButton.layer.borderWidth = 1
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(introLabel)
         skeletonManager.addSubtitle(questionLabel)

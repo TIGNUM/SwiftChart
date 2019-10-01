@@ -53,6 +53,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             self?.checkScroll()
             }
         ]
+        gotItButton.layer.borderWidth = 1 // set border width default 1
         skeletonManager.addSubtitle(sprintTitle)
         skeletonManager.addSubtitle(sprintInfo)
         skeletonManager.addOtherView(tableView)
@@ -70,7 +71,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        showMoreButton.layer.borderWidth = 0
         tableView.delegate = self
         tableView.dataSource = self
         ThemeView.level2.apply(self)
@@ -85,6 +85,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
+        updateGotItButton()
     }
 
     private func updateGotItButton() {
