@@ -63,7 +63,6 @@ class SkeletonManager {
     }
 
     func hide() {
-        return
         for view in self.skeletonableTitles {
             self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
         }
