@@ -148,8 +148,8 @@ private extension SolveResultsWorker {
     func relatedStrategiesContentItems(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentItem]) -> Void) {
         contentCollection(contentId) { (content) in
             if let content = content {
-            let relatedItems = content.relatedContentItems
-            completion(relatedItems)
+                let relatedItems = content.relatedContentItems
+                completion(relatedItems)
             }
         }
     }
