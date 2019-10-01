@@ -53,7 +53,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
-    func showQuestions()
+    func showDailyCheckInQuestions()
 }
 
 protocol DailyBriefRouterInterface {
@@ -67,5 +67,5 @@ protocol DailyBriefRouterInterface {
     func displayCoachPreparationScreen()
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
-    func showQuestions(_ data: [RatingQuestionViewModel.Question])
+    func showDailyCheckInQuestions(_ data: [RatingQuestionViewModel.Question])
 }

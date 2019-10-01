@@ -356,7 +356,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
     }
 
-    func showQuestions() {
+    func showDailyCheckInQuestions() {
         worker.getQuestions{[weak self] (questions) in
             guard let finalQuestions = questions?.suffix(from: 1) else {return}
             self?.router.showQuestions(Array(finalQuestions))

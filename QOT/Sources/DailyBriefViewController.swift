@@ -29,7 +29,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
     func didChangeLocationPermission(granted: Bool)
-    func showQuestions()
+    func showDailyCheckInQuestions()
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -740,8 +740,8 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
-    func showQuestions() {
-        interactor?.showQuestions()
+    func showDailyCheckInQuestions() {
+        interactor?.showDailyCheckInQuestions()
     }
 
     func didChangeLocationPermission(granted: Bool) {}
