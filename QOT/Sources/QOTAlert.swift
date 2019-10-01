@@ -341,7 +341,7 @@ private extension QOTAlertViewController {
         }
 
         // Handle drag down
-        backgroundView.alpha = 1.0 - 0.4 * (offset / contentView.frame.size.height) // Min. alpha during swiping is 60 %
+        backgroundView.alpha = 1.0 - 0.6 * (offset / contentView.frame.size.height) // Min. alpha during swiping is 60 %
         toolbar.alpha = backgroundView.alpha
         contentView.transform = CGAffineTransform.init(translationX: 0, y: offset)
         bottomView.transform = CGAffineTransform.init(translationX: 0, y: offset)
@@ -367,3 +367,4 @@ private extension QOTAlertViewController {
         }
     }
 }
+

@@ -53,8 +53,23 @@ final class Level5Cell: BaseDailyBriefCell {
         saveButton.layer.borderWidth = 0
         ThemeView.selectedButton.apply(saveButton)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
-        QOTAlert.show(title: nil, message: confirmationMessage)
+        let closeButtonItem = createCloseButton()
+        QOTAlert.show(title: nil, message: confirmationMessage, bottomItems: [closeButtonItem])
         updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
+    }
+
+    @objc func dismissAction() {
+        QOTAlert.dismiss()
+    }
+
+    func createCloseButton() -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+        button.setImage(R.image.ic_close_rounded(), for: .normal)
+        button.imageView?.contentMode = .center
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        ThemeButton.closeButton(.dark).apply(button)
+        return UIBarButtonItem(customView: button)
     }
 
     func configure(with: Level5ViewModel?) {
