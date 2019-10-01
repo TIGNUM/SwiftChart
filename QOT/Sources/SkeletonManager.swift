@@ -26,6 +26,8 @@ class SkeletonManager {
     private var shimmerAnimationDuration: CFTimeInterval = 1.5
     private var dissolveAnimationDuration: Double = 0.75
 
+    private var originalButtonLayerBorderWidth = [String: CGFloat]()
+
     // MARK: Lifecycle
 
     init(titleColor: UIColor = .skeletonTitleColor,
@@ -80,6 +82,7 @@ class SkeletonManager {
     private func addShimmerView(to view: UIView, withBackgroundColor: UIColor, lighterShimmer: Bool) {
         if view.isKind(of: UIButton.self) {
             guard let button = view as? UIButton else { return }
+            storeLayerBorderWidth(from: button)
             button.titleLabel?.isHidden = true
             button.layer.borderWidth = 0
         }
@@ -95,7 +98,7 @@ class SkeletonManager {
         for shimmerView in view.subviews where shimmerView as? ShimmerAnimatedView != nil {
             if let button = view as? UIButton {
                 button.titleLabel?.isHidden = false
-                button.layer.borderWidth = 1
+                restoreLayerBorderWidth(for: button)
             }
             UIView.transition(with: view, duration: withAnimationDuration, options: [.transitionCrossDissolve], animations: {
                 shimmerView.removeFromSuperview()
@@ -192,6 +195,23 @@ private class ShimmerAnimatedView: UIView {
     }
 }
 
+// MARK: - Store/Restore BorderWidth for UIButton
+private extension SkeletonManager {
+    func objectAddressString(for object: UIView) -> String {
+        return String(format: "%p", unsafeBitCast(object, to: Int.self))
+    }
+
+    func storeLayerBorderWidth(from button: UIButton) {
+        originalButtonLayerBorderWidth[objectAddressString(for: button)] = button.layer.borderWidth
+    }
+
+    func restoreLayerBorderWidth(for button: UIButton) {
+        guard let borderWidth = originalButtonLayerBorderWidth[objectAddressString(for: button)] else { return }
+        button.layer.borderWidth = borderWidth
+    }
+}
+
+// MARK: - UIColor
 private extension UIColor {
     var lighter: UIColor {
         return adjust(by: 1.35)
