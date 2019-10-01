@@ -565,12 +565,17 @@ extension UIColor {
     }
 
     public class var skeletonOtherViewsColor: UIColor {
-        return UIColor(red: (45.0 / 255.0) * 0.5, green: (39.0 / 255.0) * 0.5, blue: (34.0 / 255.0) * 0.5, alpha: 1.0)
+        return UIColor(red: (45.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (39.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (34.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       alpha: 1.0)
     }
 
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }
+
+    static let skeletonIntensityFactor: CGFloat = 0.5
 
     func toColor(_ color: UIColor, ratio: CGFloat) -> UIColor {
         let percentage = max(min(ratio, 1), 0)
