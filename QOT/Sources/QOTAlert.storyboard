@@ -23,11 +23,11 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GdY-Cp-ntp" userLabel="Bottom View">
-                                <rect key="frame" x="0.0" y="685" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="682" width="414" height="896"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hf5-9i-G1g" userLabel="Content View">
-                                <rect key="frame" x="0.0" y="685" width="414" height="133"/>
+                                <rect key="frame" x="0.0" y="682" width="414" height="136"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBV-Ti-Hum" userLabel="Drag View">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="36"/>
@@ -65,8 +65,8 @@
                                 <constraints>
                                     <constraint firstItem="2tO-Z6-c8l" firstAttribute="top" secondItem="JBV-Ti-Hum" secondAttribute="bottom" constant="12" id="0YW-Hi-Pyt"/>
                                     <constraint firstItem="hOr-qE-hm4" firstAttribute="leading" secondItem="hf5-9i-G1g" secondAttribute="leading" constant="24" id="4Bi-EQ-5qf"/>
-                                    <constraint firstAttribute="bottom" secondItem="hOr-qE-hm4" secondAttribute="bottom" constant="32" id="8UB-C6-uez"/>
                                     <constraint firstItem="JBV-Ti-Hum" firstAttribute="leading" secondItem="hf5-9i-G1g" secondAttribute="leading" id="CQi-iN-9g2"/>
+                                    <constraint firstAttribute="bottom" secondItem="hOr-qE-hm4" secondAttribute="bottom" constant="35" id="CjV-te-eOK"/>
                                     <constraint firstAttribute="trailing" secondItem="hOr-qE-hm4" secondAttribute="trailing" constant="24" id="GSc-lu-ll6"/>
                                     <constraint firstAttribute="trailing" secondItem="JBV-Ti-Hum" secondAttribute="trailing" id="HbL-8r-6hh"/>
                                     <constraint firstItem="2tO-Z6-c8l" firstAttribute="leading" secondItem="hf5-9i-G1g" secondAttribute="leading" constant="24" id="XJ5-bY-mH4"/>
@@ -120,7 +120,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IBN-Rd-rS2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="123" y="129"/>
+            <point key="canvasLocation" x="121.73913043478262" y="128.57142857142856"/>
         </scene>
     </scenes>
 </document>

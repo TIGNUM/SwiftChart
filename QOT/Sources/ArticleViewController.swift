@@ -266,7 +266,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func reloadData(showNavigationBar: Bool) {
         navigationBar(show: showNavigationBar)
         tableView.reloadData()
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
+        tableView.scrollToTop(animated: true)
         setupAudioItem()
         refreshBottomNavigationItems()
     }
