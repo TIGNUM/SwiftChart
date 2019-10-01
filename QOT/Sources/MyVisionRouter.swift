@@ -20,9 +20,9 @@ final class MyVisionRouter {
 extension MyVisionRouter: MyVisionRouterInterface {
 
     func showTracker() {
-        guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        MyToBeVisionTrackerConfigurator.configure(viewController: vieController, controllerType: .tracker)
-        viewController?.present(vieController, animated: true, completion: nil)
+        guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
+        MyToBeVisionTrackerConfigurator.configure(viewController: viewController, controllerType: .tracker)
+        self.viewController?.present(viewController, animated: true, completion: nil)
     }
 
     func showEditVision(title: String, vision: String, isFromNullState: Bool) {
@@ -38,23 +38,23 @@ extension MyVisionRouter: MyVisionRouterInterface {
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
         if shouldShowNullState {
-            guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionDataNullStateViewController() else { return }
-            vieController.delegate = viewController
-            vieController.visionId = visionId
-            viewController?.present(vieController, animated: true, completion: nil)
+            guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionDataNullStateViewController() else { return }
+            viewController.delegate = self.viewController
+            viewController.visionId = visionId
+            self.viewController?.present(viewController, animated: true, completion: nil)
             return
         }
-        guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        MyToBeVisionTrackerConfigurator.configure(viewController: vieController, controllerType: .data)
-        viewController?.present(vieController, animated: true, completion: nil)
+        guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
+        MyToBeVisionTrackerConfigurator.configure(viewController: viewController, controllerType: .data)
+        self.viewController?.present(viewController, animated: true, completion: nil)
     }
 
     func showRateScreen(with id: Int) {
         guard
-            let vieController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
+            let viewController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
             let visionController = self.viewController else { return }
-        MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: vieController, visionId: id)
-        viewController?.present(vieController, animated: true, completion: nil)
+        MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: viewController, visionId: id)
+        visionController.present(viewController, animated: true, completion: nil)
     }
 
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?) {

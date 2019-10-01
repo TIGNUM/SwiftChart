@@ -40,7 +40,7 @@ final class DTPreparePresenter: DTPresenter {
         }
         if intensionViewModel != nil && presentationModel.question?.key != Prepare.Key.benefits.rawValue {
             let navigationButton = super.getNavigationButton(presentationModel, isDark: isDark)
-            let count: Int = (intensionViewModel?.answers.filter() { $0.selected })?.count ?? 0
+            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? 0
             navigationButton?.update(count: count)
             return navigationButton
         }
