@@ -44,7 +44,7 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
             ThemeText.resultCounter.apply(String(format: "%d", textView.text.count), to: counterLabel)
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.showKeyBoard()
         }
     }

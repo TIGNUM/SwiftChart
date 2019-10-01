@@ -78,6 +78,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     }
 
     @IBAction func didTapNext() {
+        constraintToZero(0.3)
         setAnswerNeedsSelection()
         loadNextQuestion()
     }
@@ -293,10 +294,16 @@ extension DTViewController {
 
     @objc func keyboardWillHide(notification: Notification) {
         if let duration = notification.userInfo?[UIKeyboardAnimationDurationUserInfoKey] as? Double {
-            constraintBottom.constant = 0.0
-            UIView.animate(withDuration: duration) {
-                self.view.layoutIfNeeded()
-            }
+            constraintToZero(duration)
+        }
+    }
+
+    private func constraintToZero(_ duration: Double) {
+        if constraintBottom.constant == 0 { return }
+
+        constraintBottom.constant = 0
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
         }
     }
 }
