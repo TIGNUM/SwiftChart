@@ -37,7 +37,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if showDailyCheckInScreen {
-            delegate?.showDailyCheckIn()
+            delegate?.showQuestions()
         } else {
             trackState = !trackState
             impactReadinessButton.flipImage(trackState)

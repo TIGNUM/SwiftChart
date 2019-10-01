@@ -40,7 +40,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     func presentCopyRight(copyrightURL: String?)
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func showSolveResults(solve: QDMSolve)
-    func showDailyCheckIn()
     func showCustomizeTarget()
     func displayCoachPreparationScreen()
 
@@ -54,6 +53,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateDailyBriefBucket()
+    func showQuestions()
 }
 
 protocol DailyBriefRouterInterface {
@@ -63,9 +63,9 @@ protocol DailyBriefRouterInterface {
     func presentStrategyList(selectedStrategyID: Int)
     func presentToolsItems(selectedToolID: Int?)
     func showSolveResults(solve: QDMSolve)
-    func showDailyCheckIn()
     func presentCopyRight(copyrightURL: String?)
     func displayCoachPreparationScreen()
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
+    func showQuestions(_ data: [RatingQuestionViewModel.Question])
 }

@@ -14,7 +14,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
-    func showDailyCheckIn()
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
@@ -30,6 +29,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
     func didChangeLocationPermission(granted: Bool)
+    func showQuestions()
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -737,6 +737,11 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func showQuestions() {
+        interactor?.showQuestions()
+    }
+
     func didChangeLocationPermission(granted: Bool) {}
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
@@ -798,10 +803,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDecisionTree)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
-    }
-
-    func showDailyCheckIn() {
-        interactor?.showDailyCheckIn()
     }
 
     func presentCopyRight(copyrightURL: String?) {
