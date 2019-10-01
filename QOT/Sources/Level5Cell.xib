@@ -347,7 +347,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VH1-hy-l0l" userLabel="ButtonView">
                         <rect key="frame" x="0.0" y="694" width="449" height="74.5"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-U2-IS7" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fcW-U2-IS7" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="353" y="0.0" width="72" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="CJY-Pu-G5c"/>

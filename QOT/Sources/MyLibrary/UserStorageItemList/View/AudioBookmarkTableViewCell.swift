@@ -29,7 +29,6 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTable
     func configure(withUrl: URL?, playButtonTitle: String?, playButtonTag: Int = 0) {
         guard let url = withUrl, let title = playButtonTitle else { return }
         super.configure()
-        skeletonManager.hide()
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: skeletonManager)
         playButton.setTitle(title, for: .normal)
         playButton.tag = playButtonTag
