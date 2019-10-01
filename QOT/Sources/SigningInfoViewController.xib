@@ -36,7 +36,7 @@
                         <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1024:2218" id="GqP-UU-Uxj"/>
                     </constraints>
                 </view>
-                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBN-FH-QrV">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBN-FH-QrV">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-MD-3Ih" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">

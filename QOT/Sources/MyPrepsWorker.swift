@@ -12,14 +12,13 @@ import qot_dal
 final class MyPrepsWorker {
 
     // MARK: - Properties
-    private let userService = qot_dal.UserService.main
     var model: MyPrepsModel?
     var recModel: RecoveriesModel?
     var mindModel: MindsetShiftersModel?
 
     // MARK: - Functions
     func preparations(completion: @escaping (MyPrepsModel?) -> Void) {
-        userService.getUserPreparations { [weak self] (preparations, initialized, error) in
+        UserService.main.getUserPreparations { [weak self] (preparations, initialized, error) in
             var prepItems = [MyPrepsModel.Items]()
             preparations?.forEach {
                 let dateString = $0.eventDate?.eventDateString
@@ -35,7 +34,7 @@ final class MyPrepsWorker {
     }
 
     func recoveries(completion: @escaping (RecoveriesModel?) -> Void) {
-        qot_dal.UserService.main.getRecovery3D { [weak self] (recoveries, initialized, error) in
+        UserService.main.getRecovery3D { [weak self] (recoveries, initialized, error) in
             var recoveryItems = [RecoveriesModel.Items]()
             recoveries?.forEach {
                 let recoveryItem = RecoveriesModel.Items(title: $0.causeAnwser?.subtitle ?? "",
@@ -49,7 +48,7 @@ final class MyPrepsWorker {
     }
 
     func mindsetShifters(completion: @escaping (MindsetShiftersModel?) -> Void) {
-        userService.getMindsetShifters { [weak self] (mindsetShifters, initialized, error) in
+        UserService.main.getMindsetShifters { [weak self] (mindsetShifters, initialized, error) in
             var mindsetItems = [MindsetShiftersModel.Items]()
             mindsetShifters?.forEach {
                 let mindsetItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.subtitle ?? "",
