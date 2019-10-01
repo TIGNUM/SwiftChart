@@ -86,7 +86,7 @@ class SkeletonManager {
         let shimmerView = ShimmerAnimatedView.init(frame: view.frame, color: withBackgroundColor, animationDuration: shimmerAnimationDuration, lighterShimmer: lighterShimmer)
         shimmerView.isUserInteractionEnabled = true
         UIView.transition(with: view, duration: dissolveAnimationDuration, options: [.transitionCrossDissolve], animations: {
-            shimmerView.fillOverLayerBorder(withSuperview: view)
+            shimmerView.fillOverLayerBorder(for: shimmerView, superview: view)
             view.bringSubview(toFront: shimmerView)
         }, completion: nil)
     }
@@ -106,6 +106,7 @@ class SkeletonManager {
 
 private class ShimmerAnimatedView: UIView {
     private var gradientLayer = CAGradientLayer()
+    private var softEdgesImageView = UIImageView()
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -117,8 +118,9 @@ private class ShimmerAnimatedView: UIView {
 
     convenience init(frame: CGRect = .zero, color: UIColor, animationDuration: CFTimeInterval, lighterShimmer: Bool) {
         self.init(frame: frame)
-        self.backgroundColor = color
-        self.addGradientLayer(toView: self,
+        backgroundColor = color
+        softenEdges(forView: self, withColor: .carbon)
+        addGradientLayer(toView: self,
                               withColor: color,
                               lighterShimmer: lighterShimmer,
                               animationDuration: animationDuration)
@@ -126,7 +128,7 @@ private class ShimmerAnimatedView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        gradientLayer.frame = self.bounds
+        gradientLayer.frame = bounds
     }
 
     private func addGradientLayer(toView: UIView,
@@ -136,12 +138,14 @@ private class ShimmerAnimatedView: UIView {
                                  animated: Bool = true) {
 
         gradientLayer.colors = [withColor.cgColor,
-                                lighterShimmer ? withColor.lighter.cgColor : withColor.darker.cgColor,
+                                lighterShimmer ? withColor.withAlphaComponent(0.5).lighter.cgColor :
+                                                 withColor.withAlphaComponent(0.5).darker.cgColor,
                                 withColor.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0.0, y: 1.0)
-        gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+        gradientLayer.startPoint = CGPoint(x: 0.7, y: 1.0)
+        gradientLayer.endPoint = CGPoint(x: 0.0, y: 0.8)
         gradientLayer.frame = toView.bounds
-        toView.layer.addSublayer(gradientLayer)
+
+        toView.layer.insertSublayer(gradientLayer, below: softEdgesImageView.layer)
         toView.layer.masksToBounds = true
 
         if animated {
@@ -155,40 +159,57 @@ private class ShimmerAnimatedView: UIView {
         }
     }
 
-    func fillOverLayerBorder(withSuperview: UIView) {
-        if self.superview != withSuperview {
-            withSuperview.addSubview(self)
-        }
+    private func softenEdges(forView: UIView,
+                             withColor: UIColor = .white) {
+        let gradientImage = UIImage(named: "skeletonGradient")?.resizableImage(withCapInsets: UIEdgeInsets(top: 20.0,
+                                                                                                           left: 20.0,
+                                                                                                           bottom: 20.0,
+                                                                                                           right: 20.0),
+                                                                               resizingMode: .stretch)
+        softEdgesImageView = UIImageView.init(frame: forView.bounds)
+        softEdgesImageView.image = gradientImage
+        softEdgesImageView.tintColor = .carbon
+        softEdgesImageView.contentMode = .scaleToFill
+        fillOverLayerBorder(for: softEdgesImageView, superview: forView)
+        softEdgesImageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
+        softEdgesImageView.setContentCompressionResistancePriority(.defaultLow, for: .horizontal)
+    }
 
-        self.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint(item: self,
+    func fillOverLayerBorder(for subview: UIView, superview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        if subview.superview != superview {
+            superview.addSubview(subview)
+        }
+        superview.addConstraints([
+        NSLayoutConstraint(item: subview,
                            attribute: .centerX,
                            relatedBy: .equal,
-                           toItem: withSuperview,
+                           toItem: superview,
                            attribute: .centerX,
                            multiplier: 1,
-                           constant: 0).isActive = true
-        NSLayoutConstraint(item: self,
+                           constant: 0),
+        NSLayoutConstraint(item: subview,
                            attribute: .centerY,
                            relatedBy: .equal,
-                           toItem: withSuperview,
+                           toItem: superview,
                            attribute: .centerY,
                            multiplier: 1,
-                           constant: 0).isActive = true
-        NSLayoutConstraint(item: self,
+                           constant: 0),
+        NSLayoutConstraint(item: subview,
                            attribute: .width,
                            relatedBy: .equal,
-                           toItem: withSuperview,
+                           toItem: superview,
                            attribute: .width,
                            multiplier: 1,
-                           constant: 2).isActive = true
-        NSLayoutConstraint(item: self,
+                           constant: 0),
+        NSLayoutConstraint(item: subview,
                            attribute: .height,
                            relatedBy: .equal,
-                           toItem: withSuperview,
+                           toItem: superview,
                            attribute: .height,
                            multiplier: 1,
-                           constant: 2).isActive = true
+                           constant: 0)
+        ])
     }
 }
 

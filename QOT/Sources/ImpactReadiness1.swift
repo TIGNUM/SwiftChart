@@ -33,7 +33,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         toBeVisionImage.gradientBackground(top: true)
         toBeVisionImage.gradientBackground(top: false)
-        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(impactReadinessScore)
         skeletonManager.addSubtitle(impactReadinessOutOf100Label)
         skeletonManager.addSubtitle(content)
