@@ -104,67 +104,6 @@ extension DailyBriefWorker {
             }
         })
     }
-
-    func getQuestions(_ completion: @escaping([RatingQuestionViewModel.Question]?) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        var dailyCheckInQuestions = [QDMQuestion]()
-        var hasSleepQuality = false
-        var hasSleepQuantity = false
-
-        dispatchGroup.enter()
-        healthService.availableHealthIndexesForToday({ (indexes) in
-            for index in indexes ?? [] {
-                switch index {
-                case .RECOVERY_INDEX: hasSleepQuality = true
-                case .SLEEP_DURATION: hasSleepQuantity = true
-                }
-            }
-            dispatchGroup.leave()
-        })
-
-        dispatchGroup.enter()
-        questionService.dailyCheckInQuestions { (questions) in
-            dailyCheckInQuestions = questions ?? []
-            dispatchGroup.leave()
-        }
-
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            var keysToFilter = [String]()
-            if hasSleepQuality {
-                keysToFilter.append("sleep.quality")
-            }
-            if hasSleepQuantity {
-                keysToFilter.append("sleep.quantity.time")
-            }
-
-            let finalQuestions = dailyCheckInQuestions.filter({ keysToFilter.contains(obj: $0.key) != true })
-                .compactMap { (question) -> RatingQuestionViewModel.Question? in
-                    guard let remoteID = question.remoteID else { return nil }
-                    let answers = question.answers.sorted(by: {$0.sortOrder ?? 0 > $1.sortOrder ?? 0})
-                        .compactMap({ (answer) -> RatingQuestionViewModel.Answer in
-                            return RatingQuestionViewModel.Answer(remoteID: answer.remoteID,
-                                                                  title: answer.title,
-                                                                  subtitle: answer.subtitle)
-                        })
-
-                    return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                            title: question.title,
-                                                            htmlTitle: question.htmlTitleString,
-                                                            subtitle: question.subtitle,
-                                                            dailyPrepTitle: question.dailyPrepTitle,
-                                                            key: question.key,
-                                                            answers: answers,
-                                                            range: nil,
-                                                            toBeVisionTrackId: question.toBeVisionTrackId,
-                                                            SHPIQuestionId: question.SHPIQuestionId,
-                                                            groups: question.groups,
-                                                            buttonText: question.defaultButtonText,
-                                                            selectedAnswerIndex: nil)
-            }
-            self?.questions = finalQuestions
-            completion(finalQuestions)
-        }
-    }
 }
 
 // MARK: - Daily Checkin 2
