@@ -110,11 +110,11 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         worker.deletePreparation()
     }
 
-    func updatePreparation() {
-        worker.updatePreparation { _ in }
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
+        worker.updatePreparation(completion)
     }
 
     func didClickSaveAndContinue() {
-        updatePreparation()
+        updatePreparation { _ in }
     }
 }

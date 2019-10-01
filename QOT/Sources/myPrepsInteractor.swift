@@ -27,14 +27,18 @@ final class MyPrepsInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.createModels {
-            self.presenter.dataUpdated()
-        }
+       fetchItemsAndUpdateView()
     }
 }
 
 // MARK: - MyPrepsInteractorInterface
 extension MyPrepsInteractor: MyPrepsInteractorInterface {
+    func fetchItemsAndUpdateView() {
+        worker.createModels {
+            self.presenter.dataUpdated()
+        }
+    }
+
     func numberOfRowsPreparations(in section: Int) -> Int {
         return (worker.model?.prepItems.count ?? 0)
     }

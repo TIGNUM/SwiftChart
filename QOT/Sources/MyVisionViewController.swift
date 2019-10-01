@@ -204,6 +204,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
+        ThemeBorder.accent40.apply(shareButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)
