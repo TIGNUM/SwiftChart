@@ -15,7 +15,7 @@ final class RegistrationAgeInteractor {
     private let worker: RegistrationAgeWorker
     private let presenter: RegistrationAgePresenterInterface
     private let router: RegistrationAgeRouterInterface
-    private let delegate: RegistrationDelegate
+    private weak var delegate: RegistrationDelegate?
 
     // MARK: - Init
 
@@ -62,10 +62,10 @@ final class RegistrationAgeInteractor {
 
 extension RegistrationAgeInteractor: RegistrationAgeInteractorInterface {
     func didTapBack() {
-        delegate.didTapBack()
+        delegate?.didTapBack()
     }
 
     func didTapNext(with birthYear: String) {
-        delegate.didTapCreateAccount(with: birthYear)
+        delegate?.didTapCreateAccount(with: birthYear)
     }
 }

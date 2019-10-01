@@ -13,7 +13,7 @@ final class MyLibraryUserStorageRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyLibraryUserStorageViewController
+    private weak var viewController: MyLibraryUserStorageViewController?
 
     // MARK: - Init
 
@@ -31,11 +31,11 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController.present(articleViewController, animated: true, completion: nil)
+        viewController?.present(articleViewController, animated: true, completion: nil)
     }
 
     func presentVideo(url: URL, item: QDMContentItem?) {
-        viewController.stream(videoURL: url, contentItem: item)
+        viewController?.stream(videoURL: url, contentItem: item)
     }
 
     func presentExternalUrl(_ url: URL) {
@@ -48,6 +48,6 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
         }
         let configurator = MyLibraryNotesConfigurator.make()
         configurator(noteController, noteId)
-        viewController.present(noteController, animated: true, completion: nil)
+        viewController?.present(noteController, animated: true, completion: nil)
     }
 }

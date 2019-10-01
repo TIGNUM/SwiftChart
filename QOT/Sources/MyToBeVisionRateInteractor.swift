@@ -42,12 +42,8 @@ final class MyToBeVisionRateInteractor {
 extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func viewDidLoad() {
-        if !worker.skipCounterView {
-            countDownView()
-        } else {
-            getQuestions {[weak self] (questions) in
-                self?.presenter.setupView(questions: questions)
-            }
+        getQuestions {[weak self] (questions) in
+            self?.presenter.setupView(questions: questions)
         }
     }
 
@@ -57,16 +53,6 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func saveQuestions() {
         worker.saveQuestions()
-    }
-
-    func skipCountDownView() {
-        getQuestions {[weak self] (questions) in
-            self?.presenter.setupView(questions: questions)
-        }
-    }
-
-    func hideTimerView(completion: @escaping (() -> Void)) {
-        presenter.hideTimerView(completion: completion)
     }
 
     func showScreenLoader() {
@@ -79,10 +65,5 @@ extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func dismiss() {
         router.dismiss()
-    }
-
-    func countDownView() {
-        let view = worker.countDownView()
-        presenter.showCountDownView(view)
     }
 }

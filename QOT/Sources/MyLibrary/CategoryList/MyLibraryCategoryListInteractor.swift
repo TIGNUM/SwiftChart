@@ -67,7 +67,7 @@ extension MyLibraryCategoryListInteractor: MyLibraryCategoryListInteractorInterf
     func handleSelectedItem(at index: Int) {
         if categoryItems.count > index {
             let item = categoryItems[index]
-            router.presentLibraryItems(for: item.type)
+            router.presentLibraryItems(for: item)
         }
     }
 }

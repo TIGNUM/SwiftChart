@@ -21,8 +21,8 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
                    author: String?,
                    timeToRead: String?,
                    imageURL: URL?,
-                   isNew: Bool,
-                   forcedColorMode: ThemeColorMode) {
+                   isNew: Bool?,
+                   forcedColorMode: ThemeColorMode?) {
         whatsHotComponentView.configure(title: title?.uppercased(),
                                         publishDate: publishDate,
                                         author: author,

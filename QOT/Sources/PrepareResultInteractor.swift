@@ -79,13 +79,13 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func presentEditIntentions(_ key: Prepare.Key) {
-        worker.getDTViewModel(key) { [weak self] (viewModel, question) in
+        worker.getDTViewModel(key, benefits: nil) { [weak self] (viewModel, question) in
             self?.router.presentEditIntentions(viewModel, question: question)
         }
     }
 
-    func presentEditBenefits(benefits: String?, questionID: Int) {
-        worker.getDTViewModel(Prepare.Key.benefits) { [weak self] (viewModel, question) in
+    func presentEditBenefits(benefits: String?) {
+        worker.getDTViewModel(Prepare.Key.benefits, benefits: benefits) { [weak self] (viewModel, question) in
             self?.router.presentEditIntentions(viewModel, question: question)
         }
     }
@@ -110,11 +110,11 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         worker.deletePreparation()
     }
 
-    func updatePreparation() {
-        worker.updatePreparation { _ in }
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
+        worker.updatePreparation(completion)
     }
 
     func didClickSaveAndContinue() {
-        updatePreparation()
+        updatePreparation { _ in }
     }
 }

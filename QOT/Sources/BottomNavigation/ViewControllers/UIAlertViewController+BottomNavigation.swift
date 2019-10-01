@@ -12,6 +12,7 @@ import RSKImageCropper
 import Social
 import MessageUI
 import qot_dal
+import EventKitUI
 
 extension UIViewController {
     static var _lastBottomNavigationItem = [String: BottomNavigationItem]()
@@ -48,6 +49,11 @@ extension UIViewController {
         }
     }
 }
+
+extension EKEventEditViewController: ScreenZLevelOverlay {
+
+}
+
 extension SFSafariViewController: ScreenZLevelOverlay {
 
 }

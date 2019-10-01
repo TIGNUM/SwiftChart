@@ -116,6 +116,10 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return worker.contentType
     }
 
+    var itemCount: Int {
+        return worker.itemCount
+    }
+
     func didTapEdit(isEditing: Bool) {
         notificationCenter.post(name: .stopAudio, object: nil)
         self.isEditing = isEditing

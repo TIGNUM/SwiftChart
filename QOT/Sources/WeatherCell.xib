@@ -43,39 +43,39 @@
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="placeholder_large" translatesAutoresizingMaskIntoConstraints="NO" id="j1u-DS-AeZ">
-                        <rect key="frame" x="324" y="40" width="82" height="82"/>
+                        <rect key="frame" x="324" y="198" width="82" height="82"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="82" id="Ivn-0U-9pW"/>
                             <constraint firstAttribute="width" constant="82" id="JnZ-cQ-GOJ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" ambiguous="YES" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
-                        <rect key="frame" x="24" y="321.66666666666669" width="300" height="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
+                        <rect key="frame" x="24" y="270" width="300" height="19"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" ambiguous="YES" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-AQ-5eT">
-                        <rect key="frame" x="24" y="360.66666666666669" width="300" height="48"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-AQ-5eT">
+                        <rect key="frame" x="24" y="309" width="300" height="24"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" ambiguous="YES" text="We can't show you any weather data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-Xj-mOD">
-                        <rect key="frame" x="24" y="415.66666666666674" width="382" height="19.333333333333314"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="We can't show you any weather data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-Xj-mOD">
+                        <rect key="frame" x="24" y="340" width="382" height="19.333333333333314"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CmA-Lc-aRn" userLabel="Seaparator View">
-                        <rect key="frame" x="0.0" y="456.66666666666669" width="430" height="1"/>
+                        <rect key="frame" x="0.0" y="379.33333333333331" width="430" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.097795376712328783" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wcq-es-30Y"/>
                         </constraints>
                     </view>
                     <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="252" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="349-bm-c0Q">
-                        <rect key="frame" x="0.0" y="467.66666666666669" width="430" height="80.000000000000057"/>
+                        <rect key="frame" x="0.0" y="390.33333333333331" width="430" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WZQ-cb-dX0">
                                 <rect key="frame" x="16" y="0.0" width="1050" height="80"/>
@@ -94,7 +94,7 @@
                         </constraints>
                     </scrollView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-es-4Cw">
-                        <rect key="frame" x="24" y="575.66666666666663" width="188" height="70"/>
+                        <rect key="frame" x="24" y="498.33333333333331" width="195" height="147.33333333333331"/>
                         <string key="text">Allow QOT to access
 your location while 
 using the app?</string>
@@ -103,7 +103,7 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-Xc-Qoc" userLabel="HeaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="0.0"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="199.33333333333334"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
                                 <rect key="frame" x="24" y="60" width="16" height="1"/>
@@ -114,7 +114,7 @@ using the app?</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="76" width="94" height="24"/>
+                                <rect key="frame" x="24" y="76" width="89" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
                                 </constraints>
@@ -122,9 +122,10 @@ using the app?</string>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Two days ago you explored some solutions to help you during difficult high-performance situations." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="24" y="132" width="382" height="37.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
+                                <rect key="frame" x="24" y="132" width="382" height="57.333333333333343"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <string key="text">Two days ago you explored some solutions to help you during difficult high-performance situations. Test 3 lines longer than something more.</string>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -137,41 +138,52 @@ using the app?</string>
                             <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="32" id="edG-Bv-9UV"/>
                             <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="top" constant="60" id="gmH-b6-XVU"/>
                             <constraint firstItem="ft1-S7-msi" firstAttribute="leading" secondItem="TQ7-Xc-Qoc" secondAttribute="leading" constant="24" id="hME-rC-lZY"/>
-                            <constraint firstAttribute="height" id="hX3-3b-Wta"/>
                             <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="IAV-Ov-hU9" secondAttribute="leading" id="kKU-AL-cKH"/>
                             <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" constant="24" id="ojL-JS-RdG"/>
                             <constraint firstItem="IAV-Ov-hU9" firstAttribute="leading" secondItem="ft1-S7-msi" secondAttribute="leading" id="pkb-G5-nbz"/>
                         </constraints>
                     </view>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="547.66666666666663"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV6-1Z-gcH">
+                        <rect key="frame" x="0.0" y="197.99999999999997" width="430" height="272.33333333333326"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
+                                <rect key="frame" x="51.666666666666657" y="0.0" width="327" height="272.33333333333331"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="mGO-3j-huH" firstAttribute="centerX" secondItem="uV6-1Z-gcH" secondAttribute="centerX" id="FdX-24-NwM"/>
+                            <constraint firstItem="mGO-3j-huH" firstAttribute="height" secondItem="uV6-1Z-gcH" secondAttribute="height" id="LUc-7a-N0L"/>
+                            <constraint firstItem="mGO-3j-huH" firstAttribute="centerY" secondItem="uV6-1Z-gcH" secondAttribute="centerY" id="jEZ-ST-0Xr"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="0Tq-Cw-2et"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="48g-Rp-swp"/>
-                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="bottom" constant="40" id="4uF-Oe-hV8"/>
+                    <constraint firstItem="uV6-1Z-gcH" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="4sc-fu-Ia0"/>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="bottom" secondItem="O3R-Xj-mOD" secondAttribute="top" constant="-7" id="94E-Av-Tm4"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="lessThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.5" id="9Sg-c1-Xg1"/>
                     <constraint firstItem="CmA-Lc-aRn" firstAttribute="top" secondItem="O3R-Xj-mOD" secondAttribute="bottom" constant="20" id="9eB-VA-x0I"/>
-                    <constraint firstItem="mGO-3j-huH" firstAttribute="centerX" secondItem="Auc-IE-jDT" secondAttribute="centerX" id="Cd3-py-fQI"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="trailing" secondItem="CmA-Lc-aRn" secondAttribute="trailing" id="ERY-4e-bAg"/>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="top" secondItem="j3g-Se-GqU" secondAttribute="bottom" constant="20" id="JDe-vC-tbH"/>
                     <constraint firstItem="Vjm-ra-cbt" firstAttribute="top" secondItem="HOh-es-4Cw" secondAttribute="bottom" constant="14" id="NvD-Nx-9Og"/>
-                    <constraint firstItem="mGO-3j-huH" firstAttribute="bottom" secondItem="349-bm-c0Q" secondAttribute="bottom" id="Sep-g0-CeK"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.3" id="TOz-Cc-jif"/>
-                    <constraint firstItem="mGO-3j-huH" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="UdK-aj-aKP"/>
+                    <constraint firstItem="uV6-1Z-gcH" firstAttribute="centerX" secondItem="Auc-IE-jDT" secondAttribute="centerX" id="Vf0-n9-UUR"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="leading" secondItem="CmA-Lc-aRn" secondAttribute="leading" id="Wqy-YA-yoN"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="top" secondItem="CmA-Lc-aRn" secondAttribute="bottom" constant="10" id="YYk-xb-ayK"/>
-                    <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="avU-ax-R72"/>
                     <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="28" id="elm-az-MtF"/>
-                    <constraint firstItem="j3g-Se-GqU" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="bottom" id="ftH-qo-kGs"/>
+                    <constraint firstItem="uV6-1Z-gcH" firstAttribute="bottom" secondItem="349-bm-c0Q" secondAttribute="bottom" id="fdV-oU-MgC"/>
+                    <constraint firstItem="j3g-Se-GqU" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="bottom" constant="-10" id="ftH-qo-kGs"/>
+                    <constraint firstItem="uV6-1Z-gcH" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="top" id="gIt-Ub-uWa"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="ZlO-AQ-5eT" secondAttribute="trailing" id="i4S-5o-EpQ"/>
-                    <constraint firstItem="mGO-3j-huH" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="bottom" id="ljc-LK-Pum"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="top" secondItem="349-bm-c0Q" secondAttribute="bottom" constant="28" id="mUD-bx-VMN"/>
                     <constraint firstAttribute="trailing" secondItem="Vjm-ra-cbt" secondAttribute="trailing" constant="24" id="oQr-Ju-2AW"/>
+                    <constraint firstAttribute="trailing" secondItem="TQ7-Xc-Qoc" secondAttribute="trailing" id="uUi-kX-QCV"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="v9Z-tV-1uN"/>
+                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="198" id="yVZ-kX-u4G"/>
                     <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" id="yyl-UY-hwO"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="zs5-h3-Y9W"/>
                 </constraints>
@@ -190,16 +202,18 @@ using the app?</string>
             <connections>
                 <outlet property="accessButton" destination="Vjm-ra-cbt" id="lQu-5l-Q8s"/>
                 <outlet property="accessButtonHeightConstraint" destination="Bs0-gv-xpB" id="6Mt-h9-mOy"/>
-                <outlet property="accessImageView" destination="mGO-3j-huH" id="yn9-0A-LVM"/>
+                <outlet property="accessImageContainerView" destination="uV6-1Z-gcH" id="eA6-sI-P4X"/>
+                <outlet property="accessImageView" destination="mGO-3j-huH" id="7ya-Yl-i96"/>
                 <outlet property="accessLabel" destination="HOh-es-4Cw" id="df4-Up-iaF"/>
                 <outlet property="bucketTitleLabel" destination="IAV-Ov-hU9" id="LSI-bO-PE1"/>
-                <outlet property="headerViewHeightConstraint" destination="hX3-3b-Wta" id="5o1-CH-tnx"/>
+                <outlet property="headerView" destination="TQ7-Xc-Qoc" id="mUv-Gx-OTO"/>
                 <outlet property="hourlyStackView" destination="WZQ-cb-dX0" id="DKt-fC-weI"/>
                 <outlet property="introLabel" destination="w4g-tE-UTh" id="oIU-9A-hET"/>
                 <outlet property="lineView" destination="ft1-S7-msi" id="FKn-FP-gqb"/>
                 <outlet property="weatherBodyLabel" destination="O3R-Xj-mOD" id="qSC-Ez-HD8"/>
                 <outlet property="weatherDescriptionLabel" destination="j3g-Se-GqU" id="1FV-oN-beJ"/>
                 <outlet property="weatherImageView" destination="j1u-DS-AeZ" id="qNa-Ga-D44"/>
+                <outlet property="weatherImageViewTopConstraint" destination="yVZ-kX-u4G" id="HdM-QF-UZC"/>
                 <outlet property="weatherTitleLabel" destination="ZlO-AQ-5eT" id="Wph-e1-GM4"/>
                 <outletCollection property="verticalHeaderConstraints" destination="gmH-b6-XVU" collectionClass="NSMutableArray" id="AV9-DL-5Vv"/>
                 <outletCollection property="verticalHeaderConstraints" destination="Tj9-c1-3ng" collectionClass="NSMutableArray" id="VMa-dp-zsC"/>
@@ -211,7 +225,7 @@ using the app?</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="location_permission" width="375" height="560"/>
+        <image name="location_permission" width="327" height="271"/>
         <image name="placeholder_large" width="74" height="51"/>
     </resources>
 </document>

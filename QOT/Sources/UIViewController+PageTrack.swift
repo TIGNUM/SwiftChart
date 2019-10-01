@@ -54,7 +54,6 @@ extension UIViewController {
         case is MyVisionViewController: return "tobevision"
         case is MyVisionEditDetailsViewController: return "tobevision.edit"
         case is MyToBeVisionRateViewController: return "tobevision.tracker.questionaire"
-        case is MyToBeVisionCountDownViewController: return "tobevision.tracker.countdown"
         case is MyToBeVisionTrackerViewController: return myToBeVisionTrackerViewControllerPageKey
         case is CoachViewController: return "coach.main"
         case is SearchViewController: return "search.main"

@@ -31,7 +31,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func presentRelatedArticle(readMoreID: Int)
     func presentEditStrategyView()
     func presentEditIntentions(_ key: Prepare.Key)
-    func presentEditBenefits(benefits: String?, questionID: Int)
+    func presentEditBenefits(benefits: String?)
     func updateStrategies(selectedIds: [Int])
     func updateIntentions(_ answersIds: [Int])
     func updateBenefits(_ benefits: String)
@@ -39,7 +39,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func didTapDismissView()
     func presentFeedback()
     func deletePreparation()
-    func updatePreparation()
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol PrepareResultsRouterInterface {

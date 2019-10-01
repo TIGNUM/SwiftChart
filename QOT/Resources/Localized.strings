@@ -70,7 +70,7 @@
 "MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
 "MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
-"Sidebar.Title.Logout" = "Logout";
+"Sidebar.Title.Logout" = "Log out";
 "Sidebar.Title.FAQ" = "FAQ";
 "Sidebar.Title.ContactSupport" = "CONTACT\nSUPPORT";
 "Sidebar.Title.FeatureRequest" = "FEATURE\nREQUEST";
@@ -202,8 +202,8 @@
 
 "Sidebar.SensorsMenu.Sensors" = "ACTIVITY TRACKERS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
-"Sidebar.SensorsMenu.Sensors.NoData" = "No Data";
-"Sidebar.SensorsMenu.Sensors.Disconnected" = "Disconnected";
+"Sidebar.SensorsMenu.Sensors.NoData" = "No Data *";
+"Sidebar.SensorsMenu.Sensors.Disconnected" = "Connect";
 "Sidebar.SensorsMenu.Sensors.Connected" = "Connected";
 "Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";
 "Sidebar.SensorsMenu.Seonsors.NoData" = "No data";
@@ -272,7 +272,7 @@
 "Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 "Alert.Message.Email.Not.Setup" = "Email is not setup on your device";
-"Alert.Message.Logout" = "Are you sure you would like to logout of QOT?";
+"Alert.Message.Logout" = "Are you sure you would like to log out of QOT?";
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to System Settings to change your permissions.";
 "Alert.title.calendar.not.synced" = "Calendar not synchronized";
@@ -410,7 +410,7 @@
 
 "Onboarding.Error.General" = "An error occurred, please try again";
 "Onboarding.Login.Email.Title" = "LOGIN";
-"Onboarding.Login.Email.Placeholder" = "Your email*";
+"Onboarding.Login.Email.Placeholder" = "Your email";
 "Onboarding.Login.Email.Description" = "We will send an email with your code";
 "Onboarding.Login.Email.Error" = "Enter email first, then tap “Send code” button";
 "Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
@@ -425,7 +425,7 @@
 "Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your To Be Vision, please create an account";
 
 "Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
-"Onboarding.Registration.Email.Placeholder" = "Email*";
+"Onboarding.Registration.Email.Placeholder" = "Email";
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
@@ -602,3 +602,5 @@
 "MyLibrary.GroupItemCount.Singular" = "%@ item";
 "MyLibrary.GroupItemCount.Plural" = "%@ items";
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
+
+"Tools.Subtitle.Interactive.Tool" = "Interactive tool";

@@ -106,8 +106,9 @@ private extension PrepareResultsViewController {
         if interactor?.setReminder == false {
             showAlert()
         } else {
-            interactor?.updatePreparation()
-            interactor?.didTapDismissView()
+            interactor?.updatePreparation { [weak self] (_) in
+                self?.interactor?.didTapDismissView()
+            }
         }
     }
 
@@ -132,19 +133,21 @@ private extension PrepareResultsViewController {
     func showAlert() {
         let confirm = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleConfirm()) { [weak self] (_) in
             self?.interactor?.setReminder = true
-            self?.interactor?.updatePreparation()
-            if self?.interactor?.getResultType == .prepareDecisionTree {
-                self?.interactor?.presentFeedback()
-            } else {
-                self?.interactor?.didTapDismissView()
+            self?.interactor?.updatePreparation { (_) in
+                if self?.interactor?.getResultType == .prepareDecisionTree {
+                    self?.interactor?.presentFeedback()
+                } else {
+                    self?.interactor?.didTapDismissView()
+                }
             }
         }
         let decline = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleDecline()) { [weak self] (_) in
-            self?.interactor?.updatePreparation()
-            if self?.interactor?.getResultType == .prepareDecisionTree {
-                self?.interactor?.presentFeedback()
-            } else {
-                self?.interactor?.didTapDismissView()
+            self?.interactor?.updatePreparation { (_) in
+                if self?.interactor?.getResultType == .prepareDecisionTree {
+                    self?.interactor?.presentFeedback()
+                } else {
+                    self?.interactor?.didTapDismissView()
+                }
             }
         }
         QOTAlert.show(title: R.string.localized.prepareAlertReminderTitle(),
@@ -242,17 +245,12 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         }
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if shouldShowHeader(in: section) {
-            let view = EditHeaderView.instantiateFromNib()
-            view.delegate = self
-            return view
-        }
-        return nil
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 0
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return shouldShowHeader(in: section) ? 44 : 0
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -264,9 +262,14 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .intentionContentItem(_, _, let key):
             removeBottomNavigation()
             interactor?.presentEditIntentions(key)
-        case .benefitContentItem(_, _, let benefits, let questionID):
+        case .benefitContentItem(_, _, let benefits, _):
             removeBottomNavigation()
-            interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
+            interactor?.presentEditBenefits(benefits: benefits)
+        case .contentItem(let format, _):
+            if interactor?.getType == .LEVEL_CRITICAL && format.hasEditImage(.LEVEL_CRITICAL) {
+                removeBottomNavigation()
+                interactor?.presentEditStrategyView()
+            }
         default:
             return
         }
@@ -275,6 +278,7 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {
     func setupBarButtonItems(resultType: ResultType) {
+        rightBarItems.removeAll()
         resultType.buttonItems.forEach { (buttonItem) in
             rightBarItems.append(roundedBarButtonItem(title: buttonItem.title,
                                                       buttonWidth: buttonItem.width,

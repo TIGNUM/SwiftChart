@@ -61,6 +61,7 @@ final class DailyBriefInteractor {
     }
     func viewDidLoad() {
         presenter.setupView()
+        getDailyBriefDummySectionModels()
         NotificationCenter.default.post(name: .requestSynchronization, object: nil)
     }
 }
@@ -142,6 +143,42 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
         return viewModelOldListModels
+    }
+
+    func getDailyBriefDummySectionModels() {
+        var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
+        sectionDataList.append(ArraySection(model: .impactReadiness,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .dailyCheckIn2,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .questionWithoutAnswer,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .meAtMyBest,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .goodToKnow,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .explore,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .leaderswisdom,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .feastForYourEyes,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .thoughts,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .departureInfo,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .aboutMe,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .whatsHotLatest,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .getToLevel5,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .fromTignum,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        sectionDataList.append(ArraySection(model: .weather,
+                                            elements: [BaseDailyBriefViewModel.init(nil)]))
+        let changeSet = StagedChangeset(source: viewModelOldListModels, target: sectionDataList)
+        presenter.updateViewNew(changeSet)
     }
 
     func getDailyBriefBucketsForViewModel() {
@@ -599,7 +636,7 @@ extension DailyBriefInteractor {
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
-        let yesterday = -1, today = 0, tomorrow = 1, threeDays = 3
+        let yesterday = -1, tomorrow = 1, threeDays = 3
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
             var rows: [MyPeakPerformanceCellViewModel.MyPeakPerformanceRow] = []
@@ -626,7 +663,7 @@ extension DailyBriefInteractor {
                     }.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter {
                     guard let date = $0.eventDate else { return false }
-                    return beginingOfToday.days(to: date) == today
+                    return beginingOfToday == date.beginingOfDate()
                 } ?? [QDMUserPreparation]()
             } else if contentItem.searchTags.contains(obj: "REFLECT") {
                 contentSentence = myPeakperformance.contentCollections?.filter {

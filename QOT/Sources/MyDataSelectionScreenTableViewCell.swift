@@ -9,8 +9,8 @@
 import UIKit
 
 final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
-    // MARK: - Properties
 
+    // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var checkMarkImageView: UIImageView!
     var showSelected: Bool = false {
@@ -19,12 +19,21 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
         }
     }
 
+    // MARK: - Lifecycle
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addSubtitle(titleLabel)
+        skeletonManager.addOtherView(checkMarkImageView)
+    }
+
     func configure(forSelectionItem: MyDataSelectionModel.SelectionItem?) {
         self.selectionStyle = .none
         guard let selectionItem = forSelectionItem,
               let title = selectionItem.title else {
             return
         }
+        skeletonManager.hide()
         showSelected = selectionItem.selected
         ThemeText.myDataParameterSelectionTitle(selectionItem.myDataExplanationSection).apply(title, to: titleLabel)
         self.setupForSelected(selected: showSelected)

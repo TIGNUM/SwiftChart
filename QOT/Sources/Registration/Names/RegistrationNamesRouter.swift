@@ -12,7 +12,7 @@ final class RegistrationNamesRouter {
 
     // MARK: - Properties
 
-    private let viewController: RegistrationNamesViewController
+    private weak var viewController: RegistrationNamesViewController?
 
     // MARK: - Init
 

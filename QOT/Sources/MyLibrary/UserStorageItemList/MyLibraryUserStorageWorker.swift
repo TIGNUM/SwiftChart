@@ -12,22 +12,22 @@ import qot_dal
 final class MyLibraryUserStorageWorker {
     private let service = UserStorageService.main
     private var storages = [QDMUserStorage]()
-    private let type: UserStorageType
+    private let item: MyLibraryCategoryListModel
     private let reachability = QOTReachability()
 
-    init(type: UserStorageType) {
-        self.type = type
+    init(item: MyLibraryCategoryListModel) {
+        self.item = item
     }
 
     // FIXME: Translate strings
     // MARK: Texts
     lazy var title: String = {
-        switch type {
-        case .UNKOWN: return R.string.localized.myLibraryItemsTitleAll()
-        case .BOOKMARK: return R.string.localized.myLibraryItemsTitleBookmarks()
-        case .DOWNLOAD: return R.string.localized.myLibraryItemsTitleDownloads()
-        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsTitleLinks()
-        case .NOTE: return R.string.localized.myLibraryItemsTitleNotes()
+        switch item.type {
+        case .ALL: return R.string.localized.myLibraryItemsTitleAll()
+        case .BOOKMARKS: return R.string.localized.myLibraryItemsTitleBookmarks()
+        case .DOWNLOADS: return R.string.localized.myLibraryItemsTitleDownloads()
+        case .LINKS: return R.string.localized.myLibraryItemsTitleLinks()
+        case .NOTES: return R.string.localized.myLibraryItemsTitleNotes()
         }
     }()
 
@@ -36,12 +36,17 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var editingTitle: String = {
-        switch type {
-        case .UNKOWN: return R.string.localized.myLibraryItemsEditTitleAll()
-        case .BOOKMARK: return R.string.localized.myLibraryItemsEditTitleBookmarks()
-        case .DOWNLOAD: return R.string.localized.myLibraryItemsEditTitleDownloads()
-        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsEditTitleLinks()
-        case .NOTE: return R.string.localized.myLibraryItemsEditTitleNotes()
+        switch item.type {
+        case .ALL:
+            return R.string.localized.myLibraryItemsEditTitleAll()
+        case .BOOKMARKS:
+            return R.string.localized.myLibraryItemsEditTitleBookmarks()
+        case .DOWNLOADS:
+            return R.string.localized.myLibraryItemsEditTitleDownloads()
+        case .LINKS:
+            return R.string.localized.myLibraryItemsEditTitleLinks()
+        case .NOTES:
+            return R.string.localized.myLibraryItemsEditTitleNotes()
         }
     }()
 
@@ -58,7 +63,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var showAddButton: Bool = {
-        return type == .NOTE
+        return item.type == .NOTES
     }()
 
     lazy var removeItemsAlertTitle: String = {
@@ -82,23 +87,33 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var emtptyContentAlertTitle: String = {
-        switch type {
-        case .UNKOWN: return R.string.localized.myLibraryItemsAlertEmptyTitleAll()
-        case .BOOKMARK: return R.string.localized.myLibraryItemsAlertEmptyTitleBookmarks()
-        case .DOWNLOAD: return R.string.localized.myLibraryItemsAlertEmptyTitleDownloads()
-        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsAlertEmptyTitleLinks()
-        case .NOTE: return R.string.localized.myLibraryItemsAlertEmptyTitleNotes()
+        switch item.type {
+        case .ALL:
+            return R.string.localized.myLibraryItemsAlertEmptyTitleAll()
+        case .BOOKMARKS:
+            return R.string.localized.myLibraryItemsAlertEmptyTitleBookmarks()
+        case .DOWNLOADS:
+            return R.string.localized.myLibraryItemsAlertEmptyTitleDownloads()
+        case .LINKS:
+            return R.string.localized.myLibraryItemsAlertEmptyTitleLinks()
+        case .NOTES:
+            return R.string.localized.myLibraryItemsAlertEmptyTitleNotes()
         }
     }()
 
     lazy var contentIcon: UIImage = {
         let image: UIImage?
-        switch type {
-        case .UNKOWN: image = R.image.my_library_group()
-        case .BOOKMARK: image = R.image.my_library_bookmark()
-        case .DOWNLOAD: image = R.image.my_library_download()
-        case .EXTERNAL_LINK: image = R.image.my_library_link()
-        case .NOTE:  image = R.image.my_library_note_light()
+        switch item.type {
+        case .ALL:
+            image = R.image.my_library_group()
+        case .BOOKMARKS:
+            image = R.image.my_library_bookmark()
+        case .DOWNLOADS:
+            image = R.image.my_library_download()
+        case .LINKS:
+            image = R.image.my_library_link()
+        case .NOTES:
+            image = R.image.my_library_note_light()
         }
         return image ?? UIImage()
     }()
@@ -106,18 +121,17 @@ final class MyLibraryUserStorageWorker {
     lazy var emtptyContentAlertMessage: NSAttributedString = {
         var text: String
         var icon: UIImage? = contentIcon
-
-        switch type {
-        case .UNKOWN:
+        switch item.type {
+        case .ALL:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageAll()
             icon = nil
-        case .BOOKMARK:
+        case .BOOKMARKS:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageBookmarks()
-        case .DOWNLOAD:
+        case .DOWNLOADS:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageDownloads()
-        case .EXTERNAL_LINK:
+        case .LINKS:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageLinks()
-        case .NOTE:
+        case .NOTES:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageNotes()
             icon = nil
         }
@@ -170,13 +184,17 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var contentType: MyLibraryUserStorageContentType = {
-        switch type {
-        case .UNKOWN: return .all
-        case .BOOKMARK: return .bookmarks
-        case .DOWNLOAD: return .downloads
-        case .EXTERNAL_LINK: return .links
-        case .NOTE: return .notes
+        switch item.type {
+        case .ALL: return .all
+        case .BOOKMARKS: return .bookmarks
+        case .DOWNLOADS: return .downloads
+        case .LINKS: return .links
+        case .NOTES: return .notes
         }
+    }()
+
+    lazy var itemCount: Int = {
+        return item.itemCount
     }()
 }
 
@@ -184,8 +202,16 @@ final class MyLibraryUserStorageWorker {
 extension MyLibraryUserStorageWorker {
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
-        if type != .UNKOWN {
-            service.getUserStorages(for: type) { [weak self] (storages, initiated, error) in
+        var storageType: UserStorageType = .UNKOWN
+        switch item.type {
+        case .BOOKMARKS: storageType = .BOOKMARK
+        case .DOWNLOADS: storageType = .DOWNLOAD
+        case .LINKS: storageType = .EXTERNAL_LINK
+        case .NOTES: storageType = .NOTE
+        case .ALL: storageType = .UNKOWN
+        }
+        if item.type != .ALL {
+            service.getUserStorages(for: storageType) { [weak self] (storages, initiated, error) in
                 self?.handleStorages(storages, initiated: initiated, completion: completion)
             }
         } else {

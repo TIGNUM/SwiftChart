@@ -87,6 +87,7 @@ class DTInteractor: DTInteractorInterface {
             let lastNode = presentedNodes.last
             let presentationModel = createPresentationModel(questionId: lastNode?.questionId,
                                                             answerFilter: lastNode?.answerFilter,
+                                                            userInputText: inputText,
                                                             questionUpdate: lastNode?.titleUpdate,
                                                             questions: questions)
             presenter?.showPreviousQuestion(presentationModel, isDark: isDark)
@@ -100,6 +101,7 @@ class DTInteractor: DTInteractorInterface {
     // MARK: - Create DTPresentationModel
     func createPresentationModel(questionId: Int??,
                                  answerFilter: String?,
+                                 userInputText: String?,
                                  questionUpdate: String?,
                                  questions: [QDMQuestion]) -> DTPresentationModel {
         let question = questions.filter { $0.remoteID == questionId }.first
@@ -111,6 +113,7 @@ class DTInteractor: DTInteractorInterface {
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: filter,
+                                   userInputText: userInputText,
                                    tbv: tbv,
                                    events: events,
                                    preparations: preparations)
@@ -127,6 +130,7 @@ class DTInteractor: DTInteractorInterface {
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: answerFilter,
+                                   userInputText: selection.userInput,
                                    tbv: tbv,
                                    events: events,
                                    preparations: preparations)

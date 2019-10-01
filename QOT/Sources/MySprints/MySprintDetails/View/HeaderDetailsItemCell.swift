@@ -8,13 +8,13 @@
 
 import UIKit
 
-class HeaderDetailsItemCell: UITableViewCell, BaseMySprintDetailsItemCellInterface, Dequeueable {
+class HeaderDetailsItemCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var itemTextLabel: UILabel!
     @IBOutlet weak var editButton: UIButton!
 
-    lazy var characterSpacing: CGFloat = {
-        return 0.2
-    }()
+    func setText(_ text: String) {
+        ThemeText.mySprintDetailsHeader.apply(text, to: itemTextLabel)
+    }
 
     func setButton(tag: Int, target: Any, selector: Selector) {
         editButton.isHidden = false

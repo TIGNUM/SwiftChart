@@ -8,24 +8,14 @@
 
 import Foundation
 
-class ListItemDetailsItemCell: UITableViewCell, BaseMySprintDetailsItemCellInterface, Dequeueable {
+class ListItemDetailsItemCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var itemTextLabel: UILabel!
 
-    lazy var characterSpacing: CGFloat = {
-        return 0.5
-    }()
-
-    func setAppearance(_ appearance: MySprintDetailsItem.Appearance) {
-        let color: UIColor
+    func setText(text: String, appearance: MySprintDetailsItem.Appearance) {
         switch appearance {
-        case .info:
-            color = .sand40
-        case .regular:
-            color = .sand70
-        case .active:
-            color = .sand
-            itemTextLabel.font = UIFont.sfProtextMedium(ofSize: 16)
+        case .info: ThemeText.mySprintDetailsTextInfo.apply(text, to: itemTextLabel)
+        case .regular: ThemeText.mySprintDetailsTextRegular.apply(text, to: itemTextLabel)
+        case .active: ThemeText.mySprintDetailsTextActive.apply(text, to: itemTextLabel)
         }
-        itemTextLabel.textColor = color
     }
 }

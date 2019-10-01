@@ -12,7 +12,7 @@ import qot_dal
 final class CoachRouter {
 
     // MARK: - Properties
-    private let viewController: CoachViewController
+    private weak var viewController: CoachViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var permissionsManager: PermissionsManager {
         return AppCoordinator.permissionsManager!
@@ -38,7 +38,7 @@ extension CoachRouter: CoachRouterInterface {
             let navController = UINavigationController(rootViewController: searchViewController)
             navController.navigationBar.applyDefaultStyle()
             navController.modalTransitionStyle = .crossDissolve
-            viewController.pushToStart(childViewController: searchViewController)
+            viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:
             let storyboardID = R.storyboard.tools.toolsViewControllerID.identifier
@@ -46,20 +46,20 @@ extension CoachRouter: CoachRouterInterface {
                 .tools().instantiateViewController(withIdentifier: storyboardID) as? ToolsViewController
             if let toolsViewController = toolsViewController {
                 ToolsConfigurator.make(viewController: toolsViewController)
-                viewController.present(toolsViewController, animated: true, completion: nil)
+                viewController?.present(toolsViewController, animated: true, completion: nil)
             }
         case .sprint:
             let configurator = DTSprintConfigurator.make()
             let controller = DTSprintViewController(configure: configurator)
-            viewController.present(controller, animated: true)
+            viewController?.present(controller, animated: true)
         case .event:
             let configurator = DTPrepareConfigurator.make()
             let controller = DTPrepareViewController(configure: configurator)
-            viewController.present(controller, animated: true)
+            viewController?.present(controller, animated: true)
         case .challenge:
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
-            viewController.present(controller, animated: true)
+            viewController?.present(controller, animated: true)
         }
     }
 }

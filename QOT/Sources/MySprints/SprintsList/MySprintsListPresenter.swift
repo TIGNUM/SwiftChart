@@ -24,6 +24,10 @@ final class MySprintsListPresenter {
 // MARK: - MySprintsListInterface
 
 extension MySprintsListPresenter: MySprintsListPresenterInterface {
+    func setupView() {
+        viewController?.setupView()
+    }
+
     func present() {
         viewController?.update()
     }

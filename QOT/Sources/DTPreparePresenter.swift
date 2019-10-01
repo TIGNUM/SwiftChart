@@ -29,6 +29,23 @@ final class DTPreparePresenter: DTPresenter {
     override func previousIsHidden(questionKey: String) -> Bool {
         return questionKey == Prepare.QuestionKey.Intro || questionKey == Prepare.QuestionKey.Last
     }
+
+    override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
+        if intensionViewModel != nil && presentationModel.question?.key == Prepare.Key.benefits.rawValue {
+            let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
+            button?.configure(title: R.string.localized.alertButtonTitleSave(),
+                              minSelection: 0,
+                              isDark: isDark)
+            return button
+        }
+        if intensionViewModel != nil && presentationModel.question?.key != Prepare.Key.benefits.rawValue {
+            let navigationButton = super.getNavigationButton(presentationModel, isDark: isDark)
+            let count: Int = (intensionViewModel?.answers.filter() { $0.selected })?.count ?? 0
+            navigationButton?.update(count: count)
+            return navigationButton
+        }
+        return super.getNavigationButton(presentationModel, isDark: isDark)
+    }
 }
 
 // MARK: - DTPrepareInterface

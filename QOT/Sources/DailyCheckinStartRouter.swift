@@ -13,7 +13,7 @@ final class DailyCheckinStartRouter {
 
     // MARK: - Properties
 
-    private let viewController: DailyCheckinStartViewController
+    private weak var viewController: DailyCheckinStartViewController?
 
     // MARK: - Init
 
@@ -28,6 +28,6 @@ extension DailyCheckinStartRouter: DailyCheckinStartRouterInterface {
     func showQuestions(_ data: [RatingQuestionViewModel.Question]) {
         guard let vieController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
         DailyCheckinQuestionsConfigurator.configure(viewController: vieController, questions: data)
-        viewController.navigationController?.pushViewController(vieController, animated: true)
+        viewController?.navigationController?.pushViewController(vieController, animated: true)
     }
 }

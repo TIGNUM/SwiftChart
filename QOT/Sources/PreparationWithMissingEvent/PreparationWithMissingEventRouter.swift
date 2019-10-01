@@ -12,7 +12,7 @@ final class PreparationWithMissingEventRouter {
 
     // MARK: - Properties
 
-    private let viewController: PreparationWithMissingEventViewController
+    private weak var viewController: PreparationWithMissingEventViewController?
 
     // MARK: - Init
 
@@ -25,6 +25,6 @@ final class PreparationWithMissingEventRouter {
 
 extension PreparationWithMissingEventRouter: PreparationWithMissingEventRouterInterface {
     func dismiss() {
-        viewController.dismiss(animated: true, completion: nil)
+        viewController?.dismiss(animated: true, completion: nil)
     }
 }

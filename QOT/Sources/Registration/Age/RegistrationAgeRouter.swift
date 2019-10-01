@@ -12,7 +12,7 @@ final class RegistrationAgeRouter {
 
     // MARK: - Properties
 
-    private let viewController: RegistrationAgeViewController
+    private weak var viewController: RegistrationAgeViewController?
 
     // MARK: - Init
 

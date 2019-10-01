@@ -74,14 +74,14 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         setupView()
         updateIndicator()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        noPreparationsView.isHidden = true
+        hideAllNoDataViews()
         updateIndicator()
         refreshBottomNavigationItems()
+        interactor?.fetchItemsAndUpdateView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -131,13 +131,13 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     }
 
     @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
-        hideAllViews()
+        hideAllNoDataViews()
         updateIndicator()
         showEmptyStateViewIfNeeded(sender)
     }
 
     @objc func confirmDeleteTapped(_ sender: Any) {
-        hideAllViews()
+        hideAllNoDataViews()
         if let selectedRows = tableView.indexPathsForSelectedRows {
             let sortedArray = selectedRows.sorted { $1.row < $0.row }
             for indexPath in sortedArray {
@@ -167,21 +167,25 @@ private extension MyPrepsViewController {
 
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
         updateEditButton(hidden: false)
+        tableView.alpha = 1
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             if interactor?.numberOfRowsPreparations(in: 0) == Optional(0) {
                 noPreparationsView.isHidden = false
+                tableView.alpha = 0
                 updateEditButton(hidden: true)
             }
         case SegmentView.mindsetShifter.rawValue:
             if interactor?.numberOfRowsMindsetShifters(in: 0) == Optional(0) {
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
+                tableView.alpha = 0
             }
         case SegmentView.recovery.rawValue:
             if interactor?.numberOfRowsRecoveries(in: 0) == Optional(0) {
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
+                tableView.alpha = 0
             }
         default:
             return
@@ -202,17 +206,15 @@ private extension MyPrepsViewController {
         ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoRecoveryComment(), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
-        tableView.alpha = 0
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
         setupSegementedControl()
-        showEmptyStateViewIfNeeded(segmentedControl)
     }
 
     func updateEditButton(hidden: Bool) {
         editButton.isHidden = hidden
     }
 
-    func hideAllViews() {
+    func hideAllNoDataViews() {
         noPreparationsView.isHidden = true
         noRecoveriesView.isHidden = true
         noMIndsetShiftersView.isHidden = true
@@ -229,32 +231,35 @@ private extension MyPrepsViewController {
 // MARK: - MyPrepsViewControllerInterface
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func dataUpdated() {
-        hideAllViews()
+        hideAllNoDataViews()
         if tableView.alpha == 0 {
             UIView.animate(withDuration: Animation.duration_04) { self.tableView.alpha = 1 }
         }
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
-        self.removeLoadingSkeleton()
     }
 }
 
 extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        var count = 0
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            return interactor?.numberOfRowsPreparations(in: section) ?? 0
+            count = interactor?.numberOfRowsPreparations(in: section) ?? 0
         case SegmentView.mindsetShifter.rawValue:
-            return interactor?.numberOfRowsMindsetShifters(in: section) ?? 0
+            count = interactor?.numberOfRowsMindsetShifters(in: section) ?? 0
         case SegmentView.recovery.rawValue:
-            return interactor?.numberOfRowsRecoveries(in: section) ?? 0
+            count = interactor?.numberOfRowsRecoveries(in: section) ?? 0
         default:
-            return 0
+            count = 0
         }
+        return count > 0 ? count : 3
     }
 
     private func tableView(tableView: UITableView,
                            editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row, section: indexPath.section)) as? MyPrepsTableViewCell,
+            cell.hasData else { return .none }
         return UITableViewCellEditingStyle.init(rawValue: 3)!
     }
 
@@ -263,20 +268,18 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         if editPressed == true {
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
         }
-        cell.backgroundColor = .carbon
+
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             let item = interactor?.itemPrep(at: indexPath)
-            cell.setSelectedColor(.carbon, alphaComponent: 1)
-            cell.configure(title: item?.title ?? "", subtitle: (item?.date ?? "") + " | " + (item?.eventType ?? ""))
+            cell.configure(title: item?.title.uppercased(), subtitle: (item?.date ?? "") + " | " + (item?.eventType ?? ""))
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor?.itemMind(at: indexPath)
-            cell.setSelectedColor(.carbon, alphaComponent: 1)
-            cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "")
+
+            cell.configure(title: item?.title, subtitle: item?.date)
         case SegmentView.recovery.rawValue:
             let item = interactor?.itemRec(at: indexPath)
-            cell.setSelectedColor(.carbon, alphaComponent: 1)
-            cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "")
+            cell.configure(title: item?.title, subtitle: item?.date)
         default:
             break
         }

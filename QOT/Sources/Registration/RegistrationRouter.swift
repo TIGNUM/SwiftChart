@@ -12,7 +12,7 @@ final class RegistrationRouter {
 
     // MARK: - Properties
 
-    private let viewController: RegistrationViewController
+    private weak var viewController: RegistrationViewController?
 
     // MARK: - Init
 
@@ -25,6 +25,6 @@ final class RegistrationRouter {
 
 extension RegistrationRouter: RegistrationRouterInterface {
     func popBack() {
-        viewController.navigationController?.popViewController(animated: true)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }

@@ -194,6 +194,12 @@ extension UIViewController {
     @objc func presentSwizzled(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
         log("swizzled   present: \(viewControllerName)", level: .verbose)
+
+        if viewControllerToPresent is UISearchController {
+            presentSwizzled(viewControllerToPresent: viewControllerToPresent, animated: animated, completion: completion)
+            return
+        }
+
         if (viewControllerToPresent as? UINavigationController) == nil, viewControllerToPresent.view != nil {
             viewControllerToPresent.refreshBottomNavigationItems()
         } else if let navigationController = viewControllerToPresent as? UINavigationController {

@@ -29,7 +29,7 @@ final class RegistrationCodeInteractor {
     private let worker: RegistrationCodeWorker
     private let presenter: RegistrationCodePresenterInterface
     private let router: RegistrationCodeRouterInterface
-    private let delegate: RegistrationDelegate
+    private weak var delegate: RegistrationDelegate?
     private var termsAccepted: Bool = false
 
     private lazy var defaultAttributes: [NSAttributedStringKey: Any] = {
@@ -124,7 +124,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
     }
 
     func didTapBack() {
-        delegate.didTapBack()
+        delegate?.didTapBack()
     }
 
     func handleURLAction(url: URL) {
@@ -133,7 +133,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         }
         switch action {
         case .changeEmail:
-            delegate.didTapBack()
+            delegate?.didTapBack()
         case .resendCode:
             resendCode()
         case .privacyPolicy:
@@ -161,7 +161,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         worker.validate(code: code, for: worker.email, forLogin: false) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
             if case .codeValid = result.code {
-                self?.delegate.didVerifyCode(code)
+                self?.delegate?.didVerifyCode(code)
                 return
             } else if case .codeInvalid = result.code {
                 self?.errorMessage = self?.worker.codeError

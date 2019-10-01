@@ -15,11 +15,11 @@ protocol MyVisionNullStateViewProtocol: class {
 
 final class MyVisionNullStateView: UIView {
 
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var detailLabel: UILabel!
-    @IBOutlet private weak var toBeVisionLabel: UILabel!
-    @IBOutlet private weak var writeButton: UIButton!
-    @IBOutlet private weak var autoGenerateButton: UIButton!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var toBeVisionLabel: UILabel!
+    @IBOutlet weak var writeButton: UIButton!
+    @IBOutlet weak var autoGenerateButton: UIButton!
 
     weak var delegate: MyVisionNullStateViewProtocol?
 

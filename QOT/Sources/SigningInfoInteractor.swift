@@ -16,14 +16,14 @@ final class SigningInfoInteractor {
     private let worker: SigningInfoWorker
     private let presenter: SigningInfoPresenterInterface
     private let router: SigningInfoRouterInterface
-    private let delegate: SigningInfoDelegate
+    private weak var delegate: SigningInfoDelegate?
 
     // MARK: - Init
 
     init(worker: SigningInfoWorker,
         presenter: SigningInfoPresenterInterface,
         router: SigningInfoRouterInterface,
-        delegate: SigningInfoDelegate) {
+        delegate: SigningInfoDelegate?) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -60,10 +60,10 @@ extension SigningInfoInteractor: SigningInfoInteractorInterface {
     }
 
     func didTapLoginButton() {
-        delegate.didTapLogin()
+        delegate?.didTapLogin()
     }
 
     func didTapStartButton() {
-        delegate.didTapStart()
+        delegate?.didTapStart()
     }
 }

@@ -23,6 +23,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     @IBOutlet weak var pageControllerContainer: UIView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     @IBOutlet weak var viewNavBottom: UIView!
+    @IBOutlet weak var navBottomGradientImageView: UIImageView!
     @IBOutlet weak var viewNavTop: UIView!
 
     // MARK: - Life Cycle
@@ -37,6 +38,10 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
         closeButton.setImage(image, for: .normal)
 
+        if isDark == true {
+            navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
+        }
+
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
         interactor?.viewDidLoad()
@@ -46,6 +51,12 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         super.viewDidAppear(animated)
         trackPage()
         updateBottomNavigation([], [])
+
+        // Handling dismissing process when DecisionTree is triggered by Launch handler
+        if !animated, let mainNavigationController = baseRootViewController?.navigationController,
+            self.navigationController?.presentingViewController == mainNavigationController {
+            router?.dismissChatBotFlow()
+        }
     }
 
     override func viewDidLayoutSubviews() {

@@ -248,9 +248,9 @@ private extension AppDelegate {
     func setupHockeyApp() {
         let hockeyAppID = Bundle.main.object(forInfoDictionaryKey: "HOCKEY_APP_ID") as? String
         BITHockeyManager.shared().configure(withIdentifier: hockeyAppID ?? "4f2cc0d018ea4a2884e052d72eb9c456")
-//        #if DEBUG
+        #if DEBUG
         BITHockeyManager.shared().isUpdateManagerDisabled = true
-//        #endif
+        #endif
         BITHockeyManager.shared().crashManager.crashManagerStatus = BITCrashManagerStatus.autoSend
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()

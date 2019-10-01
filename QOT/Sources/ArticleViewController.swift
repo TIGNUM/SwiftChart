@@ -152,8 +152,9 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleNextUpTableViewCell.self)
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
+        tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
         tableView.backgroundColor = .clear
     }
@@ -263,7 +264,6 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData(showNavigationBar: Bool) {
-        self.view.removeLoadingSkeleton()
         navigationBar(show: showNavigationBar)
         tableView.reloadData()
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
@@ -278,7 +278,6 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func setupView() {
         setupTableView()
         setColorMode()
-        self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .oneLineBlock, .oneLineBlock, .oneLineBlock])
     }
 
     func hasBookmark(_ hasBookmark: Bool) {
@@ -386,10 +385,8 @@ extension ArticleViewController {
         return relatedArticleCell
     }
 
-    func emptyCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
-        cell.backgroundColor = .clear
-        cell.contentView.backgroundColor = .clear
+    func emptyCell(tableView: UITableView, indexPath: IndexPath) -> ArticleEmptyTableViewCell {
+        let cell: ArticleEmptyTableViewCell = tableView.dequeueCell(for: indexPath)
         return cell
     }
 
@@ -408,7 +405,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemCount(in: section) ?? 0
+        return interactor?.itemCount(in: section) ?? 1
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

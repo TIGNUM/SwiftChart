@@ -17,8 +17,6 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet private var buttons: [UIButton]!
     @IBOutlet private weak var levelTitle: UILabel!
     @IBOutlet private weak var levelText: UILabel!
-    @IBOutlet private var views: [UIView]!
-    @IBOutlet private var saveButtons: [UIButton]!
     @IBOutlet weak var level1Button: AnimatedButton!
     @IBOutlet weak var level2Button: AnimatedButton!
     @IBOutlet weak var level3Button: AnimatedButton!
@@ -29,19 +27,37 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var readinessProgress: UIProgressView!
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
+    @IBOutlet weak var progressStackView: UIStackView!
     var levelMessages: [Level5ViewModel.LevelDetail] = []
     weak var delegate: DailyBriefViewControllerDelegate?
     var savedAnswer: Int = 0
     var confirmationMessage: String?
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        skeletonManager.addTitle(titleLabel)
+        skeletonManager.addSubtitle(introLabel)
+        skeletonManager.addSubtitle(questionLabel)
+        skeletonManager.addSubtitle(levelTitle)
+        skeletonManager.addSubtitle(levelText)
+        for button in buttons {
+            skeletonManager.addOtherView(button)
+        }
+        skeletonManager.addOtherView(saveButton)
+        skeletonManager.addOtherView(progressStackView)
+        setUpButtons()
+    }
+
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
+        ThemeView.selectedButton.apply(saveButton)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         QOTAlert.show(title: nil, message: confirmationMessage)
         updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
     }
 
     func configure(with: Level5ViewModel?) {
+        skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(with?.title, to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(with?.intro, to: introLabel)
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
@@ -66,15 +82,10 @@ final class Level5Cell: BaseDailyBriefCell {
         setProgress()
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setUpButtons()
-    }
-    //
     func setUpButtons() {
-        saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeBorder.accent.apply(saveButton)
         buttons.forEach {(button) in
-            button.corner(radius: button.frame.width / 2, borderColor: .accent40)
+            ThemeButton.clear.apply(button)
         }
     }
 
@@ -86,6 +97,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func setButtonText(_ buttonText: String?) {
         saveButton.setTitle(buttonText, for: .normal)
+        ThemeView.level1.apply(saveButton)
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
