@@ -557,15 +557,15 @@ extension UIColor {
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {
-        return UIColor(red: 80.0 / 255.0, green: 68.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (80.0 / 255.0) * 0.5, green: (68.0 / 255.0) * 0.5, blue: (58.0 / 255.0) * 0.5, alpha: 1.0)
     }
 
     public class var skeletonSubtitleColor: UIColor {
-        return UIColor(red: 62.0 / 255.0, green: 53.0 / 255.0, blue: 46.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (62.0 / 255.0) * 0.5, green: (53.0 / 255.0) * 0.5, blue: (46.0 / 255.0) * 0.5, alpha: 1.0)
     }
 
     public class var skeletonOtherViewsColor: UIColor {
-        return UIColor(red: 45.0 / 255.0, green: 39.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (45.0 / 255.0) * 0.5, green: (39.0 / 255.0) * 0.5, blue: (34.0 / 255.0) * 0.5, alpha: 1.0)
     }
 
     static var random: UIColor {
