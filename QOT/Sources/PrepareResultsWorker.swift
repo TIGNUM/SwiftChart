@@ -207,10 +207,11 @@ extension PrepareResultsWorker {
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
         guard let preparation = preparation else { return }
-        UserService.main.updateUserPreparation(preparation) { (_, error) in
+        UserService.main.updateUserPreparation(preparation) { (updatedPrep, error) in
             if let error = error {
                 log("Error updateUserPreparation \(error.localizedDescription)", level: .error)
             }
+            completion(updatedPrep)
         }
     }
 
