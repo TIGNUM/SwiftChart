@@ -30,8 +30,6 @@ protocol MySprintsListInteractorInterface: Interactor {
     func didTapEdit()
     func handleSelectedItem(at indexPath: IndexPath) -> Bool
     func moveItem(at source: IndexPath, to destination: IndexPath)
-
-    func getSprint() -> QDMSprint
 }
 
 protocol MySprintsListRouterInterface {

@@ -188,12 +188,7 @@ extension MySprintsListViewController: UITableViewDelegate {
             tableView.deselectRow(at: selectedPath, animated: true)
         }
 
-        if let sprint = interactor?.getSprint() {
-            let configurator = DTSprintReflectionConfigurator.make(sprint: sprint)
-            let controller = DTSprintReflectionViewController(configure: configurator)
-            present(controller, animated: true)
-        }
-//        _ = interactor?.handleSelectedItem(at: indexPath)
+        _ = interactor?.handleSelectedItem(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

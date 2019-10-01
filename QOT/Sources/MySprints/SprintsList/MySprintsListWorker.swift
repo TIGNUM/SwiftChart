@@ -106,8 +106,4 @@ final class MySprintsListWorker {
     func getSprint(with id: String) -> QDMSprint? {
         return sprints.first(where: { $0.qotId == id })
     }
-
-    func getSprint() -> QDMSprint {
-        return sprints[0]
-    }
 }
