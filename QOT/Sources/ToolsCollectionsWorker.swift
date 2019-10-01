@@ -36,7 +36,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
             completion([])
             return
         }
-        qot_dal.ContentService.main.getContentCategoryById(selectedID) { (contentCategory) in
+        ContentService.main.getContentCategoryById(selectedID) { (contentCategory) in
             self.selectedTool = contentCategory
             guard let category = contentCategory else {
                 completion([])

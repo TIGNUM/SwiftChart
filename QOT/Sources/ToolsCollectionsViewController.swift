@@ -14,6 +14,8 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
     // MARK: - Properties
 
     @IBOutlet private weak var backArrow: UIButton!
+    private let mindsetShifterChatBotId = 102453
+    private let recoveryChatBotId = 102451
     var interactor: ToolsCollectionsInteractorInterface?
     private var lastAudioIndexPath: IndexPath?
     private enum CellType: Int, CaseIterable {
@@ -206,6 +208,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         if tool?.isCollection == true {
             trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: .CONTENT, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
+        } else if tool?.contentCollectionId == recoveryChatBotId {
+            interactor?.presentDTRecovery()
+        } else if tool?.contentCollectionId == mindsetShifterChatBotId {
+            interactor?.presentDTMindetShifter()
         } else {
             if let contentItemId = tool?.remoteID,
                 let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
