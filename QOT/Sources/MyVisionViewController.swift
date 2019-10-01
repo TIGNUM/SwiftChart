@@ -176,16 +176,13 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-    func hideScreenLoader() {
-//        self.removeLoadingSkeleton()
-    }
 
     func showNullState(with title: String, message: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
         nullStateView.setupView(with: title, message: message, delegate: self)
         refreshBottomNavigationItems()
-        hideScreenLoader()
+        skeletonManager.hide()
     }
 
     func hideNullState() {

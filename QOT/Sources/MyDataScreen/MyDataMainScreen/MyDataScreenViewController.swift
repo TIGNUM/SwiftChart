@@ -11,8 +11,8 @@ import JTAppleCalendar
 
 enum MyDataRowType: Int, CaseIterable {
     case dailyImpactInfo = 0
-    case dailyImpactChart
     case dailyImpactChartLegend
+    case dailyImpactChart
     case heatMapInfo
     case heatMapButtons
     case heatMap

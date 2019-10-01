@@ -12,4 +12,9 @@ class NoteTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellI
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!
     @IBOutlet weak var infoText: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        super.configure()
+    }
 }

@@ -14,6 +14,10 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        selectionStyle = .none
+    }
+
+    func configure() {
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView

@@ -22,6 +22,9 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         guard let newSubtitle = subtitle else {
             return
         }
+        let bkView = UIView()
+        ThemeView.level1Selected.apply(bkView)
+        selectedBackgroundView = bkView
         skeletonManager.hide()
         let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
         theme.apply(newSubtitle, to: subtitleLabel)
@@ -33,11 +36,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         super.awakeFromNib()
         ThemeView.level1.apply(self)
         contentView.backgroundColor = .clear
-
-        let bkView = UIView()
-        ThemeView.level1Selected.apply(bkView)
-        selectedBackgroundView = bkView
-
+        selectedBackgroundView = nil
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1
