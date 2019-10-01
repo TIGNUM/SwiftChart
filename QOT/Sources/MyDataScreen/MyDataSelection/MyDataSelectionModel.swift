@@ -9,7 +9,7 @@
 import UIKit
 
 struct MyDataSelectionModel {
-    static let maximmumSelectableItems = 3
+    static let maximumSelectableItems = 3
     var myDataSelectionItems: [SelectionItem]
 
     struct SelectionItem: Equatable {
