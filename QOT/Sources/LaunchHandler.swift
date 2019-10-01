@@ -190,6 +190,8 @@ final class LaunchHandler {
              .qrcode0002,
              .qrcode0003,
              .qrcode0004: presentQRCodeURL(url)
+        case .recovery3DPlanner: show3DRecoveryDecisionTree()
+        case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -338,6 +340,26 @@ extension LaunchHandler {
                 let controller = PrepareResultsViewController(configure: configurator)
                 self.present(viewController: controller)
             }
+        }
+    }
+
+    func showMindsetShifterDecisionTree() {
+        guard let mainNavigationController = baseRootViewController?.navigationController else { return }
+        mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            self.present(viewController: controller)
+            baseRootViewController?.removeBottomNavigation()
+        }
+    }
+
+    func show3DRecoveryDecisionTree() {
+        guard let mainNavigationController = baseRootViewController?.navigationController else { return }
+        mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
+            self.present(viewController: controller)
+            baseRootViewController?.removeBottomNavigation()
         }
     }
 
