@@ -17,8 +17,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     var interactor: DTInteractorInterface?
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var previousButton: AnimatedButton!
+    @IBOutlet weak var closeButton: AnimatedButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
     @IBOutlet weak var pageControllerContainer: UIView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
@@ -37,6 +37,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
         closeButton.setImage(image, for: .normal)
+        let imageUp = isDark ? R.image.ic_arrow_up_dark() : R.image.ic_arrow_up()
+        previousButton.setImage(imageUp, for: .normal)
 
         if isDark == true {
             navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
