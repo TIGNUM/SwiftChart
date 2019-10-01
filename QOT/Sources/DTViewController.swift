@@ -15,6 +15,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     var viewModel: DTViewModel?
     var router: DTRouterInterface?
     var interactor: DTInteractorInterface?
+    var triggeredByLaunchHandler = false
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
     @IBOutlet weak var previousButton: UIButton!
@@ -53,7 +54,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         updateBottomNavigation([], [])
 
         // Handling dismissing process when DecisionTree is triggered by Launch handler
-        if !animated, let mainNavigationController = baseRootViewController?.navigationController,
+        if !animated && triggeredByLaunchHandler == true,
+            let mainNavigationController = baseRootViewController?.navigationController,
             self.navigationController?.presentingViewController == mainNavigationController {
             router?.dismissChatBotFlow()
         }

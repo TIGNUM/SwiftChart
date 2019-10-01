@@ -71,10 +71,12 @@ final class LaunchHandler {
              .prepareProblem:
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .planASprint:
             let configurator = DTSprintConfigurator.make()
             let controller = DTSprintViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .tools,
              .library:
@@ -85,6 +87,7 @@ final class LaunchHandler {
              .prepareDay:
             let configurator = DTPrepareConfigurator.make()
             let controller = DTPrepareViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .preparation:
             showPreparationWith(identifier: (queries[scheme.queryName] as? String) ?? "" )
@@ -348,6 +351,7 @@ extension LaunchHandler {
         mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
             let configurator = DTMindsetConfigurator.make()
             let controller = DTMindsetViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             self.present(viewController: controller)
             baseRootViewController?.removeBottomNavigation()
         }
@@ -358,6 +362,7 @@ extension LaunchHandler {
         mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
             let configurator = DTRecoveryConfigurator.make()
             let controller = DTRecoveryViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             self.present(viewController: controller)
             baseRootViewController?.removeBottomNavigation()
         }
