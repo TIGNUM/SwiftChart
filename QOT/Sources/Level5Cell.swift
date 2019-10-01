@@ -14,7 +14,7 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introLabel: UILabel!
     @IBOutlet private weak var questionLabel: UILabel!
-    @IBOutlet private var buttons: [UIButton]!
+    @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!
     @IBOutlet private weak var levelText: UILabel!
     @IBOutlet weak var level1Button: AnimatedButton!
@@ -23,7 +23,7 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var level4Button: AnimatedButton!
     @IBOutlet weak var level5Button: AnimatedButton!
     @IBOutlet weak var knowledgeProgress: UIProgressView!
-    @IBOutlet weak var saveButton: AnimatedButton!
+    @IBOutlet weak var saveButton: RoundedButton!
     @IBOutlet weak var readinessProgress: UIProgressView!
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
@@ -99,19 +99,16 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func setUpButtons() {
         ThemeBorder.accent.apply(saveButton)
-        buttons.forEach {(button) in
-            ThemeButton.clear.apply(button)
-        }
     }
 
     func setButtonBackgroundColor() {
         buttons.forEach {(button) in
-            button.backgroundColor = savedAnswer == button.tag ? .accent40 : .clear
+            ThemeButton.level5.apply(button, selected: savedAnswer == button.tag)
         }
     }
 
     func setButtonText(_ buttonText: String?) {
-        saveButton.setTitle(buttonText, for: .normal)
+        ThemableButton.level5.apply(saveButton, title: buttonText)
         ThemeView.level1.apply(saveButton)
     }
 

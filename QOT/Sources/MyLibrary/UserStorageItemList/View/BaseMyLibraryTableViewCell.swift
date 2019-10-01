@@ -18,6 +18,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
     }
 
     func configure() {
+        skeletonManager.hide()
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
