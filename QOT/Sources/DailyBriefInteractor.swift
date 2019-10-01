@@ -316,10 +316,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.showSolveResults(solve: solve)
     }
 
-    func showDailyCheckIn() {
-        router.showDailyCheckIn()
-    }
-
     func showCustomizeTarget() {
         worker.customzieSleepQuestion { [weak self] (model) in
             self?.router.showCustomizeTarget(model)
@@ -358,6 +354,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
+    }
+
+    func showDailyCheckInQuestions() {
+        router.showDailyCheckInQuestions()
     }
 }
 

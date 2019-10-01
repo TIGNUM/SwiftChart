@@ -87,7 +87,7 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
             }
         }
     }
-    
+
     func viewDidLoad() {
         presenter.setupView()
         updateOuraStatus()

@@ -85,14 +85,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         viewController?.present(solveResultsController, animated: true)
     }
 
-    func showDailyCheckIn() {
-        guard let vieController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
-        DailyCheckinStartConfigurator.configure(viewController: vieController)
-        let navigationController = UINavigationController(rootViewController: vieController)
-        navigationController.isNavigationBarHidden = true
-        viewController?.present(navigationController, animated: true, completion: nil)
-    }
-
     /**
      * Method name: displayCoachPreparationScreen.
      * Description: method which is used to trigger the preparation in the coach screen.
@@ -117,5 +109,13 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             configurator(myDataScreenViewController)
             viewController?.pushToStart(childViewController: myDataScreenViewController)
         }
+    }
+
+    func showDailyCheckInQuestions() {
+        guard let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
+        DailyCheckinQuestionsConfigurator.configure(viewController: newController)
+        let navigationController = UINavigationController(rootViewController: newController)
+        navigationController.isNavigationBarHidden = true
+        viewController?.present(navigationController, animated: true, completion: nil)
     }
 }

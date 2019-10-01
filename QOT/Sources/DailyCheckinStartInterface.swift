@@ -21,5 +21,5 @@ protocol DailyCheckinStartInteractorInterface: Interactor {
 }
 
 protocol DailyCheckinStartRouterInterface {
-    func showQuestions(_ data: [RatingQuestionViewModel.Question])
+    func showQuestions()
 }
