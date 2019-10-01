@@ -50,6 +50,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
+        saveButton.layer.borderWidth = 0
+        saveButton.isEnabled = false
         ThemeView.selectedButton.apply(saveButton)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         let closeButtonItem = createCloseButton()
@@ -116,6 +118,7 @@ final class Level5Cell: BaseDailyBriefCell {
         setButtonText("Save")
         savedAnswer = sender.tag
         initialSetup()
+        saveButton.isEnabled = true
         delegate?.didUpdateLevel5()
     }
 
