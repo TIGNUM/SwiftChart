@@ -602,3 +602,5 @@
 "MyLibrary.GroupItemCount.Singular" = "%@ item";
 "MyLibrary.GroupItemCount.Plural" = "%@ items";
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
+
+"Tools.Subtitle.Interactive.Tool" = "Interactive tool";

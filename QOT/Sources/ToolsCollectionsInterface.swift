@@ -29,10 +29,14 @@ protocol ToolsCollectionsInteractorInterface: Interactor {
     func presentToolsItems(selectedToolID: Int?)
     func selectedCategoryId() -> Int
     func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void)
+    func presentDTMindetShifter()
+    func presentDTRecovery()
 }
 
 protocol ToolsCollectionsRouterInterface {
     func presentToolsItems(selectedToolID: Int?)
+    func presentDTMindetShifter()
+    func presentDTRecovery()
 }
 
 protocol ToolsCollectionsWorkerInterface {

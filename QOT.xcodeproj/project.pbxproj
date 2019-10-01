@@ -5469,14 +5469,14 @@
 		F99DF5F02292D45400341DAB /* ToolsCollections */ = {
 			isa = PBXGroup;
 			children = (
-				F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */,
-				F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */,
-				F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */,
-				F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */,
-				F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */,
-				F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */,
-				F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */,
 				F99DF5FF2292D78900341DAB /* ToolsCollectionsConfigurator.swift */,
+				F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */,
+				F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */,
+				F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */,
+				F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */,
+				F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */,
+				F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */,
+				F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */,
 			);
 			name = ToolsCollections;
 			sourceTree = "<group>";
