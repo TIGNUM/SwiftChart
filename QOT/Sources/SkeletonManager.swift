@@ -202,12 +202,15 @@ private extension SkeletonManager {
     }
 
     func storeLayerBorderWidth(from button: UIButton) {
-        originalButtonLayerBorderWidth[objectAddressString(for: button)] = button.layer.borderWidth
+        let objectIdentifier = objectAddressString(for: button)
+        originalButtonLayerBorderWidth[objectIdentifier] = button.layer.borderWidth
     }
 
     func restoreLayerBorderWidth(for button: UIButton) {
-        guard let borderWidth = originalButtonLayerBorderWidth[objectAddressString(for: button)] else { return }
+        let objectIdentifier = objectAddressString(for: button)
+        guard let borderWidth = originalButtonLayerBorderWidth[objectIdentifier] else { return }
         button.layer.borderWidth = borderWidth
+        originalButtonLayerBorderWidth[objectIdentifier] = nil // remove from dictionary
     }
 }
 
