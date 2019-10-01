@@ -40,7 +40,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         let imageUp = isDark ? R.image.ic_arrow_up_dark() : R.image.ic_arrow_up()
         previousButton.setImage(imageUp, for: .normal)
 
-        if isDark == true {
+        if isDark {
+            ThemeBorder.accent40.apply(previousButton)
             navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
         }
 

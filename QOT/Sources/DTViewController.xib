@@ -32,10 +32,10 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="82"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a9Z-Fd-slD" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="347" y="13.5" width="40" height="55"/>
+                            <rect key="frame" x="347" y="21" width="40" height="40"/>
                             <constraints>
+                                <constraint firstAttribute="height" constant="40" id="5rR-xg-f02"/>
                                 <constraint firstAttribute="width" constant="40" id="axp-vd-hnw"/>
-                                <constraint firstAttribute="width" secondItem="a9Z-Fd-slD" secondAttribute="height" multiplier="8:11" id="dJM-IN-caj"/>
                             </constraints>
                             <state key="normal" image="ic_arrow_up"/>
                             <connections>
