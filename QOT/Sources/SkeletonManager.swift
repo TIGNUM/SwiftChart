@@ -61,19 +61,19 @@ class SkeletonManager {
     }
 
     func hide() {
-//        for view in self.skeletonableTitles {
-//            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
-//        }
-//        for view in self.skeletonableSubtitles {
-//            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
-//        }
-//
-//        for view in self.skeletonableOtherViews {
-//            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
-//        }
-//        self.skeletonableTitles.removeAll()
-//        self.skeletonableSubtitles.removeAll()
-//        self.skeletonableOtherViews.removeAll()
+        for view in self.skeletonableTitles {
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+        }
+        for view in self.skeletonableSubtitles {
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+        }
+
+        for view in self.skeletonableOtherViews {
+            self.removeShimmerView(from: view, withAnimationDuration: dissolveAnimationDuration)
+        }
+        self.skeletonableTitles.removeAll()
+        self.skeletonableSubtitles.removeAll()
+        self.skeletonableOtherViews.removeAll()
     }
 
     // MARK: Private
