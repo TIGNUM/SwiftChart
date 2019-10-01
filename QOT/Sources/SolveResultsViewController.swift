@@ -170,8 +170,8 @@ extension SolveResultsViewController: UITableViewDataSource {
             cell.configure(title: title, solutionText: solution)
             cell.delegate = self
             return cell
-            case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
-                 .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
+        case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
+             .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
             return cell
