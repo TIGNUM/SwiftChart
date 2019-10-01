@@ -83,6 +83,10 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
         descriptionLabel.text = R.string.localized.copyrightText() + (copyrightURL ?? "")
     }
 
+    @IBAction func didTapClose(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
     func showSafariVC(for url: String) {
         guard let url = URL(string: url) else {
             // show invalid url
