@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 public extension Notification.Name {
     static let showKnowingSection = Notification.Name("showKnowingSection")
@@ -31,6 +32,9 @@ final class KnowingInteractor {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didGetNotificationToShowsKnowingSection(_ :)),
                                                name: .showKnowingSection, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishSynchronization(_ :)),
+                                               name: .didFinishSynchronization, object: nil)
     }
 
     // MARK: - Interactor
@@ -88,6 +92,17 @@ extension KnowingInteractor {
         switch section {
         case .strategies: break
         case .whatsHot: break
+        default: break
+        }
+    }
+
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        guard let result = notification.object as? SyncResultContext, result.hasUpdatedContent else { return }
+        switch result.dataType {
+        case .CONTENT_READ:
+            if result.syncRequestType == .DOWN_SYNC {
+                loadData()
+            }
         default: break
         }
     }
