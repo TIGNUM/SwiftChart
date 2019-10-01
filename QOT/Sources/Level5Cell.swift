@@ -99,11 +99,10 @@ final class Level5Cell: BaseDailyBriefCell {
         setProgress()
     }
 
-    //
     func setUpButtons() {
-        saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeBorder.accent.apply(saveButton)
         buttons.forEach {(button) in
-            button.corner(radius: button.frame.width / 2, borderColor: .accent40)
+            ThemeButton.clear.apply(button)
         }
     }
 
@@ -116,7 +115,6 @@ final class Level5Cell: BaseDailyBriefCell {
     func setButtonText(_ buttonText: String?) {
         saveButton.setTitle(buttonText, for: .normal)
         ThemeView.level1.apply(saveButton)
-        saveButton.layer.borderWidth = 1
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {

@@ -15,14 +15,16 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     var viewModel: DTViewModel?
     var router: DTRouterInterface?
     var interactor: DTInteractorInterface?
+    var triggeredByLaunchHandler = false
     private weak var navigationButton: NavigationButton?
     private weak var pageController: UIPageViewController?
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var previousButton: AnimatedButton!
+    @IBOutlet weak var closeButton: AnimatedButton!
     @IBOutlet weak var navigationButtonContainer: UIView!
     @IBOutlet weak var pageControllerContainer: UIView!
     @IBOutlet weak var constraintBottom: NSLayoutConstraint!
     @IBOutlet weak var viewNavBottom: UIView!
+    @IBOutlet weak var navBottomGradientImageView: UIImageView!
     @IBOutlet weak var viewNavTop: UIView!
 
     // MARK: - Life Cycle
@@ -36,6 +38,13 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
 
         let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
         closeButton.setImage(image, for: .normal)
+        let imageUp = isDark ? R.image.ic_arrow_up_dark() : R.image.ic_arrow_up()
+        previousButton.setImage(imageUp, for: .normal)
+
+        if isDark {
+            ThemeBorder.accent40.apply(previousButton)
+            navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
+        }
 
         navigationController?.setNeedsStatusBarAppearanceUpdate()
         setupPageViewController(view.backgroundColor)
@@ -46,6 +55,13 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         super.viewDidAppear(animated)
         trackPage()
         updateBottomNavigation([], [])
+
+        // Handling dismissing process when DecisionTree is triggered by Launch handler
+        if !animated && triggeredByLaunchHandler == true,
+            let mainNavigationController = baseRootViewController?.navigationController,
+            self.navigationController?.presentingViewController == mainNavigationController {
+            router?.dismissChatBotFlow()
+        }
     }
 
     override func viewDidLayoutSubviews() {

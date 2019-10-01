@@ -29,6 +29,7 @@ final class ArticleEmptyTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addSubtitle(detailLabel)
         skeletonManager.addSubtitle(fakeTextLabel)
         skeletonManager.addOtherView(fakeImageView)
+        selectionStyle = .none
     }
 
     deinit {

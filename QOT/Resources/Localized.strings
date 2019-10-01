@@ -202,8 +202,8 @@
 
 "Sidebar.SensorsMenu.Sensors" = "ACTIVITY TRACKERS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
-"Sidebar.SensorsMenu.Sensors.NoData" = "No Data";
-"Sidebar.SensorsMenu.Sensors.Disconnected" = "Disconnected";
+"Sidebar.SensorsMenu.Sensors.NoData" = "No Data *";
+"Sidebar.SensorsMenu.Sensors.Disconnected" = "Connect";
 "Sidebar.SensorsMenu.Sensors.Connected" = "Connected";
 "Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";
 "Sidebar.SensorsMenu.Seonsors.NoData" = "No data";
@@ -602,3 +602,5 @@
 "MyLibrary.GroupItemCount.Singular" = "%@ item";
 "MyLibrary.GroupItemCount.Plural" = "%@ items";
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
+
+"Tools.Subtitle.Interactive.Tool" = "Interactive tool";

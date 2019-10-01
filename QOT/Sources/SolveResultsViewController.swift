@@ -147,6 +147,9 @@ extension SolveResultsViewController: UITableViewDelegate {
              .exclusiveContent(let id, _, _, _, _)?:
             router?.openStrategy(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
+        case .strategyContentItem(let id, _, _, _, _)?:
+            router?.openContentItem(with: id)
+            trackUserEvent(.SELECT, value: id, valueType: .CONTENT_ITEM, action: .TAP)
         default:
             tableView.isUserInteractionEnabled = true
             return
@@ -167,7 +170,8 @@ extension SolveResultsViewController: UITableViewDataSource {
             cell.configure(title: title, solutionText: solution)
             cell.delegate = self
             return cell
-        case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
+        case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
+             .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
             return cell

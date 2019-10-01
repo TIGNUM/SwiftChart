@@ -24,6 +24,7 @@ class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTab
 
     func configure(withUrl: URL?) {
         guard let url = withUrl else { return }
+        super.configure()
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }
 }

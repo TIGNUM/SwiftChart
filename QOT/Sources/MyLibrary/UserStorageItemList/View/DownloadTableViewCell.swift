@@ -24,6 +24,7 @@ class DownloadTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewC
     }
 
     func setStatus(_ status: MyLibraryCellViewModel.DownloadStatus) {
+        super.configure()
         skeletonManager.hide()
         activityIcon.image = nil
         activityView.isHidden = true

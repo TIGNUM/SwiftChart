@@ -443,8 +443,8 @@
                                                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSs-K8-seX">
-                                                    <rect key="frame" x="48" y="54.5" width="262" height="14.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tSs-K8-seX">
+                                                    <rect key="frame" x="48" y="54.5" width="31.5" height="14.5"/>
                                                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                                                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -486,7 +486,6 @@
                                                 <constraint firstItem="uzN-Rk-Pj5" firstAttribute="centerY" secondItem="Gv8-20-euU" secondAttribute="centerY" id="bjh-CS-Mdq"/>
                                                 <constraint firstAttribute="trailing" secondItem="Gv8-20-euU" secondAttribute="trailing" constant="44" id="f8i-Jw-OYX"/>
                                                 <constraint firstItem="fKN-SM-g2I" firstAttribute="leading" secondItem="f8F-6l-5W3" secondAttribute="leading" constant="24" id="fKH-Ld-jom"/>
-                                                <constraint firstItem="tSs-K8-seX" firstAttribute="trailing" secondItem="YoJ-8l-v43" secondAttribute="trailing" id="g8Z-Ts-wKJ"/>
                                                 <constraint firstItem="Gv8-20-euU" firstAttribute="centerY" secondItem="f8F-6l-5W3" secondAttribute="centerY" id="ikC-cl-QLW"/>
                                                 <constraint firstAttribute="trailing" secondItem="fKN-SM-g2I" secondAttribute="trailing" id="k1i-46-WHj"/>
                                                 <constraint firstAttribute="bottom" secondItem="fKN-SM-g2I" secondAttribute="bottom" id="tno-Kb-agk"/>

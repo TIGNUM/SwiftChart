@@ -75,7 +75,6 @@ final class MyVisionInteractor {
                 return
             }
 
-            self?.presenter.hideScreenLoader()
             let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", nil, false)
             self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessageRating: shouldShowSingleMessage)
             self?.worker.updateWidget()
