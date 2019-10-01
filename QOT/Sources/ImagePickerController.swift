@@ -69,50 +69,33 @@ final class ImagePickerController {
     func show(in viewController: UIViewController?, deletable: Bool, completion: (() -> Void)? = nil) {
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = UIAlertAction(title: "",
+        let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
                                         style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.photo)
         }
 
-        let cameraAction = UIAlertAction(title: "",
+        let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
                                          style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.camera)
         }
 
-        let cancelAction = UIAlertAction(title: "",
+        let cancelAction = UIAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
                                          style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
                                             self.adapter?.cancelSelectionEvent()
                                             self.delegate?.cancelSelection()
         }
-         let cameraActionContentVC = CustomAlertSheetContentViewController.init(title: R.string.localized.imagePickerOptionsButtonCamera(),
-                                                                                 isDestructive: false)
-         let photoActionContentVC = CustomAlertSheetContentViewController.init(title: R.string.localized.imagePickerOptionsButtonPhoto(),
-                                                                               isDestructive: false)
-         let cancelActionContentVC = CustomAlertSheetContentViewController.init(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
-                                                                                isDestructive: false)
-
-        cameraAction.setValue(cameraActionContentVC, forKey: "contentViewController")
-        photoAction.setValue(photoActionContentVC, forKey: "contentViewController")
-        cancelAction.setValue(cancelActionContentVC, forKey: "contentViewController")
 
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
         if deletable == true {
-            let deleteAction = UIAlertAction(title: "",
+            let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
                                              style: .destructive) { [unowned self] (alertAction: UIAlertAction) in
                                                 self.adapter?.deleteImageEvent()
                                                 self.delegate?.deleteImage()
             }
-
-            let deleteActionContentVC = CustomAlertSheetContentViewController.init(title: R.string.localized.imagePickerOptionsButtonDelete(),
-                                                                                   isDestructive: true)
-            deleteAction.setValue(deleteActionContentVC, forKey: "contentViewController")
-
             alertController.addAction(deleteAction)
         }
         alertController.addAction(cancelAction)
-        alertController.view?.subviews.first?.subviews.first?.subviews.first?.backgroundColor = .black
-
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
 
