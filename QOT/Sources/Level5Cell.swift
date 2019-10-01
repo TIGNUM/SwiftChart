@@ -35,7 +35,6 @@ final class Level5Cell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        saveButton.layer.borderWidth = 1
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(introLabel)
         skeletonManager.addSubtitle(questionLabel)
@@ -51,7 +50,6 @@ final class Level5Cell: BaseDailyBriefCell {
 
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
-        saveButton.layer.borderWidth = 0
         ThemeView.selectedButton.apply(saveButton)
         delegate?.saveAnswerValue(savedAnswer + 1, from: self)
         QOTAlert.show(title: nil, message: confirmationMessage)
@@ -84,11 +82,10 @@ final class Level5Cell: BaseDailyBriefCell {
         setProgress()
     }
 
-    //
     func setUpButtons() {
-        saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeBorder.accent.apply(saveButton)
         buttons.forEach {(button) in
-            button.corner(radius: button.frame.width / 2, borderColor: .accent40)
+            ThemeButton.clear.apply(button)
         }
     }
 
@@ -101,7 +98,6 @@ final class Level5Cell: BaseDailyBriefCell {
     func setButtonText(_ buttonText: String?) {
         saveButton.setTitle(buttonText, for: .normal)
         ThemeView.level1.apply(saveButton)
-        saveButton.layer.borderWidth = 1
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {

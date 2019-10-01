@@ -53,7 +53,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             self?.checkScroll()
             }
         ]
-        gotItButton.layer.borderWidth = 1 // set border width default 1
+        ThemeBorder.accent.apply(gotItButton)
         skeletonManager.addSubtitle(sprintTitle)
         skeletonManager.addSubtitle(sprintInfo)
         skeletonManager.addOtherView(tableView)
@@ -94,6 +94,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false
         } else {
+            ThemeBorder.accent.apply(gotItButton)
             ThemeView.sprints.apply(gotItButton)
             gotItButton.isEnabled = true
         }
