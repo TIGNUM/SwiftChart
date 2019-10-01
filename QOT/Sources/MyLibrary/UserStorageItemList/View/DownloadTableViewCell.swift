@@ -8,10 +8,7 @@
 
 import UIKit
 
-class DownloadTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var contentTitle: UILabel!
-    @IBOutlet weak var infoText: UILabel!
+class DownloadTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     @IBOutlet private weak var activityIcon: UIImageView!
     @IBOutlet private weak var activityView: GradientArcView!
 
@@ -25,7 +22,6 @@ class DownloadTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewC
 
     func setStatus(_ status: MyLibraryCellViewModel.DownloadStatus) {
         super.configure()
-        skeletonManager.hide()
         activityIcon.image = nil
         activityView.isHidden = true
         activityView.stopRotating()
