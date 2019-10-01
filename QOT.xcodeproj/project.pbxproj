@@ -465,13 +465,6 @@
 		75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */; };
 		75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */; };
 		75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */; };
-		75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */; };
-		75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */; };
-		75DC685922BD181A00FF183D /* MyToBeVisionCountDownRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */; };
-		75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */; };
-		75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */; };
-		75DC685F22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */; };
-		75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */; };
 		75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */; };
 		75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */; };
 		75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */; };
@@ -1773,13 +1766,6 @@
 		75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderWisdomTableViewCell.xib; sourceTree = "<group>"; };
 		75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
 		75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerAdapter.swift; sourceTree = "<group>"; };
-		75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownViewController.swift; sourceTree = "<group>"; };
-		75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownInteractor.swift; sourceTree = "<group>"; };
-		75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownRouter.swift; sourceTree = "<group>"; };
-		75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownWorker.swift; sourceTree = "<group>"; };
-		75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownInterface.swift; sourceTree = "<group>"; };
-		75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownPresenter.swift; sourceTree = "<group>"; };
-		75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownConfigurator.swift; sourceTree = "<group>"; };
 		75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyToBeVisionRate.storyboard; sourceTree = "<group>"; };
 		75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewController.swift; sourceTree = "<group>"; };
 		75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateRouter.swift; sourceTree = "<group>"; };
@@ -3435,7 +3421,6 @@
 				75423EEF22CE2412008EE726 /* MyToBeVisionTracker */,
 				759AB40B22C4CADB0091BFB8 /* MyToBeVisionData */,
 				75DC686422C11C7400FF183D /* MyToBeVisionRate */,
-				75DC685322BD171900FF183D /* MyToBeVisionCountDown */,
 				75496E8522BA5E8600150C78 /* MyToBeVisionNullState */,
 				5FA66638229C1D1D0027EE74 /* MyToBeVisionEditDetails */,
 				5F8A898B2296CA780011A05C /* MyToBeVision */,
@@ -3730,20 +3715,6 @@
 				75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */,
 			);
 			name = LeaderWisdom;
-			sourceTree = "<group>";
-		};
-		75DC685322BD171900FF183D /* MyToBeVisionCountDown */ = {
-			isa = PBXGroup;
-			children = (
-				75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */,
-				75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */,
-				75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */,
-				75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */,
-				75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */,
-				75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */,
-				75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */,
-			);
-			name = MyToBeVisionCountDown;
 			sourceTree = "<group>";
 		};
 		75DC686422C11C7400FF183D /* MyToBeVisionRate */ = {
@@ -6531,7 +6502,6 @@
 				DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */,
 				8D04FA3523041E9C00AE7CA0 /* RegistrationAgeInteractor.swift in Sources */,
 				8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */,
-				75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */,
 				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
@@ -6564,7 +6534,6 @@
 				8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */,
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
 				9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */,
-				75DC685F22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift in Sources */,
 				8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */,
 				8DC2F7242313F2B70002F29F /* StreamVideoInteractor.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -6672,9 +6641,7 @@
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
 				365825782327D19200AC3F4A /* DTShortTBVPresenter.swift in Sources */,
 				36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */,
-				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
-				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
@@ -6819,7 +6786,6 @@
 				8D8AA76022FDCB6700B59A81 /* RegistrationPresenter.swift in Sources */,
 				F9A5C94822B7D06300AB2E94 /* PaymentReminderModel.swift in Sources */,
 				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
-				75DC685922BD181A00FF183D /* MyToBeVisionCountDownRouter.swift in Sources */,
 				8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */,
 				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
@@ -6978,7 +6944,6 @@
 				AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */,
 				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
 				8D110D05230FDA41000181BA /* WalkthroughCoachViewController.swift in Sources */,
-				75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */,
 				367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
@@ -7026,7 +6991,6 @@
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
-				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
 				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
