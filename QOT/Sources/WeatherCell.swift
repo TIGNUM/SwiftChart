@@ -16,14 +16,14 @@ final class WeatherCell: BaseDailyBriefCell {
     @IBOutlet weak var introLabel: UILabel!
 
     //WeatherView section
-    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint?
-    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherTitleLabel: UILabel!
     @IBOutlet weak var weatherBodyLabel: UILabel!
-
     @IBOutlet weak var hourlyStackView: UIStackView!
+    @IBOutlet weak var weatherImageViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
@@ -148,9 +148,8 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
+        let weatherImageViewTop: CGFloat = 60
         var shouldHideHeader = false
-        headerViewHeightConstraint?.constant = 0
-        headerViewHeightConstraint?.isActive = false
         switch viewModel?.locationPermissionStatus {
         case .notSet?:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
@@ -172,7 +171,11 @@ final class WeatherCell: BaseDailyBriefCell {
         for constraint in verticalHeaderConstraints {
             constraint.isActive = !shouldHideHeader
         }
-        headerViewHeightConstraint?.isActive = shouldHideHeader
+
+        weatherImageViewTopConstraint.constant = shouldHideHeader ?
+                                                weatherImageViewTop :
+                                                weatherImageViewTop + headerView.frame.size.height
+        headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader
         bucketTitleLabel.isHidden = shouldHideHeader
