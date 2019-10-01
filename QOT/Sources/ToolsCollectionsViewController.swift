@@ -86,6 +86,7 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsCollectionsAudioTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsGroupTableViewCell.self)
+        tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.tableFooterView = UIView()
     }
@@ -186,7 +187,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            delegate: self)
             cell.addTopLine(for: indexPath.row)
             return cell
-        } else {
+        } else if tool?.type == "pdf" {
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.configure(categoryTitle: tool?.categoryTitle ?? "",
@@ -198,6 +199,13 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            delegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
+            return cell
+        } else {
+            let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
+            cell.configure(title: tool?.title ?? "",
+                           subtitle: R.string.localized.toolsSubtitleInteractiveTool())
+            cell.addTopLine(for: indexPath.row)
             return cell
         }
     }
