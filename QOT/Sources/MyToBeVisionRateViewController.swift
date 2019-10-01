@@ -93,9 +93,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if showCountDownPage {
-            return generateBottomNavigationBarForTimerView()
-        } else if isLastPage {
+        if isLastPage {
             return generateBottomNavigationBarForView()
         } else {
             return nil
@@ -108,19 +106,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
                                      action: #selector(doneAction),
                                      backgroundColor: .carbon,
                                      borderColor: .accent40)]
-    }
-
-    private func generateBottomNavigationBarForTimerView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerSkipButton(),
-                                     buttonWidth: 64,
-                                     action: #selector(skipAction),
-                                     backgroundColor: .carbon,
-                                     borderColor: .accent40)]
-    }
-
-    @objc func skipAction() {
-        trackUserEvent(.CLOSE, valueType: "CountDownView", action: .TAP)
-        shouldSkip()
     }
 
     @objc private func doneAction() {
@@ -164,42 +149,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 }
 
-extension MyToBeVisionRateViewController: MyToBeVisionCountDownViewControllerProtocol {
-    func shouldSkip() {
-        showCountDownPage = false
-        refreshBottomNavigationItems()
-        interactor?.hideTimerView {[weak self] in
-            self?.interactor?.skipCountDownView()
-        }
-    }
-
-    func shouldDismiss() {
-        interactor?.dismiss()
-    }
-}
-
 extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterface {
-
-    func showCountDownView(_ view: UIView?) {
-        guard let clountDownView = view else { return }
-        showCountDownPage = true
-        timerView.isHidden = false
-        clountDownView.translatesAutoresizingMaskIntoConstraints = false
-        timerView.addSubview(clountDownView)
-        clountDownView.addConstraints(to: timerView)
-    }
-
-    func hideTimerView(completion: @escaping (() -> Void)) {
-        UIView.animate(withDuration: Animation.duration_04,
-                       animations: {
-                        self.timerView.alpha = 0
-        },
-                       completion: { _ in
-                        completion()
-                        self.timerView.removeSubViews()
-                        self.timerView.isHidden = true
-        })
-    }
 
     func showScreenLoader() {
         loaderView.isHidden = false

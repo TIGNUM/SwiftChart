@@ -68,7 +68,6 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
         navigationController?.navigationBar.isHidden = true
         refreshBottomNavigationItems()
         player?.play()
-
     }
 
     override func viewWillDisappear(_ animated: Bool) {
