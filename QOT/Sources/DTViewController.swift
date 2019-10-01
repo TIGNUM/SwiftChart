@@ -51,6 +51,12 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         super.viewDidAppear(animated)
         trackPage()
         updateBottomNavigation([], [])
+
+        // Handling dismissing process when DecisionTree is triggered by Launch handler
+        if !animated, let mainNavigationController = baseRootViewController?.navigationController,
+            self.navigationController?.presentingViewController == mainNavigationController {
+            router?.dismissChatBotFlow()
+        }
     }
 
     override func viewDidLayoutSubviews() {
