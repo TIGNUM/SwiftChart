@@ -82,6 +82,9 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let currentSelectedState = myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected ?? false
+        if !currentSelectedState && myDataSelectionModel?.selectedItems().count ?? 0 >= MyDataSelectionModel.maximmumSelectableItems {
+            return
+        }
         if let cell = tableView.cellForRow(at: indexPath) as? MyDataSelectionScreenTableViewCell {
             cell.showSelected = !currentSelectedState
             myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected = !currentSelectedState

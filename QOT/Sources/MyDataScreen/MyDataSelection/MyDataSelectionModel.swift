@@ -9,6 +9,7 @@
 import UIKit
 
 struct MyDataSelectionModel {
+    static let maximmumSelectableItems = 3
     var myDataSelectionItems: [SelectionItem]
 
     struct SelectionItem: Equatable {
@@ -21,6 +22,10 @@ struct MyDataSelectionModel {
                    lhs.title == rhs.title &&
                    lhs.selected == rhs.selected
         }
+    }
+
+    func selectedItems() -> [SelectionItem] {
+        return myDataSelectionItems.filter { $0.selected }
     }
 
     static var sectionValues: [MyDataParameter] {
