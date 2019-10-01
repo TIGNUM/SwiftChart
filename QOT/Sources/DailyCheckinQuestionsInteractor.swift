@@ -15,6 +15,7 @@ final class DailyCheckinQuestionsInteractor {
     private let worker: DailyCheckinQuestionsWorker
     private let presenter: DailyCheckinQuestionsPresenterInterface
     private let router: DailyCheckinQuestionsRouterInterface
+    private var _questions = [RatingQuestionViewModel.Question]()
 
     // MARK: - Init
 
@@ -30,6 +31,11 @@ final class DailyCheckinQuestionsInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
+        worker.getQuestions { [weak self] (questions) in
+            guard let questions = questions else { return }
+            self?._questions = questions
+            self?.presenter.showQuestions()
+        }
     }
 }
 
@@ -37,11 +43,11 @@ final class DailyCheckinQuestionsInteractor {
 
 extension DailyCheckinQuestionsInteractor: DailyCheckinQuestionsInteractorInterface {
     var questions: [RatingQuestionViewModel.Question] {
-        return worker.questions
+        return _questions
     }
 
     var answeredQuestionCount: Int {
-        return worker.questions.compactMap({ (question) -> Int? in
+        return _questions.compactMap({ (question) -> Int? in
             question.selectedAnswerIndex
         }).count
     }

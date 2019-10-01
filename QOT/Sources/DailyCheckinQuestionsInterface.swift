@@ -10,10 +10,12 @@ import Foundation
 
 protocol DailyCheckinQuestionsViewControllerInterface: class {
     func setupView()
+    func showQuestions()
 }
 
 protocol DailyCheckinQuestionsPresenterInterface {
     func setupView()
+    func showQuestions()
 }
 
 protocol DailyCheckinQuestionsInteractorInterface: Interactor {

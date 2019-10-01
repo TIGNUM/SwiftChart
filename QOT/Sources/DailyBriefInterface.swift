@@ -67,5 +67,5 @@ protocol DailyBriefRouterInterface {
     func displayCoachPreparationScreen()
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
-    func showDailyCheckInQuestions(_ data: [RatingQuestionViewModel.Question])
+    func showDailyCheckInQuestions()
 }

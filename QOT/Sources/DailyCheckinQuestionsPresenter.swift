@@ -27,4 +27,8 @@ extension DailyCheckinQuestionsPresenter: DailyCheckinQuestionsPresenterInterfac
     func setupView() {
         viewController?.setupView()
     }
+
+    func showQuestions() {
+        viewController?.showQuestions()
+    }
 }

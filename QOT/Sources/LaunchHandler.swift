@@ -271,8 +271,8 @@ extension LaunchHandler {
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
             } else {
-                guard let viewController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
-                DailyCheckinStartConfigurator.configure(viewController: viewController)
+                guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
+                DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
                 self?.present(viewController: viewController)
             }
         }
