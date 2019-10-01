@@ -214,6 +214,7 @@ enum ThemeButton {
     case accent40
     case audioButton
     case closeButton(ThemeColorMode)
+    case level5
     case clear
 
     var defaultHeight: CGFloat {
@@ -240,6 +241,10 @@ enum ThemeButton {
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = colorSelected
+            colorBorder = .accent40
+        case .level5:
+            colorSelected = .accent40
+            colorUnselected = .clear
             colorBorder = .accent40
         case .clear:
             colorSelected = .clear
@@ -302,6 +307,7 @@ enum ThemableButton {
     case trackSelection
     case paymentReminder
     case articleMarkAsRead(selected: Bool)
+    case level5
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -319,7 +325,8 @@ enum ThemableButton {
              .createAccountInfo,
              .trackSelection,
              .paymentReminder,
-             .articleMarkAsRead:
+             .articleMarkAsRead,
+             .level5:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -332,7 +339,8 @@ enum ThemableButton {
              .signinInfo,
              .myTbvDataRate,
              .createAccountInfo,
-             .trackSelection:
+             .trackSelection,
+             .level5:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -363,7 +371,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
-
+        case .level5:
+            return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         }
     }
 
