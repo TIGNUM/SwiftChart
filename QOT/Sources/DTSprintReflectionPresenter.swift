@@ -12,7 +12,7 @@ import qot_dal
 final class DTSprintReflectionPresenter: DTPresenter {
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == SprintReflection.QuestionKey.Intro //|| questionKey == SprintReflection.QuestionKey.Review
+        return questionKey == SprintReflection.QuestionKey.Intro || questionKey == SprintReflection.QuestionKey.Review
     }
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
