@@ -28,11 +28,11 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
     @IBOutlet weak var emailField: QotPlaceholderTextField!
     @IBOutlet weak var emailInstructionsLabel: UILabel!
     @IBOutlet weak var precodeLabel: UILabel!
-    @IBOutlet var digitTextFields: [TextField]!
-    @IBOutlet var digitDescriptionLabel: UILabel!
-    @IBOutlet var sendButtonYPosition: NSLayoutConstraint!
+    @IBOutlet weak var digitDescriptionLabel: UILabel!
+    @IBOutlet weak var sendButtonYPosition: NSLayoutConstraint!
     @IBOutlet weak var buttonSendCode: UIButton!
     @IBOutlet weak var buttonGetHelp: UIButton!
+    @IBOutlet var digitTextFields: [TextField]!
     @IBOutlet var codeEntryViews: [UIView]!
 
     var preSetUserEmail: String?

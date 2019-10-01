@@ -98,6 +98,10 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
         presenter.present(controller: controller, direction: .forward)
     }
 
+    func didFinishLogin() {
+        worker.infoController.didFinishLogin()
+    }
+
     func didTapBackInternal() {
         navigateBack()
     }

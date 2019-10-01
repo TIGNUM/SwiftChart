@@ -16,9 +16,9 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     let mediaExtension = "mp4"
     // Video player
     var interactor: SigningInfoInteractorInterface?
-    let player: AVQueuePlayer = AVQueuePlayer()
-    let playerLayer: AVPlayerLayer?
-    let playerLooper: AVPlayerLooper?
+    var player: AVQueuePlayer? = AVQueuePlayer()
+    var playerLayer: AVPlayerLayer?
+    var playerLooper: AVPlayerLooper?
 
     // Outlets
     @IBOutlet private weak var videoContainerView: UIView!
@@ -26,11 +26,11 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var loginButton: RoundedButton!
     @IBOutlet private weak var startButton: RoundedButton!
-    var delegate: SigningInfoDelegate?
+    weak var delegate: SigningInfoDelegate?
 
     // MARK: - Init
     init() {
-        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension) {
+        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension), let player = player {
             let playerItem = AVPlayerItem(url: media)
             playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         } else {
@@ -67,8 +67,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         refreshBottomNavigationItems()
-        player.play()
-
+        player?.play()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -83,7 +82,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         view.alpha = 1
-        player.pause()
+        player?.pause()
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -108,11 +107,6 @@ private extension SigningInfoViewController {
         ThemableButton.signinInfo.apply(loginButton, title: R.string.localized.onboardingIntroButtonLogin())
         ThemableButton.signinInfo.apply(startButton, title: R.string.localized.onboardingIntroButtonRegister())
     }
-
-    func setupVideo() {
-
-        player.play()
-    }
 }
 
 // MARK: - Actions
@@ -132,6 +126,15 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
         ThemeView.level1.apply(view)
         setupButtons()
+    }
+
+    func didFinishLogin() {
+        player?.removeAllItems()
+        player = nil
+        playerLayer?.removeFromSuperlayer()
+        playerLayer = nil
+        playerLooper?.disableLooping()
+        playerLooper = nil
     }
 
     func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String) {

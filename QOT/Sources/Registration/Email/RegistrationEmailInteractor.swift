@@ -16,7 +16,7 @@ final class RegistrationEmailInteractor {
     private let worker: RegistrationEmailWorker
     private let presenter: RegistrationEmailPresenterInterface
     private let router: RegistrationEmailRouterInterface
-    private let delegate: RegistrationDelegate
+    private weak var delegate: RegistrationDelegate?
 
     private var email: String?
     var isNextButtonEnabled: Bool = false
@@ -59,7 +59,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
     }
 
     func didTapBack() {
-        delegate.didTapBack()
+        delegate?.didTapBack()
     }
 
     func setEmail(_ email: String?) {
@@ -74,7 +74,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
             guard let strongSelf = self else { return }
             // Existing account
             if case .userExists = result.code {
-                strongSelf.delegate.handleExistingUser(email: email)
+                strongSelf.delegate?.handleExistingUser(email: email)
                 strongSelf.presenter.presentActivity(state: nil)
                 return
             }
@@ -133,7 +133,7 @@ private extension RegistrationEmailInteractor {
             strongSelf.presenter.presentActivity(state: nil)
             // Success
             if case .codeSent = result.code {
-                strongSelf.delegate.didVerifyEmail(email)
+                strongSelf.delegate?.didVerifyEmail(email)
                 return
             }
             // Error

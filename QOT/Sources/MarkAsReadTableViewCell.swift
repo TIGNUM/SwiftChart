@@ -24,7 +24,7 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
         isRead = selected
 
         let text = selected ? R.string.localized.markAsUnread() : R.string.localized.markAsRead()
-        ThemableButton.articleMarkAsRead.apply(markAsReadButton, title: text)
+        ThemableButton.articleMarkAsRead(selected: selected).apply(markAsReadButton, title: text)
     }
 }
 

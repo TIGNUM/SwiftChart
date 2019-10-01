@@ -16,7 +16,7 @@ final class OnboardingLoginInteractor {
     private let worker: OnboardingLoginWorker
     private let presenter: OnboardingLoginPresenterInterface
     private let router: OnboardingLoginRouterInterface
-    private let delegate: OnboardingLoginDelegate
+    private weak var delegate: OnboardingLoginDelegate?
 
     var viewModel = OnboardingLoginViewModel()
 
@@ -72,7 +72,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     }
 
     func didTapBack() {
-        delegate.didTapBack()
+        delegate?.didTapBack()
     }
 
     func didTapVerify(email: String?) {
@@ -165,9 +165,11 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 private extension OnboardingLoginInteractor {
 
     func handleSuccessfulLogin(for email: String) {
+        delegate?.didFinishLogin()
+
         let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
         if !emails.contains(email) {
-            delegate.showTrackSelection()
+            delegate?.showTrackSelection()
         } else {
             router.showHomeScreen()
         }

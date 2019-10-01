@@ -301,7 +301,7 @@ enum ThemableButton {
     case createAccountInfo
     case trackSelection
     case paymentReminder
-    case articleMarkAsRead
+    case articleMarkAsRead(selected: Bool)
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -340,8 +340,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent, background: .carbonNew80, border: .accent40)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
-        case .articleMarkAsRead:
-            return ButtonTheme(foreground: .accent, background: nil, border: .accent30)
+        case .articleMarkAsRead(let selected):
+            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: .accent30)
         }
     }
 
@@ -361,8 +361,8 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
-        case .articleMarkAsRead:
-            return ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
+        case .articleMarkAsRead(let selected):
+            return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
 
         }
     }
@@ -748,9 +748,15 @@ enum ThemeText {
     case mySprintDetailsCta
     case mySprintDetailsCtaHighlight
 
+    case mySensorsSensorTitle
+    case mySensorsTitle
+    case mySensorsNoDataInfoLabel
+    case mySensorsDescriptionTitle
+    case mySensorsDescriptionBody
+
     private var font: UIFont {
         switch self {
-        case .registrationCodeDisclaimerError, .resultCounterMax:
+        case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel:
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
@@ -828,13 +834,14 @@ enum ThemeText {
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent,
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName,
-             .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo:
+             .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
+             .mySensorsDescriptionTitle, .mySensorsSensorTitle:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
              .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .onboardingInfoBody, .paymentReminderHeaderSubtitle,
-             .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader:
+             .mySprintsTableHeader, .mySprintsCellProgress, .mySprintDetailsHeader, .mySensorsTitle:
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
@@ -881,7 +888,8 @@ enum ThemeText {
         case .qotAlertTitle:
             return Fonts.fontLight20
         case .qotAlertMessage, .myDataParameterSelectionTitle,
-             .mySprintDetailsProgress:
+             .mySprintDetailsProgress,
+             .mySensorsDescriptionBody:
             return Fonts.fontRegular14
         case .tvbCounter:
             return Fonts.fontDisplayUltralight120
@@ -918,7 +926,8 @@ enum ThemeText {
              .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
              .onboardingInfoTitle,
              .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName,
-             .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive:
+             .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -953,7 +962,8 @@ enum ThemeText {
              .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels,
              .onboardingInfoBody,
-             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular:
+             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
+             .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1066,7 +1076,8 @@ enum ThemeText {
              .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
              .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
-             .weatherDescription, .weatherTitle, .weatherBody:
+             .weatherDescription, .weatherTitle, .weatherBody, .mySensorsSensorTitle, .mySensorsTitle, .mySensorsNoDataInfoLabel,
+             .mySensorsDescriptionTitle, .mySensorsDescriptionBody:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader,
              .mySprintsTableHeader:

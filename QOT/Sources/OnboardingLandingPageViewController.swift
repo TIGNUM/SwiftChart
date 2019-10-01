@@ -77,6 +77,10 @@ extension OnboardingLandingPageViewController: SigningInfoDelegate {
 
 extension OnboardingLandingPageViewController: OnboardingLoginDelegate {
 
+    func didFinishLogin() {
+        interactor?.didFinishLogin()
+    }
+
     func showTrackSelection() {
         interactor?.showTrackSelection()
     }

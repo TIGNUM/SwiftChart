@@ -142,6 +142,8 @@ private extension RoundedButton {
         super.setAttributedTitle(attributedTitle, for: state)
         if let color = theme.backgroundColor, let image = UIImage.from(color: color) {
             super.setBackgroundImage(image, for: state)
+        } else {
+            super.setBackgroundImage(nil, for: state)
         }
     }
 
