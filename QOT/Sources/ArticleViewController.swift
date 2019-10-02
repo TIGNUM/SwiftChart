@@ -213,15 +213,13 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        articleTopNavBar.allOff()
-        navigationBar(show: false)
+        articleTopNavBar.refreshColor()
     }
 
     func didTapTextScaleItem() {
         trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        navigationBar(show: false)
     }
 
     func didTapShareItem() {
