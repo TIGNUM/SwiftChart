@@ -28,7 +28,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-pg-dTp">
-                        <rect key="frame" x="24" y="12" width="40.5" height="20"/>
+                        <rect key="frame" x="24" y="12" width="217" height="20"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -52,6 +52,7 @@
                     <constraint firstItem="v6r-pg-dTp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="5Su-B3-UVA"/>
                     <constraint firstItem="v6r-pg-dTp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="HPo-49-kn3"/>
                     <constraint firstAttribute="trailing" secondItem="h90-Jb-FKv" secondAttribute="trailing" constant="26" id="gDl-bU-QUF"/>
+                    <constraint firstItem="h90-Jb-FKv" firstAttribute="leading" secondItem="v6r-pg-dTp" secondAttribute="trailing" constant="4" id="joX-nq-XM3"/>
                     <constraint firstItem="Bpb-8a-cMD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="lMP-eU-Lrf"/>
                     <constraint firstAttribute="bottom" secondItem="Bpb-8a-cMD" secondAttribute="bottom" constant="12.5" id="rla-1n-r3c"/>
                     <constraint firstItem="Bpb-8a-cMD" firstAttribute="top" secondItem="v6r-pg-dTp" secondAttribute="bottom" constant="4" id="xAg-2m-j6C"/>

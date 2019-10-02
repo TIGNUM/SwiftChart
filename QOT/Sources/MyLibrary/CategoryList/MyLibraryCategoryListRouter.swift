@@ -25,27 +25,13 @@ final class MyLibraryCategoryListRouter {
 // MARK: - MyLibraryCategoryListRouterInterface
 
 extension MyLibraryCategoryListRouter: MyLibraryCategoryListRouterInterface {
-    func presentLibraryItems(for type: MyLibraryCategoryType) {
-        var storageType: UserStorageType
-        switch type {
-        case .ALL:
-            storageType = .UNKOWN
-        case .BOOKMARKS:
-            storageType = .BOOKMARK
-        case .DOWNLOADS:
-            storageType = .DOWNLOAD
-        case .LINKS:
-            storageType = .EXTERNAL_LINK
-        case .NOTES:
-            storageType = .NOTE
-        }
-
+    func presentLibraryItems(for item: MyLibraryCategoryListModel) {
         guard let controller = R.storyboard.myLibraryUserStorage().instantiateInitialViewController() as? MyLibraryUserStorageViewController else {
             assertionFailure()
             return
         }
         let configurator = MyLibraryUserStorageConfigurator.make()
-        configurator(controller, storageType)
+        configurator(controller, item)
         viewController.navigationController?.pushViewController(controller, animated: true)
     }
 }

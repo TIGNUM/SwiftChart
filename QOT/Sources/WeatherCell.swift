@@ -149,6 +149,8 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
         var shouldHideHeader = false
+        headerViewHeightConstraint?.constant = 0
+        headerViewHeightConstraint?.isActive = false
         switch viewModel?.locationPermissionStatus {
         case .notSet?:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
@@ -170,12 +172,12 @@ final class WeatherCell: BaseDailyBriefCell {
         for constraint in verticalHeaderConstraints {
             constraint.isActive = !shouldHideHeader
         }
+        headerViewHeightConstraint?.isActive = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader
         bucketTitleLabel.isHidden = shouldHideHeader
         introLabel.isHidden = shouldHideHeader
         lineView.isHidden = shouldHideHeader
-        headerViewHeightConstraint?.isActive = shouldHideHeader
         layoutIfNeeded()
     }
 

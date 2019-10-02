@@ -26,5 +26,5 @@ protocol MyLibraryCategoryListInteractorInterface: Interactor {
 }
 
 protocol MyLibraryCategoryListRouterInterface {
-    func presentLibraryItems(for type: MyLibraryCategoryType)
+    func presentLibraryItems(for item: MyLibraryCategoryListModel)
 }

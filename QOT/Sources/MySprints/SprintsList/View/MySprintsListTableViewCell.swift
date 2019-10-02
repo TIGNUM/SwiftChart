@@ -25,8 +25,9 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+        let selectedView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedView)
+        selectedBackgroundView = selectedView
 
         editingOverlay = UIView()
         self.addSubview(editingOverlay)
@@ -37,26 +38,19 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
-        guard let titleText = title, let sprintStatus = status else { return }
+        guard let title = title, let sprintStatus = status else { return }
         skeletonManager.hide()
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 6
-        titleLabel.attributedText = NSAttributedString(string: titleText,
-                                                       attributes: [.kern: CharacterSpacing.kern05,
-                                                                    .paragraphStyle: style])
-        statusIcon.image = image(for: sprintStatus)
-        statusLabel.attributedText = NSAttributedString(string: description ?? "",
-                                                        attributes: [.kern: CharacterSpacing.kern04])
-        progressLabel.attributedText = NSAttributedString(string: progress ?? "",
-                                                          attributes: [.kern: CharacterSpacing.kern02])
 
-        let color: UIColor
+        ThemeText.mySprintsCellTitle.apply(title, to: titleLabel)
+        ThemeText.mySprintsCellStatus.apply(description, to: statusLabel)
+        ThemeText.mySprintsCellProgress.apply(progress, to: progressLabel)
+        statusIcon.image = image(for: sprintStatus)
+
         if case MySprintStatus.active = sprintStatus {
-            color = .carbonNew
+            ThemeView.sprintsActive.apply(contentView)
         } else {
-            color = .clear
+            ThemeView.clear.apply(contentView)
         }
-        self.backgroundColor = color
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {

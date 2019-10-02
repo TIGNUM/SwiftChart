@@ -586,7 +586,6 @@
 		8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */; };
 		8D25326D22E9AA2700FE4205 /* SprintButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25326C22E9AA2700FE4205 /* SprintButtonParameters.swift */; };
 		8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25326E22E9B8F700FE4205 /* MySprintDetailsItem.swift */; };
-		8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */; };
 		8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */; };
 		8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */; };
 		8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */; };
@@ -1896,7 +1895,6 @@
 		8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MySprintDetailsHeaderView.xib; sourceTree = "<group>"; };
 		8D25326C22E9AA2700FE4205 /* SprintButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintButtonParameters.swift; sourceTree = "<group>"; };
 		8D25326E22E9B8F700FE4205 /* MySprintDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsItem.swift; sourceTree = "<group>"; };
-		8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMySprintDetailsItemCellInterface.swift; sourceTree = "<group>"; };
 		8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDetailsItemCell.swift; sourceTree = "<group>"; };
 		8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDetailsItemCell.swift; sourceTree = "<group>"; };
 		8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtaItemDetailsItemCell.swift; sourceTree = "<group>"; };
@@ -3959,7 +3957,6 @@
 			children = (
 				8D322B9722E89C13000141E1 /* MySprintDetailsHeaderView.swift */,
 				8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */,
-				8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */,
 				8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */,
 				8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */,
 				8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */,
@@ -7278,7 +7275,6 @@
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,
-				8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				8DBE1EDE22F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift in Sources */,
 				F9D6381222D62B9A0092C482 /* DepartureInfoCellViewModel.swift in Sources */,
