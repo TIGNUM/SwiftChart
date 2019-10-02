@@ -878,6 +878,8 @@
 		B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */; };
 		B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
+		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
+		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
 		B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */; };
 		B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */; };
 		B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */; };
@@ -2153,6 +2155,8 @@
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
+		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
+		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -2778,6 +2782,8 @@
 				B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */,
 				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
 				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
+				B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */,
+				B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */,
 				B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */,
 				B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */,
 				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
@@ -5985,6 +5991,7 @@
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
 				8D8AA76922FDCB6700B59A81 /* RegistrationEmail.storyboard in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
@@ -6402,6 +6409,7 @@
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
+				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
 				363B9CC0232BF34A00C1A29E /* DTTBVWorker.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				8D0B4D292301CC4000A1AC47 /* RegistrationNamesConfigurator.swift in Sources */,
