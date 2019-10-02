@@ -206,6 +206,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             cell.configure(title: tool?.title ?? "",
                            subtitle: R.string.localized.toolsSubtitleInteractiveTool())
             cell.addTopLine(for: indexPath.row)
+            cell.accessoryView = .none
             return cell
         }
     }

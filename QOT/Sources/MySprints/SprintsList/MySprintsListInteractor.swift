@@ -87,7 +87,6 @@ final class MySprintsListInteractor {
 // MARK: - MySprintsListInteractorInterface
 
 extension MySprintsListInteractor: MySprintsListInteractorInterface {
-
     var title: String {
         return isEditing ? worker.editingTitle : worker.title
     }
