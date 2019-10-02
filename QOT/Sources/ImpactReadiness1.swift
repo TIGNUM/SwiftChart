@@ -94,21 +94,13 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 }
 
 extension UIButton {
-    func setInsets(
-        forContentPadding contentPadding: UIEdgeInsets,
-        imageTitlePadding: CGFloat
-        ) {
+    func setInsets( forContentPadding contentPadding: UIEdgeInsets, imageTitlePadding: CGFloat) {
         self.contentEdgeInsets = UIEdgeInsets(
             top: contentPadding.top,
             left: contentPadding.left + imageTitlePadding,
             bottom: contentPadding.bottom,
             right: contentPadding.right
         )
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageTitlePadding,
-            bottom: 0,
-            right: imageTitlePadding
-        )
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageTitlePadding, bottom: 0, right: imageTitlePadding)
     }
 }

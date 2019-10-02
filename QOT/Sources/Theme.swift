@@ -672,6 +672,7 @@ enum ThemeText {
     case qotToolsTitle
     case qotToolsSectionSubtitle
     case audioLabel
+    case dailyQuestion
 
     case myDataSectionHeaderTitle
     case myDataSectionHeaderSubTitle
@@ -842,7 +843,7 @@ enum ThemeText {
              .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent,
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
-             .myLibraryItemsItemName,
+             .myLibraryItemsItemName, .dailyQuestion,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle:
             return Fonts.fontLight16
@@ -958,7 +959,7 @@ enum ThemeText {
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle:
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
-             .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle:
+             .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode,
@@ -1110,7 +1111,7 @@ enum ThemeText {
         case .articleRelatedDetail, .articleRelatedDetailInStrategy, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
-             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .tbvQuestionMedium:
+             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .dailyQuestion, .tbvQuestionMedium:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
             string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)
