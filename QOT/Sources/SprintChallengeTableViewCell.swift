@@ -41,7 +41,9 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
             } else { iconFiles.isHidden = false
             }
         } else {
-            if format == .pdf || format == .paragraph || format == .prepare { iconRead.isHidden = false }
+            if format == .pdf || format == .paragraph || format == .prepare {
+                iconRead.isHidden = false
+            }
             iconVideo.isHidden = format != .video
             iconAudio.isHidden = format != .audio
         }
