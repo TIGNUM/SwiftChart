@@ -1251,9 +1251,9 @@ enum ThemeText {
             testLabel.sizeToFit()
             fit = testLabel.bounds.width <= maxWidth
             if !fit {
-                if let newFont = UIFont(name: testFont.fontName, size: pointSize - 1) {
+                pointSize -= 1
+                if let newFont = UIFont(name: testFont.fontName, size: pointSize) {
                     testFont = newFont
-                    pointSize -= 1
                 } else {
                     fit = true
                 }
