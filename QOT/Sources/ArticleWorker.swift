@@ -32,7 +32,7 @@ final class ArticleWorker {
 
     var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
-    var relatedArticlesStrategy = [Article.RelatedArticleStrategy]()
+    var relatedArticlesStrategy = [Article.Item]()
 
     var audioArticleItem: Article.Item?
 
@@ -127,7 +127,7 @@ final class ArticleWorker {
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
-            self?.setupRelatedArticlesStrtegy()
+//            self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
@@ -206,10 +206,26 @@ final class ArticleWorker {
                                                                               duration: item.valueDuration ?? 0)))
             }
         }
+        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .audio }.forEach { item in
+            if let audioURL = URL(string: item.valueMediaURL ?? "") {
+                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
+                                                                              title: item.valueText,
+                                                                              description: item.valueDescription,
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              audioURL: audioURL,
+                                                                              duration: item.valueDuration ?? 0,
+                                                                              waveformData: [])))
+            }
+        }
+        relatedContent.forEach { content in
+            itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                                                       description: content.durationString,
+                                                                                       itemID: content.remoteID ?? 0)))
+        }
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
         }
-
+        
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
@@ -273,13 +289,14 @@ final class ArticleWorker {
     }
 
     private func setupRelatedArticlesStrtegy() {
-        var articles = [Article.RelatedArticleStrategy]()
+        var articles = [Article.Item]()
         relatedContent.forEach { content in
-            articles.append(Article.RelatedArticleStrategy(title: content.title,
-                                                           durationString: content.durationString,
-                                                           remoteID: content.remoteID ?? 0))
+            articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                           description: content.durationString,
+                                                          itemID: content.remoteID ?? 0)))
         }
         relatedArticlesStrategy = articles
+
     }
 
     var sectionCount: Int {
