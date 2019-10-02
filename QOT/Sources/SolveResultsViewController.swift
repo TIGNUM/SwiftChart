@@ -174,6 +174,7 @@ extension SolveResultsViewController: UITableViewDataSource {
              .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -196,6 +197,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .exclusiveContent(_, let hasHeader, let title, let minsToRead, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.backgroundColor = UIColor(red: 232.0 / 225.0, green: 227.0 / 225.0, blue: 224.0 / 225.0, alpha: 1)
             return cell
         case .fatigue(let symptom)?:
