@@ -913,7 +913,7 @@ enum ThemeText {
         case .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
         case .onboardingInfoTitle:
-            return Fonts.fontDisplaySemiBold32
+            return Fonts.fontDisplayBold60
         default:
             return Fonts.fontRegular20
         }
@@ -1234,6 +1234,35 @@ enum ThemeText {
             }
         }
     }
+
+    func applyScale(_ text: String?, to view: UILabel?, maxWidth: CGFloat) {
+        guard let label = view else { return }
+        apply(text, to: view)
+
+        let text = text != nil ? text! : ""
+
+        var fit = false
+        var testFont = self.font
+        var pointSize = testFont.pointSize
+        while !fit {
+            let testLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 9999.0, height: 9999.0))
+            testLabel.numberOfLines = 0
+            testLabel.attributedText = NSAttributedString(string: text, letterSpacing: -0.21, font: testFont, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            testLabel.sizeToFit()
+            fit = testLabel.bounds.width <= maxWidth
+            if !fit {
+                if let newFont = UIFont(name: testFont.fontName, size: pointSize - 1) {
+                    testFont = newFont
+                    pointSize -= 1
+                } else {
+                    fit = true
+                }
+            }
+            if fit {
+                label.attributedText = testLabel.attributedText
+            }
+        }
+    }
 }
 
 private struct Fonts {
@@ -1276,7 +1305,7 @@ private struct Fonts {
     static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
-    static let fontDisplaySemiBold32 = UIFont.sfProtextSemibold(ofSize: 32.0)
+    static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 60)
 }
 
 private struct Palette {
