@@ -11,4 +11,12 @@ import UIKit
 final class DTSprintReflectionRouter: DTRouter {}
 
 // MARK: - DTSprintReflectionRouterInterface
-extension DTSprintReflectionRouter: DTSprintReflectionRouterInterface {}
+extension DTSprintReflectionRouter: DTSprintReflectionRouterInterface {
+    func presentTrackTBV() {
+        guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
+        MyToBeVisionTrackerConfigurator.configure(viewController: controller, controllerType: .tracker)
+        viewController?.dismiss(animated: false, completion: {
+            self.viewController?.present(controller, animated: true)
+        })
+    }
+}

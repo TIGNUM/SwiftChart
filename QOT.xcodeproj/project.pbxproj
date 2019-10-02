@@ -3556,13 +3556,13 @@
 		75423EEF22CE2412008EE726 /* MyToBeVisionTracker */ = {
 			isa = PBXGroup;
 			children = (
-				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
-				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
-				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
-				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
-				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
-				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
 				75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */,
+				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
+				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
+				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
+				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
+				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
+				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
 			);
 			name = MyToBeVisionTracker;
 			sourceTree = "<group>";
