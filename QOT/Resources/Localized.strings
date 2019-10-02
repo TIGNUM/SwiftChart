@@ -585,8 +585,8 @@
 "DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
 "DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
 
-"Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
-"Onboarding.Intro.Body" = "From merely present to totally prepared.";
+"Onboarding.Intro.Title" = "THIS IS QOT.\nYOUR\nPERSONAL\nPERFORMANCE\nTOOL.";
+"Onboarding.Intro.Body" = "";
 "Onboarding.Intro.Button.Login" = "Log in";
 "Onboarding.Intro.Button.Register" = "New user";
 
