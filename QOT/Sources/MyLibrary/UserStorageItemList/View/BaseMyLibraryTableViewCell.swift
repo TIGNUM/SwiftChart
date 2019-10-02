@@ -9,6 +9,9 @@
 import UIKit
 
 class BaseMyLibraryTableViewCell: UITableViewCell {
+    @IBOutlet weak var infoText: UILabel!
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var contentTitle: UILabel!
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -22,5 +25,18 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
+    }
+}
+
+extension BaseMyLibraryTableViewCell {
+    func setTitle(_ title: String?) {
+        guard let titleText = title else { return }
+        configure()
+        ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
+    }
+
+    func setInfoText(_ text: String?) {
+        guard let info = text else { return }
+        ThemeText.myLibraryItemsItemDescription.apply(info, to: infoText)
     }
 }
