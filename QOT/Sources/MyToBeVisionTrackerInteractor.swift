@@ -18,10 +18,13 @@ final class MyToBeVisionTrackerInteractor {
 
     // MARK: - Init
 
-    init(worker: MyToBeVisionTrackerWorker,
-        presenter: MyToBeVisionTrackerPresenterInterface) {
+    init(worker: MyToBeVisionTrackerWorker, presenter: MyToBeVisionTrackerPresenterInterface) {
         self.worker = worker
         self.presenter = presenter
+    }
+
+    func viewDidLoad() {
+        getData()
     }
 }
 
@@ -36,7 +39,7 @@ extension MyToBeVisionTrackerInteractor: MyToBeVisionTrackerInteractorInterface 
         return worker.controllerType
     }
 
-    func viewDidLoad() {
+    func getData() {
         worker.getData {[weak self] (report) in
             guard let model = report else { return }
             self?.presenter.setupView(with: model)
