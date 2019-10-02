@@ -68,6 +68,7 @@ private extension PrepareResultsViewController {
     func strategyCell(title: String?, duration: String?, indexPath: IndexPath) -> RelatedStrategyTableViewCell {
         let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: title, duration: duration)
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         return cell
     }
 

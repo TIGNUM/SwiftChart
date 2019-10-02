@@ -40,7 +40,6 @@ final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.alwaysBounceVertical = false
         interactor?.viewDidLoad()
-
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
