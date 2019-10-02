@@ -168,6 +168,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
@@ -179,6 +180,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(type: type, header: header, description: description, buttonText: buttonText)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .fiveDayPlay(let hasHeader, let text)?:
@@ -188,6 +190,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .followUp(let title, let subtitle)?:
             let cell: SolveFollowUpTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, description: subtitle, isFollowUp: isFollowUpActive)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .cause(let cause, let explanation)?:
@@ -202,6 +205,7 @@ extension SolveResultsViewController: UITableViewDataSource {
             return cell
         case .fatigue(let symptom)?:
             let cell: FatigueTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.configure(symptom: symptom)
             return cell
         default: preconditionFailure()
