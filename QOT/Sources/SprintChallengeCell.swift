@@ -70,6 +70,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
+        showMoreButton.layer.borderWidth = 0
         tableView.delegate = self
         tableView.dataSource = self
         ThemeView.level2.apply(self)
