@@ -266,6 +266,13 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              interactor?.presentWhatsHotArticle(selectedID: whatsHotArticleId)
+        case .SOLVE_REFLECTION?:
+            didSelectRow(at: indexPath)
+            if (bucketItem as? SolveReminderTableCellViewModel) != nil {
+                let model = bucketItem as? SolveReminderTableCellViewModel
+                guard let solve = model?.solve else { break }
+                showSolveResults(solve: solve)
+            }
         default:
             break
         }

@@ -47,17 +47,17 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yyc-S3-GWD">
-                                    <rect key="frame" x="0.0" y="11" width="366" height="50"/>
+                                    <rect key="frame" x="0.0" y="11" width="366" height="10"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="JSz-fx-9NH"/>
+                                        <constraint firstAttribute="height" constant="10" id="JSz-fx-9NH"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzn-6C-vwT">
-                                    <rect key="frame" x="0.0" y="71" width="366" height="17"/>
+                                    <rect key="frame" x="0.0" y="31" width="366" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrC-WA-rMe">
-                                            <rect key="frame" x="24" y="0.0" width="318" height="17"/>
+                                            <rect key="frame" x="24" y="0.0" width="318" height="50"/>
                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                             <color key="textColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOf-AK-R1Z">
-                                    <rect key="frame" x="0.0" y="98" width="366" height="22"/>
+                                    <rect key="frame" x="0.0" y="91" width="366" height="89"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-SZ-duI">
                                             <rect key="frame" x="24" y="0.0" width="318" height="19.5"/>
@@ -83,23 +83,13 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="pAf-SZ-duI" secondAttribute="bottom" constant="69.5" id="KA1-xE-ozN"/>
                                         <constraint firstAttribute="trailing" secondItem="pAf-SZ-duI" secondAttribute="trailing" constant="24" id="Mo1-3R-eOf"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="top" id="UZk-1e-Nop"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="leading" secondItem="sOf-AK-R1Z" secondAttribute="leading" constant="24" id="zdE-dX-vuc"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gas-m7-mZP">
-                                    <rect key="frame" x="0.0" y="130" width="366" height="50"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="50" id="Vpt-p1-JnT"/>
-                                    </constraints>
-                                </view>
                             </subviews>
-                            <constraints>
-                                <constraint firstItem="Gas-m7-mZP" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="bottom" constant="10" id="dXM-PS-P7e"/>
-                                <constraint firstAttribute="bottom" secondItem="Gas-m7-mZP" secondAttribute="bottom" id="gFB-0Q-6U2"/>
-                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
