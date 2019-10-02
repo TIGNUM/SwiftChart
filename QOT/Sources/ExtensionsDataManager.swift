@@ -39,7 +39,7 @@ final class ExtensionsDataManager {
         ExtensionUserDefaults.setIsUserSignedIn(value: isLogedIn)
         if UserDefault.myDataSelectedItems.object as? [Int] == nil {
             let standardPreselectedValues: [MyDataParameter] = [.fiveDIR, .fiveDRR]
-            let rawValues = standardPreselectedValues.compactMap { $0.rawValue }
+            let rawValues = standardPreselectedValues.map {$0.rawValue}
             UserDefault.myDataSelectedItems.setObject(rawValues)
         }
     }

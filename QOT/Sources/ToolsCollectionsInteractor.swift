@@ -83,7 +83,7 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     }
 
     func presentDTRecovery() {
-        router.presentDTMindetShifter()
+        router.presentDTRecovery()
     }
 }
 

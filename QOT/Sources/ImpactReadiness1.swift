@@ -87,8 +87,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         } else {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
-            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10),
-                                            imageTitlePadding: 10.0)
+            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()
         }
     }

@@ -181,7 +181,6 @@ extension MySprintsListViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-
 extension MySprintsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !tableView.isEditing, let selectedPath = tableView.indexPathForSelectedRow {
