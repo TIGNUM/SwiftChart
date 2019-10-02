@@ -14,14 +14,12 @@ class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(contentTitle)
-        skeletonManager.addSubtitle(infoText)
         skeletonManager.addOtherView(preview)
-        skeletonManager.addOtherView(icon)
     }
 
     func configure(withUrl: URL?) {
         guard let url = withUrl else { return }
+        configure()
         skeletonManager.addOtherView(preview)
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }

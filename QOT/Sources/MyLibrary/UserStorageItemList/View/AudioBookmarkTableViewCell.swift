@@ -25,6 +25,7 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
 
     func configure(withUrl: URL?, playButtonTitle: String?, playButtonTag: Int = 0) {
         guard let url = withUrl else { return }
+        configure()
         skeletonManager.addOtherView(preview)
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: skeletonManager)
         playButton.setTitle(playButtonTitle, for: .normal)

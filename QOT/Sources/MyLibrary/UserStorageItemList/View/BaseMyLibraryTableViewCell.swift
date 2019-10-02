@@ -16,7 +16,9 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        skeletonManager.addTitle(contentTitle)
+        skeletonManager.addSubtitle(infoText)
+        skeletonManager.addOtherView(icon)
         selectionStyle = .none
     }
 
@@ -25,6 +27,7 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
+        selectionStyle = .default
     }
 }
 

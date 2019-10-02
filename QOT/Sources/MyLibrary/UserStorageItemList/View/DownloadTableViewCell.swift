@@ -14,14 +14,11 @@ class DownloadTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(contentTitle)
-        skeletonManager.addSubtitle(infoText)
-        skeletonManager.addOtherView(icon)
         skeletonManager.addOtherView(activityIcon)
     }
 
     func setStatus(_ status: MyLibraryCellViewModel.DownloadStatus) {
-        super.configure()
+        configure()
         activityIcon.image = nil
         activityView.isHidden = true
         activityView.stopRotating()
