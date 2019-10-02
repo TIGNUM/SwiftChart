@@ -12,6 +12,7 @@ final class DTSprintReflectionViewController: DTViewController {
 
     // MARK: - Properties
     var sprintInteractor: DTSprintReflectionInteractorInterface?
+    private lazy var sprintRouter: DTSprintReflectionRouterInterface? = DTSprintReflectionRouter(viewController: self)
 
     // MARK: - Init
     init(configure: Configurator<DTSprintReflectionViewController>) {
@@ -30,7 +31,7 @@ final class DTSprintReflectionViewController: DTViewController {
         case SprintReflection.AnswerKey.DoItLater:
             router?.dismiss()
         case SprintReflection.AnswerKey.TrackTBV:
-            router?.dismiss()
+            sprintRouter?.presentTrackTBV()
         default:
             return
         }

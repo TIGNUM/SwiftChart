@@ -663,8 +663,8 @@ enum ThemeText {
     case tbvTrackerBody
     case tbvTrackerAnswer
     case tbvTrackerRating
-    case tbvTrackerRatingDigits
-    case tbvTrackerRatingDigitsSelected
+    case tbvTrackerRatingDigits(Bool)
+    case tbvTrackerRatingDigitsSelected(Bool)
     case tbvQuestionLight
     case tbvQuestionMedium
     case qotTools
@@ -913,7 +913,7 @@ enum ThemeText {
         case .myDataParameterExplanationTitle:
             return Fonts.fontRegular20
         case .onboardingInfoTitle:
-            return Fonts.fontDisplaySemiBold32
+            return Fonts.fontDisplayBold60
         default:
             return Fonts.fontRegular20
         }
@@ -927,24 +927,22 @@ enum ThemeText {
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .tbvTrackerRatingDigitsSelected, .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
+             .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion,
-             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage, .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall,
-             .tbvQuestionLight, .tbvQuestionMedium, .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle,
-             .weatherTitle, .weatherHourlyLabelNow, .accountUserName, .accountDetailAge, .dailyBriefImpactReadinessRolling,
-             .onboardingInfoTitle,
-             .myLibraryTitle, .myLibraryItemsTitle, .myLibraryItemsItemName,
-             .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
+             .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
+             .dailyBriefLevelContent, .dailyBriefDailyCheckInClosedBucket, .quotationSmall, .tbvQuestionLight, .tbvQuestionMedium,
+             .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
+             .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
+             .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .tbvTrackerRatingDigits,
-             .myDataChartIRAverageLabel, .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash,
-             .audioPlayerTime, .syncedCalendarRowSubtitle, .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader,
-             .myLibraryGroupDescription, .myLibraryItemsItemDescription,
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader, .myDataChartIRAverageLabel,
+             .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
+             .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo:
             return Palette.sand40
         case .performanceSubtitle:
@@ -968,9 +966,8 @@ enum ThemeText {
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels,
-             .onboardingInfoBody,
+             .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
+             .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels, .onboardingInfoBody,
              .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
              .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle:
             return Palette.sand70
@@ -1049,6 +1046,10 @@ enum ThemeText {
             } else {
                 return isDark ? Palette.sand70 : Palette.carbon70
             }
+        case .tbvTrackerRatingDigits(let lowValue):
+            return lowValue ? Palette.redOrange40 : Palette.sand40
+        case .tbvTrackerRatingDigitsSelected(let lowValue):
+            return lowValue ? Palette.redOrange : Palette.sand
         }
     }
 
@@ -1234,6 +1235,35 @@ enum ThemeText {
             }
         }
     }
+
+    func applyScale(_ text: String?, to view: UILabel?, maxWidth: CGFloat) {
+        guard let label = view else { return }
+        apply(text, to: view)
+
+        let text = text != nil ? text! : ""
+
+        var fit = false
+        var testFont = self.font
+        var pointSize = testFont.pointSize
+        while !fit {
+            let testLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 9999.0, height: 9999.0))
+            testLabel.numberOfLines = 0
+            testLabel.attributedText = NSAttributedString(string: text, letterSpacing: -0.21, font: testFont, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            testLabel.sizeToFit()
+            fit = testLabel.bounds.width <= maxWidth
+            if !fit {
+                pointSize -= 1
+                if let newFont = UIFont(name: testFont.fontName, size: pointSize) {
+                    testFont = newFont
+                } else {
+                    fit = true
+                }
+            }
+            if fit {
+                label.attributedText = testLabel.attributedText
+            }
+        }
+    }
 }
 
 private struct Fonts {
@@ -1276,7 +1306,7 @@ private struct Fonts {
     static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
-    static let fontDisplaySemiBold32 = UIFont.sfProtextSemibold(ofSize: 32.0)
+    static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 60)
 }
 
 private struct Palette {
@@ -1382,6 +1412,10 @@ private struct Palette {
 
     static var redOrange70: UIColor {
         return UIColor.redOrange.withAlphaComponent(0.7)
+    }
+
+    static var redOrange40: UIColor {
+        return UIColor.redOrange.withAlphaComponent(0.4)
     }
 
     static var cherryRed: UIColor {

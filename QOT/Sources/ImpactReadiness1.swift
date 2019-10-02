@@ -87,28 +87,20 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         } else {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
-            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsetsMake(10, 10, 10, 10), imageTitlePadding: 10.0)
+            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()
         }
     }
 }
 
 extension UIButton {
-    func setInsets(
-        forContentPadding contentPadding: UIEdgeInsets,
-        imageTitlePadding: CGFloat
-        ) {
+    func setInsets( forContentPadding contentPadding: UIEdgeInsets, imageTitlePadding: CGFloat) {
         self.contentEdgeInsets = UIEdgeInsets(
             top: contentPadding.top,
             left: contentPadding.left + imageTitlePadding,
             bottom: contentPadding.bottom,
             right: contentPadding.right
         )
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageTitlePadding,
-            bottom: 0,
-            right: imageTitlePadding
-        )
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageTitlePadding, bottom: 0, right: imageTitlePadding)
     }
 }

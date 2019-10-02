@@ -126,7 +126,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                                mediaURL: nil,
                                duration: nil,
                                mediaItemId: nil,
-                               delegate: nil)
+                               delegate: self)
                 return cell
             }
             cell.configure(categoryTitle: strategy.categoryTitle,
