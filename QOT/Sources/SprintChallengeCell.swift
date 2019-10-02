@@ -53,6 +53,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             self?.checkScroll()
             }
         ]
+        ThemeBorder.accent.apply(gotItButton)
         skeletonManager.addSubtitle(sprintTitle)
         skeletonManager.addSubtitle(sprintInfo)
         skeletonManager.addOtherView(tableView)
@@ -84,6 +85,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
+        updateGotItButton()
     }
 
     private func updateGotItButton() {
@@ -92,6 +94,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false
         } else {
+            ThemeBorder.accent.apply(gotItButton)
             ThemeView.sprints.apply(gotItButton)
             gotItButton.isEnabled = true
         }

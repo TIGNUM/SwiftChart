@@ -14,6 +14,10 @@ final class DTSprintReflectionInteractor: DTInteractor {
     // MARK: - Properties
     var sprint: QDMSprint?
     weak var sprintRefelctionPresenter: DTSprintReflectionPresenter?
+    private lazy var sprintReflectionWorker: DTSprintReflectionWorker? = DTSprintReflectionWorker()
+    private var notes01: String = ""
+    private var notes02: String = ""
+    private var notes03: String = ""
 
     override init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
         super.init(presenter, questionGroup: questionGroup, introKey: introKey)
@@ -36,7 +40,20 @@ final class DTSprintReflectionInteractor: DTInteractor {
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         return sprint?.title
     }
+
+    override func didUpdateUserInput(_ text: String, questionKey: String) {
+        switch questionKey {
+        case SprintReflection.QuestionKey.Notes01: sprint?.notesReflection = text
+        case SprintReflection.QuestionKey.Notes02: sprint?.notesLearnings = text
+        case SprintReflection.QuestionKey.Notes03: sprint?.notesBenefits = text
+        default: break
+        }
+    }
 }
 
 // MARK: - DTSprintReflectionInteractorInterface
-extension DTSprintReflectionInteractor: DTSprintReflectionInteractorInterface {}
+extension DTSprintReflectionInteractor: DTSprintReflectionInteractorInterface {
+    func updateSprint() {
+        sprintReflectionWorker?.updateSprint(sprint: sprint)
+    }
+}

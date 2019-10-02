@@ -218,18 +218,16 @@ extension AppCoordinator {
     }
 
     func showSigning() {
-        qot_dal.ContentService.main.getContentCategory(.Onboarding_3_0) { (contentCategory) in
-            let landingConfigurator = OnboardingLandingPageConfigurator.make()
-            let landingController = OnboardingLandingPageViewController()
-            landingConfigurator(landingController, contentCategory)
+        let landingConfigurator = OnboardingLandingPageConfigurator.make()
+        let landingController = OnboardingLandingPageViewController()
+        landingConfigurator(landingController)
 
-            let navigationController = UINavigationController(rootViewController: landingController)
-            navigationController.navigationBar.isHidden = true
-            navigationController.navigationBar.applyDefaultStyle()
-            navigationController.modalTransitionStyle = .crossDissolve
-            navigationController.modalPresentationStyle = .overFullScreen
-            UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
-        }
+        let navigationController = UINavigationController(rootViewController: landingController)
+        navigationController.navigationBar.isHidden = true
+        navigationController.navigationBar.applyDefaultStyle()
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overFullScreen
+        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
     }
 
     func logout() {
@@ -290,7 +288,7 @@ extension AppCoordinator {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
-        log("handleIncommingNotificationDeepLinkURL: \(url)", level: .info)
+        log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
     }
 }
 

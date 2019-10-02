@@ -154,7 +154,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
         tableView.tableFooterView = UIView()
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
         tableView.backgroundColor = .clear
     }
@@ -266,7 +266,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func reloadData(showNavigationBar: Bool) {
         navigationBar(show: showNavigationBar)
         tableView.reloadData()
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
+        tableView.scrollToTop(animated: true)
         setupAudioItem()
         refreshBottomNavigationItems()
     }

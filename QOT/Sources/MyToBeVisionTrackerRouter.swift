@@ -12,7 +12,7 @@ final class MyToBeVisionTrackerRouter {
 
     // MARK: - Properties
 
-    private let viewController: MyToBeVisionTrackerViewController
+    private weak var viewController: MyToBeVisionTrackerViewController?
 
     // MARK: - Init
 

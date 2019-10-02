@@ -29,8 +29,8 @@ final class DailyCheckinStartInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        worker.getQuestions {[weak self] (questions) in
-            guard let firstQuestion = questions?.first else {
+        worker.getQuestion {[weak self] (question) in
+            guard let firstQuestion = question else {
                 return
             }
             self?.presenter.setupView(title: firstQuestion.dailyPrepTitle, subtitle: firstQuestion.title, buttonTitle: firstQuestion.buttonText)
@@ -42,8 +42,6 @@ final class DailyCheckinStartInteractor {
 
 extension DailyCheckinStartInteractor: DailyCheckinStartInteractorInterface {
     func showQuestions() {
-        guard let questions = worker.questions else { return }
-        let finalQuestions = questions.suffix(from: 1)
-        router.showQuestions(Array(finalQuestions))
+        router.showQuestions()
     }
 }

@@ -28,12 +28,14 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level3.apply(self)
         setSelectedColor(.carbon, alphaComponent: 1)
         hasData = false
+        selectionStyle = .none
     }
-    
+
     // MARK: Configure
     func configure(title: String?, subtitle: String?) {
         guard let titleText = title else { return }
         hasData = true
+        selectionStyle = .default
         skeletonManager.hide()
         ThemeText.myQOTPrepCellTitle.apply(titleText, to: titleLabel)
         ThemeText.datestamp.apply(subtitle, to: subtitleLabel)

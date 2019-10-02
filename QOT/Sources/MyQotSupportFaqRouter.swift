@@ -11,7 +11,7 @@ import Foundation
 final class MyQotSupportFaqRouter {
     // MARK: - Properties
 
-    private let viewController: MyQotSupportFaqViewController
+    private weak var viewController: MyQotSupportFaqViewController?
 
     // MARK: - Init
 
@@ -28,6 +28,6 @@ extension MyQotSupportFaqRouter: MyQotSupportFaqRouterInterface {
             return
         }
         ArticleConfigurator.configure(selectedID: contentID, viewController: articleViewController)
-        viewController.present(articleViewController, animated: true, completion: nil)
+        viewController?.present(articleViewController, animated: true, completion: nil)
     }
 }

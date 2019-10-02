@@ -18,15 +18,17 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeView.level2.apply(self)
-        let bkgdView = UIView(frame: self.bounds)
-        ThemeView.level2Selected.apply(bkgdView)
-        selectedBackgroundView = bkgdView
+        selectionStyle = .none
         skeletonManager.addTitle(headingLabel)
         skeletonManager.addSubtitle(subHeadingLabel)
     }
 
     func configure(_ data: MyQotProfileModel.TableViewPresentationData?) {
         guard let model = data else { return }
+        selectionStyle = .default
+        let bkgdView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(bkgdView)
+        selectedBackgroundView = bkgdView
         skeletonManager.hide()
         ThemeText.linkMenuItem.apply(model.heading.uppercased(), to: headingLabel)
         ThemeText.linkMenuComment.apply(model.subHeading, to: subHeadingLabel)

@@ -183,7 +183,8 @@ extension DTQuestionnaireViewController: UITableViewDataSource {
                 return getEventCell(indexPath, tableView)
             case .userInput:
                 let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(inputText: viewModel.userInputText,
+                cell.configure(questionKey: viewModel.question.key,
+                               inputText: viewModel.userInputText,
                                maxCharacters: QuestionKey.maxCharacter(viewModel.question.key),
                                delegate: self)
                 return cell
@@ -281,7 +282,7 @@ extension DTQuestionnaireViewController: AnimatedAnswerCellDelegate {
 
 // MARK: UserInputTableViewCellProtocol
 extension DTQuestionnaireViewController: UserInputTableViewCellProtocol {
-    func didUpdateUserInput(_ text: String) {
-        interactor?.didUpdateUserInput(text)
+    func didUpdateUserInput(_ text: String, questionKey: String) {
+        interactor?.didUpdateUserInput(text, questionKey: questionKey)
     }
 }

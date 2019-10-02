@@ -192,7 +192,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
         let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.DOWNLOAD
 
-        var returnCell: BaseMyLibraryTableViewCellInterface?
+        var returnCell: BaseMyLibraryTableViewCell?
         switch cellType {
         case .VIDEO:
             let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)

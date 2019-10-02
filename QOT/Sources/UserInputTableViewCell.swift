@@ -9,7 +9,7 @@
 import UIKit
 
 protocol UserInputTableViewCellProtocol: class {
-    func didUpdateUserInput(_ text: String)
+    func didUpdateUserInput(_ text: String, questionKey: String)
 }
 
 final class UserInputTableViewCell: UITableViewCell, Dequeueable {
@@ -23,8 +23,13 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
     private var inputText: String?
     private var maxCharacters = 100
     private var observers: [NSKeyValueObservation] = []
+    private var questionKey: String = ""
 
-    func configure(inputText: String?, maxCharacters: Int, delegate: UserInputTableViewCellProtocol?) {
+    func configure(questionKey: String,
+                   inputText: String?,
+                   maxCharacters: Int,
+                   delegate: UserInputTableViewCellProtocol?) {
+        self.questionKey = questionKey
         self.maxCharacters = maxCharacters
         self.inputText = inputText
         self.delegate = delegate
@@ -39,7 +44,7 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
             ThemeText.resultCounter.apply(String(format: "%d", textView.text.count), to: counterLabel)
         }
 
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.showKeyBoard()
         }
     }
@@ -71,10 +76,10 @@ extension UserInputTableViewCell: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         counterLabel.text = String(format: "%d", textView.text.count)
-        delegate?.didUpdateUserInput(textView.text)
+        delegate?.didUpdateUserInput(textView.text, questionKey: questionKey)
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        delegate?.didUpdateUserInput(textView.text)
+        delegate?.didUpdateUserInput(textView.text, questionKey: questionKey)
     }
 }

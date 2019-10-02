@@ -31,7 +31,7 @@ class CopyRightBucketsViewController: BaseViewController, ScreenZLevelOverlay {
     override func viewDidAppear(_ animated: Bool) {
         copyrightButton.setTitle("Content Copyright \n" + (copyrightURL ?? ""), for: .normal)
     }
-
+    
     @objc func hideCopyrightView() {
         self.dismiss(animated: true, completion: nil)
     }

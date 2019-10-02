@@ -543,7 +543,7 @@ extension UIColor {
     }
 
     public class var fiveDayRecovery: UIColor {
-        return UIColor(red: 41.0 / 255.0, green: 200.0 / 255.0, blue: 156.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 60.0 / 255.0, green: 208.0 / 255.0, blue: 237.0 / 255.0, alpha: 1.0)
     }
 
     public class var fiveDayLoad: UIColor {
@@ -557,20 +557,31 @@ extension UIColor {
     //Solid Colors
 
     public class var skeletonTitleColor: UIColor {
-        return UIColor(red: 80.0 / 255.0, green: 68.0 / 255.0, blue: 58.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (80.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (68.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (58.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       alpha: 1.0)
     }
 
     public class var skeletonSubtitleColor: UIColor {
-        return UIColor(red: 62.0 / 255.0, green: 53.0 / 255.0, blue: 46.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (62.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (53.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (46.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       alpha: 1.0)
     }
 
     public class var skeletonOtherViewsColor: UIColor {
-        return UIColor(red: 45.0 / 255.0, green: 39.0 / 255.0, blue: 34.0 / 255.0, alpha: 1.0)
+        return UIColor(red: (45.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       green: (39.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       blue: (34.0 / 255.0) * UIColor.skeletonIntensityFactor,
+                       alpha: 1.0)
     }
 
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }
+
+    static let skeletonIntensityFactor: CGFloat = 0.5
 
     func toColor(_ color: UIColor, ratio: CGFloat) -> UIColor {
         let percentage = max(min(ratio, 1), 0)

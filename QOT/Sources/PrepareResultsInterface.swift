@@ -39,7 +39,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func didTapDismissView()
     func presentFeedback()
     func deletePreparation()
-    func updatePreparation()
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
 }
 
 protocol PrepareResultsRouterInterface {

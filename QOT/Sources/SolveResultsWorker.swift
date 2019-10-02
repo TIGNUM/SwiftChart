@@ -145,6 +145,15 @@ private extension SolveResultsWorker {
         }
     }
 
+    func relatedStrategiesContentItems(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentItem]) -> Void) {
+        contentCollection(contentId) { (content) in
+            if let content = content {
+                let relatedItems = content.relatedContentItems
+                completion(relatedItems)
+            }
+        }
+    }
+
     func relatedStrategyItems(_ contentId: Int? = nil, _ completion: @escaping ([SolveResult.Item]) -> Void) {
         let header: String
         switch resultType {
@@ -166,7 +175,16 @@ private extension SolveResultsWorker {
                                                       hasHeader: index == 0,
                                                       headerTitle: header))
             }
-            completion(relatedStrategyItems)
+            self.relatedStrategiesContentItems(contentId) { (items) in
+                items.forEach {(item) in
+                    relatedStrategyItems.append(.strategyContentItem(id: item.remoteID ?? 0,
+                                                                     title: item.valueDescription,
+                                                                     minsToRead: item.durationString,
+                                                                     hasHeader: false,
+                                                                     headerTitle: ""))
+                }
+                completion(relatedStrategyItems)
+            }
         }
     }
 

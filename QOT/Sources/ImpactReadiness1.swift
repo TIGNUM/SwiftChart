@@ -33,7 +33,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         toBeVisionImage.gradientBackground(top: true)
         toBeVisionImage.gradientBackground(top: false)
-        skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(impactReadinessScore)
         skeletonManager.addSubtitle(impactReadinessOutOf100Label)
         skeletonManager.addSubtitle(content)
@@ -44,7 +43,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if showDailyCheckInScreen {
-            delegate?.showDailyCheckIn()
+            delegate?.showDailyCheckInQuestions()
         } else {
             trackState = !trackState
             impactReadinessButton.flipImage(trackState)
@@ -88,7 +87,28 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         } else {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
+            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsetsMake(10, 10, 10, 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()
         }
+    }
+}
+
+extension UIButton {
+    func setInsets(
+        forContentPadding contentPadding: UIEdgeInsets,
+        imageTitlePadding: CGFloat
+        ) {
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: contentPadding.top,
+            left: contentPadding.left + imageTitlePadding,
+            bottom: contentPadding.bottom,
+            right: contentPadding.right
+        )
+        self.titleEdgeInsets = UIEdgeInsets(
+            top: 0,
+            left: -imageTitlePadding,
+            bottom: 0,
+            right: imageTitlePadding
+        )
     }
 }

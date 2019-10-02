@@ -15,6 +15,14 @@ final class DTSprintReflectionPresenter: DTPresenter {
         return questionKey == SprintReflection.QuestionKey.Intro || questionKey == SprintReflection.QuestionKey.Review
     }
 
+    override func dismissButtonIsHidden(questionKey: String) -> Bool {
+        return questionKey == SprintReflection.QuestionKey.Review
+    }
+
+    override func answerBackgroundColor(answer: QDMAnswer) -> UIColor {
+        return answer.keys.contains(SprintReflection.AnswerKey.TrackTBV) ? .carbonNew : .clear
+    }
+
     override func updatedQuestionTitle(_ question: QDMQuestion?, replacement: String?) -> String? {
         if let replacement = replacement {
             return question?.title.replacingOccurrences(of: "${sprintName}", with: replacement)

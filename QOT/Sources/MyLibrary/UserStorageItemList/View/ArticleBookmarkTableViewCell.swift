@@ -8,22 +8,20 @@
 
 import UIKit
 
-class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
-    @IBOutlet weak var icon: UIImageView!
+class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     @IBOutlet weak var preview: UIImageView!
-    @IBOutlet weak var contentTitle: UILabel!
-    @IBOutlet weak var infoText: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         skeletonManager.addTitle(contentTitle)
         skeletonManager.addSubtitle(infoText)
-        skeletonManager.addOtherView(preview)
         skeletonManager.addOtherView(icon)
+        skeletonManager.addOtherView(preview)
     }
 
     func configure(withUrl: URL?) {
         guard let url = withUrl else { return }
+        skeletonManager.addOtherView(preview)
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }
 }

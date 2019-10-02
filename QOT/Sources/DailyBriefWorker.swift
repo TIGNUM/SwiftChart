@@ -16,18 +16,22 @@ final class DailyBriefWorker {
     private let questionService: qot_dal.QuestionService
     private let contentService: qot_dal.ContentService
     private let userService: qot_dal.UserService
+    private let healthService: qot_dal.HealthService
     private let settingService: qot_dal.SettingService
     private var buckets = [QDMDailyBriefBucket]()
+    var questions: [RatingQuestionViewModel.Question]?
 
     // MARK: - Init
     init(questionService: qot_dal.QuestionService,
          userService: qot_dal.UserService,
          contentService: qot_dal.ContentService,
-         settingService: qot_dal.SettingService) {
+         settingService: qot_dal.SettingService,
+         healthService: qot_dal.HealthService) {
         self.settingService = settingService
         self.userService = userService
         self.contentService = contentService
         self.questionService = questionService
+        self.healthService = healthService
 
         if let emails = UserDefault.showGuideTrackBucket.object as? [String],
             let currentAccount = SessionService.main.getCurrentSession()?.useremail,

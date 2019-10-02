@@ -8,11 +8,8 @@
 
 import UIKit
 
-class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
-    @IBOutlet weak var icon: UIImageView!
+class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     @IBOutlet weak var preview: UIImageView!
-    @IBOutlet weak var contentTitle: UILabel!
-    @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var playButton: UIButton!
 
     override func awakeFromNib() {
@@ -25,6 +22,7 @@ class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTable
 
     func configure(withUrl: URL?) {
         guard let url = withUrl else { return }
+        skeletonManager.addOtherView(preview)
         preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }
 }

@@ -12,7 +12,7 @@ final class DailyCheckinQuestionsRouter {
 
     // MARK: - Properties
 
-    private let viewController: DailyCheckinQuestionsViewController
+    private weak var viewController: DailyCheckinQuestionsViewController?
 
     // MARK: - Init
 
@@ -26,6 +26,6 @@ final class DailyCheckinQuestionsRouter {
 extension DailyCheckinQuestionsRouter: DailyCheckinQuestionsRouterInterface {
 
     func dismiss() {
-        self.viewController.navigationController?.dismiss(animated: true, completion: nil)
+        viewController?.navigationController?.dismiss(animated: true, completion: nil)
     }
 }

@@ -31,11 +31,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         audioView.corner(radius: 20)
         ThemeView.level2.apply(self)
         contentView.backgroundColor = .clear
-        selectionStyle = .gray
-        let bkView = UIView()
-        ThemeView.level2Selected.apply(bkView)
-        selectedBackgroundView = bkView
-
+        selectionStyle = .none
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(detailLabel)
         skeletonManager.addOtherView(mediaIconImageView)
@@ -47,6 +43,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     override func prepareForReuse() {
         super.prepareForReuse()
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
+        selectedBackgroundView = nil
         checkIfPlaying()
     }
 
@@ -76,6 +73,10 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.title = titleText
         self.remoteID = id
         self.duration = durationValue
+        selectionStyle = .gray
+        let bkView = UIView()
+        ThemeView.level2Selected.apply(bkView)
+        selectedBackgroundView = bkView
         skeletonManager.hide()
         ThemeText.articleRelatedTitleInStrategy.apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)

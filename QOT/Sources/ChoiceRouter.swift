@@ -12,7 +12,7 @@ final class ChoiceRouter {
 
     // MARK: - Properties
 
-    private let viewController: ChoiceViewController
+    private weak var viewController: ChoiceViewController?
 
     // MARK: - Init
 

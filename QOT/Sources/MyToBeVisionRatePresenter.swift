@@ -23,19 +23,11 @@ extension MyToBeVisionRatePresenter: MyToBeVisionRatePresenterInterface {
         viewController?.setupView(questions: questions)
     }
 
-    func hideTimerView(completion: @escaping (() -> Void)) {
-        viewController?.hideTimerView(completion: completion)
-    }
-
     func showScreenLoader() {
         viewController?.showScreenLoader()
     }
 
     func hideScreenLoader() {
         viewController?.hideScreenLoader()
-    }
-
-    func showCountDownView(_ view: UIView?) {
-        viewController?.showCountDownView(view)
     }
 }

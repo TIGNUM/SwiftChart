@@ -18,6 +18,7 @@ final class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
         super.awakeFromNib()
         skeletonManager.addSubtitle(titleLabel)
         skeletonManager.addOtherView(subtitleLabel)
+        selectionStyle = .none
     }
 
     func configure(forExplanationItem: MyDataExplanationModel.ExplanationItem?) {
@@ -25,7 +26,6 @@ final class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
               let title = explanationItem.title,
               let subtitle = explanationItem.subtitle else { return }
         skeletonManager.hide()
-        self.selectionStyle = .none
         ThemeText.myDataParameterExplanationTitle(explanationItem.myDataExplanationSection).apply(title, to: titleLabel)
         ThemeText.myDataExplanationCellSubtitle.apply(subtitle, to: subtitleLabel)
     }

@@ -12,7 +12,7 @@ import qot_dal
 final class MySprintsListWorker {
 
     // MARK: - Properties
-    private let service = qot_dal.UserService.main
+    private let service = UserService.main
     private var sprints = [QDMSprint]()
 
     // MARK: - Init
