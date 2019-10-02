@@ -34,7 +34,6 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
 extension BaseMyLibraryTableViewCell {
     func setTitle(_ title: String?) {
         guard let titleText = title else { return }
-        configure()
         ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
     }
 
