@@ -78,7 +78,17 @@ final class WeatherCell: BaseDailyBriefCell {
         viewModel = weatherViewModel
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
-        if let weather = viewModel?.domainModel?.weather {
+        if let weatherModel = viewModel?.domainModel?.weather {
+            var relevantForecastModels = [QDMForecast]()
+            for forecastModel in weatherModel.forecast ?? [] where
+                Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedAscending ||
+                Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedSame {
+                relevantForecastModels.append(forecastModel)
+            }
+
+            guard let weather = relevantForecastModels.first else {
+                return
+            }
             var temperature = ""
             if let celcius = weather.currentTempInCelcius,
                 let value = numberFormatter.number(from: numberFormatter.string(for: celcius) ?? "") as? Double {
@@ -87,14 +97,14 @@ final class WeatherCell: BaseDailyBriefCell {
             }
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
-            ThemeText.weatherTitle.apply(weather.title, to: weatherTitleLabel)
-            ThemeText.weatherBody.apply(weather.body, to: weatherBodyLabel)
+            ThemeText.weatherTitle.apply(weatherModel.title, to: weatherTitleLabel)
+            ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
             if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
                 weatherImageView.image = image(for: weatherType,
                                                largeSize: true,
-                                               isNight: isNight(currentDate: weather.currentDate,
-                                                                sunriseDate: weather.sunriseDate,
-                                                                sunsetDate: weather.sunsetDate))
+                                               isNight: isNight(currentDate: weather.date,
+                                                                sunriseDate: weatherModel.sunriseDate,
+                                                                sunsetDate: weatherModel.sunsetDate))
             } else {
                 weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large"))
             }
@@ -123,7 +133,9 @@ final class WeatherCell: BaseDailyBriefCell {
             return
         }
 
-        for (index, forecastModel) in forecast.enumerated() {
+        for (index, forecastModel) in forecast.enumerated() where
+            (Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedAscending ||
+            Calendar.current.compare(Date(), to: forecastModel.date ?? Date(), toGranularity: .hour) == .orderedSame) {
             guard let hourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView,
                 let date = forecastModel.date else {
                     return
