@@ -72,8 +72,7 @@ extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControll
 extension MyLibraryCategoryListViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = interactor?.categoryItems.count ?? 0
-        return count > 0 ? count : 5
+        return interactor?.categoryItems.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
