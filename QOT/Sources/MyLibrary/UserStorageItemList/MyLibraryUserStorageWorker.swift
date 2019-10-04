@@ -192,10 +192,6 @@ final class MyLibraryUserStorageWorker {
         case .NOTES: return .notes
         }
     }()
-
-    lazy var itemCount: Int = {
-        return item.itemCount
-    }()
 }
 
 // MARK: Data loading

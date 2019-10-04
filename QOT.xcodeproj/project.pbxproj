@@ -2661,7 +2661,6 @@
 				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
 				9C24237722F08A4600B911E6 /* MeAtMyBest */,
-				9C24237022F0817F00B911E6 /* AboutMe */,
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
@@ -4237,6 +4236,7 @@
 		9C24237722F08A4600B911E6 /* MeAtMyBest */ = {
 			isa = PBXGroup;
 			children = (
+				9C24237022F0817F00B911E6 /* AboutMe */,
 				9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */,
 				9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */,
 				9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */,

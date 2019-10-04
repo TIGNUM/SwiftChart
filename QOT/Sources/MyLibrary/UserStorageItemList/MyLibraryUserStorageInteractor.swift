@@ -22,7 +22,7 @@ final class MyLibraryUserStorageInteractor {
     private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel? = nil
     private (set) var bottomButtons: [ButtonParameters]? = nil
 
-    var items = [MyLibraryCellViewModel]()
+    var items: [MyLibraryCellViewModel]?
     private var identifiersForCheck = Set<String>()
     private var itemForDownload: MyLibraryCellViewModel?
 
@@ -76,12 +76,15 @@ final class MyLibraryUserStorageInteractor {
     @objc private func load(_ notification: Notification? = nil) {
         worker.loadData { [weak self] (initiated, items) in
             guard let strongSelf = self else { return }
-            strongSelf.items.removeAll()
+            if strongSelf.items == nil {
+                strongSelf.items = [MyLibraryCellViewModel]()
+            }
+            strongSelf.items?.removeAll()
             if !initiated || items.count == 0 {
                 strongSelf.showEmptyAlert()
             } else {
                 strongSelf.infoViewModel = nil
-                strongSelf.items.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
+                strongSelf.items?.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
                 strongSelf.presenter.presentData()
             }
         }
@@ -105,19 +108,15 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     var showEditButton: Bool {
-        return !(isEditing || items.isEmpty || infoViewModel != nil) || worker.showAddButton
+        return !(isEditing || items?.isEmpty != false || infoViewModel != nil) || worker.showAddButton
     }
 
     var canEdit: Bool {
-        return !(isEditing || items.isEmpty)
+        return !(isEditing || items?.isEmpty != false)
     }
 
     var contentType: MyLibraryUserStorageContentType {
         return worker.contentType
-    }
-
-    var itemCount: Int {
-        return worker.itemCount
     }
 
     func didTapEdit(isEditing: Bool) {
@@ -128,7 +127,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     func didTapPlayItem(at row: Int) {
-        guard row < items.count, items[row].cellType == .AUDIO else {
+        guard let items = self.items, row < items.count, items[row].cellType == .AUDIO else {
             return
         }
         let item = items[row]
@@ -148,7 +147,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     func handleSelectedItem(at index: Int) -> Bool {
-        guard items.count > index else {
+        guard let items = self.items, items.count > index else {
             return false
         }
 
@@ -233,10 +232,10 @@ extension MyLibraryUserStorageInteractor {
     }
 
     private func successfullyDeleted(identifier: String) {
-        guard let index = items.firstIndex(where: { $0.identifier == identifier }) else {
+        guard let items = self.items, let index = items.firstIndex(where: { $0.identifier == identifier }) else {
             return
         }
-        items.remove(at: index)
+        self.items?.remove(at: index)
         presenter.deleteRow(at: index)
         if items.isEmpty {
             showEmptyAlert()
@@ -285,7 +284,7 @@ extension MyLibraryUserStorageInteractor {
             }
 
         case .AUDIO:
-            guard let index = items.index(of: item) else {
+            guard let items = self.items, let index = items.index(of: item) else {
                 return false
             }
             didTapPlayItem(at: index)
@@ -347,7 +346,7 @@ extension MyLibraryUserStorageInteractor {
     }
 
     @objc private func didUpdateDownloadStatus(_ notification: Notification) {
-        guard let map = notification.object as? [String: QDMDownloadStatus] else {
+        guard let items = self.items, let map = notification.object as? [String: QDMDownloadStatus] else {
             return
         }
         // Find map IDs which have a status DOWNLOADED and are also present in the items being displayed
