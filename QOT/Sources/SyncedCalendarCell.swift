@@ -23,13 +23,34 @@ final class SyncedCalendarCell: UITableViewCell, Dequeueable {
         switchControl.corner(radius: Layout.cornerRadius08*2, borderColor: .accent40)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        switchControl.alpha = 1.0
+        isUserInteractionEnabled = true
+    }
+
     // MARK: Configuration
-    func configure(title: String?, source: String?, syncEabled: Bool?, identifier: String?, switchIsHidden: Bool?) {
+    func configure(title: String?,
+                   source: String?,
+                   syncEabled: Bool?,
+                   identifier: String?,
+                   isSubscribed: Bool?,
+                   switchIsHidden: Bool?) {
         switchControl.isHidden = switchIsHidden ?? true
         switchControl.isOn = syncEabled ?? false
+
         ThemeText.syncedCalendarRowTitle.apply(title, to: titleLabel)
         ThemeText.syncedCalendarRowSubtitle.apply(source, to: subtitleLabel)
         self.identifier = identifier
+
+        if isSubscribed == true {
+            switchControl.isOn = false
+            isUserInteractionEnabled = false
+            if let title = title {
+                ThemeText.syncedCalendarRowSubtitle.apply(title + "*", to: titleLabel)
+            }
+            switchControl.alpha = 0.1
+        }
     }
 }
 
