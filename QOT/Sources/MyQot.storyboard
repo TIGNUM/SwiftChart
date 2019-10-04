@@ -701,17 +701,17 @@
                     <connections>
                         <outlet property="headerLabel" destination="PQe-eW-cVN" id="9I9-mX-BB5"/>
                         <outlet property="tableView" destination="PS2-XQ-MGC" id="li5-BV-PsK"/>
-                        <segue destination="9qJ-t5-Bb5" kind="show" identifier="myQot.support.faq.segue.identifier" id="fbL-qZ-pUE"/>
+                        <segue destination="9qJ-t5-Bb5" kind="show" identifier="myQot.support.details.segue.identifier" id="fbL-qZ-pUE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu2-Q9-VDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1980" y="2336.5817091454273"/>
         </scene>
-        <!--My Qot Support Faq View Controller-->
+        <!--My Qot Support Details View Controller-->
         <scene sceneID="Avc-89-hCl">
             <objects>
-                <viewController storyboardIdentifier="MyQotSupportFaqViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportFaqViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportDetailsViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportDetailsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hex-a7-A1f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
