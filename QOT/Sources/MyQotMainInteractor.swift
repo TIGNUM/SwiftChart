@@ -84,7 +84,7 @@ final class MyQotMainInteractor {
 
     private func createProfile(userName: String?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.profile.rawValue]
-        if userName != nil {
+        if userName != nil, subtitles.count < MyQotSection.profile.rawValue {
             item.subtitle = "Hello " + (userName ?? "") + ",\n" + (subtitles[MyQotSection.profile.rawValue]?.lowercased() ?? "")
         }
         return [item]
