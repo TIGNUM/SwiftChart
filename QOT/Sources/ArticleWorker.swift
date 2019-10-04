@@ -127,7 +127,7 @@ final class ArticleWorker {
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
-//            self?.setupRelatedArticlesStrtegy()
+            self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
