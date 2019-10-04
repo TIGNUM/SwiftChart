@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqWorker.swift
+//  MyQotSupportDetailsWorker.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -9,25 +9,27 @@
 import Foundation
 import qot_dal
 
-final class MyQotSupportFaqWorker {
+final class MyQotSupportDetailsWorker {
     // MARK: - Properties
 
     private let contentService: qot_dal.ContentService
+    let category: ContentCategory
     private var items = [QDMContentCollection]()
 
     // MARK: - Init
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: qot_dal.ContentService, category: ContentCategory) {
         self.contentService = contentService
+        self.category = category
     }
 }
 
 // MARK: - Public
 
-extension MyQotSupportFaqWorker {
+extension MyQotSupportDetailsWorker {
 
     func fetchItems(_ completion: @escaping() -> Void) {
-        contentService.getContentCategory(.FAQ) { (category) in
+        contentService.getContentCategory(category) { (category) in
             self.items = category?.contentCollections ?? []
             completion()
         }
@@ -54,7 +56,12 @@ extension MyQotSupportFaqWorker {
         return text.uppercased()
     }
 
-    var faqHeaderText: String {
-        return ScreenTitleService.main.localizedString(for: .SupportFaq)
+    var headerText: String {
+        switch category {
+        case .UsingQOT:
+            return ScreenTitleService.main.localizedString(for: .SupportUsingQOT)
+        default:
+            return ScreenTitleService.main.localizedString(for: .SupportFaq)
+        }
     }
 }

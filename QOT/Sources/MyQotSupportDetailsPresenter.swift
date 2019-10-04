@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqPresenter.swift
+//  MyQotSupportDetailsPresenter.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -8,22 +8,22 @@
 
 import Foundation
 
-final class MyQotSupportFaqPresenter {
+final class MyQotSupportDetailsPresenter {
 
     // MARK: - Properties
 
-    private weak var viewController: MyQotSupportFaqViewControllerInterface?
+    private weak var viewController: MyQotSupportDetailsViewControllerInterface?
 
     // MARK: - Init
 
-    init(viewController: MyQotSupportFaqViewControllerInterface) {
+    init(viewController: MyQotSupportDetailsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - SupportFAQInterface
 
-extension MyQotSupportFaqPresenter: MyQotSupportFaqPresenterInterface {
+extension MyQotSupportDetailsPresenter: MyQotSupportDetailsPresenterInterface {
 
     func setupView() {
         viewController?.setupView()
