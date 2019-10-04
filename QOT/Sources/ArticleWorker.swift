@@ -127,8 +127,8 @@ final class ArticleWorker {
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
-            self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
+            self?.setupRelatedArticlesStrtegy()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
@@ -296,7 +296,6 @@ final class ArticleWorker {
                                                           itemID: content.remoteID ?? 0)))
         }
         relatedArticlesStrategy = articles
-
     }
 
     var sectionCount: Int {
