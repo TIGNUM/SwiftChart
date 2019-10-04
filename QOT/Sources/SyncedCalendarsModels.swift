@@ -21,6 +21,7 @@ struct SyncedCalendarsViewModel {
                                                                  identifier: row?.identifier,
                                                                  source: row?.source,
                                                                  syncEnabled: enabled,
+                                                                 isSubscribed: row?.isSubscribed,
                                                                  switchIsHidden: row?.switchIsHidden), at: index)
     }
 
@@ -29,6 +30,7 @@ struct SyncedCalendarsViewModel {
         let identifier: String?
         let source: String?
         let syncEnabled: Bool?
+        let isSubscribed: Bool?
         let switchIsHidden: Bool?
     }
 

@@ -8,12 +8,17 @@
 
 import Foundation
 import qot_dal
+import EventKit
 
 final class SyncedCalendarsPresenter {
 
     // MARK: - Properties
     private weak var viewController: SyncedCalendarsViewControllerInterface?
     private var viewModel: SyncedCalendarsViewModel?
+
+    private lazy var calendars: [EKCalendar] = {
+        return EKEventStore.shared.calendars(for: .event)
+    }()
 
     // MARK: - Init
     init(_ viewController: SyncedCalendarsViewControllerInterface) {
@@ -39,6 +44,7 @@ private extension SyncedCalendarsPresenter {
         let localSettings = qdmCalendarSettings.filter { (setting) -> Bool in
             return EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
         }
+
         let otherSettings = qdmCalendarSettings.filter { (setting) -> Bool in
             let exist = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
             return exist == false && setting.syncEnabled == true
@@ -55,10 +61,12 @@ private extension SyncedCalendarsPresenter {
     }
 
     func createModel(_ setting: QDMUserCalendarSetting, switchIsHidden: Bool) -> SyncedCalendarsViewModel.Row {
+        let calendar = calendars.filter { $0.toggleIdentifier == setting.calendarId }.first
         return SyncedCalendarsViewModel.Row(title: setting.title?.uppercased(),
                                             identifier: setting.calendarId,
                                             source: setting.source,
                                             syncEnabled: setting.syncEnabled,
+                                            isSubscribed: calendar?.isSubscribed,
                                             switchIsHidden: switchIsHidden)
     }
 }
