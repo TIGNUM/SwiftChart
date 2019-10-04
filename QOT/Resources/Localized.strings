@@ -602,3 +602,4 @@
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
 
 "Tools.Subtitle.Interactive.Tool" = "Interactive tool";
+"Settings.Calendars.Subscribed" = "*You can only give access to QOT to the calendars you own.";

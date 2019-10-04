@@ -27,7 +27,7 @@ final class SyncedCalendarsWorker {
 extension SyncedCalendarsWorker {
 
     func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {
-        qot_dal.CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
+        CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
             if let error = error {
                 qot_dal.log("Error getCalendarSettings: \(error.localizedDescription)", level: .error)
             }
@@ -38,7 +38,7 @@ extension SyncedCalendarsWorker {
     func updateCalendarSetting(_ calendarSetting: QDMUserCalendarSetting?,
                                _ completion: ((QDMUserCalendarSetting?) -> Void)?) {
         guard let setting = calendarSetting else { return }
-        qot_dal.CalendarService.main.updateCalendarSetting(setting) { (calendarSetting, error) in
+        CalendarService.main.updateCalendarSetting(setting) { (calendarSetting, error) in
             if let error = error {
                 qot_dal.log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
             }
