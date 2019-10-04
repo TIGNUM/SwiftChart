@@ -325,13 +325,6 @@
                                                         <action selector="didTapPlayButtonWithSender:" destination="hQZ-Se-pf1" eventType="touchUpInside" id="nVY-ye-rx7"/>
                                                     </connections>
                                                 </button>
-                                                <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="f0x-eo-5P8">
-                                                    <rect key="frame" x="413" y="89" width="1" height="1"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="1" id="SNm-vk-GuU"/>
-                                                        <constraint firstAttribute="height" constant="1" id="yq5-y7-s4M"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -340,7 +333,6 @@
                                                 <constraint firstItem="zjF-gV-2Tr" firstAttribute="leading" secondItem="gQ9-d3-CBI" secondAttribute="leading" constant="24" id="4RU-hJ-1Nw"/>
                                                 <constraint firstItem="ZaZ-VW-Ry0" firstAttribute="trailing" secondItem="AGp-D4-zBE" secondAttribute="leading" constant="-10" id="9uA-DL-bQe"/>
                                                 <constraint firstAttribute="bottom" secondItem="zjF-gV-2Tr" secondAttribute="bottom" id="AUN-qe-8Yy"/>
-                                                <constraint firstAttribute="trailing" secondItem="f0x-eo-5P8" secondAttribute="trailing" id="DnR-bP-UrV"/>
                                                 <constraint firstItem="AGp-D4-zBE" firstAttribute="trailing" secondItem="gQ9-d3-CBI" secondAttribute="trailing" constant="-24" id="JxF-EV-J2M"/>
                                                 <constraint firstItem="ZaZ-VW-Ry0" firstAttribute="leading" secondItem="gQ9-d3-CBI" secondAttribute="leading" constant="24" id="Kfl-Ph-EpG"/>
                                                 <constraint firstItem="VLa-r3-Hh9" firstAttribute="top" secondItem="ZaZ-VW-Ry0" secondAttribute="bottom" constant="8" id="Kr3-Wk-twX"/>
@@ -351,7 +343,6 @@
                                                 <constraint firstItem="AGp-D4-zBE" firstAttribute="centerY" secondItem="gQ9-d3-CBI" secondAttribute="centerY" id="hFY-j4-cBX"/>
                                                 <constraint firstItem="Gfr-TK-yBF" firstAttribute="leading" secondItem="VLa-r3-Hh9" secondAttribute="trailing" constant="8" id="m7L-0Z-AZr"/>
                                                 <constraint firstItem="VLa-r3-Hh9" firstAttribute="leading" secondItem="ZaZ-VW-Ry0" secondAttribute="leading" id="uI1-ft-BBi"/>
-                                                <constraint firstAttribute="bottom" secondItem="f0x-eo-5P8" secondAttribute="bottom" id="wmm-aK-IyW"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -361,7 +352,6 @@
                                             <outlet property="icon" destination="VLa-r3-Hh9" id="dTh-T4-M0K"/>
                                             <outlet property="infoText" destination="Gfr-TK-yBF" id="DRJ-Ug-nvZ"/>
                                             <outlet property="playButton" destination="AGp-D4-zBE" id="X9F-fC-CwG"/>
-                                            <outlet property="preview" destination="f0x-eo-5P8" id="cm2-yV-ggU"/>
                                             <outlet property="selectedBackgroundView" destination="LnL-2C-jPZ" id="Yaj-jL-Gbu"/>
                                         </connections>
                                     </tableViewCell>

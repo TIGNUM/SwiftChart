@@ -12,14 +12,14 @@ import qot_dal
 final class MySprintDetailsWorker {
 
     // MARK: - Properties
-    private let service = qot_dal.UserService.main
     private let notificationCenter: NotificationCenter
 
     // MARK: - Init
-    public private(set) var sprint: QDMSprint
+    private var sprintId: Int
+    private var sprint: QDMSprint?
 
-    init(sprint: QDMSprint, notificationCenter: NotificationCenter = NotificationCenter.default) {
-        self.sprint = sprint
+    init(sprintId: Int, notificationCenter: NotificationCenter = NotificationCenter.default) {
+        self.sprintId = sprintId
         self.notificationCenter = notificationCenter
     }
 
@@ -53,7 +53,7 @@ final class MySprintDetailsWorker {
     }()
 
     lazy var activeInfoText: String = {
-        guard let startDate = sprint.startDate else {
+        guard let startDate = sprint?.startDate else {
             return upcomingInfoText
         }
         return R.string.localized.mySprintDetailsInfoTextActive(DateFormatter.ddMMM.string(from: startDate))
@@ -85,7 +85,7 @@ final class MySprintDetailsWorker {
 
     lazy var infoPauseSprintMessage: String = {
         let format = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessagePauseSprint)
-        return String(format: format, sprint.maxDays)
+        return String(format: format, sprint?.maxDays ?? 0)
     }()
 
     lazy var buttonPauseSprint: String = {
@@ -119,41 +119,58 @@ final class MySprintDetailsWorker {
     func infoSprintInProgressMessage(sprintInProgressTitle: String?) -> String {
         let message = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
         return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? "",
-                                          newSprintTitle: self.sprint.title ?? "",
+                                          newSprintTitle: self.sprint?.title ?? "",
                                           message: message)
     }
 
     var sprintStatus: MySprintStatus {
+        guard let sprint = sprint else {
+            return .upcoming
+        }
         return MySprintStatus.from(sprint)
+    }
+
+    func getSprint(_ completion: @escaping (QDMSprint?) -> Void) {
+        UserService.main.getSprints { [weak self] (sprints, _, error) in
+            if let error = error {
+                log("Error getSprints: \(error.localizedDescription)", level: .error)
+            }
+            let sprint = sprints?.filter { $0.remoteID == self?.sprintId ?? 0 }.first
+            self?.sprint = sprint
+            completion(sprint)
+        }
     }
 }
 
 extension MySprintDetailsWorker {
 
     func isSprintInProgress(_ completion: @escaping (QDMSprint?, Date?) -> Void) {
-        qot_dal.UserService.main.isSprintAlreadyInProgress(completion)
+        UserService.main.isSprintAlreadyInProgress(completion)
     }
 
     func startSprint(_ completion: @escaping (Error?) -> Void) {
-        service.startSprint(sprint) { [weak self] (sprint, error) in
+        guard let sprint = sprint else { return }
+        UserService.main.startSprint(sprint) { [weak self] (sprint, error) in
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }
 
     func pauseSprint(_ completion: @escaping (Error?) -> Void) {
-        service.pauseSprint(sprint) { [weak self] (sprint, error) in
+        guard let sprint = sprint else { return }
+        UserService.main.pauseSprint(sprint) { [weak self] (sprint, error) in
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }
 
     func saveUpdatedSprint(_ sprint: QDMSprint, _ completion: @escaping (Error?) -> Void) {
-        service.updateSprint(sprint) { [weak self] (sprint, error) in
+        UserService.main.updateSprint(sprint) { [weak self] (sprint, error) in
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }
 
     func continueSprint(_ completion: @escaping (Error?) -> Void) {
-        service.continueSprint(sprint) { [weak self] (sprint, error) in
+        guard let sprint = sprint else { return }
+        UserService.main.continueSprint(sprint) { [weak self] (sprint, error) in
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }

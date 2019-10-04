@@ -65,7 +65,7 @@
 "Sidebar.Title.Permission" = "PERMISSIONS";
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
-"MyQOT.ToBeVision.Title" = "TO BE VISION";
+"MyQOT.ToBeVision.Title" = "ToBeVision";
 "MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TO BE VISION";
 "MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
@@ -602,3 +602,4 @@
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
 
 "Tools.Subtitle.Interactive.Tool" = "Interactive tool";
+"Settings.Calendars.Subscribed" = "*You can only give access to QOT to the calendars you own.";
