@@ -19,6 +19,7 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
     @IBOutlet private weak var headingDescriptionLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var titleDescriptionLabel: UILabel!
+    private var rateIsEnabled = false
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
@@ -53,11 +54,12 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
 private extension MyToBeVisionDataNullStateViewController {
     func getVisionTracks() {
         userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
-            guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) else {
-                self?.tbvRateButton.isEnabled = false
-                return
+            if let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) {
+                self?.rateIsEnabled = finalTracks.count > 0
+            } else {
+                self?.rateIsEnabled = false
             }
-            self?.tbvRateButton.isEnabled = finalTracks.count > 0
+            self?.refreshBottomNavigationItems()
         }
     }
 
@@ -91,6 +93,6 @@ extension MyToBeVisionDataNullStateViewController {
 // MARK: - Bottom Navigation Items
 extension MyToBeVisionDataNullStateViewController {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [tbvRateButton]
+        return rateIsEnabled ? [tbvRateButton] : []
     }
 }
