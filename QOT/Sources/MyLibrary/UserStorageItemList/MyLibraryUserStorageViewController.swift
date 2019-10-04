@@ -207,7 +207,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(withUrl: item?.previewURL, playButtonTitle: item?.duration, playButtonTag: indexPath.row)
+            cell.configure(playButtonTitle: item?.duration, playButtonTag: indexPath.row)
 
             returnCell = cell
         case .ARTICLE:
@@ -217,9 +217,13 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure()
+
             returnCell = cell
         case .DOWNLOAD:
             let cell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure()
+
             if let itemModel = item {
                 cell.setStatus(itemModel.downloadStatus)
             }
