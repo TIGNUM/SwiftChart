@@ -23,6 +23,12 @@ final class SyncedCalendarCell: UITableViewCell, Dequeueable {
         switchControl.corner(radius: Layout.cornerRadius08*2, borderColor: .accent40)
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        switchControl.alpha = 1.0
+        isUserInteractionEnabled = true
+    }
+
     // MARK: Configuration
     func configure(title: String?,
                    source: String?,

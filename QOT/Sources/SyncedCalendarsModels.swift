@@ -11,6 +11,7 @@ import Foundation
 struct SyncedCalendarsViewModel {
     let viewTitle: String
     let headerHeight: CGFloat = 80
+    var footerHeight: CGFloat
     var sections: [Section: [Row]]
 
     mutating func updateSyncValue(_ enabled: Bool?, calendarId: String?) {

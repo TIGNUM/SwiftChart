@@ -104,6 +104,23 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
         return viewModel?.headerHeight ?? 0
     }
 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return viewModel?.footerHeight ?? 0
+        }
+        return 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 0 {
+            let title = R.string.localized.settingsCalendarsSubscribed()
+            let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
+            headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader)
+            return headerView
+        }
+        return nil
+    }
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionItem = SyncedCalendarsViewModel.Section(rawValue: section) ?? .onDevice
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
