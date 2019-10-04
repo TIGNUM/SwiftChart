@@ -120,6 +120,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
                        source: item?.source,
                        syncEabled: item?.syncEnabled,
                        identifier: item?.identifier,
+                       isSubscribed: item?.isSubscribed,
                        switchIsHidden: item?.switchIsHidden)
         return cell
     }

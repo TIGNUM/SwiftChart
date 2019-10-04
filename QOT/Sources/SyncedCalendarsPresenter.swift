@@ -50,7 +50,10 @@ private extension SyncedCalendarsPresenter {
             return exist == false && setting.syncEnabled == true
         }
 
-        let localItems = localSettings.compactMap { createModel($0, switchIsHidden: false) }
+        let localItems = localSettings.compactMap { createModel($0, switchIsHidden: false) }.sorted { (lhs, rhs) -> Bool in
+            return lhs.isSubscribed == false && rhs.isSubscribed == true
+        }
+
         let otherItems = otherSettings.compactMap { createModel($0, switchIsHidden: true) }
         var sections = [SyncedCalendarsViewModel.Section.onDevice: localItems]
         if !otherSettings.isEmpty {
