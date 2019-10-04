@@ -56,7 +56,7 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
         SyncedCalendarsConfigurator.configure(viewController: controller,
                                               isInitialCalendarSelection: true,
-                                              delegate: prepareViewController) 
+                                              delegate: prepareViewController)
         viewController?.present(controller, animated: true)
     }
 
