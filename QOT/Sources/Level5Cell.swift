@@ -30,7 +30,8 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var progressStackView: UIStackView!
     var levelMessages: [Level5ViewModel.LevelDetail] = []
     weak var delegate: DailyBriefViewControllerDelegate?
-    var savedAnswer: Int = 0
+    var savedAnswer: Int?
+    var tmpAnswer: Int = 0
     var confirmationMessage: String?
 
     override func awakeFromNib() {
@@ -53,10 +54,11 @@ final class Level5Cell: BaseDailyBriefCell {
         saveButton.layer.borderWidth = 0
         saveButton.isEnabled = false
         ThemeView.selectedButton.apply(saveButton)
-        delegate?.saveAnswerValue(savedAnswer + 1, from: self)
+        savedAnswer = tmpAnswer
+        delegate?.saveAnswerValue(tmpAnswer + 1, from: self)
         let closeButtonItem = createCloseButton()
         QOTAlert.show(title: nil, message: confirmationMessage, bottomItems: [closeButtonItem])
-        updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
+        updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
     }
 
     @objc func dismissAction() {
@@ -80,6 +82,14 @@ final class Level5Cell: BaseDailyBriefCell {
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []
+        if let selectedValue = with?.domainModel?.currentGetToLevel5Value ?? with?.domainModel?.latestGetToLevel5Value {
+            tmpAnswer = selectedValue - 1
+            savedAnswer = tmpAnswer
+        }
+        if with?.domainModel?.currentGetToLevel5Value == nil && with?.domainModel?.latestGetToLevel5Value != nil {
+            savedAnswer = nil
+        }
+        updateButtonStatus()
         initialSetup()
     }
 
@@ -93,8 +103,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     //    when the bucket is loaded set level 1 as default
     func initialSetup() {
-        ThemeText.dailyBriefLevelTitle.apply(levelMessages.at(index: savedAnswer)?.levelTitle, to: levelTitle)
-        updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
+        ThemeText.dailyBriefLevelTitle.apply(levelMessages.at(index: tmpAnswer)?.levelTitle, to: levelTitle)
+        updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
         setButtonBackgroundColor()
         setProgress()
     }
@@ -105,7 +115,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func setButtonBackgroundColor() {
         buttons.forEach {(button) in
-            ThemeButton.level5.apply(button, selected: savedAnswer == button.tag)
+            ThemeButton.level5.apply(button, selected: tmpAnswer == button.tag)
         }
     }
 
@@ -115,11 +125,23 @@ final class Level5Cell: BaseDailyBriefCell {
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
-        setButtonText("Save")
-        savedAnswer = sender.tag
+        tmpAnswer = sender.tag
+        updateButtonStatus()
         initialSetup()
-        saveButton.isEnabled = true
         delegate?.didUpdateLevel5()
+    }
+
+    func updateButtonStatus() {
+
+        if tmpAnswer == savedAnswer {
+            setButtonText("Saved")
+            ThemeButton.level5.apply(saveButton, selected: true)
+            saveButton.isEnabled = false
+        } else {
+            setButtonText("Save")
+            ThemeButton.level5.apply(saveButton, selected: false)
+            saveButton.isEnabled = true
+        }
     }
 
     func setProgress() {
@@ -128,7 +150,7 @@ final class Level5Cell: BaseDailyBriefCell {
                                 [0.60, 0.50, 0.33, 0.0],
                                 [0.80, 0.75, 0.66, 0.50],
                                 [1.0, 1.0, 1.0, 1.0]]
-        let item = array[savedAnswer]
+        let item = array[tmpAnswer]
         knowledgeProgress.setProgress(item[0], animated: true)
         readinessProgress.setProgress(item[1], animated: true)
         awarenssProgress.setProgress(item[2], animated: true)
