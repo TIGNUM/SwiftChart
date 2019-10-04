@@ -36,7 +36,7 @@ final class CollapsableCell: UITableViewCell, Dequeueable {
     // MARK: - private
     private func reload() {
         guard let isOpen = isOpen else { return }
-        let image = (isOpen == true) ? R.image.ic_minus() : R.image.ic_plus()
+        let image = (isOpen == true) ? R.image.arrowUp() : R.image.arrowDown()
         button.setImage(image, for: .normal)
     }
 
