@@ -30,8 +30,8 @@ extension QDMGuideItemNotfication {
     }
 
     var localNotificationDate: Date? {
-        guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }
-        return reminderTime.date(with: issueDate)
+        guard let issueDate = issueDate, let displayTime = displayTime else { return nil }
+        return displayTime.date(with: issueDate)
     }
     var isDailyPrep: Bool {
         guard let itemType = ItemType(rawValue: type ?? "") else { return false }
