@@ -30,16 +30,21 @@ final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
         super.init(coder: aDecoder)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.alwaysBounceVertical = false
         interactor?.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        interactor?.updateViewModel()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
