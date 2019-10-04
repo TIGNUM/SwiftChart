@@ -78,11 +78,12 @@ final class WeatherCell: BaseDailyBriefCell {
         viewModel = weatherViewModel
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
+        var relevantForecastModels = [QDMForecast]()
         if let weatherModel = viewModel?.domainModel?.weather {
-            var relevantForecastModels = [QDMForecast]()
             for forecastModel in weatherModel.forecast ?? [] where
-                Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedAscending ||
-                Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedSame {
+                forecastModel.date != nil &&
+                (Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedAscending ||
+                Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedSame) {
                 relevantForecastModels.append(forecastModel)
             }
 
@@ -110,7 +111,7 @@ final class WeatherCell: BaseDailyBriefCell {
             }
         }
         setupUIAccordingToLocationPermissions()
-        populateHourlyViews()
+        populateHourlyViews(relevantForecastModels: relevantForecastModels)
     }
 
     // MARK: Private
@@ -127,15 +128,10 @@ final class WeatherCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(accessButton)
     }
 
-    private func populateHourlyViews() {
-        guard let weatherModel = viewModel?.domainModel?.weather,
-            let forecast = weatherModel.forecast else {
-            return
-        }
+    private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
+        guard let weatherModel = viewModel?.domainModel?.weather else { return }
 
-        for (index, forecastModel) in forecast.enumerated() where
-            (Calendar.current.compare(Date(), to: forecastModel.date ?? Date().dateAfterHours(-2), toGranularity: .hour) == .orderedAscending ||
-            Calendar.current.compare(Date(), to: forecastModel.date ?? Date(), toGranularity: .hour) == .orderedSame) {
+        for (index, forecastModel) in relevantForecastModels.enumerated() {
             guard let hourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView,
                 let date = forecastModel.date else {
                     return
