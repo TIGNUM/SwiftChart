@@ -217,7 +217,9 @@ final class ArticleWorker {
                                                                               waveformData: [])))
             }
         }
+        let nextUpContentIds = content?.relatedContentList.filter({$0.type.uppercased() == "NEXT_UP"}).compactMap({ $0.contentID }) ?? []
         relatedContent.forEach { content in
+            guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
             itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
                                                                                        description: content.durationString,
                                                                                        itemID: content.remoteID ?? 0)))
@@ -225,7 +227,6 @@ final class ArticleWorker {
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
         }
-        
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
