@@ -213,7 +213,7 @@ extension MyLibraryUserStorageInteractor {
     private func showEmptyAlert() {
         infoViewModel = MyLibraryUserStorageInfoViewModel(
             isFullscreen: false,
-            icon: self.worker.contentIcon,
+            icon: self.worker.emptyContentIcon,
             title: self.worker.emtptyContentAlertTitle,
             message: self.worker.emtptyContentAlertMessage)
         presenter.present()
