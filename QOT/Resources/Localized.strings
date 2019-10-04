@@ -65,7 +65,7 @@
 "Sidebar.Title.Permission" = "PERMISSIONS";
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
-"MyQOT.ToBeVision.Title" = "MY HEADLINE";
+"MyQOT.ToBeVision.Title" = "ToBeVision";
 "MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TO BE VISION";
 "MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
