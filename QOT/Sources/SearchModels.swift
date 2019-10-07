@@ -67,6 +67,7 @@ struct Search {
         let filter: Filter
         let title: String
         let contentID: Int?
+        let appLink: QDMAppLink?
         let contentItemID: Int?
         let createdAt: Date
         let searchTags: String
@@ -83,10 +84,11 @@ struct Search {
     static func resultFrom(_ contentCollections: [QDMContentCollection],
                            filter: Filter,
                            displayType: DisplayType) -> [Search.Result] {
-            return contentCollections.compactMap({
+            return contentCollections.compactMap {
                 Search.Result(filter: filter,
                               title: $0.title,
                               contentID: $0.remoteID ?? 0,
+                              appLink: $0.links.first,
                               contentItemID: nil,
                               createdAt: $0.createdAt ?? Date(),
                               searchTags: "",
@@ -94,7 +96,7 @@ struct Search {
                               mediaURL: nil,
                               displayType: displayType,
                               duration: $0.contentItems.count > 1 ? String($0.contentItems.count) + " items" : "1 item")
-            })
+            }
     }
 
     static func articleResultFrom(_ contentCollections: [QDMContentCollection],
@@ -104,6 +106,7 @@ struct Search {
             Search.Result(filter: filter,
                           title: $0.title,
                           contentID: $0.remoteID ?? 0,
+                          appLink: $0.links.first,
                           contentItemID: nil,
                           createdAt: $0.createdAt ?? Date(),
                           searchTags: "",
@@ -118,6 +121,7 @@ struct Search {
         return Search.Result(filter: filter,
                              title: contentItem.valueText,
                              contentID: nil,
+                             appLink: nil,
                              contentItemID: contentItem.remoteID ?? 0,
                              createdAt: contentItem.createdAt ?? Date(),
                              searchTags: "",

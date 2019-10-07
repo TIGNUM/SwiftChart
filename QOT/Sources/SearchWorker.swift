@@ -17,7 +17,7 @@ final class SearchWorker {
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {
         switch searchFilter {
         case .all:
-            qot_dal.ContentService.main.getAllFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+            ContentService.main.getAllFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -37,7 +37,7 @@ final class SearchWorker {
                 completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .read:
-            qot_dal.ContentService.main.getAllReadablesFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+            ContentService.main.getAllReadablesFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -56,7 +56,7 @@ final class SearchWorker {
                 completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .listen:
-            qot_dal.ContentService.main.getAudioItemsFor(keyword: searchText) { [weak self] (contentItems) in
+            ContentService.main.getAudioItemsFor(keyword: searchText) { [weak self] (contentItems) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -67,7 +67,7 @@ final class SearchWorker {
                 completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .watch:
-            qot_dal.ContentService.main.getVideoItemsFor(keyword: searchText) { [weak self] (contentItems) in
+            ContentService.main.getVideoItemsFor(keyword: searchText) { [weak self] (contentItems) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -79,7 +79,7 @@ final class SearchWorker {
                 completion(strongSelf.removeDuplicates(from: searchArray))
             }
         case .tools:
-            qot_dal.ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { [weak self] (contentCollections) in
+            ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { [weak self] (contentCollections) in
                 guard let strongSelf = self else {
                     return
                 }
@@ -137,7 +137,7 @@ final class SearchWorker {
             }
             return
         }
-        qot_dal.ContentService.main.getContentItemById(contentItemID) { (item) in
+        ContentService.main.getContentItemById(contentItemID) { (item) in
             completion(item)
         }
     }

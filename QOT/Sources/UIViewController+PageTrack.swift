@@ -79,7 +79,7 @@ extension UIViewController {
         case is RegistrationNamesViewController: return "onboarding.createaccount.name"
         case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
-        case is StrategyListViewController: return "know.feed.strategy"
+        case is StrategyListViewController: return "know.feed.strategy.list"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
         case is MyDataScreenViewController: return "myqot.mydata"
@@ -92,6 +92,9 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
+        case is WalkthroughSearchViewController: return "walkthrough.search"
+        case is WalkthroughCoachViewController: return "walkthrough.coach"
+        case is WalkthroughSwipeViewController: return "walkthrough.swipe"
         default: preconditionFailure()
         }
     }
