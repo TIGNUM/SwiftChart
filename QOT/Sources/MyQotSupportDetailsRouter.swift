@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqRouter.swift
+//  MyQotSupportDetailsRouter.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -8,19 +8,19 @@
 
 import Foundation
 
-final class MyQotSupportFaqRouter {
+final class MyQotSupportDetailsRouter {
     // MARK: - Properties
 
-    private weak var viewController: MyQotSupportFaqViewController?
+    private weak var viewController: MyQotSupportDetailsViewController?
 
     // MARK: - Init
 
-    init(viewController: MyQotSupportFaqViewController) {
+    init(viewController: MyQotSupportDetailsViewController) {
         self.viewController = viewController
     }
 }
 
-extension MyQotSupportFaqRouter: MyQotSupportFaqRouterInterface {
+extension MyQotSupportDetailsRouter: MyQotSupportDetailsRouterInterface {
 
     func presentContentItemSettings(contentID: Int) {
         guard let articleViewController = R.storyboard.main.qotArticleViewController() else {

@@ -1216,6 +1216,20 @@ enum ThemeText {
         }
     }
 
+    func apply(_ text: String?, to view: UITextField?, lineSpacing: CGFloat? = nil,
+               lineHeight: CGFloat? = nil) {
+        guard let view = view else { return }
+
+        view.alpha = 1.0
+        let string = attributedString(text, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        if string.string.contains("<NO THEME") {
+            view.backgroundColor = .clear
+        } else {
+            view.attributedText = string
+            view.backgroundColor = .clear
+        }
+    }
+
     func apply(_ text: String?, to textView: UITextView?, lineSpacing: CGFloat? = nil,
                lineHeight: CGFloat? = nil) {
         guard let view = textView else { return }

@@ -44,10 +44,7 @@
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zpa-0X-4mS">
-                            <rect key="frame" x="24" y="91" width="304" height="50"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="50" id="mz9-ax-G0j"/>
-                            </constraints>
+                            <rect key="frame" x="24" y="74" width="304" height="67"/>
                             <string key="text">Label
 djdjdjd
 
@@ -75,7 +72,6 @@ djdjdjd
                         <constraint firstItem="6i1-hB-A76" firstAttribute="centerX" secondItem="GqB-hG-6LA" secondAttribute="centerX" id="DoR-Sj-g0z"/>
                         <constraint firstAttribute="bottom" secondItem="ovy-qU-NIc" secondAttribute="bottom" constant="40" id="UtO-87-Kod"/>
                         <constraint firstItem="6i1-hB-A76" firstAttribute="top" secondItem="GqB-hG-6LA" secondAttribute="top" constant="15" id="emQ-bD-cLx"/>
-                        <constraint firstItem="Zpa-0X-4mS" firstAttribute="top" secondItem="6i1-hB-A76" secondAttribute="bottom" constant="75" id="hBx-nT-cUl"/>
                         <constraint firstItem="Zpa-0X-4mS" firstAttribute="leading" secondItem="GqB-hG-6LA" secondAttribute="leading" constant="24" id="ivH-Od-q23"/>
                         <constraint firstAttribute="bottom" secondItem="Zpa-0X-4mS" secondAttribute="bottom" constant="40" id="rFv-2k-rIp"/>
                         <constraint firstItem="ovy-qU-NIc" firstAttribute="leading" secondItem="Zpa-0X-4mS" secondAttribute="trailing" constant="14" id="zju-i5-I1a"/>

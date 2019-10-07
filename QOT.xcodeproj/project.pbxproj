@@ -241,7 +241,7 @@
 		36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
 		36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */; };
 		36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
-		36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
+		36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */; };
 		36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */; };
 		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
 		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
@@ -342,12 +342,12 @@
 		5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */; };
 		5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */; };
 		5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */; };
-		5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */; };
-		5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */; };
-		5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */; };
-		5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */; };
-		5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */; };
-		5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */; };
+		5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */; };
+		5F62BE90228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */; };
+		5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */; };
+		5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */; };
+		5F62BE98228AB64E00852F7E /* MyQotSupportDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */; };
+		5F62BE9A228AB66100852F7E /* MyQotSupportDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */; };
 		5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */; };
 		5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */; };
 		5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */; };
@@ -1643,13 +1643,13 @@
 		5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsInterface.swift; sourceTree = "<group>"; };
 		5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsRouter.swift; sourceTree = "<group>"; };
 		5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsViewController.swift; sourceTree = "<group>"; };
-		5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqViewController.swift; sourceTree = "<group>"; };
-		5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInteractor.swift; sourceTree = "<group>"; };
-		5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqConfigurator.swift; sourceTree = "<group>"; };
-		5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInterface.swift; sourceTree = "<group>"; };
-		5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqPresenter.swift; sourceTree = "<group>"; };
-		5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqRouter.swift; sourceTree = "<group>"; };
-		5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqWorker.swift; sourceTree = "<group>"; };
+		5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsViewController.swift; sourceTree = "<group>"; };
+		5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsInteractor.swift; sourceTree = "<group>"; };
+		5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsConfigurator.swift; sourceTree = "<group>"; };
+		5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsInterface.swift; sourceTree = "<group>"; };
+		5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsPresenter.swift; sourceTree = "<group>"; };
+		5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsRouter.swift; sourceTree = "<group>"; };
+		5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsWorker.swift; sourceTree = "<group>"; };
 		5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInteractor.swift; sourceTree = "<group>"; };
 		5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInterface.swift; sourceTree = "<group>"; };
@@ -3321,23 +3321,15 @@
 		5F62BE8A228AB57F00852F7E /* MyQotSupportFAQ */ = {
 			isa = PBXGroup;
 			children = (
-				5F62BE8B228AB5AD00852F7E /* Core */,
+				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
+				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
+				5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */,
+				5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */,
+				5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */,
+				5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */,
+				5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */,
 			);
 			name = MyQotSupportFAQ;
-			sourceTree = "<group>";
-		};
-		5F62BE8B228AB5AD00852F7E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */,
-				5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */,
-				5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */,
-				5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */,
-				5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */,
-				5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */,
-				5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */ = {
@@ -6336,7 +6328,7 @@
 				8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
-				36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */,
+				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
@@ -6477,7 +6469,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
-				5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */,
+				5F62BE90228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift in Sources */,
 				F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */,
 				8D8AA76422FDCB6700B59A81 /* RegistrationViewController.swift in Sources */,
 				F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */,
@@ -6499,7 +6491,7 @@
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
 				B4AB48B8230BF891003B3C1F /* MyDataSelectionInterface.swift in Sources */,
-				5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */,
+				5F62BE9A228AB66100852F7E /* MyQotSupportDetailsWorker.swift in Sources */,
 				3658257B2327D19200AC3F4A /* DTShortTBVInterface.swift in Sources */,
 				DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */,
 				5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */,
@@ -6713,7 +6705,7 @@
 				36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */,
 				8D66E8A32305A0E500BE78C7 /* TrackSelectionConfigurator.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
-				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
+				5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */,
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
 				B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */,
@@ -6818,7 +6810,7 @@
 				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
-				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
+				5F62BE98228AB64E00852F7E /* MyQotSupportDetailsRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
 				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
@@ -7034,7 +7026,7 @@
 				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
-				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
+				5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */,
 				38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */,
 				367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
@@ -7123,7 +7115,7 @@
 				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
-				5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */,
+				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */,

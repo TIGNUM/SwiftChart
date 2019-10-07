@@ -16,10 +16,9 @@ class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
         skeletonManager.addOtherView(preview)
     }
 
-    func configure(withUrl: URL?) {
-        guard let url = withUrl else { return }
+    func configure(previewImageUrl: URL?) {
         configure()
         skeletonManager.addOtherView(preview)
-        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
+        preview.setImage(url: previewImageUrl, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }
 }
