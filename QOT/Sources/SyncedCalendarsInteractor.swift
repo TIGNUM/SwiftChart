@@ -56,8 +56,9 @@ private extension SyncedCalendarsInteractor {
     func getData() {
         getViewTitle()
         getCalendarData()
-        dispatchGroup.notify(queue: .main) { [unowned self] in
-            self.presenter.setupView(self.viewTitle, self.calendarSettings)
+        dispatchGroup.notify(queue: .main) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.presenter.setupView(strongSelf.viewTitle, strongSelf.calendarSettings)
         }
     }
 
@@ -67,9 +68,10 @@ private extension SyncedCalendarsInteractor {
 
     func getCalendarData() {
         dispatchGroup.enter()
-        worker.getCalendarSettings { [unowned self] (calendarSettings) in
-            self.calendarSettings = calendarSettings
-            self.dispatchGroup.leave()
+        worker.getCalendarSettings { [weak self] (calendarSettings) in
+            guard let strongSelf = self else { return }
+            strongSelf.calendarSettings = calendarSettings
+            strongSelf.dispatchGroup.leave()
         }
     }
 }

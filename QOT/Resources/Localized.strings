@@ -66,8 +66,8 @@
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
 "MyQOT.ToBeVision.Title" = "ToBeVision";
-"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TO BE VISION";
-"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
+"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TOBEVISION";
+"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new ToBeVision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
 "MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
 "Sidebar.Title.Logout" = "Log out";
@@ -78,11 +78,11 @@
 "Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
 "Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";
 
-"SiriShortcuts.ToBeVision.Title" = "Your To Be Vision";
+"SiriShortcuts.ToBeVision.Title" = "Your ToBeVision";
 "SiriShortcuts.UpcomingEventPrep.Title" = "Your Upcoming Event Preparation";
 "SiriShortcuts.DailyPrep.Title" = "Your Daily Check In Feedback";
 "SiriShortcuts.WhatsHotArticle.Title" = "Your What's Hot? Article";
-"SiriShortcuts.ToBeVision.suggestedInvocation" = "Read my To Be Vision";
+"SiriShortcuts.ToBeVision.suggestedInvocation" = "Read my ToBeVision";
 "SiriShortcuts.WhatsHotArticle.suggestedInvocation" = "Show me the latest What's Hot? article";
 "SiriShortcuts.UpcomingEvent.suggestedInvocation" = "What's my Upcoming QOT Preparation Event?";
 "SiriShortcuts.DailyPrep.suggestedInvocation" = "Show my Daily Check In feedback";
@@ -91,7 +91,7 @@
 "Tab.Bar.Item.Learn" = "LEARN";
 "Tab.Bar.Item.Me" = "ME";
 "Tab.Bar.Item.Data" = "DATA";
-"Tab.Bar.Item.tbv" = "To Be Vision";
+"Tab.Bar.Item.tbv" = "ToBeVision";
 "Tab.Bar.Item.Prepare" = "PREPARE";
 
 "Top.Tab.Bar.Item.Title.Guide" = "GUIDE";
@@ -113,7 +113,7 @@
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";
 "Guide.DailyPrep.NotFinished.Feedback" = "How do you feel today? I can help you Rule Your Impact with just a minute of your time.";
-"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TO BE VISION";
+"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TOBEVISION";
 "Guide.ToBeVision.NotFisished.Message" = "No human being can outperform their self-image, yet you have not created yours. I would love to help you.";
 
 "Article.Loading" = "Please wait while we configure what's hot";
@@ -129,7 +129,7 @@
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
 "Me.Sector.My.Why.Partners.Share.NoContent.Title" = "Unable to share content";
-"Me.Sector.My.Why.Partners.Share.MissingMyToBeVision.alert" = "Please create your To Be Vision first";
+"Me.Sector.My.Why.Partners.Share.MissingMyToBeVision.alert" = "Please create your ToBeVision first";
 "Me.Sector.My.Why.Partners.Share.MissingWeeklyChoice.alert" = " No Weekly Choices selected.";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
@@ -151,7 +151,7 @@
 "Prepare.MyPrep.Tableview.section.header.PastPreparations" = "Past preps";
 "Prepare.MyPrep.Tableview.section.header.UpCommingPreparations" = "Upcoming preps";
 "Prepare.Chat.PreparationSaved" = "Your preparation has been saved to My Prep";
-"Prepare.Notes.Placeholder" = "Put any additional thoughts into writing. Some examples might include your event To Be Vision, details of what your event's space looks like, or key people at your event.";
+"Prepare.Notes.Placeholder" = "Put any additional thoughts into writing. Some examples might include your event ToBeVision, details of what your event's space looks like, or key people at your event.";
 "Prepare.Review.Notes.Intention.Preceiving.Title" = "How do you want to be perceived during the event?";
 "Prepare.Review.Notes.Intention.Knowing.Title" = "What do you want the person/group to know after the event?";
 "Prepare.Review.Notes.Intention.Feeling.Title" = "How do you want the person/group to feel after the event?";
@@ -240,7 +240,7 @@
 "Level5.Button.Saved" = "Saved";
 "Level5.Alert.Title" = "KNOWLEDGE";
 "Level5.Alert.Message" = "Knowledge is highly aware of your daily and weekly load and the link of your Recovery to your performance. You regularly identify and prepare for your Peak Performances.";
-"Copyright.Text" = "Content Copyright \n";
+"Copyright.Text" = "We do not own the copyrights to this image. Checkout the content creator's website to find more great images, inspiration and information here: \n";
 "Alert.Button.Title.Save.and.Continue" = "Save & Continue";
 "Alert.Button.Title.Settings" = "Settings";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
@@ -267,8 +267,8 @@
 "Alert.Title.Preparation.Remove.Strategy" = "Delete strategy";
 "Alert.Title.Preparation.Edit.Strategy" = "Customize your preparation";
 "Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or delete those you dont like.";
-"Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
-"Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
+"Alert.Button.Title.Edit.Vision" = "Edit ToBeVision";
+"Alert.Button.Title.Create.Vision" = "Create a new ToBeVision";
 "Alert.Message.Email.Not.Setup" = "Email is not setup on your device";
 "Alert.Message.Logout" = "Are you sure you would like to log out of QOT?";
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
@@ -331,7 +331,7 @@
 "MyQot.Vision.Morethan" = "More than ";
 "MyQot.Vision.MonthsSince" = " months since your last edit";
 "MyQot.Vision.LessThan" = "Less than 3 months since your last edit";
-"MyQot.Vision.NoVision" = "You have not created your To Be Vision yet";
+"MyQot.Vision.NoVision" = "You have not created your ToBeVision yet";
 "MyQot.Data.Impact" = "/100 your impact readiness";
 
 "Button.Title.Pick" = "Pick %d to continue";
@@ -363,7 +363,7 @@
 "QuestionnaireViewController.doneButton" = "Done";
 
 "MyToBeVisionTitlePlaceholder" = "MY HEADLINE";
-"MyToBeVisionDescriptionPlaceholder" = "My TO BE VISION";
+"MyToBeVisionDescriptionPlaceholder" = "My TOBEVISION";
 
 "DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
 "DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
@@ -392,7 +392,7 @@
 "MySprintDetails.Info.Title.SprintInProgress" = "A SPRINT IS ALREADY IN PROGRESS";
 "MySprintDetails.Info.Message.PauseSprint" = "Are you sure you want to pause your current sprint? To reach the best results is recommended to finish a sprint in maximum %d days.";
 "MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
-"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";
+"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start ToBeVision anchors?";
 
 "MySprintDetailsNotes.Button.Save" = "Save";
 "MySprintDetailsNotes.Button.Cancel" = "Cancel";
@@ -420,14 +420,14 @@
 "Onboarding.Login.Button.ResendCode" = "Resend code";
 
 "Onboarding.CreateInfo.Button.CreateAccount" = "Create account";
-"Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your To Be Vision, please create an account";
+"Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your ToBeVision, please create an account";
 
 "Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
 "Onboarding.Registration.Email.Placeholder" = "Email";
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
-"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new TO BE VISION, do you want to use it as your new TO BE VISION?";
+"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new TOBEVISION, do you want to use it as your new TOBEVISION?";
 "Onboarding.Registration.Email.Error.UnableToRegister" = "Check your email";
 "Onboarding.Registration.Email.Button.Yes" = "Yes";
 "Onboarding.Registration.Email.Button.No" = "No";

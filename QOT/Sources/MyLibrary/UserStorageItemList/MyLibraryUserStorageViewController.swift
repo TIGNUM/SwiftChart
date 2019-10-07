@@ -212,7 +212,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(withUrl: item?.previewURL)
+            cell.configure(previewImageUrl: item?.previewURL)
 
             returnCell = cell
         case .NOTE:
