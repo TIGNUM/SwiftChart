@@ -160,6 +160,7 @@ private extension UIViewController {
             case ShortTBV.QuestionKey.IntroMindSet: return "decisiontree.mindsetshifter.tobevisiongenerator"
             case ShortTBV.QuestionKey.IntroPrepare: return "decisiontree.prepare.tobevisiongenerator"
             case ShortTBV.QuestionKey.IntroOnboarding: return "decisiontree.onboarding.tobevisiongenerator"
+            case ShortTBV.QuestionKey.Work: return "decisiontree.solve.tobevisiongenerator"
             default: preconditionFailure()
             }
         }

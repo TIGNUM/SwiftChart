@@ -390,5 +390,4 @@ extension LaunchHandler {
     func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
-
 }

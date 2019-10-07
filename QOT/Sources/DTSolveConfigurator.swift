@@ -17,6 +17,7 @@ final class DTSolveConfigurator {
             viewController.interactor = interactor
             viewController.solveRouter = router
             viewController.router = router
+            viewController.shortTBVDelegate = interactor
         }
     }
 }

@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DTSolveViewController: DTViewController {
 
     // MARK: - Properties
     var solveRouter: DTSolveRouterInterface?
     var solveInteractor: DTSolveInteractorInterface?
+    weak var shortTBVDelegate: DTShortTBVDelegate?
 
     // MARK: - Init
     init(configure: Configurator<DTSolveViewController>) {
@@ -25,8 +27,15 @@ final class DTSolveViewController: DTViewController {
     }
 
     // MARK: - DTQuestionnaireViewControllerDelegate
-    override func didTapBinarySelection(_ answer: DTViewModel.Answer) {
-        super.didTapBinarySelection(answer)
+    override func didTapNext() {
+        switch viewModel?.question.key {
+        case Solve.QuestionKey.BackFromShortTBV:
+            if let answer = viewModel?.answers.first {
+                solveRouter?.presentSolveResults(selectedAnswer: answer)
+            }
+        default:
+            super.didTapNext()
+        }
     }
 
     override func didSelectAnswer(_ answer: DTViewModel.Answer) {
@@ -36,6 +45,8 @@ final class DTSolveViewController: DTViewController {
                 solveRouter?.presentSolveResults(selectedAnswer: answer)
             } else if answer.targetId(.question) != nil {
                 handleQuestionSelection(answer)
+            } else if answer.keys.contains(Solve.AnswerKey.OpenVisionPage) {
+                solveRouter?.dismissFlowAndGoToMyTBV()
             }
         }
     }
@@ -44,7 +55,7 @@ final class DTSolveViewController: DTViewController {
 // MARK: - Actions
 private extension DTSolveViewController {
     func handleQuestionSelection(_ answer: DTViewModel.Answer) {
-        if viewModel?.question.key == Solve.QuestionKey.OpenTBV {
+        if answer.keys.contains(Solve.AnswerKey.OpenTBV) {
             handleTBVCase(answer)
         } else {
             loadNextQuestion()
@@ -60,7 +71,7 @@ private extension DTSolveViewController {
                 self?.loadNextQuestion()
             } else {
                 self?.solveRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.Work,
-                                                         delegate: self?.solveInteractor) { [weak self] in
+                                                         delegate: self?.shortTBVDelegate) { [weak self] in
                                                             let targetId = Solve.QuestionTargetId.PostCreationShortTBV
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
                                                                                                   newTargetId: targetId)
