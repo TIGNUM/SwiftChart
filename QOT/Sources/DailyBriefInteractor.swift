@@ -423,6 +423,7 @@ extension DailyBriefInteractor {
                                                                      dailyCheckImageURL: impactReadinessImageURL,
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
+                                                                     isExpanded: expendImpactReadiness,
                                                                      domainModel: impactReadiness))
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
@@ -712,7 +713,8 @@ extension DailyBriefInteractor {
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
             let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.first?.userAnswerValue ?? "0")
-            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating)
+            let question = dailyCheckIn2.SHPIQuestion?.title
+            dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
