@@ -21,7 +21,7 @@ final class FromMyCoachMessageView: UIView {
 
     enum Spacing: CGFloat {
         case defaultSpacing = 0
-        case fromSecondViewSpacing = 50
+        case fromSecondViewSpacing = 30
     }
 
     static func instantiateFromNib() -> FromMyCoachMessageView? {
