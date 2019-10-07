@@ -309,7 +309,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let key = searchResults[indexPath.row].contentID
             trackUserEvent(.SELECT, value: key, valueType: .CONTENT, action: .TAP)
-            handleSelection(for: indexPath)
+            if let appLink = searchResults[indexPath.row].appLink {
+                appLink.launch()
+            } else {
+                handleSelection(for: indexPath)
+            }
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
             sendSearchResult(for: suggestion)

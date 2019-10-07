@@ -30,6 +30,11 @@ final class WalkthroughCoachViewController: BaseViewController, ScreenZLevelOver
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 }
 
 // MARK: - Private

@@ -138,7 +138,7 @@ final class SearchWorker {
             }
             return
         }
-        qot_dal.ContentService.main.getContentItemById(contentItemID) { (item) in
+        ContentService.main.getContentItemById(contentItemID) { (item) in
             completion(item)
         }
     }
