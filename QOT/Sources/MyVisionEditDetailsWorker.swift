@@ -93,6 +93,6 @@ final class MyVisionEditDetailsWorker {
     }
 
     private func getVisionTitle() {
-        visionPlaceholderTitle = ScreenTitleService.main.localizedString(for: .MyVisionVisionTitle)
+        visionPlaceholderTitle = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
     }
 }
