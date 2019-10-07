@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unA-EJ-O6O" userLabel="Spacer View">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="178.66666666666666"/>
+                    <rect key="frame" x="0.0" y="656.33333333333337" width="375" height="121.66666666666663"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-i8-2Ke">
@@ -75,14 +75,14 @@
                         <constraint firstItem="pEJ-dl-5zv" firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" id="xuI-xo-ALe"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="clip" numberOfLines="5" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
-                    <rect key="frame" x="24" y="178.66666666666666" width="327" height="20.333333333333343"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
+                    <rect key="frame" x="24" y="636" width="281.33333333333331" height="20.333333333333371"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-mr-lrB">
-                    <rect key="frame" x="24" y="217" width="327" height="20.333333333333343"/>
+                    <rect key="frame" x="24" y="674.33333333333337" width="327" height="20.333333333333371"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -92,21 +92,21 @@
             <constraints>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="1Dx-R3-fx9"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="QBN-FH-QrV" secondAttribute="trailing" id="77D-NS-7Lg"/>
-                <constraint firstItem="sYp-yY-lbk" firstAttribute="top" secondItem="unA-EJ-O6O" secondAttribute="bottom" id="8ib-Mu-qhT"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="9M2-oh-H48"/>
                 <constraint firstItem="vSM-mr-lrB" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="Aav-aT-RnD"/>
-                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="sYp-yY-lbk" secondAttribute="trailing" constant="24" id="BCB-K2-b3g"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="vSM-mr-lrB" secondAttribute="trailing" constant="24" id="Fql-V9-UwC"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="centerX" secondItem="rYY-wO-Y1g" secondAttribute="centerX" id="Hlw-dz-iqe"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="bottom" secondItem="unA-EJ-O6O" secondAttribute="bottom" id="J0m-T7-h1r"/>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Jls-hW-lYF"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="Qm8-7w-TV2"/>
-                <constraint firstItem="unA-EJ-O6O" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Ugy-Kl-rWe"/>
-                <constraint firstItem="unA-EJ-O6O" firstAttribute="height" secondItem="kye-X6-AOl" secondAttribute="height" multiplier="0.22" id="VEj-MG-0xQ"/>
+                <constraint firstItem="unA-EJ-O6O" firstAttribute="height" secondItem="kye-X6-AOl" secondAttribute="height" multiplier="0.15" id="VEj-MG-0xQ"/>
                 <constraint firstItem="sYp-yY-lbk" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="WDu-1u-D1E"/>
                 <constraint firstItem="vSM-mr-lrB" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" constant="18" id="ag2-aK-vdl"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="unA-EJ-O6O" secondAttribute="trailing" id="fwQ-SX-CAt"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="gti-Za-C3y"/>
+                <constraint firstItem="sYp-yY-lbk" firstAttribute="width" secondItem="unA-EJ-O6O" secondAttribute="width" multiplier="0.75" id="jGt-5h-upU"/>
                 <constraint firstAttribute="bottom" secondItem="QBN-FH-QrV" secondAttribute="bottom" id="s5g-lo-Jaf"/>
+                <constraint firstItem="unA-EJ-O6O" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" id="yOG-oq-42t"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="rYY-wO-Y1g"/>
             <point key="canvasLocation" x="34.399999999999999" y="53.201970443349758"/>
