@@ -506,6 +506,8 @@
 "MyLibrary.Items.EditTitle.Notes" = "EDIT NOTES";
 "MyLibrary.Items.Alert.Remove.Title" = "DELETE";
 "MyLibrary.Items.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
+"MyLibrary.Items.Alert.Download.Cancel.Title" = "CANCEL DOWNLOAD";
+"MyLibrary.Items.Alert.Download.Cancel.Message" = "If you continue, this download will be canceled.";
 "MyLibrary.Items.TapToDownload" = "Tap to download";
 "MyLibrary.Items.Alert.Empty.Title.All" = "ALL ITEMS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Bookmarks" = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE";
