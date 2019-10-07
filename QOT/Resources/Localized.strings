@@ -376,8 +376,8 @@
 "MySprintDetails.Header.Highlights" = "HIGHLIGHTS";
 "MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD";
 "MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
-"MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprintday and you will have access to your tasks.";
-"MySprintDetails.Info.Text.Active" = "The sprint starts on %@. Come back then to access your tasks to start your sprint.";
+"MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprint-day and you will have access to your tasks.";
+"MySprintDetails.Info.Text.Active" = "Come back on the first sprint-day and you will have access to your tasks.";
 "MySprintDetails.Info.Text.Notes" = "You finished your sprint. Why don’t you tell us your main takeaways?";
 "MySprintDetails.Button.Takeaways" = "Capture your takeaways";
 "MySprintDetails.Button.Cancel" = "Cancel";
