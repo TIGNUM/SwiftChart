@@ -138,7 +138,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
             let questionItems = questionnaire.items() ?? 0
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
-            viewController.questionHtml = questionnaire.questionHtml()
+//            viewController.questionHtml = questionnaire.questionHtml()
             viewController.questionText = questionnaire.questionText()
             viewController.items = questionItems
             viewController.answers = questionnaire.getAnswers()
@@ -328,10 +328,9 @@ extension QuestionnaireViewController {
             attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
         case .dailyCheckin:
             if let question = questionHtml {
-                attributedQuestion = question
-                questionLabel.font = UIFont.sfProtextLight(ofSize: 16)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)
             } else if let question = questionText {
-                attributedQuestion = ThemeText.tbvQuestionMedium.attributedString(question)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.trimmed)
             }
         case .vision:
             if let question = questionText {
