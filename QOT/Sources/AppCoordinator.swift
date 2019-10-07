@@ -380,8 +380,10 @@ extension AppCoordinator {
             dispatchGroup.leave()
         })
         var preparations: [QDMUserPreparation]?
+        dispatchGroup.enter()
         UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
             preparations = preps
+            dispatchGroup.leave()
         })
 
         dispatchGroup.notify(queue: .main, execute: {
