@@ -110,7 +110,7 @@
 	<key>NSContactsUsageDescription</key>
 	<string>QOT needs access to contacts to create calendar events.</string>
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>QOT needs HealthKit access to measure your sleep quantity.</string>
+	<string>QOT needs HealthKit access to calculating Impact Readiness from your sleep quantity.</string>
 	<key>NSHealthShareUsageDescription</key>
 	<string>HEALTH KIT ACCESS REQUEST</string>
 	<key>NSHealthUpdateUsageDescription</key>
