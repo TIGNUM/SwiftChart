@@ -27,19 +27,19 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-pg-dTp">
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOMBOS@ABILITYMATRIX.COM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="v6r-pg-dTp">
                         <rect key="frame" x="24" y="12" width="217" height="20"/>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bpb-8a-cMD">
-                        <rect key="frame" x="24" y="36" width="31.5" height="15"/>
+                        <rect key="frame" x="24" y="36" width="217" height="15"/>
                         <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h90-Jb-FKv">
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="right" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h90-Jb-FKv">
                         <rect key="frame" x="245" y="16.5" width="51" height="31"/>
                         <color key="tintColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <color key="onTintColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -52,6 +52,7 @@
                     <constraint firstItem="v6r-pg-dTp" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="5Su-B3-UVA"/>
                     <constraint firstItem="v6r-pg-dTp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="HPo-49-kn3"/>
                     <constraint firstAttribute="trailing" secondItem="h90-Jb-FKv" secondAttribute="trailing" constant="26" id="gDl-bU-QUF"/>
+                    <constraint firstItem="Bpb-8a-cMD" firstAttribute="trailing" secondItem="v6r-pg-dTp" secondAttribute="trailing" id="gnf-MH-IRR"/>
                     <constraint firstItem="h90-Jb-FKv" firstAttribute="leading" secondItem="v6r-pg-dTp" secondAttribute="trailing" constant="4" id="joX-nq-XM3"/>
                     <constraint firstItem="Bpb-8a-cMD" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="lMP-eU-Lrf"/>
                     <constraint firstAttribute="bottom" secondItem="Bpb-8a-cMD" secondAttribute="bottom" constant="12.5" id="rla-1n-r3c"/>
