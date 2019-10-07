@@ -423,7 +423,7 @@ private extension ArticleWorker {
             content.section != .Generic else { return false }
 
         switch content.section {
-        case .About: return true
+        case .About, .FAQ_3_0: return true
         default: break
         }
         return false

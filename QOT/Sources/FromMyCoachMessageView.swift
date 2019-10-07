@@ -20,7 +20,7 @@ final class FromMyCoachMessageView: UIView {
     @IBOutlet private weak var topViewHeightConstraint: NSLayoutConstraint!
 
     enum Spacing: CGFloat {
-        case defaultSpacing = 16
+        case defaultSpacing = 0
         case fromSecondViewSpacing = 50
     }
 

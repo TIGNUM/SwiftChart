@@ -18,14 +18,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FromMyCoachMessageView" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="180"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="117"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qlU-2Y-F5i">
-                    <rect key="frame" x="24" y="0.0" width="366" height="180"/>
+                    <rect key="frame" x="24" y="0.0" width="366" height="117"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="tPh-GK-OPB">
-                            <rect key="frame" x="0.0" y="0.0" width="366" height="180"/>
+                            <rect key="frame" x="0.0" y="0.0" width="366" height="117"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Sn-Lb-hrw">
                                     <rect key="frame" x="0.0" y="0.0" width="366" height="1"/>
@@ -54,10 +54,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pzn-6C-vwT">
-                                    <rect key="frame" x="0.0" y="31" width="366" height="50"/>
+                                    <rect key="frame" x="0.0" y="31" width="366" height="26"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZrC-WA-rMe">
-                                            <rect key="frame" x="24" y="0.0" width="318" height="50"/>
+                                            <rect key="frame" x="24" y="0.0" width="318" height="26"/>
                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                             <color key="textColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -72,7 +72,7 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sOf-AK-R1Z">
-                                    <rect key="frame" x="0.0" y="91" width="366" height="89"/>
+                                    <rect key="frame" x="0.0" y="67" width="366" height="50"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-SZ-duI">
                                             <rect key="frame" x="24" y="0.0" width="318" height="19.5"/>
@@ -83,13 +83,17 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="pAf-SZ-duI" secondAttribute="bottom" constant="69.5" id="KA1-xE-ozN"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pAf-SZ-duI" secondAttribute="bottom" constant="30.5" id="Cbd-AU-SQi"/>
                                         <constraint firstAttribute="trailing" secondItem="pAf-SZ-duI" secondAttribute="trailing" constant="24" id="Mo1-3R-eOf"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="top" id="UZk-1e-Nop"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="leading" secondItem="sOf-AK-R1Z" secondAttribute="leading" constant="24" id="zdE-dX-vuc"/>
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstAttribute="top" secondItem="yyc-S3-GWD" secondAttribute="bottom" constant="-21" id="99T-DR-Egy"/>
+                                <constraint firstAttribute="top" secondItem="yyc-S3-GWD" secondAttribute="bottom" constant="-21" id="K4J-9Z-tQb"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
@@ -117,7 +121,7 @@
                 <outlet property="topSeparatorView" destination="5Sn-Lb-hrw" id="Csf-Gh-8fO"/>
                 <outlet property="topViewHeightConstraint" destination="JSz-fx-9NH" id="vcj-yj-Bkh"/>
             </connections>
-            <point key="canvasLocation" x="50.724637681159422" y="-183.48214285714286"/>
+            <point key="canvasLocation" x="50.724637681159422" y="-204.57589285714286"/>
         </view>
     </objects>
 </document>
