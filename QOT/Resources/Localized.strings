@@ -66,7 +66,7 @@
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
 "MyQOT.ToBeVision.Title" = "ToBeVision";
-"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TOBEVISION";
+"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE ToBeVision";
 "MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new ToBeVision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
 "MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
@@ -113,7 +113,7 @@
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";
 "Guide.DailyPrep.NotFinished.Feedback" = "How do you feel today? I can help you Rule Your Impact with just a minute of your time.";
-"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TOBEVISION";
+"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR ToBeVision";
 "Guide.ToBeVision.NotFisished.Message" = "No human being can outperform their self-image, yet you have not created yours. I would love to help you.";
 
 "Article.Loading" = "Please wait while we configure what's hot";
@@ -363,7 +363,7 @@
 "QuestionnaireViewController.doneButton" = "Done";
 
 "MyToBeVisionTitlePlaceholder" = "MY HEADLINE";
-"MyToBeVisionDescriptionPlaceholder" = "My TOBEVISION";
+"MyToBeVisionDescriptionPlaceholder" = "My ToBeVision";
 
 "DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
 "DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
@@ -376,8 +376,8 @@
 "MySprintDetails.Header.Highlights" = "HIGHLIGHTS";
 "MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD";
 "MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
-"MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprintday and you will have access to your tasks.";
-"MySprintDetails.Info.Text.Active" = "The sprint starts on %@. Come back then to access your tasks to start your sprint.";
+"MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprint-day and you will have access to your tasks.";
+"MySprintDetails.Info.Text.Active" = "Come back on the first sprint-day and you will have access to your tasks.";
 "MySprintDetails.Info.Text.Notes" = "You finished your sprint. Why don’t you tell us your main takeaways?";
 "MySprintDetails.Button.Takeaways" = "Capture your takeaways";
 "MySprintDetails.Button.Cancel" = "Cancel";
@@ -427,7 +427,7 @@
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
-"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new TOBEVISION, do you want to use it as your new TOBEVISION?";
+"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new ToBeVision, do you want to use it as your new ToBeVision?";
 "Onboarding.Registration.Email.Error.UnableToRegister" = "Check your email";
 "Onboarding.Registration.Email.Button.Yes" = "Yes";
 "Onboarding.Registration.Email.Button.No" = "No";
@@ -506,6 +506,8 @@
 "MyLibrary.Items.EditTitle.Notes" = "EDIT NOTES";
 "MyLibrary.Items.Alert.Remove.Title" = "DELETE";
 "MyLibrary.Items.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
+"MyLibrary.Items.Alert.Download.Cancel.Title" = "CANCEL DOWNLOAD";
+"MyLibrary.Items.Alert.Download.Cancel.Message" = "If you continue, this download will be canceled.";
 "MyLibrary.Items.TapToDownload" = "Tap to download";
 "MyLibrary.Items.Alert.Empty.Title.All" = "ALL ITEMS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Bookmarks" = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE";
@@ -581,7 +583,7 @@
 
 "Walkthrough.Button.GotIt" = "Got it";
 "DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
-"DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
+"DailyBrief.WhatsHot.Subtitle" = "Curated content & insights from our performance specialists.";
 
 "Onboarding.Intro.Title" = "THIS IS QOT.\nYOUR\nPERSONAL\nPERFORMANCE\nTOOL.";
 "Onboarding.Intro.Body" = "";

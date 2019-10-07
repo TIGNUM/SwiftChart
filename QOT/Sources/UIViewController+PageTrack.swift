@@ -49,7 +49,7 @@ extension UIViewController {
         case is MyQotSupportViewController: return "myprofile.support"
         case is MyQotSensorsViewController: return "myprofile.appsettings.activitytrackers"
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
-        case is MyQotSupportFaqViewController: return "myprofile.support.faq"
+        case is MyQotSupportDetailsViewController: return myQOTSupportDetailsViewControllerPageKey
         case is TutorialViewController: return "myprofile.support.tutorial"
         case is MyVisionViewController: return "tobevision"
         case is MyVisionEditDetailsViewController: return "tobevision.edit"
@@ -92,6 +92,17 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: - MyQotSupportDetailsViewController
+private extension UIViewController {
+    var myQOTSupportDetailsViewControllerPageKey: String {
+        switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
+        case .FAQ?: return "myprofile.support.faq"
+        case .UsingQOT?: return "myprofile.support.using.qot"
         default: preconditionFailure()
         }
     }

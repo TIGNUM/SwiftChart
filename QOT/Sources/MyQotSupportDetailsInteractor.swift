@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqInteractor.swift
+//  MyQotSupportDetailsInteractor.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -9,19 +9,19 @@
 import Foundation
 import qot_dal
 
-final class MyQotSupportFaqInteractor {
+final class MyQotSupportDetailsInteractor {
 
     // MARK: - Properties
 
-    private let worker: MyQotSupportFaqWorker
-    private let presenter: MyQotSupportFaqPresenterInterface
-    private let router: MyQotSupportFaqRouterInterface
+    private let worker: MyQotSupportDetailsWorker
+    private let presenter: MyQotSupportDetailsPresenterInterface
+    private let router: MyQotSupportDetailsRouterInterface
 
     // MARK: - Init
 
-    init(worker: MyQotSupportFaqWorker,
-         presenter: MyQotSupportFaqPresenterInterface,
-         router: MyQotSupportFaqRouterInterface) {
+    init(worker: MyQotSupportDetailsWorker,
+         presenter: MyQotSupportDetailsPresenterInterface,
+         router: MyQotSupportDetailsRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -36,10 +36,13 @@ final class MyQotSupportFaqInteractor {
     }
 }
 
-extension MyQotSupportFaqInteractor: MyQotSupportFaqInteractorInterface {
+extension MyQotSupportDetailsInteractor: MyQotSupportDetailsInteractorInterface {
+    var category: ContentCategory {
+        return worker.category
+    }
 
-    var faqHeaderText: String {
-        return worker.faqHeaderText
+    var headerText: String {
+        return worker.headerText
     }
 
     var itemCount: Int {
