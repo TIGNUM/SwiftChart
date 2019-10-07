@@ -363,7 +363,7 @@
 "QuestionnaireViewController.doneButton" = "Done";
 
 "MyToBeVisionTitlePlaceholder" = "MY HEADLINE";
-"MyToBeVisionDescriptionPlaceholder" = "My TOBEVISION";
+"MyToBeVisionDescriptionPlaceholder" = "My ToBeVision";
 
 "DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
 "DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
@@ -427,7 +427,7 @@
 "Onboarding.Registration.Email.Button.Next" = "Next";
 "Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
 "Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
-"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new TOBEVISION, do you want to use it as your new TOBEVISION?";
+"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new ToBeVision, do you want to use it as your new ToBeVision?";
 "Onboarding.Registration.Email.Error.UnableToRegister" = "Check your email";
 "Onboarding.Registration.Email.Button.Yes" = "Yes";
 "Onboarding.Registration.Email.Button.No" = "No";
