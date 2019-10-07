@@ -355,7 +355,7 @@
 
 "RateViewController.doneButton" = "Done";
 "RateViewController.skipButton" = "Skip";
-"RateViewController.rateMyTBVButton" = "Rate my TBV";
+"RateViewController.rateMyTBVButton" = "Rate my ToBeVision";
 
 "TBVTrackerViewController.doneButton" = "Done";
 "TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
@@ -549,7 +549,7 @@
 "MySprints.Status.Paused" = "Paused";
 "MySprints.Status.Completed" = "Completed at";
 
-"TBV.Button.MyTBVData" = "My TBV data";
+"TBV.Button.MyTBVData" = "My ToBeVision data";
 "TBV.Button.AutoGenerate" = "Auto generate";
 "TBV.Button.Write" = "Write";
 "TBV.Last.Updated.Comment" = "Since the last update";
