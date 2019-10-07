@@ -66,7 +66,7 @@
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
 "MyQOT.ToBeVision.Title" = "ToBeVision";
-"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TOBEVISION";
+"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE ToBeVision";
 "MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new ToBeVision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
 "MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
@@ -113,7 +113,7 @@
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";
 "Guide.DailyPrep.NotFinished.Feedback" = "How do you feel today? I can help you Rule Your Impact with just a minute of your time.";
-"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TOBEVISION";
+"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR ToBeVision";
 "Guide.ToBeVision.NotFisished.Message" = "No human being can outperform their self-image, yet you have not created yours. I would love to help you.";
 
 "Article.Loading" = "Please wait while we configure what's hot";
