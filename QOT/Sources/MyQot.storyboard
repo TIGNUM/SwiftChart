@@ -701,17 +701,17 @@
                     <connections>
                         <outlet property="headerLabel" destination="PQe-eW-cVN" id="9I9-mX-BB5"/>
                         <outlet property="tableView" destination="PS2-XQ-MGC" id="li5-BV-PsK"/>
-                        <segue destination="9qJ-t5-Bb5" kind="show" identifier="myQot.support.faq.segue.identifier" id="fbL-qZ-pUE"/>
+                        <segue destination="9qJ-t5-Bb5" kind="show" identifier="myQot.support.details.segue.identifier" id="fbL-qZ-pUE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu2-Q9-VDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1980" y="2336.5817091454273"/>
         </scene>
-        <!--My Qot Support Faq View Controller-->
+        <!--My Qot Support Details View Controller-->
         <scene sceneID="Avc-89-hCl">
             <objects>
-                <viewController storyboardIdentifier="MyQotSupportFaqViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportFaqViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyQotSupportDetailsViewController" id="9qJ-t5-Bb5" customClass="MyQotSupportDetailsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hex-a7-A1f">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1121,7 +1121,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="98"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5j2-kS-Doh">
-                                        <rect key="frame" x="24" y="36" width="327" height="38"/>
+                                        <rect key="frame" x="24" y="55" width="327" height="38"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FWv-L7-rss">
                                                 <rect key="frame" x="0.0" y="0.0" width="16" height="1"/>
@@ -1166,8 +1166,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5j2-kS-Doh" secondAttribute="trailing" constant="24" id="1aA-Xq-MXv"/>
-                                    <constraint firstItem="5j2-kS-Doh" firstAttribute="top" secondItem="bz7-sK-FQx" secondAttribute="top" constant="36" id="Hgg-76-tlH"/>
-                                    <constraint firstAttribute="bottom" secondItem="5j2-kS-Doh" secondAttribute="bottom" constant="24" id="Tz9-4d-aEU"/>
+                                    <constraint firstItem="5j2-kS-Doh" firstAttribute="top" secondItem="bz7-sK-FQx" secondAttribute="top" constant="55" id="Hgg-76-tlH"/>
+                                    <constraint firstAttribute="bottom" secondItem="5j2-kS-Doh" secondAttribute="bottom" constant="5" id="kAy-B2-8J6"/>
                                     <constraint firstAttribute="height" constant="98" id="l48-t0-Oe8"/>
                                     <constraint firstItem="5j2-kS-Doh" firstAttribute="leading" secondItem="bz7-sK-FQx" secondAttribute="leading" constant="24" id="vN1-je-EPa"/>
                                 </constraints>
@@ -1222,7 +1222,7 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dk0-gL-qk5">
-                                    <rect key="frame" x="24" y="36" width="327" height="38"/>
+                                    <rect key="frame" x="24" y="55" width="327" height="45"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1Q-t9-4i0">
                                             <rect key="frame" x="0.0" y="0.0" width="16" height="1"/>
@@ -1233,7 +1233,7 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDIT ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj0-nL-fWV">
-                                            <rect key="frame" x="0.0" y="17" width="139" height="17"/>
+                                            <rect key="frame" x="0.0" y="17" width="139" height="24"/>
                                             <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <nil key="highlightedColor"/>
@@ -1252,9 +1252,8 @@
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="Dk0-gL-qk5" secondAttribute="trailing" constant="24" id="fJj-MK-VY6"/>
-                                <constraint firstItem="Dk0-gL-qk5" firstAttribute="top" secondItem="xig-7S-cum" secondAttribute="top" constant="36" id="jT9-1L-24l"/>
+                                <constraint firstItem="Dk0-gL-qk5" firstAttribute="top" secondItem="xig-7S-cum" secondAttribute="top" constant="55" id="jT9-1L-24l"/>
                                 <constraint firstItem="Dk0-gL-qk5" firstAttribute="leading" secondItem="xig-7S-cum" secondAttribute="leading" constant="24" id="lHl-Mb-dKl"/>
-                                <constraint firstAttribute="bottom" secondItem="Dk0-gL-qk5" secondAttribute="bottom" constant="24" id="mds-OY-mlq"/>
                                 <constraint firstAttribute="height" constant="98" id="uZM-2p-ha4"/>
                             </constraints>
                         </view>

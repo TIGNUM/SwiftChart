@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqInterface.swift
+//  MyQotSupportDetailsInterface.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -9,16 +9,17 @@
 import Foundation
 import qot_dal
 
-protocol MyQotSupportFaqViewControllerInterface: class {
+protocol MyQotSupportDetailsViewControllerInterface: class {
     func setupView()
 }
 
-protocol MyQotSupportFaqPresenterInterface {
+protocol MyQotSupportDetailsPresenterInterface {
     func setupView()
 }
 
-protocol MyQotSupportFaqInteractorInterface: Interactor {
-    var faqHeaderText: String { get }
+protocol MyQotSupportDetailsInteractorInterface: Interactor {
+    var category: ContentCategory { get }
+    var headerText: String { get }
     var itemCount: Int { get }
     func item(at indexPath: IndexPath) -> QDMContentCollection
     func trackingID(at indexPath: IndexPath) -> Int
@@ -26,6 +27,6 @@ protocol MyQotSupportFaqInteractorInterface: Interactor {
     func presentContentItemSettings(contentID: Int)
 }
 
-protocol MyQotSupportFaqRouterInterface {
+protocol MyQotSupportDetailsRouterInterface {
     func presentContentItemSettings(contentID: Int)
 }

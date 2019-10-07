@@ -56,7 +56,7 @@ final class MySprintDetailsWorker {
         guard let startDate = sprint?.startDate else {
             return upcomingInfoText
         }
-        return R.string.localized.mySprintDetailsInfoTextActive(DateFormatter.ddMMM.string(from: startDate))
+        return R.string.localized.mySprintDetailsInfoTextActive()
     }()
 
     lazy var notesInfoText: String = {
