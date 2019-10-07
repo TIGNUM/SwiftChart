@@ -66,6 +66,14 @@ final class MyLibraryUserStorageWorker {
         return item.type == .NOTES
     }()
 
+    lazy var cancelDownloadItemsAlertTitle: String = {
+        return R.string.localized.myLibraryItemsAlertDownloadCancelTitle()
+    }()
+
+    lazy var cancelDownloadItemsAlertMessage: String = {
+        return R.string.localized.myLibraryItemsAlertDownloadCancelMessage()
+    }()
+
     lazy var removeItemsAlertTitle: String = {
         return R.string.localized.myLibraryItemsAlertRemoveTitle()
     }()
