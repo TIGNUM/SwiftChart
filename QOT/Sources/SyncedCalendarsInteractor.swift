@@ -19,6 +19,7 @@ final class SyncedCalendarsInteractor {
     private let router: SyncedCalendarsRouterInterface
     private var calendarSettings: [QDMUserCalendarSetting] = []
     private var viewTitle = ""
+    private var viewSubtitle = ""
     private weak var delegate: SyncedCalendarsDelegate?
     let isInitialCalendarSelection: Bool
 
@@ -57,12 +58,13 @@ private extension SyncedCalendarsInteractor {
         getViewTitle()
         getCalendarData()
         dispatchGroup.notify(queue: .main) { [unowned self] in
-            self.presenter.setupView(self.viewTitle, self.calendarSettings)
+            self.presenter.setupView(self.viewTitle, self.viewSubtitle, self.calendarSettings)
         }
     }
 
     func getViewTitle() {
          self.viewTitle = worker.viewTitle
+         self.viewSubtitle = worker.viewSubtitle
     }
 
     func getCalendarData() {

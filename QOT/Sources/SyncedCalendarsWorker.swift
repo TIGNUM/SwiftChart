@@ -10,8 +10,12 @@ import Foundation
 import qot_dal
 
 final class SyncedCalendarsWorker {
-    lazy var viewTitle: String = {
+    lazy var viewSubtitle: String = {
         return ScreenTitleService.main.localizedString(for: .syncedCalendars)
+    }()
+
+    lazy var viewTitle: String = {
+        return ScreenTitleService.main.localizedString(for: .syncedCalendarsTitle)
     }()
 
     lazy var skipButton: String = {

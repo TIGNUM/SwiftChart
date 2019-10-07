@@ -57,7 +57,7 @@ extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface 
         self.viewModel = viewModel
         ThemeView.level3.apply(view)
         ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: headerLabel)
-        ThemeText.syncedCalendarDescription.apply(viewModel?.viewTitle, to: descriptionLabel)
+        ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: descriptionLabel)
         ThemeView.syncedCalendarSeparator.apply(separator)
         tableView.reloadDataWithAnimation()
     }
