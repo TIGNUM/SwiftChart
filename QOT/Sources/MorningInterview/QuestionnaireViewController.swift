@@ -138,7 +138,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
             let questionItems = questionnaire.items() ?? 0
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
-//            viewController.questionHtml = questionnaire.questionHtml()
+            viewController.questionHtml = questionnaire.questionHtml()
             viewController.questionText = questionnaire.questionText()
             viewController.items = questionItems
             viewController.answers = questionnaire.getAnswers()
