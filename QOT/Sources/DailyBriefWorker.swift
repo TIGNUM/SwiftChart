@@ -162,7 +162,7 @@ extension DailyBriefWorker {
         func saveAnswerValue(_ value: Int) {
             getDailyBriefBucketsForViewModel(completion: {(buckets) in
                 var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-                level5Bucket?.latestGetToLevel5Value = value
+                level5Bucket?.currentGetToLevel5Value = value
                 if let level5Bucket = level5Bucket {
                     qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
                         if let error = error {
