@@ -1260,24 +1260,30 @@ enum ThemeText {
         var fit = false
         var testFont = self.font
         var pointSize = testFont.pointSize
+
         while !fit {
-            let testLabel = UILabel(frame: CGRect(x: 0.0, y: 0.0, width: 9999.0, height: 9999.0))
-            testLabel.numberOfLines = 0
-            testLabel.attributedText = NSAttributedString(string: text, letterSpacing: -0.21, font: testFont, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
-            testLabel.sizeToFit()
-            fit = testLabel.bounds.width <= maxWidth
-            if !fit {
+            let attrText = NSAttributedString(string: text, letterSpacing: -0.21, font: testFont, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            let height = attrText.height(containerWidth: maxWidth)
+
+            fit = true
+            if height / testFont.lineHeight <= CGFloat(label.numberOfLines) {
+                label.attributedText = attrText
+            } else {
                 pointSize -= 1
-                if let newFont = UIFont(name: testFont.fontName, size: pointSize) {
+                if pointSize > 10,
+                    let newFont = UIFont(name: testFont.fontName, size: pointSize) {
                     testFont = newFont
-                } else {
-                    fit = true
+                    fit = false
                 }
             }
-            if fit {
-                label.attributedText = testLabel.attributedText
-            }
         }
+    }
+}
+
+private extension NSAttributedString {
+    func height(containerWidth: CGFloat) -> CGFloat {
+        let rect = self.boundingRect(with: CGSize.init(width: containerWidth, height: .greatestFiniteMagnitude), options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        return ceil(rect.size.height)
     }
 }
 
@@ -1320,8 +1326,8 @@ private struct Fonts {
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
     static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
-    static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 120.0)
-    static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 60)
+    static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
+    static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
 }
 
 private struct Palette {
