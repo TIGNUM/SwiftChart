@@ -19,7 +19,7 @@ protocol SyncedCalendarsViewControllerInterface: class {
 }
 
 protocol SyncedCalendarsPresenterInterface {
-    func setupView(_ viewTitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting])
+    func setupView(_ viewTitle: String, _ viewSubtitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting])
     func updateSettings( _ qdmCalendarSetting: QDMUserCalendarSetting?)
 }
 
