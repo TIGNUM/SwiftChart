@@ -29,6 +29,5 @@ extension DTSolveRouter: DTSolveRouterInterface {
         if let tbvURL = URLScheme.toBeVision.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: tbvURL)
         }
-//        dismissChatBotFlow()
     }
 }
