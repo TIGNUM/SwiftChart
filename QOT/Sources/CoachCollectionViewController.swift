@@ -75,7 +75,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }()
 
     lazy var searchViewController: SearchViewController? = {
-        let configurator = SearchConfigurator.make(delegate: self)
+        let configurator = SearchConfigurator.make(delegate: self, startDeactivated: true)
         let searchViewController = SearchViewController(configure: configurator)
         return searchViewController
     }()

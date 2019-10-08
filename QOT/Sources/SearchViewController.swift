@@ -66,7 +66,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        doActivate()
+        (interactor?.shouldStartDeactivated() ?? false) ? deactivate(animated: false) : doActivate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -127,16 +127,22 @@ extension SearchViewController {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
         }
+        mySearchBar.isUserInteractionEnabled = true
     }
 
-    private func deactivate() {
+    private func deactivate(animated: Bool = true) {
         mySearchBar.resignFirstResponder()
         updateViewsState(false)
         mySearchBar.text = ""
         constraintSearch.constant = 0
-        UIView.animate(withDuration: 0.25) {
-            self.view.layoutIfNeeded()
+        if animated {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            view.layoutIfNeeded()
         }
+        mySearchBar.isUserInteractionEnabled = false
     }
 }
 

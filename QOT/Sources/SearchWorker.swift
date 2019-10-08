@@ -10,8 +10,10 @@ import Foundation
 import qot_dal
 
 final class SearchWorker {
+    let startDeactivated: Bool
 
-    init() {
+    init(startDeactivated: Bool) {
+        self.startDeactivated = startDeactivated
     }
 
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {

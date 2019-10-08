@@ -42,7 +42,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     func showSolveResults(solve: QDMSolve)
     func showCustomizeTarget()
     func displayCoachPreparationScreen()
-
     func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)

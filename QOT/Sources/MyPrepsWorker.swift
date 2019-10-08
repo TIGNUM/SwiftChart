@@ -88,6 +88,8 @@ extension MyPrepsWorker {
     func remove(segmentedControl: Int, at indexPath: IndexPath, completion: @escaping () -> Void) {
         if segmentedControl == 0 {
             if let qdmPrep = model?.prepItems[indexPath.row].qdmPrep {
+                let externalIdentifier = qdmPrep.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
+                WorkerCalendar().deleteLocalEvent(externalIdentifier)
                 UserService.main.deleteUserPreparation(qdmPrep) { [weak self] (error) in
                     if let error = error {
                         log("Error deleteUserPreparation: \(error.localizedDescription)", level: .error)

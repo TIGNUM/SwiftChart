@@ -153,6 +153,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
+        tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
@@ -500,6 +501,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            durationString: description,
                            icon: R.image.ic_seen_of())
             return cell
+        case .contactSupport:
+            let cell: ArticleContactSupportTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(attributtedText: interactor?.contactSupportAttributtedString(),
+                           textViewDelegate: self)
+            return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
         }
@@ -547,7 +553,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if !sectionHasContent(section) {
+        if !sectionHasContent(section) || interactor?.isSectionSupport() ?? false {
             return nil
         }
 
@@ -569,7 +575,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHasContent(section) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor?.isSectionSupport() ?? false)) ? tableView.estimatedSectionHeaderHeight : 0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -685,5 +691,16 @@ extension ArticleViewController: ArticleDelegate {
 extension ArticleViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - Contact support Related
+extension ArticleViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.absoluteString.isEmail {
+            interactor?.openEmailComposer()
+            return false
+        }
+        return true
     }
 }

@@ -27,6 +27,8 @@ enum ContentItemValue {
     case button(selected: Bool)
     case guide
     case guideButton
+    case contactSupport
+
     case invalid
 
     init(item: QDMContentItem) {
@@ -100,7 +102,12 @@ enum ContentItemValue {
             } else {
                 self = .invalid
             }
-        default: self = .invalid
+        default:
+            if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
+                self = .contactSupport
+            } else {
+                self = .invalid
+            }
         }
     }
 

@@ -33,7 +33,7 @@ struct MyQotAboutUsModel {
                     MyQotAboutUsModelItem.benefits.primaryKey,
                     MyQotAboutUsModelItem.copyright.primaryKey,
                     MyQotAboutUsModelItem.privacy.primaryKey,
-                    MyQotAboutUsModelItem.terms.primaryKey,
+                    MyQotAboutUsModelItem.terms.primaryKey
                    ]
         }
 

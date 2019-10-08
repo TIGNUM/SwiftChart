@@ -239,9 +239,9 @@ enum ThemeButton {
             colorUnselected = colorSelected
             colorBorder = .accent40
         case .closeButton(let mode):
-            colorSelected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
-            colorUnselected = colorSelected
-            colorBorder = .accent40
+            colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
+            colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
+            colorBorder = .accent
         case .level5:
             colorSelected = .accent40
             colorUnselected = .clear
@@ -541,6 +541,8 @@ enum ThemeText {
     case articleSub
     case articleNum
     case articleSector
+    case articleContactSupportInfoTitle
+    case articleContactSupportLink(String)
 
     case placeholder
 
@@ -784,7 +786,7 @@ enum ThemeText {
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
              .tbvTrackerRatingDigits, .myDataSectionHeaderSubTitle, .registrationEmailMessage, .registrationEmailError,
-             .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationNamesMandatory,
+             .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .registrationAgeRestriction, .trackSelectionMessage, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader:
             return Fonts.fontRegular14
@@ -799,7 +801,7 @@ enum ThemeText {
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink,
+        case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
              .chatbotProgress,
              .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
@@ -949,7 +951,7 @@ enum ThemeText {
         case .performanceSubtitle:
             return Palette.carbonDark40
         case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton,
-             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton,
+             .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle,
              .audioLabel,
              .myLibraryGroupName, .customAlertAction,
@@ -967,7 +969,7 @@ enum ThemeText {
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
+             .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
              .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels, .onboardingInfoBody,
              .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
              .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle:
@@ -1067,7 +1069,7 @@ enum ThemeText {
              .myLibraryTitle,
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle,
-             .mySprintsTitle, .mySprintsCellStatus:
+             .mySprintsTitle, .mySprintsCellStatus, .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
@@ -1174,6 +1176,12 @@ enum ThemeText {
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
+        case .articleContactSupportInfoTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .articleContactSupportLink(let url):
+            let urlString = NSMutableAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            urlString.addAttributes([.font: self.font, .foregroundColor: self.color, .link: url], range: NSRange(location: 0, length: text.count))
+            string = urlString
         case .chatbotButton, .resultCounter, .resultCounterMax, .chatbotProgress:
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .askPermissionMessage:

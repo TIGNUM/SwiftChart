@@ -24,12 +24,13 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     private var observers: [NSKeyValueObservation] = []
-    @IBAction func gotItPressed(_ sender: Any) {
+    @IBAction func gotItTapped(_ sender: Any) {
+        ThemeView.audioPlaying.apply(gotItButton)
+        gotItButton.layer.borderWidth = 0
+        gotItButton.isEnabled = false
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        updateGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -61,6 +62,9 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         skeletonManager.addOtherView(sprintStepNumber)
         skeletonManager.addOtherView(outOf5Label)
         skeletonManager.addOtherView(showMoreButton)
+        tableView.delegate = self
+        tableView.dataSource = self
+        ThemeView.level2.apply(self)
     }
 
     private func checkScroll() {
@@ -71,9 +75,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        tableView.delegate = self
-        tableView.dataSource = self
-        ThemeView.level2.apply(self)
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
@@ -88,7 +89,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     private func updateGotItButton() {
-        if self.currentSprint?.doneForToday == true {
+        if currentSprint?.doneForToday == true {
             ThemeView.audioPlaying.apply(gotItButton)
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false
