@@ -103,7 +103,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 }
 
 // MARK: - animation from parent
-
 extension SearchViewController {
     func activate(_ duration: Double) {
         activateAnimateDuration = duration
@@ -125,7 +124,6 @@ extension SearchViewController {
             }
         }
         if constantNew == constraintSearch.constant { return }
-
         constraintSearch.constant = constantNew
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
@@ -231,6 +229,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        trackUserEvent(.CANCEL, action: .TAP)
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             if previousVC is CoachViewController {
                 navigationController?.popToViewController(previousVC, animated: true)
@@ -250,6 +249,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        trackUserEvent(.SEARCH, valueType: searchBar.text, action: .TAP)
         searchBar.resignFirstResponder()
     }
 }
@@ -322,6 +322,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
+            trackUserEvent(.SELECT, valueType: suggestion, action: .TAP)
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
             searchQuery = suggestion

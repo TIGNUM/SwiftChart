@@ -161,6 +161,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         if showAnimated == false {
             animationShow()
         }
@@ -625,6 +626,7 @@ extension QuestionnaireViewController {
     }
 
     @objc func didTapSave() {
+        trackUserEvent(.SAVE, action: .TAP)
         guard let count = answers?.count else { return }
         let value = (count  - 1 - currentIndex)
         // WARNING: This is valid only for daily brief check in Set Sleep Target

@@ -184,6 +184,7 @@ private extension ArticleViewController {
 // MARK: - BottomNavigation
 extension ArticleViewController {
     @objc override public func didTapDismissButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true, completion: nil)
     }
 
@@ -676,6 +677,8 @@ extension ArticleViewController {
 // MARK: - ArticleDelegate
 extension ArticleViewController: ArticleDelegate {
     func didTapMarkAsRead(_ read: Bool) {
+        let state: QDMUserEventTracking.Name = read ? .MARK_AS_READ : .MARK_AS_UNREAD
+        trackUserEvent(state, value: interactor?.remoteID, stringValue: .CONTENT, action: .TAP)
         interactor?.markArticleAsRead(read) { [weak self] in
             self?.checkMarkAsReadButton(read)
         }

@@ -180,6 +180,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             interactor?.presentArticle(selectedID: strategy.remoteID)
             trackUserEvent(.OPEN, value: strategy.remoteID, valueType: .CONTENT, action: .TAP)
             if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy.mediaItem?.remoteID {
+                trackUserEvent(.STOP, valueType: .AUDIO, action: .TAP)
                 NotificationCenter.default.post(name: .stopAudio, object: nil)
             }
         }

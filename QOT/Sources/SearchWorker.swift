@@ -40,6 +40,7 @@ final class SearchWorker {
             }
         }
     }
+
     private func getSearchResults(_ searchFilter: Search.Filter,
                                   _ contentCollections: [QDMContentCollection]? = nil,
                                   _ contentItems: [QDMContentItem]? = nil,
