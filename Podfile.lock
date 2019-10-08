@@ -34,7 +34,7 @@ DEPENDENCIES:
   - HockeySDK
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/Apptext`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -61,13 +61,14 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
+    :branch: feature/Apptext
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 57bcdf6e73d0019267f864fc1fe088a0fa43819b
+    :commit: 993c2b4c411cf28c229b68f13b8ab32cca165878
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -91,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: af8a2e218428e9e864fcbfcf85a10e24b82a01bf
+PODFILE CHECKSUM: 895b483c7a4909bf77a53e50f45620f697854037
 
 COCOAPODS: 1.7.5
