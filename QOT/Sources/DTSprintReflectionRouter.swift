@@ -19,7 +19,7 @@ extension DTSprintReflectionRouter: DTSprintReflectionRouterInterface {
         MyVisionConfigurator.configure(viewController: controller)
 
         guard let rateController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() else { return }
-        TBVWorker().getUsersTBV { [weak self] (tbv, _) in
+        WorkerTBV().getUsersTBV { [weak self] (tbv, _) in
             MyToBeVisionRateConfigurator.configure(previousController: controller,
                                                    viewController: rateController,
                                                    visionId: tbv?.remoteID ?? 0)
