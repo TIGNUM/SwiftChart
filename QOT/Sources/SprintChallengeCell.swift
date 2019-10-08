@@ -80,7 +80,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         }
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
         let lowercaseTitle = model.sprintTitle?.lowercased()
-        ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
+        ThemeText.sprintName.apply(lowercaseTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = model.relatedStrategiesModels
