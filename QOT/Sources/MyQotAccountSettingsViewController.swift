@@ -89,7 +89,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 
     func showLogoutAlert() {
         let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-        let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { [weak self] (_) in
+        let logout = QOTAlertAction(title: AppTextService.get("my_qot.account_settings.alert.logout_button")) { [weak self] (_) in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
             self?.dismiss(animated: false, completion: nil)

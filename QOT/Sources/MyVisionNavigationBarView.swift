@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MyVisionNavigationBarViewProtocol: class {
     func didShare()
@@ -20,7 +21,7 @@ final class MyVisionNavigationBarView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .carbon
-        title.text = R.string.localized.myQOTToBeVisionTitle()
+        title.text = AppTextService.get("my_qot.tbv.navigation_bar.view.title")
     }
 
     @IBAction func shareButtonAction(_ sender: Any) {

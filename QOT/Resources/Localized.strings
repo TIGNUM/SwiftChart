@@ -65,12 +65,6 @@
 "Sidebar.Title.Permission" = "PERMISSIONS";
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
-"MyQOT.ToBeVision.Title" = "TO BE VISION";
-"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TO BE VISION";
-"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
-"MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
-"MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
-"Sidebar.Title.Logout" = "Log out";
 "Sidebar.Title.FAQ" = "FAQ";
 "Sidebar.Title.ContactSupport" = "CONTACT\nSUPPORT";
 "Sidebar.Title.FeatureRequest" = "FEATURE\nREQUEST";
@@ -220,13 +214,8 @@
 
 "Alert.Title.Camera.Not.Available" = "Notice!";
 "Alert.Body.Camera.Not.Available" = "QOT does not have access to your Photos or Videos. To enable access open Setting on your device";
-"Alert.Title.Notifications.Not.Authorized" = "No Authorization";
-"Alert.Message.Notifications.Not.Authorized" = "Push Notifications are not authorized for QOT. To enabled Push Notifications open Settings and enable them. ";
 "Alert.Title.NoContent" = "No Results found";
-"Alert.Message.NoContent" = "This content is currently unavailable. Please check back later.";
 "Alert.Title.Custom" = "Error";
-"Alert.Title.Unauthenticated" = "User not authenticated";
-"Alert.Message.Unauthenticated" = "Unable to authenticated";
 "Alert.Title.NoNetworkConnection" = "No Internet Connection";
 "Alert.Message.NoNetworkConnection" = "No network connection";
 "Alert.Message.NoNetworkConnectionFile" = "Please ensure your device is connected to the internet to access this file.";
@@ -246,29 +235,16 @@
 "Alert.Button.Title.Save.and.Continue" = "Save & Continue";
 "Alert.Button.Title.Settings" = "Settings";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
-"Alert.Title.LocationServices" = "Location Services";
-"Alert.Message.LocationServices" = "To change the location service permissions please go the settings.";
-"Alert.Title.Calendar.No.Access" = "No Access";
-"Alert.Message.Calendar.No.Access" = "This app does not have access to your calendars.\nYou can enable access in Privacy Settings";
 "Alert.Title.EmailNotFound" = "Email not found";
 "Alert.Message.EmailNotFound" = "Please try again";
 "Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
 "Alert.CameraPermissionNotGranted.Message" = "QOT does not have access to your camera. To enable access, tap Settings and turn on Camera.";
 "Alert.PhotosPermissionNotGranted.Message" = "QOT does not have access to your photos. To enable access, tap Settings and turn on Photos.";
-"Alert.PermissionNotGranted.Message" = "Please open your settings to enable permissions for this action";
-"Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
 "Alert.Title.Reset.Password" = "Reset Password";
 "Alert.Message.Reset.Password" = "We have sent you an email with instructions on how to reset your password.";
-"Alert.Title.Could.Not.Send.Email" = "Could not send email";
-"Alert.Message.Could.Not.Send.Email.ToBeVision" = "Please define your 'To Be Vision' first";
-"Alert.Message.Could.Not.Send.Email.WeeklyChoices" = "No Weekly Choices selected.";
 "Alert.Message.Could.Not.Send.Email" = "Your device could not send email";
 "Alert.Title.Partner.Invite" = "Send Notification?";
 "Alert.Message.Partner.Invite" = "Would you like to tell your partner more about QOT and how they can help you?";
-"Alert.Title.Preparation.Add.Strategy" = "Add strategy";
-"Alert.Title.Preparation.Remove.Strategy" = "Delete strategy";
-"Alert.Title.Preparation.Edit.Strategy" = "Customize your preparation";
-"Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or delete those you dont like.";
 "Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 "Alert.Message.Email.Not.Setup" = "Email is not setup on your device";
@@ -276,9 +252,7 @@
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to System Settings to change your permissions.";
 "Alert.title.calendar.not.synced" = "Calendar not synchronized";
-"Alert.title.event.date.not.available" = "Date not available";
 "Alert.message.calendar.not.synced" = "QOT could not create the event for the selected calendar. Please choose another calendar or enable Calendar Synchronization in Settings.";
-"Alert.message.event.date.not.available" = "QOT could not create the event for the selected date. Please choose date in next 30 days.";
 "Alert.Title.Settings.Change.Notifications" = "Change Notifications";
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
 "Alert.Message.signinMissingConnection" = "Turn on mobile data or use Wi-Fi to access data.";

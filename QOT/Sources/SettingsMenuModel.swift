@@ -57,7 +57,7 @@ enum SettingsType: Int {
         case .dailyPrep: return R.string.localized.settingsNotificationsDailyPrepTitle()
         case .weeklyChoices: return R.string.localized.settingsNotificationsWeeklyChoicesTitle()
         case .password: return R.string.localized.settingsSecurityPasswordTitle()
-        case .logout: return R.string.localized.sidebarTitleLogout()
+        case .logout: return AppTextService.get("my_qot.account_settings.view.logout_button")
         case .confirm: return R.string.localized.settingsSecurityConfirmTitle()
         case .terms: return R.string.localized.settingsSecurityTermsTitle()
         case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()

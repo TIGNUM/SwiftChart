@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct SyncedCalendarsViewModel {
     let viewTitle: String
@@ -39,9 +40,9 @@ struct SyncedCalendarsViewModel {
         var title: String {
             switch self {
             case .onDevice:
-                return R.string.localized.settingsCalendarSectionOnThisDeviceHeader()
+                return AppTextService.get("my_qot.my_profile.app_settings.synced_calendars.view.this_device_title")
             case .notOnDevice:
-                return R.string.localized.settingsCalendarSectionOnOtherDevicesHeader()
+                return AppTextService.get("my_qot.my_profile.app_settings.synced_calendars.view.other_devices_title")
             }
         }
     }
