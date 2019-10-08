@@ -32,6 +32,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
+    private var firstTime: Bool = true
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +67,12 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        doActivate()
+        if firstTime && (interactor?.shouldStartDeactivated() ?? false) {
+            deactivate(animated: false)
+        } else {
+            doActivate()
+        }
+        firstTime = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
