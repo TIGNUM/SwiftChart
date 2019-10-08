@@ -8,6 +8,7 @@
 
 import Foundation
 import qot_dal
+import EventKit
 
 final class WorkerCalendar {
     func getCalendarEvents(_ completion: @escaping ([QDMUserCalendarEvent]) -> Void) {
@@ -64,6 +65,29 @@ final class WorkerCalendar {
                 return isLocal && setting.syncEnabled == true
             }.isEmpty == false
             completion(hasSyncedCalenders)
+        }
+    }
+
+    func storeLocalEvent(_ ekEventIdentifier: String?, qdmEventIdentifier: String?) {
+        if let ekEventIdentifier = ekEventIdentifier, let qdmEventIdentifier = qdmEventIdentifier {
+            var dict = UserDefault.prepareLocalEventsDictionary.object as? [String: String] ?? [String: String]()
+            dict[qdmEventIdentifier] = ekEventIdentifier
+            UserDefault.prepareLocalEventsDictionary.setObject(dict)
+        }
+    }
+
+    func deleteLocalEvent(_ qdmEventIdentifier: String?) {
+        if var dict = UserDefault.prepareLocalEventsDictionary.object as? [String: String],
+            let qdmEventIdentifier = qdmEventIdentifier,
+            let ekEventIdentifier = dict.removeValue(forKey: qdmEventIdentifier),
+            let ekEvent = EKEventStore.shared.event(withIdentifier: ekEventIdentifier) {
+                UserDefault.prepareLocalEventsDictionary.setObject(dict)
+
+            do {
+                try EKEventStore.shared.remove(ekEvent, span: .futureEvents, commit: true)
+            } catch {
+                log("Error remove EKEventStore.shared.remove: \(error)", level: .error)
+            }
         }
     }
 }
