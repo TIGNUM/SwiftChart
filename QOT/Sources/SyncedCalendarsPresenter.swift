@@ -15,7 +15,6 @@ final class SyncedCalendarsPresenter {
     // MARK: - Properties
     private weak var viewController: SyncedCalendarsViewControllerInterface?
     private var viewModel: SyncedCalendarsViewModel?
-
     private lazy var calendars: [EKCalendar] = {
         return EKEventStore.shared.calendars(for: .event)
     }()
@@ -60,7 +59,10 @@ private extension SyncedCalendarsPresenter {
             sections[SyncedCalendarsViewModel.Section.notOnDevice] = otherItems
         }
         let footerHeight: CGFloat = localItems.filter { $0.isSubscribed == true }.isEmpty ? 0 : 80
-        viewModel = SyncedCalendarsViewModel(viewTitle: viewTitle, viewSubtitle: viewSubtitle, footerHeight: footerHeight, sections: sections)
+        viewModel = SyncedCalendarsViewModel(viewTitle: viewTitle,
+                                             viewSubtitle: viewSubtitle,
+                                             footerHeight: footerHeight,
+                                             sections: sections)
         viewController?.setupView(viewModel)
     }
 

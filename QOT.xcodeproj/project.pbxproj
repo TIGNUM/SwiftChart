@@ -97,7 +97,7 @@
 		363B9CC4232BF34A00C1A29E /* DTTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */; };
 		363B9CC5232BF34A00C1A29E /* DTTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBD232BF34A00C1A29E /* DTTBV.swift */; };
 		363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */; };
-		363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */; };
+		363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */; };
 		363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363BB1762316EFB500B65065 /* ChoiceViewController.xib */; };
 		363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */; };
 		3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */; };
@@ -315,6 +315,8 @@
 		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
+		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
+		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
@@ -1388,7 +1390,7 @@
 		363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVInteractor.swift; sourceTree = "<group>"; };
 		363B9CBD232BF34A00C1A29E /* DTTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBV.swift; sourceTree = "<group>"; };
 		363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVConfigurator.swift; sourceTree = "<group>"; };
-		363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVWorker.swift; sourceTree = "<group>"; };
+		363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTBV.swift; sourceTree = "<group>"; };
 		363BB1762316EFB500B65065 /* ChoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
 		363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetPresenter.swift; sourceTree = "<group>"; };
@@ -1604,6 +1606,8 @@
 		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
+		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
+		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -2838,14 +2842,6 @@
 			name = TBV;
 			sourceTree = "<group>";
 		};
-		363B9CC7232D0B5200C1A29E /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */,
-			);
-			name = Workers;
-			sourceTree = "<group>";
-		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
@@ -3011,7 +3007,6 @@
 				367A58642326B85B0089A082 /* DTWorker.swift */,
 				367A585E2326A4350089A082 /* DTViewController.xib */,
 				36103325232AC794008A8205 /* Models */,
-				363B9CC7232D0B5200C1A29E /* Workers */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -3143,11 +3138,12 @@
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
+				385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */,
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
+				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */,
-				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -3257,11 +3253,18 @@
 			name = SprintReflection;
 			sourceTree = "<group>";
 		};
+		385449A9234C59BF00A4BB3E /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */,
+				363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */,
+			);
+			name = Worker;
+			sourceTree = "<group>";
+		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
 			isa = PBXGroup;
 			children = (
-				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
-				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */,
 				5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */,
 				5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */,
@@ -3484,12 +3487,14 @@
 				5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */,
 				5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */,
 				75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */,
+				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
 				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
 				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */,
+				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
@@ -4847,6 +4852,7 @@
 				367BB012223955D200282AB6 /* Scenes */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* ViewLayer */,
+				385449A9234C59BF00A4BB3E /* Worker */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -6454,6 +6460,7 @@
 				3658257B2327D19200AC3F4A /* DTShortTBVInterface.swift in Sources */,
 				DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */,
 				5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */,
+				385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */,
 				5F7BE7822289588F00BA5DCF /* MyQotSupportWorker.swift in Sources */,
 				DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */,
 				8D04FA3523041E9C00AE7CA0 /* RegistrationAgeInteractor.swift in Sources */,
@@ -6964,7 +6971,7 @@
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				B86E744D22A9519900B0AE75 /* MyLibraryCategoryListViewController.swift in Sources */,
 				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
-				363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */,
+				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
@@ -7123,6 +7130,7 @@
 				BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */,
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
+				385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */,				
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				F902CF4822D87C2700FFC836 /* FeastCell.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
