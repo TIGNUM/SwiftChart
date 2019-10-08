@@ -180,6 +180,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             interactor?.presentArticle(selectedID: strategy.remoteID)
             trackUserEvent(.OPEN, value: strategy.remoteID, valueType: .CONTENT, action: .TAP)
             if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy.mediaItem?.remoteID {
+                trackUserEvent(.STOP, valueType: .AUDIO, action: .TAP)
                 NotificationCenter.default.post(name: .stopAudio, object: nil)
             }
         }
@@ -196,6 +197,9 @@ extension StrategyListViewController {
 extension StrategyListViewController: IsPlayingDelegate {
 
     func isPlaying(remoteID: Int?) -> Bool {
-        return interactor?.isPlaying(remoteID: remoteID) ?? false
+        let isPlaying = interactor?.isPlaying(remoteID: remoteID) ?? false
+        let name: QDMUserEventTracking.Name = isPlaying ? .STOP : .PLAY
+        trackUserEvent(name, valueType: .AUDIO, action: .TAP)
+        return isPlaying
     }
 }

@@ -107,8 +107,10 @@ extension AudioPlayerBar {
     func playPause(_ media: MediaPlayerModel) {
         if media.mediaRemoteId == currentMedia?.mediaRemoteId {
             if audioPlayer.isPlaying {
+                trackUserEvent(.PAUSE)
                 audioPlayer.pause()
             } else {
+                trackUserEvent(.PAUSE)
                 audioPlayer.play()
             }
         } else {
@@ -126,6 +128,7 @@ extension AudioPlayerBar {
                                       audioURL: media.url,
                                       remoteID: media.mediaRemoteId)
             audioPlayer.play()
+            trackUserEvent(.PLAY)
         }
     }
 
@@ -195,7 +198,7 @@ private extension AudioPlayerBar {
 
     @IBAction func didTapCloseButton() {
         NotificationCenter.default.post(name: .stopAudio, object: nil)
-        trackUserEvent(.STOP)
+        trackUserEvent(.CLOSE)
     }
 
     @IBAction func didTapFullScreenButton() {

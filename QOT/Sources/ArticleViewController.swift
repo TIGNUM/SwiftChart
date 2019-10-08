@@ -184,6 +184,7 @@ private extension ArticleViewController {
 // MARK: - BottomNavigation
 extension ArticleViewController {
     @objc override public func didTapDismissButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true, completion: nil)
     }
 
