@@ -80,7 +80,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 127, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
