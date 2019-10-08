@@ -429,7 +429,7 @@
                                 <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Bl-Cn-fx5">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="367.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="427.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nC5-Ib-OED">
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="225"/>
@@ -550,7 +550,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HYp-fY-2yo">
-                                                <rect key="frame" x="0.0" y="225" width="375" height="142.5"/>
+                                                <rect key="frame" x="0.0" y="225" width="375" height="202.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2rf-LP-Ue9">
                                                         <rect key="frame" x="24" y="48" width="327" height="19.5"/>
@@ -573,7 +573,7 @@
                                                     <constraint firstItem="r5m-CN-Vhx" firstAttribute="leading" secondItem="HYp-fY-2yo" secondAttribute="leading" constant="24" id="QK1-tA-Ddu"/>
                                                     <constraint firstAttribute="trailing" secondItem="2rf-LP-Ue9" secondAttribute="trailing" constant="24" id="SXW-qA-Lup"/>
                                                     <constraint firstItem="r5m-CN-Vhx" firstAttribute="top" secondItem="2rf-LP-Ue9" secondAttribute="bottom" constant="10" id="pCT-k7-jV1"/>
-                                                    <constraint firstAttribute="bottom" secondItem="r5m-CN-Vhx" secondAttribute="bottom" constant="48" id="vt2-N2-gxh"/>
+                                                    <constraint firstAttribute="bottom" secondItem="r5m-CN-Vhx" secondAttribute="bottom" constant="108" id="vt2-N2-gxh"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -653,7 +653,7 @@
                                                 </constraints>
                                             </view>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUPPORT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PQe-eW-cVN">
-                                                <rect key="frame" x="0.0" y="17" width="93.5" height="24"/>
+                                                <rect key="frame" x="0.0" y="17" width="87.5" height="24"/>
                                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>

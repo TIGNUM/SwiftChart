@@ -35,16 +35,16 @@ final class MyQotSensorsWorker {
     }
 
     func headline(_ completion: @escaping(String?) -> Void) {
-        contentService.getContentCollectionById(100935) { (collection) in
-            let item = collection?.contentItems.filter({ $0.format == .header2 }).first?.valueText
-            completion(item)
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107863) { (contentItem) in
+            completion(contentItem?.valueText)
         }
     }
 
     func content(_ completion: @escaping(String?) -> Void) {
-        contentService.getContentCollectionById(100935) { (collection) in
-            let item = collection?.contentItems.filter({ $0.format == .paragraph }).first?.valueText
-            completion(item)
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107860) { (contentItem) in
+            completion(contentItem?.valueText)
         }
     }
 

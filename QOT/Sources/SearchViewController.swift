@@ -144,7 +144,9 @@ extension SearchViewController {
                 self.view.layoutIfNeeded()
             }
         } else {
-            view.layoutIfNeeded()
+            UIView.animate(withDuration: 0.01) {
+                self.view.layoutIfNeeded()
+            }
         }
         mySearchBar.isUserInteractionEnabled = false
     }
