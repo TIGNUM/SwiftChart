@@ -218,10 +218,12 @@ final class UserNotificationsManager {
                     let triggerDate = notificationSchedule.date(with: Date().dayAfter(days: day)), triggerDate > Date() {
                     let notificationTitle = content.contentItems.filter({ $0.format == .title }).first?.valueText ?? sprint.title
                     // if it's valid sprint notification for today
-                    let content = UNMutableNotificationContent(title: notificationTitle, body: notificationText, soundName: "", link: "")
-                    content.sound = nil
-                    let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let link = URLScheme.dailyBrief.launchPathWithParameterValue(DailyBriefBucketName.SPRINT_CHALLENGE)
+                    let content = UNMutableNotificationContent(title: notificationTitle,
+                                                               body: notificationText,
+                                                               soundName: "QotNotification.aiff",
+                                                               link: link)
+                    let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
                     let identifier = QDMGuideItemNotfication.notificationIdentifier(with: sprintConfig.sprintType,
                                                                                     date: triggerDate,
                                                                                     link: link)
