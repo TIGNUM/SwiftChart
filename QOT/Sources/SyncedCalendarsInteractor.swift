@@ -78,9 +78,8 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
     }
 
     func didTapSkip() {
-        self.router.dismiss {
-            self.delegate?.didFinishSyncingCalendars(qdmEvents: [])
-        }
+        delegate?.didFinishSyncingCalendars(qdmEvents: [])
+        router.dismiss(completion: nil)
         // Disable all calendars
         let enabledSettings = calendarSettings.filter { $0.syncEnabled == true }
         let updatedSettings = enabledSettings.compactMap { (setting) -> QDMUserCalendarSetting in

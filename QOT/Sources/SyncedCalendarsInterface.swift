@@ -33,5 +33,5 @@ protocol SyncedCalendarsInteractorInterface: Interactor {
 }
 
 protocol SyncedCalendarsRouterInterface {
-    func dismiss(_ completion: (() -> Void)?)
+    func dismiss(completion: (() -> Void)?)
 }

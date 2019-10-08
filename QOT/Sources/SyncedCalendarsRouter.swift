@@ -20,7 +20,7 @@ final class SyncedCalendarsRouter {
 }
 
 extension SyncedCalendarsRouter: SyncedCalendarsRouterInterface {
-    func dismiss(_ completion: (() -> Void)?) {
+    func dismiss(completion: (() -> Void)?) {
         viewController?.dismiss(animated: true, completion: completion)
     }
 }
