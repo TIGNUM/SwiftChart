@@ -26,6 +26,7 @@ protocol SearchInteractorInterface: Interactor {
     func handleSelection(searchResult: Search.Result)
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String)
     func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void)
+    func shouldStartDeactivated() -> Bool
 }
 
 protocol SearchRouterInterface {
