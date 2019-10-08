@@ -95,6 +95,7 @@ extension UIViewController {
         case is WalkthroughSearchViewController: return "walkthrough.search"
         case is WalkthroughCoachViewController: return "walkthrough.coach"
         case is WalkthroughSwipeViewController: return "walkthrough.swipe"
+        case is QuestionnaireViewController: return "sleep.quantity.customize.target"
         default: preconditionFailure()
         }
     }
