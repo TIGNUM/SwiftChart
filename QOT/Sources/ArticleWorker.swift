@@ -385,7 +385,7 @@ final class ArticleWorker {
         case .WhatsHot:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
         case .FAQ_3_0, .USING_QOT:
-            return section == 0 ? learnStrategyItems.count : 1
+            return section == 0 ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
             case 0:
