@@ -36,6 +36,8 @@
 "Settings.General.Support.Title" = "Support";
 "Settings.General.Admin.Title" = "(ADMIN)";
 "Settings.General.JobTitle.Title" = "Title";
+"Settings.General.Support.Contact.Email.Title" = "Didn't find what you are looking for?";
+"Settings.General.Support.Contact.Email.Link" = "Contact support";
 
 "Settings.Notifications.Strategies.Title" = "PERFORMANCE REMINDERS";
 "Settings.Notifications.DailyPrep.Title" = "DAILY CHECK IN";

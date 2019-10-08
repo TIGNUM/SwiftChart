@@ -90,7 +90,7 @@ final class ArticleWorker {
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
-
+    var contactSupportItems = [Article.Item]()
     // MARK: - Init
 
     init(selectedID: Int) {
@@ -158,6 +158,7 @@ final class ArticleWorker {
         var items = [Article.Item]()
         var itemsNextUp = [Article.Item]()
         var itemsRelated = [Article.Item]()
+        var contactSupport = [Article.Item]()
 
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
@@ -177,12 +178,17 @@ final class ArticleWorker {
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
-        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0]
+        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
-            content?.contentItems.forEach { item in
+            content?.contentItems.filter { !$0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
             }
         }
+
+        content?.contentItems.filter { $0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach({ (item) in
+            contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+        })
+
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
@@ -213,6 +219,7 @@ final class ArticleWorker {
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
+        contactSupportItems = contactSupport.unique
     }
 
     private func setupWhatsHotArticleItems() {
@@ -287,10 +294,12 @@ final class ArticleWorker {
         switch content.section {
         case .WhatsHot:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
-        case .FAQ_3_0,
-             .About,
+        case .About,
              .ExclusiveRecoveryContent:
             return 1
+        case .FAQ_3_0,
+             .USING_QOT:
+            return 2
         default:
             return 3
         }
@@ -325,6 +334,9 @@ final class ArticleWorker {
         switch content?.section {
         case .WhatsHot?:
             return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
+        case .FAQ_3_0?,
+             .USING_QOT?:
+            return indexPath.section == 0 ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
         default:
             switch indexPath.section {
             case 0:
@@ -335,6 +347,22 @@ final class ArticleWorker {
                 return learnStrategyNextItems.at(index: indexPath.item)
             }
         }
+    }
+
+    func isSectionSupport() -> Bool {
+        return content?.section == .FAQ_3_0 || content?.section == .USING_QOT
+    }
+
+    func contactSupportAttributtedString() -> NSAttributedString {
+        let contactSupport = NSMutableAttributedString(attributedString:
+            ThemeText.articleContactSupportInfoTitle.attributedString(R.string.localized.settingsGeneralSupportContactEmailTitle() + "\n"))
+        // Contact support
+        guard let emailAddress = contactSupportItems.first?.content else {
+            return contactSupport
+        }
+        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(R.string.localized.settingsGeneralSupportContactEmailLink()))
+
+        return contactSupport
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
@@ -356,6 +384,8 @@ final class ArticleWorker {
         switch content.section {
         case .WhatsHot:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
+        case .FAQ_3_0, .USING_QOT:
+            return section == 0 ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
             case 0:
@@ -412,7 +442,7 @@ private extension ArticleWorker {
             content.section != .Generic else { return false }
 
         switch content.section {
-        case .ToBeVisionGenerator, .FAQ_3_0, .About: return true
+        case .ToBeVisionGenerator, .FAQ_3_0, .USING_QOT, .About: return true
         default: break
         }
         return false
@@ -423,7 +453,7 @@ private extension ArticleWorker {
             content.section != .Generic else { return false }
 
         switch content.section {
-        case .About, .FAQ_3_0: return true
+        case .About, .FAQ_3_0, .USING_QOT: return true
         default: break
         }
         return false
@@ -434,7 +464,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .ExclusiveRecoveryContent: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .USING_QOT, .ExclusiveRecoveryContent: return true
         default: return false
         }
     }

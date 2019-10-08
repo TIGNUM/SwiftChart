@@ -103,6 +103,19 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.articleItem(at: indexPath)
     }
 
+    func contactSupportAttributtedString() -> NSAttributedString {
+        return worker.contactSupportAttributtedString()
+    }
+
+    func isSectionSupport() -> Bool {
+        return worker.isSectionSupport()
+    }
+
+    func openEmailComposer() {
+        router.openSupportEmailComposer(for: worker.articleItem(at: IndexPath(row: 0, section: 0)),
+                                        emailAdress: worker.contactSupportItems.first?.content)
+    }
+
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
         worker.markArticleAsRead(read, completion: completion)
     }
