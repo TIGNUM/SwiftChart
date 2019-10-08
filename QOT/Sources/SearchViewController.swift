@@ -118,7 +118,6 @@ extension SearchViewController {
             }
         }
         if constantNew == constraintSearch.constant { return }
-
         constraintSearch.constant = constantNew
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
