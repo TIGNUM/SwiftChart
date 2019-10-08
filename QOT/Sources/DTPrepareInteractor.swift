@@ -15,23 +15,22 @@ final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
+    private lazy var workerCalendar: WorkerCalendar? = WorkerCalendar()
     private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
-    private var eventsInitiated = false
-    private var preparationsInitiated = false
     private var createdUserCalendarEvent: QDMUserCalendarEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareWorker?.getEvents { [weak self] (events, initiated) in
-            self?.events = events
-            self?.eventsInitiated = initiated
+        workerCalendar?.hasSyncedCalendars { [weak self] available in
+            self?.workerCalendar?.getCalendarEvents { [weak self] events in
+                self?.setUserCalendarEvents(events)
+            }
         }
-        prepareWorker?.getPreparations { [weak self] (preparations, initiated) in
+        prepareWorker?.getPreparations { [weak self] (preparations, _) in
             self?.preparations = preparations
-            self?.preparationsInitiated = initiated
         }
     }
 
@@ -39,7 +38,7 @@ final class DTPrepareInteractor: DTInteractor {
         if selection.question?.key == Prepare.QuestionKey.Intro {
             checkCalendarPermissionForSelection(selection)
         } else {
-            super.loadNextQuestion(selection: selection)
+            loadNext(selection)
         }
     }
 
@@ -130,10 +129,17 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     }
 
     func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        prepareWorker?.importCalendarEvents(event) {  [weak self] (userCalendarEvent) in
+        workerCalendar?.importCalendarEvents(event) {  [weak self] (userCalendarEvent) in
             self?.createdUserCalendarEvent = userCalendarEvent
             completion(userCalendarEvent != nil)
         }
+    }
+
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
+        self.events.removeAll()
+        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
+        }).unique
     }
 }
 
@@ -150,9 +156,19 @@ private extension DTPrepareInteractor {
             case .denied, .restricted:
                 preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
             default:
-                super.loadNextQuestion(selection: selection)
+                workerCalendar?.hasSyncedCalendars { [weak self] available in
+                    if available == true {
+                        self?.loadNext(selection)
+                    } else {
+                        self?.preparePresenter?.presentCalendarSettings()
+                    }
+                }
             }
         }
+    }
+
+    func loadNext(_ selection: DTSelectionModel) {
+        super.loadNextQuestion(selection: selection)
     }
 }
 

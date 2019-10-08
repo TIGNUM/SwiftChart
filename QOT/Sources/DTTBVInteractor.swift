@@ -12,7 +12,7 @@ import qot_dal
 final class DTTBVInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var tbvWorker: TBVWorker? = TBVWorker()
+    private lazy var tbvWorker: WorkerTBV? = WorkerTBV()
 
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         if questionAnswerType == AnswerType.text.rawValue || questionAnswerType == AnswerType.noAnswerRequired.rawValue {

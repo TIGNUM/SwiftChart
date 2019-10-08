@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-class DTWorker: TBVWorker {
+class DTWorker: WorkerTBV {
 
     // MARK: - Questions
     func getQuestions(questionGroup: QuestionGroup, _ completion: @escaping ([QDMQuestion]?) -> Void) {

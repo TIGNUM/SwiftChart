@@ -8,30 +8,29 @@
 
 import Foundation
 import EventKit
-import EventKitUI
 import qot_dal
 
 protocol DTPrepareViewControllerInterface: class {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+    func presentCalendarSettings()
 }
 
 protocol DTPreparePresenterInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
+    func presentCalendarSettings()
 }
 
 protocol DTPrepareInteractorInterface: Interactor {
     func getUserPreparation(answer: DTViewModel.Answer,
                             event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
-
     func getUserPreparation(event: DTViewModel.Event?,
                             calendarEvent: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
-
     func getUserPreparation(event: DTViewModel.Event?,
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
-
     func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent])
 }
 
 protocol DTPrepareRouterInterface {
