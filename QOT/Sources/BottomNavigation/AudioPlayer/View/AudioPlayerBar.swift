@@ -110,7 +110,7 @@ extension AudioPlayerBar {
                 trackUserEvent(.PAUSE)
                 audioPlayer.pause()
             } else {
-                trackUserEvent(.PAUSE)
+                trackUserEvent(.PLAY)
                 audioPlayer.play()
             }
         } else {
