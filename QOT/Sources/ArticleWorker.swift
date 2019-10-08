@@ -158,6 +158,7 @@ final class ArticleWorker {
         var items = [Article.Item]()
         var itemsNextUp = [Article.Item]()
         var itemsRelated = [Article.Item]()
+        var contactSupport = [Article.Item]()
 
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
@@ -179,13 +180,15 @@ final class ArticleWorker {
         }
         let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
-            content?.contentItems.forEach { item in
+            content?.contentItems.filter { !$0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach { item in
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
-                if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
-                    contactSupportItems.append(Article.Item(type: .contactSupport, content: item.valueText))
-                }
             }
         }
+
+        content?.contentItems.filter { $0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach({ (item) in
+            contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+        })
+
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
@@ -216,6 +219,7 @@ final class ArticleWorker {
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
+        contactSupportItems = contactSupport.unique
     }
 
     private func setupWhatsHotArticleItems() {
