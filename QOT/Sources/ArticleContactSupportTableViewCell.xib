@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="86" id="9eZ-8y-u9z" customClass="ArticleContactSupportTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="468" height="86"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9eZ-8y-u9z" id="1qZ-1L-fn2">
+                <rect key="frame" x="0.0" y="0.0" width="468" height="85.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1fT-c5-vX3">
+                        <rect key="frame" x="0.0" y="0.0" width="468" height="1"/>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="vzo-d5-p6Y"/>
+                        </constraints>
+                    </view>
+                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium " textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="gbU-N9-jCv">
+                        <rect key="frame" x="26" y="26" width="416" height="33.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                    </textView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="1fT-c5-vX3" secondAttribute="trailing" id="4n8-YI-NDn"/>
+                    <constraint firstAttribute="trailing" secondItem="gbU-N9-jCv" secondAttribute="trailing" constant="26" id="9WV-od-dMG"/>
+                    <constraint firstItem="1fT-c5-vX3" firstAttribute="top" secondItem="1qZ-1L-fn2" secondAttribute="top" id="C3M-r5-RC8"/>
+                    <constraint firstItem="1fT-c5-vX3" firstAttribute="leading" secondItem="1qZ-1L-fn2" secondAttribute="leading" id="CM5-wf-NNp"/>
+                    <constraint firstItem="gbU-N9-jCv" firstAttribute="top" secondItem="1fT-c5-vX3" secondAttribute="bottom" constant="25" id="O2b-3F-OAa"/>
+                    <constraint firstItem="gbU-N9-jCv" firstAttribute="leading" secondItem="1qZ-1L-fn2" secondAttribute="leading" constant="26" id="w0K-Lc-XYQ"/>
+                    <constraint firstAttribute="bottom" secondItem="gbU-N9-jCv" secondAttribute="bottom" constant="26" id="zDi-55-dSC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <connections>
+                <outlet property="separatorView" destination="1fT-c5-vX3" id="Sli-nY-h1y"/>
+                <outlet property="textView" destination="gbU-N9-jCv" id="DNe-5G-sIx"/>
+            </connections>
+            <point key="canvasLocation" x="147.82608695652175" y="-236.38392857142856"/>
+        </tableViewCell>
+    </objects>
+</document>
