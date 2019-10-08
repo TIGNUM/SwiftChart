@@ -17,21 +17,19 @@ final class DTPrepareInteractor: DTInteractor {
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
     private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
-    private var eventsInitiated = false
-    private var preparationsInitiated = false
     private var createdUserCalendarEvent: QDMUserCalendarEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareWorker?.getEvents { [weak self] (events, initiated) in
-            self?.events = events
-            self?.eventsInitiated = initiated
+        prepareWorker?.hasSyncedCalendars { [weak self] available in
+            self?.prepareWorker?.getEvents { [weak self] (events, _) in
+                self?.events = events.unique
+            }
         }
-        prepareWorker?.getPreparations { [weak self] (preparations, initiated) in
+        prepareWorker?.getPreparations { [weak self] (preparations, _) in
             self?.preparations = preparations
-            self?.preparationsInitiated = initiated
         }
     }
 
@@ -39,7 +37,7 @@ final class DTPrepareInteractor: DTInteractor {
         if selection.question?.key == Prepare.QuestionKey.Intro {
             checkCalendarPermissionForSelection(selection)
         } else {
-            super.loadNextQuestion(selection: selection)
+            loadNext(selection)
         }
     }
 
@@ -135,6 +133,14 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             completion(userCalendarEvent != nil)
         }
     }
+
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
+        self.events.removeAll()
+        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
+        })
+        self.events = self.events.unique
+    }
 }
 
 // MARK: - CalendarPermission
@@ -150,9 +156,19 @@ private extension DTPrepareInteractor {
             case .denied, .restricted:
                 preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
             default:
-                super.loadNextQuestion(selection: selection)
+                prepareWorker?.hasSyncedCalendars { [weak self] available in
+                    if available == true {
+                        self?.loadNext(selection)
+                    } else {
+                        self?.preparePresenter?.presentCalendarSettings()
+                    }
+                }
             }
         }
+    }
+
+    func loadNext(_ selection: DTSelectionModel) {
+        super.loadNextQuestion(selection: selection)
     }
 }
 

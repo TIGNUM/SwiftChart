@@ -40,7 +40,6 @@ final class SyncedCalendarsInteractor {
     }
 
     // MARK: - Texts
-
     var skipButtonTitle: String {
         return worker.skipButton
     }
@@ -51,9 +50,7 @@ final class SyncedCalendarsInteractor {
 }
 
 // MARK: - Get data
-
 private extension SyncedCalendarsInteractor {
-
     func getData() {
         getViewTitle()
         getCalendarData()
@@ -71,17 +68,14 @@ private extension SyncedCalendarsInteractor {
     func getCalendarData() {
         dispatchGroup.enter()
         worker.getCalendarSettings { [weak self] (calendarSettings) in
-            guard let strongSelf = self else { return }
-            strongSelf.calendarSettings = calendarSettings
-            strongSelf.dispatchGroup.leave()
+            self?.calendarSettings = calendarSettings
+            self?.dispatchGroup.leave()
         }
     }
 }
 
 // MARK: - SyncedCalendarsInteractorInterface
-
 extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
-
     func updateSyncStatus(enabled: Bool, identifier: String) {
         var calendarSetting = calendarSettings.filter { $0.calendarId == identifier }.first
         calendarSetting?.syncEnabled = enabled
@@ -96,29 +90,28 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
             skipDispatchGroup.enter()
             var setting = $0
             setting.syncEnabled = false
-            worker.updateCalendarSetting(setting, { (_) in
-                self.skipDispatchGroup.leave()
-            })
+            worker.updateCalendarSetting(setting) { [weak self] _ in
+                self?.skipDispatchGroup.leave()
+            }
         }
         // Notify success
-        skipDispatchGroup.notify(queue: .main) {
-            self.router.dismiss({
-                self.delegate?.didFinishSyncingCalendars(hasEvents: false)
-            })
+        skipDispatchGroup.notify(queue: .main) { [weak self] in
+            self?.router.dismiss {
+                self?.delegate?.didFinishSyncingCalendars(qdmEvents: [])
+            }
         }
     }
 
     func didTapSave() {
-        worker.getCalendarEvents { (events) in
-            self.router.dismiss({
-                self.delegate?.didFinishSyncingCalendars(hasEvents: !events.isEmpty)
-            })
+        worker.getCalendarEvents { [weak self] (events) in
+            self?.router.dismiss {
+                self?.delegate?.didFinishSyncingCalendars(qdmEvents: events)
+            }
         }
     }
 }
 
 // MARK: - Private methods
-
 extension SyncedCalendarsInteractor {
     func updateCalendarSetting(_ setting: QDMUserCalendarSetting?) {
         // Update own cache

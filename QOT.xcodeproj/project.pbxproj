@@ -317,6 +317,7 @@
 		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
+		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
@@ -1617,6 +1618,7 @@
 		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
+		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -3173,11 +3175,12 @@
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
+				385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */,
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
+				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */,
-				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -3290,8 +3293,6 @@
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
 			isa = PBXGroup;
 			children = (
-				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
-				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */,
 				5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */,
 				5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */,
@@ -3514,12 +3515,14 @@
 				5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */,
 				5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */,
 				75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */,
+				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
 				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
 				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */,
+				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
@@ -7167,6 +7170,7 @@
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
 				F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
+				385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */,
 				36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */,
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				F902CF4822D87C2700FFC836 /* FeastCell.swift in Sources */,

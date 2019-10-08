@@ -33,7 +33,7 @@ extension SyncedCalendarsWorker {
     func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {
         CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
             if let error = error {
-                qot_dal.log("Error getCalendarSettings: \(error.localizedDescription)", level: .error)
+                log("Error getCalendarSettings: \(error.localizedDescription)", level: .error)
             }
             completion(calendarSettings ?? [])
         }
@@ -44,7 +44,7 @@ extension SyncedCalendarsWorker {
         guard let setting = calendarSetting else { return }
         CalendarService.main.updateCalendarSetting(setting) { (calendarSetting, error) in
             if let error = error {
-                qot_dal.log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
+                log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
             }
             completion?(calendarSetting)
         }
@@ -53,7 +53,7 @@ extension SyncedCalendarsWorker {
     func getCalendarEvents(_ completion: @escaping ([QDMUserCalendarEvent]) -> Void) {
         CalendarService.main.getCalendarEvents { (events, initialized, error) in
             if let error = error {
-                qot_dal.log("Error fetching calendar events: \(error.localizedDescription)", level: .error)
+                log("Error fetching calendar events: \(error.localizedDescription)", level: .error)
             }
             completion(events ?? [])
         }

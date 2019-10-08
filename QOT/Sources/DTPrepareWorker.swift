@@ -97,6 +97,16 @@ extension DTPrepareWorker {
             completion(userEvent)
         }
     }
+
+    func hasSyncedCalendars(_ completion: @escaping (Bool) -> Void) {
+        CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
+            let hasSyncedCalenders = calendarSettings?.filter { (setting) -> Bool in
+                let isLocal = EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
+                return isLocal && setting.syncEnabled == true
+            }.isEmpty == false
+            completion(hasSyncedCalenders)
+        }
+    }
 }
 
 private extension QDMUserCalendarEvent {

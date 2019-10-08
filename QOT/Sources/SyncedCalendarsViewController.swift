@@ -68,9 +68,7 @@ extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface 
 }
 
 // MARK: - Actions
-
 extension SyncedCalendarsViewController {
-
     @objc func didTapSkip() {
         interactor?.didTapSkip()
     }
