@@ -197,9 +197,6 @@ extension StrategyListViewController {
 extension StrategyListViewController: IsPlayingDelegate {
 
     func isPlaying(remoteID: Int?) -> Bool {
-        let isPlaying = interactor?.isPlaying(remoteID: remoteID) ?? false
-        let name: QDMUserEventTracking.Name = isPlaying ? .STOP : .PLAY
-        trackUserEvent(name, valueType: .AUDIO, action: .TAP)
-        return isPlaying
+        return interactor?.isPlaying(remoteID: remoteID) ?? false
     }
 }
