@@ -34,7 +34,7 @@ struct MyQotAboutUsModel {
                     MyQotAboutUsModelItem.copyright.primaryKey,
                     MyQotAboutUsModelItem.privacy.primaryKey,
                     MyQotAboutUsModelItem.terms.primaryKey,
-                   ]
+                    ]
         }
 
         func tag() -> Tags {

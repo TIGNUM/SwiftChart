@@ -93,10 +93,13 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
 
     func downloadMedia() {
+        trackUserEvent(.DOWNLOAD, value: interactor?.contentItemId, stringValue: .SELECT, valueType: .VIDEO, action: .TAP)
         interactor?.didTapDownload()
     }
 
     func bookmarkMedia() {
+        let value: QDMUserEventTracking.Name = interactor?.isBookmarked == true ? .DESELECT : .SELECT
+        trackUserEvent(.BOOKMARK, value: interactor?.contentItemId, stringValue: value, valueType: .VIDEO, action: .TAP)
         interactor?.didTapBookmark()
     }
 }
