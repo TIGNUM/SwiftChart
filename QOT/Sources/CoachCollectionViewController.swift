@@ -86,6 +86,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
         coachButton.layer.zPosition = 10000
+        collectionView.isMultipleTouchEnabled = false
 
         if let searchViewController = searchViewController {
             self.addChildViewController(searchViewController)
