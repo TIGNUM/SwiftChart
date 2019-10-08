@@ -51,6 +51,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private var selectedStrategySprintsID: Int?
     private var selectedToolSprintsID: Int?
     private var showSteps = false
+    private var sprintIndexPath: IndexPath?
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var navBarHeader: NavBarTableViewCell?
@@ -207,6 +208,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .EXPLORE?:
             return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
+            sprintIndexPath = indexPath
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
             if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
@@ -776,8 +778,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        if let indexPath = sprintIndexPath {
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 
     func showSolveResults(solve: QDMSolve) {

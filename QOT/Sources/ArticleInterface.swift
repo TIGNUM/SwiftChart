@@ -46,6 +46,9 @@ protocol ArticleInteractorInterface: class, Interactor {
     func headerTitle(for section: Int) -> String?
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot?
     func articleItem(at indexPath: IndexPath) -> Article.Item?
+    func contactSupportAttributtedString() -> NSAttributedString
+    func isSectionSupport() -> Bool
+    func openEmailComposer()
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void)
     func isRead(completion:@escaping (_ read: Bool) -> Void)
     func didTapLink(_ url: URL)
@@ -57,4 +60,5 @@ protocol ArticleInteractorInterface: class, Interactor {
 
 protocol ArticleRouterInterface {
     func didTapLink(_ url: URL)
+    func openSupportEmailComposer(for item: Article.Item?, emailAdress: String?)
 }
