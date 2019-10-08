@@ -12,7 +12,14 @@ import qot_dal
  Instructions to copy the keys from the spreadsheet
  1. Delete all lines below public extension until the end }
  2. Copy spreadsheet column 'O' into the public extension.
- 3. Ignore the blank lines
+ 3. Ignore the blank lines.
+
+ To validate the keys:
+ 1. Load AppText+Extensions.swift and extract all keys.
+ 2. Find all references to the AppTextKey.* in all other .swift files.
+ 3. Report
+    a. Keys in AppText+Extensions.swift that have not been used.
+    b. Keys that are referenced more than once.
  */
 
 // swiftlint:disable vertical_whitespace
