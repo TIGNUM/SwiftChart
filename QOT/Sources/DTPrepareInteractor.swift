@@ -15,6 +15,7 @@ final class DTPrepareInteractor: DTInteractor {
 
     // MARK: - Properties
     private lazy var prepareWorker: DTPrepareWorker? = DTPrepareWorker()
+    private lazy var workerCalendar: WorkerCalendar? = WorkerCalendar()
     private var events: [QDMUserCalendarEvent] = []
     private var preparations: [QDMUserPreparation] = []
     private var createdUserCalendarEvent: QDMUserCalendarEvent?
@@ -23,9 +24,9 @@ final class DTPrepareInteractor: DTInteractor {
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
-        prepareWorker?.hasSyncedCalendars { [weak self] available in
-            self?.prepareWorker?.getEvents { [weak self] (events, _) in
-                self?.events = events.unique
+        workerCalendar?.hasSyncedCalendars { [weak self] available in
+            self?.workerCalendar?.getCalendarEvents { [weak self] events in
+                self?.setUserCalendarEvents(events)
             }
         }
         prepareWorker?.getPreparations { [weak self] (preparations, _) in
@@ -128,7 +129,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     }
 
     func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        prepareWorker?.importCalendarEvents(event) {  [weak self] (userCalendarEvent) in
+        workerCalendar?.importCalendarEvents(event) {  [weak self] (userCalendarEvent) in
             self?.createdUserCalendarEvent = userCalendarEvent
             completion(userCalendarEvent != nil)
         }
@@ -138,8 +139,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
         self.events.removeAll()
         self.events = events.sorted(by: { (lhs, rhs) -> Bool in
             return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
-        })
-        self.events = self.events.unique
+        }).unique
     }
 }
 
@@ -156,7 +156,7 @@ private extension DTPrepareInteractor {
             case .denied, .restricted:
                 preparePresenter?.presentCalendarPermission(.calendarOpenSettings)
             default:
-                prepareWorker?.hasSyncedCalendars { [weak self] available in
+                workerCalendar?.hasSyncedCalendars { [weak self] available in
                     if available == true {
                         self?.loadNext(selection)
                     } else {

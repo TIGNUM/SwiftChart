@@ -15,7 +15,7 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'HockeySDK'
   pod 'Kingfisher'
-  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'bugFix/event-import-for-none-syncable-calendars'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:voicusimu/SwiftChart.git'

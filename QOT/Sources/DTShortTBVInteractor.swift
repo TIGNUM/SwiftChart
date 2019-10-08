@@ -12,7 +12,7 @@ import qot_dal
 final class DTShortTBVInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var tbvWorker: TBVWorker? = TBVWorker()
+    private lazy var tbvWorker: WorkerTBV? = WorkerTBV()
 
     override func viewDidLoad() {
         super.viewDidLoad()

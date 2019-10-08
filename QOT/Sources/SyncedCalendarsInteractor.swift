@@ -12,14 +12,11 @@ import qot_dal
 final class SyncedCalendarsInteractor {
 
     // MARK: - Properties
+    private lazy var workerCalendar: WorkerCalendar? = WorkerCalendar()
     private lazy var worker = SyncedCalendarsWorker()
-    private lazy var dispatchGroup = DispatchGroup()
-    private lazy var skipDispatchGroup = DispatchGroup()
     private let presenter: SyncedCalendarsPresenterInterface
     private let router: SyncedCalendarsRouterInterface
     private var calendarSettings: [QDMUserCalendarSetting] = []
-    private var viewTitle = ""
-    private var viewSubtitle = ""
     private weak var delegate: SyncedCalendarsDelegate?
     let isInitialCalendarSelection: Bool
 
@@ -49,28 +46,24 @@ final class SyncedCalendarsInteractor {
     }
 }
 
-// MARK: - Get data
+// MARK: - Private
 private extension SyncedCalendarsInteractor {
     func getData() {
-        getViewTitle()
-        getCalendarData()
-        dispatchGroup.notify(queue: .main) { [weak self] in
-            guard let strongSelf = self else { return }
-            strongSelf.presenter.setupView(strongSelf.viewTitle, strongSelf.viewSubtitle, strongSelf.calendarSettings)
-        }
-    }
-
-    func getViewTitle() {
-         self.viewTitle = worker.viewTitle
-         self.viewSubtitle = worker.viewSubtitle
-    }
-
-    func getCalendarData() {
-        dispatchGroup.enter()
-        worker.getCalendarSettings { [weak self] (calendarSettings) in
+        let viewTitle = worker.viewTitle
+        let viewSubtitle = worker.viewSubtitle
+        workerCalendar?.getCalendarSettings { [weak self] (calendarSettings) in
             self?.calendarSettings = calendarSettings
-            self?.dispatchGroup.leave()
+            self?.presenter.setupView(viewTitle, viewSubtitle, calendarSettings)
         }
+    }
+
+    func updateCalendarSetting(_ setting: QDMUserCalendarSetting?) {
+        if let index = calendarSettings.index(where: { $0.calendarId == setting?.calendarId }) {
+            var cached = calendarSettings[index]
+            cached.syncEnabled = setting?.syncEnabled ?? false
+            calendarSettings[index] = cached
+        }
+        presenter.updateSettings(setting)
     }
 }
 
@@ -79,7 +72,7 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
     func updateSyncStatus(enabled: Bool, identifier: String) {
         var calendarSetting = calendarSettings.filter { $0.calendarId == identifier }.first
         calendarSetting?.syncEnabled = enabled
-        worker.updateCalendarSetting(calendarSetting) { [weak self] (setting) in
+        workerCalendar?.updateCalendarSetting(calendarSetting) { [weak self] (setting) in
             self?.updateCalendarSetting(setting)
         }
     }
@@ -87,40 +80,20 @@ extension SyncedCalendarsInteractor: SyncedCalendarsInteractorInterface {
     func didTapSkip() {
         // Disable all calendars
         calendarSettings.forEach {
-            skipDispatchGroup.enter()
             var setting = $0
             setting.syncEnabled = false
-            worker.updateCalendarSetting(setting) { [weak self] _ in
-                self?.skipDispatchGroup.leave()
-            }
+            workerCalendar?.updateCalendarSetting(setting) { _ in }
         }
-        // Notify success
-        skipDispatchGroup.notify(queue: .main) { [weak self] in
-            self?.router.dismiss {
-                self?.delegate?.didFinishSyncingCalendars(qdmEvents: [])
-            }
+        self.router.dismiss {
+            self.delegate?.didFinishSyncingCalendars(qdmEvents: [])
         }
     }
 
     func didTapSave() {
-        worker.getCalendarEvents { [weak self] (events) in
+        workerCalendar?.getCalendarEvents { [weak self] (events) in
             self?.router.dismiss {
                 self?.delegate?.didFinishSyncingCalendars(qdmEvents: events)
             }
         }
-    }
-}
-
-// MARK: - Private methods
-extension SyncedCalendarsInteractor {
-    func updateCalendarSetting(_ setting: QDMUserCalendarSetting?) {
-        // Update own cache
-        if let index = calendarSettings.index(where: { $0.calendarId == setting?.calendarId }) {
-            var cached = calendarSettings[index]
-            cached.syncEnabled = setting?.syncEnabled ?? false
-            calendarSettings[index] = cached
-        }
-        // Update view model
-        presenter.updateSettings(setting)
     }
 }

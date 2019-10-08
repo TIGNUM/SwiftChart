@@ -26,36 +26,3 @@ final class SyncedCalendarsWorker {
         return R.string.localized.syncedCalendarsButtonSave()
     }()
 }
-
-// MARK: - Public
-extension SyncedCalendarsWorker {
-
-    func getCalendarSettings(_ completion: @escaping ([QDMUserCalendarSetting]) -> Void) {
-        CalendarService.main.getCalendarSettings { (calendarSettings, _, error) in
-            if let error = error {
-                log("Error getCalendarSettings: \(error.localizedDescription)", level: .error)
-            }
-            completion(calendarSettings ?? [])
-        }
-    }
-
-    func updateCalendarSetting(_ calendarSetting: QDMUserCalendarSetting?,
-                               _ completion: ((QDMUserCalendarSetting?) -> Void)?) {
-        guard let setting = calendarSetting else { return }
-        CalendarService.main.updateCalendarSetting(setting) { (calendarSetting, error) in
-            if let error = error {
-                log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
-            }
-            completion?(calendarSetting)
-        }
-    }
-
-    func getCalendarEvents(_ completion: @escaping ([QDMUserCalendarEvent]) -> Void) {
-        CalendarService.main.getCalendarEvents { (events, initialized, error) in
-            if let error = error {
-                log("Error fetching calendar events: \(error.localizedDescription)", level: .error)
-            }
-            completion(events ?? [])
-        }
-    }
-}

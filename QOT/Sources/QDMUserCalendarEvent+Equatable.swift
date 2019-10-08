@@ -28,3 +28,19 @@ extension QDMUserCalendarEvent: Equatable {
             lhs.isDetached == rhs.isDetached
     }
 }
+
+extension QDMUserCalendarEvent {
+    func hasSameContent(from event: EKEvent?) -> Bool {
+        return event?.title == title &&
+            event?.startDate == startDate &&
+            event?.endDate == endDate &&
+            event?.location == location &&
+            event?.calendar.title == calendarName &&
+            event?.location == location &&
+            event?.notes == notes &&
+            event?.timeZone?.identifier == timeZoneId &&
+            event?.occurrenceDate == occurrenceDate &&
+            event?.isAllDay == isAllDay &&
+            event?.isDetached == isDetached
+    }
+}
