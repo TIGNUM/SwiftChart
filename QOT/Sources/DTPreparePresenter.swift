@@ -53,4 +53,8 @@ extension DTPreparePresenter: DTPreparePresenterInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
         prepareViewController?.presentCalendarPermission(permissionType)
     }
+
+    func presentCalendarSettings() {
+        prepareViewController?.presentCalendarSettings()
+    }
 }

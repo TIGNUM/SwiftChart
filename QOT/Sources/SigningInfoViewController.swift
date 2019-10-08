@@ -105,7 +105,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 // MARK: - Private
 private extension SigningInfoViewController {
     func setupText() {
-        ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: view.bounds.width - titleLabel.frame.origin.x * 2)
+        ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: titleLabel.bounds.width)
         ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
 
         UIView.animate(withDuration: 3.0) {

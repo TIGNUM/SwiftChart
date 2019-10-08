@@ -9,4 +9,18 @@
 import UIKit
 import qot_dal
 
-final class DTSolveInteractor: DTInteractor {}
+final class DTSolveInteractor: DTInteractor {
+    override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
+        if questionAnswerType == AnswerType.text.rawValue {
+            return tbv
+        }
+        return nil
+    }
+}
+
+// MARK: - DTShortTBVDelegate
+extension DTSolveInteractor: DTShortTBVDelegate {
+    func didDismissShortTBVScene(tbv: QDMToBeVision?) {
+        self.tbv = tbv
+    }
+}

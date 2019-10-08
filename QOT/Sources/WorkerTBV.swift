@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-class TBVWorker {
+class WorkerTBV {
     func createVision(selectedAnswers: [SelectedAnswer],
                       questionKeyWork: String,
                       questionKeyHome: String,

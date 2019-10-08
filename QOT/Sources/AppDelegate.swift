@@ -96,7 +96,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             setupUAirship()
             setupHockeyApp()
             setupKingfisherCache()
-            qot_dal.QOTService.main.reportAppStatus(.start)
+            QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
             UNUserNotificationCenter.current().delegate = self
         #endif //#if UNIT_TEST
@@ -117,7 +117,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
         return
         #else
-            qot_dal.QOTService.main.reportAppStatus(.background)
+            QOTService.main.reportAppStatus(.background)
         #endif //#if UNIT_TEST
     }
 
@@ -125,7 +125,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            qot_dal.QOTService.main.reportAppStatus(.termination)
+            QOTService.main.reportAppStatus(.termination)
         #endif
     }
 
@@ -135,8 +135,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
-            qot_dal.QOTService.main.reportAppStatus(.didBecomeActive)
-            if qot_dal.SessionService.main.getCurrentSession() != nil {
+            QOTService.main.reportAppStatus(.didBecomeActive)
+            if SessionService.main.getCurrentSession() != nil {
                 self.importHealthKitDataIfAuthorized()
                 self.importCalendarEventsIfAuthorized()
                 ExternalLinkImporter.main.importLink()
@@ -150,7 +150,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             return
         #else
             updateBadgeNumber()
-            qot_dal.QOTService.main.reportAppStatus(.willResignActive)
+            QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST
     }
 
@@ -293,7 +293,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
-        qot_dal.log("dailyPrep://handleNotification, notification:: \(notification)")
+        log("dailyPrep://handleNotification, notification:: \(notification)")
         var link: URL?
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
@@ -313,7 +313,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        qot_dal.log("QOT will present notification:: \(notification)")
+        log("QOT will present notification:: \(notification)")
         completionHandler([.alert, .sound])
     }
 

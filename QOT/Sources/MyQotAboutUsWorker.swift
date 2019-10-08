@@ -55,6 +55,6 @@ final class MyQotAboutUsWorker {
     }
 
     var aboutUsText: String {
-        return ScreenTitleService.main.localizedString(for: .AboutUsAboutTignum)
+        return ScreenTitleService.main.localizedString(for: .MyQotProfileAboutTignum)
     }
 }

@@ -15,7 +15,6 @@ final class SyncedCalendarsPresenter {
     // MARK: - Properties
     private weak var viewController: SyncedCalendarsViewControllerInterface?
     private var viewModel: SyncedCalendarsViewModel?
-
     private lazy var calendars: [EKCalendar] = {
         return EKEventStore.shared.calendars(for: .event)
     }()
@@ -28,8 +27,8 @@ final class SyncedCalendarsPresenter {
 
 // MARK: - SyncedCalendarsPresenterInterface
 extension SyncedCalendarsPresenter: SyncedCalendarsPresenterInterface {
-    func setupView(_ viewTitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting]) {
-        createViewModel(viewTitle, qdmCalendarSettings)
+    func setupView(_ viewTitle: String, _ viewSubtitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting]) {
+        createViewModel(viewTitle, viewSubtitle, qdmCalendarSettings)
     }
 
     func updateSettings( _ qdmCalendarSetting: QDMUserCalendarSetting?) {
@@ -40,7 +39,7 @@ extension SyncedCalendarsPresenter: SyncedCalendarsPresenterInterface {
 
 // MARK: - Private
 private extension SyncedCalendarsPresenter {
-    func createViewModel(_ viewTitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting]) {
+    func createViewModel(_ viewTitle: String, _ viewSubtitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting]) {
         let localSettings = qdmCalendarSettings.filter { (setting) -> Bool in
             return EKEventStore.shared.localIds.contains(obj: setting.calendarId ?? "")
         }
@@ -60,7 +59,10 @@ private extension SyncedCalendarsPresenter {
             sections[SyncedCalendarsViewModel.Section.notOnDevice] = otherItems
         }
         let footerHeight: CGFloat = localItems.filter { $0.isSubscribed == true }.isEmpty ? 0 : 80
-        viewModel = SyncedCalendarsViewModel(viewTitle: viewTitle, footerHeight: footerHeight, sections: sections)
+        viewModel = SyncedCalendarsViewModel(viewTitle: viewTitle,
+                                             viewSubtitle: viewSubtitle,
+                                             footerHeight: footerHeight,
+                                             sections: sections)
         viewController?.setupView(viewModel)
     }
 

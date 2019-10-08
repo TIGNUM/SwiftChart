@@ -10,6 +10,7 @@ import Foundation
 
 struct SyncedCalendarsViewModel {
     let viewTitle: String
+    let viewSubtitle: String
     let headerHeight: CGFloat = 80
     var footerHeight: CGFloat
     var sections: [Section: [Row]]

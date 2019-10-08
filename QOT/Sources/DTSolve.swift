@@ -18,12 +18,12 @@ struct Solve {
         static let Ready = "solve-key-ready"
         static let Dive = "solve-key-dive"
         static let DiveNutritionMindset = "solve-key-dive-nutrition-mindset"
-        static let OpenTBV = "solve-open-tbv"
         static let BackFromShortTBV = "back-from-short-tbv"
         static let TBVNextSteps = "solve-tbv-next-steps"
     }
 
     struct AnswerKey {
+        static let OpenTBV = "solve-open-tbv"
         static let LetsDoIt = "solve-lets-do-it"
         static let OpenVisionPage = "open-vision-page"
         static let OpenResult = "open_result_view"

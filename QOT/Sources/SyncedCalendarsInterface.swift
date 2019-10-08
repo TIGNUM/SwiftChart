@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 protocol SyncedCalendarsDelegate: class {
-    func didFinishSyncingCalendars(hasEvents: Bool)
+    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent])
 }
 
 protocol SyncedCalendarsViewControllerInterface: class {
@@ -19,7 +19,7 @@ protocol SyncedCalendarsViewControllerInterface: class {
 }
 
 protocol SyncedCalendarsPresenterInterface {
-    func setupView(_ viewTitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting])
+    func setupView(_ viewTitle: String, _ viewSubtitle: String, _ qdmCalendarSettings: [QDMUserCalendarSetting])
     func updateSettings( _ qdmCalendarSetting: QDMUserCalendarSetting?)
 }
 
@@ -33,5 +33,5 @@ protocol SyncedCalendarsInteractorInterface: Interactor {
 }
 
 protocol SyncedCalendarsRouterInterface {
-    func dismiss(_ completion: (() -> Void)?)
+    func dismiss(completion: (() -> Void)?)
 }
