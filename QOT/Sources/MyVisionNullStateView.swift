@@ -27,7 +27,7 @@ final class MyVisionNullStateView: UIView {
     func setupView(with header: String, message: String, delegate: MyVisionNullStateViewProtocol?) {
         self.delegate = delegate
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder),
+        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionSectionTitle),
                                          to: toBeVisionLabel)
 
         writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(R.string.localized.tbvButtonWrite()), for: .normal)
