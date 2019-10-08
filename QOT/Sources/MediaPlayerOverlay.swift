@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AVKit
 
 protocol MediaPlayerOverlayDelegate: class {
     func downloadMedia()
@@ -48,6 +49,19 @@ final class MediaPlayerOverlay: UIView {
         downloadButton.isEnabled = !isDownloaded
         bookmarkButton.isSelected = isBokmarked
     }
+
+    func buttonsShowHide() {
+        var hidden = UIDevice.current.orientation.isLandscape
+        if let avPlayerViewController = delegate as? AVPlayerViewController,
+            avPlayerViewController.videoGravity == AVLayerVideoGravity.resizeAspectFill.rawValue {
+            hidden = true
+        }
+        let alpha: CGFloat = hidden ? 0.0 : 1.0
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.downloadButton.alpha = alpha
+            self?.bookmarkButton.alpha = alpha
+        }
+    }
 }
 
 // MARK: - Private
@@ -58,15 +72,7 @@ private extension MediaPlayerOverlay {
     }
 
     @objc func didChangeOrientation() {
-        UIView.animate(withDuration: 0.1) {
-            self.buttonsShowHide()
-        }
-    }
-
-    func buttonsShowHide() {
-        let alpha: CGFloat = UIDevice.current.orientation.isLandscape ? 0.0 : 1.0
-        downloadButton.alpha = alpha
-        bookmarkButton.alpha = alpha
+        self.buttonsShowHide()
     }
 }
 
