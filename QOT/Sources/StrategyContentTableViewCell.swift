@@ -96,7 +96,7 @@ extension StrategyContentTableViewCell {
                                      subtitle: categoryTitle,
                                      url: mediaURL,
                                      totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
-        NotificationCenter.default.post(name: .playPauseAudio, object: media)        
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }
 

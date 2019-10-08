@@ -75,7 +75,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }()
 
     lazy var searchViewController: SearchViewController? = {
-        let configurator = SearchConfigurator.make(delegate: self, startDeactivated: true)
+        let configurator = SearchConfigurator.make(delegate: self)
         let searchViewController = SearchViewController(configure: configurator)
         return searchViewController
     }()
@@ -101,7 +101,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(colorMode: .dark)
 
         coachButton.alpha = 0.0
         UIView.animate(withDuration: 0.75) {

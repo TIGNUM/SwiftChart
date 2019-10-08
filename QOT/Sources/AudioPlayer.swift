@@ -116,7 +116,7 @@ class AudioPlayer {
         }
     }
 
-    func cancel() {        
+    func cancel() {
         resetPlayer()
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didStopAudio, object: self.media)

@@ -10,11 +10,6 @@ import Foundation
 import qot_dal
 
 final class SearchWorker {
-    let startDeactivated: Bool
-
-    init(startDeactivated: Bool) {
-        self.startDeactivated = startDeactivated
-    }
 
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {
         switch searchFilter {
@@ -40,6 +35,7 @@ final class SearchWorker {
             }
         }
     }
+
     private func getSearchResults(_ searchFilter: Search.Filter,
                                   _ contentCollections: [QDMContentCollection]? = nil,
                                   _ contentItems: [QDMContentItem]? = nil,

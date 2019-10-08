@@ -66,7 +66,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        (interactor?.shouldStartDeactivated() ?? false) ? deactivate(animated: false) : doActivate()
+        doActivate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -97,7 +97,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 }
 
 // MARK: - animation from parent
-
 extension SearchViewController {
     func activate(_ duration: Double) {
         activateAnimateDuration = duration
