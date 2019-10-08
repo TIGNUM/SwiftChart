@@ -67,19 +67,19 @@ final class MyVisionWorker {
     }
 
     lazy var updateAlertTitle: String = {
-        return AppTextService.get("my_qot.tbv.alert.update_alert_title")
+        return AppTextService.get(AppTextKey.my_qot_tbv_alert_update_alert_title)
     }()
 
     lazy var updateAlertMessage: String = {
-        return AppTextService.get("my_qot.tbv.alert.update_alert_body")
+        return AppTextService.get(AppTextKey.my_qot_tbv_alert_update_alert_body)
     }()
 
     lazy var updateAlertEditTitle: String = {
-        return AppTextService.get("my_qot.tbv.alert.edit_button")
+        return AppTextService.get(AppTextKey.my_qot_tbv_alert_edit_button)
     }()
 
     lazy var updateAlertCreateTitle: String = {
-        return AppTextService.get("my_qot.tbv.alert.create_button")
+        return AppTextService.get(AppTextKey.my_qot_tbv_alert_create_button)
     }()
 
     lazy var emptyTBVTextPlaceholder: String = {

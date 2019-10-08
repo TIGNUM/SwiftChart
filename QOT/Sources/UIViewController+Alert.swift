@@ -29,7 +29,7 @@ enum AlertType {
         switch self {
         case .custom(let title, _): return title
         case .title(let title): return title
-        case .dbError: return AppTextService.get("startup.alert.database_error_title")
+        case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_title)
         case .noNetworkConnection,
              .noNetworkConnectionFile: return R.string.localized.alertTitleNoNetworkConnection()
         case .unknown: return R.string.localized.alertTitleUnknown()
@@ -46,7 +46,7 @@ enum AlertType {
         switch self {
         case .custom(_, let message): return message
         case .message(let message): return message
-        case .dbError: return AppTextService.get("startup.alert.database_error_body")
+        case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_body)
         case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
         case .noNetworkConnectionFile: return R.string.localized.alertMessageNoNetworkConnectionFile()
         case .unknown: return R.string.localized.alertMessageUnknown()

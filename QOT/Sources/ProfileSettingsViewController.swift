@@ -190,7 +190,7 @@ extension ProfileSettingsViewController {
             switch settingsType {
             case .logout:
                 let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-                let logout = QOTAlertAction(title: AppTextService.get("my_qot.profile_settings.view.logout_button")) { (_) in
+                let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_profile_settings_view_logout_button)) { (_) in
                     ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
