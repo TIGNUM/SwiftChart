@@ -49,6 +49,14 @@ final class WorkerCalendar {
         }
     }
 
+    func updateCalendarSettings(_ settings: [QDMUserCalendarSetting]) {
+        CalendarService.main.updateCalendarSettings(settings) { (error) in
+            if let error = error {
+                log("Error updateCalendarSetting: \(error.localizedDescription)", level: .error)
+            }
+        }
+    }
+
     func hasSyncedCalendars(_ completion: @escaping (Bool) -> Void) {
         getCalendarSettings { (settings) in
             let hasSyncedCalenders = settings.filter { (setting) -> Bool in
