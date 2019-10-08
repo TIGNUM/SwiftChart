@@ -85,6 +85,14 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
+
+        impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
+        if impactReadinessButton.isEnabled {
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        } else {
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        }
+
         if showDailyCheckInScreen {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {

@@ -43,8 +43,8 @@ final class DTSprintReflectionInteractor: DTInteractor {
 
     override func didUpdateUserInput(_ text: String, questionKey: String) {
         switch questionKey {
-        case SprintReflection.QuestionKey.Notes01: sprint?.notesReflection = text
-        case SprintReflection.QuestionKey.Notes02: sprint?.notesLearnings = text
+        case SprintReflection.QuestionKey.Notes01: sprint?.notesLearnings = text
+        case SprintReflection.QuestionKey.Notes02: sprint?.notesReflection = text
         case SprintReflection.QuestionKey.Notes03: sprint?.notesBenefits = text
         default: break
         }

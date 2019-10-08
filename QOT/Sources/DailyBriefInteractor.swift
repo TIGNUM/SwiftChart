@@ -27,6 +27,8 @@ final class DailyBriefInteractor {
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
     private var needToLoadBuckets: Bool = false
+    private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
+    private var dailyCheckInResultRequestCheckTimer: Timer?
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -405,18 +407,47 @@ extension DailyBriefInteractor {
         let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
-            readinessIntro = impactReadiness.bucketText?.contentItems.filter {$0.format == .paragraph}.first?.valueText
-        } else { readinessIntro = impactReadiness.contentCollections?.filter {$0.searchTags.contains("impact_readiness_score")}
-            .first?.contentItems.at(index: (responseIndex - 1))?.valueText
+            readinessIntro = impactReadiness.bucketText?.contentItems
+                .filter {$0.searchTags.contains("NO_CHECK_IN")}.first?.valueText
+        } else {
+            readinessIntro = impactReadiness.contentCollections?
+                .filter {$0.searchTags.contains("impact_readiness_score")}.first?.contentItems.at(index: (responseIndex - 1))?.valueText
         }
-        let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
+        let bucketTitle = impactReadiness.bucketText?.contentItems.filter {$0.format == .title }.first?.valueText
 
-//If the daily check in completed update the ImpactReadinessCellViewModel
+        //If the daily check in completed update the ImpactReadinessCellViewModel
         let readinessscore = Int(impactReadiness.dailyCheckInResult?.impactReadiness ?? -1)
-
+        var enableButton = true
         if impactReadiness.dailyCheckInAnswerIds?.isEmpty != false,
             impactReadiness.dailyCheckInResult == nil {
             expendImpactReadiness = false
+
+        }
+
+        // check request time for result
+        if let answerDate = impactReadiness.dailyCheckInAnswers?.first?.createdOnDevice,
+            impactReadiness.dailyCheckInResult == nil {
+            // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
+            if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
+                readinessIntro = impactReadiness.bucketText?.contentItems
+                    .filter {$0.searchTags.contains("CANNOT_GET_DAILY_CHECK_IN_RESULT")}.first?.valueText
+                dailyCheckInResultRequestCheckTimer?.invalidate()
+                dailyCheckInResultRequestCheckTimer = nil
+                expendImpactReadiness = false
+                enableButton = false
+            } else if dailyCheckInResultRequestCheckTimer == nil { // if timer is not triggered.
+                readinessIntro = impactReadiness.bucketText?.contentItems
+                    .filter {$0.searchTags.contains("LOADING_DAILY_CHECK_IN_RESULT")}.first?.valueText
+                dailyCheckInResultRequestCheckTimer = Timer.scheduledTimer(withTimeInterval: TimeInterval(dailyCheckInResultRequestTimeOut),
+                                                                           repeats: false) { (timer) in
+                                                                            self.dailyCheckInResultRequestCheckTimer?.invalidate()
+                                                                            self.dailyCheckInResultRequestCheckTimer = nil
+                                                                            self.updateDailyBriefBucket()
+                }
+            }
+        } else if impactReadiness.dailyCheckInResult != nil { // if we got the result.
+            dailyCheckInResultRequestCheckTimer?.invalidate()
+            dailyCheckInResultRequestCheckTimer = nil
         }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
@@ -424,6 +455,7 @@ extension DailyBriefInteractor {
                                                                      readinessScore: readinessscore,
                                                                      readinessIntro: readinessIntro,
                                                                      isExpanded: expendImpactReadiness,
+                                                                     enableButton: enableButton,
                                                                      domainModel: impactReadiness))
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText

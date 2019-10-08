@@ -197,7 +197,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder),
+        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionSectionTitle),
                                          to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
