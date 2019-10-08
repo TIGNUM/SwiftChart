@@ -78,7 +78,9 @@ final class UserNotificationsManager {
                 dispatchGroup.leave()
                 return
             }
-            currentSprint = sprints.filter({ $0.isInProgress }).first
+            let yesterday = Date().beginingOfDate().dateAfterDays(-1)
+            currentSprint = sprints.filter({ $0.isInProgress }).first ??
+                sprints.filter({ $0.completedAt?.beginingOfDate() == yesterday }).first
             dispatchGroup.leave()
         }
 
@@ -204,18 +206,17 @@ final class UserNotificationsManager {
             guard let notificationSchedule = sprintConfig.notificationSchedule?.filter({ $0.day == dayForSprintConfig }).first else {
                 continue
             }
-            guard let excludeNotificationTags = notificationSchedule.excludedNotification,
-                let sprintContentTags = notificationSchedule.contentTags else {
+            guard let sprintContentTags = notificationSchedule.contentTags else {
                     continue
             }
 
-            notificationTagsToRemove[Date().dateAfterDays(day)] = excludeNotificationTags
+            notificationTagsToRemove[Date().dateAfterDays(day)] = notificationSchedule.excludedNotification
             dispatchGroup.enter()
             ContentService.main.getContentCollectionsWith(tags: sprintContentTags) { (sprintContents) in
                 if let content = sprintContents?.first,
-                    let notificationTitle = content.contentItems.filter({ $0.format == .title }).first?.valueText,
                     let notificationText = content.contentItems.filter({ $0.format == .paragraph }).first?.valueText,
                     let triggerDate = notificationSchedule.date(with: Date().dayAfter(days: day)), triggerDate > Date() {
+                    let notificationTitle = content.contentItems.filter({ $0.format == .title }).first?.valueText ?? sprint.title
                     // if it's valid sprint notification for today
                     let content = UNMutableNotificationContent(title: notificationTitle, body: notificationText, soundName: "", link: "")
                     content.sound = nil
