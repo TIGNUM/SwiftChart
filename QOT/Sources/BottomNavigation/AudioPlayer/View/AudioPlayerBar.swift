@@ -130,6 +130,7 @@ extension AudioPlayerBar {
     }
 
     func cancel() {
+        trackUserEvent(.CANCEL)
         audioPlayer.cancel()
         currentMedia = nil
     }
@@ -203,6 +204,7 @@ private extension AudioPlayerBar {
     }
 
     @IBAction func sliderValueDidChange(_ sender: UISlider) {
+        trackUserEvent(.AUDIO_SEEK)
         updateProgress(progress: sender.value)
         audioPlayer.seek(to: sender.value)
     }

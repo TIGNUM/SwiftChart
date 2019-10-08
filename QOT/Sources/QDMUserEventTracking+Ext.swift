@@ -11,4 +11,5 @@ import qot_dal
 
 extension QDMUserEventTracking.Name {
     static let YES_LEAVE = "YES_LEAVE"
+    static let AUDIO_SEEK = "AUDIO_SEEK"
 }
