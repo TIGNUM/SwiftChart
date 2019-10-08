@@ -112,9 +112,9 @@
 	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
 	<string>QOT needs HealthKit access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>HEALTH KIT ACCESS REQUEST</string>
+	<string>QOT needs HealthKit access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>HEALTH KIT ACCESS REQUEST</string>
+	<string>QOT needs HealthKit access to calculate Impact Readiness from your sleep pattern.</string>
 	<key>NSHumanReadableCopyright</key>
 	<false/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

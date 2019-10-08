@@ -409,10 +409,8 @@ extension DailyBriefInteractor {
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
             readinessIntro = impactReadiness.bucketText?.contentItems
                 .filter {$0.searchTags.contains("NO_CHECK_IN")}.first?.valueText
-        } else {
-            readinessIntro = impactReadiness.contentCollections?
-                .filter {$0.searchTags.contains("impact_readiness_score")}.first?.contentItems.at(index: (responseIndex - 1))?.valueText
         }
+
         let bucketTitle = impactReadiness.bucketText?.contentItems.filter {$0.format == .title }.first?.valueText
 
         //If the daily check in completed update the ImpactReadinessCellViewModel
@@ -448,6 +446,7 @@ extension DailyBriefInteractor {
         } else if impactReadiness.dailyCheckInResult != nil { // if we got the result.
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
+            readinessIntro = impactReadiness.dailyCheckInResult?.feedback
         }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,

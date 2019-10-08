@@ -45,9 +45,6 @@ extension QDMGuideItemNotfication {
     var notificationRequest: UNNotificationRequest? {
         guard let triggerDate = localNotificationDate, isDailyPrep == false else { return nil }
         let content = UNMutableNotificationContent(title: title, body: body ?? "", soundName: sound, link: link ?? "")
-        if sound?.isEmpty == true {
-            content.sound = nil
-        }
         let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
         return UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
     }
