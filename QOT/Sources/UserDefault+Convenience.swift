@@ -25,10 +25,10 @@ enum UserDefault: String {
     case myDataSelectedItems = "qot.userdefault.key.my.data.selected.items.dictionary"
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
     case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
+    case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
 }
 
 extension UserDefault {
-
     static func objectsToClearOnLogout() -> [UserDefault] {
         return [.calendarDictionary,
                 .whatsHotListLastViewed,
@@ -38,7 +38,8 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems]
+                .myDataSelectedItems,
+                .prepareLocalEventsDictionary]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -54,7 +55,8 @@ extension UserDefault {
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems]
+                .myDataSelectedItems,
+                .prepareLocalEventsDictionary]
     }
 
     var boolValue: Bool {
