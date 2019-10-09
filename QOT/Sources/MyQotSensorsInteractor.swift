@@ -39,18 +39,51 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
     }
 
     func requestHealthKitAuthorization() {
-        worker.requestHealthKitAuthorization { [weak self] (authorized) in
-            if authorized == true {
-                self?.updateHealthKitStatus()
-                self?.worker.importHealthKitData()
+        switch worker.getHealthKitAuthStatus() {
+        case .notDetermined:
+            worker.requestHealthKitAuthorization { [weak self] (authorized) in
+                if authorized == true {
+                    self?.updateHealthKitStatus()
+                    self?.worker.importHealthKitData()
+                }
             }
+        default:
+            UIApplication.shared.open(URL(string: "x-apple-health://")!)
         }
+
     }
 
     func requestAuraAuthorization() {
         worker.requestAuraAuthorization { [weak self] (tracker, config) in
             if let oauthConfig = config, let requestURL = oauthConfig.authRequestURL() {
                 self?.router.startOuraAuth(requestURL: requestURL, config: oauthConfig)
+            }
+        }
+    }
+
+    func updateHealthKitStatus() {
+        var status: String = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+        var buttonEnabled = false
+        switch worker.getHealthKitAuthStatus() {
+        case .notDetermined:
+            status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+            buttonEnabled = true
+            self.presenter.setHealthKit(title: self.worker.healthKitSensor.sensor.title,
+                                        status: status,
+                                        showNoDataInfo: false,
+                                        buttonEnabled: buttonEnabled)
+        default:
+            status = R.string.localized.sidebarSensorsMenuSensorsConnected()
+            HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
+                buttonEnabled = !hasData
+                status = hasData ? R.string.localized.sidebarSensorsMenuSensorsConnected() :
+                    R.string.localized.sidebarSensorsMenuSensorsNoData()
+                DispatchQueue.main.async {
+                    self?.presenter.setHealthKit(title: self?.worker.healthKitSensor.sensor.title ?? "",
+                                                 status: status,
+                                                 showNoDataInfo: !hasData,
+                                                 buttonEnabled: buttonEnabled)
+                }
             }
         }
     }
@@ -70,29 +103,6 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
 }
 
 private extension MyQotSensorsInteractor {
-    func updateHealthKitStatus() {
-        var status: String = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-        var buttonEnabled = false
-        switch worker.getHealthKitAuthStatus() {
-        case .notDetermined:
-            status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            buttonEnabled = true
-            self.presenter.setHealthKit(title: self.worker.healthKitSensor.sensor.title,
-                                        status: status,
-                                        labelStatus: self.worker.healthKitSensor.sensor.labelStatus,
-                                        buttonEnabled: buttonEnabled)
-        default:
-            status = R.string.localized.sidebarSensorsMenuSensorsConnected()
-            HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
-                    status = hasData ? R.string.localized.sidebarSensorsMenuSensorsConnected() : R.string.localized.sidebarSensorsMenuSensorsNoData()
-                self?.presenter.setHealthKit(title: self?.worker.healthKitSensor.sensor.title ?? "",
-                                       status: status,
-                                       labelStatus: self?.worker.healthKitSensor.sensor.labelStatus ?? "",
-                                       buttonEnabled: buttonEnabled)
-            }
-        }
-    }
-
     func updateOuraStatus() {
         worker.getOuraRingAuthStatus { [weak self] (authorized) in
             var status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()

@@ -14,7 +14,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
-    func showDailyCheckIn()
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
@@ -30,6 +29,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?)
     func presentMyDataScreen()
     func didChangeLocationPermission(granted: Bool)
+    func showDailyCheckInQuestions()
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -51,6 +51,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private var selectedStrategySprintsID: Int?
     private var selectedToolSprintsID: Int?
     private var showSteps = false
+    private var sprintIndexPath: IndexPath?
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var navBarHeader: NavBarTableViewCell?
@@ -207,6 +208,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .EXPLORE?:
             return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
+            sprintIndexPath = indexPath
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
             if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
@@ -266,6 +268,13 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              interactor?.presentWhatsHotArticle(selectedID: whatsHotArticleId)
+        case .SOLVE_REFLECTION?:
+            didSelectRow(at: indexPath)
+            if (bucketItem as? SolveReminderTableCellViewModel) != nil {
+                let model = bucketItem as? SolveReminderTableCellViewModel
+                guard let solve = model?.solve else { break }
+                showSolveResults(solve: solve)
+            }
         default:
             break
         }
@@ -739,6 +748,11 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func showDailyCheckInQuestions() {
+        interactor?.showDailyCheckInQuestions()
+    }
+
     func didChangeLocationPermission(granted: Bool) {}
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
@@ -764,8 +778,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        tableView.beginUpdates()
-        tableView.endUpdates()
+        if let indexPath = sprintIndexPath {
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 
     func showSolveResults(solve: QDMSolve) {
@@ -797,13 +812,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDecisionTree)
+        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
-    }
-
-    func showDailyCheckIn() {
-        interactor?.showDailyCheckIn()
     }
 
     func presentCopyRight(copyrightURL: String?) {

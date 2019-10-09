@@ -23,7 +23,7 @@ enum URLScheme: String {
     case siriShortCuts = "siri-shortcuts" // open siri setting screen
     case myPreparations = "my-preparations" // open my preparations screen
     case prepareEvent = "prepare-event" // open prepare for a event screen
-    case preparation = "preparation" // open specific preparation with QDMUserPreparation's local id, finding '#'
+    case preparation = "preparation" // open specific preparation with QDMUserPreparation's local id(qotId). parameter "identifier"
     case toBeVision = "to-be-vision" // open my to be vision screen
     case mySprints = "my-sprints" // open my sprints screen
     case myLibrary = "my-library" // open my library screen
@@ -37,6 +37,7 @@ enum URLScheme: String {
     case support = "support" // open support screen
     case tutorial = "tutorial" // open tutorial screen
     case faq = "faq" // FAQ screen
+    case usingQOT = "using-qot" // Using QOT screen
     case aboutTignum = "about-tignum" // open about tignum screen
     case qotBenefits = "qot-benefits" // open qot benefits screen
     case aboutTignumDetail = "about-tignum-detail" // open about tignum content screen
@@ -54,6 +55,8 @@ enum URLScheme: String {
     case qrcode0002 = "qrcode-open-0002"
     case qrcode0003 = "qrcode-open-0003"
     case qrcode0004 = "qrcode-open-0004"
+    case recovery3DPlanner = "3d-recovery-planner"
+    case mindsetShifterPlanner = "mindset-shifter-planner"
 
     // Competability fro 1.x version notifications
     case fitbit = "fitbit-integration" // IGNORE

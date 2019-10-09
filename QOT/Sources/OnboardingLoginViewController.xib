@@ -66,12 +66,12 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0e-qM-qc8">
-                    <rect key="frame" x="327" y="85" width="24" height="24"/>
+                    <rect key="frame" x="311" y="77" width="40" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="24" id="Bwj-LL-Rej"/>
-                        <constraint firstAttribute="height" constant="24" id="y2t-c6-FHD"/>
+                        <constraint firstAttribute="width" constant="40" id="Bwj-LL-Rej"/>
+                        <constraint firstAttribute="height" constant="40" id="y2t-c6-FHD"/>
                     </constraints>
-                    <state key="normal" image="arrowUp"/>
+                    <state key="normal" image="ic_arrow_up"/>
                     <connections>
                         <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="gEG-jS-UbM"/>
                     </connections>
@@ -254,6 +254,6 @@
         </view>
     </objects>
     <resources>
-        <image name="arrowUp" width="16" height="16"/>
+        <image name="ic_arrow_up" width="40" height="40"/>
     </resources>
 </document>

@@ -8,11 +8,7 @@
 
 import UIKit
 
-class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var preview: UIImageView!
-    @IBOutlet weak var contentTitle: UILabel!
-    @IBOutlet weak var infoText: UILabel!
+class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     @IBOutlet weak var playButton: UIButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -26,11 +22,9 @@ class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTable
         playButton.isEnabled = !editing
     }
 
-    func configure(withUrl: URL?, playButtonTitle: String?, playButtonTag: Int = 0) {
-        guard let url = withUrl, let title = playButtonTitle else { return }
-        skeletonManager.hide()
-        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: skeletonManager)
-        playButton.setTitle(title, for: .normal)
+    func configure(playButtonTitle: String?, playButtonTag: Int = 0) {
+        configure()
+        playButton.setTitle(playButtonTitle, for: .normal)
         playButton.tag = playButtonTag
     }
 }

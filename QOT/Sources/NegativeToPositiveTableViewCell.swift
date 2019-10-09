@@ -29,19 +29,23 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
     private let singleOffset: CGFloat = 25
 
     lazy var leftOffset: CGFloat = { return 0 }()
-    lazy var middleOffset: CGFloat = { return self.contentView.bounds.width * 0.5 - self.singleOffset }()
+    lazy var middleOffset: CGFloat = { return self.contentView.bounds.width * 0.33 - self.singleOffset }()
     lazy var rightOffset: CGFloat = { return self.contentView.bounds.width - 2 * self.singleOffset }()
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            self.clipTo(self.middleOffset, duration: 0.5)
+        }
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
         if initialOffset == 0 {
-            initialOffset = middleOffset
+            initialOffset = self.contentView.bounds.width * 0.5 - self.singleOffset
             highPerformanceConstraint.constant = initialOffset
         }
     }
@@ -106,8 +110,8 @@ private extension NegativeToPositiveTableViewCell {
         }
     }
 
-    func clipTo(_ offset: CGFloat) {
-        UIView.animate(withDuration: Animation.duration_04, delay: 0, options: .curveEaseOut, animations: { [weak self] in
+    func clipTo(_ offset: CGFloat, duration: Double = Animation.duration_04) {
+        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseOut, animations: { [weak self] in
             self?.highPerformanceConstraint.constant = offset
             self?.layoutIfNeeded()
         })

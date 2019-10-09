@@ -29,8 +29,8 @@ extension MySprintsListRouter: MySprintsListRouterInterface {
         guard let sprintDetailsController = R.storyboard.mySprintDetails.mySprintDetailsViewController() else {
             return
         }
-        let configurator = MySprintDetailsConfigurator.make()
-        configurator(sprintDetailsController, sprint)
+        let configurator = MySprintDetailsConfigurator.make(sprintId: sprint.remoteID ?? 0)
+        configurator(sprintDetailsController)
         viewController?.present(sprintDetailsController, animated: true)
     }
 }

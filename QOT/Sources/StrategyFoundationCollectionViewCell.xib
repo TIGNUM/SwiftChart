@@ -85,6 +85,7 @@
                 <outlet property="componentContentView" destination="EqS-hg-CMd" id="K0Z-6e-kBK"/>
                 <outlet property="performanceLabel" destination="yKv-vg-8Eu" id="aVs-5j-lKo"/>
                 <outlet property="progressLabel" destination="GZo-ZF-xKd" id="t7T-w6-eIE"/>
+                <outlet property="seenIcon" destination="cbW-aM-03R" id="jLE-d5-hEp"/>
             </connections>
             <point key="canvasLocation" x="196" y="139.43028485757122"/>
         </collectionViewCell>

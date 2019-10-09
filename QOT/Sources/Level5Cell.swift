@@ -14,7 +14,7 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introLabel: UILabel!
     @IBOutlet private weak var questionLabel: UILabel!
-    @IBOutlet private var buttons: [UIButton]!
+    @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!
     @IBOutlet private weak var levelText: UILabel!
     @IBOutlet weak var level1Button: AnimatedButton!
@@ -23,14 +23,15 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var level4Button: AnimatedButton!
     @IBOutlet weak var level5Button: AnimatedButton!
     @IBOutlet weak var knowledgeProgress: UIProgressView!
-    @IBOutlet weak var saveButton: AnimatedButton!
+    @IBOutlet weak var saveButton: RoundedButton!
     @IBOutlet weak var readinessProgress: UIProgressView!
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
     @IBOutlet weak var progressStackView: UIStackView!
     var levelMessages: [Level5ViewModel.LevelDetail] = []
     weak var delegate: DailyBriefViewControllerDelegate?
-    var savedAnswer: Int = 0
+    var savedAnswer: Int?
+    var tmpAnswer: Int = 0
     var confirmationMessage: String?
 
     override func awakeFromNib() {
@@ -51,10 +52,27 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBAction func save(_ sender: UIButton) {
         saveButton.setTitle("Saved", for: .normal)
         saveButton.layer.borderWidth = 0
+        saveButton.isEnabled = false
         ThemeView.selectedButton.apply(saveButton)
-        delegate?.saveAnswerValue(savedAnswer + 1, from: self)
-        QOTAlert.show(title: nil, message: confirmationMessage)
-        updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
+        savedAnswer = tmpAnswer
+        delegate?.saveAnswerValue(tmpAnswer + 1, from: self)
+        let closeButtonItem = createCloseButton()
+        QOTAlert.show(title: nil, message: confirmationMessage, bottomItems: [closeButtonItem])
+        updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
+    }
+
+    @objc func dismissAction() {
+        QOTAlert.dismiss()
+    }
+
+    func createCloseButton() -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
+        button.setImage(R.image.ic_close_rounded(), for: .normal)
+        button.imageView?.contentMode = .center
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        ThemeButton.closeButton(.dark).apply(button)
+        return UIBarButtonItem(customView: button)
     }
 
     func configure(with: Level5ViewModel?) {
@@ -64,6 +82,14 @@ final class Level5Cell: BaseDailyBriefCell {
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []
+        if let selectedValue = with?.domainModel?.currentGetToLevel5Value ?? with?.domainModel?.latestGetToLevel5Value {
+            tmpAnswer = selectedValue - 1
+            savedAnswer = tmpAnswer
+        }
+        if with?.domainModel?.currentGetToLevel5Value == nil && with?.domainModel?.latestGetToLevel5Value != nil {
+            savedAnswer = nil
+        }
+        updateButtonStatus()
         initialSetup()
     }
 
@@ -77,37 +103,45 @@ final class Level5Cell: BaseDailyBriefCell {
 
     //    when the bucket is loaded set level 1 as default
     func initialSetup() {
-        ThemeText.dailyBriefLevelTitle.apply(levelMessages.at(index: savedAnswer)?.levelTitle, to: levelTitle)
-        updateUI(levelMessages.at(index: savedAnswer)?.levelContent)
+        ThemeText.dailyBriefLevelTitle.apply(levelMessages.at(index: tmpAnswer)?.levelTitle, to: levelTitle)
+        updateUI(levelMessages.at(index: tmpAnswer)?.levelContent)
         setButtonBackgroundColor()
         setProgress()
     }
 
-    //
     func setUpButtons() {
-        saveButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        buttons.forEach {(button) in
-            button.corner(radius: button.frame.width / 2, borderColor: .accent40)
-        }
+        ThemeBorder.accent.apply(saveButton)
     }
 
     func setButtonBackgroundColor() {
         buttons.forEach {(button) in
-            button.backgroundColor = savedAnswer == button.tag ? .accent40 : .clear
+            ThemeButton.level5.apply(button, selected: tmpAnswer == button.tag)
         }
     }
 
     func setButtonText(_ buttonText: String?) {
-        saveButton.setTitle(buttonText, for: .normal)
+        ThemableButton.level5.apply(saveButton, title: buttonText)
         ThemeView.level1.apply(saveButton)
-        saveButton.layer.borderWidth = 1
     }
 
     @IBAction func didPressLevel(_ sender: UIButton) {
-        setButtonText("Save")
-        savedAnswer = sender.tag
+        tmpAnswer = sender.tag
+        updateButtonStatus()
         initialSetup()
         delegate?.didUpdateLevel5()
+    }
+
+    func updateButtonStatus() {
+
+        if tmpAnswer == savedAnswer {
+            setButtonText("Saved")
+            ThemeButton.level5.apply(saveButton, selected: true)
+            saveButton.isEnabled = false
+        } else {
+            setButtonText("Save")
+            ThemeButton.level5.apply(saveButton, selected: false)
+            saveButton.isEnabled = true
+        }
     }
 
     func setProgress() {
@@ -116,7 +150,7 @@ final class Level5Cell: BaseDailyBriefCell {
                                 [0.60, 0.50, 0.33, 0.0],
                                 [0.80, 0.75, 0.66, 0.50],
                                 [1.0, 1.0, 1.0, 1.0]]
-        let item = array[savedAnswer]
+        let item = array[tmpAnswer]
         knowledgeProgress.setProgress(item[0], animated: true)
         readinessProgress.setProgress(item[1], animated: true)
         awarenssProgress.setProgress(item[2], animated: true)

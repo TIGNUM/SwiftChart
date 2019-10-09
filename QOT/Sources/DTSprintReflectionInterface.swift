@@ -12,6 +12,10 @@ protocol DTSprintReflectionViewControllerInterface: class {}
 
 protocol DTSprintReflectionPresenterInterface {}
 
-protocol DTSprintReflectionInteractorInterface: Interactor {}
+protocol DTSprintReflectionInteractorInterface: Interactor {
+    func updateSprint()
+}
 
-protocol DTSprintReflectionRouterInterface {}
+protocol DTSprintReflectionRouterInterface {
+    func presentTrackTBV()
+}

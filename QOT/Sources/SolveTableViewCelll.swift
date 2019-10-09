@@ -28,6 +28,7 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     }
 
     func configure(title: String?, date: String?, solve: QDMSolve?) {
+        skeletonManager.hide()
         guard let titleText = title, let dateString = date, let qdmSolve = solve else { return }
 
         ThemeText.durationString.apply(dateString, to: dateLabel)

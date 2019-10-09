@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MyDataChartLegendTableViewCellDelegate: class {
     func didTapAddButton()
@@ -44,20 +45,29 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
             labelsCollection.first?.attributedText = attributedString
             return
         }
-        skeletonManager.hide()
-        var indexes: [Int] = []
-        for (index, sectionModel) in model.myDataSelectionItems.enumerated() {
-            if let title = sectionModel.title {
-                indexes.append(index)
-                for label in labelsCollection where label.tag == index {
-                    ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)
+
+        HealthService.main.availableHealthIndexesForToday { [weak self] (healthData) in
+            guard let strongSelf = self else { return }
+            let hasHealthKitDataForToday: Bool = (healthData?.count ?? 0) > 0
+
+            strongSelf.skeletonManager.hide()
+            var indexes: [Int] = []
+            for (index, sectionModel) in model.myDataSelectionItems.enumerated() {
+                if var title = sectionModel.title {
+                    if hasHealthKitDataForToday && sectionModel.myDataExplanationSection == .SQN {
+                        title.append(contentsOf: (" " + ScreenTitleService.main.localizedString(for: .myDataExplanationSQNSectionFromHealthKit)))
+                    }
+                    indexes.append(index)
+                    for label in strongSelf.labelsCollection where label.tag == index {
+                        ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)
+                    }
                 }
             }
-        }
 
-        for index in indexes where index != 0 {
-            for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") == index {
-                constraint.constant = lineHeight
+            for index in indexes where index != 0 {
+                for constraint in strongSelf.labelHeightConstraintCollection where Int(constraint.identifier ?? "") == index {
+                    constraint.constant = strongSelf.lineHeight
+                }
             }
         }
     }

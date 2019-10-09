@@ -80,7 +80,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 127, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -176,16 +176,13 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-    func hideScreenLoader() {
-//        self.removeLoadingSkeleton()
-    }
 
     func showNullState(with title: String, message: String) {
         didShowNullStateView = true
         nullStateView.isHidden = false
         nullStateView.setupView(with: title, message: message, delegate: self)
         refreshBottomNavigationItems()
-        hideScreenLoader()
+        skeletonManager.hide()
     }
 
     func hideNullState() {
@@ -204,6 +201,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
+        ThemeBorder.accent40.apply(shareButton)
         ThemeBorder.accent40.apply(rateButton)
         ThemeBorder.accent40.apply(singleMessageRateButton)
         ThemeBorder.accent40.apply(updateButton)

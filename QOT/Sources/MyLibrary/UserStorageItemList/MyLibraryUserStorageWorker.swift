@@ -66,6 +66,14 @@ final class MyLibraryUserStorageWorker {
         return item.type == .NOTES
     }()
 
+    lazy var cancelDownloadItemsAlertTitle: String = {
+        return R.string.localized.myLibraryItemsAlertDownloadCancelTitle()
+    }()
+
+    lazy var cancelDownloadItemsAlertMessage: String = {
+        return R.string.localized.myLibraryItemsAlertDownloadCancelMessage()
+    }()
+
     lazy var removeItemsAlertTitle: String = {
         return R.string.localized.myLibraryItemsAlertRemoveTitle()
     }()
@@ -101,7 +109,7 @@ final class MyLibraryUserStorageWorker {
         }
     }()
 
-    lazy var contentIcon: UIImage = {
+    lazy var emptyContentIcon: UIImage = {
         let image: UIImage?
         switch item.type {
         case .ALL:
@@ -118,9 +126,26 @@ final class MyLibraryUserStorageWorker {
         return image ?? UIImage()
     }()
 
+    lazy var textIcon: UIImage = {
+        let image: UIImage?
+        switch item.type {
+        case .ALL:
+            image = R.image.my_library_group()
+        case .BOOKMARKS:
+            image = R.image.my_library_bookmark_text_icon()
+        case .DOWNLOADS:
+            image = R.image.my_library_download_text_icon()
+        case .LINKS:
+            image = R.image.my_library_link_text_icon()
+        case .NOTES:
+            image = R.image.my_library_note_light()
+        }
+        return image ?? UIImage()
+    }()
+
     lazy var emtptyContentAlertMessage: NSAttributedString = {
         var text: String
-        var icon: UIImage? = contentIcon
+        var icon: UIImage? = textIcon
         switch item.type {
         case .ALL:
             text = R.string.localized.myLibraryItemsAlertEmptyMessageAll()
@@ -191,10 +216,6 @@ final class MyLibraryUserStorageWorker {
         case .LINKS: return .links
         case .NOTES: return .notes
         }
-    }()
-
-    lazy var itemCount: Int = {
-        return item.itemCount
     }()
 }
 

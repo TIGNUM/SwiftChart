@@ -71,10 +71,12 @@ final class LaunchHandler {
              .prepareProblem:
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .planASprint:
             let configurator = DTSprintConfigurator.make()
             let controller = DTSprintViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .tools,
              .library:
@@ -85,6 +87,7 @@ final class LaunchHandler {
              .prepareDay:
             let configurator = DTPrepareConfigurator.make()
             let controller = DTPrepareViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
             present(viewController: controller)
         case .preparation:
             showPreparationWith(identifier: (queries[scheme.queryName] as? String) ?? "" )
@@ -156,8 +159,12 @@ final class LaunchHandler {
             push(viewController: controller)
         case .tutorial: break
         case .faq:
-            guard let controller = R.storyboard.myQot.myQotSupportFaqViewController() else { return }
-            MyQotSupportFaqConfigurator.configure(viewController: controller)
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
+            push(viewController: controller)
+        case .usingQOT:
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
             push(viewController: controller)
         case .aboutTignum:
             guard let controller = R.storyboard.myQot.myQotAboutUsViewController() else { return }
@@ -190,6 +197,8 @@ final class LaunchHandler {
              .qrcode0002,
              .qrcode0003,
              .qrcode0004: presentQRCodeURL(url)
+        case .recovery3DPlanner: show3DRecoveryDecisionTree()
+        case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
@@ -269,8 +278,8 @@ extension LaunchHandler {
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
             } else {
-                guard let viewController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
-                DailyCheckinStartConfigurator.configure(viewController: viewController)
+                guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
+                DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
                 self?.present(viewController: viewController)
             }
         }
@@ -341,6 +350,28 @@ extension LaunchHandler {
         }
     }
 
+    func showMindsetShifterDecisionTree() {
+        guard let mainNavigationController = baseRootViewController?.navigationController else { return }
+        mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
+            self.present(viewController: controller)
+            baseRootViewController?.removeBottomNavigation()
+        }
+    }
+
+    func show3DRecoveryDecisionTree() {
+        guard let mainNavigationController = baseRootViewController?.navigationController else { return }
+        mainNavigationController.dismissAllPresentedViewControllers(mainNavigationController, true) {
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
+            controller.triggeredByLaunchHandler = true
+            self.present(viewController: controller)
+            baseRootViewController?.removeBottomNavigation()
+        }
+    }
+
     func dismissChatBotFlow() {
         baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true, completion: nil)
     }
@@ -363,5 +394,4 @@ extension LaunchHandler {
     func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
-
 }

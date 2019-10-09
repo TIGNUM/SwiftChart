@@ -19,6 +19,6 @@ protocol DTSolveInteractorInterface: Interactor {
 
 protocol DTSolveRouterInterface {
     func presentSolveResults(selectedAnswer: DTViewModel.Answer)
-    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?)
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?)
     func dismissFlowAndGoToMyTBV()
 }

@@ -8,23 +8,17 @@
 
 import UIKit
 
-class DownloadTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var contentTitle: UILabel!
-    @IBOutlet weak var infoText: UILabel!
+class DownloadTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     @IBOutlet private weak var activityIcon: UIImageView!
     @IBOutlet private weak var activityView: GradientArcView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(contentTitle)
-        skeletonManager.addSubtitle(infoText)
-        skeletonManager.addOtherView(icon)
         skeletonManager.addOtherView(activityIcon)
     }
 
     func setStatus(_ status: MyLibraryCellViewModel.DownloadStatus) {
-        skeletonManager.hide()
+        configure()
         activityIcon.image = nil
         activityView.isHidden = true
         activityView.stopRotating()

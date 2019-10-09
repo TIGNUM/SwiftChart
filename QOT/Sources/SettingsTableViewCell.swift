@@ -169,6 +169,9 @@ private extension SettingsTableViewCell {
             textField.autocapitalizationType = UITextAutocapitalizationType.none
 			textField.keyboardType = .phonePad
 		}
+        if settingsType == .company || settingsType == .email {
+            ThemeText.accountDetailEmail.apply(value, to: textField)
+        }
         textField.inputAccessoryView = keyboardInputView
     }
 

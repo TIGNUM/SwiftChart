@@ -27,7 +27,6 @@
 		3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083823225F3ED000664B9B /* ArticleInteractor.swift */; };
 		3608382C225F3ED000664B9B /* ArticleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083824225F3ED000664B9B /* ArticleModel.swift */; };
 		3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083825225F3ED000664B9B /* ArticleConfigurator.swift */; };
-		36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36085C5822CA48E600C703BA /* PreparationManager.swift */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
@@ -98,7 +97,7 @@
 		363B9CC4232BF34A00C1A29E /* DTTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */; };
 		363B9CC5232BF34A00C1A29E /* DTTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBD232BF34A00C1A29E /* DTTBV.swift */; };
 		363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */; };
-		363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */; };
+		363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */; };
 		363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363BB1762316EFB500B65065 /* ChoiceViewController.xib */; };
 		363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */; };
 		3655F2D32326EBD600334719 /* DTMindsetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */; };
@@ -241,7 +240,7 @@
 		36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
 		36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */; };
 		36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
-		36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
+		36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */; };
 		36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */; };
 		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
 		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
@@ -278,7 +277,6 @@
 		36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */; };
 		36E4CF0F22BC51BD009A2DF7 /* ChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */; };
 		36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */; };
-		36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5DD9922D4E13700910E0D /* QuestionManager.swift */; };
 		36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */; };
 		36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */; };
 		36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */; };
@@ -317,6 +315,8 @@
 		38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
+		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
+		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
@@ -342,12 +342,12 @@
 		5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */; };
 		5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */; };
 		5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */; };
-		5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */; };
-		5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */; };
-		5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */; };
-		5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */; };
-		5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */; };
-		5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */; };
+		5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */; };
+		5F62BE90228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */; };
+		5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */; };
+		5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */; };
+		5F62BE98228AB64E00852F7E /* MyQotSupportDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */; };
+		5F62BE9A228AB66100852F7E /* MyQotSupportDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */; };
 		5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */; };
 		5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */; };
 		5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */; };
@@ -437,13 +437,6 @@
 		754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */; };
 		75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */; };
 		7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */; };
-		7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */; };
-		7582616622D8DBBE000094DE /* DailyCheckinStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */; };
-		7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */; };
-		7582616822D8DBBE000094DE /* DailyCheckinStartInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */; };
-		7582616922D8DBBE000094DE /* DailyCheckinStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */; };
-		7582616A22D8DBBE000094DE /* DailyCheckinStartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */; };
-		7582616C22D8DBBE000094DE /* DailyCheckinStartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */; };
 		7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7582617022DC6A57000094DE /* DailyCheckin.storyboard */; };
 		7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */; };
 		7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */; };
@@ -465,13 +458,6 @@
 		75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */; };
 		75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */; };
 		75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */; };
-		75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */; };
-		75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */; };
-		75DC685922BD181A00FF183D /* MyToBeVisionCountDownRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */; };
-		75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */; };
-		75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */; };
-		75DC685F22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */; };
-		75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */; };
 		75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */; };
 		75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */; };
 		75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */; };
@@ -700,7 +686,6 @@
 		9100195220F88EE600049118 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		9100195320F88EF100049118 /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
 		9100195420F88F0700049118 /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
-		9100195520F88F1A00049118 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
 		9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100195620F8A0E200049118 /* ExtensionsDataManager.swift */; };
 		91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */; };
 		91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E3A20909E7A0035DA1F /* ProfileSettingsModel.swift */; };
@@ -867,8 +852,6 @@
 		ACC68C84221C2CB000ED899B /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
 		ACC68C85221C2CB100ED899B /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
 		ACC68C86221C2F2A00ED899B /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
-		ACC68C88221C2F4B00ED899B /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
-		ACC68C89221C2F5D00ED899B /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
 		ACC68C8A221C2F7000ED899B /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
 		ACC68C8C221C4E3500ED899B /* DailyPrepIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */; };
 		ACCCBC8B21E36AAA008D744D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
@@ -893,6 +876,8 @@
 		B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */; };
 		B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
+		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
+		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
 		B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */; };
 		B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */; };
 		B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */; };
@@ -950,11 +935,12 @@
 		B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */; };
 		B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */; };
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
+		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
+		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */; };
 		B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */; };
 		B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */; };
 		B4F3950B232FF1930007AC51 /* UIStackView+RemoveAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */; };
-		B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
 		B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */; };
@@ -1015,7 +1001,6 @@
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
-		CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB27D59A1ECCB67300F2B76C /* Result.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
 		CB2FA0E820762914007F21D1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA0E720762914007F21D1 /* Environment.swift */; };
@@ -1025,14 +1010,11 @@
 		CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */; };
 		CB53F0D820235A9C007C624B /* Atomic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53F0D720235A9C007C624B /* Atomic.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */; };
-		CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57589D205FD22E00EDC028 /* FadeContainerView.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
 		CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */; };
 		CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */; };
 		CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */; };
 		CB873294202AEDA80081F522 /* GradientView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB873293202AEDA80081F522 /* GradientView.swift */; };
-		CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
-		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
 		CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */; };
 		CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBA054481E890560009E28D6 /* Dequeueable.swift */; };
@@ -1154,6 +1136,13 @@
 		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
 		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
+		F91F6A6223437CBA00DF6AA1 /* DailyCheckinStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */; };
+		F91F6A6323437CBA00DF6AA1 /* DailyCheckinStartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5D23437CB900DF6AA1 /* DailyCheckinStartConfigurator.swift */; };
+		F91F6A6423437CBA00DF6AA1 /* DailyCheckinStartInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */; };
+		F91F6A6523437CBA00DF6AA1 /* DailyCheckinStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */; };
+		F91F6A6623437CBA00DF6AA1 /* DailyCheckinStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */; };
+		F91F6A6723437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */; };
+		F91F6A6923437CE400DF6AA1 /* DailyCheckinStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */; };
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
@@ -1220,8 +1209,6 @@
 		F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */; };
 		F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */; };
 		F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */; };
-		F9A66BA122CB7FB60094EA46 /* MindsetShiftersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */; };
-		F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */; };
 		F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA622CD0C690094EA46 /* RoundedButton.swift */; };
 		F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */; };
 		F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */; };
@@ -1336,7 +1323,6 @@
 		36083823225F3ED000664B9B /* ArticleInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleInteractor.swift; sourceTree = "<group>"; };
 		36083824225F3ED000664B9B /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		36083825225F3ED000664B9B /* ArticleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigurator.swift; sourceTree = "<group>"; };
-		36085C5822CA48E600C703BA /* PreparationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationManager.swift; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
 		360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCalendarView.swift; sourceTree = "<group>"; };
 		360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionCalendarView.xib; sourceTree = "<group>"; };
@@ -1407,7 +1393,7 @@
 		363B9CBC232BF34A00C1A29E /* DTTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVInteractor.swift; sourceTree = "<group>"; };
 		363B9CBD232BF34A00C1A29E /* DTTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBV.swift; sourceTree = "<group>"; };
 		363B9CBE232BF34A00C1A29E /* DTTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTTBVConfigurator.swift; sourceTree = "<group>"; };
-		363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVWorker.swift; sourceTree = "<group>"; };
+		363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerTBV.swift; sourceTree = "<group>"; };
 		363BB1762316EFB500B65065 /* ChoiceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
 		363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView+Ext.swift"; sourceTree = "<group>"; };
 		3655F2CB2326EBD600334719 /* DTMindsetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTMindsetPresenter.swift; sourceTree = "<group>"; };
@@ -1585,7 +1571,6 @@
 		36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInteractor.swift; sourceTree = "<group>"; };
 		36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceModel.swift; sourceTree = "<group>"; };
 		36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceConfigurator.swift; sourceTree = "<group>"; };
-		36E5DD9922D4E13700910E0D /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewCell.swift; sourceTree = "<group>"; };
 		36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentCollectionViewCell.xib; sourceTree = "<group>"; };
 		36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContentView.swift; sourceTree = "<group>"; };
@@ -1624,6 +1609,8 @@
 		38290B852330F825004B5C14 /* DTSprintReflectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionConfigurator.swift; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
+		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
+		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
@@ -1650,13 +1637,13 @@
 		5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsInterface.swift; sourceTree = "<group>"; };
 		5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsRouter.swift; sourceTree = "<group>"; };
 		5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsViewController.swift; sourceTree = "<group>"; };
-		5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqViewController.swift; sourceTree = "<group>"; };
-		5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInteractor.swift; sourceTree = "<group>"; };
-		5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqConfigurator.swift; sourceTree = "<group>"; };
-		5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInterface.swift; sourceTree = "<group>"; };
-		5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqPresenter.swift; sourceTree = "<group>"; };
-		5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqRouter.swift; sourceTree = "<group>"; };
-		5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqWorker.swift; sourceTree = "<group>"; };
+		5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsViewController.swift; sourceTree = "<group>"; };
+		5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsInteractor.swift; sourceTree = "<group>"; };
+		5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsConfigurator.swift; sourceTree = "<group>"; };
+		5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsInterface.swift; sourceTree = "<group>"; };
+		5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsPresenter.swift; sourceTree = "<group>"; };
+		5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsRouter.swift; sourceTree = "<group>"; };
+		5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportDetailsWorker.swift; sourceTree = "<group>"; };
 		5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsViewController.swift; sourceTree = "<group>"; };
 		5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInteractor.swift; sourceTree = "<group>"; };
 		5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInterface.swift; sourceTree = "<group>"; };
@@ -1746,13 +1733,6 @@
 		754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphAnswersTableViewCell.xib; sourceTree = "<group>"; };
 		75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileSettingsKeybaordInputView.swift; sourceTree = "<group>"; };
 		7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionDataNullStateViewController.swift; sourceTree = "<group>"; };
-		7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartPresenter.swift; sourceTree = "<group>"; };
-		7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartWorker.swift; sourceTree = "<group>"; };
-		7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartRouter.swift; sourceTree = "<group>"; };
-		7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInterface.swift; sourceTree = "<group>"; };
-		7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartViewController.swift; sourceTree = "<group>"; };
-		7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInteractor.swift; sourceTree = "<group>"; };
-		7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartConfigurator.swift; sourceTree = "<group>"; };
 		7582617022DC6A57000094DE /* DailyCheckin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DailyCheckin.storyboard; sourceTree = "<group>"; };
 		7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsPresenter.swift; sourceTree = "<group>"; };
 		7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsWorker.swift; sourceTree = "<group>"; };
@@ -1774,13 +1754,6 @@
 		75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderWisdomTableViewCell.xib; sourceTree = "<group>"; };
 		75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
 		75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerAdapter.swift; sourceTree = "<group>"; };
-		75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownViewController.swift; sourceTree = "<group>"; };
-		75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownInteractor.swift; sourceTree = "<group>"; };
-		75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownRouter.swift; sourceTree = "<group>"; };
-		75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownWorker.swift; sourceTree = "<group>"; };
-		75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownInterface.swift; sourceTree = "<group>"; };
-		75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownPresenter.swift; sourceTree = "<group>"; };
-		75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownConfigurator.swift; sourceTree = "<group>"; };
 		75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyToBeVisionRate.storyboard; sourceTree = "<group>"; };
 		75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewController.swift; sourceTree = "<group>"; };
 		75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateRouter.swift; sourceTree = "<group>"; };
@@ -2177,6 +2150,8 @@
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
+		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
+		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -2234,11 +2209,12 @@
 		B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
+		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyView.swift; sourceTree = "<group>"; };
 		B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyView.xib; sourceTree = "<group>"; };
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
-		B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCellInterface.swift; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
 		B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Navigation.swift"; sourceTree = "<group>"; };
 		B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = bottomNavigation.storyboard; sourceTree = "<group>"; };
@@ -2299,7 +2275,6 @@
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+Convenience.swift"; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
-		CB27D59A1ECCB67300F2B76C /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
 		CB2FA0E720762914007F21D1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
@@ -2309,7 +2284,6 @@
 		CB48814A1EF7B1EA00389C88 /* Data+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Convenience.swift"; sourceTree = "<group>"; };
 		CB53F0D720235A9C007C624B /* Atomic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Atomic.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuModel.swift; sourceTree = "<group>"; };
-		CB57589D205FD22E00EDC028 /* FadeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeContainerView.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
 		CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QOT-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -2317,8 +2291,6 @@
 		CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "EKParticipant+ObjC.m"; sourceTree = "<group>"; };
 		CB810E601EEFC0D70043E3E5 /* ErrorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCell.swift; sourceTree = "<group>"; };
 		CB873293202AEDA80081F522 /* GradientView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientView.swift; sourceTree = "<group>"; };
-		CB8AA2C4205A850A0033F573 /* ISODate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
-		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
 		CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Convenience.swift"; sourceTree = "<group>"; };
 		CBA054481E890560009E28D6 /* Dequeueable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dequeueable.swift; sourceTree = "<group>"; };
@@ -2450,6 +2422,13 @@
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
+		F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartRouter.swift; sourceTree = "<group>"; };
+		F91F6A5D23437CB900DF6AA1 /* DailyCheckinStartConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartConfigurator.swift; sourceTree = "<group>"; };
+		F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInterface.swift; sourceTree = "<group>"; };
+		F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartPresenter.swift; sourceTree = "<group>"; };
+		F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartWorker.swift; sourceTree = "<group>"; };
+		F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInteractor.swift; sourceTree = "<group>"; };
+		F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartViewController.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
@@ -2514,8 +2493,6 @@
 		F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentHeaderView.xib; sourceTree = "<group>"; };
 		F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
 		F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentTableViewCell.xib; sourceTree = "<group>"; };
-		F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShiftersManager.swift; sourceTree = "<group>"; };
-		F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recovery3DManager.swift; sourceTree = "<group>"; };
 		F9A66BA622CD0C690094EA46 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsViewController.swift; sourceTree = "<group>"; };
 		F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsPresenter.swift; sourceTree = "<group>"; };
@@ -2621,17 +2598,6 @@
 			name = Article;
 			sourceTree = "<group>";
 		};
-		36085C5722CA48C300C703BA /* Abstract_qot_dal */ = {
-			isa = PBXGroup;
-			children = (
-				36085C5822CA48E600C703BA /* PreparationManager.swift */,
-				F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */,
-				F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */,
-				36E5DD9922D4E13700910E0D /* QuestionManager.swift */,
-			);
-			name = Abstract_qot_dal;
-			sourceTree = "<group>";
-		};
 		36103325232AC794008A8205 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -2679,7 +2645,6 @@
 				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
 				9C24237722F08A4600B911E6 /* MeAtMyBest */,
-				9C24237022F0817F00B911E6 /* AboutMe */,
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
@@ -2796,6 +2761,8 @@
 				B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */,
 				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
 				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
+				B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */,
+				B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */,
 				B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */,
 				B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */,
 				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
@@ -2847,6 +2814,8 @@
 				365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */,
 				365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */,
 				365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */,
+				B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */,
+				B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -2879,14 +2848,6 @@
 				363B9CB8232BF34A00C1A29E /* DTTBVWorker.swift */,
 			);
 			name = TBV;
-			sourceTree = "<group>";
-		};
-		363B9CC7232D0B5200C1A29E /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				363B9CC8232D0B7D00C1A29E /* TBVWorker.swift */,
-			);
-			name = Workers;
 			sourceTree = "<group>";
 		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
@@ -3054,7 +3015,6 @@
 				367A58642326B85B0089A082 /* DTWorker.swift */,
 				367A585E2326A4350089A082 /* DTViewController.xib */,
 				36103325232AC794008A8205 /* Models */,
-				363B9CC7232D0B5200C1A29E /* Workers */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -3186,11 +3146,12 @@
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
+				385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */,
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
+				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */,
-				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -3300,11 +3261,18 @@
 			name = SprintReflection;
 			sourceTree = "<group>";
 		};
+		385449A9234C59BF00A4BB3E /* Worker */ = {
+			isa = PBXGroup;
+			children = (
+				385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */,
+				363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */,
+			);
+			name = Worker;
+			sourceTree = "<group>";
+		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
 			isa = PBXGroup;
 			children = (
-				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
-				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */,
 				5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */,
 				5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */,
@@ -3334,23 +3302,15 @@
 		5F62BE8A228AB57F00852F7E /* MyQotSupportFAQ */ = {
 			isa = PBXGroup;
 			children = (
-				5F62BE8B228AB5AD00852F7E /* Core */,
+				5F62BE8D228AB5D700852F7E /* MyQotSupportDetailsViewController.swift */,
+				5F62BE8F228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift */,
+				5F62BE91228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift */,
+				5F62BE93228AB61100852F7E /* MyQotSupportDetailsInterface.swift */,
+				5F62BE95228AB63A00852F7E /* MyQotSupportDetailsPresenter.swift */,
+				5F62BE97228AB64E00852F7E /* MyQotSupportDetailsRouter.swift */,
+				5F62BE99228AB66100852F7E /* MyQotSupportDetailsWorker.swift */,
 			);
 			name = MyQotSupportFAQ;
-			sourceTree = "<group>";
-		};
-		5F62BE8B228AB5AD00852F7E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */,
-				5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */,
-				5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */,
-				5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */,
-				5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */,
-				5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */,
-				5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */ = {
@@ -3437,7 +3397,6 @@
 				75423EEF22CE2412008EE726 /* MyToBeVisionTracker */,
 				759AB40B22C4CADB0091BFB8 /* MyToBeVisionData */,
 				75DC686422C11C7400FF183D /* MyToBeVisionRate */,
-				75DC685322BD171900FF183D /* MyToBeVisionCountDown */,
 				75496E8522BA5E8600150C78 /* MyToBeVisionNullState */,
 				5FA66638229C1D1D0027EE74 /* MyToBeVisionEditDetails */,
 				5F8A898B2296CA780011A05C /* MyToBeVision */,
@@ -3536,12 +3495,14 @@
 				5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */,
 				5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */,
 				75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */,
+				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
 				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
 				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
 				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
 				5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */,
+				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
 				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
 				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
@@ -3575,13 +3536,13 @@
 		75423EEF22CE2412008EE726 /* MyToBeVisionTracker */ = {
 			isa = PBXGroup;
 			children = (
-				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
-				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
-				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
-				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
-				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
-				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
 				75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */,
+				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
+				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
+				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
+				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
+				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
+				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
 			);
 			name = MyToBeVisionTracker;
 			sourceTree = "<group>";
@@ -3646,8 +3607,8 @@
 		7582616E22DC6A3D000094DE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F91F6A5B23437CA000DF6AA1 /* DailyCheckinStart */,
 				7582617322DCA000000094DE /* DailyCheckinQuestions */,
-				7582617222DC6A5F000094DE /* DailyCheckinStart */,
 			);
 			name = Screens;
 			sourceTree = "<group>";
@@ -3658,20 +3619,6 @@
 				7582617022DC6A57000094DE /* DailyCheckin.storyboard */,
 			);
 			name = Other;
-			sourceTree = "<group>";
-		};
-		7582617222DC6A5F000094DE /* DailyCheckinStart */ = {
-			isa = PBXGroup;
-			children = (
-				7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */,
-				7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */,
-				7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */,
-				7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */,
-				7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */,
-				7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */,
-				7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */,
-			);
-			name = DailyCheckinStart;
 			sourceTree = "<group>";
 		};
 		7582617322DCA000000094DE /* DailyCheckinQuestions */ = {
@@ -3732,20 +3679,6 @@
 				75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */,
 			);
 			name = LeaderWisdom;
-			sourceTree = "<group>";
-		};
-		75DC685322BD171900FF183D /* MyToBeVisionCountDown */ = {
-			isa = PBXGroup;
-			children = (
-				75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */,
-				75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */,
-				75DC685822BD181A00FF183D /* MyToBeVisionCountDownRouter.swift */,
-				75DC685A22BD182600FF183D /* MyToBeVisionCountDownWorker.swift */,
-				75DC685C22BD183200FF183D /* MyToBeVisionCountDownInterface.swift */,
-				75DC685E22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift */,
-				75DC686022BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift */,
-			);
-			name = MyToBeVisionCountDown;
 			sourceTree = "<group>";
 		};
 		75DC686422C11C7400FF183D /* MyToBeVisionRate */ = {
@@ -4229,7 +4162,6 @@
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
 			);
 			name = Other;
@@ -4284,6 +4216,7 @@
 		9C24237722F08A4600B911E6 /* MeAtMyBest */ = {
 			isa = PBXGroup;
 			children = (
+				9C24237022F0817F00B911E6 /* AboutMe */,
 				9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */,
 				9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */,
 				9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */,
@@ -4720,7 +4653,6 @@
 		B856B48122B0E2C30017A249 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */,
 				8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */,
 				B856B48422B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift */,
 				DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */,
@@ -4928,6 +4860,7 @@
 				367BB012223955D200282AB6 /* Scenes */,
 				CBB4DD521EE095E50071494A /* Utils */,
 				CBB4DD1C1EE085600071494A /* ViewLayer */,
+				385449A9234C59BF00A4BB3E /* Worker */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -5089,9 +5022,9 @@
 				360256E52051838600862B0E /* SearchPresenter.swift */,
 				360256E9205183B300862B0E /* SearchProtocols.swift */,
 				360256E12051836200862B0E /* SearchRouter.swift */,
+				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
 				D5485F211ED57AE200A08D1A /* SearchViewController.swift */,
 				360256E32051837300862B0E /* SearchWorker.swift */,
-				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
 				AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */,
 				AC183820224190A0004A538D /* SuggestionsHeaderView.swift */,
 				360256F120528E9F00862B0E /* SearchTableViewCell.xib */,
@@ -5196,20 +5129,16 @@
 			children = (
 				CB53F0D720235A9C007C624B /* Atomic.swift */,
 				9100195620F8A0E200049118 /* ExtensionsDataManager.swift */,
-				CB57589D205FD22E00EDC028 /* FadeContainerView.swift */,
-				CB8AA2C4205A850A0033F573 /* ISODate.swift */,
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
-				CB27D59A1ECCB67300F2B76C /* Result.swift */,
 				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
-				36085C5722CA48C300C703BA /* Abstract_qot_dal */,
 				5F78962C22A9292800D2DBAD /* LoadingSkeleton */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
 				75496E9622BA700D00150C78 /* PopUpView */,
@@ -5410,6 +5339,20 @@
 			name = MyPreps;
 			sourceTree = "<group>";
 		};
+		F91F6A5B23437CA000DF6AA1 /* DailyCheckinStart */ = {
+			isa = PBXGroup;
+			children = (
+				F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */,
+				F91F6A5D23437CB900DF6AA1 /* DailyCheckinStartConfigurator.swift */,
+				F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */,
+				F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */,
+				F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */,
+				F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */,
+				F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */,
+			);
+			name = DailyCheckinStart;
+			sourceTree = "<group>";
+		};
 		F92A76DF22F2E8C0000BB378 /* Level5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -5501,14 +5444,14 @@
 		F99DF5F02292D45400341DAB /* ToolsCollections */ = {
 			isa = PBXGroup;
 			children = (
-				F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */,
-				F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */,
-				F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */,
-				F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */,
-				F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */,
-				F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */,
-				F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */,
 				F99DF5FF2292D78900341DAB /* ToolsCollectionsConfigurator.swift */,
+				F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */,
+				F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */,
+				F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */,
+				F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */,
+				F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */,
+				F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */,
+				F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */,
 			);
 			name = ToolsCollections;
 			sourceTree = "<group>";
@@ -5965,6 +5908,7 @@
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
+				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				8D110CF7230FD0F5000181BA /* WalkthroughSwipe.storyboard in Resources */,
@@ -6020,6 +5964,7 @@
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
 				8D8AA76922FDCB6700B59A81 /* RegistrationEmail.storyboard in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
@@ -6081,7 +6026,6 @@
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				F9F70C1622F9A2D300E85BF3 /* SprintChallengeCell.xib in Resources */,
-				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
@@ -6280,7 +6224,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9100195520F88F1A00049118 /* ISODate.swift in Sources */,
 				91842AE320F63CAD007605FD /* ExtensionModel.swift in Sources */,
 				ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */,
 				ACA4B1932212E21F00552A54 /* ArticleCollectionViewData.swift in Sources */,
@@ -6314,7 +6257,6 @@
 				ACC68C8C221C4E3500ED899B /* DailyPrepIntentHandler.swift in Sources */,
 				AC87A7A4220D987B00622C90 /* ExtensionUserDefaults.swift in Sources */,
 				AC87A7A1220D961800622C90 /* ReadVisionIntentHandler.swift in Sources */,
-				ACC68C89221C2F5D00ED899B /* ISODate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6326,7 +6268,6 @@
 				ACC68C8A221C2F7000ED899B /* DateFormatter+Convenience.swift in Sources */,
 				AC87A7B2220DBDAC00622C90 /* UIImageView+Extensions.swift in Sources */,
 				ACC68C83221C181300ED899B /* Date+Extension.swift in Sources */,
-				ACC68C88221C2F4B00ED899B /* ISODate.swift in Sources */,
 				ACA4B18D2211D1E900552A54 /* NSUserActivity+Keys.swift in Sources */,
 				AC87A7A5220D987F00622C90 /* ExtensionUserDefaults.swift in Sources */,
 				ACA4B1952212FEAA00552A54 /* WhatsHotViewController.swift in Sources */,
@@ -6364,7 +6305,7 @@
 				8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
-				36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */,
+				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
@@ -6389,7 +6330,6 @@
 				8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */,
 				36B5BD2E23142B4A00439A64 /* AskPermissionRouter.swift in Sources */,
 				F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */,
-				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */,
 				36B5BD3023142B4A00439A64 /* AskPermissionViewController.swift in Sources */,
 				36E4B7B1219EBFED00049EE8 /* TutorialModel.swift in Sources */,
@@ -6406,12 +6346,11 @@
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
+				F91F6A6323437CBA00DF6AA1 /* DailyCheckinStartConfigurator.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				3655F2DA2326EBD600334719 /* DTMindsetConfigurator.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
-				7582616622D8DBBE000094DE /* DailyCheckinStartWorker.swift in Sources */,
 				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
-				CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */,
 				5F7BE7802289588100BA5DCF /* MyQotSupportInteractor.swift in Sources */,
 				36E12EC2232B57F0009E96EA /* DTPreparePresenter.swift in Sources */,
 				8D04FA3123041E9C00AE7CA0 /* RegistrationAgeWorker.swift in Sources */,
@@ -6437,6 +6376,7 @@
 				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */,
+				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
 				363B9CC0232BF34A00C1A29E /* DTTBVWorker.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				8D0B4D292301CC4000A1AC47 /* RegistrationNamesConfigurator.swift in Sources */,
@@ -6504,7 +6444,7 @@
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
-				5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */,
+				5F62BE90228AB5E900852F7E /* MyQotSupportDetailsInteractor.swift in Sources */,
 				F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */,
 				8D8AA76422FDCB6700B59A81 /* RegistrationViewController.swift in Sources */,
 				F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */,
@@ -6526,15 +6466,15 @@
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
 				B4AB48B8230BF891003B3C1F /* MyDataSelectionInterface.swift in Sources */,
-				5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */,
+				5F62BE9A228AB66100852F7E /* MyQotSupportDetailsWorker.swift in Sources */,
 				3658257B2327D19200AC3F4A /* DTShortTBVInterface.swift in Sources */,
 				DB2969F322C64CB600B8A590 /* FullScreenBackgroundCircleView.swift in Sources */,
 				5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */,
+				385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */,
 				5F7BE7822289588F00BA5DCF /* MyQotSupportWorker.swift in Sources */,
 				DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */,
 				8D04FA3523041E9C00AE7CA0 /* RegistrationAgeInteractor.swift in Sources */,
 				8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */,
-				75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */,
 				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
@@ -6545,7 +6485,6 @@
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
 				F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
-				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */,
 				8D9F6D21230E80EB00DCC241 /* WalkthroughInteractor.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
@@ -6567,7 +6506,6 @@
 				8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */,
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
 				9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */,
-				75DC685F22BD183E00FF183D /* MyToBeVisionCountDownPresenter.swift in Sources */,
 				8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */,
 				8DC2F7242313F2B70002F29F /* StreamVideoInteractor.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -6583,13 +6521,11 @@
 				36EC23022323F45700DB5696 /* DTSprintWorker.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
-				F9A66BA122CB7FB60094EA46 /* MindsetShiftersManager.swift in Sources */,
 				8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
-				7582616922D8DBBE000094DE /* DailyCheckinStartViewController.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */,
@@ -6634,6 +6570,7 @@
 				CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */,
 				9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */,
 				36EC23032323F45700DB5696 /* DTSprintRouter.swift in Sources */,
+				F91F6A6523437CBA00DF6AA1 /* DailyCheckinStartPresenter.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
@@ -6675,9 +6612,7 @@
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
 				365825782327D19200AC3F4A /* DTShortTBVPresenter.swift in Sources */,
 				36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */,
-				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
-				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
@@ -6685,7 +6620,6 @@
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
 				8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */,
-				7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */,
 				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
 				B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
@@ -6721,7 +6655,6 @@
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
 				9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */,
-				B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */,
 				38290B8D2330F825004B5C14 /* DTSprintReflectionConfigurator.swift in Sources */,
 				8D5668BD22DCAD4800AA172F /* MySprintsListConfigurator.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
@@ -6738,6 +6671,7 @@
 				5F8A899F2296DF520011A05C /* MyVisionRouter.swift in Sources */,
 				B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */,
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
+				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
 				8D110CF0230FCEDE000181BA /* WalkthroughSwipeRouter.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
@@ -6746,7 +6680,7 @@
 				36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */,
 				8D66E8A32305A0E500BE78C7 /* TrackSelectionConfigurator.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
-				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
+				5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */,
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
 				B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */,
@@ -6822,7 +6756,6 @@
 				8D8AA76022FDCB6700B59A81 /* RegistrationPresenter.swift in Sources */,
 				F9A5C94822B7D06300AB2E94 /* PaymentReminderModel.swift in Sources */,
 				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
-				75DC685922BD181A00FF183D /* MyToBeVisionCountDownRouter.swift in Sources */,
 				8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */,
 				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
@@ -6830,6 +6763,8 @@
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
+				F91F6A6723437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift in Sources */,
+				F91F6A6623437CBA00DF6AA1 /* DailyCheckinStartWorker.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */,
@@ -6850,7 +6785,7 @@
 				3666FD45232A4B7D00FC67D0 /* DTRecoveryViewController.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
-				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
+				5F62BE98228AB64E00852F7E /* MyQotSupportDetailsRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
 				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
@@ -6888,6 +6823,7 @@
 				8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */,
 				9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */,
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
+				F91F6A6423437CBA00DF6AA1 /* DailyCheckinStartInterface.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
@@ -6937,7 +6873,6 @@
 				9CC426262306D39200F8072E /* GuidedTrackViewModel.swift in Sources */,
 				B856B47C22B0E29D0017A249 /* MyLibraryUserStorageViewController.swift in Sources */,
 				8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */,
-				7582616A22D8DBBE000094DE /* DailyCheckinStartInteractor.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				367CD18422EF4EDE00AF2187 /* OnboardingLoginInteractor.swift in Sources */,
@@ -6981,7 +6916,6 @@
 				AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */,
 				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
 				8D110D05230FDA41000181BA /* WalkthroughCoachViewController.swift in Sources */,
-				75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */,
 				367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
@@ -7027,16 +6961,15 @@
 				38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
+				F91F6A6223437CBA00DF6AA1 /* DailyCheckinStartRouter.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
-				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
 				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
 				3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */,
 				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
-				7582616C22D8DBBE000094DE /* DailyCheckinStartConfigurator.swift in Sources */,
 				36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */,
 				5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */,
@@ -7049,7 +6982,7 @@
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				B86E744D22A9519900B0AE75 /* MyLibraryCategoryListViewController.swift in Sources */,
 				367A585D2326A1AF0089A082 /* DTViewController.swift in Sources */,
-				363B9CC9232D0B7D00C1A29E /* TBVWorker.swift in Sources */,
+				363B9CC9232D0B7D00C1A29E /* WorkerTBV.swift in Sources */,
 				B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */,
 				F9F70C1422F9A26200E85BF3 /* SprintChallengeCell.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
@@ -7068,7 +7001,7 @@
 				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
-				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
+				5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */,
 				38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */,
 				367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
@@ -7114,7 +7047,6 @@
 				B4AB48B7230BF891003B3C1F /* MyDataSelectionRouter.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
-				7582616822D8DBBE000094DE /* DailyCheckinStartInterface.swift in Sources */,
 				F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */,
 				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				75DC686A22C11D1200FF183D /* MyToBeVisionRateInterface.swift in Sources */,
@@ -7158,7 +7090,7 @@
 				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
-				5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */,
+				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */,
@@ -7208,9 +7140,8 @@
 				759AB30522C353090091BFB8 /* MyToBeVisionPageComponentView.swift in Sources */,
 				BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */,
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
-				F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
-				36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */,
+				385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */,
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				F902CF4822D87C2700FFC836 /* FeastCell.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
@@ -7223,6 +7154,7 @@
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
 				B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */,
 				8D04FA3023041E9C00AE7CA0 /* RegistrationAgePresenter.swift in Sources */,
+				F91F6A6923437CE400DF6AA1 /* DailyCheckinStartViewController.swift in Sources */,
 				F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */,
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
 				8D66E89C2305A0E500BE78C7 /* TrackSelectionPresenter.swift in Sources */,
@@ -7230,10 +7162,8 @@
 				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
 				36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
-				7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */,
 				75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */,
 				7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */,
-				36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */,
 				B854ACF1230AA02D00FD007C /* ScreenTitleService+Ext.swift in Sources */,

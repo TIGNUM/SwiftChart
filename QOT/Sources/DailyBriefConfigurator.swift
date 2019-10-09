@@ -17,7 +17,8 @@ final class DailyBriefConfigurator {
         let worker = DailyBriefWorker(questionService: qot_dal.QuestionService.main,
                                       userService: qot_dal.UserService.main,
                                       contentService: qot_dal.ContentService.main,
-                                      settingService: qot_dal.SettingService.main)
+                                      settingService: qot_dal.SettingService.main,
+                                      healthService: qot_dal.HealthService.main)
         let presenter = DailyBriefPresenter(viewController: viewController)
         let interactor = DailyBriefInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

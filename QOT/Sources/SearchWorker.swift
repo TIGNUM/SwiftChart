@@ -10,87 +10,68 @@ import Foundation
 import qot_dal
 
 final class SearchWorker {
+    let startDeactivated: Bool
 
-    init() {
+    init(startDeactivated: Bool) {
+        self.startDeactivated = startDeactivated
     }
 
     func search(_ searchText: String, searchFilter: Search.Filter, _ completion: @escaping ([Search.Result]) -> Void) {
         switch searchFilter {
         case .all:
-            qot_dal.ContentService.main.getAllFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
-                guard let strongSelf = self else {
-                    return
-                }
-                var searchArray = [Search.Result]()
-                if let collections = contentCollections {
-                    collections.forEach { (content) in
-                        if content.section == .QOTLibrary {
-                             searchArray.append(contentsOf: Search.resultFrom([content], filter: searchFilter, displayType: .files))
-                        } else {
-                            searchArray.append(contentsOf: Search.articleResultFrom([content], filter: searchFilter, displayType: .article)
-                            )}
-                    }
-                }
-                if let items = contentItems {
-                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
-                }
-                completion(strongSelf.removeDuplicates(from: searchArray))
+            ContentService.main.getAllFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+                self?.getSearchResults(searchFilter, contentCollections, contentItems, completion)
             }
         case .read:
-            qot_dal.ContentService.main.getAllReadablesFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
-                guard let strongSelf = self else {
-                    return
-                }
-                var searchArray = [Search.Result]()
-                if let collections = contentCollections {
-                    collections.forEach { (content) in
-                        if content.section != .QOTLibrary {
-                    searchArray.append(contentsOf: Search.articleResultFrom([content], filter: searchFilter, displayType: .article))
-
-                        }
-                    }
-                }
-                if let items = contentItems {
-                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
-                }
-                completion(strongSelf.removeDuplicates(from: searchArray))
+            ContentService.main.getAllReadablesFor(keyword: searchText) { [weak self] (contentCollections, contentItems) in
+                self?.getSearchResults(searchFilter, contentCollections, contentItems, completion)
             }
         case .listen:
-            qot_dal.ContentService.main.getAudioItemsFor(keyword: searchText) { [weak self] (contentItems) in
-                guard let strongSelf = self else {
-                    return
-                }
-                var searchArray = [Search.Result]()
-                if let items = contentItems {
-                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
-                }
-                completion(strongSelf.removeDuplicates(from: searchArray))
+            ContentService.main.getAudioItemsFor(keyword: searchText) { [weak self] (contentItems) in
+                self?.getSearchResults(searchFilter, nil, contentItems, completion)
             }
         case .watch:
-            qot_dal.ContentService.main.getVideoItemsFor(keyword: searchText) { [weak self] (contentItems) in
-                guard let strongSelf = self else {
-                    return
-                }
-                var searchArray = [Search.Result]()
-                if let items = contentItems {
-                    searchArray.append(contentsOf: strongSelf.contentItemResultsFrom(contentItems: items, filter: searchFilter))
-                }
-                searchArray.sort(by: { $0.title < $1.title })
-                completion(strongSelf.removeDuplicates(from: searchArray))
+            ContentService.main.getVideoItemsFor(keyword: searchText) { [weak self] (contentItems) in
+                self?.getSearchResults(searchFilter, nil, contentItems, completion)
             }
         case .tools:
-            qot_dal.ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { [weak self] (contentCollections) in
-                guard let strongSelf = self else {
-                    return
-                }
-                var searchArray = [Search.Result]()
-                if let collections = contentCollections {
-                    searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .tool))
-                }
-                searchArray.sort(by: { $0.title < $1.title })
-                completion(strongSelf.removeDuplicates(from: searchArray))
+            ContentService.main.getToolsContentCollectionsFor(keyword: searchText) { [weak self] (contentCollections) in
+                self?.getSearchResults(searchFilter, contentCollections, nil, completion)
             }
         }
+    }
+
+    private func getSearchResults(_ searchFilter: Search.Filter,
+                                  _ contentCollections: [QDMContentCollection]? = nil,
+                                  _ contentItems: [QDMContentItem]? = nil,
+                                  _ completion: @escaping ([Search.Result]) -> Void) {
+        let QOTGuideCategoryId = 100047 // TODO: we need to have
+        var searchArray = [Search.Result]()
+        if let collections = contentCollections?.filter({ $0.categoryIDs.contains(QOTGuideCategoryId) == false }) {
+            if searchFilter == .tools {
+                searchArray.append(contentsOf: Search.resultFrom(collections, filter: searchFilter, displayType: .tool))
+            } else {
+                collections.forEach { (content) in
+                    if content.section == .QOTLibrary && searchFilter == .all {
+                        searchArray.append(contentsOf: Search.resultFrom([content],
+                                                                         filter: searchFilter,
+                                                                         displayType: .files))
+                    } else if content.section != .QOTLibrary {
+                        searchArray.append(contentsOf: Search.articleResultFrom([content],
+                                                                                filter: searchFilter,
+                                                                                displayType: .article)
+                        )
+                    }
+                }
+            }
+        }
+        if let items = contentItems {
+            searchArray.append(contentsOf: contentItemResultsFrom(contentItems: items, filter: searchFilter))
+        }
+        if searchFilter == .tools || searchFilter == .watch {
+            searchArray.sort(by: { $0.title < $1.title })
+        }
+        completion(removeDuplicates(from: searchArray))
     }
 
     private func contentItemResultsFrom(contentItems: [QDMContentItem], filter: Search.Filter) -> [Search.Result] {
@@ -137,7 +118,7 @@ final class SearchWorker {
             }
             return
         }
-        qot_dal.ContentService.main.getContentItemById(contentItemID) { (item) in
+        ContentService.main.getContentItemById(contentItemID) { (item) in
             completion(item)
         }
     }

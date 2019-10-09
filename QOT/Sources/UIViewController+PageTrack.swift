@@ -49,12 +49,11 @@ extension UIViewController {
         case is MyQotSupportViewController: return "myprofile.support"
         case is MyQotSensorsViewController: return "myprofile.appsettings.activitytrackers"
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
-        case is MyQotSupportFaqViewController: return "myprofile.support.faq"
+        case is MyQotSupportDetailsViewController: return myQOTSupportDetailsViewControllerPageKey
         case is TutorialViewController: return "myprofile.support.tutorial"
         case is MyVisionViewController: return "tobevision"
         case is MyVisionEditDetailsViewController: return "tobevision.edit"
         case is MyToBeVisionRateViewController: return "tobevision.tracker.questionaire"
-        case is MyToBeVisionCountDownViewController: return "tobevision.tracker.countdown"
         case is MyToBeVisionTrackerViewController: return myToBeVisionTrackerViewControllerPageKey
         case is CoachViewController: return "coach.main"
         case is SearchViewController: return "search.main"
@@ -80,7 +79,7 @@ extension UIViewController {
         case is RegistrationNamesViewController: return "onboarding.createaccount.name"
         case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
-        case is StrategyListViewController: return "know.feed.strategy"
+        case is StrategyListViewController: return "know.feed.strategy.list"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
         case is MyDataScreenViewController: return "myqot.mydata"
@@ -93,6 +92,21 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
+        case is WalkthroughSearchViewController: return "walkthrough.search"
+        case is WalkthroughCoachViewController: return "walkthrough.coach"
+        case is WalkthroughSwipeViewController: return "walkthrough.swipe"
+        case is QuestionnaireViewController: return "sleep.quantity.customize.target"
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: - MyQotSupportDetailsViewController
+private extension UIViewController {
+    var myQOTSupportDetailsViewControllerPageKey: String {
+        switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
+        case .FAQ?: return "myprofile.support.faq"
+        case .UsingQOT?: return "myprofile.support.using.qot"
         default: preconditionFailure()
         }
     }
@@ -161,6 +175,7 @@ private extension UIViewController {
             case ShortTBV.QuestionKey.IntroMindSet: return "decisiontree.mindsetshifter.tobevisiongenerator"
             case ShortTBV.QuestionKey.IntroPrepare: return "decisiontree.prepare.tobevisiongenerator"
             case ShortTBV.QuestionKey.IntroOnboarding: return "decisiontree.onboarding.tobevisiongenerator"
+            case ShortTBV.QuestionKey.Work: return "decisiontree.solve.tobevisiongenerator"
             default: preconditionFailure()
             }
         }

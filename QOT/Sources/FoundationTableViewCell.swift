@@ -30,10 +30,12 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addSubtitle(detailLabel)
         skeletonManager.addOtherView(previewImageView)
         skeletonManager.addOtherView(mediaIconImageView)
+        selectionStyle = .none
     }
 
     func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
         guard let titleText = title, let timeText = timeToWatch else { return }
+        selectionStyle = .default
         skeletonManager.hide()
         ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)

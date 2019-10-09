@@ -12,7 +12,7 @@ import qot_dal
 final class DTShortTBVInteractor: DTInteractor {
 
     // MARK: - Properties
-    private lazy var tbvWorker: TBVWorker? = TBVWorker()
+    private lazy var tbvWorker: WorkerTBV? = WorkerTBV()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +41,8 @@ extension DTShortTBVInteractor: DTShortTBVInteractorInterface {
     var shouldDismissOnContinue: Bool {
         switch introKey {
         case ShortTBV.QuestionKey.IntroPrepare,
-             ShortTBV.QuestionKey.IntroMindSet:
+             ShortTBV.QuestionKey.IntroMindSet,
+             ShortTBV.QuestionKey.IntroSolve:
             return true
         default:
             return false

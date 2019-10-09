@@ -62,14 +62,4 @@ final class MyToBeVisionRateWorker {
         guard let tracks = dataTracks else { return  }
         userService.updateToBeVisionTracks(tracks) { (error) in }
     }
-
-    var skipCounterView: Bool {
-        return UserDefaults.standard.bool(forKey: UserDefault.skipTBVCounter.rawValue)
-    }
-
-    func countDownView() -> UIView? {
-        guard let vieController = R.storyboard.myToBeVisionRate.instantiateInitialViewController() else { return nil }
-        MyToBeVisionCountDownConfigurator.configure(on: viewController, viewController: vieController)
-        return vieController.view
-    }
 }

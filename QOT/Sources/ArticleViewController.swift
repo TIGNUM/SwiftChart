@@ -153,6 +153,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
+        tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
@@ -183,6 +184,7 @@ private extension ArticleViewController {
 // MARK: - BottomNavigation
 extension ArticleViewController {
     @objc override public func didTapDismissButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true, completion: nil)
     }
 
@@ -213,15 +215,13 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        articleTopNavBar.allOff()
-        navigationBar(show: false)
+        articleTopNavBar.refreshColor()
     }
 
     func didTapTextScaleItem() {
         trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        navigationBar(show: false)
     }
 
     func didTapShareItem() {
@@ -266,7 +266,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func reloadData(showNavigationBar: Bool) {
         navigationBar(show: showNavigationBar)
         tableView.reloadData()
-        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
+        tableView.scrollToTop(animated: true)
         setupAudioItem()
         refreshBottomNavigationItems()
     }
@@ -502,6 +502,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            durationString: description,
                            icon: R.image.ic_seen_of())
             return cell
+        case .contactSupport:
+            let cell: ArticleContactSupportTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(attributtedText: interactor?.contactSupportAttributtedString(),
+                           textViewDelegate: self)
+            return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
         }
@@ -549,7 +554,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if !sectionHasContent(section) {
+        if !sectionHasContent(section) || interactor?.isSectionSupport() ?? false {
             return nil
         }
 
@@ -571,7 +576,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHasContent(section) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor?.isSectionSupport() ?? false)) ? tableView.estimatedSectionHeaderHeight : 0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -672,6 +677,8 @@ extension ArticleViewController {
 // MARK: - ArticleDelegate
 extension ArticleViewController: ArticleDelegate {
     func didTapMarkAsRead(_ read: Bool) {
+        let state: QDMUserEventTracking.Name = read ? .MARK_AS_READ : .MARK_AS_UNREAD
+        trackUserEvent(state, value: interactor?.remoteID, stringValue: .CONTENT, action: .TAP)
         interactor?.markArticleAsRead(read) { [weak self] in
             self?.checkMarkAsReadButton(read)
         }
@@ -687,5 +694,16 @@ extension ArticleViewController: ArticleDelegate {
 extension ArticleViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - Contact support Related
+extension ArticleViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.absoluteString.isEmail {
+            interactor?.openEmailComposer()
+            return false
+        }
+        return true
     }
 }

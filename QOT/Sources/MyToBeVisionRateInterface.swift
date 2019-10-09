@@ -10,16 +10,12 @@ import Foundation
 
 protocol MyToBeVisionRateViewControllerInterface: class {
     func setupView(questions: [RatingQuestionViewModel.Question])
-    func showCountDownView(_ view: UIView?)
-    func hideTimerView(completion: @escaping (() -> Void))
     func showScreenLoader()
     func hideScreenLoader()
 }
 
 protocol MyToBeVisionRatePresenterInterface {
     func setupView(questions: [RatingQuestionViewModel.Question])
-    func showCountDownView(_ view: UIView?)
-    func hideTimerView(completion: @escaping (() -> Void))
     func showScreenLoader()
     func hideScreenLoader()
 }
@@ -28,9 +24,6 @@ protocol MyToBeVisionRateInteracorInterface: Interactor {
     func addRating(for questionId: Int, value: Int)
     func saveQuestions()
     func dismiss()
-    func skipCountDownView()
-    func countDownView()
-    func hideTimerView(completion: @escaping (() -> Void))
     func showScreenLoader()
     func hideScreenLoader()
 }

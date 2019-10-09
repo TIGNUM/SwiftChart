@@ -16,18 +16,22 @@ final class DailyBriefWorker {
     private let questionService: qot_dal.QuestionService
     private let contentService: qot_dal.ContentService
     private let userService: qot_dal.UserService
+    private let healthService: qot_dal.HealthService
     private let settingService: qot_dal.SettingService
     private var buckets = [QDMDailyBriefBucket]()
+    var questions: [RatingQuestionViewModel.Question]?
 
     // MARK: - Init
     init(questionService: qot_dal.QuestionService,
          userService: qot_dal.UserService,
          contentService: qot_dal.ContentService,
-         settingService: qot_dal.SettingService) {
+         settingService: qot_dal.SettingService,
+         healthService: qot_dal.HealthService) {
         self.settingService = settingService
         self.userService = userService
         self.contentService = contentService
         self.questionService = questionService
+        self.healthService = healthService
 
         if let emails = UserDefault.showGuideTrackBucket.object as? [String],
             let currentAccount = SessionService.main.getCurrentSession()?.useremail,
@@ -158,7 +162,7 @@ extension DailyBriefWorker {
         func saveAnswerValue(_ value: Int) {
             getDailyBriefBucketsForViewModel(completion: {(buckets) in
                 var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-                level5Bucket?.latestGetToLevel5Value = value
+                level5Bucket?.currentGetToLevel5Value = value
                 if let level5Bucket = level5Bucket {
                     qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
                         if let error = error {

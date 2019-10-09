@@ -77,6 +77,14 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void) {
         return worker.contentItem(for: id, completion)
     }
+
+    func presentDTMindetShifter() {
+        router.presentDTMindetShifter()
+    }
+
+    func presentDTRecovery() {
+        router.presentDTRecovery()
+    }
 }
 
 // FIXME: Refactor all logics in one place

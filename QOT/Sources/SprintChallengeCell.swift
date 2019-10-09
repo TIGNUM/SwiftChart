@@ -24,12 +24,13 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     private var observers: [NSKeyValueObservation] = []
-    @IBAction func gotItPressed(_ sender: Any) {
+    @IBAction func gotItTapped(_ sender: Any) {
+        ThemeView.audioPlaying.apply(gotItButton)
+        gotItButton.layer.borderWidth = 0
+        gotItButton.isEnabled = false
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        updateGotItButton()
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -53,6 +54,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             self?.checkScroll()
             }
         ]
+        ThemeBorder.accent.apply(gotItButton)
         skeletonManager.addSubtitle(sprintTitle)
         skeletonManager.addSubtitle(sprintInfo)
         skeletonManager.addOtherView(tableView)
@@ -60,6 +62,9 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         skeletonManager.addOtherView(sprintStepNumber)
         skeletonManager.addOtherView(outOf5Label)
         skeletonManager.addOtherView(showMoreButton)
+        tableView.delegate = self
+        tableView.dataSource = self
+        ThemeView.level2.apply(self)
     }
 
     private func checkScroll() {
@@ -70,28 +75,26 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        tableView.delegate = self
-        tableView.dataSource = self
-        ThemeView.level2.apply(self)
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
-        let lowercaseTitle = model.sprintTitle?.lowercased()
-        ThemeText.sprintName.apply((lowercaseTitle?.prefix(1).uppercased() ?? "") + String(lowercaseTitle?.dropFirst() ?? ""), to: sprintTitle)
+        ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
+        updateGotItButton()
     }
 
     private func updateGotItButton() {
-        if self.currentSprint?.doneForToday == true {
+        if currentSprint?.doneForToday == true {
             ThemeView.audioPlaying.apply(gotItButton)
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false
         } else {
+            ThemeBorder.accent.apply(gotItButton)
             ThemeView.sprints.apply(gotItButton)
             gotItButton.isEnabled = true
         }

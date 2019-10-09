@@ -32,6 +32,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
+    private var firstTime: Bool = true
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -66,7 +67,12 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        doActivate()
+        if firstTime && (interactor?.shouldStartDeactivated() ?? false) {
+            deactivate(animated: false)
+        } else {
+            doActivate()
+        }
+        firstTime = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -97,7 +103,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 }
 
 // MARK: - animation from parent
-
 extension SearchViewController {
     func activate(_ duration: Double) {
         activateAnimateDuration = duration
@@ -119,7 +124,6 @@ extension SearchViewController {
             }
         }
         if constantNew == constraintSearch.constant { return }
-
         constraintSearch.constant = constantNew
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
@@ -127,16 +131,24 @@ extension SearchViewController {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
         }
+        mySearchBar.isUserInteractionEnabled = true
     }
 
-    private func deactivate() {
+    private func deactivate(animated: Bool = true) {
         mySearchBar.resignFirstResponder()
         updateViewsState(false)
         mySearchBar.text = ""
         constraintSearch.constant = 0
-        UIView.animate(withDuration: 0.25) {
-            self.view.layoutIfNeeded()
+        if animated {
+            UIView.animate(withDuration: 0.25) {
+                self.view.layoutIfNeeded()
+            }
+        } else {
+            UIView.animate(withDuration: 0.01) {
+                self.view.layoutIfNeeded()
+            }
         }
+        mySearchBar.isUserInteractionEnabled = false
     }
 }
 
@@ -219,6 +231,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        trackUserEvent(.CANCEL, action: .TAP)
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             if previousVC is CoachViewController {
                 navigationController?.popToViewController(previousVC, animated: true)
@@ -238,6 +251,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        trackUserEvent(.SEARCH, valueType: searchBar.text, action: .TAP)
         searchBar.resignFirstResponder()
     }
 }
@@ -303,9 +317,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let key = searchResults[indexPath.row].contentID
             trackUserEvent(.SELECT, value: key, valueType: .CONTENT, action: .TAP)
-            handleSelection(for: indexPath)
+            if let appLink = searchResults[indexPath.row].appLink {
+                appLink.launch()
+            } else {
+                handleSelection(for: indexPath)
+            }
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
+            trackUserEvent(.SELECT, valueType: suggestion, action: .TAP)
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
             searchQuery = suggestion

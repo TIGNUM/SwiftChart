@@ -54,6 +54,7 @@ private extension PrepareResultsViewController {
                          indexPath: IndexPath) -> PrepareResultsContentTableViewCell {
         let cell: PrepareResultsContentTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(format, title: title, type: interactor?.getType ?? .LEVEL_DAILY)
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         return cell
     }
 
@@ -61,6 +62,7 @@ private extension PrepareResultsViewController {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
         let dateString = String(format: "%@ | %@", date.eventDateString, type ?? "")
         cell.configure(title: title ?? "", dateString: dateString)
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         cell.selectionStyle = .none
         return cell
     }
@@ -68,6 +70,7 @@ private extension PrepareResultsViewController {
     func strategyCell(title: String?, duration: String?, indexPath: IndexPath) -> RelatedStrategyTableViewCell {
         let cell: RelatedStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: title, duration: duration)
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         return cell
     }
 
@@ -106,8 +109,9 @@ private extension PrepareResultsViewController {
         if interactor?.setReminder == false {
             showAlert()
         } else {
-            interactor?.updatePreparation()
-            interactor?.didTapDismissView()
+            interactor?.updatePreparation { [weak self] (_) in
+                self?.interactor?.didTapDismissView()
+            }
         }
     }
 
@@ -132,19 +136,21 @@ private extension PrepareResultsViewController {
     func showAlert() {
         let confirm = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleConfirm()) { [weak self] (_) in
             self?.interactor?.setReminder = true
-            self?.interactor?.updatePreparation()
-            if self?.interactor?.getResultType == .prepareDecisionTree {
-                self?.interactor?.presentFeedback()
-            } else {
-                self?.interactor?.didTapDismissView()
+            self?.interactor?.updatePreparation { (_) in
+                if self?.interactor?.getResultType == .prepareDecisionTree {
+                    self?.interactor?.presentFeedback()
+                } else {
+                    self?.interactor?.didTapDismissView()
+                }
             }
         }
         let decline = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleDecline()) { [weak self] (_) in
-            self?.interactor?.updatePreparation()
-            if self?.interactor?.getResultType == .prepareDecisionTree {
-                self?.interactor?.presentFeedback()
-            } else {
-                self?.interactor?.didTapDismissView()
+            self?.interactor?.updatePreparation { (_) in
+                if self?.interactor?.getResultType == .prepareDecisionTree {
+                    self?.interactor?.presentFeedback()
+                } else {
+                    self?.interactor?.didTapDismissView()
+                }
             }
         }
         QOTAlert.show(title: R.string.localized.prepareAlertReminderTitle(),

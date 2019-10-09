@@ -32,6 +32,7 @@ protocol MyPrepsInteractorInterface: Interactor {
     func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController)
     func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController)
+    func fetchItemsAndUpdateView()
 }
 
 protocol MyPrepsRouterInterface {

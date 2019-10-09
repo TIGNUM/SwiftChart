@@ -11,10 +11,11 @@ import JTAppleCalendar
 
 enum MyDataRowType: Int, CaseIterable {
     case dailyImpactInfo = 0
-    case dailyImpactChart
     case dailyImpactChartLegend
+    case dailyImpactChart
     case heatMapInfo
     case heatMapButtons
+    case heatMapLegend
     case heatMap
 }
 
@@ -141,6 +142,11 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
                                          and: interactor?.getSwitchButtonsTitles()[1])
 
             return heatMapButtonsCell
+        case MyDataRowType.heatMapLegend.rawValue:
+            let heatMapLegendCell: MyDataHeatMapLegendTableViewCell = tableView.dequeueCell(for: indexPath)
+            heatMapLegendCell.configure()
+
+            return heatMapLegendCell
         case MyDataRowType.heatMap.rawValue:
             let heatMapCell: MyDataHeatMapTableViewCell = tableView.dequeueCell(for: indexPath)
             let longTapRecognizer = UILongPressGestureRecognizer.init(target: self,
@@ -299,6 +305,7 @@ extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
         tableView.registerDequeueable(MyDataChartTableViewCell.self)
         tableView.registerDequeueable(MyDataChartLegendTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapButtonsTableViewCell.self)
+        tableView.registerDequeueable(MyDataHeatMapLegendTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapTableViewCell.self)
     }
 

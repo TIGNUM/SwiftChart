@@ -31,7 +31,9 @@ extension WalkthroughRouter: WalkthroughRouterInterface {
         appDelegate.appCoordinator.showApp()
         // Guided
         if case .guided = type, let url = URLScheme.dailyBriefURL(for: .GUIDE_TRACK) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
 }

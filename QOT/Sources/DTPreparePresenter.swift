@@ -31,14 +31,20 @@ final class DTPreparePresenter: DTPresenter {
     }
 
     override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
-        if intensionViewModel == nil {
-            return super.getNavigationButton(presentationModel, isDark: isDark)
+        if intensionViewModel != nil && presentationModel.question?.key == Prepare.Key.benefits.rawValue {
+            let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
+            button?.configure(title: R.string.localized.alertButtonTitleSave(),
+                              minSelection: 0,
+                              isDark: isDark)
+            return button
         }
-        let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
-        button?.configure(title: R.string.localized.alertButtonTitleSave(),
-                          minSelection: 0,
-                          isDark: isDark)
-        return button
+        if intensionViewModel != nil && presentationModel.question?.key != Prepare.Key.benefits.rawValue {
+            let navigationButton = super.getNavigationButton(presentationModel, isDark: isDark)
+            let count = intensionViewModel?.answers.filter { $0.selected }.count ?? 0
+            navigationButton?.update(count: count)
+            return navigationButton
+        }
+        return super.getNavigationButton(presentationModel, isDark: isDark)
     }
 }
 
@@ -46,5 +52,9 @@ final class DTPreparePresenter: DTPresenter {
 extension DTPreparePresenter: DTPreparePresenterInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
         prepareViewController?.presentCalendarPermission(permissionType)
+    }
+
+    func presentCalendarSettings() {
+        prepareViewController?.presentCalendarSettings()
     }
 }

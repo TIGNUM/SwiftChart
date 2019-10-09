@@ -36,9 +36,8 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     var infoViewModel: MyLibraryUserStorageInfoViewModel? { get }
     var bottomButtons: [ButtonParameters]? { get }
     var contentType: MyLibraryUserStorageContentType { get }
-    var itemCount: Int { get }
 
-    var items: [MyLibraryCellViewModel] { get }
+    var items: [MyLibraryCellViewModel]? { get }
     func didTapEdit(isEditing: Bool)
     func didTapPlayItem(at row: Int)
     func didTapAddNote()

@@ -25,10 +25,7 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let selectedView = UIView(frame: self.bounds)
-        ThemeView.level2Selected.apply(selectedView)
-        selectedBackgroundView = selectedView
-
+        selectionStyle = .none
         editingOverlay = UIView()
         self.addSubview(editingOverlay)
         skeletonManager.addTitle(titleLabel)
@@ -39,6 +36,10 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 
     func set(title: String?, status: MySprintStatus?, description: String?, progress: String?) {
         guard let title = title, let sprintStatus = status else { return }
+        selectionStyle = .default
+        let selectedView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(selectedView)
+        selectedBackgroundView = selectedView
         skeletonManager.hide()
 
         ThemeText.mySprintsCellTitle.apply(title, to: titleLabel)

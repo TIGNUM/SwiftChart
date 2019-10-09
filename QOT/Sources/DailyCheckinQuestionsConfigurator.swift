@@ -11,10 +11,9 @@ import qot_dal
 
 final class DailyCheckinQuestionsConfigurator {
 
-    static func configure(viewController: DailyCheckinQuestionsViewController,
-                          questions: [RatingQuestionViewModel.Question]) {
+    static func configure(viewController: DailyCheckinQuestionsViewController) {
         let router = DailyCheckinQuestionsRouter(viewController: viewController)
-        let worker = DailyCheckinQuestionsWorker(questionService: qot_dal.QuestionService.main, questions: questions)
+        let worker = DailyCheckinQuestionsWorker()
         let presenter = DailyCheckinQuestionsPresenter(viewController: viewController)
         let interactor = DailyCheckinQuestionsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

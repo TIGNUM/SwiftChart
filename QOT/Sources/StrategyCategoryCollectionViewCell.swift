@@ -22,6 +22,9 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         guard let title = categoryTitle, let views = viewCount, let items = itemCount else {
             return
         }
+        let bkView = UIView()
+        ThemeView.level1Selected.apply(bkView)
+        selectedBackgroundView = bkView
         skeletonManager.hide()
         ThemeText.performanceStaticTitle.apply(R.string.localized.strategyPerformanceTitle(), to: performanceLabel)
         let titleText = title.replacingOccurrences(of: "Performance ", with: "")
@@ -34,9 +37,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        let bkView = UIView()
-        ThemeView.level1Selected.apply(bkView)
-        selectedBackgroundView = bkView
+        selectedBackgroundView = nil
         skeletonManager.addSubtitle(performanceLabel)
         skeletonManager.addSubtitle(categoryTitleLabel)
         skeletonManager.addOtherView(progressLabel)

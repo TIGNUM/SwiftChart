@@ -101,23 +101,6 @@ private extension ArticleTopNavBar {
 
         buttonMore.backgroundColor = isShowingAll ? .accent40 : .clear
     }
-
-    func refreshColor() {
-        backgroundColor = .clear
-        let tint = colorMode.tint
-        buttonMore.tintColor = tint
-        buttonBookmark.tintColor = tint
-        buttonNightMode.tintColor = tint
-        buttonTextScale.tintColor = tint
-        buttonShare.tintColor = tint
-
-        gradientShadow.removeFromSuperlayer()
-        gradientShadow.frame = bounds
-        gradientShadow.locations = [0, 0.8, 1.0]
-        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
-                                                     [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
-        layer.insertSublayer(gradientShadow, at: 0)
-    }
 }
 
 // MARK: - Public
@@ -159,6 +142,23 @@ extension ArticleTopNavBar {
     func updateBookmark(_ hasBookmark: Bool) {
         let image = hasBookmark ? R.image.ic_bookmark_fill() : R.image.ic_bookmark()
         buttonBookmark.setImage(image, for: .normal)
+    }
+
+    func refreshColor() {
+        backgroundColor = .clear
+        let tint = colorMode.tint
+        buttonMore.tintColor = tint
+        buttonBookmark.tintColor = tint
+        buttonNightMode.tintColor = tint
+        buttonTextScale.tintColor = tint
+        buttonShare.tintColor = tint
+
+        gradientShadow.removeFromSuperlayer()
+        gradientShadow.frame = bounds
+        gradientShadow.locations = [0, 0.8, 1.0]
+        gradientShadow.colors = colorMode == .dark ? [UIColor.carbon.cgColor, UIColor.carbon.cgColor, UIColor.carbon05.cgColor] :
+            [UIColor.sand.cgColor, UIColor.sand.cgColor, UIColor.sand08.cgColor]
+        layer.insertSublayer(gradientShadow, at: 0)
     }
 
     func allOff() {

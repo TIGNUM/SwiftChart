@@ -21,9 +21,6 @@ final class MyVisionPresenter {
 }
 
 extension MyVisionPresenter: MyVisionPresenterInterface {
-    func hideScreenLoader() {
-        viewController?.hideScreenLoader()
-    }
 
     func showNullState(with title: String, message: String) {
         viewController?.showNullState(with: title, message: message)

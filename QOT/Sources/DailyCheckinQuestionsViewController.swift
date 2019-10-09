@@ -142,7 +142,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = .carbon
-        pageIndicator.pageCount = interactor?.questions.count ?? 0
+        pageIndicator.pageCount = 0
         view.backgroundColor = .sand
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.delegate = self
@@ -151,8 +151,13 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         self.addChildViewController(pageController)
         view.insertSubview(pageController.view, belowSubview: pageContainerView)
         pageController.view.clipsToBounds = false
+
+    }
+
+    func showQuestions() {
+        pageIndicator.pageCount = interactor?.questions.count ?? 0
         if let viewController = questionnaireViewController(with: interactor?.questions.first) {
-            pageController.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
+            pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
     }
 

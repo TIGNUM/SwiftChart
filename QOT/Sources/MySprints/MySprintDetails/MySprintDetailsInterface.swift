@@ -29,6 +29,7 @@ protocol MySprintDetailsPresenterInterface {
 
 protocol MySprintDetailsInteractorInterface: Interactor {
     var viewModel: MySprintDetailsViewModel { get }
+    func updateViewModel()
 
     func didDismissAlert()
     func didTapItemAction(_ rawValue: Int)
