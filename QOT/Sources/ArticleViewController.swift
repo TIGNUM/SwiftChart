@@ -438,13 +438,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(let remoteId, let title, let description, placeholderURL: _, let audioURL, duration: _, waveformData:_):
+        case .audio( _, let title, let description, placeholderURL: _, _ , duration: _, waveformData:_):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title.uppercased(),
                            durationString: description ?? "",
-                           icon: R.image.ic_audio_grey_light(),
-                           remoteId: remoteId,
-                           url: audioURL)
+                           icon: R.image.ic_audio_grey_light())
             return cell
         case .image(let title, _, let url):
             return imageTableViewCell(
@@ -468,21 +466,17 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video(let remoteId, let title, let description, _ , let videoURL, _ ):
+        case .video( _, let title, let description, _ , _, _ ):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title.uppercased(),
                            durationString: description ?? "",
-                           icon: R.image.my_library_camera(),
-                           remoteId: remoteId,
-                           url: videoURL)
+                           icon: R.image.my_library_camera())
             return cell
-        case .pdf(let title, let description, let pdfURL , let itemID):
+        case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description ?? "",
-                           icon: R.image.ic_seen_of(),
-                           remoteId: itemID,
-                           url: pdfURL)
+                           icon: R.image.ic_seen_of())
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):
             let cell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -500,22 +494,18 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             readButtonCell = cell
             return cell
-        case .articleRelatedStrategy(let title, let description, let remoteId):
+        case .articleRelatedStrategy(let title, let description, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description,
-                           icon: R.image.ic_seen_of(),
-                           remoteId: remoteId,
-                           url: URL(string: ""))
+                           icon: R.image.ic_seen_of())
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(header: R.string.localized.learnArticleItemNextUp(),
                            title: title,
                            durationString: description,
-                           icon: R.image.ic_seen_of(),
-                           remoteId: 0,
-                           url: URL(string: ""))
+                           icon: R.image.ic_seen_of())
             return cell
         case .contactSupport:
             let cell: ArticleContactSupportTableViewCell = tableView.dequeueCell(for: indexPath)

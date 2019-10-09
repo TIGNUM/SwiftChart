@@ -21,7 +21,7 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
         selectedBackgroundView = UIView()
     }
 
-    func configure(title: String, durationString: String, icon: UIImage?, remoteId: Int?, url: URL?) {
+    func configure(title: String, durationString: String, icon: UIImage?) {
         ThemeText.articleRelatedTitle(nil).apply(title, to: titleLabel)
         ThemeText.articleRelatedDetail(nil).apply(durationString, to: detailLabel)
         iconImageView.image = icon
@@ -36,8 +36,8 @@ final class ArticleNextUpTableViewCell: ArticleRelatedTableViewCell {
 
     @IBOutlet private weak var headerLabel: UILabel!
 
-    func configure(header: String, title: String, durationString: String, icon: UIImage?, remoteId: Int?, url: URL?) {
-        super.configure(title: title, durationString: durationString, icon: icon, remoteId: remoteId, url: url)
+    func configure(header: String, title: String, durationString: String, icon: UIImage?) {
+        super.configure(title: title, durationString: durationString, icon: icon)
         ThemeText.articleNextTitle.apply(header, to: headerLabel)
     }
 }
