@@ -39,7 +39,7 @@ extension TutorialWorker {
     }
 
     func attributedbuttonTitle(at index: Index, for origin: TutorialOrigin) -> NSAttributedString {
-        let title = index == TutorialModel.Slide.allSlides.count - 1 ? R.string.localized.buttonTitleStart() : R.string.localized.buttonTitleSkip()
+        let title = index == TutorialModel.Slide.allSlides.count - 1 ? AppTextService.get(AppTextKey.tutorial_view_start_button) : AppTextService.get(AppTextKey.tutorial_view_skip_button)
         return NSAttributedString(string: origin == .login ? title : R.string.localized.morningControllerDoneButton(),
                                   letterSpacing: 0,
                                   font: .ApercuBold14,

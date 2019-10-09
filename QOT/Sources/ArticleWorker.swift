@@ -194,7 +194,7 @@ final class ArticleWorker {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
                 if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
+                    timeToReadText = "PDF | \(timeString)  " + AppTextService.get(AppTextKey.article_view_to_read_title)
                 }
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: timeToReadText,
@@ -402,9 +402,9 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : R.string.localized.prepareContentReadMore().uppercased()
+            return section == 0 ? nil : AppTextService.get(AppTextKey.prepare_view_read_more_title)
         default:
-            return section != 1 ? nil : R.string.localized.learnArticleItemRelatedContent()
+            return section != 1 ? nil : AppTextService.get(AppTextKey.article_view_related_content_title)
         }
     }
 

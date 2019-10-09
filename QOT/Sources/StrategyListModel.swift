@@ -47,7 +47,7 @@ struct Strategy {
 
         private func audioTextDurationString() -> String {
             let min = String(format: "%.0f", Double(valueDuration) / 60)
-            return R.string.localized.learnContentListViewMinutesLabel(min)
+            return String(format: AppTextService.get(AppTextKey.pdf_list_duration_title), min)
         }
     }
 }

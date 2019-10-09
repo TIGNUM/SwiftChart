@@ -23,12 +23,6 @@ import qot_dal
 
 public extension AppTextKey {
     static let daily_brief_good_to_know_title = AppTextKey("daily_brief.good_to_know.title")
-    //"learn.category-list-view.title" = "Categories";
-    //"learn.content-list-view.minutes-label" = "%@ min read";
-    //"learn.content.duration.video" = "%@ min video";
-    //"learn.content-list-view.minutes-label-watch" = "%@ min video";
-    //"learn.content-list-view.minutes-label-listen" = "%@ min audio";
-    //
     //"Settings.Tutorial.Reset.Title" = "Tutorial reset";
     //
     //"Settings.Title" = "SETTINGS";
@@ -128,8 +122,8 @@ public extension AppTextKey {
     //"Top.Tab.Bar.Item.Title.Perpare.Notes" = "NOTES";
     //"Top.Tab.Bar.Item.Title.Tutorial" = "TUTORIAL";
     //
-    //"Button.Title.Skip" = "SKIP";
-    //"Button.Title.Start" = "START";
+    static let tutorial_view_skip_button = AppTextKey("tutorial.view.skip_button")
+    static let tutorial_view_start_button = AppTextKey("tutorial.view.start_button")
     //"Button.Title.Allow" = "Allow";
     //
     //"Guide.Card.Type.WhatsHot" = "Whats Hot Article";
@@ -166,7 +160,7 @@ public extension AppTextKey {
     //"Prepare.PrepareEvents.UpcomingEventsNoSynchronisableCalendars" = "UPCOMING EVENTS,\nOR SYNC CALENDAR";
     //"Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
     //"Prepare.PrepareEvents.SaveThisPreparation" = "Save Preparation";
-    //"Prepare.Content.ReadMore" = "Read more";
+    static let prepare_view_read_more_title = AppTextKey("prepare.view.read_more_title")
     //"Prepare.Content.Completed" = "PREPARATIONS COMPLETED";
     //"Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";
     //"Prepare.Chat.Header.Preparations" = "PREPARATIONS";
@@ -192,7 +186,7 @@ public extension AppTextKey {
     //"Prepare.Review.Notes.Intentions.PersonGroup.Placeholder" = "Put your thoughts into writing (i.e. heard, loved, valued, important).";
     //"Prepare.Review.Notes.Reflection.BrainSuccess.Placeholder" = "Put your thoughts into writing (i.e. I listened well; I was calm; I answered questions clearly).";
     //"Prepare.Review.Notes.Reflection.Wish.Placeholder" = "Put your thoughts into writing (i.e. I listened well; I didn't overreact; I was prepared).";
-    //"Prepare.Navigation.Title.Add.Remove.Strategies" = "Selected Strategies %@/%@";
+    static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
     //"Prepare.Subtitle.Learn.More" = "LEARN MORE";
     //"Prepare.header.before.and.after" = "BEFORE AND AFTER";
     //"Prepare.header.preparation.list" = "PREPARATION LIST";
@@ -206,13 +200,20 @@ public extension AppTextKey {
     //"Learn.Content.Item.Title.Related.Articles.Load.More" = "Load more";
     //"Learn.Content.Item.Article" = "Article";
     //"Learn.Content.Item.Articles" = "Articles";
-    //"Learn.Content.Item.ToRead" = "To read";
-    //"Learn.Article.Item.NextUp" = "NEXT UP";
-    //"Learn.Article.Item.RelatedContent" = "RELATED CONTENT";
+    static let article_view_to_read_title = AppTextKey("article.view.to_read_title")
+    static let article_pdf_view_to_read_title = AppTextKey("article.pdf.view.to_read_title")
+    static let article_view_next_up_title = AppTextKey("article.view.next_up_title")
+    static let article_view_related_content_title = AppTextKey("article.view.related_content_title")
+    //"learn.category-list-view.title" = "Categories";
+    static let pdf_list_duration_title = AppTextKey("pdf.list.duration_title")
+    //"learn.content.duration.video" = "%@ min video";
+    static let video_list_duration_title = AppTextKey("video.list.duration_title")
+    static let audio_list_duration_title = AppTextKey("audio.list.duration_title")
     //
     //"Sidebar.SettingsMenu.Settings" = "SETTINGS";
     //"Sidebar.SettingsMenu.GeneralButton" = "GENERAL";
     //"Sidebar.SettingsMenu.NotificationsButton" = "NOTIFICATIONS";
+
     //"Sidebar.SettingsMenu.SecurityButton" = "SECURITY AND LEGAL";
     //"Sidebar.SettingsMenu.LogoutButton" = "Logout";
     //
@@ -518,7 +519,8 @@ public extension AppTextKey {
     //"MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without setting a coach follow-up?";
     static let coach_solve_alert_leave_title = AppTextKey("coach.solve.alert.leave_title")
     static let coach_solve_alert_leave_body = AppTextKey("coach.solve.alert.leave_body")
-    static let coach_solve_alert_ = AppTextKey("coach.solve.alert.")
+    static let coach_solve_alert_button_continue = AppTextKey("coach.solve.alert.button_continue")
+    static let coach_solve_alert_button_activate = AppTextKey("coach.solve.alert.button_activate")
     //
     static let my_qot_my_library_notes_view_add_button = AppTextKey("my_qot.my_library.notes.view.add_button")
     static let my_qot_my_library_all_view_title = AppTextKey("my_qot.my_library.all.view.title")
@@ -531,9 +533,9 @@ public extension AppTextKey {
     static let my_qot_my_library_downloads_edit_title = AppTextKey("my_qot.my_library.downloads.edit.title")
     static let my_qot_my_library_links_edit_title = AppTextKey("my_qot.my_library.links.edit.title")
     static let my_qot_my_library_notes_edit_title = AppTextKey("my_qot.my_library.notes.edit.title")
-    //"MyLibrary.Items.Alert.Remove.Title" = "DELETE";
-    //"MyLibrary.Items.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
-    //"MyLibrary.Items.TapToDownload" = "Tap to download";
+    static let my_qot_my_library_items_alert_delete_title = AppTextKey("my_qot.my_library.items.alert.delete_title")
+    static let my_qot_my_library_items_alert_delete_body = AppTextKey("my_qot.my_library.items.alert.delete_body")
+    static let my_qot_my_library_items_view_button_download = AppTextKey("my_qot.my_library.items.view.button_download")
     static let my_qot_my_library_all_alert_title = AppTextKey("my_qot.my_library.all.alert.title")
     static let my_qot_my_library_bookmarks_alert_title = AppTextKey("my_qot.my_library.bookmarks.alert.title")
     static let my_qot_my_library_downloads_alert_title = AppTextKey("my_qot.my_library.downloads.alert.title")
@@ -547,10 +549,10 @@ public extension AppTextKey {
     static let my_qot_my_library_notes_view_subtitle2 = AppTextKey("my_qot.my_library.notes.view.subtitle2")
     static let my_qot_my_library_media_view_downloading_title = AppTextKey("my_qot.my_library_media.view.downloading_title")
     static let my_qot_my_library_media_view_waiting_title = AppTextKey("my_qot.my_library_media.view.waiting_title")
-    //"MyLibrary.Items.ToRead" = "to read";
-    //"MyLibrary.Items.ToWatch" = "to watch";
-    //"MyLibrary.Items.ToListen" = "to listen";
-    //"MyLibrary.Notes.PlaceholderText" = "Take a note";
+    static let my_qot_my_library_items_view_read_title = AppTextKey("my_qot.my_library.items.view.read_title")
+    static let my_qot_my_library_items_view_watch_title = AppTextKey("my_qot.my_library.items.view.watch_title")
+    static let my_qot_my_library_items_view_listen_title = AppTextKey("my_qot.my_library.items.view.listen_title")
+    static let my_qot_my_library_notes_view_placeholder = AppTextKey("my_qot.my_library.notes.view.placeholder")
     static let my_qot_my_library_notes_edit_button = AppTextKey("my_qot.my_library.notes.edit.button")
     static let my_qot_my_library_notes_add_view_alert_title = AppTextKey("my_qot.my_library.notes.add.view.alert_title")
     static let my_qot_my_library_notes_add_view_alert_subtitle = AppTextKey("my_qot.my_library.notes.add.view.alert_subtitle")
@@ -558,15 +560,15 @@ public extension AppTextKey {
     static let my_qot_my_library_notes_add_view_alert_button2 = AppTextKey("my_qot.my_library.notes.add.view.alert_button2")
     static let my_qot_my_library_notes_edit_alert_title = AppTextKey("my_qot.my_library.notes.edit.alert_title")
     static let my_qot_my_library_notes_edit_alert_message = AppTextKey("my_qot.my_library.notes.edit.alert_message")
-    static let my_qot_my_library_notes_edit_alert_cancel = AppTextKey("my_qot.my_library.notes.edit.alert_cancel")
     static let my_qot_my_library_notes_edit_alert_remove = AppTextKey("my_qot.my_library.notes.edit.alert_remove")
+    static let my_qot_my_library_notes_edit_alert_cancel = AppTextKey("my_qot.my_library.notes.edit.alert_cancel")
     //
     static let my_qot_my_sprints_empty_title = AppTextKey("my_qot.my_sprints.empty.title")
     static let my_qot_my_sprints_edit_title = AppTextKey("my_qot.my_sprints.edit.title")
     static let my_qot_my_sprints_view_sprint_plan_title = AppTextKey("my_qot.my_sprints.view.sprint_plan_title")
     static let my_qot_my_sprints_view_complete_title = AppTextKey("my_qot.my_sprints.view.complete_title")
-    //"MySprints.Alert.Remove.Title" = "DELETE";
-    //"MySprints.Alert.Remove.Message" = "If you continue, these item(s) will be deleted.";
+    static let my_qot_my_sprints_alert_remove_title = AppTextKey("my_qot.my_sprints.alert.remove_title")
+    static let my_qot_my_sprints_alert_remove_body = AppTextKey("my_qot.my_sprints.alert.remove_body")
     static let my_qot_my_sprints_empty_subtitle = AppTextKey("my_qot.my_sprints.empty.subtitle")
     static let my_qot_my_sprints_empty_body = AppTextKey("my_qot.my_sprints.empty.body")
     static let my_qot_my_sprints_view_active_title = AppTextKey("my_qot.my_sprints.view.active_title")
@@ -574,7 +576,7 @@ public extension AppTextKey {
     static let my_qot_my_sprints_view_paused_title = AppTextKey("my_qot.my_sprints.view.paused_title")
     static let my_qot_my_sprints_view_completed_at_title = AppTextKey("my_qot.my_sprints.view.completed_at_title")
     //
-    //"TBV.Button.MyTBVData" = "My TBV data";
+    static let my_qot_tbv_view_button_title_my_tbv_data = AppTextKey("my_qot.tbv.view.button_title_my_tbv_data")
     static let my_qot_tbv_empty_auto_generate_button = AppTextKey("my_qot.tbv.empty.auto_generate_button")
     static let my_qot_tbv_empty_write_button = AppTextKey("my_qot.tbv.empty.write_button")
     static let my_qot_tbv_view_updated_comment_subtitle = AppTextKey("my_qot.tbv.view.updated_comment_subtitle")
@@ -1127,18 +1129,4 @@ public extension AppTextKey {
     static let TOBEVISION = AppTextKey("TOBEVISION")
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
-    static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
-    //
-    //
-    //Not in confluence
-    //askPermission.location
-    //decisiontree.mindsetshifter.tobevisiongenerator
-    //decisiontree.prepare.edit.intentions.feel
-    //decisiontree.sprint.reflection
-    //tobevision.tracker.questionaire
-    //tobevision.tracker.countdown
-    //prepare.missing.event
-    //mylibrary
-    //fullscreen.pdfreader
-    //tobevision.mytbvdata
-}
+    static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")}

@@ -497,7 +497,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(header: R.string.localized.learnArticleItemNextUp(),
+            cell.configure(header: AppTextService.get(AppTextKey.article_view_next_up_title),
                            title: title,
                            durationString: description,
                            icon: R.image.ic_seen_of())

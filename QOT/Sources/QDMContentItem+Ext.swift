@@ -14,9 +14,9 @@ extension QDMContentItem {
         get {
             let min = String(format: "%.0f", max((valueDuration ?? 60), 1) / 60)
             switch format {
-            case .audio: return R.string.localized.learnContentListViewMinutesLabelListen(min)
-            case .video: return R.string.localized.learnContentListViewMinutesLabelWatch(min)
-            case .pdf: return R.string.localized.learnContentListViewMinutesLabel(min)
+            case .audio: return String(format: AppTextService.get(AppTextKey.audio_list_duration_title), min)
+            case .video: return String(format: AppTextService.get(AppTextKey.video_list_duration_title), min)
+            case .pdf: return String(format: AppTextService.get(AppTextKey.pdf_list_duration_title), min)
             default: return ""
             }
         }

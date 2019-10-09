@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol ChoiceViewControllerDelegate: class {
     func dismiss(_ viewController: UIViewController)
@@ -58,21 +59,7 @@ private extension ChoiceViewController {
 
     func navigationTitle(selected: Int) -> String {
         let max = interactor?.maxSelectionCount ?? 0
-        return R.string.localized.prepareNavigationTitleAddRemoveStrategies("\(selected)", "\(max)")
-    }
-
-    func showMaxSelectionCountAlert() {
-        let alert = UIAlertController(
-            title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
-            message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),
-            preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(
-                title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertButton(),
-                style: .default,
-                handler: nil)
-        )
-        present(alert, animated: true, completion: nil)
+        return String(format: AppTextService.get(AppTextKey.prepare_choice_view_title), selected, max)
     }
 }
 
@@ -154,7 +141,6 @@ extension ChoiceViewController: CollapsableContentCellDelegate {
         guard var item = interactor?.item(at: indexPath) else { return }
         if item.selected == false && interactor?.choiceType == .CHOICE {
             guard interactor?.selectedCount ?? 0 < interactor?.maxSelectionCount ?? 0 else {
-                showMaxSelectionCountAlert()
                 return
             }
         }
