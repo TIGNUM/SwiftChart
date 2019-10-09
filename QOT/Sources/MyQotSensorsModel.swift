@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct MyQotSensorsModel {
     let sensor: Sensor
@@ -19,20 +20,18 @@ struct MyQotSensorsModel {
         var title: String {
             switch self {
             case .oura:
-                return R.string.localized.sidebarSensorsMenuOuraRing()
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_oura_title)
             case .healthKit:
-                return R.string.localized.sidebarSensorsMenuHealthKit()
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_health_kit_title)
             case .requestTracker:
-                return R.string.localized.sidebarSensorsMenuRequestSensor().capitalized
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_tracker_title)
             }
         }
 
         var status: String {
             switch self {
-            case .oura:
-                return R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            case .healthKit:
-                return R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+            case .oura, .healthKit:
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_disconnected_title)
             case .requestTracker:
                 return ""
             }
@@ -40,10 +39,8 @@ struct MyQotSensorsModel {
 
         var labelStatus: String {
             switch self {
-            case .oura:
-                return R.string.localized.sidebarSensorsMenuSeonsorsNoData()
-            case .healthKit:
-                return R.string.localized.sidebarSensorsMenuSeonsorsNoData()
+            case .oura, .healthKit:
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_no_data_title)
             case .requestTracker:
                 return ""
             }

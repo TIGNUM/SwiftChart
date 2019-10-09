@@ -219,14 +219,14 @@ public extension AppTextKey {
     //
     //"Sidebar.SensorsMenu.Sensors" = "ACTIVITY TRACKERS";
     //"Sidebar.SensorsMenu.Fitbit" = "FITBIT";
-    //"Sidebar.SensorsMenu.Sensors.NoData" = "No Data";
-    //"Sidebar.SensorsMenu.Sensors.Disconnected" = "Disconnected";
-    //"Sidebar.SensorsMenu.Sensors.Connected" = "Connected";
+    static let my_qot_sensors_menu_no_data_title = AppTextKey("my_qot.sensors.menu.no_data_title")
+    static let my_qot_sensors_menu_disconnected_title = AppTextKey("my_qot.sensors.menu.disconnected_title")
+    static let my_qot_sensors_menu_connected_title = AppTextKey("my_qot.sensors.menu.connected_title")
     //"Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";
     //"Sidebar.SensorsMenu.Seonsors.NoData" = "No data";
-    //"Sidebar.SensorsMenu.OuraRing" = "OURA RING";
-    //"Sidebar.SensorsMenu.HealthKit" = "HEALTH KIT";
-    //"Sidebar.SensorsMenu.RequestSensor" = "Request activity tracker";
+    static let my_qot_sensors_menu_oura_title = AppTextKey("my_qot.sensors.menu.oura_title")
+    static let my_qot_sensors_menu_health_kit_title = AppTextKey("my_qot.sensors.menu.health_kit_title")
+    static let my_qot_sensors_menu_tracker_title = AppTextKey("my_qot.sensors.menu.tracker_title")
     //"Sidebar.SensorsMenu.Connect" = "CONNECT";
     //"Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
     //"Sidebar.SensorsMenu.Fitbit.Failure" = "Failed to link Fitbit";
@@ -586,31 +586,31 @@ public extension AppTextKey {
     //"TBV.Show.More" = "Show more";
     //"TBV.Show.Less" = "Show less";
     static let my_qot_tbv_tbv_tracker_view_your_last_rating_title = AppTextKey("my_qot.tbv.tbv_tracker.view.your_last_rating_title")
-    //"TBV.Customize.Target" = "CUSTOMIZE";
-    //"TBV.Customize.Body" = "Customize your benchmark value for your sleep quantity here according to time amount you want to reach.";
-    //"TBV.How.Would.You" = "How would you rate yourself in:";
-    //"TBV.Rate.Never" = "Never";
-    //"TBV.Rate.Sometimes" = "Sometimes";
-    //"TBV.Rate.Always" = "Always";
+    static let my_qot_tbv_questionaire_view_customize_title = AppTextKey("my_qot.tbv.questionaire.view.customize_title")
+    static let my_qot_tbv_questionaire_view_customize_body = AppTextKey("my_qot.tbv.questionaire.view.customize_body")
+    static let my_qot_tbv_questionaire_view_rate_yourself_body = AppTextKey("my_qot.tbv.questionaire.view.rate_yourself_body")
+    static let my_qot_tbv_questionaire_view_rate_never_title = AppTextKey("my_qot.tbv.questionaire.view.rate_never_title")
+    static let my_qot_tbv_questionaire_view_rate_sometimes_title = AppTextKey("my_qot.tbv.questionaire.view.rate_sometimes_title")
+    static let my_qot_tbv_questionaire_view_rate_always_title = AppTextKey("my_qot.tbv.questionaire.view.rate_always_title")
     //
-    //"Strategy.Performance.Title" = "PERFORMANCE";
+    static let know_strategy_view_performance_title = AppTextKey("know.strategy.view.performance_title")
     //
-    //"Mark.As.Read" = "Mark as read";
-    //"Mark.As.Unread" = "Mark as unread";
+    static let know_article_view_mark_as_read_title = AppTextKey("know.article.view.mark_as_read_title")
+    static let know_article_view_mark_as_unread_title = AppTextKey("know.article.view.mark_as_unread_title")
     //
-    //"Solve.5Day.Plan" = "YOUR SOLUTION";
-    //"Solve.Your.Answers" = "YOUR ANSWERS";
-    //"Solve.Fatigue" = "FATIGUE";
-    //"Solve.Cause" = "CAUSE";
+    static let coach_solve_results_view_solution_title = AppTextKey("coach.solve.results.view.solution_title")
+    static let coach_solve_results_view_answers_title = AppTextKey("coach.solve.results.view.answers_title")
+    static let coach_solve_results_view_fatigue_title = AppTextKey("coach.solve.results.view.fatigue_title")
+    static let coach_solve_results_view_cause_title = AppTextKey("coach.solve.results.view.cause_title")
     //
-    //"SyncedCalendars.Button.Skip" = "Skip";
-    //"SyncedCalendars.Button.Save" = "Save";
+    static let my_qot_calendars_view_button_skip = AppTextKey("my_qot.calendars.view.button_skip")
+    static let my_qot_calendars_view_button_save = AppTextKey("my_qot.calendars.view.button_save")
     //
-    //"Weather.Now" = "Now";
+    static let daily_brief_weather_view_now_title = AppTextKey("daily_brief.weather.view.now_title")
     //
-    //"Walkthrough.Button.GotIt" = "Got it";
-    //"DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
-    //"DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
+    static let walkthrough_view_got_it_button = AppTextKey("walkthrough.view.got_it_button")
+    static let daily_brief_impact_readiness_view_rolling_data_title = AppTextKey("daily_brief.impact_readiness.view.rolling_data_title")
+    static let daily_brief_whats_hot_view_subtitle_title = AppTextKey("daily_brief.whats_hot.view.subtitle_title")
     //
     //"Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
     //"Onboarding.Intro.Body" = "From merely present to totally prepared.";
@@ -1129,4 +1129,5 @@ public extension AppTextKey {
     static let TOBEVISION = AppTextKey("TOBEVISION")
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
-    static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")}
+    static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
+}
