@@ -551,12 +551,17 @@ extension DailyBriefInteractor {
                                                                  domainModel: depatureInfo))
             return departureInfoList
         }
-        departureInfoList.append(DepartureInfoCellViewModel(title: depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
-                                                            subtitle: depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText,
-                                                            text: collection.contentItems.first?.valueText,
-                                                            image: collection.thumbnailURLString ?? "",
-                                                            copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                            domainModel: depatureInfo))
+        let title = depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
+        let subtitle = depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let copyright = collection.contentItems.filter { $0.searchTags.contains("BUCKET_COPYRIGHT") }.first?.valueText
+        let model = DepartureInfoCellViewModel(title: title,
+                                               subtitle: subtitle,
+                                               text: text,
+                                               image: collection.thumbnailURLString ?? "",
+                                               copyright: copyright,
+                                               domainModel: depatureInfo)
+        departureInfoList.append(model)
         return departureInfoList
     }
 
