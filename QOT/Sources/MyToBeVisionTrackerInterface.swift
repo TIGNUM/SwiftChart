@@ -19,6 +19,7 @@ protocol MyToBeVisionTrackerPresenterInterface {
 protocol MyToBeVisionTrackerInteractorInterface: Interactor {
     var controllerType: MyToBeVisionTrackerWorker.ControllerType { get }
     func setSelection(for date: Date?) -> MYTBVDataViewModel?
+    func getData()
 }
 
 protocol MyToBeVisionTrackerRouterInterface {}

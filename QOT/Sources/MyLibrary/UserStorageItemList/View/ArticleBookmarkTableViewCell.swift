@@ -13,15 +13,12 @@ class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(contentTitle)
-        skeletonManager.addSubtitle(infoText)
-        skeletonManager.addOtherView(icon)
         skeletonManager.addOtherView(preview)
     }
 
-    func configure(withUrl: URL?) {
-        guard let url = withUrl else { return }
+    func configure(previewImageUrl: URL?) {
+        configure()
         skeletonManager.addOtherView(preview)
-        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
+        preview.setImage(url: previewImageUrl, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
     }
 }

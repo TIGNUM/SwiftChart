@@ -41,7 +41,7 @@ final class AppCoordinator {
         return manager
     }()
     lazy var userLoggedIn: Bool = {
-        return qot_dal.SessionService.main.getCurrentSession() != nil
+        return SessionService.main.getCurrentSession() != nil
     }()
 
     private var reachability = QOTReachability()
@@ -87,7 +87,7 @@ final class AppCoordinator {
         }
         self.setupBugLife()
 
-        if qot_dal.SessionService.main.getCurrentSession() != nil {
+        if SessionService.main.getCurrentSession() != nil {
             self.showApp()
             completion()
         } else {
@@ -111,7 +111,7 @@ final class AppCoordinator {
 
     func setupBugLife() {
         guard SessionService.main.getCurrentSession() != nil else { return }
-        if qot_dal.SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
+        if SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
             Buglife.shared().invocationOptions = [.shake]
@@ -335,7 +335,7 @@ extension AppCoordinator: PermissionManagerDelegate {
                 devicePermissions.append(devicePermission)
             }
             guard !devicePermissions.isEmpty else { return }
-            qot_dal.QOTService.main.updateDevicePermissions(permissions: devicePermissions)
+            QOTService.main.updateDevicePermissions(permissions: devicePermissions)
         }
     }
 }
@@ -380,8 +380,10 @@ extension AppCoordinator {
             dispatchGroup.leave()
         })
         var preparations: [QDMUserPreparation]?
+        dispatchGroup.enter()
         UserService.main.getUserPreparationsWithMissingEvent(from: Date().beginingOfDate(), { (preps, initalized, error) in
             preparations = preps
+            dispatchGroup.leave()
         })
 
         dispatchGroup.notify(queue: .main, execute: {

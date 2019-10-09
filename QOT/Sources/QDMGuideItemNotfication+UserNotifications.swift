@@ -30,8 +30,8 @@ extension QDMGuideItemNotfication {
     }
 
     var localNotificationDate: Date? {
-        guard let issueDate = issueDate, let reminderTime = reminderTime else { return nil }
-        return reminderTime.date(with: issueDate)
+        guard let issueDate = issueDate, let displayTime = displayTime else { return nil }
+        return displayTime.date(with: issueDate)
     }
     var isDailyPrep: Bool {
         guard let itemType = ItemType(rawValue: type ?? "") else { return false }
@@ -45,9 +45,6 @@ extension QDMGuideItemNotfication {
     var notificationRequest: UNNotificationRequest? {
         guard let triggerDate = localNotificationDate, isDailyPrep == false else { return nil }
         let content = UNMutableNotificationContent(title: title, body: body ?? "", soundName: sound, link: link ?? "")
-        if sound?.isEmpty == true {
-            content.sound = nil
-        }
         let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
         return UNNotificationRequest(identifier: notificationIdentifier, content: content, trigger: trigger)
     }

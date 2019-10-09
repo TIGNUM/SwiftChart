@@ -132,7 +132,6 @@ private extension OnboardingLoginViewController {
     }
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
-        currentTextField.resignFirstResponder()
         if let nextTextField = nextTextField {
             nextTextField.text = ""
             nextTextField.becomeFirstResponder()
@@ -348,7 +347,6 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
 
     func beginCodeEntry() {
         updateCodeEntry(isEnabled: true)
-        emailField.textField.resignFirstResponder()
         digitTextFields.first?.becomeFirstResponder()
     }
 

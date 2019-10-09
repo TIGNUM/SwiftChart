@@ -33,6 +33,10 @@ final class WalkthroughSwipeViewController: BaseViewController, ScreenZLevelOver
         interactor?.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 }
 
 // MARK: - Private

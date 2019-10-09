@@ -14,6 +14,8 @@ import qot_dal
 
 final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
     var overlayControls: MediaPlayerOverlay?
+    var videoGravityObserver: Any?
+    var zoomed: Bool = false
     var interactor: StreamVideoInteractorInterface? {
         didSet {
             interactor?.delegate = self
@@ -23,6 +25,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppCoordinator.orientationManager.videos()
+        addVideoGravityObserver()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -58,6 +61,12 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         pageTrack.associatedValueId = interactor?.contentItemId
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
+
+    func addVideoGravityObserver() {
+        videoGravityObserver = self.observe(\.videoGravity) { [weak self] (_, _) in
+            self?.overlayControls?.buttonsShowHide()
+        }
+    }
 }
 
 extension MediaPlayerViewController: StreamVideoInteractorDelegate {
@@ -84,10 +93,13 @@ extension MediaPlayerViewController: StreamVideoInteractorDelegate {
 extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
 
     func downloadMedia() {
+        trackUserEvent(.DOWNLOAD, value: interactor?.contentItemId, stringValue: .SELECT, valueType: .VIDEO, action: .TAP)
         interactor?.didTapDownload()
     }
 
     func bookmarkMedia() {
+        let value: QDMUserEventTracking.Name = interactor?.isBookmarked == true ? .DESELECT : .SELECT
+        trackUserEvent(.BOOKMARK, value: interactor?.contentItemId, stringValue: value, valueType: .VIDEO, action: .TAP)
         interactor?.didTapBookmark()
     }
 }

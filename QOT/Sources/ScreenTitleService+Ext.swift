@@ -142,6 +142,14 @@ extension ScreenTitleService {
     func paymentHeaderSubtitle() -> String? {
         return localizedString(for: .paymentHeaderSubtitle)
     }
+
+    func paymentExpiredHeaderTitle() -> String? {
+        return localizedString(for: .paymentHeaderExpiredTitle)
+    }
+
+    func paymentExpiredHeaderSubtitle() -> String? {
+        return localizedString(for: .paymentHeaderExpiredSubtitle)
+    }
 }
 
 // MARK: - My Qot

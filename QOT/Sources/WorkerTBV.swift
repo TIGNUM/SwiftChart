@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-class TBVWorker {
+class WorkerTBV {
     func createVision(selectedAnswers: [SelectedAnswer],
                       questionKeyWork: String,
                       questionKeyHome: String,
@@ -26,7 +26,7 @@ class TBVWorker {
             completion(vision)
             guard var newVision = vision else { return }
             if newVision.headline?.isEmpty == true {
-                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionDefaultTitle)
             }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
                 UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})

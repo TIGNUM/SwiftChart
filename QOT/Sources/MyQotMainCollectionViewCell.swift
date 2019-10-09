@@ -17,7 +17,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     let skeletonManager = SkeletonManager()
 
     func configure(title: String?, subtitle: String?, isRed: Bool = false) {
-        ThemeText.myQOTBoxTitle.apply((title ?? "").uppercased(), to: titleLabel)
+        ThemeText.myQOTBoxTitle.apply((title ?? ""), to: titleLabel)
 
         guard let newSubtitle = subtitle else {
             return

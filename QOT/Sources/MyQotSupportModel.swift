@@ -12,47 +12,47 @@ import qot_dal
 struct MyQotSupportModel {
 
     enum MyQotSupportModelItem: Int {
-        case featureRequest
-//        Tutorial will be added back later
-//        case tutorial
-        case contactSupport
+        case usingQOT
         case faq
+        case reportIssue
+        case featureRequest
 
         static var supportValues: [MyQotSupportModelItem] {
-            return [.featureRequest, .contactSupport, .faq]
+            return [.usingQOT, .faq, .reportIssue, .featureRequest]
         }
 
         var primaryKey: Int {
             switch self {
-            case .contactSupport: return 101192
-            case .featureRequest: return 0
+            case .usingQOT: return 101192
             case .faq: return 100704
+            case .reportIssue: return 0
+            case .featureRequest: return 0
             }
         }
 
         func tag() -> Tags {
             switch self {
-            case .contactSupport:
+            case .usingQOT:
+                return Tags.SupportUsingQOT
+            case .faq:
+                return Tags.SupportFaq
+            case .reportIssue:
                 return Tags.SupportContactSupport
             case .featureRequest:
                 return Tags.SupportFeatureRequest
-//            case .tutorial:
-//                return Tags.SupportTutorial
-            case .faq:
-                return Tags.SupportFaq
             }
         }
 
         func tagSubtitle() -> Tags {
             switch self {
-            case .contactSupport:
-                return Tags.SupportAreYouMissingSomething
-            case .featureRequest:
+            case .usingQOT:
                 return Tags.SupportLearnHowToUseQot
-//            case .tutorial:
-//                return Tags.SupportContactUsForAnyQuestion
             case .faq:
                 return Tags.SupportCheckTheMostAskedQuestion
+            case .reportIssue:
+                return Tags.SupportContactUsForAnyQuestion
+            case .featureRequest:
+                return Tags.SupportAreYouMissingSomething
             }
         }
 
@@ -70,18 +70,20 @@ struct MyQotSupportModel {
 
         func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
-            case .contactSupport:
+            case .usingQOT:
                 contentService.getContentCollectionById(primaryKey) { (collection) in
                     completion(collection)
                 }
-            case .featureRequest:
-//                 .tutorial:
-                 completion(nil)
             case .faq:
                 contentService.getContentCollectionById(primaryKey) { (collection) in
                     completion(collection)
                 }
+            case .reportIssue:
+                completion(nil)
+            case .featureRequest:
+                completion(nil)
             }
+
         }
     }
 }

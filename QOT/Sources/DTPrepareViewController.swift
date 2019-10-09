@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import EventKitUI
+import qot_dal
 
 final class DTPrepareViewController: DTViewController {
 
@@ -116,7 +117,7 @@ final class DTPrepareViewController: DTViewController {
 
 // MARK: - Private
 private extension DTPrepareViewController {
-        func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
+    func handleAnswerSelection(_ answer: DTViewModel.Answer, contentId: Int) {
         if answer.keys.contains(Prepare.AnswerKey.OpenCheckList) {
             prepareRouter?.presentPrepareResults(contentId)
         } else if answer.keys.contains(Prepare.AnswerKey.KindOfEventSelectionDaily) {
@@ -135,8 +136,9 @@ private extension DTPrepareViewController {
             } else {
                 self?.prepareRouter?.loadShortTBVGenerator(introKey: ShortTBV.QuestionKey.IntroPrepare,
                                                            delegate: self?.prepareInteractor) { [weak self] in
+                                                            let targetId = Prepare.QuestionTargetId.IntentionPerceived
                                                             let targetAnswer = DTViewModel.Answer(answer: answer,
-                                                                                                  newTargetId: Prepare.QuestionTargetId.IntentionPerceived)
+                                                                                                  newTargetId: targetId)
                                                             self?.setAnswerNeedsSelection(targetAnswer)
                                                             self?.loadNextQuestion()
                 }
@@ -149,17 +151,21 @@ private extension DTPrepareViewController {
             self?.prepareRouter?.presentPrepareResults(preparation)
         }
     }
+
+    func resetSelectedAnswers() {
+        if var viewModel = viewModel {
+            viewModel.resetSelectedAnswers()
+            showQuestion(viewModel: viewModel, direction: .forward, animated: false)
+        }
+    }
 }
 
 extension DTPrepareViewController: AskPermissionDelegate {
     func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
         if granted {
-            self.prepareRouter?.presentCalendarSettings()
+            presentCalendarSettings()
         } else {
-            if var viewModel = viewModel {
-                viewModel.resetSelectedAnswers()
-                showQuestion(viewModel: viewModel, direction: .forward, animated: false)
-            }
+            resetSelectedAnswers()
         }
     }
 }
@@ -169,12 +175,19 @@ extension DTPrepareViewController: DTPrepareViewControllerInterface {
     func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
         prepareRouter?.presentCalendarPermission(permissionType)
     }
+
+    func presentCalendarSettings() {
+        self.prepareRouter?.presentCalendarSettings()
+    }
 }
 
 // MARK: - SyncedCalendarsDelegate
 extension DTPrepareViewController: SyncedCalendarsDelegate {
-    func didFinishSyncingCalendars(hasEvents: Bool) {
-        if hasEvents {
+    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
+        if qdmEvents.isEmpty {
+            resetSelectedAnswers()
+        } else {
+            prepareInteractor?.setUserCalendarEvents(qdmEvents)
             loadNextQuestion()
         }
     }

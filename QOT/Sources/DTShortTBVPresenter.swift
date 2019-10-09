@@ -12,6 +12,7 @@ import qot_dal
 final class DTShortTBVPresenter: DTPresenter {
 
     var shouldHideDismissButton: Bool = false
+    var introKey: String?
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
         if shouldHideDismissButton {
@@ -21,7 +22,8 @@ final class DTShortTBVPresenter: DTPresenter {
     }
 
     override func previousIsHidden(questionKey: String) -> Bool {
-        return questionKey == ShortTBV.QuestionKey.IntroMindSet
+        return (introKey == ShortTBV.QuestionKey.IntroSolve && questionKey == introKey)
+            || (questionKey == ShortTBV.QuestionKey.IntroMindSet)
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {

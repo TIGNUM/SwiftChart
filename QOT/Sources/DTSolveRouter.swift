@@ -19,7 +19,15 @@ extension DTSolveRouter: DTSolveRouterInterface {
         viewController?.present(solveResultsController, animated: true)
     }
 
-    func loadShortTBVGenerator(introKey: String, delegate: DTSolveInteractorInterface?, completion: (() -> Void)?) {}
+    func loadShortTBVGenerator(introKey: String, delegate: DTShortTBVDelegate?, completion: (() -> Void)?) {
+        let configurator = DTShortTBVConfigurator.make(introKey: introKey, delegate: delegate)
+        let controller = DTShortTBVViewController(configure: configurator)
+        viewController?.present(controller, animated: true, completion: completion)
+    }
 
-    func dismissFlowAndGoToMyTBV() {}
+    func dismissFlowAndGoToMyTBV() {
+        if let tbvURL = URLScheme.toBeVision.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: tbvURL)
+        }
+    }
 }

@@ -159,8 +159,12 @@ final class LaunchHandler {
             push(viewController: controller)
         case .tutorial: break
         case .faq:
-            guard let controller = R.storyboard.myQot.myQotSupportFaqViewController() else { return }
-            MyQotSupportFaqConfigurator.configure(viewController: controller)
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
+            push(viewController: controller)
+        case .usingQOT:
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
             push(viewController: controller)
         case .aboutTignum:
             guard let controller = R.storyboard.myQot.myQotAboutUsViewController() else { return }
@@ -390,5 +394,4 @@ extension LaunchHandler {
     func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
-
 }

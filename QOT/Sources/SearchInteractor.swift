@@ -55,4 +55,8 @@ extension SearchInteractor: SearchInteractorInterface {
             completion(item)
         }
     }
+
+    func shouldStartDeactivated() -> Bool {
+        return worker.startDeactivated
+    }
 }

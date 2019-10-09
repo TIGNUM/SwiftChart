@@ -38,6 +38,12 @@ final class MyLibraryUserStorageInteractor {
         return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped)).barButton,
                 RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)).barButton]
     }()
+
+    private lazy var cancelDownloadButtons: [UIBarButtonItem] = {
+        return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelCancelingDownloadTapped)).barButton,
+                RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueCancelingDownloadTapped)).barButton]
+    }()
+
     private lazy var cellularDownloadButtons: [UIBarButtonItem] = {
         return [RoundedButton(title: worker.cancelTitle, target: self, action: #selector(cancelCellularDownload)).barButton,
                 RoundedButton(title: worker.continueTitle, target: self, action: #selector(continueCellularDownload)).barButton]
@@ -213,7 +219,7 @@ extension MyLibraryUserStorageInteractor {
     private func showEmptyAlert() {
         infoViewModel = MyLibraryUserStorageInfoViewModel(
             isFullscreen: false,
-            icon: self.worker.contentIcon,
+            icon: self.worker.emptyContentIcon,
             title: self.worker.emtptyContentAlertTitle,
             message: self.worker.emtptyContentAlertMessage)
         presenter.present()
@@ -298,13 +304,30 @@ extension MyLibraryUserStorageInteractor {
     private func handleDownload(item: MyLibraryCellViewModel) -> Bool {
         switch item.downloadStatus {
         case .downloading:
-            pauseDownload(for: item)
+            itemForDownload = item
+            downloadingCellTapped()
         case .waiting, .none:
             tryResumingDownload(for: item)
         case .downloaded:
             return false
         }
         return true
+    }
+
+    private func downloadingCellTapped() {
+        presenter.presentAlert(title: worker.cancelDownloadItemsAlertTitle,
+                               message: worker.cancelDownloadItemsAlertMessage,
+                               buttons: cancelDownloadButtons)
+    }
+
+    @objc private func cancelCancelingDownloadTapped() {
+        // nop
+    }
+
+    @objc private func continueCancelingDownloadTapped() {
+        guard let item = itemForDownload else { return }
+        pauseDownload(for: item)
+        itemForDownload = nil
     }
 }
 

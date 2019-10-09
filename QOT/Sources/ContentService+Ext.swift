@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-extension qot_dal.ContentService {
+extension ContentService {
     func getRelatedStrategiesPrepareDefault(_ contentCollectionId: Int,
                                             _ completion: @escaping ([QDMContentCollection]?) -> Void) {
         getContentCollectionById(contentCollectionId) { [weak self] item in

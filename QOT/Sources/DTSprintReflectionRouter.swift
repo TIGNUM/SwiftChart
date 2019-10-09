@@ -13,10 +13,19 @@ final class DTSprintReflectionRouter: DTRouter {}
 // MARK: - DTSprintReflectionRouterInterface
 extension DTSprintReflectionRouter: DTSprintReflectionRouterInterface {
     func presentTrackTBV() {
-        guard let controller = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        MyToBeVisionTrackerConfigurator.configure(viewController: controller, controllerType: .tracker)
-        viewController?.dismiss(animated: false, completion: {
-            self.viewController?.present(controller, animated: true)
-        })
+        let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
+        guard let controller = R.storyboard.myToBeVision()
+            .instantiateViewController(withIdentifier: identifier) as? MyVisionViewController else { return }
+        MyVisionConfigurator.configure(viewController: controller)
+
+        guard let rateController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() else { return }
+        WorkerTBV().getUsersTBV { [weak self] (tbv, _) in
+            MyToBeVisionRateConfigurator.configure(previousController: controller,
+                                                   viewController: rateController,
+                                                   visionId: tbv?.remoteID ?? 0)
+            self?.viewController?.dismiss(animated: false) {
+                self?.viewController?.present(rateController, animated: true)
+            }
+        }
     }
 }
