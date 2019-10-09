@@ -457,7 +457,6 @@ private extension ArticleWorker {
         // Handle most frequent case
         guard let content = content else { return true }
 
-
         switch content.section {
         case .Generic, .LearnStrategies, .WhatsHot: return false
         default: break
