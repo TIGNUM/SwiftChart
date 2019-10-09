@@ -101,6 +101,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
+        articleTopNavBar.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +109,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         tableView.reloadData()
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
-
-        if interactor?.alwaysHideTopBar ?? true {
-            articleTopNavBar.isHidden = true
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -260,7 +257,8 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData() {
-        reloadData(showNavigationBar: true)
+        let navigationBarIsHidden = interactor?.alwaysHideTopBar ?? true
+        reloadData(showNavigationBar: !navigationBarIsHidden)
     }
 
     func reloadData(showNavigationBar: Bool) {
@@ -658,6 +656,7 @@ extension ArticleViewController {
         constraintNavBar.constant = show ? 0 : -80
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
+            self.articleTopNavBar.isHidden = !show
         }
 
         if !show {
