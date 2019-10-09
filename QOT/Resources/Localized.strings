@@ -115,7 +115,7 @@
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";
 "Guide.DailyPrep.NotFinished.Feedback" = "How do you feel today? I can help you Rule Your Impact with just a minute of your time.";
-"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR ToBeVision";
+"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TOBEVISION";
 "Guide.ToBeVision.NotFisished.Message" = "No human being can outperform their self-image, yet you have not created yours. I would love to help you.";
 
 "Article.Loading" = "Please wait while we configure what's hot";
@@ -606,4 +606,4 @@
 "MyLibrary.GroupLastUpdate" = " | Last update %@";
 
 "Tools.Subtitle.Interactive.Tool" = "Interactive tool";
-"Settings.Calendars.Subscribed" = "*You can only give access to QOT to the calendars you own.";
+"Settings.Calendars.Subscribed" = "*You can only give QOT access to the calendars you own.";

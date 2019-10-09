@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,14 +26,17 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="R0I-wm-lgZ">
-                        <rect key="frame" x="24" y="58" width="10" height="10"/>
+                        <rect key="frame" x="24" y="57" width="12" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="10" id="XuV-Bx-wLa"/>
-                            <constraint firstAttribute="width" constant="10" id="rZj-46-pR3"/>
+                            <constraint firstAttribute="height" constant="12" id="XuV-Bx-wLa"/>
+                            <constraint firstAttribute="width" constant="12" id="rZj-46-pR3"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c7a-XA-Hfm">
-                        <rect key="frame" x="42" y="52.5" width="254" height="21"/>
+                        <rect key="frame" x="44" y="52.5" width="252" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="94X-PD-MTc"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -47,13 +50,16 @@
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.80161065919999996" colorSpace="calibratedRGB"/>
                 <constraints>
                     <constraint firstItem="UyQ-8m-9Bz" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="0FK-oW-l4O"/>
                     <constraint firstItem="c7a-XA-Hfm" firstAttribute="leading" secondItem="R0I-wm-lgZ" secondAttribute="trailing" constant="8" id="2bm-Cl-8Tp"/>
                     <constraint firstAttribute="bottom" secondItem="lgx-mV-W3h" secondAttribute="bottom" id="Cd7-ud-9NA"/>
                     <constraint firstAttribute="bottom" secondItem="c7a-XA-Hfm" secondAttribute="bottom" constant="21" id="CrM-cl-xPI"/>
+                    <constraint firstItem="R0I-wm-lgZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Is3-sg-Y4x"/>
                     <constraint firstAttribute="trailing" secondItem="lgx-mV-W3h" secondAttribute="trailing" id="JQE-zT-8r4"/>
                     <constraint firstAttribute="trailing" secondItem="UyQ-8m-9Bz" secondAttribute="trailing" constant="24" id="PH3-DG-bFk"/>
+                    <constraint firstItem="c7a-XA-Hfm" firstAttribute="top" secondItem="UyQ-8m-9Bz" secondAttribute="bottom" constant="8" id="V65-f2-wyj"/>
                     <constraint firstItem="UyQ-8m-9Bz" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="drQ-fg-xn7"/>
                     <constraint firstAttribute="trailing" secondItem="c7a-XA-Hfm" secondAttribute="trailing" constant="24" id="gVg-21-3SR"/>
                     <constraint firstItem="c7a-XA-Hfm" firstAttribute="centerY" secondItem="R0I-wm-lgZ" secondAttribute="centerY" id="h5h-mh-KNu"/>

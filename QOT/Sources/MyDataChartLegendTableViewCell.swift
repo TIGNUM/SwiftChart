@@ -41,6 +41,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
         guard let model = selectionModel else {
             return
         }
+
         HealthService.main.availableHealthKitTrackerDataForToday { [weak self] (healthData) in
             guard let strongSelf = self else { return }
             strongSelf.resetContent()

@@ -32,7 +32,7 @@ final class ArticleWorker {
 
     var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
-    var relatedArticlesStrategy = [Article.RelatedArticleStrategy]()
+    var relatedArticlesStrategy = [Article.Item]()
 
     var audioArticleItem: Article.Item?
 
@@ -127,8 +127,8 @@ final class ArticleWorker {
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
-            self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
+            self?.setupRelatedArticlesStrtegy()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
@@ -180,16 +180,16 @@ final class ArticleWorker {
         }
         let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
-            content?.contentItems.filter { !$0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach { item in
-                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
-            }
+            content?.contentItems.forEach({ (item) in
+                if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
+                    contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                } else {
+                    items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                }
+            })
         }
 
-        content?.contentItems.filter { $0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach({ (item) in
-            contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
-        })
-
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
@@ -202,20 +202,37 @@ final class ArticleWorker {
                                                                             itemID: item.remoteID ?? 0)))
             }
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,
-                                                                              description: item.valueDescription,
+                                                                              description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               videoURL: videoURL,
                                                                               duration: item.valueDuration ?? 0)))
             }
         }
+        content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
+            if let audioURL = URL(string: item.valueMediaURL ?? "") {
+                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
+                                                                              title: item.valueText,
+                                                                              description: item.durationString,
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              audioURL: audioURL,
+                                                                              duration: item.valueDuration ?? 0,
+                                                                              waveformData: [])))
+            }
+        }
+        let nextUpContentIds = content?.relatedContentList.filter({$0.type.uppercased() == "NEXT_UP"}).compactMap({ $0.contentID }) ?? []
+        relatedContent.forEach { content in
+            guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
+            itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                                                       description: content.durationString,
+                                                                                       itemID: content.remoteID ?? 0)))
+        }
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
         }
-
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
@@ -280,11 +297,11 @@ final class ArticleWorker {
     }
 
     private func setupRelatedArticlesStrtegy() {
-        var articles = [Article.RelatedArticleStrategy]()
+        var articles = [Article.Item]()
         relatedContent.forEach { content in
-            articles.append(Article.RelatedArticleStrategy(title: content.title,
-                                                           durationString: content.durationString,
-                                                           remoteID: content.remoteID ?? 0))
+            articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                           description: content.durationString,
+                                                          itemID: content.remoteID ?? 0)))
         }
         relatedArticlesStrategy = articles
     }
@@ -438,25 +455,24 @@ private extension ArticleWorker {
 
     func shouldHideTopBar() -> Bool {
         // Handle most frequent case
-        guard let content = content,
-            content.section != .Generic else { return false }
+        guard let content = content else { return true }
+
 
         switch content.section {
-        case .ToBeVisionGenerator, .FAQ_3_0, .USING_QOT, .About: return true
+        case .Generic, .LearnStrategies, .WhatsHot: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldAlwaysHideTopBar() -> Bool {
-        guard let content = content,
-            content.section != .Generic else { return false }
+        guard let content = content else { return true }
 
         switch content.section {
-        case .About, .FAQ_3_0, .USING_QOT: return true
+        case .Generic, .LearnStrategies, .WhatsHot: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldHideMarkAsReadButton() -> Bool {
