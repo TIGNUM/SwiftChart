@@ -586,12 +586,12 @@ public extension AppTextKey {
     //"TBV.Show.More" = "Show more";
     //"TBV.Show.Less" = "Show less";
     static let my_qot_tbv_tbv_tracker_view_your_last_rating_title = AppTextKey("my_qot.tbv.tbv_tracker.view.your_last_rating_title")
-    //"TBV.Customize.Target" = "CUSTOMIZE";
-    //"TBV.Customize.Body" = "Customize your benchmark value for your sleep quantity here according to time amount you want to reach.";
-    //"TBV.How.Would.You" = "How would you rate yourself in:";
-    //"TBV.Rate.Never" = "Never";
-    //"TBV.Rate.Sometimes" = "Sometimes";
-    //"TBV.Rate.Always" = "Always";
+    static let my_qot_tbv_questionaire_view_customize_title = AppTextKey("my_qot.tbv.questionaire.view.customize_title")
+    static let my_qot_tbv_questionaire_view_customize_body = AppTextKey("my_qot.tbv.questionaire.view.customize_body")
+    static let my_qot_tbv_questionaire_view_rate_yourself_body = AppTextKey("my_qot.tbv.questionaire.view.rate_yourself_body")
+    static let my_qot_tbv_questionaire_view_rate_never_title = AppTextKey("my_qot.tbv.questionaire.view.rate_never_title")
+    static let my_qot_tbv_questionaire_view_rate_sometimes_title = AppTextKey("my_qot.tbv.questionaire.view.rate_sometimes_title")
+    static let my_qot_tbv_questionaire_view_rate_always_title = AppTextKey("my_qot.tbv.questionaire.view.rate_always_title")
     //
     //"Strategy.Performance.Title" = "PERFORMANCE";
     //
