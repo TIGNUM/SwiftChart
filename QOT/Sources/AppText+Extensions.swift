@@ -498,8 +498,8 @@ public extension AppTextKey {
     static let my_qot_my_preps_mindset_shifts_view_body = AppTextKey("my_qot.my_preps.mindset_shifts.view.body")
     static let my_qot_my_preps_recovery_plans_view_subtitle = AppTextKey("my_qot.my_preps.recovery_plans.view.subtitle")
     static let my_qot_my_preps_recovery_plans_view_body = AppTextKey("my_qot.my_preps.recovery_plans.view.body")
-    //"MyPreps.DeleteItemsAlert.Title" = "DELETE";
-    //"MyPreps.DeleteItemsAlert.Message" = "If you continue, these item(s) will be deleted.";
+    static let my_qot_my_preps_alert_delete_title = AppTextKey("my_qot.my_preps.alert.delete_title")
+    static let my_qot_my_preps_alert_delete_body = AppTextKey("my_qot.my_preps.alert.delete_body")
     //
     //"MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
     //"MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";

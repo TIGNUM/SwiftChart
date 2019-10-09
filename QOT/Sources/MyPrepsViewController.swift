@@ -125,8 +125,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)
-        let title = R.string.localized.myPrepsDeleteItemsAlertTitle()
-        let message = R.string.localized.myPrepsDeleteItemsAlertMessage()
+        let title = AppTextService.get(AppTextKey.my_qot_my_preps_alert_delete_title)
+        let message = AppTextService.get(AppTextKey.my_qot_my_preps_alert_delete_body)
         QOTAlert.show(title: title, message: message, bottomItems: [cancel, remove])
     }
 
@@ -198,12 +198,12 @@ private extension MyPrepsViewController {
         ThemeText.sectionHeader.apply(R.string.localized.myQotHeaderTitle(), to: headerTitle)
         ThemeView.headerLine.apply(headerLine)
 
-        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoPrepTitle(), to: noPrepsTitle)
-        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoPrepComment(), to: noPrepsComment)
-        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoMindsetTitle(), to: noMindsetTitle)
-        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoMindsetComment(), to: noMindsetComment)
-        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoRecoveryTitle(), to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoRecoveryComment(), to: noRecoveryComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_subtitle), to: noPrepsTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_body), to: noPrepsComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_mindset_shifts_view_subtitle), to: noMindsetTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_mindset_shifts_view_body), to: noMindsetComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_recovery_plans_view_subtitle), to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_recovery_plans_view_body), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
