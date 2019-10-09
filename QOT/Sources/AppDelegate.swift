@@ -107,7 +107,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            reachabilityOfSinging()
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
@@ -214,16 +213,6 @@ private extension AppDelegate {
         DispatchQueue.main.async {
             let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
             UIApplication.shared.applicationIconBadgeNumber = badgeNumber
-        }
-    }
-
-    func reachabilityOfSinging() {
-        if let abstractController = AppDelegate.topViewController() as? AbstractFormViewController {
-            if abstractController.reachability.isReachable == false {
-                abstractController.showSettingsCustomAlert()
-            } else {
-                abstractController.alert.dismiss(animated: true, completion: nil)
-            }
         }
     }
 

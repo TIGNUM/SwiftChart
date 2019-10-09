@@ -281,7 +281,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
             if searchResults.isEmpty == true && searchQuery.isEmpty == false {
-                searchCell.configure(title: R.string.localized.alertTitleNoContent(), contentType: nil, duration: nil)
+                searchCell.configure(title: AppTextService.get(AppTextKey.search_alert_no_content_title), contentType: nil, duration: nil)
             } else {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,

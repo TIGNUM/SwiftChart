@@ -95,7 +95,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
             self?.dismiss(animated: false, completion: nil)
             self?.interactor?.logout()
         }
-        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_account_settings_alert_logout_body), bottomItems: [cancel, logout])
     }
 }
 

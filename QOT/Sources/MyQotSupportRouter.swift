@@ -72,7 +72,7 @@ private extension MyQotSupportRouter {
 
     func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_email_try_again)))
             return
         }
         let composer = MFMailComposeViewController()

@@ -240,7 +240,7 @@ public extension AppTextKey {
     static let my_qot_my_to_be_vision_alert_camera_not_available_body = AppTextKey("my_qot.my_to_be_vision.alert.camera_not_available_body")
     //"Alert.Title.Notifications.Not.Authorized" = "No Authorization";
     //"Alert.Message.Notifications.Not.Authorized" = "Push Notifications are not authorized for QOT. To enabled Push Notifications open Settings and enable them. ";
-    //"Alert.Title.NoContent" = "No Results found";
+    static let search_alert_no_content_title = AppTextKey("search.alert.no_content_title")
     //"Alert.Message.NoContent" = "This content is currently unavailable. Please check back later.";
     static let generic_alert_custom_title = AppTextKey("generic_alert_custom_title")
     //"Alert.Title.Unauthenticated" = "User not authenticated";
@@ -255,8 +255,11 @@ public extension AppTextKey {
     static let generic_alert_unknown_message_custom_body = AppTextKey("generic.alert.unknown_message_custom_body")
     static let generic_alert_ok_button = AppTextKey("generic.alert.ok_button")
     static let alert_alert_cancel_button = AppTextKey("alert.alert.cancel_button")
-    static let alert_alert_continue_button = AppTextKey("alert.alert.continue_button")
-    static let alert_alert_save_button = AppTextKey("alert.alert.save_button")
+    static let generic_alert_continue_button = AppTextKey("generic.alert.continue_button")
+    static let my_qot_profile_settings_alert_save_button = AppTextKey("my_qot.profile_settings.alert.save_button")
+    static let coach_prepare_alert_save_button = AppTextKey("coach.prepare.alert.save_button")
+    static let my_qot_my_sprints_alert_save_button = AppTextKey("my_qot.my_sprints.alert.save_button")
+    static let coach_solve_results_alert_save_button = AppTextKey("coach.solve.results.alert.save_button")
     static let alert_alert_level5_saved_button = AppTextKey("alert.alert.level5_saved_button")
     static let alert_alert_level5_alert_title = AppTextKey("alert.alert.level5_alert_title")
     static let alert_alert_level5_alert_body = AppTextKey("alert.alert.level5_alert_body")
@@ -270,6 +273,8 @@ public extension AppTextKey {
     //"Alert.Message.Calendar.No.Access" = "This app does not have access to your calendars.\nYou can enable access in Privacy Settings";
     static let login_alert_email_not_found_title = AppTextKey("login.alert.email_not_found_title")
     static let login_alert_email_not_found_body = AppTextKey("login.alert.email_not_found_body")
+    static let my_qot_my_profile_support_alert_email_try_again = AppTextKey("my_qot.my_profile.support.alert.email_try_again")
+    static let my_qot_my_profile_support_article_alert_email_try_again = AppTextKey("my_qot.my_profile.support.article.alert.email_try_again")
     //"Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
     static let my_qot_my_to_be_vision_alert_camera_not_granted_body = AppTextKey("my_qot.my_to_be_vision.alert.camera_not_granted_body")
     static let my_qot_my_to_be_vision_alert_photo_not_granted_body = AppTextKey("my_qot.my_to_be_vision.alert.photo_not_granted_body")
@@ -290,7 +295,10 @@ public extension AppTextKey {
     static let alert_alert_edit_vision_button = AppTextKey("alert.alert.edit_vision_button")
     static let alert_alert_create_vision_button = AppTextKey("alert.alert.create_vision_button")
     static let my_qot_support_alert_email_not_setup_body = AppTextKey("my_qot.support.alert.email_not_setup_body")
-    static let alert_alert_logout_body = AppTextKey("alert.alert.logout_body")
+    static let my_qot_account_settings_alert_logout_body = AppTextKey("my_qot.account_settings.alert.logout_body")
+    static let payment_reminder_alert_logout_body = AppTextKey("payment_reminder.alert.logout_body")
+    static let subscription_reminder_alert_logout_body = AppTextKey("subscription_reminder.alert.logout_body")
+    static let my_qot_my_profile_account_settings_alert_logout_body = AppTextKey("my_qot.my_profile.account_settings.alert.logout_body")
     static let alert_alert_change_permission_title = AppTextKey("alert.alert.change_permission_title")
     static let alert_alert_change_permission_body = AppTextKey("alert.alert.change_permission_body")
     static let coach_prepare_alert_calendar_not_synced_title = AppTextKey("coach.prepare.alert.calendar_not_synced_title")
@@ -300,8 +308,12 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_notifications_alert_change_notifications_title = AppTextKey("my_qot.my_profile.app_settings.notifications.alert.change_notifications_title")
     static let my_qot_my_profile_app_settings_notifications_alert_change_notifications_body = AppTextKey("my_qot.my_profile.app_settings.notifications.alert.change_notifications_body")
     static let alert_alert_sign_in_missing_connection_body = AppTextKey("alert.alert.sign_in_missing_connection_body")
-    static let alert_alert_use_mobile_data_title = AppTextKey("alert.alert.use_mobile_data_title")
-    static let alert_alert_use_mobile_data_body = AppTextKey("alert.alert.use_mobile_data_body")
+    static let video_alert_use_mobile_data_title = AppTextKey("video.alert.use_mobile_data_title")
+    static let video_alert_use_mobile_data_body = AppTextKey("video.alert.use_mobile_data_body")
+    static let audio_alert_use_mobile_data_title = AppTextKey("audio.alert.use_mobile_data_title")
+    static let audio_alert_use_mobile_data_body = AppTextKey("audio.alert.use_mobile_data_body")
+    static let my_qot_my_library_alert_use_mobile_data_title = AppTextKey("my_qot.my_library.alert.use_mobile_data_title")
+    static let my_qot_my_library_alert_use_mobile_data_body = AppTextKey("my_qot.my_library.alert.use_mobile_data_body")
     static let alert_alert_title_ok_button = AppTextKey("alert.alert.title_ok_button")
     //
     //"ImagePicker.Options.Message" = "A short description of the action goes here";
@@ -498,15 +510,15 @@ public extension AppTextKey {
     static let my_qot_my_preps_mindset_shifts_view_body = AppTextKey("my_qot.my_preps.mindset_shifts.view.body")
     static let my_qot_my_preps_recovery_plans_view_subtitle = AppTextKey("my_qot.my_preps.recovery_plans.view.subtitle")
     static let my_qot_my_preps_recovery_plans_view_body = AppTextKey("my_qot.my_preps.recovery_plans.view.body")
-    //"MyPreps.DeleteItemsAlert.Title" = "DELETE";
-    //"MyPreps.DeleteItemsAlert.Message" = "If you continue, these item(s) will be deleted.";
+    static let my_qot_my_preps_alert_delete_title = AppTextKey("my_qot.my_preps.alert.delete_title")
+    static let my_qot_my_preps_alert_delete_body = AppTextKey("my_qot.my_preps.alert.delete_body")
     //
     //"MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
     //"MindsetShifter.LeaveAlert.Title" = "COACH FOLLOW-UP";
     //"MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without setting a coach follow-up?";
-    //"Solve.LeaveAlert.Title" = "SOLVE FOLLOW-UP";
-    //"Solve.LeaveAlert.Message" = "We want to help you reflect on what works for you. If you continue, you will not receive coach follow-up.";
-    //"solve.LeaveAlert.ContinueButton" = "Continue";
+    static let coach_solve_alert_leave_title = AppTextKey("coach.solve.alert.leave_title")
+    static let coach_solve_alert_leave_body = AppTextKey("coach.solve.alert.leave_body")
+    static let coach_solve_alert_ = AppTextKey("coach.solve.alert.")
     //
     static let my_qot_my_library_notes_view_add_button = AppTextKey("my_qot.my_library.notes.view.add_button")
     static let my_qot_my_library_all_view_title = AppTextKey("my_qot.my_library.all.view.title")

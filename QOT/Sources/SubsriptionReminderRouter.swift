@@ -42,6 +42,6 @@ extension SubsriptionReminderRouter: SubsriptionReminderRouterInterface {
         let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.subscription_reminder_view_logout_button)) { (_) in
             qot_dal.SessionService.main.logout()
         }
-        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.subscription_reminder_alert_logout_body), bottomItems: [cancel, logout])
     }
 }

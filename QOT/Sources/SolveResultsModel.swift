@@ -24,7 +24,7 @@ enum ButtonItem {
         switch self {
         case .cancel: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
         case .done: return ScreenTitleService.main.localizedString(for: .ButtonTitleDone)
-        case .save: return R.string.localized.alertButtonTitleSave()
+        case .save: return AppTextService.get(AppTextKey.coach_solve_results_alert_save_button)
         }
     }
 

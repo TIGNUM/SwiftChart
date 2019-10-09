@@ -54,11 +54,11 @@ final class StreamVideoWorker {
     }()
 
     lazy var noWifiTitle: String = {
-        return R.string.localized.alertTitleUseMobileData()
+        return AppTextService.get(AppTextKey.video_alert_use_mobile_data_title)
     }()
 
     lazy var noWifiMessage: String = {
-        return R.string.localized.alertMessageUseMobileData()
+        return AppTextService.get(AppTextKey.video_alert_use_mobile_data_body)
     }()
 
     lazy var cancelButtonTitle: String  = {
@@ -66,7 +66,7 @@ final class StreamVideoWorker {
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return R.string.localized.alertButtonTitleContinue()
+        return AppTextService.get(AppTextKey.generic_alert_continue_button)
     }()
 
     lazy var contentItemId: Int? = {

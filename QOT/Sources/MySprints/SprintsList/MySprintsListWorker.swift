@@ -48,11 +48,11 @@ final class MySprintsListWorker {
     }()
 
     lazy var continueTitle: String = {
-        return R.string.localized.alertButtonTitleContinue()
+        return AppTextService.get(AppTextKey.generic_alert_continue_button)
     }()
 
     lazy var saveTitle: String = {
-        return R.string.localized.alertButtonTitleSave()
+        return AppTextService.get(AppTextKey.coach_prepare_alert_save_button)
     }()
 
     lazy var removeItemsAlertTitle: String = {

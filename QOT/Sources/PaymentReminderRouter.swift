@@ -40,6 +40,6 @@ extension PaymentReminderRouter: PaymentReminderRouterInterface {
             ExtensionsDataManager.didUserLogIn(false)
             UIApplication.shared.shortcutItems?.removeAll()
         }
-        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.payment_reminder_alert_logout_body), bottomItems: [cancel, logout])
     }
 }

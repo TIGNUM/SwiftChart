@@ -59,7 +59,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var continueTitle: String = {
-        return R.string.localized.alertButtonTitleContinue()
+        return AppTextService.get(AppTextKey.generic_alert_continue_button)
     }()
 
     lazy var showAddButton: Bool = {
@@ -83,11 +83,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cellullarDownloadTitle: String = {
-        return R.string.localized.alertTitleUseMobileData()
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_use_mobile_data_title)
     }()
 
     lazy var cellullarDownloadMessage: String = {
-        return R.string.localized.alertMessageUseMobileData()
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_use_mobile_data_body)
     }()
 
     lazy var tapToDownload: String = {

@@ -195,7 +195,7 @@ extension ProfileSettingsViewController {
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
                 }
-                QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+                QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_logout_body), bottomItems: [cancel, logout])
             default: return
             }
         case .datePicker(let title, let selectedYear, _):
