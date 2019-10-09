@@ -56,6 +56,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func didTapBackButton() {
+        trackUserEvent(.BACK, action: .TAP)
         interactor?.resetErrors()
         firstNameField.text = nil
         lastNameField.text = nil
@@ -75,6 +76,8 @@ private extension RegistrationNamesViewController {
     @objc func didTapNextButton() {
         guard let name = firstNameField.text else { return }
         interactor?.didTapNext(with: name, lastName: lastNameField.text)
+        let userName = name + " " + (lastNameField.text ?? "")
+        trackUserEvent(.NEXT, stringValue: userName, valueType: .USER_ANSWER, action: .TAP)
     }
 }
 

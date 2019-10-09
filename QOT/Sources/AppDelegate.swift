@@ -86,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             swizzleUIViewController()
             swizzleUINavigationController()
             window = UIWindow(frame: UIScreen.main.bounds)
-            addBadgeObserver()
             if let url = launchOptions?[.url] as? URL {
                 RestartHelper.setRestartURL(url)
             }
@@ -107,7 +106,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            reachabilityOfSinging()
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
@@ -149,7 +147,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            updateBadgeNumber()
             QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST
     }
@@ -202,31 +199,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - private
 
 private extension AppDelegate {
-
-    func addBadgeObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateBadgeNumber),
-                                               name: UserDefaults.didChangeNotification,
-                                               object: nil)
-    }
-
-    @objc func updateBadgeNumber() {
-        DispatchQueue.main.async {
-            let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
-            UIApplication.shared.applicationIconBadgeNumber = badgeNumber
-        }
-    }
-
-    func reachabilityOfSinging() {
-        if let abstractController = AppDelegate.topViewController() as? AbstractFormViewController {
-            if abstractController.reachability.isReachable == false {
-                abstractController.showSettingsCustomAlert()
-            } else {
-                abstractController.alert.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-
     func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {

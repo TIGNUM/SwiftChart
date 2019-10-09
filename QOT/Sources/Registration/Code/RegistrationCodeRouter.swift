@@ -11,30 +11,30 @@ import UIKit
 final class RegistrationCodeRouter {
 
     // MARK: - Properties
-
     private weak var viewController: RegistrationCodeViewController?
 
     // MARK: - Init
-
     init(viewController: RegistrationCodeViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - RegistrationCodeRouterInterface
-
 extension RegistrationCodeRouter: RegistrationCodeRouterInterface {
     func showPrivacyPolicy() {
-        showArticle(with: MyQotAboutUsModel.MyQotAboutUsModelItem.privacy.primaryKey)
+        let value = MyQotAboutUsModel.MyQotAboutUsModelItem.privacy.primaryKey
+        viewController?.trackUserEvent(.OPEN, value: value, valueType: .SHOW_PRIVACY_POLICY, action: .TAP)
+        showArticle(with: value)
     }
 
     func showTermsOfUse() {
-        showArticle(with: MyQotAboutUsModel.MyQotAboutUsModelItem.terms.primaryKey)
+        let value = MyQotAboutUsModel.MyQotAboutUsModelItem.terms.primaryKey
+        viewController?.trackUserEvent(.OPEN, value: value, valueType: .SHOW_TERMS_OF_USE, action: .TAP)
+        showArticle(with: value)
     }
 }
 
 // Private methods
-
 private extension RegistrationCodeRouter {
     func showArticle(with id: Int) {
         guard let controller = R.storyboard.main()

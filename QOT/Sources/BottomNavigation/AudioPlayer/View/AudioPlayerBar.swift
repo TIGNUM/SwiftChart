@@ -133,7 +133,6 @@ extension AudioPlayerBar {
     }
 
     func cancel() {
-        trackUserEvent(.CANCEL)
         audioPlayer.cancel()
         currentMedia = nil
     }

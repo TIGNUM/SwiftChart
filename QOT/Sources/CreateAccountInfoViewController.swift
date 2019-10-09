@@ -52,10 +52,12 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel3 {
 
 private extension CreateAccountInfoViewController {
     @IBAction func didTapBack() {
+        trackUserEvent(.PREVIOUS, action: .TAP)
         delegate?.didTapBack(self)
     }
 
     @objc func didTapCreate() {
+        trackUserEvent(.CREATE_ACCOUNT, action: .TAP)
         delegate?.didTapCreate()
     }
 }
