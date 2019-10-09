@@ -16,11 +16,11 @@ protocol MyDataChartLegendTableViewCellDelegate: class {
 final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
-    @IBOutlet private var labelsCollection: [UILabel]!
-    @IBOutlet private var labelHeightConstraintCollection: [NSLayoutConstraint]!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var stackViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var addButton: UIButton!
     weak var delegate: MyDataChartLegendTableViewCellDelegate?
-    let lineHeight: CGFloat = 18.0
+    private let lineHeight: CGFloat = 18.0
 
     // MARK: Lifecycle
 
@@ -28,9 +28,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
         super.awakeFromNib()
         ThemeButton.accent40.apply(addButton)
         resetContent()
-        for label in labelsCollection {
-            skeletonManager.addSubtitle(label)
-        }
+        skeletonManager.addSubtitle(stackView)
         skeletonManager.addOtherView(addButton)
     }
 
@@ -40,51 +38,37 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     }
 
     func configure(selectionModel: MyDataSelectionModel?) {
-        let attributedString: NSMutableAttributedString = NSMutableAttributedString()
         guard let model = selectionModel else {
-            labelsCollection.first?.attributedText = attributedString
             return
         }
 
-        HealthService.main.availableHealthIndexesForToday { [weak self] (healthData) in
+        HealthService.main.availableHealthKitTrackerDataForToday { [weak self] (healthData) in
             guard let strongSelf = self else { return }
+            strongSelf.resetContent()
             let hasHealthKitDataForToday: Bool = (healthData?.count ?? 0) > 0
-
+            strongSelf.stackViewHeightConstraint.constant = strongSelf.lineHeight * CGFloat(model.myDataSelectionItems.count)
             strongSelf.skeletonManager.hide()
-            var indexes: [Int] = []
-            for (index, sectionModel) in model.myDataSelectionItems.enumerated() {
+            for sectionModel in model.myDataSelectionItems {
                 if var title = sectionModel.title {
                     if hasHealthKitDataForToday && sectionModel.myDataExplanationSection == .SQN {
                         title.append(contentsOf: (" " + ScreenTitleService.main.localizedString(for: .myDataExplanationSQNSectionFromHealthKit)))
                     }
-                    indexes.append(index)
-                    for label in strongSelf.labelsCollection where label.tag == index {
-                        ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)
-                    }
-                }
-            }
-
-            for index in indexes where index != 0 {
-                for constraint in strongSelf.labelHeightConstraintCollection where Int(constraint.identifier ?? "") == index {
-                    constraint.constant = strongSelf.lineHeight
+                    let label = UILabel.init(frame: .zero)
+                    ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)
+                    strongSelf.stackView.addArrangedSubview(label)
                 }
             }
         }
+        layoutIfNeeded()
     }
 
     // MARK: Helpers
 
     func resetContent() {
-        for constraint in labelHeightConstraintCollection where Int(constraint.identifier ?? "") != 0 {
-            constraint.constant = 0
-        }
-        for label in labelsCollection {
-            label.text = nil
-        }
+        stackView.removeAllArrangedSubviews()
     }
 
     // MARK: Actions
-
     @IBAction func didTapAddButton(_ sender: UIButton) {
         delegate?.didTapAddButton()
     }

@@ -25,7 +25,7 @@ class WorkerTBV {
 
             completion(vision)
             guard var newVision = vision else { return }
-            if newVision.headline?.isEmpty == true {
+            if newVision.headline?.isEmpty != false {
                 newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionDefaultTitle)
             }
             if shouldSave, SessionService.main.getCurrentSession() != nil {

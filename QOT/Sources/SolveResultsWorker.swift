@@ -178,7 +178,7 @@ private extension SolveResultsWorker {
             self.relatedStrategiesContentItems(contentId) { (items) in
                 items.forEach {(item) in
                     relatedStrategyItems.append(.strategyContentItem(id: item.remoteID ?? 0,
-                                                                     title: item.valueDescription,
+                                                                     title: item.valueText,
                                                                      minsToRead: item.durationString,
                                                                      hasHeader: false,
                                                                      headerTitle: ""))
