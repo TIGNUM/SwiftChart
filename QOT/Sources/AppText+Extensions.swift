@@ -245,17 +245,19 @@ public extension AppTextKey {
 
 
 
+    static let generic_alert_custom_title = AppTextKey("login.alert.failed_title")
+    static let login_alert_failed_title = AppTextKey("login.alert.failed_title")
 
 
-    static let alert_alert_no_network_connection_title = AppTextKey("alert.alert.no_network_connection_title")
-    static let alert_alert_no_network_connection_message_title = AppTextKey("alert.alert.no_network_connection_message_title")
-    static let alert_alert_no_network_connection_file = AppTextKey("alert.alert.no_network_connection_file")
+    static let generic_alert_no_network_connection_title = AppTextKey("alert.alert.no_network_connection_title")
+    static let generic_alert_no_network_connection_message_title = AppTextKey("alert.alert.no_network_connection_message_title")
+    static let generic_alert_no_network_connection_file = AppTextKey("alert.alert.no_network_connection_file")
 
     static let alert_alert_edit_preparation_name_title = AppTextKey("alert.alert.edit_preparation_name_title")
-    static let alert_alert_unknown_title = AppTextKey("alert.alert.unknown_title")
-    static let alert_alert_unknown_message_title = AppTextKey("alert.alert.unknown_message_title")
-    static let alert_alert_unknown_message_type_title = AppTextKey("alert.alert.unknown_message_type_title")
-    static let alert_alert_ok_button = AppTextKey("alert.alert.ok_button")
+    static let generic_alert_unknown_title = AppTextKey("alert.alert.unknown_title")
+    static let generic_alert_unknown_message_title = AppTextKey("alert.alert.unknown_message_title")
+    static let generic_alert_unknown_message_custom_body = AppTextKey("alert.alert.unknown_message_type_title")
+    static let generic_alert_ok_button = AppTextKey("alert.alert.ok_button")
     static let alert_alert_cancel_button = AppTextKey("alert.alert.cancel_button")
     static let alert_alert_continue_button = AppTextKey("alert.alert.continue_button")
     static let alert_alert_save_button = AppTextKey("alert.alert.save_button")
@@ -264,15 +266,14 @@ public extension AppTextKey {
     static let alert_alert_level5_alert_body = AppTextKey("alert.alert.level5_alert_body")
     static let alert_alert_copyright_text_title = AppTextKey("alert.alert.copyright_text_title")
     static let alert_alert_save_continue_button = AppTextKey("alert.alert.save_continue_button")
-    static let alert_alert_settings_title = AppTextKey("alert.alert.settings_title")
-    static let alert_alert_open_settings_title = AppTextKey("alert.alert.open_settings_title")
+    static let my_qot_my_to_be_vision_alert_settings_title = AppTextKey("alert.alert.settings_title")
+    static let my_qot_my_profile_app_settings_notifications_alert_open_settings_title = AppTextKey("alert.alert.open_settings_title")
 
 
 
 
-    static let alert_alert_email_not_found_title = AppTextKey("alert.alert.email_not_found_title")
-    static let alert_alert_email_not_found_body = AppTextKey("alert.alert.email_not_found_body")
-    static let alert_alert_camera_not_available_body = AppTextKey("alert.alert.camera_not_available_body")
+    static let login_alert_email_not_found_title = AppTextKey("alert.alert.email_not_found_title")
+    static let login_alert_email_not_found_body = AppTextKey("alert.alert.email_not_found_body")
     static let my_qot_my_to_be_vision_alert_camera_not_granted_body = AppTextKey("my_qot.my_to_be_vision.alert.camera_not_granted_body")
     static let my_qot_my_to_be_vision_alert_photo_not_granted_body = AppTextKey("my_qot.my_to_be_vision.alert.photo_not_granted_body")
 
@@ -295,12 +296,12 @@ public extension AppTextKey {
     static let alert_alert_logout_body = AppTextKey("alert.alert.logout_body")
     static let alert_alert_change_permission_title = AppTextKey("alert.alert.change_permission_title")
     static let alert_alert_change_permission_body = AppTextKey("alert.alert.change_permission_body")
-    static let alert_alert_calendar_not_synced_title = AppTextKey("alert.alert.calendar_not_synced_title")
+    static let coach_prepare_alert_calendar_not_synced_title = AppTextKey("alert.alert.calendar_not_synced_title")
 
-    static let alert_alert_calendar_not_synced_body = AppTextKey("alert.alert.calendar_not_synced_body")
+    static let coach_prepare_alert_calendar_not_synced_body = AppTextKey("alert.alert.calendar_not_synced_body")
 
-    static let alert_alert_change_notifications_title = AppTextKey("alert.alert.change_notifications_title")
-    static let alert_alert_change_notifications_body = AppTextKey("alert.alert.change_notifications_body")
+    static let my_qot_my_profile_app_settings_notifications_alert_change_notifications_title = AppTextKey("alert.alert.change_notifications_title")
+    static let my_qot_my_profile_app_settings_notifications_alert_change_notifications_body = AppTextKey("alert.alert.change_notifications_body")
     static let alert_alert_sign_in_missing_connection_body = AppTextKey("alert.alert.sign_in_missing_connection_body")
     static let alert_alert_use_mobile_data_title = AppTextKey("alert.alert.use_mobile_data_title")
     static let alert_alert_use_mobile_data_body = AppTextKey("alert.alert.use_mobile_data_body")

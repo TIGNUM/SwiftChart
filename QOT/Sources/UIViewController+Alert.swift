@@ -31,13 +31,13 @@ enum AlertType {
         case .title(let title): return title
         case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_title)
         case .noNetworkConnection,
-             .noNetworkConnectionFile: return R.string.localized.alertTitleNoNetworkConnection()
-        case .unknown: return R.string.localized.alertTitleUnknown()
-        case .loginFailed: return R.string.localized.loginViewLoginFailed()
-        case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
-        case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
-        case .changeNotifications: return R.string.localized.alertTitleSettingsChangeNotifications()
+             .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_title)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_title)
+        case .loginFailed: return AppTextService.get(AppTextKey.login_alert_failed_title)
+        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_title)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_available_title)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_title)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_title)
         default: return nil
         }
     }
@@ -47,15 +47,15 @@ enum AlertType {
         case .custom(_, let message): return message
         case .message(let message): return message
         case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_body)
-        case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
-        case .noNetworkConnectionFile: return R.string.localized.alertMessageNoNetworkConnectionFile()
-        case .unknown: return R.string.localized.alertMessageUnknown()
-        case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
-        case .photosPermissionNotAuthorized: return R.string.localized.alertPhotosPermissionNotGrantedMessage()
-        case .cameraPermissionNotAuthorized: return R.string.localized.alertCameraPermissionNotGrantedMessage()
-        case .cameraNotAvailable: return R.string.localized.alertBodyCameraNotAvailable()
-        case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
-        case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
+        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_message_title)
+        case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_file)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_message_title)
+        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_body)
+        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_photo_not_granted_body)
+        case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_granted_body)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_available_body)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_body)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_body)
         default: return nil
         }
     }
@@ -71,11 +71,10 @@ enum AlertType {
 
     var buttonTitleDefault: String? {
         switch self {
-        case
-             .changeNotifications: return R.string.localized.alertButtonTitleOpenSettings()
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_open_settings_title)
         case .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
-        default: return R.string.localized.alertButtonTitleOk()
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_settings_title)
+        default: return AppTextService.get(AppTextKey.generic_alert_ok_button)
         }
     }
 
@@ -193,27 +192,27 @@ extension UIViewController {
             switch networkError.type {
             case .unauthenticated: showAlert(type: .loginFailed)
             case .noNetworkConnection: showAlert(type: .noNetworkConnection)
-            case .cancelled: showAlert(messaggeType: "cancelled")
+            case .cancelled: showAlert(messageType: "cancelled")
             case .failedToParseData(let data, let error):
-                showAlert(messaggeType: String(format: "data: %@\nError: %@",
+                showAlert(messageType: String(format: "data: %@\nError: %@",
                                                data.base64EncodedString(),
                                                error.localizedDescription))
-            case .notFound: showAlert(messaggeType: "notFound")
+            case .notFound: showAlert(messageType: "notFound")
             case .unknown(let error, let statusCode):
-                showAlert(messaggeType: String(format: "error: %@\nStatusCode: %d",
+                showAlert(messageType: String(format: "error: %@\nStatusCode: %d",
                                                error?.localizedDescription ?? "", statusCode ?? 0))
-            case .badRequest: showAlert(messaggeType: "Bad Request")
+            case .badRequest: showAlert(messageType: "Bad Request")
             case .unknownError: showAlert(type: .unknown)
-            case .forbidden: showAlert(messaggeType: "Forbidden")
+            case .forbidden: showAlert(messageType: "Forbidden")
             }
         } else {
             showAlert(type: .unknown)
         }
     }
 
-    func showAlert(messaggeType: String) {
-        let message = R.string.localized.alertMessageUnknownType(messaggeType)
-        let title = R.string.localized.alertTitleCustom()
+    func showAlert(messageType: String) {
+        let title = AppTextService.get(AppTextKey.generic_alert_custom_title)
+        let message = AppTextService.get(AppTextKey.generic_alert_unknown_message_custom_body).replacingOccurrences(of: "%@", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
 }

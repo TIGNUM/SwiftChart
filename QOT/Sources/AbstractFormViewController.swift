@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class AbstractFormViewController: BaseViewController {
 
@@ -84,7 +85,7 @@ extension AbstractFormViewController {
             title: R.string.localized.alertTitleNoNetworkConnection(),
             message: R.string.localized.alertMessageSigninMissingConnection(),
             preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: R.string.localized.alertButtonTitleOk(), style: .default)
+        let settingsAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_alert_ok_button), style: .default)
         alert.addAction(settingsAction)
         present(alert, animated: true, completion: nil)
     }

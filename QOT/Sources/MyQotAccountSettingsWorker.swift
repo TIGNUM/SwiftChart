@@ -29,18 +29,6 @@ final class MyQotAccountSettingsWorker {
         ExtensionsDataManager.didUserLogIn(false)
     }
 
-    func alertType(for error: QOTNetworkError?) -> AlertType {
-        guard let error = error else { return .unknown }
-        switch error.type {
-        case .noNetworkConnection:
-            return .noNetworkConnection
-        case .notFound:
-            return .emailNotFound
-        default:
-            return .unknown
-        }
-    }
-
     func getUserProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
         userService.getUserData {[weak self] (user) in
             let profile = self?.formProfile(for: user)
