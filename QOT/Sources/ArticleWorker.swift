@@ -158,7 +158,7 @@ final class ArticleWorker {
         var items = [Article.Item]()
         var itemsNextUp = [Article.Item]()
         var itemsRelated = [Article.Item]()
-        let contactSupport = [Article.Item]()
+        var contactSupport = [Article.Item]()
 
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
@@ -180,10 +180,15 @@ final class ArticleWorker {
         }
         let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
-            content?.contentItems.filter { !$0.searchTags.contains("FAQ_SUPPORT_EMAIL") }.forEach { item in
-                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
-            }
+            content?.contentItems.forEach({ (item) in
+                if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
+                    contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                } else {
+                    items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                }
+            })
         }
+
         content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
