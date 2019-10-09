@@ -228,8 +228,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         skeletonManager.hide()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
-
-        ThemeText.tbvVisionHeader.apply(myVision?.headline, to: headerLabel)
+        var headline = myVision?.headline
+        if headline?.isEmpty != false {
+            headline = interactor?.emptyTBVTitlePlaceholder
+        }
+        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
         let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor?.emptyTBVTextPlaceholder
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
 
