@@ -16,11 +16,11 @@ protocol MyDataChartLegendTableViewCellDelegate: class {
 final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
-    @IBOutlet private var stackView: UIStackView!
-    @IBOutlet weak var stackViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var stackViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var addButton: UIButton!
     weak var delegate: MyDataChartLegendTableViewCellDelegate?
-    let lineHeight: CGFloat = 18.0
+    private let lineHeight: CGFloat = 18.0
 
     // MARK: Lifecycle
 
