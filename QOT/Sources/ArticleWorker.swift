@@ -158,7 +158,7 @@ final class ArticleWorker {
         var items = [Article.Item]()
         var itemsNextUp = [Article.Item]()
         var itemsRelated = [Article.Item]()
-        var contactSupport = [Article.Item]()
+        let contactSupport = [Article.Item]()
 
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
@@ -184,7 +184,7 @@ final class ArticleWorker {
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
             }
         }
-        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
@@ -201,17 +201,17 @@ final class ArticleWorker {
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,
-                                                                              description: item.valueDescription,
+                                                                              description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               videoURL: videoURL,
                                                                               duration: item.valueDuration ?? 0)))
             }
         }
-        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .audio }.forEach { item in
+        content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
             if let audioURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,
-                                                                              description: item.valueDescription,
+                                                                              description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               audioURL: audioURL,
                                                                               duration: item.valueDuration ?? 0,

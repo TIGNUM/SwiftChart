@@ -468,12 +468,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video(let remoteId, let title, let description, _ , let videoURL, let duration):
-            let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
+        case .video(let remoteId, let title, let description, _ , let videoURL, _ ):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           durationString: mediaDescription,
-                           icon: R.image.ic_camera_sand(),
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.my_library_camera(),
                            remoteId: remoteId,
                            url: videoURL)
             return cell
@@ -547,13 +546,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .audio(_, _, _, _, let remoteURL, _, _):
-            let url = item.bundledAudioURL ?? remoteURL
-            delegate?.didTapMedia(withURL: url, in: self)
-        case .video(let remoteID, _, _, _, let videoURL, _):
-            qot_dal.ContentService.main.getContentItemById(remoteID) { [weak self] (contentItem) in
-                guard let item = contentItem else { return }
-                self?.stream(videoURL: videoURL, contentItem: item)
+        case .audio( let remoteId, _, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
+        case .video(let remoteID, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteID)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             showPDFReader(withURL: pdfURL, title: title, itemID: itemID)
