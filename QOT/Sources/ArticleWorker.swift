@@ -437,27 +437,24 @@ final class ArticleWorker {
 private extension ArticleWorker {
 
     func shouldHideTopBar() -> Bool {
+        // Handle most frequent case
         guard let content = content else { return true }
+
         switch content.section {
-        case .About, .FAQ_3_0, .USING_QOT: return true
         case .Generic, .LearnStrategies, .WhatsHot: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldAlwaysHideTopBar() -> Bool {
-//        guard let content = content,
-//            content.section != .Generic ||
-//            content.section != .LearnStrategies ||
-//            content.section != .WhatsHot else { return true }
         guard let content = content else { return true }
+
         switch content.section {
-        case .About, .FAQ_3_0, .USING_QOT: return true
         case .Generic, .LearnStrategies, .WhatsHot: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldHideMarkAsReadButton() -> Bool {
