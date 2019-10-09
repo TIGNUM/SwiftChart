@@ -167,17 +167,8 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
 
     private func getVision(for toBeVision: QDMToBeVision) -> QDMToBeVision {
         var myVision = toBeVision
-        guard let interactor = self.interactor else {
-            return myVision
-        }
-        if titleTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
-            myVision.headline = interactor.visionPlaceholderTitle
-        } else {
-            myVision.headline = titleTextView.text
-        }
-
-        myVision.text = descriptionTextView.text
-
+        myVision.headline = titleTextView.text.trimmingCharacters(in: .whitespaces)
+        myVision.text = descriptionTextView.text.trimmingCharacters(in: .whitespaces)
         myVision.modifiedAt = Date()
         return myVision
     }

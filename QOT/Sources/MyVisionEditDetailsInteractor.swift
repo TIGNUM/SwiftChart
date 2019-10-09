@@ -38,10 +38,6 @@ extension MyVisionEditDetailsInteractor: MyVisionEditDetailsInteractorInterface 
         return worker.visionPlaceholderDescription
     }
 
-    var visionPlaceholderTitle: String? {
-        return worker.visionPlaceholderTitle
-    }
-
     var originalTitle: String {
         return worker.originalTitle
     }
