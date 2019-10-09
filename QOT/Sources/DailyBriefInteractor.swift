@@ -404,7 +404,6 @@ extension DailyBriefInteractor {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
         var readinessIntro: String? = ""
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
-        let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
             readinessIntro = impactReadiness.bucketText?.contentItems

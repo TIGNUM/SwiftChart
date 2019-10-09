@@ -438,7 +438,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio( _, let title, let description, placeholderURL: _, _ , duration: _, waveformData:_):
+        case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title.uppercased(),
                            durationString: description ?? "",
@@ -466,7 +466,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video( _, let title, let description, _ , _, _ ):
+        case .video( _, let title, let description, _, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title.uppercased(),
                            durationString: description ?? "",
