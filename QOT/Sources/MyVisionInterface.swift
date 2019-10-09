@@ -38,6 +38,7 @@ protocol MyVisionInteractorInterface: Interactor {
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision)
     var myVision: QDMToBeVision? { get }
     var emptyTBVTextPlaceholder: String { get }
+    var emptyTBVTitlePlaceholder: String { get }
     var nullStateSubtitle: String? { get }
     var nullStateTitle: String? { get }
     func isShareBlocked() -> Bool
