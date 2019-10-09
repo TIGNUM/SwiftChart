@@ -38,7 +38,7 @@ final class MyLibraryNotesWorker {
     }
 
     lazy var placeholderText: String = {
-        return R.string.localized.myLibraryNotesPlaceholderText()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_view_placeholder)
     }()
 
     // Cannot be lazy as note fetching sometimes happens after `viewDidLoad`
@@ -47,39 +47,39 @@ final class MyLibraryNotesWorker {
     }
 
     lazy var saveTitle: String = {
-        return R.string.localized.myLibraryNotesSaveButton()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_button)
     }()
 
     lazy var dismissAlertTitle: String = {
-        return R.string.localized.myLibraryNotesDismissAlertTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_view_alert_title)
     }()
 
     lazy var dismissAlertMessage: String = {
-        return R.string.localized.myLibraryNotesDismissAlertMessage()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_view_alert_subtitle)
     }()
 
     lazy var cancelTitle: String = {
-       return R.string.localized.myLibraryNotesDismissAlertCancelButton()
+       return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_view_alert_button1)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return R.string.localized.myLibraryNotesDismissAlertLeaveButton()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_view_alert_button2)
     }()
 
     lazy var removeAlertTitle: String = {
-       return R.string.localized.myLibraryNotesRemoveAlertTitle()
+       return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_alert_title)
     }()
 
     lazy var removeAlertMessage: String = {
-        return R.string.localized.myLibraryNotesRemoveAlertMessage()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_alert_message)
     }()
 
     lazy var removeButtonTitle: String = {
-        return R.string.localized.myLibraryNotesRemoveAlertRemoveButton()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_alert_remove)
     }()
 
     lazy var removeCancelTitle: String = {
-        return R.string.localized.myLibraryNotesRemoveAlertCancelButton()
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_alert_cancel)
     }()
 
     lazy var isExistingNote: Bool = {

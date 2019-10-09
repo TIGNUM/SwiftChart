@@ -19,10 +19,10 @@ final class SyncedCalendarsWorker {
     }()
 
     lazy var skipButton: String = {
-        return R.string.localized.syncedCalendarsButtonSkip()
+        return AppTextService.get(AppTextKey.my_qot_calendars_view_button_skip)
     }()
 
     lazy var saveButton: String = {
-        return R.string.localized.syncedCalendarsButtonSave()
+        return AppTextService.get(AppTextKey.my_qot_calendars_view_button_save)
     }()
 }

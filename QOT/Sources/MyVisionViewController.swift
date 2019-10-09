@@ -80,7 +80,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_tbv_view_button_title_my_tbv_data), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -242,8 +242,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(R.string.localized.tbvLastUpdatedComment(), to: lastUpdatedComment)
-        ThemeText.datestamp.apply(R.string.localized.tbvLastRatedComment(), to: lastRatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_tbv_view_updated_comment_subtitle), to: lastUpdatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_tbv_view_rated_comment_subtitle), to: lastRatedComment)
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
@@ -26,7 +27,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
         skeletonManager.hide()
-        ThemeText.performanceStaticTitle.apply(R.string.localized.strategyPerformanceTitle(), to: performanceLabel)
+        ThemeText.performanceStaticTitle.apply(AppTextService.get(AppTextKey.know_strategy_view_performance_title), to: performanceLabel)
         let titleText = title.replacingOccurrences(of: "Performance ", with: "")
         ThemeText.linkMenuItem.apply(titleText.uppercased(), to: categoryTitleLabel)
         let progress = String(format: "%d Seen of %d", views, items)

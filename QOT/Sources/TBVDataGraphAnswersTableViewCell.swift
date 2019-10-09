@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
 
@@ -49,7 +50,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         }
 
         ThemeText.tbvTrackerAnswer.apply(answer.answer, to: answerLabel)
-        ThemeText.tbvTrackerRating.apply(R.string.localized.tbvTrackerLastRating(), to: lastRatingLabel)
+        ThemeText.tbvTrackerRating.apply(AppTextService.get(AppTextKey.my_qot_tbv_tbv_tracker_view_your_last_rating_title), to: lastRatingLabel)
 
         let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected(isFirstLow) : .tbvTrackerRatingDigits(isFirstLow)
         theme1.apply(firstRate == 0 ? "-" : String(describing: firstRate), to: firstRating)

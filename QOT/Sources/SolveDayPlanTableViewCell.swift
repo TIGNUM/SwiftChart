@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SolveDayPlanTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
@@ -24,7 +25,7 @@ extension SolveDayPlanTableViewCell {
 
     func configure(hasHeader: Bool, with text: String) {
         selectionStyle = .none
-        ThemeText.resultList.apply(R.string.localized.solve5DayPlan(), to: headerLabel)
+        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_results_view_solution_title), to: headerLabel)
         ThemeText.resultHeader2.apply(text, to: fiveDayPlanTextLabel)
 
         hasHeaderTopConstraint?.isActive = hasHeader == true
