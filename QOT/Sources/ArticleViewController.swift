@@ -468,18 +468,22 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video(_, let title, _, let placeholderURL, _, let duration):
+        case .video(let remoteId, let title, let description, _ , let videoURL, let duration):
             let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
-            let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL, forcedColorMode: nil)
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           durationString: mediaDescription,
+                           icon: R.image.ic_camera_sand(),
+                           remoteId: remoteId,
+                           url: videoURL)
             return cell
-        case .pdf(let title, let description, _ , let itemID):
+        case .pdf(let title, let description, let pdfURL , let itemID):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description ?? "",
                            icon: R.image.ic_seen_of(),
                            remoteId: itemID,
-                           url: URL(string: ""))
+                           url: pdfURL)
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):
             let cell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
