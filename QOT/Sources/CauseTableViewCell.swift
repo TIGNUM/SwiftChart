@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CauseTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     // MARK: - Properties
@@ -20,7 +21,7 @@ final class CauseTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 extension CauseTableViewCell {
     func configure(cause: String, explanation: String) {
         selectionStyle = .none
-        ThemeText.resultTitle.apply(R.string.localized.solveCause(), to: topTitleLabel)
+        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_solve_results_view_cause_title), to: topTitleLabel)
         ThemeText.resultHeader2.apply(cause, to: titleLabel)
         ThemeText.resultListHeader.apply(explanation, to: explanationLabel)
     }

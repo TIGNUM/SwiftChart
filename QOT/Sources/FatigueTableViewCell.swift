@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FatigueTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
@@ -16,8 +17,8 @@ final class FatigueTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     func configure(symptom: String) {
         selectionStyle = .none
-        ThemeText.resultList.apply(R.string.localized.solveYourAnswers(), to: topTitleLabel)
-        ThemeText.resultTitle.apply(R.string.localized.solveFatigue(), to: mainTitleLabel)
+        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_results_view_answers_title), to: topTitleLabel)
+        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_solve_results_view_fatigue_title), to: mainTitleLabel)
         ThemeText.resultHeader2.apply(symptom, to: fatigueLabel)
     }
 }

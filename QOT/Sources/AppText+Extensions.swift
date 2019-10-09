@@ -593,24 +593,24 @@ public extension AppTextKey {
     static let my_qot_tbv_questionaire_view_rate_sometimes_title = AppTextKey("my_qot.tbv.questionaire.view.rate_sometimes_title")
     static let my_qot_tbv_questionaire_view_rate_always_title = AppTextKey("my_qot.tbv.questionaire.view.rate_always_title")
     //
-    //"Strategy.Performance.Title" = "PERFORMANCE";
+    static let know_strategy_view_performance_title = AppTextKey("know.strategy.view.performance_title")
     //
-    //"Mark.As.Read" = "Mark as read";
-    //"Mark.As.Unread" = "Mark as unread";
+    static let know_article_view_mark_as_read_title = AppTextKey("know.article.view.mark_as_read_title")
+    static let know_article_view_mark_as_unread_title = AppTextKey("know.article.view.mark_as_unread_title")
     //
-    //"Solve.5Day.Plan" = "YOUR SOLUTION";
-    //"Solve.Your.Answers" = "YOUR ANSWERS";
-    //"Solve.Fatigue" = "FATIGUE";
-    //"Solve.Cause" = "CAUSE";
+    static let coach_solve_results_view_solution_title = AppTextKey("coach.solve.results.view.solution_title")
+    static let coach_solve_results_view_answers_title = AppTextKey("coach.solve.results.view.answers_title")
+    static let coach_solve_results_view_fatigue_title = AppTextKey("coach.solve.results.view.fatigue_title")
+    static let coach_solve_results_view_cause_title = AppTextKey("coach.solve.results.view.cause_title")
     //
-    //"SyncedCalendars.Button.Skip" = "Skip";
-    //"SyncedCalendars.Button.Save" = "Save";
+    static let my_qot_calendars_view_button_skip = AppTextKey("my_qot.calendars.view.button_skip")
+    static let my_qot_calendars_view_button_save = AppTextKey("my_qot.calendars.view.button_save")
     //
-    //"Weather.Now" = "Now";
+    static let daily_brief_weather_view_now_title = AppTextKey("daily_brief.weather.view.now_title")
     //
-    //"Walkthrough.Button.GotIt" = "Got it";
-    //"DailyBrief.ImpactReadiness.Rolling.data" = "5 DAYS ROLLING DATA";
-    //"DailyBrief.WhatsHot.Subtitle" = "Curated information that impacts your day.";
+    static let walkthrough_view_got_it_button = AppTextKey("walkthrough.view.got_it_button")
+    static let daily_brief_impact_readiness_view_rolling_data_title = AppTextKey("daily_brief.impact_readiness.view.rolling_data_title")
+    static let daily_brief_whats_hot_view_subtitle_title = AppTextKey("daily_brief.whats_hot.view.subtitle_title")
     //
     //"Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
     //"Onboarding.Intro.Body" = "From merely present to totally prepared.";
