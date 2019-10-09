@@ -21,11 +21,11 @@ final class SigningInfoWorker {
 
     // MARK: - Texts
     lazy var titleText: String? = {
-        return R.string.localized.onboardingIntroTitle()
+        return AppTextService.get(AppTextKey.singin_onboarding_view_intro_title)
     }()
 
     var bodyText: String? = {
-        return R.string.localized.onboardingIntroBody()
+        return AppTextService.get(AppTextKey.singin_onboarding_view_intro_body)
     }()
 }
 
