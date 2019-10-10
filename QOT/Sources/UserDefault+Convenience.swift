@@ -16,8 +16,6 @@ enum UserDefault: String {
     case hasShownOnbordingSlideShowInAppBuild = "qot.userdefault.key.onboardingSlideShow"
     case whatsHotListLastViewed = "qot.userdefault.key.whatsHotListLastViewed"
     case iPadAdviceDoNotShowAgain = "qot.userdefault.key.iPadAdviceDoNotShowAgain"
-    case whatsHotBadgeNumber = "qot.userdefault.key.new.whats.hot.badge.number"
-    case guideBadgeNumber = "qot.userdefault.key.new.guide.badge.number"
     case firstInstallationTimestamp = "qot.userdefault.key.first.installation.timestamp"
     case restartRouteURLString = "qot.userdefault.key.restart.routeURL.string"
     case subscriptionInfoShow = "qot.userdefault.key.subscription.info.show"
@@ -34,8 +32,6 @@ extension UserDefault {
         return [.calendarDictionary,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
-                .whatsHotBadgeNumber,
-                .guideBadgeNumber,
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
@@ -51,8 +47,6 @@ extension UserDefault {
                 .hasShownOnbordingSlideShowInAppBuild,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
-                .whatsHotBadgeNumber,
-                .guideBadgeNumber,
                 .firstInstallationTimestamp,
                 .restartRouteURLString,
                 .subscriptionInfoShow,

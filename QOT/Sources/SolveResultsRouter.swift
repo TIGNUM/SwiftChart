@@ -26,7 +26,7 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
         AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
-    func openStrategy(with id: Int) {
+    func openContent(with id: Int) {
         AppDelegate.current.launchHandler.showContentCollection(id)
     }
 

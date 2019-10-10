@@ -48,6 +48,7 @@ final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func didTapBackButton() {
+        trackUserEvent(.BACK, action: .TAP)
         interactor?.didTapBack()
     }
 }
@@ -115,6 +116,7 @@ private extension RegistrationCodeViewController {
         buttonCheckbox.isSelected.toggle()
         buttonCheckbox.backgroundColor = buttonCheckbox.isSelected ? .sand15 : .clear
         interactor?.toggleTermsOfUse(accepted: buttonCheckbox.isSelected)
+        trackUserEvent(.CHECK_TERMS_PRIVACY, valueType: buttonCheckbox.isSelected ? .SELECT : .DESELECT, action: .TAP)
         sendCodeIfPossible()
     }
 }
@@ -161,6 +163,7 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
     }
 
     func presentGetHelpView() {
+        trackUserEvent(.GET_HELP, action: .TAP)
         sendEmail()
     }
 }
