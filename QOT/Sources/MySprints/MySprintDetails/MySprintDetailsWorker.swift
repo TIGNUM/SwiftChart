@@ -25,99 +25,99 @@ final class MySprintDetailsWorker {
 
     // MARK: Texts
     lazy var headerSprintTasks: String = {
-        return R.string.localized.mySprintDetailsHeaderSprintTasks()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_sprint_tasks_title)
     }()
 
     lazy var headerMyPlan: String = {
-        return R.string.localized.mySprintDetailsHeaderMyPlan()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_my_plan_title)
     }()
 
     lazy var headerMyNotes: String = {
-        return R.string.localized.mySprintDetailsHeaderMyNotes()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_my_notes_title)
     }()
 
     lazy var headerHighlights: String = {
-        return R.string.localized.mySprintDetailsHeaderHighlights()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_highlights_title)
     }()
 
     lazy var headerStrategies: String = {
-        return R.string.localized.mySprintDetailsHeaderStrategies()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_strategies_title)
     }()
 
     lazy var headerBenefits: String = {
-        return R.string.localized.mySprintDetailsHeaderBenefits()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_benefits_title)
     }()
 
     lazy var upcomingInfoText: String = {
-        return R.string.localized.mySprintDetailsInfoTextUpcoming()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_upcoming_body)
     }()
 
     lazy var activeInfoText: String = {
         guard let startDate = sprint?.startDate else {
             return upcomingInfoText
         }
-        return R.string.localized.mySprintDetailsInfoTextActive()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_active_body)
     }()
 
     lazy var notesInfoText: String = {
-        return R.string.localized.mySprintDetailsInfoTextNotes()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_notes_body)
     }()
 
     lazy var buttonTakeawaysTitle = {
-        return R.string.localized.mySprintDetailsButtonTakeaways()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_takeaways_button)
     }()
 
     lazy var buttonCancel = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonCancel)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
     }()
 
     lazy var buttonContinue = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_continue_button)
     }()
 
     lazy var buttonStartSprint: String = {
-        return R.string.localized.mySprintDetailsButtonStartSprint()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_start_sprint_button)
     }()
 
     lazy var infoPauseSprintTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitlePauseSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_title)
     }()
 
     lazy var infoPauseSprintMessage: String = {
-        let format = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessagePauseSprint)
+        let format = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_info_title)
         return String(format: format, sprint?.maxDays ?? 0)
     }()
 
     lazy var buttonPauseSprint: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonPauseSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_button)
     }()
 
     lazy var buttonYesPause: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_yes_pause_button)
     }()
 
     lazy var infoReplanSprintTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleReplanSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_title)
     }()
 
     lazy var infoReplanSprintMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoMessageReplanSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title)
     }()
 
     lazy var buttonContinueSprint: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinueSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_continue_sprint_button)
     }()
 
     lazy var buttonRestartSprint: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonRestartSprint)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_restart_sprint_button)
     }()
 
     lazy var infoSprintInProgressTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title)
     }()
 
     func infoSprintInProgressMessage(sprintInProgressTitle: String?) -> String {
-        let message = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
+        let message = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_info_title)
         return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? "",
                                           newSprintTitle: self.sprint?.title ?? "",
                                           message: message)

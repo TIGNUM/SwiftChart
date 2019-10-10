@@ -405,8 +405,8 @@ extension QuestionnaireViewController {
         let attrString = NSMutableAttributedString(string: title,
                                                     attributes: [.font: UIFont.sfProDisplayThin(ofSize: 34)])
         if questionkey == .amount {
-            let maxHourUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffixMax()
-            let hoursUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffix()
+            let maxHourUnit = AppTextService.get(AppTextKey.daily_brief_daily_checkin_vew_hours_more_subtitle)
+            let hoursUnit = AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_hours_subtitle)
             attrString.append(NSMutableAttributedString(string: isLast ? maxHourUnit : hoursUnit,
                                                         attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
         }
