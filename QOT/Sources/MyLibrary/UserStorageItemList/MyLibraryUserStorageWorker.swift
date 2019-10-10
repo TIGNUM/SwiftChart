@@ -59,7 +59,7 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var continueTitle: String = {
-        return AppTextService.get(AppTextKey.generic_alert_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_continue_button)
     }()
 
     lazy var showAddButton: Bool = {

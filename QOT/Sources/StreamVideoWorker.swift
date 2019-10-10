@@ -66,7 +66,7 @@ final class StreamVideoWorker {
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return AppTextService.get(AppTextKey.generic_alert_continue_button)
+        return AppTextService.get(AppTextKey.video_alert_continue_button)
     }()
 
     lazy var contentItemId: Int? = {

@@ -48,7 +48,7 @@ final class MySprintsListWorker {
     }()
 
     lazy var continueTitle: String = {
-        return AppTextService.get(AppTextKey.generic_alert_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_continue_button)
     }()
 
     lazy var saveTitle: String = {
