@@ -167,7 +167,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
                 self?.errorMessage = self?.worker.codeError
             } else {
                 self?.errorMessage = result.message ?? self?.worker.resendCodeError
-                if let error = error { qot_dal.log("Error when checking registration code: \(error)", level: .debug) }
+                if let error = error { log("Error checking registration code: \(error)", level: .error) }
             }
             // Unsuccessful code check
             self?.hasCodeError = true
@@ -185,7 +185,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         presenter.presentActivity(state: .inProgress)
         worker.requestCode(for: worker.email) { [weak self] (result, error) in
             if let error = error {
-                qot_dal.log("Error when resending code: \(error)", level: .debug)
+                log("Error when resending code: \(error)", level: .debug)
                 self?.hasCodeError = true
                 self?.errorMessage = result.message ?? self?.worker.resendCodeError
                 self?.presenter.present()

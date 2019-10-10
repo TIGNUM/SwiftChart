@@ -56,6 +56,7 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func didTapBackButton() {
+        trackUserEvent(.BACK, action: .TAP)
         interactor?.didTapBack()
     }
 
@@ -73,6 +74,7 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
 private extension RegistrationEmailViewController {
 
     @objc private func didTapNextButton() {
+        trackUserEvent(.NEXT, action: .TAP)
         interactor?.setEmail(emailField.textField.text)
         interactor?.didTapNext()
     }
@@ -129,6 +131,7 @@ extension RegistrationEmailViewController: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        trackUserEvent(.EDIT, action: .TAP)
         interactor?.resetError()
         buttonNext.isEnabled = false
     }

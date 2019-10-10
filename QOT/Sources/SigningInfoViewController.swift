@@ -124,10 +124,12 @@ private extension SigningInfoViewController {
 private extension SigningInfoViewController {
 
     @IBAction func didTapLogin() {
+        trackUserEvent(.LOG_IN, action: .TAP)
         interactor?.didTapLoginButton()
     }
 
     @IBAction func didTapStart() {
+        trackUserEvent(.NEW_USER, action: .TAP)
         interactor?.didTapStartButton()
     }
 }
