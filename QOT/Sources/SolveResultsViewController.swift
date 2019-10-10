@@ -145,7 +145,7 @@ extension SolveResultsViewController: UITableViewDelegate {
         switch resultViewModel?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
-            router?.openStrategy(with: id)
+            router?.openContent(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         case .strategyContentItem(let id, _, _, _, _)?:
             router?.openContentItem(with: id)
