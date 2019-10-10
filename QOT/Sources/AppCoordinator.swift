@@ -106,7 +106,10 @@ final class AppCoordinator {
     func restart() {
         logout()
         ExtensionsDataManager.didUserLogIn(false)
-        showSigning()
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1)) {
+            self.showSigning()
+        }
     }
 
     func setupBugLife() {
