@@ -697,14 +697,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
     }
 
-    @objc func updateTargetValue(_ notification: NSNotification) {
-        guard let value = notification.object as? Double else {
-            return
-        }
-        interactor?.saveUpdatedDailyCheckInSleepTarget(value)
-        tableView.reloadData()
-    }
-
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
     }
