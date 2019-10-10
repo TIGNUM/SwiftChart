@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct Recovery {
 	struct QuestionKey {
@@ -31,9 +32,9 @@ struct Recovery {
 
         var replacement: String? {
             switch self {
-            case .cognitive: return R.string.localized.fatigueSymptomCognitive()
-            case .emotional: return R.string.localized.fatigueSymptomEmotional()
-            case .physical: return R.string.localized.fatigueSymptomPhysical()
+            case .cognitive: return AppTextService.get(AppTextKey.decision_tree_view_fatigue_symptom_cognitive_title)
+            case .emotional: return AppTextService.get(AppTextKey.decision_tree_view_fatigue_symptom_emotional_title)
+            case .physical: return AppTextService.get(AppTextKey.decision_tree_view_fatigue_symptom_physical_title)
             case .general: return nil
             }
         }

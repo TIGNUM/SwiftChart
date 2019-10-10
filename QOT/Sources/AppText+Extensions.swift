@@ -351,14 +351,15 @@ public extension AppTextKey {
     static let my_qot_view_my_plans_title = AppTextKey("my_qot.view.my_plans_title")
     static let my_qot_my_plans_view_title = AppTextKey("my_qot.my_plans.view.title")
     //
-    //"Header.Title.Exclusive.Content" = "EXCLUSIVE CONTENT";
-    //"Header.Title.Strategies" = "STRATEGIES";
-    //"Header.Title.Suggested.Strategies" = "SUGGESTED SOLUTIONS";
+    static let coach_solve_results_view_header_title_exclusive = AppTextKey("coach.solve.results.view.header_title_exclusive")
+    static let coach_solve_results_view_header_title_strategies = AppTextKey("coach.solve.results.view.header_title_strategies")
+    static let coach_solve_results_view_header_related_items_title_suggested = AppTextKey("coach.solve.results.view.header_related_items_title_suggested")
+    static let coach_solve_results_view_header_strategy_items_title_suggested = AppTextKey("coach.solve.results.view.header_strategy_items_title_suggested")
     //
-    //"Fatigue.Symptom.Cognitive" = "cognitive fatigue";
-    //"Fatigue.Symptom.Emotional" = "emotional fatigue";
-    //"Fatigue.Symptom.Physical" = "physical fatigue";
-    //"Fatigue.Symptom.General" = "It looks like your fatigue is coming from all angles. Jet lag and sleep are the most common causes of this type of fatigue. Which of these two is more applicable to you?";
+    static let decision_tree_view_fatigue_symptom_cognitive_title = AppTextKey("decision_tree.view.fatigue_symptom_cognitive_title")
+    static let decision_tree_view_fatigue_symptom_emotional_title = AppTextKey("decision_tree.view.fatigue_symptom_emotional_title")
+    static let decision_tree_view_fatigue_symptom_physical_title = AppTextKey("decision_tree.view.fatigue_symptom_physical_title")
+    static let decision_tree_view_fatigue_symptom_general_title = AppTextKey("decision_tree.view.fatigue_symptom_general_title")
     //
     static let my_qot_view_my_tbv_more_than_subtitle = AppTextKey("my_qot.view.my_tbv_more_than_subtitle")
     static let my_qot_view_my_tbv_more_months_since_subtitle = AppTextKey("my_qot.view.my_tbv_more_months_since_subtitle")
