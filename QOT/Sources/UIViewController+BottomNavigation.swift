@@ -44,7 +44,7 @@ extension UIViewController {
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.navigation_bar_view_yes_leave_button_title),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_yes_continue_button_title),
                                     buttonWidth: .Continue,
                                     action: action,
                                     backgroundColor: .clear,

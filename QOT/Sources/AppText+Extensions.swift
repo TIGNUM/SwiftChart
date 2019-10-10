@@ -375,7 +375,7 @@ public extension AppTextKey {
     static let generic_view_cancel_button_title = AppTextKey("generic.view.cancel_button_title")
     static let my_qot_my_plans_view_yes_continue_button_title = AppTextKey("my_qot.my_plans.view.yes_continue_button_title")
     //"Button.Title.Done" = "Done";
-    //"Button.Title.YesLeave" = "Yes, Leave";
+    static let navigation_bar_view_leave_button = AppTextKey("navigation_bar.view.leave_button")
     //
     static let audio_view_download_button = AppTextKey("audio.view.download_button")
     static let audio_view_waiting_button = AppTextKey("audio.view.waiting_button")
@@ -424,11 +424,11 @@ public extension AppTextKey {
     //"MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
     //"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";
     //
-    //"MySprintDetailsNotes.Button.Save" = "Save";
-    //"MySprintDetailsNotes.Button.Cancel" = "Cancel";
-    //"MySprintDetailsNotes.Button.Leave" = "Yes, Leave";
-    //"MySprintDetailsNotes.Info.Title.Leave" = "LEAVE WITHOUT SAVING";
-    //"MySprintDetailsNotes.Info.Message.Leave" = "Are you sure you want to leave without saving? The changes will not be applied.";
+    static let my_qot_my_sprints_my_sprint_details_view_save_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.save_button")
+    static let my_qot_my_sprints_my_sprint_details_view_cancel_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.cancel_button")
+    static let my_qot_my_sprints_my_sprint_details_view_leave_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_button")
+    static let my_qot_my_sprints_my_sprint_details_view_leave_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_title")
+    static let my_qot_my_sprints_my_sprint_details_view_leave_body = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_body")
     //"MySprintDetailsNotes.Button.Save" = "Save";
     static let daily_brief_daily_checkin_empty_start_your_dc_in_title = AppTextKey("daily_brief.daily_checkin.empty.start_your_dc_in_title")
     static let daily_brief_daily_checkin_view_explore_your_score_title = AppTextKey("daily_brief.daily_checkin.view.explore_your_score_title")
