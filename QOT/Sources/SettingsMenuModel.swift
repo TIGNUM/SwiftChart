@@ -80,9 +80,9 @@ enum SettingsType: Int {
 
         var title: String {
             switch self {
-            case .general: return R.string.localized.settingsTitleGeneral()
-            case .notifications: return R.string.localized.settingsTitleNotifications()
-            case .security: return R.string.localized.settingsTitleSecurity()
+            case .general: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_general_title)
+            case .notifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notifications_title)
+            case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_security_title)
             case .profile: return "profile"
             case .settings: return "settings"
             }
