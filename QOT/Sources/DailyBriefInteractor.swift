@@ -20,7 +20,6 @@ final class DailyBriefInteractor {
     private let worker: DailyBriefWorker
     private let presenter: DailyBriefPresenterInterface
     private let router: DailyBriefRouterInterface
-    private var viewModelOldList: [BaseDailyBriefViewModel] = []
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
 // Boolean to keep track of the guided closed track.
@@ -117,10 +116,6 @@ extension DailyBriefInteractor {
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
     // MARK: Properties
 
-    var rowViewModelCount: Int {
-        return viewModelOldList.count
-    }
-
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
     }
@@ -137,10 +132,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
         return worker.bucket(at: row)
-    }
-
-    func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel? {
-        return viewModelOldList.at(index: row)
     }
 
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
@@ -332,12 +323,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
-    }
-
-    func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
-        _ = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
-        //        check this implementation
-        //        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
     }
 
     func saveTargetValue(value: Int?) {
