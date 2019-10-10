@@ -43,14 +43,13 @@ DEPENDENCIES:
   - UrbanAirship-iOS-SDK
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  https://github.com/CocoaPods/Specs.git:
     - ActionSheetPicker-3.0
     - Anchorage
     - Buglife
     - DifferenceKit
     - HockeySDK
     - JTAppleCalendar
-    - KeychainAccess
     - Kingfisher
     - R.swift
     - R.swift.Library
@@ -58,6 +57,8 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyBeaver
     - UrbanAirship-iOS-SDK
+  trunk:
+    - KeychainAccess
 
 EXTERNAL SOURCES:
   qot_dal:
@@ -67,7 +68,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 3eb7fda65128741d80685b60caa36cd2906d7843
+    :commit: cbc059b1192ff7a46c847298133e7c9dcfec101a
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -93,4 +94,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: af8a2e218428e9e864fcbfcf85a10e24b82a01bf
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.8.3
