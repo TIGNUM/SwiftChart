@@ -41,13 +41,6 @@ final class MyQotSensorsWorker {
         }
     }
 
-    func aboutHealthKit(_ completion: @escaping(String?) -> Void) {
-        // FIXME: find better way instead of using id.
-        contentService.getContentItemById(107795) { (contentItem) in
-            completion(contentItem?.valueText)
-        }
-    }
-
     func contentHealthKit(_ completion: @escaping(String?) -> Void) {
         // FIXME: find better way instead of using id.
         contentService.getContentItemById(107860) { (contentItem) in

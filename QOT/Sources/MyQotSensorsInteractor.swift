@@ -50,7 +50,6 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
         default:
             UIApplication.shared.open(URL(string: "x-apple-health://")!)
         }
-
     }
 
     func requestAuraAuthorization() {
@@ -94,21 +93,16 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
         updateHealthKitStatus()
         worker.headlineHealthKit { [weak self] (headlineHealthKit) in
             self?.worker.contentHealthKit { (contentHealthKit) in
-                self?.worker.aboutHealthKit { (about) in
-                    self?.presenter.setHealthKitDescription(title: headlineHealthKit ?? "",
-                                                            description: contentHealthKit ?? "",
-                                                            about: about ?? "")
-                }
+                self?.presenter.setHealthKitDescription(title: headlineHealthKit ?? "",
+                                                        description: contentHealthKit ?? "")
             }
         }
-
         worker.headlineOuraRing { [weak self] (headlineOuraRing) in
             self?.worker.contentOuraRing { (contentOuraRing) in
                 self?.presenter.setOuraRingDescription(title: headlineOuraRing ?? "",
                                                        description: contentOuraRing ?? "")
             }
         }
-
         presenter.set(headerTitle: worker.headerTitle, sensorTitle: worker.sensorTitle)
     }
 }

@@ -81,7 +81,7 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingLabel)
     }
 
-    func setHealthKitDescription(title: String, description: String, about: String) {
+    func setHealthKitDescription(title: String, description: String) {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitDescriptionHeaderabel)
         ThemeText.mySensorsDescriptionBody.apply(description, to: healthKitDescriptionLabel)
     }

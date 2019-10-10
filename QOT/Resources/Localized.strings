@@ -208,7 +208,7 @@
 "Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";
 "Sidebar.SensorsMenu.Seonsors.NoData" = "No data";
 "Sidebar.SensorsMenu.OuraRing" = "OURA RING";
-"Sidebar.SensorsMenu.HealthKit" = "HEALTH KIT";
+"Sidebar.SensorsMenu.HealthKit" = "HEALTH APP";
 "Sidebar.SensorsMenu.RequestSensor" = "Request activity tracker";
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
 "Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
