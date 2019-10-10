@@ -281,6 +281,7 @@ extension LaunchHandler {
             } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
                 self?.getHealthKitAuthStatus() == .notDetermined {
                 self?.requestHealthKitAuthorization({ (_) in
+                    self?.importHealthKitData()
                     UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
                     DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
                         self?.showDailyCheckIn()
