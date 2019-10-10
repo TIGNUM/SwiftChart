@@ -24,7 +24,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     private lazy var pickerItems = [String]()
     private lazy var selectedIndex = 0
     private lazy var indexPath = IndexPath(row: 0, section: 0)
-    private lazy var settingsType = SettingsType.calendar
+    private lazy var settingsType = SettingsType.company
     private var calendarIdentifier: String?
     private var calendarSource: String?
     var controlUpdate = false
@@ -93,9 +93,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: value, settingsType: settingsType)
         }
-        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .adminSettings {
-            accessoryType = .disclosureIndicator
-        }
     }
 
     func setupHeaderCell(title: String) {
@@ -111,9 +108,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             switchControl.isHidden = true
             loadingIndicatorView.isHidden = false
             loadingIndicatorView.startAnimating()
-        }
-        if self.settingsType == .calendarOnOtherDevices {
-            switchControl.isHidden = true
         }
     }
 }
@@ -162,10 +156,6 @@ private extension SettingsTableViewCell {
         textField.keyboardType = .default
         textField.autocapitalizationType = UITextAutocapitalizationType.words
         setTitle(title: title)
-		if settingsType == .phone {
-            textField.autocapitalizationType = UITextAutocapitalizationType.none
-			textField.keyboardType = .phonePad
-		}
         if settingsType == .company || settingsType == .email {
             ThemeText.accountDetailEmail.apply(value, to: textField)
         }
@@ -200,8 +190,6 @@ private extension SettingsTableViewCell {
         }
         let theme: ThemeText
         switch settingsType {
-        case .calendar, .calendarOnOtherDevices:
-            theme = .settingsTitleFade
         default:
             theme = .settingsTitle
         }
@@ -215,7 +203,6 @@ extension SettingsTableViewCell {
 
     @objc func valueChanged(sender: UISwitch) {
         switch settingsType {
-        case .calendar: updateCalendarSettings(sender)
         case .strategies,
              .dailyPrep,
              .weeklyChoices: updateNotificationSettings(sender)

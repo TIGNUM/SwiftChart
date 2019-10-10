@@ -22,21 +22,22 @@ import qot_dal
  */
 
 public extension AppTextKey {
+    //Static lets
     static let daily_brief_good_to_know_title = AppTextKey("daily_brief.good_to_know.title")
     //"Settings.Tutorial.Reset.Title" = "Tutorial reset";
     //
     //"Settings.Title" = "SETTINGS";
-    //"Settings.Title.General" = "General";
+    static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
     //"Settings.Title.Notifications" = "Notifications";
     //"Settings.Title.Security" = "Security";
     //
-    //"Settings.General.Company.Title" = "Company";
-    //"Settings.General.Email.Title" = "Email";
+    static let my_qot_my_profile_account_settings_view_company_title = AppTextKey("my_qot.my_profile.account_settings.view.company_title")
+    static let my_qot_my_profile_account_settings_view_email_title = AppTextKey("my_qot.my_profile.account_settings.view.email_title")
     //"Settings.General.Telephone.Title" = "Telephone";
-    //"Settings.General.FirstName.Title" = "First Name";
-    //"Settings.General.LastName.Title" = "Last Name";
+    static let my_qot_my_profile_account_settings_view_first_name_title = AppTextKey("my_qot.my_profile.account_settings.view.first_name_title")
+    static let my_qot_my_profile_account_settings_view_last_name_title = AppTextKey("my_qot.my_profile.account_settings.view.last_name_title")
     //"Settings.General.Gender.Title" = "Gender";
-    //"Settings.General.DateOfBirth.Title" = "Date Of Birth";
+    static let my_qot_my_profile_account_settings_view_dob_title = AppTextKey("my_qot.my_profile.account_settings.view.dob_title")
     //"Settings.General.Weight.Title" = "Weight";
     //"Settings.General.Height.Title" = "Height";
     //"Settings.General.Calendar.Title" = "Synchronized Calendars";
@@ -45,16 +46,19 @@ public extension AppTextKey {
     //"Settings.General.Support.Title" = "Support";
     //"Settings.General.Admin.Title" = "(ADMIN)";
     //"Settings.General.JobTitle.Title" = "Title";
+    static let my_qot_my_profile_account_settings_view_ = AppTextKey("my_qot.my_profile.account_settings.view.")
+
+
+
+    static let notifications_view_strategies_title = AppTextKey("notifications.view.strategies_title")
+    static let notifications_view_daily_prep_title = AppTextKey("notifications.view.daily_prep_title")
+    static let notifications_view_weekly_choices_title = AppTextKey("notifications.view.weekly_choices_title")
     //
-    //"Settings.Notifications.Strategies.Title" = "PERFORMANCE REMINDERS";
-    //"Settings.Notifications.DailyPrep.Title" = "DAILY CHECK IN";
-    //"Settings.Notifications.WeeklyChoices.Title" = "Your 5 Weekly Choices";
-    //
-    //"Settings.Security.Password.Title" = "Change Password";
-    //"Settings.Security.Confirm.Title" = "Confirm";
-    //"Settings.Security.Terms.Title" = "TERMS AND CONDITIONS";
-    //"Settings.Security.Copyrights.Title" = "CONTENT AND COPYRIGHTS";
-    //"Settings.Security.Privacy.Policy.Title" = "PRIVACY\nPOLICY";
+    static let my_qot_my_profile_account_settings_view_security_password_title = AppTextKey("my_qot.my_profile.account_settings.view.security_password_title")
+    static let my_qot_my_profile_account_settings_view_security_confirm_title = AppTextKey("my_qot.my_profile.account_settings.view.security_confirm_title")
+    static let my_qot_my_profile_account_settings_view_terms_title = AppTextKey("my_qot.my_profile.account_settings.view.terms_title")
+    static let my_qot_my_profile_account_settings_view_copyright_title = AppTextKey("my_qot.my_profile.account_settings.view.copyright_title")
+    static let my_qot_my_profile_account_settings_view_privacy_title = AppTextKey("my_qot.my_profile.account_settings.view.privacy_title")
     //
     //"Settings.SiriShortcuts.Title" = "SIRI SHORTCUTS";
     //
@@ -250,20 +254,20 @@ public extension AppTextKey {
     static let generic_alert_no_network_connection_message_title = AppTextKey("generic.alert.no_network_connection_message_title")
     static let generic_alert_no_network_connection_file = AppTextKey("generic.alert.no_network_connection_file")
     //Settings.Tutorial.Reset.Title
-    static let alert_alert_edit_preparation_name_title = AppTextKey("alert.alert.edit_preparation_name_title")
+    //"Alert.Message.EditPreparationName" = "Please edit the name and press save";
     static let generic_alert_unknown_title = AppTextKey("generic.alert.unknown_title")
     static let generic_alert_unknown_message_title = AppTextKey("generic.alert.unknown_message_title")
     static let generic_alert_unknown_message_custom_body = AppTextKey("generic.alert.unknown_message_custom_body")
     static let generic_alert_ok_button = AppTextKey("generic.alert.ok_button")
-    static let alert_alert_cancel_button = AppTextKey("alert.alert.cancel_button")
+    //"Alert.Button.Title.Cancel" = "Cancel";
     static let generic_alert_continue_button = AppTextKey("generic.alert.continue_button")
     static let my_qot_profile_settings_alert_save_button = AppTextKey("my_qot.profile_settings.alert.save_button")
     static let coach_prepare_alert_save_button = AppTextKey("coach.prepare.alert.save_button")
     static let my_qot_my_sprints_alert_save_button = AppTextKey("my_qot.my_sprints.alert.save_button")
     static let coach_solve_results_alert_save_button = AppTextKey("coach.solve.results.alert.save_button")
-    static let alert_alert_level5_saved_button = AppTextKey("alert.alert.level5_saved_button")
-    static let alert_alert_level5_alert_title = AppTextKey("alert.alert.level5_alert_title")
-    static let alert_alert_level5_alert_body = AppTextKey("alert.alert.level5_alert_body")
+    //"Level5.Button.Saved" = "Saved";
+    //"Level5.Alert.Title" = "KNOWLEDGE";
+    //"Level5.Alert.Message" = "Knowledge is highly aware of your daily and weekly load and the link of your Recovery to your performance. You regularly identify and prepare for your Peak Performances.";
     static let daily_brief_alert_copyright_text_title = AppTextKey("daily_brief.alert.copyright_text_title")
     static let alert_alert_save_continue_button = AppTextKey("alert.alert.save_continue_button")
     static let my_qot_my_to_be_vision_alert_settings_title = AppTextKey("my_qot.my_to_be_vision.alert.settings_title")
@@ -333,8 +337,8 @@ public extension AppTextKey {
     //"Partners.Alert.DeleteError.Message" = "Please try it again.";
     //
     static let search_edit_all_title = AppTextKey("search.edit.all_title")
-    static let search_edit_audio_title = AppTextKey("search.edit.audio_title")
-    static let search_edit_video_title = AppTextKey("search.edit.video_title")
+    //"Search.Filter.Audio" = "AUDIO";
+    //"Search.Filter.Video" = "VIDEO";
     static let search_edit_read_title = AppTextKey("search.edit.read_title")
     static let search_edit_listen_title = AppTextKey("search.edit.listen_title")
     static let search_edit_watch_title = AppTextKey("search.edit.watch_title")
@@ -386,20 +390,20 @@ public extension AppTextKey {
     static let video_view_downloading_button = AppTextKey("video.view.downloading_button")
     static let video_view_downloaded_button = AppTextKey("video.view.downloaded_button")
     //
-    //"RateViewController.doneButton" = "Done";
+    static let my_qot_to_be_vision_rate_view_done_button_title = AppTextKey("my_qot.to_be_vision.rate.view.done_button_title")
     //"RateViewController.skipButton" = "Skip";
-    //"RateViewController.rateMyTBVButton" = "Rate my TBV";
+    static let my_qot_to_be_vision_rate_view_rate_button_title = AppTextKey("my_qot.to_be_vision.rate.view.rate_button_title")
     //
-    //"TBVTrackerViewController.doneButton" = "Done";
-    //"TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
+    static let my_qot_to_be_vision_view_done_button_title = AppTextKey("my_qot.to_be_vision.view.done_button_title")
+    static let my_qot_to_be_vision_view_next_duration_button_title = AppTextKey("my_qot.to_be_vision.view.next_duration_button_title")
     //
-    //"QuestionnaireViewController.doneButton" = "Done";
+    static let daily_brief_daily_checkin_view_done_button_title = AppTextKey("daily_brief.daily_checkin.view.done_button_title")
     //
     static let daily_brief_daily_checkin_view_hours_subtitle = AppTextKey("daily_brief.daily_checkin.view.hours_subtitle")
     static let daily_brief_daily_checkin_vew_hours_more_subtitle = AppTextKey("daily_brief.daily_checkin.vew.hours_more_subtitle")
     //
     //"MySprintDetails.Info.Title.In.Progress" = "A Sprint is already in progress";
-    //"MySprintDetails.Info.Body.In.Progress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start %@?";
+    static let decision_tree_view_info_body_in_progress = AppTextKey("decision_tree.view.info_body_in_progress")
     static let my_qot_my_sprints_my_sprint_details_view_sprint_tasks_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_tasks_title")
     static let my_qot_my_sprints_my_sprint_details_view_my_plan_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.my_plan_title")
     static let my_qot_my_sprints_my_sprint_details_view_my_notes_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.my_notes_title")
@@ -411,18 +415,18 @@ public extension AppTextKey {
     static let my_qot_my_sprints_my_sprint_details_view_notes_body = AppTextKey("my_qot.my_sprints.my_sprint_details.view.notes_body")
     static let my_qot_my_sprints_my_sprint_details_view_takeaways_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.takeaways_button")
     //"MySprintDetails.Button.Cancel" = "Cancel";
-    //"MySprintDetails.Button.Continue" = "Continue";
+    static let my_qot_my_sprints_my_sprint_details_view_continue_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.continue_button")
     static let my_qot_my_sprints_my_sprint_details_view_start_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.start_sprint_button")
-    //"MySprintDetails.Button.PauseSprint" = "Pause Sprint";
-    //"MySprintDetails.Button.YesPause" = "Yes, Pause";
-    //"MySprintDetails.Button.ContinueSprint" = "Continue sprint";
-    //"MySprintDetails.Button.RestartSprint" = "Restart sprint";
-    //"MySprintDetails.Info.Title.PauseSprint" = "PAUSE YOUR SPRINT";
-    //"MySprintDetails.Info.Title.ReplanSprint" = "REPLAN YOUR SPRINT";
-    //"MySprintDetails.Info.Title.SprintInProgress" = "A SPRINT IS ALREADY IN PROGRESS";
-    //"MySprintDetails.Info.Message.PauseSprint" = "Are you sure you want to pause your current sprint? To reach the best results is recommended to finish a sprint in maximum %d days.";
-    //"MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
-    //"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_yes_pause_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.yes_pause_button")
+    static let my_qot_my_sprints_my_sprint_details_view_continue_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.continue_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_restart_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.restart_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_title")
+    static let my_qot_my_sprints_my_sprint_details_view_replan_sprint_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.replan_sprint_title")
+    static let my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_in_progress_title")
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_info_title")
+    static let my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.replan_sprint_info_title")
+    static let my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_in_progress_info_title")
     //
     static let my_qot_my_sprints_my_sprint_details_view_save_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.save_button")
     static let my_qot_my_sprints_my_sprint_details_view_cancel_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.cancel_button")
@@ -936,8 +940,8 @@ public extension AppTextKey {
     //
     static let my_qot_my_profile_account_settings_view_title = AppTextKey("my_qot.my_profile.account_settings.view.title")
     //account_settings_contact
-    static let my_qot_my_profile_account_settings_view_email_title = AppTextKey("my_qot.my_profile.account_settings.view.email_title")
-    static let my_qot_my_profile_account_settings_view_company_title = AppTextKey("my_qot.my_profile.account_settings.view.company_title")
+    //account_settings_email
+    //account_settings_company
     //account_settings_phone
     //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
@@ -951,7 +955,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_view_logout_subtitle = AppTextKey("my_qot.my_profile.account_settings.view.logout_subtitle")
     //
     static let my_qot_my_profile_app_settings_view_title = AppTextKey("my_qot.my_profile.app_settings.view.title")
-    static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
+    //app_settings_general_settings
     static let my_qot_my_profile_app_settings_view_custom_title = AppTextKey("my_qot.my_profile.app_settings.view.custom_title")
     static let my_qot_my_profile_app_settings_view_notification_title = AppTextKey("my_qot.my_profile.app_settings.view.notification_title")
     static let my_qot_my_profile_app_settings_view_notification_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.notification_subtitle")

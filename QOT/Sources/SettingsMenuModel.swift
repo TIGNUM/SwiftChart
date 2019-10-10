@@ -11,17 +11,10 @@ import qot_dal
 
 enum SettingsType: Int {
     case company = 0
-    case jobTitle
     case email
-    case phone
     case firstName
     case lastName
     case dateOfBirth
-    case calendar
-    case calendarOnOtherDevices
-    case tutorial
-    case interview
-    case support
     case strategies
     case dailyPrep
     case weeklyChoices
@@ -31,38 +24,29 @@ enum SettingsType: Int {
     case terms
     case copyrights
     case security
-    case adminSettings
 
     var title: String {
         switch self {
-        case .company: return R.string.localized.settingsGeneralCompanyTitle()
-        case .jobTitle: return R.string.localized.settingsGeneralJobTitleTitle()
-        case .email: return R.string.localized.settingsGeneralEmailTitle()
-        case .phone: return R.string.localized.settingsGeneralTelephoneTitle()
-        case .firstName: return R.string.localized.settingsGeneralFirstNameTitle()
-        case .lastName: return R.string.localized.settingsGeneralLastNameTitle()
-        case .dateOfBirth: return R.string.localized.settingsGeneralDateOfBirthTitle()
-        case .calendar: return R.string.localized.settingsGeneralCalendarTitle()
-        case .calendarOnOtherDevices: return R.string.localized.settingsGeneralCalendarTitle()
-        case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
-        case .interview: return R.string.localized.settingsGeneralInterviewTitle()
-        case .support: return R.string.localized.settingsGeneralSupportTitle()
-        case .strategies: return R.string.localized.settingsNotificationsStrategiesTitle()
-        case .dailyPrep: return R.string.localized.settingsNotificationsDailyPrepTitle()
-        case .weeklyChoices: return R.string.localized.settingsNotificationsWeeklyChoicesTitle()
-        case .password: return R.string.localized.settingsSecurityPasswordTitle()
+        case .company: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_company_title)
+        case .email: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_email_title)
+        case .firstName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_first_name_title)
+        case .lastName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_last_name_title)
+        case .dateOfBirth: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_dob_title)
+        case .strategies: return AppTextService.get(AppTextKey.notifications_view_strategies_title)
+        case .dailyPrep: return AppTextService.get(AppTextKey.notifications_view_daily_prep_title)
+        case .weeklyChoices: return AppTextService.get(AppTextKey.notifications_view_weekly_choices_title)
+        case .password: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_security_password_title)
         case .logout: return AppTextService.get(AppTextKey.my_qot_account_settings_view_logout_button)
-        case .confirm: return R.string.localized.settingsSecurityConfirmTitle()
-        case .terms: return R.string.localized.settingsSecurityTermsTitle()
-        case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()
-        case .security: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
-        case .adminSettings: return R.string.localized.settingsGeneralAdminTitle()
+        case .confirm: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_security_confirm_title)
+        case .terms: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_terms_title)
+        case .copyrights: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_copyright_title)
+        case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_privacy_title)
         }
     }
 
     var valueTextColor: UIColor {
         switch self {
-        case .calendar, .calendarOnOtherDevices: return .white40
+//        case .calendar, .calendarOnOtherDevices: return .white40
         default: return .white
         }
     }
