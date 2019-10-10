@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
@@ -51,7 +52,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         }
 
         array.reverse()
-        array.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
+        array.insert(AppTextService.get(AppTextKey.create_account_view_year_select_title), at: 0)
         return array
     }()
 

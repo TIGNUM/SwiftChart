@@ -16,10 +16,7 @@ enum SettingsType: Int {
     case phone
     case firstName
     case lastName
-    case gender
     case dateOfBirth
-    case weight
-    case height
     case calendar
     case calendarOnOtherDevices
     case tutorial
@@ -44,10 +41,7 @@ enum SettingsType: Int {
         case .phone: return R.string.localized.settingsGeneralTelephoneTitle()
         case .firstName: return R.string.localized.settingsGeneralFirstNameTitle()
         case .lastName: return R.string.localized.settingsGeneralLastNameTitle()
-        case .gender: return R.string.localized.settingsGeneralGenderTitle()
         case .dateOfBirth: return R.string.localized.settingsGeneralDateOfBirthTitle()
-        case .weight: return R.string.localized.settingsGeneralWeightTitle()
-        case .height: return R.string.localized.settingsGeneralHeightTitle()
         case .calendar: return R.string.localized.settingsGeneralCalendarTitle()
         case .calendarOnOtherDevices: return R.string.localized.settingsGeneralCalendarTitle()
         case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
@@ -68,31 +62,8 @@ enum SettingsType: Int {
 
     var valueTextColor: UIColor {
         switch self {
-        case .company: return .white
-        case .jobTitle: return .white
-        case .email: return .white
-        case .phone: return .white
-        case .firstName: return .white
-        case .lastName: return .white
-        case .gender: return .white
-        case .dateOfBirth: return .white
-        case .weight: return .white
-        case .height: return .white
-        case .calendar: return .white40
-        case .calendarOnOtherDevices: return .white40
-        case .tutorial: return .white
-        case .interview: return .white
-        case .support: return .white
-        case .strategies: return .white
-        case .dailyPrep: return .white
-        case .weeklyChoices: return .white
-        case .password: return .white
-        case .logout: return .white
-        case .confirm: return .white
-        case .terms: return .white
-        case .copyrights: return .white
-        case .security: return .white
-        case .adminSettings: return .white
+        case .calendar, .calendarOnOtherDevices: return .white40
+        default: return .white
         }
     }
 

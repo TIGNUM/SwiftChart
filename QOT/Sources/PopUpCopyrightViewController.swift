@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import qot_dal
 
 protocol PopUpCopyrightViewControllerProtocol: class {
     func cancelAction()
@@ -80,7 +81,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     private func setupView() {
         containerView.backgroundColor = .carbon
         backgroundView.backgroundColor = UIColor.carbon.withAlphaComponent(0.95)
-        descriptionLabel.text = R.string.localized.copyrightText() + (copyrightURL ?? "")
+        descriptionLabel.text = AppTextService.get(AppTextKey.daily_brief_alert_copyright_text_title) + (copyrightURL ?? "")
     }
 
     @IBAction func didTapClose(_ sender: Any) {

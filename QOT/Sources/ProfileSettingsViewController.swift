@@ -36,6 +36,8 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
+    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_year_select_title)
+
     private lazy var yearPickerItems: [String] = {
         var items = [String]()
         let minYear = Date().minimumDateOfBirth.year()
@@ -46,7 +48,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
 
         items.reverse()
-        items.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
+        items.insert(localizedYear, at: 0)
         return items
     }()
 
@@ -126,24 +128,6 @@ extension ProfileSettingsViewController {
         yearPicker.selectRow(row, inComponent: 0, animated: true)
         cell.textField.inputView = yearPicker
         cell.textField.becomeFirstResponder()
-    }
-
-    func updateUserHeightWeight() {
-        guard let userMeasurement = pickerItems, var interactor = self.interactor else { return }
-        switch interactor.row(at: pickerIndexPath) {
-        case .multipleStringPicker(_, _, _, let settingsType):
-            if settingsType == .height {
-                interactor.profile?.height = userMeasurement.selectedValue
-                interactor.profile?.heightUnit = userMeasurement.selectedUnit
-                reloadData()
-            } else if settingsType == .weight {
-                interactor.profile?.weight = userMeasurement.selectedValue
-                interactor.profile?.weightUnit = userMeasurement.selectedUnit
-                reloadData()
-            }
-        default:
-            return
-        }
     }
 }
 
@@ -296,7 +280,7 @@ extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataS
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedValue = yearPickerItems[row]
-        if selectedValue != R.string.localized.yearPickerTitleSelect() {
+        if selectedValue != localizedYear {
             selectedCell?.textField.text = selectedValue
             let selectedDate = DateFormatter.yyyyMMdd.date(from: selectedValue+"-01-02")
             interactor?.profile?.dateOfBirth = DateFormatter.yyyyMMdd.string(from: selectedDate ?? Date())

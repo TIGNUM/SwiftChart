@@ -233,7 +233,7 @@ public extension AppTextKey {
     //"Sidebar.SensorsMenu.Fitbit.Already.Connected.Message" = "Fitbit is already connected with QOT.";
     //"Sidebar.SensorsMenu.Fitbit.Already.Connected.Title" = "CONNECTED";
     //
-    //"Common.InvalidContent" = "Cannot Display Content";
+    static let article_view_invalid_content_title = AppTextKey("article.view.invalid_content_title")
     //
     static let startup_alert_database_error_title = AppTextKey("startup.alert.database_error_title")
     static let startup_alert_database_error_body = AppTextKey("startup.alert.database_error_body")
@@ -264,7 +264,7 @@ public extension AppTextKey {
     static let alert_alert_level5_saved_button = AppTextKey("alert.alert.level5_saved_button")
     static let alert_alert_level5_alert_title = AppTextKey("alert.alert.level5_alert_title")
     static let alert_alert_level5_alert_body = AppTextKey("alert.alert.level5_alert_body")
-    static let alert_alert_copyright_text_title = AppTextKey("alert.alert.copyright_text_title")
+    static let daily_brief_alert_copyright_text_title = AppTextKey("daily_brief.alert.copyright_text_title")
     static let alert_alert_save_continue_button = AppTextKey("alert.alert.save_continue_button")
     static let my_qot_my_to_be_vision_alert_settings_title = AppTextKey("my_qot.my_to_be_vision.alert.settings_title")
     static let my_qot_my_profile_app_settings_notifications_alert_open_settings_title = AppTextKey("my_qot.my_profile.app_settings.notifications.alert.open_settings_title")
@@ -322,8 +322,8 @@ public extension AppTextKey {
     static let my_qot_my_to_be_vision_edit_choose_picture_title = AppTextKey("my_qot.my_to_be_vision.edit.choose_picture_title")
     static let my_qot_my_to_be_vision_edit_delete_photo_title = AppTextKey("my_qot.my_to_be_vision.edit.delete_photo_title")
     static let my_qot_my_to_be_vision_edit_cancel_title = AppTextKey("my_qot.my_to_be_vision.edit.cancel_title")
-    //"YearPicker.Title.Select" = "Select";
-    //
+    static let my_qot_my_profile_app_settings_view_year_select_title = AppTextKey("my_qot.my_profile.app_settings.view.year_select_title")
+    static let create_account_view_year_select_title = AppTextKey("create_account.view.year_select_title")
     //"MorningController.doneButton" = "DONE";
     static let login_alert_failed_title = AppTextKey("login.alert.failed_title")
     //

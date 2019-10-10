@@ -74,10 +74,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupDateCell(title: title, selectedYear: selectedYear, settingsType: settingsType)
         case .label(let title, let value, let settingsType):
-            if settingsType == .dateOfBirth,
-                settingsType == .height,
-                settingsType == .weight,
-                settingsType == .gender {
+            if settingsType == .dateOfBirth {
                 expandArrow.isHidden = false
             } else {
                 expandArrow.isHidden = true

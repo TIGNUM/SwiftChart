@@ -366,7 +366,7 @@ extension ArticleViewController {
 
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: Article.Item) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
+        cell.configure(text: AppTextService.get(AppTextKey.article_view_invalid_content_title), item: item)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         return cell
