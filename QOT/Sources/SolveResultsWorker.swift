@@ -159,10 +159,10 @@ private extension SolveResultsWorker {
         switch resultType {
         case .recoveryDecisionTree,
              .recoveryMyPlans:
-            header = R.string.localized.headerTitleSuggestedStrategies()
+            header = AppTextService.get(AppTextKey.coach_solve_results_view_header_related_items_title_suggested)
         case .solveDecisionTree,
              .solveDailyBrief:
-            header = R.string.localized.headerTitleStrategies()
+            header = AppTextService.get(AppTextKey.coach_solve_results_view_header_title_strategies)
         default:
             header = ""
         }
@@ -270,9 +270,9 @@ private extension SolveResultsWorker {
     func createRecoveryItems(_ completion: @escaping (SolveResult, Bool) -> Void) {
         var items: [SolveResult.Item] = []
         let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [],
-                                           headerTitle: R.string.localized.headerTitleExclusiveContent())
+                                           headerTitle: AppTextService.get(AppTextKey.coach_solve_results_view_header_title_exclusive))
         let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [],
-                                         headerTitle: R.string.localized.headerTitleSuggestedStrategies())
+                                         headerTitle: AppTextService.get(AppTextKey.coach_solve_results_view_header_strategy_items_title_suggested))
         let type = resultType
         recoveryHeader { [weak self] (headerItem) in
             self?.fatigueSymptom { [weak self] (fatigueItem) in

@@ -341,24 +341,25 @@ public extension AppTextKey {
     static let search_edit_tools_title = AppTextKey("search.edit.tools_title")
     static let search_view_placeholder_title = AppTextKey("search.view.placeholder_title")
     //
-    //"shortcut.item.title.whats.hot" = "Latest What's Hot Article";
-    //"shortcut.item.title.library" = "Tools";
-    //"shortcut.item.title.me.universe" = "Review My Data";
-    //"shortcut.item.title.prepare" = "Prepare for an event";
+    static let home_view_whats_hot_article_title = AppTextKey("home.view.whats_hot_article_title")
+    static let home_view_tools_title = AppTextKey("home.view.tools_title")
+    static let home_view_review_my_data_title = AppTextKey("home.view.review_my_data_title")
+    static let home_view_prepare_event_title = AppTextKey("home.view.prepare_event_title")
     //
     //"MyQot.Profile.Subtitle" = "Edit your personal info and settings";
     //"MyQot.Sprints.Subtitle" = "Building your daily recovery plan";
+    static let my_qot_view_my_plans_title = AppTextKey("my_qot.view.my_plans_title")
     static let my_qot_my_plans_view_title = AppTextKey("my_qot.my_plans.view.title")
-    //"Choice.View.Header.Edit.Prepare" = "Add or delete strategies from your preparation list.";
     //
-    //"Header.Title.Exclusive.Content" = "EXCLUSIVE CONTENT";
-    //"Header.Title.Strategies" = "STRATEGIES";
-    //"Header.Title.Suggested.Strategies" = "SUGGESTED SOLUTIONS";
+    static let coach_solve_results_view_header_title_exclusive = AppTextKey("coach.solve.results.view.header_title_exclusive")
+    static let coach_solve_results_view_header_title_strategies = AppTextKey("coach.solve.results.view.header_title_strategies")
+    static let coach_solve_results_view_header_related_items_title_suggested = AppTextKey("coach.solve.results.view.header_related_items_title_suggested")
+    static let coach_solve_results_view_header_strategy_items_title_suggested = AppTextKey("coach.solve.results.view.header_strategy_items_title_suggested")
     //
-    //"Fatigue.Symptom.Cognitive" = "cognitive fatigue";
-    //"Fatigue.Symptom.Emotional" = "emotional fatigue";
-    //"Fatigue.Symptom.Physical" = "physical fatigue";
-    //"Fatigue.Symptom.General" = "It looks like your fatigue is coming from all angles. Jet lag and sleep are the most common causes of this type of fatigue. Which of these two is more applicable to you?";
+    static let decision_tree_view_fatigue_symptom_cognitive_title = AppTextKey("decision_tree.view.fatigue_symptom_cognitive_title")
+    static let decision_tree_view_fatigue_symptom_emotional_title = AppTextKey("decision_tree.view.fatigue_symptom_emotional_title")
+    static let decision_tree_view_fatigue_symptom_physical_title = AppTextKey("decision_tree.view.fatigue_symptom_physical_title")
+    static let decision_tree_view_fatigue_symptom_general_title = AppTextKey("decision_tree.view.fatigue_symptom_general_title")
     //
     static let my_qot_view_my_tbv_more_than_subtitle = AppTextKey("my_qot.view.my_tbv_more_than_subtitle")
     static let my_qot_view_my_tbv_more_months_since_subtitle = AppTextKey("my_qot.view.my_tbv_more_months_since_subtitle")
@@ -612,23 +613,23 @@ public extension AppTextKey {
     static let daily_brief_impact_readiness_view_rolling_data_title = AppTextKey("daily_brief.impact_readiness.view.rolling_data_title")
     static let daily_brief_whats_hot_view_subtitle_title = AppTextKey("daily_brief.whats_hot.view.subtitle_title")
     //
-    //"Onboarding.Intro.Title" = "IF YOU CAN'T MAKE AN IMPACT, DON'T BOTHER SHOWING UP.";
-    //"Onboarding.Intro.Body" = "From merely present to totally prepared.";
-    //"Onboarding.Intro.Button.Login" = "Log in";
-    //"Onboarding.Intro.Button.Register" = "New user";
+    static let singin_onboarding_view_intro_title = AppTextKey("singin.onboarding.view.intro_title")
+    static let singin_onboarding_view_intro_body = AppTextKey("singin.onboarding.view.intro_body")
+    static let singin_onboarding_view_button_log_in = AppTextKey("singin.onboarding.view.button_log_in")
+    static let singin_onboarding_view_button_register = AppTextKey("singin.onboarding.view.button_register")
     //
-    //"Results.Feedback.Recovery" = "Great work in developing your Recovery Plan. It will be saved for you in MY QOT so that you can review it as needed.";
-    //"Results.Feedback.Mindset.Shifter" = "Great work in developing your plan to shift your mindset from low impact to high impact when you face this mindset killer. This mindset shifter will be saved for you in MY QOT so that you can review it as needed.";
+    static let results_solve_view_feedback_recovery_title = AppTextKey("results.solve.view.feedback_recovery_title")
+    static let results_solve_view_feedback_mindset_shifter_title = AppTextKey("results.solve.view.feedback_mindset_shifter_title")
     //
-    //"MyLibrary.Title" = "MY LIBRARY";
-    //"MyLibrary.GroupTitle.All" = "ALL";
-    //"MyLibrary.GroupTitle.Bookmarks" = "Bookmarks";
-    //"MyLibrary.GroupTitle.Downloads" = "Downloads";
-    //"MyLibrary.GroupTitle.Links" = "Links";
-    //"MyLibrary.GroupTitle.Notes" = "Notes";
-    //"MyLibrary.GroupItemCount.Singular" = "%@ item";
-    //"MyLibrary.GroupItemCount.Plural" = "%@ items";
-    //"MyLibrary.GroupLastUpdate" = " | Last update %@";
+    static let my_qot_view_my_library_title = AppTextKey("my_qot.view.my_library_title")
+    static let my_qot_my_library_view_title_all = AppTextKey("my_qot.my_library.view.title_all")
+    static let my_qot_my_library_view_title_bookmarks = AppTextKey("my_qot.my_library.view.title_bookmarks")
+    static let my_qot_my_library_view_title_downloads = AppTextKey("my_qot.my_library.view.title_downloads")
+    static let my_qot_my_library_view_title_links = AppTextKey("my_qot.my_library.view.title_links")
+    static let my_qot_my_library_view_title_notes = AppTextKey("my_qot.my_library.view.title_notes")
+    static let my_qot_my_library_view_group_singular_title = AppTextKey("my_qot.my_library.view.group_singular_title")
+    static let my_qot_my_library_view_group_plural_title = AppTextKey("my_qot.my_library.view.group_plural_title")
+    static let my_qot_my_library_view_group_last_update_title = AppTextKey("my_qot.my_library.view.group_last_update_title")
     //
     //myqot_profile_section_title
     //myqot_library_section_title

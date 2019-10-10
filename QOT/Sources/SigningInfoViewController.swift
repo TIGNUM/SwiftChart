@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import qot_dal
 
 final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
@@ -115,8 +116,8 @@ private extension SigningInfoViewController {
     }
 
     func setupButtons() {
-        ThemableButton.signinInfo.apply(loginButton, title: R.string.localized.onboardingIntroButtonLogin())
-        ThemableButton.signinInfo.apply(startButton, title: R.string.localized.onboardingIntroButtonRegister())
+        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.singin_onboarding_view_button_log_in))
+        ThemableButton.signinInfo.apply(startButton, title: AppTextService.get(AppTextKey.singin_onboarding_view_button_register))
     }
 }
 

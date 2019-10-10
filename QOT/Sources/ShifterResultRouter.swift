@@ -29,7 +29,7 @@ extension ShifterResultRouter: ShifterResultRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: R.string.localized.resultsFeedbackMindsetShifter())
+        controller.configure(text: AppTextService.get(AppTextKey.results_solve_view_feedback_mindset_shifter_title))
         viewController?.removeBottomNavigation()
     }
 }
