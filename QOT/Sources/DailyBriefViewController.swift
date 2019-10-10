@@ -697,14 +697,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
     }
 
-    @objc func updateTargetValue(_ notification: NSNotification) {
-        guard let value = notification.object as? Double else {
-            return
-        }
-        interactor?.saveUpdatedDailyCheckInSleepTarget(value)
-        tableView.reloadData()
-    }
-
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
     }
@@ -744,6 +736,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+    }
+
+    func scrollToSection(at: Int) {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
     }
 }
 
