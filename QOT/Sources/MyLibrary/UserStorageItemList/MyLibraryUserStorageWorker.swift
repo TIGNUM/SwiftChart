@@ -67,11 +67,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelDownloadItemsAlertTitle: String = {
-        return R.string.localized.myLibraryItemsAlertDownloadCancelTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_items_cancel_download_alert_title)
     }()
 
     lazy var cancelDownloadItemsAlertMessage: String = {
-        return R.string.localized.myLibraryItemsAlertDownloadCancelMessage()
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_items_cancel_download_alert_body)
     }()
 
     lazy var removeItemsAlertTitle: String = {

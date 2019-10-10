@@ -653,7 +653,7 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             if saveShouldShow {
-                return [roundedBarButtonItem(title: R.string.localized.mySprintDetailsNotesButtonSave(),
+                return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_save_button),
                                              buttonWidth: .Done,
                                              action: #selector(didTapSave),
                                              backgroundColor: .clear,

@@ -645,6 +645,8 @@ public extension AppTextKey {
     static let my_qot_my_sprints_my_sprint_details_view_header_strategies_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_strategies_title")
     static let my_qot_my_sprints_my_sprint_details_view_header_benefits_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_benefits_title")
     static let my_qot_profile_settings_support_view_support_contact_email_title = AppTextKey("my_qot.profile_settings.support.view.support_contact_email_title")
+    static let my_qot_my_library_alert_items_cancel_download_alert_title = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_title")
+    static let my_qot_my_library_alert_items_cancel_download_alert_body = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_body")
     //myqot_profile_section_title
     //myqot_library_section_title
     //myqot_preps_section_title
