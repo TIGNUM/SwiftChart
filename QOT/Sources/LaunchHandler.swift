@@ -309,15 +309,26 @@ extension LaunchHandler {
         qot_dal.ContentService.main.getContentCollectionById(collectionId, { [weak self] (content) in
             guard let contentCollection = content else { return }
             if contentCollection.contentItems.count == 1,
-                (contentCollection.section == .LearnStrategies || contentCollection.section == .Tools || contentCollection.section == .QOTLibrary),
+                (contentCollection.section == .LearnStrategies ||
+                    contentCollection.section == .Tools ||
+                    contentCollection.section == .QOTLibrary),
                 let contentItemId = contentCollection.contentItems.first?.remoteID {
                 self?.showContentItem(contentItemId)
                 return
             }
 
-            if let controller = R.storyboard.main.qotArticleViewController() {
-                ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
-                self?.present(viewController: controller)
+            switch contentCollection.section {
+            case .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent:
+                if let controller = R.storyboard.main.qotArticleViewController() {
+                    ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
+                    self?.present(viewController: controller)
+                }
+            case .Tools, .QOTLibrary:
+                if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
+                    ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
+                    self?.present(viewController: controller)
+                }
+            default: break
             }
         })
     }
