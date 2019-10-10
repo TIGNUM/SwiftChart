@@ -112,7 +112,7 @@ extension KnowingViewController {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            let title = R.string.localized.knowTitle()
+            let title = AppTextService.get(AppTextKey.know_view_title)
             cell.configure(title: title, tapRight: { [weak self] in
                 self?.delegate?.moveToCell(item: 1)
             })

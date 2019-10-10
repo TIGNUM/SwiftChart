@@ -326,8 +326,8 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            labelCustomizeView.text = R.string.localized.dailyBriefCustomizeSleepIntro()
-            attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
+            labelCustomizeView.text = AppTextService.get(AppTextKey.daily_brief_customize_view_sleep_intro_title)
+            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(AppTextKey.daily_brief_customize_view_sleep_question_title))
         case .dailyCheckin:
             if let question = questionHtml {
                 attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)

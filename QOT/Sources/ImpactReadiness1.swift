@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
@@ -78,7 +79,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
         self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
-        ThemeText.navigationBarHeader.apply(R.string.localized.dailyBriefTitle(), to: titleLabel)
+        ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_view_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
         actionLeft = tapLeft

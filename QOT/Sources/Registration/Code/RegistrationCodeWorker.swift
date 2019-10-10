@@ -27,54 +27,54 @@ final class RegistrationCodeWorker: BaseSigningWorker {
     // Texts
 
     lazy var title: String = {
-        return titleService.localizedString(for: .OnboardingRegistrationCodeTitle)
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_title)
     }()
 
     lazy var description: String = {
-        return R.string.localized.onboardingRegistrationCodeDescription()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_description_title)
     }()
 
     lazy var preCode: String = {
-        return R.string.localized.onboardingRegistrationCodePreCode()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_code_title)
     }()
 
     lazy var disclaimerError: String = {
-        return R.string.localized.onboardingRegistrationCodeDisclaimerError()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_disclaimer_error_title)
     }()
 
     lazy var disclaimer: String = {
-        return R.string.localized.onboardingRegistrationCodeDisclaimer()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_disclaimer_title)
     }()
 
     lazy var disclaimerTermsPlaceholder: String = {
-        return R.string.localized.onboardingRegistrationCodeDisclaimerTermsPlaceholder()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_disclaimer_terms_placeholder_title)
     }()
 
     lazy var disclaimerPrivacyPlaceholder: String = {
-        return R.string.localized.onboardingRegistrationCodeDisclaimerPrivacyPlaceholder()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_disclaimer_privacy_placeholder_title)
     }()
 
     lazy var codeInfo: String = {
-        return R.string.localized.onboardingRegistrationCodeCodeInfo()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_code_info_title)
     }()
 
     lazy var changeEmail: String = {
-        return R.string.localized.onboardingRegistrationCodeChangeEmail()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_change_email_title)
     }()
 
     lazy var sendAgain: String = {
-        return R.string.localized.onboardingRegistrationCodeSendAgain()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_send_again_title)
     }()
 
     lazy var help: String = {
-        return R.string.localized.onboardingRegistrationCodeHelp()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_help_title)
     }()
 
     lazy var codeError: String = {
-        return R.string.localized.onboardingRegistrationCodeCodeError()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_send_code_error_title)
     }()
 
     lazy var resendCodeError: String = {
-        return R.string.localized.onboardingRegistrationCodeSendCodeError()
+        return AppTextService.get(AppTextKey.create_account_code_verification_view_send_code_error_title)
     }()
 }

@@ -18,19 +18,19 @@ final class RegistrationWorker: BaseSigningWorker {
     }()
 
     lazy var existingAccountAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmailTitle)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_existing_email_error_title)
     }()
 
     lazy var existingAccountAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmail)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_existing_email_error_description)
     }()
 
     lazy var yesButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonYes)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_button_yes)
     }()
 
     lazy var noButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonNo)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_button_no)
     }()
 
     // MARK: - Init

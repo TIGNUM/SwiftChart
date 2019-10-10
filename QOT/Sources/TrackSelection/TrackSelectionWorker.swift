@@ -15,19 +15,19 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionTitle()
+        return AppTextService.get(AppTextKey.track_info_view_title)
     }()
 
     lazy var descriptionText: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionMessage()
+        return AppTextService.get(AppTextKey.track_info_view_message_title)
     }()
 
     lazy var fastTrackButton: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionButtonFastTrack()
+        return AppTextService.get(AppTextKey.track_info_view_button_fast_track_title)
     }()
 
     lazy var guidedTrackButton: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionButtonGuidedTrack()
+        return AppTextService.get(AppTextKey.track_info_view_button_guided_track_title)
     }()
 
     // MARK: - Init

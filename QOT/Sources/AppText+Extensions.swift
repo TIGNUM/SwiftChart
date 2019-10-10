@@ -324,7 +324,7 @@ public extension AppTextKey {
     static let my_qot_my_to_be_vision_edit_cancel_title = AppTextKey("my_qot.my_to_be_vision.edit.cancel_title")
     static let my_qot_my_profile_app_settings_view_year_select_title = AppTextKey("my_qot.my_profile.app_settings.view.year_select_title")
     static let create_account_view_year_select_title = AppTextKey("create_account.view.year_select_title")
-    //"MorningController.doneButton" = "DONE";
+    static let tutorial_view_morning_done_title = AppTextKey("tutorial.view.morning_done_title")
     static let login_alert_failed_title = AppTextKey("login.alert.failed_title")
     //
     //"Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
@@ -433,10 +433,10 @@ public extension AppTextKey {
     static let daily_brief_daily_checkin_empty_start_your_dc_in_title = AppTextKey("daily_brief.daily_checkin.empty.start_your_dc_in_title")
     static let daily_brief_daily_checkin_view_explore_your_score_title = AppTextKey("daily_brief.daily_checkin.view.explore_your_score_title")
     //
-    //"DailyBrief.Customize.Sleep.Intro" = "Only you know how much sleep you really need to feel fully recovered. Customize your sleep quanity target here.";
-    //"DailyBrief.Customize.Sleep.Question" = "How many hours of sleep do you need each night to feel your best?";
+    static let daily_brief_customize_view_sleep_intro_title = AppTextKey("daily_brief.customize.view.sleep_intro_title")
+    static let daily_brief_customize_view_sleep_question_title = AppTextKey("daily_brief.customize.view.sleep_question_title")
     //
-    //"Onboarding.Error.General" = "An error occurred, please try again";
+    static let create_account_email_verification_view_general_error_title = AppTextKey("create_account.email_verification.view.general_error_title")
     static let login_view_title = AppTextKey("login.view.title")
     static let login_view_your_email_title = AppTextKey("login.view.your_email_title")
     static let login_view_email_description_title = AppTextKey("login.view.email_description_title")

@@ -22,46 +22,46 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     // MARK: Texts
 
     lazy var title: String = {
-        return R.string.localized.onboardingLoginEmailTitle()
+        return AppTextService.get(AppTextKey.login_view_title)
     }()
 
     lazy var emailPlaceholder: String = {
-        return R.string.localized.onboardingLoginEmailPlaceholder()
+        return AppTextService.get(AppTextKey.login_view_your_email_title)
     }()
 
     lazy var emailInstructions: String = {
-        return R.string.localized.onboardingLoginEmailDescription()
+        return AppTextService.get(AppTextKey.login_view_email_description_title)
     }()
 
     lazy var emailError: String = {
-        return R.string.localized.onboardingLoginEmailError()
+        return AppTextService.get(AppTextKey.login_view_email_error_title)
     }()
 
     lazy var emailUserDoesntExist: String = {
-        return R.string.localized.onboardingLoginEmailUserDoesntExistError()
+        return AppTextService.get(AppTextKey.login_view_user_doesnt_exist_title)
     }()
 
     lazy var generalEMailError: String = {
-        return R.string.localized.onboardingLoginEmailGenericError()
+        return AppTextService.get(AppTextKey.login_view_generic_error_title)
     }()
 
     lazy var digitDescription: String = {
-        return R.string.localized.onboardingLoginCodeDescription()
+        return AppTextService.get(AppTextKey.login_view_code_description_title)
     }()
 
     lazy var preCode: String = {
-        return R.string.localized.onboardingLoginCodePreCode()
+        return AppTextService.get(AppTextKey.login_view_pre_code_title)
     }()
 
     lazy var codeError: String = {
-        return R.string.localized.onboardingLoginCodeError()
+        return AppTextService.get(AppTextKey.login_view_code_error_title)
     }()
 
     lazy var buttonGetHelp: String = {
-        return R.string.localized.onboardingLoginButtonGetHelp()
+        return AppTextService.get(AppTextKey.login_view_button_gethelp)
     }()
 
     lazy var buttonResendCode: String = {
-        return R.string.localized.onboardingLoginButtonResendCode()
+        return AppTextService.get(AppTextKey.login_view_button_resend_code)
     }()
 }
