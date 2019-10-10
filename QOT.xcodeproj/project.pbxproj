@@ -1049,7 +1049,6 @@
 		CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */; };
 		CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */; };
 		CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */; };
-		CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */ = {isa = PBXBuildFile; fileRef = CC6251DA1EE00DD800C6F546 /* Localized.strings */; };
 		CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6B3A301E81713200E7FDFD /* Constants.swift */; };
 		CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC7682C71F28A85600F852A0 /* Array+Convenience.swift */; };
@@ -2331,7 +2330,6 @@
 		CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleRelatedCell.xib; sourceTree = "<group>"; };
 		CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRelatedCell.swift; sourceTree = "<group>"; };
 		CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Create.swift"; sourceTree = "<group>"; };
-		CC6251DA1EE00DD800C6F546 /* Localized.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localized.strings; sourceTree = "<group>"; };
 		CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Palette.swift"; sourceTree = "<group>"; };
 		CC6B3A301E81713200E7FDFD /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CC7682C71F28A85600F852A0 /* Array+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Convenience.swift"; sourceTree = "<group>"; };
@@ -5150,7 +5148,6 @@
 			isa = PBXGroup;
 			children = (
 				DBAC1E692294616900B9F829 /* Resource */,
-				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				367EA0F021776920003025CE /* Assets.xcassets */,
 				CB78D3361F9F674A0068A54A /* BundledMedia */,
 				CBB4DD451EE0908E0071494A /* Fonts */,
@@ -5950,7 +5947,6 @@
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
 				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
-				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */,
 				F902CF4C22D87C4700FFC836 /* FeastCell.xib in Resources */,
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
