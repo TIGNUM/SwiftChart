@@ -134,7 +134,7 @@ private extension PrepareResultsViewController {
     }
 
     func showAlert() {
-        let confirm = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleConfirm()) { [weak self] (_) in
+        let confirm = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_details_alert_yes_title)) { [weak self] (_) in
             self?.interactor?.setReminder = true
             self?.interactor?.updatePreparation { (_) in
                 if self?.interactor?.getResultType == .prepareDecisionTree {
@@ -144,7 +144,7 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        let decline = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleDecline()) { [weak self] (_) in
+        let decline = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_details_alert_no_title)) { [weak self] (_) in
             self?.interactor?.updatePreparation { (_) in
                 if self?.interactor?.getResultType == .prepareDecisionTree {
                     self?.interactor?.presentFeedback()
@@ -153,8 +153,8 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        QOTAlert.show(title: R.string.localized.prepareAlertReminderTitle(),
-                      message: R.string.localized.prepareAlertReminderMessage(),
+        QOTAlert.show(title: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_details_alert_reminder_title),
+                      message: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_details_alert_reminder_body),
                       bottomItems: [confirm, decline])
     }
 }

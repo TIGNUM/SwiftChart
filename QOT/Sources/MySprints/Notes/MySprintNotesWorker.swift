@@ -50,11 +50,11 @@ final class MySprintNotesWorker {
     lazy var title: String = {
         switch action {
         case .benefits:
-            return R.string.localized.mySprintDetailsHeaderBenefits()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_benefits_title)
         case .highlights:
-            return R.string.localized.mySprintDetailsHeaderHighlights()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_highlights_title)
         case .strategies:
-            return R.string.localized.mySprintDetailsHeaderStrategies()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_strategies_title)
         case .captureTakeaways:
             return "-"
         }

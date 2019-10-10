@@ -636,14 +636,15 @@ public extension AppTextKey {
     static let my_qot_my_library_view_group_last_update_title = AppTextKey("my_qot.my_library.view.group_last_update_title")
     //
     static let my_qot_my_plans_event_preps_details_alert_reminder_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.reminder_title")
-    static let my_qot_my_plans_event_preps_details_alert_reminder_message_subtitle = AppTextKey("my_qot.my_plans.event_preps.details.alert.reminder_message_subtitle")
+    static let my_qot_my_plans_event_preps_details_alert_reminder_body = AppTextKey("my_qot.my_plans.event_preps.details.alert.reminder_body")
     static let my_qot_my_plans_event_preps_details_alert_yes_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.yes_title")
     static let my_qot_my_plans_event_preps_details_alert_no_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.no_title")
     static let my_qot_my_profile_app_settings_synced_calender_view_subscribed_title = AppTextKey("my_qot.my_profile.app_settings.synced_calender.view.subscribed.title")
     static let my_coach_qot_tools_mindset_tools_view_interactive_tool_title = AppTextKey("my_coach.qot_tools.mindset_tools.view.interactive_tool.title")
-    //"MySprintDetails.Header.Highlights" = "HIGHLIGHTS"
-    //"MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD"
-    //"MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
+    static let my_qot_my_sprints_my_sprint_details_view_header_highlights_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_highlights_title")
+    static let my_qot_my_sprints_my_sprint_details_view_header_strategies_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_strategies_title")
+    static let my_qot_my_sprints_my_sprint_details_view_header_benefits_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_benefits_title")
+    static let my_qot_profile_settings_support_view_support_contact_email_title = AppTextKey("my_qot.profile_settings.support.view.support_contact_email_title")
     //myqot_profile_section_title
     //myqot_library_section_title
     //myqot_preps_section_title
