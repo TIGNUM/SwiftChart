@@ -458,7 +458,7 @@ private extension ArticleWorker {
         guard let content = content else { return true }
 
         switch content.section {
-        case .Generic, .LearnStrategies, .WhatsHot: return false
+        case .Generic, .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent: return false
         default: break
         }
         return true
@@ -468,7 +468,7 @@ private extension ArticleWorker {
         guard let content = content else { return true }
 
         switch content.section {
-        case .Generic, .LearnStrategies, .WhatsHot: return false
+        case .Generic, .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent: return false
         default: break
         }
         return true
