@@ -737,6 +737,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
     }
+
+    func scrollToSection(at: Int) {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
+    }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {

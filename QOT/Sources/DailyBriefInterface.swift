@@ -13,11 +13,13 @@ import DifferenceKit
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func scrollToSection(at: Int)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func scrollToSection(at: Int)
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
