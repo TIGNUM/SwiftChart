@@ -138,7 +138,6 @@ final class AppCoordinator {
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
-        self.isReadyToProcessURL = true
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)
         add3DTouchShortcuts()
@@ -148,16 +147,18 @@ final class AppCoordinator {
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        self.windowManager.show(naviController, animated: true, completion: nil)
-        DispatchQueue.main.async {
-            // Show coach marks on first launch (of v3.0 app)
-            let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
-            if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-                self.showTrackChoice()
-            } else {
-                baseRootViewController.setContent(viewController: coachCollectionViewController)
-                self.canProcessRemoteNotifications = true
-                self.canProcessLocalNotifications = true
+        self.windowManager.show(naviController, animated: true) {
+            DispatchQueue.main.async {
+                // Show coach marks on first launch (of v3.0 app)
+                let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
+                if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
+                    self.showTrackChoice()
+                } else {
+                    baseRootViewController.setContent(viewController: coachCollectionViewController)
+                    self.canProcessRemoteNotifications = true
+                    self.canProcessLocalNotifications = true
+                    self.isReadyToProcessURL = true
+                }
             }
         }
     }
