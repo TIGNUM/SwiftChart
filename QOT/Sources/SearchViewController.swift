@@ -177,7 +177,7 @@ private extension SearchViewController {
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
         mySearchBar.backgroundImage = UIImage()
-        mySearchBar.placeholder = R.string.localized.searchPlaceholder()
+        mySearchBar.placeholder = AppTextService.get(AppTextKey.search_view_placeholder_title)
         mySearchBar.delegate = self
     }
 

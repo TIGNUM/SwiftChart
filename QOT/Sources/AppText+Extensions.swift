@@ -341,15 +341,15 @@ public extension AppTextKey {
     static let search_edit_tools_title = AppTextKey("search.edit.tools_title")
     static let search_view_placeholder_title = AppTextKey("search.view.placeholder_title")
     //
-    //"shortcut.item.title.whats.hot" = "Latest What's Hot Article";
-    //"shortcut.item.title.library" = "Tools";
-    //"shortcut.item.title.me.universe" = "Review My Data";
-    //"shortcut.item.title.prepare" = "Prepare for an event";
+    static let home_view_whats_hot_article_title = AppTextKey("home.view.whats_hot_article_title")
+    static let home_view_tools_title = AppTextKey("home.view.tools_title")
+    static let home_view_review_my_data_title = AppTextKey("home.view.review_my_data_title")
+    static let home_view_prepare_event_title = AppTextKey("home.view.prepare_event_title")
     //
     //"MyQot.Profile.Subtitle" = "Edit your personal info and settings";
     //"MyQot.Sprints.Subtitle" = "Building your daily recovery plan";
+    static let my_qot_view_my_plans_title = AppTextKey("my_qot.view.my_plans_title")
     static let my_qot_my_plans_view_title = AppTextKey("my_qot.my_plans.view.title")
-    //"Choice.View.Header.Edit.Prepare" = "Add or delete strategies from your preparation list.";
     //
     //"Header.Title.Exclusive.Content" = "EXCLUSIVE CONTENT";
     //"Header.Title.Strategies" = "STRATEGIES";

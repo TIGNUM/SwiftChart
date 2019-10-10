@@ -195,7 +195,7 @@ private extension MyPrepsViewController {
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
-        ThemeText.sectionHeader.apply(R.string.localized.myQotHeaderTitle(), to: headerTitle)
+        ThemeText.sectionHeader.apply(AppTextService.get(AppTextKey.my_qot_view_my_plans_title), to: headerTitle)
         ThemeView.headerLine.apply(headerLine)
 
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_subtitle), to: noPrepsTitle)

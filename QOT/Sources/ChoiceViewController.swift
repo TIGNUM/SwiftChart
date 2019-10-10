@@ -54,7 +54,7 @@ private extension ChoiceViewController {
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: .Footer))
         tableView.tableHeaderView = tableHeaderView
-        tableHeaderViewLabel.text = R.string.localized.choiceViewHeaderEditPrepare()
+        tableHeaderViewLabel.text = AppTextService.get(AppTextKey.my_qot_my_plans_view_title)
     }
 
     func navigationTitle(selected: Int) -> String {

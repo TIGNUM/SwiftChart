@@ -249,21 +249,21 @@ extension AppCoordinator {
         let whatsHot = URLScheme.latestWhatsHotArticle
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleWhatsHot(),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_whats_hot_article_title),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
                                              userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleLibrary(),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_tools_title),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
                                              userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleMeUniverse(),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_review_my_data_title),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                              userInfo: ["link": myData.launchPathWithParameterValue("")]))
