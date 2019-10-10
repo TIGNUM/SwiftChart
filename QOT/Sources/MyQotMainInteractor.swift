@@ -8,6 +8,7 @@
 
 import UIKit
 import DifferenceKit
+import qot_dal
 
 final class MyQotMainInteractor {
 
@@ -60,7 +61,7 @@ final class MyQotMainInteractor {
 
     private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
-        item.subtitle = String(irScore ?? 0) + R.string.localized.myQotDataImpact()
+        item.subtitle = String(irScore ?? 0) + AppTextService.get(AppTextKey.my_qot_view_my_data_impact_subtitle)
         return [item]
     }
 
@@ -73,9 +74,9 @@ final class MyQotMainInteractor {
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
                 item.showSubtitleInRed = true
-                subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: timeSinceMonth) + R.string.localized.myQotVisionMonthsSince()
+                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_my_tbv_more_than_subtitle) + AppTextService.get(AppTextKey.my_qot_view_my_tbv_more_months_since_subtitle)
             } else {
-                subtitleVision = R.string.localized.myQotVisionLessThan()
+                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_my_tbv_less_than_subtitle)
             }
             item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
             return [item]

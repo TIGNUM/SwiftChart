@@ -34,7 +34,7 @@ extension PaymentReminderRouter: PaymentReminderRouterInterface {
     }
 
     func showLogoutDialog() {
-        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title))
         let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.payment_reminder_view_logout_button)) { (_) in
             SessionService.main.logout()
             ExtensionsDataManager.didUserLogIn(false)

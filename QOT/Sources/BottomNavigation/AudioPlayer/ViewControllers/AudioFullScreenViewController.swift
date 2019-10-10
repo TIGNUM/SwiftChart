@@ -197,7 +197,7 @@ extension AudioFullScreenViewController {
 private extension AudioFullScreenViewController {
 
     func showMobileDataDownloadAlert() {
-        let cancel = QOTAlertAction(title: R.string.localized.buttonTitleCancel())
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title))
         let buttonContinue = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_alert_continue_button)) { [weak self] (_) in
             self?.continueDownload()
         }

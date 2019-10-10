@@ -64,7 +64,7 @@ enum AlertType {
         switch self {
         case .changeNotifications,
              .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
         default: return nil
         }
     }
@@ -82,7 +82,7 @@ enum AlertType {
         switch self {
         case .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .changeNotifications: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
         default: return nil
         }
     }

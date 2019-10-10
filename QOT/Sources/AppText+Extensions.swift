@@ -370,10 +370,10 @@ public extension AppTextKey {
     //"Button.Title.Pick" = "Pick %d to continue";
     //"Button.Title.Add.Event" = "Add new event";
     //"Button.Title.Save.Continue" = "Save & Continue";
-    //"Button.Title.Save.Changes" = "Save changes";
-    //"Button.Title.Remove" = "Delete";
-    //"Button.Title.Cancel" = "Cancel";
-    //"Button.Title.YesContinue" = "Yes, continue";
+    static let navigation_bar_view_save_changes_button_title = AppTextKey("navigation_bar.view.save_changes_button_title")
+    static let generic_view_delete_button_title = AppTextKey("generic.view.delete_button_title")
+    static let generic_view_cancel_button_title = AppTextKey("generic.view.cancel_button_title")
+    static let my_qot_my_plans_view_yes_continue_button_title = AppTextKey("my_qot.my_plans.view.yes_continue_button_title")
     //"Button.Title.Done" = "Done";
     //"Button.Title.YesLeave" = "Yes, Leave";
     //

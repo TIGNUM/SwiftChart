@@ -39,7 +39,7 @@ final class ProfileSettingsWorker {
     }()
 
     lazy var confirmationAlertCancel: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
     }()
 
     init(contentService: qot_dal.ContentService) {
