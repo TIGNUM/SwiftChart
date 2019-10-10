@@ -28,6 +28,7 @@ final class DailyBriefInteractor {
     private var needToLoadBuckets: Bool = false
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
+    private var targetBucketName: DailyBriefBucketName?
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -79,6 +80,18 @@ extension DailyBriefInteractor {
             }
         }
     }
+
+    private func scrollToBucket(_ bucketName: DailyBriefBucketName) {
+        var modelIndex: Int?
+        for (index, item) in viewModelOldListModels.enumerated() {
+            guard item.elements.first?.domainModel?.bucketName == bucketName else { continue }
+            modelIndex = index
+            break
+        }
+        if let targetIndex = modelIndex {
+            presenter.scrollToSection(at: targetIndex)
+        }
+    }
 }
 
 // MARK: Notification Listeners
@@ -103,17 +116,20 @@ extension DailyBriefInteractor {
 
     @objc func didGetScrollNotificationToBucket(_ notification: Notification) {
         guard let bucketName = notification.object as? DailyBriefBucketName else { return }
-        switch bucketName {
-        default:
-            // @Srikanth, Zeljko : We need to scroll to the bucket.
-            qot_dal.log("did get scroll notification to bucket: \(bucketName)", level: .info)
+        guard viewModelOldListModels.filter({ $0.elements.first?.domainModel?.bucketName == bucketName }).first != nil else {
+            targetBucketName = bucketName
+            updateDailyBriefBucket()
+            return
         }
+
+        scrollToBucket(bucketName)
     }
 }
 
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
+
     // MARK: Properties
 
     var rowViewSectionCount: Int {
@@ -268,6 +284,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 strongSelf.needToLoadBuckets = false
                 strongSelf.getDailyBriefBucketsForViewModel()
             }
+
+            if let bucketNameToScroll = strongSelf.targetBucketName {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    strongSelf.scrollToBucket(bucketNameToScroll)
+                })
+            }
+            strongSelf.targetBucketName = nil
         }
     }
 
