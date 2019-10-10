@@ -36,7 +36,7 @@ extension UIViewController {
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .clear,
@@ -44,7 +44,7 @@ extension UIViewController {
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.buttonTitleYesLeave(),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.navigation_bar_view_yes_leave_button_title),
                                     buttonWidth: .Continue,
                                     action: action,
                                     backgroundColor: .clear,
@@ -59,7 +59,7 @@ extension UIViewController {
     }
 
     func saveChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.buttonTitleSaveChanges(),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.navigation_bar_view_save_changes_button_title),
                                     buttonWidth: .SaveChanges,
                                     action: action,
                                     borderColor: .accent40)

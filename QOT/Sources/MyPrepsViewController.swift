@@ -53,13 +53,13 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
-        ThemableButton.myPlans.apply(button, title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_cancel_button_title))
         return button.barButton
     }()
 
     lazy var deleteButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
-        ThemableButton.myPlans.apply(button, title: R.string.localized.buttonTitleRemove())
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_delete_button_title))
         return button.barButton
     }()
 
@@ -117,11 +117,11 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func removeRows(_ sender: Any) {
         guard tableView.indexPathForSelectedRow != nil else { return }
-        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title),
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
                                     handler: nil)
-        let remove = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleYesContinue),
+        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_yes_continue_button_title),
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)

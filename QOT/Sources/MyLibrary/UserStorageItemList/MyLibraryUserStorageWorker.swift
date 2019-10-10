@@ -51,11 +51,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
     }()
 
     lazy var removeTitle: String = {
-        return R.string.localized.buttonTitleRemove()
+        return AppTextService.get(AppTextKey.generic_view_delete_button_title)
     }()
 
     lazy var continueTitle: String = {
