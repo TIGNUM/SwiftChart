@@ -47,9 +47,9 @@ public extension AppTextKey {
     //"Settings.General.Admin.Title" = "(ADMIN)";
     //"Settings.General.JobTitle.Title" = "Title";
     static let my_qot_my_profile_account_settings_view_ = AppTextKey("my_qot.my_profile.account_settings.view.")
-
-
-
+    static let my_qot_my_profile_account_settings_edit_company_title = AppTextKey("my_qot.my_profile.account_settings.edit.company_title")
+    static let my_qot_my_profile_account_settings_edit_email_title = AppTextKey("my_qot.my_profile.account_settings.edit.email_title")
+    static let my_qot_my_profile_account_settings_edit_dob_title = AppTextKey("my_qot.my_profile.account_settings.edit.dob_title")
     static let notifications_view_strategies_title = AppTextKey("notifications.view.strategies_title")
     static let notifications_view_daily_prep_title = AppTextKey("notifications.view.daily_prep_title")
     static let notifications_view_weekly_choices_title = AppTextKey("notifications.view.weekly_choices_title")
@@ -635,6 +635,15 @@ public extension AppTextKey {
     static let my_qot_my_library_view_group_plural_title = AppTextKey("my_qot.my_library.view.group_plural_title")
     static let my_qot_my_library_view_group_last_update_title = AppTextKey("my_qot.my_library.view.group_last_update_title")
     //
+    static let my_qot_my_plans_event_preps_details_alert_reminder_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.reminder_title")
+    static let my_qot_my_plans_event_preps_details_alert_reminder_message_subtitle = AppTextKey("my_qot.my_plans.event_preps.details.alert.reminder_message_subtitle")
+    static let my_qot_my_plans_event_preps_details_alert_yes_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.yes_title")
+    static let my_qot_my_plans_event_preps_details_alert_no_title = AppTextKey("my_qot.my_plans.event_preps.details.alert.no_title")
+    static let my_qot_my_profile_app_settings_synced_calender_view_subscribed_title = AppTextKey("my_qot.my_profile.app_settings.synced_calender.view.subscribed.title")
+    static let my_coach_qot_tools_mindset_tools_view_interactive_tool_title = AppTextKey("my_coach.qot_tools.mindset_tools.view.interactive_tool.title")
+    //"MySprintDetails.Header.Highlights" = "HIGHLIGHTS"
+    //"MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD"
+    //"MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
     //myqot_profile_section_title
     //myqot_library_section_title
     //myqot_preps_section_title
@@ -980,12 +989,12 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_edit_name_title = AppTextKey("my_qot.my_profile.account_settings.edit.name_title")
     static let my_qot_my_profile_account_settings_edit_surname_title = AppTextKey("my_qot.my_profile.account_settings.edit.surname_title")
     //edit_account_gender
-    static let my_qot_my_profile_account_settings_edit_dob_title = AppTextKey("my_qot.my_profile.account_settings.edit.dob_title")
+    //edit_account_year_of_birth
     //edit_account_height
     //edit_account_weight
-    static let my_qot_my_profile_account_settings_edit_company_title = AppTextKey("my_qot.my_profile.account_settings.edit.company_title")
+    //edit_account_company
     //edit_account_title
-    static let my_qot_my_profile_account_settings_edit_email_title = AppTextKey("my_qot.my_profile.account_settings.edit.email_title")
+    //edit_account_email
     //edit_account_phone
     //
     //my_profile_member_since

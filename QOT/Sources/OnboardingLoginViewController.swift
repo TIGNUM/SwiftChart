@@ -159,7 +159,7 @@ private extension OnboardingLoginViewController {
         }
 
         updateCodeEntry(isEnabled: false)
-        buttonGetHelp.setTitle(R.string.localized.onboardingLoginButtonGetHelp(), for: .normal)
+        buttonGetHelp.setTitle(AppTextService.get(AppTextKey.login_view_button_gethelp), for: .normal)
         buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
         buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
@@ -176,7 +176,7 @@ private extension OnboardingLoginViewController {
         }
         ThemeText.loginEmailCodeErrorMessage.apply(error, to: digitDescriptionLabel)
 
-        buttonGetHelp.setTitle(R.string.localized.onboardingLoginButtonResendCode(), for: .normal)
+        buttonGetHelp.setTitle(AppTextService.get(AppTextKey.login_view_button_resend_code), for: .normal)
         buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
         buttonGetHelp.addTarget(self, action: #selector(didTapSendCode), for: .touchUpInside)
     }
