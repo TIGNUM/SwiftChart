@@ -44,7 +44,6 @@ extension AskPermissionInteractor: AskPermissionInteractorInterface {
         case .notification, .notificationOpenSettings: image = R.image.notification_permission()
         case .location: image = R.image.location_permission()
         case .calendar, .calendarOpenSettings: image = R.image.calendar_permission()
-        }
         return image
     }
 
