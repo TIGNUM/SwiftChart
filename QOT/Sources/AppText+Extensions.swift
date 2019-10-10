@@ -28,8 +28,8 @@ public extension AppTextKey {
     //
     //"Settings.Title" = "SETTINGS";
     static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
-    //"Settings.Title.Notifications" = "Notifications";
-    //"Settings.Title.Security" = "Security";
+    static let my_qot_my_profile_app_settings_view_notifications_title = AppTextKey("my_qot.my_profile.app_settings.view.notifications_title")
+    static let my_qot_my_profile_app_settings_view_security_title = AppTextKey("my_qot.my_profile.app_settings.view.security_title")
     //
     static let my_qot_my_profile_account_settings_view_company_title = AppTextKey("my_qot.my_profile.account_settings.view.company_title")
     static let my_qot_my_profile_account_settings_view_email_title = AppTextKey("my_qot.my_profile.account_settings.view.email_title")
@@ -124,7 +124,7 @@ public extension AppTextKey {
     //"Top.Tab.Bar.Item.Title.Perpare.Tools" = "Tools";
     //"Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
     //"Top.Tab.Bar.Item.Title.Perpare.Notes" = "NOTES";
-    //"Top.Tab.Bar.Item.Title.Tutorial" = "TUTORIAL";
+    static let tutorial_view_title = AppTextKey("tutorial.view.title")
     //
     static let tutorial_view_skip_button = AppTextKey("tutorial.view.skip_button")
     static let tutorial_view_start_button = AppTextKey("tutorial.view.start_button")
@@ -433,7 +433,6 @@ public extension AppTextKey {
     static let my_qot_my_sprints_my_sprint_details_view_leave_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_button")
     static let my_qot_my_sprints_my_sprint_details_view_leave_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_title")
     static let my_qot_my_sprints_my_sprint_details_view_leave_body = AppTextKey("my_qot.my_sprints.my_sprint_details.view.leave_body")
-    //"MySprintDetailsNotes.Button.Save" = "Save";
     static let daily_brief_daily_checkin_empty_start_your_dc_in_title = AppTextKey("daily_brief.daily_checkin.empty.start_your_dc_in_title")
     static let daily_brief_daily_checkin_view_explore_your_score_title = AppTextKey("daily_brief.daily_checkin.view.explore_your_score_title")
     //
@@ -645,6 +644,9 @@ public extension AppTextKey {
     static let my_qot_my_sprints_my_sprint_details_view_header_strategies_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_strategies_title")
     static let my_qot_my_sprints_my_sprint_details_view_header_benefits_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.header_benefits_title")
     static let my_qot_profile_settings_support_view_support_contact_email_title = AppTextKey("my_qot.profile_settings.support.view.support_contact_email_title")
+    static let my_qot_profile_settings_support_view_support_contact_email_link_title = AppTextKey("my_qot.profile_settings.support.view.support_contact_email_link_title")
+    static let my_qot_my_library_alert_items_cancel_download_alert_title = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_title")
+    static let my_qot_my_library_alert_items_cancel_download_alert_body = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_body")
     //myqot_profile_section_title
     //myqot_library_section_title
     //myqot_preps_section_title

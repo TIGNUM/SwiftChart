@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum TutorialOrigin {
     case login
@@ -58,7 +59,7 @@ private extension TutorialViewController {
     }
 
     func setupNavigationBar() {
-        title = R.string.localized.topTabBarItemTitleTutorial()
+        title = AppTextService.get(AppTextKey.tutorial_view_title)
     }
 
     func setupCollectionView() {
