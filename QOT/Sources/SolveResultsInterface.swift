@@ -27,7 +27,7 @@ protocol SolveResultsInteractorInterface: Interactor {
 
 protocol SolveResultsRouterInterface {
     func dismiss()
-    func openStrategy(with id: Int)
+    func openContent(with id: Int)
     func openContentItem(with id: Int)
     func openVisionGenerator()
     func openMindsetShifter()

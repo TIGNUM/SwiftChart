@@ -151,9 +151,11 @@ extension MySprintDetailsInteractor {
         worker.startSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
             strongSelf.presenter.trackSprintStart()
-            if let sprint = strongSelf.sprint {
-                strongSelf.updateSprintViewModel(with: sprint)
-            }
+            strongSelf.worker.getSprint({ (startedSprint) in
+                guard let sprintToShow = startedSprint else { return }
+                strongSelf.sprint = sprintToShow
+                strongSelf.updateSprintViewModel(with: sprintToShow)
+            })
         }
     }
 

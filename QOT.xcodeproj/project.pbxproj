@@ -196,7 +196,6 @@
 		3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3681A5222260C99700E3F4B8 /* ArticleHeaderView.xib */; };
 		3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3681A52422647FE600E3F4B8 /* ArticleHeaderView.swift */; };
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
-		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
 		368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 368A125B2277386200866DB0 /* SF-Pro-Display-Light.otf */; };
 		368A125E2277387900866DB0 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 368A12572277386100866DB0 /* SF-Pro-Display-Regular.otf */; };
 		368A125F2277387900866DB0 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 368A12592277386200866DB0 /* SF-Pro-Display-Thin.otf */; };
@@ -588,7 +587,6 @@
 		8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */; };
 		8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */; };
 		8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D40769222E5AA260027864D /* MySprintDetails.storyboard */; };
-		8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */; };
 		8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */; };
 		8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */; };
 		8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */; };
@@ -1490,7 +1488,6 @@
 		3681A5222260C99700E3F4B8 /* ArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleHeaderView.xib; sourceTree = "<group>"; };
 		3681A52422647FE600E3F4B8 /* ArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
-		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
 		368A12562277386100866DB0 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
 		368A12572277386100866DB0 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
 		368A12582277386200866DB0 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
@@ -1884,7 +1881,6 @@
 		8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsViewModel.swift; sourceTree = "<group>"; };
 		8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsConfigurator.swift; sourceTree = "<group>"; };
 		8D40769222E5AA260027864D /* MySprintDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySprintDetails.storyboard; sourceTree = "<group>"; };
-		8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+MySprints.swift"; sourceTree = "<group>"; };
 		8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCell.swift; sourceTree = "<group>"; };
 		8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListPresenter.swift; sourceTree = "<group>"; };
 		8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListWorker.swift; sourceTree = "<group>"; };
@@ -2939,7 +2935,6 @@
 		366AFD2320BEC8D200109F29 /* Signing */ = {
 			isa = PBXGroup;
 			children = (
-				3686678320D3835900B400FE /* AbstractFormViewController.swift */,
 				8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */,
 				8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */,
 				366AFD1620BDAD0800109F29 /* FormView */,
@@ -3918,7 +3913,6 @@
 			isa = PBXGroup;
 			children = (
 				8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */,
-				8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */,
 				8D5668AD22DCAD0F00AA172F /* SprintsList */,
 				8D40768122E5A4000027864D /* MySprintDetails */,
 				8D204C1822F06F1000DF6A76 /* Notes */,
@@ -6610,13 +6604,11 @@
 				365825782327D19200AC3F4A /* DTShortTBVPresenter.swift in Sources */,
 				36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */,
 				8DF556FB232435DF00DC0094 /* ButtonThemeable.swift in Sources */,
-				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				36EC23012323F45700DB5696 /* DTSprintPresenter.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
-				8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */,
 				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
 				B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
