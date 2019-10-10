@@ -51,7 +51,6 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     private var selectedStrategySprintsID: Int?
     private var selectedToolSprintsID: Int?
     private var showSteps = false
-    private var sprintIndexPath: IndexPath?
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var navBarHeader: NavBarTableViewCell?
@@ -208,7 +207,6 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .EXPLORE?:
             return getExploreCell(tableView, indexPath, bucketItem as? ExploreCellViewModel)
         case .SPRINT_CHALLENGE?:
-            sprintIndexPath = indexPath
             return getSprints(tableView, indexPath, bucketItem as? SprintChallengeViewModel)
         case .ME_AT_MY_BEST?:
             if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
@@ -697,14 +695,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
     }
 
-    @objc func updateTargetValue(_ notification: NSNotification) {
-        guard let value = notification.object as? Double else {
-            return
-        }
-        interactor?.saveUpdatedDailyCheckInSleepTarget(value)
-        tableView.reloadData()
-    }
-
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
     }
@@ -745,6 +735,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
     }
+
+    func scrollToSection(at: Int) {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
+    }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
@@ -778,9 +772,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-        if let indexPath = sprintIndexPath {
-            tableView.reloadRows(at: [indexPath], with: .none)
-        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
 
     func showSolveResults(solve: QDMSolve) {

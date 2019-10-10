@@ -71,10 +71,12 @@ private extension AskPermissionViewController {
 // MARK: - Actions
 private extension AskPermissionViewController {
     @objc func didTapCancelButton() {
+        trackUserEvent(.SKIP, valueType: .ASK_PERMISSION_NOTIFICATIONS, action: .TAP)
         interactor?.didTapSkip()
     }
 
     @objc func didTapConfirmButton() {
+        trackUserEvent(.ALLOW, valueType: .ASK_PERMISSION_NOTIFICATIONS, action: .TAP)
         interactor?.didTapConfirm()
     }
 }

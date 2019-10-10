@@ -28,6 +28,7 @@ extension UIViewController {
     }
 
     func dismissLeftToRight() {
+        trackUserEvent(.DISMISS_LEFT_TO_RIGHT, action: .TAP)
         DispatchQueue.main.async {
             let transition = CATransition()
             transition.duration = 0.25

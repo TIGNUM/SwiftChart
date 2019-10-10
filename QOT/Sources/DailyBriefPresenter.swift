@@ -32,4 +32,8 @@ extension DailyBriefPresenter: DailyBriefPresenterInterface {
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
         viewController?.updateViewNew(differenceList)
     }
+
+    func scrollToSection(at: Int) {
+        viewController?.scrollToSection(at: at)
+    }
 }
