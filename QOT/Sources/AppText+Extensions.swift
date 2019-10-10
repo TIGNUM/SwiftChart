@@ -386,20 +386,20 @@ public extension AppTextKey {
     static let video_view_downloading_button = AppTextKey("video.view.downloading_button")
     static let video_view_downloaded_button = AppTextKey("video.view.downloaded_button")
     //
-    //"RateViewController.doneButton" = "Done";
+    static let my_qot_to_be_vision_rate_view_done_button_title = AppTextKey("my_qot.to_be_vision.rate.view.done_button_title")
     //"RateViewController.skipButton" = "Skip";
-    //"RateViewController.rateMyTBVButton" = "Rate my TBV";
+    static let my_qot_to_be_vision_rate_view_rate_button_title = AppTextKey("my_qot.to_be_vision.rate.view.rate_button_title")
     //
-    //"TBVTrackerViewController.doneButton" = "Done";
-    //"TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
+    static let my_qot_to_be_vision_view_done_button_title = AppTextKey("my_qot.to_be_vision.view.done_button_title")
+    static let my_qot_to_be_vision_view_next_duration_button_title = AppTextKey("my_qot.to_be_vision.view.next_duration_button_title")
     //
-    //"QuestionnaireViewController.doneButton" = "Done";
+    static let daily_brief_daily_checkin_view_done_button_title = AppTextKey("daily_brief.daily_checkin.view.done_button_title")
     //
     static let daily_brief_daily_checkin_view_hours_subtitle = AppTextKey("daily_brief.daily_checkin.view.hours_subtitle")
     static let daily_brief_daily_checkin_vew_hours_more_subtitle = AppTextKey("daily_brief.daily_checkin.vew.hours_more_subtitle")
     //
     //"MySprintDetails.Info.Title.In.Progress" = "A Sprint is already in progress";
-    //"MySprintDetails.Info.Body.In.Progress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start %@?";
+    static let decision_tree_view_info_body_in_progress = AppTextKey("decision_tree.view.info_body_in_progress")
     static let my_qot_my_sprints_my_sprint_details_view_sprint_tasks_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_tasks_title")
     static let my_qot_my_sprints_my_sprint_details_view_my_plan_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.my_plan_title")
     static let my_qot_my_sprints_my_sprint_details_view_my_notes_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.my_notes_title")
@@ -411,18 +411,18 @@ public extension AppTextKey {
     static let my_qot_my_sprints_my_sprint_details_view_notes_body = AppTextKey("my_qot.my_sprints.my_sprint_details.view.notes_body")
     static let my_qot_my_sprints_my_sprint_details_view_takeaways_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.takeaways_button")
     //"MySprintDetails.Button.Cancel" = "Cancel";
-    //"MySprintDetails.Button.Continue" = "Continue";
+    static let my_qot_my_sprints_my_sprint_details_view_continue_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.continue_button")
     static let my_qot_my_sprints_my_sprint_details_view_start_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.start_sprint_button")
-    //"MySprintDetails.Button.PauseSprint" = "Pause Sprint";
-    //"MySprintDetails.Button.YesPause" = "Yes, Pause";
-    //"MySprintDetails.Button.ContinueSprint" = "Continue sprint";
-    //"MySprintDetails.Button.RestartSprint" = "Restart sprint";
-    //"MySprintDetails.Info.Title.PauseSprint" = "PAUSE YOUR SPRINT";
-    //"MySprintDetails.Info.Title.ReplanSprint" = "REPLAN YOUR SPRINT";
-    //"MySprintDetails.Info.Title.SprintInProgress" = "A SPRINT IS ALREADY IN PROGRESS";
-    //"MySprintDetails.Info.Message.PauseSprint" = "Are you sure you want to pause your current sprint? To reach the best results is recommended to finish a sprint in maximum %d days.";
-    //"MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
-    //"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_yes_pause_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.yes_pause_button")
+    static let my_qot_my_sprints_my_sprint_details_view_continue_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.continue_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_restart_sprint_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.restart_sprint_button")
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_title")
+    static let my_qot_my_sprints_my_sprint_details_view_replan_sprint_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.replan_sprint_title")
+    static let my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_in_progress_title")
+    static let my_qot_my_sprints_my_sprint_details_view_pause_sprint_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.pause_sprint_info_title")
+    static let my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.replan_sprint_info_title")
+    static let my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_info_title = AppTextKey("my_qot.my_sprints.my_sprint_details.view.sprint_in_progress_info_title")
     //
     static let my_qot_my_sprints_my_sprint_details_view_save_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.save_button")
     static let my_qot_my_sprints_my_sprint_details_view_cancel_button = AppTextKey("my_qot.my_sprints.my_sprint_details.view.cancel_button")

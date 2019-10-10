@@ -54,7 +54,7 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 self?.newSprintContentId = self?.selectedSprintContentId
                 self?.lastSprintQuestionId = self?.selectedSprintTargetQuestionId
                 let title = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
-                let messageFormat = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
+                let messageFormat = AppTextService.get(AppTextKey.decision_tree_view_info_body_in_progress)
                 let updatedMessageFormat = self?.replaceMessagePlaceHolders(sprintInProgressTitle: sprint.title ?? "",
                                                                             newSprintTitle: self?.selectedSprintTitle ?? "",
                                                                             message: messageFormat)

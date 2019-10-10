@@ -42,15 +42,15 @@ final class StreamVideoWorker {
     }
 
     lazy var downloadButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownload()
+        return AppTextService.get(AppTextKey.video_view_download_button)
     }()
 
     lazy var downloadingButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownloading()
+        return AppTextService.get(AppTextKey.video_view_downloading_button)
     }()
 
     lazy var downloadedButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownloaded()
+        return AppTextService.get(AppTextKey.video_view_downloaded_button)
     }()
 
     lazy var noWifiTitle: String = {

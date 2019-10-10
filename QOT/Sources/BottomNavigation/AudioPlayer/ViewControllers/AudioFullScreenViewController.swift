@@ -101,13 +101,13 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     }
 
     func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
-        var title = R.string.localized.audioFullScreenButtonDownload()
+        var title = AppTextService.get(AppTextKey.audio_view_download_button)
         switch state {
-        case .NONE: title = R.string.localized.audioFullScreenButtonDownload()
-        case .WAITING: title = R.string.localized.audioFullScreenButtonWaiting()
-        case .DOWNLOADING: title = R.string.localized.audioFullScreenButtonDownloading()
+        case .NONE: title = AppTextService.get(AppTextKey.audio_view_download_button)
+        case .WAITING: title = AppTextService.get(AppTextKey.audio_view_waiting_button)
+        case .DOWNLOADING: title = AppTextService.get(AppTextKey.audio_view_downloading_button)
         case .DONE:
-            title = R.string.localized.audioFullScreenButtonDownloaded()
+            title = AppTextService.get(AppTextKey.audio_view_downloaded_button)
             downloadButton.isEnabled = false
         }
 
