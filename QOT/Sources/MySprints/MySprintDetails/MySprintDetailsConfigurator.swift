@@ -11,7 +11,7 @@ import qot_dal
 
 final class MySprintDetailsConfigurator {
 
-    static func make(sprintId: Int) -> (MySprintDetailsViewController) -> Void {
+    static func make(sprintId: String) -> (MySprintDetailsViewController) -> Void {
         return { (viewController) in
             let router = MySprintDetailsRouter(viewController: viewController)
             let worker = MySprintDetailsWorker(sprintId: sprintId)
