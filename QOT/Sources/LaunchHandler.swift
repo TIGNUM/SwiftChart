@@ -157,12 +157,12 @@ final class LaunchHandler {
             guard let controller = R.storyboard.myQot.myQotSupportViewController() else { return }
             MyQotSupportConfigurator.configure(viewController: controller)
             push(viewController: controller)
-        case .tutorial: break
         case .faq:
             guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
             push(viewController: controller)
-        case .usingQOT:
+        case .usingQOT,
+             .tutorial:
             guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
             push(viewController: controller)
