@@ -79,16 +79,6 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    func trackingKeyForItem(at indexPath: IndexPath) -> String {
-        let type = SettingsType.allCases[indexPath.section]
-        switch type {
-        case .general:
-            return trackingKey(for: Setting.generalSettings.at(index: indexPath.row) ?? .notifications)
-        case .custom:
-            return trackingKey(for: Setting.customSettings.at(index: indexPath.row) ?? .calendars)
-        }
-    }
-
     func titleForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
@@ -105,54 +95,42 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    private func tag(for item: Setting) -> Tags {
-        switch item {
-        case .permissions:
-            return .AppSettingsPermissions
-        case .notifications:
-            return .AppSettingsNotifications
-        case .calendars:
-            return .AppSettingsSyncedCalendars
-        case .sensors:
-            return .AppSettingsActivityTrackers
-        case .siriShortcuts:
-            return .AppSettingsSiriShortcuts
-        }
-    }
-
-    private func tagSubtitle(for item: Setting) -> Tags {
-        switch item {
-        case .permissions:
-            return .AppSettingsAllowQotToAccessYourDevice
-        case .notifications:
-            return .AppSettingsAllowAlertsForSomeQOTFeatures
-        case .calendars:
-            return .AppSettingsSyncYourPersonalCalendarWithQot
-        case .sensors:
-            return .AppSettingsConnectWearablesToQot
-        case .siriShortcuts:
-            return .AppSettingsRecordYourVoiceAndCreateShortcuts
-        }
-    }
-
-    private func trackingKey(for item: Setting) -> String {
-        return tag(for: item).rawValue
-    }
-
     private func title(for item: Setting) -> String {
-        return ScreenTitleService.main.localizedString(for: tag(for: item))
+        switch item {
+        case .permissions:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_permission_title)
+        case .notifications:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notification_title)
+        case .calendars:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_sync_calendar_title)
+        case .sensors:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_activity_trackers_title)
+        case .siriShortcuts:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_title)
+        }
     }
 
     private func subtitle(for item: Setting) -> String {
-        return ScreenTitleService.main.localizedString(for: tagSubtitle(for: item))
+        switch item {
+        case .permissions:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_permission_subtitle)
+        case .notifications:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notification_subtitle)
+        case .calendars:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_sync_calendar_subtitle)
+        case .sensors:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_activity_trackers_subtitle)
+        case .siriShortcuts:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_subtitle)
+        }
     }
 
     private func headertitle(for item: Section) -> String {
         switch item {
         case .general:
-            return ScreenTitleService.main.localizedString(for: .AppSettingsGeneralSettings)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_general_settings_title)
         case .custom:
-            return ScreenTitleService.main.localizedString(for: .AppSettingsCustomSettings)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_custom_settings_title)
         }
     }
 }

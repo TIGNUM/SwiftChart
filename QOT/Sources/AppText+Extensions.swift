@@ -695,12 +695,12 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_view_logout_subtitle = AppTextKey("my_qot.my_profile.account_settings.view.logout_subtitle")
     //
     static let my_qot_my_profile_app_settings_view_title = AppTextKey("my_qot.my_profile.app_settings.view.title")
-    //app_settings_general_settings
-    static let my_qot_my_profile_app_settings_view_custom_title = AppTextKey("my_qot.my_profile.app_settings.view.custom_title")
+    static let my_qot_my_profile_app_settings_view_general_settings_title = AppTextKey("my_qot.my_profile.app_settings.view.general_settings_title")
+    static let my_qot_my_profile_app_settings_view_custom_settings_title = AppTextKey("my_qot.my_profile.app_settings.view.custom_settings_title")
     static let my_qot_my_profile_app_settings_view_notification_title = AppTextKey("my_qot.my_profile.app_settings.view.notification_title")
     static let my_qot_my_profile_app_settings_view_notification_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.notification_subtitle")
     static let my_qot_my_profile_app_settings_view_permission_title = AppTextKey("my_qot.my_profile.app_settings.view.permission_title")
-    static let my_qot_my_profile_app_settings_view_permission_subttile = AppTextKey("my_qot.my_profile.app_settings.view.permission_subttile")
+    static let my_qot_my_profile_app_settings_view_permission_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.permission_subttile")
     static let my_qot_my_profile_app_settings_view_sync_calendar_title = AppTextKey("my_qot.my_profile.app_settings.view.sync_calendar_title")
     static let my_qot_my_profile_app_settings_view_sync_calendar_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.sync_calendar_subtitle")
     static let my_qot_my_profile_app_settings_view_activity_trackers_title = AppTextKey("my_qot.my_profile.app_settings.view.activity_trackers_title")

@@ -113,8 +113,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let settingsTapped = settingsModel.settingItem(at: indexPath)
-        let key = settingsModel.trackingKeyForItem(at: indexPath)
-        trackUserEvent(.OPEN, valueType: key, action: .TAP)
+        trackUserEvent(.OPEN, action: .TAP)
         selectedSettings = settingsTapped
         interactor?.handleTap(setting: settingsTapped)
     }
