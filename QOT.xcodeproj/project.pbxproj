@@ -1160,6 +1160,9 @@
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
 		F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */; };
 		F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9638C482306A47D00B8E543 /* Notification+Ext.swift */; };
+		F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */; };
+		F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */; };
+		F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
 		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
@@ -2441,6 +2444,9 @@
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
 		F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableHeaderView.xib; sourceTree = "<group>"; };
 		F9638C482306A47D00B8E543 /* Notification+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ext.swift"; sourceTree = "<group>"; };
+		F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastCell.swift; sourceTree = "<group>"; };
+		F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureBespokeFeastCell.xib; sourceTree = "<group>"; };
+		F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureBespokeFeastModel.swift; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
 		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
@@ -2633,6 +2639,7 @@
 		363765F1223A4BA400C2C429 /* DailyBriefComponents */ = {
 			isa = PBXGroup;
 			children = (
+				F96B23A923507F6800130EFF /* Multiple Images Bucket */,
 				B49EACCB2328EA47006BA566 /* Weather */,
 				F9462248230C2C21000A3B42 /* Copyright */,
 				9CC426142306A41E00F8072E /* GuidedTrack */,
@@ -5391,6 +5398,16 @@
 			name = WhatsHotLatest;
 			sourceTree = "<group>";
 		};
+		F96B23A923507F6800130EFF /* Multiple Images Bucket */ = {
+			isa = PBXGroup;
+			children = (
+				F96B23AA23507FB900130EFF /* DepartureBespokeFeastCell.swift */,
+				F96B23AC23507FD400130EFF /* DepartureBespokeFeastCell.xib */,
+				F96B23AE23507FF900130EFF /* DepartureBespokeFeastModel.swift */,
+			);
+			name = "Multiple Images Bucket";
+			sourceTree = "<group>";
+		};
 		F9838F3522AFBD39003F9394 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -5997,6 +6014,7 @@
 				8D110D0A230FDB82000181BA /* WalkthroughCoach.storyboard in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
+				F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */,
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
@@ -6494,6 +6512,7 @@
 				8D25778922F8748300D42B90 /* OnboardingLoginViewModel.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
+				F96B23AB23507FB900130EFF /* DepartureBespokeFeastCell.swift in Sources */,
 				8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */,
 				B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */,
 				9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */,
@@ -7105,6 +7124,7 @@
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */,
 				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
+				F96B23AF23507FF900130EFF /* DepartureBespokeFeastModel.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */,
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
