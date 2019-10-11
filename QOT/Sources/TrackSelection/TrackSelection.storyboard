@@ -61,6 +61,7 @@
                         <outlet property="dashView" destination="cup-fi-LpV" id="fzx-Wl-18k"/>
                         <outlet property="descriptionLabel" destination="U2x-4R-rmi" id="a1N-Qo-lDg"/>
                         <outlet property="titleLabel" destination="bVq-O7-fNC" id="ySW-39-Ome"/>
+                        <outlet property="titleSuperviewTopConstraint" destination="uwr-gq-UfG" id="AIY-sc-Fit"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78g-s9-xgI" userLabel="First Responder" sceneMemberID="firstResponder"/>

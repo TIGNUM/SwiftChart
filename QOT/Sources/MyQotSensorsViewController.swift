@@ -16,13 +16,12 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var healthKitStatusButton: UIButton!
     @IBOutlet private weak var ouraRingLabel: UILabel!
     @IBOutlet private weak var healthKitLabel: UILabel!
-    @IBOutlet private weak var ouraRingStatusLabel: UILabel!
-    @IBOutlet private weak var healthKitStatusLabel: UILabel!
-    @IBOutlet private weak var sensorDescriptionLabel: UILabel!
-    @IBOutlet private weak var sensorDescriptionHeaderabel: UILabel!
+    @IBOutlet private weak var healthKitDescriptionLabel: UILabel!
+    @IBOutlet private weak var healthKitDescriptionHeaderabel: UILabel!
+    @IBOutlet private weak var ouraRingDescriptionLabel: UILabel!
+    @IBOutlet private weak var ouraRingDescriptionHeaderabel: UILabel!
     @IBOutlet private weak var sensorHeaderLabel: UILabel!
     @IBOutlet private weak var healthKitNoDataInfoLabel: UILabel!
-    @IBOutlet private weak var healthKitNoDataInfoHeightConstraint: NSLayoutConstraint!
     var interactor: MyQotSensorsInteractorInterface?
     var ouraRingAuthConfiguration: QDMOuraRingConfig?
 
@@ -73,11 +72,8 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
 
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool) {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitLabel)
-        ThemeText.mySensorsNoDataInfoLabel.apply(ScreenTitleService.main.localizedString(for: .MyQotTrackerNoDataInfo),
-                                                 to: healthKitNoDataInfoLabel)
         healthKitStatusButton.setTitle(status, for: .normal)
         healthKitStatusButton.isEnabled = buttonEnabled
-        healthKitNoDataInfoHeightConstraint.constant = showNoDataInfo ? 30 : 0
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
@@ -85,9 +81,14 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingLabel)
     }
 
-    func setSensor(title: String, description: String) {
-        ThemeText.mySensorsDescriptionTitle.apply(title, to: sensorDescriptionHeaderabel)
-        ThemeText.mySensorsDescriptionBody.apply(description, to: sensorDescriptionLabel)
+    func setHealthKitDescription(title: String, description: String) {
+        ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitDescriptionHeaderabel)
+        ThemeText.mySensorsDescriptionBody.apply(description, to: healthKitDescriptionLabel)
+    }
+
+    func setOuraRingDescription(title: String, description: String) {
+        ThemeText.mySensorsDescriptionTitle.apply(title, to: ouraRingDescriptionHeaderabel)
+        ThemeText.mySensorsDescriptionBody.apply(description, to: ouraRingDescriptionLabel)
     }
 }
 
