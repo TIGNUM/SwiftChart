@@ -749,17 +749,17 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_activity_trackers_view_sensor_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.sensor_title")
     //activity_trackers_request_tracker
     //
-    //siri_title_tobevision
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.tobevision_title")
-    static let my_qot_my_profile_app_settings_siri_shortcuts_view_upcoming_evemt_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.upcoming_evemt_title")
+    //siri_title_upcomingevent
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.whatshot_title")
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.daily_prep_title")
-    //siri_suggestionphrase_tobevision
+    static let my_qot_my_profile_app_settings_siri_shortcuts_view_explanation_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.explanation_title")
+    static let my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.tobevision_body")
     //siri_suggestionphrase_upcomingevent
-    //siri_suggestionphrase_dailyprep
-    //siri_suggestionphrase_whatshot
+    static let my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.whatshot_body")
+    static let my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.daily_prep_body")
     //
-    static let my_qot_my_profile_support_view_suport_title = AppTextKey("my_qot.my_profile.support.view.suport_title")
+    static let my_qot_my_profile_support_view_support_title = AppTextKey("my_qot.my_profile.support.view.support_title")
     static let my_qot_my_profile_support_view_support_subtitle = AppTextKey("my_qot.my_profile.support.view.support_subtitle")
     static let my_qot_my_profile_support_view_feature_subtitle = AppTextKey("my_qot.my_profile.support.view.feature_subtitle")
     static let my_qot_my_profile_support_view_tutorial_subtitle = AppTextKey("my_qot.my_profile.support.view.tutorial_subtitle")
@@ -768,7 +768,6 @@ public extension AppTextKey {
     static let my_qot_my_profile_support_view_tutorial_title = AppTextKey("my_qot.my_profile.support.view.tutorial_title")
     static let my_qot_my_profile_support_view_contact_support_title = AppTextKey("my_qot.my_profile.support.view.contact_support_title")
     static let my_qot_my_profile_support_view_faq_title = AppTextKey("my_qot.my_profile.support.view.faq_title")
-    //
     //tbv_data_title
     //tbv_data_subtitle
     //tbv_data_graphTitle

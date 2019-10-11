@@ -43,29 +43,34 @@ struct MyQotSupportModel {
             }
         }
 
-        func tagSubtitle() -> Tags {
-            switch self {
-            case .usingQOT:
-                return Tags.SupportLearnHowToUseQot
-            case .faq:
-                return Tags.SupportCheckTheMostAskedQuestion
-            case .reportIssue:
-                return Tags.SupportContactUsForAnyQuestion
-            case .featureRequest:
-                return Tags.SupportAreYouMissingSomething
-            }
-        }
-
         func trackingKeys() -> String {
             return tag().rawValue
         }
 
-        func title(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tag())
+        func title() -> String {
+            switch self {
+            case .usingQOT:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_feature_title)
+            case .faq:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_faq_title)
+            case .reportIssue:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_tutorial_title)
+            case .featureRequest:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_title)
+            }
         }
 
-        func subtitle(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tagSubtitle())
+        func subtitle() -> String {
+            switch self {
+            case .usingQOT:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_feature_subtitle)
+            case .faq:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_faq_subtitle)
+            case .reportIssue:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_tutorial_subtitle)
+            case .featureRequest:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_subtitle)
+            }
         }
 
         func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
