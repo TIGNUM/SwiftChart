@@ -29,8 +29,8 @@ final class MyDataHeatMapLegendTableViewCell: MyDataBaseTableViewCell {
 
     func configure() {
         skeletonManager.hide()
-        ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendHighTitle(), to: topColorLabel)
-        ThemeText.myDataHeatMapLegendText.apply(ScreenTitleService.main.myDataHeatMapLegendLowTitle(), to: bottomColorLabel)
+        ThemeText.myDataHeatMapLegendText.apply(AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_high_title), to: topColorLabel)
+        ThemeText.myDataHeatMapLegendText.apply(AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_low_title), to: bottomColorLabel)
         ThemeView.myDataHeatMapLegendHigh.apply(topColorView)
         ThemeView.myDataHeatMapLegendLow.apply(bottomColorView)
     }

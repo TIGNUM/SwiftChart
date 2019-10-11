@@ -169,7 +169,7 @@ final class MyDataChartCollectionViewCell: UICollectionViewCell, Dequeueable {
     }
 
     func setup(irAverageLabel: UILabel, forValue: Double) {
-        ThemeText.myDataChartIRAverageLabel.apply(ScreenTitleService.main.myDataGraphIrAverageTitle(), to: irAverageLabel)
+        ThemeText.myDataChartIRAverageLabel.apply(AppTextService.get(AppTextKey.my_qot_my_data_view_ir_average_title), to: irAverageLabel)
         for view in alignmentViewsCollection where view.tag == 0 {
             createPositionConstraints(forView: irAverageLabel,
                                       and: view,
