@@ -367,4 +367,3 @@ private extension QOTAlertViewController {
         }
     }
 }
-

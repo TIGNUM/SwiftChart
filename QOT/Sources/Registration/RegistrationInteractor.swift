@@ -171,7 +171,7 @@ private extension RegistrationInteractor {
         // Save ToBeVision
         if var tbv = cachedTBV {
             if tbv.headline?.isEmpty != false {
-                tbv.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+                tbv.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionDefaultTitle)
             }
             worker.updateToBeVision(with: tbv)
         }

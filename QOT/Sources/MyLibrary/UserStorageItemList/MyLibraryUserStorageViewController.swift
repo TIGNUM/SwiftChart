@@ -139,7 +139,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
         ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
-        tableView.isHidden = interactor?.itemCount == 0
+        // (interactor?.items == nil) means, need to show skeleton
+        tableView.isHidden = interactor?.items == nil ? false : (interactor?.items?.count ?? 0) == 0
     }
 
     func update() {
@@ -150,7 +151,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
         setEditButton(enabled: interactor?.canEdit ?? false)
         addButton.isEnabled = !isEditing
 
-        tableView.isHidden = interactor?.itemCount == 0
+        // (interactor?.items == nil) means, need to show skeleton
+        tableView.isHidden = interactor?.items == nil ? false : (interactor?.items?.count ?? 0) == 0
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = isEditing
         tableView.setEditing(isEditing, animated: true)
@@ -168,7 +170,9 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     }
 
     func deleteRow(at indexPath: IndexPath) {
+        tableView.beginUpdates()
         tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.endUpdates()
     }
 
     func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
@@ -180,14 +184,16 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
 extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let count = interactor?.items.count ?? 0
-        return count > 0 ? count : 1
+        guard let items = interactor?.items else {
+            return 1
+        }
+        return items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var item: MyLibraryCellViewModel? = nil
-        if interactor?.items.count ?? 0 > 0 {
-            item = interactor?.items[indexPath.row]
+        if let items = interactor?.items, items.count > 0 {
+            item = interactor?.items?[indexPath.row]
         }
 
         let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.DOWNLOAD
@@ -201,19 +207,23 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
             returnCell = cell
         case .AUDIO:
             let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(withUrl: item?.previewURL, playButtonTitle: item?.duration, playButtonTag: indexPath.row)
+            cell.configure(playButtonTitle: item?.duration, playButtonTag: indexPath.row)
 
             returnCell = cell
         case .ARTICLE:
             let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(withUrl: item?.previewURL)
+            cell.configure(previewImageUrl: item?.previewURL)
 
             returnCell = cell
         case .NOTE:
             let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure()
+
             returnCell = cell
         case .DOWNLOAD:
             let cell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure()
+
             if let itemModel = item {
                 cell.setStatus(itemModel.downloadStatus)
             }

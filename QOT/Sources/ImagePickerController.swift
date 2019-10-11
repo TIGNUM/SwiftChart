@@ -67,39 +67,48 @@ final class ImagePickerController {
     }
 
     func show(in viewController: UIViewController?, deletable: Bool, completion: (() -> Void)? = nil) {
+        UIVisualEffectView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).effect = UIBlurEffect(style: .dark)
+
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
-                                        style: .default) { [unowned self] (alertAction: UIAlertAction) in
-            self.handleOption(.photo)
+                                        style: .default) { [weak self] (alertAction: UIAlertAction) in
+            self?.handleOption(.photo)
+                                            self?.resetAlertViewAppearance()
         }
-
         let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
-                                         style: .default) { [unowned self] (alertAction: UIAlertAction) in
-            self.handleOption(.camera)
+                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
+            self?.handleOption(.camera)
+            self?.resetAlertViewAppearance()
         }
-
+        let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
+                                         style: .destructive) { [weak self] (alertAction: UIAlertAction) in
+                                            self?.adapter?.deleteImageEvent()
+                                            self?.delegate?.deleteImage()
+                                            self?.resetAlertViewAppearance()
+        }
         let cancelAction = UIAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
-                                         style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
-                                            self.adapter?.cancelSelectionEvent()
-                                            self.delegate?.cancelSelection()
+                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
+                                            self?.adapter?.cancelSelectionEvent()
+                                            self?.delegate?.cancelSelection()
+                                            self?.resetAlertViewAppearance()
         }
 
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
         if deletable == true {
-            let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
-                                             style: .destructive) { [unowned self] (alertAction: UIAlertAction) in
-                                                self.adapter?.deleteImageEvent()
-                                                self.delegate?.deleteImage()
-            }
             alertController.addAction(deleteAction)
         }
         alertController.addAction(cancelAction)
+        alertController.view.tintColor = .accent
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
 
     // MARK: - private
+
+    private func resetAlertViewAppearance() {
+        UIVisualEffectView.appearance(whenContainedInInstancesOf: [UIAlertController.self]).effect = UIBlurEffect(style: .extraLight)
+    }
 
     private func handleOption(_ option: Option) {
         guard let viewController = viewController else {

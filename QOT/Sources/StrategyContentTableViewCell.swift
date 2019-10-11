@@ -67,7 +67,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
             let id = mediaItemId else {
                 return
         }
-
+        self.delegate = delegate
         self.categoryTitle = category
         self.mediaURL = mediaURL
         self.title = titleText

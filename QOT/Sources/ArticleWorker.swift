@@ -32,7 +32,7 @@ final class ArticleWorker {
 
     var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
-    var relatedArticlesStrategy = [Article.RelatedArticleStrategy]()
+    var relatedArticlesStrategy = [Article.Item]()
 
     var audioArticleItem: Article.Item?
 
@@ -90,7 +90,7 @@ final class ArticleWorker {
     private var learnStrategyItems = [Article.Item]()
     private var learnStrategyRelatedItems = [Article.Item]()
     private var learnStrategyNextItems = [Article.Item]()
-
+    var contactSupportItems = [Article.Item]()
     // MARK: - Init
 
     init(selectedID: Int) {
@@ -127,8 +127,8 @@ final class ArticleWorker {
             self?.setupRelatedArticlesWhatsHot()
             self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
-            self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
+            self?.setupRelatedArticlesStrtegy()
             self?.setupAudioArticleItem()
             self?.isTopBarHidden = self?.shouldHideTopBar() ?? true
             self?.isBookmarkItemHidden = self?.shouldHideBookmarkButton() ?? false
@@ -158,6 +158,7 @@ final class ArticleWorker {
         var items = [Article.Item]()
         var itemsNextUp = [Article.Item]()
         var itemsRelated = [Article.Item]()
+        var contactSupport = [Article.Item]()
 
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
@@ -177,13 +178,18 @@ final class ArticleWorker {
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
-        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0]
+        let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]
         if infoArticleSections.contains(obj: content?.section ?? .Unkown) {
-            content?.contentItems.forEach { item in
-                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
-            }
+            content?.contentItems.forEach({ (item) in
+                if item.searchTags.contains("FAQ_SUPPORT_EMAIL") {
+                    contactSupport.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                } else {
+                    items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                }
+            })
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
+
+        content?.relatedContentItems.filter { $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
@@ -196,23 +202,41 @@ final class ArticleWorker {
                                                                             itemID: item.remoteID ?? 0)))
             }
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,
-                                                                              description: item.valueDescription,
+                                                                              description: item.durationString,
                                                                               placeholderURL: URL(string: item.valueImageURL ?? ""),
                                                                               videoURL: videoURL,
                                                                               duration: item.valueDuration ?? 0)))
             }
         }
+        content?.relatedContentItems.filter { $0.format == .audio }.forEach { item in
+            if let audioURL = URL(string: item.valueMediaURL ?? "") {
+                itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
+                                                                              title: item.valueText,
+                                                                              description: item.durationString,
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              audioURL: audioURL,
+                                                                              duration: item.valueDuration ?? 0,
+                                                                              waveformData: [])))
+            }
+        }
+        let nextUpContentIds = content?.relatedContentList.filter({$0.type.uppercased() == "NEXT_UP"}).compactMap({ $0.contentID }) ?? []
+        relatedContent.forEach { content in
+            guard let contentId = content.remoteID, nextUpContentIds.contains(obj: contentId) != true else { return }
+            itemsRelated.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                                                       description: content.durationString,
+                                                                                       itemID: content.remoteID ?? 0)))
+        }
         if let nextUp = self.nextUp {
             itemsNextUp.append(nextUp)
         }
-
         learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
+        contactSupportItems = contactSupport.unique
     }
 
     private func setupWhatsHotArticleItems() {
@@ -273,11 +297,11 @@ final class ArticleWorker {
     }
 
     private func setupRelatedArticlesStrtegy() {
-        var articles = [Article.RelatedArticleStrategy]()
+        var articles = [Article.Item]()
         relatedContent.forEach { content in
-            articles.append(Article.RelatedArticleStrategy(title: content.title,
-                                                           durationString: content.durationString,
-                                                           remoteID: content.remoteID ?? 0))
+            articles.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: content.title,
+                                                           description: content.durationString,
+                                                          itemID: content.remoteID ?? 0)))
         }
         relatedArticlesStrategy = articles
     }
@@ -287,10 +311,12 @@ final class ArticleWorker {
         switch content.section {
         case .WhatsHot:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
-        case .FAQ_3_0,
-             .About,
+        case .About,
              .ExclusiveRecoveryContent:
             return 1
+        case .FAQ_3_0,
+             .USING_QOT:
+            return 2
         default:
             return 3
         }
@@ -325,6 +351,9 @@ final class ArticleWorker {
         switch content?.section {
         case .WhatsHot?:
             return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
+        case .FAQ_3_0?,
+             .USING_QOT?:
+            return indexPath.section == 0 ? learnStrategyItems.at(index: indexPath.item) : contactSupportItems.at(index: indexPath.item)
         default:
             switch indexPath.section {
             case 0:
@@ -335,6 +364,22 @@ final class ArticleWorker {
                 return learnStrategyNextItems.at(index: indexPath.item)
             }
         }
+    }
+
+    func isSectionSupport() -> Bool {
+        return content?.section == .FAQ_3_0 || content?.section == .USING_QOT
+    }
+
+    func contactSupportAttributtedString() -> NSAttributedString {
+        let contactSupport = NSMutableAttributedString(attributedString:
+            ThemeText.articleContactSupportInfoTitle.attributedString(R.string.localized.settingsGeneralSupportContactEmailTitle() + "\n"))
+        // Contact support
+        guard let emailAddress = contactSupportItems.first?.content else {
+            return contactSupport
+        }
+        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(R.string.localized.settingsGeneralSupportContactEmailLink()))
+
+        return contactSupport
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
@@ -356,6 +401,8 @@ final class ArticleWorker {
         switch content.section {
         case .WhatsHot:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
+        case .FAQ_3_0, .USING_QOT:
+            return section == 0 ? learnStrategyItems.count : contactSupportItems.count
         default:
             switch section {
             case 0:
@@ -408,25 +455,23 @@ private extension ArticleWorker {
 
     func shouldHideTopBar() -> Bool {
         // Handle most frequent case
-        guard let content = content,
-            content.section != .Generic else { return false }
+        guard let content = content else { return true }
 
         switch content.section {
-        case .ToBeVisionGenerator, .FAQ_3_0, .About: return true
+        case .Generic, .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldAlwaysHideTopBar() -> Bool {
-        guard let content = content,
-            content.section != .Generic else { return false }
+        guard let content = content else { return true }
 
         switch content.section {
-        case .About: return true
+        case .Generic, .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent: return false
         default: break
         }
-        return false
+        return true
     }
 
     func shouldHideMarkAsReadButton() -> Bool {
@@ -434,7 +479,7 @@ private extension ArticleWorker {
         guard let content = content, content.section != .Generic else { return false }
 
         switch content.section {
-        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .ExclusiveRecoveryContent: return true
+        case .Tools, .QOTLibrary, .About, .FAQ_3_0, .USING_QOT, .ExclusiveRecoveryContent: return true
         default: return false
         }
     }

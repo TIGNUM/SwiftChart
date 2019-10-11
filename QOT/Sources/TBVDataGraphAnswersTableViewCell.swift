@@ -33,29 +33,44 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         let isSecondSelected = answer.ratings.count > 1  ? answer.ratings[1].isSelected : false
         let isThirdSelected = answer.ratings.count > 2 ? answer.ratings[2].isSelected : false
 
-        let radius = thirdRatingContainerView.frame.width/2
-        let badRange = NSRange(location: 1, length: 6)
-        if badRange.contains(thirdRate) {
-            thirdRatingContainerView?.corner(radius: radius, borderColor: .redOrange40)
+        let lowRange = NSRange(location: 1, length: 6)
+        let isThirdLow = lowRange.contains(thirdRate)
+        let isSecondLow = lowRange.contains(secondRate)
+        let isFirstLow = lowRange.contains(firstRate)
+
+        if isThirdSelected {
+            self.addUnderline(for: thirdRatingContainerView, color: isThirdLow ? .redOrange : .sand)
         }
-        if badRange.contains(secondRate) {
-            secondRatingContainerView?.corner(radius: radius, borderColor: .redOrange40)
+        if isSecondSelected {
+            self.addUnderline(for: secondRatingContainerView, color: isSecondLow ? .redOrange : .sand)
         }
-        if badRange.contains(firstRate) {
-            firstRatingContainerView?.corner(radius: radius, borderColor: .redOrange40)
+        if isFirstSelected {
+            self.addUnderline(for: firstRatingContainerView, color: isFirstLow ? .redOrange : .sand)
         }
 
         ThemeText.tbvTrackerAnswer.apply(answer.answer, to: answerLabel)
         ThemeText.tbvTrackerRating.apply(R.string.localized.tbvTrackerLastRating(), to: lastRatingLabel)
 
-        let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected(isFirstLow) : .tbvTrackerRatingDigits(isFirstLow)
         theme1.apply(firstRate == 0 ? "-" : String(describing: firstRate), to: firstRating)
 
-        let theme2: ThemeText = isSecondSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        let theme2: ThemeText = isSecondSelected ? .tbvTrackerRatingDigitsSelected(isSecondLow) : .tbvTrackerRatingDigits(isSecondLow)
         theme2.apply(secondRate == 0 ? "-" : String(describing: secondRate), to: secondRating)
 
-        let theme3: ThemeText = isThirdSelected ? .tbvTrackerRatingDigitsSelected : .tbvTrackerRatingDigits
+        let theme3: ThemeText = isThirdSelected ? .tbvTrackerRatingDigitsSelected(isThirdLow) : .tbvTrackerRatingDigits(isThirdLow)
         theme3.apply(thirdRate == 0 ? "-" : String(describing: thirdRate), to: thirdRating)
+    }
+
+    func addUnderline(for view: UIView, verticalSpacing: CGFloat = 2.0, color: UIColor = UIColor.sand) {
+        let lineLayer = CALayer()
+        let sideOffset: CGFloat = 4.0
+        lineLayer.backgroundColor = color.cgColor
+        lineLayer.frame = CGRect(x: sideOffset,
+                                 y: view.bounds.height + verticalSpacing,
+                                 width: view.bounds.width - 2 * sideOffset,
+                                 height: 1)
+        view.clipsToBounds = false
+        view.layer.addSublayer(lineLayer)
     }
 
     private func setView(for answer: MYTBVDataAnswer?) {

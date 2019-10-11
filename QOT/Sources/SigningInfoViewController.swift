@@ -58,16 +58,17 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
         NotificationHandler.postNotification(withName: .showSigningInfoView)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         refreshBottomNavigationItems()
         player?.play()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+        setupText()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,6 +77,8 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
         UIView.animate(withDuration: Animation.duration_03) {
             self.view.alpha = 0
+            self.titleLabel.alpha = 0.0
+            self.bodyLabel.alpha = 0.0
         }
     }
 
@@ -101,9 +104,17 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
 // MARK: - Private
 private extension SigningInfoViewController {
-    func setupButtons() {
-        ThemeText.onboardingInfoTitle.apply(interactor?.titleText, to: titleLabel)
+    func setupText() {
+        ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: titleLabel.bounds.width)
         ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
+
+        UIView.animate(withDuration: 3.0) {
+            self.titleLabel.alpha = 1.0
+            self.bodyLabel.alpha = 1.0
+        }
+    }
+
+    func setupButtons() {
         ThemableButton.signinInfo.apply(loginButton, title: R.string.localized.onboardingIntroButtonLogin())
         ThemableButton.signinInfo.apply(startButton, title: R.string.localized.onboardingIntroButtonRegister())
     }
@@ -113,10 +124,12 @@ private extension SigningInfoViewController {
 private extension SigningInfoViewController {
 
     @IBAction func didTapLogin() {
+        trackUserEvent(.LOG_IN, action: .TAP)
         interactor?.didTapLoginButton()
     }
 
     @IBAction func didTapStart() {
+        trackUserEvent(.NEW_USER, action: .TAP)
         interactor?.didTapStartButton()
     }
 }
@@ -126,6 +139,8 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
         ThemeView.level1.apply(view)
         setupButtons()
+        titleLabel.alpha = 0.0
+        bodyLabel.alpha = 0.0
     }
 
     func didFinishLogin() {

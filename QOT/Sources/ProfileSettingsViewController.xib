@@ -65,7 +65,7 @@
                     <rect key="frame" x="0.0" y="20" width="375" height="98"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PQh-25-j8l">
-                            <rect key="frame" x="24" y="36" width="327" height="38"/>
+                            <rect key="frame" x="24" y="55" width="327" height="38"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jdd-H1-bNt">
                                     <rect key="frame" x="0.0" y="0.0" width="16" height="1"/>
@@ -94,11 +94,11 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="PQh-25-j8l" secondAttribute="bottom" constant="24" id="5p9-jN-nf8"/>
+                        <constraint firstAttribute="bottom" secondItem="PQh-25-j8l" secondAttribute="bottom" constant="5" id="Ab2-xK-saP"/>
                         <constraint firstAttribute="trailing" secondItem="PQh-25-j8l" secondAttribute="trailing" constant="24" id="AyH-Xq-3Hc"/>
                         <constraint firstAttribute="height" constant="98" id="INn-lm-4fL"/>
                         <constraint firstItem="PQh-25-j8l" firstAttribute="leading" secondItem="4sB-bU-Nbx" secondAttribute="leading" constant="24" id="Jfz-Om-bNg"/>
-                        <constraint firstItem="PQh-25-j8l" firstAttribute="top" secondItem="4sB-bU-Nbx" secondAttribute="top" constant="36" id="MZx-El-ncX"/>
+                        <constraint firstItem="PQh-25-j8l" firstAttribute="top" secondItem="4sB-bU-Nbx" secondAttribute="top" constant="55" id="MZx-El-ncX"/>
                     </constraints>
                 </view>
             </subviews>

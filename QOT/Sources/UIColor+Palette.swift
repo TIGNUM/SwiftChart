@@ -543,7 +543,7 @@ extension UIColor {
     }
 
     public class var fiveDayRecovery: UIColor {
-        return UIColor(red: 60.0 / 255.0, green: 208.0 / 255.0, blue: 237.0 / 255.0, alpha: 1.0)
+        return UIColor(red: 41.0 / 255.0, green: 200.0 / 255.0, blue: 156.0 / 255.0, alpha: 1.0)
     }
 
     public class var fiveDayLoad: UIColor {

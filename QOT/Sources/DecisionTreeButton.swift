@@ -81,6 +81,7 @@ final class NavigationButton: AbstractTreeButton {
     private var isDark = false
     private var titleFirst = ""
     private var titleNext = ""
+    private var title = ""
     private var maxCount = 1
     private var minCount = 1
 
@@ -100,6 +101,16 @@ final class NavigationButton: AbstractTreeButton {
             fatalError("Cannot load view")
         }
         return view
+    }
+
+    func getCurrentTitle() -> String {
+        if titleFirst.isEmpty == false {
+            return titleFirst
+        }
+        if titleNext.isEmpty == false {
+            return titleNext + " " + (continueLabel.text ?? "")
+        }
+        return title
     }
 
     func configure(title: String, titleNext: String = "", minSelection: Int, staticWidth: Bool = false, isDark: Bool) {
@@ -131,13 +142,13 @@ final class NavigationButton: AbstractTreeButton {
         counterButton.isUserInteractionEnabled = isEnough
 
         if count == 0 && !isEnough {
-            let title = substitute(titleFirst)
+            title = substitute(titleFirst)
             ThemeText.chatbotProgress(false, isDark).apply(title, to: continueLabel)
             ThemeView.chatbotProgress(false, isDark).apply(containerView)
             counterLabel.text = ""
             constraintSpacerWidth.constant = 0.0
         } else {
-            let title = substitute(titleNext)
+            title = substitute(titleNext)
             ThemeView.chatbotProgress(isEnough, isDark).apply(containerView)
             ThemeText.chatbotProgress(isEnough, isDark).apply(title, to: continueLabel)
             let counterText = maxCount <= 1 ? "" : "\(count)/\(maxCount)"

@@ -91,6 +91,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func didTapBackButton() {
+        trackUserEvent(.BACK, action: .TAP)
         interactor?.didTapBack()
     }
 
@@ -112,6 +113,7 @@ private extension RegistrationAgeViewController {
     @objc func didTapCreateAccountButton() {
         ageInputField.textField.resignFirstResponder()
         guard let year = ageInputField.text, Int(year) != nil else { return }
+        trackUserEvent(.CREATE_ACCOUNT, stringValue: year, valueType: .USER_BIRTH_YEAR, action: .TAP)
         interactor?.didTapNext(with: year)
     }
 }
@@ -160,6 +162,7 @@ extension RegistrationAgeViewController: UIPickerViewDelegate {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selection = years[row]
         if Int(selection) != nil {
+            trackUserEvent(.SELECT, value: Int(selection), valueType: .USER_BIRTH_YEAR, action: .TAP)
             ageInputField.text = selection
             saveButton.isEnabled = true
         } else {

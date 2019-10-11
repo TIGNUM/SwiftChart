@@ -11,10 +11,10 @@ import qot_dal
 
 final class MySprintDetailsConfigurator {
 
-    static func make() -> (MySprintDetailsViewController, QDMSprint) -> Void {
-        return { (viewController, sprint) in
+    static func make(sprintId: String) -> (MySprintDetailsViewController) -> Void {
+        return { (viewController) in
             let router = MySprintDetailsRouter(viewController: viewController)
-            let worker = MySprintDetailsWorker(sprint: sprint)
+            let worker = MySprintDetailsWorker(sprintId: sprintId)
             let presenter = MySprintDetailsPresenter(viewController: viewController)
             let interactor = MySprintDetailsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

@@ -80,7 +80,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 127, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -197,7 +197,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(R.string.localized.myQOTToBeVisionTitle(), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionSectionTitle),
+                                         to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
@@ -227,8 +228,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         skeletonManager.hide()
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
-
-        ThemeText.tbvVisionHeader.apply(myVision?.headline, to: headerLabel)
+        var headline = myVision?.headline
+        if headline?.isEmpty != false {
+            headline = interactor?.emptyTBVTitlePlaceholder
+        }
+        ThemeText.tbvVisionHeader.apply(headline, to: headerLabel)
         let text = (myVision?.text?.isEmpty == Optional(false)) ? myVision?.text : interactor?.emptyTBVTextPlaceholder
         detailTextView.attributedText = ThemeText.tbvVisionBody.attributedString(text)
 

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Sg4-P2-IFa" customClass="MyDataHeatMapLegendTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="558" height="86"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EmZ-ed-31f" userLabel="Top Separator View">
+                    <rect key="frame" x="0.0" y="0.0" width="558" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="7iy-E3-vFs"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2IF-3r-dgB" userLabel="Bottom Separator View">
+                    <rect key="frame" x="0.0" y="75" width="558" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="ffF-f4-Y5d"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ShS-ck-zqv">
+                    <rect key="frame" x="26" y="41" width="16" height="16"/>
+                    <color key="backgroundColor" red="0.1119023487" green="0.2061266601" blue="0.29805028439999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="HWF-y0-ooo"/>
+                        <constraint firstAttribute="height" constant="16" id="zBX-N9-e9i"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v95-8g-Hat">
+                    <rect key="frame" x="26" y="20" width="16" height="16"/>
+                    <color key="backgroundColor" red="0.59452092649999999" green="0.17396673560000001" blue="0.097994796930000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="8Hb-m0-LTa"/>
+                        <constraint firstAttribute="width" constant="16" id="bJR-IF-ubl"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="High impact readiness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mrY-YB-DqL">
+                    <rect key="frame" x="52" y="21.5" width="116" height="13.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Low impact readiness" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UeB-rx-HsD">
+                    <rect key="frame" x="52" y="42.5" width="112.5" height="13.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="mrY-YB-DqL" firstAttribute="leading" secondItem="v95-8g-Hat" secondAttribute="trailing" constant="10" id="1xQ-p5-iaP"/>
+                <constraint firstItem="2IF-3r-dgB" firstAttribute="trailing" secondItem="EmZ-ed-31f" secondAttribute="trailing" id="3LD-Vs-MY0"/>
+                <constraint firstItem="v95-8g-Hat" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="26" id="5Dh-OD-nGz"/>
+                <constraint firstItem="mrY-YB-DqL" firstAttribute="centerY" secondItem="v95-8g-Hat" secondAttribute="centerY" id="E4h-p2-SXh"/>
+                <constraint firstItem="UeB-rx-HsD" firstAttribute="centerY" secondItem="ShS-ck-zqv" secondAttribute="centerY" id="JRw-I2-4ek"/>
+                <constraint firstItem="ShS-ck-zqv" firstAttribute="leading" secondItem="v95-8g-Hat" secondAttribute="leading" id="JaR-gj-KCE"/>
+                <constraint firstItem="v95-8g-Hat" firstAttribute="top" secondItem="EmZ-ed-31f" secondAttribute="bottom" constant="19" id="PCC-Xl-a3Q"/>
+                <constraint firstItem="2IF-3r-dgB" firstAttribute="top" secondItem="ShS-ck-zqv" secondAttribute="bottom" constant="18" id="Tgs-jB-iy8"/>
+                <constraint firstItem="EmZ-ed-31f" firstAttribute="trailing" secondItem="34z-T8-JFN" secondAttribute="trailing" id="Vek-YN-Jed"/>
+                <constraint firstItem="UeB-rx-HsD" firstAttribute="leading" secondItem="mrY-YB-DqL" secondAttribute="leading" id="abH-bG-lE3"/>
+                <constraint firstItem="ShS-ck-zqv" firstAttribute="top" secondItem="v95-8g-Hat" secondAttribute="bottom" constant="5" id="ckA-3H-LMJ"/>
+                <constraint firstItem="2IF-3r-dgB" firstAttribute="leading" secondItem="EmZ-ed-31f" secondAttribute="leading" id="luA-7K-rnq"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="2IF-3r-dgB" secondAttribute="bottom" constant="10" id="syV-uY-egj"/>
+                <constraint firstItem="EmZ-ed-31f" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" id="xNe-yL-lNv"/>
+                <constraint firstItem="EmZ-ed-31f" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" id="yq8-bb-xcJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
+            <connections>
+                <outlet property="bottomColorLabel" destination="UeB-rx-HsD" id="hjw-e4-8a0"/>
+                <outlet property="bottomColorView" destination="ShS-ck-zqv" id="Ok4-R8-kvX"/>
+                <outlet property="topColorLabel" destination="mrY-YB-DqL" id="kRj-G9-Clr"/>
+                <outlet property="topColorView" destination="v95-8g-Hat" id="8bf-89-zaO"/>
+            </connections>
+            <point key="canvasLocation" x="264" y="113.79310344827587"/>
+        </view>
+    </objects>
+</document>

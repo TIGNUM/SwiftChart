@@ -145,7 +145,7 @@ extension SolveResultsViewController: UITableViewDelegate {
         switch resultViewModel?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
-            router?.openStrategy(with: id)
+            router?.openContent(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         case .strategyContentItem(let id, _, _, _, _)?:
             router?.openContentItem(with: id)
@@ -168,16 +168,19 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
              .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title.uppercased(), minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(type: type, header: header, description: description, buttonText: buttonText)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .fiveDayPlay(let hasHeader, let text)?:
@@ -187,6 +190,7 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .followUp(let title, let subtitle)?:
             let cell: SolveFollowUpTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, description: subtitle, isFollowUp: isFollowUpActive)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.delegate = self
             return cell
         case .cause(let cause, let explanation)?:
@@ -196,10 +200,12 @@ extension SolveResultsViewController: UITableViewDataSource {
         case .exclusiveContent(_, let hasHeader, let title, let minsToRead, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.backgroundColor = UIColor(red: 232.0 / 225.0, green: 227.0 / 225.0, blue: 224.0 / 225.0, alpha: 1)
             return cell
         case .fatigue(let symptom)?:
             let cell: FatigueTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.configure(symptom: symptom)
             return cell
         default: preconditionFailure()

@@ -16,7 +16,9 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        skeletonManager.addTitle(contentTitle)
+        skeletonManager.addSubtitle(infoText)
+        skeletonManager.addOtherView(icon)
         selectionStyle = .none
     }
 
@@ -25,13 +27,13 @@ class BaseMyLibraryTableViewCell: UITableViewCell {
         let selectedView = UIView()
         ThemeView.level2Selected.apply(selectedView)
         selectedBackgroundView = selectedView
+        selectionStyle = .default
     }
 }
 
 extension BaseMyLibraryTableViewCell {
     func setTitle(_ title: String?) {
         guard let titleText = title else { return }
-        configure()
         ThemeText.myLibraryItemsItemName.apply(titleText.uppercased(), to: contentTitle)
     }
 

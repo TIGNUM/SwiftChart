@@ -161,6 +161,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         if showAnimated == false {
             animationShow()
         }
@@ -328,10 +329,9 @@ extension QuestionnaireViewController {
             attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
         case .dailyCheckin:
             if let question = questionHtml {
-                attributedQuestion = question
-                questionLabel.font = UIFont.sfProtextLight(ofSize: 16)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)
             } else if let question = questionText {
-                attributedQuestion = ThemeText.tbvQuestionMedium.attributedString(question)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.trimmed)
             }
         case .vision:
             if let question = questionText {
@@ -626,6 +626,7 @@ extension QuestionnaireViewController {
     }
 
     @objc func didTapSave() {
+        trackUserEvent(.SAVE, action: .TAP)
         guard let count = answers?.count else { return }
         let value = (count  - 1 - currentIndex)
         // WARNING: This is valid only for daily brief check in Set Sleep Target

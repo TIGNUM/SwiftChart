@@ -12,7 +12,6 @@ import qot_dal
 final class MyVisionEditDetailsWorker {
 
     var visionPlaceholderDescription: String?
-    var visionPlaceholderTitle: String?
     let isFromNullState: Bool
     let contentService: qot_dal.ContentService
     let originalTitle: String
@@ -28,7 +27,6 @@ final class MyVisionEditDetailsWorker {
         self.isFromNullState = isFromNullState
         getMyToBeVision()
         getVisionDescription()
-        getVisionTitle()
     }
 
     var firstTimeUser: Bool {
@@ -90,9 +88,5 @@ final class MyVisionEditDetailsWorker {
 
     private func getVisionDescription() {
         visionPlaceholderDescription = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
-    }
-
-    private func getVisionTitle() {
-        visionPlaceholderTitle = ScreenTitleService.main.localizedString(for: .MyVisionVisionTitle)
     }
 }

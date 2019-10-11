@@ -79,10 +79,12 @@ private extension TrackSelectionViewController {
 
 private extension TrackSelectionViewController {
     @objc func didTapFastTrackButton() {
+        trackUserEvent(.FAST_TRACK, action: .TAP)
         interactor?.didTapFastTrack()
     }
 
     @objc func didTapGuidedTrackButton() {
+        trackUserEvent(.GUIDE_TRACK, action: .TAP)
         interactor?.didTapGuidedTrack()
     }
 }

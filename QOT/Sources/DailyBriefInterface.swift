@@ -13,21 +13,21 @@ import DifferenceKit
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func scrollToSection(at: Int)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
+    func scrollToSection(at: Int)
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
-    var rowViewModelCount: Int { get }
     var rowViewSectionCount: Int { get }
     var shpiAnswer: QDMDailyCheckInAnswer? { get }
     var peakPerformanceCount: Int? { get }
 
     func bucket(at row: Int) -> QDMDailyBriefBucket?
-    func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel?
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
     func getDailyBriefBucketsForViewModel()
     func getToBeVisionImage(completion: @escaping (URL?) -> Void)
@@ -42,13 +42,11 @@ protocol DailyBriefInteractorInterface: Interactor {
     func showSolveResults(solve: QDMSolve)
     func showCustomizeTarget()
     func displayCoachPreparationScreen()
-
     func didPressGotItSprint(sprint: QDMSprint)
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
     func saveAnswerValue(_ value: Int)
-    func saveUpdatedDailyCheckInSleepTarget(_ value: Double)
     func saveTargetValue(value: Int?)
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])

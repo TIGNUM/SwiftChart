@@ -36,10 +36,11 @@ final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let myQotSupportFaq  = segue.destination as? MyQotSupportFaqViewController else {
+        guard let myQotSupportDetails  = segue.destination as? MyQotSupportDetailsViewController,
+              let category = sender as? ContentCategory else {
             return
         }
-        MyQotSupportFaqConfigurator.configure(viewController: myQotSupportFaq)
+        MyQotSupportDetailsConfigurator.configure(viewController: myQotSupportDetails, category: category)
     }
 }
 

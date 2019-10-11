@@ -38,7 +38,7 @@
                             <constraint firstAttribute="height" constant="20" id="aAF-tt-ewZ"/>
                             <constraint firstAttribute="width" constant="20" id="btv-Ol-xzV"/>
                         </constraints>
-                        <state key="normal" image="ic_plus"/>
+                        <state key="normal" image="arrowDown"/>
                         <connections>
                             <action selector="buttonPressed:" destination="X5U-3q-G3b" eventType="touchUpInside" id="gYq-Ow-8CM"/>
                         </connections>
@@ -71,6 +71,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_plus" width="16" height="16"/>
+        <image name="arrowDown" width="16" height="16"/>
     </resources>
 </document>

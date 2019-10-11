@@ -35,17 +35,17 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
         configurator(self)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        showDefaultBottomButtons()
-        trackPage()
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .sprintsActive)
         interactor?.viewDidLoad()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showDefaultBottomButtons()
+        trackPage()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -181,7 +181,6 @@ extension MySprintsListViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-
 extension MySprintsListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !tableView.isEditing, let selectedPath = tableView.indexPathForSelectedRow {

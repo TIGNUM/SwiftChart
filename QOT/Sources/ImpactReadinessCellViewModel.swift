@@ -16,6 +16,8 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     var title: String?
     var dailyCheckImageURL: URL?
     var readinessScore: Int?
+    var isExpanded: Bool
+    var enableButton: Bool
     var type = ImpactReadinessType.NO_CHECK_IN
 
     // MARK: - Init
@@ -23,11 +25,15 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
                   dailyCheckImageURL: URL?,
                   readinessScore: Int?,
                   readinessIntro: String?,
+                  isExpanded: Bool,
+                  enableButton: Bool,
                   domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.dailyCheckImageURL = dailyCheckImageURL
         self.readinessScore = readinessScore
         self.readinessIntro = readinessIntro
+        self.isExpanded = isExpanded
+        self.enableButton = enableButton
         super.init(domainModel)
     }
 
@@ -37,6 +43,7 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         }
         return super.isContentEqual(to: source) &&
             readinessScore == source.readinessScore &&
+            enableButton == source.enableButton &&
             domainModel?.toBeVision?.profileImageResource?.url() == source.domainModel?.toBeVision?.profileImageResource?.url() &&
             domainModel?.dailyCheckInResult?.targetSleepQuantity == source.domainModel?.dailyCheckInResult?.targetSleepQuantity
     }

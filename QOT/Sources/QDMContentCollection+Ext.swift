@@ -11,7 +11,7 @@ import qot_dal
 
 extension QDMContentCollection {
     func getCategories(_ completion: @escaping (([QDMContentCategory]?) -> Void)) {
-        qot_dal.ContentService.main.getContentCategoriesByIds(relatedContentIDsPrepareAll, completion)
+        ContentService.main.getContentCategoriesByIds(relatedContentIDsPrepareAll, completion)
     }
 }
 

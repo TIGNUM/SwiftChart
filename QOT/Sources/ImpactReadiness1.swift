@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import qot_dal
+import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
@@ -38,12 +40,15 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
+        bucketTitle.isHidden = true
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if showDailyCheckInScreen {
-            delegate?.showDailyCheckInQuestions()
+            if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
+                AppDelegate.current.launchHandler.process(url: launchURL)
+            }
         } else {
             trackState = !trackState
             impactReadinessButton.flipImage(trackState)
@@ -61,6 +66,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         guard let model = viewModel else { return }
+        bucketTitle.isHidden = false
+
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
                                   model.domainModel?.dailyCheckInResult == nil)
@@ -82,33 +89,35 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
+
+        impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
+        if impactReadinessButton.isEnabled {
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        } else {
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        }
+
         if showDailyCheckInScreen {
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
+            trackState = model.isExpanded
+            impactReadinessButton.flipImage(trackState)
             impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
-            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsetsMake(10, 10, 10, 10), imageTitlePadding: 10.0)
+            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()
         }
     }
 }
 
 extension UIButton {
-    func setInsets(
-        forContentPadding contentPadding: UIEdgeInsets,
-        imageTitlePadding: CGFloat
-        ) {
+    func setInsets( forContentPadding contentPadding: UIEdgeInsets, imageTitlePadding: CGFloat) {
         self.contentEdgeInsets = UIEdgeInsets(
             top: contentPadding.top,
             left: contentPadding.left + imageTitlePadding,
             bottom: contentPadding.bottom,
             right: contentPadding.right
         )
-        self.titleEdgeInsets = UIEdgeInsets(
-            top: 0,
-            left: -imageTitlePadding,
-            bottom: 0,
-            right: imageTitlePadding
-        )
+        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageTitlePadding, bottom: 0, right: imageTitlePadding)
     }
 }

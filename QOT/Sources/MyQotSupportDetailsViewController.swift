@@ -1,5 +1,5 @@
 //
-//  MyQotSupportFaqViewController.swift
+//  MyQotSupportDetailsViewController.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 14.05.19.
@@ -9,11 +9,11 @@
 import UIKit
 import qot_dal
 
-final class MyQotSupportFaqViewController: BaseViewController, ScreenZLevel3 {
+final class MyQotSupportDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    var interactor: MyQotSupportFaqInteractorInterface?
+    var interactor: MyQotSupportDetailsInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
 
@@ -34,21 +34,21 @@ final class MyQotSupportFaqViewController: BaseViewController, ScreenZLevel3 {
     }
 }
 
-extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
+extension MyQotSupportDetailsViewController: MyQotSupportDetailsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
-        ThemeText.myQOTSectionHeader.apply(interactor?.faqHeaderText, to: headerLabel)
+        ThemeText.myQOTSectionHeader.apply(interactor?.headerText, to: headerLabel)
         tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyQotSupportDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemCount ?? 0

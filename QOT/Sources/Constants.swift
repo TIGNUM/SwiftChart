@@ -182,7 +182,6 @@ struct Layout {
     static let multiplier_125: CGFloat = 1.25
     static let multiplier_150: CGFloat = 1.50
     static let multiplier_175: CGFloat = 1.75
-    static let badgeSize = CGSize(width: padding_20, height: padding_20)
 
     struct TabBarView {
         static let insets = UIEdgeInsets(top: height, left: 0, bottom: 0, right: 0)

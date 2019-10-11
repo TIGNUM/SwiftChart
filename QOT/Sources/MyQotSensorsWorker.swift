@@ -34,17 +34,31 @@ final class MyQotSensorsWorker {
         return MyQotSensorsModel(sensor: .requestTracker)
     }
 
-    func headline(_ completion: @escaping(String?) -> Void) {
-        contentService.getContentCollectionById(100935) { (collection) in
-            let item = collection?.contentItems.filter({ $0.format == .header2 }).first?.valueText
-            completion(item)
+    func headlineHealthKit(_ completion: @escaping(String?) -> Void) {
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107863) { (contentItem) in
+            completion(contentItem?.valueText)
         }
     }
 
-    func content(_ completion: @escaping(String?) -> Void) {
-        contentService.getContentCollectionById(100935) { (collection) in
-            let item = collection?.contentItems.filter({ $0.format == .paragraph }).first?.valueText
-            completion(item)
+    func contentHealthKit(_ completion: @escaping(String?) -> Void) {
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107860) { (contentItem) in
+            completion(contentItem?.valueText)
+        }
+    }
+
+    func headlineOuraRing(_ completion: @escaping(String?) -> Void) {
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107872) { (contentItem) in
+            completion(contentItem?.valueText)
+        }
+    }
+
+    func contentOuraRing(_ completion: @escaping(String?) -> Void) {
+        // FIXME: find better way instead of using id.
+        contentService.getContentItemById(107873) { (contentItem) in
+            completion(contentItem?.valueText)
         }
     }
 

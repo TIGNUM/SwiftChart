@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import qot_dal
+import HealthKit
 
 enum LaunchOption: String {
     case edit
@@ -157,10 +158,14 @@ final class LaunchHandler {
             guard let controller = R.storyboard.myQot.myQotSupportViewController() else { return }
             MyQotSupportConfigurator.configure(viewController: controller)
             push(viewController: controller)
-        case .tutorial: break
         case .faq:
-            guard let controller = R.storyboard.myQot.myQotSupportFaqViewController() else { return }
-            MyQotSupportFaqConfigurator.configure(viewController: controller)
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQ)
+            push(viewController: controller)
+        case .usingQOT,
+             .tutorial:
+            guard let controller = R.storyboard.myQot.myQotSupportDetailsViewController() else { return }
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .UsingQOT)
             push(viewController: controller)
         case .aboutTignum:
             guard let controller = R.storyboard.myQot.myQotAboutUsViewController() else { return }
@@ -273,6 +278,15 @@ extension LaunchHandler {
             }
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
+            } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
+                self?.getHealthKitAuthStatus() == .notDetermined {
+                self?.requestHealthKitAuthorization({ (_) in
+                    self?.importHealthKitData()
+                    UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                        self?.showDailyCheckIn()
+                    })
+                })
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
@@ -305,15 +319,26 @@ extension LaunchHandler {
         qot_dal.ContentService.main.getContentCollectionById(collectionId, { [weak self] (content) in
             guard let contentCollection = content else { return }
             if contentCollection.contentItems.count == 1,
-                (contentCollection.section == .LearnStrategies || contentCollection.section == .Tools || contentCollection.section == .QOTLibrary),
+                (contentCollection.section == .LearnStrategies ||
+                    contentCollection.section == .Tools ||
+                    contentCollection.section == .QOTLibrary),
                 let contentItemId = contentCollection.contentItems.first?.remoteID {
                 self?.showContentItem(contentItemId)
                 return
             }
 
-            if let controller = R.storyboard.main.qotArticleViewController() {
-                ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
-                self?.present(viewController: controller)
+            switch contentCollection.section {
+            case .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent:
+                if let controller = R.storyboard.main.qotArticleViewController() {
+                    ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
+                    self?.present(viewController: controller)
+                }
+            case .Tools, .QOTLibrary:
+                if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
+                    ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
+                    self?.present(viewController: controller)
+                }
+            default: break
             }
         })
     }
@@ -390,5 +415,26 @@ extension LaunchHandler {
     func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
     }
+}
 
+// MARK: - HEALTH DATA ACCESS PERMISSION
+extension LaunchHandler {
+    func requestHealthKitAuthorization(_ completion: @escaping (Bool) -> Void) {
+        HealthService.main.requestHealthKitAuthorization { (success, error) in
+            if let error = error {
+                qot_dal.log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
+            }
+            completion(success)
+        }
+    }
+
+    func getHealthKitAuthStatus() -> HKAuthorizationStatus {
+        return qot_dal.HealthService.main.healthKitAuthorizationStatus()
+    }
+
+    func importHealthKitData() {
+        if HealthService.main.isHealthDataAvailable() == true {
+            HealthService.main.importHealthKitSleepAnalysisData()
+        }
+    }
 }

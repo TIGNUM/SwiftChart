@@ -266,6 +266,13 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
              interactor?.presentWhatsHotArticle(selectedID: whatsHotArticleId)
+        case .SOLVE_REFLECTION?:
+            didSelectRow(at: indexPath)
+            if (bucketItem as? SolveReminderTableCellViewModel) != nil {
+                let model = bucketItem as? SolveReminderTableCellViewModel
+                guard let solve = model?.solve else { break }
+                showSolveResults(solve: solve)
+            }
         default:
             break
         }
@@ -688,14 +695,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         }
     }
 
-    @objc func updateTargetValue(_ notification: NSNotification) {
-        guard let value = notification.object as? Double else {
-            return
-        }
-        interactor?.saveUpdatedDailyCheckInSleepTarget(value)
-        tableView.reloadData()
-    }
-
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
     }
@@ -735,6 +734,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+    }
+
+    func scrollToSection(at: Int) {
+        tableView.scrollToRow(at: IndexPath(row: 0, section: at), at: .middle, animated: true)
     }
 }
 
@@ -802,7 +805,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDecisionTree)
+        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
         let controller = PrepareResultsViewController(configure: configurator)
         present(controller, animated: true)
     }

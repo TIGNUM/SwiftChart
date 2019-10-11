@@ -42,7 +42,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         previousButton.setImage(imageUp, for: .normal)
 
         if isDark {
-            ThemeBorder.accent40.apply(previousButton)
+            ThemeBorder.accent.apply(previousButton)
             navBottomGradientImageView.image = R.image.tbv_edit_toolbar_gradient()
         }
 
@@ -143,8 +143,8 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
             navigationButton.topAnchor.constraint(equalTo: navigationButtonContainer.topAnchor).isActive = true
             navigationButton.bottomAnchor.constraint(equalTo: navigationButtonContainer.bottomAnchor).isActive = true
             navigationButton.rightAnchor.constraint(equalTo: navigationButtonContainer.rightAnchor).isActive = true
-            navigationButton.addTarget(self, action: #selector(didTapNext), for: .touchUpInside)
-            navigationButton.setOnPressed(completion: { [weak self] in
+            navigationButton.addTarget(self, action: #selector( didTapNext), for: .touchUpInside)
+            navigationButton.setOnPressed(completion: { [weak self] () in
                 self?.didTapNext()
             })
         }
@@ -243,6 +243,11 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
     func setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready() {
         if viewModel?.answers.filter({ $0.selected }).isEmpty ?? true {
             setAnswerNeedsSelection()
+        } else {
+            if let answer = self.viewModel?.selectedAnswers.first,
+                let buttonTitle = navigationButton?.getCurrentTitle() {
+                self.trackAnswerSelection(answer, buttonTitle, .ANSWER_DECISION)
+            }
         }
     }
 }
@@ -265,16 +270,6 @@ extension DTViewController {
                        stringValue: viewModel?.question.title,
                        valueType: .QUESTION,
                        action: .TAP)
-    }
-}
-
-extension DTViewController {        //TODO - this looks to be redundant now
-    func handleAutomatedQuestion(viewModel: DTViewModel) {
-        guard viewModel.showNextQuestionAutomated == true else { return }
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) { [weak self] in
-            self?.setAnswerNeedsSelection()
-            self?.loadNextQuestion()
-        }
     }
 }
 

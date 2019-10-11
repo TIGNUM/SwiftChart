@@ -16,8 +16,6 @@ enum UserDefault: String {
     case hasShownOnbordingSlideShowInAppBuild = "qot.userdefault.key.onboardingSlideShow"
     case whatsHotListLastViewed = "qot.userdefault.key.whatsHotListLastViewed"
     case iPadAdviceDoNotShowAgain = "qot.userdefault.key.iPadAdviceDoNotShowAgain"
-    case whatsHotBadgeNumber = "qot.userdefault.key.new.whats.hot.badge.number"
-    case guideBadgeNumber = "qot.userdefault.key.new.guide.badge.number"
     case firstInstallationTimestamp = "qot.userdefault.key.first.installation.timestamp"
     case restartRouteURLString = "qot.userdefault.key.restart.routeURL.string"
     case subscriptionInfoShow = "qot.userdefault.key.subscription.info.show"
@@ -25,20 +23,21 @@ enum UserDefault: String {
     case myDataSelectedItems = "qot.userdefault.key.my.data.selected.items.dictionary"
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
     case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
+    case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
+    case skipRequestHealthDataAccess = "qot.userdefault.key.skip.request.healthdata.access"
 }
 
 extension UserDefault {
-
     static func objectsToClearOnLogout() -> [UserDefault] {
         return [.calendarDictionary,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
-                .whatsHotBadgeNumber,
-                .guideBadgeNumber,
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems]
+                .myDataSelectedItems,
+                .prepareLocalEventsDictionary,
+                .skipRequestHealthDataAccess]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -48,13 +47,13 @@ extension UserDefault {
                 .hasShownOnbordingSlideShowInAppBuild,
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
-                .whatsHotBadgeNumber,
-                .guideBadgeNumber,
                 .firstInstallationTimestamp,
                 .restartRouteURLString,
                 .subscriptionInfoShow,
                 .finishedAudioItems,
-                .myDataSelectedItems]
+                .myDataSelectedItems,
+                .prepareLocalEventsDictionary,
+                .skipRequestHealthDataAccess]
     }
 
     var boolValue: Bool {

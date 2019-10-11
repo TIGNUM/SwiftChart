@@ -86,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             swizzleUIViewController()
             swizzleUINavigationController()
             window = UIWindow(frame: UIScreen.main.bounds)
-            addBadgeObserver()
             if let url = launchOptions?[.url] as? URL {
                 RestartHelper.setRestartURL(url)
             }
@@ -96,7 +95,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             setupUAirship()
             setupHockeyApp()
             setupKingfisherCache()
-            qot_dal.QOTService.main.reportAppStatus(.start)
+            QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
             UNUserNotificationCenter.current().delegate = self
         #endif //#if UNIT_TEST
@@ -107,7 +106,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            reachabilityOfSinging()
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
@@ -117,7 +115,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
         return
         #else
-            qot_dal.QOTService.main.reportAppStatus(.background)
+            QOTService.main.reportAppStatus(.background)
         #endif //#if UNIT_TEST
     }
 
@@ -125,7 +123,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            qot_dal.QOTService.main.reportAppStatus(.termination)
+            QOTService.main.reportAppStatus(.termination)
         #endif
     }
 
@@ -135,8 +133,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #else
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
-            qot_dal.QOTService.main.reportAppStatus(.didBecomeActive)
-            if qot_dal.SessionService.main.getCurrentSession() != nil {
+            QOTService.main.reportAppStatus(.didBecomeActive)
+            if SessionService.main.getCurrentSession() != nil {
                 self.importHealthKitDataIfAuthorized()
                 self.importCalendarEventsIfAuthorized()
                 ExternalLinkImporter.main.importLink()
@@ -149,8 +147,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            updateBadgeNumber()
-            qot_dal.QOTService.main.reportAppStatus(.willResignActive)
+            QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST
     }
 
@@ -202,31 +199,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - private
 
 private extension AppDelegate {
-
-    func addBadgeObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateBadgeNumber),
-                                               name: UserDefaults.didChangeNotification,
-                                               object: nil)
-    }
-
-    @objc func updateBadgeNumber() {
-        DispatchQueue.main.async {
-            let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
-            UIApplication.shared.applicationIconBadgeNumber = badgeNumber
-        }
-    }
-
-    func reachabilityOfSinging() {
-        if let abstractController = AppDelegate.topViewController() as? AbstractFormViewController {
-            if abstractController.reachability.isReachable == false {
-                abstractController.showSettingsCustomAlert()
-            } else {
-                abstractController.alert.dismiss(animated: true, completion: nil)
-            }
-        }
-    }
-
     func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {
@@ -248,9 +220,9 @@ private extension AppDelegate {
     func setupHockeyApp() {
         let hockeyAppID = Bundle.main.object(forInfoDictionaryKey: "HOCKEY_APP_ID") as? String
         BITHockeyManager.shared().configure(withIdentifier: hockeyAppID ?? "4f2cc0d018ea4a2884e052d72eb9c456")
-        #if DEBUG
+//        #if DEBUG
         BITHockeyManager.shared().isUpdateManagerDisabled = true
-        #endif
+//        #endif
         BITHockeyManager.shared().crashManager.crashManagerStatus = BITCrashManagerStatus.autoSend
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
@@ -293,7 +265,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
-        qot_dal.log("dailyPrep://handleNotification, notification:: \(notification)")
+        log("dailyPrep://handleNotification, notification:: \(notification)")
         var link: URL?
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
@@ -313,7 +285,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        qot_dal.log("QOT will present notification:: \(notification)")
+        log("QOT will present notification:: \(notification)")
         completionHandler([.alert, .sound])
     }
 

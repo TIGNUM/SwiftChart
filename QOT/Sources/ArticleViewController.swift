@@ -101,6 +101,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
+        articleTopNavBar.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +109,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         tableView.reloadData()
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
-
-        if interactor?.alwaysHideTopBar ?? true {
-            articleTopNavBar.isHidden = true
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -153,6 +150,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.registerDequeueable(ArticleEmptyTableViewCell.self)
+        tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
@@ -183,6 +181,7 @@ private extension ArticleViewController {
 // MARK: - BottomNavigation
 extension ArticleViewController {
     @objc override public func didTapDismissButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true, completion: nil)
     }
 
@@ -213,15 +212,13 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        articleTopNavBar.allOff()
-        navigationBar(show: false)
+        articleTopNavBar.refreshColor()
     }
 
     func didTapTextScaleItem() {
         trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        navigationBar(show: false)
     }
 
     func didTapShareItem() {
@@ -260,7 +257,8 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData() {
-        reloadData(showNavigationBar: true)
+        let navigationBarIsHidden = interactor?.alwaysHideTopBar ?? true
+        reloadData(showNavigationBar: !navigationBarIsHidden)
     }
 
     func reloadData(showNavigationBar: Bool) {
@@ -438,8 +436,12 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return UITableViewCell()    //audio is only shown in the audio bar
+        case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.ic_audio_grey_light())
+            return cell
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
@@ -455,17 +457,18 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             if style.headline == true {
                 attributedTopText = ThemeText.articleBody.attributedString(text.uppercased())
             } else if style == .paragraph {
-                attributedTopText = ThemeText.articleBody.attributedString(text, lineHeight: 1.8)
+                attributedTopText = ThemeText.articleBody.attributedString(text, lineHeight: 8)
             } else if style == .quote {
                 attributedTopText = ThemeText.articleQuote.attributedString(text, lineHeight: 1.8)
             }
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video(_, let title, _, let placeholderURL, _, let duration):
-            let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
-            let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL, forcedColorMode: nil)
+        case .video( _, let title, let description, _, _, _):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.my_library_camera())
             return cell
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -502,6 +505,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            durationString: description,
                            icon: R.image.ic_seen_of())
             return cell
+        case .contactSupport:
+            let cell: ArticleContactSupportTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(attributtedText: interactor?.contactSupportAttributtedString(),
+                           textViewDelegate: self)
+            return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
         }
@@ -517,7 +525,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
              .articleRelatedStrategy: return 95
         case .articleNextUp: return 144
         case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return 0
+            return 95
         default: return UITableViewAutomaticDimension
         }
     }
@@ -526,13 +534,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .audio(_, _, _, _, let remoteURL, _, _):
-            let url = item.bundledAudioURL ?? remoteURL
-            delegate?.didTapMedia(withURL: url, in: self)
-        case .video(let remoteID, _, _, _, let videoURL, _):
-            qot_dal.ContentService.main.getContentItemById(remoteID) { [weak self] (contentItem) in
-                guard let item = contentItem else { return }
-                self?.stream(videoURL: videoURL, contentItem: item)
+        case .audio( let remoteId, _, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
+        case .video(let remoteID, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteID)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             showPDFReader(withURL: pdfURL, title: title, itemID: itemID)
@@ -549,7 +557,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if !sectionHasContent(section) {
+        if !sectionHasContent(section) || interactor?.isSectionSupport() ?? false {
             return nil
         }
 
@@ -571,7 +579,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return sectionHasContent(section) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor?.isSectionSupport() ?? false)) ? tableView.estimatedSectionHeaderHeight : 0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -648,6 +656,7 @@ extension ArticleViewController {
         constraintNavBar.constant = show ? 0 : -80
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
+            self.articleTopNavBar.isHidden = !show
         }
 
         if !show {
@@ -672,6 +681,8 @@ extension ArticleViewController {
 // MARK: - ArticleDelegate
 extension ArticleViewController: ArticleDelegate {
     func didTapMarkAsRead(_ read: Bool) {
+        let state: QDMUserEventTracking.Name = read ? .MARK_AS_READ : .MARK_AS_UNREAD
+        trackUserEvent(state, value: interactor?.remoteID, stringValue: .CONTENT, action: .TAP)
         interactor?.markArticleAsRead(read) { [weak self] in
             self?.checkMarkAsReadButton(read)
         }
@@ -687,5 +698,16 @@ extension ArticleViewController: ArticleDelegate {
 extension ArticleViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+}
+
+// MARK: - Contact support Related
+extension ArticleViewController: UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        if URL.absoluteString.isEmail {
+            interactor?.openEmailComposer()
+            return false
+        }
+        return true
     }
 }

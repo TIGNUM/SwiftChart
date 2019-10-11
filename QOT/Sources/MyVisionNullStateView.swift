@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MyVisionNullStateViewProtocol: class {
     func editMyVisionAction()
@@ -26,7 +27,8 @@ final class MyVisionNullStateView: UIView {
     func setupView(with header: String, message: String, delegate: MyVisionNullStateViewProtocol?) {
         self.delegate = delegate
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(R.string.localized.myQOTToBeVisionTitle(), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionSectionTitle),
+                                         to: toBeVisionLabel)
 
         writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(R.string.localized.tbvButtonWrite()), for: .normal)
         autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(R.string.localized.tbvButtonAutoGenerate()), for: .normal)

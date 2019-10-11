@@ -17,6 +17,7 @@ final class MySprintDetailsInteractor {
     private let presenter: MySprintDetailsPresenterInterface
     private let router: MySprintDetailsRouterInterface
     private let notificationCenter: NotificationCenter
+    private var sprint: QDMSprint?
 
     public private(set) var viewModel = MySprintDetailsViewModel()
 
@@ -95,14 +96,21 @@ final class MySprintDetailsInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
-        viewModel = viewModel(from: worker.sprint)
-        presenter.present()
     }
 }
 
 // MARK: - MySprintDetailsInteractorInterface
 
 extension MySprintDetailsInteractor: MySprintDetailsInteractorInterface {
+    func updateViewModel() {
+        worker.getSprint { [weak self] (sprint) in
+            if let sprint = sprint, let model = self?.viewModel(from: sprint) {
+                self?.sprint = sprint
+                self?.viewModel = model
+                self?.presenter.present()
+            }
+        }
+    }
 
     func didDismissAlert() {
         cancelAction()
@@ -115,7 +123,9 @@ extension MySprintDetailsInteractor: MySprintDetailsInteractorInterface {
         }
         switch action {
         case .captureTakeaways:
-            router.presentTakeawayCapture(for: worker.sprint)
+            if let sprint = sprint {
+                router.presentTakeawayCapture(for: sprint)
+            }
         case .benefits, .highlights, .strategies:
             updateSprintReflection(action)
         }
@@ -141,7 +151,11 @@ extension MySprintDetailsInteractor {
         worker.startSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
             strongSelf.presenter.trackSprintStart()
-            strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
+            strongSelf.worker.getSprint({ (startedSprint) in
+                guard let sprintToShow = startedSprint else { return }
+                strongSelf.sprint = sprintToShow
+                strongSelf.updateSprintViewModel(with: sprintToShow)
+            })
         }
     }
 
@@ -153,7 +167,9 @@ extension MySprintDetailsInteractor {
         worker.pauseSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
             strongSelf.presenter.trackSprintPause()
-            strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
+            if let sprint = strongSelf.sprint {
+                strongSelf.updateSprintViewModel(with: sprint)
+            }
         }
     }
 
@@ -171,15 +187,19 @@ extension MySprintDetailsInteractor {
         worker.continueSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
             strongSelf.presenter.trackSprintContinue()
-            strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
+            if let sprint = strongSelf.sprint {
+                strongSelf.updateSprintViewModel(with: sprint)
+            }
         }
     }
 
     @objc private func cancelAction() {
         viewModel.infoViewModel = nil
         viewModel.showDismissButton = true
-        viewModel.rightButtons = bottomButtons(for: worker.sprint)
-        presenter.present()
+        if let sprint = sprint {
+            viewModel.rightButtons = bottomButtons(for: sprint)
+            presenter.present()
+        }
     }
 }
 
@@ -310,7 +330,9 @@ extension MySprintDetailsInteractor {
     }
 
     private func updateSprintReflection(_ type: MySprintDetailsItem.Action) {
-        router.presentNoteEditing(for: worker.sprint, action: type)
+        if let sprint = sprint {
+            router.presentNoteEditing(for: sprint, action: type)
+        }
     }
 
     private func showSprintInProgressAlert(with sprint: QDMSprint) {
@@ -347,11 +369,12 @@ extension MySprintDetailsInteractor {
 
     @objc private func didUpdateSprintDetails(_ notification: Notification) {
         guard let sprint = notification.userInfo?[Notification.Name.MySprintDetailsKeys.sprint] as? QDMSprint,
-            sprint.qotId == worker.sprint.qotId else {
+            sprint.qotId == sprint.qotId else {
             return
         }
+        self.sprint = sprint
         worker.setSprint(sprint)
-        viewModel = viewModel(from: worker.sprint)
+        viewModel = viewModel(from: sprint)
         presenter.present()
     }
 }
