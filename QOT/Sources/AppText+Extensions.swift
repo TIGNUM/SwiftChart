@@ -781,18 +781,18 @@ public extension AppTextKey {
     static let my_qot_my_tbv_my_tbv_data_empty_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title")
     static let my_qot_my_tbv_my_tbv_data_empty_title_description_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title_description_title")
     //
-    //tbv_tracker_title
-    //tbv_tracker_subtitle
-    //tbv_tracker_graphTitle
+    static let my_qot_my_tbv_my_tbv_data_view_tracker_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.tracker_title")
+    static let my_qot_my_tbv_my_tbv_data_view_tracker_subtitle = AppTextKey("my_qot.my_tbv.my_tbv_data.view.tracker_subtitle")
+    static let my_qot_my_tbv_my_tbv_data_view_graph_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.graph_title")
     //
-    //mindset-shifter-checklist-header-title
-    //mindset-shifter-checklist-header-subtitle
-    //mindset-shifter-checklist-trigger-title
-    //mindset-shifter-checklist-reactions-title
-    //mindset-shifter-checklist-negativeToPositive-title
-    //mindset-shifter-checklist-negativeToPositive-lowTitle
-    //mindset-shifter-checklist-negativeToPositive-highTitle
-    //mindset-shifter-checklist-vision-Title
+    static let shifter_result_view_header_title = AppTextKey("shifter.result.view.header_title")
+    static let shifter_result_view_header_subtitle = AppTextKey("shifter.result.view.header_subtitle")
+    static let shifter_result_view_trigger_title = AppTextKey("shifter.result.view.trigger_title")
+    static let shifter_result_view_reactions_title = AppTextKey("shifter.result.view.reactions_title")
+    static let shifter_result_view_neg_to_pos_title = AppTextKey("shifter.result.view.neg_to_pos_title")
+    static let shifter_result_view_neg_to_pos_low_title = AppTextKey("shifter.result.view.neg_to_pos_low_title")
+    static let shifter_result_view_neg_to_pos_high_title = AppTextKey("shifter.result.view.neg_to_pos_high_title")
+    static let shifter_result_view_vision_title = AppTextKey("shifter.result.view.vision_title")
     //mindset-shifter-checklist-save-button-text
     //
     //No_Internet_Connection_Title
