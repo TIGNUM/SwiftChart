@@ -584,76 +584,76 @@ public extension AppTextKey {
     //DailyBrief_Customize_Sleep_Intro
     //DailyBrief_Customize_Sleep_Question
     //
-    static let my_qot_my_sprint_detail_info_title = AppTextKey("my_qot.my_sprint.detail.info_title")
-    static let my_qot_my_sprint_detail_info_body_title = AppTextKey("my_qot.my_sprint.detail.info_body_title")
-    static let my_qot_my_sprint_detail_sprint_tasks_title = AppTextKey("my_qot.my_sprint.detail.sprint_tasks_title")
-    static let my_qot_my_sprint_detail_my_plan_title = AppTextKey("my_qot.my_sprint.detail.my_plan_title")
-    static let my_qot_my_sprint_detail_my_notes_title = AppTextKey("my_qot.my_sprint.detail.my_notes_title")
-    static let my_qot_my_sprint_detail_highlights_title = AppTextKey("my_qot.my_sprint.detail.highlights_title")
-    static let my_qot_my_sprint_detail_strategies_title = AppTextKey("my_qot.my_sprint.detail.strategies_title")
-    static let my_qot_my_sprint_detail_benefits_title = AppTextKey("my_qot.my_sprint.detail.benefits_title")
-    static let my_qot_my_sprint_detail_upcoming_title = AppTextKey("my_qot.my_sprint.detail.upcoming_title")
-    static let my_qot_my_sprint_detail_active_title = AppTextKey("my_qot.my_sprint.detail.active_title")
-    static let my_qot_my_sprint_detail_notes_title = AppTextKey("my_qot.my_sprint.detail.notes_title")
-    static let my_qot_my_sprint_detail_button_takeaways_title = AppTextKey("my_qot.my_sprint.detail.button_takeaways_title")
-    static let my_qot_my_sprint_detail_button_cancel_title = AppTextKey("my_qot.my_sprint.detail.button_cancel_title")
-    static let my_qot_my_sprint_detail_button_continue_title = AppTextKey("my_qot.my_sprint.detail.button_continue_title")
-    static let my_qot_my_sprint_detail_button_start_sprint_title = AppTextKey("my_qot.my_sprint.detail.button_start_sprint_title")
-    static let my_qot_my_sprint_detail_button_pause_sprint_title = AppTextKey("my_qot.my_sprint.detail.button_pause_sprint_title")
-    static let my_qot_my_sprint_detail_button_yes_pause_title = AppTextKey("my_qot.my_sprint.detail.button_yes_pause_title")
-    static let my_qot_my_sprint_detail_button_continue_sprint_title = AppTextKey("my_qot.my_sprint.detail.button_continue_sprint_title")
-    static let my_qot_my_sprint_detail_button_restart_sprint_title = AppTextKey("my_qot.my_sprint.detail.button_restart_sprint_title")
-    static let my_qot_my_sprint_detail_pause_sprint_title = AppTextKey("my_qot.my_sprint.detail.pause_sprint_title")
-    static let my_qot_my_sprint_detail_replan_sprint_title = AppTextKey("my_qot.my_sprint.detail.replan_sprint_title")
+    //MySprintDetails_Info_Title_In_Progress
+    //MySprintDetails_Info_Body_In_Progress
+    //MySprintDetails_Header_SprintTasks
+    //MySprintDetails_Header_MyPlan
+    //MySprintDetails_Header_MyNotes
+    //MySprintDetails_Header_Highlights
+    //MySprintDetails_Header_Strategies
+    //MySprintDetails_Header_Benefits
+    //MySprintDetails_Info_Text_Upcoming
+    //MySprintDetails_Info_Text_Active
+    //MySprintDetails_Info_Text_Notes
+    //MySprintDetails_Button_Takeaways
+    //MySprintDetails_Button_Cancel
+    //MySprintDetails_Button_Continue
+    //MySprintDetails_Button_StartSprint
+    //MySprintDetails_Button_PauseSprint
+    //MySprintDetails_Button_YesPause
+    //MySprintDetails_Button_ContinueSprint
+    //MySprintDetails_Button_RestartSprint
+    //MySprintDetails_Info_Title_PauseSprint
+    //MySprintDetails_Info_Title_ReplanSprint
     static let my_qot_my_sprint_detail_sprint_in_process_title = AppTextKey("my_qot.my_sprint.detail.sprint_in_process_title")
-    static let my_qot_my_sprint_detail_message_pause_sprint_title = AppTextKey("my_qot.my_sprint.detail.message_pause_sprint_title")
-    static let my_qot_my_sprint_detail_message_replan_sprint_title = AppTextKey("my_qot.my_sprint.detail.message_replan_sprint_title")
-    static let my_qot_my_sprint_detail_message_sprint_in_progress_title = AppTextKey("my_qot.my_sprint.detail.message_sprint_in_progress_title")
-    static let my_qot_my_sprint_detail_button_save_title = AppTextKey("my_qot.my_sprint.detail.button_save_title")
-    static let my_qot_my_sprint_detail_button_leave_title = AppTextKey("my_qot.my_sprint.detail.button_leave_title")
-    static let my_qot_my_sprint_detail_title_leave_title = AppTextKey("my_qot.my_sprint.detail.title_leave_title")
-    static let my_qot_my_sprint_detail_message_leave_title = AppTextKey("my_qot.my_sprint.detail.message_leave_title")
+    //MySprintDetails_Info_Message_PauseSprint
+    //MySprintDetails_Info_Message_ReplanSprint
+    //MySprintDetails_Info_Message_SprintInProgress
+    //MySprintDetailsNotes_Button_Save
+    //MySprintDetailsNotes_Button_Leave
+    //MySprintDetailsNotes_Info_Title_Leave
+    //MySprintDetailsNotes_Info_Message_Leave
     //
     //Onboarding_Error_General
     //Onboarding_Login_Email_Description
     //Onboarding_Login_Email_Error
-    static let login_view_email_user_description_title = AppTextKey("login.view.email_user_description_title")
-    static let login_view_email_generic_error_title = AppTextKey("login.view.email_generic_error_title")
+    //Onboarding_Login_Email_UserDoesntExistError
+    //Onboarding_Login_Email_GenericError
     //Onboarding_Login_Code_Description
     //Onboarding_Login_Code_Error
-    static let login_view_get_help_button = AppTextKey("login.view.get_help_button")
-    static let login_view_resend_code_button = AppTextKey("login.view.resend_code_button")
-    static let create_info_view_create_account_button = AppTextKey("create_info.view.create_account_button")
-    static let create_info_view_text_description_button = AppTextKey("create_info.view.text_description_button")
-    static let create_account_email_registration_view_email_title = AppTextKey("create_account.email_registration.view.email_title")
-    static let create_account_email_registration_view_email_next_button = AppTextKey("create_account.email_registration.view.email_next_button")
-    static let create_account_email_registration_view_email_error_title = AppTextKey("create_account.email_registration.view.email_error_title")
-    static let create_account_email_registration_view_error_existing_email_title = AppTextKey("create_account.email_registration.view.error_existing_email_title")
-    static let create_account_email_registration_view_existing_email_title = AppTextKey("create_account.email_registration.view.existing_email_title")
-    static let create_account_email_registration_view_unable_to_register_title = AppTextKey("create_account.email_registration.view.unable_to_register_title")
-    static let create_account_email_registration_view_yes_button = AppTextKey("create_account.email_registration.view.yes_button")
-    static let create_account_email_registration_view_no_button = AppTextKey("create_account.email_registration.view.no_button")
+    //Onboarding_Login_Button_GetHelp
+    //Onboarding_Login_Button_ResendCode
+    //Onboarding_CreateInfo_Button_CreateAccount
+    //Onboarding_CreateInfo_Text_Description
+    //Onboarding_Registration_Email_Title
+    //Onboarding_Registration_Email_Button_Next
+    //Onboarding_Registration_Email_Error
+    //Onboarding_Registration_Email_Error_ExistingEmail_Title
+    //Onboarding_Registration_Email_Error_ExistingEmail
+    //Onboarding_Registration_Email_Error_UnableToRegister
+    //Onboarding_Registration_Email_Button_Yes
+    //Onboarding_Registration_Email_Button_No
     //Onboarding_Registration_Code_Title
-    static let create_account_code_verification_view_code_description_title = AppTextKey("create_account.code_verification.view.code_description_title")
-    static let create_account_code_verification_view_code_disclamier_title = AppTextKey("create_account.code_verification.view.code_disclamier_title")
-    static let create_account_code_verification_view_disclaimer_terms_title = AppTextKey("create_account.code_verification.view.disclaimer_terms_title")
-    static let create_account_code_verification_view_disclaimer_privacy_title = AppTextKey("create_account.code_verification.view.disclaimer_privacy_title")
+    //Onboarding_Registration_Code_Description
+    //Onboarding_Registration_Code_Disclaimer
+    //Onboarding_Registration_Code_DisclaimerTermsPlaceholder
+    //Onboarding_Registration_Code_DisclaimerPrivacyPlaceholder
     //Onboarding_Registration_Code_CodeInfo
     //Onboarding_Registration_Code_ChangeEmail
     //Onboarding_Registration_Code_SendAgain
     //Onboarding_Registration_Code_Help
-    static let create_account_code_verification_view_error_title = AppTextKey("create_account.code_verification.view.error_title")
+    //Onboarding_Registration_Code_CodeError
     //Onboarding_Registration_Code_SendCodeError
-    static let create_account_user_name_view_names_title = AppTextKey("create_account.user_name.view.names_title")
-    static let create_account_user_name_view_name_title = AppTextKey("create_account.user_name.view.name_title")
-    static let create_account_user_name_view_surname_title = AppTextKey("create_account.user_name.view.surname_title")
+    //Onboarding_Registration_Names_Title
+    //Onboarding_Registration_Names_Name
+    //Onboarding_Registration_Names_Surname
     //Onboarding_Registration_Names_Mandatory
     //Onboarding_Registration_Names_NextTitle
-    static let create_account_user_name_view_age_title = AppTextKey("create_account.user_name.view.age_title")
-    static let create_account_user_name_view_age_description_title = AppTextKey("create_account.user_name.view.age_description_title")
-    static let create_account_user_name_view_age_restriction_title = AppTextKey("create_account.user_name.view.age_restriction_title")
-    static let create_account_user_name_view_age_next_title = AppTextKey("create_account.user_name.view.age_next_title")
-    //Onboarding_Registration_CreateAccountError
+    //Onboarding_Registration_Age_Title
+    //Onboarding_Registration_Age_Description
+    //Onboarding_Registration_Age_Restriction
+    //Onboarding_Registration_Age_NextTitle
+    static let create_account_general_error_title = AppTextKey("create_account.general.error_title")
     //Onboarding_Registration_LocationPermission_Title
     //Onboarding_Registration_LocationPermission_Description
     //Onboarding_Registration_LocationPermission_Button_Skip
@@ -661,22 +661,22 @@ public extension AppTextKey {
     //Onboarding_Registration_LocationPermission_Alert_Message
     //Onboarding_Registration_LocationPermission_Alert_Settings
     //Onboarding_Registration_LocationPermission_Alert_Skip
-    static let track_info_view_skip_title = AppTextKey("track_info.view.skip_title")
-    static let track_info_view_get_started_title = AppTextKey("track_info.view.get_started_title")
+    //Onboarding_Registration_TrackSelection_Button_FastTrack
+    //Onboarding_Registration_TrackSelection_Button_GuidedTrack
     static let login_alert_device_alert_title = AppTextKey("login.alert.device_alert_title")
     static let login_alert_device_alert_message = AppTextKey("login.alert.device_alert_message")
     static let login_alert_device_got_it_button = AppTextKey("login.alert.device_got_it_button")
     //
-    //my_library_title
-    //about_tignum_content_and_copyright_subtitle
-    //about_tignum_privacy_subtitle
-    //about_tignum_qot_benefits_subtitle
-    //about_tignum_terms_and_condition_subtitle
     static let my_qot_my_profile_about_tignum_view_qot_benefits_title = AppTextKey("my_qot.my_profile.about_tignum.view.qot_benefits_title")
     static let my_qot_my_profile_about_tignum_view_about_tignum_title = AppTextKey("my_qot.my_profile.about_tignum.view.about_tignum_title")
     static let my_qot_my_profile_about_tignum_view_privacy_title = AppTextKey("my_qot.my_profile.about_tignum.view.privacy_title")
     static let my_qot_my_profile_about_tignum_view_conditions_title = AppTextKey("my_qot.my_profile.about_tignum.view.conditions_title")
     static let my_qot_my_profile_about_tignum_view_copyright_title = AppTextKey("my_qot.my_profile.about_tignum.view.copyright_title")
+    static let my_qot_my_profile_about_tignum_view_qot_benefits_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.qot_benefits_subtitle")
+    static let my_qot_my_profile_about_tignum_view_about_tignum_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.about_tignum_subtitle")
+    static let my_qot_my_profile_about_tignum_view_privacy_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.privacy_subtitle")
+    static let my_qot_my_profile_about_tignum_view_conditions_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.conditions_subtitle")
+    static let my_qot_my_profile_about_tignum_view_copyright_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.copyright_subtitle")
     //
     static let my_qot_my_profile_account_settings_view_title = AppTextKey("my_qot.my_profile.account_settings.view.title")
     //account_settings_contact

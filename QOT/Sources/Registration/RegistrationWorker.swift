@@ -14,7 +14,7 @@ final class RegistrationWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var generalError: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationCreateAccountError)
+        return AppTextService.get(AppTextKey.create_account_general_error_title)
     }()
 
     lazy var existingAccountAlertTitle: String = {

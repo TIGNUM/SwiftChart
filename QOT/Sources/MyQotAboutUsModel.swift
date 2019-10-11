@@ -37,46 +37,49 @@ struct MyQotAboutUsModel {
                    ]
         }
 
-        func tag() -> Tags {
-            switch self {
-            case .benefits:
-                return .AboutUsQotBenefits
-            case .about:
-                return .AboutUsAboutTignum
-            case .privacy:
-                return .AboutUsPrivacy
-            case .terms:
-                return .AboutUsTermsAndConditions
-            case .copyright:
-                return .AboutUsCopyright
-            }
-        }
-
-        func tagSubtitle() -> Tags {
-            switch self {
-            case .benefits:
-                return .AboutUsQotBenefitsSubtitle
-            case .about:
-                return .AboutUsAboutTignumSubtitle
-            case .privacy:
-                return .AboutUsPrivacySubtitle
-            case .terms:
-                return .AboutUsTermsAndConditionSubtitle
-            case .copyright:
-                return .AboutUsContentAndCopyrightSubtitle
-            }
-        }
-
         func trackingKeys() -> String {
-            return tag().rawValue
+            switch self {
+            case .benefits:
+                return Tags.AboutUsQotBenefits.rawValue
+            case .about:
+                return Tags.AboutUsAboutTignum.rawValue
+            case .privacy:
+                return Tags.AboutUsPrivacy.rawValue
+            case .terms:
+                return Tags.AboutUsTermsAndConditions.rawValue
+            case .copyright:
+                return Tags.AboutUsCopyright.rawValue
+            }
         }
 
         func title(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tag())
+            switch self {
+            case .benefits:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_qot_benefits_title)
+            case .about:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_about_tignum_title)
+            case .privacy:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_privacy_title)
+            case .terms:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_conditions_title)
+            case .copyright:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_copyright_title)
+            }
         }
 
         func subtitle(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tagSubtitle())
+            switch self {
+            case .benefits:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_qot_benefits_subtitle)
+            case .about:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_about_tignum_subtitle)
+            case .privacy:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_privacy_subtitle)
+            case .terms:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_conditions_subtitle)
+            case .copyright:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_copyright_subtitle)
+            }
         }
 
         func contentCollection(for contentService: qot_dal.ContentService,
