@@ -438,6 +438,7 @@ public extension AppTextKey {
     static let my_qot_my_data_edit_five_drl_title = AppTextKey("my_qot.my_data.edit.five_drl_title")
     static let my_qot_my_data_edit_five_dir_title = AppTextKey("my_qot.my_data.edit.five_dir_title")
     static let my_qot_my_data_edit_ir_title = AppTextKey("my_qot.my_data.edit.ir_title")
+    static let my_qot_my_data_edit_from_healthkit_title = AppTextKey("my_qot.my_data.edit.from_healthkit_title")
     //
     static let my_qot_my_data_info_sql_title = AppTextKey("my_qot.my_data.info.sql_title")
     static let my_qot_my_data_info_sqn_title = AppTextKey("my_qot.my_data.info.sqn_title")
