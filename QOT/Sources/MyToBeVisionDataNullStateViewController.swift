@@ -73,10 +73,10 @@ private extension MyToBeVisionDataNullStateViewController {
 
 private extension MyToBeVisionDataNullStateViewController {
     func setupEmptySate() {
-        ThemeText.tbvStatement.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderTitle).uppercased(), to: headingLabel)
-        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc), to: headingDescriptionLabel)
-        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased(), to: titleLabel)
-        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc), to: titleDescriptionLabel)
+        ThemeText.tbvStatement.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_header_title), to: headingLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_header_description_title), to: headingDescriptionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title), to: titleLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_description_title), to: titleDescriptionLabel)
     }
 }
 
