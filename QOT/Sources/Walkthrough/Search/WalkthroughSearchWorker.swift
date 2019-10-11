@@ -13,7 +13,7 @@ final class WalkthroughSearchWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return ScreenTitleService.main.localizedString(for: .WalkthroughSearchText)
+        return AppTextService.get(AppTextKey.walkthrough_view_search_title)
     }()
 
     // MARK: - Init
