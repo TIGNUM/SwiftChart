@@ -87,7 +87,7 @@ final class MyVisionWorker {
     }()
 
     lazy var emptyTBVTitlePlaceholder: String = {
-        return ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+        return AppTextService.get(AppTextKey.my_qot_my_tobevision_edit_placeholder_title)
     }()
 
     private func getNullStateSubtitle() {

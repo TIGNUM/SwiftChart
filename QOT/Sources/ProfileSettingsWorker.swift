@@ -27,15 +27,15 @@ final class ProfileSettingsWorker {
     private var emailTxt = ""
 
     lazy var confirmationAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
+        return AppTextService.get(AppTextKey.my_qot_profile_view_alert_title)
     }()
 
     lazy var confirmationAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
+        return AppTextService.get(AppTextKey.my_qot_profile_view_alert_body)
     }()
 
     lazy var confirmationAlertDone: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
+        return AppTextService.get(AppTextKey.my_qot_profile_view_alert_button_title)
     }()
 
     lazy var confirmationAlertCancel: String = {

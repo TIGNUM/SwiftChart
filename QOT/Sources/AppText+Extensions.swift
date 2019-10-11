@@ -574,9 +574,9 @@ public extension AppTextKey {
     static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
     //MyToBeVisionDescriptionPlaceholder
     //
-    //ProfileConfirmation_doneButton
-    //ProfileConfirmation_header
-    //ProfileConfirmation_description
+    static let my_qot_profile_view_alert_button_title = AppTextKey("my_qot.profile.view.alert_button_title")
+    static let my_qot_profile_view_alert_title = AppTextKey("my_qot.profile.view.alert_title")
+    static let my_qot_profile_view_alert_body = AppTextKey("my_qot.profile.view.alert_body")
     //
     //QuestionnaireViewController_doneButton
     //DailyCheckIn_SleepQuantity_Value_Suffix
