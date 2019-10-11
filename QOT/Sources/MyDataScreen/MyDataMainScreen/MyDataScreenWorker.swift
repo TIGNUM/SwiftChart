@@ -34,15 +34,33 @@ final class MyDataScreenWorker {
 
 extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataHeatMapButtonTitles() -> [String] {
-        return [ScreenTitleService.main.localizedString(for: .myDataHeatMapDailyButtonTitle),
-                ScreenTitleService.main.localizedString(for: .myDataHeatMapFiveDayButtonTitle)]
+        return [AppTextService.get(AppTextKey.my_qot_my_data_view_ir_button),
+                AppTextService.get(AppTextKey.my_qot_my_data_view_ir_5_day_button)]
     }
     func myDataSections() -> MyDataScreenModel {
         return MyDataScreenModel(myDataItems: MyDataSection.allCases.map {
                         return MyDataScreenModel.Item(myDataSection: $0,
-                                                      title: ScreenTitleService.main.myDataSectionTitle(for: $0),
-                                                      subtitle: ScreenTitleService.main.myDataSectionSubtitle(for: $0))
+                                                      title: self.myDataSectionTitle(for: $0),
+                                                      subtitle: self.myDataSectionSubtitle(for: $0))
                                                })
+    }
+
+    func myDataSectionTitle(for myDataItem: MyDataSection) -> String? {
+        switch myDataItem {
+        case .dailyImpact:
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_ir_title)
+        case .heatMap:
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_title)
+        }
+    }
+
+    func myDataSectionSubtitle(for myDataItem: MyDataSection) -> String? {
+        switch myDataItem {
+        case .dailyImpact:
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_ir_body)
+        case .heatMap:
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_body)
+        }
     }
 
     func myDataSelectionSections() -> MyDataSelectionModel {
@@ -54,13 +72,32 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
         for rawValue in selectedValues {
             if let parameterValue = MyDataParameter(rawValue: rawValue) {
                 sectionModel.myDataSelectionItems.append(MyDataSelectionModel.SelectionItem(myDataExplanationSection: parameterValue,
-                                                                                            title: ScreenTitleService.main.myDataExplanationSectionTitles(for: parameterValue),
+                                                                                            title: self.myDataSelectionSectionTitles(for: parameterValue),
                                                                                             selected: true))
             }
 
         }
         initialDataSelectionSections = sectionModel
         return sectionModel
+    }
+
+    func myDataSelectionSectionTitles(for myDataSelectionItem: MyDataParameter) -> String? {
+        switch myDataSelectionItem {
+        case .SQL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_sql_title)
+        case .SQN:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_sqn_title)
+        case .tenDL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_ten_dl_title)
+        case .fiveDRR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drr_title)
+        case .fiveDRL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drl_title)
+        case .fiveDIR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_dir_title)
+        case .IR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_ir_title)
+        }
     }
 
     func getDailyResults(around date: Date,

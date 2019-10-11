@@ -429,6 +429,8 @@ public extension AppTextKey {
     //my_data_heatmap_red_color_title
     //my_data_heatmap_blue_color_title
     //
+    static let my_qot_my_data_edit_title = AppTextKey("my_qot.my_data.edit.title")
+    static let my_qot_my_data_edit_subtitle = AppTextKey("my_qot.my_data.edit.subtitle")
     static let my_qot_my_data_edit_sql_title = AppTextKey("my_qot.my_data.edit.sql_title")
     static let my_qot_my_data_edit_sqn_title = AppTextKey("my_qot.my_data.edit.sqn_title")
     static let my_qot_my_data_edit_ten_dl_title = AppTextKey("my_qot.my_data.edit.ten_dl_title")

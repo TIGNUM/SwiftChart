@@ -25,9 +25,28 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
         let selectedValues = UserDefault.myDataSelectedItems.object as? [Int]
         return MyDataSelectionModel(myDataSelectionItems: MyDataSelectionModel.sectionValues.map {
             return MyDataSelectionModel.SelectionItem(myDataExplanationSection: $0,
-                                                      title: ScreenTitleService.main.myDataExplanationSectionTitles(for: $0),
+                                                      title: myDataSelectionSectionTitles(for: $0),
                                                       selected: selectedValues?.contains(obj: $0.rawValue) ?? false)
         })
+    }
+
+    func myDataSelectionSectionTitles(for myDataSelectionItem: MyDataParameter) -> String? {
+        switch myDataSelectionItem {
+        case .SQL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_sql_title)
+        case .SQN:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_sqn_title)
+        case .tenDL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_ten_dl_title)
+        case .fiveDRR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_drr_title)
+        case .fiveDRL:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_drl_title)
+        case .fiveDIR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_dir_title)
+        case .IR:
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_ir_title)
+        }
     }
 
     func saveMyDataSelections(_ selections: [MyDataParameter]) {
@@ -38,10 +57,10 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
     }
 
     func myDataSelectionHeaderTitle() -> String {
-        return ScreenTitleService.main.myDataSelectionTitle() ?? ""
+        return AppTextService.get(AppTextKey.my_qot_my_data_edit_title)
     }
 
     func myDataSelectionHeaderSubtitle() -> String {
-        return ScreenTitleService.main.myDataSelectionSubtitle() ?? ""
+        return AppTextService.get(AppTextKey.my_qot_my_data_edit_subtitle)
     }
 }
