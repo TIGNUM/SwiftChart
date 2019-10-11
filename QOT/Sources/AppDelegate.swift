@@ -199,20 +199,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - private
 
 private extension AppDelegate {
-    func addBadgeObserver() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(updateBadgeNumber),
-                                               name: UserDefaults.didChangeNotification,
-                                               object: nil)
-    }
-
-    @objc func updateBadgeNumber() {
-        DispatchQueue.main.async {
-            let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
-            UIApplication.shared.applicationIconBadgeNumber = badgeNumber
-        }
-    }
-
     func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
         if locationEvent.boolValue == true {

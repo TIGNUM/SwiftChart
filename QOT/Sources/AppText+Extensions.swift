@@ -373,33 +373,33 @@ public extension AppTextKey {
     static let my_qot_my_library_alert_items_cancel_download_alert_title = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_title")
     static let my_qot_my_library_alert_items_cancel_download_alert_body = AppTextKey("my_qot.my_library.alert.items_cancel_download_alert_body")
     static let my_qot_my_library_notes_alert_subtitle = AppTextKey("my_qot.my_library.notes.alert.subtitle")
-    //myqot_profile_section_title
-    //myqot_library_section_title
-    //myqot_preps_section_title
-    //myqot_sprints_section_title
-    //myqot_data_section_title
-    //myqot_tobevision_section_title
+    static let my_library_my_profile_view_my_profile_title = AppTextKey("my_library.my_profile.view.my_profile_title")
+    static let my_library_my_library_view_my_library_title = AppTextKey("my_library.my_library.view.my_library_title")
+    static let my_library_my_plans_view_my_plans_title = AppTextKey("my_library.my_plans.view.my_plans_title")
+    static let my_library_my_sprints_view_my_sprints_title = AppTextKey("my_library.my_sprints.view.my_sprints_title")
+    static let my_library_my_data_view_my_data_title = AppTextKey("my_library.my_data.view.my_data_title")
+    static let my_library_my_tbv_view_my_tbv_title = AppTextKey("my_library.my_tbv.view.my_tbv_title")
     //
-    //tools_header_title
-    //tools_header_subtitle
-    //tools_mindset_section_title
-    //tools_nutrition_section_title
-    //tools_movement_section_title
-    //tools_recovery_section_title
-    //tools_habituation_section_title
+    static let coach_qot_tools_view_header_title = AppTextKey("coach.qot_tools.view.header_title")
+    static let coach_qot_tools_view_header_subtitle = AppTextKey("coach.qot_tools.view.header_subtitle")
+    static let coach_qot_tools_view_perfomamce_mindset_title = AppTextKey("coach.qot_tools.view.perfomamce_mindset_title")
+    static let coach_qot_tools_view_performance_nutrition_title = AppTextKey("coach.qot_tools.view.performance_nutrition_title")
+    static let coach_qot_tools_view_performance_movement_title = AppTextKey("coach.qot_tools.view.performance_movement_title")
+    static let coach_qot_tools_view_performance_recovery_title = AppTextKey("coach.qot_tools.view.performance_recovery_title")
+    static let coach_qot_tools_view_performace_habituation_title = AppTextKey("coach.qot_tools.view.performace_habituation_title")
     //
-    //coach_header_title
-    //coach_header_subtitle
-    //coach_search_section_title
-    //coach_apply_tools_section_title
-    //coach_plan_sprint_section_title
-    //coach_prepare_event_section_title
-    //coach_solve_challenge_section_title
-    //coach_search_section_subtitle
-    //coach_apply_tools_section_subtitle
-    //coach_plan_sprint_section_subtitle
-    //coach_prepare_event_section_subtitle
-    //coach_solve_challenge_section_subtitle
+    static let coach_view_rule_your_compact_title = AppTextKey("coach.view.rule_your_compact_title")
+    static let coach_view_your_next_step_title = AppTextKey("coach.view.your_next_step_title")
+    static let coach_view_search_title = AppTextKey("coach.view.search_title")
+    static let coach_view_apply_tools_title = AppTextKey("coach.view.apply_tools_title")
+    static let coach_view_plan_sprint_title = AppTextKey("coach.view.plan_sprint_title")
+    static let coach_view_prepare_event_title = AppTextKey("coach.view.prepare_event_title")
+    static let coach_view_solve_problem_title = AppTextKey("coach.view.solve_problem_title")
+    static let coach_view_what_youre_looking_title = AppTextKey("coach.view.what_youre_looking_title")
+    static let coach_view_access_tools_title = AppTextKey("coach.view.access_tools_title")
+    static let coach_view_run_5_day_sprint_title = AppTextKey("coach.view.run_5_day_sprint_title")
+    static let coach_view_be_ready_title = AppTextKey("coach.view.be_ready_title")
+    static let coach_view_understand_your_struggle_title = AppTextKey("coach.view.understand_your_struggle_title")
     //
     //payment_header_title
     //payment_header_subtitle
@@ -413,8 +413,8 @@ public extension AppTextKey {
     //payment_data_section_subtitle
     //
     //tbv_headline_placeholder
-    //tbv_tooling_headline_placeholder
     //tbv_message_placeholder
+    // tbv_tooling_headline_placeholder
     //
     static let my_qot_my_data_view_ir_title = AppTextKey("my_qot.my_data.view.ir_title")
     static let my_qot_my_data_view_heatmap_title = AppTextKey("my_qot.my_data.view.heatmap_title")
@@ -480,10 +480,9 @@ public extension AppTextKey {
     //
     static let my_qot_my_profile_app_settings_synced_calendar_view_title = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.title")
     static let my_qot_my_profile_app_settings_synced_calendar_view_subtitle = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.subtitle")
-    //
-    //main_know_title
-    //main_daily_brief_title
-    //main_my_qot_title
+    static let know_view_know_title = AppTextKey("know.view.know_title")
+    static let daily_brief_view_daily_brief_title = AppTextKey("daily_brief.view.daily_brief_title")
+    static let my_qot_view_my_qot_title = AppTextKey("my_qot.view.my_qot_title")
     //know-feed-level-01-page-title
     static let know_view_55_impact_title = AppTextKey("know.view.55_impact_title")
     static let know_view_learn_strategies_subtitle = AppTextKey("know.view.learn_strategies_subtitle")
@@ -502,7 +501,7 @@ public extension AppTextKey {
     //subscription_reminder_benefit_title_04
     //subscription_reminder_benefit_subtitle_04
     //
-    //Walkthrough_Search_Text
+    static let walkthrough_view_search_title = AppTextKey("walkthrough.view.search_title")
     //Walkthrough_Coach_Text
     //Walkthrough_Swipe_Text
     //Settings_Security_Terms_Title
@@ -551,7 +550,7 @@ public extension AppTextKey {
     //MyQot_Vision_LessThan
     //MyQot_Vision_NoVision
     //
-    //MyQot_Data_Impact
+    static let my_qot_my_data_view_data_impact_title = AppTextKey("my_qot.my_data.view.data_impact_title")
     //
     //Button_Title_Pick
     //Button_Title_Add_Event
@@ -560,7 +559,7 @@ public extension AppTextKey {
     //Button_Title_Remove
     //Button_Title_Cancel
     //Button_Title_YesContinue
-    //Button_Title_Done
+    static let generic_view_done_title = AppTextKey("generic.view.done_title")
     //
     //Audio_FullScreen_Button_Download
     //Audio_FullScreen_Button_Waiting
@@ -572,7 +571,7 @@ public extension AppTextKey {
     //RateViewController_rateMyTBVButton
     //TBVTrackerViewController_doneButton
     //TBVDataGraphBarNextDurationViewCell_inFourWeeks
-    //MyToBeVisionTitlePlaceholder
+    static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
     //MyToBeVisionDescriptionPlaceholder
     //
     //ProfileConfirmation_doneButton
@@ -618,42 +617,42 @@ public extension AppTextKey {
     //Onboarding_Error_General
     //Onboarding_Login_Email_Description
     //Onboarding_Login_Email_Error
-    //Onboarding_Login_Email_UserDoesntExistError
-    //Onboarding_Login_Email_GenericError
+    static let login_view_email_user_description_title = AppTextKey("login.view.email_user_description_title")
+    static let login_view_email_generic_error_title = AppTextKey("login.view.email_generic_error_title")
     //Onboarding_Login_Code_Description
     //Onboarding_Login_Code_Error
-    //Onboarding_Login_Button_GetHelp
-    //Onboarding_Login_Button_ResendCode
-    //Onboarding_CreateInfo_Button_CreateAccount
-    //Onboarding_CreateInfo_Text_Description
-    //Onboarding_Registration_Email_Title
-    //Onboarding_Registration_Email_Button_Next
-    //Onboarding_Registration_Email_Error
-    //Onboarding_Registration_Email_Error_ExistingEmail_Title
-    //Onboarding_Registration_Email_Error_ExistingEmail
-    //Onboarding_Registration_Email_Error_UnableToRegister
-    //Onboarding_Registration_Email_Button_Yes
-    //Onboarding_Registration_Email_Button_No
+    static let login_view_get_help_button = AppTextKey("login.view.get_help_button")
+    static let login_view_resend_code_button = AppTextKey("login.view.resend_code_button")
+    static let create_info_view_create_account_button = AppTextKey("create_info.view.create_account_button")
+    static let create_info_view_text_description_button = AppTextKey("create_info.view.text_description_button")
+    static let create_account_email_registration_view_email_title = AppTextKey("create_account.email_registration.view.email_title")
+    static let create_account_email_registration_view_email_next_button = AppTextKey("create_account.email_registration.view.email_next_button")
+    static let create_account_email_registration_view_email_error_title = AppTextKey("create_account.email_registration.view.email_error_title")
+    static let create_account_email_registration_view_error_existing_email_title = AppTextKey("create_account.email_registration.view.error_existing_email_title")
+    static let create_account_email_registration_view_existing_email_title = AppTextKey("create_account.email_registration.view.existing_email_title")
+    static let create_account_email_registration_view_unable_to_register_title = AppTextKey("create_account.email_registration.view.unable_to_register_title")
+    static let create_account_email_registration_view_yes_button = AppTextKey("create_account.email_registration.view.yes_button")
+    static let create_account_email_registration_view_no_button = AppTextKey("create_account.email_registration.view.no_button")
     //Onboarding_Registration_Code_Title
-    //Onboarding_Registration_Code_Description
-    //Onboarding_Registration_Code_Disclaimer
-    //Onboarding_Registration_Code_DisclaimerTermsPlaceholder
-    //Onboarding_Registration_Code_DisclaimerPrivacyPlaceholder
+    static let create_account_code_verification_view_code_description_title = AppTextKey("create_account.code_verification.view.code_description_title")
+    static let create_account_code_verification_view_code_disclamier_title = AppTextKey("create_account.code_verification.view.code_disclamier_title")
+    static let create_account_code_verification_view_disclaimer_terms_title = AppTextKey("create_account.code_verification.view.disclaimer_terms_title")
+    static let create_account_code_verification_view_disclaimer_privacy_title = AppTextKey("create_account.code_verification.view.disclaimer_privacy_title")
     //Onboarding_Registration_Code_CodeInfo
     //Onboarding_Registration_Code_ChangeEmail
     //Onboarding_Registration_Code_SendAgain
     //Onboarding_Registration_Code_Help
-    //Onboarding_Registration_Code_CodeError
+    static let create_account_code_verification_view_error_title = AppTextKey("create_account.code_verification.view.error_title")
     //Onboarding_Registration_Code_SendCodeError
-    //Onboarding_Registration_Names_Title
-    //Onboarding_Registration_Names_Name
-    //Onboarding_Registration_Names_Surname
+    static let create_account_user_name_view_names_title = AppTextKey("create_account.user_name.view.names_title")
+    static let create_account_user_name_view_name_title = AppTextKey("create_account.user_name.view.name_title")
+    static let create_account_user_name_view_surname_title = AppTextKey("create_account.user_name.view.surname_title")
     //Onboarding_Registration_Names_Mandatory
     //Onboarding_Registration_Names_NextTitle
-    //Onboarding_Registration_Age_Title
-    //Onboarding_Registration_Age_Description
-    //Onboarding_Registration_Age_Restriction
-    //Onboarding_Registration_Age_NextTitle
+    static let create_account_user_name_view_age_title = AppTextKey("create_account.user_name.view.age_title")
+    static let create_account_user_name_view_age_description_title = AppTextKey("create_account.user_name.view.age_description_title")
+    static let create_account_user_name_view_age_restriction_title = AppTextKey("create_account.user_name.view.age_restriction_title")
+    static let create_account_user_name_view_age_next_title = AppTextKey("create_account.user_name.view.age_next_title")
     //Onboarding_Registration_CreateAccountError
     //Onboarding_Registration_LocationPermission_Title
     //Onboarding_Registration_LocationPermission_Description
@@ -662,13 +661,13 @@ public extension AppTextKey {
     //Onboarding_Registration_LocationPermission_Alert_Message
     //Onboarding_Registration_LocationPermission_Alert_Settings
     //Onboarding_Registration_LocationPermission_Alert_Skip
-    //Onboarding_Registration_TrackSelection_Button_FastTrack
-    //Onboarding_Registration_TrackSelection_Button_GuidedTrack
-    //Onboarding_Unoptimized_Device_Alert_Title
-    //Onboarding_Unoptimized_Device_Alert_Message
-    //Onboarding_Unoptimized_Device_Button_Got_it
+    static let track_info_view_skip_title = AppTextKey("track_info.view.skip_title")
+    static let track_info_view_get_started_title = AppTextKey("track_info.view.get_started_title")
+    static let login_alert_device_alert_title = AppTextKey("login.alert.device_alert_title")
+    static let login_alert_device_alert_message = AppTextKey("login.alert.device_alert_message")
+    static let login_alert_device_got_it_button = AppTextKey("login.alert.device_got_it_button")
     //
-    //about_tignum_subtitle
+    //my_library_title
     //about_tignum_content_and_copyright_subtitle
     //about_tignum_privacy_subtitle
     //about_tignum_qot_benefits_subtitle
@@ -686,7 +685,6 @@ public extension AppTextKey {
     //account_settings_phone
     //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
-    static let my_qot_my_profile_account_settings_view_year_title = AppTextKey("my_qot.my_profile.account_settings.view.year_title")
     //account_settings_personal_data
     //account_settings_height
     //account_settings_weight
@@ -723,9 +721,12 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_edit_surname_title = AppTextKey("my_qot.my_profile.account_settings.edit.surname_title")
     //edit_account_gender
     static let my_qot_my_profile_account_settings_edit_year_title = AppTextKey("my_qot.my_profile.account_settings.edit.year_title")
+    static let my_qot_my_profile_account_settings_view_year_title = AppTextKey("my_qot.my_profile.account_settings.view.year_title")
     //edit_account_height
     //edit_account_weight
+    //edit_account_company
     //edit_account_title
+    //edit_account_email
     //edit_account_phone
     //
     static let my_qot_my_profile_view_member_since_title = AppTextKey("my_qot.my_profile.view.member_since_title")
@@ -737,16 +738,16 @@ public extension AppTextKey {
     static let my_qot_my_profile_view_support_title = AppTextKey("my_qot.my_profile.view.support_title")
     static let my_qot_my_profile_view_walkthrough_title = AppTextKey("my_qot.my_profile.view.walkthrough_title")
     static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
+    //my_profile_my_library
     static let my_qot_my_profile_view_learn_more_title = AppTextKey("my_qot.my_profile.view.learn_more_title")
     //
     static let my_qot_my_tobevision_view_syncing_title = AppTextKey("my_qot.my_tobevision.view.syncing_title")
     static let my_qot_my_tobevision_view_not_rated_title = AppTextKey("my_qot.my_tobevision.view.not_rated_title")
     static let my_qot_my_tobevision_view_null_state_title = AppTextKey("my_qot.my_tobevision.view.null_state_title")
     static let my_qot_my_tobevision_view_null_state_subtitle = AppTextKey("my_qot.my_tobevision.view.null_state_subtitle")
-    static let my_qot_my_tobevision_view_vision_title = AppTextKey("my_qot.my_tobevision.view.vision_title")
+    //myVision_visionTitle
     static let my_qot_my_tobevision_view_vision_subtitle = AppTextKey("my_qot.my_tobevision.view.vision_subtitle")
-static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tobevision.view.vision_subtitle")
-    static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
+    static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tobevision.edit.vision_subtitle")
     //
     static let my_qot_my_profile_app_settings_activity_trackers_view_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.title")
     static let my_qot_my_profile_app_settings_activity_trackers_view_sensor_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.sensor_title")
@@ -771,13 +772,14 @@ static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tob
     static let my_qot_my_profile_support_view_tutorial_title = AppTextKey("my_qot.my_profile.support.view.tutorial_title")
     static let my_qot_my_profile_support_view_contact_support_title = AppTextKey("my_qot.my_profile.support.view.contact_support_title")
     static let my_qot_my_profile_support_view_faq_title = AppTextKey("my_qot.my_profile.support.view.faq_title")
-    //tbv_data_title
-    //tbv_data_subtitle
-    //tbv_data_graphTitle
-    //tbv_data_empty_state_headerTitle
-    //tbv_data_empty_state_headerDescrption
-    //tbv_data_empty_state_titleTitle
-    //tbv_data_empty_state_titleDescription
+    //
+    static let my_qot_my_tbv_my_tbv_data_view_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.title")
+    static let my_qot_my_tbv_my_tbv_data_view_subtitle = AppTextKey("my_qot.my_tbv.my_tbv_data.view.subtitle")
+    static let my_qot_my_tbv_my_tbv_data_view_my_tbv_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.my_tbv_title")
+    static let my_qot_my_tbv_my_tbv_data_empty_header_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.header_title")
+    static let my_qot_my_tbv_my_tbv_data_empty_header_description_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.header_description_title")
+    static let my_qot_my_tbv_my_tbv_data_empty_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title")
+    static let my_qot_my_tbv_my_tbv_data_empty_title_description_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title_description_title")
     //
     //tbv_tracker_title
     //tbv_tracker_subtitle
@@ -875,4 +877,5 @@ static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tob
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
     static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
+
 }
