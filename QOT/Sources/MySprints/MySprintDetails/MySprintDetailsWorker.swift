@@ -15,10 +15,10 @@ final class MySprintDetailsWorker {
     private let notificationCenter: NotificationCenter
 
     // MARK: - Init
-    private var sprintId: Int
+    private var sprintId: String
     private var sprint: QDMSprint?
 
-    init(sprintId: Int, notificationCenter: NotificationCenter = NotificationCenter.default) {
+    init(sprintId: String, notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.sprintId = sprintId
         self.notificationCenter = notificationCenter
     }
@@ -135,7 +135,7 @@ final class MySprintDetailsWorker {
             if let error = error {
                 log("Error getSprints: \(error.localizedDescription)", level: .error)
             }
-            let sprint = sprints?.filter { $0.remoteID == self?.sprintId ?? 0 }.first
+            let sprint = sprints?.filter { $0.qotId == self?.sprintId ?? "" }.first
             self?.sprint = sprint
             completion(sprint)
         }
@@ -150,8 +150,27 @@ extension MySprintDetailsWorker {
 
     func startSprint(_ completion: @escaping (Error?) -> Void) {
         guard let sprint = sprint else { return }
-        UserService.main.startSprint(sprint) { [weak self] (sprint, error) in
-            self?.updateSprint(sprint, error: error, completion: completion)
+        // if it is completed sprint. Create new sprint with same content and start the created sprint.
+        if sprint.completedAt != nil {
+            UserService.main.createSprint(title: sprint.title ?? "",
+                                          subTitle: sprint.subtitle ?? "",
+                                          sprintContentId: sprint.contentCollectionId ?? 0,
+                                          relatedContentIds: sprint.relatedContentIds,
+                                          taskItemIds: sprint.taskItems.compactMap({ $0.remoteID }),
+                                          planItemIds: sprint.planItems.compactMap({ $0.remoteID })) { (newSprint, error) in
+                                            guard let sprintToStart = newSprint, error == nil else {
+                                                completion(error)
+                                                return
+                                            }
+
+                                            UserService.main.startSprint(sprintToStart) { [weak self] (startedSprint, error) in
+                                                self?.updateSprint(startedSprint, error: error, completion: completion)
+                                            }
+            }
+        } else {
+            UserService.main.startSprint(sprint) { [weak self] (sprint, error) in
+                self?.updateSprint(sprint, error: error, completion: completion)
+            }
         }
     }
 
@@ -190,6 +209,7 @@ extension MySprintDetailsWorker {
         }
         if let sprint = sprint {
             self.sprint = sprint
+            self.sprintId = sprint.qotId ?? ""
         }
         notificationCenter.post(name: .didUpdateMySprintsData, object: nil)
         completion(nil)

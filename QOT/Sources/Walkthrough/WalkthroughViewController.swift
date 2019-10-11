@@ -70,6 +70,7 @@ private extension WalkthroughViewController {
 private extension WalkthroughViewController {
 
     @IBAction func didTapGotItButton() {
+        trackUserEvent(.GOT_IT, action: .TAP)
         interactor?.didTapGotIt()
     }
 }

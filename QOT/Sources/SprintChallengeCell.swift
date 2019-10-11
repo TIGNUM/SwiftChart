@@ -20,7 +20,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet weak var outOf5Label: UILabel!
     @IBOutlet weak var gotItButton: AnimatedButton!
     private var currentSprint: QDMSprint?
-    var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
+    var relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel]()
     var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
@@ -75,6 +75,8 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
+        self.relatedStrategiesModels = model.relatedStrategiesModels
+        self.currentSprint = model.sprint
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
@@ -83,8 +85,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
-        self.relatedStrategiesModels = model.relatedStrategiesModels
-        self.currentSprint = model.sprint
         updateGotItButton()
     }
 
@@ -101,33 +101,35 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return relatedStrategiesModels?.count ?? 0
+        return relatedStrategiesModels.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
         let cell: SprintChallengeTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.selectedBackgroundView = backgroundView
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
-        cell.configure(title: relatedStrategiesModels?[indexPath.row].title,
-                       durationString: relatedStrategiesModels?[indexPath.row].durationString,
-                       remoteID: relatedStrategiesModels?[indexPath.row].contentId ?? relatedStrategiesModels?[indexPath.row].contentItemId,
-                       section: relatedStrategiesModels?[indexPath.row].section,
-                       format: relatedStrategiesModels?[indexPath.row].format,
-                       numberOfItems: relatedStrategiesModels?[indexPath.row].numberOfItems ?? 0)
+        cell.configure(title: relatedStrategy?.title,
+                       durationString: relatedStrategy?.durationString,
+                       remoteID: relatedStrategy?.contentId ?? relatedStrategiesModels[indexPath.row].contentItemId,
+                       section: relatedStrategy?.section,
+                       format: relatedStrategy?.format,
+                       numberOfItems: relatedStrategy?.numberOfItems ?? 0)
         cell.delegate = self.delegate
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let relatedStrategy = relatedStrategiesModels?[indexPath.row] else { return }
-        if let contentItemId = relatedStrategy.contentItemId,
+        guard relatedStrategiesModels.count > indexPath.row else { return }
+        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
+        if let contentItemId = relatedStrategy?.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-        } else if let contentCollectionId = relatedStrategy.contentId {
-            if relatedStrategy.section == .LearnStrategies {
+        } else if let contentCollectionId = relatedStrategy?.contentId {
+            if relatedStrategy?.section == .LearnStrategies {
                 delegate?.openStrategyFromSprint(strategyID: contentCollectionId)
-            } else if relatedStrategy.section == .QOTLibrary {
+            } else if relatedStrategy?.section == .QOTLibrary {
                 delegate?.openToolFromSprint(toolID: contentCollectionId)
             } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)

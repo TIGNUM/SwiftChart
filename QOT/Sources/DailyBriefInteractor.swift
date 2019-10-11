@@ -20,7 +20,6 @@ final class DailyBriefInteractor {
     private let worker: DailyBriefWorker
     private let presenter: DailyBriefPresenterInterface
     private let router: DailyBriefRouterInterface
-    private var viewModelOldList: [BaseDailyBriefViewModel] = []
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
 // Boolean to keep track of the guided closed track.
@@ -29,6 +28,7 @@ final class DailyBriefInteractor {
     private var needToLoadBuckets: Bool = false
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
+    private var targetBucketName: DailyBriefBucketName?
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -80,6 +80,18 @@ extension DailyBriefInteractor {
             }
         }
     }
+
+    private func scrollToBucket(_ bucketName: DailyBriefBucketName) {
+        var modelIndex: Int?
+        for (index, item) in viewModelOldListModels.enumerated() {
+            guard item.elements.first?.domainModel?.bucketName == bucketName else { continue }
+            modelIndex = index
+            break
+        }
+        if let targetIndex = modelIndex {
+            presenter.scrollToSection(at: targetIndex)
+        }
+    }
 }
 
 // MARK: Notification Listeners
@@ -104,22 +116,21 @@ extension DailyBriefInteractor {
 
     @objc func didGetScrollNotificationToBucket(_ notification: Notification) {
         guard let bucketName = notification.object as? DailyBriefBucketName else { return }
-        switch bucketName {
-        default:
-            // @Srikanth, Zeljko : We need to scroll to the bucket.
-            qot_dal.log("did get scroll notification to bucket: \(bucketName)", level: .info)
+        guard viewModelOldListModels.filter({ $0.elements.first?.domainModel?.bucketName == bucketName }).first != nil else {
+            targetBucketName = bucketName
+            updateDailyBriefBucket()
+            return
         }
+
+        scrollToBucket(bucketName)
     }
 }
 
 // MARK: - DailyBriefInteractorInterface
 
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
-    // MARK: Properties
 
-    var rowViewModelCount: Int {
-        return viewModelOldList.count
-    }
+    // MARK: Properties
 
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
@@ -137,10 +148,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
         return worker.bucket(at: row)
-    }
-
-    func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel? {
-        return viewModelOldList.at(index: row)
     }
 
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]? {
@@ -277,6 +284,13 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 strongSelf.needToLoadBuckets = false
                 strongSelf.getDailyBriefBucketsForViewModel()
             }
+
+            if let bucketNameToScroll = strongSelf.targetBucketName {
+                DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+                    strongSelf.scrollToBucket(bucketNameToScroll)
+                })
+            }
+            strongSelf.targetBucketName = nil
         }
     }
 
@@ -332,12 +346,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
-    }
-
-    func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
-        _ = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
-        //        check this implementation
-        //        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
     }
 
     func saveTargetValue(value: Int?) {
@@ -404,7 +412,6 @@ extension DailyBriefInteractor {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
         var readinessIntro: String? = ""
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
-        let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
             readinessIntro = impactReadiness.bucketText?.contentItems
@@ -552,12 +559,17 @@ extension DailyBriefInteractor {
                                                                  domainModel: depatureInfo))
             return departureInfoList
         }
-        departureInfoList.append(DepartureInfoCellViewModel(title: depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
-                                                            subtitle: depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText,
-                                                            text: collection.contentItems.first?.valueText,
-                                                            image: collection.thumbnailURLString ?? "",
-                                                            copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                            domainModel: depatureInfo))
+        let title = depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
+        let subtitle = depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let copyright = collection.contentItems.filter { $0.searchTags.contains("BUCKET_COPYRIGHT") }.first?.valueText
+        let model = DepartureInfoCellViewModel(title: title,
+                                               subtitle: subtitle,
+                                               text: text,
+                                               image: collection.thumbnailURLString ?? "",
+                                               copyright: copyright,
+                                               domainModel: depatureInfo)
+        departureInfoList.append(model)
         return departureInfoList
     }
 

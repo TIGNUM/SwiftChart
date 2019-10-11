@@ -135,6 +135,10 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.myVision
     }
 
+    var emptyTBVTitlePlaceholder: String {
+        return worker.emptyTBVTitlePlaceholder
+    }
+
     var emptyTBVTextPlaceholder: String {
         return worker.emptyTBVTextPlaceholder
     }

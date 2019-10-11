@@ -87,6 +87,7 @@ private extension ArticleTopNavBar {
     }
 
     func refresh() {
+        guard arrayViewsCount > 1 else { return }
         let alpha: CGFloat = isShowingAll ? 1.0 : 0.0
         for i in 1..<arrayViewsCount {
             if let view = arrayViews[i].value {
