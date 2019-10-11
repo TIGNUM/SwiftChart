@@ -63,14 +63,6 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         return worker.personalDataText
     }
 
-    var heightText: String {
-        return worker.heightText
-    }
-
-    var weightText: String {
-        return worker.weightText
-    }
-
     var accountText: String {
         return worker.accountText
     }

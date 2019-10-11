@@ -685,6 +685,7 @@ public extension AppTextKey {
     //account_settings_phone
     //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
+    static let my_qot_my_profile_account_settings_view_year_title = AppTextKey("my_qot.my_profile.account_settings.view.year_title")
     //account_settings_personal_data
     //account_settings_height
     //account_settings_weight
@@ -720,32 +721,31 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_edit_name_title = AppTextKey("my_qot.my_profile.account_settings.edit.name_title")
     static let my_qot_my_profile_account_settings_edit_surname_title = AppTextKey("my_qot.my_profile.account_settings.edit.surname_title")
     //edit_account_gender
-    //edit_account_year_of_birth
+    static let my_qot_my_profile_account_settings_edit_year_title = AppTextKey("my_qot.my_profile.account_settings.edit.year_title")
     //edit_account_height
     //edit_account_weight
-    //edit_account_company
     //edit_account_title
-    //edit_account_email
     //edit_account_phone
     //
-    //my_profile_member_since
-    //my_profile_my_profile
-    //my_profile_account_settings
-    //my_profile_manage_your_profile_details
-    //my_profile_app_settings
-    //my_profile_enable_notifications
-    //my_profile_support
-    //my_profile_walkthrough_our_features
-    //my_profile_about_tignum
-    //my_profile_my_library
-    //my_profile_learn_more_about_us
+    static let my_qot_my_profile_view_member_since_title = AppTextKey("my_qot.my_profile.view.member_since_title")
+    static let my_qot_my_profile_view_my_profile_title = AppTextKey("my_qot.my_profile.view.my_profile_title")
+    static let my_qot_my_profile_view_account_settings_title = AppTextKey("my_qot.my_profile.view.account_settings_title")
+    static let my_qot_my_profile_view_profile_details_title = AppTextKey("my_qot.my_profile.view.profile_details_title")
+    static let my_qot_my_profile_view_app_settings_title = AppTextKey("my_qot.my_profile.view.app_settings_title")
+    static let my_qot_my_profile_view_enable_notification_title = AppTextKey("my_qot.my_profile.view.enable_notification_title")
+    static let my_qot_my_profile_view_support_title = AppTextKey("my_qot.my_profile.view.support_title")
+    static let my_qot_my_profile_view_walkthrough_title = AppTextKey("my_qot.my_profile.view.walkthrough_title")
+    static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
+    static let my_qot_my_profile_view_learn_more_title = AppTextKey("my_qot.my_profile.view.learn_more_title")
     //
-    //myVision_rate_syncingText
-    //myVision_rate_notRatedText
-    //myVision_nullStateTitle
-    //myVision_nullStateSubtitle
-    //myVision_visionTitle
-    //myVision_visionDescription
+    static let my_qot_my_tobevision_view_syncing_title = AppTextKey("my_qot.my_tobevision.view.syncing_title")
+    static let my_qot_my_tobevision_view_not_rated_title = AppTextKey("my_qot.my_tobevision.view.not_rated_title")
+    static let my_qot_my_tobevision_view_null_state_title = AppTextKey("my_qot.my_tobevision.view.null_state_title")
+    static let my_qot_my_tobevision_view_null_state_subtitle = AppTextKey("my_qot.my_tobevision.view.null_state_subtitle")
+    static let my_qot_my_tobevision_view_vision_title = AppTextKey("my_qot.my_tobevision.view.vision_title")
+    static let my_qot_my_tobevision_view_vision_subtitle = AppTextKey("my_qot.my_tobevision.view.vision_subtitle")
+static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tobevision.view.vision_subtitle")
+    static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
     //
     static let my_qot_my_profile_app_settings_activity_trackers_view_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.title")
     static let my_qot_my_profile_app_settings_activity_trackers_view_sensor_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.sensor_title")

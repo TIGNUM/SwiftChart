@@ -30,7 +30,7 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(bkgdView)
         selectedBackgroundView = bkgdView
         skeletonManager.hide()
-        ThemeText.linkMenuItem.apply(model.heading.uppercased(), to: headingLabel)
+        ThemeText.linkMenuItem.apply(model.heading, to: headingLabel)
         ThemeText.linkMenuComment.apply(model.subHeading, to: subHeadingLabel)
     }
 }

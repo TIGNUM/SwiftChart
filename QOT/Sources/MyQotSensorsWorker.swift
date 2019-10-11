@@ -49,11 +49,11 @@ final class MyQotSensorsWorker {
     }
 
     var headerTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotTrackerActivityTrackers)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_activity_trackers_view_title)
     }
 
     var sensorTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotTrackerSensors)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_activity_trackers_view_sensor_title)
     }
 }
 

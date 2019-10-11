@@ -89,7 +89,7 @@ extension ProfileSettingsWorker {
     }
 
     var editAccountTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyProfileEditAccount)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title)
     }
 
     func numberOfSections() -> Int {
@@ -121,27 +121,27 @@ private extension ProfileSettingsWorker {
     }
 
     func contactTitle() {
-        contactTxt = ScreenTitleService.main.localizedString(for: .MyProfileContact)
+        contactTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_contact_title)
     }
 
     func nameTitle() {
-        nameTxt = ScreenTitleService.main.localizedString(for: .MyProfileName)
+        nameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_name_title)
     }
 
     func surnameTitle() {
-        surnameTxt = ScreenTitleService.main.localizedString(for: .MyProfileSurname)
+        surnameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_surname_title)
     }
 
     func dateOfBirthTitle() {
-        dateOfBirthTxt = ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
+        dateOfBirthTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_year_title)
     }
 
     func companyTitle() {
-        companyTxt = ScreenTitleService.main.localizedString(for: .MyProfileCompany)
+        companyTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_company_title)
     }
 
     func emailTitle() {
-        emailTxt = ScreenTitleService.main.localizedString(for: .MyProfileEmail)
+        emailTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_email_title)
     }
 }
 

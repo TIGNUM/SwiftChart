@@ -89,10 +89,10 @@ final class MyVisionEditDetailsWorker {
     }
 
     private func getVisionDescription() {
-        visionPlaceholderDescription = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
+        visionPlaceholderDescription = AppTextService.get(AppTextKey.my_qot_my_tobevision_edit_vision_subtitle)
     }
 
     private func getVisionTitle() {
-        visionPlaceholderTitle = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+        visionPlaceholderTitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_edit_placeholder_title)
     }
 }

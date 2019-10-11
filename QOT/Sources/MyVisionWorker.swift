@@ -83,15 +83,15 @@ final class MyVisionWorker {
     }()
 
     lazy var emptyTBVTextPlaceholder: String = {
-        return ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
+        return AppTextService.get(AppTextKey.my_qot_my_tobevision_view_vision_subtitle)
     }()
 
     private func getNullStateSubtitle() {
-        nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
+        nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_null_state_subtitle)
     }
 
     private func getNullStateTitle() {
-        nullStateTitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
+        nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_null_state_title)
     }
 
     func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
@@ -170,11 +170,11 @@ final class MyVisionWorker {
     }
 
     func getSyncingText(_ dispatchGroup: DispatchGroup) {
-        syncingText = ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
+        syncingText = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_syncing_title)
     }
 
     func getNotRatedText(_ dispatchGroup: DispatchGroup) {
-        notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
+        notRatedText = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_not_rated_title)
     }
 
     func updateRateButton() -> (String?, Bool?, Bool) {

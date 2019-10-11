@@ -25,8 +25,6 @@ protocol MyQotAccountSettingsInteractorInterface: Interactor {
     var dateOfBirthText: String { get }
     var companyText: String { get }
     var personalDataText: String { get }
-    var heightText: String { get }
-    var weightText: String { get }
     var accountText: String { get }
     var changePasswordText: String { get }
     var protectYourAccountText: String { get }

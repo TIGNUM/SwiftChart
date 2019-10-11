@@ -51,11 +51,11 @@ extension MyQotAccountSettingsWorker {
     }
 
     var emailText: String {
-        return ScreenTitleService.main.localizedString(for: .MyProfileEmail)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_email_title)
     }
 
     var dateOfBirthText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_year_title)
     }
 
     var companyText: String {
@@ -64,14 +64,6 @@ extension MyQotAccountSettingsWorker {
 
     var personalDataText: String {
         return ScreenTitleService.main.localizedString(for: .AccountSettingsPersonalData)
-    }
-
-    var heightText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsHeight)
-    }
-
-    var weightText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsWeight)
     }
 
     var accountText: String {
