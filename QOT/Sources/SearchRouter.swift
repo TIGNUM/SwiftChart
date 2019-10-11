@@ -23,9 +23,6 @@ final class SearchRouter {
 extension SearchRouter: SearchRouterInterface {
 
     func handleSelection(searchResult: Search.Result) {
-        if searchResult.displayType == .pdf, let url = searchResult.mediaURL {
-            searchViewController?.showPDFReader(withURL: url, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
-        }
         if let contentItemID = searchResult.contentItemID, let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         } else if let contentCollectionID = searchResult.contentID {
