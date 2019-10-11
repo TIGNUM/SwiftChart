@@ -15,7 +15,8 @@ protocol MyQotSensorsViewControllerInterface: class {
     func set(headerTitle: String, sensorTitle: String)
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool)
     func setOuraRing(title: String, status: String, labelStatus: String)
-    func setSensor(title: String, description: String)
+    func setHealthKitDescription(title: String, description: String)
+    func setOuraRingDescription(title: String, description: String)
 }
 
 protocol MyQotSensorsPresenterInterface {
@@ -23,7 +24,8 @@ protocol MyQotSensorsPresenterInterface {
     func set(headerTitle: String, sensorTitle: String)
     func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool)
     func setOuraRing(title: String, status: String, labelStatus: String)
-    func setSensor(title: String, description: String)
+    func setHealthKitDescription(title: String, description: String)
+    func setOuraRingDescription(title: String, description: String)
 }
 
 protocol MyQotSensorsInteractorInterface: Interactor {

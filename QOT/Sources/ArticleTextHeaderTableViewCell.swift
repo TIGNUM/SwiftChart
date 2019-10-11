@@ -11,7 +11,6 @@ import UIKit
 final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var categoryTitleLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -19,7 +18,6 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: ArticleViewController?
 
     // MARK: - Life Cycle
-
     func configure(articleHeader: Article.Header?) {
         guard let articleHeader = articleHeader else { return }
         if delegate?.section() == .About {
@@ -34,7 +32,6 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 }
 
 // MARK: - Private
-
 private extension ArticleTextHeaderTableViewCell {
     func setAuthor(author: String?) {
         if let author = author {
