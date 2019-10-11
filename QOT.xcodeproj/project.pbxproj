@@ -150,15 +150,6 @@
 		366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366D04F422C65EE30081258E /* FatigueTableViewCell.xib */; };
 		366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */; };
 		366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */; };
-		36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */; };
-		36718B4B224D20030042881E /* SubsriptionReminderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */; };
-		36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B44224D20030042881E /* SubsriptionReminderWorker.swift */; };
-		36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B45224D20030042881E /* SubsriptionReminderRouter.swift */; };
-		36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B46224D20030042881E /* SubsriptionReminderInterface.swift */; };
-		36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B47224D20030042881E /* SubsriptionReminderViewController.swift */; };
-		36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */; };
-		36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B49224D20030042881E /* SubsriptionReminderModel.swift */; };
-		36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */; };
 		36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36735C7A22C60C8A0041678D /* QDMAnswer+Ext.swift */; };
 		36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A4C20D3C4B700B55429 /* SigningInfoModel.swift */; };
 		36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A4D20D3C4B700B55429 /* SigningInfoRouter.swift */; };
@@ -1443,15 +1434,6 @@
 		366D04F422C65EE30081258E /* FatigueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FatigueTableViewCell.xib; sourceTree = "<group>"; };
 		366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationTableViewCell.swift; sourceTree = "<group>"; };
 		366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FoundationTableViewCell.xib; sourceTree = "<group>"; };
-		36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubsriptionReminderViewController.xib; sourceTree = "<group>"; };
-		36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderPresenter.swift; sourceTree = "<group>"; };
-		36718B44224D20030042881E /* SubsriptionReminderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderWorker.swift; sourceTree = "<group>"; };
-		36718B45224D20030042881E /* SubsriptionReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderRouter.swift; sourceTree = "<group>"; };
-		36718B46224D20030042881E /* SubsriptionReminderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderInterface.swift; sourceTree = "<group>"; };
-		36718B47224D20030042881E /* SubsriptionReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderViewController.swift; sourceTree = "<group>"; };
-		36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderInteractor.swift; sourceTree = "<group>"; };
-		36718B49224D20030042881E /* SubsriptionReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderModel.swift; sourceTree = "<group>"; };
-		36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderConfigurator.swift; sourceTree = "<group>"; };
 		36735C7A22C60C8A0041678D /* QDMAnswer+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMAnswer+Ext.swift"; sourceTree = "<group>"; };
 		36796A4C20D3C4B700B55429 /* SigningInfoModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoModel.swift; sourceTree = "<group>"; };
 		36796A4D20D3C4B700B55429 /* SigningInfoRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoRouter.swift; sourceTree = "<group>"; };
@@ -2951,22 +2933,6 @@
 			name = Signing;
 			sourceTree = "<group>";
 		};
-		36718B2E224CDB7B0042881E /* Subscription */ = {
-			isa = PBXGroup;
-			children = (
-				36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */,
-				36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */,
-				36718B46224D20030042881E /* SubsriptionReminderInterface.swift */,
-				36718B49224D20030042881E /* SubsriptionReminderModel.swift */,
-				36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */,
-				36718B45224D20030042881E /* SubsriptionReminderRouter.swift */,
-				36718B47224D20030042881E /* SubsriptionReminderViewController.swift */,
-				36718B44224D20030042881E /* SubsriptionReminderWorker.swift */,
-				36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */,
-			);
-			name = Subscription;
-			sourceTree = "<group>";
-		};
 		36796A4B20D3C4A800B55429 /* SigningInfo */ = {
 			isa = PBXGroup;
 			children = (
@@ -3046,7 +3012,6 @@
 				366AFD2320BEC8D200109F29 /* Signing */,
 				36E4CF1122BC51C7009A2DF7 /* Strategy Choice */,
 				3637666C223BFF1100C2C429 /* StrategyList */,
-				36718B2E224CDB7B0042881E /* Subscription */,
 				F99DF60D2292E38F00341DAB /* Tools */,
 				36E4B7A2219EBFB900049EE8 /* Tutorial */,
 			);
@@ -5900,7 +5865,6 @@
 				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
-				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
@@ -6468,7 +6432,6 @@
 				DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */,
 				8D04FA3523041E9C00AE7CA0 /* RegistrationAgeInteractor.swift in Sources */,
 				8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */,
-				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */,
@@ -6557,7 +6520,6 @@
 				75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */,
 				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,
 				75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */,
-				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
 				754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */,
 				CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */,
@@ -6671,7 +6633,6 @@
 				75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */,
 				36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */,
 				8D66E8A32305A0E500BE78C7 /* TrackSelectionConfigurator.swift in Sources */,
-				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				5F62BE92228AB60000852F7E /* MyQotSupportDetailsConfigurator.swift in Sources */,
 				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
@@ -6685,7 +6646,6 @@
 				754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
-				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */,
@@ -6743,7 +6703,6 @@
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
 				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
-				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
 				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
 				8D8AA76022FDCB6700B59A81 /* RegistrationPresenter.swift in Sources */,
 				F9A5C94822B7D06300AB2E94 /* PaymentReminderModel.swift in Sources */,
@@ -6838,7 +6797,6 @@
 				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
-				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
@@ -7062,7 +7020,6 @@
 				8D9F6D1D230E80EB00DCC241 /* WalkthroughWorker.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
-				36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */,
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
 				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */,
@@ -7209,7 +7166,6 @@
 				8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */,
 				F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */,
 				ACFB725222BB8126003D0BA3 /* CauseTableViewCell.swift in Sources */,
-				36718B4B224D20030042881E /* SubsriptionReminderPresenter.swift in Sources */,
 				75DC687222C11D7200FF183D /* MyToBeVisionRateConfigurator.swift in Sources */,
 				F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
