@@ -585,7 +585,7 @@ public extension AppTextKey {
     //DailyBrief_Customize_Sleep_Intro
     //DailyBrief_Customize_Sleep_Question
     //
-    //MySprintDetails_Info_Title_In_Progress
+    static let my_qot_my_sprint_detail_message_sprint_in_progress_title = AppTextKey("my_qot.my_sprint.detail.message_sprint_in_progress_title")
     //MySprintDetails_Info_Body_In_Progress
     //MySprintDetails_Header_SprintTasks
     //MySprintDetails_Header_MyPlan
@@ -701,7 +701,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_view_notification_title = AppTextKey("my_qot.my_profile.app_settings.view.notification_title")
     static let my_qot_my_profile_app_settings_view_notification_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.notification_subtitle")
     static let my_qot_my_profile_app_settings_view_permission_title = AppTextKey("my_qot.my_profile.app_settings.view.permission_title")
-    static let my_qot_my_profile_app_settings_view_permission_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.permission_subttile")
+    static let my_qot_my_profile_app_settings_view_permission_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.permission_subtitle")
     static let my_qot_my_profile_app_settings_view_sync_calendar_title = AppTextKey("my_qot.my_profile.app_settings.view.sync_calendar_title")
     static let my_qot_my_profile_app_settings_view_sync_calendar_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.sync_calendar_subtitle")
     static let my_qot_my_profile_app_settings_view_activity_trackers_title = AppTextKey("my_qot.my_profile.app_settings.view.activity_trackers_title")
@@ -796,8 +796,8 @@ public extension AppTextKey {
     static let shifter_result_view_vision_title = AppTextKey("shifter.result.view.vision_title")
     //mindset-shifter-checklist-save-button-text
     //
-    //No_Internet_Connection_Title
-    //No_Internet_Connection_Message
+    static let generic_alert_no_internet_title = AppTextKey("generic.alert.no_internet_title")
+    static let generic_alert_no_internet_body = AppTextKey("generic.alert.no_internet_body")
     //
     //PREPARE_RESULT_GREAT_WORK
     //
@@ -878,5 +878,4 @@ public extension AppTextKey {
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
     static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
-
 }
