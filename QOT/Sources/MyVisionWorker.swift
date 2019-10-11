@@ -86,6 +86,10 @@ final class MyVisionWorker {
         return AppTextService.get(AppTextKey.my_qot_my_tobevision_view_vision_subtitle)
     }()
 
+    lazy var emptyTBVTitlePlaceholder: String = {
+        return ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+    }()
+
     private func getNullStateSubtitle() {
         nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_null_state_subtitle)
     }

@@ -86,7 +86,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             swizzleUIViewController()
             swizzleUINavigationController()
             window = UIWindow(frame: UIScreen.main.bounds)
-            addBadgeObserver()
             if let url = launchOptions?[.url] as? URL {
                 RestartHelper.setRestartURL(url)
             }
@@ -148,7 +147,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
-            updateBadgeNumber()
             QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST
     }
@@ -201,7 +199,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 // MARK: - private
 
 private extension AppDelegate {
-
     func addBadgeObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(updateBadgeNumber),

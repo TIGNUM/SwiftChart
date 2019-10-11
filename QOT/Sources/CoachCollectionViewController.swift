@@ -44,7 +44,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }
 
     lazy var pageTitle: String? = {
-        return ScreenTitleService.main.localizedString(for: .knowPageTitle)
+        return AppTextService.get(AppTextKey.know_view_title)
     }()
 
     lazy var knowingNavigationController: KnowingNavigationController? = {

@@ -479,15 +479,16 @@ public extension AppTextKey {
     static let search_view_foundation_subtitle = AppTextKey("search.view.foundation_subtitle")
     //
     static let my_qot_my_profile_app_settings_synced_calendar_view_title = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.title")
+    static let my_qot_my_profile_app_settings_synced_calendar_view_subtitle = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.subtitle")
     //
     //main_know_title
     //main_daily_brief_title
     //main_my_qot_title
     //know-feed-level-01-page-title
-    //know-feed-level-01-section-title-strategies
-    //know-feed-level-01-section-subtitle-strategies
-    //know-feed-level-01-section-title-whats-hot
-    //know-feed-level-01-section-subtitle-whats-hot
+    static let know_view_55_impact_title = AppTextKey("know.view.55_impact_title")
+    static let know_view_learn_strategies_subtitle = AppTextKey("know.view.learn_strategies_subtitle")
+    static let know_view_whats_hot_title = AppTextKey("know.view.whats_hot_title")
+    static let know_view_curated_content_subtitle = AppTextKey("know.view.curated_content_subtitle")
     //
     //subscription_reminder_title
     //subscription_reminder_subtitle

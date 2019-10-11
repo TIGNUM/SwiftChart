@@ -65,6 +65,7 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         guard  shouldBeginEmailEntry else { return }
         // There needs to be a small delay or the textfield automatically resigns first responder
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) { [weak self] in
@@ -204,21 +205,25 @@ private extension OnboardingLoginViewController {
 private extension OnboardingLoginViewController {
 
     @IBAction func didTapVerifyEmail() {
+        trackUserEvent(.VERIFY_EMAIL, action: .TAP)
         emailField.textField.resignFirstResponder()
         emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
         interactor?.didTapVerify(email: emailField.text)
     }
 
     @objc func didTapSendCode() {
+        trackUserEvent(.SEND_CODE, action: .TAP)
         interactor?.didTapSendCode(to: emailField.text)
     }
 
     @IBAction func didTapGetHelp() {
+        trackUserEvent(.GET_HELP, action: .TAP)
         interactor?.didTapGetHelpButton()
     }
 
     // Superclass already has a `didTapBackButton()` method
     @IBAction func didTapBack() {
+        trackUserEvent(.PREVIOUS, action: .TAP)
         loadDigitTextFieldsDefaultUI()
         if didHideEmail {
             resetCodeInputPosition()

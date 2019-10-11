@@ -101,6 +101,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
+        articleTopNavBar.isHidden = true
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -108,10 +109,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         tableView.reloadData()
         navigationController?.navigationBar.shadowImage = UIImage()
         ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
-
-        if interactor?.alwaysHideTopBar ?? true {
-            articleTopNavBar.isHidden = true
-        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -260,7 +257,8 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData() {
-        reloadData(showNavigationBar: true)
+        let navigationBarIsHidden = interactor?.alwaysHideTopBar ?? true
+        reloadData(showNavigationBar: !navigationBarIsHidden)
     }
 
     func reloadData(showNavigationBar: Bool) {
@@ -438,8 +436,12 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return UITableViewCell()    //audio is only shown in the audio bar
+        case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.ic_audio_grey_light())
+            return cell
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
@@ -462,10 +464,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
                                            topText: attributedTopText)
-        case .video(_, let title, _, let placeholderURL, _, let duration):
-            let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
-            let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL, forcedColorMode: nil)
+        case .video( _, let title, let description, _, _, _):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.my_library_camera())
             return cell
         case .pdf(let title, let description, _, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -522,7 +525,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
              .articleRelatedStrategy: return 95
         case .articleNextUp: return 144
         case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return 0
+            return 95
         default: return UITableViewAutomaticDimension
         }
     }
@@ -531,13 +534,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .audio(_, _, _, _, let remoteURL, _, _):
-            let url = item.bundledAudioURL ?? remoteURL
-            delegate?.didTapMedia(withURL: url, in: self)
-        case .video(let remoteID, _, _, _, let videoURL, _):
-            qot_dal.ContentService.main.getContentItemById(remoteID) { [weak self] (contentItem) in
-                guard let item = contentItem else { return }
-                self?.stream(videoURL: videoURL, contentItem: item)
+        case .audio( let remoteId, _, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteId)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            }
+        case .video(let remoteID, _, _, _, _, _):
+            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteID)) {
+                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             showPDFReader(withURL: pdfURL, title: title, itemID: itemID)
@@ -653,6 +656,7 @@ extension ArticleViewController {
         constraintNavBar.constant = show ? 0 : -80
         UIView.animate(withDuration: 0.25) {
             self.view.layoutIfNeeded()
+            self.articleTopNavBar.isHidden = !show
         }
 
         if !show {

@@ -11,11 +11,11 @@ import qot_dal
 
 final class SyncedCalendarsWorker {
     lazy var viewSubtitle: String = {
-        return ScreenTitleService.main.localizedString(for: .syncedCalendars)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendar_view_title)
     }()
 
     lazy var viewTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .syncedCalendarsTitle)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendar_view_subtitle)
     }()
 
     lazy var skipButton: String = {
