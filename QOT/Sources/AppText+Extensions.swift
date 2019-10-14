@@ -379,7 +379,6 @@ public extension AppTextKey {
     static let my_library_my_sprints_view_my_sprints_title = AppTextKey("my_library.my_sprints.view.my_sprints_title")
     static let my_library_my_data_view_my_data_title = AppTextKey("my_library.my_data.view.my_data_title")
     static let my_library_my_tbv_view_my_tbv_title = AppTextKey("my_library.my_tbv.view.my_tbv_title")
-    //
     static let coach_qot_tools_view_header_title = AppTextKey("coach.qot_tools.view.header_title")
     static let coach_qot_tools_view_header_subtitle = AppTextKey("coach.qot_tools.view.header_subtitle")
     static let coach_qot_tools_view_perfomamce_mindset_title = AppTextKey("coach.qot_tools.view.perfomamce_mindset_title")
@@ -387,7 +386,6 @@ public extension AppTextKey {
     static let coach_qot_tools_view_performance_movement_title = AppTextKey("coach.qot_tools.view.performance_movement_title")
     static let coach_qot_tools_view_performance_recovery_title = AppTextKey("coach.qot_tools.view.performance_recovery_title")
     static let coach_qot_tools_view_performace_habituation_title = AppTextKey("coach.qot_tools.view.performace_habituation_title")
-    //
     static let coach_view_rule_your_compact_title = AppTextKey("coach.view.rule_your_compact_title")
     static let coach_view_your_next_step_title = AppTextKey("coach.view.your_next_step_title")
     static let coach_view_search_title = AppTextKey("coach.view.search_title")
@@ -400,7 +398,6 @@ public extension AppTextKey {
     static let coach_view_run_5_day_sprint_title = AppTextKey("coach.view.run_5_day_sprint_title")
     static let coach_view_be_ready_title = AppTextKey("coach.view.be_ready_title")
     static let coach_view_understand_your_struggle_title = AppTextKey("coach.view.understand_your_struggle_title")
-    //
     static let payment_view_header_title = AppTextKey("payment.view.header_title")
     static let payment_view_header_subtitle = AppTextKey("payment.view.header_subtitle")
     static let payment_view_header_title_expired = AppTextKey("payment.view.header_title_expired")
@@ -417,11 +414,6 @@ public extension AppTextKey {
     static let payment_view_data_subtitle = AppTextKey("payment.view.data_subtitle")
     static let payment_view_switch_account_subtitle = AppTextKey("payment.view.switch_account_subtitle")
     static let payment_view_footer_subtitle = AppTextKey("payment.view.footer_subtitle")
-    //
-    //tbv_headline_placeholder
-    //tbv_message_placeholder
-    // tbv_tooling_headline_placeholder
-    //
     static let my_qot_my_data_view_ir_title = AppTextKey("my_qot.my_data.view.ir_title")
     static let my_qot_my_data_view_heatmap_title = AppTextKey("my_qot.my_data.view.heatmap_title")
     static let my_qot_my_data_view_ir_body = AppTextKey("my_qot.my_data.view.ir_body")
@@ -429,12 +421,8 @@ public extension AppTextKey {
     static let my_qot_my_data_view_ir_button = AppTextKey("my_qot.my_data.view.ir_button")
     static let my_qot_my_data_view_ir_5_day_button = AppTextKey("my_qot.my_data.view.ir_5_day_button")
     static let my_qot_my_data_view_ir_average_title = AppTextKey("my_qot.my_data.view.ir_average_title")
-    //
     static let my_qot_my_data_view_heatmap_high_title = AppTextKey("my_qot.my_data.view.heatmap_high_title")
     static let my_qot_my_data_view_heatmap_low_title = AppTextKey("my_qot.my_data.view.heatmap_low_title")
-    //my_data_heatmap_red_color_title
-    //my_data_heatmap_blue_color_title
-    //
     static let my_qot_my_data_edit_title = AppTextKey("my_qot.my_data.edit.title")
     static let my_qot_my_data_edit_subtitle = AppTextKey("my_qot.my_data.edit.subtitle")
     static let my_qot_my_data_edit_sql_title = AppTextKey("my_qot.my_data.edit.sql_title")
@@ -445,7 +433,6 @@ public extension AppTextKey {
     static let my_qot_my_data_edit_five_dir_title = AppTextKey("my_qot.my_data.edit.five_dir_title")
     static let my_qot_my_data_edit_ir_title = AppTextKey("my_qot.my_data.edit.ir_title")
     static let my_qot_my_data_edit_from_healthkit_title = AppTextKey("my_qot.my_data.edit.from_healthkit_title")
-    //
     static let my_qot_my_data_info_sql_title = AppTextKey("my_qot.my_data.info.sql_title")
     static let my_qot_my_data_info_sqn_title = AppTextKey("my_qot.my_data.info.sqn_title")
     static let my_qot_my_data_info_ten_dl_title = AppTextKey("my_qot.my_data.info.ten_dl_title")
@@ -453,7 +440,6 @@ public extension AppTextKey {
     static let my_qot_my_data_info_five_drl_title = AppTextKey("my_qot.my_data.info.five_drl_title")
     static let my_qot_my_data_info_five_dir_title = AppTextKey("my_qot.my_data.info.five_dir_title")
     static let my_qot_my_data_info_ir_title = AppTextKey("my_qot.my_data.info.ir_title")
-    //
     static let my_qot_my_data_info_sql_subtitle = AppTextKey("my_qot.my_data.info.sql_subtitle")
     static let my_qot_my_data_info_sqn_subtitle = AppTextKey("my_qot.my_data.info.sqn_subtitle")
     static let my_qot_my_data_info_ten_dl_subtitle = AppTextKey("my_qot.my_data.info.ten_dl_subtitle")
@@ -461,14 +447,6 @@ public extension AppTextKey {
     static let my_qot_my_data_info_five_drl_subtitle = AppTextKey("my_qot.my_data.info.five_drl_subtitle")
     static let my_qot_my_data_info_five_dir_subtitle = AppTextKey("my_qot.my_data.info.five_dir_subtitle")
     static let my_qot_my_data_info_ir_subtitle = AppTextKey("my_qot.my_data.info.ir_subtitle")
-    //
-    //tbv_generator_alert_not_saved_title
-    //tbv_generator_alert_not_saved_message
-    //tbv_generator_alert_not_saved_button_title_cancel
-    //tbv_generator_alert_not_saved_button_title_default
-    //tbv_generator_alert_not_saved_button_title_destructive
-    //tbv_sharing
-    //
     static let search_suggestion_view_self_image_subtitle = AppTextKey("search_suggestion.view.self_image_subtitle")
     static let search_suggestion_view_daily_prep_subtitle = AppTextKey("search_suggestion.view.daily_prep_subtitle")
     static let search_suggestion_view_no_excuse_subtitle = AppTextKey("search_suggestion.view.no_excuse_subtitle")
@@ -484,192 +462,26 @@ public extension AppTextKey {
     static let search_suggestion_view_travel_subtitle = AppTextKey("search_suggestion.view.travel_subtitle")
     static let search_view_suggestion_title = AppTextKey("search.view.suggestion_title")
     static let search_view_foundation_subtitle = AppTextKey("search.view.foundation_subtitle")
-    //
     static let my_qot_my_profile_app_settings_synced_calendar_view_title = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.title")
     static let my_qot_my_profile_app_settings_synced_calendar_view_subtitle = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.subtitle")
-    static let know_view_know_title = AppTextKey("know.view.know_title")
-    static let daily_brief_view_daily_brief_title = AppTextKey("daily_brief.view.daily_brief_title")
-    static let my_qot_view_my_qot_title = AppTextKey("my_qot.view.my_qot_title")
-    //know-feed-level-01-page-title
     static let know_view_55_impact_title = AppTextKey("know.view.55_impact_title")
     static let know_view_learn_strategies_subtitle = AppTextKey("know.view.learn_strategies_subtitle")
     static let know_view_whats_hot_title = AppTextKey("know.view.whats_hot_title")
     static let know_view_curated_content_subtitle = AppTextKey("know.view.curated_content_subtitle")
-    //
-    //subscription_reminder_title
-    //subscription_reminder_subtitle
-    //subscription_reminder_subtitle_expired
-    //subscription_reminder_benefit_title_01
-    //subscription_reminder_benefit_subtitle_01
-    //subscription_reminder_benefit_title_02
-    //subscription_reminder_benefit_subtitle_02
-    //subscription_reminder_benefit_title_03
-    //subscription_reminder_benefit_subtitle_03
-    //subscription_reminder_benefit_title_04
-    //subscription_reminder_benefit_subtitle_04
-    //
     static let walkthrough_view_search_title = AppTextKey("walkthrough.view.search_title")
     static let walkthrough_view_coach_title = AppTextKey("walkthrough.view.coach_title")
     static let walkthrough_view_swipe_title = AppTextKey("walkthrough.view.swipe_title")
-    //Settings_Security_Terms_Title
-    //Settings_Security_Copyrights_Title
-    //
-    //Settings_SiriShortcuts_Title
-    //Settings_Calendar_Section_OnThisDevice_Header
-    //Settings_Calendar_Section_OnOtherDevices_Header
-    //SiriShortcuts_ToBeVision_Title
-    //SiriShortcuts_UpcomingEventPrep_Title
-    //SiriShortcuts_DailyPrep_Title
-    //SiriShortcuts_WhatsHotArticle_Title
-    //SiriShortcuts_ToBeVision_suggestedInvocation
-    //SiriShortcuts_WhatsHotArticle_suggestedInvocation
-    //SiriShortcuts_UpcomingEvent_suggestedInvocation
-    //SiriShortcuts_DailyPrep_suggestedInvocation
-    //Button_Title_Skip
-    //Button_Title_Start
-    //Button_Title_Allow
-    //
-    //Search_Filter_All
-    //Search_Filter_Audio
-    //Search_Filter_Video
-    //Search_Filter_Read
-    //Search_Filter_Listen
-    //Search_Filter_Watch
-    //Search_Filter_Tools
-    //Search_Placeholder
-    //
-    //MyQot_Profile_Subtitle
-    //MyQot_Sprints_Subtitle
-    //MyQot_title
-    //MyQot_header_title
-    //Choice_View_Header_Edit_Prepare
-    //Header_Title_Exclusive_Content
-    //Header_Title_Strategies
-    //Header_Title_Suggested_Strategies
-    //
-    //Fatigue_Symptom_Cognitive
-    //Fatigue_Symptom_Emotional
-    //Fatigue_Symptom_Physical
-    //Fatigue_Symptom_General
-    //
-    //MyQot_Vision_Morethan
-    //MyQot_Vision_MonthsSince
-    //MyQot_Vision_LessThan
-    //MyQot_Vision_NoVision
-    //
     static let my_qot_my_data_view_data_impact_title = AppTextKey("my_qot.my_data.view.data_impact_title")
-    //
-    //Button_Title_Pick
-    //Button_Title_Add_Event
-    //Button_Title_Save_Continue
-    //Button_Title_Save_Changes
-    //Button_Title_Remove
-    //Button_Title_Cancel
-    //Button_Title_YesContinue
     static let generic_view_done_title = AppTextKey("generic.view.done_title")
-    //
-    //Audio_FullScreen_Button_Download
-    //Audio_FullScreen_Button_Waiting
-    //Audio_FullScreen_Button_Downloading
-    //Audio_FullScreen_Button_Downloaded
-    //
-    //RateViewController_doneButton
-    //RateViewController_skipButton
-    //RateViewController_rateMyTBVButton
-    //TBVTrackerViewController_doneButton
-    //TBVDataGraphBarNextDurationViewCell_inFourWeeks
     static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
     static let my_qot_my_tobevision_edit_description_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.description_placeholder_title")
     static let my_qot_my_tobevision_view_headline_title = AppTextKey("my_qot.my_tobevision.view.headline_title")
     static let my_qot_profile_view_alert_button_title = AppTextKey("my_qot.profile.view.alert_button_title")
     static let my_qot_profile_view_alert_title = AppTextKey("my_qot.profile.view.alert_title")
     static let my_qot_profile_view_alert_body = AppTextKey("my_qot.profile.view.alert_body")
-    //
-    //QuestionnaireViewController_doneButton
-    //DailyCheckIn_SleepQuantity_Value_Suffix
-    //DailyCheckIn_SleepQuantity_Value_Suffix_Max
-    //DailyBrief_Customize_Sleep_Intro
-    //DailyBrief_Customize_Sleep_Question
-    //
     static let my_qot_my_sprint_detail_message_sprint_in_progress_title = AppTextKey("my_qot.my_sprint.detail.message_sprint_in_progress_title")
-    //MySprintDetails_Info_Body_In_Progress
-    //MySprintDetails_Header_SprintTasks
-    //MySprintDetails_Header_MyPlan
-    //MySprintDetails_Header_MyNotes
-    //MySprintDetails_Header_Highlights
-    //MySprintDetails_Header_Strategies
-    //MySprintDetails_Header_Benefits
-    //MySprintDetails_Info_Text_Upcoming
-    //MySprintDetails_Info_Text_Active
-    //MySprintDetails_Info_Text_Notes
-    //MySprintDetails_Button_Takeaways
-    //MySprintDetails_Button_Cancel
-    //MySprintDetails_Button_Continue
-    //MySprintDetails_Button_StartSprint
-    //MySprintDetails_Button_PauseSprint
-    //MySprintDetails_Button_YesPause
-    //MySprintDetails_Button_ContinueSprint
-    //MySprintDetails_Button_RestartSprint
-    //MySprintDetails_Info_Title_PauseSprint
-    //MySprintDetails_Info_Title_ReplanSprint
     static let my_qot_my_sprint_detail_sprint_in_process_title = AppTextKey("my_qot.my_sprint.detail.sprint_in_process_title")
-    //MySprintDetails_Info_Message_PauseSprint
-    //MySprintDetails_Info_Message_ReplanSprint
-    //MySprintDetails_Info_Message_SprintInProgress
-    //MySprintDetailsNotes_Button_Save
-    //MySprintDetailsNotes_Button_Leave
-    //MySprintDetailsNotes_Info_Title_Leave
-    //MySprintDetailsNotes_Info_Message_Leave
-    //
-    //Onboarding_Error_General
-    //Onboarding_Login_Email_Description
-    //Onboarding_Login_Email_Error
-    //Onboarding_Login_Email_UserDoesntExistError
-    //Onboarding_Login_Email_GenericError
-    //Onboarding_Login_Code_Description
-    //Onboarding_Login_Code_Error
-    //Onboarding_Login_Button_GetHelp
-    //Onboarding_Login_Button_ResendCode
-    //Onboarding_CreateInfo_Button_CreateAccount
-    //Onboarding_CreateInfo_Text_Description
-    //Onboarding_Registration_Email_Title
-    //Onboarding_Registration_Email_Button_Next
-    //Onboarding_Registration_Email_Error
-    //Onboarding_Registration_Email_Error_ExistingEmail_Title
-    //Onboarding_Registration_Email_Error_ExistingEmail
-    //Onboarding_Registration_Email_Error_UnableToRegister
-    //Onboarding_Registration_Email_Button_Yes
-    //Onboarding_Registration_Email_Button_No
-    //Onboarding_Registration_Code_Title
-    //Onboarding_Registration_Code_Description
-    //Onboarding_Registration_Code_Disclaimer
-    //Onboarding_Registration_Code_DisclaimerTermsPlaceholder
-    //Onboarding_Registration_Code_DisclaimerPrivacyPlaceholder
-    //Onboarding_Registration_Code_CodeInfo
-    //Onboarding_Registration_Code_ChangeEmail
-    //Onboarding_Registration_Code_SendAgain
-    //Onboarding_Registration_Code_Help
-    //Onboarding_Registration_Code_CodeError
-    //Onboarding_Registration_Code_SendCodeError
-    //Onboarding_Registration_Names_Title
-    //Onboarding_Registration_Names_Name
-    //Onboarding_Registration_Names_Surname
-    //Onboarding_Registration_Names_Mandatory
-    //Onboarding_Registration_Names_NextTitle
-    //Onboarding_Registration_Age_Title
-    //Onboarding_Registration_Age_Description
-    //Onboarding_Registration_Age_Restriction
-    //Onboarding_Registration_Age_NextTitle
     static let create_account_general_error_title = AppTextKey("create_account.general.error_title")
-    //Onboarding_Registration_LocationPermission_Title
-    //Onboarding_Registration_LocationPermission_Description
-    //Onboarding_Registration_LocationPermission_Button_Skip
-    //Onboarding_Registration_LocationPermission_Button_Allow
-    //Onboarding_Registration_LocationPermission_Alert_Message
-    //Onboarding_Registration_LocationPermission_Alert_Settings
-    //Onboarding_Registration_LocationPermission_Alert_Skip
-    //Onboarding_Registration_TrackSelection_Button_FastTrack
-    //Onboarding_Registration_TrackSelection_Button_GuidedTrack
     static let login_alert_device_alert_title = AppTextKey("login.alert.device_alert_title")
     static let login_alert_device_alert_message = AppTextKey("login.alert.device_alert_message")
     static let login_alert_device_got_it_button = AppTextKey("login.alert.device_got_it_button")
@@ -684,23 +496,17 @@ public extension AppTextKey {
     static let my_qot_my_profile_about_tignum_view_privacy_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.privacy_subtitle")
     static let my_qot_my_profile_about_tignum_view_conditions_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.conditions_subtitle")
     static let my_qot_my_profile_about_tignum_view_copyright_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.copyright_subtitle")
-    //
     static let my_qot_my_profile_account_settings_view_title = AppTextKey("my_qot.my_profile.account_settings.view.title")
     static let my_qot_my_profile_account_settings_view_contact_title = AppTextKey("my_qot.my_profile.account_settings.view.contact_title")
-    //account_settings_email
-    //account_settings_company
     static let my_qot_my_profile_account_settings_view_phone_title = AppTextKey("my_qot.my_profile.account_settings.view.phone_title")
-    //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
     static let my_qot_my_profile_account_settings_view_personal_data_title = AppTextKey("my_qot.my_profile.account_settings.view.personal_data_title")
     static let my_qot_my_profile_account_settings_view_height_title = AppTextKey("my_qot.my_profile.account_settings.view.height_title")
-    //account_settings_weight
     static let my_qot_my_profile_account_settings_view_account_title = AppTextKey("my_qot.my_profile.account_settings.view.account_title")
     static let my_qot_my_profile_account_settings_view_change_password_title = AppTextKey("my_qot.my_profile.account_settings.view.change_password_title")
     static let my_qot_my_profile_account_settings_view_protect_your_account_title = AppTextKey("my_qot.my_profile.account_settings.view.protect_your_account_title")
     static let my_qot_my_profile_account_settings_view_logout_title = AppTextKey("my_qot.my_profile.account_settings.view.logout_title")
     static let my_qot_my_profile_account_settings_view_deleting_your_account_title = AppTextKey("my_qot.my_profile.account_settings.view.deleting_your_account_title")
-    //
     static let my_qot_my_profile_app_settings_view_title = AppTextKey("my_qot.my_profile.app_settings.view.title")
     static let my_qot_my_profile_app_settings_view_general_settings_title = AppTextKey("my_qot.my_profile.app_settings.view.general_settings_title")
     static let my_qot_my_profile_app_settings_view_custom_settings_title = AppTextKey("my_qot.my_profile.app_settings.view.custom_settings_title")
@@ -714,28 +520,13 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_view_activity_trackers_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.activity_trackers_subtitle")
     static let my_qot_my_profile_app_settings_view_siri_title = AppTextKey("my_qot.my_profile.app_settings.view.siri_title")
     static let my_qot_my_profile_app_settings_view_siri_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.siri_subtitle")
-    //
-    //coach_search // REMOVE ME
-    //coach_tools
-    //coach_sprint
-    //coach_event
-    //coach_challenge
-    //
     static let my_qot_my_profile_account_settings_edit_title = AppTextKey("my_qot.my_profile.account_settings.edit.title")
     static let my_qot_my_profile_account_settings_edit_personal_data_title = AppTextKey("my_qot.my_profile.account_settings.edit.personal_data_title")
     static let my_qot_my_profile_account_settings_edit_contact_title = AppTextKey("my_qot.my_profile.account_settings.edit.contact_title")
     static let my_qot_my_profile_account_settings_edit_name_title = AppTextKey("my_qot.my_profile.account_settings.edit.name_title")
     static let my_qot_my_profile_account_settings_edit_surname_title = AppTextKey("my_qot.my_profile.account_settings.edit.surname_title")
-    //edit_account_gender
     static let my_qot_my_profile_account_settings_edit_year_title = AppTextKey("my_qot.my_profile.account_settings.edit.year_title")
     static let my_qot_my_profile_account_settings_view_year_title = AppTextKey("my_qot.my_profile.account_settings.view.year_title")
-    //edit_account_height
-    //edit_account_weight
-    //edit_account_company
-    //edit_account_title
-    //edit_account_email
-    //edit_account_phone
-    //
     static let my_qot_my_profile_view_member_since_title = AppTextKey("my_qot.my_profile.view.member_since_title")
     static let my_qot_my_profile_view_my_profile_title = AppTextKey("my_qot.my_profile.view.my_profile_title")
     static let my_qot_my_profile_view_account_settings_title = AppTextKey("my_qot.my_profile.view.account_settings_title")
@@ -746,31 +537,22 @@ public extension AppTextKey {
     static let my_qot_my_profile_view_walkthrough_title = AppTextKey("my_qot.my_profile.view.walkthrough_title")
     static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
     static let my_qot_about_view_about_us_title = AppTextKey("my_qot.about.view.about_us_title")
-    //my_profile_my_library
     static let my_qot_my_profile_view_learn_more_title = AppTextKey("my_qot.my_profile.view.learn_more_title")
-    //
     static let my_qot_my_tobevision_view_syncing_title = AppTextKey("my_qot.my_tobevision.view.syncing_title")
     static let my_qot_my_tobevision_view_not_rated_title = AppTextKey("my_qot.my_tobevision.view.not_rated_title")
     static let my_qot_my_tobevision_view_null_state_title = AppTextKey("my_qot.my_tobevision.view.null_state_title")
     static let my_qot_my_tobevision_view_null_state_subtitle = AppTextKey("my_qot.my_tobevision.view.null_state_subtitle")
-    //myVision_visionTitle
     static let my_qot_my_tobevision_view_vision_subtitle = AppTextKey("my_qot.my_tobevision.view.vision_subtitle")
     static let my_qot_my_tobevision_edit_vision_subtitle = AppTextKey("my_qot.my_tobevision.edit.vision_subtitle")
-    //
     static let my_qot_my_profile_app_settings_activity_trackers_view_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.title")
     static let my_qot_my_profile_app_settings_activity_trackers_view_sensor_title = AppTextKey("my_qot.my_profile.app_settings.activity_trackers.view.sensor_title")
-    //activity_trackers_request_tracker
-    //
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.tobevision_title")
-    //siri_title_upcomingevent
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.whatshot_title")
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.daily_prep_title")
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_explanation_title = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.explanation_title")
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.tobevision_body")
-    //siri_suggestionphrase_upcomingevent
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.whatshot_body")
     static let my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_body = AppTextKey("my_qot.my_profile.app_settings.siri_shortcuts.view.daily_prep_body")
-    //
     static let my_qot_my_profile_support_view_support_title = AppTextKey("my_qot.my_profile.support.view.support_title")
     static let my_qot_my_profile_support_view_support_subtitle = AppTextKey("my_qot.my_profile.support.view.support_subtitle")
     static let my_qot_my_profile_support_view_feature_subtitle = AppTextKey("my_qot.my_profile.support.view.feature_subtitle")
@@ -789,11 +571,9 @@ public extension AppTextKey {
     static let my_qot_my_tbv_my_tbv_data_empty_header_description_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.header_description_title")
     static let my_qot_my_tbv_my_tbv_data_empty_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title")
     static let my_qot_my_tbv_my_tbv_data_empty_title_description_title = AppTextKey("my_qot.my_tbv.my_tbv_data.empty.title_description_title")
-    //
     static let my_qot_my_tbv_my_tbv_data_view_tracker_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.tracker_title")
     static let my_qot_my_tbv_my_tbv_data_view_tracker_subtitle = AppTextKey("my_qot.my_tbv.my_tbv_data.view.tracker_subtitle")
     static let my_qot_my_tbv_my_tbv_data_view_graph_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.graph_title")
-    //
     static let shifter_result_view_header_title = AppTextKey("shifter.result.view.header_title")
     static let shifter_result_view_header_subtitle = AppTextKey("shifter.result.view.header_subtitle")
     static let shifter_result_view_trigger_title = AppTextKey("shifter.result.view.trigger_title")
@@ -802,17 +582,13 @@ public extension AppTextKey {
     static let shifter_result_view_neg_to_pos_low_title = AppTextKey("shifter.result.view.neg_to_pos_low_title")
     static let shifter_result_view_neg_to_pos_high_title = AppTextKey("shifter.result.view.neg_to_pos_high_title")
     static let shifter_result_view_vision_title = AppTextKey("shifter.result.view.vision_title")
-    //mindset-shifter-checklist-save-button-text
-    //
     static let generic_alert_no_internet_title = AppTextKey("generic.alert.no_internet_title")
     static let generic_alert_no_internet_body = AppTextKey("generic.alert.no_internet_body")
     static let prepare_results_view_great_work_title = AppTextKey("prepare.results.view.great_work_title")
-    //
     static let coach_preparation_view_button_title_remove = AppTextKey("coach.preparation.view.button_title_remove")
     static let coach_preparation_view_button_title_keep_up = AppTextKey("coach.preparation.view.button_title_keep_up")
     static let coach_preparation_view_title_removed = AppTextKey("coach.preparation.view.title_removed")
     static let coach_preparation_view_body_removed = AppTextKey("coach.preparation.view.body_removed")
-    //
     static let ARTICLE_DETAIL = AppTextKey("ARTICLE_DETAIL")
     static let ASKPERMISSION_CALENDAR = AppTextKey("ASKPERMISSION_CALENDAR")
     static let ASKPERMISSION_CALENDAR_SETTINGS = AppTextKey("ASKPERMISSION_CALENDAR_SETTINGS")
@@ -885,5 +661,4 @@ public extension AppTextKey {
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
     static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
-
 }
