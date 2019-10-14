@@ -403,14 +403,20 @@ public extension AppTextKey {
     //
     static let payment_view_header_title = AppTextKey("payment.view.header_title")
     static let payment_view_header_subtitle = AppTextKey("payment.view.header_subtitle")
+    static let payment_view_header_title_expired = AppTextKey("payment.view.header_title_expired")
+    static let payment_view_header_subtitle_expired = AppTextKey("payment.view.header_subtitle_expired")
     static let payment_view_prepared_title = AppTextKey("payment.view.prepared_title")
     static let payment_view_impact_title = AppTextKey("payment.view.impact_title")
     static let payment_view_grow_title = AppTextKey("payment.view.grow_title")
     static let payment_view_data_title = AppTextKey("payment.view.data_title")
+    static let payment_view_switch_account_title = AppTextKey("payment.view.switch_account_title")
+    static let payment_view_footer_title = AppTextKey("payment.view.footer_title")
     static let payment_view_prepared_subtitle = AppTextKey("payment.view.prepared_subtitle")
     static let payment_view_impact_subtitle = AppTextKey("payment.view.impact_subtitle")
     static let payment_view_grow_subtitle = AppTextKey("payment.view.grow_subtitle")
     static let payment_view_data_subtitle = AppTextKey("payment.view.data_subtitle")
+    static let payment_view_switch_account_subtitle = AppTextKey("payment.view.switch_account_subtitle")
+    static let payment_view_footer_subtitle = AppTextKey("payment.view.footer_subtitle")
     //
     //tbv_headline_placeholder
     //tbv_message_placeholder

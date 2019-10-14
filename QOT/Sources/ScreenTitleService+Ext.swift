@@ -54,61 +54,6 @@ extension ScreenTitleService {
     }
 }
 
-// MARK: - Payment
-
-extension ScreenTitleService {
-
-    func paymentSectionTitles(for paymentItem: PaymentSection) -> String? {
-        switch paymentItem {
-        case .prepared:
-            return localizedString(for: .paymentPrepareSectionTitle)
-        case .impact:
-            return localizedString(for: .paymentImpactSectionTitle)
-        case .grow:
-            return localizedString(for: .paymentGrowSectionTitle)
-        case .data:
-            return localizedString(for: .paymentDataSectionTitle)
-        case .switchAccount:
-            return localizedString(for: .paymentSwitchAccountTitle)
-        case .footer:
-            return localizedString(for: .paymentContactInfoTitle)
-        }
-    }
-
-    func paymentSectionSubtitles(for paymentItem: PaymentSection) -> String? {
-        switch paymentItem {
-        case .prepared:
-            return localizedString(for: .paymentPrepareSectionSubtitle)
-        case .impact:
-            return localizedString(for: .paymentImpactSectionSubtitle)
-        case .grow:
-            return localizedString(for: .paymentGrowSectionSubtitle)
-        case .data:
-            return localizedString(for: .paymentDataSectionSubtitle)
-        case .switchAccount:
-            return localizedString(for: .paymentSwitchAccountButtonTitle)
-        case .footer:
-            return localizedString(for: .paymentContactButtonTitle)
-        }
-    }
-
-    func paymentHeaderTitle() -> String? {
-        return localizedString(for: .paymentHeaderTitle)
-    }
-
-    func paymentHeaderSubtitle() -> String? {
-        return localizedString(for: .paymentHeaderSubtitle)
-    }
-
-    func paymentExpiredHeaderTitle() -> String? {
-        return localizedString(for: .paymentHeaderExpiredTitle)
-    }
-
-    func paymentExpiredHeaderSubtitle() -> String? {
-        return localizedString(for: .paymentHeaderExpiredSubtitle)
-    }
-}
-
 // MARK: - My Qot
 
 extension ScreenTitleService {
