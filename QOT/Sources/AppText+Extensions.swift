@@ -329,7 +329,7 @@ public extension AppTextKey {
     static let my_qot_tbv_questionaire_view_rate_never_title = AppTextKey("my_qot.tbv.questionaire.view.rate_never_title")
     static let my_qot_tbv_questionaire_view_rate_sometimes_title = AppTextKey("my_qot.tbv.questionaire.view.rate_sometimes_title")
     static let my_qot_tbv_questionaire_view_rate_always_title = AppTextKey("my_qot.tbv.questionaire.view.rate_always_title")
-    static let account_settings_account_settings_view_performance_title = AppTextKey("account_settings_account_settings.view.performance_title")
+    static let know_strategy_view_performance_title = AppTextKey("know_strategy.view.performance_title")
     static let know_article_view_mark_as_read_title = AppTextKey("know.article.view.mark_as_read_title")
     static let know_article_view_mark_as_unread_title = AppTextKey("know.article.view.mark_as_unread_title")
     static let coach_prepare_alert_calendar_not_synced_body = AppTextKey("coach.prepare.alert.calendar_not_synced_body")
