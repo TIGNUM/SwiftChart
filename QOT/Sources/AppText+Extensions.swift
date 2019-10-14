@@ -23,6 +23,7 @@ import qot_dal
 
 public extension AppTextKey {
     //Static lets
+    //Static lets
     static let daily_brief_good_to_know_title = AppTextKey("daily_brief.good_to_know.title")
     static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
     static let my_qot_my_profile_app_settings_view_notifications_title = AppTextKey("my_qot.my_profile.app_settings.view.notifications_title")
@@ -687,19 +688,19 @@ public extension AppTextKey {
     //
     static let my_qot_my_profile_account_settings_view_title = AppTextKey("my_qot.my_profile.account_settings.view.title")
     static let my_qot_my_profile_account_settings_view_contact_title = AppTextKey("my_qot.my_profile.account_settings.view.contact_title")
-    static let _view_email_title = AppTextKey(".view.email_title")
-    static let _view_company_title = AppTextKey(".view.company_title")
+    //account_settings_email
+    //account_settings_company
     static let my_qot_my_profile_account_settings_view_phone_title = AppTextKey("my_qot.my_profile.account_settings.view.phone_title")
     //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
     static let my_qot_my_profile_account_settings_view_personal_data_title = AppTextKey("my_qot.my_profile.account_settings.view.personal_data_title")
     static let my_qot_my_profile_account_settings_view_height_title = AppTextKey("my_qot.my_profile.account_settings.view.height_title")
     //account_settings_weight
-    //account_settings_account
-    //account_settings_change_password
-    //account_settings_protect_your_account
+    static let my_qot_my_profile_account_settings_view_account_title = AppTextKey("my_qot.my_profile.account_settings.view.account_title")
+    static let my_qot_my_profile_account_settings_view_change_password_title = AppTextKey("my_qot.my_profile.account_settings.view.change_password_title")
+    static let my_qot_my_profile_account_settings_view_protect_your_account_title = AppTextKey("my_qot.my_profile.account_settings.view.protect_your_account_title")
     static let my_qot_my_profile_account_settings_view_logout_title = AppTextKey("my_qot.my_profile.account_settings.view.logout_title")
-    static let my_qot_my_profile_account_settings_view_logout_subtitle = AppTextKey("my_qot.my_profile.account_settings.view.logout_subtitle")
+    static let my_qot_my_profile_account_settings_view_deleting_your_account_title = AppTextKey("my_qot.my_profile.account_settings.view.deleting_your_account_title")
     //
     static let my_qot_my_profile_app_settings_view_title = AppTextKey("my_qot.my_profile.app_settings.view.title")
     static let my_qot_my_profile_app_settings_view_general_settings_title = AppTextKey("my_qot.my_profile.app_settings.view.general_settings_title")
@@ -745,6 +746,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_view_support_title = AppTextKey("my_qot.my_profile.view.support_title")
     static let my_qot_my_profile_view_walkthrough_title = AppTextKey("my_qot.my_profile.view.walkthrough_title")
     static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
+    static let my_qot_about_view_about_us_title = AppTextKey("my_qot.about.view.about_us_title")
     //my_profile_my_library
     static let my_qot_my_profile_view_learn_more_title = AppTextKey("my_qot.my_profile.view.learn_more_title")
     //

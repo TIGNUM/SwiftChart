@@ -43,11 +43,11 @@ final class MyQotAccountSettingsWorker {
 extension MyQotAccountSettingsWorker {
 
     var accountSettingsText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccountSettings)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title)
     }
 
     var contactText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsContact)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_contact_title)
     }
 
     var emailText: String {
@@ -55,7 +55,7 @@ extension MyQotAccountSettingsWorker {
     }
 
     var dateOfBirthText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_year_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_year_of_birth_title)
     }
 
     var companyText: String {
@@ -63,27 +63,27 @@ extension MyQotAccountSettingsWorker {
     }
 
     var personalDataText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsPersonalData)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_personal_data_title)
     }
 
     var accountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccount)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_account_title)
     }
 
     var changePasswordText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsChangePassword)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_change_password_title)
     }
 
     var protectYourAccountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsProtectYourAccount)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_protect_your_account_title)
     }
 
     var logoutQotText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsLogoutQot)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_logout_title)
     }
 
     var withoutDeletingAccountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsWithoutDeletingAccountText)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_deleting_your_account_title)
     }
 
     var changePasswordKey: String {
