@@ -13,7 +13,7 @@ final class WalkthroughSwipeWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return ScreenTitleService.main.localizedString(for: .WalkthroughSwipeText)
+        return AppTextService.get(AppTextKey.walkthrough_view_swipe_title)
     }()
 
     // MARK: - Init

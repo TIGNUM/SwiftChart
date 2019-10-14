@@ -329,7 +329,7 @@ public extension AppTextKey {
     static let my_qot_tbv_questionaire_view_rate_never_title = AppTextKey("my_qot.tbv.questionaire.view.rate_never_title")
     static let my_qot_tbv_questionaire_view_rate_sometimes_title = AppTextKey("my_qot.tbv.questionaire.view.rate_sometimes_title")
     static let my_qot_tbv_questionaire_view_rate_always_title = AppTextKey("my_qot.tbv.questionaire.view.rate_always_title")
-    static let know_strategy_view_performance_title = AppTextKey("know.strategy.view.performance_title")
+    static let account_settings_account_settings_view_performance_title = AppTextKey("account_settings_account_settings.view.performance_title")
     static let know_article_view_mark_as_read_title = AppTextKey("know.article.view.mark_as_read_title")
     static let know_article_view_mark_as_unread_title = AppTextKey("know.article.view.mark_as_unread_title")
     static let coach_prepare_alert_calendar_not_synced_body = AppTextKey("coach.prepare.alert.calendar_not_synced_body")
@@ -401,16 +401,16 @@ public extension AppTextKey {
     static let coach_view_be_ready_title = AppTextKey("coach.view.be_ready_title")
     static let coach_view_understand_your_struggle_title = AppTextKey("coach.view.understand_your_struggle_title")
     //
-    //payment_header_title
-    //payment_header_subtitle
-    //payment_prepared_section_title
-    //payment_impact_section_title
-    //payment_grow_section_title
-    //payment_data_section_title
-    //payment_prepared_section_subtitle
-    //payment_impact_section_subtitle
-    //payment_grow_section_subtitle
-    //payment_data_section_subtitle
+    static let payment_view_header_title = AppTextKey("payment.view.header_title")
+    static let payment_view_header_subtitle = AppTextKey("payment.view.header_subtitle")
+    static let payment_view_prepared_title = AppTextKey("payment.view.prepared_title")
+    static let payment_view_impact_title = AppTextKey("payment.view.impact_title")
+    static let payment_view_grow_title = AppTextKey("payment.view.grow_title")
+    static let payment_view_data_title = AppTextKey("payment.view.data_title")
+    static let payment_view_prepared_subtitle = AppTextKey("payment.view.prepared_subtitle")
+    static let payment_view_impact_subtitle = AppTextKey("payment.view.impact_subtitle")
+    static let payment_view_grow_subtitle = AppTextKey("payment.view.grow_subtitle")
+    static let payment_view_data_subtitle = AppTextKey("payment.view.data_subtitle")
     //
     //tbv_headline_placeholder
     //tbv_message_placeholder
@@ -503,8 +503,8 @@ public extension AppTextKey {
     //subscription_reminder_benefit_subtitle_04
     //
     static let walkthrough_view_search_title = AppTextKey("walkthrough.view.search_title")
-    //Walkthrough_Coach_Text
-    //Walkthrough_Swipe_Text
+    static let walkthrough_view_coach_title = AppTextKey("walkthrough.view.coach_title")
+    static let walkthrough_view_swipe_title = AppTextKey("walkthrough.view.swipe_title")
     //Settings_Security_Terms_Title
     //Settings_Security_Copyrights_Title
     //
@@ -573,8 +573,8 @@ public extension AppTextKey {
     //TBVTrackerViewController_doneButton
     //TBVDataGraphBarNextDurationViewCell_inFourWeeks
     static let my_qot_my_tobevision_edit_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.placeholder_title")
-    //MyToBeVisionDescriptionPlaceholder
-    //
+    static let my_qot_my_tobevision_edit_description_placeholder_title = AppTextKey("my_qot.my_tobevision.edit.description_placeholder_title")
+    static let my_qot_my_tobevision_view_headline_title = AppTextKey("my_qot.my_tobevision.view.headline_title")
     static let my_qot_profile_view_alert_button_title = AppTextKey("my_qot.profile.view.alert_button_title")
     static let my_qot_profile_view_alert_title = AppTextKey("my_qot.profile.view.alert_title")
     static let my_qot_profile_view_alert_body = AppTextKey("my_qot.profile.view.alert_body")
@@ -680,14 +680,14 @@ public extension AppTextKey {
     static let my_qot_my_profile_about_tignum_view_copyright_subtitle = AppTextKey("my_qot.my_profile.about_tignum.view.copyright_subtitle")
     //
     static let my_qot_my_profile_account_settings_view_title = AppTextKey("my_qot.my_profile.account_settings.view.title")
-    //account_settings_contact
-    //account_settings_email
-    //account_settings_company
-    //account_settings_phone
+    static let my_qot_my_profile_account_settings_view_contact_title = AppTextKey("my_qot.my_profile.account_settings.view.contact_title")
+    static let _view_email_title = AppTextKey(".view.email_title")
+    static let _view_company_title = AppTextKey(".view.company_title")
+    static let my_qot_my_profile_account_settings_view_phone_title = AppTextKey("my_qot.my_profile.account_settings.view.phone_title")
     //account_settings_gender
     static let my_qot_my_profile_account_settings_view_year_of_birth_title = AppTextKey("my_qot.my_profile.account_settings.view.year_of_birth_title")
-    //account_settings_personal_data
-    //account_settings_height
+    static let my_qot_my_profile_account_settings_view_personal_data_title = AppTextKey("my_qot.my_profile.account_settings.view.personal_data_title")
+    static let my_qot_my_profile_account_settings_view_height_title = AppTextKey("my_qot.my_profile.account_settings.view.height_title")
     //account_settings_weight
     //account_settings_account
     //account_settings_change_password
@@ -801,10 +801,10 @@ public extension AppTextKey {
     //
     //PREPARE_RESULT_GREAT_WORK
     //
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_REMOVE_BUTTON_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_KEEP_BUTTON_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_DESCRIPTION
+    static let coach_preparation_view_button_title_remove = AppTextKey("coach.preparation.view.button_title_remove")
+    static let coach_preparation_view_button_title_keep_up = AppTextKey("coach.preparation.view.button_title_keep_up")
+    static let coach_preparation_view_title_removed = AppTextKey("coach.preparation.view.title_removed")
+    static let coach_preparation_view_body_removed = AppTextKey("coach.preparation.view.body_removed")
     //
     static let ARTICLE_DETAIL = AppTextKey("ARTICLE_DETAIL")
     static let ASKPERMISSION_CALENDAR = AppTextKey("ASKPERMISSION_CALENDAR")
