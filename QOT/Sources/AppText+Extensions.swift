@@ -716,7 +716,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_view_siri_title = AppTextKey("my_qot.my_profile.app_settings.view.siri_title")
     static let my_qot_my_profile_app_settings_view_siri_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.siri_subtitle")
     //
-    //coach_search // REMOVE ME
+    static let my_qot_my_profile_about_tignum_view_title = AppTextKey("my_qot.my_profile.about_tignum.view.title")
     //coach_tools
     //coach_sprint
     //coach_event

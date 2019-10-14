@@ -55,6 +55,6 @@ final class MyQotAboutUsWorker {
     }
 
     var aboutUsText: String {
-        return AppTextService.get(AppTextKey.my_qot_about_view_about_us_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title)
     }
 }
