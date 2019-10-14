@@ -54,49 +54,6 @@ extension ScreenTitleService {
     }
 }
 
-// MARK: - Coach
-
-extension ScreenTitleService {
-
-    func coachSectionTitles(for coachItem: CoachSection) -> String? {
-        switch coachItem {
-        case .search:
-            return localizedString(for: .coachSearchSectionTitle)
-        case .tools:
-            return localizedString(for: .coachApplyToolsSectionTitle)
-        case .sprint:
-            return localizedString(for: .coachPlanSprintSectionTitle)
-        case .event:
-            return localizedString(for: .coachPrepareEventSectionTitle)
-        case .challenge:
-            return localizedString(for: .coachSolveChallengeSectionTitle)
-        }
-    }
-
-    func coachSectionSubtitles(for coachItem: CoachSection) -> String? {
-        switch coachItem {
-        case .search:
-            return localizedString(for: .coachSearchSectionSubtitle)
-        case .tools:
-            return localizedString(for: .coachApplyToolsSectionSubtitle)
-        case .sprint:
-            return localizedString(for: .coachPlanSprintSectionSubtitle)
-        case .event:
-            return localizedString(for: .coachPrepareEventSectionSubtitle)
-        case .challenge:
-            return localizedString(for: .coachSolveChallengeSectionSubtitle)
-        }
-    }
-
-    func coachHeaderTitle() -> String? {
-        return localizedString(for: .coachHeaderTitle)
-    }
-
-    func coachHeaderSubtitle() -> String? {
-        return localizedString(for: .coachHeaderSubtitle)
-    }
-}
-
 // MARK: - Payment
 
 extension ScreenTitleService {
