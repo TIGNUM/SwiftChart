@@ -67,11 +67,11 @@ final class MyVisionWorker {
     }
 
     lazy var updateAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_alert_title)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_title)
     }()
 
     lazy var updateAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_alert_body)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_body)
     }()
 
     lazy var updateAlertEditTitle: String = {

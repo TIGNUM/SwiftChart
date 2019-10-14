@@ -87,7 +87,7 @@ final class ImagePickerController {
                                             self?.delegate?.deleteImage()
                                             self?.resetAlertViewAppearance()
         }
-        let cancelAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title),
+        let cancelAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.cancelSelectionEvent()
                                             self?.delegate?.cancelSelection()

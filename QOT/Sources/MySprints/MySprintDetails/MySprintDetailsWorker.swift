@@ -68,7 +68,7 @@ final class MySprintDetailsWorker {
     }()
 
     lazy var buttonCancel = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button)
     }()
 
     lazy var buttonContinue = {

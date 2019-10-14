@@ -173,7 +173,7 @@ extension ProfileSettingsViewController {
         case .label(_, _, let settingsType):
             switch settingsType {
             case .logout:
-                let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title))
+                let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button))
                 let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_logout_button)) { (_) in
                     ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()

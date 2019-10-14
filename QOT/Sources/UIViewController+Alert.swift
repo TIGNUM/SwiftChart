@@ -47,9 +47,9 @@ enum AlertType {
         case .custom(_, let message): return message
         case .message(let message): return message
         case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_body)
-        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_message_title)
+        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_title)
         case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_file)
-        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_message_title)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_title)
         case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_body)
         case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_photo_not_granted_body)
         case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_granted_body)
@@ -64,7 +64,7 @@ enum AlertType {
         switch self {
         case .changeNotifications,
              .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_cancel_button)
         default: return nil
         }
     }
@@ -82,7 +82,7 @@ enum AlertType {
         switch self {
         case .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_cancel_button)
         default: return nil
         }
     }
@@ -212,7 +212,7 @@ extension UIViewController {
 
     func showAlert(messageType: String) {
         let title = AppTextService.get(AppTextKey.generic_alert_custom_title)
-        let message = AppTextService.get(AppTextKey.generic_alert_unknown_message_custom_body).replacingOccurrences(of: "%@", with: messageType)
+        let message = AppTextService.get(AppTextKey.generic_alert_unknown_custom_body).replacingOccurrences(of: "%@", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
 }

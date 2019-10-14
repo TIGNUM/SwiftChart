@@ -15,7 +15,7 @@ final class TBVDataGraphBarNextDurationViewCell: UICollectionViewCell, Dequeueab
 
     var duration: String? {
         willSet {
-            durationlabel.text = AppTextService.get(AppTextKey.my_qot_my_tbv_view_next_duration_button_title)
+            durationlabel.text = AppTextService.get(AppTextKey.my_qot_my_tbv_view_next_duration_button)
             let degrees: Double = -90 //the value in degrees
             durationlabel.transform = CGAffineTransform(rotationAngle: CGFloat(degrees * .pi/180))
             durationlabel.translatesAutoresizingMaskIntoConstraints = true

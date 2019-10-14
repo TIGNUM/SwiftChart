@@ -40,7 +40,7 @@ final class DTSprintViewController: DTViewController {
                        stringValue: sprintInteractor?.getSelectedSprintTitle(),
                        valueType: .CONTENT,
                        action: .PRESS)
-        let cancelButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title),
+        let cancelButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_cancel_button),
                                                     buttonWidth: .Cancel,
                                                     action: #selector(didPressDimissInfoView),
                                                     backgroundColor: .carbonDark,

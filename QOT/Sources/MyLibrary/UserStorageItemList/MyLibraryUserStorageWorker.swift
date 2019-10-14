@@ -51,11 +51,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button)
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_delete_button_title)
+        return AppTextService.get(AppTextKey.generic_view_delete_button)
     }()
 
     lazy var continueTitle: String = {
@@ -67,11 +67,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelDownloadItemsAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_alert_items_cancel_download_alert_title)
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_cancel_download_title)
     }()
 
     lazy var cancelDownloadItemsAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_alert_items_cancel_download_alert_body)
+        return AppTextService.get(AppTextKey.my_qot_my_library_alert_cancel_download_body)
     }()
 
     lazy var removeItemsAlertTitle: String = {
@@ -97,15 +97,15 @@ final class MyLibraryUserStorageWorker {
     lazy var emtptyContentAlertTitle: String = {
         switch item.type {
         case .ALL:
-            return AppTextService.get(AppTextKey.my_qot_my_library_all_alert_title)
+            return AppTextService.get(AppTextKey.my_qot_my_library_all_view_title)
         case .BOOKMARKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_alert_title)
+            return AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_view_title)
         case .DOWNLOADS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_title)
+            return AppTextService.get(AppTextKey.my_qot_my_library_downloads_view_title)
         case .LINKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_links_alert_title)
+            return AppTextService.get(AppTextKey.my_qot_my_library_links_view_title)
         case .NOTES:
-            return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_title)
+            return AppTextService.get(AppTextKey.my_qot_my_library_notes_view_your_notes_title)
         }
     }()
 
@@ -148,14 +148,14 @@ final class MyLibraryUserStorageWorker {
         var icon: UIImage? = textIcon
         switch item.type {
         case .ALL:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_all_alert_subtitle)
+            text = AppTextService.get(AppTextKey.my_qot_my_library_all_view_subtitle)
             icon = nil
         case .BOOKMARKS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_alert_subtitle)
+            text = AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_view_subtitle)
         case .DOWNLOADS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_subtitle)
+            text = AppTextService.get(AppTextKey.my_qot_my_library_downloads_view_subtitle)
         case .LINKS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_links_alert_subtitle)
+            text = AppTextService.get(AppTextKey.my_qot_my_library_links_view_subtitle)
         case .NOTES:
             text = AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_subtitle)
             icon = nil

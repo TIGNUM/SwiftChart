@@ -62,7 +62,7 @@ final class StreamVideoWorker {
     }()
 
     lazy var cancelButtonTitle: String  = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button)
     }()
 
     lazy var yesContinueButtonTitle: String = {

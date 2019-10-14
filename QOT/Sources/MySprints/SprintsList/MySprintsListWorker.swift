@@ -40,11 +40,11 @@ final class MySprintsListWorker {
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button_title)
+        return AppTextService.get(AppTextKey.generic_view_cancel_button)
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_delete_button_title)
+        return AppTextService.get(AppTextKey.generic_view_delete_button)
     }()
 
     lazy var continueTitle: String = {

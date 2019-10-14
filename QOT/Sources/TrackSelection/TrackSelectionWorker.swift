@@ -15,11 +15,11 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return AppTextService.get(AppTextKey.track_info_view_title)
+        return AppTextService.get(AppTextKey.track_info_view_welcome_title)
     }()
 
     lazy var descriptionText: String = {
-        return AppTextService.get(AppTextKey.track_info_view_message_title)
+        return AppTextService.get(AppTextKey.track_info_view_welcome_body)
     }()
 
     lazy var fastTrackButton: String = {

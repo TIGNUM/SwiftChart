@@ -36,7 +36,7 @@ extension UIViewController {
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_cancel_button_title),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_cancel_button),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .clear,
@@ -44,7 +44,7 @@ extension UIViewController {
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_yes_continue_button_title),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_yes_continue_button),
                                     buttonWidth: .Continue,
                                     action: action,
                                     backgroundColor: .clear,
@@ -59,7 +59,7 @@ extension UIViewController {
     }
 
     func saveChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.navigation_bar_view_save_changes_button_title),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.navigation_bar_view_save_changes_button),
                                     buttonWidth: .SaveChanges,
                                     action: action,
                                     borderColor: .accent40)
