@@ -106,9 +106,30 @@ final class SearchWorker {
         // TODO: report search result.
     }
 
+    private func suggestions() -> [String] {
+        let keys: [AppTextKey] = [AppTextKey.search_suggestion_view_self_image_subtitle,
+                                  AppTextKey.search_suggestion_view_daily_prep_subtitle,
+                                  AppTextKey.search_suggestion_view_no_excuse_subtitle,
+                                  AppTextKey.search_suggestion_view_build_capacity_subtitle,
+                                  AppTextKey.search_suggestion_view_sleep_ritual_subtitle,
+                                  AppTextKey.search_suggestion_view_power_nap_subtitle,
+                                  AppTextKey.search_suggestion_view_mindset_shifter_subtitle,
+                                  AppTextKey.search_suggestion_view_reframe_subtitle,
+                                  AppTextKey.search_suggestion_view_breathing_subtitle,
+                                  AppTextKey.search_suggestion_view_hp_snacks_subtitle,
+                                  AppTextKey.search_suggestion_view_brain_performance_subtitle,
+                                  AppTextKey.search_suggestion_view_work_to_home_subtitle,
+                                  AppTextKey.search_suggestion_view_travel_subtitle]
+        var array: [String] = []
+        for key in keys {
+            array.append(AppTextService.get(key))
+        }
+        return array
+    }
+
     func suggestions() -> SearchSuggestions {
-        return SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),
-                                 suggestions: ScreenTitleService.main.searchSuggestions())
+        return SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_suggestion_title),
+                                 suggestions: suggestions())
     }
 
     func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void) {

@@ -13,10 +13,6 @@ import qot_dal
 
 extension ScreenTitleService {
 
-    func searchSuggestionsHeader() -> String {
-        return localizedString(for: Tags.searchSuggestionHeader)
-    }
-
     func searchSuggestions() -> [String] {
         var suggestions: [String] = []
         for tag in Tags.allCases where tag.rawValue.contains("search_suggestion") {

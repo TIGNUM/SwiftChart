@@ -469,20 +469,20 @@ public extension AppTextKey {
     //tbv_generator_alert_not_saved_button_title_destructive
     //tbv_sharing
     //
-    static let search_view_self_image_subtitle = AppTextKey("search.view.self_image_subtitle")
-    static let search_view_daily_prep_subtitle = AppTextKey("search.view.daily_prep_subtitle")
-    static let search_view_no_excuse_subtitle = AppTextKey("search.view.no_excuse_subtitle")
-    static let search_view_build_capacity_subtitle = AppTextKey("search.view.build_capacity_subtitle")
-    static let search_view_sleep_ritual_subtitle = AppTextKey("search.view.sleep_ritual_subtitle")
-    static let search_view_power_nap_subtitle = AppTextKey("search.view.power_nap_subtitle")
-    static let search_view_mindset_shifter_subtitle = AppTextKey("search.view.mindset_shifter_subtitle")
-    static let search_view_reframe_subtitle = AppTextKey("search.view.reframe_subtitle")
-    static let search_view_breathing_subtitle = AppTextKey("search.view.breathing_subtitle")
-    static let search_view_hp_snacks_subtitle = AppTextKey("search.view.hp_snacks_subtitle")
-    static let search_view_brain_performance_subtitle = AppTextKey("search.view.brain_performance_subtitle")
-    static let search_view_work_to_home_subtitle = AppTextKey("search.view.work_to_home_subtitle")
-    static let search_view_travel_subtitle = AppTextKey("search.view.travel_subtitle")
-    static let search_view_suggestion_subtitle = AppTextKey("search.view.suggestion_subtitle")
+    static let search_suggestion_view_self_image_subtitle = AppTextKey("search_suggestion.view.self_image_subtitle")
+    static let search_suggestion_view_daily_prep_subtitle = AppTextKey("search_suggestion.view.daily_prep_subtitle")
+    static let search_suggestion_view_no_excuse_subtitle = AppTextKey("search_suggestion.view.no_excuse_subtitle")
+    static let search_suggestion_view_build_capacity_subtitle = AppTextKey("search_suggestion.view.build_capacity_subtitle")
+    static let search_suggestion_view_sleep_ritual_subtitle = AppTextKey("search_suggestion.view.sleep_ritual_subtitle")
+    static let search_suggestion_view_power_nap_subtitle = AppTextKey("search_suggestion.view.power_nap_subtitle")
+    static let search_suggestion_view_mindset_shifter_subtitle = AppTextKey("search_suggestion.view.mindset_shifter_subtitle")
+    static let search_suggestion_view_reframe_subtitle = AppTextKey("search_suggestion.view.reframe_subtitle")
+    static let search_suggestion_view_breathing_subtitle = AppTextKey("search_suggestion.view.breathing_subtitle")
+    static let search_suggestion_view_hp_snacks_subtitle = AppTextKey("search_suggestion.view.hp_snacks_subtitle")
+    static let search_suggestion_view_brain_performance_subtitle = AppTextKey("search_suggestion.view.brain_performance_subtitle")
+    static let search_suggestion_view_work_to_home_subtitle = AppTextKey("search_suggestion.view.work_to_home_subtitle")
+    static let search_suggestion_view_travel_subtitle = AppTextKey("search_suggestion.view.travel_subtitle")
+    static let search_view_suggestion_title = AppTextKey("search.view.suggestion_title")
     static let search_view_foundation_subtitle = AppTextKey("search.view.foundation_subtitle")
     //
     static let my_qot_my_profile_app_settings_synced_calendar_view_title = AppTextKey("my_qot.my_profile.app_settings.synced_calendar.view.title")
@@ -885,4 +885,5 @@ public extension AppTextKey {
     static let TOBEVISION_EDIT = AppTextKey("TOBEVISION_EDIT")
     static let TOBEVISION_TRACKER_RESULTS = AppTextKey("TOBEVISION_TRACKER_RESULTS")
     static let TOBEVISION_TRACKER_TBVTRACKER = AppTextKey("TOBEVISION_TRACKER_TBVTRACKER")
+
 }
