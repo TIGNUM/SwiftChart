@@ -26,34 +26,6 @@ extension ScreenTitleService {
     }
 }
 
-// MARK: - Tools
-
-extension ScreenTitleService {
-
-    func toolSectionTitles(for toolItem: ToolSection) -> String? {
-        switch toolItem {
-        case .mindset:
-            return localizedString(for: .toolsMindsetSectionTitle)
-        case .nutrition:
-            return localizedString(for: .toolsNutritionSectionTitle)
-        case .movement:
-            return localizedString(for: .toolsMovementSectionTitle)
-        case .recovery:
-            return localizedString(for: .toolsRecoverySectionTitle)
-        case .habituation:
-            return localizedString(for: .toolsHabituationSectionTitle)
-        }
-    }
-
-    func toolsHeaderTitle() -> String? {
-        return localizedString(for: .toolsHeaderTitle)
-    }
-
-    func toolsHeaderSubtitle() -> String? {
-        return localizedString(for: .toolsHeaderSubtitle)
-    }
-}
-
 // MARK: - My Qot
 
 extension ScreenTitleService {
