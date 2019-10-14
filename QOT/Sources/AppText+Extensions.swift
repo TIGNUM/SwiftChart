@@ -746,7 +746,6 @@ public extension AppTextKey {
     static let my_qot_my_profile_view_support_title = AppTextKey("my_qot.my_profile.view.support_title")
     static let my_qot_my_profile_view_walkthrough_title = AppTextKey("my_qot.my_profile.view.walkthrough_title")
     static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
-    static let my_qot_my_profile_view_about_us_title = AppTextKey("my_qot.my_profile.view.about_us_title")
     //my_profile_my_library
     static let my_qot_my_profile_view_learn_more_title = AppTextKey("my_qot.my_profile.view.learn_more_title")
     //
