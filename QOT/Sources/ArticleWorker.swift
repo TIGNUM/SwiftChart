@@ -372,12 +372,12 @@ final class ArticleWorker {
 
     func contactSupportAttributtedString() -> NSAttributedString {
         let contactSupport = NSMutableAttributedString(attributedString:
-            ThemeText.articleContactSupportInfoTitle.attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_settings_support_view_support_contact_email_title) + "\n"))
+            ThemeText.articleContactSupportInfoTitle.attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_contact_email_title) + "\n"))
         // Contact support
         guard let emailAddress = contactSupportItems.first?.content else {
             return contactSupport
         }
-        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_settings_support_view_support_contact_email_link_title)))
+        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_contact_email_link_title)))
 
         return contactSupport
     }
