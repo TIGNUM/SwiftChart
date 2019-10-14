@@ -807,7 +807,7 @@ public extension AppTextKey {
     static let generic_alert_no_internet_title = AppTextKey("generic.alert.no_internet_title")
     static let generic_alert_no_internet_body = AppTextKey("generic.alert.no_internet_body")
     //
-    //PREPARE_RESULT_GREAT_WORK
+    static let prepare_results_view_great_work_title = AppTextKey("prepare.results.view.great_work_title")
     //
     static let coach_preparation_view_button_title_remove = AppTextKey("coach.preparation.view.button_title_remove")
     static let coach_preparation_view_button_title_keep_up = AppTextKey("coach.preparation.view.button_title_keep_up")

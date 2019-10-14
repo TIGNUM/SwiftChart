@@ -102,7 +102,7 @@ final class MyQotSiriShortcutsWorker {
     }
 
     var siriShortcutsHeaderText: String {
-        return ScreenTitleService.main.localizedString(for: .AppSettingsSiriShortcuts)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_title)
     }
 }
 
