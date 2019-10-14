@@ -52,7 +52,7 @@ extension UIViewController {
     }
 
     func saveButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_profile_settings_alert_save_button),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_profile_settings_alert_save_button),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .sand08)

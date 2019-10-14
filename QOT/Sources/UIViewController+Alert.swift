@@ -35,7 +35,7 @@ enum AlertType {
         case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_title)
         case .loginFailed: return AppTextService.get(AppTextKey.login_alert_failed_title)
         case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_title)
-        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_available_title)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_title)
         case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_title)
         case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_title)
         default: return nil
@@ -51,9 +51,9 @@ enum AlertType {
         case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_file)
         case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_message_title)
         case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_body)
-        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_photo_not_granted_body)
-        case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_granted_body)
-        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_camera_not_available_body)
+        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_photo_not_granted_body)
+        case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_granted_body)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body)
         case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_body)
         case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_body)
         default: return nil
@@ -73,7 +73,7 @@ enum AlertType {
         switch self {
         case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_open_settings_title)
         case .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_to_be_vision_alert_settings_title)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_settings_title)
         default: return AppTextService.get(AppTextKey.generic_alert_ok_button)
         }
     }

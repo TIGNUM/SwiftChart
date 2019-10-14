@@ -116,8 +116,8 @@ private extension SigningInfoViewController {
     }
 
     func setupButtons() {
-        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.singin_onboarding_view_button_log_in))
-        ThemableButton.signinInfo.apply(startButton, title: AppTextService.get(AppTextKey.singin_onboarding_view_button_register))
+        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.sign_in_onboarding_view_button_log_in))
+        ThemableButton.signinInfo.apply(startButton, title: AppTextService.get(AppTextKey.sign_in_onboarding_view_button_register))
     }
 }
 

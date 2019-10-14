@@ -23,7 +23,7 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
-        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_to_be_vision_rate_view_rate_button_title))
+        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_my_tbv_rate_view_rate_button_title))
         return button.barButton
     }()
     private let userService = qot_dal.UserService.main

@@ -171,7 +171,7 @@ private extension RegistrationInteractor {
         // Save ToBeVision
         if var tbv = cachedTBV {
             if tbv.headline?.isEmpty != false {
-                tbv.headline = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_headline_title)
+                tbv.headline = AppTextService.get(AppTextKey.my_qot_my_tbv_view_headline_title)
             }
             worker.updateToBeVision(with: tbv)
         }

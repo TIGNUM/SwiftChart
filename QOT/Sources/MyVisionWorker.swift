@@ -67,35 +67,35 @@ final class MyVisionWorker {
     }
 
     lazy var updateAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_tbv_alert_update_alert_title)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_alert_title)
     }()
 
     lazy var updateAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_tbv_alert_update_alert_body)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_alert_body)
     }()
 
     lazy var updateAlertEditTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_tbv_alert_edit_button)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_button)
     }()
 
     lazy var updateAlertCreateTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_tbv_alert_create_button)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_create_button)
     }()
 
     lazy var emptyTBVTextPlaceholder: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tobevision_view_vision_subtitle)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_view_vision_subtitle)
     }()
 
     lazy var emptyTBVTitlePlaceholder: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tobevision_edit_placeholder_title)
+        return AppTextService.get(AppTextKey.my_qot_my_tbv_edit_placeholder_title)
     }()
 
     private func getNullStateSubtitle() {
-        nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_null_state_subtitle)
+        nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tbv_view_null_state_subtitle)
     }
 
     private func getNullStateTitle() {
-        nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_null_state_title)
+        nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_view_null_state_title)
     }
 
     func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
@@ -174,11 +174,11 @@ final class MyVisionWorker {
     }
 
     func getSyncingText(_ dispatchGroup: DispatchGroup) {
-        syncingText = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_syncing_title)
+        syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_view_syncing_title)
     }
 
     func getNotRatedText(_ dispatchGroup: DispatchGroup) {
-        notRatedText = AppTextService.get(AppTextKey.my_qot_my_tobevision_view_not_rated_title)
+        notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_view_not_rated_title)
     }
 
     func updateRateButton() -> (String?, Bool?, Bool) {

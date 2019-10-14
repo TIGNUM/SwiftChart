@@ -71,17 +71,17 @@ final class ImagePickerController {
 
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_to_be_vision_edit_choose_picture_title),
+        let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_choose_picture_title),
                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
             self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
-        let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_to_be_vision_edit_take_a_picture_title),
+        let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_take_a_picture_title),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
             self?.handleOption(.camera)
             self?.resetAlertViewAppearance()
         }
-        let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_to_be_vision_edit_delete_photo_title),
+        let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_delete_photo_title),
                                          style: .destructive) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.deleteImageEvent()
                                             self?.delegate?.deleteImage()

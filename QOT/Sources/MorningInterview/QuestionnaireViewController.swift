@@ -208,8 +208,8 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_customize_title), to: customizeTargetTitle)
-            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_customize_body), to: labelCustomizeView)
+            ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_customize_title), to: customizeTargetTitle)
+            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_customize_body), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
             titleContainerHeight.constant = 500
@@ -337,7 +337,7 @@ extension QuestionnaireViewController {
         case .vision:
             if let question = questionText {
                 let combined = NSMutableAttributedString()
-                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_rate_yourself_body)))
+                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_rate_yourself_body)))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
@@ -447,7 +447,7 @@ extension QuestionnaireViewController {
             }
         } else {
             indexLabel.text = String(items - index)
-            var subtitles = [AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_rate_never_title), "", "", "", AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_rate_sometimes_title), "", "", "", "", AppTextService.get(AppTextKey.my_qot_tbv_questionaire_view_rate_always_title)]
+            var subtitles = [AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_rate_never_title), "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_rate_sometimes_title), "", "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_rate_always_title)]
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 

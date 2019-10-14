@@ -43,7 +43,7 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.controllerType == .tracker {
-            return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_to_be_vision_view_done_button_title),
+            return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_view_done_button_title),
                                          buttonWidth: .Done,
                                          action: #selector(doneAction),
                                          backgroundColor: .carbon,
