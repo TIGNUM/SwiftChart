@@ -937,7 +937,6 @@
 		B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */; };
 		B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */; };
 		B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */; };
-		B854ACF1230AA02D00FD007C /* ScreenTitleService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */; };
 		B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */; };
 		B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */; };
 		B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */; };
@@ -2199,7 +2198,6 @@
 		B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRootViewController.swift; sourceTree = "<group>"; };
 		B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
 		B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationContainer.swift; sourceTree = "<group>"; };
-		B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenTitleService+Ext.swift"; sourceTree = "<group>"; };
 		B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStoragePresenter.swift; sourceTree = "<group>"; };
 		B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageWorker.swift; sourceTree = "<group>"; };
 		B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageRouter.swift; sourceTree = "<group>"; };
@@ -3109,7 +3107,6 @@
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
-				B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -7111,7 +7108,6 @@
 				7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */,
-				B854ACF1230AA02D00FD007C /* ScreenTitleService+Ext.swift in Sources */,
 				F9D2BC2222D4969A00DBF2CC /* FromTignumCellViewModel.swift in Sources */,
 				9CF3BE55230190D40027D111 /* MeAtMyBestModelType.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
