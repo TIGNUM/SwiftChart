@@ -723,7 +723,7 @@ public extension AppTextKey {
     //coach_challenge
     //
     static let my_qot_my_profile_account_settings_edit_title = AppTextKey("my_qot.my_profile.account_settings.edit.title")
-    //edit_account_personal_data
+    static let my_qot_my_profile_account_settings_edit_personal_data_title = AppTextKey("my_qot.my_profile.account_settings.edit.personal_data_title")
     static let my_qot_my_profile_account_settings_edit_contact_title = AppTextKey("my_qot.my_profile.account_settings.edit.contact_title")
     static let my_qot_my_profile_account_settings_edit_name_title = AppTextKey("my_qot.my_profile.account_settings.edit.name_title")
     static let my_qot_my_profile_account_settings_edit_surname_title = AppTextKey("my_qot.my_profile.account_settings.edit.surname_title")

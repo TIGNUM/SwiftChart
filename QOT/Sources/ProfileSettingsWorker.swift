@@ -117,7 +117,7 @@ extension ProfileSettingsWorker {
 private extension ProfileSettingsWorker {
 
     func personalDataTitle() {
-        personalTxt = ScreenTitleService.main.localizedString(for: .MyProfilePersonalData)
+        personalTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title)
     }
 
     func contactTitle() {
