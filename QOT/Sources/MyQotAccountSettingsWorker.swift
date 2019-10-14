@@ -59,7 +59,7 @@ extension MyQotAccountSettingsWorker {
     }
 
     var companyText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsCompany)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_company_title)
     }
 
     var personalDataText: String {
