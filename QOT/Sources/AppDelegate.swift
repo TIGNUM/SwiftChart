@@ -80,7 +80,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 return true
             }
             isRunning = true
-            ScreenTitleService.main.load()
             _ = UserNotificationsManager.main
             setupProgressHud()
             swizzleUIViewController()

@@ -23,7 +23,6 @@ import qot_dal
 
 public extension AppTextKey {
     //Static lets
-    //Static lets
     static let daily_brief_good_to_know_title = AppTextKey("daily_brief.good_to_know.title")
     static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
     static let my_qot_my_profile_app_settings_view_notifications_title = AppTextKey("my_qot.my_profile.app_settings.view.notifications_title")
@@ -674,7 +673,7 @@ public extension AppTextKey {
     static let login_alert_device_alert_title = AppTextKey("login.alert.device_alert_title")
     static let login_alert_device_alert_message = AppTextKey("login.alert.device_alert_message")
     static let login_alert_device_got_it_button = AppTextKey("login.alert.device_got_it_button")
-    //
+    static let my_qot_my_profile_about_tignum_view_title = AppTextKey("my_qot.my_profile.about_tignum.view.title")
     static let my_qot_my_profile_about_tignum_view_qot_benefits_title = AppTextKey("my_qot.my_profile.about_tignum.view.qot_benefits_title")
     static let my_qot_my_profile_about_tignum_view_about_tignum_title = AppTextKey("my_qot.my_profile.about_tignum.view.about_tignum_title")
     static let my_qot_my_profile_about_tignum_view_privacy_title = AppTextKey("my_qot.my_profile.about_tignum.view.privacy_title")
@@ -716,7 +715,7 @@ public extension AppTextKey {
     static let my_qot_my_profile_app_settings_view_siri_title = AppTextKey("my_qot.my_profile.app_settings.view.siri_title")
     static let my_qot_my_profile_app_settings_view_siri_subtitle = AppTextKey("my_qot.my_profile.app_settings.view.siri_subtitle")
     //
-    static let my_qot_my_profile_about_tignum_view_title = AppTextKey("my_qot.my_profile.about_tignum.view.title")
+    //coach_search // REMOVE ME
     //coach_tools
     //coach_sprint
     //coach_event
@@ -781,7 +780,8 @@ public extension AppTextKey {
     static let my_qot_my_profile_support_view_tutorial_title = AppTextKey("my_qot.my_profile.support.view.tutorial_title")
     static let my_qot_my_profile_support_view_contact_support_title = AppTextKey("my_qot.my_profile.support.view.contact_support_title")
     static let my_qot_my_profile_support_view_faq_title = AppTextKey("my_qot.my_profile.support.view.faq_title")
-    //
+    static let my_qot_support_view_faq_title = AppTextKey("my_qot.support.view.faq_title")
+    static let my_qot_support_view_using_qot_title = AppTextKey("my_qot.support.view.using_qot_title")
     static let my_qot_my_tbv_my_tbv_data_view_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.title")
     static let my_qot_my_tbv_my_tbv_data_view_subtitle = AppTextKey("my_qot.my_tbv.my_tbv_data.view.subtitle")
     static let my_qot_my_tbv_my_tbv_data_view_my_tbv_title = AppTextKey("my_qot.my_tbv.my_tbv_data.view.my_tbv_title")
@@ -806,7 +806,6 @@ public extension AppTextKey {
     //
     static let generic_alert_no_internet_title = AppTextKey("generic.alert.no_internet_title")
     static let generic_alert_no_internet_body = AppTextKey("generic.alert.no_internet_body")
-    //
     static let prepare_results_view_great_work_title = AppTextKey("prepare.results.view.great_work_title")
     //
     static let coach_preparation_view_button_title_remove = AppTextKey("coach.preparation.view.button_title_remove")
