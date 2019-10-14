@@ -59,9 +59,9 @@ extension MyQotSupportDetailsWorker {
     var headerText: String {
         switch category {
         case .UsingQOT:
-            return AppTextService.get(AppTextKey.my_qot_support_view_using_qot_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_view_title)
         default:
-            return AppTextService.get(AppTextKey.my_qot_support_view_faq_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_support_faq_view_title)
         }
     }
 }
