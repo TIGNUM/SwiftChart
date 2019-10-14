@@ -801,10 +801,10 @@ public extension AppTextKey {
     //
     //PREPARE_RESULT_GREAT_WORK
     //
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_REMOVE_BUTTON_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_KEEP_BUTTON_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_TITLE
-    //DELETED_EVENT_OF_PREPARATION_POP_UP_DESCRIPTION
+    static let coach_preparation_view_button_title_remove = AppTextKey("coach.preparation.view.button_title_remove")
+    static let coach_preparation_view_button_title_keep_up = AppTextKey("coach.preparation.view.button_title_keep_up")
+    static let coach_preparation_view_title_removed = AppTextKey("coach.preparation.view.title_removed")
+    static let coach_preparation_view_body_removed = AppTextKey("coach.preparation.view.body_removed")
     //
     static let ARTICLE_DETAIL = AppTextKey("ARTICLE_DETAIL")
     static let ASKPERMISSION_CALENDAR = AppTextKey("ASKPERMISSION_CALENDAR")
