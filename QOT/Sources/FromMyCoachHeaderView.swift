@@ -34,7 +34,7 @@ final class FromMyCoachHeaderView: UIView {
         ThemeText.fromCoachTitle.apply(data.title.uppercased(), to: title)
         skeletonManager.addOtherView(coachImageView)
         coachImageView.setImage(url: data.imageUrl,
-                                skeletonManager: self.skeletonManager)
+                                skeletonManager: self.skeletonManager) { (_) in /* */}
         coachImageView.circle()
     }
 }

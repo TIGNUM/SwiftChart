@@ -238,7 +238,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image)
+        userImageView.setImage(url: tempImageURL, placeholder: userImageView.image) { (_) in /* */}
 
         removeGradients()
         addGradients(for: myVision)
@@ -309,7 +309,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         skeletonManager.addOtherView(userImageView)
         userImageView.setImage(url: tempImageURL,
                                placeholder: R.image.circlesWarning(),
-                               skeletonManager: self.skeletonManager)
+                               skeletonManager: self.skeletonManager) { (_) in /* */}
         RestartHelper.clearRestartRouteInfo()
         refreshBottomNavigationItems()
     }

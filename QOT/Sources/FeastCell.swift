@@ -34,7 +34,7 @@ final class FeastCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
         skeletonManager.addOtherView(feastImage)
         feastImage.setImage(url: URL(string: model.image ?? ""),
-                            skeletonManager: self.skeletonManager)
+                            skeletonManager: self.skeletonManager) { (_) in /* */}
         copyrightURL = model.copyright
         if copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0

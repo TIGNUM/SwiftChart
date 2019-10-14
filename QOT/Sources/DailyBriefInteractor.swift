@@ -241,7 +241,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         elements: strongSelf.createBeSpokeModel(beSpokeModelBucket: bucket)))
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
-                                                        elements: strongSelf.createDepatureInfo(depatureInfoBucket: bucket)))
+                                                        elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
+//                                                        elements: strongSelf.createDepatureInfo(depatureInfoBucket: bucket)))
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom,
                                                         elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
@@ -568,6 +569,18 @@ extension DailyBriefInteractor {
                                                text: text,
                                                image: collection.thumbnailURLString ?? "",
                                                copyright: copyright,
+                                               domainModel: depatureInfo)
+        departureInfoList.append(model)
+        return departureInfoList
+    }
+
+    func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureInfo: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var departureInfoList: [BaseDailyBriefViewModel] = []
+        let model = DepartureBespokeFeastModel(title: "Tilte of bucket",
+                                               subtitle: "Subtitle",
+                                               text: "Text",
+                                               image: "URL of image",
+                                               copyright: "blablabla",
                                                domainModel: depatureInfo)
         departureInfoList.append(model)
         return departureInfoList

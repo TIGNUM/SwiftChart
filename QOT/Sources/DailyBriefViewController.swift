@@ -158,7 +158,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
             case 8:
                 return getThoughtsCell(tableView, indexPath, nil)
             case 9:
-                return getDepartureInfoCell(tableView, indexPath, nil)
+                return getDepartureBespokeFeastCell(tableView, indexPath, nil)
+//                return getDepartureInfoCell(tableView, indexPath, nil)
             case 10:
                 return getAboutMeCell(tableView, indexPath, nil)
             case 11:
@@ -240,7 +241,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .BESPOKE?:
             return getBeSpokeCell(tableView, indexPath, bucketItem as? BeSpokeCellViewModel)
         case .DEPARTURE_INFO?:
-            return getDepartureInfoCell(tableView, indexPath, bucketItem as? DepartureInfoCellViewModel)
+              return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
+//            return getDepartureInfoCell(tableView, indexPath, bucketItem as? DepartureInfoCellViewModel)
         case .LEADERS_WISDOM?:
             return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
         case .FEAST_OF_YOUR_EYES?:
@@ -411,6 +413,15 @@ private extension DailyBriefViewController {
                              _ coachMessageModel: FromMyCoachCellViewModel?) -> UITableViewCell {
         let cell: FromMyCoachCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: coachMessageModel)
+        return cell
+    }
+
+    func getDepartureBespokeFeastCell(_ tableView: UITableView,
+                              _ indexPath: IndexPath,
+                              _ departureBespokeFeastModel: DepartureBespokeFeastModel?) -> UITableViewCell {
+        let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: departureBespokeFeastModel)
+        cell.delegate = self
         return cell
     }
 
@@ -734,6 +745,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+        tableView.registerDequeueable(DepartureBespokeFeastCell.self)
     }
 
     func scrollToSection(at: Int) {

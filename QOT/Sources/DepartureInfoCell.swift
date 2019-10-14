@@ -35,7 +35,7 @@ final class DepartureInfoCell: BaseDailyBriefCell {
         self.departureModel = model
         skeletonManager.addOtherView(departureImage)
         departureImage.setImage(url: URL(string: model.image ?? ""),
-                                skeletonManager: self.skeletonManager)
+                                skeletonManager: self.skeletonManager) { (_) in /* */}
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureText)
         copyrightURL = model.copyright
         if copyrightURL?.isEmpty ?? true {

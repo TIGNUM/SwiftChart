@@ -107,7 +107,7 @@ final class WeatherCell: BaseDailyBriefCell {
                                                                 sunriseDate: weatherModel.sunriseDate,
                                                                 sunsetDate: weatherModel.sunsetDate))
             } else {
-                weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large"))
+                weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
             }
         }
         setupUIAccordingToLocationPermissions()

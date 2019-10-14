@@ -13,10 +13,14 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureBespokeText: UILabel!
 //    @IBOutlet private weak var departureImage: UIImageView!
-
+    @IBOutlet weak var stackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureBespokeFeastModel: DepartureBespokeFeastModel?
-    var copyrightURL: String?
+    @IBOutlet weak var picture: UIImageView!
+    @IBOutlet weak var copyrightButton: UIButton!
+    @IBOutlet weak var pictureWithCopyright: UIView!
+
+    @IBOutlet weak var stackViewWidth: NSLayoutConstraint!
     @IBOutlet private weak var copyrightLabel: UIButton!
     @IBOutlet private weak var labelToTop: NSLayoutConstraint!
     @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
@@ -26,6 +30,22 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(departureBespokeText)
 //        skeletonManager.addOtherView(departureImage)
+        let urls: [URL?] = [URL(string: "https://image.shutterstock.com/image-photo/red-apple-on-white-background-600w-158989157.jpg"),
+                           URL(string: "https://images-na.ssl-images-amazon.com/images/I/71EZa%2BhnqnL._AC_SL1225_.jpg"),
+                           URL(string: "https://image.shutterstock.com/image-photo/carrot-isolated-on-white-background-600w-795704785.jpg")]
+        var totalWidth: CGFloat = 0
+        for url in urls {
+            let addedView = DepartureBespokeFeastImageCell()
+            addedView.picture.setImage(url: url) { (actualImage) in
+                let width = (200 * (actualImage?.size.width ?? 1)) / ( actualImage?.size.height ?? 1 )
+                addedView.imageWidth.constant = width
+                totalWidth = totalWidth + width
+                addedView.needsUpdateConstraints()
+                self.stackViewWidth.constant = totalWidth
+            }
+            stackView.addArrangedSubview(addedView)
+        }
+
     }
 
     func configure(with viewModel: DepartureBespokeFeastModel?) {
@@ -34,15 +54,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
         self.departureBespokeFeastModel = model
 //        skeletonManager.addOtherView(departureImage)
-//        departureImage.setImage(url: URL(string: model.image ?? ""),
-//                                skeletonManager: self.skeletonManager)
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
-        copyrightURL = model.copyright
-        if copyrightURL?.isEmpty ?? true {
-            copyrightButtonHeight.constant = 0
-            labelToTop.constant = 21
-            copyrightLabel.isHidden = true
-        }
     }
 
     @IBAction func copyrightButtonPressed(_ sender: Any) {
