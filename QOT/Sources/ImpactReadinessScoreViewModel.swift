@@ -17,7 +17,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     var sleepQualityValue: Double?
     var loadValue: Double?
     var futureLoadValue: Double?
-    var targetSleepQuality: Double?
+    var targetSleepQuantity: Double?
     var sleepQualityReference: Double?
     var loadReference: Double?
     var futureLoadReference: Double?
@@ -35,7 +35,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
          sleepQualityValue: Double?,
          loadValue: Double?,
          futureLoadValue: Double?,
-         targetSleepQuality: Double?,
+         targetSleepQuantity: Double?,
          sleepQualityReference: Double?,
          loadReference: Double?,
          futureLoadReference: Double?,
@@ -49,7 +49,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         self.sleepQuantityValue = sleepQuantityValue
         self.sleepQualityValue = sleepQualityValue
 
-        self.targetSleepQuality = targetSleepQuality
+        self.targetSleepQuantity = targetSleepQuantity
         self.sleepQualityReference = sleepQualityReference
 
         self.loadValue = loadValue
@@ -71,7 +71,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
             sleepQualityValue == source.sleepQualityValue &&
             loadValue == source.loadValue &&
             futureLoadValue == source.futureLoadValue &&
-            targetSleepQuality == source.targetSleepQuality &&
+            targetSleepQuantity == source.targetSleepQuantity &&
             sleepQualityReference == source.sleepQualityReference &&
             loadReference == source.loadReference &&
             futureLoadReference == source.futureLoadReference

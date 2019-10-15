@@ -107,7 +107,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                    ThemeText.quotationSmall)
 
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
-        let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuality ?? viewModel?.sleepQualityReference ?? 0) * 5
+        let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
 
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
