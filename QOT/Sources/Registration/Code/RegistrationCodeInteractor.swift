@@ -141,7 +141,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         case .termsOfUse:
             router.showTermsOfUse()
         case .getHelp:
-            presenter.presentGetHelp()
+            presenter.presentFAQScreen()
         }
     }
 

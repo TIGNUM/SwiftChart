@@ -11,14 +11,14 @@ import Foundation
 protocol RegistrationCodeViewControllerInterface: UIViewController {
     func setupView()
     func update()
-    func presentGetHelpView()
+    func presentFAQScreen()
 }
 
 protocol RegistrationCodePresenterInterface {
     func setup()
     func present()
     func presentActivity(state: ActivityState?)
-    func presentGetHelp()
+    func presentFAQScreen()
 }
 
 protocol RegistrationCodeInteractorInterface: Interactor {
