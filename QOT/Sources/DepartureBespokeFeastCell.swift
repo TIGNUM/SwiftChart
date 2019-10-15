@@ -12,7 +12,6 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureBespokeText: UILabel!
-//    @IBOutlet private weak var departureImage: UIImageView!
     @IBOutlet weak var stackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureBespokeFeastModel: DepartureBespokeFeastModel?
@@ -45,7 +44,6 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
             }
             stackView.addArrangedSubview(addedView)
         }
-
     }
 
     func configure(with viewModel: DepartureBespokeFeastModel?) {
