@@ -15,7 +15,6 @@ protocol OnboardingLoginViewControllerInterface: UIViewController {
     func setupView()
     func updateView()
     func beginCodeEntry()
-    func presentGetHelpView()
 }
 
 protocol OnboardingLoginPresenterInterface {
@@ -23,7 +22,6 @@ protocol OnboardingLoginPresenterInterface {
     func present()
     func presentActivity(state: ActivityState?)
     func presentCodeEntry()
-    func presentGetHelp()
 }
 
 protocol OnboardingLoginInteractorInterface: Interactor {
@@ -39,15 +37,16 @@ protocol OnboardingLoginInteractorInterface: Interactor {
     func didTapBack()
     func didTapVerify(email: String?)
     func didTapSendCode(to email: String?)
-    func didTapGetHelpButton()
 
     func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?)
     func resetEmailError()
     func resetCodeError()
+    func showFAQScreen()
 }
 
 protocol OnboardingLoginRouterInterface {
     func showHomeScreen()
+    func showFAQScreen()
 }
 
 protocol OnboardingLoginDelegate: class {
