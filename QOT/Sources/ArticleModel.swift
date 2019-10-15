@@ -76,7 +76,13 @@ struct Article {
         let publishDate: Date?
         let timeToRead: Int?
         let imageURL: String?
-        init(categoryTitle: String, title: String, author: String?, publishDate: Date?, timeToRead: Int?, imageURL: String?) {
+
+        init(categoryTitle: String,
+             title: String,
+             author: String?,
+             publishDate: Date?,
+             timeToRead: Int?,
+             imageURL: String?) {
             self.categoryTitle = categoryTitle
             self.title = title
             self.author = author
@@ -84,6 +90,7 @@ struct Article {
             self.timeToRead = timeToRead
             self.imageURL = imageURL
         }
+
         init() {
             categoryTitle = ""
             title = ""

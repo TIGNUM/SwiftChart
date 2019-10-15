@@ -11,7 +11,6 @@ import UIKit
 final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets
-
     @IBOutlet private weak var topLabel: ClickableLabel!
     @IBOutlet private weak var bottomLabel: ClickableLabel!
     weak var delegate: ClickableLabelDelegate?
