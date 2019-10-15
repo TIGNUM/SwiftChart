@@ -47,43 +47,43 @@ extension MyQotAccountSettingsWorker {
     }
 
     var contactText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_contact_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_contact)
     }
 
     var emailText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_email_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_email)
     }
 
     var dateOfBirthText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_year_of_birth_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_year_of_birth)
     }
 
     var companyText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_company_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_company)
     }
 
     var personalDataText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_personal_data_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_personal_data)
     }
 
     var accountText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_account_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_account)
     }
 
     var changePasswordText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_change_password_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_change_password)
     }
 
     var protectYourAccountText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_protect_your_account_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_protect_your_account)
     }
 
     var logoutQotText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_logout_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_logout)
     }
 
     var withoutDeletingAccountText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_deleting_your_account_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_deleting_your_account)
     }
 
     var changePasswordKey: String {

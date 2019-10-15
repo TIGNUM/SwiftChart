@@ -34,8 +34,8 @@ final class MyDataScreenWorker {
 
 extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataHeatMapButtonTitles() -> [String] {
-        return [AppTextService.get(AppTextKey.my_qot_my_data_view_ir_button),
-                AppTextService.get(AppTextKey.my_qot_my_data_view_ir_5_day_button)]
+        return [AppTextService.get(AppTextKey.my_qot_my_data_view_button_ir),
+                AppTextService.get(AppTextKey.my_qot_my_data_view_button_ir_5_day)]
     }
     func myDataSections() -> MyDataScreenModel {
         return MyDataScreenModel(myDataItems: MyDataSection.allCases.map {
@@ -48,18 +48,18 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataSectionTitle(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
-            return AppTextService.get(AppTextKey.my_qot_my_data_view_ir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_title_ir)
         case .heatMap:
-            return AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_title_heatmap)
         }
     }
 
     func myDataSectionSubtitle(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
-            return AppTextService.get(AppTextKey.my_qot_my_data_view_ir_body)
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_body_ir)
         case .heatMap:
-            return AppTextService.get(AppTextKey.my_qot_my_data_view_heatmap_body)
+            return AppTextService.get(AppTextKey.my_qot_my_data_view_body_heatmap)
         }
     }
 
@@ -84,19 +84,19 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataSelectionSectionTitles(for myDataSelectionItem: MyDataParameter) -> String? {
         switch myDataSelectionItem {
         case .SQL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sql_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_sleep_quality)
         case .SQN:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sqn_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_sleep_quantity)
         case .tenDL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ten_dl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_ten_dl)
         case .fiveDRR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drr_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_drr)
         case .fiveDRL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_drl)
         case .fiveDIR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_dir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_dir)
         case .IR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_ir)
         }
     }
 

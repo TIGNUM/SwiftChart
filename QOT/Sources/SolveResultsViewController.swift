@@ -92,8 +92,8 @@ private extension SolveResultsViewController {
         let leave = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_alert_button_continue)) { [weak self] _ in
             self?.saveSolveAndDismiss()
         }
-        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_solve_alert_leave_title),
-                      message: AppTextService.get(AppTextKey.coach_solve_alert_leave_body),
+        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_solve_alert_title_leave),
+                      message: AppTextService.get(AppTextKey.coach_solve_alert_body_leave),
                       bottomItems: [activate, leave])
     }
 

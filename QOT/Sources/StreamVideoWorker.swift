@@ -42,31 +42,31 @@ final class StreamVideoWorker {
     }
 
     lazy var downloadButtonTitle: String = {
-        return AppTextService.get(AppTextKey.video_view_download_button)
+        return AppTextService.get(AppTextKey.video_view_button_download)
     }()
 
     lazy var downloadingButtonTitle: String = {
-        return AppTextService.get(AppTextKey.video_view_downloading_button)
+        return AppTextService.get(AppTextKey.video_view_button_downloading)
     }()
 
     lazy var downloadedButtonTitle: String = {
-        return AppTextService.get(AppTextKey.video_view_downloaded_button)
+        return AppTextService.get(AppTextKey.video_view_button_downloaded)
     }()
 
     lazy var noWifiTitle: String = {
-        return AppTextService.get(AppTextKey.video_alert_use_mobile_data_title)
+        return AppTextService.get(AppTextKey.video_alert_title_use_mobile_data)
     }()
 
     lazy var noWifiMessage: String = {
-        return AppTextService.get(AppTextKey.video_alert_use_mobile_data_body)
+        return AppTextService.get(AppTextKey.video_alert_body_use_mobile_data)
     }()
 
     lazy var cancelButtonTitle: String  = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return AppTextService.get(AppTextKey.video_alert_continue_button)
+        return AppTextService.get(AppTextKey.video_alert_button_continue)
     }()
 
     lazy var contentItemId: Int? = {

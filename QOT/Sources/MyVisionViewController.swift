@@ -245,8 +245,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_updated_comment_subtitle), to: lastUpdatedComment)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_rated_comment_subtitle), to: lastRatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_subtitle_updated_comment), to: lastUpdatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_subtitle_rated_comment), to: lastRatedComment)
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled

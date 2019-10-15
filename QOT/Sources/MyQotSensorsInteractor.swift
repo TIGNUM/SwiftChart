@@ -18,15 +18,15 @@ final class MyQotSensorsInteractor {
     private let router: MyQotSensorsRouterInterface
 
     private var localizedSensorsConnected: String {
-        return AppTextService.get(AppTextKey.my_qot_sensors_menu_connected_title)
+        return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_connected)
     }
 
     private var localizedSensorsDisconnected: String {
-        return AppTextService.get(AppTextKey.my_qot_sensors_menu_disconnected_title)
+        return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_disconnected)
     }
 
     private var localizedSensorsNoData: String {
-        return AppTextService.get(AppTextKey.my_qot_sensors_menu_no_data_title)
+        return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_no_data)
     }
 
     // MARK: - Init

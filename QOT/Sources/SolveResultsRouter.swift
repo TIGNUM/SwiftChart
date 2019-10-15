@@ -58,7 +58,7 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: AppTextService.get(AppTextKey.results_solve_view_feedback_recovery_title))
+        controller.configure(text: AppTextService.get(AppTextKey.results_solve_view_title_feedback_recovery))
         viewController?.removeBottomNavigation()
     }
 }

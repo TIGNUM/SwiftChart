@@ -18,19 +18,19 @@ final class RegistrationNamesWorker: BaseSigningWorker {
     }()
 
     lazy var firstNameTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_user_name_view_first_name_title)
+        return AppTextService.get(AppTextKey.create_account_user_name_view_title_first_name)
     }()
 
     lazy var lastNameTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_user_name_view_last_name_title)
+        return AppTextService.get(AppTextKey.create_account_user_name_view_title_last_name)
     }()
 
     lazy var mandatoryText: String  = {
-        return AppTextService.get(AppTextKey.create_account_user_name_view_mandatory_title)
+        return AppTextService.get(AppTextKey.create_account_user_name_view_title_mandatory)
     }()
 
     lazy var nextButtonTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_user_name_view_next_title)
+        return AppTextService.get(AppTextKey.create_account_user_name_view_title_next)
     }()
 
     // MARK: - Init

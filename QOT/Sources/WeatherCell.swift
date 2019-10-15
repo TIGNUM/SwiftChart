@@ -137,7 +137,7 @@ final class WeatherCell: BaseDailyBriefCell {
                     return
             }
             if index == 0 {
-                hourlyView.setTime(text: AppTextService.get(AppTextKey.daily_brief_weather_view_now_title), isNow: true)
+                hourlyView.setTime(text: AppTextService.get(AppTextKey.daily_brief_weather_view_title_now), isNow: true)
             } else {
                 hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
             }

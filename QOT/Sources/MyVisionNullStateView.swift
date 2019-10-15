@@ -29,8 +29,8 @@ final class MyVisionNullStateView: UIView {
         ThemeView.level2.apply(self)
         ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_view_title), to: toBeVisionLabel)
 
-        writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_write_button)), for: .normal)
-        autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_auto_generate_button)), for: .normal)
+        writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_button_write)), for: .normal)
+        autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_button_auto_generate)), for: .normal)
         ThemeBorder.accent40.apply(writeButton)
         ThemeBorder.accent40.apply(autoGenerateButton)
         ThemeText.tbvHeader.apply(header, to: headerLabel)

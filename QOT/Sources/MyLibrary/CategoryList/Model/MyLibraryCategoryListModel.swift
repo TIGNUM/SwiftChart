@@ -27,14 +27,14 @@ struct MyLibraryCategoryListModel {
     func infoText() -> String {
         var info: String
         if itemCount == 1 {
-            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_group_singular_title), "\(itemCount)")
+            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_title_group_singular), "\(itemCount)")
         } else {
-            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_group_plural_title), "\(itemCount)")
+            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_title_group_plural), "\(itemCount)")
         }
 
         if let date = lastUpdated {
             let stringDate = DateFormatter.ddMMM.string(from: date)
-            info += String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_group_last_update_title), stringDate)
+            info += String(format: AppTextService.get(AppTextKey.my_qot_my_library_view_title_group_last_update), stringDate)
         }
 
         return info

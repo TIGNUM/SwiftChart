@@ -98,39 +98,39 @@ struct MyQotAppSettingsModel {
     private func title(for item: Setting) -> String {
         switch item {
         case .permissions:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_permission_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_permission)
         case .notifications:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notification_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_notification)
         case .calendars:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_sync_calendar_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_sync_calendar)
         case .sensors:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_activity_trackers_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_activity_trackers)
         case .siriShortcuts:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_siri)
         }
     }
 
     private func subtitle(for item: Setting) -> String {
         switch item {
         case .permissions:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_permission_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_subtitle_permission)
         case .notifications:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notification_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_subtitle_notification)
         case .calendars:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_sync_calendar_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_subtitle_sync_calendar)
         case .sensors:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_activity_trackers_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_subtitle_activity_trackers)
         case .siriShortcuts:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_subtitle_siri)
         }
     }
 
     private func headertitle(for item: Section) -> String {
         switch item {
         case .general:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_general_settings_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_general_settings)
         case .custom:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_custom_settings_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_custom_settings)
         }
     }
 }

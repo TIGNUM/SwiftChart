@@ -98,11 +98,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         }
 
         if showDailyCheckInScreen {
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_empty_start_your_dc_in_title), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_empty_title_start_your_dc_in), for: .normal)
         } else {
             trackState = model.isExpanded
             impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_explore_your_score_title), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_title_explore_your_score), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
             impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()

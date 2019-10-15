@@ -30,44 +30,44 @@ extension MyDataExplanationWorker: MyDataExplanationWorkerInterface {
     }
 
     func myDataExplanationHeaderTitle() -> String {
-        return AppTextService.get(AppTextKey.my_qot_my_data_view_ir_title)
+        return AppTextService.get(AppTextKey.my_qot_my_data_view_title_ir)
     }
 
     func myDataExplanationSectionTitles(for myDataExplanationItem: MyDataParameter) -> String? {
         switch myDataExplanationItem {
         case .SQL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sql_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_sleep_quality)
         case .SQN:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sqn_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_sleep_quantity)
         case .tenDL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ten_dl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_ten_dl)
         case .fiveDRR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drr_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_drr)
         case .fiveDRL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_drl)
         case .fiveDIR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_dir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_five_dir)
         case .IR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_title_ir)
         }
     }
 
     func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataParameter) -> String? {
         switch myDataExplanationItem {
         case .SQL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sql_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_sleep_quality)
         case .SQN:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_sqn_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_sleep_quantity)
         case .tenDL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ten_dl_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_ten_dl)
         case .fiveDRR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drr_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_five_drr)
         case .fiveDRL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_drl_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_five_drl)
         case .fiveDIR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_five_dir_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_five_dir)
         case .IR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_info_ir_subtitle)
+            return AppTextService.get(AppTextKey.my_qot_my_data_info_subtitle_ir)
         }
     }
 }

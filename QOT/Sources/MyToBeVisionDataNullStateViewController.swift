@@ -23,7 +23,7 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
-        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_my_tbv_rate_view_rate_button))
+        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_my_tbv_rate_view_button_rate))
         return button.barButton
     }()
     private let userService = qot_dal.UserService.main
@@ -73,10 +73,10 @@ private extension MyToBeVisionDataNullStateViewController {
 
 private extension MyToBeVisionDataNullStateViewController {
     func setupEmptySate() {
-        ThemeText.tbvStatement.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_header_title), to: headingLabel)
-        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_header_description_title), to: headingDescriptionLabel)
+        ThemeText.tbvStatement.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_header), to: headingLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_header_description), to: headingDescriptionLabel)
         ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title), to: titleLabel)
-        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_description_title), to: titleDescriptionLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_description), to: titleDescriptionLabel)
     }
 }
 

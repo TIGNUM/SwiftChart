@@ -71,23 +71,23 @@ final class ImagePickerController {
 
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_choose_picture_title),
+        let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_choose_picture),
                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
             self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
-        let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_take_a_picture_title),
+        let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_take_a_picture),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
             self?.handleOption(.camera)
             self?.resetAlertViewAppearance()
         }
-        let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_delete_photo_title),
+        let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_delete_photo),
                                          style: .destructive) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.deleteImageEvent()
                                             self?.delegate?.deleteImage()
                                             self?.resetAlertViewAppearance()
         }
-        let cancelAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button),
+        let cancelAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.cancelSelectionEvent()
                                             self?.delegate?.cancelSelection()

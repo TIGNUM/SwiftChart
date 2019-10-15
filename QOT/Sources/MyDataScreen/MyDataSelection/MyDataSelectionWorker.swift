@@ -33,19 +33,19 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
     func myDataSelectionSectionTitles(for myDataSelectionItem: MyDataParameter) -> String? {
         switch myDataSelectionItem {
         case .SQL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_sql_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_sleep_quality)
         case .SQN:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_sqn_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_sleep_quantity)
         case .tenDL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_ten_dl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_ten_dl)
         case .fiveDRR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_drr_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_drr)
         case .fiveDRL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_drl_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_drl)
         case .fiveDIR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_five_dir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_dir)
         case .IR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_ir_title)
+            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_ir)
         }
     }
 

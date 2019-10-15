@@ -102,14 +102,14 @@ final class MyQotSiriShortcutsWorker {
     }
 
     var siriShortcutsHeaderText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_siri_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_siri)
     }
 }
 
 extension MyQotSiriShortcutsWorker {
 
     var siriExplanation: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_explanation_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_explanation)
     }
 
     func siriTag(for shortcut: ShortcutType) -> Tags {
@@ -130,22 +130,22 @@ extension MyQotSiriShortcutsWorker {
     func siriTitle(for shortcut: ShortcutType) -> String {
         switch shortcut {
         case .toBeVision:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_tobevision)
         case .whatsHot:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_whatshot)
         case .morningInterview:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_title)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_daily_prep)
         }
     }
 
     func siriSuggestionPhrase(for shortcut: ShortcutType) -> String {
         switch shortcut {
         case .toBeVision:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_tobevision_body)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_tobevision)
         case .whatsHot:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_whatshot_body)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_whatshot)
         case .morningInterview:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_daily_prep_body)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_daily_prep)
         }
     }
 }

@@ -33,7 +33,7 @@ final class DTPreparePresenter: DTPresenter {
     override func getNavigationButton(_ presentationModel: DTPresentationModel, isDark: Bool) -> NavigationButton? {
         if intensionViewModel != nil && presentationModel.question?.key == Prepare.Key.benefits.rawValue {
             let button = presentationModel.getNavigationButton(isHidden: false, isDark: isDark)
-            button?.configure(title: AppTextService.get(AppTextKey.coach_prepare_alert_save_button),
+            button?.configure(title: AppTextService.get(AppTextKey.coach_prepare_alert_button_save),
                               minSelection: 0,
                               isDark: isDark)
             return button

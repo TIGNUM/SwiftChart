@@ -18,7 +18,7 @@ final class RegistrationEmailWorker: BaseSigningWorker {
     }()
 
     lazy var emailPlaceholder: String = {
-        return AppTextService.get(AppTextKey.create_account_email_verification_view_email_placeholder_title)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_title_email_placeholder)
     }()
 
     lazy var nextButtonTitle: String = {
@@ -30,11 +30,11 @@ final class RegistrationEmailWorker: BaseSigningWorker {
     }()
 
     lazy var unableToRegisterError: String = {
-        return AppTextService.get(AppTextKey.create_account_email_verification_view_unable_to_register_error)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_body_unable_to_register_error)
     }()
 
     lazy var generalError: String = {
-        return AppTextService.get(AppTextKey.create_account_email_verification_view_general_error_title)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_title_general_error)
     }()
 
 }

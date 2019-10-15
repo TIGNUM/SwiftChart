@@ -25,99 +25,99 @@ final class MySprintDetailsWorker {
 
     // MARK: Texts
     lazy var headerSprintTasks: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_sprint_tasks_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_sprint_tasks)
     }()
 
     lazy var headerMyPlan: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_my_plan_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_my_plan)
     }()
 
     lazy var headerMyNotes: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_my_notes_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_my_notes)
     }()
 
     lazy var headerHighlights: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_highlights_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_highlights)
     }()
 
     lazy var headerStrategies: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_strategies_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_strategies)
     }()
 
     lazy var headerBenefits: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_benefits_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_benefits)
     }()
 
     lazy var upcomingInfoText: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_upcoming_body)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_body_upcoming)
     }()
 
     lazy var activeInfoText: String = {
         guard let startDate = sprint?.startDate else {
             return upcomingInfoText
         }
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_active_body)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_body_active)
     }()
 
     lazy var notesInfoText: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_notes_body)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_body_notes)
     }()
 
     lazy var buttonTakeawaysTitle = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_takeaways_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_takeaways)
     }()
 
     lazy var buttonCancel = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var buttonContinue = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_continue)
     }()
 
     lazy var buttonStartSprint: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_start_sprint_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_start_sprint)
     }()
 
     lazy var infoPauseSprintTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_pause_sprint)
     }()
 
     lazy var infoPauseSprintMessage: String = {
-        let format = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_info_title)
+        let format = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_pause_sprint_info)
         return String(format: format, sprint?.maxDays ?? 0)
     }()
 
     lazy var buttonPauseSprint: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_pause_sprint_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_pause_sprint)
     }()
 
     lazy var buttonYesPause: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_yes_pause_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_yes_pause)
     }()
 
     lazy var infoReplanSprintTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_replan_sprint)
     }()
 
     lazy var infoReplanSprintMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_replan_sprint_info)
     }()
 
     lazy var buttonContinueSprint: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_continue_sprint_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_continue_sprint)
     }()
 
     lazy var buttonRestartSprint: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_restart_sprint_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_restart_sprint)
     }()
 
     lazy var infoSprintInProgressTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_replan_sprint_info_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_replan_sprint_info)
     }()
 
     func infoSprintInProgressMessage(sprintInProgressTitle: String?) -> String {
-        let message = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_sprint_in_progress_info_title)
+        let message = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_sprint_in_progress_info)
         return replaceMessagePlaceHolders(sprintInProgressTitle: sprintInProgressTitle ?? "",
                                           newSprintTitle: self.sprint?.title ?? "",
                                           message: message)

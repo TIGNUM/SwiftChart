@@ -20,11 +20,11 @@ struct Search {
 
         var title: String {
             switch self {
-            case .all: return AppTextService.get(AppTextKey.search_edit_all_title)
-            case .read: return AppTextService.get(AppTextKey.search_edit_read_title)
-            case .listen: return AppTextService.get(AppTextKey.search_edit_listen_title)
-            case .watch: return AppTextService.get(AppTextKey.search_edit_watch_title)
-            case .tools: return AppTextService.get(AppTextKey.search_edit_tools_title)
+            case .all: return AppTextService.get(AppTextKey.search_edit_title_all)
+            case .read: return AppTextService.get(AppTextKey.search_edit_title_read)
+            case .listen: return AppTextService.get(AppTextKey.search_edit_title_listen)
+            case .watch: return AppTextService.get(AppTextKey.search_edit_title_watch)
+            case .tools: return AppTextService.get(AppTextKey.search_edit_title_tools)
             }
         }
         var userEvent: String {

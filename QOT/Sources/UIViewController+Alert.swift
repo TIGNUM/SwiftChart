@@ -29,15 +29,15 @@ enum AlertType {
         switch self {
         case .custom(let title, _): return title
         case .title(let title): return title
-        case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_title)
+        case .dbError: return AppTextService.get(AppTextKey.startup_alert_title_database_error)
         case .noNetworkConnection,
-             .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_title)
-        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_title)
-        case .loginFailed: return AppTextService.get(AppTextKey.login_alert_failed_title)
-        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_title)
-        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_title)
-        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_title)
-        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_title)
+             .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_title_no_network_connection)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_title_unknown)
+        case .loginFailed: return AppTextService.get(AppTextKey.login_alert_title_failed)
+        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_title_email_not_found)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_title_camera_not_available)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_title_calendar_not_sync)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_title_change_notifications)
         default: return nil
         }
     }
@@ -46,16 +46,16 @@ enum AlertType {
         switch self {
         case .custom(_, let message): return message
         case .message(let message): return message
-        case .dbError: return AppTextService.get(AppTextKey.startup_alert_database_error_body)
-        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_title)
-        case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_connection_file)
-        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_title)
-        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_email_not_found_body)
-        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_photo_not_granted_body)
+        case .dbError: return AppTextService.get(AppTextKey.startup_alert_body_database_error)
+        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_title_no_network_connection)
+        case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_body_no_network_connection)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_title_unknown)
+        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_body_email_not_found)
+        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_body_photo_not_granted)
         case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_granted_body)
-        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body)
-        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_calendar_not_synced_body)
-        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_change_notifications_body)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_body_camera_not_available)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_alert_body_calendar_not_synced)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_body_change_notifications)
         default: return nil
         }
     }
@@ -64,17 +64,17 @@ enum AlertType {
         switch self {
         case .changeNotifications,
              .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_cancel_button)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_button_cancel)
         default: return nil
         }
     }
 
     var buttonTitleDefault: String? {
         switch self {
-        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_open_settings_title)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_title_open_settings)
         case .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_settings_title)
-        default: return AppTextService.get(AppTextKey.generic_alert_ok_button)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_title_settings)
+        default: return AppTextService.get(AppTextKey.generic_alert_button_ok)
         }
     }
 
@@ -82,7 +82,7 @@ enum AlertType {
         switch self {
         case .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_cancel_button)
+             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_button_cancel)
         default: return nil
         }
     }
@@ -212,7 +212,7 @@ extension UIViewController {
 
     func showAlert(messageType: String) {
         let title = AppTextService.get(AppTextKey.generic_alert_custom_title)
-        let message = AppTextService.get(AppTextKey.generic_alert_unknown_custom_body).replacingOccurrences(of: "%@", with: messageType)
+        let message = AppTextService.get(AppTextKey.generic_alert_body_unknown_custom).replacingOccurrences(of: "%@", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
 }

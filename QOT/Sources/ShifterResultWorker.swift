@@ -52,14 +52,14 @@ extension ShifterResultWorker {
 // MARK: - Private
 private extension ShifterResultWorker {
     func setTitles() {
-        headerTitle = AppTextService.get(AppTextKey.shifter_result_view_header_title)
-        headerSubTitle = AppTextService.get(AppTextKey.shifter_result_view_header_subtitle)
-        triggerTitle = AppTextService.get(AppTextKey.shifter_result_view_trigger_title)
-        reactionsTitle = AppTextService.get(AppTextKey.shifter_result_view_reactions_title)
-        lowToHighTitle = AppTextService.get(AppTextKey.shifter_result_view_neg_to_pos_title)
-        lowTitle = AppTextService.get(AppTextKey.shifter_result_view_neg_to_pos_low_title)
-        highTitle = AppTextService.get(AppTextKey.shifter_result_view_neg_to_pos_high_title)
-        visionTitle = AppTextService.get(AppTextKey.shifter_result_view_vision_title)
+        headerTitle = AppTextService.get(AppTextKey.shifter_result_view_title_header)
+        headerSubTitle = AppTextService.get(AppTextKey.shifter_result_view_subtitle_header)
+        triggerTitle = AppTextService.get(AppTextKey.shifter_result_view_title_trigger)
+        reactionsTitle = AppTextService.get(AppTextKey.shifter_result_view_title_reactions)
+        lowToHighTitle = AppTextService.get(AppTextKey.shifter_result_view_title_neg_to_pos)
+        lowTitle = AppTextService.get(AppTextKey.shifter_result_view_title_neg_to_pos_low)
+        highTitle = AppTextService.get(AppTextKey.shifter_result_view_title_neg_to_pos_high)
+        visionTitle = AppTextService.get(AppTextKey.shifter_result_view_title_vision)
     }
 
     var getHeader: MindsetResult.Section {

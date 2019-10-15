@@ -26,35 +26,35 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     }()
 
     lazy var emailPlaceholder: String = {
-        return AppTextService.get(AppTextKey.login_view_your_email_title)
+        return AppTextService.get(AppTextKey.login_view_title_your_email)
     }()
 
     lazy var emailInstructions: String = {
-        return AppTextService.get(AppTextKey.login_view_email_description_title)
+        return AppTextService.get(AppTextKey.login_view_title_email_description)
     }()
 
     lazy var emailError: String = {
-        return AppTextService.get(AppTextKey.login_view_email_error_title)
+        return AppTextService.get(AppTextKey.login_view_title_email_error)
     }()
 
     lazy var emailUserDoesntExist: String = {
-        return AppTextService.get(AppTextKey.login_view_user_doesnt_exist_title)
+        return AppTextService.get(AppTextKey.login_view_title_user_doesnt_exist)
     }()
 
     lazy var generalEMailError: String = {
-        return AppTextService.get(AppTextKey.login_view_generic_error_title)
+        return AppTextService.get(AppTextKey.login_view_title_generic_error)
     }()
 
     lazy var digitDescription: String = {
-        return AppTextService.get(AppTextKey.login_view_code_description_title)
+        return AppTextService.get(AppTextKey.login_view_title_code_description)
     }()
 
     lazy var preCode: String = {
-        return AppTextService.get(AppTextKey.login_view_pre_code_title)
+        return AppTextService.get(AppTextKey.login_view_title_pre_code)
     }()
 
     lazy var codeError: String = {
-        return AppTextService.get(AppTextKey.login_view_code_error_title)
+        return AppTextService.get(AppTextKey.login_view_title_code_error)
     }()
 
     lazy var buttonGetHelp: String = {

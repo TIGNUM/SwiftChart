@@ -50,26 +50,26 @@ struct MyQotSupportModel {
         func title() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_feature_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_feature)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_faq_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_faq)
             case .reportIssue:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_tutorial_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_tutorial)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_support)
             }
         }
 
         func subtitle() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_feature_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_feature)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_faq_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_faq)
             case .reportIssue:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_tutorial_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_tutorial)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_support_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_support)
             }
         }
 

@@ -31,7 +31,7 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel3 {
 
         // Do any additional setup after loading the view.
         ThemeView.onboarding.apply(view)
-        ThemeText.createAccountMessage.apply(AppTextService.get(AppTextKey.create_info_view_description_title), to: textLabel)
+        ThemeText.createAccountMessage.apply(AppTextService.get(AppTextKey.create_info_view_title_description), to: textLabel)
     }
 
     override func viewDidAppear(_ animated: Bool) {

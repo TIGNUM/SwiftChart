@@ -22,9 +22,9 @@ enum ButtonItem {
 
     var title: String {
         switch self {
-        case .cancel: return AppTextService.get(AppTextKey.generic_view_cancel_button)
-        case .done: return AppTextService.get(AppTextKey.generic_view_done_title)
-        case .save: return AppTextService.get(AppTextKey.coach_solve_results_alert_save_button)
+        case .cancel: return AppTextService.get(AppTextKey.generic_view_button_cancel)
+        case .done: return AppTextService.get(AppTextKey.generic_view_title_done)
+        case .save: return AppTextService.get(AppTextKey.coach_solve_results_alert_button_save)
         }
     }
 

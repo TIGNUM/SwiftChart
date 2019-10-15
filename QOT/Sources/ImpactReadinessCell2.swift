@@ -97,7 +97,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             skeletonManager.hide()
         }
 
-        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_impact_readiness_view_rolling_data_title).uppercased(), to: rollingDataLabel)
+        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_impact_readiness_view_title_rolling_data).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)

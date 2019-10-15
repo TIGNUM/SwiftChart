@@ -67,7 +67,7 @@ final class MyQotSensorsWorker {
     }
 
     var sensorTitle: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_activity_trackers_view_sensor_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_activity_trackers_view_title_sensor)
     }
 }
 

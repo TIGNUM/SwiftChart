@@ -53,8 +53,8 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 self?.activeSprint = sprint
                 self?.newSprintContentId = self?.selectedSprintContentId
                 self?.lastSprintQuestionId = self?.selectedSprintTargetQuestionId
-                let title = AppTextService.get(AppTextKey.my_qot_my_sprints_view_sprint_in_progress_title)
-                let messageFormat = AppTextService.get(AppTextKey.decision_tree_view_info_body_in_progress)
+                let title = AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_sprint_in_progress)
+                let messageFormat = AppTextService.get(AppTextKey.decision_tree_view_body_info_in_progress)
                 let updatedMessageFormat = self?.replaceMessagePlaceHolders(sprintInProgressTitle: sprint.title ?? "",
                                                                             newSprintTitle: self?.selectedSprintTitle ?? "",
                                                                             message: messageFormat)

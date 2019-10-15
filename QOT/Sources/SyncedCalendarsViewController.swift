@@ -112,7 +112,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
-            let title = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calender_view_subscribed_title)
+            let title = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calender_view_title_subscribed)
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
             headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader)
             return headerView

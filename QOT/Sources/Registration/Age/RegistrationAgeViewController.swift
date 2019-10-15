@@ -52,7 +52,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         }
 
         array.reverse()
-        array.insert(AppTextService.get(AppTextKey.create_account_view_year_select_title), at: 0)
+        array.insert(AppTextService.get(AppTextKey.create_account_view_title_year_select), at: 0)
         return array
     }()
 

@@ -17,8 +17,8 @@ final class FatigueTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     func configure(symptom: String) {
         selectionStyle = .none
-        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_results_view_answers_title), to: topTitleLabel)
-        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_solve_results_view_fatigue_title), to: mainTitleLabel)
+        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_results_view_title_answers), to: topTitleLabel)
+        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_solve_results_view_title_fatigue), to: mainTitleLabel)
         ThemeText.resultHeader2.apply(symptom, to: fatigueLabel)
     }
 }

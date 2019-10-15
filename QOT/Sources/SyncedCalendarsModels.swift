@@ -44,9 +44,9 @@ struct SyncedCalendarsViewModel {
         var title: String {
             switch self {
             case .onDevice:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_view_this_device_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_view_title_this_device)
             case .notOnDevice:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_view_other_devices_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_view_title_other_devices)
             }
         }
     }

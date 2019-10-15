@@ -51,35 +51,35 @@ final class MyLibraryNotesWorker {
     }()
 
     lazy var dismissAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_save_title)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_title_save)
     }()
 
     lazy var dismissAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_save_body)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_body_save)
     }()
 
     lazy var cancelTitle: String = {
-       return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_cancel_button)
+       return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_button_cancel)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_add_alert_button_continue)
     }()
 
     lazy var removeAlertTitle: String = {
-       return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_delete_title)
+       return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_title_delete)
     }()
 
     lazy var removeAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_delete_body)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_body_delete)
     }()
 
     lazy var removeButtonTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_button_continue)
     }()
 
     lazy var removeCancelTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_cancel_button)
+        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_button_cancel)
     }()
 
     lazy var isExistingNote: Bool = {

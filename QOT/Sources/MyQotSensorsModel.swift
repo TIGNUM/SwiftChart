@@ -20,18 +20,18 @@ struct MyQotSensorsModel {
         var title: String {
             switch self {
             case .oura:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_oura_title)
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_oura)
             case .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_health_kit_title)
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_health_kit)
             case .requestTracker:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_tracker_title)
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_tracker)
             }
         }
 
         var status: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_disconnected_title)
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_disconnected)
             case .requestTracker:
                 return ""
             }
@@ -40,7 +40,7 @@ struct MyQotSensorsModel {
         var labelStatus: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_no_data_title)
+                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_no_data)
             case .requestTracker:
                 return ""
             }

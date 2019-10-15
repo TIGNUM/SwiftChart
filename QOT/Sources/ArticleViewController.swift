@@ -364,7 +364,7 @@ extension ArticleViewController {
 
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: Article.Item) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: AppTextService.get(AppTextKey.article_view_invalid_content_title), item: item)
+        cell.configure(text: AppTextService.get(AppTextKey.article_view_title_invalid_content), item: item)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         return cell
@@ -500,7 +500,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(header: AppTextService.get(AppTextKey.article_view_next_up_title),
+            cell.configure(header: AppTextService.get(AppTextKey.article_view_title_next_up),
                            title: title,
                            durationString: description,
                            icon: R.image.ic_seen_of())

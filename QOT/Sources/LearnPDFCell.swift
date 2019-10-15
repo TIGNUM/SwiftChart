@@ -31,7 +31,7 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
         let date = Date().addingTimeInterval(TimeInterval(timeToReadSeconds))
         var timeToReadText = ""
         if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-            timeToReadText = "\(timeString)  " + AppTextService.get(AppTextKey.article_pdf_view_to_read_title)
+            timeToReadText = "\(timeString)  " + AppTextService.get(AppTextKey.article_pdf_view_title_to_read)
         }
         timeToRead.setAttrText(text: timeToReadText, font: .H7Tag, characterSpacing: 2)
         timeToRead.textColor = timeColor

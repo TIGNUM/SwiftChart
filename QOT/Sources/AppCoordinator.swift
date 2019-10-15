@@ -253,21 +253,21 @@ extension AppCoordinator {
         let whatsHot = URLScheme.latestWhatsHotArticle
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_whats_hot_article_title),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_whats_hot_article),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
                                              userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_tools_title),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_tools),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
                                              userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_review_my_data_title),
+                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_review_my_data),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                              userInfo: ["link": myData.launchPathWithParameterValue("")]))

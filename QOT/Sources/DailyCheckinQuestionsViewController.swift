@@ -55,7 +55,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
         }
         var backgroundColor = UIColor.carbon.withAlphaComponent(0.5)
             backgroundColor = .carbon
-        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_done_button),
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_button_done),
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),
                                      backgroundColor: backgroundColor,

@@ -27,20 +27,20 @@ enum SettingsType: Int {
 
     var title: String {
         switch self {
-        case .company: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_company_title)
-        case .email: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_email_title)
-        case .firstName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_first_name_title)
-        case .lastName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_last_name_title)
-        case .dateOfBirth: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_dob_title)
-        case .strategies: return AppTextService.get(AppTextKey.notifications_view_strategies_title)
-        case .dailyPrep: return AppTextService.get(AppTextKey.notifications_view_daily_prep_title)
-        case .weeklyChoices: return AppTextService.get(AppTextKey.notifications_view_weekly_choices_title)
-        case .password: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_security_password_title)
-        case .logout: return AppTextService.get(AppTextKey.my_qot_account_settings_view_logout_button)
-        case .confirm: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_security_confirm_title)
-        case .terms: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_terms_title)
-        case .copyrights: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_copyright_title)
-        case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_privacy_title)
+        case .company: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_company)
+        case .email: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_email)
+        case .firstName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_first_name)
+        case .lastName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_last_name)
+        case .dateOfBirth: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_dob)
+        case .strategies: return AppTextService.get(AppTextKey.notifications_view_title_strategies)
+        case .dailyPrep: return AppTextService.get(AppTextKey.notifications_view_title_daily_prep)
+        case .weeklyChoices: return AppTextService.get(AppTextKey.notifications_view_title_weekly_choices)
+        case .password: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_security_password)
+        case .logout: return AppTextService.get(AppTextKey.my_qot_account_settings_view_button_logout)
+        case .confirm: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_security_confirm)
+        case .terms: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_terms)
+        case .copyrights: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_copyright)
+        case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_privacy)
         }
     }
 
@@ -80,9 +80,9 @@ enum SettingsType: Int {
 
         var title: String {
             switch self {
-            case .general: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_general_title)
-            case .notifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_notifications_title)
-            case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_security_title)
+            case .general: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_general)
+            case .notifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_notifications)
+            case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_security)
             case .profile: return "profile"
             case .settings: return "settings"
             }

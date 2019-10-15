@@ -63,7 +63,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: AppTextService.get(AppTextKey.prepare_results_view_great_work_title))
+        controller.configure(text: AppTextService.get(AppTextKey.prepare_results_view_title_great_work))
         viewController?.removeBottomNavigation()
     }
 }

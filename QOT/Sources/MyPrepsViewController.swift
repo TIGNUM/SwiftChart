@@ -53,13 +53,13 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_cancel_button))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_button_cancel))
         return button.barButton
     }()
 
     lazy var deleteButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_delete_button))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_button_delete))
         return button.barButton
     }()
 
@@ -117,16 +117,16 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func removeRows(_ sender: Any) {
         guard tableView.indexPathForSelectedRow != nil else { return }
-        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button),
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
                                     handler: nil)
-        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_yes_continue_button),
+        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_button_yes_continue),
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)
-        let title = AppTextService.get(AppTextKey.my_qot_my_preps_alert_delete_title)
-        let message = AppTextService.get(AppTextKey.my_qot_my_preps_alert_delete_body)
+        let title = AppTextService.get(AppTextKey.my_qot_my_preps_alert_title_delete)
+        let message = AppTextService.get(AppTextKey.my_qot_my_preps_alert_body_delete)
         QOTAlert.show(title: title, message: message, bottomItems: [cancel, remove])
     }
 
@@ -195,7 +195,7 @@ private extension MyPrepsViewController {
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
-        ThemeText.sectionHeader.apply(AppTextService.get(AppTextKey.my_qot_view_my_plans_title), to: headerTitle)
+        ThemeText.sectionHeader.apply(AppTextService.get(AppTextKey.my_qot_view_title_my_plans), to: headerTitle)
         ThemeView.headerLine.apply(headerLine)
 
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_subtitle), to: noPrepsTitle)

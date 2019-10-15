@@ -13,7 +13,7 @@ final class WalkthroughSearchWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return AppTextService.get(AppTextKey.walkthrough_view_search_title)
+        return AppTextService.get(AppTextKey.walkthrough_view_title_search)
     }()
 
     // MARK: - Init

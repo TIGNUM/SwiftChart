@@ -39,14 +39,14 @@ extension QDMContentCollection {
             if hasVideoOnly == true {
                 let durations = contentItems.compactMap { $0.valueDuration }
                 let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
-                return String(format: AppTextService.get(AppTextKey.video_list_duration_title), total)
+                return String(format: AppTextService.get(AppTextKey.video_list_title_duration), total)
             } else if hasAudioItems == true {
 
             } else if isFoundation == true {
                 let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
                 return videoItem?.durationString ?? ""
             }
-            return String(format: AppTextService.get(AppTextKey.pdf_list_duration_title), String(max(minutesToRead, 1)))
+            return String(format: AppTextService.get(AppTextKey.pdf_list_title_duration), String(max(minutesToRead, 1)))
         }
     }
 

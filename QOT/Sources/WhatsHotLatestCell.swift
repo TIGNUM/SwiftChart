@@ -35,7 +35,7 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
         guard let model = with else { return }
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(model.title.uppercased(), to: whatsHotTitle)
-        ThemeText.dailyBriefSubtitle.apply(AppTextService.get(AppTextKey.daily_brief_whats_hot_view_subtitle_title), to: subtitle)
+        ThemeText.dailyBriefSubtitle.apply(AppTextService.get(AppTextKey.daily_brief_whats_hot_view_subtitle), to: subtitle)
         skeletonManager.addOtherView(whatsHotImage)
         whatsHotImage.setImage(url: model.image,
                                skeletonManager: self.skeletonManager)

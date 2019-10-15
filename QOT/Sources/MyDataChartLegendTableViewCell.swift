@@ -51,7 +51,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
             for sectionModel in model.myDataSelectionItems {
                 if var title = sectionModel.title {
                     if hasHealthKitDataForToday && sectionModel.myDataExplanationSection == .SQN {
-                        title.append(contentsOf: (" " + AppTextService.get(AppTextKey.my_qot_my_data_edit_from_healthkit_title)))
+                        title.append(contentsOf: (" " + AppTextService.get(AppTextKey.my_qot_my_data_edit_title_from_healthkit)))
                     }
                     let label = UILabel.init(frame: .zero)
                     ThemeText.myDataParameterLegendText(sectionModel.myDataExplanationSection).apply(title, to: label)

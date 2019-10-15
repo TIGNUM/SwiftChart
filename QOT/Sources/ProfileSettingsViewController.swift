@@ -36,7 +36,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
-    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_year_select_title)
+    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_year_select)
 
     private lazy var yearPickerItems: [String] = {
         var items = [String]()
@@ -173,13 +173,13 @@ extension ProfileSettingsViewController {
         case .label(_, _, let settingsType):
             switch settingsType {
             case .logout:
-                let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_cancel_button))
-                let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_logout_button)) { (_) in
+                let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
+                let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_button_logout)) { (_) in
                     ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
                 }
-                QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_logout_body), bottomItems: [cancel, logout])
+                QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_body_logout), bottomItems: [cancel, logout])
             default: return
             }
         case .datePicker(let title, let selectedYear, _):

@@ -81,7 +81,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     private func setupView() {
         containerView.backgroundColor = .carbon
         backgroundView.backgroundColor = UIColor.carbon.withAlphaComponent(0.95)
-        descriptionLabel.text = AppTextService.get(AppTextKey.daily_brief_alert_copyright_text_title) + (copyrightURL ?? "")
+        descriptionLabel.text = AppTextService.get(AppTextKey.daily_brief_alert_title_copyright_text) + (copyrightURL ?? "")
     }
 
     @IBAction func didTapClose(_ sender: Any) {

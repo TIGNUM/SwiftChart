@@ -50,34 +50,34 @@ final class MySprintNotesWorker {
     lazy var title: String = {
         switch action {
         case .benefits:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_benefits_title)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_benefits)
         case .highlights:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_highlights_title)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_highlights)
         case .strategies:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_header_strategies_title)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_strategies)
         case .captureTakeaways:
             return "-"
         }
     }()
 
     lazy var saveTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_save_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_save)
     }()
 
     lazy var dismissAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_leave_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_leave)
     }()
 
     lazy var dismissAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_leave_body))
+        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_body_leave))
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_cancel_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_cancel)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_leave_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_leave)
     }()
 }
 

@@ -107,19 +107,19 @@ final class SearchWorker {
     }
 
     private func suggestions() -> [String] {
-        let keys: [AppTextKey] = [AppTextKey.search_suggestion_view_self_image_subtitle,
-                                  AppTextKey.search_suggestion_view_daily_prep_subtitle,
-                                  AppTextKey.search_suggestion_view_no_excuse_subtitle,
-                                  AppTextKey.search_suggestion_view_build_capacity_subtitle,
-                                  AppTextKey.search_suggestion_view_sleep_ritual_subtitle,
-                                  AppTextKey.search_suggestion_view_power_nap_subtitle,
-                                  AppTextKey.search_suggestion_view_mindset_shifter_subtitle,
-                                  AppTextKey.search_suggestion_view_reframe_subtitle,
-                                  AppTextKey.search_suggestion_view_breathing_subtitle,
-                                  AppTextKey.search_suggestion_view_hp_snacks_subtitle,
-                                  AppTextKey.search_suggestion_view_brain_performance_subtitle,
-                                  AppTextKey.search_suggestion_view_work_to_home_subtitle,
-                                  AppTextKey.search_suggestion_view_travel_subtitle]
+        let keys: [AppTextKey] = [AppTextKey.search_suggestion_view_subtitle_self_image,
+                                  AppTextKey.search_suggestion_view_subtitle_daily_prep,
+                                  AppTextKey.search_suggestion_view_subtitle_no_excuse,
+                                  AppTextKey.search_suggestion_view_subtitle_build_capacity,
+                                  AppTextKey.search_suggestion_view_subtitle_sleep_ritual,
+                                  AppTextKey.search_suggestion_view_subtitle_power_nap,
+                                  AppTextKey.search_suggestion_view_subtitle_mindset_shifter,
+                                  AppTextKey.search_suggestion_view_subtitle_reframe,
+                                  AppTextKey.search_suggestion_view_subtitle_breathing,
+                                  AppTextKey.search_suggestion_view_subtitle_hp_snacks,
+                                  AppTextKey.search_suggestion_view_subtitle_brain_performance,
+                                  AppTextKey.search_suggestion_view_subtitle_work_to_home,
+                                  AppTextKey.search_suggestion_view_subtitle_travel]
         var array: [String] = []
         for key in keys {
             array.append(AppTextService.get(key))
@@ -128,7 +128,7 @@ final class SearchWorker {
     }
 
     func suggestions() -> SearchSuggestions {
-        return SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_suggestion_title),
+        return SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),
                                  suggestions: suggestions())
     }
 

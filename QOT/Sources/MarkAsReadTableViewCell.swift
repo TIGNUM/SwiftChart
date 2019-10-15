@@ -24,7 +24,7 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     func configure(selected: Bool) {
         isRead = selected
 
-        let text = selected ? AppTextService.get(AppTextKey.know_article_view_mark_as_read_title) : AppTextService.get(AppTextKey.know_article_view_mark_as_unread_title)
+        let text = selected ? AppTextService.get(AppTextKey.know_article_view_title_mark_as_read) : AppTextService.get(AppTextKey.know_article_view_title_mark_as_unread)
         ThemableButton.articleMarkAsRead(selected: selected).apply(markAsReadButton, title: text)
     }
 }

@@ -18,19 +18,19 @@ final class RegistrationAgeWorker: BaseSigningWorker {
     }()
 
     lazy var agePlaceholder: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_placeholder_title)
+        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_placeholder)
     }()
 
     lazy var descriptionText: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_description_title)
+        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_description)
     }()
 
     lazy var ageRestrictionText: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_restriction_title)
+        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_restriction)
     }()
 
     lazy var nextButtonTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_next_title)
+        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_next)
     }()
 
     // MARK: - Init

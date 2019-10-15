@@ -14,15 +14,15 @@ final class RegistrationWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var generalError: String = {
-        return AppTextService.get(AppTextKey.create_account_general_error_title)
+        return AppTextService.get(AppTextKey.create_account_general_title_error)
     }()
 
     lazy var existingAccountAlertTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_email_verification_view_existing_email_error_title)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_title_existing_email_error)
     }()
 
     lazy var existingAccountAlertMessage: String = {
-        return AppTextService.get(AppTextKey.create_account_email_verification_view_existing_email_error_description)
+        return AppTextService.get(AppTextKey.create_account_email_verification_view_body_existing_email_error)
     }()
 
     lazy var yesButtonTitle: String = {

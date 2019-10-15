@@ -32,35 +32,35 @@ final class MySprintsListWorker {
     }()
 
     lazy var sprintPlanHeader: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_sprint_plan_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_sprint_plan)
     }()
 
     lazy var completeHeader: String = {
-       return AppTextService.get(AppTextKey.my_qot_my_sprints_view_complete_title)
+       return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_complete)
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_cancel_button)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_delete_button)
+        return AppTextService.get(AppTextKey.generic_view_button_delete)
     }()
 
     lazy var continueTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_continue_button)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_button_continue)
     }()
 
     lazy var saveTitle: String = {
-        return AppTextService.get(AppTextKey.coach_prepare_alert_save_button)
+        return AppTextService.get(AppTextKey.coach_prepare_alert_button_save)
     }()
 
     lazy var removeItemsAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_remove_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_title_remove)
     }()
 
     lazy var removeItemsAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_remove_body)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_body_remove)
     }()
 
     lazy var emptyContentAlertTitle: String = {
@@ -72,19 +72,19 @@ final class MySprintsListWorker {
     }()
 
     lazy var statusActive: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_active_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_active)
     }()
 
     lazy var statusUpcoming: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_upcoming_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_upcoming)
     }()
 
     lazy var statusPaused: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_paused_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_paused)
     }()
 
     lazy var statusCompleted: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_completed_at_title)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_view_title_completed_at)
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ sprints: [QDMSprint]) -> Void) {

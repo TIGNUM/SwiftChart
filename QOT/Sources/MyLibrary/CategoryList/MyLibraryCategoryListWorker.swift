@@ -14,7 +14,7 @@ final class MyLibraryCategoryListWorker {
     private let service = UserStorageService.main
 
     lazy var titleText: String = {
-        return AppTextService.get(AppTextKey.my_qot_view_my_library_title)
+        return AppTextService.get(AppTextKey.my_qot_view_title_my_library)
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {

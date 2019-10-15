@@ -13,7 +13,7 @@ final class WalkthroughCoachWorker {
 
     // MARK: - Properties
     lazy var text: String = {
-        return AppTextService.get(AppTextKey.walkthrough_view_coach_title)
+        return AppTextService.get(AppTextKey.walkthrough_view_title_coach)
     }()
 
     // MARK: - Init

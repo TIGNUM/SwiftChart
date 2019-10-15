@@ -61,7 +61,7 @@ final class MyQotMainInteractor {
 
     private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
-        item.subtitle = String(irScore ?? 0) + AppTextService.get(AppTextKey.my_qot_view_my_data_impact_subtitle)
+        item.subtitle = String(irScore ?? 0) + AppTextService.get(AppTextKey.my_qot_view_subtitle_my_data_impact)
         return [item]
     }
 
@@ -74,9 +74,9 @@ final class MyQotMainInteractor {
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
                 item.showSubtitleInRed = true
-                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_my_tbv_more_than_subtitle) + AppTextService.get(AppTextKey.my_qot_view_my_tbv_more_months_since_subtitle)
+                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_subtitle_my_tbv_more_than) + AppTextService.get(AppTextKey.my_qot_view_subtitle_my_tbv_more_months_since)
             } else {
-                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_my_tbv_less_than_subtitle)
+                subtitleVision = AppTextService.get(AppTextKey.my_qot_view_subtitle_my_tbv_less_than)
             }
             item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
             return [item]
