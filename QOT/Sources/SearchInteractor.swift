@@ -28,9 +28,8 @@ extension SearchInteractor: SearchInteractorInterface {
 
     func showSuggestions() {
         worker.suggestions { suggestions in
-            self.presenter.load(suggestions!)
+            self.presenter.load(suggestions ?? SearchSuggestions(header: "", suggestions: []))
         }
-        // FIXME: Use Completion Block
     }
 
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
