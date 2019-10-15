@@ -50,6 +50,7 @@ SPEC REPOS:
     - DifferenceKit
     - HockeySDK
     - JTAppleCalendar
+    - KeychainAccess
     - Kingfisher
     - R.swift
     - R.swift.Library
@@ -57,8 +58,6 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyBeaver
     - UrbanAirship-iOS-SDK
-  trunk:
-    - KeychainAccess
 
 EXTERNAL SOURCES:
   qot_dal:
