@@ -189,11 +189,11 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var downloading: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_media_view_downloading_title)
+        return AppTextService.get(AppTextKey.my_qot_my_library_media_download_view_downloading_title)
     }()
 
     lazy var waitingForDownload: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_media_view_waiting_title)
+        return AppTextService.get(AppTextKey.my_qot_my_library_media_download_view_waiting_title)
     }()
 
     lazy var read: String = {
