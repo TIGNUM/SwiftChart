@@ -194,6 +194,10 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             self?.presenter.presentActivity(state: .success)
         }
     }
+
+    func showFAQScreen() {
+        router.showFAQScreen()
+    }
 }
 
 // Private methods

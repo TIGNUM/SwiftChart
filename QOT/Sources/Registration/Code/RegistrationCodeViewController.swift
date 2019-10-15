@@ -164,7 +164,7 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
 
     func presentGetHelpView() {
         trackUserEvent(.GET_HELP, action: .TAP)
-        sendEmail()
+        interactor?.showFAQScreen()
     }
 }
 

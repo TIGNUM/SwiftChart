@@ -39,9 +39,11 @@ protocol RegistrationCodeInteractorInterface: Interactor {
     func validateLoginCode(_ code: String)
     func resetErrors()
     func resendCode()
+    func showFAQScreen()
 }
 
 protocol RegistrationCodeRouterInterface {
     func showPrivacyPolicy()
     func showTermsOfUse()
+    func showFAQScreen()
 }
