@@ -23,7 +23,6 @@ import qot_dal
 
 public extension AppTextKey {
     //Static lets
-    static let daily_brief_good_to_know_title = AppTextKey("daily_brief.good_to_know.title")
     static let my_qot_my_profile_app_settings_view_general_title = AppTextKey("my_qot.my_profile.app_settings.view.general_title")
     static let my_qot_my_profile_app_settings_view_notifications_title = AppTextKey("my_qot.my_profile.app_settings.view.notifications_title")
     static let my_qot_my_profile_app_settings_view_security_title = AppTextKey("my_qot.my_profile.app_settings.view.security_title")
