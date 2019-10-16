@@ -40,63 +40,63 @@ extension UIViewController {
         case is DTViewController: return decisionTreePageKey
         case is MyLibraryUserStorageViewController: return userStoragePageKey
         case is MyLibraryNotesViewController: return myLibraryNoteKey
-        case is ShifterResultViewController: return "decisiontree.mindsetshifter.results"
-        case is MyQotProfileViewController: return "myprofile.home"
-        case is MyQotAccountSettingsViewController: return "myprofile.accountsettings"
-        case is ProfileSettingsViewController: return "myprofile.accountsettings.edit"
-        case is MyQotAppSettingsViewController: return "myprofile.appsettings"
-        case is MyQotAboutUsViewController: return "myprofile.aboutus"
-        case is MyQotSupportViewController: return "myprofile.support"
-        case is MyQotSensorsViewController: return "myprofile.appsettings.activitytrackers"
-        case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
+        case is ShifterResultViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_mindsetshifter_results)
+        case is MyQotProfileViewController: return AppTextService.get(AppTextKey.page_track_myprofile_home)
+        case is MyQotAccountSettingsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_accountsettings)
+        case is ProfileSettingsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_accountsettings_edit)
+        case is MyQotAppSettingsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings)
+        case is MyQotAboutUsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_aboutus)
+        case is MyQotSupportViewController: return AppTextService.get(AppTextKey.page_track_myprofile_support)
+        case is MyQotSensorsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings_activitytrackers)
+        case is MyQotSiriShortcutsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings_sirishortcuts)
         case is MyQotSupportDetailsViewController: return myQOTSupportDetailsViewControllerPageKey
-        case is TutorialViewController: return "myprofile.support.tutorial"
-        case is MyVisionViewController: return "tobevision"
-        case is MyVisionEditDetailsViewController: return "tobevision.edit"
-        case is MyToBeVisionRateViewController: return "tobevision.tracker.questionaire"
+        case is TutorialViewController: return AppTextService.get(AppTextKey.page_track_myprofile_support_tutorial)
+        case is MyVisionViewController: return AppTextService.get(AppTextKey.page_track_tobevision)
+        case is MyVisionEditDetailsViewController: return AppTextService.get(AppTextKey.page_track_tobevision_edit)
+        case is MyToBeVisionRateViewController: return AppTextService.get(AppTextKey.page_track_tobevision_tracker_questionaire)
         case is MyToBeVisionTrackerViewController: return myToBeVisionTrackerViewControllerPageKey
-        case is CoachViewController: return "coach.main"
-        case is SearchViewController: return "search.main"
-        case is ToolsViewController: return "coach.tools"
-        case is ToolsCollectionsViewController: return "coach.tools.list"
-        case is ToolsItemsViewController: return "coach.tools.item.detail"
-        case is KnowingViewController: return "know.feed"
-        case is SolveResultsViewController: return "solve.results"
-        case is MyQotMainViewController: return "myqot.main"
-        case is MyPrepsViewController: return "myqot.mypreps"
-        case is AudioFullScreenViewController: return "fullscreen.audioplayer"
-        case is PrepareResultsViewController: return "prepare.results"
-        case is PreparationWithMissingEventViewController: return "prepare.missing.event"
-        case is MyLibraryCategoryListViewController: return "mylibrary"
-        case is DailyCheckinStartViewController: return "dailyCheckin.start"
-        case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
-        case is MySprintsListViewController: return "myqot.mysprints"
-        case is MySprintDetailsViewController: return "myqot.mysprints.sprint.detail"
-        case is SigningInfoViewController: return "landingpage"
-        case is CreateAccountInfoViewController: return "onboarding.createaccount"
-        case is RegistrationEmailViewController: return "onboarding.createaccount.email"
-        case is RegistrationCodeViewController: return "onboarding.createaccount.activationcode"
-        case is RegistrationNamesViewController: return "onboarding.createaccount.name"
-        case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
-        case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
-        case is StrategyListViewController: return "know.feed.strategy.list"
-        case is ArticleViewController: return "article.detail"
-        case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
-        case is MyDataScreenViewController: return "myqot.mydata"
-        case is MyDataSelectionViewController: return "myqot.mydata.lineselection"
+        case is CoachViewController: return AppTextService.get(AppTextKey.page_track_coach_main)
+        case is SearchViewController: return AppTextService.get(AppTextKey.page_track_search_main)
+        case is ToolsViewController: return AppTextService.get(AppTextKey.page_track_coach_tools)
+        case is ToolsCollectionsViewController: return AppTextService.get(AppTextKey.page_track_coach_tools_list)
+        case is ToolsItemsViewController: return AppTextService.get(AppTextKey.page_track_coach_tools_item_detail)
+        case is KnowingViewController: return AppTextService.get(AppTextKey.page_track_know_feed)
+        case is SolveResultsViewController: return AppTextService.get(AppTextKey.page_track_solve_results)
+        case is MyQotMainViewController: return AppTextService.get(AppTextKey.page_track_myqot_main)
+        case is MyPrepsViewController: return AppTextService.get(AppTextKey.page_track_myqot_mypreps)
+        case is AudioFullScreenViewController: return AppTextService.get(AppTextKey.page_track_fullscreen_audioplayer)
+        case is PrepareResultsViewController: return AppTextService.get(AppTextKey.page_track_prepare_results)
+        case is PreparationWithMissingEventViewController: return AppTextService.get(AppTextKey.page_track_prepare_missing_event)
+        case is MyLibraryCategoryListViewController: return AppTextService.get(AppTextKey.page_track_mylibrary)
+        case is DailyCheckinStartViewController: return AppTextService.get(AppTextKey.page_track_dailyCheckin_start)
+        case is DailyCheckinQuestionsViewController: return AppTextService.get(AppTextKey.page_track_dailyCheckin_questions)
+        case is MySprintsListViewController: return AppTextService.get(AppTextKey.page_track_myqot_mysprints)
+        case is MySprintDetailsViewController: return AppTextService.get(AppTextKey.page_track_myqot_mysprints_sprint_detail)
+        case is SigningInfoViewController: return AppTextService.get(AppTextKey.page_track_landingpage)
+        case is CreateAccountInfoViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount)
+        case is RegistrationEmailViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount_email)
+        case is RegistrationCodeViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount_activationcode)
+        case is RegistrationNamesViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount_name)
+        case is RegistrationAgeViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount_birthdate)
+        case is TrackSelectionViewController: return AppTextService.get(AppTextKey.page_track_onboarding_createaccount_welcome)
+        case is StrategyListViewController: return AppTextService.get(AppTextKey.page_track_know_feed_strategy_list)
+        case is ArticleViewController: return AppTextService.get(AppTextKey.page_track_article_detail)
+        case is SyncedCalendarsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings_syncedCalendars)
+        case is MyDataScreenViewController: return AppTextService.get(AppTextKey.page_track_myqot_mydata)
+        case is MyDataSelectionViewController: return AppTextService.get(AppTextKey.page_track_myqot_mydata_lineselection)
         case is MyDataExplanationViewController: return myDataInfoViewControllerPageKey
         case is AskPermissionViewController: return askPermissionPageKey
-        case is ChoiceViewController: return "prepare.result.add.remove.strategies"
-        case is MediaPlayerViewController: return "fullscreen.videoPlayer"
-        case is PDFReaderViewController: return "fullscreen.pdfreader"
-        case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
-        case is DailyBriefViewController: return "daily.brief"
-        case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
-        case is WalkthroughSearchViewController: return "walkthrough.search"
-        case is WalkthroughCoachViewController: return "walkthrough.coach"
-        case is WalkthroughSwipeViewController: return "walkthrough.swipe"
-        case is QuestionnaireViewController: return "sleep.quantity.customize.target"
-        case is OnboardingLoginViewController: return "onboarding.login"
+        case is ChoiceViewController: return AppTextService.get(AppTextKey.page_track_prepare_result_add_remove_strategies)
+        case is MediaPlayerViewController: return AppTextService.get(AppTextKey.page_track_fullscreen_videoPlayer)
+        case is PDFReaderViewController: return AppTextService.get(AppTextKey.page_track_fullscreen_pdfreader)
+        case is PopUpCopyrightViewController: return AppTextService.get(AppTextKey.page_track_daily_brief_content_copyright)
+        case is DailyBriefViewController: return AppTextService.get(AppTextKey.page_track_daily_brief)
+        case is MyToBeVisionDataNullStateViewController: return AppTextService.get(AppTextKey.page_track_tobevision_mytbvdata)
+        case is WalkthroughSearchViewController: return AppTextService.get(AppTextKey.page_track_walkthrough_search)
+        case is WalkthroughCoachViewController: return AppTextService.get(AppTextKey.page_track_walkthrough_coach)
+        case is WalkthroughSwipeViewController: return AppTextService.get(AppTextKey.page_track_walkthrough_swipe)
+        case is QuestionnaireViewController: return AppTextService.get(AppTextKey.page_track_sleep_quantity_customize_target)
+        case is OnboardingLoginViewController: return AppTextService.get(AppTextKey.page_track_onboarding_login)
         default: preconditionFailure()
         }
     }
@@ -106,8 +106,8 @@ extension UIViewController {
 private extension UIViewController {
     var myQOTSupportDetailsViewControllerPageKey: String {
         switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
-        case .FAQ?: return "myprofile.support.faq"
-        case .UsingQOT?: return "myprofile.support.using.qot"
+        case .FAQ?: return AppTextService.get(AppTextKey.page_track_myprofile_support_faq)
+        case .UsingQOT?: return AppTextService.get(AppTextKey.page_track_myprofile_support_using_qot)
         default: preconditionFailure()
         }
     }
@@ -117,8 +117,8 @@ private extension UIViewController {
 private extension UIViewController {
     var myToBeVisionTrackerViewControllerPageKey: String {
         switch (self as? MyToBeVisionTrackerViewController)?.interactor?.controllerType {
-        case .tracker?: return "tobevision.tracker.results"
-        case .data?: return "tobevision.tracker.tbvTracker"
+        case .tracker?: return AppTextService.get(AppTextKey.page_track_tobevision_tracker_results)
+        case .data?: return AppTextService.get(AppTextKey.page_track_tobevision_tracker_tbvTracker)
         default: preconditionFailure()
         }
     }
@@ -128,8 +128,8 @@ private extension UIViewController {
 private extension UIViewController {
     var myDataInfoViewControllerPageKey: String {
         switch (self as? MyDataExplanationViewController)?.interactor?.getPresentedFromSection() {
-        case .dailyImpact?: return "myqot.mydata.impact.info"
-        case .heatMap?: return "myqot.mydata.heatmap.info"
+        case .dailyImpact?: return AppTextService.get(AppTextKey.page_track_myqot_mydata_impact_info)
+        case .heatMap?: return AppTextService.get(AppTextKey.page_track_myqot_mydata_heatmap_info)
         default: preconditionFailure()
         }
     }
@@ -139,14 +139,14 @@ private extension UIViewController {
 private extension UIViewController {
     var decisionTreePageKey: String {
         switch self {
-        case is DTMindsetViewController: return "decisiontree.mindsetshifter"
+        case is DTMindsetViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_mindsetshifter)
         case is DTPrepareViewController: return preparePageKey
-        case is DTRecoveryViewController: return "decisiontree.3drecovery"
+        case is DTRecoveryViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_3drecovery)
         case is DTShortTBVViewController: return shortTBVPageKey
-        case is DTSolveViewController: return "decisiontree.solve"
-        case is DTSprintViewController: return "decisiontree.sprint"
-        case is DTSprintReflectionViewController: return "decisiontree.sprint.reflection"
-        case is DTTBVViewController: return "decisiontree.tobevisiongenerator"
+        case is DTSolveViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_solve)
+        case is DTSprintViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_sprint)
+        case is DTSprintReflectionViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_sprint_reflection)
+        case is DTTBVViewController: return AppTextService.get(AppTextKey.page_track_decisiontree_tobevisiongenerator)
 
         default: preconditionFailure()
         }
@@ -157,11 +157,11 @@ private extension UIViewController {
     var preparePageKey: String {
         if let introKey = (self as? DTPrepareViewController)?.interactor?.getIntroKey {
             switch introKey {
-            case Prepare.QuestionKey.Intro: return "decisiontree.prepare"
-            case Prepare.QuestionKey.BenefitsInput: return "decisiontree.prepare.edit.benefits"
-            case Prepare.Key.feel.rawValue: return "decisiontree.prepare.edit.intentions.feel"
-            case Prepare.Key.know.rawValue: return "decisiontree.prepare.edit.intentions.know"
-            case Prepare.Key.perceived.rawValue: return "decisiontree.prepare.edit.intentions.perceived"
+            case Prepare.QuestionKey.Intro: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare)
+            case Prepare.QuestionKey.BenefitsInput: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare_edit_benefits)
+            case Prepare.Key.feel.rawValue: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare_edit_intentions_feel)
+            case Prepare.Key.know.rawValue: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare_edit_intentions_know)
+            case Prepare.Key.perceived.rawValue: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare_edit_intentions_perceived)
             default: preconditionFailure()
             }
         }
@@ -173,10 +173,10 @@ private extension UIViewController {
     var shortTBVPageKey: String {
         if let introKey = (self as? DTShortTBVViewController)?.interactor?.getIntroKey {
             switch introKey {
-            case ShortTBV.QuestionKey.IntroMindSet: return "decisiontree.mindsetshifter.tobevisiongenerator"
-            case ShortTBV.QuestionKey.IntroPrepare: return "decisiontree.prepare.tobevisiongenerator"
-            case ShortTBV.QuestionKey.IntroOnboarding: return "decisiontree.onboarding.tobevisiongenerator"
-            case ShortTBV.QuestionKey.Work: return "decisiontree.solve.tobevisiongenerator"
+            case ShortTBV.QuestionKey.IntroMindSet: return AppTextService.get(AppTextKey.page_track_decisiontree_mindsetshifter_tobevisiongenerator)
+            case ShortTBV.QuestionKey.IntroPrepare: return AppTextService.get(AppTextKey.page_track_decisiontree_prepare_tobevisiongenerator)
+            case ShortTBV.QuestionKey.IntroOnboarding: return AppTextService.get(AppTextKey.page_track_decisiontree_onboarding_tobevisiongenerator)
+            case ShortTBV.QuestionKey.Work: return AppTextService.get(AppTextKey.page_track_decisiontree_solve_tobevisiongenerator)
             default: preconditionFailure()
             }
         }
@@ -188,11 +188,11 @@ private extension UIViewController {
 private extension UIViewController {
     var userStoragePageKey: String {
         switch (self as? MyLibraryUserStorageViewController)?.interactor?.contentType {
-        case .all?: return "mylibrary.all"
-        case .bookmarks?: return "mylibrary.bookmarks"
-        case .downloads?: return "mylibrary.downloads"
-        case .links?: return "mylibrary.links"
-        case .notes?: return "mylibrary.notes"
+        case .all?: return AppTextService.get(AppTextKey.page_track_mylibrary_all)
+        case .bookmarks?: return AppTextService.get(AppTextKey.page_track_mylibrary_bookmarks)
+        case .downloads?: return AppTextService.get(AppTextKey.page_track_mylibrary_downloads)
+        case .links?: return AppTextService.get(AppTextKey.page_track_mylibrary_links)
+        case .notes?: return AppTextService.get(AppTextKey.page_track_mylibrary_notes)
         default: preconditionFailure()
         }
     }
@@ -202,11 +202,11 @@ private extension UIViewController {
 private extension UIViewController {
     var askPermissionPageKey: String {
         switch (self as? AskPermissionViewController)?.interactor?.permissionType {
-        case .location?: return "askPermission.location"
-        case .notification?: return "askPermission.notification"
-        case .calendar?: return "askPermission.calendar"
-        case .calendarOpenSettings?: return "askPermission.calendar.settings"
-        case .notificationOpenSettings?: return "askPermission.notification.settings"
+        case .location?: return AppTextService.get(AppTextKey.page_track_askPermission_location)
+        case .notification?: return AppTextService.get(AppTextKey.page_track_askPermission_notification)
+        case .calendar?: return AppTextService.get(AppTextKey.page_track_askPermission_calendar)
+        case .calendarOpenSettings?: return AppTextService.get(AppTextKey.page_track_askPermission_calendar_settings)
+        case .notificationOpenSettings?: return AppTextService.get(AppTextKey.page_track_askPermission_notification_settings)
         default: preconditionFailure()
         }
     }
@@ -216,8 +216,8 @@ private extension UIViewController {
 private extension UIViewController {
     var myLibraryNoteKey: String {
         if let newNote = (self as? MyLibraryNotesViewController)?.interactor?.isCreatingNewNote, newNote == true {
-            return "mylibrary.notes.newnote"
+            return AppTextService.get(AppTextKey.page_track_mylibrary_notes_newnote)
         }
-        return "mylibrary.notes.savednote"
+        return AppTextService.get(AppTextKey.page_track_mylibrary_notes_savednote)
     }
 }
