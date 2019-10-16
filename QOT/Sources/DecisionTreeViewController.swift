@@ -52,7 +52,6 @@ final class DecisionTreeViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-    private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
     private var nextQuestion: NextQuestion?
 
 //    private lazy var editEventHandler: EditEventHandler = {

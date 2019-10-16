@@ -8,7 +8,6 @@
 
 import UIKit
 import SafariServices
-import RSKImageCropper
 import Social
 import MessageUI
 import qot_dal
@@ -48,14 +47,6 @@ extension UIViewController {
             UIActivityViewController._lastBottomNavigationItem[controllerIdentifier] = nil
         }
     }
-}
-
-extension EKEventEditViewController: ScreenZLevelOverlay {
-
-}
-
-extension SFSafariViewController: ScreenZLevelOverlay {
-
 }
 
 extension MFMailComposeViewController: ScreenZLevelOverlay {
@@ -117,14 +108,6 @@ extension UIActivityViewController: ScreenZLevelOverlay {
     @objc override open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return nil
     }
-}
-
-extension UIImagePickerController: ScreenZLevelOverlay {
-
-}
-
-extension RSKImageCropViewController: ScreenZLevelOverlay {
-
 }
 
 extension UIAlertController: ScreenZLevelOverlay {

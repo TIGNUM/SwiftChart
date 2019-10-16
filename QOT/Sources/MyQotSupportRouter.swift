@@ -64,12 +64,6 @@ private extension MyQotSupportRouter {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
     }
 
-    func presentTutorial() {
-        let configurator = TutorialConfigurator.make()
-        let controller = TutorialViewController(configure: configurator, from: .settings)
-        viewController?.pushToStart(childViewController: controller)
-    }
-
     func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
             viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_body_email_try_again)))

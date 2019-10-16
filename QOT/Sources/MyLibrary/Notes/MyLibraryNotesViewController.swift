@@ -16,7 +16,6 @@ final class MyLibraryNotesViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
     private var saveButton: RoundedButton?
-    private var bottomNavigationItems = UINavigationItem()
     private var initialBottomOffset: CGFloat = 0
 
     lazy var deleteButton: UIBarButtonItem = {

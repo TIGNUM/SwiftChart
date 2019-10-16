@@ -23,22 +23,6 @@ enum QuestionKey {
         }
     }
 
-    static func continueButtonIsHidden(_ key: String?) -> Bool {
-        switch key {
-        case QuestionKey.ToBeVision.Instructions,
-             QuestionKey.ToBeVision.Review,
-             QuestionKey.ToBeVision.Create,
-             QuestionKey.ToBeVision.Home,
-             QuestionKey.ToBeVision.Work,
-             QuestionKey.Prepare.CalendarEventSelectionCritical,
-             QuestionKey.Prepare.CalendarEventSelectionDaily,
-             QuestionKey.Prepare.ShowTBV:
-            return false
-        default:
-            return true
-        }
-    }
-
     static func preiviousButtonIsHidden(_ key: String?) -> Bool {
         switch key {
         case QuestionKey.ToBeVision.Instructions,
@@ -54,24 +38,6 @@ enum QuestionKey {
             return true
         default:
             return false
-        }
-    }
-
-    static func shouldNotifyAnswerDidAppear(_ key: String?) -> Bool {
-        switch key {
-        case QuestionKey.SprintReflection.Intro,
-             QuestionKey.Prepare.ShowTBV,
-             QuestionKey.ToBeVision.Create,
-             QuestionKey.MindsetShifter.OpenTBV,
-             QuestionKey.MindsetShifter.ShowTBV,
-             QuestionKey.MindsetShifter.Check,
-             QuestionKey.ToBeVision.Review,
-             QuestionKey.MindsetShifterTBV.Intro,
-             QuestionKey.MindsetShifterTBV.IntroOnboarding,
-             QuestionKey.MindsetShifterTBV.IntroPrepare:
-            return false
-        default:
-            return true
         }
     }
 

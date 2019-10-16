@@ -9,11 +9,6 @@
 import Foundation
 
 struct ThemeAppearance {
-    static func setNavigationBar() {
-        UINavigationBar.appearance().titleTextAttributes = [.font: Fonts.fontMedium20,
-                                                            .foregroundColor: Palette.light(Palette.carbon, or: Palette.sand)]
-    }
-
     static func setNavigation(bar: UINavigationBar?, theme: ThemeView) {
         bar?.barTintColor = theme.color
         bar?.isTranslucent = true
@@ -1301,7 +1296,6 @@ private struct Fonts {
     static let fontRegular12 = UIFont.sfProtextRegular(ofSize: 12.0)
     static let fontRegular13 = UIFont.sfProtextRegular(ofSize: 13.0)
     static let fontRegular14 = UIFont.sfProtextRegular(ofSize: 14.0)
-    static let fontRegular15 = UIFont.sfProtextRegular(ofSize: 15.0)
     static let fontRegular16 = UIFont.sfProtextRegular(ofSize: 16.0)
     static let fontRegular18 = UIFont.sfProtextRegular(ofSize: 18.0)
     static let fontRegular20 = UIFont.sfProtextRegular(ofSize: 20.0)
@@ -1331,10 +1325,8 @@ private struct Fonts {
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
-    static let fontDisplayRegular16 = UIFont.sfProDisplayRegular(ofSize: 16.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
-    static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
     static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)

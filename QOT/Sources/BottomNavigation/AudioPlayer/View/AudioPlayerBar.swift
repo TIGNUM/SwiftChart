@@ -16,7 +16,6 @@ final class AudioPlayerBar: UIView {
         case progress
     }
 
-    private var colorModeLocal = ColorMode.dark
     private let audioPlayer = AudioPlayer.current
     @IBOutlet weak var contentView: UIView!
     @IBOutlet private weak var progressView: UIProgressView!

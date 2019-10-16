@@ -28,7 +28,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
 
     var window: UIWindow?
-    private var unhandledNotifications = [UNNotification]()
     private var unhandledShortCuts = [UIApplicationShortcutItem]()
     weak var localNotificationHandlerDelegate: LocalNotificationHandlerDelegate?
     weak var shortcutHandlerDelegate: ShortcutHandlerDelegate?

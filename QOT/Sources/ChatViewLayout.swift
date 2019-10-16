@@ -33,7 +33,6 @@ final class ChatViewLayout: UICollectionViewLayout {
 
     private var cache: [Section] = []
     private var contentSize: CGSize = .zero
-    private var sectionInsertionTimes: [Int: Date] = [:]
     private var insertedSections: [Int] = []
     weak var delegate: ChatViewLayoutDelegate?
 

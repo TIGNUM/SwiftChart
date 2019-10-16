@@ -28,7 +28,6 @@ final class CoachWorker {
         return CoachModel(headerTitle: headerTitle, headerSubtitle: headerSubtitle, coachItems: coachItems)
     }
 
-
     func coachSectionTitles(for coachItem: CoachSection) -> String? {
         switch coachItem {
         case .search:

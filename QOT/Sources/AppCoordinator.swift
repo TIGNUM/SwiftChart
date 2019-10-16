@@ -23,16 +23,12 @@ final class AppCoordinator {
 
     private var isReadyToProcessURL = false
 
-    var checkListIDToPresent: String?
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
-    private var onDismiss: (() -> Void)?
-    private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
-    private weak var currentPresentedNavigationController: UINavigationController?
     lazy var userLogoutNotificationHandler = NotificationHandler(name: .userLogout)
     lazy var automaticLogoutNotificationHandler = NotificationHandler(name: .automaticLogout)
     lazy var apnsDeviceTokenRegistrator = APNSDeviceTokenRegistrator()
@@ -40,11 +36,7 @@ final class AppCoordinator {
         let manager = PermissionsManager(delegate: self)
         return manager
     }()
-    lazy var userLoggedIn: Bool = {
-        return SessionService.main.getCurrentSession() != nil
-    }()
 
-    private var reachability = QOTReachability()
     // MARK: - Life Cycle
 
     init(windowManager: WindowManager,
@@ -127,13 +119,6 @@ final class AppCoordinator {
     func checkVersionIfNeeded() {
 //        guard services?.userService.user()?.appUpdatePrompt == true else { return }
         // CHANGE ME
-    }
-
-    private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: .error)
-        self.showMajorAlert(type: .dbError, handler: {
-            exit(0)
-        })
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
@@ -227,7 +212,6 @@ extension AppCoordinator {
 
         let navigationController = UINavigationController(rootViewController: landingController)
         navigationController.navigationBar.isHidden = true
-        navigationController.navigationBar.applyDefaultStyle()
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.modalPresentationStyle = .overFullScreen
         UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)

@@ -113,14 +113,6 @@ extension UIViewController {
         return height == ScreenSize.mediumScreenHeight.rawValue
     }
 
-    private var isSmall: Bool {
-        if isPortrait == true {
-            return width == ScreenSize.smallScreenWidth.rawValue
-        }
-
-        return height == ScreenSize.smallScreenHeight.rawValue
-    }
-
     private var size: CGSize {
         return view.bounds.size
     }

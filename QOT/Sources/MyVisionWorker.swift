@@ -10,26 +10,6 @@ import Foundation
 import qot_dal
 
 final class MyVisionWorker {
-
-    private enum SharingKeys: String {
-        case firstName = "*|FIRSTNAME|*"
-        case tbv = "*|MTBV|*"
-        case genderHerHis = "*|GENDER-HER-HIS|*"
-        case genderSheHe = "*|GENDER-SHE-HE|*"
-        case genderHerHim = "*|GENDER-HER-HIM|*"
-        case genderHerselfHimself = "*|GENDER-HERSELF-HIMSELF|*"
-
-        func pronoun(_ gender: Gender) -> String {
-            switch self {
-            case .genderHerHim: return gender == .female ? "her" : (gender == .male ? "him" : "them")
-            case .genderSheHe: return gender == .female ? "she" : (gender == .male ? "he" : "they")
-            case .genderHerHis: return gender == .female ? "her" : (gender == .male ? "his" : "their")
-            case .genderHerselfHimself: return gender == .female ? "herself" : (gender == .male ? "himself" : "themself")
-            default: return ""
-            }
-        }
-    }
-
     var nullStateSubtitle: String?
     var nullStateTitle: String?
     private var notRatedText: String? = ""

@@ -27,7 +27,7 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
         return button.barButton
     }()
     private let userService = qot_dal.UserService.main
-    private let contentService = qot_dal.ContentService.main
+
     weak var delegate: MyToBeVisionDataNullStateViewControllerProtocol?
     var visionId: Int?
 

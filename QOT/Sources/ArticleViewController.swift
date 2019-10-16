@@ -15,6 +15,13 @@ protocol ArticleDelegate: class {
     func section() -> ContentSection
 }
 
+protocol ArticleItemViewControllerDelegate: class {
+    func didTapClose(in viewController: UIViewController)
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController)
+    func didTapLink(_ url: URL, in viewController: UIViewController)
+    func didTapMedia(withURL url: URL, in viewController: UIViewController)
+}
+
 var colorMode = ColorMode.dark
 var textScale = TextScale.scaleNot
 var colorModeIsActive = false
@@ -84,7 +91,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
-    private var topBarButtonItems: [UIBarButtonItem] = []
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var articleTopNavBar: ArticleTopNavBar!
@@ -137,7 +143,6 @@ private extension ArticleViewController {
     func setupTableView() {
         tableView.registerDequeueable(ContentItemTextTableViewCell.self)
         tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
-        tableView.registerDequeueable(ArticleRelatedCell.self)
         tableView.registerDequeueable(LearnPDFCell.self)
         tableView.registerDequeueable(ErrorCell.self)
         tableView.registerDequeueable(ArticleTextHeaderTableViewCell.self)

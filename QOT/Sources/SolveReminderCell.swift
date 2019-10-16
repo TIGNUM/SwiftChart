@@ -15,7 +15,6 @@ final class SolveReminderCell: BaseDailyBriefCell {
     @IBOutlet private weak var question1: UILabel!
     @IBOutlet private weak var question2: UILabel!
     @IBOutlet private weak var question3: UILabel!
-    private var solveViewModels: [SolveReminderCellViewModel.SolveViewModel]? = []
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {

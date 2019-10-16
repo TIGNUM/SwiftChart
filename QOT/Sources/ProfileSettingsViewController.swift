@@ -23,10 +23,6 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
     private var selectedCell: SettingsTableViewCell?
-    private var pickerItems: UserMeasurement?
-    private var pickerViewHeight: NSLayoutConstraint?
-    private var pickerInitialSelection = [Index]()
-    private var pickerIndexPath = IndexPath(item: 0, section: 0)
     var interactor: ProfileSettingsInteractorInterface?
     var launchOptions: [LaunchOption: String?]?
 

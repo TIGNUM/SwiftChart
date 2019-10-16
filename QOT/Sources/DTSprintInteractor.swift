@@ -14,7 +14,6 @@ final class DTSprintInteractor: DTInteractor {
     // MARK: - Properties
     private lazy var sprintWorker: DTSprintWorker? = DTSprintWorker()
     private var activeSprint: QDMSprint?
-    private var sprintToUpdate: QDMSprint?
     private var newSprintContentId: Int?
     private var lastSprintQuestionId: Int?
     private var selectedSprintContentId: Int = 0

@@ -16,7 +16,6 @@ final class WalkthroughViewController: BaseViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var buttonGotIt: RoundedButton!
 
     private let gotItAppearDelay: Double = 0
-    private let animationDuration: Double = Animation.duration_3
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
     private var viewedControllers = Set<Int>() {

@@ -21,7 +21,6 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var loaderView: UIView!
     @IBOutlet private weak var timerView: UIView!
 
-    private var showCountDownPage = false
     private var isLastPage: Bool = false
     private var currentPageIndex: Int = 0
     private var nextPageTimer: Timer?

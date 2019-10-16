@@ -34,7 +34,6 @@ final class WeatherCell: BaseDailyBriefCell {
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
-    private var score: Int = 0
     private let formatter = MeasurementFormatter()
     private let numberFormatter = NumberFormatter()
 

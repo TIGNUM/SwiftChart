@@ -10,14 +10,6 @@ import UIKit
 import MessageUI
 
 final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
-
-    private enum CellType: Int, CaseIterable {
-        case header = 0
-        case sections
-        case selectAccount
-        case footer
-    }
-
     // MARK: - Properties
 
     @IBOutlet private weak var tableView: UITableView!

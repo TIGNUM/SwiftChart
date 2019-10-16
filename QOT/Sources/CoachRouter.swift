@@ -35,9 +35,6 @@ extension CoachRouter: CoachRouterInterface {
         case .search:
             let configurator = SearchConfigurator.make(delegate: delegate)
             let searchViewController = SearchViewController(configure: configurator)
-            let navController = UINavigationController(rootViewController: searchViewController)
-            navController.navigationBar.applyDefaultStyle()
-            navController.modalTransitionStyle = .crossDissolve
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:

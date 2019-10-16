@@ -14,9 +14,6 @@ final class MyQotMainWorker {
     // MARK: - Properties
 
     private let userService = qot_dal.UserService.main
-    private lazy var firstInstallTimeStamp: Date? = {
-        return UserDefault.firstInstallationTimestamp.object as? Date
-    }()
 
     // MARK: - Init
 

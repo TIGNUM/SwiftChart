@@ -220,13 +220,6 @@ extension SettingsTableViewCell {
         setSwitchState(switchControl: sender)
     }
 
-    private func updateCalendarSettings(_ sender: UISwitch) {
-        if let calendarIdentifier = calendarIdentifier {
-            calendarSyncDelegate?.didChangeCalendarSyncValue(sender: sender, calendarIdentifier: calendarIdentifier)
-            setSwitchState(switchControl: sender)
-        }
-    }
-
     func setSwitchState(switchControl: UISwitch) {
         switchControl.alpha = switchControl.isOn == true ? 1 : 0.5
         if switchControl.isOn == true {

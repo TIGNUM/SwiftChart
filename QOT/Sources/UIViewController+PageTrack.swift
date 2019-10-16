@@ -50,7 +50,6 @@ extension UIViewController {
         case is MyQotSensorsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings_activitytrackers)
         case is MyQotSiriShortcutsViewController: return AppTextService.get(AppTextKey.page_track_myprofile_appsettings_sirishortcuts)
         case is MyQotSupportDetailsViewController: return myQOTSupportDetailsViewControllerPageKey
-        case is TutorialViewController: return AppTextService.get(AppTextKey.page_track_myprofile_support_tutorial)
         case is MyVisionViewController: return AppTextService.get(AppTextKey.page_track_tobevision)
         case is MyVisionEditDetailsViewController: return AppTextService.get(AppTextKey.page_track_tobevision_edit)
         case is MyToBeVisionRateViewController: return AppTextService.get(AppTextKey.page_track_tobevision_tracker_questionaire)

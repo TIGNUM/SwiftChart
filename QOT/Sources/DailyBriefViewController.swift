@@ -32,10 +32,6 @@ protocol DailyBriefViewControllerDelegate: class {
     func showDailyCheckInQuestions()
 }
 
-protocol PopUpCopyRightViewControllerProtocol: class {
-     func cancelAction()
-}
-
 final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
@@ -45,13 +41,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     var interactor: DailyBriefInteractorInterface?
-    private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
-    private var selectedStrategySprintsID: Int?
-    private var selectedToolSprintsID: Int?
-    private var showSteps = false
-    private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var navBarHeader: NavBarTableViewCell?
 
@@ -842,7 +833,6 @@ extension DailyBriefViewController: QuestionnaireAnswer {
 }
 
 extension DailyBriefViewController: PopUpCopyrightViewControllerProtocol {
-
     func cancelAction() {
          self.dismiss(animated: true, completion: nil)
     }

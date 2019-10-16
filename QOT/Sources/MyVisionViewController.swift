@@ -40,11 +40,6 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
 
     var didShowNullStateView = false
 
-    private let containerViewSize: CGFloat = 232.0
-    private let containerViewRatio: CGFloat = 1.2
-    private let lowerBoundAlpha: CGFloat = 0.6
-    private let upperBoundAlpha: CGFloat = 1.1
-
     private var lastContentOffset: CGFloat = 0
     private var tempImage: UIImage?
     private var tempImageURL: URL?

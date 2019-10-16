@@ -30,7 +30,6 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 
-    private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var coachButton: UIButton!
     private var bottomSearchViewConstraint: NSLayoutConstraint!

@@ -11,8 +11,6 @@ import AirshipKit
 import qot_dal
 
 final class APNSDeviceTokenRegistrator {
-
-    private let timerDelay: TimeInterval = 60
     private var token: String?
     private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
 

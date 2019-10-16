@@ -19,7 +19,6 @@ final class MyQotMainInteractor {
     private let router: MyQotMainRouterInterface
     private var viewModelOldListModels: [ArraySection<MyQotViewModel.Section, MyQotViewModel.Item>] = []
     private var subtitles: [String?] = []
-    private var dateOfPrep: String?
     private var eventType: String?
 
     // MARK: - Init
