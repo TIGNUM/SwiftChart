@@ -147,16 +147,16 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         }
     }
 
-    func didTapGetHelpButton() {
-        presenter.presentGetHelp()
-    }
-
     func resetEmailError() {
         viewModel.emailError = nil
     }
 
     func resetCodeError() {
         viewModel.codeError = nil
+    }
+
+    func showFAQScreen() {
+        router.showFAQScreen()
     }
 }
 

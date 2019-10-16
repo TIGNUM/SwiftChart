@@ -11,14 +11,14 @@ import Foundation
 protocol RegistrationCodeViewControllerInterface: UIViewController {
     func setupView()
     func update()
-    func presentGetHelpView()
+    func presentFAQScreen()
 }
 
 protocol RegistrationCodePresenterInterface {
     func setup()
     func present()
     func presentActivity(state: ActivityState?)
-    func presentGetHelp()
+    func presentFAQScreen()
 }
 
 protocol RegistrationCodeInteractorInterface: Interactor {
@@ -39,9 +39,11 @@ protocol RegistrationCodeInteractorInterface: Interactor {
     func validateLoginCode(_ code: String)
     func resetErrors()
     func resendCode()
+    func showFAQScreen()
 }
 
 protocol RegistrationCodeRouterInterface {
     func showPrivacyPolicy()
     func showTermsOfUse()
+    func showFAQScreen()
 }

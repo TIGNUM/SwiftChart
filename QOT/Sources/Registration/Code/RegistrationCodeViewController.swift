@@ -162,9 +162,9 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
         }
     }
 
-    func presentGetHelpView() {
+    func presentFAQScreen() {
         trackUserEvent(.GET_HELP, action: .TAP)
-        sendEmail()
+        interactor?.showFAQScreen()
     }
 }
 

@@ -21,28 +21,25 @@ final class ToolsWorker {
 
 extension ToolsWorker: ToolsWorkerInterface {
     func tools(_ completion: @escaping ([ToolItem]) -> Void) {
-        qot_dal.ContentService.main.getContentCollectionBySection(.QOTLibrary, { (contentCollections) in
-            guard let collections = contentCollections else {
+        let validContentCategoryIds = [ContentCategory.PerformanceMindset,
+                                       ContentCategory.PerformanceNutrition,
+                                       ContentCategory.PerformanceMovement,
+                                       ContentCategory.PerformanceRecovery,
+                                       ContentCategory.PerformanceHabituation]
+        ContentService.main.getContentCategories(validContentCategoryIds) { (categories) in
+            guard let categories = categories else {
                 completion([])
                 return
             }
-            let categoryIds = Array(Set(collections.compactMap({ $0.categoryIDs.first })))
-            qot_dal.ContentService.main.getContentCategoriesByIds(categoryIds, { (categories) in
-                guard let categories = categories else {
-                    completion([])
-                    return
-                }
-                let tools = categories.compactMap({ (category) -> ToolItem? in
-                    guard category.remoteID != 100037 else { return nil }
-                    let itemCount = category.contentCollections.filter({ $0.section == .QOTLibrary }).count
-                    return ToolItem(title: category.title,
-                                    remoteID: category.remoteID ?? 0,
-                                    itemCount: itemCount,
-                                    sortOrder: category.sortOrder)
-                })
-                completion(tools.sorted(by: { $0.sortOrder > $1.sortOrder }))
+            let tools = categories.compactMap({ (category) -> ToolItem? in
+                let itemCount = category.contentCollections.filter({ $0.section == .QOTLibrary }).count
+                return ToolItem(title: category.title,
+                                remoteID: category.remoteID ?? 0,
+                                itemCount: itemCount,
+                                sortOrder: category.sortOrder)
             })
-        })
+            completion(tools.sorted(by: { $0.sortOrder > $1.sortOrder }))
+        }
     }
 
     func toolsSections() -> ToolModel {

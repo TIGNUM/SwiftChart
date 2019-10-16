@@ -62,8 +62,4 @@ extension OnboardingLoginPresenter: OnboardingLoginPresenterInterface {
     func presentCodeEntry() {
         viewController?.beginCodeEntry()
     }
-
-    func presentGetHelp() {
-        viewController?.presentGetHelpView()
-    }
 }
