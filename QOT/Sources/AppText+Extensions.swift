@@ -598,7 +598,6 @@ public extension AppTextKey {
     static let page_track_dailyCheckin_start = AppTextKey("page.track.dailyCheckin.start")
     static let page_track_decisiontree_3drecovery = AppTextKey("page.track.decisiontree.3drecovery")
     static let page_track_decisiontree_mindsetshifter = AppTextKey("page.track.decisiontree.mindsetshifter")
-    static let page_track_DECISIONTREE_MINDSETSHIFTER_PREPARE = AppTextKey("page.track.DECISIONTREE_MINDSETSHIFTER_PREPARE")
     static let page_track_decisiontree_mindsetshifter_results = AppTextKey("page.track.decisiontree.mindsetshifter.results")
     static let page_track_decisiontree_onboarding_tobevisiongenerator = AppTextKey("page.track.decisiontree.onboarding.tobevisiongenerator")
     static let page_track_decisiontree_prepare = AppTextKey("page.track.decisiontree.prepare")
