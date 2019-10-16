@@ -112,13 +112,10 @@ struct Layout {
     static let cornerRadius20: CGFloat = 20
     static let statusBarHeight: CGFloat = 64
     static let padding_24: CGFloat = 24
-    static let padding_16: CGFloat = 16
     static let padding_40: CGFloat = 40
     static let padding_50: CGFloat = 50
     static let padding_100: CGFloat = 100
-    static let height_44: CGFloat = 44
     static let multiplier_06: CGFloat = 0.06
-    static let multiplier_025: CGFloat = 0.25
     static let multiplier_053: CGFloat = 0.53
     static let multiplier_150: CGFloat = 1.50
 
@@ -139,7 +136,6 @@ struct Layout {
 }
 
 extension UIFont {
-
     /// BENTON SANS 16 // paragraph, body text
     static let PText = UIFont.apercuRegular(ofSize: 16)
 

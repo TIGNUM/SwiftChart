@@ -62,19 +62,6 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
     }
 }
 
-// MARK: - Private
-
-private extension RegistrationViewController {
-    func bottomButton(with title: String, selector: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: title,
-                                    image: nil,
-                                    buttonWidth: alertButtonWidth,
-                                    action: selector,
-                                    backgroundColor: .clear,
-                                    borderColor: .accent40)
-    }
-}
-
 // MARK: - Actions
 
 private extension RegistrationViewController {
@@ -128,13 +115,6 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
             pageIndicator.isHidden = true
         }
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
-    }
-
-    func showExistingAccountAlert(title: String, message: String) {
-        let infoAlertView = InfoAlertView()
-        infoAlertView.set(icon: R.image.ic_warning(), title: title, text: message)
-        infoAlertView.bottomInset = BottomNavigationContainer.height
-        infoAlertView.present(on: self.view)
     }
 
     func showAlert(message: String) {

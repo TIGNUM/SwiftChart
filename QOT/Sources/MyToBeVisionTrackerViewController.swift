@@ -57,11 +57,6 @@ final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3
         trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true, completion: nil)
     }
-
-    func reloadSubHeadingSection() {
-        let indexPath = IndexPath(item: 0, section: 0)
-        tableView.reloadRows(at: [indexPath], with: .fade)
-    }
 }
 
 extension MyToBeVisionTrackerViewController: MyToBeVisionTrackerViewControllerInterface {

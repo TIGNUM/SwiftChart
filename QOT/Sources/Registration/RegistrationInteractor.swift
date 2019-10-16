@@ -96,10 +96,6 @@ final class RegistrationInteractor {
 // MARK: - RegistrationInteractorInterface
 
 extension RegistrationInteractor: RegistrationInteractorInterface {
-    var presentedController: UIViewController {
-        return presentedControllers.last ?? UIViewController()
-    }
-
     func navigateToLogin(shouldSaveToBeVision: Bool) {
         navigateToLogin(with: registrationData.email, toBeVision: shouldSaveToBeVision)
     }

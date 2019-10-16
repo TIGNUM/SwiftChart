@@ -23,7 +23,6 @@ final class AppCoordinator {
 
     private var isReadyToProcessURL = false
 
-    private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var canProcessRemoteNotifications = false
@@ -39,10 +38,8 @@ final class AppCoordinator {
 
     // MARK: - Life Cycle
 
-    init(windowManager: WindowManager,
-         remoteNotificationHandler: RemoteNotificationHandler,
+    init(remoteNotificationHandler: RemoteNotificationHandler,
          locationManager: LocationManager) {
-        self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
         AppDelegate.current.localNotificationHandlerDelegate = self
@@ -131,7 +128,11 @@ final class AppCoordinator {
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        self.windowManager.show(naviController, animated: true) {
+
+        self.setRootViewController(naviController,
+                                   transitionStyle: .transitionCrossDissolve,
+                                   duration: 0.7,
+                                   animated: true) {
             DispatchQueue.main.async {
                 // Show coach marks on first launch (of v3.0 app)
                 let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
@@ -145,6 +146,23 @@ final class AppCoordinator {
                 }
             }
         }
+    }
+
+    private func setRootViewController(_ viewController: UIViewController, transitionStyle: UIViewAnimationOptions, duration: TimeInterval, animated: Bool, completion: (() -> Void)?) {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window,
+            let rootViewController = window.rootViewController else {
+            assertionFailure("rootViewController should not be nil")
+            return
+        }
+        // FIXME: Setting the frame here is necessary to avoid an unintended animation in some situations.
+        // Not sure why this is happening. We should investigate.
+        viewController.view.frame = rootViewController.view.bounds
+        viewController.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: duration, options: transitionStyle, animations: {
+            window.rootViewController = viewController
+        }, completion: { _ in
+            completion?()
+        })
     }
 
     func isReadyToOpenURL() -> Bool {
@@ -183,19 +201,6 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
-
-    func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
-        let alert = UIViewController.alert(forType: type, handler: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handler?()
-        }, handlerDestructive: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handlerDestructive?()
-        })
-        windowManager.showAlert(alert, animated: true, completion: nil)
-        currentPresentedController = alert
-    }
-
     func showTrackChoice() {
         guard let controller = R.storyboard.trackSelection.trackSelectionViewController(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,

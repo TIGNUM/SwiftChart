@@ -42,7 +42,6 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     }()
 
     lazy private var years: [String] = {
-        let currentYear = Calendar.current.component(.year, from: Date())
         let lowerBound = Date().minimumDateOfBirth.year()
         let upperBound = Date().maximumDateOfBirth.year()
 

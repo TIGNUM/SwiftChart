@@ -108,7 +108,6 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
 
     func setupView() {
         setupTableView()
-        setCustomBackButton()
     }
 
     func reload() {

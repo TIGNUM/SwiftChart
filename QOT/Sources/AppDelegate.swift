@@ -33,22 +33,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     weak var shortcutHandlerDelegate: ShortcutHandlerDelegate?
     lazy var locationManager = LocationManager()
 
-    lazy var windowManager: WindowManager = {
-        guard let window = self.window else {
-            fatalError("window shouldn't be nil")
-        }
-        let frame = UIScreen.main.bounds
-        let windowManager = WindowManager(
-            alertWindow: UIWindow(frame: frame),
-            priorityWindow: UIWindow(frame: frame),
-            overlayWindow: UIWindow(frame: frame),
-            normalWindow: window
-        )
-        return windowManager
-    }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(windowManager: windowManager,
-                              remoteNotificationHandler: remoteNotificationHandler,
+        return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler,
                               locationManager: locationManager)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {

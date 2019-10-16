@@ -28,10 +28,3 @@ final class SigningInfoWorker {
         return AppTextService.get(AppTextKey.sign_in_onboarding_view_body_intro)
     }()
 }
-
-// MARK: - Public
-extension SigningInfoWorker {
-    func shouldShowUnoptimizedScreenWarning() -> Bool {
-        return UIDevice.isPad || UIDevice.isSmallScreenDevice
-    }
-}

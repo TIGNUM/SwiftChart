@@ -47,7 +47,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
         super.viewDidLoad()
         ThemeView.qotTools.apply(view)
         ThemeView.qotTools.apply(tableView)
-        setCustomBackButton()
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
     }
@@ -57,7 +56,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
             backButton.isHidden = true
         }
         super.viewWillAppear(animated)
-        setCustomBackButton()
         setStatusBar(colorMode: ColorMode.darkNot)
     }
 
@@ -104,10 +102,8 @@ private extension ToolsItemsViewController {
 // MARK: - CoachViewControllerInterface
 
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
-
     func setupView() {
         setupTableView()
-        setCustomBackButton()
     }
 
     func reload() {

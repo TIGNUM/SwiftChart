@@ -89,7 +89,6 @@ extension ToolsViewController: ToolsViewControllerInterface {
 
     func setupView() {
         setupTableView()
-        setCustomBackButton()
     }
 
     func setup(for toolSection: ToolModel) {

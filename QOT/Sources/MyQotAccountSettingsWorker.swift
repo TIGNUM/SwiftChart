@@ -98,13 +98,6 @@ extension MyQotAccountSettingsWorker {
 // MARK: - Private extension
 
 private extension MyQotAccountSettingsWorker {
-    func getUserEmail(_ completion: @escaping (String) -> Void) {
-        userService.getUserData {[weak self] (user) in
-            let profile = self?.formProfile(for: user)
-            completion(profile?.email ?? "")
-        }
-    }
-
     func formProfile(for user: QDMUser?) -> UserProfileModel? {
         return UserProfileModel(imageURL: user?.profileImage?.url(),
                                 givenName: user?.givenName,
