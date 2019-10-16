@@ -239,14 +239,16 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .FROM_TIGNUM?:
             return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
-            return getBeSpokeCell(tableView, indexPath, bucketItem as? BeSpokeCellViewModel)
+             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
+//            return getBeSpokeCell(tableView, indexPath, bucketItem as? BeSpokeCellViewModel)
         case .DEPARTURE_INFO?:
               return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
 //            return getDepartureInfoCell(tableView, indexPath, bucketItem as? DepartureInfoCellViewModel)
         case .LEADERS_WISDOM?:
             return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
         case .FEAST_OF_YOUR_EYES?:
-            return getFeastForEyesCell(tableView, indexPath, bucketItem as? FeastCellViewModel)
+//            return getFeastForEyesCell(tableView, indexPath, bucketItem as? FeastCellViewModel)
+             return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .MY_PEAK_PERFORMANCE?:
             return getMyPeakPerformance(tableView, indexPath, bucketItem as? MyPeakPerformanceCellViewModel)
         case .GUIDE_TRACK?:

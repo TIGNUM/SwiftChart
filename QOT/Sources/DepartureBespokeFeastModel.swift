@@ -15,16 +15,16 @@ final class DepartureBespokeFeastModel: BaseDailyBriefViewModel {
     var subtitle: String?
     var title: String?
     var text: String?
-    var image: String?
-    var copyright: String?
+    var images: [String?]
+    var copyrights: [String?]
 
     // MARK: - Init
-    init(title: String?, subtitle: String?, text: String?, image: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, subtitle: String?, text: String?, images: [String?], copyrights: [String?], domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
-        self.image = image
-        self.copyright = copyright
+        self.images = images
+        self.copyrights = copyrights
         super.init(domainModel)
     }
 
@@ -36,7 +36,7 @@ final class DepartureBespokeFeastModel: BaseDailyBriefViewModel {
             subtitle == source.subtitle &&
             title == source.title &&
             text == source.text &&
-            image == source.image &&
-            copyright == source.copyright
+            images == source.images &&
+            copyrights == source.copyrights
     }
 }

@@ -10,15 +10,19 @@ import UIKit
 
 final class DepartureBespokeFeastImageCell: UIView {
 
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var copyrightButton: UIButton!
+    @IBOutlet private var contentView: UIView!
     @IBOutlet weak var picture: UIImageView!
     var copyrightURL: String?
-    @IBOutlet weak var copyrightButton: UIButton!
+    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
     //initWithFrame to init view from code
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.commonInit()
+    }
+    @IBAction func copyrightTapped(_ sender: Any) {
+        delegate?.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     //initWithCode to init view from xib or storyboard
@@ -33,13 +37,5 @@ final class DepartureBespokeFeastImageCell: UIView {
         content.frame = self.bounds
         content.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(content)
-    }
-
-    func configure(pictureURL: URL?, copyrightURL: URL?) {
-        picture.setImage(url: pictureURL) { (actualImage) in
-            let width = (200 * (actualImage?.size.width ?? 1)) / ( actualImage?.size.height ?? 1 )
-            self.imageWidth.constant = width
-            self.needsUpdateConstraints()
-        }
     }
 }

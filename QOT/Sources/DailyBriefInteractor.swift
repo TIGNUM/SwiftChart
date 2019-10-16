@@ -238,7 +238,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         elements: strongSelf.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
                     sectionDataList.append(ArraySection(model: .bespoke,
-                                                        elements: strongSelf.createBeSpokeModel(beSpokeModelBucket: bucket)))
+                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
@@ -248,7 +248,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
                     sectionDataList.append(ArraySection(model: .feastForYourEyes,
-                                                        elements: strongSelf.createFeastForEyesModel(feastForEyesBucket: bucket)))
+                                                        elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
                 case .FROM_MY_COACH?:
                     sectionDataList.append(ArraySection(model: .fromMyCoach,
                                                         elements: strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)))
@@ -574,16 +574,34 @@ extension DailyBriefInteractor {
         return departureInfoList
     }
 
-    func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureInfo: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var departureInfoList: [BaseDailyBriefViewModel] = []
-        let model = DepartureBespokeFeastModel(title: "Tilte of bucket",
-                                               subtitle: "Subtitle",
-                                               text: "Text",
-                                               image: "URL of image",
-                                               copyright: "blablabla",
-                                               domainModel: depatureInfo)
-        departureInfoList.append(model)
-        return departureInfoList
+    func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
+        guard let collection = depatureBespokeFeast.contentCollections?.first else {
+            departureBespokeFeastList.append(DepartureBespokeFeastModel(title: "",
+                                                                subtitle: "",
+                                                                text: "",
+                                                                images: [""],
+                                                                copyrights: [""],
+                                                                domainModel: depatureBespokeFeast))
+            return departureBespokeFeastList
+        }
+        let title = depatureBespokeFeast.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
+        let subtitle = depatureBespokeFeast.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        var copyrights: [String?] = []
+        var images: [String?] = []
+        collection.contentItems.filter { $0.format == .image }.forEach { (image) in
+            images.append(image.valueMediaURL)
+            copyrights.append(image.copyrightURLString)
+        }
+        let model = DepartureBespokeFeastModel(title: title,
+                                               subtitle: subtitle,
+                                               text: text,
+                                               images: images,
+                                               copyrights: copyrights,
+                                               domainModel: depatureBespokeFeast)
+        departureBespokeFeastList.append(model)
+        return departureBespokeFeastList
     }
 
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
