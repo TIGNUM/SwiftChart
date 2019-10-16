@@ -38,7 +38,7 @@ struct MyDataDailyCheckInModel: Codable {
         impactReadiness = min((withDailyCheckInResult.impactReadiness ?? 0), 100)
         sleepQuality = min((withDailyCheckInResult.sleepQuality ?? 0) * 10, 100)
         sleepQuantity = min((withDailyCheckInResult.sleepQuantity ?? 0) * 10, 100)
-        fiveDayRecovery = min((withDailyCheckInResult.fiveDaysRecovery ?? 0), 100)
+        fiveDayRecovery = min((withDailyCheckInResult.fiveDaysRecovery ?? 0) * 10, 100)
         fiveDayLoad = min((withDailyCheckInResult.fiveDaysload ?? 0) * 10, 100)
         tenDayLoad = min((withDailyCheckInResult.tenDaysFutureLoad ?? 0) * 10, 100)
         fiveDayImpactReadiness = min((withDailyCheckInResult.fiveDaysImpactReadiness ?? 0), 100)
