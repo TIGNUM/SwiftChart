@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import SafariServices
 
 final class DepartureBespokeFeastImageCell: UIView {
 
     @IBOutlet weak var copyrightButton: UIButton!
     @IBOutlet private var contentView: UIView!
     @IBOutlet weak var picture: UIImageView!
+    private var imageURL: URL?
     var copyrightURL: String?
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var imageWidth: NSLayoutConstraint!
@@ -37,5 +39,18 @@ final class DepartureBespokeFeastImageCell: UIView {
         content.frame = self.bounds
         content.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         self.addSubview(content)
+    }
+
+    func configure(imageURL: URL?) {
+        self.imageURL = imageURL
+        let tap = UITapGestureRecognizer(target: self, action: #selector(openLink))
+        picture.addGestureRecognizer(tap)
+        picture.isUserInteractionEnabled = true
+    }
+
+    @objc func openLink(sender: UITapGestureRecognizer) {
+        guard let url = URL(string: self.copyrightURL ?? "") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        delegate?.presentSafari(safariVC)
     }
 }

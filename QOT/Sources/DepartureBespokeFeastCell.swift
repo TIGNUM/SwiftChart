@@ -56,6 +56,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
                 addedView.needsUpdateConstraints()
                 self.stackViewWidth.constant = totalWidth
                 addedView.delegate = self.delegate
+                addedView.configure(imageURL: url)
             }
             stackView.addArrangedSubview(addedView)
         }

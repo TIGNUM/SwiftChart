@@ -9,8 +9,10 @@
 import UIKit
 import qot_dal
 import DifferenceKit
+import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
+    func presentSafari( _ vc: SFSafariViewController)
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
@@ -756,6 +758,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func presentSafari( _ vc: SFSafariViewController) {
+        present(vc, animated: true)
+    }
 
     func showDailyCheckInQuestions() {
         interactor?.showDailyCheckInQuestions()
