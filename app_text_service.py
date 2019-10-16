@@ -26,12 +26,15 @@ def processFolder(folderpath, input, output):
 def processKey(folderpath, input, output):
     defKeyIn = 'static let ' + input + ' = '
     defKeyOut = 'static let ' + output + ' = '
-
-    useKeyIn = 'AppTextKey.' + input + ')'
-    useKeyOut = 'AppTextKey.' + output + ')'
-
     processFolder(folderpath, defKeyIn, defKeyOut)
-    processFolder(folderpath, useKeyIn, useKeyOut)
+
+    useKeyIn1 = 'AppTextKey.' + input + ')'
+    useKeyOut1 = 'AppTextKey.' + output + ')'
+    processFolder(folderpath, useKeyIn1, useKeyOut1)
+
+    useKeyIn2 = 'AppTextKey.' + input + ','
+    useKeyOut2 = 'AppTextKey.' + output + ','
+    processFolder(folderpath, useKeyIn2, useKeyOut2)
     return;
 
 path = 'QOT/Sources'
