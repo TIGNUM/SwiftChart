@@ -28,4 +28,13 @@ extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.appCoordinator.showApp()
     }
+
+    func showFAQScreen() {
+        let identifier = R.storyboard.myQot.myQotSupportDetailsViewController.identifier
+        if let controller = R.storyboard
+            .myQot().instantiateViewController(withIdentifier: identifier) as? MyQotSupportDetailsViewController {
+            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQBeforeLogin)
+            viewController?.present(controller, animated: true, completion: nil)
+        }
+    }
 }

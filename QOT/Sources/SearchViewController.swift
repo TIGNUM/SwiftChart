@@ -99,6 +99,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     func load(_ searchSuggestions: SearchSuggestions) {
         self.searchSuggestions = searchSuggestions
         suggestionsHeader.configure(title: searchSuggestions.header)
+        suggestionsTableView.reloadData()
     }
 }
 

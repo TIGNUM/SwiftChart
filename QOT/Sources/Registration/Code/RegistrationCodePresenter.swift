@@ -34,7 +34,7 @@ extension RegistrationCodePresenter: RegistrationCodePresenterInterface {
         viewController?.presentActivity(state: state)
     }
 
-    func presentGetHelp() {
-        viewController?.presentGetHelpView()
+    func presentFAQScreen() {
+        viewController?.presentFAQScreen()
     }
 }

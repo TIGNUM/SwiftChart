@@ -457,7 +457,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             if style.headline == true {
                 attributedTopText = ThemeText.articleBody.attributedString(text.uppercased())
             } else if style == .paragraph {
-                attributedTopText = ThemeText.articleBody.attributedString(text, lineHeight: 1.8)
+                attributedTopText = ThemeText.articleBody.attributedString(text, lineHeight: 8)
             } else if style == .quote {
                 attributedTopText = ThemeText.articleQuote.attributedString(text, lineHeight: 1.8)
             }

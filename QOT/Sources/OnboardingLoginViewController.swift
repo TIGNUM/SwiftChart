@@ -193,6 +193,10 @@ private extension OnboardingLoginViewController {
         present(mail, animated: true)
     }
 
+    func showFAQViewController() {
+        interactor?.showFAQScreen()
+    }
+
     func updateCodeEntry(isEnabled: Bool) {
         codeEntryViews.forEach {
             $0.alpha = isEnabled ? 1 : codeEntryViewsDisabledAlpha
@@ -218,7 +222,7 @@ private extension OnboardingLoginViewController {
 
     @IBAction func didTapGetHelp() {
         trackUserEvent(.GET_HELP, action: .TAP)
-        interactor?.didTapGetHelpButton()
+        interactor?.showFAQScreen()
     }
 
     // Superclass already has a `didTapBackButton()` method
@@ -353,10 +357,6 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
     func beginCodeEntry() {
         updateCodeEntry(isEnabled: true)
         digitTextFields.first?.becomeFirstResponder()
-    }
-
-    func presentGetHelpView() {
-        sendEmail()
     }
 }
 

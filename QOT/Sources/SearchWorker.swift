@@ -127,9 +127,15 @@ final class SearchWorker {
         return array
     }
 
-    func suggestions() -> SearchSuggestions {
-        return SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),
-                                 suggestions: suggestions())
+    func suggestions(completion: @escaping (SearchSuggestions?) -> Void) {
+        var suggestionItems: [String] = []
+        ContentService.main.getContentCategory(.Search) { (searchCategory) in
+            searchCategory?.contentCollections.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
+                suggestionItems.append(suggestionItem.valueText)
+            }
+            completion(SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),
+                                 suggestions: suggestions()))
+        }
     }
 
     func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void) {
