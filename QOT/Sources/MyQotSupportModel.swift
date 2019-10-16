@@ -50,7 +50,7 @@ struct MyQotSupportModel {
         func title() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_feature)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_view_title)
             case .faq:
                 return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_faq)
             case .reportIssue:
