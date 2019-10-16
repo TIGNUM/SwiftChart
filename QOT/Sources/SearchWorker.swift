@@ -134,7 +134,7 @@ final class SearchWorker {
                 suggestionItems.append(suggestionItem.valueText)
             }
             completion(SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),
-                                 suggestions: suggestions()))
+                                 suggestions: self.suggestions()))
         }
     }
 
