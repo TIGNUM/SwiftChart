@@ -136,7 +136,6 @@ enum SettingsRow {
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
-    case multipleStringPicker(title: String, rows: UserMeasurement, initialSelection: [Index], settingsType: SettingsType)
 
     var identifier: String {
         switch self {
@@ -145,7 +144,6 @@ enum SettingsRow {
         case .datePicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .label: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .stringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
-        case .multipleStringPicker: return R.reuseIdentifier.settingsTableViewCell_Label.identifier
         case .textField: return R.reuseIdentifier.settingsTableViewCell_TextField.identifier
         }
     }

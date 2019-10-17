@@ -127,7 +127,7 @@ enum ContentItemValue {
 
     var duration: Int {
         switch self {
-        case .audio(_, _, _, _, _, let duration, _): return duration.toInt
+        case .audio(_, _, _, _, _, let duration, _): return Int(duration)
         default: return 0
         }
     }

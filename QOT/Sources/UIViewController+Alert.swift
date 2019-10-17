@@ -99,18 +99,6 @@ enum AlertType {
     var alertStyle: UIAlertControllerStyle {
         return .alert
     }
-
-    static func makeCustom(title: String?, message: String?) -> AlertType? {
-        if let title = title, let message = message {
-            return .custom(title: title, message: message)
-        } else if let title = title {
-            return .title(title)
-        } else if let message = message {
-            return .message(message)
-        } else {
-            return nil
-        }
-    }
 }
 
 // MARK: - Alert

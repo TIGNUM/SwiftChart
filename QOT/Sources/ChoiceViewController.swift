@@ -84,7 +84,7 @@ extension ChoiceViewController: UITableViewDelegate {
         if interactor?.isParentNode(atIndexPath: indexPath) == true {
             guard let node = interactor?.node(in: indexPath.section) else { return }
             interactor?.setIsOpen(!node.isOpen, in: indexPath.section)
-            tableView.reloadDataWithAnimation()
+            tableView.reloadData()
         } else if let readMoreId = interactor?.item(at: indexPath).contentId {
             delegate?.didTapRow(self, contentId: readMoreId)
         }
@@ -146,7 +146,7 @@ extension ChoiceViewController: CollapsableContentCellDelegate {
         }
         item.selected = !item.selected
         interactor?.replace(item, at: indexPath)
-        tableView.reloadDataWithAnimation()
+        tableView.reloadData()
     }
 }
 
@@ -155,7 +155,7 @@ extension ChoiceViewController: CollapsableCellDelegate {
     func collapsableCell(_ cell: CollapsableCell, didTapCollapseAt indexPath: IndexPath) {
         guard let isOpen = cell.isOpen else { return }
         interactor?.setIsOpen(!isOpen, in: indexPath.section)
-        tableView.reloadDataWithAnimation()
+        tableView.reloadData()
     }
 }
 

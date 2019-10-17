@@ -68,8 +68,4 @@ private extension UANotificationContent {
         guard let deepLink = notificationInfo["^d"] as? String, let url = URL(string: deepLink) else { return nil }
         return url
     }
-
-    var notificationID: String? {
-        return notificationInfo["notificationId"] as? String
-    }
 }

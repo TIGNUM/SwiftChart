@@ -27,7 +27,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     private lazy var settingsType = SettingsType.company
     private var calendarIdentifier: String?
     private var calendarSource: String?
-    var controlUpdate = false
     var keyboardInputView: MyQotProfileSettingsKeybaordInputView?
     weak var settingsDelegate: SettingsViewControllerDelegate?
     weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
@@ -85,18 +84,10 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: pickerItems[selectedIndex], settingsType: settingsType)
-        case .multipleStringPicker(let title, let userMeasurement, _, let settingsType):
-            self.settingsType = settingsType
-            let displayableValue = userMeasurement.currentTitle()
-            setupTextFieldCell(title: title, value: displayableValue, settingsType: settingsType)
         case .textField(let title, let value, _, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: value, settingsType: settingsType)
         }
-    }
-
-    func setupHeaderCell(title: String) {
-        setupLabelCell(title: title, value: nil)
     }
 
     func setupControls(isSyncFinished: Bool) {
@@ -132,22 +123,6 @@ private extension SettingsTableViewCell {
 
     func setupDateCell(title: String, selectedYear: String, settingsType: SettingsType) {
         setupTextFieldCell(title: title, value: selectedYear, settingsType: settingsType)
-    }
-
-    func setupLabelCell(title: String, value: String?) {
-        setValue(value: value)
-        if value == nil {
-            titleLabel.attributedText = NSMutableAttributedString(
-                string: title.uppercased(),
-                letterSpacing: 2,
-                font: .H7Tag,
-                lineSpacing: 4,
-                textColor: .white60
-            )
-            valueLabel.isHidden = true
-        } else {
-            setTitle(title: title)
-        }
     }
 
     func setupTextFieldCell(title: String, value: String, settingsType: SettingsType) {

@@ -672,7 +672,6 @@
 		918D5E2B20EE050900AEAD37 /* QOTWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 918D5E1F20EE050900AEAD37 /* QOTWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
-		91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E59F2C2057D23700396225 /* UserMeasurement.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */; };
 		9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */; };
@@ -1023,7 +1022,6 @@
 		D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5485F211ED57AE200A08D1A /* SearchViewController.swift */; };
 		D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F81E6FFF1200AB5AEF /* LaunchScreen.storyboard */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
-		DB22ADB0232AF9DC009281AB /* DailyBriefTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */; };
 		DB2969EA22C6105300B8A590 /* AudioFullScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */; };
 		DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */; };
 		DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */; };
@@ -1930,7 +1928,6 @@
 		918D5E2820EE050900AEAD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
-		91E59F2C2057D23700396225 /* UserMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMeasurement.swift; sourceTree = "<group>"; };
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadinessCell2.xib; sourceTree = "<group>"; };
 		9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCell2.swift; sourceTree = "<group>"; };
@@ -2269,7 +2266,6 @@
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefTableView.swift; sourceTree = "<group>"; };
 		DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFullScreenViewController.swift; sourceTree = "<group>"; };
 		DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioFullScreenViewController.storyboard; sourceTree = "<group>"; };
 		DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
@@ -2576,7 +2572,6 @@
 				F96A4BCF22C4F16D0021C415 /* WhatsHotLatest */,
 				9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */,
 				B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */,
-				DB22ADAF232AF9DC009281AB /* DailyBriefTableView.swift */,
 			);
 			name = DailyBriefComponents;
 			sourceTree = "<group>";
@@ -4019,7 +4014,6 @@
 			children = (
 				CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */,
 				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
-				91E59F2C2057D23700396225 /* UserMeasurement.swift */,
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
@@ -6341,7 +6335,6 @@
 				8D9F6D21230E80EB00DCC241 /* WalkthroughInteractor.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				8D04FA3723041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift in Sources */,
-				DB22ADB0232AF9DC009281AB /* DailyBriefTableView.swift in Sources */,
 				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
 				8D0B4D262301CC4000A1AC47 /* RegistrationNamesViewController.swift in Sources */,
 				8D04FA3323041E9C00AE7CA0 /* RegistrationAgeInterface.swift in Sources */,
@@ -7001,7 +6994,6 @@
 				B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */,
 				8D66E89D2305A0E500BE78C7 /* TrackSelectionWorker.swift in Sources */,
 				B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */,
-				91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */,
 				B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */,
 				3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,

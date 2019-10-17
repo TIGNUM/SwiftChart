@@ -181,12 +181,6 @@ extension MySprintDetailsWorker {
         }
     }
 
-    func saveUpdatedSprint(_ sprint: QDMSprint, _ completion: @escaping (Error?) -> Void) {
-        UserService.main.updateSprint(sprint) { [weak self] (sprint, error) in
-            self?.updateSprint(sprint, error: error, completion: completion)
-        }
-    }
-
     func continueSprint(_ completion: @escaping (Error?) -> Void) {
         guard let sprint = sprint else { return }
         UserService.main.continueSprint(sprint) { [weak self] (sprint, error) in

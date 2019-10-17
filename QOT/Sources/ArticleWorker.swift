@@ -424,11 +424,7 @@ final class ArticleWorker {
             return section != 1 ? nil : AppTextService.get(AppTextKey.article_view_title_related_content)
         }
     }
-
-    func updateSelectedContent(selectedID: Int) {
-        self.selectedID = selectedID
-    }
-
+    
     func toggleBookmark() -> Bool {
         var hasBookmark = (self.bookmark != nil)
         if hasBookmark {

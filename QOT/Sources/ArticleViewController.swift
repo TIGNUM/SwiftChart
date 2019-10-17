@@ -19,7 +19,6 @@ protocol ArticleItemViewControllerDelegate: class {
     func didTapClose(in viewController: UIViewController)
     func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController)
     func didTapLink(_ url: URL, in viewController: UIViewController)
-    func didTapMedia(withURL url: URL, in viewController: UIViewController)
 }
 
 var colorMode = ColorMode.dark
@@ -41,20 +40,6 @@ enum ColorMode {
         }
     }
 
-    var audioBackground: UIColor {
-        switch self {
-        case .dark: return .sand
-        case .darkNot: return .carbon
-        }
-    }
-
-    var audioText: UIColor {
-        switch self {
-        case .dark: return UIColor.carbon.withAlphaComponent(0.6)
-        case .darkNot: return UIColor.sand.withAlphaComponent(0.6)
-        }
-    }
-
     var fade: UIColor {
         switch self {
         case .dark: return UIColor.carbon.withAlphaComponent(0.1)
@@ -66,13 +51,6 @@ enum ColorMode {
         switch self {
         case .dark: return .accent
         case .darkNot: return .accent
-        }
-    }
-
-    var statusBarStyle: UIStatusBarStyle {
-        switch self {
-        case .dark: return .lightContent
-        case .darkNot: return .default
         }
     }
 
@@ -325,22 +303,6 @@ extension ArticleViewController {
         return itemTextCell
     }
 
-    func mediaStreamCell(tableView: UITableView,
-                         indexPath: IndexPath,
-                         title: String,
-                         imageURL: URL?,
-                         placeholderImage: UIImage? = R.image.preloading(),
-                         attributedString: NSAttributedString,
-                         canStream: Bool) -> ImageSubtitleTableViewCell {
-        let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(imageURL: imageURL,
-                            placeholderImage: placeholderImage,
-                            description: attributedString,
-                            canStream: canStream)
-        imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-        return imageCell
-    }
-
     func imageTableViewCell(tableView: UITableView,
                             indexPath: IndexPath,
                             attributeString: NSAttributedString,
@@ -351,19 +313,6 @@ extension ArticleViewController {
         imageCell.backgroundColor = .clear
         imageCell.contentView.backgroundColor = .clear
         return imageCell
-    }
-
-    func PDFTableViewCell(tableView: UITableView,
-                          indexPath: IndexPath,
-                          attributedString: NSAttributedString,
-                          timeToReadSeconds: Int) -> LearnPDFCell {
-        let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
-        cell.backgroundColor = .clear
-        cell.configure(titleText: attributedString,
-                       timeToReadSeconds: timeToReadSeconds,
-                       titleColor: .white,
-                       timeColor: .gray)
-        return cell
     }
 
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: Article.Item) -> ErrorCell {

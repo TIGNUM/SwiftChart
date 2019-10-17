@@ -223,15 +223,10 @@ final class LaunchHandler {
     }
 
     func processExternal(url: URL) {
-        guard let scheme = url.scheme else { return }
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
             return
         }
-
-        guard let schemeEnum = URLScheme(rawValue: scheme) else { return }
-        guard let alternative = URL(string: schemeEnum.alternativeURLString) else { return }
-        UIApplication.shared.open(alternative, options: [:], completionHandler: nil)
     }
 }
 
