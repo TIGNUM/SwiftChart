@@ -44,20 +44,6 @@ private let whatsHotBucketFormatter: DateFormatter = {
     return formatter
 }()
 
-private let dailyPrepDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
-    formatter.timeZone = TimeZone.current
-    return formatter
-}()
-
-private let myPrepsFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "d-MM-hh-mm"
-    formatter.timeZone = TimeZone.current
-    return formatter
-}()
-
 private let mySolvesFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "dd MM yyyy"
@@ -92,15 +78,6 @@ private let displayTimeFormatter: DateFormatter = {
     formatter.timeZone = TimeZone.current
     formatter.dateStyle = .none
     formatter.timeStyle = .short
-    return formatter
-}()
-
-private let shortDateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.locale = Locale.current
-    formatter.timeZone = TimeZone.current
-    formatter.dateStyle = .short
-    formatter.timeStyle = .none
     return formatter
 }()
 

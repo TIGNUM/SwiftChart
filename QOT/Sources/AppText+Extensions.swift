@@ -23,9 +23,6 @@ import qot_dal
 
 public extension AppTextKey {
     //Static lets
-    static let my_qot_my_profile_app_settings_view_title_general = AppTextKey("my_qot.my_profile.app_settings.view.title_general")
-    static let my_qot_my_profile_app_settings_view_title_notifications = AppTextKey("my_qot.my_profile.app_settings.view.title_notifications")
-    static let my_qot_my_profile_app_settings_view_title_security = AppTextKey("my_qot.my_profile.app_settings.view.title_security")
     static let my_qot_my_profile_account_settings_view_title_company = AppTextKey("my_qot.my_profile.account_settings.view.title_company")
     static let my_qot_my_profile_account_settings_view_title_email = AppTextKey("my_qot.my_profile.account_settings.view.title_email")
     static let my_qot_my_profile_account_settings_view_title_first_name = AppTextKey("my_qot.my_profile.account_settings.view.title_first_name")
@@ -57,7 +54,6 @@ public extension AppTextKey {
     static let prepare_view_title_read_more = AppTextKey("prepare.view.title_read_more")
     static let prepare_choice_view_title = AppTextKey("prepare.choice.view.title")
     static let article_view_title_to_read = AppTextKey("article.view.title_to_read")
-    static let article_pdf_view_title_to_read = AppTextKey("article.pdf.view.title_to_read")
     static let article_view_title_next_up = AppTextKey("article.view.title_next_up")
     static let article_view_title_related_content = AppTextKey("article.view.title_related_content")
     static let pdf_list_title_duration = AppTextKey("pdf.list.title_duration")

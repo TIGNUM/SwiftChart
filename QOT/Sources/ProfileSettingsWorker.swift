@@ -115,11 +115,6 @@ extension ProfileSettingsWorker {
 
 // MARK: - ContentService
 private extension ProfileSettingsWorker {
-
-    func personalDataTitle() {
-        personalTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title)
-    }
-
     func contactTitle() {
         contactTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_contact)
     }

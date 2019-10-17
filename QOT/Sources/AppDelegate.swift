@@ -212,11 +212,6 @@ private extension AppDelegate {
         BITHockeyManager.shared().authenticator.authenticateInstallation()
     }
 
-    var appFilePath: String {
-        let url = URL.documentDirectory.deletingLastPathComponent()
-        return url.absoluteString.removeFilePrefix
-    }
-
     func setupKingfisherCache() {
         let cache = ImageCache.default
         cache.memoryStorage.config.expiration = .days(1)

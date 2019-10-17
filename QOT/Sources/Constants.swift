@@ -133,14 +133,3 @@ struct Layout {
         case chatLabelOptionUpdate = 10
     }
 }
-
-extension UIFont {
-    /// BENTON SANS 16 // paragraph, body text
-    static let PText = UIFont.apercuRegular(ofSize: 16)
-
-    /// BENTON SANS 11 // subtitles, tags
-    static let H7Tag = UIFont.apercuRegular(ofSize: 11)
-
-    /// BENTON SANS 13 // paragraph, body text
-    static let PTextSmall = UIFont.apercuLight(ofSize: 13)
-}

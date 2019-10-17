@@ -60,25 +60,6 @@ extension String {
     }
 }
 
-// MARK: - Attributed Button Title - Charts SegmentedView
-
-extension String {
-
-    func attrString(_ selected: Bool?) -> NSAttributedString {
-        let color: UIColor = selected == true ? .white : .white30
-        let attrString = NSMutableAttributedString(string: self)
-        let style = NSMutableParagraphStyle()
-        let range = NSRange(location: 0, length: count)
-        style.alignment = .center
-        attrString.addAttribute(.paragraphStyle, value: style, range: range)
-        attrString.addAttribute(.font, value: UIFont.H7Tag, range: range)
-        attrString.addAttribute(.kern, value: 2, range: range)
-        attrString.addAttribute(.foregroundColor, value: color, range: range)
-
-        return attrString
-    }
-}
-
 // MARK: - Chart Labels
 
 extension String {

@@ -44,24 +44,6 @@ enum SettingsType: Int {
         }
     }
 
-    var valueTextColor: UIColor {
-        switch self {
-//        case .calendar, .calendarOnOtherDevices: return .white40
-        default: return .white
-        }
-    }
-
-    static func notificationType(key: String) -> SettingsType? {
-        if key == SettingsType.strategies.notificationKey {
-            return .strategies
-        } else if key == SettingsType.dailyPrep.notificationKey {
-            return .dailyPrep
-        } else if key == SettingsType.weeklyChoices.notificationKey {
-            return .weeklyChoices
-        }
-        return nil
-    }
-
     var notificationKey: String? {
         switch self {
         case .strategies: return "system.notification.strategies"
@@ -69,55 +51,6 @@ enum SettingsType: Int {
         case .weeklyChoices: return "system.notification.weeklyChoices"
         default: return nil
         }
-    }
-
-    enum SectionType {
-        case general
-        case notifications
-        case security
-        case profile
-        case settings
-
-        var title: String {
-            switch self {
-            case .general: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_general)
-            case .notifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_notifications)
-            case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_security)
-            case .profile: return "profile"
-            case .settings: return "settings"
-            }
-        }
-    }
-}
-
-enum Gender: String {
-    case female = "FEMALE"
-    case male = "MALE"
-    case other = "OTHER"
-    case preferNotToSay = "PREFER_NOT_TO_SAY"
-
-    static var allValues: [Gender] {
-        return [.female,
-                .male,
-                .other,
-                .preferNotToSay]
-    }
-
-    var dsiplayValue: String {
-        switch self {
-        case .female,
-             .male,
-             .other: return rawValue.capitalized
-        case .preferNotToSay: return rawValue.replacingOccurrences(of: "_", with: " ").capitalized
-        }
-    }
-
-    static var allValuesAsStrings: [String] {
-        return Gender.allValues.map { $0.rawValue }
-    }
-
-    var selectedIndex: Int? {
-        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: rawValue.lowercased())
     }
 }
 
@@ -129,7 +62,6 @@ protocol SettingsSection {
 }
 
 enum SettingsRow {
-
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Int, settingsType: SettingsType)
     case datePicker(title: String, yearOfBirth: String, settingsType: SettingsType)

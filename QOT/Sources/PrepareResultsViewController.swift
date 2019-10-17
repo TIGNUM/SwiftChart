@@ -84,11 +84,6 @@ private extension PrepareResultsViewController {
         cell.delegate = self
         return cell
     }
-
-    func shouldShowHeader(in section: Int) -> Bool {
-        return (section == PrepareResult.Daily.REMINDER_LIST && interactor?.getType == .LEVEL_DAILY) ||
-            (section == PrepareResult.Critical.REMINDER_LIST && interactor?.getType == .LEVEL_CRITICAL)
-    }
 }
 
 // MARK: - Actions

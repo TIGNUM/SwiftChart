@@ -121,7 +121,6 @@ private extension ArticleViewController {
     func setupTableView() {
         tableView.registerDequeueable(ContentItemTextTableViewCell.self)
         tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
-        tableView.registerDequeueable(LearnPDFCell.self)
         tableView.registerDequeueable(ErrorCell.self)
         tableView.registerDequeueable(ArticleTextHeaderTableViewCell.self)
         tableView.registerDequeueable(ArticleImageHeaderTableViewCell.self)

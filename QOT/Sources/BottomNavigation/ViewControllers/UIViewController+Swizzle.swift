@@ -14,7 +14,6 @@ protocol ScreenZLevel {}
 
 var viewWillAppearIsSwizzled = false
 var viewDidAppearIsSwizzled = false
-var preferredStatusBarStyleIsSwizzled = false
 var presentViewControllerIsSwizzled = false
 var dismissViewControllerIsSwizzled = false
 var timer: Timer?

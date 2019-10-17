@@ -9,11 +9,6 @@
 import Foundation
 import qot_dal
 
-struct DummyQuestion {
-    let question: String
-    let rating: Int
-}
-
 final class MyToBeVisionRateWorker {
 
     private let userService: qot_dal.UserService

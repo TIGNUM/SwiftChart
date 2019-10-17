@@ -21,7 +21,6 @@ final class MyVisionWorker {
     private let contentService: qot_dal.ContentService
     private let userService: qot_dal.UserService
     private let widgetDataManager: ExtensionsDataManager
-    var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
 
     init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, widgetDataManager: ExtensionsDataManager) {

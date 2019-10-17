@@ -97,7 +97,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
     static var hasArrowsAnimated: Bool = false
-    var chosenValue: String?
     @IBOutlet weak var questionToTop: NSLayoutConstraint!
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?

@@ -1304,7 +1304,6 @@ private struct Fonts {
     static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
     static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
     static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
-    static let fontMedium20 = UIFont.sfProtextMedium(ofSize: 20.0)
 
     static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
     static let fontLight14 = UIFont.sfProtextLight(ofSize: 14.0)
