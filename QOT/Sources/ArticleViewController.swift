@@ -292,11 +292,10 @@ extension ArticleViewController: ArticleViewControllerInterface {
 
 extension ArticleViewController {
     func transitionArticle(remoteID: Int) {
-        if let image = view.screenshot() {
-            let shot = UIImageView(image: image)
-            shot.tag = 871234
-            view.addSubview(shot)
-        }
+        let image = view.takeSnapshot()
+        let shot = UIImageView(image: image)
+        shot.tag = 871234
+        view.addSubview(shot)
 
         interactor?.showRelatedArticle(remoteID: remoteID)
         reloadData(showNavigationBar: false)

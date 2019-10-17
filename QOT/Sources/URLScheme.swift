@@ -173,10 +173,6 @@ enum URLScheme: String {
         return ""
     }
 
-    func queryParameter(url: URL) -> String? {
-        return url.queryStringParameter(param: queryName)
-    }
-
     func pushNotificationID(url: URL) -> String? {
         return url.queryStringParameter(param: "nid")
     }

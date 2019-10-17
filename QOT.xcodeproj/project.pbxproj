@@ -119,9 +119,6 @@
 		3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365825752327D19200AC3F4A /* DTShortTBVInteractor.swift */; };
 		3658257F2327D19200AC3F4A /* DTShortTBVConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365825772327D19200AC3F4A /* DTShortTBVConfigurator.swift */; };
 		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
-		365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */; };
-		365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */; };
-		365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B2224A33E60019AFF9 /* HomeViewController.swift */; };
 		365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */; };
 		365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */; };
 		365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */; };
@@ -258,9 +255,6 @@
 		36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */; };
 		36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */; };
 		36E6E3F122493016001BE9C7 /* ComponentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */; };
-		36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F322493922001BE9C7 /* ComponentTransition.swift */; };
-		36E6E3F622493B39001BE9C7 /* ComponentPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */; };
-		36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */; };
 		36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */; };
 		36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */; };
 		36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */; };
@@ -478,7 +472,6 @@
 		851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 851676DA1F3C57D4007A1DD6 /* LearnPDFCell.swift */; };
 		8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852988941F2F3E15003A36DF /* Bundle+Extensions.swift */; };
-		852DADC61EEEE63500A10882 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD51EF051C400A10882 /* UIView+Layers.swift */; };
 		8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */; };
 		85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */; };
@@ -758,7 +751,6 @@
 		AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC183820224190A0004A538D /* SuggestionsHeaderView.swift */; };
 		AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
-		AC199038221EE07000D53F01 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */; };
 		AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D222A54EB70022156C /* SolveResultsPresenter.swift */; };
 		AC1A40DB22A54EB70022156C /* SolveResultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D322A54EB70022156C /* SolveResultsWorker.swift */; };
@@ -1385,9 +1377,6 @@
 		365825752327D19200AC3F4A /* DTShortTBVInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTShortTBVInteractor.swift; sourceTree = "<group>"; };
 		365825772327D19200AC3F4A /* DTShortTBVConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTShortTBVConfigurator.swift; sourceTree = "<group>"; };
 		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
-		365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentAnimator.swift; sourceTree = "<group>"; };
-		365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentTransitionDriver.swift; sourceTree = "<group>"; };
-		365EC0B2224A33E60019AFF9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotCollectionViewCell.swift; sourceTree = "<group>"; };
 		365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotCollectionViewCell.xib; sourceTree = "<group>"; };
 		365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotComponentView.swift; sourceTree = "<group>"; };
@@ -1522,9 +1511,6 @@
 		36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContentView.swift; sourceTree = "<group>"; };
 		36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
 		36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentDetailViewController.swift; sourceTree = "<group>"; };
-		36E6E3F322493922001BE9C7 /* ComponentTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTransition.swift; sourceTree = "<group>"; };
-		36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentPresentationController.swift; sourceTree = "<group>"; };
-		36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissComponentAnimator.swift; sourceTree = "<group>"; };
 		36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListHeaderView.swift; sourceTree = "<group>"; };
 		36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyListHeaderView.xib; sourceTree = "<group>"; };
 		36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleBulletPointTableViewCell.swift; sourceTree = "<group>"; };
@@ -1746,7 +1732,6 @@
 		851676DA1F3C57D4007A1DD6 /* LearnPDFCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnPDFCell.swift; sourceTree = "<group>"; };
 		8523E9BF1F1628B50000D20D /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		852988941F2F3E15003A36DF /* Bundle+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
-		852DADC51EEEE63500A10882 /* Math.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Math.swift; sourceTree = "<group>"; };
 		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
@@ -2552,7 +2537,6 @@
 		363765F0223A4B9B00C2C429 /* Know */ = {
 			isa = PBXGroup;
 			children = (
-				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
 				363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */,
 				363765F8223A4BD200C2C429 /* KnowingInteractor.swift */,
 				363765F6223A4BD200C2C429 /* KnowingInterface.swift */,
@@ -3107,18 +3091,6 @@
 				7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */,
 			);
 			name = "Strategy Choice";
-			sourceTree = "<group>";
-		};
-		36E6E3F2224938D8001BE9C7 /* Transition */ = {
-			isa = PBXGroup;
-			children = (
-				36E6E3F322493922001BE9C7 /* ComponentTransition.swift */,
-				36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */,
-				36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */,
-				365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */,
-				365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */,
-			);
-			name = Transition;
 			sourceTree = "<group>";
 		};
 		36EC22F82323F43C00DB5696 /* Sprint */ = {
@@ -4801,7 +4773,6 @@
 				CBB4DD3E1EE08EB50071494A /* PrepareChat */,
 				CC02E1471F2799E500134574 /* SettingsCalendarList */,
 				36582581232853E400AC3F4A /* Theme */,
-				36E6E3F2224938D8001BE9C7 /* Transition */,
 			);
 			name = ViewLayer;
 			sourceTree = "<group>";
@@ -5013,7 +4984,6 @@
 				9100195620F8A0E200049118 /* ExtensionsDataManager.swift */,
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
-				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
@@ -6164,7 +6134,6 @@
 				AC87A7A7220D989A00622C90 /* ExtensionModel.swift in Sources */,
 				ACC68C85221C2CB100ED899B /* Calendar+Convenience.swift in Sources */,
 				AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */,
-				AC199038221EE07000D53F01 /* Math.swift in Sources */,
 				AC87A7A3220D981700622C90 /* Intents.intentdefinition in Sources */,
 				AC87A7AD220DBA2200622C90 /* ReadVisionViewController.swift in Sources */,
 				AC87A786220D94F900622C90 /* IntentViewController.swift in Sources */,
@@ -6425,7 +6394,6 @@
 				36B5BD2F23142B4A00439A64 /* AskPermissionInterface.swift in Sources */,
 				36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */,
 				36E4CF0D22BC51BD009A2DF7 /* ChoiceViewController.swift in Sources */,
-				365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */,
 				36EC23052323F45700DB5696 /* DTSprintViewController.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
 				75423EFC22CE242B008EE726 /* MyToBeVisionTrackerViewController.swift in Sources */,
@@ -6694,7 +6662,6 @@
 				9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */,
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
 				F91F6A6423437CBA00DF6AA1 /* DailyCheckinStartInterface.swift in Sources */,
-				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
@@ -6754,7 +6721,6 @@
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */,
 				8D110CEF230FCEDE000181BA /* WalkthroughSwipeWorker.swift in Sources */,
-				365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */,
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
@@ -6898,7 +6864,6 @@
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				3658255C2327AC0D00AC3F4A /* DTShortTBV.swift in Sources */,
 				369353A822983AB9008BBB72 /* PrepareResultsConfigurator.swift in Sources */,
-				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
 				AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */,
@@ -6948,7 +6913,6 @@
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				36B5BD2C23142B4A00439A64 /* AskPermissionPresenter.swift in Sources */,
-				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
 				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */,
 				5F62BE8E228AB5D700852F7E /* MyQotSupportDetailsViewController.swift in Sources */,
@@ -6968,7 +6932,6 @@
 				36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
-				36E6E3F622493B39001BE9C7 /* ComponentPresentationController.swift in Sources */,
 				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
 				8DBE1EDA22F46B7400BB1086 /* OnboardingLandingPageInterface.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
@@ -7084,7 +7047,6 @@
 				5F7BE7A42289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift in Sources */,
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
 				8D0500B3232AAFFE00D357D1 /* BaseWithTableViewController.swift in Sources */,
-				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
 				8D110D02230FDA41000181BA /* WalkthroughCoachWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,

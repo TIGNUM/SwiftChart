@@ -10,11 +10,10 @@ import Foundation
 
 extension UIView {
     func fill(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
         if subview.superview != self {
             self.addSubview(subview)
         }
-
-        subview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: subview,
                            attribute: .centerX,
                            relatedBy: .equal,

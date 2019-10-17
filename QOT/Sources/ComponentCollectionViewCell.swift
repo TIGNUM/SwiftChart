@@ -26,31 +26,6 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.shadowRadius = 12
     }
 
-    func resetTransform() {
-        transform = .identity
-    }
-
-    func freezeAnimations() {
-        disabledHighlightedAnimation = true
-        layer.removeAllAnimations()
-    }
-
-    func unfreezeAnimations() {
-        disabledHighlightedAnimation = false
-    }
-
-//    func configure(title: String,
-//                   image: URL?,
-//                   author: String,
-//                   publishDate: Date?,
-//                   timeToRead: String?) {
-//        componentContentView.configure(title: title,
-//                                       image: image,
-//                                       author: author,
-//                                       publishDate: publishDate,
-//                                       timeToRead: timeToRead)
-//    }
-
     // Make it appears very responsive to touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)

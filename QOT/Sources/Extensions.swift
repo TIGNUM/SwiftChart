@@ -446,19 +446,6 @@ extension UIView {
         })
     }
 
-    func screenshot() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            UIGraphicsEndImageContext()
-            log("couldnt take screenshot")
-            return nil
-        }
-        layer.render(in: context)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-
     func applyHexagonMask() {
         let clippingBorderPath = UIBezierPath.hexagonPath(forRect: bounds)
         let borderMask = CAShapeLayer()

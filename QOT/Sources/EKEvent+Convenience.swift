@@ -54,19 +54,6 @@ extension EKEvent: EKEventEditable {
             return
         }
     }
-
-    func removePreparationLink() throws {
-        guard let currentNotes = self.notes, self.hasNotes == true else { return }
-        let regex = try NSRegularExpression(pattern: "(qotapp:\\/\\/preparation#[A-Z0-9-]+)", options: [])
-        guard let regexMatch = regex.matches(in: currentNotes,
-                                             options: [],
-                                             range: NSRange(location: 0, length: currentNotes.count)).first else {
-            return
-        }
-        // FIXME: swift 4 has ability to convert NSRange -> Range, so we can then use string.removeSubrange()
-        // @see https://stackoverflow.com/questions/25138339/nsrange-to-rangestring-index
-        self.notes = (currentNotes as NSString).replacingCharacters(in: regexMatch.range, with: "")
-    }
 }
 
 extension EKEventStore {

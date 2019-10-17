@@ -69,7 +69,6 @@ extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewData
 // MARK: - INUIAddVoiceShortcutViewControllerDelegate
 
 extension MyQotSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
-
     @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
                                         didFinishWith voiceShortcut: INVoiceShortcut?,

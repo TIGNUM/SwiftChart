@@ -133,12 +133,6 @@ enum ContentItemValue {
     }
 }
 
-// FIXME: Unit test
-
-enum ContentItemTextStyleError: String, Error {
-    case noValidItemTextStyleError = "Could not find a valid item text style."
-}
-
 enum ContentItemTextStyle: String {
     case h1 = "text.h1"
     case h2 = "text.h2"

@@ -8,6 +8,10 @@
 
 import UIKit
 
+var randomNumber: CGFloat {
+    return (CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
+}
+
 extension UIColor {
 
     // MARK: - 3.0
