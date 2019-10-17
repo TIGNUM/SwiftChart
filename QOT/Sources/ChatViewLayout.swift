@@ -313,7 +313,7 @@ private class Section {
             return supplementaryViewAttributes[kind]
     }
 
-    func layoutAttributesForItem(at index: Index) -> ChatViewLayoutAttibutes? {
+    func layoutAttributesForItem(at index: Int) -> ChatViewLayoutAttibutes? {
         return attributes[index]
     }
 

@@ -46,16 +46,15 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         if disabledHighlightedAnimation {
             return
         }
-        let animationOptions: UIViewAnimationOptions = GlobalConstants.isEnabledAllowsUserInteractionWhileHighlightingCard
-            ? [.allowUserInteraction] : []
+        let animationOptions: UIViewAnimationOptions = [.allowUserInteraction]
         if isHighlighted {
             UIView.animate(withDuration: 0.5,
                            delay: 0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,
                            options: animationOptions, animations: {
-                            self.transform = .init(scaleX: GlobalConstants.cardHighlightedFactor,
-                                                   y: GlobalConstants.cardHighlightedFactor)
+                            self.transform = .init(scaleX: 0.96,
+                                                        y: 0.96)
             }, completion: completion)
         } else {
             UIView.animate(withDuration: 0.5,

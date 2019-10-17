@@ -17,7 +17,6 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
 
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
-    private let alertButtonWidth: CGFloat = 140
     private var bottomItems = UINavigationItem()
 
     var interactor: RegistrationInteractorInterface?

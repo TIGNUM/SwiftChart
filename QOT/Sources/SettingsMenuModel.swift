@@ -116,7 +116,7 @@ enum Gender: String {
         return Gender.allValues.map { $0.rawValue }
     }
 
-    var selectedIndex: Index? {
+    var selectedIndex: Int? {
         return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: rawValue.lowercased())
     }
 }
@@ -131,7 +131,7 @@ protocol SettingsSection {
 enum SettingsRow {
 
     case label(title: String, value: String?, settingsType: SettingsType)
-    case stringPicker(title: String, pickerItems: [String], selectedIndex: Index, settingsType: SettingsType)
+    case stringPicker(title: String, pickerItems: [String], selectedIndex: Int, settingsType: SettingsType)
     case datePicker(title: String, yearOfBirth: String, settingsType: SettingsType)
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)

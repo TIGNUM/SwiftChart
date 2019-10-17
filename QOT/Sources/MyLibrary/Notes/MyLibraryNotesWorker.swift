@@ -78,10 +78,6 @@ final class MyLibraryNotesWorker {
         return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_button_continue)
     }()
 
-    lazy var removeCancelTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_alert_button_cancel)
-    }()
-
     lazy var isExistingNote: Bool = {
         return noteId != nil
     }()

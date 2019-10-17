@@ -26,11 +26,6 @@ extension UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
-    func stopObservingKeyboard() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-
     @objc func keyboardWillAppear(notification: NSNotification) {
         fatalError("keyboardWillAppear: must be overriden")
     }

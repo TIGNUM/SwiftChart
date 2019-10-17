@@ -27,7 +27,6 @@ final class AppCoordinator {
     private let locationManager: LocationManager
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
-    private weak var currentPresentedController: UIViewController?
     lazy var userLogoutNotificationHandler = NotificationHandler(name: .userLogout)
     lazy var automaticLogoutNotificationHandler = NotificationHandler(name: .automaticLogout)
     lazy var apnsDeviceTokenRegistrator = APNSDeviceTokenRegistrator()

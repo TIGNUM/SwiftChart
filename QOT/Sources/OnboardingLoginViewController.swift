@@ -193,10 +193,6 @@ private extension OnboardingLoginViewController {
         present(mail, animated: true)
     }
 
-    func showFAQViewController() {
-        interactor?.showFAQScreen()
-    }
-
     func updateCodeEntry(isEnabled: Bool) {
         codeEntryViews.forEach {
             $0.alpha = isEnabled ? 1 : codeEntryViewsDisabledAlpha

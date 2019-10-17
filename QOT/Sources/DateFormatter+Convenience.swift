@@ -140,20 +140,8 @@ extension DateFormatter {
         return userDateFormatter
     }
 
-    static var myPrepsTime: DateFormatter {
-         return myPrepsFormatter
-    }
-
-    static var shortDate: DateFormatter {
-        return shortDateFormatter
-    }
-
     static var mediumDate: DateFormatter {
         return mediumDateFormatter
-    }
-
-    static var dialyPrep: DateFormatter {
-        return dailyPrepDateFormatter
     }
 
     static var isoDate: DateFormatter {

@@ -53,21 +53,6 @@ enum AnswerKey {
             case .general: return 104465
             }
         }
-
-        static func identifyFatigueSympton(_ selectedAnswers: [QDMAnswer]) -> AnswerKey.Recovery {
-            var fatigueType = Recovery.general
-            let keys = selectedAnswers.flatMap { $0.keys }
-            if (keys.filter { $0.contains(AnswerKey.Recovery.cognitive.rawValue) }).count > 1 {
-                fatigueType = AnswerKey.Recovery.cognitive
-            }
-            if (keys.filter { $0.contains(AnswerKey.Recovery.emotional.rawValue) }).count > 1 {
-                fatigueType = AnswerKey.Recovery.emotional
-            }
-            if (keys.filter { $0.contains(AnswerKey.Recovery.physical.rawValue) }).count > 1 {
-                fatigueType = AnswerKey.Recovery.physical
-            }
-            return fatigueType
-        }
     }
 
     enum Sprint: String {

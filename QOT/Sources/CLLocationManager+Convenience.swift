@@ -40,19 +40,9 @@ final class LocationManager: CLLocationManager {
     class var authorizationStatus: CLAuthorizationStatus {
         return authorizationStatus()
     }
-
-    func startSignificantLocationMonitoring(didUpdateLocations: ((_ location: CLLocation) -> Void)?) {
-        guard LocationManager.authorizationStatus == .authorizedAlways
-            || LocationManager.authorizationStatus == .authorizedWhenInUse
-            || LocationManager.significantLocationChangeMonitoringAvailable() == true else { return }
-        self.didUpdateLocations = didUpdateLocations
-        delegate = self
-        startMonitoringSignificantLocationChanges()
-    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
         didUpdateLocations?(lastLocation)
