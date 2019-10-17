@@ -8,7 +8,7 @@
 
 import UserNotifications
 
-let DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER = URLScheme.dailyCheckIn.rawValue
+let DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER = "daily-check-in-no-sound"
 // FIXME: Make realm obj and sync from server
 struct NotificationConfigurationObject {
 
@@ -32,7 +32,8 @@ struct NotificationConfigurationObject {
 
     private var notificationRequest: UNNotificationRequest {
         let componants = DateComponents(hour: hour, minute: minute, weekday: weekday)
-        let content = UNMutableNotificationContent(title: title, body: body, soundName: "QotNotification.aiff", link: link)
+        let content = UNMutableNotificationContent(title: title, body: body, soundName: "", link: link)
+        content.sound = .none
         let trigger = UNCalendarNotificationTrigger(dateMatching: componants, repeats: true)
         let identifier = "\(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)-\(weekday)"
         return UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)
