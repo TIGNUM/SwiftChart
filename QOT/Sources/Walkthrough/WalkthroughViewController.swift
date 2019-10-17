@@ -45,14 +45,6 @@ final class WalkthroughViewController: BaseViewController, ScreenZLevelOverlay {
 // MARK: - Private
 
 private extension WalkthroughViewController {
-
-    func goToNextController() {
-        guard let current = pageController?.viewControllers?.first,
-            let next = interactor?.viewController(after: current) else { return }
-        viewedControllers.insert(next.hash)
-        show(controller: next)
-    }
-
     func checkViewedControllers() {
         guard buttonGotIt.isHidden, viewedControllers.count == interactor?.controllerCount ?? 0 else { return }
         buttonGotIt.alpha = 0

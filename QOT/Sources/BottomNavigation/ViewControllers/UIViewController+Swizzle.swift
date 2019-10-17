@@ -100,7 +100,7 @@ extension UIViewController {
             return false
         }
         let center = window.frame.center
-        let targetPoint = center.adding(x: 0, y: center.y / 3)
+        let targetPoint = CGPoint(x: center.x, y: center.y * 1.333333)
         guard let view = window.hitTest(targetPoint, with: nil) else {
             return false
         }

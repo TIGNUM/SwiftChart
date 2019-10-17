@@ -107,11 +107,6 @@ final class MyQotSiriShortcutsWorker {
 }
 
 extension MyQotSiriShortcutsWorker {
-
-    var siriExplanation: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_explanation)
-    }
-
     func siriTag(for shortcut: ShortcutType) -> Tags {
         switch shortcut {
         case .toBeVision:

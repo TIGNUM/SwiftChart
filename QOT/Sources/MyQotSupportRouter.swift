@@ -38,15 +38,6 @@ extension MyQotSupportRouter: MyQotSupportRouterInterface {
 }
 
 private extension MyQotSupportRouter {
-
-    func showNovartisSupportIfNeeded(email: String, for item: MyQotSupportModel.MyQotSupportModelItem) {
-        if Bundle.main.bundleIdentifier?.contains("novartis") == true {
-            presentContentItem(id: item.primaryKey)
-        } else {
-            presentMailComposer(recipients: [email], subject: "ID: Support", id: item)
-        }
-    }
-
     func presentContentItem(id: Int) {
         guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
             assertionFailure("Failed to initialize `ArticleViewController`")

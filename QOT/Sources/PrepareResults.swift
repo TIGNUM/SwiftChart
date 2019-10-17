@@ -90,10 +90,6 @@ extension ContentFormat {
         default: return nil
         }
     }
-
-    func attributed(_ text: String, _ font: UIFont, _ color: UIColor) -> NSAttributedString? {
-        return NSAttributedString(string: text, font: font, textColor: color, alignment: .left)
-    }
 }
 
 struct PrepareResult {

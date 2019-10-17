@@ -45,20 +45,10 @@ final class InfoHelperView: UIView {
         set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? ""))
     }
 
-    func setTransparent(icon: UIImage?, title: String?, text: String?) {
-        set(icon: icon, title: title, attributedText: NSAttributedString(string: text ?? ""))
-        self.backgroundColor = .clear
-        contentView.backgroundColor = .clear
-    }
-
     func set(icon: UIImage?, title: String?, attributedText text: NSAttributedString?) {
         iconImageView.image = icon?.withRenderingMode(.alwaysTemplate)
         titleLabel.attributedText = addDisplayAttributes(to: NSAttributedString(string: title ?? ""), type: .title)
         textLabel.attributedText = addDisplayAttributes(to: text ?? NSAttributedString(string: ""), type: .description)
-    }
-
-    func setBottomContentInset(_ inset: CGFloat) {
-        bottomInset.constant = inset
     }
 }
 

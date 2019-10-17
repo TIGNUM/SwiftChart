@@ -28,11 +28,7 @@ final class ImpactDataTableViewCell: UITableViewCell, Dequeueable {
         self.targetRefValue.textColor = .accent
         self.bringSubview(toFront: button)
     }
-
-    func setTargetRefLabelText(_ text: String) {
-        targetRefLabel.text = text
-    }
-
+    
     @IBAction func customizeTarget(_ sender: Any) {
         delegate?.showCustomizeTarget()
     }

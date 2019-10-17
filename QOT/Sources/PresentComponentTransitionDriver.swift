@@ -58,7 +58,6 @@ final class PresentComponentTransitionDriver {
         animatedContainerVerticalConstraint.isActive = true
         animatedContainerView.addSubview(componentDetailView)
         componentDetailView.translatesAutoresizingMaskIntoConstraints = false
-        let weirdCardToAnimatedContainerTopAnchor: NSLayoutConstraint
 
         do /* Pin top (or center Y) and center X of the card, in animated container view */ {
             let verticalAnchor: NSLayoutConstraint = {

@@ -57,10 +57,6 @@ final class UserMeasurement {
         return options[unitIndex].values[valueIndex].value
     }
 
-    var selectedUnit: String {
-        return options[unitIndex].unit
-    }
-
     func update(valueIndex: Int) {
         self.valueIndex = valueIndex
     }

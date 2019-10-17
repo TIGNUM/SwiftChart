@@ -10,12 +10,6 @@ import Foundation
 import qot_dal
 
 extension QDMContentCollection {
-    func getCategories(_ completion: @escaping (([QDMContentCategory]?) -> Void)) {
-        ContentService.main.getContentCategoriesByIds(relatedContentIDsPrepareAll, completion)
-    }
-}
-
-extension QDMContentCollection {
     var relatedContentIDsPrepareDefault: [Int] {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentID }
     }

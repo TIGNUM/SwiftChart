@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 protocol DTShortTBVViewControllerInterface: class {}
-
 protocol DTShortTBVPresenterInterface {}
 
 protocol DTShortTBVDelegate: class {

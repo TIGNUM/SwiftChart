@@ -15,7 +15,6 @@ import qot_dal
 final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
     var overlayControls: MediaPlayerOverlay?
     var videoGravityObserver: Any?
-    var zoomed: Bool = false
     var interactor: StreamVideoInteractorInterface? {
         didSet {
             interactor?.delegate = self
