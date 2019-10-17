@@ -764,7 +764,7 @@ extension NSMutableAttributedString {
 extension UIApplication {
     var statusBarView: UIView? {
         if #available(iOS 13.0, *) {
-            let tag = 38482458385
+            let tag = 8438438
             if let statusBar = self.keyWindow?.viewWithTag(tag) {
                 return statusBar
             } else {
