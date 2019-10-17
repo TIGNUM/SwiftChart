@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import qot_dal
+import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
@@ -44,7 +46,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
         if showDailyCheckInScreen {
-            delegate?.showDailyCheckInQuestions()
+            if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
+                AppDelegate.current.launchHandler.process(url: launchURL)
+            }
         } else {
             trackState = !trackState
             impactReadinessButton.flipImage(trackState)

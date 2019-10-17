@@ -9,6 +9,7 @@
 import UIKit
 import SVProgressHUD
 import qot_dal
+import HealthKit
 
 enum LaunchOption: String {
     case edit
@@ -277,6 +278,15 @@ extension LaunchHandler {
             }
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
+            } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
+                self?.getHealthKitAuthStatus() == .notDetermined {
+                self?.requestHealthKitAuthorization({ (_) in
+                    self?.importHealthKitData()
+                    UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
+                        self?.showDailyCheckIn()
+                    })
+                })
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
@@ -404,5 +414,27 @@ extension LaunchHandler {
 
     func present(viewController: UIViewController) {
         baseRootViewController?.present(viewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - HEALTH DATA ACCESS PERMISSION
+extension LaunchHandler {
+    func requestHealthKitAuthorization(_ completion: @escaping (Bool) -> Void) {
+        HealthService.main.requestHealthKitAuthorization { (success, error) in
+            if let error = error {
+                qot_dal.log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
+            }
+            completion(success)
+        }
+    }
+
+    func getHealthKitAuthStatus() -> HKAuthorizationStatus {
+        return qot_dal.HealthService.main.healthKitAuthorizationStatus()
+    }
+
+    func importHealthKitData() {
+        if HealthService.main.isHealthDataAvailable() == true {
+            HealthService.main.importHealthKitSleepAnalysisData()
+        }
     }
 }

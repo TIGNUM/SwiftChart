@@ -141,7 +141,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         case .termsOfUse:
             router.showTermsOfUse()
         case .getHelp:
-            presenter.presentGetHelp()
+            presenter.presentFAQScreen()
         }
     }
 
@@ -193,6 +193,10 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             }
             self?.presenter.presentActivity(state: .success)
         }
+    }
+
+    func showFAQScreen() {
+        router.showFAQScreen()
     }
 }
 

@@ -486,7 +486,7 @@ extension DailyBriefInteractor {
                                                                           sleepQualityValue: sleepQuality,
                                                                           loadValue: load,
                                                                           futureLoadValue: futureLoad,
-                                                                          targetSleepQuality: targetSleepQuantity,
+                                                                          targetSleepQuantity: targetSleepQuantity,
                                                                           sleepQualityReference: sleepQualityReference,
                                                                           loadReference: loadReference,
                                                                           futureLoadReference: futureLoadReference,

@@ -37,7 +37,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="38T-gA-UaZ">
-                    <rect key="frame" x="0.0" y="108" width="415" height="200"/>
+                    <rect key="frame" x="24" y="108" width="367" height="200"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="200" id="Eyu-un-JXU"/>
                     </constraints>
@@ -60,8 +60,8 @@
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="top" secondItem="rjY-Qr-wDb" secondAttribute="bottom" constant="24" id="0Cn-m9-dav"/>
-                <constraint firstAttribute="trailing" secondItem="38T-gA-UaZ" secondAttribute="trailing" id="8DB-qd-i4L"/>
-                <constraint firstItem="38T-gA-UaZ" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" id="9Bc-ZD-Xr9"/>
+                <constraint firstAttribute="trailing" secondItem="38T-gA-UaZ" secondAttribute="trailing" constant="24" id="8DB-qd-i4L"/>
+                <constraint firstItem="38T-gA-UaZ" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="24" id="9Bc-ZD-Xr9"/>
                 <constraint firstAttribute="bottom" secondItem="Bgt-tp-HhS" secondAttribute="bottom" constant="46" id="EKe-8p-mxs"/>
                 <constraint firstAttribute="bottom" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="90" id="ZUF-Bc-MLI"/>
                 <constraint firstItem="Bgt-tp-HhS" firstAttribute="top" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="20" id="bJw-Cr-zjx"/>

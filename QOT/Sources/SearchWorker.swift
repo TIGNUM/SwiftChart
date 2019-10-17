@@ -106,9 +106,15 @@ final class SearchWorker {
         // TODO: report search result.
     }
 
-    func suggestions() -> SearchSuggestions {
-        return SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),
-                                 suggestions: ScreenTitleService.main.searchSuggestions())
+    func suggestions(completion: @escaping (SearchSuggestions?) -> Void) {
+        var suggestionItems: [String] = []
+        ContentService.main.getContentCategory(.Search) { (searchCategory) in
+            searchCategory?.contentCollections.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
+                suggestionItems.append(suggestionItem.valueText)
+            }
+            completion(SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),
+                                         suggestions: suggestionItems))
+        }
     }
 
     func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void) {
