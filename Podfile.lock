@@ -34,7 +34,7 @@ DEPENDENCIES:
   - HockeySDK
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/novartis-support`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -50,7 +50,6 @@ SPEC REPOS:
     - DifferenceKit
     - HockeySDK
     - JTAppleCalendar
-    - KeychainAccess
     - Kingfisher
     - R.swift
     - R.swift.Library
@@ -58,16 +57,19 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyBeaver
     - UrbanAirship-iOS-SDK
+  trunk:
+    - KeychainAccess
 
 EXTERNAL SOURCES:
   qot_dal:
+    :branch: feature/novartis-support
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: c2df53f25a33b60386521c86157fe0b6b08bda61
+    :commit: f6ed9ca988594dfddce0162c805defa6b292c952
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -91,6 +93,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: af8a2e218428e9e864fcbfcf85a10e24b82a01bf
+PODFILE CHECKSUM: f0efa5e5dbcdadd9e4744fa5bdc468379dbd76ea
 
 COCOAPODS: 1.8.3

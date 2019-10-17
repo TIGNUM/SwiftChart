@@ -711,11 +711,87 @@
                         <outlet property="headerLabel" destination="PQe-eW-cVN" id="9I9-mX-BB5"/>
                         <outlet property="tableView" destination="PS2-XQ-MGC" id="li5-BV-PsK"/>
                         <segue destination="9qJ-t5-Bb5" kind="show" identifier="myQot.support.details.segue.identifier" id="fbL-qZ-pUE"/>
+                        <segue destination="d5E-C9-vPS" kind="show" identifier="myQot.support.novartis.details.segue.identifier" id="qJt-iN-tvu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yu2-Q9-VDm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="2336.5817091454273"/>
+            <point key="canvasLocation" x="1980" y="2543"/>
+        </scene>
+        <!--My Qot Support Novartis View Controller-->
+        <scene sceneID="mdu-yv-9s4">
+            <objects>
+                <viewController storyboardIdentifier="MyQotSupportNovartisViewController" id="d5E-C9-vPS" customClass="MyQotSupportNovartisViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="L6u-2x-Aej">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wtz-Lk-3vy">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6CF-BW-2nL">
+                                        <rect key="frame" x="24" y="36" width="327" height="587"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="If4-1s-X1p">
+                                                <rect key="frame" x="0.0" y="0.0" width="16" height="1"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="16" id="4sD-PL-hkL"/>
+                                                    <constraint firstAttribute="height" constant="1" id="d8c-1m-dJK"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUPPORT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ggf-lQ-WAo">
+                                                <rect key="frame" x="0.0" y="17" width="303" height="24"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUPPORT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UkZ-np-QKv">
+                                                <rect key="frame" x="0.0" y="57" width="327" height="19.5"/>
+                                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70170697773972601" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="ggf-lQ-WAo" secondAttribute="trailing" constant="24" id="25v-Co-XZj"/>
+                                            <constraint firstItem="ggf-lQ-WAo" firstAttribute="top" secondItem="If4-1s-X1p" secondAttribute="bottom" constant="16" id="36t-jf-o1j"/>
+                                            <constraint firstItem="UkZ-np-QKv" firstAttribute="leading" secondItem="6CF-BW-2nL" secondAttribute="leading" id="6is-Bx-68A"/>
+                                            <constraint firstItem="If4-1s-X1p" firstAttribute="leading" secondItem="6CF-BW-2nL" secondAttribute="leading" id="OVw-4l-m7X"/>
+                                            <constraint firstItem="If4-1s-X1p" firstAttribute="top" secondItem="6CF-BW-2nL" secondAttribute="top" id="Q7k-Jh-DR7"/>
+                                            <constraint firstItem="UkZ-np-QKv" firstAttribute="top" secondItem="ggf-lQ-WAo" secondAttribute="bottom" constant="16" id="dsn-cw-r8b"/>
+                                            <constraint firstItem="ggf-lQ-WAo" firstAttribute="leading" secondItem="6CF-BW-2nL" secondAttribute="leading" id="pKi-Ng-kzx"/>
+                                            <constraint firstAttribute="trailing" secondItem="UkZ-np-QKv" secondAttribute="trailing" id="tJq-M2-ywM"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="6CF-BW-2nL" firstAttribute="top" secondItem="Wtz-Lk-3vy" secondAttribute="top" constant="36" id="9J9-33-IDS"/>
+                                    <constraint firstAttribute="trailing" secondItem="6CF-BW-2nL" secondAttribute="trailing" constant="24" id="K0A-V0-nQo"/>
+                                    <constraint firstAttribute="bottom" secondItem="6CF-BW-2nL" secondAttribute="bottom" constant="24" id="alY-tD-Jdm"/>
+                                    <constraint firstItem="6CF-BW-2nL" firstAttribute="leading" secondItem="Wtz-Lk-3vy" secondAttribute="leading" constant="24" id="z48-DJ-vey"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wtz-Lk-3vy" firstAttribute="leading" secondItem="fx3-IO-VCp" secondAttribute="leading" id="SrA-FD-WE5"/>
+                            <constraint firstItem="Wtz-Lk-3vy" firstAttribute="trailing" secondItem="fx3-IO-VCp" secondAttribute="trailing" id="gUf-lR-HZI"/>
+                            <constraint firstItem="Wtz-Lk-3vy" firstAttribute="top" secondItem="fx3-IO-VCp" secondAttribute="top" id="vtl-nv-9te"/>
+                            <constraint firstItem="fx3-IO-VCp" firstAttribute="bottom" secondItem="Wtz-Lk-3vy" secondAttribute="bottom" id="w7v-Ax-IzY"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fx3-IO-VCp"/>
+                    </view>
+                    <connections>
+                        <outlet property="subtitleLabel" destination="UkZ-np-QKv" id="Fya-FX-5R5"/>
+                        <outlet property="titleLabel" destination="ggf-lQ-WAo" id="Jli-pU-gjw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NLv-Hl-atK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1980" y="3332.3838080959522"/>
         </scene>
         <!--My Qot Support Details View Controller-->
         <scene sceneID="Avc-89-hCl">
@@ -867,7 +943,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kqj-FG-0Q3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1980" y="3013.9430284857572"/>
+            <point key="canvasLocation" x="1089" y="2337"/>
         </scene>
         <!--My Qot Account Settings View Controller-->
         <scene sceneID="6qO-oJ-SCF">
