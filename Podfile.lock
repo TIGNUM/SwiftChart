@@ -50,7 +50,6 @@ SPEC REPOS:
     - DifferenceKit
     - HockeySDK
     - JTAppleCalendar
-    - KeychainAccess
     - Kingfisher
     - R.swift
     - R.swift.Library
@@ -58,6 +57,8 @@ SPEC REPOS:
     - SVProgressHUD
     - SwiftyBeaver
     - UrbanAirship-iOS-SDK
+  trunk:
+    - KeychainAccess
 
 EXTERNAL SOURCES:
   qot_dal:
@@ -68,7 +69,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: c2df53f25a33b60386521c86157fe0b6b08bda61
+    :commit: 013c6ca6b9fe17fcb3b647bd53a1e327a2b8ed6f
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
