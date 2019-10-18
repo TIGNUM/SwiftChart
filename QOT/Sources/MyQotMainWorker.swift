@@ -28,14 +28,14 @@ final class MyQotMainWorker {
     func myQotSections() -> MyQotViewModel {
         let myQotItems =  MyQotSection.allCases.map {
             return MyQotViewModel.Item(myQotSections: $0,
-                                       title: myQOTTitle(for: $0).uppercased(),
+                                       title: myQOTTitle(for: $0),
                                    subtitle: "",
                                    showSubtitleInRed: false)}
         return MyQotViewModel(myQotItems: myQotItems)
     }
 
     func myQOTTitle(for section: MyQotSection) -> String {
-        return (ScreenTitleService.main.myQotSectionTitles(for: section) ?? "")
+        return (ScreenTitleService.main.myQotSectionTitles(for: section) ?? "").uppercased()
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {
