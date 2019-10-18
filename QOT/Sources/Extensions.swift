@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Kingfisher
-import Anchorage
 import qot_dal
 
 // MARK: - String

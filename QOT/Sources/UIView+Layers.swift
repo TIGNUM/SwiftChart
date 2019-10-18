@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 extension UIView {
     func maskCorners(corners: UIRectCorner, radius: CGFloat) {

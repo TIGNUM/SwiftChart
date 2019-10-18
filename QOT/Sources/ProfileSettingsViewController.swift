@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ActionSheetPicker_3_0
 import SVProgressHUD
 import qot_dal
 

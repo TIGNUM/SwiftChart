@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import qot_dal
 
 protocol PrepareResultsDelegatge: class {
@@ -175,27 +174,13 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func setupView() {
-        view.addSubview(tableView)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-            tableView.safeTopAnchor == view.safeTopAnchor
-            tableView.leftAnchor == view.leftAnchor
-            tableView.rightAnchor == view.rightAnchor
-            tableView.contentInset.top = 84
-            tableView.contentInset.bottom = 40
-        } else {
-            tableView.topAnchor == view.topAnchor
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.rightAnchor == view.rightAnchor
-            tableView.leftAnchor == view.leftAnchor
-            tableView.contentInset.top = 84
-        }
-        tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
+        self.view.fill(subview: tableView)
+        tableView.contentInset.top = 84
+        tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
         view.layoutIfNeeded()
     }
