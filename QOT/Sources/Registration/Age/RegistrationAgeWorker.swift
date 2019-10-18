@@ -17,7 +17,8 @@ final class RegistrationAgeWorker: BaseSigningWorker {
     }()
 
     lazy var agePlaceholder: String = {
-        return R.string.localized.onboardingRegistrationAgePlaceholder()
+//        return titleService.localizedString(for: .OnboardingRegistrationAgePlaceholder)
+        return ""
     }()
 
     lazy var descriptionText: String = {
@@ -25,11 +26,11 @@ final class RegistrationAgeWorker: BaseSigningWorker {
     }()
 
     lazy var ageRestrictionText: String = {
-        return R.string.localized.onboardingRegistrationAgeRestriction()
+        return titleService.localizedString(for: .OnboardingRegistrationAgeRestriction)
     }()
 
     lazy var nextButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationAgeNextTitle()
+         return titleService.localizedString(for: .OnboardingRegistrationAgeNextTitle)
     }()
 
     // MARK: - Init
