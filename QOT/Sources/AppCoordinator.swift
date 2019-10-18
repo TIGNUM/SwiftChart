@@ -153,6 +153,7 @@ final class AppCoordinator {
             assertionFailure("rootViewController should not be nil")
             return
         }
+        window.makeKeyAndVisible()
         // FIXME: Setting the frame here is necessary to avoid an unintended animation in some situations.
         // Not sure why this is happening. We should investigate.
         viewController.view.frame = rootViewController.view.bounds
@@ -218,7 +219,9 @@ extension AppCoordinator {
         navigationController.navigationBar.isHidden = true
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.modalPresentationStyle = .overFullScreen
-        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
+        guard let window = UIApplication.shared.delegate?.window else { return }
+        window?.makeKeyAndVisible()
+        window?.rootViewController?.present(navigationController, animated: false, completion: nil)
     }
 
     func logout() {
