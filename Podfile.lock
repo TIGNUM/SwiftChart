@@ -68,7 +68,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: e7cc9934aad06db95cec4fba943f44b6f099b1c8
+    :commit: cf2f4a85ace42469b5d9d0e7dee5987127f2563e
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26

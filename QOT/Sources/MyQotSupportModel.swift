@@ -19,7 +19,7 @@ struct MyQotSupportModel {
         case featureRequest
 
         static var supportValues: [MyQotSupportModelItem] {
-            #if DEBUG_NOVARTIS || RELEASE_NOVARTIS
+            #if NOVARTIS
                 return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest]
             #else
                 return [.usingQOT, .faq, .contactSupport, .featureRequest]
