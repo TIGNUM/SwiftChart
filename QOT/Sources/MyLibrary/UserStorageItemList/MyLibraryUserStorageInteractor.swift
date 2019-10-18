@@ -84,9 +84,11 @@ final class MyLibraryUserStorageInteractor {
             guard let strongSelf = self else { return }
             if strongSelf.items == nil {
                 strongSelf.items = [MyLibraryCellViewModel]()
+                strongSelf.presenter.presentData()
             }
             strongSelf.items?.removeAll()
             if !initiated || items.count == 0 {
+                strongSelf.presenter.presentData()
                 strongSelf.showEmptyAlert()
             } else {
                 strongSelf.infoViewModel = nil
