@@ -615,7 +615,7 @@ extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
         guard let shouldHideNavBar = interactor?.shouldHideTopBar,
             !shouldHideNavBar else {
-            return
+                return
         }
 
         let pixelBuffer: CGFloat = 50

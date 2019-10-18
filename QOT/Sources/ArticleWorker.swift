@@ -169,11 +169,12 @@ final class ArticleWorker {
         }
         content?.contentItems.filter {
             $0.tabs.isEmpty
-            && content?.section == .ExclusiveRecoveryContent
-            && $0.format != .pdf
-            && $0.format != .video
-            && $0.format != .title }.forEach { item in
-                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                && content?.section == .ExclusiveRecoveryContent
+                && $0.remoteID != self.articleAudioItem?.remoteID
+                && $0.format != .pdf
+                && $0.format != .video
+                && $0.format != .title }.forEach { item in
+                    items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
@@ -244,6 +245,7 @@ final class ArticleWorker {
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
         content?.contentItems.forEach { item in
+            guard item.remoteID != self.articleAudioItem?.remoteID else { return }
             items.append(Article.Item(remoteID: item.remoteID ?? 0,
                                       type: ContentItemValue(item: item),
                                       content: item.valueText,
