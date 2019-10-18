@@ -35,7 +35,7 @@ final class MyQotMainWorker {
     }
 
     func myQOTTitle(for section: MyQotSection) -> String {
-        return (ScreenTitleService.main.myQotSectionTitles(for: section) ?? "").uppercased()
+        return ScreenTitleService.main.myQotSectionTitles(for: section)
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {
