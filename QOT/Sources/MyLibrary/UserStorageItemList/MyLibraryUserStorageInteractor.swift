@@ -93,9 +93,20 @@ final class MyLibraryUserStorageInteractor {
             } else {
                 strongSelf.infoViewModel = nil
                 strongSelf.items?.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
+                strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
                 strongSelf.presenter.presentData()
             }
         }
+    }
+
+    private func removeDuplicates(from results: [MyLibraryCellViewModel]) -> [MyLibraryCellViewModel] {
+        var tempResults = [MyLibraryCellViewModel]()
+        for result in results {
+            if tempResults.contains(obj: result) == false {
+                tempResults.append(result)
+            }
+        }
+        return tempResults
     }
 }
 
