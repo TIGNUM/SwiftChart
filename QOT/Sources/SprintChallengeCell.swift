@@ -22,14 +22,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
     var showMore = false
+    private var doneForToday: Bool?
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     private var observers: [NSKeyValueObservation] = []
     @IBAction func gotItPressed(_ sender: Any) {
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        updateGotItButton()
+        delegate?.reloadSprintCell(cell: self)
     }
 
     @IBAction func showMoreButton(_ sender: Any) {
@@ -61,6 +61,9 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         skeletonManager.addOtherView(sprintStepNumber)
         skeletonManager.addOtherView(outOf5Label)
         skeletonManager.addOtherView(showMoreButton)
+        tableView.delegate = self
+        tableView.dataSource = self
+        ThemeView.level2.apply(self)
     }
 
     private func checkScroll() {
@@ -71,13 +74,11 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        tableView.delegate = self
-        tableView.dataSource = self
-        ThemeView.level2.apply(self)
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }
+        self.doneForToday = model.sprint.doneForToday
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
         ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
@@ -88,7 +89,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     private func updateGotItButton() {
-        if self.currentSprint?.doneForToday == true {
+        if doneForToday == true {
             ThemeView.audioPlaying.apply(gotItButton)
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false

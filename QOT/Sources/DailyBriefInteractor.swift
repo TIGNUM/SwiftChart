@@ -378,8 +378,8 @@ extension DailyBriefInteractor {
         return isNewArticle
     }
 
-    func didPressGotItSprint(sprint: QDMSprint) {
-        worker.didPressGotItSprint(sprint: sprint)
+    func didPressGotItSprint(sprint: QDMSprint, completion: () -> Void) {
+        worker.didPressGotItSprint(sprint: sprint, completion: completion)
     }
 
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
