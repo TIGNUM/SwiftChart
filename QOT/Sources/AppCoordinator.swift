@@ -158,6 +158,11 @@ final class AppCoordinator {
                     self.canProcessRemoteNotifications = true
                     self.canProcessLocalNotifications = true
                     self.isReadyToProcessURL = true
+
+                    guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
+                    let configurator = WalkthroughConfigurator.make()
+                    configurator(controller, .fast)
+                    baseRootViewController.pushToStart(childViewController: controller)
                 }
             }
         }

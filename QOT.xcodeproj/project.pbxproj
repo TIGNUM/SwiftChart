@@ -304,6 +304,11 @@
 		36EC230C2323F89900DB5696 /* DTQuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
+		3809C44F235E0AE500099DD0 /* walkThorugh_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3809C44A235E0AE400099DD0 /* walkThorugh_myQOT.mp4 */; };
+		3809C450235E0AE500099DD0 /* walkThorugh_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3809C44B235E0AE400099DD0 /* walkThorugh_coach.mp4 */; };
+		3809C451235E0AE500099DD0 /* walkThorugh_coach2.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3809C44C235E0AE400099DD0 /* walkThorugh_coach2.mp4 */; };
+		3809C452235E0AE500099DD0 /* walkThorugh_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3809C44D235E0AE500099DD0 /* walkThorugh_search.mp4 */; };
+		3809C453235E0AE500099DD0 /* walkThorugh_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 3809C44E235E0AE500099DD0 /* walkThorugh_know.mp4 */; };
 		38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */; };
 		38290B872330F825004B5C14 /* DTSprintReflectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */; };
 		38290B882330F825004B5C14 /* DTSprintReflectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */; };
@@ -1298,7 +1303,6 @@
 
 /* Begin PBXFileReference section */
 		0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.hockey.xcconfig"; sourceTree = "<group>"; };
-		17E71AD14F3936883D1CD309 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		28923F7791F8BAE176A57A73 /* Pods-QOT.debug_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug_novartis.xcconfig"; sourceTree = "<group>"; };
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
@@ -1598,6 +1602,11 @@
 		36EC230B2323F89900DB5696 /* DTQuestionnaireViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTQuestionnaireViewController.swift; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
+		3809C44A235E0AE400099DD0 /* walkThorugh_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_myQOT.mp4; sourceTree = "<group>"; };
+		3809C44B235E0AE400099DD0 /* walkThorugh_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_coach.mp4; sourceTree = "<group>"; };
+		3809C44C235E0AE400099DD0 /* walkThorugh_coach2.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_coach2.mp4; sourceTree = "<group>"; };
+		3809C44D235E0AE500099DD0 /* walkThorugh_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_search.mp4; sourceTree = "<group>"; };
+		3809C44E235E0AE500099DD0 /* walkThorugh_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_know.mp4; sourceTree = "<group>"; };
 		38290B7E2330F825004B5C14 /* DTSprintReflectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionPresenter.swift; sourceTree = "<group>"; };
 		38290B7F2330F825004B5C14 /* DTSprintReflectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionWorker.swift; sourceTree = "<group>"; };
 		38290B802330F825004B5C14 /* DTSprintReflectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTSprintReflectionRouter.swift; sourceTree = "<group>"; };
@@ -4793,6 +4802,11 @@
 		CB78D3361F9F674A0068A54A /* BundledMedia */ = {
 			isa = PBXGroup;
 			children = (
+				3809C44B235E0AE400099DD0 /* walkThorugh_coach.mp4 */,
+				3809C44C235E0AE400099DD0 /* walkThorugh_coach2.mp4 */,
+				3809C44E235E0AE500099DD0 /* walkThorugh_know.mp4 */,
+				3809C44A235E0AE400099DD0 /* walkThorugh_myQOT.mp4 */,
+				3809C44D235E0AE500099DD0 /* walkThorugh_search.mp4 */,
 				8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */,
 			);
 			name = BundledMedia;
@@ -5897,6 +5911,7 @@
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
+				3809C44F235E0AE500099DD0 /* walkThorugh_myQOT.mp4 in Resources */,
 				9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */,
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,
@@ -5937,6 +5952,7 @@
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
+				3809C451235E0AE500099DD0 /* walkThorugh_coach2.mp4 in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
@@ -6025,6 +6041,9 @@
 				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,
 				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
+				3809C453235E0AE500099DD0 /* walkThorugh_know.mp4 in Resources */,
+				3809C452235E0AE500099DD0 /* walkThorugh_search.mp4 in Resources */,
+				3809C450235E0AE500099DD0 /* walkThorugh_coach.mp4 in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
@@ -6184,7 +6203,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -8473,7 +8492,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
