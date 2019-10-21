@@ -65,6 +65,9 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didFinishSynchronization(_:)),
                                                name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkDeletedEventForPreparation(_:)),
+                                               name: .needToCheckDeletedEventForPreparation, object: nil)
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -348,7 +351,7 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION, .USER]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
@@ -366,13 +369,14 @@ extension AppCoordinator {
             case .CONTENT_COLLECTION:
                 guard syncResult.hasUpdatedContent else { return }
                 self.handleContentDownSync()
-            case .PREPARATION:
-                guard syncResult.syncRequestType == .DOWN_SYNC,
-                    EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
-                self.handlePreparationDownSync()
             default: break
             }
         }
+    }
+
+    @objc func checkDeletedEventForPreparation(_ notification: Notification) {
+        guard EKEventStore.authorizationStatus(for: .event) == .authorized else { return }
+        self.handlePreparationDownSync()
     }
 
     func handlePreparationDownSync() {
@@ -392,7 +396,7 @@ extension AppCoordinator {
 
         dispatchGroup.notify(queue: .main, execute: {
             guard let preps = preparations, preps.count > 0, didDownCalendarEvents else { return }
-            log("preps with missing events : \(preps)")
+            log("preps with missing events : \(preps)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preps)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
             baseRootViewController?.present(viewController, animated: true, completion: nil)
