@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class RegistrationAgeWorker: BaseSigningWorker {
 
@@ -17,19 +18,19 @@ final class RegistrationAgeWorker: BaseSigningWorker {
     }()
 
     lazy var agePlaceholder: String = {
-        return R.string.localized.onboardingRegistrationAgePlaceholder()
+        return titleService.localizedString(for: .OnboardingRegistrationAgePlaceholder)
     }()
 
     lazy var descriptionText: String = {
-        return R.string.localized.onboardingRegistrationAgeDescription()
+        return titleService.localizedString(for: .OnboardingRegistrationAgeDescription)
     }()
 
     lazy var ageRestrictionText: String = {
-        return R.string.localized.onboardingRegistrationAgeRestriction()
+        return titleService.localizedString(for: .OnboardingRegistrationAgeRestriction)
     }()
 
     lazy var nextButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationAgeNextTitle()
+        return titleService.localizedString(for: .OnboardingRegistrationAgeNextTitle)
     }()
 
     // MARK: - Init
