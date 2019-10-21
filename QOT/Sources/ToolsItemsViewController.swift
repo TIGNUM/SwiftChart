@@ -85,6 +85,8 @@ private extension ToolsItemsViewController {
     func setupTableView() {
         tableView.registerDequeueable(ToolsCollectionsAudioTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 90
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
     }
 }
@@ -130,14 +132,10 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: interactor?.headerTitle ?? "",
-                                                           subtitle: interactor?.headerSubtitle ?? "")
+            return ToolsTableHeaderView.init(title: interactor?.headerTitle ?? "",
+                                             subtitle: interactor?.headerSubtitle ?? "")
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -8,25 +8,23 @@
 
 import UIKit
 
-protocol SolveHeaderTableViewCellDelegate: class {
-    func didTapShowMoreLess()
-}
-
 final class SolveHeaderTableViewCell: DTResultBaseTableViewCell, Dequeueable {
-
     // MARK: - Properties
+    private var baseView: QOTBaseHeaderView?
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var solutionTextLabel: UILabel!
-    weak var delegate: SolveHeaderTableViewCellDelegate?
-}
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        backgroundColor = .clear
+    }
 
-// MARK: - Configuration
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
 
-extension SolveHeaderTableViewCell {
+    // MARK: - Configuration
     func configure(title: String, solutionText: String) {
-        ThemeText.resultHeader1.apply(title.uppercased(), to: titleLabel)
-        ThemeText.resultHeader2.apply(solutionText, to: solutionTextLabel)
-        selectionStyle = .none
+        baseView?.configure(title: title.uppercased(), subtitle: solutionText, darkMode: false)
     }
 }

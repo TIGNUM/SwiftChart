@@ -11,21 +11,25 @@ import UIKit
 final class CoachTableHeaderView: UIView {
 
     // MARK: - Properties
+    private var baseView: QOTBaseHeaderView?
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-
-    static func instantiateFromNib(title: String, subtitle: String) -> CoachTableHeaderView {
-        guard let headerView = R.nib.coachTableHeaderView.instantiate(withOwner: self).first as? CoachTableHeaderView else {
-            fatalError("Cannot load header view")
-        }
-        headerView.backgroundColor = .sand
-        headerView.configure(title: title, subtitle: subtitle)
-        return headerView
+    convenience init(title: String, subtitle: String) {
+        self.init(frame: .zero)
+        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
+        baseView?.configure(title: title, subtitle: subtitle)
+        ThemeText.coachHeader.apply(title.uppercased(), to: baseView?.titleLabel)
+        ThemeText.coachHeaderSubtitle.apply(subtitle, to: baseView?.subtitleTextView)
     }
 
-    func configure(title: String, subtitle: String) {
-        ThemeText.coachHeader.apply(title.uppercased(), to: titleLabel)
-        ThemeText.coachHeaderSubtitle.apply(subtitle, to: subtitleLabel)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
+        return baseView?.calculateHeight(for: cellWidth) ?? 0
     }
 }

@@ -137,7 +137,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             let headerTitle = interactor?.headerTitle ?? ""
             if headerTitle.count > 0 {
                 let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
-                return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "")
+                return ToolsTableHeaderView.init(title: title, subtitle: "")
             }
         default:
             break

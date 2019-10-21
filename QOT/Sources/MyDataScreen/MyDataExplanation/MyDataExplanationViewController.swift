@@ -13,10 +13,9 @@ final class MyDataExplanationViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
     var interactor: MyDataExplanationInteractorInterface?
     var router: MyDataExplanationRouterInterface?
-    @IBOutlet weak var headerTitleLabel: UILabel!
-    @IBOutlet weak var headerLine: UIView!
+
+    private var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
-    private let skeletonManager = SkeletonManager()
     private var myDataExplanationModel: MyDataExplanationModel?
 
     // MARK: - Init
@@ -31,7 +30,6 @@ final class MyDataExplanationViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        skeletonManager.addTitle(headerTitleLabel)
         interactor?.viewDidLoad()
     }
 
@@ -57,12 +55,18 @@ extension MyDataExplanationViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return baseView
+    }
 }
 
 // MARK: - Private
 private extension MyDataExplanationViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyDataExplanationScreenTableViewCell.self)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 150
         tableView.separatorInset = .zero
         tableView.separatorColor = .sand30
         tableView.allowsSelection = false
@@ -79,9 +83,11 @@ extension MyDataExplanationViewController: MyDataExplanationViewControllerInterf
     }
 
     func setup(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String) {
-        skeletonManager.hide()
         myDataExplanationModel = myDataExplanationSection
-        ThemeView.headerLine.apply(headerLine)
-        ThemeText.myDataSectionHeaderTitle.apply(myDataExplanationHeaderTitle, to: headerTitleLabel)
+        if let headerView = R.nib.qotBaseHeaderView.firstView(owner: self) {
+            headerView.configure(title: myDataExplanationHeaderTitle, subtitle: nil)
+            baseView = headerView
+            ThemeView.level3.apply(headerView)
+        }
     }
 }

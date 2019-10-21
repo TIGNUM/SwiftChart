@@ -169,7 +169,6 @@ extension SolveResultsViewController: UITableViewDataSource {
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
-            cell.delegate = self
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
              .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
@@ -223,15 +222,6 @@ extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
         case .recoveryPlaner: router?.openRecovery()
         default: break
         }
-    }
-}
-
-// MARK: - SolveHeaderTableViewCellDelegate
-extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
-    func didTapShowMoreLess() {
-        trackUserEvent(.SELECT, valueType: "SHOW MORE/LESS", action: .TAP)
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 }
 

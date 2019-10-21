@@ -44,7 +44,6 @@
 		36288A7123257EDD0036C8C0 /* DTPresentationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */; };
 		36288A7323257EEF0036C8C0 /* DTSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */; };
 		36288A7723257F060036C8C0 /* DTViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36288A7623257F060036C8C0 /* DTViewModel.swift */; };
-		3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */; };
 		3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */; };
 		3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */; };
 		3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */; };
@@ -686,8 +685,6 @@
 		9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */; };
 		9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */; };
 		9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */; };
-		9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */; };
-		9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */; };
 		9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */; };
 		9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */; };
 		9C6E48C6232A4E4E004D657F /* UIButton+Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */; };
@@ -757,7 +754,6 @@
 		AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D922A54EB70022156C /* SolveResultsConfigurator.swift */; };
 		AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40E222A550350022156C /* SolveResultsViewController.xib */; };
 		AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40E622A55C870022156C /* SolveHeaderTableViewCell.swift */; };
-		AC1A40E922A55C870022156C /* SolveHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */; };
 		AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40EA22A561330022156C /* SolveStrategyTableViewCell.swift */; };
 		AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */; };
 		AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40EF22A56FB90022156C /* SolveTriggerTableViewCell.xib */; };
@@ -882,7 +878,6 @@
 		B4AB48CC230BF982003B3C1F /* MyDataExplanationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C4230BF982003B3C1F /* MyDataExplanationModel.swift */; };
 		B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */; };
 		B4AB48D0230C0002003B3C1F /* MyDataInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */; };
-		B4AB48D1230C0002003B3C1F /* MyDataInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */; };
 		B4AB48D4230D3A9B003B3C1F /* MyDataChartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D2230D3A9B003B3C1F /* MyDataChartTableViewCell.xib */; };
 		B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */; };
 		B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */; };
@@ -894,10 +889,13 @@
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
+		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
 		B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */; };
 		B4F39507232BA3460007AC51 /* WeatherHourlyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */; };
 		B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */; };
 		B4F3950B232FF1930007AC51 /* UIStackView+RemoveAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */; };
+		B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */; };
+		B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
 		B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */; };
@@ -1101,7 +1099,6 @@
 		F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */; };
 		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
-		F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */; };
 		F9638C492306A47D00B8E543 /* Notification+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9638C482306A47D00B8E543 /* Notification+Ext.swift */; };
 		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
 		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
@@ -1113,7 +1110,6 @@
 		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
 		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */; };
-		F98D8ED222D374DB0072FC73 /* QuestionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F98D8ED122D374DB0072FC73 /* QuestionCell.xib */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -1180,7 +1176,6 @@
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
 		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
-		F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1286,7 +1281,6 @@
 		36288A7023257EDD0036C8C0 /* DTPresentationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTPresentationModel.swift; sourceTree = "<group>"; };
 		36288A7223257EEF0036C8C0 /* DTSelectionModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTSelectionModel.swift; sourceTree = "<group>"; };
 		36288A7623257F060036C8C0 /* DTViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DTViewModel.swift; sourceTree = "<group>"; };
-		3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
 		3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentHeaderView.swift; sourceTree = "<group>"; };
 		3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -1932,8 +1926,6 @@
 		9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceViewModel.swift; sourceTree = "<group>"; };
 		9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceSectionCell.xib; sourceTree = "<group>"; };
 		9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceRowCell.xib; sourceTree = "<group>"; };
-		9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceTitleCell.xib; sourceTree = "<group>"; };
-		9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTitleCell.swift; sourceTree = "<group>"; };
 		9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionCell.swift; sourceTree = "<group>"; };
 		9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowCell.swift; sourceTree = "<group>"; };
 		9C6E48C32328D970004D657F /* AnimatedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedButton.swift; sourceTree = "<group>"; };
@@ -2002,7 +1994,6 @@
 		AC1A40D922A54EB70022156C /* SolveResultsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsConfigurator.swift; sourceTree = "<group>"; };
 		AC1A40E222A550350022156C /* SolveResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveResultsViewController.xib; sourceTree = "<group>"; };
 		AC1A40E622A55C870022156C /* SolveHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveHeaderTableViewCell.swift; sourceTree = "<group>"; };
-		AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		AC1A40EA22A561330022156C /* SolveStrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveStrategyTableViewCell.swift; sourceTree = "<group>"; };
 		AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveStrategyTableViewCell.xib; sourceTree = "<group>"; };
 		AC1A40EE22A56FB90022156C /* SolveTriggerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTriggerTableViewCell.swift; sourceTree = "<group>"; };
@@ -2106,7 +2097,6 @@
 		B4AB48C4230BF982003B3C1F /* MyDataExplanationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationModel.swift; sourceTree = "<group>"; };
 		B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationConfigurator.swift; sourceTree = "<group>"; };
 		B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataInfoTableViewCell.swift; sourceTree = "<group>"; };
-		B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataInfoTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48D2230D3A9B003B3C1F /* MyDataChartTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartTableViewCell.swift; sourceTree = "<group>"; };
 		B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapTableViewCell.swift; sourceTree = "<group>"; };
@@ -2118,10 +2108,13 @@
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
+		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
 		B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B4F39506232BA3460007AC51 /* WeatherHourlyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyView.swift; sourceTree = "<group>"; };
 		B4F39508232BA3570007AC51 /* WeatherHourlyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherHourlyView.xib; sourceTree = "<group>"; };
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
+		B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTBaseHeaderView.swift; sourceTree = "<group>"; };
+		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
 		B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Navigation.swift"; sourceTree = "<group>"; };
 		B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = bottomNavigation.storyboard; sourceTree = "<group>"; };
@@ -2335,7 +2328,6 @@
 		F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableViewCell.swift; sourceTree = "<group>"; };
 		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
-		F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableHeaderView.xib; sourceTree = "<group>"; };
 		F9638C482306A47D00B8E543 /* Notification+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Ext.swift"; sourceTree = "<group>"; };
 		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
 		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
@@ -2347,7 +2339,6 @@
 		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
 		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCell.swift; sourceTree = "<group>"; };
-		F98D8ED122D374DB0072FC73 /* QuestionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionCell.xib; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -2414,7 +2405,6 @@
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
 		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
-		F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableHeaderView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -2611,7 +2601,6 @@
 				3662433F227C570200FFED3A /* AudioButton.xib */,
 				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
 				F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */,
-				F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */,
 				F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */,
 				F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */,
 				36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */,
@@ -2619,7 +2608,7 @@
 				36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */,
 				36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */,
 				3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */,
-				3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */,
+				B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */,
 				366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */,
 				366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */,
 				8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */,
@@ -2651,7 +2640,8 @@
 				B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */,
 				B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */,
 				B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */,
-				B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */,
+				B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */,
+				B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */,
 				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
 				B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */,
 				F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */,
@@ -2694,7 +2684,6 @@
 				F99DF6072292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift */,
 				F99DF6052292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib */,
 				F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */,
-				F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */,
 				F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */,
 				F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */,
 				365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */,
@@ -4077,16 +4066,14 @@
 		9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */ = {
 			isa = PBXGroup;
 			children = (
+				9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */,
 				9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */,
 				9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */,
-				9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */,
-				9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */,
-				9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */,
 				9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */,
+				9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */,
 				9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */,
-				9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */,
-				9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */,
 				9C7F4198232BB9C7007E4B5D /* MyPeakPerformanceCell.swift */,
+				9C7F4196232BB993007E4B5D /* MyPeakPerformanceCell.xib */,
 				9C7F419A232BF499007E4B5D /* MyPeakPerformanceFooter.xib */,
 				9C7F419C232BF4F2007E4B5D /* MyPeakperformanceFooter.swift */,
 				9C7F419E232CB521007E4B5D /* MyPeakPerformanceDividerView.xib */,
@@ -4200,7 +4187,6 @@
 				366D04F422C65EE30081258E /* FatigueTableViewCell.xib */,
 				AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */,
 				AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */,
-				AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */,
 				AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */,
 				AC1A40EF22A56FB90022156C /* SolveTriggerTableViewCell.xib */,
 			);
@@ -5176,7 +5162,6 @@
 			children = (
 				F98D8ECD22D3742F0072FC73 /* QuestionCell.swift */,
 				F9D6381522D6365C0092C482 /* QuestionCellViewModel.swift */,
-				F98D8ED122D374DB0072FC73 /* QuestionCell.xib */,
 			);
 			name = RandomQuestion;
 			sourceTree = "<group>";
@@ -5670,12 +5655,10 @@
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
-				F98D8ED222D374DB0072FC73 /* QuestionCell.xib in Resources */,
 				B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
-				9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */,
 				F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */,
@@ -5708,6 +5691,7 @@
 				8D66E8A52305A18300BE78C7 /* TrackSelection.storyboard in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
 				B49AC293233BA5DC009AC1CF /* PaymentFooterView.xib in Resources */,
+				B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */,
 				8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
@@ -5721,7 +5705,6 @@
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
-				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
@@ -5734,10 +5717,8 @@
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
 				B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */,
 				36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */,
-				3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */,
 				368A125E2277387900866DB0 /* SF-Pro-Display-Regular.otf in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
-				F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */,
 				8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */,
 				B49AD8A3233D0CB5000C5DCF /* CustomAlertSheet.xib in Resources */,
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
@@ -5753,6 +5734,7 @@
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
 				8D8AA76922FDCB6700B59A81 /* RegistrationEmail.storyboard in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */,
 				B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
@@ -5765,7 +5747,6 @@
 				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,
 				9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
-				B4AB48D1230C0002003B3C1F /* MyDataInfoTableViewCell.xib in Resources */,
 				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
 				8D5668BF22DCC53100AA172F /* MySprints.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
@@ -5820,7 +5801,6 @@
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */,
-				AC1A40E922A55C870022156C /* SolveHeaderTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */,
@@ -5979,7 +5959,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6562,7 +6542,6 @@
 				3666FD46232A4B7D00FC67D0 /* DTRecoveryInteractor.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				9C7F4199232BB9C7007E4B5D /* MyPeakPerformanceCell.swift in Sources */,
-				9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */,
 				9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				36B5BD3323142B4A00439A64 /* AskPermissionConfigurator.swift in Sources */,
@@ -6630,6 +6609,7 @@
 				8D0B4D272301CC4000A1AC47 /* RegistrationNamesInteractor.swift in Sources */,
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
 				8D9F6D20230E80EB00DCC241 /* WalkthroughViewController.swift in Sources */,
+				B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */,
 				9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */,
 				754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */,
 				8D0B4D252301CC4000A1AC47 /* RegistrationNamesInterface.swift in Sources */,
@@ -8003,7 +7983,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

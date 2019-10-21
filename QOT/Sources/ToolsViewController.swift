@@ -110,7 +110,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: "")
+            return ToolsTableHeaderView.init(title: toolModel?.headerTitle?.uppercased() ?? "", subtitle: "")
         default: return nil
         }
     }

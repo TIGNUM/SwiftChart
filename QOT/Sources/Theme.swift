@@ -34,6 +34,8 @@ enum ThemeView {
     case level1Secondary
     case level1Selected
     case level2Selected
+    case baseHeaderView(ThemeColorMode?)
+    case baseHeaderLineView(ThemeColorMode?)
     case onboarding
     case article
     case articleBackground(ThemeColorMode?)
@@ -62,6 +64,7 @@ enum ThemeView {
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
     case paymentReminder
+    case peakPerformanceCell
     case clear
 
     var color: UIColor {
@@ -78,6 +81,10 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
+        case .baseHeaderView(let mode):
+            return Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
+        case .baseHeaderLineView(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .audioPlaying, .selectedButton:
             return Palette.accent40
         case .onboarding:
@@ -92,7 +99,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder, .peakPerformanceCell:
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color
@@ -479,6 +486,9 @@ enum ThemeText {
     case author
     case datestamp
 
+    case baseHeaderTitle(ThemeColorMode?)
+    case baseHeaderSubtitle(ThemeColorMode?)
+
     case linkMenuItem
     case linkMenuComment        //???
     case linkMenuCommentRed
@@ -671,8 +681,6 @@ enum ThemeText {
     case audioLabel
     case dailyQuestion
 
-    case myDataSectionHeaderTitle
-    case myDataSectionHeaderSubTitle
     case myDataMonthYearTitle
     case myDataWeekdaysNotHighlighted(Bool)
     case myDataWeekdaysHighlighted(Bool)
@@ -767,7 +775,7 @@ enum ThemeText {
             return Fonts.fontRegular12
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle:
@@ -777,10 +785,10 @@ enum ThemeText {
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage:
             return Fonts.fontRegular16
-        case .leaderVideoTitle, .searchExploreTopic, .searchBar,
+        case .baseHeaderSubtitle, .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
-             .tbvTrackerRatingDigits, .myDataSectionHeaderSubTitle, .registrationEmailMessage, .registrationEmailError,
+             .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .registrationAgeRestriction, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader:
@@ -925,7 +933,7 @@ enum ThemeText {
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
+             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
@@ -960,7 +968,7 @@ enum ThemeText {
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode,
-             .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
+             .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
@@ -1044,6 +1052,10 @@ enum ThemeText {
             } else {
                 return isDark ? Palette.sand70 : Palette.carbon70
             }
+        case .baseHeaderTitle(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+        case .baseHeaderSubtitle(let mode):
+            return Palette.light(Palette.carbon40, or: Palette.sand40, forcedColorMode: mode)
         case .tbvTrackerRatingDigits(let lowValue):
             return lowValue ? Palette.redOrange40 : Palette.sand40
         case .tbvTrackerRatingDigitsSelected(let lowValue):
@@ -1146,7 +1158,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
-        case .myDataSectionHeaderTitle, .myDataSectionHeaderSubTitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle,
+        case .baseHeaderTitle, .baseHeaderSubtitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle,
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
@@ -1248,7 +1260,7 @@ enum ThemeText {
             view.backgroundColor = .clear
 
             switch self {
-            case .myDataSectionHeaderSubTitle:
+            case .baseHeaderSubtitle:
                 view.contentMode = .topLeft
             default:
                 break
