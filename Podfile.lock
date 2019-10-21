@@ -12,7 +12,7 @@ PODS:
     - HockeySDK/DefaultLib (= 5.1.4)
   - HockeySDK/DefaultLib (5.1.4)
   - JTAppleCalendar (7.1.6)
-  - KeychainAccess (3.2.0)
+  - KeychainAccess (3.2.1)
   - Kingfisher (5.7.1)
   - qot_dal (1.0):
     - KeychainAccess
@@ -34,7 +34,7 @@ DEPENDENCIES:
   - HockeySDK
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/no-staging`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -62,14 +62,13 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
-    :branch: feature/no-staging
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 54a7adcb0bedc79d9baa89ca4a7dc914c5f2cd8d
+    :commit: bce3ef4865d6aa2844a8836f5d66ac48edd38c58
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -82,7 +81,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
-  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  KeychainAccess: d5470352939ced6d6f7fb51cb2e67aae51fc294f
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
@@ -93,6 +92,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: f66b69357c1e0c48c5d31b074676937459fec408
+PODFILE CHECKSUM: af8a2e218428e9e864fcbfcf85a10e24b82a01bf
 
 COCOAPODS: 1.8.3
