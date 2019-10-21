@@ -66,7 +66,6 @@ extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControll
     func update() {
         tableView.reloadData()
     }
-
 }
 
 extension MyLibraryCategoryListViewController: UITableViewDataSource {

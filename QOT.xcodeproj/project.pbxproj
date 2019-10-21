@@ -2146,6 +2146,7 @@
 		ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
+		B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
@@ -4490,7 +4491,7 @@
 				559CF048230BD981BF1E6E34 /* Pods-QOT.releasenovartis.xcconfig */,
 				28923F7791F8BAE176A57A73 /* Pods-QOT.debug_novartis.xcconfig */,
 				F2B6283D93D968F7401F5F08 /* Pods-QOT.release_novartis.xcconfig */,
-				17E71AD14F3936883D1CD309 /* Pods-QOT.novartis.xcconfig */,
+				B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -7384,7 +7385,7 @@
 		};
 		385EE3E42359B4F800D41073 /* Novartis */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17E71AD14F3936883D1CD309 /* Pods-QOT.novartis.xcconfig */;
+			baseConfigurationReference = B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";

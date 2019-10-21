@@ -105,7 +105,7 @@ final class MyQotMainInteractor {
 
     private func createSprints(sprintName: String?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.sprints.rawValue]
-        item.subtitle = sprintName?.capitalizingFirstLetter() ?? ""
+        item.subtitle = sprintName ?? ""
         return [item]
     }
 
