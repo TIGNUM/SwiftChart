@@ -12,7 +12,7 @@ PODS:
     - HockeySDK/DefaultLib (= 5.1.4)
   - HockeySDK/DefaultLib (5.1.4)
   - JTAppleCalendar (7.1.6)
-  - KeychainAccess (3.2.0)
+  - KeychainAccess (3.2.1)
   - Kingfisher (5.7.1)
   - qot_dal (1.0):
     - KeychainAccess
@@ -81,7 +81,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
-  KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
+  KeychainAccess: d5470352939ced6d6f7fb51cb2e67aae51fc294f
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239

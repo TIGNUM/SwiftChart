@@ -7,6 +7,5 @@
 //
 
 import UIKit
-import qot_dal
 
 final class DTShortTBVWorker: DTWorker {}

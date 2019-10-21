@@ -14,20 +14,16 @@ struct MyQotSupportModel {
     enum MyQotSupportModelItem: Int {
         case usingQOT
         case faq
-        case reportIssue
+        case contactSupport
+        case contactSupportNovartis
         case featureRequest
 
         static var supportValues: [MyQotSupportModelItem] {
-            return [.usingQOT, .faq, .reportIssue, .featureRequest]
-        }
-
-        var primaryKey: Int {
-            switch self {
-            case .usingQOT: return 101192
-            case .faq: return 100704
-            case .reportIssue: return 0
-            case .featureRequest: return 0
-            }
+            #if NOVARTIS
+                return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest]
+            #else
+                return [.usingQOT, .faq, .contactSupport, .featureRequest]
+            #endif
         }
 
         func tag() -> Tags {
@@ -36,8 +32,10 @@ struct MyQotSupportModel {
                 return Tags.SupportUsingQOT
             case .faq:
                 return Tags.SupportFaq
-            case .reportIssue:
+            case .contactSupport:
                 return Tags.SupportContactSupport
+            case .contactSupportNovartis:
+                return Tags.SupportContactSupportNovartis
             case .featureRequest:
                 return Tags.SupportFeatureRequest
             }
@@ -49,7 +47,7 @@ struct MyQotSupportModel {
                 return Tags.SupportLearnHowToUseQot
             case .faq:
                 return Tags.SupportCheckTheMostAskedQuestion
-            case .reportIssue:
+            case .contactSupport, .contactSupportNovartis:
                 return Tags.SupportContactUsForAnyQuestion
             case .featureRequest:
                 return Tags.SupportAreYouMissingSomething
@@ -60,30 +58,12 @@ struct MyQotSupportModel {
             return tag().rawValue
         }
 
-        func title(for contentService: qot_dal.ContentService) -> String {
+        func title(for contentService: ContentService) -> String {
             return ScreenTitleService.main.localizedString(for: tag())
         }
 
-        func subtitle(for contentService: qot_dal.ContentService) -> String {
+        func subtitle(for contentService: ContentService) -> String {
             return ScreenTitleService.main.localizedString(for: tagSubtitle())
-        }
-
-        func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
-            switch self {
-            case .usingQOT:
-                contentService.getContentCollectionById(primaryKey) { (collection) in
-                    completion(collection)
-                }
-            case .faq:
-                contentService.getContentCollectionById(primaryKey) { (collection) in
-                    completion(collection)
-                }
-            case .reportIssue:
-                completion(nil)
-            case .featureRequest:
-                completion(nil)
-            }
-
         }
     }
 }
