@@ -27,8 +27,6 @@ final class AppCoordinator {
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
-    private var canProcessRemoteNotifications = false
-    private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
@@ -53,9 +51,6 @@ final class AppCoordinator {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
-        AppDelegate.current.localNotificationHandlerDelegate = self
-        AppDelegate.current.shortcutHandlerDelegate = self
-        remoteNotificationHandler.delegate = self
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -128,8 +123,8 @@ final class AppCoordinator {
     }
 
     func checkVersionIfNeeded() {
-//        guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        // CHANGE ME
+        //guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
     private func handleSetupError(error: Error) {
@@ -158,8 +153,6 @@ final class AppCoordinator {
                     self.showTrackChoice()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
-                    self.canProcessRemoteNotifications = true
-                    self.canProcessLocalNotifications = true
                     self.isReadyToProcessURL = true
                 }
             }
@@ -241,6 +234,7 @@ extension AppCoordinator {
         permissionsManager.reset()
         setupBugLife()
         UserDefault.clearAllDataLogOut()
+        isReadyToProcessURL = false
         environment.dynamicBaseURL = nil
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
@@ -278,38 +272,16 @@ extension AppCoordinator {
     }
 }
 
-// MARK: - RemoteNotificationHandlerDelegate (Handle Response)
-
-extension AppCoordinator: RemoteNotificationHandlerDelegate {
-
-    func remoteNotificationHandler(_ handler: RemoteNotificationHandler,
-                                   canProcessNotificationResponse: UANotificationResponse) -> Bool {
-        return canProcessRemoteNotifications
-    }
-}
-
 // MARK: - Handle incomming RemoteNotification
 
 extension AppCoordinator {
-    func handleIncommingNotificationDeepLinkURL(url: URL) {
+    func handleIncommingNotificationDeepLinkURL(url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
-    }
-}
-
-extension AppCoordinator: LocalNotificationHandlerDelegate {
-
-    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool {
-        return canProcessLocalNotifications
-    }
-}
-
-extension AppCoordinator: ShortcutHandlerDelegate {
-
-    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool {
-        return canProcessLocalNotifications
+        // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
+        completionHandler(.noData)
     }
 }
 

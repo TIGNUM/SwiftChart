@@ -9,15 +9,9 @@
 import AirshipKit
 import os.log
 
-protocol RemoteNotificationHandlerDelegate: class {
-
-    func remoteNotificationHandler(_ handler: RemoteNotificationHandler, canProcessNotificationResponse: UANotificationResponse) -> Bool
-}
-
 final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     private var unhandledNotificationResponses = [UANotificationResponse]()
     private let launchHandler: LaunchHandler
-    weak var delegate: RemoteNotificationHandlerDelegate?
 
     private var appDelegate: AppDelegate {
         return AppDelegate.current
@@ -28,22 +22,24 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
         super.init()
     }
 
-    func receivedBackgroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func receivedBackgroundNotification(_ notificationContent: UANotificationContent,
+                                        completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         if let deepLinkURL = notificationContent.deepLinkURL {
-            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(url: deepLinkURL)
+            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(url: deepLinkURL,
+                                                                              completionHandler: completionHandler)
+        } else {
+            completionHandler(.noData)
         }
     }
 
-    func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {
-        if delegate?.remoteNotificationHandler(self, canProcessNotificationResponse: notificationResponse) ?? false {
-            process(notificationResponse)
-        } else {
-            unhandledNotificationResponses.append(notificationResponse)
-        }
+    func receivedNotificationResponse(_ notificationResponse: UANotificationResponse,
+                                      completionHandler: @escaping () -> Void) {
+        process(notificationResponse)
         completionHandler()
     }
 
-    func receivedForegroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping () -> Void) {
+    func receivedForegroundNotification(_ notificationContent: UANotificationContent,
+                                        completionHandler: @escaping () -> Void) {
         completionHandler()
     }
 
@@ -54,8 +50,7 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     // MARK: - private
 
     private func process(_ notificationResponse: UANotificationResponse) {
-        guard
-            let deepLinkURL = notificationResponse.notificationContent.deepLinkURL  else { return }
+        guard let deepLinkURL = notificationResponse.notificationContent.deepLinkURL  else { return }
         launchHandler.process(url: deepLinkURL)
     }
 }
