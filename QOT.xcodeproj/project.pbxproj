@@ -1096,6 +1096,7 @@
 		DBA3921C23247B2D0017E7F6 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3921723247B2D0017E7F6 /* QuestionnaireTableViewCell.swift */; };
 		DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBA3921823247B2D0017E7F6 /* QuestionnaireProtocols.swift */; };
 		DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */; };
+		DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF6F130235DE08100367CC7 /* Notification+Name.swift */; };
 		DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA002622FC68A700B28647 /* HealthKit.framework */; };
 		DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */; };
 		DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */; };
@@ -1298,7 +1299,6 @@
 
 /* Begin PBXFileReference section */
 		0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.hockey.xcconfig"; sourceTree = "<group>"; };
-		17E71AD14F3936883D1CD309 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		28923F7791F8BAE176A57A73 /* Pods-QOT.debug_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug_novartis.xcconfig"; sourceTree = "<group>"; };
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
@@ -2382,6 +2382,7 @@
 		DBA3921723247B2D0017E7F6 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		DBA3921823247B2D0017E7F6 /* QuestionnaireProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireProtocols.swift; sourceTree = "<group>"; };
 		DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryTableViewCell.swift; sourceTree = "<group>"; };
+		DBF6F130235DE08100367CC7 /* Notification+Name.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+Name.swift"; sourceTree = "<group>"; };
 		DBFA002622FC68A700B28647 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMGuideItemNotfication+UserNotifications.swift"; sourceTree = "<group>"; };
 		DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMGuideItemTime+UserNotifications.swift"; sourceTree = "<group>"; };
@@ -4891,6 +4892,7 @@
 			isa = PBXGroup;
 			children = (
 				CB2880231E7051710067890A /* AppCoordinator.swift */,
+				DBF6F130235DE08100367CC7 /* Notification+Name.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -6184,7 +6186,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6929,6 +6931,7 @@
 				DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */,
 				75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
+				DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
 				3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
@@ -8473,7 +8476,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
