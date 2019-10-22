@@ -322,6 +322,15 @@
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
+		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
+		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
+		389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */; };
+		389BBC88235EE68B0009FA02 /* CoachMarksInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC80235EE68B0009FA02 /* CoachMarksInterface.swift */; };
+		389BBC89235EE68B0009FA02 /* CoachMarksViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC81235EE68B0009FA02 /* CoachMarksViewController.swift */; };
+		389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC82235EE68B0009FA02 /* CoachMarksInteractor.swift */; };
+		389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */; };
+		389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */; };
+		389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 389BBC8D235EE8900009FA02 /* CoachMark.storyboard */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
@@ -1621,6 +1630,15 @@
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
+		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
+		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
+		389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksRouter.swift; sourceTree = "<group>"; };
+		389BBC80235EE68B0009FA02 /* CoachMarksInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksInterface.swift; sourceTree = "<group>"; };
+		389BBC81235EE68B0009FA02 /* CoachMarksViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksViewController.swift; sourceTree = "<group>"; };
+		389BBC82235EE68B0009FA02 /* CoachMarksInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksInteractor.swift; sourceTree = "<group>"; };
+		389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksModel.swift; sourceTree = "<group>"; };
+		389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksConfigurator.swift; sourceTree = "<group>"; };
+		389BBC8D235EE8900009FA02 /* CoachMark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoachMark.storyboard; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		559CF048230BD981BF1E6E34 /* Pods-QOT.releasenovartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.releasenovartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.releasenovartis.xcconfig"; sourceTree = "<group>"; };
@@ -3066,6 +3084,7 @@
 				36718B2E224CDB7B0042881E /* Subscription */,
 				F99DF60D2292E38F00341DAB /* Tools */,
 				36E4B7A2219EBFB900049EE8 /* Tutorial */,
+				389BBC7C235EE63C0009FA02 /* Walkthrough */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -3280,6 +3299,22 @@
 				363B9CC8232D0B7D00C1A29E /* WorkerTBV.swift */,
 			);
 			name = Worker;
+			sourceTree = "<group>";
+		};
+		389BBC7C235EE63C0009FA02 /* Walkthrough */ = {
+			isa = PBXGroup;
+			children = (
+				389BBC8D235EE8900009FA02 /* CoachMark.storyboard */,
+				389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */,
+				389BBC82235EE68B0009FA02 /* CoachMarksInteractor.swift */,
+				389BBC80235EE68B0009FA02 /* CoachMarksInterface.swift */,
+				389BBC83235EE68B0009FA02 /* CoachMarksModel.swift */,
+				389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */,
+				389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */,
+				389BBC81235EE68B0009FA02 /* CoachMarksViewController.swift */,
+				389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */,
+			);
+			name = Walkthrough;
 			sourceTree = "<group>";
 		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
@@ -5874,6 +5909,7 @@
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
 				8D9F6D25230E832600DCC241 /* Walkthrough.storyboard in Resources */,
+				389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */,
 				F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */,
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
@@ -6412,6 +6448,7 @@
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				B4AB48C6230BF982003B3C1F /* MyDataExplanationPresenter.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
+				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
 				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
 				8D008F04230EFA45006D7263 /* WalkthroughSearchRouter.swift in Sources */,
@@ -6467,6 +6504,7 @@
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				3658257A2327D19200AC3F4A /* DTShortTBVRouter.swift in Sources */,
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
+				389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */,
 				B86E744922A9519900B0AE75 /* MyLibraryCategoryListPresenter.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				B49EACD1232902C3006BA566 /* WeatherViewModel.swift in Sources */,
@@ -6489,6 +6527,7 @@
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
 				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
+				389BBC8B235EE68B0009FA02 /* CoachMarksModel.swift in Sources */,
 				36C8F174230896C300CD718F /* QDMUserCalendarSetting+Ext.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
@@ -6553,6 +6592,7 @@
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
+				389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */,
@@ -6652,6 +6692,7 @@
 				8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
 				3666FD42232A4B7D00FC67D0 /* DTRecoveryWorker.swift in Sources */,
+				389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
@@ -6761,6 +6802,7 @@
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
+				389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
@@ -6774,6 +6816,7 @@
 				8D008F03230EFA45006D7263 /* WalkthroughSearchWorker.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
+				389BBC88235EE68B0009FA02 /* CoachMarksInterface.swift in Sources */,
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
 				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
 				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
@@ -6869,6 +6912,7 @@
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
 				363B9CBF232BF34A00C1A29E /* DTTBVPresenter.swift in Sources */,
 				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
+				389BBC89235EE68B0009FA02 /* CoachMarksViewController.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,

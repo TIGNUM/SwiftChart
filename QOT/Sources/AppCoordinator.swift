@@ -155,9 +155,14 @@ final class AppCoordinator {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
                     self.isReadyToProcessURL = true
 
-                    guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
-                    let configurator = WalkthroughConfigurator.make()
-                    configurator(controller, .fast)
+//                    guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
+//                    let configurator = WalkthroughConfigurator.make()
+//                    configurator(controller, .fast)
+//                    baseRootViewController.pushToStart(childViewController: controller)
+
+                    guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
+                    let configurator = CoachMarksConfigurator.make()
+                    configurator(controller)
                     baseRootViewController.pushToStart(childViewController: controller)
                 }
             }
