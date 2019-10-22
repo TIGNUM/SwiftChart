@@ -740,7 +740,7 @@ extension DailyBriefInteractor {
         if dailyCheckIn2.toBeVisionTrackId != nil {
             // for TBV
             let title: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let tbvRating: Int = dailyCheckIn2.toBeVisionTrack?.ratings.first?.rating ?? 0
+            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInAnswers?.last?.userAnswerValue ?? "") ?? 0
             let intro: String = (dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText ?? "") + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
@@ -755,13 +755,13 @@ extension DailyBriefInteractor {
             let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.first?.userAnswerValue ?? "0")
+            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.last?.userAnswerValue ?? "0")
             let question = dailyCheckIn2.SHPIQuestion?.title
             dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
+            let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.last?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
             let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
