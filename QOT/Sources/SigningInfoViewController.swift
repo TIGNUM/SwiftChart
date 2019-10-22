@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import SVProgressHUD
 
 final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
@@ -63,6 +64,8 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
         navigationController?.navigationBar.isHidden = true
         refreshBottomNavigationItems()
         player?.play()
+        // QOT-2367: Dismiss Loading Indicator
+        SVProgressHUD.dismiss()
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -27,8 +27,6 @@ final class AppCoordinator {
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
-    private var canProcessRemoteNotifications = false
-    private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
@@ -53,9 +51,6 @@ final class AppCoordinator {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
-        AppDelegate.current.localNotificationHandlerDelegate = self
-        AppDelegate.current.shortcutHandlerDelegate = self
-        remoteNotificationHandler.delegate = self
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -65,6 +60,9 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didFinishSynchronization(_:)),
                                                name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkDeletedEventForPreparation(_:)),
+                                               name: .needToCheckDeletedEventForPreparation, object: nil)
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -125,8 +123,8 @@ final class AppCoordinator {
     }
 
     func checkVersionIfNeeded() {
-//        guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        // CHANGE ME
+        //guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
     private func handleSetupError(error: Error) {
@@ -155,8 +153,6 @@ final class AppCoordinator {
                     self.showTrackChoice()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
-                    self.canProcessRemoteNotifications = true
-                    self.canProcessLocalNotifications = true
                     self.isReadyToProcessURL = true
 
                     guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
@@ -243,6 +239,7 @@ extension AppCoordinator {
         permissionsManager.reset()
         setupBugLife()
         UserDefault.clearAllDataLogOut()
+        isReadyToProcessURL = false
         environment.dynamicBaseURL = nil
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
@@ -280,38 +277,16 @@ extension AppCoordinator {
     }
 }
 
-// MARK: - RemoteNotificationHandlerDelegate (Handle Response)
-
-extension AppCoordinator: RemoteNotificationHandlerDelegate {
-
-    func remoteNotificationHandler(_ handler: RemoteNotificationHandler,
-                                   canProcessNotificationResponse: UANotificationResponse) -> Bool {
-        return canProcessRemoteNotifications
-    }
-}
-
 // MARK: - Handle incomming RemoteNotification
 
 extension AppCoordinator {
-    func handleIncommingNotificationDeepLinkURL(url: URL) {
+    func handleIncommingNotificationDeepLinkURL(url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
-    }
-}
-
-extension AppCoordinator: LocalNotificationHandlerDelegate {
-
-    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool {
-        return canProcessLocalNotifications
-    }
-}
-
-extension AppCoordinator: ShortcutHandlerDelegate {
-
-    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool {
-        return canProcessLocalNotifications
+        // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
+        completionHandler(.noData)
     }
 }
 
@@ -353,7 +328,7 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION, .USER]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
@@ -371,13 +346,14 @@ extension AppCoordinator {
             case .CONTENT_COLLECTION:
                 guard syncResult.hasUpdatedContent else { return }
                 self.handleContentDownSync()
-            case .PREPARATION:
-                guard syncResult.syncRequestType == .DOWN_SYNC,
-                    EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
-                self.handlePreparationDownSync()
             default: break
             }
         }
+    }
+
+    @objc func checkDeletedEventForPreparation(_ notification: Notification) {
+        guard EKEventStore.authorizationStatus(for: .event) == .authorized else { return }
+        self.handlePreparationDownSync()
     }
 
     func handlePreparationDownSync() {
@@ -397,7 +373,7 @@ extension AppCoordinator {
 
         dispatchGroup.notify(queue: .main, execute: {
             guard let preps = preparations, preps.count > 0, didDownCalendarEvents else { return }
-            log("preps with missing events : \(preps)")
+            log("preps with missing events : \(preps)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preps)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
             baseRootViewController?.present(viewController, animated: true, completion: nil)
