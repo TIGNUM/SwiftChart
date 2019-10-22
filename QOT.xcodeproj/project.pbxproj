@@ -1141,8 +1141,6 @@
 		F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94B22B7D09800AB2E94 /* PaymentReminderRouter.swift */; };
 		F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94D22B7D0B100AB2E94 /* PaymentReminderViewController.swift */; };
 		F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94F22B7D0E000AB2E94 /* PaymentReminderWorker.swift */; };
-		F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95322B7DFD900AB2E94 /* PaymentHeaderView.swift */; };
-		F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */; };
 		F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */; };
 		F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */; };
 		F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA622CD0C690094EA46 /* RoundedButton.swift */; };
@@ -2370,8 +2368,6 @@
 		F9A5C94B22B7D09800AB2E94 /* PaymentReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderRouter.swift; sourceTree = "<group>"; };
 		F9A5C94D22B7D0B100AB2E94 /* PaymentReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderViewController.swift; sourceTree = "<group>"; };
 		F9A5C94F22B7D0E000AB2E94 /* PaymentReminderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderWorker.swift; sourceTree = "<group>"; };
-		F9A5C95322B7DFD900AB2E94 /* PaymentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentHeaderView.swift; sourceTree = "<group>"; };
-		F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentHeaderView.xib; sourceTree = "<group>"; };
 		F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
 		F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentTableViewCell.xib; sourceTree = "<group>"; };
 		F9A66BA622CD0C690094EA46 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
@@ -2652,8 +2648,6 @@
 				BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */,
 				BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */,
 				BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */,
-				F9A5C95322B7DFD900AB2E94 /* PaymentHeaderView.swift */,
-				F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */,
 				F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */,
 				F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */,
 				B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */,
@@ -5800,7 +5794,6 @@
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
-				F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */,
@@ -6652,7 +6645,6 @@
 				366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */,
 				5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
-				F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
