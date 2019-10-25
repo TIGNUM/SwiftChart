@@ -420,7 +420,7 @@
 "Onboarding.Login.Button.ResendCode" = "Resend code";
 
 "Onboarding.CreateInfo.Button.CreateAccount" = "Create account";
-"Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your ToBeVision, please create an account";
+"Onboarding.CreateInfo.Text.Description" = "To make the most of your ToBeVision, please create your QOT account.";
 
 "Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
 "Onboarding.Registration.Email.Placeholder" = "Email";

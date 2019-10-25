@@ -27,9 +27,11 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
     private var observers: [NSKeyValueObservation] = []
-    @IBAction func gotItPressed(_ sender: Any) {
+    @IBAction func gotItTapped(_ sender: Any) {
+        ThemeView.audioPlaying.apply(gotItButton)
+        gotItButton.layer.borderWidth = 0
+        gotItButton.isEnabled = false
         delegate?.didPressGotItSprint(sprint: currentSprint!)
-        delegate?.reloadSprintCell(cell: self)
     }
 
     @IBAction func showMoreButton(_ sender: Any) {

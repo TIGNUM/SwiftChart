@@ -140,12 +140,11 @@ extension DailyBriefWorker {
 // MARK: - Whats Hot
 extension DailyBriefWorker {
 
-    func didPressGotItSprint(sprint: QDMSprint, @escaping completion: () -> Void) {
+    func didPressGotItSprint(sprint: QDMSprint) {
         userService.markAsDoneForToday(sprint, { (sprint, error) in
             if let error = error {
                 qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
-            completion()
         })
     }
 

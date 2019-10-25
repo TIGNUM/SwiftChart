@@ -774,17 +774,13 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     }
 
     func didPressGotItSprint(sprint: QDMSprint) {
-        interactor?.didPressGotItSprint(sprint: sprint, completion: {
-            if let indexPath = self.sprintIndexPath {
-                self.tableView.reloadRows(at: [indexPath], with: .none)
-            }
-        })
+        interactor?.didPressGotItSprint(sprint: sprint)
     }
 
     func reloadSprintCell(cell: UITableViewCell) {
-//        if let indexPath = sprintIndexPath {
-//            tableView.reloadRows(at: [indexPath], with: .none)
-//        }
+        if let indexPath = sprintIndexPath {
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
 
     func showSolveResults(solve: QDMSolve) {

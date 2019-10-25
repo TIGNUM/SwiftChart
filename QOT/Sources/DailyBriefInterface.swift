@@ -43,7 +43,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func showCustomizeTarget()
     func displayCoachPreparationScreen()
 
-    func didPressGotItSprint(sprint: QDMSprint, completion: () -> Void) 
+    func didPressGotItSprint(sprint: QDMSprint) 
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath)
     func invalidateTimer(forCell: BaseDailyBriefCell)
 
