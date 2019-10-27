@@ -22,7 +22,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     private var currentSprint: QDMSprint?
     var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel]? = []
     var showMore = false
-    private var doneForToday: Bool?
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
@@ -80,7 +79,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
             constraintContainerHeight.constant = 0
             tableView.setNeedsLayout()
         }
-        self.doneForToday = model.sprint.doneForToday
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
         ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
@@ -91,7 +89,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     }
 
     private func updateGotItButton() {
-        if doneForToday == true {
+        if currentSprint?.doneForToday == true {
             ThemeView.audioPlaying.apply(gotItButton)
             gotItButton.layer.borderWidth = 0
             gotItButton.isEnabled = false
