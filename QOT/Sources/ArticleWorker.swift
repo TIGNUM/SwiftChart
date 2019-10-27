@@ -183,7 +183,7 @@ final class ArticleWorker {
                 items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
             }
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
@@ -196,7 +196,7 @@ final class ArticleWorker {
                                                                             itemID: item.remoteID ?? 0)))
             }
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
+        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,
@@ -206,7 +206,7 @@ final class ArticleWorker {
                                                                               duration: item.valueDuration ?? 0)))
             }
         }
-        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .audio }.forEach { item in
+        content?.relatedContentItems.filter { $0.tabs.first == "FULL" && $0.format == .audio }.forEach { item in
             if let audioURL = URL(string: item.valueMediaURL ?? "") {
                 itemsRelated.append(Article.Item(type: ContentItemValue.audio(remoteId: item.remoteID ?? 0,
                                                                               title: item.valueText,

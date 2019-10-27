@@ -438,8 +438,14 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return UITableViewCell()    //audio is only shown in the audio bar
+        case .audio(let remoteId, let title, let description, placeholderURL: _, let audioURL, duration: _, waveformData:_):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.ic_audio_grey_light(),
+                           remoteId: remoteId,
+                           url: audioURL)
+            return cell
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
@@ -467,11 +473,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL, forcedColorMode: nil)
             return cell
-        case .pdf(let title, let description, _, _):
+        case .pdf(let title, let description, _ , let itemID):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description ?? "",
-                           icon: R.image.ic_seen_of())
+                           icon: R.image.ic_seen_of(),
+                           remoteId: itemID,
+                           url: URL(string: ""))
             return cell
         case .articleRelatedWhatsHot(let relatedArticle):
             let cell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -489,18 +497,22 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             readButtonCell = cell
             return cell
-        case .articleRelatedStrategy(let title, let description, _):
+        case .articleRelatedStrategy(let title, let description, let remoteId):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title,
                            durationString: description,
-                           icon: R.image.ic_seen_of())
+                           icon: R.image.ic_seen_of(),
+                           remoteId: remoteId,
+                           url: URL(string: ""))
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(header: R.string.localized.learnArticleItemNextUp(),
                            title: title,
                            durationString: description,
-                           icon: R.image.ic_seen_of())
+                           icon: R.image.ic_seen_of(),
+                           remoteId: 0,
+                           url: URL(string: ""))
             return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
@@ -517,7 +529,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
              .articleRelatedStrategy: return 95
         case .articleNextUp: return 144
         case .audio(remoteId: _, title: _, description: _, placeholderURL: _, audioURL: _, duration: _, waveformData:_):
-            return 0
+            return 95
         default: return UITableViewAutomaticDimension
         }
     }
