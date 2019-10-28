@@ -12,7 +12,7 @@ PODS:
     - HockeySDK/DefaultLib (= 5.1.4)
   - HockeySDK/DefaultLib (5.1.4)
   - JTAppleCalendar (7.1.6)
-  - KeychainAccess (3.2.1)
+  - KeychainAccess (4.0.0)
   - Kingfisher (5.7.1)
   - qot_dal (1.0):
     - KeychainAccess
@@ -68,7 +68,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 2d659843eba8b619d7660e5ce5e99dfd1c641e61
+    :commit: 8a3606f714f4466cd42dcfecd3e82d44b2e775d3
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -81,7 +81,7 @@ SPEC CHECKSUMS:
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
-  KeychainAccess: d5470352939ced6d6f7fb51cb2e67aae51fc294f
+  KeychainAccess: 57ce5b7653644c49749d35e840bf4e63dbde82f3
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
