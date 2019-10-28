@@ -11,6 +11,7 @@ import UIKit
 final class SolveReminderCell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var question1: UILabel!
     @IBOutlet private weak var question2: UILabel!
@@ -31,6 +32,7 @@ final class SolveReminderCell: BaseDailyBriefCell {
         skeletonManager.hide()
         baseView?.configure(title: (model.bucketTitle ?? "").uppercased(), subtitle: model.twoDayAgo)
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseView?.titleLabel)
+        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.sprintText.apply(model.twoDayAgo, to: baseView?.subtitleTextView)
         ThemeText.solveQuestions.apply(model.question1, to: question1)
         ThemeText.solveQuestions.apply(model.question2, to: question2)

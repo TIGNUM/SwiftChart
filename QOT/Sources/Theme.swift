@@ -594,6 +594,7 @@ enum ThemeText {
     case sprintTitle
     case durationString
     case solveQuestions
+    case aboutMeContent
     case tbvStatement
     case solveFuture
     case level5Question
@@ -860,7 +861,7 @@ enum ThemeText {
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
-        case .quotation:
+        case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
@@ -927,7 +928,7 @@ enum ThemeText {
 
     private var color: UIColor {
         switch self {
-        case .navigationBarHeader, .quotation, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
+        case .navigationBarHeader, .quotation, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
@@ -1105,7 +1106,7 @@ enum ThemeText {
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed,
              .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
-        case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
+        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .mySprintsCellProgress, .mySprintDetailsHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
