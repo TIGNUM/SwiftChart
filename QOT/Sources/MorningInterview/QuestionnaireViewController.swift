@@ -215,7 +215,7 @@ extension QuestionnaireViewController {
             questionToTableView.constant = 60
         case .dailyCheckin:
             titleContainerHeight.constant = 0
-            questionToTableView.constant = 140
+            questionToTableView.constant = 120
         case .vision:
            titleContainerHeight.constant = 0
            questionToTableView.constant = 140
