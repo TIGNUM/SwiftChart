@@ -226,9 +226,7 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         environment.dynamicBaseURL = nil
-        let notificationCenter = UNUserNotificationCenter.current()
-        notificationCenter.removeAllPendingNotificationRequests()
-        notificationCenter.removeAllDeliveredNotifications()
+        UserNotificationsManager.main.removeAll()
         UIApplication.shared.shortcutItems?.removeAll()
     }
 
