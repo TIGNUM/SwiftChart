@@ -358,11 +358,9 @@ extension UIViewController {
         }
         let button = UIButton(type: .custom)
         button.addTarget(self, action: buttonAction, for: .touchUpInside)
-        button.setImage(R.image.ic_close(), for: .normal)
+        button.setImage(R.image.ic_close_sand(), for: .normal)
         button.frame.size.height = .Default
         button.frame.size.width = .Default
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.accent.cgColor
         button.layer.cornerRadius =  button.frame.size.height/2
         button.layer.backgroundColor = UIColor.sand.cgColor
         button.imageView?.contentMode = .center
