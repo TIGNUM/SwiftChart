@@ -31,8 +31,6 @@
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
-		360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */; };
-		360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */; };
 		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
@@ -1266,8 +1264,6 @@
 		36083824225F3ED000664B9B /* ArticleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleModel.swift; sourceTree = "<group>"; };
 		36083825225F3ED000664B9B /* ArticleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigurator.swift; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
-		360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCalendarView.swift; sourceTree = "<group>"; };
-		360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionCalendarView.xib; sourceTree = "<group>"; };
 		360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+Ext.swift"; sourceTree = "<group>"; };
 		360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTextHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTextHeaderTableViewCell.xib; sourceTree = "<group>"; };
@@ -2654,8 +2650,6 @@
 				B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */,
 				B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */,
 				B49AC291233BA5DC009AC1CF /* PaymentFooterView.xib */,
-				360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */,
-				360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */,
 				8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */,
 				8DAE106A231526D400A247A5 /* QOTAlert.swift */,
 				BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */,
@@ -5760,7 +5754,6 @@
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9C7F4197232BB993007E4B5D /* MyPeakPerformanceCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
-				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
@@ -6464,7 +6457,6 @@
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
 				8D110D0C230FDDC2000181BA /* WalkthroughAnimatedCoach.swift in Sources */,
-				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
 				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
