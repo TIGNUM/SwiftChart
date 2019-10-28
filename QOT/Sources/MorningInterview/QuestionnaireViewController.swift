@@ -208,11 +208,11 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
-            ThemeText.tbvVisionBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
+            ThemeText.tbvCustomizeBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-            titleContainerHeight.constant = 500
-            questionToTableView.constant = 60
+            titleContainerHeight.constant = 550
+            questionToTableView.constant = 100
         case .dailyCheckin:
             titleContainerHeight.constant = 0
             questionToTableView.constant = 120
@@ -325,7 +325,7 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            labelCustomizeView.text = R.string.localized.dailyBriefCustomizeSleepIntro()
+            ThemeText.tbvCustomizeBody.apply(R.string.localized.dailyBriefCustomizeSleepIntro(), to: labelCustomizeView)
             attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
         case .dailyCheckin:
             if let question = questionHtml {
