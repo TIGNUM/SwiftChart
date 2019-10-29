@@ -18,7 +18,7 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: self, showSkeleton: true)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(button)
     }
 

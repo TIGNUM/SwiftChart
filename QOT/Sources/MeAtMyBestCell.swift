@@ -29,7 +29,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(meAtMyBestFuture)
         skeletonManager.addOtherView(meAtMyBestButtonText)
         baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: self, showSkeleton: true)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
     }
 
     func configure(with viewModel: MeAtMyBestCellViewModel?) {

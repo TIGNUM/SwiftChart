@@ -19,7 +19,7 @@ final class AboutMeCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: self, showSkeleton: true)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(aboutMeMoreInfo)
     }
 

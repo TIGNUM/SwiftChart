@@ -44,7 +44,7 @@ final class WeatherCell: BaseDailyBriefCell {
         }
         ThemeView.level1.apply(accessImageContainerView)
         baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: self.headerView)
+        baseHeaderview?.addTo(superview: headerView)
     }
 
     override func prepareForReuse() {

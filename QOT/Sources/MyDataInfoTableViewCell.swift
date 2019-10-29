@@ -21,6 +21,7 @@ final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        baseView?.subtitleTextView.isSelectable = true
         backgroundColor = .clear
     }
 

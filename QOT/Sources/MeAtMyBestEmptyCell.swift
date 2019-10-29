@@ -25,7 +25,7 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         skeletonManager.addOtherView(buttonText)
         baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: self, showSkeleton: true)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
     }
 
     func configure(with: MeAtMyBestCellEmptyViewModel?) {

@@ -21,7 +21,7 @@ final class SolveReminderCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: self, showSkeleton: true)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(question1)
         skeletonManager.addSubtitle(question2)
         skeletonManager.addSubtitle(question3)
