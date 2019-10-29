@@ -21,6 +21,7 @@ final class UserNotificationsManager {
         return _main!
     }
     private let queue = DispatchQueue(label: "UserNotificationsManager", qos: .background)
+    private let notificationCenter = UNUserNotificationCenter.current()
 
     init() {
         // listen Sprint Up/Down, GuideItemNotification Down
@@ -32,8 +33,13 @@ final class UserNotificationsManager {
                                                name: .didFinishSynchronization, object: nil)
     }
 
+    func removeAll() {
+        notificationCenter.removeAllPendingNotificationRequests()
+        notificationCenter.removeAllDeliveredNotifications()
+    }
+
     func scheduleNotifications() {
-        UNUserNotificationCenter.current().getNotificationSettings { settings in
+        notificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
             case .authorized, .provisional: self._scheduleNotifications()
             default: break
@@ -47,7 +53,7 @@ final class UserNotificationsManager {
         // schedule new notifications
         let now = Date()
         var requests = [UNNotificationRequest]()
-        var scheduledNotificationItems = [QDMGuideItemNotfication]()
+        var scheduledNotificationItems = [QDMGuideItemNotification]()
         dispatchGroup.enter()
         NotificationService.main.getGuideNotifications { (items, initiated, error) in
             guard let items = items, initiated == true, error == nil else {
@@ -78,8 +84,11 @@ final class UserNotificationsManager {
                 dispatchGroup.leave()
                 return
             }
-            let yesterday = Date().beginingOfDate().dateAfterDays(-1)
+            let yesterday = Date().dateAfterDays(-1).beginingOfDate()
+            let today = Date().beginingOfDate()
+            // valid sprint : is in progress, is completed today or is completed yesterday
             currentSprint = sprints.filter({ $0.isInProgress }).first ??
+                sprints.filter({ $0.completedDays == $0.maxDays && $0.completedAt?.beginingOfDate() == today }).first ??
                 sprints.filter({ $0.completedAt?.beginingOfDate() == yesterday }).first
             dispatchGroup.leave()
         }
@@ -111,12 +120,12 @@ final class UserNotificationsManager {
                 $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? "")
             })
             requests.append(contentsOf: preparationNotificationRequests)
-            self._scheduleNotifciations(currentSprint, sprintNotificationConfig, requests)
+            self._scheduleNotifications(currentSprint, sprintNotificationConfig, requests)
             NotificationService.main.reportScheduledNotification(scheduledNotificationItems) { (error) in }
         }
     }
 
-    private func _scheduleNotifciations(_ currentSprint: QDMSprint?,
+    private func _scheduleNotifications(_ currentSprint: QDMSprint?,
                                         _ sprintNotificationConfig: [QDMSprintNotificationConfig],
                                         _ requests: [UNNotificationRequest]) {
         NotificationConfigurationObject.scheduleDailyNotificationsIfNeeded()
@@ -175,6 +184,7 @@ final class UserNotificationsManager {
             })
         }
     }
+
     private func createSprintNotifications(_ sprint: QDMSprint?,
                                            _ config: [QDMSprintNotificationConfig]?,
                                            _ originalRequests: [UNNotificationRequest]?,
@@ -196,7 +206,7 @@ final class UserNotificationsManager {
         }
 
         // schedule for today and tomorrow.
-        // if user doesn't open the app, sprint should be paused automatically
+        // if user doesn't open the app, sprint should be paused automatically in 5 days
         let days: [Int] = [0, 1]
         let dispatchGroup = DispatchGroup()
         var notificationTagsToRemove = [Date: [String]]()
@@ -207,7 +217,7 @@ final class UserNotificationsManager {
                 continue
             }
             guard let sprintContentTags = notificationSchedule.contentTags else {
-                    continue
+                continue
             }
 
             notificationTagsToRemove[Date().dateAfterDays(day)] = notificationSchedule.excludedNotification
@@ -224,7 +234,7 @@ final class UserNotificationsManager {
                                                                soundName: "QotNotification.aiff",
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
-                    let identifier = QDMGuideItemNotfication.notificationIdentifier(with: sprintConfig.sprintType,
+                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: sprintConfig.sprintType,
                                                                                     date: triggerDate,
                                                                                     link: link)
                     requests.append(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger))
@@ -235,7 +245,7 @@ final class UserNotificationsManager {
         dispatchGroup.leave()
 
         dispatchGroup.notify(queue: .main) {
-            var requestIdetifiersToRemove = [String]()
+            var requestIdentifiersToRemove = [String]()
             let filteredRequests = requests.filter { (request) -> Bool in
                 for date in notificationTagsToRemove.keys {
                     if request.nextTriggerDate()?.isSameDay(date) == false {
@@ -243,14 +253,14 @@ final class UserNotificationsManager {
                     }
                     for excludeTag in notificationTagsToRemove[date] ?? [] {
                         if request.identifier.contains(excludeTag) {
-                            requestIdetifiersToRemove.append(request.identifier)
+                            requestIdentifiersToRemove.append(request.identifier)
                             return false
                         }
                     }
                 }
                 return true
             }
-            completion(filteredRequests, requestIdetifiersToRemove)
+            completion(filteredRequests, requestIdentifiersToRemove)
         }
     }
 }
@@ -265,5 +275,13 @@ extension UserNotificationsManager {
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
         scheduleNotifications()
+    }
+}
+
+extension UserNotificationsManager {
+    func notificationUpSync(_ object: QDMNotification) {
+        NotificationService.main.notificationsUpSync([object]) { error in
+            print("notificationUpSync - \(error?.localizedDescription ?? "No Errors")")
+        }
     }
 }

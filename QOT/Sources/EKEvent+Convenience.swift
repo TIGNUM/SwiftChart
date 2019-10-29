@@ -10,52 +10,6 @@ import Foundation
 import EventKit
 import qot_dal
 
-protocol EKEventEditable {
-    func addPreparationLink(preparationID: String?, permissionsManager: PermissionsManager)
-}
-
-extension EKEvent: EKEventEditable {
-    func addPreparationLink(preparationID: String?, permissionsManager: PermissionsManager) {
-        guard let localID = preparationID else { return }
-        permissionsManager.askPermission(for: [.calendar], completion: { [weak self] status in
-            guard let status = status[.calendar], let strongSelf = self else { return }
-            switch status {
-            case .granted:
-                var tempNotes = strongSelf.notes ?? ""
-                guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
-                tempNotes += "\n\n" + preparationLink
-                log("preparationLink: \(preparationLink)")
-                strongSelf.notes = tempNotes
-                do {
-                    try EKEventStore.shared.save(strongSelf, span: .thisEvent, commit: true)
-                } catch let error {
-                    log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
-                    return
-                }
-            case .later:
-                permissionsManager.updateAskStatus(.canAsk, for: .calendar)
-            default:
-                break
-            }
-        })
-    }
-
-    func addPreparationLink(preparationID: String?) {
-        guard let localID = preparationID else { return }
-        var tempNotes = notes ?? ""
-        guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
-        tempNotes += "\n\n" + preparationLink
-        log("preparationLink: \(preparationLink)")
-        notes = tempNotes
-        do {
-            try EKEventStore.shared.save(self, span: .thisEvent, commit: true)
-        } catch let error {
-            log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
-            return
-        }
-    }
-}
-
 extension EKEventStore {
 
     static var shared = EKEventStore()

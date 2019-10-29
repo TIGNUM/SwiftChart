@@ -14,9 +14,6 @@ final class CoachRouter {
     // MARK: - Properties
     private weak var viewController: CoachViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
-    private var permissionsManager: PermissionsManager {
-        return AppCoordinator.permissionsManager!
-    }
 
     // MARK: - Init
     init(viewController: CoachViewController) {

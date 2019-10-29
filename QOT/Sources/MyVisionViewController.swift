@@ -205,7 +205,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
-                                                      permissionsManager: AppCoordinator.permissionsManager!,
                                                       adapter: adapter)
         imagePickerController.delegate = self
         userImageView.image = R.image.circlesWarning()

@@ -50,7 +50,7 @@
                         <constraint firstAttribute="height" constant="1" id="xit-nY-35G"/>
                     </constraints>
                 </view>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-Y4-wnU">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-Y4-wnU">
                     <rect key="frame" x="24" y="124.5" width="366" height="80"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="hMa-4E-kwJ"/>

@@ -30,7 +30,6 @@ final class ImagePickerController {
 
     let imageQuality: ImageQuality
     let imageSize: ImageSize
-    let permissionsManager: PermissionsManager
     let imagePicker: ImagePicker
     var imageCropper: ImageCropper?
     let adapter: ImagePickerControllerAdapter?
@@ -41,12 +40,10 @@ final class ImagePickerController {
     init(cropShape: ImageCropper.Shape,
          imageQuality: ImageQuality,
          imageSize: ImageSize,
-         permissionsManager: PermissionsManager,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
-        self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
         let imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
@@ -56,12 +53,10 @@ final class ImagePickerController {
 
     init(imageQuality: ImageQuality,
          imageSize: ImageSize,
-         permissionsManager: PermissionsManager,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
-        self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
         imagePicker.delegte = self
     }
@@ -157,7 +152,7 @@ final class ImagePickerController {
             return
         }
 
-        permissionsManager.askPermission(for: [identifier], completion: { [unowned self] status in
+        AppCoordinator.permissionsManager?.askPermission(for: [identifier], completion: { [unowned self] status in
             guard let status = status[identifier] else { return }
             switch status {
             case .granted:
@@ -172,7 +167,7 @@ final class ImagePickerController {
                     self.delegate?.cancelSelection()
                 })
             case .later:
-                self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
+                AppCoordinator.permissionsManager?.updateAskStatus(.canAsk, for: identifier)
                 self.handleAuthorizationForOption(option)
             }
         })

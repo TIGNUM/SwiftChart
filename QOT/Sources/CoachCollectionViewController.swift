@@ -41,6 +41,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
             refreshBottomNavigationItems()
         }
     }
+    private var didDownSyncPreparations = false
+    private var didDownSyncEvents = false
 
     lazy var pageTitle: String? = {
         return AppTextService.get(AppTextKey.know_view_title)
@@ -96,6 +98,9 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
                                                selector: #selector(didGetScreenChangeNotification(_ :)),
                                                name: .showFirstLevelScreen,
                                                object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishSynchronization(_:)),
+                                               name: .didFinishSynchronization, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -112,6 +117,13 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         super.viewDidAppear(animated)
         // Handle stored link when it's ready to handle
         RestartHelper().checkRestartURLAndRoute()
+
+        //because of QOT-2324, when Level 1 Screen is shown we can show PopUp screen for Preparations with unrecognized events.
+        if didDownSyncEvents, didDownSyncPreparations {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .needToCheckDeletedEventForPreparation, object: nil)
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -133,6 +145,23 @@ extension CoachCollectionViewController {
     @objc func didGetScreenChangeNotification(_ notification: Notification) {
         guard let page = notification.object as? Pages else { return }
         moveToCell(item: page.rawValue)
+    }
+
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext,
+            syncResult.syncRequestType == .DOWN_SYNC else { return }
+        switch syncResult.dataType {
+        case .PREPARATION: didDownSyncPreparations = true
+        case .CALENDAR_EVENT: didDownSyncEvents = true
+        default: break
+        }
+
+        //because of QOT-2324, when Level 1 Screen is shown we can show PopUp screen for Preparations with unrecognized events.
+        if didDownSyncEvents, didDownSyncPreparations, isTopVisibleViewController() {
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .needToCheckDeletedEventForPreparation, object: nil)
+            }
+        }
     }
 }
 
