@@ -26,23 +26,19 @@ struct MyQotSupportModel {
             #endif
         }
 
-        func tag() -> Tags {
+        func trackingKeys() -> String {
             switch self {
             case .usingQOT:
-                return Tags.SupportUsingQOT
+                return AppTextService.get(AppTextKey.page_track_myqot_support_using)
             case .faq:
-                return Tags.SupportFaq
+                return AppTextService.get(AppTextKey.page_track_myqot_support_faq)
             case .contactSupport:
-                return Tags.SupportContactSupport
+                return AppTextService.get(AppTextKey.page_track_myqot_support_contactsupport)
             case .contactSupportNovartis:
-                return Tags.SupportContactSupportNovartis
+                return AppTextService.get(AppTextKey.page_track_myqot_support_contactnovartis)
             case .featureRequest:
-                return Tags.SupportFeatureRequest
+                return AppTextService.get(AppTextKey.page_track_myqot_support_featurerequest)
             }
-        }
-
-        func trackingKeys() -> String {
-            return tag().rawValue
         }
 
         func title() -> String {
