@@ -10,8 +10,10 @@ import Foundation
 
 final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var SHPIText: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+
     @IBOutlet weak var shpiQuestionLabel: UILabel!
     @IBOutlet weak var barsTitleLabel: UILabel!
     @IBOutlet weak var barsStackView: UIStackView!
@@ -25,8 +27,8 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
             bar.frame = CGRect(x: 0, y: 0, width: 1, height: 35)
         }
         super.awakeFromNib()
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(SHPIText)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(barsStackView)
 
     }
@@ -34,14 +36,17 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
         guard let model = with else { return }
         updateView(text: model.shpiContent, rating: model.shpiRating ?? 0)
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
-        ThemeText.searchTopic.apply(model.shpiQuestion, to: shpiQuestionLabel)
+        baseHeaderview?.configure(title: model.title,
+                                  subtitle: model.shpiQuestion)
+        ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderview?.titleLabel)
+        ThemeText.searchTopic.apply(model.shpiQuestion, to: baseHeaderview?.subtitleTextView)
+        headerHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }
 
 private extension DailyCheckinInsightsSHPICell {
     func updateView(text: String?, rating: Int) {
-        SHPIText.text = text
+        baseHeaderview?.subtitleTextView.text = text
         let selectedIndex = max(0, rating - 1)
         for index in 0...9 {
             var barHeight: CGFloat = 32.0
