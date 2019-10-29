@@ -194,10 +194,9 @@ final class LaunchHandler {
              .featureExplainer:
             guard let contentIdString = queries[scheme.queryName] ?? nil, let contentId = Int(contentIdString) else { break }
             showContentCollection(contentId)
-        case .qrcode0001,
-             .qrcode0002,
-             .qrcode0003,
-             .qrcode0004: presentQRCodeURL(url)
+        case .qrcode0001, .qrcode0002, .qrcode0003, .qrcode0004, .qrcode0005, .qrcode0006, .qrcode0007, .qrcode0008,
+             .qrcode0009, .qrcode0010:
+            presentQRCodeURL(url)
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         default: break
