@@ -30,7 +30,6 @@ protocol MyQotAccountSettingsInteractorInterface: Interactor {
     var protectYourAccountText: String { get }
     var logoutQotText: String { get }
     var withoutDeletingAccountText: String { get }
-    var changePasswordKey: String { get }
     var logoutQOTKey: String { get }
     func userProfile(_ completion: @escaping (UserProfileModel?) -> Void)
     func showLogoutAlert()

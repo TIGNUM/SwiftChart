@@ -639,4 +639,18 @@ public extension AppTextKey {
     static let page_track_walkthrough_swipe = AppTextKey("page.track.walkthrough.swipe")
     static let page_track_sleep_quantity_customize_target = AppTextKey("page.track.sleep.quantity.customize.target")
     static let page_track_onboarding_login = AppTextKey("page.track.onboarding.login")
+    static let page_track_myqot_siri_tobevision = AppTextKey("page.track.myqot.siri.tobevision")
+    static let page_track_myqot_siri_whatshot = AppTextKey("page.track.myqot.siri.whatshot")
+    static let page_track_myqot_siri_dailyprep = AppTextKey("page.track.myqot.siri.dailyprep")
+    static let page_track_myqot_support_using = AppTextKey("page.track.myqot.support.using")
+    static let page_track_myqot_support_faq = AppTextKey("page.track.myqot.support.faq")
+    static let page_track_myqot_support_contactsupport = AppTextKey("page.track.myqot.support.contactsupport")
+    static let page_track_myqot_support_contactnovartis = AppTextKey("page.track.myqot.support.contactnovartis")
+    static let page_track_myqot_support_featurerequest = AppTextKey("page.track.myqot.support.featurerequest")
+    static let page_track_myqot_about_benefits = AppTextKey("page.track.myqot.about.benefits")
+    static let page_track_myqot_about_tignum = AppTextKey("page.track.myqot.about.tignum")
+    static let page_track_myqot_about_privacy = AppTextKey("page.track.myqot.about.privacy")
+    static let page_track_myqot_about_terms = AppTextKey("page.track.myqot.about.terms")
+    static let page_track_myqot_about_copyright = AppTextKey("page.track.myqot.about.copyright")
+
 }

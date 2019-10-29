@@ -40,15 +40,15 @@ struct MyQotAboutUsModel {
         func trackingKeys() -> String {
             switch self {
             case .benefits:
-                return Tags.AboutUsQotBenefits.rawValue
+                return AppTextService.get(AppTextKey.page_track_myqot_about_benefits)
             case .about:
-                return Tags.AboutUsAboutTignum.rawValue
+                return AppTextService.get(AppTextKey.page_track_myqot_about_tignum)
             case .privacy:
-                return Tags.AboutUsPrivacy.rawValue
+                return AppTextService.get(AppTextKey.page_track_myqot_about_privacy)
             case .terms:
-                return Tags.AboutUsTermsAndConditions.rawValue
+                return AppTextService.get(AppTextKey.page_track_myqot_about_terms)
             case .copyright:
-                return Tags.AboutUsCopyright.rawValue
+                return AppTextService.get(AppTextKey.page_track_myqot_about_copyright)
             }
         }
 

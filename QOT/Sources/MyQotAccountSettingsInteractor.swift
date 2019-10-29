@@ -83,10 +83,6 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         return worker.withoutDeletingAccountText
     }
 
-    var changePasswordKey: String {
-        return worker.changePasswordKey
-    }
-
     var logoutQOTKey: String {
         return worker.logoutQOTKey
     }

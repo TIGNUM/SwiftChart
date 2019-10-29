@@ -107,19 +107,15 @@ final class MyQotSiriShortcutsWorker {
 }
 
 extension MyQotSiriShortcutsWorker {
-    func siriTag(for shortcut: ShortcutType) -> Tags {
+    func siriTrackingKey(for shortcut: ShortcutType) -> String? {
         switch shortcut {
         case .toBeVision:
-            return Tags.MyQOTSiriToBeVisionTitle
+            return AppTextService.get(AppTextKey.page_track_myqot_siri_tobevision)
         case .whatsHot:
-            return Tags.MyQOTSiriWhatsHotTitle
+            return AppTextService.get(AppTextKey.page_track_myqot_siri_whatshot)
         case .morningInterview:
-            return Tags.MyQOTSiriDailyPrepTitle
+            return AppTextService.get(AppTextKey.page_track_myqot_siri_dailyprep)
         }
-    }
-
-    func siriTrackingKey(for shortcut: ShortcutType) -> String? {
-        return siriTag(for: shortcut).rawValue
     }
 
     func siriTitle(for shortcut: ShortcutType) -> String {

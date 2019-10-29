@@ -86,12 +86,8 @@ extension MyQotAccountSettingsWorker {
         return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_deleting_your_account)
     }
 
-    var changePasswordKey: String {
-        return Tags.AccountSettingsChangePassword.rawValue
-    }
-
     var logoutQOTKey: String {
-        return Tags.AccountSettingsLogoutQot.rawValue
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_logout)
     }
 }
 
