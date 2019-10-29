@@ -741,7 +741,7 @@ extension DailyBriefInteractor {
             // for TBV
             let title: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
             let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInAnswers?.last?.userAnswerValue ?? "") ?? 0
-            let intro: String = (dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText ?? "") + String(tbvRating)
+            let intro: String = (dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "") + " " + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
