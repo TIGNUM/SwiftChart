@@ -10,24 +10,29 @@ import Foundation
 
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var peakEventsLabel: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(peakEventsLabel)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(button)
+
     }
 
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
         guard let model = with else { return }
-        ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: peakEventsLabel)
+        baseHeaderview?.configure(title: model.title,
+                                  subtitle: model.intro)
+        ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderview?.titleLabel)
+        ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderview?.subtitleTextView)
+        headerHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.frame.size.width) ?? 0
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 
     @IBAction func preparations(_ sender: Any) {

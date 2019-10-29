@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,26 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="378" height="270"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLE-Yv-qe8">
-                    <rect key="frame" x="24" y="57" width="334" height="24"/>
-                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsA-7q-jmf">
-                    <rect key="frame" x="24" y="48" width="16" height="1"/>
-                    <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="16" id="LlP-H5-0jj"/>
-                        <constraint firstAttribute="height" constant="1" id="NJd-C6-foR"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="You have mentioned that you have 3 peak performance " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yft-xx-ovk">
-                    <rect key="frame" x="24" y="105" width="330" height="53"/>
-                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                    <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-Ge-Z5X" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="214" y="182" width="140" height="40"/>
                     <constraints>
@@ -54,27 +29,29 @@
                         <action selector="preparations:" destination="zgz-NQ-hjF" eventType="touchUpInside" id="wxf-oa-zo4"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nKz-xo-mm3">
+                    <rect key="frame" x="0.0" y="0.0" width="378" height="158"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="158" id="CdO-Qt-BKn"/>
+                    </constraints>
+                </view>
             </subviews>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="iLE-Yv-qe8" firstAttribute="top" secondItem="lsA-7q-jmf" secondAttribute="bottom" constant="8" id="0bN-eA-bo6"/>
-                <constraint firstItem="lsA-7q-jmf" firstAttribute="top" secondItem="zgz-NQ-hjF" secondAttribute="top" constant="48" id="6Wg-tx-GaS"/>
-                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="yft-xx-ovk" secondAttribute="trailing" constant="24" id="8O4-qx-qdY"/>
                 <constraint firstAttribute="trailing" secondItem="J2g-Ge-Z5X" secondAttribute="trailing" constant="24" id="QCn-Te-HYE"/>
-                <constraint firstItem="iLE-Yv-qe8" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="24" id="Sk6-it-9mv"/>
-                <constraint firstItem="lsA-7q-jmf" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="24" id="T7Y-Dj-TM2"/>
-                <constraint firstItem="yft-xx-ovk" firstAttribute="top" secondItem="iLE-Yv-qe8" secondAttribute="bottom" constant="24" id="W7g-x7-5of"/>
-                <constraint firstItem="J2g-Ge-Z5X" firstAttribute="top" secondItem="yft-xx-ovk" secondAttribute="bottom" constant="24" id="hzF-Bb-1mP"/>
+                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="nKz-xo-mm3" secondAttribute="trailing" id="Sn4-pN-ehE"/>
+                <constraint firstItem="J2g-Ge-Z5X" firstAttribute="top" secondItem="nKz-xo-mm3" secondAttribute="bottom" constant="24" id="eGf-kn-zrv"/>
                 <constraint firstAttribute="bottom" secondItem="J2g-Ge-Z5X" secondAttribute="bottom" constant="48" id="iiw-PN-WeZ"/>
-                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="iLE-Yv-qe8" secondAttribute="trailing" constant="20" id="uwO-cx-qzK"/>
-                <constraint firstItem="yft-xx-ovk" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="24" id="vlZ-n1-Ypu"/>
+                <constraint firstItem="nKz-xo-mm3" firstAttribute="leading" secondItem="hHY-0y-igv" secondAttribute="leading" id="rEq-DU-xH8"/>
+                <constraint firstItem="nKz-xo-mm3" firstAttribute="top" secondItem="zgz-NQ-hjF" secondAttribute="top" id="vKW-wM-A9N"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="hHY-0y-igv"/>
             <connections>
-                <outlet property="bucketTitle" destination="iLE-Yv-qe8" id="DVN-Wq-gDE"/>
                 <outlet property="button" destination="J2g-Ge-Z5X" id="wRq-nl-6O6"/>
-                <outlet property="peakEventsLabel" destination="yft-xx-ovk" id="TGS-R8-sfU"/>
+                <outlet property="headerHeightConstraint" destination="nKz-xo-mm3" id="vTL-qa-lpv"/>
+                <outlet property="headerView" destination="nKz-xo-mm3" id="KeC-vW-SaL"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="-70.982142857142847"/>
         </view>
