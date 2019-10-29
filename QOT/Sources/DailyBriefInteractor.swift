@@ -242,7 +242,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
-//                                                        elements: strongSelf.createDepatureInfo(depatureInfoBucket: bucket)))
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom,
                                                         elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
