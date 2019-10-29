@@ -241,7 +241,6 @@ enum ThemeButton {
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
-            colorBorder = .accent
         case .level5:
             colorSelected = .accent40
             colorUnselected = .clear
