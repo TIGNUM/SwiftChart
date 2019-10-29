@@ -19,7 +19,20 @@ class LocationPermission: NSObject, PermissionInterface {
     }
 
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(CLLocationManager.authorizationStatus().stringValue)
+        switch CLLocationManager.authorizationStatus() {
+        case .notDetermined:
+            completion("notDetermined")
+        case .authorizedAlways:
+            completion("authorizedAlways")
+        case .authorizedWhenInUse:
+            completion("authorizedWhenInUse")
+        case .denied:
+            completion("denied")
+        case .restricted:
+            completion("restricted")
+        default:
+            completion("authorized")
+        }
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {

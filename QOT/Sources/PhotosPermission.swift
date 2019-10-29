@@ -11,7 +11,16 @@ import Photos
 
 struct PhotosPermission: PermissionInterface {
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(PHPhotoLibrary.authorizationStatus().stringValue)
+        switch PHPhotoLibrary.authorizationStatus() {
+        case .notDetermined:
+            completion("notDetermined")
+        case .restricted:
+            completion("restricted")
+        case .denied:
+            completion("denied")
+        default:
+            completion("authorized")
+        }
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {

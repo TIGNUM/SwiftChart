@@ -11,7 +11,16 @@ import AVFoundation
 
 struct CameraPermission: PermissionInterface {
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(AVCaptureDevice.authorizationStatus(for: .video).stringValue)
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .notDetermined:
+            completion("notDetermined")
+        case .restricted:
+            completion("restricted")
+        case .denied:
+            completion("denied")
+        default:
+            completion("authorized")
+        }
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {
