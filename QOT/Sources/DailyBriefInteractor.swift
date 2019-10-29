@@ -744,12 +744,13 @@ extension DailyBriefInteractor {
             let intro: String = (dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "") + " " + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
+            let ctaText = dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("TO_BE_VISION_BUTTON")}.first?.valueText ?? ""
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
             dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
                                                                                  introText: intro,
                                                                                  tbvSentence: tbvSentence,
-
-                                                                                 adviceText: reflection)
+                                                                                 adviceText: reflection,
+                                                                                 cta: ctaText)
         } else if dailyCheckIn2.SHPIQuestionId != nil {
             //SHPI
             let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
