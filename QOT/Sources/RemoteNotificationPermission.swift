@@ -21,7 +21,16 @@ struct RemoteNotificationPermission: PermissionInterface {
 
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
         notificationCenter.getNotificationSettings { settings in
-            completion(settings.authorizationStatus.stringValue)
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                completion("notDetermined")
+            case .provisional:
+                completion("restricted")
+            case .denied:
+                completion("denied")
+            default:
+                completion("authorized")
+            }
         }
     }
 

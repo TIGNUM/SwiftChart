@@ -11,7 +11,16 @@ import EventKit
 
 struct CalendarPermission: PermissionInterface {
     func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(EKEventStore.authorizationStatus(for: .event).stringValue)
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .notDetermined:
+            completion("notDetermined")
+        case .restricted:
+            completion("restricted")
+        case .denied:
+            completion("denied")
+        default:
+            completion("authorized")
+        }
     }
 
     var authorizationStatus: EKAuthorizationStatus {
