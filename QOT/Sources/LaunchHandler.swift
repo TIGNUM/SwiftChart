@@ -278,15 +278,6 @@ extension LaunchHandler {
             }
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
-            } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
-                self?.getHealthKitAuthStatus() == .notDetermined {
-                self?.requestHealthKitAuthorization({ (_) in
-                    self?.importHealthKitData()
-                    UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                        self?.showDailyCheckIn()
-                    })
-                })
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
