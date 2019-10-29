@@ -483,6 +483,7 @@ enum ThemeText {
     case performanceTitle
     case author
     case datestamp
+    case tbvCustomizeBody
 
     case linkMenuItem
     case linkMenuComment        //???
@@ -848,7 +849,7 @@ enum ThemeText {
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName, .dailyQuestion,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
-             .mySensorsDescriptionTitle, .mySensorsSensorTitle:
+             .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -973,7 +974,7 @@ enum ThemeText {
              .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
              .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels, .onboardingInfoBody,
              .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
-             .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle:
+             .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle, .tbvCustomizeBody:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1082,7 +1083,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
         case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
              .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle,
-             .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .shpiQuestion:
+             .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .tbvCustomizeBody, .shpiQuestion:
              string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
