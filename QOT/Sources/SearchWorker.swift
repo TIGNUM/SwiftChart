@@ -130,7 +130,7 @@ final class SearchWorker {
     func suggestions(completion: @escaping (SearchSuggestions?) -> Void) {
         var suggestionItems: [String] = []
         ContentService.main.getContentCategory(.Search) { (searchCategory) in
-            searchCategory?.contentCollections.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
+            searchCategory?.contentCollections.filter { $0.searchTags.contains("search_suggestions")}.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
                 suggestionItems.append(suggestionItem.valueText)
             }
             completion(SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),

@@ -84,8 +84,11 @@ final class UserNotificationsManager {
                 dispatchGroup.leave()
                 return
             }
-            let yesterday = Date().beginingOfDate().dateAfterDays(-1)
+            let yesterday = Date().dateAfterDays(-1).beginingOfDate()
+            let today = Date().beginingOfDate()
+            // valid sprint : is in progress, is completed today or is completed yesterday
             currentSprint = sprints.filter({ $0.isInProgress }).first ??
+                sprints.filter({ $0.completedDays == $0.maxDays && $0.completedAt?.beginingOfDate() == today }).first ??
                 sprints.filter({ $0.completedAt?.beginingOfDate() == yesterday }).first
             dispatchGroup.leave()
         }
@@ -203,7 +206,7 @@ final class UserNotificationsManager {
         }
 
         // schedule for today and tomorrow.
-        // if user doesn't open the app, sprint should be paused automatically
+        // if user doesn't open the app, sprint should be paused automatically in 5 days
         let days: [Int] = [0, 1]
         let dispatchGroup = DispatchGroup()
         var notificationTagsToRemove = [Date: [String]]()

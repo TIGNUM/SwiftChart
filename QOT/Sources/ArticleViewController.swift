@@ -389,17 +389,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             cell.configure(imageURLString: imageURLString)
             return cell
         case .audio( _, let title, let description, placeholderURL: _, _, duration: _, waveformData: _):
-            if title != item.content {
-                let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(title: title.uppercased(),
-                               durationString: description ?? "",
-                               icon: R.image.ic_audio_grey_light())
-                return cell
-            } else {
-                let cell = UITableViewCell()
-                ThemeView.level1.apply(cell)
-                return cell
-            }
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title.uppercased(),
+                           durationString: description ?? "",
+                           icon: R.image.ic_audio_grey_light())
+            return cell
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
@@ -573,7 +567,7 @@ extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
         guard let shouldHideNavBar = interactor?.shouldHideTopBar,
             !shouldHideNavBar else {
-            return
+                return
         }
 
         let pixelBuffer: CGFloat = 50

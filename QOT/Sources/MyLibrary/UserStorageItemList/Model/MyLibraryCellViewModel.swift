@@ -38,4 +38,15 @@ struct MyLibraryCellViewModel: Equatable {
     let identifier: String
     let remoteId: Int
     let mediaURL: URL?
+
+    static func == (lhs: MyLibraryCellViewModel, rhs: MyLibraryCellViewModel) -> Bool {
+        return
+            lhs.title == rhs.title &&
+            lhs.description == rhs.description &&
+            lhs.duration == rhs.duration &&
+            lhs.icon == rhs.icon &&
+            lhs.previewURL == rhs.previewURL &&
+            lhs.mediaType == rhs.mediaType &&
+            lhs.remoteId == rhs.remoteId
+    }
 }

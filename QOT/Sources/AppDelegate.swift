@@ -14,14 +14,6 @@ import Kingfisher
 import SVProgressHUD
 import qot_dal
 
-protocol LocalNotificationHandlerDelegate: class {
-    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
-}
-
-protocol ShortcutHandlerDelegate: class {
-    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool
-}
-
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -29,8 +21,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     private var unhandledShortCuts = [UIApplicationShortcutItem]()
-    weak var localNotificationHandlerDelegate: LocalNotificationHandlerDelegate?
-    weak var shortcutHandlerDelegate: ShortcutHandlerDelegate?
     lazy var locationManager = LocationManager()
 
     lazy var appCoordinator: AppCoordinator = {
@@ -90,6 +80,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
+            application.applicationIconBadgeNumber = 0
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
@@ -160,11 +151,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        if shortcutHandlerDelegate?.shortcutHandler(self, canProcessShortcut: shortcutItem) == true {
-            handleShortcut(shortcutItem: shortcutItem)
-        } else {
-            unhandledShortCuts.append(shortcutItem)
-        }
+        handleShortcut(shortcutItem: shortcutItem)
     }
 
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {

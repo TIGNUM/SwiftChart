@@ -26,6 +26,7 @@ final class MyLibraryCategoryListWorker {
             let sorted = storages?.sorted(by: { (first, second) -> Bool in
                 first.modifiedAt?.timeIntervalSince1970 ?? 0 > second.modifiedAt?.timeIntervalSince1970 ?? 0
             })
+
             let bookmarks = sorted?.compactMap({ (storage) -> QDMUserStorage? in
                 storage.userStorageType == .BOOKMARK ? storage : nil
             })
@@ -43,7 +44,7 @@ final class MyLibraryCategoryListWorker {
             })
 
             userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_view_title_all),
-                                                         items: sorted,
+                                                         items: strongSelf.removeDuplicates(from: sorted ?? []),
                                                          icon: R.image.my_library_group(),
                                                          type: .ALL))
             userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_view_title_bookmarks),
@@ -72,5 +73,24 @@ final class MyLibraryCategoryListWorker {
                                           lastUpdated: items?.first?.modifiedAt,
                                           icon: icon,
                                           type: type)
+    }
+
+    private func removeDuplicates(from results: [QDMUserStorage]) -> [QDMUserStorage] {
+        var tempResults = [QDMUserStorage]()
+        for result in results {
+            if tempResults.contains(obj: result) == false {
+                tempResults.append(result)
+            }
+        }
+        return tempResults
+    }
+}
+
+extension QDMUserStorage: Equatable {
+    public static func == (lhs: QDMUserStorage, rhs: QDMUserStorage) -> Bool {
+        return
+            lhs.author == rhs.author &&
+            lhs.title == rhs.title &&
+            lhs.durationInSeconds == rhs.durationInSeconds
     }
 }
