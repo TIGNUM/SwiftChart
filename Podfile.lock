@@ -63,7 +63,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: cb2e2aa69e205b5eb4bc47e70e1b45582c303a23
+    :commit: e763a879ad7359addc9bfb697a9a612ce3c77ee7
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -85,6 +85,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: 6119b7a87784af5c6f0bce450d3baaf5fcede3d5
+PODFILE CHECKSUM: 963764d5f4594db21a0b6cb259486e716fdb0144
 
 COCOAPODS: 1.8.3

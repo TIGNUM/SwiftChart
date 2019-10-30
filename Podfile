@@ -14,7 +14,7 @@ target 'QOT' do
   pod 'HockeySDK'
   pod 'Kingfisher'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'Bug-fix/QOT-2374-notifications'
-#  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/Apptext'
+  #  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'feature/Apptext'
   pod 'DifferenceKit'
   pod 'JTAppleCalendar', '7.1.6'
   pod 'SwiftChart', :git => 'git@github.com:voicusimu/SwiftChart.git'

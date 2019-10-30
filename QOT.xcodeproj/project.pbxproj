@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256DF2051834F00862B0E /* SearchConfigurator.swift */; };
 		360256E22051836200862B0E /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256E12051836200862B0E /* SearchRouter.swift */; };
 		360256E42051837300862B0E /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256E32051837300862B0E /* SearchWorker.swift */; };
@@ -951,6 +950,7 @@
 		BBB47C65232A387900B165F8 /* DTResultBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */; };
 		BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */; };
 		BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */; };
+		C8BCD78ABB39ED915AB17E2B /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 78E486025FA56B513555097A /* Pods_QOT.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */; };
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
@@ -1241,12 +1241,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.hockey.xcconfig"; sourceTree = "<group>"; };
-		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
-		28923F7791F8BAE176A57A73 /* Pods-QOT.debug_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug_novartis.xcconfig"; sourceTree = "<group>"; };
-		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
-		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
-		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
+		2799DBDF380EC6389FC54360 /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
+		2FE080860A71F86D915BFC01 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		360256DF2051834F00862B0E /* SearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchConfigurator.swift; sourceTree = "<group>"; };
 		360256E12051836200862B0E /* SearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRouter.swift; sourceTree = "<group>"; };
 		360256E32051837300862B0E /* SearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWorker.swift; sourceTree = "<group>"; };
@@ -1522,8 +1518,7 @@
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
-		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
-		559CF048230BD981BF1E6E34 /* Pods-QOT.releasenovartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.releasenovartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.releasenovartis.xcconfig"; sourceTree = "<group>"; };
+		5BC03887D72A3DED56968867 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
 		5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsPresenter.swift; sourceTree = "<group>"; };
 		5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInteractor.swift; sourceTree = "<group>"; };
@@ -1613,6 +1608,8 @@
 		5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsRouter.swift; sourceTree = "<group>"; };
 		5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsModel.swift; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
+		62DFD50EA93305CDD002F619 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
+		68104CD65C02161BF37941FD /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerPresenter.swift; sourceTree = "<group>"; };
@@ -1675,6 +1672,7 @@
 		75DC687122C11D7200FF183D /* MyToBeVisionRateConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateConfigurator.swift; sourceTree = "<group>"; };
 		75EFB63022C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphTableViewCell.swift; sourceTree = "<group>"; };
 		75EFB63122C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphTableViewCell.xib; sourceTree = "<group>"; };
+		78E486025FA56B513555097A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
 		7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQuality.swift; sourceTree = "<group>"; };
@@ -1701,8 +1699,6 @@
 		7FC86A041F97A511003DC84D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBlockOperation.swift; sourceTree = "<group>"; };
 		7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Convenience.swift"; sourceTree = "<group>"; };
-		80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
-		82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		850312EA1F33670900DB5A6B /* ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClickableLabel.swift; sourceTree = "<group>"; };
 		850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIGestureRecognizer+ClickableLabel.swift"; sourceTree = "<group>"; };
 		851676C91F39AA9C007A1DD6 /* String+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
@@ -2044,7 +2040,6 @@
 		ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
-		B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
@@ -2170,7 +2165,6 @@
 		BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTResultBaseTableViewCell.swift; sourceTree = "<group>"; };
 		BBB47C66232A44EE00B165F8 /* QotUISwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QotUISwitch.swift; sourceTree = "<group>"; };
 		BBDDAD4B232C0118009E0FBB /* NavigationButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavigationButton.xib; sourceTree = "<group>"; };
-		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrator.swift; sourceTree = "<group>"; };
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -2235,11 +2229,10 @@
 		CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StreamVideo.swift"; sourceTree = "<group>"; };
 		CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Convenience.swift"; sourceTree = "<group>"; };
 		CCF19C581F6048600020D7B6 /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
-		D47A5E6FD03691E78EE5B911 /* Pods-QOT.debugnovartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debugnovartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debugnovartis.xcconfig"; sourceTree = "<group>"; };
+		D0985286F39A3B1025A6B5AD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		D50D6C221EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageSubtitleTableViewCell.swift; sourceTree = "<group>"; };
 		D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImageSubtitleTableViewCell.xib; sourceTree = "<group>"; };
 		D5485F211ED57AE200A08D1A /* SearchViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
-		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB2969E922C6105300B8A590 /* AudioFullScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioFullScreenViewController.swift; sourceTree = "<group>"; };
 		DB2969EB22C611B500B8A590 /* AudioFullScreenViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AudioFullScreenViewController.storyboard; sourceTree = "<group>"; };
 		DB2969ED22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
@@ -2282,9 +2275,6 @@
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
-		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
-		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
-		F2B6283D93D968F7401F5F08 /* Pods-QOT.release_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release_novartis.xcconfig"; sourceTree = "<group>"; };
 		F902CF4722D87C2700FFC836 /* FeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCell.swift; sourceTree = "<group>"; };
 		F902CF4922D87C3600FFC836 /* FeastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCellViewModel.swift; sourceTree = "<group>"; };
 		F902CF4B22D87C4700FFC836 /* FeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeastCell.xib; sourceTree = "<group>"; };
@@ -2446,8 +2436,8 @@
 				DB34725221594560004F17D6 /* Realm.framework in Frameworks */,
 				DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */,
 				7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */,
-				0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */,
 				DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */,
+				C8BCD78ABB39ED915AB17E2B /* Pods_QOT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3355,6 +3345,20 @@
 			name = MyQotAppSettings;
 			sourceTree = "<group>";
 		};
+		723CBCFFF0151AC0A31A544D /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2799DBDF380EC6389FC54360 /* Pods-QOT.debug.xcconfig */,
+				62DFD50EA93305CDD002F619 /* Pods-QOT.novartis.xcconfig */,
+				2FE080860A71F86D915BFC01 /* Pods-QOT.unittest.xcconfig */,
+				D0985286F39A3B1025A6B5AD /* Pods-QOT.database.xcconfig */,
+				68104CD65C02161BF37941FD /* Pods-QOT.release.xcconfig */,
+				5BC03887D72A3DED56968867 /* Pods-QOT.appstore.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		75423EEF22CE2412008EE726 /* MyToBeVisionTracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -3564,10 +3568,9 @@
 				DB34725321594560004F17D6 /* RealmSwift.framework */,
 				7FB32D101F42E8620027BF4E /* Security.framework */,
 				CC37B1301E93CDD600651C46 /* QOTDatabase.framework */,
-				82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */,
-				D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */,
 				918D5E2020EE050900AEAD37 /* NotificationCenter.framework */,
 				AC87A782220D94F900622C90 /* IntentsUI.framework */,
+				78E486025FA56B513555097A /* Pods_QOT.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -4289,28 +4292,6 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
-		B1B85C4C58D59EA1163CE83B /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */,
-				2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */,
-				C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */,
-				2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */,
-				2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */,
-				80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */,
-				2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */,
-				EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */,
-				EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */,
-				0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */,
-				D47A5E6FD03691E78EE5B911 /* Pods-QOT.debugnovartis.xcconfig */,
-				559CF048230BD981BF1E6E34 /* Pods-QOT.releasenovartis.xcconfig */,
-				28923F7791F8BAE176A57A73 /* Pods-QOT.debug_novartis.xcconfig */,
-				F2B6283D93D968F7401F5F08 /* Pods-QOT.release_novartis.xcconfig */,
-				B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		B47953AA230AD512006EFE0F /* MyDataScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -4621,10 +4602,10 @@
 				AC87A784220D94F900622C90 /* IntentUI */,
 				B8BCE58522AAB5EF0012AAAC /* ShareExtension */,
 				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
-				B1B85C4C58D59EA1163CE83B /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				CBB238031E6FFF1200AB5AEF /* QOTTests */,
+				723CBCFFF0151AC0A31A544D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -5413,19 +5394,19 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */;
 			buildPhases = (
-				BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */,
+				B3E58337CD624E253BC99033 /* [CP] Check Pods Manifest.lock */,
 				CB8A15401E7981900023B2F9 /* Generate R.Swift */,
 				DB7893EC228F0E5500D086E6 /* Retouch Generated R.generated.swift */,
 				CBB2380F1E6FFF2700AB5AEF /* Swift Lint */,
 				CBB237E81E6FFF1200AB5AEF /* Sources */,
 				CBB237E91E6FFF1200AB5AEF /* Frameworks */,
 				CBB237EA1E6FFF1200AB5AEF /* Resources */,
-				81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */,
 				3649815620A3427000F5046D /* HockeySDK Build Agent */,
-				C3683032C904FFA0E0CA62DE /* [CP] Copy Pods Resources */,
 				918D5E3220EE050900AEAD37 /* Embed App Extensions */,
 				B487BBFB2357684900E6F182 /* CopyFiles */,
 				B487BBFC2357685500E6F182 /* ShellScript */,
+				CE306F7A778D11B2EFB6CB33 /* [CP] Embed Pods Frameworks */,
+				FE4B21D85367DC1CAAB554D6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -5840,7 +5821,90 @@
 			shellPath = /bin/sh;
 			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi\n";
 		};
-		81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */ = {
+		9100195820FC798400049118 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		B3E58337CD624E253BC99033 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QOT-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B487BBFC2357685500E6F182 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile=\"unused.rb\"\nif [ -f \"$file\" ]\nthen\necho \"$file found.\"\nruby unused.rb xcode\nelse\necho \"unused.rb doesn't exist\"\nfi\n";
+		};
+		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = "Generate R.Swift";
+			outputPaths = (
+				"$SRCROOT/QOT/Generated/R.generated.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "mkdir -p \"$SRCROOT/QOT/Generated\"\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/QOT/Generated/R.generated.swift\"\necho \"Finished to generate R.generated.swift\"\n";
+		};
+		CBB2380F1E6FFF2700AB5AEF /* Swift Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Swift Lint";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		CE306F7A778D11B2EFB6CB33 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -5884,103 +5948,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9100195820FC798400049118 /* SwiftLint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = SwiftLint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		B487BBFC2357685500E6F182 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nfile=\"unused.rb\"\nif [ -f \"$file\" ]\nthen\necho \"$file found.\"\nruby unused.rb xcode\nelse\necho \"unused.rb doesn't exist\"\nfi\n";
-		};
-		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-QOT-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C3683032C904FFA0E0CA62DE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$TEMP_DIR/rswift-lastrun",
-			);
-			name = "Generate R.Swift";
-			outputPaths = (
-				$SRCROOT/QOT/Generated/R.generated.swift,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "mkdir -p \"$SRCROOT/QOT/Generated\"\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/QOT/Generated/R.generated.swift\"\necho \"Finished to generate R.generated.swift\"\n";
-		};
-		CBB2380F1E6FFF2700AB5AEF /* Swift Lint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 12;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Swift Lint";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
 		DB7893EC228F0E5500D086E6 /* Retouch Generated R.generated.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -5998,6 +5965,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nsed -i '' \"s/NSObject : AnyObject/UINib.OptionsKey : Any/g\" \"$SRCROOT/QOT/Generated/R.generated.swift\"\nsed -i '' \"s/UIKit.UIImage/UIImage/g\" \"$SRCROOT/QOT/Generated/R.generated.swift\"\n";
+		};
+		FE4B21D85367DC1CAAB554D6 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -7110,7 +7095,7 @@
 		};
 		385EE3E42359B4F800D41073 /* Novartis */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0A2A4540FCC1E17442176BD /* Pods-QOT.novartis.xcconfig */;
+			baseConfigurationReference = 62DFD50EA93305CDD002F619 /* Pods-QOT.novartis.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -7323,7 +7308,7 @@
 		};
 		7FE151CD1F3DDC6200DA8F37 /* Database */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */;
+			baseConfigurationReference = D0985286F39A3B1025A6B5AD /* Pods-QOT.database.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -7925,7 +7910,7 @@
 		};
 		CBA0EBA21FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */;
+			baseConfigurationReference = 5BC03887D72A3DED56968867 /* Pods-QOT.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -8081,7 +8066,7 @@
 		};
 		CBB2380A1E6FFF1300AB5AEF /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
+			baseConfigurationReference = 2799DBDF380EC6389FC54360 /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -8110,7 +8095,7 @@
 		};
 		CBB2380B1E6FFF1300AB5AEF /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
+			baseConfigurationReference = 68104CD65C02161BF37941FD /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -8198,10 +8183,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
-					Resources/Animations.xcassets/QOT,
-					Logo,
-				);
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -8230,7 +8212,7 @@
 		};
 		E8F43D3520B6F98800C9FF4F /* UnitTest */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */;
+			baseConfigurationReference = 2FE080860A71F86D915BFC01 /* Pods-QOT.unittest.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
