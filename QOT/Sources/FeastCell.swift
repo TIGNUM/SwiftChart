@@ -10,7 +10,8 @@ import UIKit
 
 final class FeastCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var feastImage: UIImageView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
@@ -20,7 +21,8 @@ final class FeastCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(bucketTitle)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(feastImage)
     }
 
@@ -31,7 +33,7 @@ final class FeastCell: BaseDailyBriefCell {
     func configure(with viewModel: FeastCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         skeletonManager.addOtherView(feastImage)
         feastImage.setImage(url: URL(string: model.image ?? ""),
                             skeletonManager: self.skeletonManager)
