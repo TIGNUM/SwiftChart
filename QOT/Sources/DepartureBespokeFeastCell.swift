@@ -19,7 +19,9 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     @IBOutlet private weak var labelToTop: NSLayoutConstraint!
     var copyrights: [String?] = []
     var images: [String?] = []
-
+    @IBOutlet private weak var bespokeTitleLabel: UILabel!
+    @IBOutlet private weak var bespokeLabelHeight: NSLayoutConstraint!
+    @IBOutlet private weak var labelToStack: NSLayoutConstraint!
     override func prepareForReuse() {
         super.prepareForReuse()
         copyrights = []
@@ -37,6 +39,12 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        ThemeText.bespokeTitle.apply (model.subtitle, to: bespokeTitleLabel)
+        let subtitle = model.subtitle
+        if subtitle?.isEmpty ?? true {
+            labelToTop.constant = 20
+            bespokeLabelHeight.constant = 0
+        }
         self.departureBespokeFeastModel = model
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
         var totalWidth: CGFloat = 0

@@ -585,7 +585,7 @@ extension DailyBriefInteractor {
             return departureBespokeFeastList
         }
         let title = depatureBespokeFeast.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
-        let subtitle = depatureBespokeFeast.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        let subtitle = collection.title
         let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
         var copyrights: [String?] = []
         var images: [String?] = []
