@@ -10,7 +10,8 @@ import UIKit
 
 final class DepartureInfoCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
 
@@ -23,7 +24,8 @@ final class DepartureInfoCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(bucketTitle)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(departureText)
         skeletonManager.addOtherView(departureImage)
     }
@@ -31,7 +33,7 @@ final class DepartureInfoCell: BaseDailyBriefCell {
     func configure(with viewModel: DepartureInfoCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         self.departureModel = model
         skeletonManager.addOtherView(departureImage)
         departureImage.setImage(url: URL(string: model.image ?? ""),
