@@ -10,21 +10,24 @@ import UIKit
 
 final class BeSpokeCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var headingLabel: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+
     @IBOutlet private weak var firstImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var imageContainerView: UIView!
-    @IBOutlet private weak var tilteContainerView: UIView!
-    @IBOutlet private weak var descriptionContainerView: UIView!
     @IBOutlet private weak var copyrightButtonHeight: NSLayoutConstraint!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var copyrightURL: String?
     @IBOutlet private weak var copyrightLabel: UIButton!
-    @IBOutlet private weak var labelToTop: NSLayoutConstraint!
+    @IBOutlet weak var labelToTop: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.subtitleTextView.text = ""
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(firstImageView)
@@ -37,7 +40,9 @@ final class BeSpokeCell: BaseDailyBriefCell {
     func configure(with viewModel: BeSpokeCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: headingLabel)
+        baseHeaderview?.configure(title: model.title,
+                                  subtitle: nil)
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseHeaderview?.titleLabel)
         ThemeText.bespokeTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
         skeletonManager.addOtherView(firstImageView)

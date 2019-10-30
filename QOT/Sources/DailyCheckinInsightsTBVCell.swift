@@ -10,8 +10,10 @@ import Foundation
 
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var tbvText: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    
     @IBOutlet private weak var button: AnimatedButton!
     var interactor: DailyBriefInteractorInterface?
     @IBOutlet private weak var tbvSentence: UILabel!
@@ -21,8 +23,8 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addTitle(tbvText)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(tbvSentence)
         skeletonManager.addSubtitle(adviceText)
         skeletonManager.addOtherView(button)
@@ -31,10 +33,11 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     func configure(with: DailyCheckIn2TBVModel?) {
         guard let model = with else { return }
         skeletonManager.hide()
-        tbvText.text = model.introText
+        baseHeaderview?.configure(title: model.title,
+                                  subtitle: model.introText)
+        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
         tbvSentence.text = model.tbvSentence
         self.adviceText.text = model.adviceText
-        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
     }
 }
 
