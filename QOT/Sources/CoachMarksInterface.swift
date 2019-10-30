@@ -9,14 +9,19 @@
 import Foundation
 
 protocol CoachMarksViewControllerInterface: class {
-    func setupView()
+    func setupView(_ viewModel: CoachMark.ViewModel)
+    func updateView(_ viewModel: CoachMark.ViewModel)
 }
 
 protocol CoachMarksPresenterInterface {
-    func setupView()
+    func setupView(_ step: CoachMark.Step)
+    func updateView(_ step: CoachMark.Step)
 }
 
-protocol CoachMarksInteractorInterface: Interactor {}
+protocol CoachMarksInteractorInterface: Interactor {
+    func loadNextStep(page: Int)
+    func loadPreviousStep(page: Int)
+}
 
 protocol CoachMarksRouterInterface {
     func dismiss()

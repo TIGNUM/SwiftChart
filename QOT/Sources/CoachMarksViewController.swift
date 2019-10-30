@@ -17,11 +17,13 @@ final class CoachMarksViewController: UIViewController {
     var player: AVQueuePlayer? = AVQueuePlayer()
     var playerLayer: AVPlayerLayer?
     var playerLooper: AVPlayerLooper?
-    let mediaName = "walkThorugh_search"
-    let mediaExtension = "mp4"
+    private let mediaExtension = "mp4"
+    private var currentPage: Int = 0
     @IBOutlet private weak var buttonBack: UIButton!
     @IBOutlet private weak var buttonContinue: UIButton!
     @IBOutlet private weak var viedoView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
 
     // MARK: - Init
     init() {
@@ -51,32 +53,55 @@ final class CoachMarksViewController: UIViewController {
 
 // MARK: - Private
 private extension CoachMarksViewController {
-
-}
-
-// MARK: - Actions
-private extension CoachMarksViewController {
-    @IBAction func didTapBack() {
-
+    func setupPlayer(_ mediaName: String) {
+        let playerLayer = AVPlayerLayer(player: player)
+        viedoView.layer.addSublayer(playerLayer)
+        self.playerLayer = playerLayer
     }
 
-    @IBAction func didTapContinue() {
-
-    }
-}
-
-// MARK: - CoachMarksViewControllerInterface
-extension CoachMarksViewController: CoachMarksViewControllerInterface {
-    func setupView() {
-        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension), let player = player {
+    func setPlayerLooper(_ mediaName: String) {
+        if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension),
+            let player = player {
             let playerItem = AVPlayerItem(url: media)
             playerLooper = AVPlayerLooper(player: player, templateItem: playerItem)
         } else {
             playerLooper = nil
         }
+    }
 
-        let playerLayer = AVPlayerLayer(player: player)
-        viedoView.layer.addSublayer(playerLayer)
-        self.playerLayer = playerLayer
+    func setupLabels(_ title: String, subtitle: String) {
+        titleLabel.text = title
+        subtitleLabel.text = subtitle
+    }
+
+    func setupButtons(_ hideBackButton: Bool, _ rightButtonImage: UIImage?) {
+        buttonBack.isHidden = hideBackButton
+        buttonContinue.setImage(rightButtonImage, for: .normal)
+    }
+}
+
+// MARK: - Actions
+private extension CoachMarksViewController {
+    @IBAction func didTapBack() {
+        interactor?.loadPreviousStep(page: currentPage)
+    }
+
+    @IBAction func didTapContinue() {
+        interactor?.loadNextStep(page: currentPage)
+    }
+}
+
+// MARK: - CoachMarksViewControllerInterface
+extension CoachMarksViewController: CoachMarksViewControllerInterface {
+    func setupView(_ viewModel: CoachMark.ViewModel) {
+        updateView(viewModel)
+        setupPlayer(viewModel.mediaName)
+    }
+
+    func updateView(_ viewModel: CoachMark.ViewModel) {
+        currentPage = viewModel.page
+        setPlayerLooper(viewModel.mediaName)
+        setupLabels(viewModel.title, subtitle: viewModel.subtitle)
+        setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
     }
 }

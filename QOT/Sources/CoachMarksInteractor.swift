@@ -16,16 +16,31 @@ final class CoachMarksInteractor {
 
     // MARK: - Init
     init(presenter: CoachMarksPresenterInterface) {
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView()
+        presenter.setupView(CoachMark.Step.know)
     }
 }
 
 // MARK: - CoachMarksInteractorInterface
 extension CoachMarksInteractor: CoachMarksInteractorInterface {
+    func loadNextStep(page: Int) {
+        if let nextStep = CoachMark.Step(rawValue: page + 1) {
+            presenter.updateView(nextStep)
+        }
+    }
+
+    func loadPreviousStep(page: Int) {
+        if let previousStep = CoachMark.Step(rawValue: page - 1) {
+            presenter.updateView(previousStep)
+        }
+    }
+}
+
+// MARK: - Private
+private extension CoachMarksInteractor {
 
 }
