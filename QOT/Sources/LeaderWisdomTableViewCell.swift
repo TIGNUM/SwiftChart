@@ -10,8 +10,9 @@ import UIKit
 
 final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var videoThumbnailImageView: UIImageView!
     @IBOutlet private weak var videoTitle: UILabel!
@@ -28,8 +29,8 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         super.awakeFromNib()
         audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(subtitleLabel)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(audioView)
         skeletonManager.addOtherView(videoView)
@@ -38,15 +39,17 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: subtitleLabel)
+        baseHeaderview?.configure(title: (model.title ?? "").uppercased(),
+                                  subtitle: model.subtitle)
+        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderview?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: baseHeaderview?.subtitleTextView)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
+        headerHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.frame.size.width) ?? 0
         videoView.isHidden = model.format != .video
         videoThumbnailImageView.isHidden = model.format != .video
         audioView.isHidden = model.format != .audio
         audioButton.isHidden = model.format != .audio
-        titleLabel.isHidden = model.title == nil
-        subtitleLabel.isHidden = model.subtitle == nil
         descriptionLabel.isHidden = model.description == nil
         videoTitle.text = model.videoTitle?.uppercased()
         duration = model.audioDuration ?? model.videoDuration

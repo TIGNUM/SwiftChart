@@ -31,32 +31,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="hmT-BL-JoE">
-                        <rect key="frame" x="20" y="57" width="586" height="386.5"/>
+                        <rect key="frame" x="20" y="144" width="586" height="299.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leader Wisdom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-V6-dK4">
-                                <rect key="frame" x="0.0" y="0.0" width="586" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="cyd-07-std"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Today we have a quick wisdom sip from our conversation with “Novartis CEO Vas Narasimhan:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJK-hf-LEJ">
-                                <rect key="frame" x="0.0" y="48" width="586" height="38.5"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MKq-h4-C0M">
-                                <rect key="frame" x="0.0" y="102.5" width="586" height="48"/>
+                                <rect key="frame" x="0.0" y="0.0" width="586" height="63.5"/>
                                 <string key="text">“I see too often people just go through the motions  - they’re trying to get through the meetings or get through their day. That to me is a big loss, it  is a big waste for such talented people not to always be thinking about how can I have the most high-quality impact both for themselves and for the company”</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a1R-2W-1El">
-                                <rect key="frame" x="0.0" y="166.5" width="586" height="88"/>
+                                <rect key="frame" x="0.0" y="79.5" width="586" height="88"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MINDSET" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mJd-Kb-cPB">
                                         <rect key="frame" x="0.0" y="12" width="72" height="19.5"/>
@@ -107,7 +92,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="haR-YU-jA1">
-                                <rect key="frame" x="0.0" y="298.5" width="586" height="40"/>
+                                <rect key="frame" x="0.0" y="211.5" width="586" height="40"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TB9-TI-rZB" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                         <rect key="frame" x="510" y="0.0" width="76" height="40"/>
@@ -137,28 +122,26 @@
                         <constraints>
                             <constraint firstItem="a1R-2W-1El" firstAttribute="top" secondItem="MKq-h4-C0M" secondAttribute="bottom" constant="16" id="DXG-aO-gCn"/>
                             <constraint firstItem="haR-YU-jA1" firstAttribute="top" secondItem="a1R-2W-1El" secondAttribute="bottom" constant="48" id="QZz-vB-vju"/>
-                            <constraint firstItem="OJK-hf-LEJ" firstAttribute="top" secondItem="AnE-V6-dK4" secondAttribute="bottom" constant="24" id="a6E-Z1-FuD"/>
-                            <constraint firstItem="MKq-h4-C0M" firstAttribute="top" secondItem="OJK-hf-LEJ" secondAttribute="bottom" constant="16" id="eLB-u4-Gg0"/>
                             <constraint firstAttribute="bottom" secondItem="haR-YU-jA1" secondAttribute="bottom" constant="48" id="ezM-bX-uMb"/>
                         </constraints>
                     </stackView>
-                    <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08X-1T-E7p">
-                        <rect key="frame" x="20" y="48" width="16" height="1"/>
-                        <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5C-gN-ADd">
+                        <rect key="frame" x="0.0" y="0.0" width="626" height="128"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="1" id="0Jh-10-II1"/>
-                            <constraint firstAttribute="width" constant="16" id="gSD-Qo-dBP"/>
+                            <constraint firstAttribute="height" constant="128" id="W7I-Ad-TOP"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hmT-BL-JoE" secondAttribute="bottom" constant="45" id="75u-En-EPO"/>
+                    <constraint firstItem="F5C-gN-ADd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="M6N-N5-lAU"/>
                     <constraint firstItem="hmT-BL-JoE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="Oqg-lX-Yef"/>
-                    <constraint firstItem="hmT-BL-JoE" firstAttribute="top" secondItem="08X-1T-E7p" secondAttribute="bottom" constant="8" id="jHr-KU-1b3"/>
-                    <constraint firstItem="08X-1T-E7p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="48" id="l4h-uZ-x8P"/>
                     <constraint firstAttribute="trailing" secondItem="hmT-BL-JoE" secondAttribute="trailing" constant="20" id="lNa-6A-5It"/>
-                    <constraint firstItem="08X-1T-E7p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="lTR-vh-fTm"/>
+                    <constraint firstAttribute="trailing" secondItem="F5C-gN-ADd" secondAttribute="trailing" id="oVT-oN-wVK"/>
+                    <constraint firstItem="F5C-gN-ADd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="rbH-Qq-Som"/>
+                    <constraint firstItem="MKq-h4-C0M" firstAttribute="top" secondItem="F5C-gN-ADd" secondAttribute="bottom" constant="16" id="ybc-8s-CeZ"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -167,8 +150,8 @@
                 <outlet property="audioButton" destination="TB9-TI-rZB" id="OVD-NP-Tqb"/>
                 <outlet property="audioView" destination="haR-YU-jA1" id="I3O-Sh-rj1"/>
                 <outlet property="descriptionLabel" destination="MKq-h4-C0M" id="knl-5F-PrF"/>
-                <outlet property="subtitleLabel" destination="OJK-hf-LEJ" id="bpG-AY-ywx"/>
-                <outlet property="titleLabel" destination="AnE-V6-dK4" id="Gak-Cd-0Qr"/>
+                <outlet property="headerHeightConstraint" destination="W7I-Ad-TOP" id="Kr5-2A-LSe"/>
+                <outlet property="headerView" destination="F5C-gN-ADd" id="OPb-bf-BbE"/>
                 <outlet property="videoDurationButton" destination="qEk-8p-TpN" id="1Wu-Pz-nBi"/>
                 <outlet property="videoThumbnailImageView" destination="UI8-ge-cPI" id="3AA-8i-lRA"/>
                 <outlet property="videoTitle" destination="mJd-Kb-cPB" id="5xF-eV-wPc"/>

@@ -36,6 +36,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
         baseHeaderview?.configure(title: model.title,
                                   subtitle: model.introText)
         baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
+        headerHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.frame.size.width) ?? 0
         tbvSentence.text = model.tbvSentence
         self.adviceText.text = model.adviceText
     }
