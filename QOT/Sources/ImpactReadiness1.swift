@@ -12,8 +12,9 @@ import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toBeVisionImage: UIImageView!
-    @IBOutlet weak var bucketTitle: UILabel!
     @IBOutlet weak var impactReadinessScore: UILabel!
     @IBOutlet weak var impactReadinessOutOf100Label: UILabel!
     @IBOutlet weak var content: UILabel!
@@ -40,7 +41,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
-        bucketTitle.isHidden = true
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderview?.titleLabel.isHidden = true
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
@@ -66,12 +69,13 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         guard let model = viewModel else { return }
-        bucketTitle.isHidden = false
+        baseHeaderview?.titleLabel.isHidden = false
 
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
                                   model.domainModel?.dailyCheckInResult == nil)
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
+        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
         let score: Int = model.readinessScore ?? 0
         if score == -1 {

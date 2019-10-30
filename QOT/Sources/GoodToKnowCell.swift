@@ -11,13 +11,15 @@ import UIKit
 final class GoodToKnowCell: BaseDailyBriefCell {
     @IBOutlet private weak var goodToKnowImage: UIImageView!
     @IBOutlet private weak var goodToKnowFact: UILabel!
-    @IBOutlet private weak var titleLabel: UILabel!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var goodToKnowModel: GoodToKnowCellViewModel?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(goodToKnowFact)
         skeletonManager.addOtherView(goodToKnowImage)
     }
@@ -28,7 +30,7 @@ final class GoodToKnowCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(goodToKnowImage)
         goodToKnowImage.setImage(url: model.image,
                                  skeletonManager: self.skeletonManager)
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
+        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)
         self.goodToKnowModel = model
     }
