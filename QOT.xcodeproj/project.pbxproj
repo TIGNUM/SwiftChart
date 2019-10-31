@@ -300,7 +300,6 @@
 		5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */; };
 		5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */; };
 		5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */; };
-		5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */; };
 		5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */; };
 		5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */; };
 		5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */; };
@@ -1533,7 +1532,6 @@
 		5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsConfigurator.swift; sourceTree = "<group>"; };
 		5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarCell.swift; sourceTree = "<group>"; };
 		5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyncedCalendarCell.xib; sourceTree = "<group>"; };
-		5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
 		5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsConfigurator.swift; sourceTree = "<group>"; };
 		5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsWorker.swift; sourceTree = "<group>"; };
 		5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsPresenter.swift; sourceTree = "<group>"; };
@@ -3994,7 +3992,6 @@
 				9115F6FE208DDFD700EE5D1D /* ProfileSettingsRouter.swift */,
 				91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */,
 				9115F700208DDFEB00EE5D1D /* ProfileSettingsWorker.swift */,
-				5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -5718,7 +5715,6 @@
 				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
 				B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */,
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
-				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
 				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,

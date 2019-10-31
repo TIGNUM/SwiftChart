@@ -1305,40 +1305,8 @@
                         <view key="tableHeaderView" opaque="NO" contentMode="scaleToFill" id="xig-7S-cum">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dk0-gL-qk5">
-                                    <rect key="frame" x="24" y="55" width="327" height="45"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p1Q-t9-4i0">
-                                            <rect key="frame" x="0.0" y="0.0" width="16" height="1"/>
-                                            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="16" id="5oK-c1-al6"/>
-                                                <constraint firstAttribute="height" constant="1" id="Jbv-ey-ll2"/>
-                                            </constraints>
-                                        </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EDIT ACCOUNT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wj0-nL-fWV">
-                                            <rect key="frame" x="0.0" y="17" width="139" height="24"/>
-                                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="Wj0-nL-fWV" firstAttribute="leading" secondItem="Dk0-gL-qk5" secondAttribute="leading" id="1et-Ur-fHc"/>
-                                        <constraint firstItem="p1Q-t9-4i0" firstAttribute="leading" secondItem="Dk0-gL-qk5" secondAttribute="leading" id="3B7-SS-kjM"/>
-                                        <constraint firstItem="p1Q-t9-4i0" firstAttribute="top" secondItem="Dk0-gL-qk5" secondAttribute="top" id="6De-2X-Q6Q"/>
-                                        <constraint firstAttribute="bottom" secondItem="Wj0-nL-fWV" secondAttribute="bottom" constant="4" id="Gyp-0k-lNg"/>
-                                        <constraint firstItem="Wj0-nL-fWV" firstAttribute="top" secondItem="p1Q-t9-4i0" secondAttribute="bottom" constant="16" id="V1e-Nk-5f0"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="trailing" secondItem="Dk0-gL-qk5" secondAttribute="trailing" constant="24" id="fJj-MK-VY6"/>
-                                <constraint firstItem="Dk0-gL-qk5" firstAttribute="top" secondItem="xig-7S-cum" secondAttribute="top" constant="55" id="jT9-1L-24l"/>
-                                <constraint firstItem="Dk0-gL-qk5" firstAttribute="leading" secondItem="xig-7S-cum" secondAttribute="leading" constant="24" id="lHl-Mb-dKl"/>
                                 <constraint firstAttribute="height" constant="98" id="uZM-2p-ha4"/>
                             </constraints>
                         </view>
@@ -1348,7 +1316,7 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="headerTitle" destination="Wj0-nL-fWV" id="9Km-dS-hdd"/>
+                        <outlet property="headerView" destination="xig-7S-cum" id="SxT-eq-Wdk"/>
                         <outlet property="keyboardInputView" destination="Hvp-Aw-cye" id="bjU-px-Bm1"/>
                     </connections>
                 </tableViewController>
