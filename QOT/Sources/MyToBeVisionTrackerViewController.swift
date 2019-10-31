@@ -66,7 +66,6 @@ extension MyToBeVisionTrackerViewController: MyToBeVisionTrackerViewControllerIn
         tableView.registerDequeueable(TBVDataGraphTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphSubHeadingTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphAnswersTableViewCell.self)
-        tableView.registerDequeueable(TBVDataGraphHeaderView.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
@@ -127,9 +126,10 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
 
         switch MYTBVDataViewModel.Section.allCases[section] {
         case .header:
-            let headerView: TBVDataGraphHeaderView = tableView.dequeueHeaderFooter()
+            let headerView = R.nib.qotBaseHeaderView.firstView(owner: self)
             let title = viewModel?.title ?? ""
-            headerView.configure(title: title)
+            headerView?.configure(title: title, subtitle: nil)
+            ThemeText.tbvTrackerHeader.apply(title.uppercased(), to: headerView?.titleLabel)
             return headerView
         case .sentence:
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
