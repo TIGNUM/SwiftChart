@@ -60,7 +60,7 @@
                                 </connections>
                             </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M">
-                                <rect key="frame" x="354" y="178" width="40" height="40"/>
+                                <rect key="frame" x="354" y="173" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="giH-rU-ibm"/>
                                     <constraint firstAttribute="width" constant="40" id="vU1-je-FKm"/>
@@ -248,7 +248,7 @@
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="hvU-ex-T62" secondAttribute="trailing" id="qvs-Yx-klg"/>
                             <constraint firstAttribute="trailing" secondItem="dEq-o1-iv8" secondAttribute="trailing" id="uje-kp-l6X"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="7BQ-4U-u9M" secondAttribute="trailing" constant="20" id="yqe-gr-R2r"/>
-                            <constraint firstItem="7BQ-4U-u9M" firstAttribute="bottom" secondItem="FQX-We-ykg" secondAttribute="bottom" id="z8N-tA-zRa"/>
+                            <constraint firstItem="7BQ-4U-u9M" firstAttribute="bottom" secondItem="FQX-We-ykg" secondAttribute="bottom" constant="-5" id="z8N-tA-zRa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="izd-Ti-FEs"/>
                     </view>
