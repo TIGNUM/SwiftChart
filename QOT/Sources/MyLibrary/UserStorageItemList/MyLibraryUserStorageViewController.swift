@@ -16,12 +16,14 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     var interactor: MyLibraryUserStorageInteractorInterface?
 
-    @IBOutlet private weak var headerHeight: NSLayoutConstraint!
-    @IBOutlet private weak var headerLine: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var editButton: AnimatedButton!
     @IBOutlet private weak var addButton: RoundedButton!
+    @IBOutlet weak var addButtonWidthConstraint: NSLayoutConstraint!
+    @IBOutlet weak var editButtonWidthConstraint: NSLayoutConstraint!
 
     private var bottomNavigationItems = UINavigationItem()
     private var infoAlertView: InfoAlertView?
@@ -44,6 +46,8 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
 
         editButton.tintColor = .accent
@@ -98,7 +102,7 @@ private extension MyLibraryUserStorageViewController {
             infoAlertView?.present(on: self.view)
         }
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
+        infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
@@ -133,9 +137,8 @@ private extension MyLibraryUserStorageViewController {
 extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        ThemeView.headerLine.apply(headerLine)
         tableView.allowsSelection = false
-        addButton.isHidden = !(interactor?.showAddButton ?? false)
+        addButtonWidthConstraint.constant = (interactor?.showAddButton ?? false) ? 80 : 0.0
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
         ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
@@ -144,10 +147,11 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     }
 
     func update() {
-        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: titleLabel)
+        baseHeaderview?.configure(title: interactor?.title, subtitle: nil)
+        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: baseHeaderview?.titleLabel)
 
         let isEditing = interactor?.isEditing ?? false
-        editButton.isHidden = !(interactor?.showEditButton ?? true)
+        editButtonWidthConstraint.constant = (interactor?.showEditButton ?? true) ? 40.0 : 0.0
         setEditButton(enabled: interactor?.canEdit ?? false)
         addButton.isEnabled = !isEditing
 

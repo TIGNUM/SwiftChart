@@ -13,8 +13,9 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
     // MARK: - Properties
 
     var interactor: MyLibraryCategoryListInteractorInterface?
-    @IBOutlet private weak var headerLine: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
+    var baseHeaderview: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
@@ -37,6 +38,8 @@ final class MyLibraryCategoryListViewController: BaseViewController, ScreenZLeve
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         interactor?.viewDidLoad()
     }
@@ -59,8 +62,9 @@ private extension MyLibraryCategoryListViewController {
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
     func setupView() {
         ThemeView.level2.apply(view)
-        ThemeView.headerLine.apply(headerLine)
-        ThemeText.myLibraryTitle.apply(interactor?.titleText, to: titleLabel)
+        baseHeaderview?.configure(title: interactor?.titleText, subtitle: nil)
+        ThemeText.myLibraryTitle.apply(interactor?.titleText, to: baseHeaderview?.titleLabel)
+        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.view.frame.size.width) ?? 0
     }
 
     func update() {
