@@ -67,7 +67,7 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
         if whatsHotImageView.image == nil {
             skeletonManager.addOtherView(whatsHotImageView)
         }
-        whatsHotImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
+        whatsHotImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
 
         ThemeText.whatsHotHeader(forcedColorMode).apply(titleText, to: titleLabel)
         let dateFormatter = DateFormatter.whatsHot

@@ -38,7 +38,7 @@ class WeatherHourlyView: UIView {
         guard let url = imageUrl else {
             return
         }
-        imageView.setImage(url: url, placeholder: placeholder ?? UIImage())
+        imageView.setImage(url: url, placeholder: placeholder ?? UIImage()) { (_) in /* */}
         imageView.isHidden = false
         fallbackWeatherLabel.isHidden = true
     }

@@ -42,7 +42,7 @@ final class BeSpokeCell: BaseDailyBriefCell {
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
         skeletonManager.addOtherView(firstImageView)
         firstImageView.setImage(url: URL(string: model.image ?? ""),
-                                skeletonManager: self.skeletonManager)
+                                skeletonManager: self.skeletonManager) { (_) in /* */}
         copyrightURL = model.copyright
         if copyrightURL?.isEmpty ?? true {
             copyrightButtonHeight.constant = 0

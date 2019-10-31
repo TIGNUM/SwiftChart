@@ -9,8 +9,10 @@
 import UIKit
 import qot_dal
 import DifferenceKit
+import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
+    func presentSafari( _ vc: SFSafariViewController)
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
@@ -154,11 +156,11 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
             case 6:
                 return getLeadersWisdom(tableView, indexPath, nil)
             case 7:
-                return getFeastForEyesCell(tableView, indexPath, nil)
+                 return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 8:
                 return getThoughtsCell(tableView, indexPath, nil)
             case 9:
-                return getDepartureInfoCell(tableView, indexPath, nil)
+                return getDepartureBespokeFeastCell(tableView, indexPath, nil)
             case 10:
                 return getAboutMeCell(tableView, indexPath, nil)
             case 11:
@@ -238,13 +240,13 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .FROM_TIGNUM?:
             return getFromTignumMessageCell(tableView, indexPath, bucketItem as? FromTignumCellViewModel)
         case .BESPOKE?:
-            return getBeSpokeCell(tableView, indexPath, bucketItem as? BeSpokeCellViewModel)
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .DEPARTURE_INFO?:
-            return getDepartureInfoCell(tableView, indexPath, bucketItem as? DepartureInfoCellViewModel)
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .LEADERS_WISDOM?:
             return getLeadersWisdom(tableView, indexPath, bucketItem as? LeaderWisdomCellViewModel)
         case .FEAST_OF_YOUR_EYES?:
-            return getFeastForEyesCell(tableView, indexPath, bucketItem as? FeastCellViewModel)
+            return getDepartureBespokeFeastCell(tableView, indexPath, bucketItem as? DepartureBespokeFeastModel)
         case .MY_PEAK_PERFORMANCE?:
             return getMyPeakPerformance(tableView, indexPath, bucketItem as? MyPeakPerformanceCellViewModel)
         case .GUIDE_TRACK?:
@@ -388,20 +390,6 @@ private extension DailyBriefViewController {
     }
 
     /**
-     * Method name: getDepartureInfoCell.
-     * Description: Placeholder to display the Random Departure Info Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getDepartureInfoCell(_ tableView: UITableView,
-                              _ indexPath: IndexPath,
-                              _ departureInfoViewModel: DepartureInfoCellViewModel?) -> UITableViewCell {
-        let cell: DepartureInfoCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: departureInfoViewModel)
-        cell.delegate = self
-        return cell
-    }
-
-    /**
      * Method name: getCoachMessageCell.
      * Description: Placeholder to display the Random Departure Info Cell Information.
      * Parameters: [tableView], [IndexPath]
@@ -414,30 +402,11 @@ private extension DailyBriefViewController {
         return cell
     }
 
-    /**
-     * Method name: getFeastForEyesCell.
-     * Description: Placeholder to display the Feast For Eyes Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getFeastForEyesCell(_ tableView: UITableView,
-                             _ indexPath: IndexPath,
-                             _ feastForEyesViewModel: FeastCellViewModel?) -> UITableViewCell {
-        let cell: FeastCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: feastForEyesViewModel)
-        cell.delegate = self
-        return cell
-    }
-
-    /**
-     * Method name: getBeSpokeCell.
-     * Description: Placeholder to display the Be Spoke Cell Information.
-     * Parameters: [tableView], [IndexPath]
-     */
-    func getBeSpokeCell(_ tableView: UITableView,
-                        _ indexPath: IndexPath,
-                        _ beSpokeViewModel: BeSpokeCellViewModel?) -> UITableViewCell {
-        let cell: BeSpokeCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: beSpokeViewModel)
+    func getDepartureBespokeFeastCell(_ tableView: UITableView,
+                              _ indexPath: IndexPath,
+                              _ departureBespokeFeastModel: DepartureBespokeFeastModel?) -> UITableViewCell {
+        let cell: DepartureBespokeFeastCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(with: departureBespokeFeastModel)
         cell.delegate = self
         return cell
     }
@@ -712,9 +681,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ThoughtsCell.self)
         tableView.registerDequeueable(GoodToKnowCell.self)
         tableView.registerDequeueable(FromTignumCell.self)
-        tableView.registerDequeueable(DepartureInfoCell.self)
-        tableView.registerDequeueable(FeastCell.self)
-        tableView.registerDequeueable(BeSpokeCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
@@ -734,6 +700,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(ImpactReadinessCell2.self)
         tableView.registerDequeueable(SolveTableViewCell.self)
         tableView.registerDequeueable(WeatherCell.self)
+        tableView.registerDequeueable(DepartureBespokeFeastCell.self)
     }
 
     func scrollToSection(at: Int) {
@@ -742,6 +709,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func presentSafari( _ vc: SFSafariViewController) {
+        present(vc, animated: true)
+    }
 
     func showDailyCheckInQuestions() {
         interactor?.showDailyCheckInQuestions()
