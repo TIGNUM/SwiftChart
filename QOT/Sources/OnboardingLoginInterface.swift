@@ -31,7 +31,9 @@ protocol OnboardingLoginInteractorInterface: Interactor {
     var preCode: String { get }
     var digitDescription: String { get }
     var buttonGetHelp: String { get }
+    var buttonChangeEmail: String { get }
     var buttonResendCode: String { get }
+    var buttonSeparator: String { get }
 
     var viewModel: OnboardingLoginViewModel { get }
     func didTapBack()

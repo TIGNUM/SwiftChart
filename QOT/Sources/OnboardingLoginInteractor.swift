@@ -67,8 +67,16 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         return worker.buttonGetHelp
     }
 
+    var buttonChangeEmail: String {
+        return worker.buttonChangeEmail
+    }
+
     var buttonResendCode: String {
         return worker.buttonResendCode
+    }
+
+    var buttonSeparator: String {
+        return worker.buttonSeparator
     }
 
     func didTapBack() {
