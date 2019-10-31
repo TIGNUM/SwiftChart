@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="SF-Pro-Text-Regular.otf">
-            <string>SFProText-Regular</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--Track Selection View Controller-->
         <scene sceneID="Nze-gn-9B7">
@@ -23,45 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cup-fi-LpV" userLabel="Dash">
-                                <rect key="frame" x="24" y="114" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cup-fi-LpV">
+                                <rect key="frame" x="0.0" y="74" width="414" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="hkZ-3R-rl7"/>
-                                    <constraint firstAttribute="width" constant="16" id="lYS-NG-Qvt"/>
+                                    <constraint firstAttribute="height" constant="100" id="hkZ-3R-rl7"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bVq-O7-fNC">
-                                <rect key="frame" x="24" y="127" width="366" height="24"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U2x-4R-rmi">
-                                <rect key="frame" x="24" y="163" width="366" height="19.5"/>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="P1J-00-EwG" firstAttribute="trailing" secondItem="bVq-O7-fNC" secondAttribute="trailing" constant="24" id="5QA-P0-Noj"/>
-                            <constraint firstItem="bVq-O7-fNC" firstAttribute="top" secondItem="cup-fi-LpV" secondAttribute="bottom" constant="12" id="Dnu-sr-3c8"/>
-                            <constraint firstItem="bVq-O7-fNC" firstAttribute="leading" secondItem="P1J-00-EwG" secondAttribute="leading" constant="24" id="PoE-SS-r9m"/>
-                            <constraint firstItem="U2x-4R-rmi" firstAttribute="top" secondItem="bVq-O7-fNC" secondAttribute="bottom" constant="12" id="Tuj-ro-Aiw"/>
-                            <constraint firstItem="U2x-4R-rmi" firstAttribute="leading" secondItem="P1J-00-EwG" secondAttribute="leading" constant="24" id="haf-du-TMi"/>
-                            <constraint firstItem="cup-fi-LpV" firstAttribute="leading" secondItem="P1J-00-EwG" secondAttribute="leading" constant="24" id="kRX-3O-qhC"/>
-                            <constraint firstItem="cup-fi-LpV" firstAttribute="top" secondItem="P1J-00-EwG" secondAttribute="top" constant="70" id="uwr-gq-UfG"/>
-                            <constraint firstItem="P1J-00-EwG" firstAttribute="trailing" secondItem="U2x-4R-rmi" secondAttribute="trailing" constant="24" id="xZR-Me-UAP"/>
+                            <constraint firstItem="cup-fi-LpV" firstAttribute="leading" secondItem="P1J-00-EwG" secondAttribute="leading" id="kRX-3O-qhC"/>
+                            <constraint firstItem="cup-fi-LpV" firstAttribute="top" secondItem="P1J-00-EwG" secondAttribute="top" constant="30" id="uwr-gq-UfG"/>
+                            <constraint firstItem="P1J-00-EwG" firstAttribute="trailing" secondItem="cup-fi-LpV" secondAttribute="trailing" id="yF9-Qx-X0e"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="P1J-00-EwG"/>
                     </view>
                     <connections>
-                        <outlet property="dashView" destination="cup-fi-LpV" id="fzx-Wl-18k"/>
-                        <outlet property="descriptionLabel" destination="U2x-4R-rmi" id="a1N-Qo-lDg"/>
-                        <outlet property="titleLabel" destination="bVq-O7-fNC" id="ySW-39-Ome"/>
-                        <outlet property="titleSuperviewTopConstraint" destination="uwr-gq-UfG" id="AIY-sc-Fit"/>
+                        <outlet property="headerView" destination="cup-fi-LpV" id="brU-AH-AdV"/>
+                        <outlet property="headerViewHeightConstraint" destination="hkZ-3R-rl7" id="XqD-ji-3Ys"/>
+                        <outlet property="headerViewTopConstraint" destination="uwr-gq-UfG" id="GUe-kz-CNZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78g-s9-xgI" userLabel="First Responder" sceneMemberID="firstResponder"/>
