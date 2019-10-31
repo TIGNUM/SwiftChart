@@ -10,7 +10,7 @@ import UIKit
 
 struct CoachMark {
     enum Step: Int, CaseIterable {
-        case know = 1
+        case know = 0
         case myQot
         case coach
         case search

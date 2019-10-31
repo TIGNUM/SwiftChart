@@ -21,7 +21,7 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmO-77-Ykg">
                         <rect key="frame" x="40" y="0.0" width="297" height="480"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NId-ug-AWe">
                         <rect key="frame" x="48" y="512" width="281" height="21"/>
@@ -51,6 +51,11 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <size key="customSize" width="377" height="640"/>
+            <connections>
+                <outlet property="subtitleLabel" destination="gBJ-Yl-C0c" id="EPI-t6-Dsc"/>
+                <outlet property="titleLabel" destination="NId-ug-AWe" id="yBH-HH-qXB"/>
+                <outlet property="videoView" destination="GmO-77-Ykg" id="PqF-TB-1lb"/>
+            </connections>
             <point key="canvasLocation" x="-2" y="110"/>
         </collectionViewCell>
     </objects>
