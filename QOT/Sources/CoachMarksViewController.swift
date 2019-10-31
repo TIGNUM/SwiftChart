@@ -8,6 +8,7 @@
 
 import UIKit
 import AVFoundation
+import qot_dal
 
 final class CoachMarksViewController: UIViewController {
 
@@ -19,11 +20,10 @@ final class CoachMarksViewController: UIViewController {
     var playerLooper: AVPlayerLooper?
     private let mediaExtension = "mp4"
     private var currentPage: Int = 0
+    private var thumbnail: UIImage?
     @IBOutlet private weak var buttonBack: UIButton!
     @IBOutlet private weak var buttonContinue: UIButton!
-    @IBOutlet private weak var viedoView: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
 
     // MARK: - Init
     init() {
@@ -47,7 +47,7 @@ final class CoachMarksViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        playerLayer?.frame = viedoView.bounds
+//        playerLayer?.frame = viedoView.bounds
     }
 }
 
@@ -55,7 +55,7 @@ final class CoachMarksViewController: UIViewController {
 private extension CoachMarksViewController {
     func setupPlayer(_ mediaName: String) {
         let playerLayer = AVPlayerLayer(player: player)
-        viedoView.layer.addSublayer(playerLayer)
+//        viedoView.layer.addSublayer(playerLayer)
         self.playerLayer = playerLayer
     }
 
@@ -70,8 +70,8 @@ private extension CoachMarksViewController {
     }
 
     func setupLabels(_ title: String, subtitle: String) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+//        titleLabel.text = title
+//        subtitleLabel.text = subtitle
     }
 
     func setupButtons(_ hideBackButton: Bool, _ rightButtonImage: UIImage?) {
@@ -94,6 +94,7 @@ private extension CoachMarksViewController {
 // MARK: - CoachMarksViewControllerInterface
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView(_ viewModel: CoachMark.ViewModel) {
+        collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
         updateView(viewModel)
         setupPlayer(viewModel.mediaName)
     }
@@ -103,5 +104,16 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         setPlayerLooper(viewModel.mediaName)
         setupLabels(viewModel.title, subtitle: viewModel.subtitle)
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
+    }
+}
+
+extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return CoachMark.Step.allCases.count
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
+        return cell
     }
 }

@@ -9,7 +9,7 @@
 import UIKit
 
 struct CoachMark {
-    enum Step: Int {
+    enum Step: Int, CaseIterable {
         case know = 1
         case myQot
         case coach

@@ -319,6 +319,8 @@
 		38532AA823699B3A00155643 /* walkThorugh_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA423699B3A00155643 /* walkThorugh_know.mp4 */; };
 		38532AA923699B3A00155643 /* walkThorugh_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA523699B3A00155643 /* walkThorugh_myQOT.mp4 */; };
 		38532AAA23699B3A00155643 /* walkThorugh_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA623699B3A00155643 /* walkThorugh_search.mp4 */; };
+		38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */; };
+		38532AB0236AFBB100155643 /* CoachMarkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
@@ -1626,6 +1628,8 @@
 		38532AA423699B3A00155643 /* walkThorugh_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_know.mp4; sourceTree = "<group>"; };
 		38532AA523699B3A00155643 /* walkThorugh_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_myQOT.mp4; sourceTree = "<group>"; };
 		38532AA623699B3A00155643 /* walkThorugh_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_search.mp4; sourceTree = "<group>"; };
+		38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkCollectionViewCell.swift; sourceTree = "<group>"; };
+		38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachMarkCollectionViewCell.xib; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
@@ -3311,6 +3315,8 @@
 				389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */,
 				389BBC81235EE68B0009FA02 /* CoachMarksViewController.swift */,
 				389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */,
+				38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */,
+				38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */,
 			);
 			name = Walkthrough;
 			sourceTree = "<group>";
@@ -5884,6 +5890,7 @@
 			files = (
 				3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */,
 				8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */,
+				38532AB0236AFBB100155643 /* CoachMarkCollectionViewCell.xib in Resources */,
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
 				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
 				754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */,
@@ -7035,6 +7042,7 @@
 				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
 				3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */,
 				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
+				38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */,
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
 				36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrator.swift in Sources */,
