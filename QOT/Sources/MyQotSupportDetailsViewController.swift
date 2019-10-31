@@ -15,10 +15,14 @@ final class MyQotSupportDetailsViewController: BaseViewController, ScreenZLevel3
 
     var interactor: MyQotSupportDetailsInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
         interactor?.viewDidLoad()
     }
@@ -41,7 +45,8 @@ extension MyQotSupportDetailsViewController: MyQotSupportDetailsViewControllerIn
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.delegate = self
         tableView.dataSource = self
-        ThemeText.myQOTSectionHeader.apply(interactor?.headerText, to: headerLabel)
+        baseHeaderview?.configure(title: interactor?.headerText, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
         tableView.reloadData()
     }
 }

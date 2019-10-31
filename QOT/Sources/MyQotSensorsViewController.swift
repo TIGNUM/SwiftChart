@@ -11,7 +11,9 @@ import qot_dal
 
 final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
 
-    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
     @IBOutlet private weak var ouraRingStatusButton: UIButton!
     @IBOutlet private weak var healthKitStatusButton: UIButton!
     @IBOutlet private weak var ouraRingLabel: UILabel!
@@ -27,6 +29,8 @@ final class MyQotSensorsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didUpdateData),
                                                name: .requestSynchronization, object: nil)
@@ -66,7 +70,8 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     }
 
     func set(headerTitle: String, sensorTitle: String) {
-        ThemeText.myQOTSectionHeader.apply(headerTitle, to: headerLabel)
+        baseHeaderview?.configure(title: headerTitle, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.mySensorsTitle.apply(sensorTitle, to: sensorHeaderLabel)
     }
 

@@ -12,12 +12,11 @@ import qot_dal
 final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
-    @IBOutlet private weak var accountSettingsHeaderLabel: UILabel!
-    @IBOutlet private weak var contactHeaderLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
-    @IBOutlet private weak var genderHeaderLabel: UILabel!
     @IBOutlet private weak var dobHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotTitleLabel: UILabel!
@@ -25,9 +24,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
     @IBOutlet private weak var userDobLabel: UILabel!
-    @IBOutlet private weak var headerTitle: UILabel!
-    @IBOutlet private weak var headerLine: UIView!
-    @IBOutlet private weak var headerView: UIView!
+
+    @IBOutlet private weak var subHeaderView: UIView!
     @IBOutlet private weak var editButton: UIButton!
 
     var interactor: MyQotAccountSettingsInteractor?
@@ -36,6 +34,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         interactor?.viewDidLoad()
     }
 
@@ -78,11 +78,11 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        ThemeText.sectionHeader.apply(headerTitle.text, to: headerTitle)
-        ThemeView.headerLine.apply(headerLine)
+        baseHeaderview?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_view_title_account_settings), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeView.level3.apply(headerView)
-        headerView.addHeader(with: .level3)
+        subHeaderView.addHeader(with: .level3)
         editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
         setContentForView()
     }
@@ -101,8 +101,6 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 
 private extension MyQotAccountSettingsViewController {
     func setContentForView() {
-        ThemeText.myQOTSectionHeader.apply(interactor?.accountSettingsText, to: accountSettingsHeaderLabel)
-        ThemeText.accountHeader.apply(interactor?.contactText, to: contactHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.emailText, to: emailHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.dateOfBirthText, to: dobHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.companyText, to: companyHeaderLabel)

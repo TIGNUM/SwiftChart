@@ -12,7 +12,9 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseHeaderview: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
 
     var interactor: MyQotAboutUsInteractorInterface?
@@ -21,6 +23,8 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderview?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
         setUpTableView()
         interactor?.viewDidLoad()
@@ -44,7 +48,8 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
-        ThemeText.myQOTSectionHeader.apply(title, to: headerLabel)
+        baseHeaderview?.configure(title: title, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }
 
