@@ -416,10 +416,11 @@
 "Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
 "Onboarding.Login.Email.GenericError" = "An error occurred, please try to “Send code” again";
 "Onboarding.Login.Code.PreCode" = "Enter code";
-"Onboarding.Login.Code.Description" = "Didn’t receive your code? Change email or";
+"Onboarding.Login.Code.Description" = "Didn’t receive your code?";
 "Onboarding.Login.Code.Error" = "Wrong code! please ";
 "Onboarding.Login.Button.GetHelp" = "Get help";
 "Onboarding.Login.Button.ResendCode" = "Resend code";
+"Onboarding.Login.Button.Separator" = "-";
 
 "Onboarding.CreateInfo.Button.CreateAccount" = "Create account";
 "Onboarding.CreateInfo.Text.Description" = "To make the most of your ToBeVision, please create your QOT account.";
