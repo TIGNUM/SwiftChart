@@ -32,14 +32,14 @@
                         <constraint firstAttribute="height" constant="1" id="nZf-XF-VU3"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ke-Sm-FZe">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" ambiguous="YES" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ke-Sm-FZe">
                     <rect key="frame" x="24" y="57" width="366" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ7-KD-HYg">
-                    <rect key="frame" x="24" y="105" width="390" height="230"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" ambiguous="YES" directionalLockEnabled="YES" bounces="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lJ7-KD-HYg">
+                    <rect key="frame" x="0.0" y="105" width="414" height="230"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="7QC-VK-Pan">
                             <rect key="frame" x="0.0" y="0.0" width="2000" height="230"/>
@@ -50,23 +50,21 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="7QC-VK-Pan" firstAttribute="centerY" secondItem="lJ7-KD-HYg" secondAttribute="centerY" id="2z0-1Q-cc7"/>
                         <constraint firstAttribute="trailing" secondItem="7QC-VK-Pan" secondAttribute="trailing" id="AvV-Xb-3bk"/>
                         <constraint firstItem="7QC-VK-Pan" firstAttribute="top" secondItem="lJ7-KD-HYg" secondAttribute="top" id="BHS-Gx-uW2"/>
                         <constraint firstAttribute="height" constant="230" id="NQU-yA-tmt"/>
                         <constraint firstItem="7QC-VK-Pan" firstAttribute="leading" secondItem="lJ7-KD-HYg" secondAttribute="leading" id="SJe-sN-m7P"/>
-                        <constraint firstAttribute="width" constant="390" id="k7G-fd-n6X"/>
                         <constraint firstAttribute="bottom" secondItem="7QC-VK-Pan" secondAttribute="bottom" id="p3r-vZ-Zua"/>
                     </constraints>
                 </scrollView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skS-XB-VBd">
-                    <rect key="frame" x="24" y="383" width="366" height="19.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skS-XB-VBd">
+                    <rect key="frame" x="24" y="395" width="366" height="19"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVx-UR-0Mr">
-                    <rect key="frame" x="24" y="343" width="366" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pVx-UR-0Mr">
+                    <rect key="frame" x="24" y="360" width="366" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="6OZ-T3-UlA"/>
                     </constraints>
@@ -78,21 +76,21 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="2ke-Sm-FZe" firstAttribute="top" secondItem="XfE-79-2dL" secondAttribute="bottom" constant="8" id="AGi-v8-SSZ"/>
+                <constraint firstAttribute="bottom" secondItem="skS-XB-VBd" secondAttribute="bottom" constant="30" id="HSk-ME-cB3"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="skS-XB-VBd" secondAttribute="trailing" constant="24" id="MZC-tD-x4i"/>
                 <constraint firstItem="XfE-79-2dL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="MZq-Fh-IKa"/>
-                <constraint firstItem="skS-XB-VBd" firstAttribute="top" secondItem="7QC-VK-Pan" secondAttribute="bottom" constant="48" id="Pz3-8p-Iyg"/>
+                <constraint firstItem="skS-XB-VBd" firstAttribute="top" secondItem="pVx-UR-0Mr" secondAttribute="bottom" constant="14" id="Zs2-Xv-y9B"/>
                 <constraint firstItem="XfE-79-2dL" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="efC-tb-mYS"/>
-                <constraint firstItem="lJ7-KD-HYg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="ghN-rn-TLw"/>
+                <constraint firstItem="lJ7-KD-HYg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="ghN-rn-TLw"/>
+                <constraint firstItem="skS-XB-VBd" firstAttribute="top" secondItem="lJ7-KD-HYg" secondAttribute="bottom" constant="60" id="grt-EW-a7h"/>
                 <constraint firstItem="pVx-UR-0Mr" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="gwd-QK-axw"/>
                 <constraint firstItem="lJ7-KD-HYg" firstAttribute="top" secondItem="2ke-Sm-FZe" secondAttribute="bottom" constant="24" id="i51-z4-igp"/>
                 <constraint firstItem="lJ7-KD-HYg" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="j95-hd-jWU"/>
-                <constraint firstItem="pVx-UR-0Mr" firstAttribute="top" secondItem="lJ7-KD-HYg" secondAttribute="bottom" constant="8" id="jaC-14-5My"/>
+                <constraint firstItem="pVx-UR-0Mr" firstAttribute="top" secondItem="lJ7-KD-HYg" secondAttribute="bottom" constant="25" id="jaC-14-5My"/>
                 <constraint firstItem="2ke-Sm-FZe" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="oLF-9y-c4G"/>
-                <constraint firstItem="skS-XB-VBd" firstAttribute="top" secondItem="pVx-UR-0Mr" secondAttribute="bottom" constant="19" id="ocz-2c-SbW"/>
                 <constraint firstItem="skS-XB-VBd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="pDi-hP-8cH"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="2ke-Sm-FZe" secondAttribute="trailing" constant="24" id="rxq-2F-hyd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pVx-UR-0Mr" secondAttribute="trailing" constant="24" id="ryw-uj-VMV"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="skS-XB-VBd" secondAttribute="bottom" constant="7.5" id="vqH-6p-MQP"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -101,7 +99,8 @@
                 <outlet property="bespokeTitleLabel" destination="pVx-UR-0Mr" id="WAd-BS-vnL"/>
                 <outlet property="bucketTitle" destination="2ke-Sm-FZe" id="wUE-Rg-2eQ"/>
                 <outlet property="departureBespokeText" destination="skS-XB-VBd" id="ldB-gj-S9r"/>
-                <outlet property="labelToStack" destination="Pz3-8p-Iyg" id="TW1-gp-vTq"/>
+                <outlet property="labelToStack" destination="grt-EW-a7h" id="mCJ-V1-1mc"/>
+                <outlet property="scrollView" destination="lJ7-KD-HYg" id="RNF-9h-mHC"/>
                 <outlet property="stackView" destination="7QC-VK-Pan" id="42o-SI-Oc3"/>
                 <outlet property="stackViewWidth" destination="paS-B5-och" id="FOT-St-Iqk"/>
             </connections>
