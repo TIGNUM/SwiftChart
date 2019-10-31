@@ -22,6 +22,7 @@ extension MindsetVisionTableViewCell {
 
     func configure(title: String, vision: String) {
         selectionStyle = .none
+        ThemeView.mindsetShifter.apply(self)
         ThemeText.resultTitle.apply(title, to: titleLabel)
         ThemeText.resultHeader2.apply(vision, to: visionLabel)
         updateConstraintsIfNeeded()

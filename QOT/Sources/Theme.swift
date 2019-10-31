@@ -65,6 +65,7 @@ enum ThemeView {
     case myDataHeatMapLegendLow
     case paymentReminder
     case peakPerformanceCell
+    case mindsetShifter
     case clear
 
     var color: UIColor {
@@ -133,6 +134,8 @@ enum ThemeView {
             return Palette.heatMapDarkBlue
         case .sprintsActive:
             return .carbonNew
+        case .mindsetShifter:
+            return .sand
         case .clear:
             return .clear
         }
