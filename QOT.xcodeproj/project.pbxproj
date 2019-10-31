@@ -1112,9 +1112,6 @@
 		E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0B12135285A00C0723E /* PDFReaderWorker.swift */; };
 		E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8552136F17F005E787C /* PDFReaderInterface.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
-		F902CF4822D87C2700FFC836 /* FeastCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4722D87C2700FFC836 /* FeastCell.swift */; };
-		F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4922D87C3600FFC836 /* FeastCellViewModel.swift */; };
-		F902CF4C22D87C4700FFC836 /* FeastCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF4B22D87C4700FFC836 /* FeastCell.xib */; };
 		F902CF4F22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */; };
 		F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */; };
 		F902CF5322DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */; };
@@ -1231,9 +1228,6 @@
 		F9D2BC2022D4968B00DBF2CC /* FromTignumCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D2BC1F22D4968B00DBF2CC /* FromTignumCell.swift */; };
 		F9D2BC2222D4969A00DBF2CC /* FromTignumCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D2BC2122D4969A00DBF2CC /* FromTignumCellViewModel.swift */; };
 		F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D2BC2322D496AF00DBF2CC /* FromTignumCell.xib */; };
-		F9D6381022D62B830092C482 /* DepartureInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6380F22D62B830092C482 /* DepartureInfoCell.swift */; };
-		F9D6381222D62B9A0092C482 /* DepartureInfoCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381122D62B9A0092C482 /* DepartureInfoCellViewModel.swift */; };
-		F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D6381322D62BAD0092C482 /* DepartureInfoCell.xib */; };
 		F9D6381622D6365C0092C482 /* QuestionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381522D6365C0092C482 /* QuestionCellViewModel.swift */; };
 		F9D6381922D745A80092C482 /* ExploreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9D6381822D745A80092C482 /* ExploreCell.xib */; };
 		F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9D6381A22D745FA0092C482 /* ExploreCell.swift */; };
@@ -2406,9 +2400,6 @@
 		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
 		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
 		F2B6283D93D968F7401F5F08 /* Pods-QOT.release_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release_novartis.xcconfig"; sourceTree = "<group>"; };
-		F902CF4722D87C2700FFC836 /* FeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCell.swift; sourceTree = "<group>"; };
-		F902CF4922D87C3600FFC836 /* FeastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCellViewModel.swift; sourceTree = "<group>"; };
-		F902CF4B22D87C4700FFC836 /* FeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeastCell.xib; sourceTree = "<group>"; };
 		F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsSHPICell.swift; sourceTree = "<group>"; };
 		F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsTBVCell.swift; sourceTree = "<group>"; };
 		F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsPeakPerformanceCell.swift; sourceTree = "<group>"; };
@@ -2524,9 +2515,6 @@
 		F9D2BC1F22D4968B00DBF2CC /* FromTignumCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromTignumCell.swift; sourceTree = "<group>"; };
 		F9D2BC2122D4969A00DBF2CC /* FromTignumCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromTignumCellViewModel.swift; sourceTree = "<group>"; };
 		F9D2BC2322D496AF00DBF2CC /* FromTignumCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromTignumCell.xib; sourceTree = "<group>"; };
-		F9D6380F22D62B830092C482 /* DepartureInfoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureInfoCell.swift; sourceTree = "<group>"; };
-		F9D6381122D62B9A0092C482 /* DepartureInfoCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartureInfoCellViewModel.swift; sourceTree = "<group>"; };
-		F9D6381322D62BAD0092C482 /* DepartureInfoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DepartureInfoCell.xib; sourceTree = "<group>"; };
 		F9D6381522D6365C0092C482 /* QuestionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionCellViewModel.swift; sourceTree = "<group>"; };
 		F9D6381822D745A80092C482 /* ExploreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExploreCell.xib; sourceTree = "<group>"; };
 		F9D6381A22D745FA0092C482 /* ExploreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExploreCell.swift; sourceTree = "<group>"; };
@@ -2662,11 +2650,9 @@
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
-				75423F0422CF2FF9008EE726 /* BeSpoke */,
+				75423F0422CF2FF9008EE726 /* BeSpoke to delete */,
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
 				F9D6381722D745940092C482 /* Explore */,
-				F9D6380E22D62B690092C482 /* DepartureInfo */,
-				F902CF4622D87BF300FFC836 /* FeastForEyes */,
 				F9D2BC1E22D4966B00DBF2CC /* FromTignum */,
 				75423F0D22CF4876008EE726 /* FromMyCoach */,
 				F98E2AC622C22037002550FF /* GoodToKnow */,
@@ -3561,14 +3547,14 @@
 			name = MyToBeVisionTracker;
 			sourceTree = "<group>";
 		};
-		75423F0422CF2FF9008EE726 /* BeSpoke */ = {
+		75423F0422CF2FF9008EE726 /* BeSpoke to delete */ = {
 			isa = PBXGroup;
 			children = (
 				75423F0522CF303B008EE726 /* BeSpokeCell.swift */,
 				75423F0622CF303B008EE726 /* BeSpokeCell.xib */,
 				75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */,
 			);
-			name = BeSpoke;
+			name = "BeSpoke to delete";
 			sourceTree = "<group>";
 		};
 		75423F0D22CF4876008EE726 /* FromMyCoach */ = {
@@ -5312,16 +5298,6 @@
 			path = PDFReader;
 			sourceTree = "<group>";
 		};
-		F902CF4622D87BF300FFC836 /* FeastForEyes */ = {
-			isa = PBXGroup;
-			children = (
-				F902CF4722D87C2700FFC836 /* FeastCell.swift */,
-				F902CF4922D87C3600FFC836 /* FeastCellViewModel.swift */,
-				F902CF4B22D87C4700FFC836 /* FeastCell.xib */,
-			);
-			name = FeastForEyes;
-			sourceTree = "<group>";
-		};
 		F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */ = {
 			isa = PBXGroup;
 			children = (
@@ -5543,16 +5519,6 @@
 				F9D2BC2322D496AF00DBF2CC /* FromTignumCell.xib */,
 			);
 			name = FromTignum;
-			sourceTree = "<group>";
-		};
-		F9D6380E22D62B690092C482 /* DepartureInfo */ = {
-			isa = PBXGroup;
-			children = (
-				F9D6380F22D62B830092C482 /* DepartureInfoCell.swift */,
-				F9D6381122D62B9A0092C482 /* DepartureInfoCellViewModel.swift */,
-				F9D6381322D62BAD0092C482 /* DepartureInfoCell.xib */,
-			);
-			name = DepartureInfo;
 			sourceTree = "<group>";
 		};
 		F9D6381722D745940092C482 /* Explore */ = {
@@ -5985,7 +5951,6 @@
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */,
-				F902CF4C22D87C4700FFC836 /* FeastCell.xib in Resources */,
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
 				B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */,
 				F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */,
@@ -6018,7 +5983,6 @@
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
-				F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
@@ -6651,7 +6615,6 @@
 				36EC23012323F45700DB5696 /* DTSprintPresenter.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
-				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
 				B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
 				F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */,
@@ -6941,7 +6904,6 @@
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
-				F9D6381022D62B830092C482 /* DepartureInfoCell.swift in Sources */,
 				9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */,
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
 				DB2969F022C64B8C00B8A590 /* BaseRootViewController+BottomNavigation.swift in Sources */,
@@ -7178,7 +7140,6 @@
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
 				385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */,
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
-				F902CF4822D87C2700FFC836 /* FeastCell.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
 				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
@@ -7245,7 +7206,6 @@
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				8DBE1EDE22F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift in Sources */,
-				F9D6381222D62B9A0092C482 /* DepartureInfoCellViewModel.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */,

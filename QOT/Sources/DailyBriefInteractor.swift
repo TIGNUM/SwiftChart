@@ -548,31 +548,6 @@ extension DailyBriefInteractor {
         return createLevel5List
     }
 
-    func createDepatureInfo(depatureInfoBucket depatureInfo: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var departureInfoList: [BaseDailyBriefViewModel] = []
-        guard let collection = depatureInfo.contentCollections?.first else {
-            departureInfoList.append( DepartureInfoCellViewModel(title: "",
-                                                                 subtitle: "",
-                                                                 text: "",
-                                                                 image: "",
-                                                                 copyright: "",
-                                                                 domainModel: depatureInfo))
-            return departureInfoList
-        }
-        let title = depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
-        let subtitle = depatureInfo.bucketText?.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
-        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
-        let copyright = collection.contentItems.filter { $0.searchTags.contains("BUCKET_COPYRIGHT") }.first?.valueText
-        let model = DepartureInfoCellViewModel(title: title,
-                                               subtitle: subtitle,
-                                               text: text,
-                                               image: collection.thumbnailURLString ?? "",
-                                               copyright: copyright,
-                                               domainModel: depatureInfo)
-        departureInfoList.append(model)
-        return departureInfoList
-    }
-
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
@@ -1033,26 +1008,6 @@ extension DailyBriefInteractor {
         return latestWhatsHotList
     }
 
-    func createFeastForEyesModel(feastForEyesBucket feastForEyes: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFeastForEyesList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = feastForEyes.contentCollections?.first else {
-            createFeastForEyesList.append(FeastCellViewModel(title: "",
-                                                             image: "",
-                                                             remoteID: 1,
-                                                             copyright: "",
-                                                             domainModel: feastForEyes))
-            return createFeastForEyesList
-
-        }
-        createFeastForEyesList.append(FeastCellViewModel(title: feastForEyes.bucketText?.contentItems.first?.valueText ?? "",
-                                                         image: collection.thumbnailURLString ?? "",
-                                                         remoteID: collection.contentItems.first?.remoteID,
-                                                         copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                         domainModel: feastForEyes))
-        return createFeastForEyesList
-    }
-
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
@@ -1062,28 +1017,6 @@ extension DailyBriefInteractor {
         }
         createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
         return createFromMyCoachModelList
-    }
-
-    func createBeSpokeModel(beSpokeModelBucket beSpoke: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createBeSpokeModelList: [BaseDailyBriefViewModel] = []
-
-        guard let collection = beSpoke.contentCollections?.first else {
-            createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: "",
-                                                               title: "",
-                                                               description: "",
-                                                               image: "",
-                                                               copyright: "",
-                                                               domainModel: nil))
-            return createBeSpokeModelList
-
-        }
-        createBeSpokeModelList.append(BeSpokeCellViewModel(bucketTitle: beSpoke.bucketText?.contentItems.first?.valueText,
-                                                           title: collection.title,
-                                                           description: collection.contentItems.filter {$0.searchTags.contains("BUCKET_CONTENT")}.first?.valueText,
-                                                           image: collection.thumbnailURLString ?? "",
-                                                           copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
-                                                           domainModel: beSpoke))
-        return createBeSpokeModelList
     }
 
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
