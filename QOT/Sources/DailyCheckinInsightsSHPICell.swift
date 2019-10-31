@@ -32,16 +32,16 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
     }
     func configure(with: DailyCheck2SHPIModel?) {
         guard let model = with else { return }
-        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0)
+        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0, shpiQuestion: model.shpiQuestion)
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
-        ThemeText.searchTopic.apply(model.shpiQuestion, to: shpiQuestionLabel)
     }
 }
 
 private extension DailyCheckinInsightsSHPICell {
-    func updateView(text: String?, rating: Int) {
+    func updateView(text: String?, rating: Int, shpiQuestion: String?) {
         SHPIText.text = text
+        ThemeText.shpiQuestion.apply(shpiQuestion, to: shpiQuestionLabel)
         let selectedIndex = max(0, rating - 1)
         for index in 0...9 {
             var barHeight: CGFloat = 32.0

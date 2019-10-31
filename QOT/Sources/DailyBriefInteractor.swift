@@ -770,28 +770,29 @@ extension DailyBriefInteractor {
         if dailyCheckIn2.toBeVisionTrackId != nil {
             // for TBV
             let title: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let tbvRating: Int = dailyCheckIn2.toBeVisionTrack?.ratings.first?.rating ?? 0
-            let intro: String = (dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText ?? "") + String(tbvRating)
+            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInAnswers?.last?.userAnswerValue ?? "") ?? 0
+            let intro: String = (dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "") + " " + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
+            let ctaText = dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("TO_BE_VISION_BUTTON")}.first?.valueText ?? ""
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
             dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
                                                                                  introText: intro,
                                                                                  tbvSentence: tbvSentence,
-
-                                                                                 adviceText: reflection)
+                                                                                 adviceText: reflection,
+                                                                                 cta: ctaText)
         } else if dailyCheckIn2.SHPIQuestionId != nil {
             //SHPI
             let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.first?.userAnswerValue ?? "0")
+            let rating = Int(dailyCheckIn2.dailyCheckInAnswers?.last?.userAnswerValue ?? "0")
             let question = dailyCheckIn2.SHPIQuestion?.title
             dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // peak performance
             let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
-            let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
+            let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.last?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
             let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
@@ -963,7 +964,7 @@ extension DailyBriefInteractor {
         } else {
             let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? ""
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
-            let tbvIntro2 = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO_2")}.first?.valueText ?? " "
+            let tbvIntro2 = meAtMyBest.contentCollections?.filter {$0.searchTags.contains("ME_AT_MY_BEST_REFLECTION")}.randomElement()?.contentItems.first?.valueText ?? " "
             let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
                                                           intro: tbvIntro,

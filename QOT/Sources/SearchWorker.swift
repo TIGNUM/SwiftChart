@@ -112,7 +112,7 @@ final class SearchWorker {
             let searchCollection = searchCategory?.contentCollections.filter {
                 $0.searchTags.contains("search_suggestions")
                 }.first
-            suggestionItems  = searchCollection?.contentItems.sorted(by: {
+            suggestionItems = searchCollection?.contentItems.sorted(by: {
                 $0.sortOrder < $1.sortOrder
             }).compactMap({ $0.valueText }) ?? []
             completion(SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),

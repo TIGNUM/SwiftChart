@@ -60,13 +60,13 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="233" y="220" width="150" height="40"/>
+                    <rect key="frame" x="188" y="220" width="195" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="Shh-xa-dEy"/>
+                        <constraint firstAttribute="width" constant="195" id="Ngw-m1-G7V"/>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Sux-yG-yCB"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                    <state key="normal" title="View my TBV">
+                    <state key="normal" title="View my ToBeVision">
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <connections>

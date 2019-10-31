@@ -32,7 +32,7 @@ final class LaunchHandler {
         }
 
         guard appDelegate.appCoordinator.isReadyToOpenURL(),
-            qot_dal.SessionService.main.getCurrentSession() != nil else {
+            SessionService.main.getCurrentSession() != nil else {
                 RestartHelper.setRestartURL(url)
                 return
         }
@@ -53,7 +53,7 @@ final class LaunchHandler {
         case .dailyCheckIn,
              .dailyPrep: showDailyCheckIn()
         case .latestWhatsHotArticle:
-            qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { [weak self] (items) in
+            ContentService.main.getContentCollectionBySection(.WhatsHot, { [weak self] (items) in
                 guard let contentId = items?.first?.remoteID else { return }
                 self?.showContentCollection(contentId)
             })
@@ -194,23 +194,22 @@ final class LaunchHandler {
              .featureExplainer:
             guard let contentIdString = queries[scheme.queryName] ?? nil, let contentId = Int(contentIdString) else { break }
             showContentCollection(contentId)
-        case .qrcode0001,
-             .qrcode0002,
-             .qrcode0003,
-             .qrcode0004: presentQRCodeURL(url)
+        case .qrcode0001, .qrcode0002, .qrcode0003, .qrcode0004, .qrcode0005, .qrcode0006, .qrcode0007, .qrcode0008,
+             .qrcode0009, .qrcode0010:
+            presentQRCodeURL(url)
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
-        qot_dal.NotificationService.main.reportVisitedNotificationLink(url.absoluteString) { (_) in /* WOW */}
+        NotificationService.main.reportVisitedNotificationLink(url.absoluteString) { (_) in /* WOW */}
     }
 
     func presentQRCodeURL(_ url: URL) {
         guard let settingKey = SettingKey(rawValue: url.absoluteString) else {
             return
         }
-        qot_dal.SettingService.main.getSettingFor(key: settingKey) { (setting, _, error) in
+        SettingService.main.getSettingFor(key: settingKey) { (setting, _, error) in
             guard let setting = setting, error == nil,
                 let urlString = setting.textValue,
                 let targetURL = URL(string: urlString) else {
@@ -272,21 +271,12 @@ extension LaunchHandler {
     }
 
     func showDailyCheckIn() {
-        qot_dal.MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { [weak self] (results, initialized, error) in
+        MyDataService.main.getDailyCheckInResults(from: Date.beginingOfDay(), to: nil) { [weak self] (results, initialized, error) in
             guard initialized == true, error == nil else {
                 return // DO NOTHING
             }
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
-            } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
-                self?.getHealthKitAuthStatus() == .notDetermined {
-                self?.requestHealthKitAuthorization({ (_) in
-                    self?.importHealthKitData()
-                    UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                        self?.showDailyCheckIn()
-                    })
-                })
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
@@ -298,7 +288,7 @@ extension LaunchHandler {
     func showContentItem(_ itemId: Int) {
         //        guard let localID = localID else { return }
         // FIXME: Show preparation detail
-        qot_dal.ContentService.main.getContentItemById(itemId) { (contentItem) in
+        ContentService.main.getContentItemById(itemId) { (contentItem) in
             guard let contentItem = contentItem else { return }
             switch contentItem.format {
             case .pdf:
@@ -316,7 +306,7 @@ extension LaunchHandler {
     }
 
     func showContentCollection(_ collectionId: Int) {
-        qot_dal.ContentService.main.getContentCollectionById(collectionId, { [weak self] (content) in
+        ContentService.main.getContentCollectionById(collectionId, { [weak self] (content) in
             guard let contentCollection = content else { return }
             if contentCollection.contentItems.count == 1,
                 (contentCollection.section == .LearnStrategies ||
@@ -397,7 +387,7 @@ extension LaunchHandler {
         baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true, completion: nil)
     }
 
-    func showLearnStrategy(_ category: qot_dal.ContentCategory?) {
+    func showLearnStrategy(_ category: ContentCategory?) {
         showCategory(category?.rawValue)
     }
 
@@ -422,14 +412,14 @@ extension LaunchHandler {
     func requestHealthKitAuthorization(_ completion: @escaping (Bool) -> Void) {
         HealthService.main.requestHealthKitAuthorization { (success, error) in
             if let error = error {
-                qot_dal.log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
+                log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
             }
             completion(success)
         }
     }
 
     func getHealthKitAuthStatus() -> HKAuthorizationStatus {
-        return qot_dal.HealthService.main.healthKitAuthorizationStatus()
+        return HealthService.main.healthKitAuthorizationStatus()
     }
 
     func importHealthKitData() {

@@ -27,13 +27,13 @@
             <rect key="frame" x="0.0" y="0.0" width="522" height="516"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY INSIGHTS " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xws-ox-yjU">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="DAILY INSIGHTS " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xws-ox-yjU">
                     <rect key="frame" x="20" y="57" width="482" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-wa-MhM">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zd4-wa-MhM">
                     <rect key="frame" x="20" y="105" width="482" height="61"/>
                     <string key="text">Text about the user's answered 15% of busines professionals say they do specific movements to improve their performance during the day.Text about the user's answered 15% of busines professionals say they do specific movements to improve their performance during the day.</string>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
@@ -48,19 +48,19 @@
                         <constraint firstAttribute="width" constant="16" id="eyW-ne-BOa"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU RATED YOURSELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHN-Ev-Uoj">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="YOU RATED YOURSELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHN-Ev-Uoj">
                     <rect key="frame" x="24" y="252.5" width="474" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moving your body during a working day is helpful to keep you awake and foused." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpA-hZ-HKE">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpA-hZ-HKE">
                     <rect key="frame" x="20" y="174" width="474" height="38.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NgW-bi-Vgj">
+                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NgW-bi-Vgj">
                     <rect key="frame" x="24" y="313.5" width="474" height="96"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V23-jD-AMs">
@@ -468,13 +468,13 @@
                         <constraint firstAttribute="height" constant="96" id="udG-2P-Dp1"/>
                     </constraints>
                 </stackView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htd-Bh-cdR">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Never" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htd-Bh-cdR">
                     <rect key="frame" x="24" y="415.5" width="38.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSP-Px-wmT">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Always" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSP-Px-wmT">
                     <rect key="frame" x="457" y="417" width="45" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -513,7 +513,7 @@
                 <outlet property="barsStackView" destination="NgW-bi-Vgj" id="GWo-Iz-duu"/>
                 <outlet property="barsTitleLabel" destination="UHN-Ev-Uoj" id="Mlj-xB-42d"/>
                 <outlet property="bucketTitle" destination="Xws-ox-yjU" id="JEv-Vt-X3e"/>
-                <outlet property="shpiQuestionLabel" destination="IpA-hZ-HKE" id="tfh-78-meQ"/>
+                <outlet property="shpiQuestionLabel" destination="IpA-hZ-HKE" id="mMo-aS-HZJ"/>
                 <outletCollection property="labels" destination="qhB-tC-Sbd" collectionClass="NSMutableArray" id="f0a-Ir-NfH"/>
                 <outletCollection property="labels" destination="3r8-Zt-T9D" collectionClass="NSMutableArray" id="eKK-sR-1oo"/>
                 <outletCollection property="heights" destination="mHl-Nn-1gr" collectionClass="NSMutableArray" id="Vw4-4V-31d"/>

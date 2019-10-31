@@ -16,8 +16,9 @@ extension AppDelegate {
             let title = data?.title,
             let url = data?.url {
             UserStorageService.main.addLink(title: title, url: url) { (_, _) in
-                ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
+                //
             }
+            ExtensionUserDefaults.removeObject(for: .share, key: .saveLink)
         }
     }
 }
