@@ -767,6 +767,9 @@ enum ThemeText {
     case mySensorsDescriptionTitle
     case mySensorsDescriptionBody
 
+    case coachMarkTitle
+    case coachMarkSubtitle
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel:
@@ -781,7 +784,7 @@ enum ThemeText {
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion:
+             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -806,7 +809,7 @@ enum ThemeText {
              .chatbotProgress,
              .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
-        case .registrationCodeDescriptionEmail, .walkthroughMessage:
+        case .registrationCodeDescriptionEmail, .walkthroughMessage, .coachMarkTitle:
             return Fonts.fontSemiBold16
         case .articleCategory, .articleDatestamp:
             switch textScale {
@@ -939,7 +942,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
-             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion:
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -1170,7 +1173,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow:
+        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow, .coachMarkTitle, .coachMarkSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)

@@ -29,15 +29,11 @@ final class CoachMarkCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-//        videoView.layer.removeAllSublayer()
         titleLabel.text = nil
         subtitleLabel.text = nil
     }
 
     func configure(mediaName: String, title: String, subtitle: String) {
-        print("______________")
-        print(title)
-        print(subtitle)
         setPlayerLooper(mediaName)
         setupLabels(title, subtitle: subtitle)
         player?.play()
@@ -63,7 +59,7 @@ private extension CoachMarkCollectionViewCell {
     }
 
     func setupLabels(_ title: String?, subtitle: String?) {
-        titleLabel.text = title
-        subtitleLabel.text = subtitle
+        ThemeText.coachMarkTitle.apply(title, to: titleLabel)
+        ThemeText.coachMarkSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }
