@@ -65,9 +65,9 @@ final class PermissionsManager {
     func reset() {
         data = [ // ensure every key is mapped to a permission
             .notifications: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .notifications),
-            .location:      Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
-            .photos:        Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),
-            .camera:        Permission(interface: cameraPermission, askStatus: .canAsk, identifier: .camera)
+            .location: Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
+            .photos: Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),
+            .camera: Permission(interface: cameraPermission, askStatus: .canAsk, identifier: .camera)
         ]
         fetchDescriptions { _ in }
     }
