@@ -44,7 +44,7 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
     }
 }
 
-// MARK: - Private
+// MARK: - Private  
 private extension CoachMarksInteractor {
     func updateView(_ page: Int) {
         if let step = CoachMark.Step(rawValue: page) {

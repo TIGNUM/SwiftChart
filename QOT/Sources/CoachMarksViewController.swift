@@ -86,7 +86,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
         collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
-        collectionView.reloadData()
+        collectionView.reloadItems(at: [toIndexPath])
     }
 }
 
