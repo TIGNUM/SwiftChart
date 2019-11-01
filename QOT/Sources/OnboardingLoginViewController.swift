@@ -24,7 +24,9 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
     }
 
     var interactor: OnboardingLoginInteractorInterface?
-    @IBOutlet weak var titleLabel: UILabel!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var emailField: QotPlaceholderTextField!
     @IBOutlet weak var emailInstructionsLabel: UILabel!
     @IBOutlet weak var precodeLabel: UILabel!
@@ -324,7 +326,10 @@ extension OnboardingLoginViewController: TextFieldDelegate {
 extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface {
     func setupView() {
         viewTheme.apply(view)
-        ThemeText.loginEmailTitle.apply(interactor?.title, to: titleLabel)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
         ThemeText.loginEmailCode.apply(interactor?.preCode, to: precodeLabel)
         ThemeText.loginEmailCodeMessage.apply(interactor?.digitDescription, to: digitDescriptionLabel)

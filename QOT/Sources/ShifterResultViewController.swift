@@ -51,8 +51,9 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     }
 
     func setupView() {
+        ThemeView.mindsetShifter.apply(view)
+        ThemeView.mindsetShifter.apply(tableView)
         tableView.contentInset = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 50.0, right: 0.0)
-        tableView.registerDequeueable(MindsetShifterHeaderCell.self)
         tableView.registerDequeueable(TriggerTableViewCell.self)
         tableView.registerDequeueable(ReactionsTableViewCell.self)
         tableView.registerDequeueable(NegativeToPositiveTableViewCell.self)
@@ -116,8 +117,14 @@ extension ShifterResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch model?.sections[indexPath.row] {
         case .header(let title, let subtitle)?:
-            let cell: MindsetShifterHeaderCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, subtitle: subtitle)
+            let cell = UITableViewCell.init(frame: .zero)
+            cell.selectionStyle = .none
+            ThemeView.mindsetShifter.apply(cell)
+            let baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: cell)
+            baseHeaderView?.addTo(superview: cell, showSkeleton: false, darkMode: false)
+            baseHeaderView?.configure(title: title, subtitle: subtitle)
+            ThemeText.resultTitle.apply(title, to: baseHeaderView?.titleLabel)
+            ThemeText.resultList.apply(subtitle, to: baseHeaderView?.subtitleTextView)
             return cell
         case .trigger(let title, let subtitle)?:
             let cell: TriggerTableViewCell = tableView.dequeueCell(for: indexPath)

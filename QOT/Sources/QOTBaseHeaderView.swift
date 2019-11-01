@@ -40,7 +40,18 @@ final class QOTBaseHeaderView: UIView {
     func configure(title: String?, subtitle: String?, darkMode: Bool? = nil) {
         self.title = title
         self.subtitle = subtitle
-        subtitleTextViewBottomConstraint.constant = subtitle == nil ? 0 : 18
+        if subtitle == nil {
+            let heightConstraint = NSLayoutConstraint.init(item: subtitleTextView,
+                                                           attribute: .height,
+                                                           relatedBy: .equal,
+                                                           toItem: nil,
+                                                           attribute: .notAnAttribute,
+                                                           multiplier: 1.0,
+                                                           constant: 0.0)
+            subtitleTextView.addConstraint(heightConstraint)
+            subtitleTextViewBottomConstraint.constant = 0
+        }
+
         skeletonManager.hide()
         subtitleTextView.textContainerInset = .zero
         subtitleTextView.textContainer.lineFragmentPadding = 0
@@ -76,8 +87,10 @@ extension QOTBaseHeaderView {
             horizontalConstraintsSum += constraint.constant
         }
         let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
-        let subtitleLabelSize = subtitleTextView.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
-
+        var subtitleLabelSize = subtitleTextView.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
+        if subtitleTextView.text.isEmpty {
+            subtitleLabelSize = .zero
+        }
         height = titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
 
         return height

@@ -11,7 +11,7 @@ import Foundation
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     
     @IBOutlet private weak var button: AnimatedButton!
@@ -23,8 +23,8 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(tbvSentence)
         skeletonManager.addSubtitle(adviceText)
         skeletonManager.addOtherView(button)
@@ -33,10 +33,10 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     func configure(with: DailyCheckIn2TBVModel?) {
         guard let model = with else { return }
         skeletonManager.hide()
-        baseHeaderview?.configure(title: model.title,
+        baseHeaderView?.configure(title: model.title,
                                   subtitle: model.introText)
-        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
-        headerHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.frame.size.width) ?? 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         tbvSentence.text = model.tbvSentence
         self.adviceText.text = model.adviceText
     }

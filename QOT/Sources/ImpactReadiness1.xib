@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
         <array key="SF-Pro-Display-Ultralight.otf">
             <string>SFProDisplay-Ultralight</string>
         </array>
@@ -78,38 +75,14 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="13j-PD-rak">
-                        <rect key="frame" x="0.0" y="235" width="436" height="112"/>
-                        <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
-                                <rect key="frame" x="24" y="64" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="P5J-RI-SQf"/>
-                                    <constraint firstAttribute="width" constant="16" id="mc3-tK-9Yi"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMPACT READINESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="80" width="175.33333333333334" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                        <rect key="frame" x="0.0" y="257" width="436" height="90"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="8" id="5KI-sN-rwF"/>
-                            <constraint firstAttribute="height" constant="112" id="6UL-tK-mVV"/>
-                            <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="top" constant="64" id="OQc-mB-PAF"/>
-                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="top" secondItem="ft1-S7-msi" secondAttribute="bottom" constant="15" id="Rc0-74-rpC"/>
-                            <constraint firstItem="ft1-S7-msi" firstAttribute="leading" secondItem="13j-PD-rak" secondAttribute="leading" constant="24" id="aVv-RQ-kFS"/>
-                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="leading" secondItem="13j-PD-rak" secondAttribute="leading" constant="24" id="yki-tr-XGH"/>
+                            <constraint firstAttribute="height" constant="90" id="6UL-tK-mVV"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM5-PW-enG">
-                        <rect key="frame" x="24" y="357" width="73.333333333333329" height="60"/>
+                        <rect key="frame" x="24" y="357" width="71.333333333333329" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="vAR-w9-yr1"/>
                         </constraints>
@@ -118,13 +91,13 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhX-cm-XO0">
-                        <rect key="frame" x="99.333333333333329" y="403" width="8.3333333333333286" height="17"/>
+                        <rect key="frame" x="97.333333333333329" y="403" width="8.3333333333333286" height="17"/>
                         <fontDescription key="fontDescription" name="Rockwell-Regular" family="Rockwell" pointSize="17"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="out of 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-t5-POi">
-                        <rect key="frame" x="108.66666666666667" y="403" width="57.666666666666671" height="14"/>
+                        <rect key="frame" x="106.66666666666667" y="403" width="54.666666666666671" height="14"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -165,7 +138,7 @@
                     <constraint firstItem="DM5-PW-enG" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="bottom" constant="10" id="D9z-eO-mcE"/>
                     <constraint firstItem="13j-PD-rak" firstAttribute="leading" secondItem="eeg-bv-5dK" secondAttribute="leading" id="Ehe-9U-4rF"/>
                     <constraint firstItem="Ml6-kf-324" firstAttribute="leading" secondItem="eeg-bv-5dK" secondAttribute="leading" id="EuN-9d-i85"/>
-                    <constraint firstItem="13j-PD-rak" firstAttribute="top" secondItem="eeg-bv-5dK" secondAttribute="top" constant="235" id="R9a-8a-eiR"/>
+                    <constraint firstItem="13j-PD-rak" firstAttribute="top" secondItem="eeg-bv-5dK" secondAttribute="top" constant="257" id="R9a-8a-eiR"/>
                     <constraint firstItem="eeg-bv-5dK" firstAttribute="trailing" secondItem="iCz-Cs-rct" secondAttribute="trailing" id="XZp-Au-HBO"/>
                     <constraint firstItem="iCz-Cs-rct" firstAttribute="leading" secondItem="eeg-bv-5dK" secondAttribute="leading" id="ZlZ-XJ-3pt"/>
                     <constraint firstItem="eeg-bv-5dK" firstAttribute="trailing" secondItem="Ml6-kf-324" secondAttribute="trailing" id="aVR-Ea-8fM"/>
@@ -183,10 +156,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="6bT-uI-Tm1"/>
             <connections>
-                <outlet property="bucketTitle" destination="IAV-Ov-hU9" id="0Qz-yG-4QW"/>
                 <outlet property="buttonLeft" destination="cHB-0X-pIa" id="KqO-uQ-lMS"/>
                 <outlet property="buttonRight" destination="FoF-ku-DkF" id="b2D-Q0-Uzf"/>
                 <outlet property="content" destination="w4g-tE-UTh" id="46l-wH-Uvn"/>
+                <outlet property="headerView" destination="13j-PD-rak" id="cLW-Mq-FM7"/>
                 <outlet property="impactReadinessButton" destination="Vjm-ra-cbt" id="jpM-JP-Uvx"/>
                 <outlet property="impactReadinessOutOf100Label" destination="R2j-t5-POi" id="xFq-k8-tr4"/>
                 <outlet property="impactReadinessScore" destination="DM5-PW-enG" id="jgy-dv-ELQ"/>

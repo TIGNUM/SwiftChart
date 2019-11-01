@@ -13,17 +13,16 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Properties
 
     var interactor: MySprintsListInteractorInterface?
-    @IBOutlet private weak var headerLine: UIView!
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var editButton: AnimatedButton!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var headerHeight: NSLayoutConstraint!
 
     private var infoAlertView: InfoAlertView?
     private var bottomNavigationItems = UINavigationItem()
 
     // MARK: - Init
-
     init(configure: Configurator<MySprintsListViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -37,6 +36,8 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .sprintsActive)
         interactor?.viewDidLoad()
@@ -92,7 +93,7 @@ private extension MySprintsListViewController {
         infoAlertView = InfoAlertView()
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
         infoAlertView?.present(on: self.view)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
+        infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
@@ -121,8 +122,9 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
         ThemeView.sprintsActive.apply(view)
         ThemeView.level2.apply(tableView)
 
-        ThemeView.headerLine.apply(headerLine)
-        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -132,7 +134,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
     }
 
     func update() {
-        ThemeText.mySprintsTitle.apply(interactor?.title, to: titleLabel)
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
 
         let isEditing = interactor?.viewModel.isEditing ?? false
         tableView.setEditing(isEditing, animated: true)

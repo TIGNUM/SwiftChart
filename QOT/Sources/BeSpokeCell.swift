@@ -11,7 +11,7 @@ import UIKit
 final class BeSpokeCell: BaseDailyBriefCell {
 
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
 
     @IBOutlet private weak var firstImageView: UIImageView!
@@ -25,9 +25,9 @@ final class BeSpokeCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.subtitleTextView.text = ""
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.subtitleTextView.text = ""
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(firstImageView)
@@ -40,9 +40,9 @@ final class BeSpokeCell: BaseDailyBriefCell {
     func configure(with viewModel: BeSpokeCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        baseHeaderview?.configure(title: model.title,
+        baseHeaderView?.configure(title: model.title,
                                   subtitle: nil)
-        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseHeaderview?.titleLabel)
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
         skeletonManager.addOtherView(firstImageView)

@@ -19,7 +19,8 @@ protocol SettingsViewControllerDelegate: class {
 final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    @IBOutlet private weak var headerTitle: UILabel!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
     private var selectedCell: SettingsTableViewCell?
     var interactor: ProfileSettingsInteractorInterface?
@@ -82,7 +83,9 @@ private extension ProfileSettingsViewController {
     func setupView() {
         tableView.tableFooterView = UIView()
         registerCells()
-        headerTitle.text = interactor?.editAccountTitle
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        baseHeaderView?.configure(title: interactor?.editAccountTitle, subtitle: nil)
         view.backgroundColor = .carbon
         keyboardInputView.delegate = self
     }
