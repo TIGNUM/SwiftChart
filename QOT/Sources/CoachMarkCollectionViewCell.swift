@@ -23,8 +23,11 @@ final class CoachMarkCollectionViewCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupPlayer()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
         playerLayer?.frame = videoView.bounds
-        playerLayer?.contentsGravity = kCAGravityCenter
     }
 
     override func prepareForReuse() {
@@ -37,6 +40,7 @@ final class CoachMarkCollectionViewCell: UICollectionViewCell, Dequeueable {
         setPlayerLooper(mediaName)
         setupLabels(title, subtitle: subtitle)
         player?.play()
+        layoutIfNeeded()
     }
 }
 
