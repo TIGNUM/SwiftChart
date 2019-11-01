@@ -13,7 +13,7 @@ protocol CreateAccountInfoViewControllerDelegate: class {
     func didTapCreate()
 }
 
-class CreateAccountInfoViewController: BaseViewController, ScreenZLevel3 {
+class CreateAccountInfoViewController: BaseViewController, ScreenZLevel1 {
 
     // Properties
     weak var delegate: CreateAccountInfoViewControllerDelegate?
