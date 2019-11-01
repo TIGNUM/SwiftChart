@@ -9,22 +9,22 @@
 import UIKit
 
 final class ThoughtsCell: BaseDailyBriefCell {
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var authorLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(authorLabel)
     }
 
     func configure(with viewModel: ThoughtsCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: model.thought)
-        ThemeText.quotation.apply(model.thought, to: baseHeaderview?.subtitleTextView)
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.thought)
+        ThemeText.quotation.apply(model.thought, to: baseHeaderView?.subtitleTextView)
         ThemeText.quoteAuthor.apply(model.author, to: authorLabel)
     }
 }

@@ -11,7 +11,7 @@ import UIKit
 final class ExploreCell: BaseDailyBriefCell {
 
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var timeOfDayPosition: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -21,8 +21,8 @@ final class ExploreCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(strategyView)
         skeletonManager.addOtherView(lineView)
         for label in hourLabels {
@@ -31,10 +31,10 @@ final class ExploreCell: BaseDailyBriefCell {
     }
 
     func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {
-        baseHeaderview?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
-        ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderview?.titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderview?.subtitleTextView)
-        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
+        baseHeaderView?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
+        ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)
         timeOfDayPosition.constant = labelPosition ?? 0
         skeletonManager.hide()

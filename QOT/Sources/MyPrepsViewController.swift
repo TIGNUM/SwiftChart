@@ -29,7 +29,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     var interactor: MyPrepsInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
@@ -66,8 +66,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
@@ -196,8 +196,8 @@ private extension MyPrepsViewController {
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
-        baseHeaderview?.configure(title: AppTextService.get(AppTextKey.my_qot_view_title_my_plans), subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_view_title_my_plans), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_subtitle), to: noPrepsTitle)
         ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_body), to: noPrepsComment)
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_mindset_shifts_view_subtitle), to: noMindsetTitle)

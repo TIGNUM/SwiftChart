@@ -13,7 +13,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     // MARK: - Properties
     var interactor: AskPermissionInteractorInterface?
     private var rightBarButtonItems = [UIBarButtonItem]()
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageView: UIImageView!
@@ -31,8 +31,8 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         ThemeView.askPermissions.apply(view)
     }
 
@@ -87,10 +87,10 @@ private extension AskPermissionViewController {
 // MARK: - AskPermissionViewControllerInterface
 extension AskPermissionViewController: AskPermissionViewControllerInterface {
     func setupView(_ viewModel: AskPermission.ViewModel) {
-        baseHeaderview?.configure(title: viewModel.title, subtitle: viewModel.description)
-        ThemeText.askPermissionTitle.apply(viewModel.title, to: baseHeaderview?.titleLabel)
-        ThemeText.askPermissionMessage.apply(viewModel.description, to: baseHeaderview?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: self.view.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: viewModel.title, subtitle: viewModel.description)
+        ThemeText.askPermissionTitle.apply(viewModel.title, to: baseHeaderView?.titleLabel)
+        ThemeText.askPermissionMessage.apply(viewModel.description, to: baseHeaderView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? 0
         imageView.image = interactor?.placeholderImage
         rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
                                cancelButton(viewModel.buttonTitleCancel ?? " ")]

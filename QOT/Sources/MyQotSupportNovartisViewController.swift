@@ -11,14 +11,14 @@ import UIKit
 final class MyQotSupportNovartisViewController: BaseViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var headerView: UIView!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     var header: String?
     var subTitle: String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
-        baseHeaderview?.configure(title: header, subtitle: subTitle)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        baseHeaderView?.configure(title: header, subtitle: subTitle)
     }
 }

@@ -18,12 +18,12 @@ final class MyQotSiriShortcutsViewController: BaseViewController, ScreenZLevel3 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TitleTableViewCell.self)
@@ -41,8 +41,8 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
         ThemeView.level3.apply(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        baseHeaderview?.configure(title: interactor?.siriShortcutsHeaderText, subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: interactor?.siriShortcutsHeaderText, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         tableView.reloadData()
     }
 }

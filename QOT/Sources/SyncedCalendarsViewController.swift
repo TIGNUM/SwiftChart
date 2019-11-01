@@ -18,7 +18,7 @@ final class SyncedCalendarsViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var separator: UIView!
     @IBOutlet private weak var tableView: UITableView!
     private var viewModel: SyncedCalendarsViewModel?
@@ -35,8 +35,8 @@ final class SyncedCalendarsViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         setupTableView()
         interactor?.viewDidLoad()
     }
@@ -60,10 +60,10 @@ extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface 
     func setupView(_ viewModel: SyncedCalendarsViewModel?) {
         self.viewModel = viewModel
         ThemeView.level3.apply(view)
-        baseHeaderview?.configure(title: viewModel?.viewTitle, subtitle: viewModel?.viewSubtitle)
-        ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: baseHeaderview?.titleLabel)
-        ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: baseHeaderview?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: viewModel?.viewTitle, subtitle: viewModel?.viewSubtitle)
+        ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: baseHeaderView?.titleLabel)
+        ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: baseHeaderView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeView.syncedCalendarSeparator.apply(separator)
         tableView.reloadData()
     }

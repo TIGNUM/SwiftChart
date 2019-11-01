@@ -14,7 +14,7 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     // MARK: - Properties
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
     @IBOutlet private weak var dobHeaderLabel: UILabel!
@@ -34,8 +34,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
     }
 
@@ -78,8 +78,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        baseHeaderview?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_view_title_account_settings), subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_view_title_account_settings), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeView.level3.apply(headerView)
         subHeaderView.addHeader(with: .level3)

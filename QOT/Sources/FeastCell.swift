@@ -10,7 +10,7 @@ import UIKit
 
 final class FeastCell: BaseDailyBriefCell {
 
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var feastImage: UIImageView!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -21,8 +21,8 @@ final class FeastCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(feastImage)
     }
 
@@ -33,7 +33,7 @@ final class FeastCell: BaseDailyBriefCell {
     func configure(with viewModel: FeastCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         skeletonManager.addOtherView(feastImage)
         feastImage.setImage(url: URL(string: model.image ?? ""),
                             skeletonManager: self.skeletonManager)

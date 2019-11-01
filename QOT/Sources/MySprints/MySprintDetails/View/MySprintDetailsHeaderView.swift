@@ -10,7 +10,7 @@ import UIKit
 
 final class MySprintDetailsHeaderView: UIView {
 
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var contentView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
@@ -26,8 +26,8 @@ final class MySprintDetailsHeaderView: UIView {
             as? MySprintDetailsHeaderView else {
             fatalError("Cannot load my sprint details header view")
         }
-        headerView.baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        headerView.baseHeaderview?.addTo(superview: headerView.headerView, showSkeleton: true)
+        headerView.baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        headerView.baseHeaderView?.addTo(superview: headerView.headerView, showSkeleton: true)
 
         return headerView
     }
@@ -36,7 +36,7 @@ final class MySprintDetailsHeaderView: UIView {
 // MARK: - Public methods
 extension MySprintDetailsHeaderView {
     func set(title: String?, description: String?, progress: String?) {
-        baseHeaderview?.configure(title: title, subtitle: nil)
+        baseHeaderView?.configure(title: title, subtitle: nil)
         ThemeText.mySprintDetailsDescription.apply(description, to: descriptionLabel)
         ThemeText.mySprintDetailsProgress.apply(progress, to: progressLabel)
     }

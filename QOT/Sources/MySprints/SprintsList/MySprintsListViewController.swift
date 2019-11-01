@@ -14,7 +14,7 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     var interactor: MySprintsListInteractorInterface?
     @IBOutlet private weak var editButton: AnimatedButton!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
@@ -36,8 +36,8 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .sprintsActive)
         interactor?.viewDidLoad()
@@ -122,9 +122,9 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
         ThemeView.sprintsActive.apply(view)
         ThemeView.level2.apply(tableView)
 
-        baseHeaderview?.configure(title: interactor?.title, subtitle: nil)
-        ThemeText.mySprintsTitle.apply(interactor?.title, to: baseHeaderview?.titleLabel)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        ThemeText.mySprintsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeTint.accent.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -134,7 +134,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
     }
 
     func update() {
-        baseHeaderview?.configure(title: interactor?.title, subtitle: nil)
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
 
         let isEditing = interactor?.viewModel.isEditing ?? false
         tableView.setEditing(isEditing, animated: true)

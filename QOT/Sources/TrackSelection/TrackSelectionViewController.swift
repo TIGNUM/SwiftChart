@@ -15,7 +15,7 @@ final class TrackSelectionViewController: BaseViewController, ScreenZLevel1 {
     @IBOutlet private weak var headerViewTopConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     private var askedNotificationPermissions: Bool = false
@@ -46,8 +46,8 @@ final class TrackSelectionViewController: BaseViewController, ScreenZLevel1 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
     }
 
@@ -101,12 +101,12 @@ extension TrackSelectionViewController: TrackSelectionViewControllerInterface {
         ThemeView.onboarding.apply(view)
 
         if let type = interactor?.type, case .registration = type {
-            baseHeaderview?.lineView.isHidden = true
+            baseHeaderView?.lineView.isHidden = true
             headerViewTopConstraint.priority = .defaultHigh
         }
-        baseHeaderview?.configure(title: interactor?.title, subtitle: interactor?.descriptionText)
-        ThemeText.trackSelectionTitle.apply(interactor?.title, to: baseHeaderview?.titleLabel)
-        ThemeText.trackSelectionMessage.apply(interactor?.descriptionText, to: baseHeaderview?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderview?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: interactor?.title, subtitle: interactor?.descriptionText)
+        ThemeText.trackSelectionTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
+        ThemeText.trackSelectionMessage.apply(interactor?.descriptionText, to: baseHeaderView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }

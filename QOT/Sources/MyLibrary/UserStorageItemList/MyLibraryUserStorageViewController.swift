@@ -16,7 +16,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     var interactor: MyLibraryUserStorageInteractorInterface?
 
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
@@ -46,8 +46,8 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
 
         editButton.tintColor = .accent
@@ -147,8 +147,8 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     }
 
     func update() {
-        baseHeaderview?.configure(title: interactor?.title, subtitle: nil)
-        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: baseHeaderview?.titleLabel)
+        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
 
         let isEditing = interactor?.isEditing ?? false
         editButtonWidthConstraint.constant = (interactor?.showEditButton ?? true) ? 40.0 : 0.0

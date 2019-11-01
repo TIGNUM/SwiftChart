@@ -12,7 +12,7 @@ import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
-    var baseHeaderview: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toBeVisionImage: UIImageView!
     @IBOutlet weak var impactReadinessScore: UILabel!
@@ -41,9 +41,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
-        baseHeaderview = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderview?.addTo(superview: headerView, showSkeleton: true)
-        baseHeaderview?.titleLabel.isHidden = true
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView?.titleLabel.isHidden = true
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
@@ -69,13 +69,13 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         guard let model = viewModel else { return }
-        baseHeaderview?.titleLabel.isHidden = false
+        baseHeaderView?.titleLabel.isHidden = false
 
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
                                   model.domainModel?.dailyCheckInResult == nil)
-        baseHeaderview?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
-        baseHeaderview?.subtitleTextViewBottomConstraint.constant = 0
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
         let score: Int = model.readinessScore ?? 0
         if score == -1 {
