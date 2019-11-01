@@ -20,23 +20,33 @@ final class CoachMarkCollectionViewCell: UICollectionViewCell, Dequeueable {
     var playerLooper: AVPlayerLooper?
     private let mediaExtension = "mp4"
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupPlayer()
+        playerLayer?.frame = videoView.bounds
+        playerLayer?.contentsGravity = kCAGravityCenter
+    }
+
     override func prepareForReuse() {
         super.prepareForReuse()
-        videoView.layer.removeAllSublayer()
+//        videoView.layer.removeAllSublayer()
+        titleLabel.text = nil
+        subtitleLabel.text = nil
     }
 
     func configure(mediaName: String, title: String, subtitle: String) {
-        setupPlayer(mediaName)
+        print("______________")
+        print(title)
+        print(subtitle)
         setPlayerLooper(mediaName)
         setupLabels(title, subtitle: subtitle)
         player?.play()
-        playerLayer?.frame = videoView.bounds
     }
 }
 
 // MARK: - Private
 private extension CoachMarkCollectionViewCell {
-    func setupPlayer(_ mediaName: String) {
+    func setupPlayer() {
         let playerLayer = AVPlayerLayer(player: player)
         videoView.layer.addSublayer(playerLayer)
         self.playerLayer = playerLayer

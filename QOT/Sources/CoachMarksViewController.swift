@@ -77,9 +77,8 @@ private extension CoachMarksViewController {
 
 // MARK: - CoachMarksViewControllerInterface
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
-    func setupView(_ viewModel: CoachMark.ViewModel) {
+    func setupView() {
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
-        updateView(viewModel)
     }
 
     func updateView(_ viewModel: CoachMark.ViewModel) {
@@ -87,6 +86,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
         collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
+        collectionView.reloadData()
     }
 }
 

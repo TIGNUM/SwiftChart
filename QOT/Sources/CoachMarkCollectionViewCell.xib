@@ -41,11 +41,11 @@
                 <constraint firstItem="gBJ-Yl-C0c" firstAttribute="top" secondItem="NId-ug-AWe" secondAttribute="bottom" constant="8" id="0Zk-x4-JwM"/>
                 <constraint firstItem="GmO-77-Ykg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bn4-2k-Y3d"/>
                 <constraint firstAttribute="trailing" secondItem="NId-ug-AWe" secondAttribute="trailing" constant="48" id="I94-vO-Rgt"/>
-                <constraint firstAttribute="trailing" secondItem="GmO-77-Ykg" secondAttribute="trailing" constant="40" id="JPS-h4-9vP"/>
                 <constraint firstItem="NId-ug-AWe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="Rei-5B-eF7"/>
                 <constraint firstAttribute="trailing" secondItem="gBJ-Yl-C0c" secondAttribute="trailing" constant="48" id="Tl0-ws-bwb"/>
                 <constraint firstItem="gBJ-Yl-C0c" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="VwL-wE-axD"/>
                 <constraint firstAttribute="bottom" secondItem="GmO-77-Ykg" secondAttribute="bottom" constant="160" id="dm3-Ix-Ia1"/>
+                <constraint firstItem="GmO-77-Ykg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="kkp-eP-MZ1"/>
                 <constraint firstItem="NId-ug-AWe" firstAttribute="top" secondItem="GmO-77-Ykg" secondAttribute="bottom" constant="32" id="rZk-KE-A1G"/>
                 <constraint firstItem="GmO-77-Ykg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="x7y-6q-gkA"/>
             </constraints>

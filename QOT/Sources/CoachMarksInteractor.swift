@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CoachMarksInteractor {
 
     // MARK: - Properties
     private lazy var worker = CoachMarksWorker()
     private let presenter: CoachMarksPresenterInterface
+    private var contentCategory: QDMContentCategory?
 
     // MARK: - Init
     init(presenter: CoachMarksPresenterInterface) {
@@ -21,26 +23,39 @@ final class CoachMarksInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.setupView(CoachMark.Step.know)
+        presenter.setupView()
+        worker.getContentCategory(ContentCategory.CoachMarks.rawValue) { [weak self] (contentCategory) in
+            self?.contentCategory = contentCategory
+            if let presentationModel = self?.createPresentationModel(CoachMark.Step.know, contentCategory) {
+                self?.presenter.updateView(presentationModel)
+            }
+        }
     }
 }
 
 // MARK: - CoachMarksInteractorInterface
 extension CoachMarksInteractor: CoachMarksInteractorInterface {
     func loadNextStep(page: Int) {
-        if let nextStep = CoachMark.Step(rawValue: page + 1) {
-            presenter.updateView(nextStep)
-        }
+        updateView(page + 1)
     }
 
     func loadPreviousStep(page: Int) {
-        if let previousStep = CoachMark.Step(rawValue: page - 1) {
-            presenter.updateView(previousStep)
-        }
+        updateView(page - 1)
     }
 }
 
 // MARK: - Private
 private extension CoachMarksInteractor {
+    func updateView(_ page: Int) {
+        if let step = CoachMark.Step(rawValue: page) {
+            let presentationModel = createPresentationModel(step, contentCategory)
+            presenter.updateView(presentationModel)
+        }
+    }
 
+    func createPresentationModel(_ step: CoachMark.Step,
+                                 _ contentCategory: QDMContentCategory?) -> CoachMark.PresentationModel {
+        let content = contentCategory?.contentCollections.filter { $0.remoteID == step.contentId }.first
+        return CoachMark.PresentationModel(step: step, content: content)
+    }
 }

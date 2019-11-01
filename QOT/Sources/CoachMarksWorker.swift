@@ -10,10 +10,7 @@ import UIKit
 import qot_dal
 
 final class CoachMarksWorker {
-
-    // MARK: - Properties    
-
-    // MARK: - Init
-    init() {
+    func getContentCategory(_ contentCategoryId: Int, _ completion: @escaping (QDMContentCategory?) -> Void) {
+        ContentService.main.getContentCategoryById(contentCategoryId, completion)
     }
 }

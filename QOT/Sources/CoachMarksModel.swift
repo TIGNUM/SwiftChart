@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct CoachMark {
     enum Step: Int, CaseIterable {
@@ -24,21 +25,12 @@ struct CoachMark {
             }
         }
 
-        var title: String {
+        var contentId: Int {
             switch self {
-            case .coach: return "COACH MODE"
-            case .know: return "KNOW"
-            case .myQot: return "MY QOT"
-            case .search: return "SEARCH"
-            }
-        }
-
-        var subtitle: String {
-            switch self {
-            case .coach: return "Tap the Q button to find solutions for your day-to-day challenges."
-            case .know: return "Swipe right to access strategies and curated content."
-            case .myQot: return "Swipe left to access your personal library and your impact rediness data."
-            case .search: return "Swipe down to easily access the search funtion."
+            case .coach: return 102527
+            case .know: return 102525
+            case .myQot: return 102526
+            case .search: return 102528
             }
         }
 
@@ -54,10 +46,15 @@ struct CoachMark {
 
     struct ViewModel {
         let mediaName: String
-        let title: String
-        let subtitle: String
+        let title: String?
+        let subtitle: String?
         let rightButtonImage: UIImage?
         let hideBackButton: Bool
         let page: Int
+    }
+
+    struct PresentationModel {
+        let step: CoachMark.Step
+        let content: QDMContentCollection?
     }
 }
