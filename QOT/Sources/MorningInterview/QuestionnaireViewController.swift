@@ -351,20 +351,14 @@ extension QuestionnaireViewController {
             }
         }
         questionLabel.attributedText = attributedQuestion
-//        UIView.animate(withDuration: Animation.duration_02,
-//                       delay: Animation.duration_02,
-//                       options: [.curveEaseInOut],
-//                       animations: {
-                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-                        self.questionLabel.alpha = 1
-                        self.progressView.alpha = 1
-//        }, completion: { [weak self] finished in
-            self.setupImages()
-            self.questionLabel.isHidden = false
-            self.tableView.isHidden = false
-            self.questionLabel.attributedText = attributedQuestion
-            self.tableView.reloadData()
-//        })
+        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+        self.questionLabel.alpha = 1
+        self.progressView.alpha = 1
+        self.setupImages()
+        self.questionLabel.isHidden = false
+        self.tableView.isHidden = false
+        self.questionLabel.attributedText = attributedQuestion
+        self.tableView.reloadData()
     }
 
     func animationShowIndex() {
