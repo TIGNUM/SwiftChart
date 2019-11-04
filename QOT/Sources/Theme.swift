@@ -68,6 +68,7 @@ enum ThemeView {
     case myDataHeatMapLegendLow
     case paymentReminder
     case clear
+    case coachMarkPageIndicator
 
     var color: UIColor {
         switch self {
@@ -97,7 +98,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder, .coachMarkPageIndicator:
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color

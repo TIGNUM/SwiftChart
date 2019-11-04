@@ -52,6 +52,11 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
         interactor?.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -69,6 +74,7 @@ private extension CoachMarksViewController {
 // MARK: - Actions
 private extension CoachMarksViewController {
     @IBAction func didTapBack() {
+        trackUserEvent(.PREVIOUS, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
         interactor?.loadPreviousStep(page: getCurrentPage)
     }
 
@@ -77,6 +83,7 @@ private extension CoachMarksViewController {
             interactor?.saveCoachMarksViewed()
             router?.navigateToTrack()
         } else {
+            trackUserEvent(.NEXT, stringValue: viewModel?.mediaName, valueType: .VIDEO, action: .TAP)
             interactor?.loadNextStep(page: getCurrentPage)
         }
     }
@@ -89,7 +96,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
-        pageIndicator.pageColor = .sand
+        pageIndicator.pageColor = ThemeView.coachMarkPageIndicator.color
         pageIndicator.pageCount = CoachMark.Step.allCases.count
         pageIndicator.currentPageIndex = 0
     }

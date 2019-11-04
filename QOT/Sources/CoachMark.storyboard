@@ -18,6 +18,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-L0-5IW" userLabel="PageIndicatorView">
+                                <rect key="frame" x="24" y="70" width="0.0" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="UGi-nP-7gP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="dmx-Ze-Tbl"/>
+                                </constraints>
+                            </view>
                             <collectionView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cs4-Rv-yhc">
                                 <rect key="frame" x="0.0" y="92" width="414" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -47,14 +55,6 @@
                                     <action selector="didTapContinue" destination="Ue7-uK-cjD" eventType="touchUpInside" id="vE0-pA-yzf"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-L0-5IW" userLabel="PageIndicatorView">
-                                <rect key="frame" x="24" y="70" width="0.0" height="2"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="UGi-nP-7gP"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="dmx-Ze-Tbl"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.074509803921568626" green="0.074509803921568626" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>

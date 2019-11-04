@@ -315,12 +315,12 @@
 		382C6C5623589FE000FAF497 /* MyQotSupportNovartisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */; };
 		3850F90423366DD0009EAA64 /* ResultsFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */; };
 		3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */; };
-		38532AA723699B3A00155643 /* walkThorugh_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA323699B3A00155643 /* walkThorugh_coach.mp4 */; };
-		38532AA923699B3A00155643 /* walkThorugh_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA523699B3A00155643 /* walkThorugh_myQOT.mp4 */; };
-		38532AAA23699B3A00155643 /* walkThorugh_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA623699B3A00155643 /* walkThorugh_search.mp4 */; };
+		38532AA723699B3A00155643 /* walkThrough_coach.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA323699B3A00155643 /* walkThrough_coach.mp4 */; };
+		38532AA923699B3A00155643 /* walkThrough_myQOT.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA523699B3A00155643 /* walkThrough_myQOT.mp4 */; };
+		38532AAA23699B3A00155643 /* walkThrough_search.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AA623699B3A00155643 /* walkThrough_search.mp4 */; };
 		38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */; };
 		38532AB0236AFBB100155643 /* CoachMarkCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */; };
-		38532AB4236C355600155643 /* walkThorugh_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AB3236C355600155643 /* walkThorugh_know.mp4 */; };
+		38532AB4236C355600155643 /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AB3236C355600155643 /* walkThrough_know.mp4 */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
@@ -1588,12 +1588,12 @@
 		382C6C5523589FE000FAF497 /* MyQotSupportNovartisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportNovartisViewController.swift; sourceTree = "<group>"; };
 		3850F90323366DD0009EAA64 /* ResultsFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsFeedbackViewController.swift; sourceTree = "<group>"; };
 		3850F9072336741B009EAA64 /* ResultsFeedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ResultsFeedback.storyboard; sourceTree = "<group>"; };
-		38532AA323699B3A00155643 /* walkThorugh_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_coach.mp4; sourceTree = "<group>"; };
-		38532AA523699B3A00155643 /* walkThorugh_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_myQOT.mp4; sourceTree = "<group>"; };
-		38532AA623699B3A00155643 /* walkThorugh_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_search.mp4; sourceTree = "<group>"; };
+		38532AA323699B3A00155643 /* walkThrough_coach.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_coach.mp4; sourceTree = "<group>"; };
+		38532AA523699B3A00155643 /* walkThrough_myQOT.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_myQOT.mp4; sourceTree = "<group>"; };
+		38532AA623699B3A00155643 /* walkThrough_search.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_search.mp4; sourceTree = "<group>"; };
 		38532AAD236AFBB100155643 /* CoachMarkCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarkCollectionViewCell.swift; sourceTree = "<group>"; };
 		38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachMarkCollectionViewCell.xib; sourceTree = "<group>"; };
-		38532AB3236C355600155643 /* walkThorugh_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThorugh_know.mp4; sourceTree = "<group>"; };
+		38532AB3236C355600155643 /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
@@ -4695,10 +4695,10 @@
 		CB78D3361F9F674A0068A54A /* BundledMedia */ = {
 			isa = PBXGroup;
 			children = (
-				38532AB3236C355600155643 /* walkThorugh_know.mp4 */,
-				38532AA323699B3A00155643 /* walkThorugh_coach.mp4 */,
-				38532AA523699B3A00155643 /* walkThorugh_myQOT.mp4 */,
-				38532AA623699B3A00155643 /* walkThorugh_search.mp4 */,
+				38532AB3236C355600155643 /* walkThrough_know.mp4 */,
+				38532AA323699B3A00155643 /* walkThrough_coach.mp4 */,
+				38532AA523699B3A00155643 /* walkThrough_myQOT.mp4 */,
+				38532AA623699B3A00155643 /* walkThrough_search.mp4 */,
 				8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */,
 			);
 			name = BundledMedia;
@@ -5748,7 +5748,7 @@
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
 				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
-				38532AB4236C355600155643 /* walkThorugh_know.mp4 in Resources */,
+				38532AB4236C355600155643 /* walkThrough_know.mp4 in Resources */,
 				8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */,
 				8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */,
 				F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */,
@@ -5838,7 +5838,7 @@
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
-				38532AA723699B3A00155643 /* walkThorugh_coach.mp4 in Resources */,
+				38532AA723699B3A00155643 /* walkThrough_coach.mp4 in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
@@ -5881,7 +5881,7 @@
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
 				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,
 				9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */,
-				38532AAA23699B3A00155643 /* walkThorugh_search.mp4 in Resources */,
+				38532AAA23699B3A00155643 /* walkThrough_search.mp4 in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
 				B4AB48D1230C0002003B3C1F /* MyDataInfoTableViewCell.xib in Resources */,
 				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
@@ -5890,7 +5890,7 @@
 				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
-				38532AA923699B3A00155643 /* walkThorugh_myQOT.mp4 in Resources */,
+				38532AA923699B3A00155643 /* walkThrough_myQOT.mp4 in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,

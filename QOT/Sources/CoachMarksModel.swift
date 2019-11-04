@@ -18,10 +18,10 @@ struct CoachMark {
 
         var media: String {
             switch self {
-            case .coach: return "walkThorugh_coach"
-            case .know: return "walkThorugh_know"
-            case .myQot: return "walkThorugh_myQOT"
-            case .search: return "walkThorugh_search"
+            case .coach: return "walkThrough_coach"
+            case .know: return "walkThrough_know"
+            case .myQot: return "walkThrough_myQOT"
+            case .search: return "walkThrough_search"
             }
         }
 
