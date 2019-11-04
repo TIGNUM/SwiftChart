@@ -56,26 +56,26 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-AQ-5eT">
-                        <rect key="frame" x="24" y="309" width="300" height="24"/>
+                        <rect key="frame" x="24" y="309" width="300" height="23.333333333333314"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="We can't show you any weather data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-Xj-mOD">
-                        <rect key="frame" x="24" y="340" width="382" height="19.333333333333314"/>
+                        <rect key="frame" x="24" y="339.33333333333331" width="382" height="18.666666666666686"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CmA-Lc-aRn" userLabel="Seaparator View">
-                        <rect key="frame" x="0.0" y="379.33333333333331" width="430" height="1"/>
+                        <rect key="frame" x="0.0" y="378" width="430" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.097795376712328783" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wcq-es-30Y"/>
                         </constraints>
                     </view>
                     <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="252" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="349-bm-c0Q">
-                        <rect key="frame" x="0.0" y="390.33333333333331" width="430" height="80"/>
+                        <rect key="frame" x="0.0" y="389" width="430" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WZQ-cb-dX0">
                                 <rect key="frame" x="16" y="0.0" width="1050" height="80"/>
@@ -94,7 +94,7 @@
                         </constraints>
                     </scrollView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-es-4Cw">
-                        <rect key="frame" x="24" y="498.33333333333331" width="195" height="147.33333333333331"/>
+                        <rect key="frame" x="24" y="497.00000000000006" width="188" height="148.66666666666669"/>
                         <string key="text">Allow QOT to access
 your location while 
 using the app?</string>
@@ -103,7 +103,7 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-Xc-Qoc" userLabel="HeaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="199.33333333333334"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="198"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
                                 <rect key="frame" x="24" y="60" width="16" height="1"/>
@@ -114,7 +114,7 @@ using the app?</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="76" width="89" height="24"/>
+                                <rect key="frame" x="24" y="76" width="94" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
                                 </constraints>
@@ -123,7 +123,7 @@ using the app?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="24" y="132" width="382" height="57.333333333333343"/>
+                                <rect key="frame" x="24" y="132" width="382" height="56"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Two days ago you explored some solutions to help you during difficult high-performance situations. Test 3 lines longer than something more.</string>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
@@ -144,10 +144,10 @@ using the app?</string>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV6-1Z-gcH">
-                        <rect key="frame" x="0.0" y="197.99999999999997" width="430" height="272.33333333333326"/>
+                        <rect key="frame" x="0.0" y="198" width="430" height="271"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
-                                <rect key="frame" x="51.666666666666657" y="0.0" width="327" height="272.33333333333331"/>
+                                <rect key="frame" x="207" y="0.0" width="16" height="271"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>

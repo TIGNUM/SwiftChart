@@ -1,42 +1,42 @@
 //
-//  DepartureInfoCellViewModel.swift
+//  DepartureBespokeFeastModel.swift
 //  QOT
 //
-//  Created by Anais Plancoulaine on 10.07.19.
+//  Created by Anais Plancoulaine on 11.10.19.
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
 import Foundation
 import qot_dal
 
-final class DepartureInfoCellViewModel: BaseDailyBriefViewModel {
+final class DepartureBespokeFeastModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
     var subtitle: String?
     var title: String?
     var text: String?
-    var image: String?
-    var copyright: String?
+    var images: [String?]
+    var copyrights: [String?]
 
     // MARK: - Init
-    init(title: String?, subtitle: String?, text: String?, image: String?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, subtitle: String?, text: String?, images: [String?], copyrights: [String?], domainModel: QDMDailyBriefBucket?) {
         self.title = title
         self.subtitle = subtitle
         self.text = text
-        self.image = image
-        self.copyright = copyright
+        self.images = images
+        self.copyrights = copyrights
         super.init(domainModel)
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
-        guard let source = source as? DepartureInfoCellViewModel else {
+        guard let source = source as? DepartureBespokeFeastModel else {
             return false
         }
         return super.isContentEqual(to: source) &&
             subtitle == source.subtitle &&
             title == source.title &&
             text == source.text &&
-            image == source.image &&
-            copyright == source.copyright
+            images == source.images &&
+            copyrights == source.copyrights
     }
 }

@@ -216,6 +216,7 @@ enum ThemeButton {
     case closeButton(ThemeColorMode)
     case level5
     case clear
+    case onboarding
 
     var defaultHeight: CGFloat {
         get {
@@ -247,7 +248,8 @@ enum ThemeButton {
             colorBorder = .accent40
         case .clear:
             colorSelected = .clear
-            colorBorder = .clear
+        case .onboarding:
+            colorSelected = Palette.accent40
         }
 
         if let color = colorBorder {
@@ -628,6 +630,7 @@ enum ThemeText {
     case loginEmailCode
     case loginEmailCodeMessage
     case loginEmailCodeErrorMessage
+    case loginSeparator
     case createAccountMessage
     case registrationEmailTitle
     case registrationEmailMessage
@@ -806,6 +809,7 @@ enum ThemeText {
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
         case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
+             .loginSeparator,
              .chatbotProgress,
              .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
@@ -958,6 +962,7 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle,
              .audioLabel,
+             .loginSeparator,
              .myLibraryGroupName, .customAlertAction,
              .mySprintDetailsCta:
             return Palette.accent
@@ -1159,6 +1164,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
+             .loginSeparator,
              .dailyBriefSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):

@@ -31,7 +31,7 @@ final class ToolsCollectionsVideoTableViewCell: BaseToolsTableViewCell, Dequeuea
         ThemeText.qotTools.apply(title.uppercased(), to: titleLabel)
         ThemeText.qotToolsSectionSubtitle.apply(timeToWatch, to: detailLabel)
         skeletonManager.addOtherView(previewImageView)
-        previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
+        previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         mediaIconImageView.image = R.image.ic_camera_tools()?.withRenderingMode(.alwaysTemplate)
     }
 }

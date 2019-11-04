@@ -159,12 +159,17 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         progressView.backgroundColor = UIColor.clear
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         trackPage()
         if showAnimated == false {
             animationShow()
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        animateToIndex()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -185,6 +190,7 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         animationHide()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
             self.animationShow()
+            self.animateToIndex()
         }
     }
 
@@ -263,6 +269,7 @@ extension QuestionnaireViewController {
         tableView.isHidden = true
         tableView.reloadData()
         progressView.alpha = 0.0
+        indexLabel.alpha = 0.0
         showAnimated = false
     }
 
@@ -344,22 +351,23 @@ extension QuestionnaireViewController {
             }
         }
         questionLabel.attributedText = attributedQuestion
-        UIView.animate(withDuration: Animation.duration_02,
-                       delay: Animation.duration_02,
-                       options: [.curveEaseInOut],
-                       animations: {
-                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-                        self.questionLabel.alpha = 1
-                        self.progressView.alpha = 1
-        }, completion: { [weak self] finished in
-            self?.setupImages()
-            self?.questionLabel.alpha = 1
-            self?.questionLabel.isHidden = false
-            self?.tableView.isHidden = false
-            self?.questionLabel.attributedText = attributedQuestion
-            self?.tableView.reloadData()
-        })
+        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+        self.questionLabel.alpha = 1
+        self.progressView.alpha = 1
+        self.setupImages()
+        self.questionLabel.isHidden = false
+        self.tableView.isHidden = false
+        self.questionLabel.attributedText = attributedQuestion
+        self.tableView.reloadData()
+    }
 
+    func animationShowIndex() {
+        UIView.animate(withDuration: Animation.duration_1) {
+            self.indexLabel.alpha = 1.0
+        }
+    }
+
+    func animateToIndex() {
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
             self.animateToIndex(index: self.currentIndex, isTouch: false)
             self.answerDelegate?.isPresented(for: self.questionID(), from: self)
@@ -449,7 +457,8 @@ extension QuestionnaireViewController {
             var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
-
+        animationShowIndex()
+        
         if isTouch == true {
             switch index {
             case 0:

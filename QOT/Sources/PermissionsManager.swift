@@ -115,8 +115,9 @@ final class PermissionsManager {
     }
 
     func fetchHasUpdates(completion: @escaping (Bool) -> Void) {
-        fetchDescriptions { descriptions in
-            let hasUpdates = descriptions != self.lastKnownAuthorizationStatusDescriptions
+        fetchDescriptions { [weak self] descriptions in
+            guard let strongSelf = self else { return }
+            let hasUpdates = descriptions != strongSelf.lastKnownAuthorizationStatusDescriptions
             completion(hasUpdates)
         }
     }

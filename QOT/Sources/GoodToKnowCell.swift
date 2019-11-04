@@ -27,7 +27,7 @@ final class GoodToKnowCell: BaseDailyBriefCell {
         skeletonManager.hide()
         skeletonManager.addOtherView(goodToKnowImage)
         goodToKnowImage.setImage(url: model.image,
-                                 skeletonManager: self.skeletonManager)
+                                 skeletonManager: self.skeletonManager) { (_) in /* */}
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)
         self.goodToKnowModel = model

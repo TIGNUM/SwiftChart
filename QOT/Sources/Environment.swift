@@ -9,7 +9,7 @@
 import Foundation
 
 #if DEBUG
-var environment = Environment.development
+var environment = Environment.production
 #else
 var environment = Environment.production
 #endif

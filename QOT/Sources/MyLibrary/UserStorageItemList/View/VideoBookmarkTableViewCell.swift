@@ -21,6 +21,6 @@ class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
         guard let url = withUrl else { return }
         configure()
         skeletonManager.addOtherView(preview)
-        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
+        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager) { (_) in /* */}
     }
 }
