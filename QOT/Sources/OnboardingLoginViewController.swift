@@ -137,7 +137,6 @@ private extension OnboardingLoginViewController {
         buttonSendCode2.setTitle(interactor?.buttonResendCode ?? "", for: .normal)
         buttonChangeEmail.setTitle(interactor?.buttonChangeEmail ?? "", for: .normal)
         buttonGetHelp.setTitle(interactor?.buttonGetHelp ?? "", for: .normal)
-        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
         buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
