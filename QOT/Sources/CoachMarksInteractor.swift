@@ -42,6 +42,10 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
     func loadPreviousStep(page: Int) {
         updateView(page - 1)
     }
+
+    func saveCoachMarksViewed() {
+        worker.saveCoachMarksViewed()
+    }
 }
 
 // MARK: - Private  

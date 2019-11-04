@@ -21,8 +21,9 @@ protocol CoachMarksPresenterInterface {
 protocol CoachMarksInteractorInterface: Interactor {
     func loadNextStep(page: Int)
     func loadPreviousStep(page: Int)
+    func saveCoachMarksViewed()
 }
 
 protocol CoachMarksRouterInterface {
-    func dismiss()
+    func navigateToTrack()
 }

@@ -12,16 +12,27 @@ final class CoachMarksRouter {
 
     // MARK: - Properties
     private weak var viewController: CoachMarksViewController?
+    private var trackType: SelectedTrackType
 
     // MARK: - Init
-    init(viewController: CoachMarksViewController?) {
+    init(viewController: CoachMarksViewController?, trackType: SelectedTrackType) {
         self.viewController = viewController
+        self.trackType = trackType
     }
 }
 
 // MARK: - CoachMarksRouterInterface
 extension CoachMarksRouter: CoachMarksRouterInterface {
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+    func navigateToTrack() {
+        // Show app
+        viewController?.dismiss(animated: true)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.appCoordinator.showApp()
+        // Guided
+        if case .guided = trackType, let url = URLScheme.dailyBriefURL(for: .GUIDE_TRACK) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
     }
 }

@@ -42,6 +42,10 @@ struct CoachMark {
         var hideBackButton: Bool {
             return .know == self
         }
+
+        var isLastPage: Bool {
+            return .search == self
+        }
     }
 
     struct ViewModel {
@@ -51,6 +55,7 @@ struct CoachMark {
         let rightButtonImage: UIImage?
         let hideBackButton: Bool
         let page: Int
+        let isLastPage: Bool
     }
 
     struct PresentationModel {

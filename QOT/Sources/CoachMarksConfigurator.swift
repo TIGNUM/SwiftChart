@@ -10,9 +10,9 @@ import Foundation
 import qot_dal
 
 final class CoachMarksConfigurator {
-    static func make() -> (CoachMarksViewController) -> Void {
-        return { (viewController) in
-            let router = CoachMarksRouter(viewController: viewController)
+    static func make() -> (CoachMarksViewController, SelectedTrackType) -> Void {
+        return { (viewController, trackType) in
+            let router = CoachMarksRouter(viewController: viewController, trackType: trackType)
             let presenter = CoachMarksPresenter(viewController: viewController)
             let interactor = CoachMarksInteractor(presenter: presenter)
             viewController.interactor = interactor

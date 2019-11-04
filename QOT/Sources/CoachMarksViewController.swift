@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class CoachMarksViewController: UIViewController {
+final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     var interactor: CoachMarksInteractorInterface?
@@ -71,7 +71,12 @@ private extension CoachMarksViewController {
     }
 
     @IBAction func didTapContinue() {
-        interactor?.loadNextStep(page: getCurrentPage)
+        if viewModel?.isLastPage == true {
+            interactor?.saveCoachMarksViewed()
+            router?.navigateToTrack()
+        } else {
+            interactor?.loadNextStep(page: getCurrentPage)
+        }
     }
 }
 

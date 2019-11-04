@@ -162,7 +162,7 @@ final class AppCoordinator {
 
                     guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
                     let configurator = CoachMarksConfigurator.make()
-                    configurator(controller)
+                    configurator(controller, .fast)
                     baseRootViewController.pushToStart(childViewController: controller)
                 }
             }

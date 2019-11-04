@@ -39,7 +39,8 @@ private extension CoachMarksPresenter {
                                    subtitle: getValueText(presentationModel.content, .subtitle),
                                    rightButtonImage: presentationModel.step.rightButtonImage,
                                    hideBackButton: presentationModel.step.hideBackButton,
-                                   page: presentationModel.step.rawValue)
+                                   page: presentationModel.step.rawValue,
+                                   isLastPage: presentationModel.step.isLastPage)
     }
 
     func getValueText(_ content: QDMContentCollection?, _ format: ContentFormat) -> String? {
