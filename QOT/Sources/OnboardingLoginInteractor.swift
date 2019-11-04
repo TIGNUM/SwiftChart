@@ -80,6 +80,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     }
 
     func didTapBack() {
+        viewModel.sendCodeEnabled = true
         delegate?.didTapBack()
     }
 
