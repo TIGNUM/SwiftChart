@@ -15,10 +15,12 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     var interactor: CoachMarksInteractorInterface?
     var router: CoachMarksRouterInterface?
     private var viewModel: CoachMark.ViewModel?
+    private let pageIndicator = MyToBeVisionPageComponentView()
     private var currentIndexPath = IndexPath(item: 0, section: 0)
     @IBOutlet private weak var buttonBack: UIButton!
     @IBOutlet private weak var buttonContinue: UIButton!
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var pageIndicatorView: UIView!
 
     private var getCurrentPage: Int {
         return viewModel?.page ?? 0
@@ -84,12 +86,19 @@ private extension CoachMarksViewController {
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView() {
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
+        pageIndicator.translatesAutoresizingMaskIntoConstraints = false
+        pageIndicatorView?.addSubview(pageIndicator)
+        pageIndicator.addConstraints(to: pageIndicatorView)
+        pageIndicator.pageColor = .sand
+        pageIndicator.pageCount = CoachMark.Step.allCases.count
+        pageIndicator.currentPageIndex = 0
     }
 
     func updateView(_ viewModel: CoachMark.ViewModel) {
         self.viewModel = viewModel
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
+        pageIndicator.currentPageIndex = getCurrentPage
         collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)
         collectionView.reloadItems(at: [toIndexPath])
     }
