@@ -9,18 +9,9 @@
 import Foundation
 import Photos
 
-struct PhotosPermission: PermissionInterface {
-    func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        switch PHPhotoLibrary.authorizationStatus() {
-        case .notDetermined:
-            completion("notDetermined")
-        case .restricted:
-            completion("restricted")
-        case .denied:
-            completion("denied")
-        default:
-            completion("authorized")
-        }
+class PhotosPermission: PermissionInterface {
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus {
+        return PHPhotoLibrary.authorizationStatus().authorizationStatus
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {
@@ -33,16 +24,16 @@ struct PhotosPermission: PermissionInterface {
 // MARK: - PHAuthorizationStatus
 
 private extension PHAuthorizationStatus {
-    var stringValue: String {
+    var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
         case .notDetermined:
-            return "notDetermined"
-        case .restricted:
-            return "restricted"
+            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
-            return "denied"
+            return PermissionsManager.AuthorizationStatus.denied
+        case .restricted:
+            return PermissionsManager.AuthorizationStatus.restricted
         case .authorized:
-            return "authorized"
+            return PermissionsManager.AuthorizationStatus.granted
         }
     }
 }
