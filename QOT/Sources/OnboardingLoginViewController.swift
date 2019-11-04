@@ -60,6 +60,7 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Email has been set by registration screens
+        updateView()
         if let email = preSetUserEmail {
             emailField.text = email
             preSetUserEmail = nil
