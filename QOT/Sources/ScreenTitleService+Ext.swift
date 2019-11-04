@@ -274,6 +274,6 @@ extension ScreenTitleService {
     }
 
     func myDataSelectionSubtitle() -> String? {
-        return localizedString(for: .myDataDailyImpactSectionSubtitle)
+        return localizedString(for: .myDataDailyImpactSelectedSubtitle)
     }
 }

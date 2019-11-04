@@ -69,7 +69,7 @@
 
 "MyQOT.ToBeVision.Title" = "ToBeVision";
 "MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TOBEVISION";
-"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new ToBeVision or edit your current one?";
+"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you want to create a new ToBeVision or edit your current one?";
 "MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
 "MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
 "Sidebar.Title.Logout" = "Log out";
