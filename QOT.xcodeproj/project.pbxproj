@@ -524,14 +524,6 @@
 		852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADD51EF051C400A10882 /* UIView+Layers.swift */; };
 		8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */; };
 		85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */; };
-		8D008F02230EFA45006D7263 /* WalkthroughSearchPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFA230EFA45006D7263 /* WalkthroughSearchPresenter.swift */; };
-		8D008F03230EFA45006D7263 /* WalkthroughSearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFB230EFA45006D7263 /* WalkthroughSearchWorker.swift */; };
-		8D008F04230EFA45006D7263 /* WalkthroughSearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFC230EFA45006D7263 /* WalkthroughSearchRouter.swift */; };
-		8D008F05230EFA45006D7263 /* WalkthroughSearchInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFD230EFA45006D7263 /* WalkthroughSearchInterface.swift */; };
-		8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFE230EFA45006D7263 /* WalkthroughSearchViewController.swift */; };
-		8D008F07230EFA45006D7263 /* WalkthroughSearchInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008EFF230EFA45006D7263 /* WalkthroughSearchInteractor.swift */; };
-		8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D008F01230EFA45006D7263 /* WalkthroughSearchConfigurator.swift */; };
-		8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D008F0A230EFA63006D7263 /* WalkthroughSearch.storyboard */; };
 		8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */; };
 		8D04FA3023041E9C00AE7CA0 /* RegistrationAgePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04FA2823041E9C00AE7CA0 /* RegistrationAgePresenter.swift */; };
 		8D04FA3123041E9C00AE7CA0 /* RegistrationAgeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04FA2923041E9C00AE7CA0 /* RegistrationAgeWorker.swift */; };
@@ -542,7 +534,6 @@
 		8D04FA3723041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D04FA2F23041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift */; };
 		8D04FA392304362900AE7CA0 /* RegistrationAge.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D04FA382304362900AE7CA0 /* RegistrationAge.storyboard */; };
 		8D0500B3232AAFFE00D357D1 /* BaseWithTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0500B2232AAFFE00D357D1 /* BaseWithTableViewController.swift */; };
-		8D0500B5232AB11800D357D1 /* WalkthroughConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D1B230E80EB00DCC241 /* WalkthroughConfigurator.swift */; };
 		8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D08065023029FD6004576A9 /* QotPlaceholderTextField.swift */; };
 		8D08065323029FF1004576A9 /* QotPlaceholderTextField.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */; };
 		8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */; };
@@ -553,23 +544,6 @@
 		8D0B4D262301CC4000A1AC47 /* RegistrationNamesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1E2301CC3F00A1AC47 /* RegistrationNamesViewController.swift */; };
 		8D0B4D272301CC4000A1AC47 /* RegistrationNamesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D1F2301CC4000A1AC47 /* RegistrationNamesInteractor.swift */; };
 		8D0B4D292301CC4000A1AC47 /* RegistrationNamesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D0B4D212301CC4000A1AC47 /* RegistrationNamesConfigurator.swift */; };
-		8D110CEE230FCEDE000181BA /* WalkthroughSwipePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CE6230FCEDE000181BA /* WalkthroughSwipePresenter.swift */; };
-		8D110CEF230FCEDE000181BA /* WalkthroughSwipeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CE7230FCEDE000181BA /* WalkthroughSwipeWorker.swift */; };
-		8D110CF0230FCEDE000181BA /* WalkthroughSwipeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CE8230FCEDE000181BA /* WalkthroughSwipeRouter.swift */; };
-		8D110CF1230FCEDE000181BA /* WalkthroughSwipeInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CE9230FCEDE000181BA /* WalkthroughSwipeInterface.swift */; };
-		8D110CF2230FCEDE000181BA /* WalkthroughSwipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CEA230FCEDE000181BA /* WalkthroughSwipeViewController.swift */; };
-		8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CEB230FCEDE000181BA /* WalkthroughSwipeInteractor.swift */; };
-		8D110CF5230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CED230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift */; };
-		8D110CF7230FD0F5000181BA /* WalkthroughSwipe.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D110CF6230FD0F5000181BA /* WalkthroughSwipe.storyboard */; };
-		8D110D01230FDA41000181BA /* WalkthroughCoachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CF9230FDA41000181BA /* WalkthroughCoachPresenter.swift */; };
-		8D110D02230FDA41000181BA /* WalkthroughCoachWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CFA230FDA41000181BA /* WalkthroughCoachWorker.swift */; };
-		8D110D03230FDA41000181BA /* WalkthroughCoachRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CFB230FDA41000181BA /* WalkthroughCoachRouter.swift */; };
-		8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CFC230FDA41000181BA /* WalkthroughCoachInterface.swift */; };
-		8D110D05230FDA41000181BA /* WalkthroughCoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CFD230FDA41000181BA /* WalkthroughCoachViewController.swift */; };
-		8D110D06230FDA41000181BA /* WalkthroughCoachInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110CFE230FDA41000181BA /* WalkthroughCoachInteractor.swift */; };
-		8D110D08230FDA41000181BA /* WalkthroughCoachConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110D00230FDA41000181BA /* WalkthroughCoachConfigurator.swift */; };
-		8D110D0A230FDB82000181BA /* WalkthroughCoach.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D110D09230FDB82000181BA /* WalkthroughCoach.storyboard */; };
-		8D110D0C230FDDC2000181BA /* WalkthroughAnimatedCoach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D110D0B230FDDC2000181BA /* WalkthroughAnimatedCoach.swift */; };
 		8D13B8DF22FB1F4C00B776E8 /* CreateAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D13B8DE22FB1F4B00B776E8 /* CreateAccountInfoViewController.swift */; };
 		8D13B8E122FB1F5B00B776E8 /* CreateAccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D13B8E022FB1F5B00B776E8 /* CreateAccountInfo.storyboard */; };
 		8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */; };
@@ -651,15 +625,6 @@
 		8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */; };
 		8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */; };
 		8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */; };
-		8D9F6D1C230E80EB00DCC241 /* WalkthroughPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */; };
-		8D9F6D1D230E80EB00DCC241 /* WalkthroughWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */; };
-		8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */; };
-		8D9F6D1F230E80EB00DCC241 /* WalkthroughInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D17230E80EB00DCC241 /* WalkthroughInterface.swift */; };
-		8D9F6D20230E80EB00DCC241 /* WalkthroughViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D18230E80EB00DCC241 /* WalkthroughViewController.swift */; };
-		8D9F6D21230E80EB00DCC241 /* WalkthroughInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D19230E80EB00DCC241 /* WalkthroughInteractor.swift */; };
-		8D9F6D25230E832600DCC241 /* Walkthrough.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D9F6D24230E832600DCC241 /* Walkthrough.storyboard */; };
-		8D9F6D27230E85A400DCC241 /* WalkthroughAnimatedArrows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D9F6D26230E85A400DCC241 /* WalkthroughAnimatedArrows.swift */; };
-		8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9F6D28230E869C00DCC241 /* WalkthroughAnimatedArrows.xib */; };
 		8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */; };
 		8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */; };
 		8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE106A231526D400A247A5 /* QOTAlert.swift */; };
@@ -1837,14 +1802,6 @@
 		852DADD51EF051C400A10882 /* UIView+Layers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layers.swift"; sourceTree = "<group>"; };
 		8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LaunchHandler.swift; sourceTree = "<group>"; };
 		85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Convenience.swift"; sourceTree = "<group>"; };
-		8D008EFA230EFA45006D7263 /* WalkthroughSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchPresenter.swift; sourceTree = "<group>"; };
-		8D008EFB230EFA45006D7263 /* WalkthroughSearchWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchWorker.swift; sourceTree = "<group>"; };
-		8D008EFC230EFA45006D7263 /* WalkthroughSearchRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchRouter.swift; sourceTree = "<group>"; };
-		8D008EFD230EFA45006D7263 /* WalkthroughSearchInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchInterface.swift; sourceTree = "<group>"; };
-		8D008EFE230EFA45006D7263 /* WalkthroughSearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchViewController.swift; sourceTree = "<group>"; };
-		8D008EFF230EFA45006D7263 /* WalkthroughSearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchInteractor.swift; sourceTree = "<group>"; };
-		8D008F01230EFA45006D7263 /* WalkthroughSearchConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSearchConfigurator.swift; sourceTree = "<group>"; };
-		8D008F0A230EFA63006D7263 /* WalkthroughSearch.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = WalkthroughSearch.storyboard; sourceTree = "<group>"; };
 		8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListViewModel.swift; sourceTree = "<group>"; };
 		8D04FA2823041E9C00AE7CA0 /* RegistrationAgePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAgePresenter.swift; sourceTree = "<group>"; };
 		8D04FA2923041E9C00AE7CA0 /* RegistrationAgeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationAgeWorker.swift; sourceTree = "<group>"; };
@@ -1865,23 +1822,6 @@
 		8D0B4D1E2301CC3F00A1AC47 /* RegistrationNamesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesViewController.swift; sourceTree = "<group>"; };
 		8D0B4D1F2301CC4000A1AC47 /* RegistrationNamesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesInteractor.swift; sourceTree = "<group>"; };
 		8D0B4D212301CC4000A1AC47 /* RegistrationNamesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationNamesConfigurator.swift; sourceTree = "<group>"; };
-		8D110CE6230FCEDE000181BA /* WalkthroughSwipePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipePresenter.swift; sourceTree = "<group>"; };
-		8D110CE7230FCEDE000181BA /* WalkthroughSwipeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeWorker.swift; sourceTree = "<group>"; };
-		8D110CE8230FCEDE000181BA /* WalkthroughSwipeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeRouter.swift; sourceTree = "<group>"; };
-		8D110CE9230FCEDE000181BA /* WalkthroughSwipeInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeInterface.swift; sourceTree = "<group>"; };
-		8D110CEA230FCEDE000181BA /* WalkthroughSwipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeViewController.swift; sourceTree = "<group>"; };
-		8D110CEB230FCEDE000181BA /* WalkthroughSwipeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeInteractor.swift; sourceTree = "<group>"; };
-		8D110CED230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughSwipeConfigurator.swift; sourceTree = "<group>"; };
-		8D110CF6230FD0F5000181BA /* WalkthroughSwipe.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkthroughSwipe.storyboard; sourceTree = "<group>"; };
-		8D110CF9230FDA41000181BA /* WalkthroughCoachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachPresenter.swift; sourceTree = "<group>"; };
-		8D110CFA230FDA41000181BA /* WalkthroughCoachWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachWorker.swift; sourceTree = "<group>"; };
-		8D110CFB230FDA41000181BA /* WalkthroughCoachRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachRouter.swift; sourceTree = "<group>"; };
-		8D110CFC230FDA41000181BA /* WalkthroughCoachInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachInterface.swift; sourceTree = "<group>"; };
-		8D110CFD230FDA41000181BA /* WalkthroughCoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachViewController.swift; sourceTree = "<group>"; };
-		8D110CFE230FDA41000181BA /* WalkthroughCoachInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachInteractor.swift; sourceTree = "<group>"; };
-		8D110D00230FDA41000181BA /* WalkthroughCoachConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughCoachConfigurator.swift; sourceTree = "<group>"; };
-		8D110D09230FDB82000181BA /* WalkthroughCoach.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = WalkthroughCoach.storyboard; sourceTree = "<group>"; };
-		8D110D0B230FDDC2000181BA /* WalkthroughAnimatedCoach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughAnimatedCoach.swift; sourceTree = "<group>"; };
 		8D13B8DE22FB1F4B00B776E8 /* CreateAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountInfoViewController.swift; sourceTree = "<group>"; };
 		8D13B8E022FB1F5B00B776E8 /* CreateAccountInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CreateAccountInfo.storyboard; sourceTree = "<group>"; };
 		8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MySprints.swift"; sourceTree = "<group>"; };
@@ -1963,16 +1903,6 @@
 		8D8AA75B22FDCB6700B59A81 /* RegistrationEmailWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailWorker.swift; sourceTree = "<group>"; };
 		8D8AA75C22FDCB6700B59A81 /* RegistrationEmailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegistrationEmailViewController.swift; sourceTree = "<group>"; };
 		8D8FE32B23350BED004F79C4 /* LoginVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = LoginVideo.mp4; sourceTree = "<group>"; };
-		8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughPresenter.swift; sourceTree = "<group>"; };
-		8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughWorker.swift; sourceTree = "<group>"; };
-		8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughRouter.swift; sourceTree = "<group>"; };
-		8D9F6D17230E80EB00DCC241 /* WalkthroughInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughInterface.swift; sourceTree = "<group>"; };
-		8D9F6D18230E80EB00DCC241 /* WalkthroughViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughViewController.swift; sourceTree = "<group>"; };
-		8D9F6D19230E80EB00DCC241 /* WalkthroughInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughInteractor.swift; sourceTree = "<group>"; };
-		8D9F6D1B230E80EB00DCC241 /* WalkthroughConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughConfigurator.swift; sourceTree = "<group>"; };
-		8D9F6D24230E832600DCC241 /* Walkthrough.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Walkthrough.storyboard; sourceTree = "<group>"; };
-		8D9F6D26230E85A400DCC241 /* WalkthroughAnimatedArrows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalkthroughAnimatedArrows.swift; sourceTree = "<group>"; };
-		8D9F6D28230E869C00DCC241 /* WalkthroughAnimatedArrows.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAnimatedArrows.xib; sourceTree = "<group>"; };
 		8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertView.swift; sourceTree = "<group>"; };
 		8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoAlertView.xib; sourceTree = "<group>"; };
 		8DAE106A231526D400A247A5 /* QOTAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTAlert.swift; sourceTree = "<group>"; };
@@ -2980,7 +2910,7 @@
 				8D13B8DD22FB1F0300B776E8 /* CreateAccountInfo */,
 				8D8AA74B22FDCB6700B59A81 /* Registration */,
 				8D66E8932305A04400BE78C7 /* TrackSelection */,
-				8D9F6D13230E80A200DCC241 /* Walkthrough */,
+				389BBC7C235EE63C0009FA02 /* Walkthrough */,
 			);
 			name = Signing;
 			sourceTree = "<group>";
@@ -3083,7 +3013,6 @@
 				36718B2E224CDB7B0042881E /* Subscription */,
 				F99DF60D2292E38F00341DAB /* Tools */,
 				36E4B7A2219EBFB900049EE8 /* Tutorial */,
-				389BBC7C235EE63C0009FA02 /* Walkthrough */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -3827,21 +3756,6 @@
 			name = Permissions;
 			sourceTree = "<group>";
 		};
-		8D008EF9230EE147006D7263 /* Search */ = {
-			isa = PBXGroup;
-			children = (
-				8D008F01230EFA45006D7263 /* WalkthroughSearchConfigurator.swift */,
-				8D008EFF230EFA45006D7263 /* WalkthroughSearchInteractor.swift */,
-				8D008EFD230EFA45006D7263 /* WalkthroughSearchInterface.swift */,
-				8D008EFA230EFA45006D7263 /* WalkthroughSearchPresenter.swift */,
-				8D008EFC230EFA45006D7263 /* WalkthroughSearchRouter.swift */,
-				8D008EFE230EFA45006D7263 /* WalkthroughSearchViewController.swift */,
-				8D008EFB230EFA45006D7263 /* WalkthroughSearchWorker.swift */,
-				8D008F0A230EFA63006D7263 /* WalkthroughSearch.storyboard */,
-			);
-			path = Search;
-			sourceTree = "<group>";
-		};
 		8D04FA2723041DC000AE7CA0 /* Age */ = {
 			isa = PBXGroup;
 			children = (
@@ -3870,36 +3784,6 @@
 				8D0B4D182301CC2400A1AC47 /* RegistrationNames.storyboard */,
 			);
 			path = Names;
-			sourceTree = "<group>";
-		};
-		8D110CE5230FCEAC000181BA /* WalkthroughSwipe */ = {
-			isa = PBXGroup;
-			children = (
-				8D110CED230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift */,
-				8D110CEB230FCEDE000181BA /* WalkthroughSwipeInteractor.swift */,
-				8D110CE9230FCEDE000181BA /* WalkthroughSwipeInterface.swift */,
-				8D110CE6230FCEDE000181BA /* WalkthroughSwipePresenter.swift */,
-				8D110CE8230FCEDE000181BA /* WalkthroughSwipeRouter.swift */,
-				8D110CEA230FCEDE000181BA /* WalkthroughSwipeViewController.swift */,
-				8D110CE7230FCEDE000181BA /* WalkthroughSwipeWorker.swift */,
-				8D110CF6230FD0F5000181BA /* WalkthroughSwipe.storyboard */,
-			);
-			path = WalkthroughSwipe;
-			sourceTree = "<group>";
-		};
-		8D110CF8230FD9CD000181BA /* WalkthroughCoach */ = {
-			isa = PBXGroup;
-			children = (
-				8D110D00230FDA41000181BA /* WalkthroughCoachConfigurator.swift */,
-				8D110CFE230FDA41000181BA /* WalkthroughCoachInteractor.swift */,
-				8D110CFC230FDA41000181BA /* WalkthroughCoachInterface.swift */,
-				8D110CF9230FDA41000181BA /* WalkthroughCoachPresenter.swift */,
-				8D110CFB230FDA41000181BA /* WalkthroughCoachRouter.swift */,
-				8D110CFD230FDA41000181BA /* WalkthroughCoachViewController.swift */,
-				8D110CFA230FDA41000181BA /* WalkthroughCoachWorker.swift */,
-				8D110D09230FDB82000181BA /* WalkthroughCoach.storyboard */,
-			);
-			path = WalkthroughCoach;
 			sourceTree = "<group>";
 		};
 		8D13B8DD22FB1F0300B776E8 /* CreateAccountInfo */ = {
@@ -4059,35 +3943,6 @@
 				8D8AA75922FDCB6700B59A81 /* RegistrationEmail.storyboard */,
 			);
 			path = Email;
-			sourceTree = "<group>";
-		};
-		8D9F6D13230E80A200DCC241 /* Walkthrough */ = {
-			isa = PBXGroup;
-			children = (
-				8D9F6D2A230E86A500DCC241 /* WalkthroughAnimatedViews */,
-				8D008EF9230EE147006D7263 /* Search */,
-				8D110CF8230FD9CD000181BA /* WalkthroughCoach */,
-				8D110CE5230FCEAC000181BA /* WalkthroughSwipe */,
-				8D9F6D1B230E80EB00DCC241 /* WalkthroughConfigurator.swift */,
-				8D9F6D19230E80EB00DCC241 /* WalkthroughInteractor.swift */,
-				8D9F6D17230E80EB00DCC241 /* WalkthroughInterface.swift */,
-				8D9F6D14230E80EB00DCC241 /* WalkthroughPresenter.swift */,
-				8D9F6D16230E80EB00DCC241 /* WalkthroughRouter.swift */,
-				8D9F6D18230E80EB00DCC241 /* WalkthroughViewController.swift */,
-				8D9F6D15230E80EB00DCC241 /* WalkthroughWorker.swift */,
-				8D9F6D24230E832600DCC241 /* Walkthrough.storyboard */,
-			);
-			path = Walkthrough;
-			sourceTree = "<group>";
-		};
-		8D9F6D2A230E86A500DCC241 /* WalkthroughAnimatedViews */ = {
-			isa = PBXGroup;
-			children = (
-				8D9F6D26230E85A400DCC241 /* WalkthroughAnimatedArrows.swift */,
-				8D9F6D28230E869C00DCC241 /* WalkthroughAnimatedArrows.xib */,
-				8D110D0B230FDDC2000181BA /* WalkthroughAnimatedCoach.swift */,
-			);
-			path = WalkthroughAnimatedViews;
 			sourceTree = "<group>";
 		};
 		8DBE1EBE22F460CC00BB1086 /* OnboardingLandingPage */ = {
@@ -5902,7 +5757,6 @@
 				B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
-				8D9F6D25230E832600DCC241 /* Walkthrough.storyboard in Resources */,
 				389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */,
 				F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */,
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
@@ -5963,7 +5817,6 @@
 				B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */,
 				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
-				8D110CF7230FD0F5000181BA /* WalkthroughSwipe.storyboard in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				9C7F419B232BF499007E4B5D /* MyPeakPerformanceFooter.xib in Resources */,
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
@@ -6001,7 +5854,6 @@
 				368A125E2277387900866DB0 /* SF-Pro-Display-Regular.otf in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */,
-				8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */,
 				B49AD8A3233D0CB5000C5DCF /* CustomAlertSheet.xib in Resources */,
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
 				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
@@ -6057,7 +5909,6 @@
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
-				8D110D0A230FDB82000181BA /* WalkthroughCoach.storyboard in Resources */,
 				363BB1772316EFB500B65065 /* ChoiceViewController.xib in Resources */,
 				8D8FE32C23350BED004F79C4 /* LoginVideo.mp4 in Resources */,
 				F96B23AD23507FD400130EFF /* DepartureBespokeFeastCell.xib in Resources */,
@@ -6071,7 +5922,6 @@
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				B49EACCF2328EAE1006BA566 /* WeatherCell.xib in Resources */,
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
-				8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */,
 				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,
 				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
@@ -6357,7 +6207,6 @@
 				DB5121642331945F009BFF22 /* PreparationWithMissingEventConfigurator.swift in Sources */,
 				3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */,
 				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
-				8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
@@ -6396,7 +6245,6 @@
 				BB15775A233A0E0500202978 /* BaseViewController.swift in Sources */,
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
-				8D110D08230FDA41000181BA /* WalkthroughCoachConfigurator.swift in Sources */,
 				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
@@ -6443,7 +6291,6 @@
 				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
 				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
-				8D008F04230EFA45006D7263 /* WalkthroughSearchRouter.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
 				367CD18322EF4EDE00AF2187 /* OnboardingLoginViewController.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
@@ -6513,7 +6360,6 @@
 				F9D6381622D6365C0092C482 /* QuestionCellViewModel.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */,
-				8D110D06230FDA41000181BA /* WalkthroughCoachInteractor.swift in Sources */,
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
 				367A58562326A15D0089A082 /* DTSolveInterface.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
@@ -6544,7 +6390,6 @@
 				F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */,
-				8D9F6D21230E80EB00DCC241 /* WalkthroughInteractor.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				8D04FA3723041E9C00AE7CA0 /* RegistrationAgeConfigurator.swift in Sources */,
 				DB22ADB0232AF9DC009281AB /* DailyBriefTableView.swift in Sources */,
@@ -6575,7 +6420,6 @@
 				DBFD7EED230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift in Sources */,
 				8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */,
 				8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */,
-				8D008F02230EFA45006D7263 /* WalkthroughSearchPresenter.swift in Sources */,
 				8D8AA76322FDCB6700B59A81 /* RegistrationConfigurator.swift in Sources */,
 				36EC23022323F45700DB5696 /* DTSprintWorker.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
@@ -6618,7 +6462,6 @@
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
-				8D110CF5230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				DBA3921B23247B2D0017E7F6 /* QuestionaireCellIndicator.swift in Sources */,
 				75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */,
@@ -6706,7 +6549,6 @@
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				DB5121632331945F009BFF22 /* PreparationWithMissingEventModel.swift in Sources */,
-				8D008F07230EFA45006D7263 /* WalkthroughSearchInteractor.swift in Sources */,
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
 				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
@@ -6730,7 +6572,6 @@
 				B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */,
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
-				8D110CF0230FCEDE000181BA /* WalkthroughSwipeRouter.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
@@ -6776,7 +6617,6 @@
 				5FA66642229C207B0027EE74 /* MyVisionEditDetailsWorker.swift in Sources */,
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
-				8D110D0C230FDDC2000181BA /* WalkthroughAnimatedCoach.swift in Sources */,
 				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
@@ -6801,12 +6641,10 @@
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				363B9CC2232BF34A00C1A29E /* DTTBVInterface.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
-				8D9F6D1E230E80EB00DCC241 /* WalkthroughRouter.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
 				754EBEEB22C64C930010A663 /* TBVDataGraphHeaderView.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				8D0B4D222301CC4000A1AC47 /* RegistrationNamesPresenter.swift in Sources */,
-				8D008F03230EFA45006D7263 /* WalkthroughSearchWorker.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
 				389BBC88235EE68B0009FA02 /* CoachMarksInterface.swift in Sources */,
@@ -6869,11 +6707,9 @@
 				B86E744B22A9519900B0AE75 /* MyLibraryCategoryListRouter.swift in Sources */,
 				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
 				38290B8A2330F825004B5C14 /* DTSprintReflectionViewController.swift in Sources */,
-				8D9F6D27230E85A400DCC241 /* WalkthroughAnimatedArrows.swift in Sources */,
 				F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */,
 				DB51215F2331945F009BFF22 /* PreparationWithMissingEventRouter.swift in Sources */,
 				8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */,
-				8D110CF2230FCEDE000181BA /* WalkthroughSwipeViewController.swift in Sources */,
 				9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */,
 				5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */,
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
@@ -6922,7 +6758,6 @@
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				8D0B4D272301CC4000A1AC47 /* RegistrationNamesInteractor.swift in Sources */,
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
-				8D9F6D20230E80EB00DCC241 /* WalkthroughViewController.swift in Sources */,
 				9CC4261A2306A48A00F8072E /* GuidedTrackSectionViewModel.swift in Sources */,
 				754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */,
 				8D0B4D252301CC4000A1AC47 /* RegistrationNamesInterface.swift in Sources */,
@@ -6943,11 +6778,9 @@
 				36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */,
 				B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */,
 				AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */,
-				8D008F05230EFA45006D7263 /* WalkthroughSearchInterface.swift in Sources */,
 				75DC686C22C11D2A00FF183D /* MyToBeVisionRateInteractor.swift in Sources */,
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */,
-				8D110CEF230FCEDE000181BA /* WalkthroughSwipeWorker.swift in Sources */,
 				365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */,
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
@@ -6961,7 +6794,6 @@
 				759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */,
 				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
-				8D110CEE230FCEDE000181BA /* WalkthroughSwipePresenter.swift in Sources */,
 				B8BB413322C555BF002897E4 /* MediaPlayerModel.swift in Sources */,
 				8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */,
 				366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */,
@@ -6970,13 +6802,11 @@
 				F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
-				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
 				9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */,
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
 				DB2969F022C64B8C00B8A590 /* BaseRootViewController+BottomNavigation.swift in Sources */,
 				AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */,
 				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
-				8D110D05230FDA41000181BA /* WalkthroughCoachViewController.swift in Sources */,
 				367A585A2326A15D0089A082 /* DTSolveConfigurator.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
@@ -7062,7 +6892,6 @@
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
-				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */,
 				38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */,
@@ -7076,7 +6905,6 @@
 				B856B48522B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift in Sources */,
 				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
-				8D9F6D1F230E80EB00DCC241 /* WalkthroughInterface.swift in Sources */,
 				363B9CC6232BF34A00C1A29E /* DTTBVConfigurator.swift in Sources */,
 				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
@@ -7114,7 +6942,6 @@
 				F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */,
 				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				75DC686A22C11D1200FF183D /* MyToBeVisionRateInterface.swift in Sources */,
-				8D9F6D1C230E80EB00DCC241 /* WalkthroughPresenter.swift in Sources */,
 				F99DF5F82292D72600341DAB /* ToolsCollectionsRouter.swift in Sources */,
 				F95B923E228EAECB000DEAEC /* ToolsConfigurator.swift in Sources */,
 				AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */,
@@ -7131,7 +6958,6 @@
 				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				36E12EC6232B57F0009E96EA /* DTPrepareViewController.swift in Sources */,
 				8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */,
-				8D9F6D1D230E80EB00DCC241 /* WalkthroughWorker.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
 				36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */,
@@ -7184,10 +7010,8 @@
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */,
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
-				8D110D03230FDA41000181BA /* WalkthroughCoachRouter.swift in Sources */,
 				9C24237622F0869700B911E6 /* AboutMeViewModel.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
-				8D110CF1230FCEDE000181BA /* WalkthroughSwipeInterface.swift in Sources */,
 				8D8AA76122FDCB6700B59A81 /* RegistrationInterface.swift in Sources */,
 				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
@@ -7259,7 +7083,6 @@
 				B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */,
 				DBA3921C23247B2D0017E7F6 /* QuestionnaireTableViewCell.swift in Sources */,
 				367CD18222EF4EDE00AF2187 /* OnboardingLoginInterface.swift in Sources */,
-				8D0500B5232AB11800D357D1 /* WalkthroughConfigurator.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
@@ -7271,7 +7094,6 @@
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
-				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				8DBE1EDE22F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
@@ -7293,7 +7115,6 @@
 				8D0500B3232AAFFE00D357D1 /* BaseWithTableViewController.swift in Sources */,
 				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
-				8D110D02230FDA41000181BA /* WalkthroughCoachWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,
 				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,
@@ -7307,7 +7128,6 @@
 				5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */,
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */,
-				8D110D01230FDA41000181BA /* WalkthroughCoachPresenter.swift in Sources */,
 				5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */,
 				36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */,
 			);
