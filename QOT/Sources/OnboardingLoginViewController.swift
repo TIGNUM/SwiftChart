@@ -136,6 +136,9 @@ private extension OnboardingLoginViewController {
         ThemeText.loginSeparator.apply(interactor?.buttonSeparator ?? "", to: buttonSeparator)
         buttonSendCode2.setTitle(interactor?.buttonResendCode ?? "", for: .normal)
         buttonChangeEmail.setTitle(interactor?.buttonChangeEmail ?? "", for: .normal)
+        buttonGetHelp.setTitle(interactor?.buttonGetHelp ?? "", for: .normal)
+        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
+        buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
     func sendCodeIfPossible(textField: UITextField) {
@@ -179,9 +182,6 @@ private extension OnboardingLoginViewController {
         }
 
         updateCodeEntry(isEnabled: false)
-        buttonGetHelp.setTitle(interactor?.buttonGetHelp ?? "", for: .normal)
-        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
-        buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
     func presentEmailError(_ error: String) {
@@ -195,10 +195,6 @@ private extension OnboardingLoginViewController {
             $0.layer.borderColor = UIColor.redOrange.cgColor
         }
         ThemeText.loginEmailCodeErrorMessage.apply(error, to: digitDescriptionLabel)
-
-        buttonGetHelp.setTitle(interactor?.buttonResendCode ?? "", for: .normal)
-        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
-        buttonGetHelp.addTarget(self, action: #selector(didTapSendCode), for: .touchUpInside)
     }
 
     func sendEmail() {
