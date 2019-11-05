@@ -19,18 +19,18 @@
                 <rect key="frame" x="0.0" y="0.0" width="377" height="640"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmO-77-Ykg">
-                        <rect key="frame" x="40" y="0.0" width="297" height="480"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GmO-77-Ykg">
+                        <rect key="frame" x="40" y="0.0" width="297" height="518.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NId-ug-AWe">
-                        <rect key="frame" x="48" y="512" width="281" height="21"/>
+                        <rect key="frame" x="48" y="550.5" width="281" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gBJ-Yl-C0c">
-                        <rect key="frame" x="48" y="541" width="281" height="20.5"/>
+                        <rect key="frame" x="48" y="579.5" width="281" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -41,10 +41,10 @@
                 <constraint firstItem="gBJ-Yl-C0c" firstAttribute="top" secondItem="NId-ug-AWe" secondAttribute="bottom" constant="8" id="0Zk-x4-JwM"/>
                 <constraint firstItem="GmO-77-Ykg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Bn4-2k-Y3d"/>
                 <constraint firstAttribute="trailing" secondItem="NId-ug-AWe" secondAttribute="trailing" constant="48" id="I94-vO-Rgt"/>
+                <constraint firstAttribute="bottom" secondItem="gBJ-Yl-C0c" secondAttribute="bottom" constant="40" id="NM4-s9-I5F"/>
                 <constraint firstItem="NId-ug-AWe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="Rei-5B-eF7"/>
                 <constraint firstAttribute="trailing" secondItem="gBJ-Yl-C0c" secondAttribute="trailing" constant="48" id="Tl0-ws-bwb"/>
                 <constraint firstItem="gBJ-Yl-C0c" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="48" id="VwL-wE-axD"/>
-                <constraint firstAttribute="bottom" secondItem="GmO-77-Ykg" secondAttribute="bottom" constant="160" id="dm3-Ix-Ia1"/>
                 <constraint firstItem="GmO-77-Ykg" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="kkp-eP-MZ1"/>
                 <constraint firstItem="NId-ug-AWe" firstAttribute="top" secondItem="GmO-77-Ykg" secondAttribute="bottom" constant="32" id="rZk-KE-A1G"/>
                 <constraint firstItem="GmO-77-Ykg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="40" id="x7y-6q-gkA"/>
