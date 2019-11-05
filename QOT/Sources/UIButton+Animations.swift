@@ -14,7 +14,7 @@ extension UIButton {
                        delay: 0.0,
                        options: .curveEaseInOut,
                        animations: {
-                        self.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: state ? -1.0 : 1.0)
+                        self.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: state ? 1.0 : -1.0)
         }, completion: nil)
     }
 }
