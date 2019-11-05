@@ -375,6 +375,11 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         buttonSendCode2.isUserInteractionEnabled = canSendCode
     }
 
+    func resetView() {
+        shouldBeginEmailEntry = true
+        updateView()
+    }
+
     func beginCodeEntry() {
         updateCodeEntry(isEnabled: true)
         digitTextFields.first?.becomeFirstResponder()

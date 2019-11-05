@@ -85,30 +85,43 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     }
 
     func didTapVerify(email: String?) {
-        guard checkAndPresentEmailVailidty(email) == true, let email = email else {
+        UserDefault.existingEmail.setStringValue(value: "")
+
+        guard checkAndPresentEmailValidity(email) == true, let email = email else {
             return
         }
         viewModel.sendCodeEnabled = false
         presenter.present()
         presenter.presentActivity(state: .inProgress)
         worker.verifyEmail(email) { [weak self] (result, error) in
-            if case .userExists = result.code {
-                // Success
-                self?.didTapSendCode(to: email)
+            guard let strongSelf = self else { return }
+
+            strongSelf.viewModel.emailResponseCode = result.code
+            switch result.code {
+            case .userExists:    // Success
+                strongSelf.didTapSendCode(to: email)
                 return
-            } else if case .allowedToRegister = result.code {
-                self?.viewModel.emailError = self?.worker.emailUserDoesntExist
-            } else {
-                self?.viewModel.emailError = result.message ?? self?.worker.generalEMailError
+            case .allowedToRegister:
+                strongSelf.viewModel.emailError = nil
+            case .userDoesNotExist:
+                strongSelf.viewModel.emailError = strongSelf.worker.emailUserDoesntExist
+            default:
+                strongSelf.viewModel.emailError = result.message ?? strongSelf.worker.generalEMailError
             }
-            self?.viewModel.sendCodeEnabled = true
-            self?.presenter.present()
-            self?.presenter.presentActivity(state: nil)
+            strongSelf.viewModel.sendCodeEnabled = true
+            if strongSelf.testForPreRegisteredUser() {
+                UserDefault.existingEmail.setStringValue(value: email)
+                strongSelf.delegate?.didNeedToRouteToRegistration()
+                strongSelf.presenter.presentReset()
+            } else {
+                strongSelf.presenter.present()
+                strongSelf.presenter.presentActivity(state: nil)
+            }
         }
     }
 
     func didTapSendCode(to email: String?) {
-        guard checkAndPresentEmailVailidty(email) == true, let email = email else {
+        guard checkAndPresentEmailValidity(email) == true, let email = email else {
             return
         }
         viewModel.sendCodeEnabled = false
@@ -129,7 +142,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     }
 
     func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?) {
-        guard checkAndPresentEmailVailidty(email) == true, let email = email else {
+        guard checkAndPresentEmailValidity(email) == true, let email = email else {
             return
         }
 
@@ -184,7 +197,7 @@ private extension OnboardingLoginInteractor {
         }
     }
 
-    func checkAndPresentEmailVailidty(_ email: String?) -> Bool {
+    func checkAndPresentEmailValidity(_ email: String?) -> Bool {
         if worker.isValidEmail(email) == true {
             return true
         }
@@ -192,5 +205,9 @@ private extension OnboardingLoginInteractor {
         viewModel.emailError = worker.emailError
         presenter.present()
         return false
+    }
+
+    func testForPreRegisteredUser() -> Bool {
+        return viewModel.emailResponseCode == .allowedToRegister
     }
 }

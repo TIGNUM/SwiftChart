@@ -48,6 +48,10 @@ final class RegistrationEmailInteractor {
     var nextButtonTitle: String {
         return worker.nextButtonTitle
     }
+
+    var existingEmail: String? {
+        return UserDefault.existingEmail.stringValue
+    }
 }
 
 // MARK: - RegistrationEmailInteractorInterface
