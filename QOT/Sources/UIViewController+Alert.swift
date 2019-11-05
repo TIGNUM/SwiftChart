@@ -302,3 +302,14 @@ extension UIViewController {
         showAlert(type: .custom(title: title, message: message))
     }
 }
+
+extension UIViewController {
+    func hasInternet() -> Bool {
+        let hasInternet = QOTReachability().isReachable
+        if !hasInternet {
+            showAlert(type: .noNetworkConnectionFile, handler: {
+            })
+        }
+        return hasInternet
+    }
+}
