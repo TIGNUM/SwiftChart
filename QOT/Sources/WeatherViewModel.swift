@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 import qot_dal
 
 enum WeatherType: String {
@@ -28,6 +29,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var deniedLocationPermissionDescription: String?
     var deniedLocationPermissionButtonTitle: String?
     var locationPermissionStatus: PermissionsManager.AuthorizationStatus = .notDetermined
+    var locationName: String?
     let permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
 
     // MARK: - Init
@@ -45,11 +47,17 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
         self.deniedLocationPermissionButtonTitle = deniedLocationPermissionButtonTitle
         super.init(domain)
-        self.updatePermissionStatus()
+        updatePermissionStatus()
+        updateLocationName()
     }
 
     private func updatePermissionStatus() {
         locationPermissionStatus = permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
+    }
+
+    private func updateLocationName() {
+        guard let name = AppDelegate.current.locationManager.currentLocalityName else { return }
+        locationName = name
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
