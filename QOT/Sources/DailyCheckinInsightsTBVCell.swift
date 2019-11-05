@@ -31,10 +31,10 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     func configure(with: DailyCheckIn2TBVModel?) {
         guard let model = with else { return }
         skeletonManager.hide()
-        tbvText.text = model.introText
-        tbvSentence.text = model.tbvSentence
-        self.adviceText.text = model.adviceText
         ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
+        ThemeText.insightsTBVText.apply(model.introText, to: tbvText)
+        ThemeText.insightsTBVText.apply(model.adviceText, to: adviceText)
+        ThemeText.insightsTBVSentence.apply(model.tbvSentence, to: tbvSentence)
     }
 }
 
