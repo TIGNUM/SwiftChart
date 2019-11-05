@@ -157,7 +157,7 @@ final class ImagePickerController {
             return
         }
 
-        permissionsManager.askPermission(for: [identifier], completion: { [unowned self] status in
+        permissionsManager.askPermission(for: identifier, completion: { [unowned self] status in
             guard let status = status[identifier] else { return }
             switch status {
             case .granted:
@@ -171,9 +171,11 @@ final class ImagePickerController {
                     self.adapter?.cancelSelectionEvent()
                     self.delegate?.cancelSelection()
                 })
-            case .later:
+            case .restricted:
                 self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
                 self.handleAuthorizationForOption(option)
+            default:
+                break
             }
         })
     }

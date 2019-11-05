@@ -56,15 +56,16 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
-        viewModel?.updateLocationPermissionStatus { [weak self] (status) in
+        viewModel?.requestLocationPermission { [weak self] (status) in
             switch status {
             case .denied:
                 UIApplication.openAppSettings()
             default:
-                self?.viewModel?.requestLocationPermission { [weak self] (granted) in
+                self?.viewModel?.requestLocationPermission(completion: { [weak self] (status) in
+                    let granted = (status == .granted)
                     self?.delegate?.didChangeLocationPermission(granted: granted)
                     granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
-                }
+                })
             }
         }
     }
@@ -159,19 +160,19 @@ final class WeatherCell: BaseDailyBriefCell {
         let weatherImageViewTop: CGFloat = 60
         var shouldHideHeader = false
         switch viewModel?.locationPermissionStatus {
-        case .notSet?:
-            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
-            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
-            accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
+        case .granted?, .grantedWhileInForeground?:
+            shouldHideHeader = true
+            accessImageView.image = nil
         case .denied?:
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
             accessImageView.image = R.image.location_permission()
         default:
-            shouldHideHeader = true
-            accessImageView.image = nil
+            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
+            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
+            accessButtonHeight = ThemeButton.accent40.defaultHeight
+            accessImageView.image = R.image.location_permission()
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
