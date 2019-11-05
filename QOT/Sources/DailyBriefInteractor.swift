@@ -268,9 +268,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .solveReflection,
                                                         elements: strongSelf.createSolveViewModel(bucket: bucket)))
                 case .WEATHER?:
-                    if strongSelf.createWeatherViewModel(weatherBucket: bucket).count > 0 {
+                    let models = strongSelf.createWeatherViewModel(weatherBucket: bucket)
+                    if models.count > 0 {
                         sectionDataList.append(ArraySection(model: .weather,
-                                                            elements: strongSelf.createWeatherViewModel(weatherBucket: bucket)))
+                                                            elements: models))
                     }
                 case .GUIDE_TRACK?:
                     sectionDataList.append(ArraySection(model: .guidedTrack,
@@ -796,9 +797,10 @@ extension DailyBriefInteractor {
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        if weatherBucket?.weather?.currentTempInCelcius == nil ||
+        if AppCoordinator.permissionsManager?.currentStatusFor(for: .location) == .granted &&
+            (weatherBucket?.weather?.currentTempInCelcius == nil ||
             weatherBucket?.weather?.currentTempInFahrenheit == nil ||
-            weatherBucket?.weather?.forecast?.count == 0 {
+            weatherBucket?.weather?.forecast?.count == 0) {
             return []
         }
 

@@ -222,22 +222,27 @@ private extension OnboardingLoginViewController {
 
 // MARK: - Actions
 private extension OnboardingLoginViewController {
-
     @IBAction func didTapVerifyEmail() {
-        trackUserEvent(.VERIFY_EMAIL, action: .TAP)
-        emailField.textField.resignFirstResponder()
-        emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
-        interactor?.didTapVerify(email: emailField.text)
+        if hasInternet() {
+            trackUserEvent(.VERIFY_EMAIL, action: .TAP)
+            emailField.textField.resignFirstResponder()
+            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
+            interactor?.didTapVerify(email: emailField.text)
+        }
     }
 
     @objc func didTapSendCode() {
-        trackUserEvent(.SEND_CODE, action: .TAP)
-        interactor?.didTapSendCode(to: emailField.text)
+        if hasInternet() {
+            trackUserEvent(.SEND_CODE, action: .TAP)
+            interactor?.didTapSendCode(to: emailField.text)
+        }
     }
 
     @IBAction func didTapGetHelp() {
-        trackUserEvent(.GET_HELP, action: .TAP)
-        interactor?.showFAQScreen()
+        if hasInternet() {
+            trackUserEvent(.GET_HELP, action: .TAP)
+            interactor?.showFAQScreen()
+        }
     }
 
     // Superclass already has a `didTapBackButton()` method

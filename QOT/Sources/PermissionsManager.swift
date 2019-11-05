@@ -15,10 +15,12 @@ protocol PermissionManagerDelegate: class {
 
 // there should only ever be 1 class instance
 final class PermissionsManager {
-    enum AuthorizationStatus {
+    enum AuthorizationStatus: String {
         case granted
+        case grantedWhileInForeground
         case denied
-        case later
+        case restricted
+        case notDetermined
     }
 
     struct Permission {
@@ -39,7 +41,7 @@ final class PermissionsManager {
         var askStatus: AskStatus
         var identifier: Identifier
     }
-
+    private let calendarNotificationPermission = CalendarPermission()
     private let remoteNotificationPermission = RemoteNotificationPermission()
     private let locationPermission = LocationPermission()
     private let photosPermission = PhotosPermission()
@@ -49,7 +51,7 @@ final class PermissionsManager {
         queue.maxConcurrentOperationCount = 1 // only process 1 at a time (sequentially)
         return queue
     }()
-    private var lastKnownAuthorizationStatusDescriptions = [Permission.Identifier: String]()
+    private var lastKnownAuthorizationStatusDescriptions = [Permission.Identifier: PermissionsManager.AuthorizationStatus]()
     private var data = [Permission.Identifier: Permission]()
 
     weak var delegate: PermissionManagerDelegate?
@@ -60,16 +62,22 @@ final class PermissionsManager {
     init(delegate: PermissionManagerDelegate) {
         self.delegate = delegate
         reset()
+        updateRemoteNotificationStatus()
     }
 
     func reset() {
         data = [ // ensure every key is mapped to a permission
+            .calendar: Permission(interface: calendarNotificationPermission, askStatus: .canAsk, identifier: .notifications),
             .notifications: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .notifications),
             .location: Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
             .photos: Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),
             .camera: Permission(interface: cameraPermission, askStatus: .canAsk, identifier: .camera)
         ]
-        fetchDescriptions { _ in }
+        lastKnownAuthorizationStatusDescriptions = fetchDescriptions()
+    }
+
+    func currentStatusFor(for permissionType: Permission.Identifier) -> PermissionsManager.AuthorizationStatus {
+        return lastKnownAuthorizationStatusDescriptions[permissionType] ?? .notDetermined
     }
 
     func updateAskStatus(_ askStatus: Permission.AskStatus, for identifier: Permission.Identifier) {
@@ -78,66 +86,47 @@ final class PermissionsManager {
         data[identifier] = permission
     }
 
-    func askPermission(for identifiers: [Permission.Identifier],
+    func askPermission(for identifier: Permission.Identifier,
                        completion: @escaping ([Permission.Identifier: AuthorizationStatus]) -> Void) {
-        guard let lastIdentifier = identifiers.last else { return }
         var results = [Permission.Identifier: AuthorizationStatus]()
-        identifiers.forEach { identifier in
-            guard let permission = self.data[identifier] else { return }
-            // add all the operations to the queue
-            self.queue.addOperation(WaitBlockOperation { (finish: (() -> Void)?) in
-                guard permission.askStatus == .canAsk else {
-                    results[identifier] = permission.askStatus == .askLater ? .later : .denied
-                    completion(results)
-                    finish?()
-                    return
-                }
-                // ask the permission. the permission's completion block won't be fired until the user responds
-                permission.interface.askPermission(completion: { granted in
-                    results[identifier] = granted ? .granted : .denied
-                    // fire user's completion block if it's the last permission
-                    if identifier == lastIdentifier {
-                        DispatchQueue.main.async {
-                            completion(results)
-                            self.fetchHasUpdates { hasUpdates in
-                                if hasUpdates {
-                                    self.delegate?.permissionManager(self, didUpdatePermissions: self.allPermissions)
-                                }
-                                finish?() // finish the operation
-                            }
-                        }
-                    } else {
-                        finish?() // finish the operation
-                    }
-                })
-            })
-        }
-    }
+        guard let permission = self.data[identifier] else { return }
 
-    func fetchHasUpdates(completion: @escaping (Bool) -> Void) {
-        fetchDescriptions { [weak self] descriptions in
+        guard permission.askStatus == .canAsk else {
+            results[identifier] = permission.askStatus == .askLater ? .restricted : .denied
+            completion(results)
+            return
+        }
+
+        permission.interface.askPermission(completion: { [weak self] granted in
             guard let strongSelf = self else { return }
-            let hasUpdates = descriptions != strongSelf.lastKnownAuthorizationStatusDescriptions
-            completion(hasUpdates)
-        }
+            results[identifier] = granted ? .granted : .denied
+
+            completion(results)
+            if strongSelf.fetchHasUpdates() {
+                strongSelf.delegate?.permissionManager(strongSelf, didUpdatePermissions: strongSelf.allPermissions)
+            }
+            strongSelf.reset()
+        })
     }
 
-    func fetchDescriptions(completion: @escaping ([Permission.Identifier: String]) -> Void) {
-        var authorizationStatusDescriptions = [Permission.Identifier: String]()
-        let group = DispatchGroup()
+    private func fetchHasUpdates() -> Bool {
+        let hasUpdates = fetchDescriptions() != lastKnownAuthorizationStatusDescriptions
+        return hasUpdates
+    }
 
-        self.data.keys.forEach { key in
-            group.enter()
+    private func fetchDescriptions() -> [Permission.Identifier: PermissionsManager.AuthorizationStatus] {
+        var authorizationStatusDescriptions = [Permission.Identifier: PermissionsManager.AuthorizationStatus]()
+        data.keys.forEach { key in
             guard let permission = self.data[key] else { return }
-            permission.interface.authorizationStatusDescription(completion: { description in
-                authorizationStatusDescriptions[key] = description
-                group.leave()
-            })
+            authorizationStatusDescriptions[key] = permission.interface.authorizationStatusDescription()
         }
 
-        group.notify(queue: .main) {
-            completion(authorizationStatusDescriptions)
-            self.lastKnownAuthorizationStatusDescriptions = authorizationStatusDescriptions // must be after completion block for fetchHasUpdates(_) logic to work
-        }
+        return authorizationStatusDescriptions
+    }
+
+    private func updateRemoteNotificationStatus() {
+        remoteNotificationPermission.refreshStatus(completion: { [weak self] in
+            self?.reset()
+        })
     }
 }

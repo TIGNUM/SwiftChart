@@ -291,31 +291,38 @@ extension AppCoordinator: PermissionManagerDelegate {
 
     func permissionManager(_ manager: PermissionsManager,
                             didUpdatePermissions permissions: [PermissionsManager.Permission]) {
-        manager.fetchDescriptions { (descriptions) in
-            var devicePermissions = [QDMDevicePermission]()
-            for permissionIdentifer in descriptions.keys {
-                guard let statusString = descriptions[permissionIdentifer],
-                    let status = QotDevicePermissionState(rawValue: statusString) else { continue }
-                var devicePermission = QDMDevicePermission()
-                devicePermission.permissionState = status
-                switch permissionIdentifer {
-                case .calendar:
-                    devicePermission.feature = .calendar
-                case .notifications:
-                    devicePermission.feature = .notifcations
-                case .location:
-                    devicePermission.feature = .location
-                case .photos:
-                    devicePermission.feature = .photos
-                case .camera:
-                    devicePermission.feature = .camera
-                }
-
-                devicePermissions.append(devicePermission)
+        var devicePermissions = [QDMDevicePermission]()
+        for permission in manager.allPermissions {
+            var devicePermission = QDMDevicePermission()
+            switch manager.currentStatusFor(for: permission.identifier) {
+            case .granted:
+                devicePermission.permissionState = .authorized
+            case .grantedWhileInForeground:
+                devicePermission.permissionState = .authorizedOnForeground
+            case .denied:
+                devicePermission.permissionState = .denied
+            case .notDetermined:
+                devicePermission.permissionState = .notDetermined
+            case .restricted:
+                devicePermission.permissionState = .restricted
             }
-            guard !devicePermissions.isEmpty else { return }
-            QOTService.main.updateDevicePermissions(permissions: devicePermissions)
+            switch permission.identifier {
+            case .calendar:
+                devicePermission.feature = .calendar
+            case .notifications:
+                devicePermission.feature = .notifcations
+            case .location:
+                devicePermission.feature = .location
+            case .photos:
+                devicePermission.feature = .photos
+            case .camera:
+                devicePermission.feature = .camera
+            }
+
+            devicePermissions.append(devicePermission)
         }
+        guard !devicePermissions.isEmpty else { return }
+        QOTService.main.updateDevicePermissions(permissions: devicePermissions)
     }
 }
 

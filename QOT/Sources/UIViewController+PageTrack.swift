@@ -92,11 +92,9 @@ extension UIViewController {
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
         case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
-        case is WalkthroughSearchViewController: return "walkthrough.search"
-        case is WalkthroughCoachViewController: return "walkthrough.coach"
-        case is WalkthroughSwipeViewController: return "walkthrough.swipe"
         case is QuestionnaireViewController: return "sleep.quantity.customize.target"
         case is OnboardingLoginViewController: return "onboarding.login"
+        case is CoachMarksViewController: return "coachMarks.video.walk.through"
         default: preconditionFailure()
         }
     }
