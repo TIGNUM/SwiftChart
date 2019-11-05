@@ -10,6 +10,7 @@ import Foundation
 
 struct OnboardingLoginViewModel {
     var emailError: String?
+    var emailResponseCode: ApiResponseResult?
     var sendCodeEnabled: Bool = true
     var codeError: String?
 }
