@@ -11,8 +11,8 @@ import CoreLocation
 import qot_dal
 
 enum WeatherType: String {
-    case clearSky = "Clear sky"
-    case cloudy = "Cloudy"
+    case clearSky = "Clear"
+    case cloudy = "Clouds"
     case rain = "Rain"
     case thunderStorm = "Thunderstorm"
     case snow = "Snow"
