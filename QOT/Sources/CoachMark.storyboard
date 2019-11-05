@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="CoachMarksViewController" id="Ue7-uK-cjD" customClass="CoachMarksViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Rp5-pY-aQs">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-L0-5IW" userLabel="PageIndicatorView">
-                                <rect key="frame" x="24" y="70" width="0.0" height="2"/>
+                                <rect key="frame" x="24" y="46" width="0.0" height="2"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="UGi-nP-7gP"/>
@@ -27,10 +27,10 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cs4-Rv-yhc">
-                                <rect key="frame" x="0.0" y="92" width="414" height="666"/>
+                                <rect key="frame" x="0.0" y="68" width="320" height="308"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6ba-7o-rWi">
-                                    <size key="itemSize" width="414" height="686"/>
+                                    <size key="itemSize" width="0.0" height="0.0"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -42,14 +42,14 @@
                                 </connections>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reM-N6-HQO">
-                                <rect key="frame" x="24" y="798" width="40" height="40"/>
+                                <rect key="frame" x="24" y="416" width="40" height="40"/>
                                 <state key="normal" image="ic_back_rounded"/>
                                 <connections>
                                     <action selector="didTapBack" destination="Ue7-uK-cjD" eventType="touchUpInside" id="Xd3-zt-2bZ"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv0-5y-PdB">
-                                <rect key="frame" x="273" y="798" width="117" height="40"/>
+                                <rect key="frame" x="179" y="416" width="117" height="40"/>
                                 <state key="normal" image="ic_continue_dark"/>
                                 <connections>
                                     <action selector="didTapContinue" destination="Ue7-uK-cjD" eventType="touchUpInside" id="vE0-pA-yzf"/>
