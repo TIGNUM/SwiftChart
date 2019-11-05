@@ -191,6 +191,10 @@ extension Date {
         return self < Date()
     }
 
+    var isYesterday: Bool {
+        return self.isSameDay(Date().dayAfter(days: -1))
+    }
+
     var isToday: Bool {
         return self.isSameDay(Date())
     }
@@ -214,6 +218,9 @@ extension Date {
     var eventDateString: String {
         if self.isToday == true {
             return String(format: "Today at %@", self.time)
+        }
+        if self.isYesterday == true {
+            return String(format: "Yesterday at %@", self.time)
         }
         if self.isTomorrow == true {
             return String(format: "Tomorrow at %@", self.time)

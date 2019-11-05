@@ -63,6 +63,8 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDeletedEventForPreparation(_:)),
                                                name: .needToCheckDeletedEventForPreparation, object: nil)
+
+        locationManager.startWeatherLocationMonitoring {_ in}
     }
 
     func start(completion: @escaping (() -> Void)) {

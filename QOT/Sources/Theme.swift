@@ -729,11 +729,13 @@ enum ThemeText {
     case syncedCalendarRowSubtitle
 
     case weatherIntro
+    case weatherLocation
     case weatherDescription
     case weatherTitle
     case weatherBody
     case weatherHourlyLabels
     case weatherHourlyLabelNow
+    case weatherLastUpdate
 
     case myLibraryTitle
     case myLibraryGroupName
@@ -778,7 +780,7 @@ enum ThemeText {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel:
             return Fonts.fontRegular12
-        case .asterix:
+        case .asterix, .weatherLocation:
             return Fonts.fontRegular13
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
@@ -788,7 +790,7 @@ enum ThemeText {
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
+             .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -801,8 +803,7 @@ enum ThemeText {
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
              .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
-             .myLibraryGroupDescription, .myLibraryItemsItemDescription,
-             .mySprintsCellStatus:
+             .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
              .myLibraryGroupName:
@@ -814,7 +815,7 @@ enum ThemeText {
              .chatbotProgress,
              .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
-        case .registrationCodeDescriptionEmail, .walkthroughMessage, .coachMarkTitle:
+        case .registrationCodeDescriptionEmail, .walkthroughMessage, .coachMarkTitle, .weatherDescription:
             return Fonts.fontSemiBold16
         case .articleCategory, .articleDatestamp:
             switch textScale {
@@ -914,7 +915,7 @@ enum ThemeText {
             return Fonts.fontRegular14
         case .tvbCounter:
             return Fonts.fontDisplayUltralight120
-        case .myDataHeatMapLegendText, .myDataParameterLegendText:
+        case .myDataHeatMapLegendText, .myDataParameterLegendText, .weatherLastUpdate:
             return Fonts.fontRegular12
         case .myDataHeatMapDetailCellValue:
             return Fonts.fontDisplayThin34
@@ -979,10 +980,11 @@ enum ThemeText {
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
-             .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels, .onboardingInfoBody,
-             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
-             .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle, .tbvCustomizeBody:
+             .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights,
+             .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
+             .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
+             .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
+             .mySensorsTitle, .tbvCustomizeBody:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1015,7 +1017,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-        case .version:
+        case .version, .weatherLastUpdate:
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
@@ -1099,8 +1101,8 @@ enum ThemeText {
              .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
              .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
-             .weatherDescription, .weatherTitle, .weatherBody, .mySensorsSensorTitle, .mySensorsTitle, .mySensorsNoDataInfoLabel,
-             .mySensorsDescriptionTitle, .mySensorsDescriptionBody:
+             .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
+             .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader,
              .mySprintsTableHeader:
