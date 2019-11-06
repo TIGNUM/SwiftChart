@@ -73,7 +73,7 @@ extension MyToBeVisionView {
     func setupView() {
         noNetworkLabel.adjustsFontSizeToFitWidth = true
         toBeVisionImageView.layer.masksToBounds = true
-		toBeVisionText.textColor = .gray
+		toBeVisionText.textColor = .black
     }
 
     func layout() {
