@@ -602,6 +602,9 @@ enum ThemeText {
     case bespokeTitle
     case bespokeText
     case leaderText
+    case insightsTBVText
+    case insightsTBVSentence
+    case insightsSHPIText
     case leaderVideoTitle
     case strategyTitle
     case fromCoachTitle
@@ -787,10 +790,12 @@ enum ThemeText {
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
-             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
+             .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
+             .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
+             .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle,
+             .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
             return Fonts.fontRegular16
         case .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -857,7 +862,7 @@ enum ThemeText {
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName, .dailyQuestion,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
-             .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody:
+             .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -948,7 +953,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
-             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle:
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -984,7 +989,7 @@ enum ThemeText {
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
              .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
-             .mySensorsTitle, .tbvCustomizeBody:
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1102,7 +1107,8 @@ enum ThemeText {
              .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
              .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
-             .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody:
+             .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody,
+             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader,
              .mySprintsTableHeader:
