@@ -24,6 +24,8 @@ enum UserDefault: String {
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
     case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
     case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
+    case myBestDate = "qot.userdefault.key.my.best.date"
+    case myBestText = "qot.userdefault.key.my.best.text"
 }
 
 extension UserDefault {
