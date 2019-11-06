@@ -7,88 +7,112 @@
 //
 
 import UIKit
+import SafariServices
 
 final class DepartureBespokeFeastCell: BaseDailyBriefCell {
-
-    @IBOutlet private weak var scrollView: UIScrollView!
+    // MARK: Properties
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var pageIndicator: UIPageControl!
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureBespokeText: UILabel!
-    @IBOutlet private weak var stackView: UIStackView!
+    @IBOutlet private weak var bespokeTitleLabel: UILabel!
+    @IBOutlet weak var titleToSubtitleVerticalSpacingConstraint: NSLayoutConstraint!
+
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureBespokeFeastModel: DepartureBespokeFeastModel?
-    @IBOutlet private weak var stackViewWidth: NSLayoutConstraint!
-    var copyrights: [String?] = []
-    var images: [String?] = []
-    @IBOutlet private weak var bespokeTitleLabel: UILabel!
-    @IBOutlet private weak var bespokeLabelHeight: NSLayoutConstraint!
-    @IBOutlet private weak var labelToStack: NSLayoutConstraint!
+    private var visibleIndexPath = IndexPath(row: 0, section: 0)
 
+    // MARK: Lifecycle
     override func prepareForReuse() {
         super.prepareForReuse()
-        copyrights = []
-        images = []
-        stackView.removeAllArrangedSubviews()
-        startSkeleton()
+        departureBespokeFeastModel = nil
+        collectionView.reloadData()
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        collectionView.registerDequeueable(DepartureBespokeFeastImageCell.self)
+        collectionView.delegate = self
+        collectionView.dataSource = self
         skeletonManager.addTitle(bucketTitle)
         skeletonManager.addSubtitle(departureBespokeText)
-        skeletonManager.addOtherView(stackView)
-    }
-    private func startSkeleton() {
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(departureBespokeText)
-        skeletonManager.addOtherView(stackView)
-        skeletonManager.addOtherView(scrollView)
-        skeletonManager.addSubtitle(bespokeTitleLabel)
     }
 
+    // MARK: Public
     func configure(with viewModel: DepartureBespokeFeastModel?) {
         guard let model = viewModel else { return }
+        departureBespokeFeastModel = viewModel
+        initialSetup()
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
-        ThemeText.bespokeTitle.apply((model.subtitle ?? "").uppercased(), to: bespokeTitleLabel)
-        let subtitle = model.subtitle
-        if subtitle?.isEmpty ?? true {
-            labelToStack.constant = 20
-            bespokeLabelHeight.constant = 0
+        if let title = model.title {
+            ThemeText.dailyBriefTitle.apply(title.uppercased(), to: bucketTitle)
         }
-        self.departureBespokeFeastModel = model
+        if let subtitle = model.subtitle {
+            ThemeText.bespokeTitle.apply(subtitle.uppercased(), to: bespokeTitleLabel)
+        }
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
-        var totalWidth: CGFloat = 0
-        scrollView.contentInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
-        guard let images = viewModel?.images else { return }
-        for (index, image) in images.enumerated() {
-            let url = URL(string: image ?? "")
-            let addedView = DepartureBespokeFeastImageCell()
-            addedView.picture.setImage(url: url) { (actualImage) in
-                guard let copyrightURLS = viewModel?.copyrights else { return }
-                addedView.copyrightURL = copyrightURLS[index]
-                if copyrightURLS[index]?.isEmpty ?? true {
-                    addedView.copyrightButton.isHidden = true
-                }
-                let width = (230 * (actualImage?.size.width ?? 1)) / ( actualImage?.size.height ?? 1 )
-                addedView.imageWidth.constant = width
-                totalWidth += width
-                addedView.needsUpdateConstraints()
-                self.stackViewWidth.constant = totalWidth
-                addedView.delegate = self.delegate
-                addedView.configure(imageURL: url)
-                self.updateWidth(totalWidth: totalWidth)
-            }
-            stackView.addArrangedSubview(addedView)
-        }
+        titleToSubtitleVerticalSpacingConstraint.constant = (model.text?.isEmpty ?? true) ? 0 : 14
+        collectionView.reloadData()
     }
 
-    private func updateWidth(totalWidth: CGFloat) {
-        let scrollWidth = scrollView.bounds.width
-        if totalWidth < scrollWidth {
-            scrollView.isScrollEnabled = false
-            scrollView.contentInset = UIEdgeInsets(top: 0, left: (scrollWidth - totalWidth) / 2, bottom: 0, right: 0)
-        } else {
-            scrollView.isScrollEnabled = true
-        }
+    // MARK: Private
+    private func initialSetup() {
+        let collectionViewWidth = UIScreen.main.bounds.width
+        let height = collectionView.frame.size.height
+        collectionView.isPagingEnabled = true
+        collectionView.showsHorizontalScrollIndicator = false
+        let flowLayout = UICollectionViewFlowLayout.init()
+        flowLayout.itemSize = CGSize.init(width: collectionViewWidth, height: height)
+        flowLayout.scrollDirection = .horizontal
+        flowLayout.minimumLineSpacing = 0
+        collectionView.collectionViewLayout = flowLayout
+    }
+
+    @IBAction func didTapCopyright(_ sender: Any) {
+        guard let urlString = departureBespokeFeastModel?.copyrights[visibleIndexPath.item] else { return }
+        delegate?.presentCopyRight(copyrightURL: urlString)
+    }
+}
+
+extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let numberOfImages = departureBespokeFeastModel?.images.count ?? 0
+        updatePageIndicator(numberOfPages: numberOfImages)
+        return numberOfImages
+    }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell: DepartureBespokeFeastImageCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(imageURL: URL(string: departureBespokeFeastModel?.images[indexPath.item] ?? ""))
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let url = URL(string: departureBespokeFeastModel?.copyrights[indexPath.item] ?? "") else { return }
+        let safariVC = SFSafariViewController(url: url)
+        delegate?.presentSafari(safariVC)
+    }
+
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let collectionView = scrollView as? UICollectionView else { return }
+        updatePageIndicator(forCollectionView: collectionView)
+    }
+
+    // MARK: Helpers
+    private func updatePageIndicator(forCollectionView: UICollectionView) {
+        let visibleRect = CGRect(origin: collectionView.contentOffset, size: collectionView.bounds.size)
+        let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
+        visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
+        pageIndicator.currentPage = visibleIndexPath.item
+    }
+
+    private func updatePageIndicator(numberOfPages: Int) {
+        pageIndicator.isHidden = numberOfPages < 2
+        pageIndicator.numberOfPages = numberOfPages
     }
 }
