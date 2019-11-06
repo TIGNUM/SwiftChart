@@ -80,4 +80,9 @@ extension OnboardingLandingPageViewController: OnboardingLoginDelegate {
     func didTapBack() {
         interactor?.didTapBack()
     }
+
+    func didNeedToRouteToRegistration() {
+        interactor?.didTapBack()
+        didTapStart()
+    }
 }

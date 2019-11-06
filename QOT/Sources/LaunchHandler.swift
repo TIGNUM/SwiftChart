@@ -384,7 +384,11 @@ extension LaunchHandler {
     }
 
     func dismissChatBotFlow() {
-        baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true, completion: nil)
+        if baseRootViewController?.QOTVisibleViewController() is CoachViewController {
+            baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true)
+        } else {
+            baseRootViewController?.dismiss(animated: true)
+        }
     }
 
     func showLearnStrategy(_ category: ContentCategory?) {

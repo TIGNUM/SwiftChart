@@ -49,33 +49,33 @@
                             <constraint firstAttribute="width" constant="82" id="JnZ-cQ-GOJ"/>
                         </constraints>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
-                        <rect key="frame" x="24" y="270" width="300" height="19"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
+                        <rect key="frame" x="24" y="270" width="300" height="0.0"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-AQ-5eT">
-                        <rect key="frame" x="24" y="309" width="300" height="23.333333333333314"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="NO DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZlO-AQ-5eT">
+                        <rect key="frame" x="24" y="384.66666666666669" width="300" height="24"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="We can't show you any weather data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-Xj-mOD">
-                        <rect key="frame" x="24" y="339.33333333333331" width="382" height="18.666666666666686"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" verticalCompressionResistancePriority="752" text="We can't show you any weather data" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O3R-Xj-mOD">
+                        <rect key="frame" x="24" y="415.66666666666669" width="382" height="19.333333333333314"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CmA-Lc-aRn" userLabel="Seaparator View">
-                        <rect key="frame" x="0.0" y="378" width="430" height="1"/>
+                        <rect key="frame" x="0.0" y="455" width="430" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.097795376712328783" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="wcq-es-30Y"/>
                         </constraints>
                     </view>
                     <scrollView multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="252" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="349-bm-c0Q">
-                        <rect key="frame" x="0.0" y="389" width="430" height="80"/>
+                        <rect key="frame" x="0.0" y="466" width="430" height="80"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="WZQ-cb-dX0">
                                 <rect key="frame" x="16" y="0.0" width="1050" height="80"/>
@@ -94,7 +94,7 @@
                         </constraints>
                     </scrollView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HOh-es-4Cw">
-                        <rect key="frame" x="24" y="497.00000000000006" width="188" height="148.66666666666669"/>
+                        <rect key="frame" x="24" y="574" width="195" height="71.666666666666629"/>
                         <string key="text">Allow QOT to access
 your location while 
 using the app?</string>
@@ -103,7 +103,7 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-Xc-Qoc" userLabel="HeaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="198"/>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="199.33333333333334"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
                                 <rect key="frame" x="24" y="60" width="16" height="1"/>
@@ -114,7 +114,7 @@ using the app?</string>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="76" width="94" height="24"/>
+                                <rect key="frame" x="24" y="76" width="89" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
                                 </constraints>
@@ -123,7 +123,7 @@ using the app?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="24" y="132" width="382" height="56"/>
+                                <rect key="frame" x="24" y="132" width="382" height="57.333333333333343"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Two days ago you explored some solutions to help you during difficult high-performance situations. Test 3 lines longer than something more.</string>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
@@ -144,10 +144,10 @@ using the app?</string>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV6-1Z-gcH">
-                        <rect key="frame" x="0.0" y="198" width="430" height="271"/>
+                        <rect key="frame" x="0.0" y="198" width="430" height="348"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
-                                <rect key="frame" x="207" y="0.0" width="16" height="271"/>
+                                <rect key="frame" x="27.666666666666657" y="0.0" width="375" height="348"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
@@ -158,29 +158,47 @@ using the app?</string>
                             <constraint firstItem="mGO-3j-huH" firstAttribute="centerY" secondItem="uV6-1Z-gcH" secondAttribute="centerY" id="jEZ-ST-0Xr"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-Qf-wzT">
+                        <rect key="frame" x="24" y="280" width="300" height="94.666666666666686"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vv6-KQ-XPa" userLabel="Last update label">
+                        <rect key="frame" x="24" y="562" width="382" height="0.0"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" id="0Tq-Cw-2et"/>
+                    <constraint firstItem="qCH-Qf-wzT" firstAttribute="trailing" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="26L-xP-DKE"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="48g-Rp-swp"/>
                     <constraint firstItem="uV6-1Z-gcH" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="4sc-fu-Ia0"/>
+                    <constraint firstItem="vv6-KQ-XPa" firstAttribute="top" secondItem="WZQ-cb-dX0" secondAttribute="bottom" constant="16" id="8IN-VD-RSK"/>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="bottom" secondItem="O3R-Xj-mOD" secondAttribute="top" constant="-7" id="94E-Av-Tm4"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="lessThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.5" id="9Sg-c1-Xg1"/>
                     <constraint firstItem="CmA-Lc-aRn" firstAttribute="top" secondItem="O3R-Xj-mOD" secondAttribute="bottom" constant="20" id="9eB-VA-x0I"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="trailing" secondItem="CmA-Lc-aRn" secondAttribute="trailing" id="ERY-4e-bAg"/>
-                    <constraint firstItem="ZlO-AQ-5eT" firstAttribute="top" secondItem="j3g-Se-GqU" secondAttribute="bottom" constant="20" id="JDe-vC-tbH"/>
                     <constraint firstItem="Vjm-ra-cbt" firstAttribute="top" secondItem="HOh-es-4Cw" secondAttribute="bottom" constant="14" id="NvD-Nx-9Og"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.3" id="TOz-Cc-jif"/>
                     <constraint firstItem="uV6-1Z-gcH" firstAttribute="centerX" secondItem="Auc-IE-jDT" secondAttribute="centerX" id="Vf0-n9-UUR"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="leading" secondItem="CmA-Lc-aRn" secondAttribute="leading" id="Wqy-YA-yoN"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="top" secondItem="CmA-Lc-aRn" secondAttribute="bottom" constant="10" id="YYk-xb-ayK"/>
+                    <constraint firstItem="qCH-Qf-wzT" firstAttribute="leading" secondItem="j3g-Se-GqU" secondAttribute="leading" id="ZKh-I7-tsi"/>
                     <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="28" id="elm-az-MtF"/>
                     <constraint firstItem="uV6-1Z-gcH" firstAttribute="bottom" secondItem="349-bm-c0Q" secondAttribute="bottom" id="fdV-oU-MgC"/>
                     <constraint firstItem="j3g-Se-GqU" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="bottom" constant="-10" id="ftH-qo-kGs"/>
                     <constraint firstItem="uV6-1Z-gcH" firstAttribute="top" secondItem="j1u-DS-AeZ" secondAttribute="top" id="gIt-Ub-uWa"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="ZlO-AQ-5eT" secondAttribute="trailing" id="i4S-5o-EpQ"/>
+                    <constraint firstItem="qCH-Qf-wzT" firstAttribute="top" secondItem="j3g-Se-GqU" secondAttribute="bottom" constant="10" id="iRA-RN-7MN"/>
+                    <constraint firstItem="j3g-Se-GqU" firstAttribute="leading" secondItem="vv6-KQ-XPa" secondAttribute="leading" id="ihn-g8-TFk"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="top" secondItem="349-bm-c0Q" secondAttribute="bottom" constant="28" id="mUD-bx-VMN"/>
                     <constraint firstAttribute="trailing" secondItem="Vjm-ra-cbt" secondAttribute="trailing" constant="24" id="oQr-Ju-2AW"/>
+                    <constraint firstItem="vv6-KQ-XPa" firstAttribute="trailing" secondItem="O3R-Xj-mOD" secondAttribute="trailing" id="rFg-rP-QEi"/>
+                    <constraint firstItem="ZlO-AQ-5eT" firstAttribute="top" secondItem="qCH-Qf-wzT" secondAttribute="bottom" constant="10" id="rTb-UP-PIQ"/>
                     <constraint firstAttribute="trailing" secondItem="TQ7-Xc-Qoc" secondAttribute="trailing" id="uUi-kX-QCV"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="v9Z-tV-1uN"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="198" id="yVZ-kX-u4G"/>
@@ -188,7 +206,7 @@ using the app?</string>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="zs5-h3-Y9W"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="CmA-Lc-aRn" secondAttribute="trailing" id="BKG-Sw-mH1"/>
                 <constraint firstAttribute="trailing" secondItem="O3R-Xj-mOD" secondAttribute="trailing" constant="24" id="CGl-PX-kJa"/>
@@ -209,9 +227,11 @@ using the app?</string>
                 <outlet property="headerView" destination="TQ7-Xc-Qoc" id="mUv-Gx-OTO"/>
                 <outlet property="hourlyStackView" destination="WZQ-cb-dX0" id="DKt-fC-weI"/>
                 <outlet property="introLabel" destination="w4g-tE-UTh" id="oIU-9A-hET"/>
+                <outlet property="lastUpdateLabel" destination="vv6-KQ-XPa" id="A3g-hC-bRq"/>
                 <outlet property="lineView" destination="ft1-S7-msi" id="FKn-FP-gqb"/>
+                <outlet property="locationLabel" destination="j3g-Se-GqU" id="FH5-Be-jJp"/>
                 <outlet property="weatherBodyLabel" destination="O3R-Xj-mOD" id="qSC-Ez-HD8"/>
-                <outlet property="weatherDescriptionLabel" destination="j3g-Se-GqU" id="1FV-oN-beJ"/>
+                <outlet property="weatherDescriptionLabel" destination="qCH-Qf-wzT" id="QT7-dY-7kp"/>
                 <outlet property="weatherImageView" destination="j1u-DS-AeZ" id="qNa-Ga-D44"/>
                 <outlet property="weatherImageViewTopConstraint" destination="yVZ-kX-u4G" id="HdM-QF-UZC"/>
                 <outlet property="weatherTitleLabel" destination="ZlO-AQ-5eT" id="Wph-e1-GM4"/>
@@ -225,7 +245,7 @@ using the app?</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="location_permission" width="327" height="271"/>
+        <image name="location_permission" width="375" height="489"/>
         <image name="placeholder_large" width="74" height="51"/>
     </resources>
 </document>

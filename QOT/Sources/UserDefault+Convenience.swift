@@ -26,6 +26,7 @@ enum UserDefault: String {
     case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
     case myBestDate = "qot.userdefault.key.my.best.date"
     case myBestText = "qot.userdefault.key.my.best.text"
+    case existingEmail = "qot.userdefault.key.existing.email"
 }
 
 extension UserDefault {
@@ -37,7 +38,8 @@ extension UserDefault {
                 .subscriptionInfoShow,
                 .finishedAudioItems,
                 .myDataSelectedItems,
-                .prepareLocalEventsDictionary]
+                .prepareLocalEventsDictionary,
+                .existingEmail]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -52,7 +54,8 @@ extension UserDefault {
                 .subscriptionInfoShow,
                 .finishedAudioItems,
                 .myDataSelectedItems,
-                .prepareLocalEventsDictionary]
+                .prepareLocalEventsDictionary,
+                .existingEmail]
     }
 
     var boolValue: Bool {
@@ -73,27 +76,22 @@ extension UserDefault {
 
     func setObject(_ object: Any?) {
         UserDefaults.standard.setValue(object, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setBoolValue(value: Bool) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setDoubleValue(value: Double) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setStringValue(value: String) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func clearObject() {
         UserDefaults.standard.removeObject(forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     static func clearAllDataLogOut() {

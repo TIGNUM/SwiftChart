@@ -458,7 +458,7 @@ extension QuestionnaireViewController {
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
         animationShowIndex()
-        
+
         if isTouch == true {
             switch index {
             case 0:

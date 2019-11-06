@@ -100,6 +100,9 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
         emailField.textField.autocorrectionType = .no
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
+        if let email = interactor?.existingEmail {
+            emailField.text = email
+        }
     }
 
     func updateView() {

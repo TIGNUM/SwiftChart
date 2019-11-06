@@ -14,12 +14,14 @@ protocol OnboardingLoginViewControllerInterface: UIViewController {
     var cachedToBeVision: QDMToBeVision? { get set }
     func setupView()
     func updateView()
+    func resetView()
     func beginCodeEntry()
 }
 
 protocol OnboardingLoginPresenterInterface {
     func setupView()
     func present()
+    func presentReset() 
     func presentActivity(state: ActivityState?)
     func presentCodeEntry()
 }
@@ -55,4 +57,5 @@ protocol OnboardingLoginDelegate: class {
     func didFinishLogin()
     func showTrackSelection()
     func didTapBack()
+    func didNeedToRouteToRegistration()
 }

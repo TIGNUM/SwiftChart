@@ -111,7 +111,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
     }
 }
 
-extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return CoachMark.Step.allCases.count
     }
@@ -121,5 +121,11 @@ extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDa
         let cell: CoachMarkCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(mediaName: getMediaName, title: getTitle, subtitle: getSubtitle)
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionView.bounds.size
     }
 }

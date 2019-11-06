@@ -40,7 +40,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
 private extension DailyCheckinInsightsSHPICell {
     func updateView(text: String?, rating: Int, shpiQuestion: String?) {
-        SHPIText.text = text
+        ThemeText.insightsSHPIText.apply(text, to: SHPIText)
         ThemeText.shpiQuestion.apply(shpiQuestion, to: shpiQuestionLabel)
         let selectedIndex = max(0, rating - 1)
         for index in 0...9 {
