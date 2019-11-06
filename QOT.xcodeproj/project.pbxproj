@@ -969,6 +969,8 @@
 		BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB667EF72313D76A007C2AC8 /* Theme.swift */; };
 		BB7A66992327F3C500CCE8A4 /* AnimatedAnswerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */; };
 		BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */; };
+		BB88071D2372B453001D61CE /* DailyBriefMyBestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */; };
+		BB8807292372B627001D61CE /* DailyBriefAtMyBestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */; };
 		BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */; };
 		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
 		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
@@ -1091,7 +1093,6 @@
 		E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0AF2135284700C0723E /* PDFReaderRouter.swift */; };
 		E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0B12135285A00C0723E /* PDFReaderWorker.swift */; };
 		E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8552136F17F005E787C /* PDFReaderInterface.swift */; };
-		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
 		F902CF4F22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */; };
 		F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */; };
 		F902CF5322DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */; };
@@ -1119,7 +1120,6 @@
 		F91F6A6623437CBA00DF6AA1 /* DailyCheckinStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */; };
 		F91F6A6723437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */; };
 		F91F6A6923437CE400DF6AA1 /* DailyCheckinStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */; };
-		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
@@ -1250,7 +1250,7 @@
 			remoteGlobalIDString = B8BCE58322AAB5EE0012AAAC;
 			remoteInfo = ShareExtension;
 		};
-		CBB238011E6FFF1200AB5AEF /* PBXContainerItemProxy */ = {
+		BB88071F2372B453001D61CE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
 			proxyType = 1;
@@ -2223,6 +2223,10 @@
 		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BB7A66982327F3C400CCE8A4 /* AnimatedAnswerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedAnswerTableViewCell.swift; sourceTree = "<group>"; };
 		BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AnimatedAnswerTableViewCell.xib; sourceTree = "<group>"; };
+		BB88071A2372B453001D61CE /* QOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefMyBestTests.swift; sourceTree = "<group>"; };
+		BB88071E2372B453001D61CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefAtMyBestWorker.swift; sourceTree = "<group>"; };
 		BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarCollectionViewCell.swift; sourceTree = "<group>"; };
 		BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarCollectionViewCell.xib; sourceTree = "<group>"; };
 		BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarTableViewCell.swift; sourceTree = "<group>"; };
@@ -2257,8 +2261,6 @@
 		CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CBB237F91E6FFF1200AB5AEF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CBB237FB1E6FFF1200AB5AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CBB238001E6FFF1200AB5AEF /* QOTTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QOTTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CBB238061E6FFF1200AB5AEF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Convenience.swift"; sourceTree = "<group>"; };
 		CBB4DCDF1ED8178A0071494A /* ConcurrentOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcurrentOperation.swift; sourceTree = "<group>"; };
 		CBB543811FBC816600AFD67B /* bundled_media.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = bundled_media.plist; sourceTree = "<group>"; };
@@ -2356,7 +2358,6 @@
 		E813F0AF2135284700C0723E /* PDFReaderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderRouter.swift; sourceTree = "<group>"; };
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
-		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
 		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
 		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
 		F2B6283D93D968F7401F5F08 /* Pods-QOT.release_novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release_novartis.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release_novartis.xcconfig"; sourceTree = "<group>"; };
@@ -2519,6 +2520,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		BB8807172372B453001D61CE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBB237E91E6FFF1200AB5AEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -2528,13 +2536,6 @@
 				7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */,
 				0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */,
 				DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CBB237FD1E6FFF1200AB5AEF /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2860,6 +2861,7 @@
 				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
 				9CE28A2222E1C78C00013C44 /* DailyBriefViewModel.swift */,
 				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
+				BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */,
 				363765F1223A4BA400C2C429 /* DailyBriefComponents */,
 			);
 			name = DailyBrief;
@@ -4646,6 +4648,15 @@
 			name = CustomSegue;
 			sourceTree = "<group>";
 		};
+		BB88071B2372B453001D61CE /* QOTTests */ = {
+			isa = PBXGroup;
+			children = (
+				BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */,
+				BB88071E2372B453001D61CE /* Info.plist */,
+			);
+			path = QOTTests;
+			sourceTree = "<group>";
+		};
 		CB026FC41F6967DB00FC5076 /* APNS Device Token */ = {
 			isa = PBXGroup;
 			children = (
@@ -4723,7 +4734,7 @@
 				B1B85C4C58D59EA1163CE83B /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
-				CBB238031E6FFF1200AB5AEF /* QOTTests */,
+				BB88071B2372B453001D61CE /* QOTTests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -4731,11 +4742,11 @@
 			isa = PBXGroup;
 			children = (
 				CBB237EC1E6FFF1200AB5AEF /* QOT.app */,
-				CBB238001E6FFF1200AB5AEF /* QOTTests.xctest */,
 				918D5E1F20EE050900AEAD37 /* QOTWidget.appex */,
 				AC87A778220D94F800622C90 /* Intent.appex */,
 				AC87A781220D94F900622C90 /* IntentUI.appex */,
 				B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */,
+				BB88071A2372B453001D61CE /* QOTTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -4748,15 +4759,6 @@
 				CBB4DD171EE07B010071494A /* Sources */,
 			);
 			path = QOT;
-			sourceTree = "<group>";
-		};
-		CBB238031E6FFF1200AB5AEF /* QOTTests */ = {
-			isa = PBXGroup;
-			children = (
-				CBB4DD191EE07CD30071494A /* Resources */,
-				CBB4DD181EE07CC50071494A /* Sources */,
-			);
-			path = QOTTests;
 			sourceTree = "<group>";
 		};
 		CBB4DD171EE07B010071494A /* Sources */ = {
@@ -4775,22 +4777,6 @@
 				385449A9234C59BF00A4BB3E /* Worker */,
 			);
 			path = Sources;
-			sourceTree = "<group>";
-		};
-		CBB4DD181EE07CC50071494A /* Sources */ = {
-			isa = PBXGroup;
-			children = (
-				E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */,
-			);
-			path = Sources;
-			sourceTree = "<group>";
-		};
-		CBB4DD191EE07CD30071494A /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				CBB238061E6FFF1200AB5AEF /* Info.plist */,
-			);
-			path = Resources;
 			sourceTree = "<group>";
 		};
 		CBB4DD1A1EE084C00071494A /* Coordinators */ = {
@@ -5533,6 +5519,24 @@
 			productReference = B8BCE58422AAB5EF0012AAAC /* ShareExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		BB8807192372B453001D61CE /* QOTTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BB8807272372B454001D61CE /* Build configuration list for PBXNativeTarget "QOTTests" */;
+			buildPhases = (
+				BB8807162372B453001D61CE /* Sources */,
+				BB8807172372B453001D61CE /* Frameworks */,
+				BB8807182372B453001D61CE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BB8807202372B453001D61CE /* PBXTargetDependency */,
+			);
+			name = QOTTests;
+			productName = QOTTests;
+			productReference = BB88071A2372B453001D61CE /* QOTTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CBB237EB1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */;
@@ -5562,31 +5566,13 @@
 			productReference = CBB237EC1E6FFF1200AB5AEF /* QOT.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CBB237FF1E6FFF1200AB5AEF /* QOTTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CBB2380C1E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOTTests" */;
-			buildPhases = (
-				CBB237FC1E6FFF1200AB5AEF /* Sources */,
-				CBB237FD1E6FFF1200AB5AEF /* Frameworks */,
-				CBB237FE1E6FFF1200AB5AEF /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				CBB238021E6FFF1200AB5AEF /* PBXTargetDependency */,
-			);
-			name = QOTTests;
-			productName = QOTTests;
-			productReference = CBB238001E6FFF1200AB5AEF /* QOTTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		CBB237E41E6FFF1200AB5AEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1030;
 				LastUpgradeCheck = 1030;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
@@ -5633,6 +5619,12 @@
 							};
 						};
 					};
+					BB8807192372B453001D61CE = {
+						CreatedOnToolsVersion = 10.3;
+						DevelopmentTeam = 4FQQH349R5;
+						ProvisioningStyle = Automatic;
+						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
+					};
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4FQQH349R5;
@@ -5659,12 +5651,6 @@
 							};
 						};
 					};
-					CBB237FF1E6FFF1200AB5AEF = {
-						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 1030;
-						ProvisioningStyle = Automatic;
-						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
-					};
 				};
 			};
 			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
@@ -5681,11 +5667,11 @@
 			projectRoot = "";
 			targets = (
 				CBB237EB1E6FFF1200AB5AEF /* QOT */,
-				CBB237FF1E6FFF1200AB5AEF /* QOTTests */,
 				918D5E1E20EE050900AEAD37 /* QOTWidget */,
 				AC87A777220D94F800622C90 /* Intent */,
 				AC87A780220D94F900622C90 /* IntentUI */,
 				B8BCE58322AAB5EE0012AAAC /* ShareExtension */,
+				BB8807192372B453001D61CE /* QOTTests */,
 			);
 		};
 /* End PBXProject section */
@@ -5725,6 +5711,13 @@
 			files = (
 				B8BCE59722AAB61F0012AAAC /* Share.js in Resources */,
 				B8BCE58A22AAB5EF0012AAAC /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8807182372B453001D61CE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -5949,13 +5942,6 @@
 				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CBB237FE1E6FFF1200AB5AEF /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -6195,6 +6181,14 @@
 				B8BCE59822AAC2710012AAAC /* ExtensionModel.swift in Sources */,
 				B8BCE59B22AF8FEA0012AAAC /* ShareExtentionData.swift in Sources */,
 				B8BCE59922AAC2770012AAAC /* ExtensionUserDefaults.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB8807162372B453001D61CE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BB88071D2372B453001D61CE /* DailyBriefMyBestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7000,6 +6994,7 @@
 				36E6E3F622493B39001BE9C7 /* ComponentPresentationController.swift in Sources */,
 				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
 				8DBE1EDA22F46B7400BB1086 /* OnboardingLandingPageInterface.swift in Sources */,
+				BB8807292372B627001D61CE /* DailyBriefAtMyBestWorker.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
 				8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */,
 				BBB47C67232A44EE00B165F8 /* QotUISwitch.swift in Sources */,
@@ -7133,15 +7128,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CBB237FC1E6FFF1200AB5AEF /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */,
-				F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -7165,10 +7151,10 @@
 			target = B8BCE58322AAB5EE0012AAAC /* ShareExtension */;
 			targetProxy = B8BCE58C22AAB5EF0012AAAC /* PBXContainerItemProxy */;
 		};
-		CBB238021E6FFF1200AB5AEF /* PBXTargetDependency */ = {
+		BB8807202372B453001D61CE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CBB237EB1E6FFF1200AB5AEF /* QOT */;
-			targetProxy = CBB238011E6FFF1200AB5AEF /* PBXContainerItemProxy */;
+			targetProxy = BB88071F2372B453001D61CE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -7274,8 +7260,10 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
+				ENABLE_TESTABILITY = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
@@ -7294,20 +7282,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Novartis;
-		};
-		385EE3E52359B4F800D41073 /* Novartis */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Novartis;
 		};
@@ -7487,6 +7461,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -7501,20 +7476,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Database;
-		};
-		7FE151CE1F3DDC6200DA8F37 /* Database */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Database;
 		};
@@ -8023,6 +7984,157 @@
 			};
 			name = AppStore;
 		};
+		BB8807212372B454001D61CE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Debug;
+		};
+		BB8807222372B454001D61CE /* Novartis */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Novartis;
+		};
+		BB8807232372B454001D61CE /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = UnitTest;
+		};
+		BB8807242372B454001D61CE /* Database */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Database;
+		};
+		BB8807252372B454001D61CE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Release;
+		};
+		BB8807262372B454001D61CE /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = AppStore;
+		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -8088,6 +8200,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -8101,20 +8214,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = AppStore;
-		};
-		CBA0EBA31FCDB6C6009B33AB /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = AppStore;
 		};
@@ -8245,6 +8344,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -8273,6 +8373,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -8286,34 +8387,6 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = Release;
-		};
-		CBB2380D1E6FFF1300AB5AEF /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
-			};
-			name = Debug;
-		};
-		CBB2380E1E6FFF1300AB5AEF /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Release;
 		};
@@ -8394,6 +8467,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
@@ -8415,20 +8489,6 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
-			};
-			name = UnitTest;
-		};
-		E8F43D3620B6F98800C9FF4F /* UnitTest */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = UnitTest;
 		};
@@ -8487,6 +8547,19 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		BB8807272372B454001D61CE /* Build configuration list for PBXNativeTarget "QOTTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BB8807212372B454001D61CE /* Debug */,
+				BB8807222372B454001D61CE /* Novartis */,
+				BB8807232372B454001D61CE /* UnitTest */,
+				BB8807242372B454001D61CE /* Database */,
+				BB8807252372B454001D61CE /* Release */,
+				BB8807262372B454001D61CE /* AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -8509,19 +8582,6 @@
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
 				CBB2380B1E6FFF1300AB5AEF /* Release */,
 				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CBB2380C1E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOTTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CBB2380D1E6FFF1300AB5AEF /* Debug */,
-				385EE3E52359B4F800D41073 /* Novartis */,
-				E8F43D3620B6F98800C9FF4F /* UnitTest */,
-				7FE151CE1F3DDC6200DA8F37 /* Database */,
-				CBB2380E1E6FFF1300AB5AEF /* Release */,
-				CBA0EBA31FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
