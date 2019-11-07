@@ -718,7 +718,11 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor?.showDailyCheckInQuestions()
     }
 
-    func didChangeLocationPermission(granted: Bool) {}
+    func didChangeLocationPermission(granted: Bool) {
+        if granted {
+            AppDelegate.current.locationManager.startWeatherLocationMonitoring { (_) in }
+        }
+    }
 
     func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
         interactor?.openGuidedTrackAppLink(appLink)
