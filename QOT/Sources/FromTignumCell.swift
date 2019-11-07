@@ -27,17 +27,7 @@ final class FromTignumCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(button)
     }
 
-    @IBAction func discoverButton(_ sender: Any) {
-        if isLabelAtMaxHeight {
-            isLabelAtMaxHeight = false
-//            heightOfText.constant = 100
-        } else {
-//          link to more details
-            isLabelAtMaxHeight = true
-//          Right now we are not displaying the more button in from tignum
-//          heightOfText.constant = 400
-        }
-    }
+    @IBAction func discoverButton(_ sender: Any) { }
 
     func configure(with viewModel: FromTignumCellViewModel?) {
         guard let model = viewModel else { return }
