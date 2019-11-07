@@ -38,7 +38,7 @@ extension QDMUserCalendarEvent {
             event?.calendar.title == calendarName &&
             event?.location == location &&
             //we need to match nil notes with empty string ones
-            (notes != nil ? event?.notes == notes : event?.notes?.isEmpty ?? true) &&
+            (notes != nil ? (event?.notes == notes) : (event?.notes?.isEmpty ?? true)) &&
             event?.timeZone?.identifier == timeZoneId &&
             event?.occurrenceDate == occurrenceDate &&
             event?.isAllDay == isAllDay &&
