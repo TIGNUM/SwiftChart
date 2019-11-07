@@ -218,6 +218,7 @@ enum ThemeButton {
     case level5
     case clear
     case onboarding
+    case backButton
 
     var defaultHeight: CGFloat {
         get {
@@ -251,6 +252,9 @@ enum ThemeButton {
             colorSelected = .clear
         case .onboarding:
             colorSelected = Palette.accent40
+        case .backButton:
+            colorUnselected = Palette.carbon
+            colorBorder = Palette.accent40
         }
 
         if let color = colorBorder {
@@ -310,6 +314,7 @@ enum ThemableButton {
     case paymentReminder
     case articleMarkAsRead(selected: Bool)
     case level5
+    case continueButton
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -328,7 +333,8 @@ enum ThemableButton {
              .trackSelection,
              .paymentReminder,
              .articleMarkAsRead,
-             .level5:
+             .level5,
+             .continueButton:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -342,7 +348,8 @@ enum ThemableButton {
              .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
-             .level5:
+             .level5,
+             .continueButton:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -373,7 +380,7 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
-        case .level5:
+        case .level5, .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         }
     }

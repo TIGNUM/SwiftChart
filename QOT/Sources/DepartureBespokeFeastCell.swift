@@ -26,6 +26,9 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         departureBespokeFeastModel = nil
+        bucketTitle.text = nil
+        bespokeTitleLabel.text = nil
+        departureBespokeText.text = nil
         collectionView.reloadData()
     }
 

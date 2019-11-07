@@ -34,9 +34,9 @@ struct CoachMark {
             }
         }
 
-        var rightButtonImage: UIImage? {
-            if .search == self { return R.image.ic_getStarted_dark() }
-            return R.image.ic_continue_dark()
+        var rightButtonTitle: String? {
+            if .search == self { return R.string.localized.impactReadinessCellButtonGetStarted() }
+            return R.string.localized.alertButtonTitleContinue()
         }
 
         var hideBackButton: Bool {
@@ -52,7 +52,7 @@ struct CoachMark {
         let mediaName: String
         let title: String?
         let subtitle: String?
-        let rightButtonImage: UIImage?
+        let rightButtonTitle: String?
         let hideBackButton: Bool
         let page: Int
         let isLastPage: Bool
