@@ -67,8 +67,8 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if firstTime && (interactor?.shouldStartDeactivated() ?? false) {
-            deactivate(animated: false)
+        if interactor?.shouldStartDeactivated() ?? false {
+            deactivate(animated: !firstTime)
         } else {
             doActivate()
         }
