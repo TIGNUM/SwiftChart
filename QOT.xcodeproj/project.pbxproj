@@ -863,7 +863,6 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
-		B47AE720237449B6006B8E45 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB88071E2372B453001D61CE /* Info.plist */; };
 		B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */; };
 		B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */; };
 		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
@@ -5716,7 +5715,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B47AE720237449B6006B8E45 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
