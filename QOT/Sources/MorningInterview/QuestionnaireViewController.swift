@@ -217,14 +217,8 @@ extension QuestionnaireViewController {
             ThemeText.tbvCustomizeBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-            titleContainerHeight.constant = 550
-            questionToTableView.constant = 100
-        case .dailyCheckin:
-            titleContainerHeight.constant = 0
-            questionToTableView.constant = 120
-        case .vision:
-           titleContainerHeight.constant = 0
-           questionToTableView.constant = 140
+        default:
+            break
         }
 
     }

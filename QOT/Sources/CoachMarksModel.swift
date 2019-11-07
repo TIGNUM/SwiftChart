@@ -35,7 +35,7 @@ struct CoachMark {
         }
 
         var rightButtonTitle: String? {
-            if .search == self { return R.string.localized.impactReadinessCellButtonGetStarted() }
+            if .search == self { return R.string.localized.coachGetStartedButtonTitle() }
             return R.string.localized.alertButtonTitleContinue()
         }
 
