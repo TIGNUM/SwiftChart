@@ -36,7 +36,7 @@ class DTViewController: BaseViewController, DTViewControllerInterface, DTQuestio
         let theme: ThemeView = isDark ? .chatbotDark : .chatbot
         theme.apply(view)
 
-        let image = isDark ? R.image.ic_close_rounded() : R.image.ic_close_sand()
+        let image = R.image.ic_close()
         closeButton.setImage(image, for: .normal)
         let imageUp = isDark ? R.image.ic_arrow_up_dark() : R.image.ic_arrow_up()
         previousButton.setImage(imageUp, for: .normal)

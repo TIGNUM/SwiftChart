@@ -11,10 +11,11 @@ import Foundation
 extension UIViewController {
 
     func setCustomBackButton() {
-        let backButton = UIBarButtonItem(image: R.image.ic_close_rounded(),
+        let backButton = UIBarButtonItem(image: R.image.ic_close_accent(),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(backToPreviousViewController))
+        
         navigationItem.leftBarButtonItem = backButton
     }
 

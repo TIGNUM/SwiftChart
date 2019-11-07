@@ -17,8 +17,8 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     private var viewModel: CoachMark.ViewModel?
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var currentIndexPath = IndexPath(item: 0, section: 0)
-    @IBOutlet private weak var buttonBack: UIButton!
-    @IBOutlet private weak var buttonContinue: UIButton!
+    @IBOutlet private weak var buttonBack: RoundedButton!
+    @IBOutlet private weak var buttonContinue: RoundedButton!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicatorView: UIView!
 
@@ -65,9 +65,9 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
 
 // MARK: - Private
 private extension CoachMarksViewController {
-    func setupButtons(_ hideBackButton: Bool, _ rightButtonImage: UIImage?) {
+    func setupButtons(_ hideBackButton: Bool, _ rightButtonTitle: String?) {
         buttonBack.isHidden = hideBackButton
-        buttonContinue.setImage(rightButtonImage, for: .normal)
+        ThemableButton.continueButton.apply(buttonContinue, title: rightButtonTitle)
     }
 }
 
@@ -92,6 +92,7 @@ private extension CoachMarksViewController {
 // MARK: - CoachMarksViewControllerInterface
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView() {
+        ThemeButton.accent40.apply(buttonBack)
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
@@ -103,7 +104,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
 
     func updateView(_ viewModel: CoachMark.ViewModel) {
         self.viewModel = viewModel
-        setupButtons(viewModel.hideBackButton, viewModel.rightButtonImage)
+        setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)
         pageIndicator.currentPageIndex = getCurrentPage
         collectionView.scrollToItem(at: toIndexPath, at: .centeredHorizontally, animated: true)

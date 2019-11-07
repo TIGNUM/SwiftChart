@@ -37,7 +37,7 @@ private extension CoachMarksPresenter {
         return CoachMark.ViewModel(mediaName: presentationModel.step.media,
                                    title: getValueText(presentationModel.content, .title),
                                    subtitle: getValueText(presentationModel.content, .subtitle),
-                                   rightButtonImage: presentationModel.step.rightButtonImage,
+                                   rightButtonTitle: presentationModel.step.rightButtonTitle,
                                    hideBackButton: presentationModel.step.hideBackButton,
                                    page: presentationModel.step.rawValue,
                                    isLastPage: presentationModel.step.isLastPage)
