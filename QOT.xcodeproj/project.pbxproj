@@ -970,7 +970,6 @@
 		BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7A669A2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib */; };
 		BB88071D2372B453001D61CE /* DailyBriefMyBestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB88071C2372B453001D61CE /* DailyBriefMyBestTests.swift */; };
 		BB8807292372B627001D61CE /* DailyBriefAtMyBestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8807282372B627001D61CE /* DailyBriefAtMyBestWorker.swift */; };
-		BB88072A2374145A001D61CE /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB88071E2372B453001D61CE /* Info.plist */; };
 		BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */; };
 		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
 		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
@@ -5716,7 +5715,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB88072A2374145A001D61CE /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
