@@ -149,7 +149,7 @@ final class MyVisionWorker {
 
     func shouldShowWarningIcon() -> Bool {
         guard let date =  toBeVision?.date else {
-            return true
+            return false
         }
         let daysOld = DateComponentsFormatter.numberOfDays(date)
         let fourWeeks = 28 // 4 weeks = 28 days
