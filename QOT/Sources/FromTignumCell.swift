@@ -12,7 +12,6 @@ final class FromTignumCell: BaseDailyBriefCell {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var fromTignumText: UILabel!
-    private var isLabelAtMaxHeight = false
     @IBOutlet weak var fromTignumTitle: UILabel!
 
     override func awakeFromNib() {
@@ -26,6 +25,7 @@ final class FromTignumCell: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: fromTignumTitle)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
     }
 }

@@ -21,9 +21,9 @@ final class MyPrepsWorker {
         UserService.main.getUserPreparations { [weak self] (preparations, initialized, error) in
             var prepItems = [MyPrepsModel.Items]()
             preparations?.forEach {
-                let dateString = $0.eventDate?.eventDateString
+                let dateString = DateFormatter.ddMMM.string(from: $0.eventDate ?? Date())
                 let prepItem = MyPrepsModel.Items(title: $0.name ?? "",
-                                                  date: dateString ?? "",
+                                                  date: dateString,
                                                   eventType: $0.eventType ?? "",
                                                   qdmPrep: $0)
                 prepItems.append(prepItem)
@@ -38,7 +38,7 @@ final class MyPrepsWorker {
             var recoveryItems = [RecoveriesModel.Items]()
             recoveries?.forEach {
                 let recoveryItem = RecoveriesModel.Items(title: $0.causeAnwser?.subtitle ?? "",
-                                                         date: $0.createdAt?.eventDateString ?? "",
+                                                         date: DateFormatter.ddMMM.string(from: $0.createdAt ?? Date()),
                                                          qdmRec: $0)
                 recoveryItems.append(recoveryItem)
             }
@@ -52,7 +52,7 @@ final class MyPrepsWorker {
             var mindsetItems = [MindsetShiftersModel.Items]()
             mindsetShifters?.forEach {
                 let mindsetItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.subtitle ?? "",
-                                                             date: $0.createdAt?.eventDateString ?? "",
+                                                             date: DateFormatter.ddMMM.string(from: $0.createdAt ?? Date()),
                                                              qdmMind: $0)
                 mindsetItems.append(mindsetItem)
             }
