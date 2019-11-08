@@ -148,10 +148,20 @@ final class MyVisionWorker {
     }
 
     func shouldShowWarningIcon() -> Bool {
-        guard let date =  toBeVision?.date else {
+        let date = Date(timeIntervalSince1970: 0)
+        let track = tracks?.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.createdAt ?? date > rhs.createdAt ?? date
+        }).first
+
+        let rating = track?.ratings.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.isoDate ?? date > rhs.isoDate ?? date
+        }).first
+
+        guard let ratingDate = rating?.isoDate else {
             return false
         }
-        let daysOld = DateComponentsFormatter.numberOfDays(date)
+
+        let daysOld = DateComponentsFormatter.numberOfDays(ratingDate)
         let fourWeeks = 28 // 4 weeks = 28 days
         return daysOld > fourWeeks
     }
