@@ -91,9 +91,8 @@ extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let url = URL(string: departureBespokeFeastModel?.copyrights[indexPath.item] ?? "") else { return }
-        let safariVC = SFSafariViewController(url: url)
-        delegate?.presentSafari(safariVC)
+        guard let urlString = departureBespokeFeastModel?.copyrights[indexPath.item] else { return }
+        delegate?.presentCopyRight(copyrightURL: urlString)
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
