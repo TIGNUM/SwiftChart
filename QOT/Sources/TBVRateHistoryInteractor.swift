@@ -14,10 +14,10 @@ final class TBVRateHistoryInteractor {
     // MARK: - Properties
     private let worker: TBVRateHistoryWorker
     private let presenter: TBVRateHistoryPresenterInterface
-    private let displayType: TBVRateHistory.DisplayType
+    private let displayType: TBVGraph.DisplayType
 
     // MARK: - Init
-    init(_ presenter: TBVRateHistoryPresenterInterface, _ displayType: TBVRateHistory.DisplayType) {
+    init(_ presenter: TBVRateHistoryPresenterInterface, _ displayType: TBVGraph.DisplayType) {
         self.presenter = presenter
         self.displayType = displayType
         self.worker = TBVRateHistoryWorker(displayType)
@@ -32,16 +32,16 @@ final class TBVRateHistoryInteractor {
 
 // MARK: - MyToBeVisionTrackerInteractorInterface
 extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
-    var getDisplayType: TBVRateHistory.DisplayType {
+    var getDisplayType: TBVGraph.DisplayType {
         return displayType
     }
 
-    var getViewModel: ToBeVisionReport? {
+    var getDataModel: ToBeVisionReport? {
         return worker.dataModel
     }
 
     var numberOfRows: Int {
-        return worker.answers().count
+        return worker.sentences.count
     }
 
     var subtitle: String {
@@ -49,7 +49,7 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
     }
 
     var title: String {
-        return worker.subtitle
+        return worker.title
     }
 
     var graphTitle: String {
@@ -64,11 +64,15 @@ extension TBVRateHistoryInteractor: TBVRateHistoryInteractorInterface {
         return worker.days
     }
 
+    var selectedDate: Date {
+        return worker.selectedDate
+    }
+
     func setSelection(for date: Date) {
         worker.setSelection(for: date)
     }
 
     func sentence(in row: Int) -> QDMToBeVisionSentence? {
-        return worker.answers().at(index: row)
+        return worker.sentences.at(index: row)
     }
 }

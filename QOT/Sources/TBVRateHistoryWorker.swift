@@ -11,17 +11,15 @@ import qot_dal
 
 final class TBVRateHistoryWorker {
 
-    // MARK: - Properties
-    private let displayType: TBVRateHistory.DisplayType
-    var dataModel: ToBeVisionReport?
-
     lazy var isDataType = displayType == .data
     lazy var subtitle = ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataSubtitle : .TbvTrackerSubtitle)
     lazy var title = ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataTitle : .TbvTrackerTitle)
     lazy var graphTitle = ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataGraphTitle : .TbvTrackerGraphTitle)
 
-    // MARK: - Init
-    init(_ displayType: TBVRateHistory.DisplayType) {
+    private let displayType: TBVGraph.DisplayType
+    var dataModel: ToBeVisionReport?
+
+    init(_ displayType: TBVGraph.DisplayType) {
         self.displayType = displayType
     }
 
@@ -29,9 +27,9 @@ final class TBVRateHistoryWorker {
         UserService.main.getToBeVisionTrackingReport(last: 3) { [weak self] (report) in
             guard let strongSelf = self else { return }
             strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
-                                             subtitle: strongSelf.subtitle,
-                                             selectedDate: report.days.last!,
-                                             report: report)
+                                                    subtitle: strongSelf.subtitle,
+                                                    selectedDate: report.days.last!,
+                                                    report: report)
             completion(strongSelf.dataModel!)
         }
     }
@@ -40,11 +38,15 @@ final class TBVRateHistoryWorker {
         dataModel?.selectedDate = date
     }
 
-    func answers() -> [QDMToBeVisionSentence] {
+    var sentences: [QDMToBeVisionSentence] {
         if let dataModel = dataModel {
-            return dataModel.report.sentences.filter ({ (($0.ratings[dataModel.selectedDate] as? Int) ?? -1) > 0 })
+            return dataModel.report.sentences.filter {(($0.ratings[dataModel.selectedDate] as? Int) ?? -1) > 0 }
         }
         return []
+    }
+
+    var selectedDate: Date {
+        return dataModel!.selectedDate
     }
 
     var average: [Date: Double] {

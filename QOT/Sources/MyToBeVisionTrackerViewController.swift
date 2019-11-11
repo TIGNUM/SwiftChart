@@ -10,12 +10,10 @@ import UIKit
 
 final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3 {
 
-    // MARK: - Properties
     var interactor: TBVRateHistoryInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet weak var loaderView: UIView!
+    @IBOutlet private weak var loaderView: UIView!
 
-    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
@@ -54,18 +52,19 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return TBVRateHistory.Section.allCases.count
+        return TBVGraph.Section.allCases.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch TBVRateHistory.Section.allCases[section] {
-        case .graph, .header: return 1
+        switch TBVGraph.Section.allCases[section] {
+        case .graph,
+             .header: return 1
         case .sentence: return interactor?.numberOfRows ?? 0
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch TBVRateHistory.Section.allCases[indexPath.section] {
+        switch TBVGraph.Section.allCases[indexPath.section] {
         case .header:
             let cell: TBVDataGraphSubHeadingTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(subHeading: interactor?.subtitle)
@@ -73,29 +72,30 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         case .graph:
             let cell: TBVDataGraphTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
-            let config: TBVGraph.BarGraphConfig = interactor?.getDisplayType == .tracker ? .tbvTrackerConfig() : .tbvDataConfig()
-            cell.setup(averages: interactor?.average ?? [:],
-                       days: interactor?.days ?? [],
-                       config: config,
+            cell.setup(report: interactor?.getDataModel,
+                       config: interactor?.getDisplayType.config ?? .tbvTrackerConfig(),
                        range: .defaultRange())
             return cell
         case .sentence:
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(answer: interactor?.sentence(in: indexPath.row))
+            if let sentence = interactor?.sentence(in: indexPath.row),
+                let date = interactor?.selectedDate {
+                    cell.configure(sentence, selectedDate: date)
+            }
             return cell
         }
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        switch TBVRateHistory.Section.allCases[section] {
-        case .header: return TBVRateHistory.Section.header.height
-        case .sentence: return TBVRateHistory.Section.sentence.height
+        switch TBVGraph.Section.allCases[section] {
+        case .header: return TBVGraph.Section.header.height
+        case .sentence: return TBVGraph.Section.sentence.height
         default: return 0.1
         }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        switch TBVRateHistory.Section.allCases[section] {
+        switch TBVGraph.Section.allCases[section] {
         case .header:
             let headerView: TBVDataGraphHeaderView = tableView.dequeueHeaderFooter()
             let title = interactor?.title ?? ""
@@ -111,7 +111,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
     }
 }
 
-extension MyToBeVisionTrackerViewController: TBVDataGraphTableViewCellProtocol {
+extension MyToBeVisionTrackerViewController: TBVDataGraphProtocol {
     func didSelect(date: Date) {
         let dateString = DateFormatter.displayTime.string(from: date)
         trackUserEvent(.SELECT, stringValue: dateString, valueType: "TBV_RATE_DATE", action: .TAP)
@@ -123,16 +123,11 @@ extension MyToBeVisionTrackerViewController: TBVDataGraphTableViewCellProtocol {
 // MARK: - BottomNavigationItems
 extension MyToBeVisionTrackerViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getDisplayType == .tracker {
-            return nil
-        }
-        return super.bottomNavigationLeftBarItems()
+        return interactor?.getDisplayType == .tracker ? nil : super.bottomNavigationLeftBarItems()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getDisplayType == .tracker {
-            return [doneButtonItem(#selector(doneAction), borderColor: .accent40)]
-        }
-        return nil
+        let doneItem = doneButtonItem(#selector(doneAction), borderColor: .accent40)
+        return interactor?.getDisplayType == .tracker ? [doneItem] : nil
     }
 }

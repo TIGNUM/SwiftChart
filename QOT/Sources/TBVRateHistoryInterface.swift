@@ -18,13 +18,15 @@ protocol TBVRateHistoryPresenterInterface {
 }
 
 protocol TBVRateHistoryInteractorInterface: Interactor {
-    var getDisplayType: TBVRateHistory.DisplayType { get }
+    var getDisplayType: TBVGraph.DisplayType { get }
+    var getDataModel: ToBeVisionReport? { get }
     var subtitle: String { get }
     var title: String { get }
     var graphTitle: String { get }
     var average: [Date: Double] { get }
     var days: [Date] { get }
     var numberOfRows: Int { get }
+    var selectedDate: Date { get }
 
     func setSelection(for date: Date)
     func sentence(in row: Int) -> QDMToBeVisionSentence?

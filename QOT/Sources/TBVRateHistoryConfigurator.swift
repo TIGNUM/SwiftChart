@@ -9,7 +9,7 @@
 import Foundation
 
 final class TBVRateHistoryConfigurator {
-    static func configure(viewController: MyToBeVisionTrackerViewController, displayType: TBVRateHistory.DisplayType) {
+    static func configure(viewController: MyToBeVisionTrackerViewController, displayType: TBVGraph.DisplayType) {
         let presenter = TBVRateHistoryPresenter(viewController: viewController)
         let interactor = TBVRateHistoryInteractor(presenter, displayType)
         viewController.interactor = interactor

@@ -24,7 +24,12 @@ final class TBVDataGraphBarViewCell: UICollectionViewCell, Dequeueable {
         ratingLabelContainerView.corner(radius: ratingLabelContainerView.frame.size.width/2)
     }
 
-    func setup(with config: TBVGraph.BarGraphConfig, isSelected: Bool, ratingTime: Date?, rating: CGFloat, range: TBVGraph.Range) {
+    func setup(with config: TBVGraph.BarGraphConfig,
+               isSelected: Bool,
+               ratingTime: Date?,
+               rating: CGFloat,
+               range: TBVGraph.Range) {
+
         self.ratingLabelContainerView.clipsToBounds = false
         ratingLabel.text = rating == 0 ? "" : String(format: "%.1f", rating)
         ratingLabel.font = isSelected ? config.selectedFont : config.unSelectedFont

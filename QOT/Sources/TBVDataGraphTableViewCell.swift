@@ -8,32 +8,23 @@
 
 import UIKit
 
-protocol TBVDataGraphTableViewCellProtocol: class {
+protocol TBVDataGraphProtocol: class {
     func didSelect(date: Date)
 }
 
-final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable {
+final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable, TBVDataGraphProtocol {
 
     @IBOutlet weak var collectionView: TBVDataGraphCollectionView!
-    weak var delegate: TBVDataGraphTableViewCellProtocol?
+    weak var delegate: TBVDataGraphProtocol?
 
-    var averages = [Date: Double]()
-    var days = [Date]()
-    var config: TBVGraph.BarGraphConfig = .tbvDataConfig()
-    var range: TBVGraph.Range = .defaultRange()
-
-    func setup(averages: [Date: Double], days: [Date], config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
-        self.averages = averages
-        self.days = days
-        self.config = config
-        self.range = range
-
-        collectionView.collectionDelegate = self
+    func setup(report: ToBeVisionReport?, config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
+        collectionView.tbvReport = report
+        collectionView.config = config
+        collectionView.range = range
+        collectionView.graphDelegate = self
         collectionView.reloadData()
     }
-}
 
-extension TBVDataGraphTableViewCell: TBVDataGraphCollectionViewProtocol {
     func didSelect(date: Date) {
         delegate?.didSelect(date: date)
     }

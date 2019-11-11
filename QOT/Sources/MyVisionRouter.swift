@@ -21,7 +21,7 @@ final class MyVisionRouter {
 
 // MARK: - Private
 private extension MyVisionRouter {
-    func presentRateHistory(_ displayType: TBVRateHistory.DisplayType) {
+    func presentRateHistory(_ displayType: TBVGraph.DisplayType) {
         guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
         TBVRateHistoryConfigurator.configure(viewController: viewController, displayType: displayType)
         self.viewController?.present(viewController, animated: true, completion: nil)

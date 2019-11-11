@@ -8,35 +8,29 @@
 
 import UIKit
 
-protocol TBVDataGraphCollectionViewProtocol: class {
-    var range: TBVGraph.Range { get }
-    var ratings: [TBVGraph.Rating] { get }
-    var config: TBVGraph.BarGraphConfig { get }
-    func didSelect(date: Date)
-}
-
 class TBVDataGraphCollectionView: UICollectionView {
 
-    enum GraphBarTypes: Int {
-        case range = 0
-        case first = 1
-        case firstCompanion = 2
-        case second = 4
-        case secondCompanion = 5
-        case third = 7
-        case thirdCompanion = 8
-        case future = 10
+    weak var graphDelegate: TBVDataGraphProtocol?
+    var config: TBVGraph.BarGraphConfig = .tbvDataConfig()
+    var range: TBVGraph.Range = .defaultRange()
+    var tbvReport: ToBeVisionReport?
+
+    private lazy var getAverage: [Date: Double] = {
+        return tbvReport?.report.averages ?? [:]
+    }()
+
+    private lazy var getDates: [Date] = {
+        return tbvReport?.report.days ?? []
+    }()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setupView()
     }
+}
 
-    weak var collectionDelegate: TBVDataGraphCollectionViewProtocol?
-    let numberOfGraphs = 11
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        setup()
-    }
-
-    func setup() {
+private extension TBVDataGraphCollectionView {
+    func setupView() {
         registerDequeueable(TBVDataGraphBarViewCell.self)
         registerDequeueable(TBVGraphBarRangeCell.self)
         registerDequeueable(TBVDataGraphBarNextDurationViewCell.self)
@@ -44,115 +38,98 @@ class TBVDataGraphCollectionView: UICollectionView {
         dataSource = self
     }
 
-    private func durationCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
+    func durationCell(for collectionView: UICollectionView, at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarNextDurationViewCell = collectionView.dequeueCell(for: indexPath)
         cell.duration = ""
         return cell
     }
 
-    private func graphCell(with rating: TBVGraph.Rating = .defaultRating(),
-                           for collectionView: UICollectionView,
-                           at indexPath: IndexPath) -> UICollectionViewCell {
-        guard let delegate = collectionDelegate else {
-            fatalError("Collection delegate not present")
-        }
+    func graphCell(_ average: [Date: Double],
+                   for collectionView: UICollectionView,
+                   at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setup(with: delegate.config,
-                   isSelected: rating.isSelected,
-                   ratingTime: rating.ratingTime,
-                   rating: CGFloat(rating.rating),
-                   range: delegate.range())
+        cell.setup(with: config,
+                   isSelected: false,
+                   ratingTime: average.keys.first,
+                   rating: CGFloat(average.values.first ?? 0),
+                   range: range)
         return cell
     }
 
-    private func rangeCell(with range: TBVGraph.Range = .defaultRange(),
-                           for collectionView: UICollectionView,
-                           at indexPath: IndexPath) -> UICollectionViewCell {
+    func rangeCell(with range: TBVGraph.Range = .defaultRange(),
+                   for collectionView: UICollectionView,
+                   at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVGraphBarRangeCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: range)
         return cell
+    }
+
+    func getCell(at indexPath: IndexPath, for collectionView: UICollectionView) -> UICollectionViewCell {
+        guard let barType = TBVGraph.BarTypes(rawValue: indexPath.item) else {
+            return graphCell(getAverage, for: collectionView, at: indexPath)
+        }
+
+        switch barType {
+        case .range: return rangeCell(for: collectionView, at: indexPath)
+        case .first:
+            return graphCell(getAverage, for: collectionView, at: indexPath)
+        case .second:
+            if getDates.count > 1 {
+                return graphCell(getAverage, for: collectionView, at: indexPath)
+            } else {
+                return durationCell(for: collectionView, at: indexPath)
+            }
+        case .third:
+            if getDates.count > 2 {
+                return graphCell(getAverage, for: collectionView, at: indexPath)
+            } else if getDates.count == 2 {
+                return durationCell(for: collectionView, at: indexPath)
+            } else {
+                return graphCell(getAverage, for: collectionView, at: indexPath)
+            }
+        case .future:
+            if getDates.count > 2 {
+                return durationCell(for: collectionView, at: indexPath)
+            } else {
+                return graphCell(getAverage, for: collectionView, at: indexPath)
+            }
+        default:
+            return graphCell(getAverage, for: collectionView, at: indexPath)
+        }
     }
 }
 
 extension TBVDataGraphCollectionView: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return numberOfGraphs
+        return TBVGraph.BarTypes.numberOfGraphs
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         let screenWidth = collectionView.frame.size.width
-        return CGSize(width: screenWidth/CGFloat(numberOfGraphs), height: collectionView.frame.height)
+        return CGSize(width: screenWidth/CGFloat(TBVGraph.BarTypes.numberOfGraphs), height: collectionView.frame.height)
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let delegate = collectionDelegate else {
-            fatalError("Collection delegate not present")
-        }
-        guard let barType = GraphBarTypes(rawValue: indexPath.item) else {
-            return
-        }
-        switch barType {
-        case .first, .firstCompanion:
-            let rating = delegate.ratings()[0]
-            delegate.didSelect(date: rating.ratingTime)
-        case .second, .secondCompanion:
-            if delegate.ratings().count > 1 {
-                let rating = delegate.ratings()[1]
-                delegate.didSelect(date: rating.ratingTime)
+        if let barType = TBVGraph.BarTypes(rawValue: indexPath.item) {
+            switch barType {
+            case .first,
+                 .firstCompanion,
+                 .second,
+                 .secondCompanion,
+                 .third,
+                 .thirdCompanion:
+
+                if getDates.count > barType.index {
+                    graphDelegate?.didSelect(date: getDates[barType.index])
+                }
+            default: return
             }
-        case .third, .thirdCompanion:
-            if delegate.ratings().count > 2 {
-                let rating = delegate.ratings()[2]
-                delegate.didSelect(date: rating.ratingTime)
-            }
-        default:
-            return
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         return getCell(at: indexPath, for: collectionView)
-    }
-
-    func getCell(at indexPath: IndexPath, for collectionView: UICollectionView) -> UICollectionViewCell {
-        guard let delegate = collectionDelegate else {
-            fatalError("Collection delegate not present")
-        }
-
-        guard let barType = GraphBarTypes(rawValue: indexPath.item) else {
-            return graphCell(for: collectionView, at: indexPath)
-        }
-
-        switch barType {
-        case .range:
-            return rangeCell(for: collectionView, at: indexPath)
-        case .first:
-            let rating = delegate.ratings()[0]
-            return graphCell(with: rating, for: collectionView, at: indexPath)
-        case .second:
-            if delegate.ratings().count > 1 {
-                let rating = delegate.ratings()[1]
-                return graphCell(with: rating, for: collectionView, at: indexPath)
-            } else {
-                return durationCell(for: collectionView, at: indexPath)
-            }
-        case .third:
-            if delegate.ratings().count > 2 {
-                let rating = delegate.ratings()[2]
-                return graphCell(with: rating, for: collectionView, at: indexPath)
-            } else if delegate.ratings().count == 2 {
-                return durationCell(for: collectionView, at: indexPath)
-            } else {
-                return graphCell(for: collectionView, at: indexPath)
-            }
-        case .future:
-            if delegate.ratings().count > 2 {
-                return durationCell(for: collectionView, at: indexPath)
-            } else {
-                return graphCell(for: collectionView, at: indexPath)
-            }
-        default:
-            return graphCell(for: collectionView, at: indexPath)
-        }
     }
 }
