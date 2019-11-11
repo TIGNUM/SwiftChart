@@ -21,7 +21,7 @@ protocol OnboardingLoginViewControllerInterface: UIViewController {
 protocol OnboardingLoginPresenterInterface {
     func setupView()
     func present()
-    func presentReset() 
+    func presentReset()
     func presentActivity(state: ActivityState?)
     func presentCodeEntry()
 }

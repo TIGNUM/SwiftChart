@@ -28,11 +28,12 @@ extension UIViewController {
 // MARK: - UIBarButtonItem
 extension UIViewController {
     ///TODO: Generelise button creation, enum with types.
-    func doneButtonItem(_ action: Selector) -> UIBarButtonItem {
+    func doneButtonItem(_ action: Selector, borderColor: UIColor? = nil) -> UIBarButtonItem {
         return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
                                     buttonWidth: .Done,
                                     action: action,
-                                    backgroundColor: .carbon)
+                                    backgroundColor: .carbon,
+                                    borderColor: borderColor ?? .clear)
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {

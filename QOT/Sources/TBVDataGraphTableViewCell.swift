@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TBVDataGraphTableViewCellProtocol: class {
-    func didSelect(date: Date?)
+    func didSelect(date: Date)
 }
 
 final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable {
@@ -17,32 +17,24 @@ final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var collectionView: TBVDataGraphCollectionView!
     weak var delegate: TBVDataGraphTableViewCellProtocol?
 
-    var configOfGraph: TBVGraph.BarGraphConfig = .tbvDataConfig()
-    var itemsOfGraph: [TBVGraph.Rating] = []
-    var rangeOfGraph: TBVGraph.Range = .defaultRange()
+    var averages = [Date: Double]()
+    var days = [Date]()
+    var config: TBVGraph.BarGraphConfig = .tbvDataConfig()
+    var range: TBVGraph.Range = .defaultRange()
 
-    func setup(items: [TBVGraph.Rating]?, config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
-        configOfGraph = config
-        itemsOfGraph = items ?? []
-        rangeOfGraph = range
+    func setup(averages: [Date: Double], days: [Date], config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
+        self.averages = averages
+        self.days = days
+        self.config = config
+        self.range = range
+
         collectionView.collectionDelegate = self
         collectionView.reloadData()
     }
 }
+
 extension TBVDataGraphTableViewCell: TBVDataGraphCollectionViewProtocol {
-    func didSelect(date: Date?) {
+    func didSelect(date: Date) {
         delegate?.didSelect(date: date)
-    }
-
-    func range() -> TBVGraph.Range {
-        return rangeOfGraph
-    }
-
-    func ratings() -> [TBVGraph.Rating] {
-        return itemsOfGraph
-    }
-
-    func config() -> TBVGraph.BarGraphConfig {
-        return configOfGraph
     }
 }

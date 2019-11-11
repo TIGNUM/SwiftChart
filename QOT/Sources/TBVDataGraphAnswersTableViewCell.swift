@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
 
@@ -21,7 +22,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var firstDot: UILabel!
     @IBOutlet weak var secondDot: UILabel!
 
-    func configure(answer: MYTBVDataAnswer?) {
+    func configure(sentence: QDMToBeVisionSentence) {
         removeAllLayers()
         setView(for: answer)
         guard let answer = answer else { return }

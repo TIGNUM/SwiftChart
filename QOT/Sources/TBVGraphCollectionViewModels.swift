@@ -21,9 +21,10 @@ struct TBVGraph {
     struct Rating {
         var isSelected: Bool
         let rating: CGFloat
-        let ratingTime: Date?
+        let isoDate: Date
+
         static func defaultRating() -> Rating {
-            return Rating(isSelected: false, rating: 0.0, ratingTime: nil)
+            return Rating(isSelected: false, rating: 0.0, isoDate: Date(timeIntervalSince1970: 0))
         }
     }
 

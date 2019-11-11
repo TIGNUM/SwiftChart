@@ -10,19 +10,28 @@ import Foundation
 
 final class MyVisionRouter {
 
+    // MARK: - Properties
     private weak var viewController: MyVisionViewController?
 
+    // MARK: - Init
     init(viewController: MyVisionViewController) {
         self.viewController = viewController
     }
 }
 
-extension MyVisionRouter: MyVisionRouterInterface {
-
-    func showTracker() {
+// MARK: - Private
+private extension MyVisionRouter {
+    func presentRateHistory(_ displayType: TBVRateHistory.DisplayType) {
         guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        MyToBeVisionTrackerConfigurator.configure(viewController: viewController, controllerType: .tracker)
+        TBVRateHistoryConfigurator.configure(viewController: viewController, displayType: displayType)
         self.viewController?.present(viewController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - MyVisionRouterInterface
+extension MyVisionRouter: MyVisionRouterInterface {
+    func showTracker() {
+        presentRateHistory(.tracker)
     }
 
     func showEditVision(title: String, vision: String, isFromNullState: Bool) {
@@ -38,15 +47,13 @@ extension MyVisionRouter: MyVisionRouterInterface {
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
         if shouldShowNullState {
-            guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionDataNullStateViewController() else { return }
+            guard let viewController = R.storyboard.myToBeVisionRate.tbvRateHistoryNullStateViewController() else { return }
             viewController.delegate = self.viewController
             viewController.visionId = visionId
             self.viewController?.present(viewController, animated: true, completion: nil)
-            return
+        } else {
+            presentRateHistory(.data)
         }
-        guard let viewController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
-        MyToBeVisionTrackerConfigurator.configure(viewController: viewController, controllerType: .data)
-        self.viewController?.present(viewController, animated: true, completion: nil)
     }
 
     func showRateScreen(with id: Int) {
@@ -57,11 +64,11 @@ extension MyVisionRouter: MyVisionRouterInterface {
         visionController.present(viewController, animated: true, completion: nil)
     }
 
-    func presentViewController(viewController: UIViewController, completion: (() -> Void)?) {
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?) {
         self.viewController?.present(viewController, animated: true, completion: completion)
     }
 
-    func openToBeVisionGenerator() {
+    func showTBVGenerator() {
         let configurator = DTTBVConfigurator.make(delegate: viewController)
         let controller = DTTBVViewController(configure: configurator)
         viewController?.present(controller, animated: true)

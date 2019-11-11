@@ -9,10 +9,10 @@
 import UIKit
 
 protocol TBVDataGraphCollectionViewProtocol: class {
-    func range() -> TBVGraph.Range
-    func ratings() -> [TBVGraph.Rating]
-    func config() -> TBVGraph.BarGraphConfig
-    func didSelect(date: Date?)
+    var range: TBVGraph.Range { get }
+    var ratings: [TBVGraph.Rating] { get }
+    var config: TBVGraph.BarGraphConfig { get }
+    func didSelect(date: Date)
 }
 
 class TBVDataGraphCollectionView: UICollectionView {
@@ -57,7 +57,7 @@ class TBVDataGraphCollectionView: UICollectionView {
             fatalError("Collection delegate not present")
         }
         let cell: TBVDataGraphBarViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setup(with: delegate.config(),
+        cell.setup(with: delegate.config,
                    isSelected: rating.isSelected,
                    ratingTime: rating.ratingTime,
                    rating: CGFloat(rating.rating),

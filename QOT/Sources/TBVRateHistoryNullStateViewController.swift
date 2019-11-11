@@ -1,5 +1,5 @@
 //
-//  MyToBeVisionDataNullStateViewController.swift
+//  TBVRateHistoryNullStateViewController.swift
 //  QOT
 //
 //  Created by Ashish Maheshwari on 11.07.19.
@@ -13,28 +13,29 @@ protocol MyToBeVisionDataNullStateViewControllerProtocol: class {
     func didRateTBV()
 }
 
-final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZLevel3 {
+final class TBVRateHistoryNullStateViewController: BaseViewController, ScreenZLevel3 {
 
+    // MARK: - Properties
+    weak var delegate: MyToBeVisionDataNullStateViewControllerProtocol?
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var headingDescriptionLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var titleDescriptionLabel: UILabel!
     private var rateIsEnabled = false
+    var visionId: Int?
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
         ThemableButton.myTbvDataRate.apply(button, title: R.string.localized.rateViewControllerRateMyTBVButton())
         return button.barButton
     }()
-    private let userService = qot_dal.UserService.main
-    private let contentService = qot_dal.ContentService.main
-    weak var delegate: MyToBeVisionDataNullStateViewControllerProtocol?
-    var visionId: Int?
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         addObserver()
         getVisionTracks()
+        refreshBottomNavigationItems()
         setupEmptySate()
     }
 
@@ -42,24 +43,15 @@ final class MyToBeVisionDataNullStateViewController: BaseViewController, ScreenZ
         super.viewDidAppear(animated)
         trackPage()
     }
-
-    @objc func doneAction() {
-        trackUserEvent(.OPEN, action: .TAP)
-        dismiss(animated: true) {[weak self] in
-            self?.delegate?.didRateTBV()
-        }
-    }
 }
 
-private extension MyToBeVisionDataNullStateViewController {
+// MARK: - Private
+private extension TBVRateHistoryNullStateViewController {
     func getVisionTracks() {
-        userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
-            if let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) {
-                self?.rateIsEnabled = finalTracks.count > 0
-            } else {
-                self?.rateIsEnabled = false
-            }
-            self?.refreshBottomNavigationItems()
+        UserService.main.getToBeVisionTracksForRating { [weak self] (tracks) in
+            guard let strongSelf = self else { return }
+            let finalTracks = tracks.filter { $0.toBeVisionId == strongSelf.visionId }
+            strongSelf.rateIsEnabled = !finalTracks.isEmpty
         }
     }
 
@@ -69,9 +61,7 @@ private extension MyToBeVisionDataNullStateViewController {
                                                name: .didFinishSynchronization,
                                                object: nil)
     }
-}
 
-private extension MyToBeVisionDataNullStateViewController {
     func setupEmptySate() {
         ThemeText.tbvStatement.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderTitle).uppercased(), to: headingLabel)
         ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc), to: headingDescriptionLabel)
@@ -80,18 +70,25 @@ private extension MyToBeVisionDataNullStateViewController {
     }
 }
 
-// MARK: - TBV TRACKER DID FINISH SYNC
-extension MyToBeVisionDataNullStateViewController {
+// MARK: - Actions
+extension TBVRateHistoryNullStateViewController {
     @objc func didFinishSynchronization(_ notification: Notification) {
         guard let syncResult = notification.object as? SyncResultContext else { return }
         if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
             getVisionTracks()
         }
     }
+
+    @objc func doneAction() {
+        trackUserEvent(.OPEN, action: .TAP)
+        dismiss(animated: true) { [weak self] in
+            self?.delegate?.didRateTBV()
+        }
+    }
 }
 
 // MARK: - Bottom Navigation Items
-extension MyToBeVisionDataNullStateViewController {
+extension TBVRateHistoryNullStateViewController {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return rateIsEnabled ? [tbvRateButton] : []
     }

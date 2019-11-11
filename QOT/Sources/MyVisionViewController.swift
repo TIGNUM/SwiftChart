@@ -36,20 +36,17 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
-    let skeletonManager = SkeletonManager()
-
-    var didShowNullStateView = false
-
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
     private let lowerBoundAlpha: CGFloat = 0.6
     private let upperBoundAlpha: CGFloat = 1.1
-
     private var lastContentOffset: CGFloat = 0
     private var tempImage: UIImage?
     private var tempImageURL: URL?
-    var interactor: MyVisionInteractorInterface?
     private var imagePickerController: ImagePickerController!
+    let skeletonManager = SkeletonManager()
+    var didShowNullStateView = false
+    var interactor: MyVisionInteractorInterface?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,9 +92,8 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     private func showRateScreen() {
-        guard let remoteId = interactor?.myVision?.remoteID else { return }
         trackUserEvent(.OPEN, valueType: "QuestionnaireView", action: .TAP)
-        interactor?.showRateScreen(with: remoteId)
+        interactor?.showRateScreen()
     }
 
     private func showSkeleton() {
@@ -114,12 +110,9 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
 }
 
 // MARK: - IBActions
-
 private extension MyVisionViewController {
-
     @IBAction func rateButtonAction(_ sender: UIButton) {
-        guard let remoteId = interactor?.myVision?.remoteID else { return }
-        interactor?.showRateScreen(with: remoteId)
+        showRateScreen()
     }
 
     @IBAction func shareButtonAction(_ sender: UIButton) {
@@ -142,9 +135,7 @@ private extension MyVisionViewController {
 // MARK: - Observer
 private extension MyVisionViewController {
     func saveToBeVisionImageAndData() {
-        guard var toBeVision = interactor?.myVision else { return }
-        toBeVision.modifiedAt = Date()
-        interactor?.saveToBeVision(image: tempImage, toBeVision: toBeVision)
+        interactor?.saveToBeVision(image: tempImage)
     }
 
     func removeGradients() {
@@ -227,7 +218,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         }
         skeletonManager.hide()
         interactor?.hideNullState()
-        shareButton.isHidden = interactor?.isShareBlocked() ?? false
+
+        interactor?.isShareBlocked { [weak self] (hidden) in
+            self?.shareButton.isHidden = hidden
+        }
+
         var headline = myVision?.headline
         if headline?.isEmpty != false {
             headline = interactor?.emptyTBVTitlePlaceholder
@@ -258,8 +253,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
             singleMessageRatingView.isHidden = true
             doubleMessageRatingView.isHidden = true
         }
-        guard let shouldShowWarningIcon = interactor?.shouldShowWarningIcon() else { return }
-        warningImageView.isHidden = !shouldShowWarningIcon
+
+        interactor?.shouldShowWarningIcon { [weak self] (show) in
+            self?.warningImageView.isHidden = !show
+        }
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
