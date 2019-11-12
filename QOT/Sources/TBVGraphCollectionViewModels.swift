@@ -14,6 +14,11 @@ struct TBVGraph {
         let inital: Int
         let final: Int
 
+        func barHeight(for rating: CGFloat) -> CGFloat {
+            let barHeight: CGFloat = 202
+            return (barHeight / CGFloat(final)) * rating
+        }
+
         static func defaultRange() -> Range {
             return Range(inital: 1, final: 10)
         }
