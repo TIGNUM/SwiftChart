@@ -75,7 +75,8 @@ struct TBVGraph {
             case .second,
                  .secondCompanion: return 1
             case .third,
-                 .thirdCompanion: return 2
+                 .thirdCompanion,
+                 .future: return 2
             default: return .max
             }
         }

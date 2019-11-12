@@ -15,13 +15,17 @@ class TBVDataGraphCollectionView: UICollectionView {
     var range: TBVGraph.Range = .defaultRange()
     var tbvReport: ToBeVisionReport?
 
-    private lazy var getAverage: [Date: Double] = {
+    private var getAverage: [Date: Double] {
         return tbvReport?.report.averages ?? [:]
-    }()
+    }
 
-    private lazy var getDates: [Date] = {
+    private var getDates: [Date] {
         return tbvReport?.report.days ?? []
-    }()
+    }
+
+    private var getSelectedDate: Date? {
+        return tbvReport?.selectedDate
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,15 +48,16 @@ private extension TBVDataGraphCollectionView {
         return cell
     }
 
-    func graphCell(_ average: [Date: Double],
+    func graphCell(_ average: [Date: Double] = [:],
+                   _ index: Int = 0,
                    for collectionView: UICollectionView,
                    at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarViewCell = collectionView.dequeueCell(for: indexPath)
-        cell.setup(with: config,
-                   isSelected: false,
-                   ratingTime: average.keys.first,
-                   rating: CGFloat(average.values.first ?? 0),
-                   range: range)
+        let date = Array(average.keys).at(index: index)
+        let rating = CGFloat(Array(average.values).at(index: index) ?? 0)
+        let selected = date == getSelectedDate
+
+        cell.setup(with: config, isSelected: selected, ratingTime: date, rating: rating, range: range)
         return cell
     }
 
@@ -66,35 +71,34 @@ private extension TBVDataGraphCollectionView {
 
     func getCell(at indexPath: IndexPath, for collectionView: UICollectionView) -> UICollectionViewCell {
         guard let barType = TBVGraph.BarTypes(rawValue: indexPath.item) else {
-            return graphCell(getAverage, for: collectionView, at: indexPath)
+            return graphCell(for: collectionView, at: indexPath)
         }
 
+        let averageDict = getAverage
         switch barType {
-        case .range: return rangeCell(for: collectionView, at: indexPath)
+        case .range:
+            return rangeCell(with: range, for: collectionView, at: indexPath)
         case .first:
-            return graphCell(getAverage, for: collectionView, at: indexPath)
+            return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
         case .second:
-            if getDates.count > 1 {
-                return graphCell(getAverage, for: collectionView, at: indexPath)
-            } else {
-                return durationCell(for: collectionView, at: indexPath)
+            if averageDict.count > barType.index {
+                return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
             }
+            return durationCell(for: collectionView, at: indexPath)
         case .third:
-            if getDates.count > 2 {
-                return graphCell(getAverage, for: collectionView, at: indexPath)
-            } else if getDates.count == 2 {
+            if averageDict.count > barType.index {
+                return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
+            } else if averageDict.count == barType.index {
                 return durationCell(for: collectionView, at: indexPath)
-            } else {
-                return graphCell(getAverage, for: collectionView, at: indexPath)
             }
+            return graphCell(for: collectionView, at: indexPath)
         case .future:
-            if getDates.count > 2 {
+            if averageDict.count > barType.index {
                 return durationCell(for: collectionView, at: indexPath)
-            } else {
-                return graphCell(getAverage, for: collectionView, at: indexPath)
             }
+            return graphCell(for: collectionView, at: indexPath)
         default:
-            return graphCell(getAverage, for: collectionView, at: indexPath)
+            return graphCell(for: collectionView, at: indexPath)
         }
     }
 }

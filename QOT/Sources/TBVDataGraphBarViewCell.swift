@@ -31,15 +31,20 @@ final class TBVDataGraphBarViewCell: UICollectionViewCell, Dequeueable {
                range: TBVGraph.Range) {
 
         self.ratingLabelContainerView.clipsToBounds = false
+        ratingLabelContainerView.backgroundColor = !isSelected ? .clear : config.ratingCircleColor
+
         ratingLabel.text = rating == 0 ? "" : String(format: "%.1f", rating)
         ratingLabel.font = isSelected ? config.selectedFont : config.unSelectedFont
         ratingLabel.textColor = isSelected ? config.selectedBarRatingColor : config.unSelectedBarRatingColor
+
         progressView.backgroundColor = isSelected ? config.selectedBarColor : config.progressBarColor
-        ratingLabelContainerView.backgroundColor = !isSelected ? .clear : config.ratingCircleColor
         graphBarView.backgroundColor = config.graphBarColor
+
         let height = (barHeight / CGFloat(range.final)) * rating
         progressBarHeightConstraint.constant = height
+
         ratingTimeLabel.isHidden = false
+
         guard let time = ratingTime else {
             ratingTimeLabel.isHidden = true
             return
