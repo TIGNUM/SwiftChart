@@ -20,11 +20,15 @@ class TBVDataGraphCollectionView: UICollectionView {
     }
 
     private var getDates: [Date] {
-        return tbvReport?.report.days ?? []
+        return tbvReport?.report.days.sorted(by: <) ?? []
     }
 
     private var getSelectedDate: Date? {
         return tbvReport?.selectedDate
+    }
+
+    private func getRating(_ date: Date) -> CGFloat {
+        return CGFloat(getAverage[date] ?? 0)
     }
 
     override func awakeFromNib() {
@@ -48,13 +52,11 @@ private extension TBVDataGraphCollectionView {
         return cell
     }
 
-    func graphCell(_ average: [Date: Double] = [:],
-                   _ index: Int = 0,
+    func graphCell(_ rating: CGFloat = 0,
+                   _ date: Date? = nil,
                    for collectionView: UICollectionView,
                    at indexPath: IndexPath) -> UICollectionViewCell {
         let cell: TBVDataGraphBarViewCell = collectionView.dequeueCell(for: indexPath)
-        let date = Array(average.keys).at(index: index)
-        let rating = CGFloat(Array(average.values).at(index: index) ?? 0)
         let selected = date == getSelectedDate
 
         cell.setup(with: config, isSelected: selected, ratingTime: date, rating: rating, range: range)
@@ -74,26 +76,28 @@ private extension TBVDataGraphCollectionView {
             return graphCell(for: collectionView, at: indexPath)
         }
 
-        let averageDict = getAverage
         switch barType {
         case .range:
             return rangeCell(with: range, for: collectionView, at: indexPath)
         case .first:
-            return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
+            let date = getDates[barType.index]
+            return graphCell(getRating(date), date, for: collectionView, at: indexPath)
         case .second:
-            if averageDict.count > barType.index {
-                return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
+            if getDates.count > barType.index {
+                let date = getDates[barType.index]
+                return graphCell(getRating(date), date, for: collectionView, at: indexPath)
             }
             return durationCell(for: collectionView, at: indexPath)
         case .third:
-            if averageDict.count > barType.index {
-                return graphCell(averageDict, barType.index, for: collectionView, at: indexPath)
-            } else if averageDict.count == barType.index {
+            if getDates.count > barType.index {
+                let date = getDates[barType.index]
+                return graphCell(getRating(date), date, for: collectionView, at: indexPath)
+            } else if getDates.count == barType.index {
                 return durationCell(for: collectionView, at: indexPath)
             }
             return graphCell(for: collectionView, at: indexPath)
         case .future:
-            if averageDict.count > barType.index {
+            if getDates.count > barType.index {
                 return durationCell(for: collectionView, at: indexPath)
             }
             return graphCell(for: collectionView, at: indexPath)
@@ -117,16 +121,20 @@ extension TBVDataGraphCollectionView: UICollectionViewDelegate, UICollectionView
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if let barType = TBVGraph.BarTypes(rawValue: indexPath.item) {
+            let dates = getDates
             switch barType {
             case .first,
-                 .firstCompanion,
-                 .second,
-                 .secondCompanion,
-                 .third,
+                 .firstCompanion:
+                graphDelegate?.didSelect(date: dates[barType.index])
+            case .second,
+                 .secondCompanion:
+                if dates.count > barType.index {
+                    graphDelegate?.didSelect(date: dates[barType.index])
+                }
+            case .third,
                  .thirdCompanion:
-
-                if getDates.count > barType.index {
-                    graphDelegate?.didSelect(date: getDates[barType.index])
+                if dates.count > barType.index {
+                    graphDelegate?.didSelect(date: dates[barType.index])
                 }
             default: return
             }

@@ -24,7 +24,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         setupView(sentence)
         setupRatingLabels(sentence, selectedDate: selectedDate)
     }
-}   
+}
 
 // MARK: - Private
 private extension TBVDataGraphAnswersTableViewCell {
