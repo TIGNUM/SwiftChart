@@ -10,13 +10,13 @@ import UIKit
 
 final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3 {
 
-    var interactor: TBVRateHistoryInteractorInterface?
+    var interactor: TBVRateHistoryInteractorInterface!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var loaderView: UIView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +59,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[section] {
         case .graph,
              .header: return 1
-        case .sentence: return interactor?.numberOfRows ?? 0
+        case .sentence: return interactor.numberOfRows
         }
     }
 
@@ -67,20 +67,19 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[indexPath.section] {
         case .header:
             let cell: TBVDataGraphSubHeadingTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(subHeading: interactor?.subtitle)
+            cell.configure(subHeading: interactor.subtitle)
             return cell
         case .graph:
             let cell: TBVDataGraphTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.delegate = self
-            cell.setup(report: interactor?.getDataModel,
-                       config: interactor?.getDisplayType.config ?? .tbvTrackerConfig(),
+            cell.setup(report: interactor.getDataModel,
+                       config: interactor.getDisplayType.config,
                        range: .defaultRange())
             return cell
         case .sentence:
             let cell: TBVDataGraphAnswersTableViewCell = tableView.dequeueCell(for: indexPath)
-            if let sentence = interactor?.sentence(in: indexPath.row),
-                let date = interactor?.selectedDate {
-                    cell.configure(sentence, selectedDate: date)
+            if let sentence = interactor.sentence(in: indexPath.row) {
+                cell.configure(sentence, selectedDate: interactor.selectedDate)
             }
             return cell
         }
@@ -98,12 +97,11 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[section] {
         case .header:
             let headerView: TBVDataGraphHeaderView = tableView.dequeueHeaderFooter()
-            let title = interactor?.title ?? ""
-            headerView.configure(title: title)
+            headerView.configure(title: interactor.title)
             return headerView
         case .sentence:
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-            headerView.configure(title: interactor?.graphTitle ?? "", theme: .level3)
+            headerView.configure(title: interactor.graphTitle, theme: .level3)
             return headerView
         default:
             return nil
@@ -115,7 +113,7 @@ extension MyToBeVisionTrackerViewController: TBVDataGraphProtocol {
     func didSelect(date: Date) {
         let dateString = DateFormatter.displayTime.string(from: date)
         trackUserEvent(.SELECT, stringValue: dateString, valueType: "TBV_RATE_DATE", action: .TAP)
-        interactor?.setSelection(for: date)
+        interactor.setSelection(for: date)
         tableView.reloadData()
     }
 }
@@ -123,11 +121,11 @@ extension MyToBeVisionTrackerViewController: TBVDataGraphProtocol {
 // MARK: - BottomNavigationItems
 extension MyToBeVisionTrackerViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return interactor?.getDisplayType == .tracker ? nil : super.bottomNavigationLeftBarItems()
+        return interactor.getDisplayType == .tracker ? nil : super.bottomNavigationLeftBarItems()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         let doneItem = doneButtonItem(#selector(doneAction), borderColor: .accent40)
-        return interactor?.getDisplayType == .tracker ? [doneItem] : nil
+        return interactor.getDisplayType == .tracker ? [doneItem] : nil
     }
 }
