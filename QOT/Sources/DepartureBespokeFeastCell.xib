@@ -66,7 +66,7 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flw-i8-WSc">
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="flw-i8-WSc">
                     <rect key="frame" x="0.0" y="335" width="64" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="64" id="9vh-jC-fRr"/>
@@ -108,6 +108,7 @@
                 <outlet property="bespokeTitleLabel" destination="pVx-UR-0Mr" id="WAd-BS-vnL"/>
                 <outlet property="bucketTitle" destination="2ke-Sm-FZe" id="wUE-Rg-2eQ"/>
                 <outlet property="collectionView" destination="McN-f9-o1D" id="7mN-hS-elU"/>
+                <outlet property="copyrightButton" destination="flw-i8-WSc" id="cZk-Cy-C5E"/>
                 <outlet property="departureBespokeText" destination="skS-XB-VBd" id="ldB-gj-S9r"/>
                 <outlet property="pageIndicator" destination="xCY-dp-VCJ" id="2iC-AF-SdB"/>
                 <outlet property="titleToSubtitleVerticalSpacingConstraint" destination="Zs2-Xv-y9B" id="e47-qj-pCw"/>

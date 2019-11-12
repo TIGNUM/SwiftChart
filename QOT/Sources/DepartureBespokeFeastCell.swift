@@ -11,11 +11,12 @@ import SafariServices
 
 final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Properties
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicator: UIPageControl!
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var departureBespokeText: UILabel!
+    @IBOutlet weak var copyrightButton: UIButton!
     @IBOutlet private weak var bespokeTitleLabel: UILabel!
+    @IBOutlet private weak var departureBespokeText: UILabel!
     @IBOutlet weak var titleToSubtitleVerticalSpacingConstraint: NSLayoutConstraint!
 
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -53,6 +54,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         if let subtitle = model.subtitle {
             ThemeText.bespokeTitle.apply(subtitle.uppercased(), to: bespokeTitleLabel)
         }
+        showCopyrightButtonIfNeeded()
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
         titleToSubtitleVerticalSpacingConstraint.constant = (model.text?.isEmpty ?? true) ? 0 : 14
         collectionView.reloadData()
@@ -71,6 +73,14 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         collectionView.collectionViewLayout = flowLayout
     }
 
+    private func showCopyrightButtonIfNeeded() {
+        if departureBespokeFeastModel?.copyrights.count ?? 0 > visibleIndexPath.item,
+            departureBespokeFeastModel?.copyrights[visibleIndexPath.item] != nil {
+            copyrightButton.isHidden = false
+        }
+    }
+
+    // MARK: Actions
     @IBAction func didTapCopyright(_ sender: Any) {
         guard let urlString = departureBespokeFeastModel?.copyrights[visibleIndexPath.item] else { return }
         delegate?.presentCopyRight(copyrightURL: urlString)
@@ -78,6 +88,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
 }
 
 extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewDataSource {
+    // MARK: CollectionView delegates and datasource
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let numberOfImages = departureBespokeFeastModel?.images.count ?? 0
         updatePageIndicator(numberOfPages: numberOfImages)
@@ -111,6 +122,7 @@ extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewD
         let visiblePoint = CGPoint(x: visibleRect.midX, y: visibleRect.midY)
         visibleIndexPath = collectionView.indexPathForItem(at: visiblePoint) ?? IndexPath(item: 0, section: 0)
         pageIndicator.currentPage = visibleIndexPath.item
+        showCopyrightButtonIfNeeded()
     }
 
     private func updatePageIndicator(numberOfPages: Int) {
