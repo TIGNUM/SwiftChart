@@ -30,12 +30,12 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
 private extension TBVDataGraphAnswersTableViewCell {
     func setupRatingLabels(_ sentence: QDMToBeVisionSentence, selectedDate: Date) {
         let lowRange = NSRange(location: 1, length: 6)
-        let sortedDict = sentence.ratings.sorted(by: { $0.key < $1.key })
+        let sortedDict = sentence.last3Ratings.sorted(by: { $0.key < $1.key })
         var index = 0
 
         for (date, rating) in sortedDict {
-            let isLow = lowRange.contains(rating ?? 0)
-            let text = rating == -1 ? "-" : String(describing: rating ?? 0)
+            let isLow = lowRange.contains(rating)
+            let text = rating == -1 ? "-" : String(describing: rating)
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)
 
             if date == selectedDate {
@@ -59,10 +59,10 @@ private extension TBVDataGraphAnswersTableViewCell {
         ratingContainerViews[1].isHidden = false
         ratingContainerViews[2].isHidden = false
 
-        if sentence.ratings.count == 2 {
+        if sentence.last3Ratings.count == 2 {
             secondDot.isHidden = true
             ratingContainerViews[2].isHidden = true
-        } else if sentence.ratings.count == 1 {
+        } else if sentence.last3Ratings.count == 1 {
             secondDot.isHidden = true
             ratingContainerViews[2].isHidden = true
             firstDot.isHidden = true
