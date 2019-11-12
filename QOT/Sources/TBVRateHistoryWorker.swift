@@ -28,7 +28,7 @@ final class TBVRateHistoryWorker {
             guard let strongSelf = self else { return }
             strongSelf.dataModel = ToBeVisionReport(title: strongSelf.title,
                                                     subtitle: strongSelf.subtitle,
-                                                    selectedDate: report.days.last!,
+                                                    selectedDate: report.days.sorted(by: <).last!,
                                                     report: report)
             completion(strongSelf.dataModel!)
         }
@@ -40,7 +40,7 @@ final class TBVRateHistoryWorker {
 
     var sentences: [QDMToBeVisionSentence] {
         if let dataModel = dataModel {
-            return dataModel.report.sentences.filter {(($0.ratings[dataModel.selectedDate] as? Int) ?? -1) > 0 }
+            return dataModel.report.sentences.filter { ($0.ratings[dataModel.selectedDate] ?? -1) > 0 }
         }
         return []
     }
@@ -54,6 +54,6 @@ final class TBVRateHistoryWorker {
     }
 
     var days: [Date] {
-        return dataModel?.report.days ?? []
+        return dataModel?.report.days.sorted(by: <) ?? []
     }
 }
