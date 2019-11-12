@@ -23,42 +23,19 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         setupTheme(sentence)
         setupView(sentence)
         setupRatingLabels(sentence, selectedDate: selectedDate)
-
-//        let firstRate = sentence.ratings.first?.value ?? 0
-//        let secondRate = sentence.ratings.count > 1 ? sentence.ratings[1].value ?? 0 : 0
-//        let thirdRate = sentence.ratings.count > 2 ? sentence.ratings[2].value ?? 0 : 0
-
-//        let isFirstSelected = sentence.ratings.first?.isSelected ?? false
-//        let isSecondSelected = sentence.ratings.count > 1  ? sentence.ratings[1].isSelected : false
-//        let isThirdSelected = sentence.ratings.count > 2 ? sentence.ratings[2].isSelected : false
-
-//
-//        let isThirdLow = lowRange.contains(thirdRate)
-//        let isSecondLow = lowRange.contains(secondRate)
-//        let isFirstLow = lowRange.contains(firstRate)
-
-//        if isThirdSelected {
-//            self.addUnderline(for: thirdRatingContainerView, color: isThirdLow ? .redOrange : .sand)
-//        }
-//        if isSecondSelected {
-//            self.addUnderline(for: secondRatingContainerView, color: isSecondLow ? .redOrange : .sand)
-//        }
-//        if isFirstSelected {
-//            self.addUnderline(for: firstRatingContainerView, color: isFirstLow ? .redOrange : .sand)
-//        }
-
     }
-}
+}   
 
 // MARK: - Private
 private extension TBVDataGraphAnswersTableViewCell {
     func setupRatingLabels(_ sentence: QDMToBeVisionSentence, selectedDate: Date) {
         let lowRange = NSRange(location: 1, length: 6)
+        let sortedDict = sentence.ratings.sorted(by: { $0.key < $1.key })
         var index = 0
 
-        for (date, rating) in sentence.ratings {
+        for (date, rating) in sortedDict {
             let isLow = lowRange.contains(rating ?? 0)
-            let text = rating == nil ? "-" : String(describing: rating ?? 0)
+            let text = rating == -1 ? "-" : String(describing: rating ?? 0)
             var theme: ThemeText = .tbvTrackerRatingDigits(isLow)
 
             if date == selectedDate {
@@ -74,36 +51,29 @@ private extension TBVDataGraphAnswersTableViewCell {
     func setupTheme(_ sentence: QDMToBeVisionSentence) {
         ThemeText.tbvTrackerAnswer.apply(sentence.text, to: answerLabel)
         ThemeText.tbvTrackerRating.apply(R.string.localized.tbvTrackerLastRating(), to: lastRatingLabel)
-
-//        let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected(isFirstLow) : .tbvTrackerRatingDigits(isFirstLow)
-//        theme1.apply(firstRate == 0 ? "-" : String(describing: firstRate), to: firstRating)
-//
-//        let theme2: ThemeText = isSecondSelected ? .tbvTrackerRatingDigitsSelected(isSecondLow) : .tbvTrackerRatingDigits(isSecondLow)
-//        theme2.apply(secondRate == 0 ? "-" : String(describing: secondRate), to: secondRating)
-//
-//        let theme3: ThemeText = isThirdSelected ? .tbvTrackerRatingDigitsSelected(isThirdLow) : .tbvTrackerRatingDigits(isThirdLow)
-//        theme3.apply(thirdRate == 0 ? "-" : String(describing: thirdRate), to: thirdRating)
     }
 
     func setupView(_ sentence: QDMToBeVisionSentence) {
         secondDot.isHidden = false
         firstDot.isHidden = false
-//        secondRatingContainerView.isHidden = false
-//        thirdRatingContainerView.isHidden = false
-//
-//        if sentence.ratings.count == 2 {
-//            secondDot.isHidden = true
-//            thirdRatingContainerView.isHidden = true
-//        } else if sentence.ratings.count == 1 {
-//            secondDot.isHidden = true
-//            thirdRatingContainerView.isHidden = true
-//            firstDot.isHidden = true
-//            secondRatingContainerView.isHidden = true
-//        }
+        ratingContainerViews[1].isHidden = false
+        ratingContainerViews[2].isHidden = false
+
+        if sentence.ratings.count == 2 {
+            secondDot.isHidden = true
+            ratingContainerViews[2].isHidden = true
+        } else if sentence.ratings.count == 1 {
+            secondDot.isHidden = true
+            ratingContainerViews[2].isHidden = true
+            firstDot.isHidden = true
+            ratingContainerViews[1].isHidden = true
+        }
     }
 
     func removeAllLayers() {
-        ratingContainerViews.forEach { _ in corner(radius: 0, borderColor: .clear) }
+        ratingContainerViews.forEach { (ratingView) in
+            ratingView.corner(radius: 0, borderColor: .clear)
+        }
     }
 
     func addUnderline(for view: UIView, verticalSpacing: CGFloat = 2.0, color: UIColor = .sand) {
