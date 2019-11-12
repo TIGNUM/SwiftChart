@@ -15,7 +15,6 @@ extension UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(backToPreviousViewController))
-        
         navigationItem.leftBarButtonItem = backButton
     }
 

@@ -91,7 +91,7 @@ extension UIViewController {
         case is PDFReaderViewController: return "fullscreen.pdfreader"
         case is PopUpCopyrightViewController: return "daily.brief.content.copyright"
         case is DailyBriefViewController: return "daily.brief"
-        case is MyToBeVisionDataNullStateViewController: return "tobevision.mytbvdata"
+        case is TBVRateHistoryNullStateViewController: return "tobevision.mytbvdata"
         case is QuestionnaireViewController: return "sleep.quantity.customize.target"
         case is OnboardingLoginViewController: return "onboarding.login"
         case is CoachMarksViewController: return "coachMarks.video.walk.through"
@@ -114,7 +114,7 @@ private extension UIViewController {
 // MARK: - MyDataExplanationViewController
 private extension UIViewController {
     var myToBeVisionTrackerViewControllerPageKey: String {
-        switch (self as? MyToBeVisionTrackerViewController)?.interactor?.controllerType {
+        switch (self as? MyToBeVisionTrackerViewController)?.interactor?.getDisplayType {
         case .tracker?: return "tobevision.tracker.results"
         case .data?: return "tobevision.tracker.tbvTracker"
         default: preconditionFailure()

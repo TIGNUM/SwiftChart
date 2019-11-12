@@ -16,46 +16,45 @@ struct DummyQuestion {
 
 final class MyToBeVisionRateWorker {
 
-    private let userService: qot_dal.UserService
+    private let userService = UserService.main
     private let visionId: Int
     private let viewController: MyToBeVisionRateViewController
     var questions: [RatingQuestionViewModel.Question]?
     var dataTracks: [QDMToBeVisionTrack]?
 
-    init(userService: qot_dal.UserService,
-         visionId: Int,
-         viewController: MyToBeVisionRateViewController) {
-        self.userService = userService
+    init(visionId: Int, viewController: MyToBeVisionRateViewController) {
         self.visionId = visionId
         self.viewController = viewController
     }
 
-    func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]?, _ initialized: Bool, _ error: Error?) -> Void) {
-        userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
-            let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId })
-            self?.dataTracks = finalTracks
-            let questions = finalTracks?.compactMap { (track) -> RatingQuestionViewModel.Question? in
+    func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
+        userService.getToBeVisionTracksForRating { [weak self] (tracks) in
+            guard let strongSelf = self else { return }
+            let finalTracks = tracks.filter { $0.toBeVisionId == strongSelf.visionId }
+            strongSelf.dataTracks = finalTracks
+
+            let questions = finalTracks.compactMap { (track) -> RatingQuestionViewModel.Question? in
                 guard let remoteID = track.remoteID else { return nil }
                 let question = track.sentence
                 let range = 10
                 return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                     title: question ?? "",
-                                                     htmlTitle: nil,
-                                                     subtitle: nil,
-                                                     dailyPrepTitle: nil,
-                                                     key: nil,
-                                                     answers: nil,
-                                                     range: range,
-                                                     selectedAnswerIndex: nil)
+                                                        title: question ?? "",
+                                                        htmlTitle: nil,
+                                                        subtitle: nil,
+                                                        dailyPrepTitle: nil,
+                                                        key: nil,
+                                                        answers: nil,
+                                                        range: range,
+                                                        selectedAnswerIndex: nil)
             }
-            self?.questions = questions
-            completion(questions, isInitialized, error)
+            strongSelf.questions = questions
+            completion(questions)
         }
     }
 
-    func addRating(for questionId: Int, value: Int) {
-        let item = dataTracks?.filter({ $0.remoteID == questionId }).first
-        item?.addRating(value)
+    func addRating(for questionId: Int, value: Int, isoDate: Date) {
+        let item = dataTracks?.filter { $0.remoteID == questionId }.first
+        item?.addRating(value, isoDate: isoDate)
     }
 
     func saveQuestions() {

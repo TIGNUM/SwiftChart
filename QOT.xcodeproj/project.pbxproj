@@ -423,13 +423,12 @@
 		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
 		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
 		75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */; };
-		75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */; };
-		75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */; };
-		75423EFA22CE242B008EE726 /* MyToBeVisionTrackerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */; };
-		75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */; };
+		75423EF822CE242B008EE726 /* TBVRateHistoryPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */; };
+		75423EF922CE242B008EE726 /* TBVRateHistoryWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF122CE242B008EE726 /* TBVRateHistoryWorker.swift */; };
+		75423EFB22CE242B008EE726 /* TBVRateHistoryInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF322CE242B008EE726 /* TBVRateHistoryInterface.swift */; };
 		75423EFC22CE242B008EE726 /* MyToBeVisionTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */; };
-		75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */; };
-		75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */; };
+		75423EFD22CE242B008EE726 /* TBVRateHistoryInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF522CE242B008EE726 /* TBVRateHistoryInteractor.swift */; };
+		75423EFF22CE242B008EE726 /* TBVRateHistoryConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* TBVRateHistoryConfigurator.swift */; };
 		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
 		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
 		75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0522CF303B008EE726 /* BeSpokeCell.swift */; };
@@ -445,13 +444,13 @@
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
 		754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */; };
 		754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */; };
-		754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */; };
+		754EBEE922C6470A0010A663 /* TBVRateHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE822C6470A0010A663 /* TBVRateHistory.swift */; };
 		754EBEEB22C64C930010A663 /* TBVDataGraphHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEEA22C64C930010A663 /* TBVDataGraphHeaderView.swift */; };
 		754EBEED22C64CA20010A663 /* TBVDataGraphHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */; };
 		754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */; };
 		754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */; };
 		75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */; };
-		7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */; };
+		7582615B22D77531000094DE /* TBVRateHistoryNullStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615A22D77531000094DE /* TBVRateHistoryNullStateViewController.swift */; };
 		7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7582617022DC6A57000094DE /* DailyCheckin.storyboard */; };
 		7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */; };
 		7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */; };
@@ -1698,13 +1697,12 @@
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
-		75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerPresenter.swift; sourceTree = "<group>"; };
-		75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerWorker.swift; sourceTree = "<group>"; };
-		75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerRouter.swift; sourceTree = "<group>"; };
-		75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerInterface.swift; sourceTree = "<group>"; };
+		75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryPresenter.swift; sourceTree = "<group>"; };
+		75423EF122CE242B008EE726 /* TBVRateHistoryWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryWorker.swift; sourceTree = "<group>"; };
+		75423EF322CE242B008EE726 /* TBVRateHistoryInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryInterface.swift; sourceTree = "<group>"; };
 		75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerViewController.swift; sourceTree = "<group>"; };
-		75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerInteractor.swift; sourceTree = "<group>"; };
-		75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerConfigurator.swift; sourceTree = "<group>"; };
+		75423EF522CE242B008EE726 /* TBVRateHistoryInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryInteractor.swift; sourceTree = "<group>"; };
+		75423EF722CE242B008EE726 /* TBVRateHistoryConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryConfigurator.swift; sourceTree = "<group>"; };
 		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
 		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
 		75423F0522CF303B008EE726 /* BeSpokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCell.swift; sourceTree = "<group>"; };
@@ -1720,13 +1718,13 @@
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
 		754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphSubHeadingTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphSubHeadingTableViewCell.xib; sourceTree = "<group>"; };
-		754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYTBVDataViewModel.swift; sourceTree = "<group>"; };
+		754EBEE822C6470A0010A663 /* TBVRateHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistory.swift; sourceTree = "<group>"; };
 		754EBEEA22C64C930010A663 /* TBVDataGraphHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphHeaderView.swift; sourceTree = "<group>"; };
 		754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphHeaderView.xib; sourceTree = "<group>"; };
 		754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphAnswersTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphAnswersTableViewCell.xib; sourceTree = "<group>"; };
 		75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileSettingsKeybaordInputView.swift; sourceTree = "<group>"; };
-		7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionDataNullStateViewController.swift; sourceTree = "<group>"; };
+		7582615A22D77531000094DE /* TBVRateHistoryNullStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVRateHistoryNullStateViewController.swift; sourceTree = "<group>"; };
 		7582617022DC6A57000094DE /* DailyCheckin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DailyCheckin.storyboard; sourceTree = "<group>"; };
 		7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsPresenter.swift; sourceTree = "<group>"; };
 		7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsWorker.swift; sourceTree = "<group>"; };
@@ -3361,77 +3359,37 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
+				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
+				75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */,
 				75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */,
-				5F8A898A2296CA630011A05C /* Shared */,
-				5F8A89892296CA5D0011A05C /* Screens */,
+				5F8A898B2296CA780011A05C /* MyToBeVision */,
+				5FA66638229C1D1D0027EE74 /* MyToBeVisionEditDetails */,
+				75496E8522BA5E8600150C78 /* MyToBeVisionNullState */,
+				75DC686422C11C7400FF183D /* MyToBeVisionRate */,
+				75423EEF22CE2412008EE726 /* MyToBeVisionRateHistory */,
 			);
 			name = MyToBeVision;
-			sourceTree = "<group>";
-		};
-		5F8A89892296CA5D0011A05C /* Screens */ = {
-			isa = PBXGroup;
-			children = (
-				75423EEF22CE2412008EE726 /* MyToBeVisionTracker */,
-				759AB40B22C4CADB0091BFB8 /* MyToBeVisionData */,
-				75DC686422C11C7400FF183D /* MyToBeVisionRate */,
-				75496E8522BA5E8600150C78 /* MyToBeVisionNullState */,
-				5FA66638229C1D1D0027EE74 /* MyToBeVisionEditDetails */,
-				5F8A898B2296CA780011A05C /* MyToBeVision */,
-			);
-			name = Screens;
-			sourceTree = "<group>";
-		};
-		5F8A898A2296CA630011A05C /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				5F8A898D2296CC920011A05C /* Views */,
-			);
-			name = Shared;
 			sourceTree = "<group>";
 		};
 		5F8A898B2296CA780011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
-				5F8A898C2296CA8A0011A05C /* Core */,
-			);
-			name = MyToBeVision;
-			sourceTree = "<group>";
-		};
-		5F8A898C2296CA8A0011A05C /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				5F8A89922296DEC50011A05C /* MyVisionViewController.swift */,
 				5F8A89942296DEDF0011A05C /* MyVisionConfigurator.swift */,
 				5F8A89962296DEEC0011A05C /* MyVisionInteractor.swift */,
-				5F8A89982296DEF70011A05C /* MyVisionPresenter.swift */,
-				5F8A899A2296DF000011A05C /* MyVisionWorker.swift */,
 				5F8A899C2296DF0D0011A05C /* MyVisionInterface.swift */,
+				75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */,
+				5F8A89982296DEF70011A05C /* MyVisionPresenter.swift */,
 				5F8A899E2296DF520011A05C /* MyVisionRouter.swift */,
+				5F8A89922296DEC50011A05C /* MyVisionViewController.swift */,
+				5F8A899A2296DF000011A05C /* MyVisionWorker.swift */,
 			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		5F8A898D2296CC920011A05C /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5F8A89902296DC270011A05C /* MyToBeVision.storyboard */,
-				75DC686222BD1B9500FF183D /* MyToBeVisionRate.storyboard */,
-			);
-			name = Views;
+			name = MyToBeVision;
 			sourceTree = "<group>";
 		};
 		5FA66638229C1D1D0027EE74 /* MyToBeVisionEditDetails */ = {
 			isa = PBXGroup;
 			children = (
-				5FA66646229C2B3A0027EE74 /* Others */,
-				5FA66645229C2B2E0027EE74 /* Core */,
-			);
-			name = MyToBeVisionEditDetails;
-			sourceTree = "<group>";
-		};
-		5FA66645229C2B2E0027EE74 /* Core */ = {
-			isa = PBXGroup;
-			children = (
+				5FA66647229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift */,
 				5FA66639229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift */,
 				5FA6663B229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift */,
 				5FA6663D229C20600027EE74 /* MyVisionEditDetailsPresenter.swift */,
@@ -3439,15 +3397,7 @@
 				5FA66641229C207B0027EE74 /* MyVisionEditDetailsWorker.swift */,
 				5FA66643229C208F0027EE74 /* MyVisionEditDetailsConfigurator.swift */,
 			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		5FA66646229C2B3A0027EE74 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				5FA66647229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift */,
-			);
-			name = Others;
+			name = MyToBeVisionEditDetails;
 			sourceTree = "<group>";
 		};
 		5FD89098228065EB00B1CE7F /* MyQotProfile */ = {
@@ -3511,18 +3461,21 @@
 			name = MyQotAppSettings;
 			sourceTree = "<group>";
 		};
-		75423EEF22CE2412008EE726 /* MyToBeVisionTracker */ = {
+		75423EEF22CE2412008EE726 /* MyToBeVisionRateHistory */ = {
 			isa = PBXGroup;
 			children = (
-				75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */,
-				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
-				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
-				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
-				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
+				75423EF722CE242B008EE726 /* TBVRateHistoryConfigurator.swift */,
+				75423EF522CE242B008EE726 /* TBVRateHistoryInteractor.swift */,
+				75423EF322CE242B008EE726 /* TBVRateHistoryInterface.swift */,
+				75423EF022CE242B008EE726 /* TBVRateHistoryPresenter.swift */,
 				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
-				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
+				75423EF122CE242B008EE726 /* TBVRateHistoryWorker.swift */,
+				754EBEE822C6470A0010A663 /* TBVRateHistory.swift */,
+				7582615A22D77531000094DE /* TBVRateHistoryNullStateViewController.swift */,
+				75EFB63522C5F72600E8C64F /* Cells */,
+				75EFB63422C5F71200E8C64F /* BarGraph */,
 			);
-			name = MyToBeVisionTracker;
+			name = MyToBeVisionRateHistory;
 			sourceTree = "<group>";
 		};
 		75423F0422CF2FF9008EE726 /* BeSpoke to delete */ = {
@@ -3552,17 +3505,8 @@
 		75496E8522BA5E8600150C78 /* MyToBeVisionNullState */ = {
 			isa = PBXGroup;
 			children = (
-				75496E8622BA5E9B00150C78 /* Core */,
 			);
 			name = MyToBeVisionNullState;
-			sourceTree = "<group>";
-		};
-		75496E8622BA5E9B00150C78 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		75496E9622BA700D00150C78 /* PopUpView */ = {
@@ -3613,42 +3557,6 @@
 			name = DailyCheckinQuestions;
 			sourceTree = "<group>";
 		};
-		759AB30222C352CB0091BFB8 /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				759AB30322C352D20091BFB8 /* MyToBeVisionPageComponent */,
-				75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */,
-			);
-			name = Other;
-			sourceTree = "<group>";
-		};
-		759AB30322C352D20091BFB8 /* MyToBeVisionPageComponent */ = {
-			isa = PBXGroup;
-			children = (
-				759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */,
-			);
-			name = MyToBeVisionPageComponent;
-			sourceTree = "<group>";
-		};
-		759AB40B22C4CADB0091BFB8 /* MyToBeVisionData */ = {
-			isa = PBXGroup;
-			children = (
-				759AB40C22C4CAFC0091BFB8 /* Others */,
-			);
-			name = MyToBeVisionData;
-			sourceTree = "<group>";
-		};
-		759AB40C22C4CAFC0091BFB8 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */,
-				7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */,
-				75EFB63522C5F72600E8C64F /* TableViewCells */,
-				75EFB63422C5F71200E8C64F /* BarGraph */,
-			);
-			name = Others;
-			sourceTree = "<group>";
-		};
 		75B9DCB422CB5FEC00692A60 /* LeaderWisdom */ = {
 			isa = PBXGroup;
 			children = (
@@ -3662,24 +3570,17 @@
 		75DC686422C11C7400FF183D /* MyToBeVisionRate */ = {
 			isa = PBXGroup;
 			children = (
-				759AB30222C352CB0091BFB8 /* Other */,
-				75DC687422C1201D00FF183D /* Core */,
+				759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */,
+				75DC687122C11D7200FF183D /* MyToBeVisionRateConfigurator.swift */,
+				75DC686B22C11D2A00FF183D /* MyToBeVisionRateInteractor.swift */,
+				75DC686922C11D1200FF183D /* MyToBeVisionRateInterface.swift */,
+				75DC686D22C11D4800FF183D /* MyToBeVisionRatePresenter.swift */,
+				75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */,
+				75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */,
+				75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */,
+				75DC686F22C11D5D00FF183D /* MyToBeVisionRateWorker.swift */,
 			);
 			name = MyToBeVisionRate;
-			sourceTree = "<group>";
-		};
-		75DC687422C1201D00FF183D /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				75DC686522C11CF000FF183D /* MyToBeVisionRateViewController.swift */,
-				75DC686722C11CFF00FF183D /* MyToBeVisionRateRouter.swift */,
-				75DC686922C11D1200FF183D /* MyToBeVisionRateInterface.swift */,
-				75DC686B22C11D2A00FF183D /* MyToBeVisionRateInteractor.swift */,
-				75DC686D22C11D4800FF183D /* MyToBeVisionRatePresenter.swift */,
-				75DC686F22C11D5D00FF183D /* MyToBeVisionRateWorker.swift */,
-				75DC687122C11D7200FF183D /* MyToBeVisionRateConfigurator.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		75EFB63422C5F71200E8C64F /* BarGraph */ = {
@@ -3697,7 +3598,7 @@
 			name = BarGraph;
 			sourceTree = "<group>";
 		};
-		75EFB63522C5F72600E8C64F /* TableViewCells */ = {
+		75EFB63522C5F72600E8C64F /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				75EFB63022C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift */,
@@ -3709,7 +3610,7 @@
 				754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */,
 				754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */,
 			);
-			name = TableViewCells;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
@@ -6258,7 +6159,7 @@
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
 				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
-				7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */,
+				7582615B22D77531000094DE /* TBVRateHistoryNullStateViewController.swift in Sources */,
 				B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */,
 				8DC59B6522FDA6BE00587EA4 /* Notification+Registration.swift in Sources */,
 				9C24238222F099BE00B911E6 /* MeAtMyBestCellViewModel.swift in Sources */,
@@ -6455,7 +6356,7 @@
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				DBA3921B23247B2D0017E7F6 /* QuestionaireCellIndicator.swift in Sources */,
-				75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */,
+				75423EF822CE242B008EE726 /* TBVRateHistoryPresenter.swift in Sources */,
 				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,
 				75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */,
 				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
@@ -6566,7 +6467,7 @@
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
-				75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */,
+				75423EFF22CE242B008EE726 /* TBVRateHistoryConfigurator.swift in Sources */,
 				36288A6F23257EC60036C8C0 /* DTSprint.swift in Sources */,
 				8D66E8A32305A0E500BE78C7 /* TrackSelectionConfigurator.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
@@ -6580,7 +6481,7 @@
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
 				B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */,
-				754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */,
+				754EBEE922C6470A0010A663 /* TBVRateHistory.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
@@ -6610,7 +6511,7 @@
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
 				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
-				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
+				75423EFB22CE242B008EE726 /* TBVRateHistoryInterface.swift in Sources */,
 				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
 				3655F2DC2326F1E400334719 /* DTInteractor.swift in Sources */,
@@ -6805,7 +6706,7 @@
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				DBA3920D2322B4B20017E7F6 /* MyQotMainViewController.swift in Sources */,
-				75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */,
+				75423EF922CE242B008EE726 /* TBVRateHistoryWorker.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				DBF6F131235DE08100367CC7 /* Notification+Name.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
@@ -6831,7 +6732,6 @@
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				367A58542326A15D0089A082 /* DTSolveWorker.swift in Sources */,
 				36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */,
-				75423EFA22CE242B008EE726 /* MyToBeVisionTrackerRouter.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				9C24237E22F0999C00B911E6 /* MeAtMyBestCell.swift in Sources */,
 				5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */,
@@ -7041,7 +6941,7 @@
 				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
 				36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
-				75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */,
+				75423EFD22CE242B008EE726 /* TBVRateHistoryInteractor.swift in Sources */,
 				7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */,

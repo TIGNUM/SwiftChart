@@ -12,12 +12,8 @@ import qot_dal
 final class MyVisionConfigurator {
     static func configure(viewController: MyVisionViewController) {
         let router = MyVisionRouter(viewController: viewController)
-        let widgetManager = ExtensionsDataManager()
-        let worker = MyVisionWorker(userService: qot_dal.UserService.main,
-                                    contentService: qot_dal.ContentService.main,
-                                    widgetDataManager: widgetManager)
         let presenter = MyVisionPresenter(viewController: viewController)
-        let interactor = MyVisionInteractor(presenter: presenter, worker: worker, router: router)
+        let interactor = MyVisionInteractor(presenter: presenter, router: router)
         viewController.interactor = interactor
     }
 }

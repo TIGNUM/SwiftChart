@@ -13,15 +13,12 @@ import MessageUI
 final class MyVisionInteractor {
 
     let presenter: MyVisionPresenterInterface
-    let worker: MyVisionWorker
     let router: MyVisionRouter
+    private lazy var worker = MyVisionWorker()
     private var downSyncObserver: NSObjectProtocol?
     private var upSyncObserver: NSObjectProtocol?
 
-    init(presenter: MyVisionPresenterInterface,
-         worker: MyVisionWorker,
-         router: MyVisionRouter) {
-        self.worker = worker
+    init(presenter: MyVisionPresenterInterface, router: MyVisionRouter) {
         self.presenter = presenter
         self.router = router
     }
@@ -62,22 +59,18 @@ final class MyVisionInteractor {
     }
 
     func viewWillAppear() {
-        worker.getData {[weak self] (initialized) in
-            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", nil, false)
-            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessageRating: shouldShowSingleMessage)
-            self?.worker.updateWidget()
-        }
+        didUpdateTBVRelatedData()
     }
 
     private func didUpdateTBVRelatedData() {
-        worker.getData {[weak self] (initialized) in
-            if !initialized {
-                return
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            self?.worker.getRateButtonValues { [weak self] (text, shouldShowSingleMessage, status) in
+                self?.presenter.load(toBeVision,
+                                     rateText: text,
+                                     isRateEnabled: status,
+                                     shouldShowSingleMessageRating: shouldShowSingleMessage)
+                self?.worker.updateWidget()
             }
-
-            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", nil, false)
-            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessageRating: shouldShowSingleMessage)
-            self?.worker.updateWidget()
         }
     }
 
@@ -99,7 +92,7 @@ final class MyVisionInteractor {
             self?.swizzleMFMailComposeViewControllerMessageBody()
         }
 
-        router.presentViewController(viewController: activityVC) { [weak self] in
+        router.showViewController(viewController: activityVC) { [weak self] in
             // after present swizzle for mail
             self?.swizzleMFMailComposeViewControllerMessageBody()
         }
@@ -107,6 +100,17 @@ final class MyVisionInteractor {
 }
 
 extension MyVisionInteractor: MyVisionInteractorInterface {
+    func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void) {
+        worker.getToBeVision { (_, toBeVision) in
+            completion(toBeVision)
+        }
+    }
+
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void) {
+        getToBeVision { (toBeVision) in
+            completion(toBeVision?.headline == nil && toBeVision?.text == nil)
+        }
+    }
 
     func showUpdateConfirmationScreen() {
         presenter.presentTBVUpdateAlert(title: worker.updateAlertTitle,
@@ -131,10 +135,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.nullStateTitle
     }
 
-    var myVision: QDMToBeVision? {
-        return worker.myVision
-    }
-
     var emptyTBVTitlePlaceholder: String {
         return worker.emptyTBVTitlePlaceholder
     }
@@ -147,34 +147,33 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.lastUpdatedVision()
     }
 
-    func isShareBlocked() -> Bool {
-        let vision = worker.myVision
-        let visionIsNil = vision?.headline == nil && vision?.text == nil
-        return visionIsNil
-    }
+    func saveToBeVision(image: UIImage?) {
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            if var vision = toBeVision {
+                vision.modifiedAt = Date()
+                if let visionImage = image {
+                    do {
+                        let imageUrl = try self?.worker.saveImage(visionImage).absoluteString
+                        vision.profileImageResource = QDMMediaResource()
+                        vision.profileImageResource?.localURLString = imageUrl
+                    } catch {
+                        log(error.localizedDescription)
+                    }
+                } else {
+                    vision.profileImageResource = nil
+                }
 
-    func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision) {
-        var vision = toBeVision
-        if let visionImage = image {
-            do {
-                let imageUrl = try worker.saveImage(visionImage).absoluteString
-                vision.profileImageResource = QDMMediaResource()
-                vision.profileImageResource?.localURLString = imageUrl
-            } catch {
-                qot_dal.log(error.localizedDescription)
+                self?.worker.updateMyToBeVision(vision) { [weak self] (reponseVision) in
+                    self?.didUpdateTBVRelatedData()
+                }
             }
-        } else {
-            vision.modifiedAt = Date()
-            vision.profileImageResource = nil
-        }
-
-        worker.updateMyToBeVision(vision) { [weak self] in
-            self?.didUpdateTBVRelatedData()
         }
     }
 
-    func shouldShowWarningIcon() -> Bool {
-        return worker.shouldShowWarningIcon()
+    func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
+        worker.shouldShowWarningIcon { (show) in
+            completion(show)
+        }
     }
 
     func shareMyToBeVision() {
@@ -196,24 +195,36 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func showTBVData() {
-        let shouldShowNullState = worker.myVisionReport?.days.count == 0
-        router.showTBVData(shouldShowNullState: shouldShowNullState, visionId: worker.myVision?.remoteID)
+        worker.getRatingReport { [weak self] (report) in
+            self?.worker.getToBeVision { [weak self] (_, toBeVision) in
+                self?.router.showTBVData(shouldShowNullState: report?.days.isEmpty == true,
+                                         visionId: toBeVision?.remoteID)
+            }
+        }
     }
 
     func showTracker() {
         router.showTracker()
     }
 
-    func showRateScreen(with id: Int) {
-        router.showRateScreen(with: id)
+    func showRateScreen() {
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            if let remoteId = toBeVision?.remoteID {
+                self?.router.showRateScreen(with: remoteId)
+            }
+        }
     }
 
     func showEditVision(isFromNullState: Bool) {
-        router.showEditVision(title: myVision?.headline ?? "", vision: myVision?.text ?? "", isFromNullState: isFromNullState)
+        worker.getToBeVision { [weak self] (_, toBeVision) in
+            self?.router.showEditVision(title: toBeVision?.headline ?? "",
+                                        vision: toBeVision?.text ?? "",
+                                        isFromNullState: isFromNullState)
+        }
     }
 
     func openToBeVisionGenerator() {
-        router.openToBeVisionGenerator()
+        router.showTBVGenerator()
     }
 }
 

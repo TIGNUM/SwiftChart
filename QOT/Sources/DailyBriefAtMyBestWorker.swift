@@ -25,7 +25,6 @@ final class DailyBriefAtMyBestWorker {
         if shouldSetText {
             UserDefault.myBestText.setStringValue(value: text)
         }
-        
         return UserDefault.myBestText.stringValue ?? text
     }
 }
