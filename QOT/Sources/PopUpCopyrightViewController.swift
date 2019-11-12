@@ -49,7 +49,6 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackPage()
     }
 
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
@@ -61,6 +60,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        //track tap gesture
         showSafariVC(for: copyrightURL ?? "")
     }
 

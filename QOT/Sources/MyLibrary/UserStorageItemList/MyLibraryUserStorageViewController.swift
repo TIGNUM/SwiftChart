@@ -121,6 +121,7 @@ private extension MyLibraryUserStorageViewController {
 private extension MyLibraryUserStorageViewController {
     @IBAction func didTapEditButton(sender: UIButton) {
         interactor?.didTapEdit(isEditing: true)
+        trackUserEvent(.EDIT, stringValue: interactor?.itemType.rawValue, valueType: .EDIT_LIBRARY, action: .TAP)
     }
 
     @IBAction func didTapAddNote(sender: RoundedButton!) {

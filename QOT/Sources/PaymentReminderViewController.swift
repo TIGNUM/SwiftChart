@@ -126,7 +126,7 @@ extension PaymentReminderViewController: PaymentSwitchAccountTableViewCellDelega
 
 extension PaymentReminderViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return interactor?.showCloseButton ?? true ? [dismissNavigationItem()] : nil
+        return interactor?.isExpired ?? true ? [dismissNavigationItem()] : nil
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

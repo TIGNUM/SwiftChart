@@ -41,7 +41,7 @@ final class TrackSelectionWorker {
                 switch status {
                 case .authorized, .provisional: completion(nil)
                 case .denied: completion(.notificationOpenSettings)
-                case .notDetermined: completion(.notification)
+                case .notDetermined: completion(.notificationOnboarding)
                 }
             }
         }

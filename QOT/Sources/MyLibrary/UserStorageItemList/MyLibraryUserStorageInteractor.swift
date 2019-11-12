@@ -134,8 +134,8 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return !(isEditing || items?.isEmpty != false)
     }
 
-    var contentType: MyLibraryUserStorageContentType {
-        return worker.contentType
+    var itemType: MyLibraryCategoryType {
+        return worker.item.type
     }
 
     func didTapEdit(isEditing: Bool) {

@@ -110,11 +110,11 @@ extension MyQotSiriShortcutsWorker {
     func siriTrackingKey(for shortcut: ShortcutType) -> String? {
         switch shortcut {
         case .toBeVision:
-            return AppTextService.get(AppTextKey.page_track_myqot_siri_tobevision)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_tbv)
         case .whatsHot:
-            return AppTextService.get(AppTextKey.page_track_myqot_siri_whatshot)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_wh)
         case .morningInterview:
-            return AppTextService.get(AppTextKey.page_track_myqot_siri_dailyprep)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_daily_check_in)
         }
     }
 

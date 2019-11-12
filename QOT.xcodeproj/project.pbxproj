@@ -1072,12 +1072,6 @@
 		F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */; };
 		F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */; };
 		F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */; };
-		F91F6A6223437CBA00DF6AA1 /* DailyCheckinStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */; };
-		F91F6A6423437CBA00DF6AA1 /* DailyCheckinStartInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */; };
-		F91F6A6523437CBA00DF6AA1 /* DailyCheckinStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */; };
-		F91F6A6623437CBA00DF6AA1 /* DailyCheckinStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */; };
-		F91F6A6723437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */; };
-		F91F6A6923437CE400DF6AA1 /* DailyCheckinStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */; };
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
@@ -2293,12 +2287,6 @@
 		F91A2D1C22D3864200C35121 /* ThoughtsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCell.swift; sourceTree = "<group>"; };
 		F91A2D1E22D3865D00C35121 /* ThoughtsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThoughtsCell.xib; sourceTree = "<group>"; };
 		F91A2D2022D3868B00C35121 /* ThoughtsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsCellViewModel.swift; sourceTree = "<group>"; };
-		F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartRouter.swift; sourceTree = "<group>"; };
-		F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInterface.swift; sourceTree = "<group>"; };
-		F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartPresenter.swift; sourceTree = "<group>"; };
-		F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartWorker.swift; sourceTree = "<group>"; };
-		F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInteractor.swift; sourceTree = "<group>"; };
-		F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartViewController.swift; sourceTree = "<group>"; };
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
 		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
@@ -3426,7 +3414,6 @@
 		7582616E22DC6A3D000094DE /* Screens */ = {
 			isa = PBXGroup;
 			children = (
-				F91F6A5B23437CA000DF6AA1 /* DailyCheckinStart */,
 				7582617322DCA000000094DE /* DailyCheckinQuestions */,
 			);
 			name = Screens;
@@ -5092,19 +5079,6 @@
 			name = MyPreps;
 			sourceTree = "<group>";
 		};
-		F91F6A5B23437CA000DF6AA1 /* DailyCheckinStart */ = {
-			isa = PBXGroup;
-			children = (
-				F91F6A6823437CE400DF6AA1 /* DailyCheckinStartViewController.swift */,
-				F91F6A6123437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift */,
-				F91F6A5E23437CB900DF6AA1 /* DailyCheckinStartInterface.swift */,
-				F91F6A5F23437CB900DF6AA1 /* DailyCheckinStartPresenter.swift */,
-				F91F6A5C23437CB800DF6AA1 /* DailyCheckinStartRouter.swift */,
-				F91F6A6023437CB900DF6AA1 /* DailyCheckinStartWorker.swift */,
-			);
-			name = DailyCheckinStart;
-			sourceTree = "<group>";
-		};
 		F92A76DF22F2E8C0000BB378 /* Level5 */ = {
 			isa = PBXGroup;
 			children = (
@@ -6307,7 +6281,6 @@
 				754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */,
 				9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */,
 				36EC23032323F45700DB5696 /* DTSprintRouter.swift in Sources */,
-				F91F6A6523437CBA00DF6AA1 /* DailyCheckinStartPresenter.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				F91A2D2122D3868B00C35121 /* ThoughtsCellViewModel.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
@@ -6487,8 +6460,6 @@
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
 				8D08065123029FD6004576A9 /* QotPlaceholderTextField.swift in Sources */,
 				B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */,
-				F91F6A6723437CBA00DF6AA1 /* DailyCheckinStartInteractor.swift in Sources */,
-				F91F6A6623437CBA00DF6AA1 /* DailyCheckinStartWorker.swift in Sources */,
 				367A58632326B23A0089A082 /* DTInterface.swift in Sources */,
 				38290B862330F825004B5C14 /* DTSprintReflectionPresenter.swift in Sources */,
 				75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */,
@@ -6546,7 +6517,6 @@
 				8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */,
 				9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */,
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
-				F91F6A6423437CBA00DF6AA1 /* DailyCheckinStartInterface.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
@@ -6677,7 +6647,6 @@
 				38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
 				8DC849B6232648C300C4D4A3 /* QOTReachability.swift in Sources */,
-				F91F6A6223437CBA00DF6AA1 /* DailyCheckinStartRouter.swift in Sources */,
 				3658257D2327D19200AC3F4A /* DTShortTBVInteractor.swift in Sources */,
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
@@ -6862,7 +6831,6 @@
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
 				B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */,
 				8D04FA3023041E9C00AE7CA0 /* RegistrationAgePresenter.swift in Sources */,
-				F91F6A6923437CE400DF6AA1 /* DailyCheckinStartViewController.swift in Sources */,
 				F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */,
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
 				8D66E89C2305A0E500BE78C7 /* TrackSelectionPresenter.swift in Sources */,

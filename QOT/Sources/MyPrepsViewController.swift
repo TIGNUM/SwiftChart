@@ -95,6 +95,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBAction func didChangeSegment(_ sender: Any) {
         tableView.reloadData()
         updateIndicator()
+        trackUserEvent(.OPEN, value: segmentedControl.selectedSegmentIndex, valueType: .MY_PLANS_SEGMENT_CHANGE, action: .TAP)
     }
 
     @IBAction func cancelButton(_ sender: Any) {

@@ -29,15 +29,15 @@ struct MyQotSupportModel {
         func trackingKeys() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.page_track_myqot_support_using)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot)
             case .faq:
-                return AppTextService.get(AppTextKey.page_track_myqot_support_faq)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_faq)
             case .contactSupport:
-                return AppTextService.get(AppTextKey.page_track_myqot_support_contactsupport)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_contact_support)
             case .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.page_track_myqot_support_contactnovartis)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_contact_support_novartis)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.page_track_myqot_support_featurerequest)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_feature_request)
             }
         }
 

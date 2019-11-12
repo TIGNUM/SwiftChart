@@ -12,7 +12,7 @@ import qot_dal
 final class MyLibraryUserStorageWorker {
     private let service = UserStorageService.main
     private var storages = [QDMUserStorage]()
-    private let item: MyLibraryCategoryListModel
+    let item: MyLibraryCategoryListModel
     private let reachability = QOTReachability()
 
     init(item: MyLibraryCategoryListModel) {
