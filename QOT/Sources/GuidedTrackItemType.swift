@@ -10,5 +10,6 @@ import Foundation
 
 enum GuidedTrackItemType {
     case SECTION
+    case FIRSTROW
     case ROW
 }
