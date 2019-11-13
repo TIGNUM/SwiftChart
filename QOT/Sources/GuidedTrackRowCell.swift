@@ -19,7 +19,8 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var appLink: QDMAppLink?
     @IBOutlet weak var dividerView: UIView!
-    var trackState = false
+    var isExpanded = false
+    var initialSeparatorAlpha: CGFloat = 0.1
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -29,6 +30,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
         skeletonManager.addSubtitle(subtitle)
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(watchButton)
+        initialSeparatorAlpha = dividerView.alpha
     }
 
     func configure(with: GuidedTrackViewModel?, _ hideDivider: Bool) {
@@ -39,13 +41,17 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
         content.text = model.content
         appLink = model.appLink
         watchButton.setTitle(model.buttonText, for: .normal)
-        dividerView.isHidden = hideDivider
+        dividerView.alpha = hideDivider ? 0 : initialSeparatorAlpha
         showMoreButton.isHidden = with?.type != .FIRSTROW
     }
 
     @IBAction func didTapShowMore(_ sender: Any) {
-        trackState = !trackState
-        showMoreButton.flipImage(trackState)
+        showMoreButton.flipImage(isExpanded)
+        isExpanded = !isExpanded
+        UIView.animate(withDuration: 0.5, delay: 0.2, options: [], animations: { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.dividerView.alpha = strongSelf.isExpanded ? strongSelf.initialSeparatorAlpha : 0
+        })
         NotificationCenter.default.post(name: .displayGuidedTrackRows, object: nil)
     }
 
