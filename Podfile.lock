@@ -68,7 +68,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 50df6b77e897ba7a9bb7a1fa6208ccdb87cf139a
+    :commit: 743b083ab9a31f2ade867754d77b76e83298ffa3
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -94,4 +94,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: af8a2e218428e9e864fcbfcf85a10e24b82a01bf
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4
