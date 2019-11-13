@@ -74,9 +74,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     }
 
     private func showCopyrightButtonIfNeeded() {
-        if departureBespokeFeastModel?.copyrights.count ?? 0 > visibleIndexPath.item,
-            departureBespokeFeastModel?.copyrights[visibleIndexPath.item] != nil {
-            copyrightButton.isHidden = false
+        if visibleIndexPath.item < departureBespokeFeastModel?.copyrights.count ?? 0 {
+            copyrightButton.isHidden = departureBespokeFeastModel?.copyrights[visibleIndexPath.item] == nil
         }
     }
 
