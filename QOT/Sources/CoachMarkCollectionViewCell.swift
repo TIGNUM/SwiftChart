@@ -34,6 +34,10 @@ final class CoachMarkCollectionViewCell: UICollectionViewCell, Dequeueable {
         super.prepareForReuse()
         titleLabel.text = nil
         subtitleLabel.text = nil
+        player = AVQueuePlayer()
+        playerLayer = nil
+        playerLooper = nil
+        setupPlayer()
     }
 
     func configure(mediaName: String, title: String, subtitle: String) {
