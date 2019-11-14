@@ -6,7 +6,6 @@
 //  Copyright (c) 2018 Tignum. All rights reserved.
 //
 
-import UIKit
 import Foundation
 import qot_dal
 
