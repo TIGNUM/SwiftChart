@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK: -
 /// Object which represents parameters needed to display bottom buttons in `QOTAlert`. Provide either `target` and
