@@ -101,7 +101,7 @@ final class MyToBeVisionRateViewController: BaseViewController, ScreenZLevel3 {
     }
 
     private func generateBottomNavigationBarForView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_rate_view_button_done),
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result_section_footer_button_done),
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),
                                      backgroundColor: .carbon,

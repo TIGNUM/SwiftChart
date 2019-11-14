@@ -55,30 +55,15 @@ struct MyQotAboutUsModel {
         func title(for contentService: qot_dal.ContentService) -> String {
             switch self {
             case .benefits:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title_qot_benefits)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_about_qot_title)
             case .about:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title_about_tignum)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_about_tignum_title)
             case .privacy:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title_privacy)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_privacy_title)
             case .terms:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title_conditions)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_terms_and_conditions_title)
             case .copyright:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_title_copyright)
-            }
-        }
-
-        func subtitle(for contentService: qot_dal.ContentService) -> String {
-            switch self {
-            case .benefits:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_subtitle_qot_benefits)
-            case .about:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_subtitle_about_tignum)
-            case .privacy:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_subtitle_privacy)
-            case .terms:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_subtitle_conditions)
-            case .copyright:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_about_tignum_view_subtitle_copyright)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_copyright_title)
             }
         }
 

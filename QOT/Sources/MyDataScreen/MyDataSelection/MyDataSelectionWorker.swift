@@ -33,19 +33,19 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
     func myDataSelectionSectionTitles(for myDataSelectionItem: MyDataParameter) -> String? {
         switch myDataSelectionItem {
         case .SQL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_sleep_quality)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_sleep_quality_title_sleep_quality)
         case .SQN:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_sleep_quantity)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_sleep_quantity_title_sleep_quantity)
         case .tenDL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_ten_dl)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_ten_day_load_title_ten_dl)
         case .fiveDRR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_drr)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_five_day_recovery_title_five_drr)
         case .fiveDRL:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_drl)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_five_day_load_title_five_drl)
         case .fiveDIR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_five_dir)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_five_day_ir_title_five_dir)
         case .IR:
-            return AppTextService.get(AppTextKey.my_qot_my_data_edit_title_ir)
+            return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_ir_title_ir)
         }
     }
 
@@ -57,10 +57,10 @@ extension MyDataSelectionWorker: MyDataSelectionWorkerInterface {
     }
 
     func myDataSelectionHeaderTitle() -> String {
-        return AppTextService.get(AppTextKey.my_qot_my_data_edit_title)
+        return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_header_title)
     }
 
     func myDataSelectionHeaderSubtitle() -> String {
-        return AppTextService.get(AppTextKey.my_qot_my_data_edit_subtitle)
+        return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters_section_header_subtitle)
     }
 }

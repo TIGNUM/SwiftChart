@@ -67,43 +67,43 @@ final class MyQotProfileWorker {
 private extension MyQotProfileWorker {
 
     func setupMyProfileText() {
-        myProfileText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_my_profile)
+        myProfileText = AppTextService.get(AppTextKey.my_qot_my_profile_section_header_title)
     }
 
     func setupMemberSinceText() {
-        memberSinceText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_member_since)
+        memberSinceText = AppTextService.get(AppTextKey.my_qot_my_profile_section_header_label_member_since)
     }
 
     func setupAccountSettingsText() {
-        accountSettingsText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_account_settings)
+        accountSettingsText = AppTextService.get(AppTextKey.my_qot_my_profile_section_account_settings_title)
     }
 
     func setupManageYourProfileDetailsText() {
-        manageYourProfileDetailsText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_profile_details)
+        manageYourProfileDetailsText = AppTextService.get(AppTextKey.my_qot_my_profile_section_account_settings_subtitle)
     }
 
     func setupAppSettingsText() {
-        appSettingsText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_app_settings)
+        appSettingsText = AppTextService.get(AppTextKey.my_qot_my_profile_section_app_settings_title)
     }
 
     func setupEnableNotificationsText() {
-        enableNotificationsText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_enable_notification)
+        enableNotificationsText = AppTextService.get(AppTextKey.my_qot_my_profile_section_app_settings_subtitle)
     }
 
     func setupSupportText() {
-        supportText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_support)
+        supportText = AppTextService.get(AppTextKey.my_qot_my_profile_section_support_title)
     }
 
     func setupWalkthroughOurFeaturesText() {
-        walkthroughOurFeaturesText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_walkthrough)
+        walkthroughOurFeaturesText = AppTextService.get(AppTextKey.my_qot_my_profile_section_support_subtitle)
     }
 
     func setupAboutTignumText() {
-        aboutTignumText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_about_us)
+        aboutTignumText = AppTextService.get(AppTextKey.my_qot_my_profile_section_about_us_title)
     }
 
     func setupLearnMoreAboutUsText() {
-        learnMoreAboutUsText = AppTextService.get(AppTextKey.my_qot_my_profile_view_title_learn_more)
+        learnMoreAboutUsText = AppTextService.get(AppTextKey.my_qot_my_profile_section_about_us_subtitle)
     }
 
     func getUserProfile() {

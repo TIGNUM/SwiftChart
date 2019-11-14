@@ -32,9 +32,9 @@ struct Recovery {
 
         var replacement: String? {
             switch self {
-            case .cognitive: return AppTextService.get(AppTextKey.decision_tree_view_title_fatigue_symptom_cognitive)
-            case .emotional: return AppTextService.get(AppTextKey.decision_tree_view_title_fatigue_symptom_emotional)
-            case .physical: return AppTextService.get(AppTextKey.decision_tree_view_title_fatigue_symptom_physical)
+            case .cognitive: return AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive)
+            case .emotional: return AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_emotional)
+            case .physical: return AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_physical)
             case .general: return nil
             }
         }

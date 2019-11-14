@@ -123,12 +123,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
                                     handler: nil)
-        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_view_button_yes_continue),
+        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_button_continue),
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)
-        let title = AppTextService.get(AppTextKey.my_qot_my_preps_alert_title_delete)
-        let message = AppTextService.get(AppTextKey.my_qot_my_preps_alert_body_delete)
+        let title = AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_title)
+        let message = AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_body)
         QOTAlert.show(title: title, message: message, bottomItems: [cancel, remove])
     }
 
@@ -197,14 +197,14 @@ private extension MyPrepsViewController {
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
-        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_view_title_my_plans), subtitle: nil)
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title), subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_subtitle), to: noPrepsTitle)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title), to: noPrepsTitle)
         ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_body), to: noPrepsComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_mindset_shifts_view_subtitle), to: noMindsetTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_mindset_shifts_view_body), to: noMindsetComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_preps_recovery_plans_view_subtitle), to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_recovery_plans_view_body), to: noRecoveryComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title), to: noMindsetTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body), to: noMindsetComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title), to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(MyPrepsTableViewCell.self)

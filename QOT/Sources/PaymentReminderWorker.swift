@@ -27,8 +27,8 @@ final class PaymentReminderWorker {
     // MARK: - Functions
 
     func paymentSections() -> PaymentModel {
-        let headerTitle = isExpired ? AppTextService.get(AppTextKey.payment_view_title_header_expired) : AppTextService.get(AppTextKey.payment_view_title_header)
-        let headerSubtitle = isExpired ? AppTextService.get(AppTextKey.payment_view_subtitle_header_expired) : AppTextService.get(AppTextKey.payment_view_subtitle_header)
+        let headerTitle = isExpired ? AppTextService.get(AppTextKey.generic_payment_screen_expired_section_header_title_header_expired) : AppTextService.get(AppTextKey.generic_payment_screen_expire_soon_section_header_title_header)
+        let headerSubtitle = isExpired ? AppTextService.get(AppTextKey.generic_payment_screen_expired_section_header_subtitle_header_expired) : AppTextService.get(AppTextKey.generic_payment_screen_expire_soon_section_header_subtitle_header)
         let sections = isExpired ? PaymentSection.expiredSectionValues : PaymentSection.notExpiredSectionValues
         let paymentItems =  sections.map {
             return PaymentModel.Item(paymentSection: $0,
@@ -40,34 +40,34 @@ final class PaymentReminderWorker {
     func paymentSectionTitles(for paymentItem: PaymentSection) -> String? {
         switch paymentItem {
         case .prepared:
-            return AppTextService.get(AppTextKey.payment_view_title_prepared)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_one_title_prepared)
         case .impact:
-            return AppTextService.get(AppTextKey.payment_view_title_impact)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_two_title_impact)
         case .grow:
-            return AppTextService.get(AppTextKey.payment_view_title_grow)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_three_title_grow)
         case .data:
-            return AppTextService.get(AppTextKey.payment_view_title_header)
+            return AppTextService.get(AppTextKey.generic_payment_screen_expire_soon_section_header_title_header)
         case .switchAccount:
-            return AppTextService.get(AppTextKey.payment_view_title_switch_account)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_four_title_data)
         case .footer:
-            return AppTextService.get(AppTextKey.payment_view_title_header)
+            return AppTextService.get(AppTextKey.generic_payment_screen_expire_soon_section_header_title_header)
         }
     }
 
     func paymentSectionSubtitles(for paymentItem: PaymentSection) -> String? {
         switch paymentItem {
         case .prepared:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_prepared)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_one_subtitle_prepared)
         case .impact:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_impact)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_two_subtitle_impact)
         case .grow:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_grow)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_three_subtitle_grow)
         case .data:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_data)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_four_subtitle_data)
         case .switchAccount:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_switch_account)
+            return AppTextService.get(AppTextKey.generic_payment_screen_expired_section_footer_subtitle_switch_account)
         case .footer:
-            return AppTextService.get(AppTextKey.payment_view_subtitle_footer)
+            return AppTextService.get(AppTextKey.generic_payment_screen_section_footer_subtitle_footer)
         }
     }
 }

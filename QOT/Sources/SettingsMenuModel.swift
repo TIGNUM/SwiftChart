@@ -27,20 +27,20 @@ enum SettingsType: Int {
 
     var title: String {
         switch self {
-        case .company: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_company)
-        case .email: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_email)
-        case .firstName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_first_name)
-        case .lastName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_last_name)
-        case .dateOfBirth: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_dob)
+        case .company: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_company)
+        case .email: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_email)
+        case .firstName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_new_user_title_first_name)
+        case .lastName: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_new_user_title_last_name)
+        case .dateOfBirth: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_birth_year)
         case .strategies: return AppTextService.get(AppTextKey.notifications_view_title_strategies)
         case .dailyPrep: return AppTextService.get(AppTextKey.notifications_view_title_daily_prep)
         case .weeklyChoices: return AppTextService.get(AppTextKey.notifications_view_title_weekly_choices)
         case .password: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_security_password)
-        case .logout: return AppTextService.get(AppTextKey.my_qot_account_settings_view_button_logout)
+        case .logout: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_button_logout)
         case .confirm: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_security_confirm)
-        case .terms: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_terms)
-        case .copyrights: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_copyright)
-        case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_title_privacy)
+        case .terms: return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_terms_and_conditions_title_terms)
+        case .copyrights: return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_copyright_title_copyright)
+        case .security: return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_privacy_title_privacy)
         }
     }
 

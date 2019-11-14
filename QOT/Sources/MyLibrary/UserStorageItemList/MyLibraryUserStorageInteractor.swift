@@ -428,7 +428,7 @@ extension MyLibraryUserStorageInteractor {
         case .NONE:
             cellType = .DOWNLOAD
             cellStatus = .waiting
-            description = worker.tapToDownload
+            description = ""
         case .WAITING:
             cellType = .DOWNLOAD
             cellStatus = .waiting

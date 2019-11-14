@@ -101,13 +101,13 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     }
 
     func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
-        var title = AppTextService.get(AppTextKey.audio_view_button_download)
+        var title = AppTextService.get(AppTextKey.generic_download_status_audio_button_download)
         switch state {
-        case .NONE: title = AppTextService.get(AppTextKey.audio_view_button_download)
-        case .WAITING: title = AppTextService.get(AppTextKey.audio_view_button_waiting)
-        case .DOWNLOADING: title = AppTextService.get(AppTextKey.audio_view_button_downloading)
+        case .NONE: title = AppTextService.get(AppTextKey.generic_download_status_audio_button_download)
+        case .WAITING: title = AppTextService.get(AppTextKey.my_qot_my_library_downloads_download_status_button_waiting)
+        case .DOWNLOADING: title = AppTextService.get(AppTextKey.generic_download_status_audio_button_downloading)
         case .DONE:
-            title = AppTextService.get(AppTextKey.audio_view_button_downloaded)
+            title = AppTextService.get(AppTextKey.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
         }
 
@@ -198,11 +198,11 @@ private extension AudioFullScreenViewController {
 
     func showMobileDataDownloadAlert() {
         let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
-        let buttonContinue = QOTAlertAction(title: AppTextService.get(AppTextKey.audio_alert_button_continue)) { [weak self] (_) in
+        let buttonContinue = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_content_audio_alert_use_mobile_data_button_continue)) { [weak self] (_) in
             self?.continueDownload()
         }
-        QOTAlert.show(title: AppTextService.get(AppTextKey.audio_alert_title_use_mobile_data),
-                      message: AppTextService.get(AppTextKey.audio_alert_body_use_mobile_data),
+        QOTAlert.show(title: AppTextService.get(AppTextKey.generic_content_audio_alert_use_mobile_data_title),
+                      message: AppTextService.get(AppTextKey.generic_content_audio_alert_use_mobile_data_body),
                       bottomItems: [cancel, buttonContinue])
     }
 

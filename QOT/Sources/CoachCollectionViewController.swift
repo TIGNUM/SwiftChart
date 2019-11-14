@@ -45,7 +45,7 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     private var didDownSyncEvents = false
 
     lazy var pageTitle: String? = {
-        return AppTextService.get(AppTextKey.know_view_title)
+        return AppTextService.get(AppTextKey.know_section_header_title)
     }()
 
     lazy var knowingNavigationController: KnowingNavigationController? = {

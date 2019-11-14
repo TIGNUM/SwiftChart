@@ -25,14 +25,17 @@ final class MyQotSupportRouter {
 
 extension MyQotSupportRouter: MyQotSupportRouterInterface {
     func handleSelection(for item: MyQotSupportModel.MyQotSupportModelItem, email: String) {
+        guard let viewController = viewController else { return }
         switch item {
         case .usingQOT: presentUsingQOT()
         case .faq: presentFAQ()
-        case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
-                                               subject: "ID: Support", id: item)
+        case .contactSupport: UIViewController.presentMailComposer(from: viewController,
+                                                                   recipients: [Defaults.firstLevelSupportEmail],
+                                                                   subject: "ID: Support")
         case .contactSupportNovartis: break
-        case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
-                                                  subject: "ID: Feature", id: item)
+        case .featureRequest: UIViewController.presentMailComposer(from: viewController,
+                                                                   recipients: [Defaults.firstLevelFeatureEmail],
+                                                                   subject: "ID: Feature")
         }
     }
 
@@ -54,17 +57,5 @@ private extension MyQotSupportRouter {
 
     func presentUsingQOT() {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
-    }
-
-    func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_body_email_try_again)))
-            return
-        }
-        let composer = MFMailComposeViewController()
-        composer.setToRecipients(recipients)
-        composer.setSubject(subject)
-        composer.mailComposeDelegate = viewController
-        viewController?.present(composer, animated: true, completion: nil)
     }
 }

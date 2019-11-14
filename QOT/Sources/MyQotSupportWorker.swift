@@ -49,7 +49,7 @@ final class MyQotSupportWorker {
     }
 
     var supportText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_view_title)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_section_header_title)
     }
 
     func email(_ completion: @escaping(String) -> Void) {

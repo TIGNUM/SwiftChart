@@ -38,17 +38,17 @@ final class MyQotMainWorker {
     func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
         switch myQotItem {
         case .profile:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_profile)
+            return AppTextService.get(AppTextKey.my_qot_section_my_profile_title)
         case .library:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_library)
+            return AppTextService.get(AppTextKey.my_qot_section_my_library_title)
         case .preps:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_plans)
+            return AppTextService.get(AppTextKey.my_qot_section_my_plans_title)
         case .sprints:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_sprints)
+            return AppTextService.get(AppTextKey.my_qot_section_my_sprints_title)
         case .data:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_data)
+            return AppTextService.get(AppTextKey.my_qot_section_my_data_title)
         case .toBeVision:
-            return AppTextService.get(AppTextKey.my_qot_my_library_list_title_my_tbv)
+            return AppTextService.get(AppTextKey.my_qot_section_my_tbv_title)
         }
     }
 

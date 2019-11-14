@@ -15,19 +15,19 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return AppTextService.get(AppTextKey.track_info_view_title_welcome)
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_header_title)
     }()
 
     lazy var descriptionText: String = {
-        return AppTextService.get(AppTextKey.track_info_view_body_welcome)
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_header_body)
     }()
 
     lazy var fastTrackButton: String = {
-        return AppTextService.get(AppTextKey.track_info_view_button_fast_track)
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_fast_track)
     }()
 
     lazy var guidedTrackButton: String = {
-        return AppTextService.get(AppTextKey.track_info_view_button_guided_track)
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_guided_track)
     }()
 
     // MARK: - Init

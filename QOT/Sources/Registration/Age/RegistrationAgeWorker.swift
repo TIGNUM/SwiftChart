@@ -14,23 +14,23 @@ final class RegistrationAgeWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_title)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_header_title)
     }()
 
     lazy var agePlaceholder: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_placeholder)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_body_placeholder_title)
     }()
 
     lazy var descriptionText: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_description)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_view_create_account_body_description)
     }()
 
     lazy var ageRestrictionText: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_restriction)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_body_create_account_label_restriction)
     }()
 
     lazy var nextButtonTitle: String = {
-        return AppTextService.get(AppTextKey.create_account_birth_year_view_title_next)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_footer_button_next)
     }()
 
     // MARK: - Init

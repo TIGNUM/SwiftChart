@@ -50,34 +50,34 @@ final class MySprintNotesWorker {
     lazy var title: String = {
         switch action {
         case .benefits:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_benefits)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_benefits)
         case .highlights:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_highlights)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_highlights)
         case .strategies:
-            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_header_strategies)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_strategies)
         case .captureTakeaways:
             return "-"
         }
     }()
 
     lazy var saveTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_save)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_button_save)
     }()
 
     lazy var dismissAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_title_leave)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_alert_continue_without_saving_title_leave)
     }()
 
     lazy var dismissAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_body_leave))
+        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_alert_continue_without_saving_body_leave))
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_cancel)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_view_button_leave)
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_alert_button_continue)
     }()
 }
 

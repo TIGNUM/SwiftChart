@@ -47,7 +47,7 @@ struct Strategy {
 
         private func audioTextDurationString() -> String {
             let min = String(format: "%.0f", Double(valueDuration) / 60)
-            return String(format: AppTextService.get(AppTextKey.pdf_list_title_duration), min)
+            return String(format: AppTextService.get(AppTextKey.generic_content_section_item_label_read), min)
         }
     }
 }

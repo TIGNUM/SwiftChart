@@ -159,10 +159,10 @@ private extension SolveResultsWorker {
         switch resultType {
         case .recoveryDecisionTree,
              .recoveryMyPlans:
-            header = AppTextService.get(AppTextKey.coach_solve_results_view_title_header_related_items_suggested)
+            header = AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_result_section_suggested_solutions_title)
         case .solveDecisionTree,
              .solveDailyBrief:
-            header = AppTextService.get(AppTextKey.coach_solve_results_view_title_header_strategies)
+            header = AppTextService.get(AppTextKey.coach_solve_result_section_strategies_title)
         default:
             header = ""
         }
@@ -270,9 +270,9 @@ private extension SolveResultsWorker {
     func createRecoveryItems(_ completion: @escaping (SolveResult, Bool) -> Void) {
         var items: [SolveResult.Item] = []
         let exclusiveItems = strategyItems(recovery?.exclusiveContentCollections ?? [],
-                                           headerTitle: AppTextService.get(AppTextKey.coach_solve_results_view_title_header_exclusive))
+                                           headerTitle: AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_result_section_exclusive_content_title))
         let relatedItems = strategyItems(recovery?.suggestedSolutionsContentCollections ?? [],
-                                         headerTitle: AppTextService.get(AppTextKey.coach_solve_results_view_title_header_strategy_items_suggested))
+                                         headerTitle: AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_result_section_suggested_solutions_title))
         let type = resultType
         recoveryHeader { [weak self] (headerItem) in
             self?.fatigueSymptom { [weak self] (fatigueItem) in

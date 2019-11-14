@@ -18,7 +18,7 @@ final class StrategyListWorker {
 
     func headerTitle() -> String {
         if isFoundation == true {
-            return AppTextService.get(AppTextKey.know_view_title_foundation)
+            return AppTextService.get(AppTextKey.know_section_strategies_title_foundation)
         }
         return selectedStrategy?.title ?? ""
     }

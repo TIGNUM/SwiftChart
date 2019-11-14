@@ -24,10 +24,6 @@ protocol MyQotAccountSettingsInteractorInterface: Interactor {
     var emailText: String { get }
     var dateOfBirthText: String { get }
     var companyText: String { get }
-    var personalDataText: String { get }
-    var accountText: String { get }
-    var changePasswordText: String { get }
-    var protectYourAccountText: String { get }
     var logoutQotText: String { get }
     var withoutDeletingAccountText: String { get }
     var logoutQOTKey: String { get }

@@ -245,21 +245,21 @@ extension AppCoordinator {
         let whatsHot = URLScheme.latestWhatsHotArticle
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_whats_hot_article),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_wh_article),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
                                              userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_tools),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_tools),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
                                              userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: AppTextService.get(AppTextKey.home_view_title_review_my_data),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_review_my_data),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                              userInfo: ["link": myData.launchPathWithParameterValue("")]))

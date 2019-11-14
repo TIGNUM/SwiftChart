@@ -37,8 +37,8 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(model.title.uppercased(), to: whatsHotTitle)
         //TO DO: Assign a different key for the WHAT'S HOT TITLE. Now it's using the same key as the Knowing section
-        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.know_view_title_whats_hot),
-                                  subtitle: AppTextService.get(AppTextKey.daily_brief_whats_hot_view_subtitle))
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.know_section_wh_articles_title),
+                                  subtitle: AppTextService.get(AppTextKey.daily_brief_section_wh_subtitle))
         skeletonManager.addOtherView(whatsHotImage)
         whatsHotImage.setImage(url: model.image,
                                skeletonManager: self.skeletonManager)

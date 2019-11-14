@@ -43,8 +43,8 @@ extension ToolsWorker: ToolsWorkerInterface {
     }
 
     func toolsSections() -> ToolModel {
-        return ToolModel(headerTitle: AppTextService.get(AppTextKey.coach_qot_tools_view_title_header),
-                         headerSubtitle: AppTextService.get(AppTextKey.coach_qot_tools_view_subtitle_header),
+        return ToolModel(headerTitle: AppTextService.get(AppTextKey.coach_tools_section_header_title),
+                         headerSubtitle: AppTextService.get(AppTextKey.coach_tools_section_header_subtitle),
                          toolItems: ToolSection.allCases.map {
                             return ToolModel.Item(toolSections: $0,
                                                   title: toolSectionTitles(for: $0),
@@ -54,15 +54,15 @@ extension ToolsWorker: ToolsWorkerInterface {
     func toolSectionTitles(for toolItem: ToolSection) -> String {
         switch toolItem {
         case .mindset:
-            return AppTextService.get(AppTextKey.coach_qot_tools_view_title_perfomamce_mindset)
+            return AppTextService.get(AppTextKey.coach_tools_section_mindset_title)
         case .nutrition:
-            return AppTextService.get(AppTextKey.coach_qot_tools_view_title_performance_nutrition)
+            return AppTextService.get(AppTextKey.coach_tools_section_nutrition_title)
         case .movement:
-            return AppTextService.get(AppTextKey.coach_qot_tools_view_title_performance_movement)
+            return AppTextService.get(AppTextKey.coach_tools_section_movement_title)
         case .recovery:
-            return AppTextService.get(AppTextKey.coach_qot_tools_view_title_performance_recovery)
+            return AppTextService.get(AppTextKey.coach_tools_section_recovery_title)
         case .habituation:
-            return AppTextService.get(AppTextKey.coach_qot_tools_view_title_performace_habituation)
+            return AppTextService.get(AppTextKey.coach_tools_section_habituation_title)
         }
     }
 }

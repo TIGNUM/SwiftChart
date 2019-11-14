@@ -86,7 +86,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
         self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
-        ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_view_title), to: titleLabel)
+        ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
         actionLeft = tapLeft
@@ -102,11 +102,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         }
 
         if showDailyCheckInScreen {
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_empty_title_start_your_dc_in), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
         } else {
             trackState = model.isExpanded
             impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_daily_checkin_view_title_explore_your_score), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
             impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()

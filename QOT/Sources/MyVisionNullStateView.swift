@@ -27,10 +27,10 @@ final class MyVisionNullStateView: UIView {
     func setupView(with header: String, message: String, delegate: MyVisionNullStateViewProtocol?) {
         self.delegate = delegate
         ThemeView.level2.apply(self)
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_view_title), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
 
-        writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_button_write)), for: .normal)
-        autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_empty_button_auto_generate)), for: .normal)
+        writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_button_write)), for: .normal)
+        autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_button_auto_generate)), for: .normal)
         ThemeBorder.accent40.apply(writeButton)
         ThemeBorder.accent40.apply(autoGenerateButton)
         ThemeText.tbvHeader.apply(header, to: headerLabel)

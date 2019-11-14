@@ -64,7 +64,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: interactor?.title(at: indexPath) ?? "", themeCell: .level3)
-        cell.configure(subTitle: interactor?.subtitle(at: indexPath) ?? "", isHidden: true)
+        cell.configure(subTitle: "", isHidden: true)
         cell.hideArrow = true
         return cell
     }

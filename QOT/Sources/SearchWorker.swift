@@ -107,18 +107,18 @@ final class SearchWorker {
     }
 
     private func suggestions() -> [String] {
-        let keys: [AppTextKey] = [AppTextKey.search_suggestion_view_subtitle_self_image,
-                                  AppTextKey.search_suggestion_view_subtitle_daily_prep,
-                                  AppTextKey.search_suggestion_view_subtitle_no_excuse,
-                                  AppTextKey.search_suggestion_view_subtitle_build_capacity,
-                                  AppTextKey.search_suggestion_view_subtitle_sleep_ritual,
-                                  AppTextKey.search_suggestion_view_subtitle_power_nap,
-                                  AppTextKey.search_suggestion_view_subtitle_mindset_shifter,
-                                  AppTextKey.search_suggestion_view_subtitle_reframe,
-                                  AppTextKey.search_suggestion_view_subtitle_breathing,
-                                  AppTextKey.search_suggestion_view_subtitle_hp_snacks,
-                                  AppTextKey.search_suggestion_view_subtitle_brain_performance,
-                                  AppTextKey.search_suggestion_view_subtitle_work_to_home,
+        let keys: [AppTextKey] = [AppTextKey.coach_search_section_body_label_self_image,
+                                  AppTextKey.coach_search_section_body_label_daily_prep,
+                                  AppTextKey.coach_search_section_body_label_no_excuse,
+                                  AppTextKey.coach_search_section_body_label_build_capacity,
+                                  AppTextKey.coach_search_section_body_label_sleep_ritual,
+                                  AppTextKey.coach_search_section_body_label_power_nap,
+                                  AppTextKey.coach_search_section_body_label_mindset_shifter,
+                                  AppTextKey.coach_search_section_body_label_reframe,
+                                  AppTextKey.coach_search_section_body_label_breathing,
+                                  AppTextKey.coach_search_section_body_label_hp_snacks,
+                                  AppTextKey.coach_search_section_body_label_brain_performance,
+                                  AppTextKey.coach_search_section_body_label_work_to_home,
                                   AppTextKey.search_suggestion_view_subtitle_travel]
         var array: [String] = []
         for key in keys {
@@ -133,7 +133,7 @@ final class SearchWorker {
             searchCategory?.contentCollections.filter { $0.searchTags.contains("search_suggestions")}.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
                 suggestionItems.append(suggestionItem.valueText)
             }
-            completion(SearchSuggestions(header: AppTextService.get(AppTextKey.search_view_title_suggestion),
+            completion(SearchSuggestions(header: AppTextService.get(AppTextKey.coach_search_section_body_title),
                                  suggestions: self.suggestions()))
         }
     }

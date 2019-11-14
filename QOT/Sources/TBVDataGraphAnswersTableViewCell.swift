@@ -50,7 +50,7 @@ final class TBVDataGraphAnswersTableViewCell: UITableViewCell, Dequeueable {
         }
 
         ThemeText.tbvTrackerAnswer.apply(answer.answer, to: answerLabel)
-        ThemeText.tbvTrackerRating.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tracker_view_title_your_last_rating), to: lastRatingLabel)
+        ThemeText.tbvTrackerRating.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_label_last_ratings), to: lastRatingLabel)
 
         let theme1: ThemeText = isFirstSelected ? .tbvTrackerRatingDigitsSelected(isFirstLow) : .tbvTrackerRatingDigits(isFirstLow)
         theme1.apply(firstRate == 0 ? "-" : String(describing: firstRate), to: firstRating)

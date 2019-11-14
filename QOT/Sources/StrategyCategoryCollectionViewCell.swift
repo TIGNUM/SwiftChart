@@ -27,7 +27,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
         skeletonManager.hide()
-        ThemeText.performanceStaticTitle.apply(AppTextService.get(AppTextKey.know_strategy_view_title_performance), to: performanceLabel)
+        ThemeText.performanceStaticTitle.apply(AppTextService.get(AppTextKey.know_section_strategies_title_performance), to: performanceLabel)
         let titleText = title.replacingOccurrences(of: "Performance ", with: "")
         ThemeText.linkMenuItem.apply(titleText.uppercased(), to: categoryTitleLabel)
         let progress = String(format: "%d Seen of %d", views, items)

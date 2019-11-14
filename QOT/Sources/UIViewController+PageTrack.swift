@@ -226,15 +226,15 @@ private extension UIViewController {
 private extension UIViewController {
     var solveResultsPageKey: String {
         switch (self as? SolveResultsViewController)?.interactor?.resultType {
-        case .solveDailyBrief?: return "" //AppTextService.get(AppTextKey.)
+        case .solveDailyBrief?: return "" //AppTextService.get(AppTextKey.coach)
         case .solveDecisionTree?: return AppTextService.get(AppTextKey.coach_solve_result)
         case .recoveryDecisionTree?: return AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_result)
-        case .recoveryMyPlans?: return "" //AppTextService.get(AppTextKey.)
-        case .mindsetShifterDecisionTree?: return "" //AppTextService.get(AppTextKey.)
-        case .mindsetShifterMyPlans?: return "" //AppTextService.get(AppTextKey.)
-        case .prepareDecisionTree?: return "" //AppTextService.get(AppTextKey.)
-        case .prepareMyPlans?: return "" //AppTextService.get(AppTextKey.)
-        case .prepareDailyBrief?: return "" //AppTextService.get(AppTextKey.)
+        case .recoveryMyPlans?: return "" //AppTextService.get(AppTextKey.coach)
+        case .mindsetShifterDecisionTree?: return "" //AppTextService.get(AppTextKey.coach)
+        case .mindsetShifterMyPlans?: return "" //AppTextService.get(AppTextKey.coach)
+        case .prepareDecisionTree?: return "" //AppTextService.get(AppTextKey.coach)
+        case .prepareMyPlans?: return "" //AppTextService.get(AppTextKey.coach)
+        case .prepareDailyBrief?: return "" //AppTextService.get(AppTextKey.coach)
         default: preconditionFailure()
         }
     }

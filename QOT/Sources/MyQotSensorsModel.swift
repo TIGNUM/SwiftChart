@@ -15,34 +15,27 @@ struct MyQotSensorsModel {
     enum Sensor {
         case oura
         case healthKit
-        case requestTracker
 
         var title: String {
             switch self {
             case .oura:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_oura)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_oura)
             case .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_health_kit)
-            case .requestTracker:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_tracker)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_label_health_app)
             }
         }
 
         var status: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_disconnected)
-            case .requestTracker:
-                return ""
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_disconnect)
             }
         }
 
         var labelStatus: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_sensors_menu_title_no_data)
-            case .requestTracker:
-                return ""
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_no_data)
             }
         }
     }

@@ -21,7 +21,7 @@ final class CauseTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 extension CauseTableViewCell {
     func configure(cause: String, explanation: String) {
         selectionStyle = .none
-        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_solve_results_view_title_cause), to: topTitleLabel)
+        ThemeText.resultTitle.apply(AppTextService.get(AppTextKey.coach_tools_interactive_tool_3drecovery_result_section_your_answers_title_cause), to: topTitleLabel)
         ThemeText.resultHeader2.apply(cause, to: titleLabel)
         ThemeText.resultListHeader.apply(explanation, to: explanationLabel)
     }

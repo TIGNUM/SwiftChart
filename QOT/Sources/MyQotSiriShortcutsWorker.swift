@@ -102,7 +102,7 @@ final class MyQotSiriShortcutsWorker {
     }
 
     var siriShortcutsHeaderText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_siri)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_title)
     }
 }
 
@@ -121,22 +121,22 @@ extension MyQotSiriShortcutsWorker {
     func siriTitle(for shortcut: ShortcutType) -> String {
         switch shortcut {
         case .toBeVision:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_tobevision)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_tobevision_title)
         case .whatsHot:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_whatshot)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_wh_title)
         case .morningInterview:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_title_daily_prep)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_daily_prep_title)
         }
     }
 
     func siriSuggestionPhrase(for shortcut: ShortcutType) -> String {
         switch shortcut {
         case .toBeVision:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_tobevision)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_tobevision_subtitle)
         case .whatsHot:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_whatshot)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_wh_subtitle)
         case .morningInterview:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_view_body_daily_prep)
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_daily_prep_subtitle)
         }
     }
 }

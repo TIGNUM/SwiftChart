@@ -124,17 +124,17 @@ final class MyToBeVisionTrackerWorker {
     }
 
     func getTitle() {
-        title = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_view_title) :
-            AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_view_title_tracker)
+        title = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_header_title) :
+            AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result_section_header_title)
     }
 
     func getSubTitle() {
-        subTitle = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_view_subtitle) :
-            AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_view_subtitle_tracker)
+        subTitle = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_header_subtitle) :
+            AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result_section_header_body)
     }
 
     func getGraphHeading() {
-        graphHeading = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_empty_title_header) :
-            AppTextService.get(AppTextKey.my_qot_my_tbv_my_tbv_data_view_title_graph)
+        graphHeading = controllerType == .data ? AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_header_header) :
+            AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
     }
 }

@@ -27,54 +27,54 @@ final class RegistrationCodeWorker: BaseSigningWorker {
     // Texts
 
     lazy var title: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_header_title)
     }()
 
     lazy var description: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_description)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_header_body_description)
     }()
 
     lazy var preCode: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_code)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_body_label_code)
     }()
 
     lazy var disclaimerError: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_disclaimer_error)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_disclaimer_label_disclaimer_error)
     }()
 
     lazy var disclaimer: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_disclaimer)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_disclaimer_body_disclaimer)
     }()
 
     lazy var disclaimerTermsPlaceholder: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_disclaimer_terms_placeholder)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_disclaimer_button_disclaimer_terms_placeholder)
     }()
 
     lazy var disclaimerPrivacyPlaceholder: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_disclaimer_privacy_placeholder)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_disclaimer_button_disclaimer_privacy_placeholder)
     }()
 
     lazy var codeInfo: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_code_info)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_help_body_code_info)
     }()
 
     lazy var changeEmail: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_change_email)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_help_button_change_email)
     }()
 
     lazy var sendAgain: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_send_again)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_help_button_send_again)
     }()
 
     lazy var help: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_help)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_help_button_help)
     }()
 
     lazy var codeError: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_send_code_error)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_alert_code_error_body)
     }()
 
     lazy var resendCodeError: String = {
-        return AppTextService.get(AppTextKey.create_account_code_verification_view_title_send_code_error)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_alert_code_error_body)
     }()
 }

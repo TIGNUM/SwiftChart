@@ -44,28 +44,28 @@ struct MyQotSupportModel {
         func title() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_view_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_section_header_title)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_faq)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_title)
             case .contactSupport:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_contact_support)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title)
             case .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_contact_support_novartis)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title_novartis)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_title_using_qot)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_title)
             }
         }
 
         func subtitle() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_feature)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_subtitle)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_faq)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_subtitle)
             case .contactSupport, .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_support)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_subtitle)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_view_subtitle_feature)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_subtitle)
             }
         }
     }

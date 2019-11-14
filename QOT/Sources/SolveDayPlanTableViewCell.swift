@@ -25,7 +25,7 @@ extension SolveDayPlanTableViewCell {
 
     func configure(hasHeader: Bool, with text: String) {
         selectionStyle = .none
-        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_results_view_title_solution), to: headerLabel)
+        ThemeText.resultList.apply(AppTextService.get(AppTextKey.coach_solve_result_section_solution_title_your_solution), to: headerLabel)
         ThemeText.resultHeader2.apply(text, to: fiveDayPlanTextLabel)
 
         hasHeaderTopConstraint?.isActive = hasHeader == true

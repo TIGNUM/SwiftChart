@@ -87,6 +87,6 @@ final class MyVisionEditDetailsWorker {
     }
 
     private func getVisionDescription() {
-        visionPlaceholderDescription = AppTextService.get(AppTextKey.my_qot_my_tbv_edit_subtitle_vision)
+        visionPlaceholderDescription = AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
     }
 }

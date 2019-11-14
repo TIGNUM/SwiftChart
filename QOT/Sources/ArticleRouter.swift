@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import MessageUI
 import qot_dal
 
 final class ArticleRouter {
@@ -20,18 +19,6 @@ final class ArticleRouter {
 
     init(viewController: ArticleViewController) {
         self.viewController = viewController
-    }
-
-    func presentMailComposer(recipients: [String], subject: String, id: Article.Item?) {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_article_alert_body_email_try_again)))
-            return
-        }
-        let composer = MFMailComposeViewController()
-        composer.setToRecipients(recipients)
-        composer.setSubject(subject)
-        composer.mailComposeDelegate = viewController
-        viewController?.present(composer, animated: true, completion: nil)
     }
 }
 
@@ -52,7 +39,9 @@ extension ArticleRouter: ArticleRouterInterface {
     }
 
     func openSupportEmailComposer(for item: Article.Item?, emailAdress: String?) {
-        presentMailComposer(recipients: [emailAdress ?? Defaults.firstLevelSupportEmail],
-                            subject: "ID: Support", id: item)
+        guard let viewController = viewController else { return }
+        UIViewController.presentMailComposer(from: viewController,
+                                             recipients: [emailAdress ?? Defaults.firstLevelSupportEmail],
+                                             subject: "ID: Support")
     }
 }

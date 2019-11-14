@@ -23,10 +23,10 @@ final class PreparationWithMissingEventWorker {
 
     init(preparations: [QDMUserPreparation]) {
         self.preparations = preparations
-        self.title = AppTextService.get(AppTextKey.coach_preparation_view_title_removed)
-        self.text = AppTextService.get(AppTextKey.coach_preparation_view_body_removed)
-        self._keepButtonTitle = AppTextService.get(AppTextKey.coach_preparation_view_button_title_keep_up)
-        self._removeButtonTitle = AppTextService.get(AppTextKey.coach_preparation_view_button_title_remove)
+        self.title = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_title)
+        self.text = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_body)
+        self._keepButtonTitle = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_keep)
+        self._removeButtonTitle = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_remove)
     }
 
     func keepPreparation(preparation: QDMUserPreparation) {

@@ -29,6 +29,6 @@ final class WalkthroughWorker {
 
     // Texts
     var buttonGotIt: String = {
-        return AppTextService.get(AppTextKey.walkthrough_view_button_got_it)
+        return AppTextService.get(AppTextKey.onboarding_walkthrough_section_footer_button_got_it)
     }()
 }

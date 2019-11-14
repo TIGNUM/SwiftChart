@@ -32,7 +32,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
-    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_view_title_year_select)
+    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_placeholder_date_picker)
 
     private lazy var yearPickerItems: [String] = {
         var items = [String]()
@@ -168,18 +168,6 @@ extension ProfileSettingsViewController {
         guard let interactor = self.interactor else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         switch interactor.row(at: indexPath) {
-        case .label(_, _, let settingsType):
-            switch settingsType {
-            case .logout:
-                let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
-                let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_view_button_logout)) { (_) in
-                    ExtensionsDataManager.didUserLogIn(false)
-                    UIApplication.shared.shortcutItems?.removeAll()
-                    NotificationHandler.postNotification(withName: .logoutNotification)
-                }
-                QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_body_logout), bottomItems: [cancel, logout])
-            default: return
-            }
         case .datePicker(let title, let selectedYear, _):
             showDatePicker(title: title, selectedYear: selectedYear, indexPath: indexPath)
         default:

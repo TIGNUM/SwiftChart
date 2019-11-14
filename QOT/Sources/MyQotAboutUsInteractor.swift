@@ -54,10 +54,6 @@ extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
         return worker.title(at: indexPath)
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
-        return worker.subtitle(at: indexPath)
-    }
-
     func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
         worker.contentCollection(item: item) { (collection) in
             completion(collection)

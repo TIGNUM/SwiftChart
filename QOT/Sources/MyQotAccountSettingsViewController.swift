@@ -78,7 +78,7 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_view_title_account_settings), subtitle: nil)
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_section_account_settings_title), subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeView.level3.apply(headerView)
@@ -89,13 +89,13 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 
     func showLogoutAlert() {
         let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
-        let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_account_settings_alert_button_logout)) { [weak self] (_) in
+        let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_log_out_button_logout)) { [weak self] (_) in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
             self?.dismiss(animated: false, completion: nil)
             self?.interactor?.logout()
         }
-        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_account_settings_alert_body_logout), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_log_out_body_logout), bottomItems: [cancel, logout])
     }
 }
 

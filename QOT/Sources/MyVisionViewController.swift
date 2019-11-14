@@ -75,7 +75,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_view_button_title_my_tbv_data), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_section_footer_button_title_my_tbv_data), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -192,7 +192,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_title), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
@@ -239,8 +239,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_subtitle_updated_comment), to: lastUpdatedComment)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_view_subtitle_rated_comment), to: lastRatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_update_subtitle), to: lastUpdatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_subtiitle), to: lastRatedComment)
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
