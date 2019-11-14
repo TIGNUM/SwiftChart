@@ -23,8 +23,8 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     }
 
     @IBAction func clickAction(_ sender: Any) {
-        button.flipImage(trackState)
         trackState = !trackState
+        button.flipImage(trackState)
         NotificationCenter.default.post(name: .displayGuidedTrackRows, object: nil)
     }
 
