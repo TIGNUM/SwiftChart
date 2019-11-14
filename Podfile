@@ -13,7 +13,7 @@ target 'QOT' do
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'
-  pod 'HockeySDK'
+  pod 'AppCenter'
   pod 'Kingfisher'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'
