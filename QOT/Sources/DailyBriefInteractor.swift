@@ -859,41 +859,29 @@ extension DailyBriefInteractor {
                                                     type: GuidedTrackItemType.SECTION,
                                                     appLink: nil,
                                                     domain: guidedTrack))
-        guard let contentCollections = guidedTrack.contentCollections else { return guidedtrackList }
-
         guard guidedClosedTrack == true else {
-            if let contentCollection = contentCollections.first {
-                guidedtrackList.append(getGuidedTrackViewModel(for: contentCollection, guidedTrack, type: .FIRSTROW))
-            }
             return guidedtrackList
         }
-        for (index, contentCollection) in contentCollections.enumerated() {
-            let type = (index == 0) ? GuidedTrackItemType.FIRSTROW : GuidedTrackItemType.ROW
-            guidedtrackList.append(getGuidedTrackViewModel(for: contentCollection, guidedTrack, type: type))
+
+        guidedTrack.contentCollections?.forEach {(contentItem) in
+            let stepTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
+                .first?.valueText ?? ""
+            let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
+                .first?.valueText ?? ""
+            let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
+                .first?.valueText ?? ""
+            let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
+                .first?.valueText ?? ""
+            let qdmAppLink = contentItem.links.first
+            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
+                                                        levelTitle: levelTitle,
+                                                        content: levelDescription,
+                                                        buttonText: levelCta,
+                                                        type: GuidedTrackItemType.ROW,
+                                                        appLink: qdmAppLink,
+                                                        domain: guidedTrack))
         }
         return guidedtrackList
-    }
-
-    func getGuidedTrackViewModel(for contentCollection: QDMContentCollection,
-                                 _ domain: QDMDailyBriefBucket,
-                                 type: GuidedTrackItemType = .ROW) -> GuidedTrackViewModel {
-        let stepTitle = contentCollection.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
-            .first?.valueText ?? ""
-        let levelTitle = contentCollection.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
-            .first?.valueText ?? ""
-        let levelDescription = contentCollection.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
-            .first?.valueText ?? ""
-        let levelCta = contentCollection.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
-            .first?.valueText ?? ""
-        let qdmAppLink = contentCollection.links.first
-
-        return GuidedTrackViewModel(bucketTitle: stepTitle,
-                                    levelTitle: levelTitle,
-                                    content: levelDescription,
-                                    buttonText: levelCta,
-                                    type: type,
-                                    appLink: qdmAppLink,
-                                    domain: domain)
     }
 
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
