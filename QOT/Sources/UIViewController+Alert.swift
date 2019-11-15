@@ -18,7 +18,6 @@ enum AlertType {
     case noNetworkConnectionFile
     case unknown
     case loginFailed
-    case emailNotFound
     case cameraNotAvailable
     case changeNotifications
     case calendarNotSynced
@@ -34,7 +33,6 @@ enum AlertType {
              .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_file_title)
         case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_error_title)
         case .loginFailed: return AppTextService.get(AppTextKey.onboarding_log_in_section_email_verification_alert_subtitle_unauthenticated)
-        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_title_email_not_found)
         case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_title)
         case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_calendar_not_sync_section_header_title)
         case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_edit_settings_title_change_notifications)
@@ -50,7 +48,6 @@ enum AlertType {
         case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_file_title)
         case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_file_body)
         case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_error_title)
-        case .emailNotFound: return AppTextService.get(AppTextKey.login_alert_body_email_not_found)
         case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body_photo_not_granted)
         case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_camera_not_granted_body)
         case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body)

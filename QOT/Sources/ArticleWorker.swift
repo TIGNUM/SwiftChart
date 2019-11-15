@@ -421,7 +421,7 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : AppTextService.get(AppTextKey.prepare_view_title_read_more)
+            return section == 0 ? nil : AppTextService.get(AppTextKey.know_wh_article_section_read_more_title)
         default:
             return section != 1 ? nil : AppTextService.get(AppTextKey.know_strategy_list_strategy_section_related_content_title)
         }

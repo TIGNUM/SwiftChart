@@ -45,7 +45,7 @@ final class DTSprintViewController: DTViewController {
                                                     action: #selector(didPressDimissInfoView),
                                                     backgroundColor: .carbonDark,
                                                     borderColor: .accent40)
-        let continueButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.prepare_alert_button_continue),
+        let continueButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_sprints_alert_button_continue),
                                                       buttonWidth: .Continue,
                                                       action: #selector(didTapStartSprint),
                                                       backgroundColor: .carbonDark,

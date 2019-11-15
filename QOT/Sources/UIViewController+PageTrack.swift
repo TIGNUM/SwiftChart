@@ -57,7 +57,7 @@ extension UIViewController {
         case is CoachViewController: return AppTextService.get(AppTextKey.coach)
         case is SearchViewController: return AppTextService.get(AppTextKey.coach_search)
         case is ToolsViewController: return AppTextService.get(AppTextKey.coach_tools)
-        case is ToolsCollectionsViewController: return AppTextService.get(AppTextKey.coach_tools_tools_list_details)
+        case is ToolsCollectionsViewController: return AppTextService.get(AppTextKey.coach_tools_tools_list_tool_details)
         case is ToolsItemsViewController: return AppTextService.get(AppTextKey.coach_tools_tools_list)
         case is KnowingViewController: return AppTextService.get(AppTextKey.know)
         case is SolveResultsViewController: return solveResultsPageKey
@@ -78,7 +78,7 @@ extension UIViewController {
         case is RegistrationAgeViewController: return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification)
         case is TrackSelectionViewController: return AppTextService.get(AppTextKey.onboarding_guided_track)
         case is StrategyListViewController: return AppTextService.get(AppTextKey.know_strategy_list)
-        case is ArticleViewController: return AppTextService.get(AppTextKey.know_strategy_list_details)
+        case is ArticleViewController: return AppTextService.get(AppTextKey.know_strategy_list_strategy_details)
         case is SyncedCalendarsViewController: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendar)
         case is MyDataScreenViewController: return AppTextService.get(AppTextKey.my_qot_my_data)
         case is MyDataSelectionViewController: return AppTextService.get(AppTextKey.my_qot_my_data_ir_add_parameters)

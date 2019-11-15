@@ -200,7 +200,7 @@ private extension MyPrepsViewController {
         baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title), subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title), to: noPrepsTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_preps_event_preps_view_body), to: noPrepsComment)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_body), to: noPrepsComment)
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title), to: noMindsetTitle)
         ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body), to: noMindsetComment)
         ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title), to: noRecoveryTitle)

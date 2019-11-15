@@ -208,7 +208,7 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_questionaire_view_body_customize), to: labelCustomizeView)
+            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
             titleContainerHeight.constant = 500

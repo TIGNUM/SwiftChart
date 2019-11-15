@@ -119,7 +119,7 @@ final class SearchWorker {
                                   AppTextKey.coach_search_section_body_label_hp_snacks,
                                   AppTextKey.coach_search_section_body_label_brain_performance,
                                   AppTextKey.coach_search_section_body_label_work_to_home,
-                                  AppTextKey.search_suggestion_view_subtitle_travel]
+                                  AppTextKey.coach_search_section_body_label_travel]
         var array: [String] = []
         for key in keys {
             array.append(AppTextService.get(key))

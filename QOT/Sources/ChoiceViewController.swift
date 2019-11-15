@@ -56,11 +56,6 @@ private extension ChoiceViewController {
         tableView.tableHeaderView = tableHeaderView
         tableHeaderViewLabel.text = AppTextService.get(AppTextKey.coach_prepare_result_long_edit_strategies_section_header_title)
     }
-
-    func navigationTitle(selected: Int) -> String {
-        let max = interactor?.maxSelectionCount ?? 0
-        return String(format: AppTextService.get(AppTextKey.prepare_choice_view_title), selected, max)
-    }
 }
 
 // MARK: - Actions
