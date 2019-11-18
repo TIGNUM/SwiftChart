@@ -77,7 +77,7 @@ extension QOTBaseHeaderView {
     // MARK: Public
 
     func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        var height: CGFloat = 0
+        var height: CGFloat = 16
         var verticalConstraintsSum: CGFloat = 0
         var horizontalConstraintsSum: CGFloat = 0
         for constraint in verticalConstraints {
@@ -91,7 +91,7 @@ extension QOTBaseHeaderView {
         if subtitleTextView.text.isEmpty {
             subtitleLabelSize = .zero
         }
-        height = titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
+        height = height + titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
 
         return height
     }

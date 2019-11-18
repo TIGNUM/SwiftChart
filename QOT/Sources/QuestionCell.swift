@@ -28,5 +28,6 @@ final class QuestionCell: BaseDailyBriefCell {
         baseView?.configure(title: model.title, subtitle: model.text)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseView?.titleLabel)
         ThemeText.quotation.apply(model.text, to: baseView?.subtitleTextView)
+        baseView?.subtitleTextViewBottomConstraint.constant = 45.0
     }
 }

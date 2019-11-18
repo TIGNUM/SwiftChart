@@ -91,6 +91,7 @@ extension UIViewController {
         case is QuestionnaireViewController: return AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount)
         case is OnboardingLoginViewController: return AppTextService.get(AppTextKey.onboarding_log_in)
         case is PaymentReminderViewController: return subscriptionReminderPageKey
+        case is CoachMarksViewController: return guidedTrackPageKey
         default: preconditionFailure()
         }
     }
@@ -236,12 +237,31 @@ private extension UIViewController {
     }
 }
 
+// MARK: solveResults IDs
 private extension UIViewController {
     var subscriptionReminderPageKey: String {
         if (self as? PaymentReminderViewController)?.interactor?.isExpired ?? false {
             return AppTextService.get(AppTextKey.generic_payment_screen_expired)
         } else {
             return AppTextService.get(AppTextKey.generic_payment_screen_expire_soon)
+        }
+    }
+}
+
+// MARK: solveResults IDs
+private extension UIViewController {
+    var guidedTrackPageKey: String {
+        switch (self as? CoachMarksViewController)?.interactor?.currentPage ?? 0 {
+        case 0:
+            return AppTextService.get(AppTextKey.onboarding_walkthrough_know)
+        case 1:
+            return AppTextService.get(AppTextKey.onboarding_walkthrough_my_qot)
+        case 2:
+            return AppTextService.get(AppTextKey.onboarding_walkthrough_coach)
+        case 3:
+            return AppTextService.get(AppTextKey.onboarding_walkthrough_search)
+        default:
+            return AppTextService.get(AppTextKey.onboarding_walkthrough_know)
         }
     }
 }

@@ -52,11 +52,6 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
         interactor?.viewDidLoad()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
@@ -103,6 +98,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
     }
 
     func updateView(_ viewModel: CoachMark.ViewModel) {
+        trackPage()
         self.viewModel = viewModel
         setupButtons(viewModel.hideBackButton, viewModel.rightButtonTitle)
         let toIndexPath = IndexPath(item: getCurrentPage, section: 0)

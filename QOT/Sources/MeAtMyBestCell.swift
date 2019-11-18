@@ -38,7 +38,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         baseView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
-        baseView?.subtitleTextViewBottomConstraint.constant = 0
+        baseView?.subtitleTextViewBottomConstraint.constant = 10
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseView?.titleLabel)
         ThemeText.sprintText.apply(model.intro, to: baseView?.subtitleTextView)
         headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0

@@ -22,6 +22,7 @@ protocol CoachMarksInteractorInterface: Interactor {
     func loadNextStep(page: Int)
     func loadPreviousStep(page: Int)
     func saveCoachMarksViewed()
+    var currentPage: Int { get }
 }
 
 protocol CoachMarksRouterInterface {

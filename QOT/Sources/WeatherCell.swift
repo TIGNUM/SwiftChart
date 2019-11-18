@@ -12,8 +12,8 @@ import qot_dal
 final class WeatherCell: BaseDailyBriefCell {
     // MARK: - Properties
     //Header section
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet private var headerHeightConstraint: NSLayoutConstraint!
+    private var baseView: QOTBaseHeaderView?
 
     //WeatherView section
     @IBOutlet weak var headerView: UIView!
@@ -25,7 +25,6 @@ final class WeatherCell: BaseDailyBriefCell {
     @IBOutlet weak var hourlyStackView: UIStackView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var weatherImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
@@ -48,8 +47,8 @@ final class WeatherCell: BaseDailyBriefCell {
             arrangedView.isHidden = true
         }
         ThemeView.level1.apply(accessImageContainerView)
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseHeaderView?.addTo(superview: headerView)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView)
     }
 
     override func prepareForReuse() {
@@ -83,11 +82,11 @@ final class WeatherCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         viewModel = weatherViewModel
-        baseHeaderView?.configure(title: viewModel?.bucketTitle?.uppercased(),
-                                  subtitle: viewModel?.intro)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
-        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
+        baseView?.configure(title: viewModel?.bucketTitle?.uppercased(),
+                            subtitle: viewModel?.intro)
+        baseView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseView?.titleLabel)
+        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
@@ -131,7 +130,7 @@ final class WeatherCell: BaseDailyBriefCell {
 
     // MARK: - Private
     private func startSkeleton() {
-        if let baseView = self.baseHeaderView {
+        if let baseView = self.baseView {
             for subview in baseView.subviews {
                 skeletonManager.addSubtitle(subview)
             }
@@ -195,7 +194,6 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
-        let weatherImageViewTop: CGFloat = 60
         var shouldHideHeader = false
         switch viewModel?.locationPermissionStatus {
         case .granted?, .grantedWhileInForeground?:
@@ -216,7 +214,7 @@ final class WeatherCell: BaseDailyBriefCell {
         accessButton.setTitle(accessButtonTitle, for: .normal)
         accessButtonHeightConstraint.constant = accessButtonHeight
 
-        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseView?.calculateHeight(for: self.frame.size.width) ?? 0
         headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader

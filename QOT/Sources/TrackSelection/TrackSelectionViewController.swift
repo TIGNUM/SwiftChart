@@ -107,6 +107,6 @@ extension TrackSelectionViewController: TrackSelectionViewControllerInterface {
         baseHeaderView?.configure(title: interactor?.title, subtitle: interactor?.descriptionText)
         ThemeText.trackSelectionTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
         ThemeText.trackSelectionMessage.apply(interactor?.descriptionText, to: baseHeaderView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        headerViewHeightConstraint.constant = (baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0) * 2
     }
 }

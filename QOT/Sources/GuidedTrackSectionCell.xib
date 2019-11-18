@@ -16,15 +16,15 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="288" id="2M2-0L-K1U" customClass="GuidedTrackSectionCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="371" height="261"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="259" id="2M2-0L-K1U" customClass="GuidedTrackSectionCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="371" height="232"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2M2-0L-K1U" id="WOX-Ik-zWw">
-                <rect key="frame" x="0.0" y="0.0" width="371" height="260.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="371" height="231.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIu-gB-GnD" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="24" y="172.5" width="160" height="40"/>
+                        <rect key="frame" x="24" y="143.5" width="165" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Wjd-za-LZN"/>
                         </constraints>
@@ -39,7 +39,7 @@
                         </connections>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="znk-aJ-Hvm">
-                        <rect key="frame" x="0.0" y="0.0" width="371" height="148.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="371" height="119.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
@@ -58,7 +58,7 @@
                 <outlet property="button" destination="cIu-gB-GnD" id="RXy-50-ljD"/>
                 <outlet property="headerView" destination="znk-aJ-Hvm" id="UI9-AZ-BHo"/>
             </connections>
-            <point key="canvasLocation" x="-207.97101449275365" y="-147.65625"/>
+            <point key="canvasLocation" x="-207.97101449275365" y="-157.36607142857142"/>
         </tableViewCell>
     </objects>
     <resources>

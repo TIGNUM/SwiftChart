@@ -9,12 +9,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
-        <array key="SF-Pro-Text-Light.otf">
-            <string>SFProText-Light</string>
-        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -43,14 +37,14 @@
                         </connections>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" image="placeholder_large" translatesAutoresizingMaskIntoConstraints="NO" id="j1u-DS-AeZ">
-                        <rect key="frame" x="324" y="198" width="82" height="82"/>
+                        <rect key="frame" x="324" y="57" width="82" height="82"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="82" id="Ivn-0U-9pW"/>
                             <constraint firstAttribute="width" constant="82" id="JnZ-cQ-GOJ"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="752" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j3g-Se-GqU">
-                        <rect key="frame" x="24" y="270" width="300" height="0.0"/>
+                        <rect key="frame" x="24" y="129" width="300" height="0.0"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -103,48 +97,14 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" verticalCompressionResistancePriority="752" translatesAutoresizingMaskIntoConstraints="NO" id="TQ7-Xc-Qoc" userLabel="HeaderView">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="199.33333333333334"/>
-                        <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ft1-S7-msi">
-                                <rect key="frame" x="24" y="60" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="P5J-RI-SQf"/>
-                                    <constraint firstAttribute="width" constant="16" id="mc3-tK-9Yi"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEATHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="76" width="89" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="FOS-mi-La1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="24" y="132" width="382" height="57.333333333333343"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <string key="text">Two days ago you explored some solutions to help you during difficult high-performance situations. Test 3 lines longer than something more.</string>
-                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
+                        <rect key="frame" x="0.0" y="0.0" width="430" height="0.0"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="w4g-tE-UTh" secondAttribute="bottom" constant="10" id="1gy-ap-BG4"/>
-                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="top" secondItem="ft1-S7-msi" secondAttribute="bottom" constant="15" id="Tj9-c1-3ng"/>
-                            <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="IAV-Ov-hU9" secondAttribute="bottom" constant="32" id="edG-Bv-9UV"/>
-                            <constraint firstItem="ft1-S7-msi" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="top" constant="60" id="gmH-b6-XVU"/>
-                            <constraint firstItem="ft1-S7-msi" firstAttribute="leading" secondItem="TQ7-Xc-Qoc" secondAttribute="leading" constant="24" id="hME-rC-lZY"/>
-                            <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="IAV-Ov-hU9" secondAttribute="leading" id="kKU-AL-cKH"/>
-                            <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" constant="24" id="ojL-JS-RdG"/>
-                            <constraint firstItem="IAV-Ov-hU9" firstAttribute="leading" secondItem="ft1-S7-msi" secondAttribute="leading" id="pkb-G5-nbz"/>
+                            <constraint firstAttribute="height" id="nZW-Hd-UsM"/>
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="-- °C" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qCH-Qf-wzT">
-                        <rect key="frame" x="24" y="280" width="300" height="94.666666666666686"/>
+                        <rect key="frame" x="24" y="139" width="300" height="235.66666666666663"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -156,10 +116,10 @@ using the app?</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uV6-1Z-gcH">
-                        <rect key="frame" x="0.0" y="198" width="430" height="348"/>
+                        <rect key="frame" x="0.0" y="57" width="430" height="489"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location_permission" translatesAutoresizingMaskIntoConstraints="NO" id="mGO-3j-huH">
-                                <rect key="frame" x="27.666666666666657" y="0.0" width="375" height="348"/>
+                                <rect key="frame" x="27.666666666666657" y="0.0" width="375" height="489"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </imageView>
                         </subviews>
@@ -181,6 +141,7 @@ using the app?</string>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="bottom" secondItem="O3R-Xj-mOD" secondAttribute="top" constant="-7" id="94E-Av-Tm4"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="lessThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.5" id="9Sg-c1-Xg1"/>
                     <constraint firstItem="CmA-Lc-aRn" firstAttribute="top" secondItem="O3R-Xj-mOD" secondAttribute="bottom" constant="20" id="9eB-VA-x0I"/>
+                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="TQ7-Xc-Qoc" secondAttribute="bottom" constant="57" id="Ah8-90-gDy"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="trailing" secondItem="CmA-Lc-aRn" secondAttribute="trailing" id="ERY-4e-bAg"/>
                     <constraint firstItem="Vjm-ra-cbt" firstAttribute="top" secondItem="HOh-es-4Cw" secondAttribute="bottom" constant="14" id="NvD-Nx-9Og"/>
                     <constraint firstItem="HOh-es-4Cw" firstAttribute="width" relation="greaterThanOrEqual" secondItem="Auc-IE-jDT" secondAttribute="width" multiplier="0.3" id="TOz-Cc-jif"/>
@@ -201,7 +162,6 @@ using the app?</string>
                     <constraint firstItem="ZlO-AQ-5eT" firstAttribute="top" secondItem="qCH-Qf-wzT" secondAttribute="bottom" constant="10" id="rTb-UP-PIQ"/>
                     <constraint firstAttribute="trailing" secondItem="TQ7-Xc-Qoc" secondAttribute="trailing" id="uUi-kX-QCV"/>
                     <constraint firstItem="349-bm-c0Q" firstAttribute="width" secondItem="Auc-IE-jDT" secondAttribute="width" id="v9Z-tV-1uN"/>
-                    <constraint firstItem="j1u-DS-AeZ" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" constant="198" id="yVZ-kX-u4G"/>
                     <constraint firstItem="TQ7-Xc-Qoc" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="top" id="yyl-UY-hwO"/>
                     <constraint firstItem="j1u-DS-AeZ" firstAttribute="leading" secondItem="j3g-Se-GqU" secondAttribute="trailing" id="zs5-h3-Y9W"/>
                 </constraints>
@@ -223,23 +183,15 @@ using the app?</string>
                 <outlet property="accessImageContainerView" destination="uV6-1Z-gcH" id="eA6-sI-P4X"/>
                 <outlet property="accessImageView" destination="mGO-3j-huH" id="7ya-Yl-i96"/>
                 <outlet property="accessLabel" destination="HOh-es-4Cw" id="df4-Up-iaF"/>
-                <outlet property="bucketTitleLabel" destination="IAV-Ov-hU9" id="LSI-bO-PE1"/>
+                <outlet property="headerHeightConstraint" destination="nZW-Hd-UsM" id="Qho-KP-2fK"/>
                 <outlet property="headerView" destination="TQ7-Xc-Qoc" id="mUv-Gx-OTO"/>
                 <outlet property="hourlyStackView" destination="WZQ-cb-dX0" id="DKt-fC-weI"/>
-                <outlet property="introLabel" destination="w4g-tE-UTh" id="oIU-9A-hET"/>
                 <outlet property="lastUpdateLabel" destination="vv6-KQ-XPa" id="A3g-hC-bRq"/>
-                <outlet property="lineView" destination="ft1-S7-msi" id="FKn-FP-gqb"/>
                 <outlet property="locationLabel" destination="j3g-Se-GqU" id="FH5-Be-jJp"/>
                 <outlet property="weatherBodyLabel" destination="O3R-Xj-mOD" id="qSC-Ez-HD8"/>
                 <outlet property="weatherDescriptionLabel" destination="qCH-Qf-wzT" id="QT7-dY-7kp"/>
                 <outlet property="weatherImageView" destination="j1u-DS-AeZ" id="qNa-Ga-D44"/>
-                <outlet property="weatherImageViewTopConstraint" destination="yVZ-kX-u4G" id="HdM-QF-UZC"/>
                 <outlet property="weatherTitleLabel" destination="ZlO-AQ-5eT" id="Wph-e1-GM4"/>
-                <outletCollection property="verticalHeaderConstraints" destination="gmH-b6-XVU" collectionClass="NSMutableArray" id="AV9-DL-5Vv"/>
-                <outletCollection property="verticalHeaderConstraints" destination="Tj9-c1-3ng" collectionClass="NSMutableArray" id="VMa-dp-zsC"/>
-                <outletCollection property="verticalHeaderConstraints" destination="edG-Bv-9UV" collectionClass="NSMutableArray" id="4Xy-by-5h2"/>
-                <outletCollection property="verticalHeaderConstraints" destination="1gy-ap-BG4" collectionClass="NSMutableArray" id="PfU-do-heV"/>
-                <outletCollection property="verticalHeaderConstraints" destination="FOS-mi-La1" collectionClass="NSMutableArray" id="tTp-la-k9W"/>
             </connections>
             <point key="canvasLocation" x="169.56521739130437" y="510.26785714285711"/>
         </tableViewCell>

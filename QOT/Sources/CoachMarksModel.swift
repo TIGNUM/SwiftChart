@@ -36,7 +36,7 @@ struct CoachMark {
 
         var rightButtonTitle: String? {
             if .search == self { return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_get_started)}
-            return AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_keep)
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_button_continue)
         }
 
         var hideBackButton: Bool {

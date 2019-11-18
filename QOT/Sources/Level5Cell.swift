@@ -11,9 +11,8 @@ import qot_dal
 
 final class Level5Cell: BaseDailyBriefCell {
 
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseView: QOTBaseHeaderView?
+    @IBOutlet var headerView: UIView!
+    private var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!
@@ -81,7 +80,6 @@ final class Level5Cell: BaseDailyBriefCell {
         baseView?.configure(title: with?.title, subtitle: with?.intro)
         ThemeText.dailyBriefTitle.apply(with?.title, to: baseView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(with?.intro, to: baseView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []
