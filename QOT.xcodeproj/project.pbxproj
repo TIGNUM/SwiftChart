@@ -952,7 +952,6 @@
 		CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB98B05201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift */; };
 		CBC191131F603055009E483B /* URL+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191121F603055009E483B /* URL+Convenience.swift */; };
 		CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */; };
-		CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */; };
 		CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3911F7D3195000E4440 /* ChatViewAnimator.swift */; };
 		CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3931F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift */; };
 		CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBD097361F72646000F71D91 /* ChatViewLayout.swift */; };
@@ -2142,7 +2141,6 @@
 		CBB98B05201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNMutableNotificationContent+Convenience.swift"; sourceTree = "<group>"; };
 		CBC191121F603055009E483B /* URL+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "URL+Convenience.swift"; sourceTree = "<group>"; };
 		CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Buglife.swift"; sourceTree = "<group>"; };
-		CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringResource+Convenience.swift"; sourceTree = "<group>"; };
 		CBCCF3911F7D3195000E4440 /* ChatViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAnimator.swift; sourceTree = "<group>"; };
 		CBCCF3931F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewLayoutAttibutes.swift; sourceTree = "<group>"; };
 		CBD097361F72646000F71D91 /* ChatViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChatViewLayout.swift; sourceTree = "<group>"; };
@@ -4324,7 +4322,6 @@
 				9482C2502E55FA84E54C707D /* Pods-QOT.release.xcconfig */,
 				5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -4521,7 +4518,6 @@
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
-				CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
@@ -5641,7 +5637,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -6273,7 +6269,6 @@
 				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
 				389BBC89235EE68B0009FA02 /* CoachMarksViewController.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
-				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
@@ -7934,7 +7929,10 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
-				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = "Resources/Animations.xcassets/QOT Logo";
+				"EXCLUDED_SOURCE_FILE_NAMES[arch=*]" = (
+					Resources/Animations.xcassets/QOT,
+					Logo,
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;

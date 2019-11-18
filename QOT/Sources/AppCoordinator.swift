@@ -121,15 +121,6 @@ final class AppCoordinator {
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
-    private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: .error)
-        let message = "There was a problem initializing the app's data. Please restart the app and try again"
-        let warning = "===We need to look into this, to replace show major alert==="
-//        self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
-//            exit(0)
-//        })
-    }
-
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)

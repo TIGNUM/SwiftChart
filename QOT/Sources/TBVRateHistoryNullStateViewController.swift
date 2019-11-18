@@ -63,13 +63,13 @@ private extension TBVRateHistoryNullStateViewController {
     }
 
     func setupEmptySate() {
-        ThemeText.tbvStatement.apply("===We need to Add AppTextKey here==="/*ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderTitle).uppercased()*/,
+        ThemeText.tbvStatement.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_header_header),
             to: headingLabel)
-        ThemeText.tbvBody.apply("===We need to Add AppTextKey here==="/*ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc)*/,
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_header_body),
             to: headingDescriptionLabel)
-        ThemeText.tbvSectionHeader.apply("===We need to Add AppTextKey here==="/*ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased()*/,
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title),
             to: titleLabel)
-        ThemeText.tbvBody.apply("===We need to Add AppTextKey here==="/*ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc)*/,
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title_description),
             to: titleDescriptionLabel)
     }
 }

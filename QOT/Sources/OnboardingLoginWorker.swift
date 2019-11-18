@@ -70,6 +70,6 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     }()
 
     lazy var buttonSeparator: String = {
-        return "===We need to Add AppTextKey here==="//R.string.localized.onboardingLoginButtonSeparator()
+        return "-"
     }()
 }
