@@ -27,7 +27,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var loginButton: RoundedButton!
-    @IBOutlet private weak var startButton: RoundedButton!
+    @IBOutlet private weak var registerButton: RoundedButton!
     weak var delegate: SigningInfoDelegate?
 
     // MARK: - Init
@@ -120,7 +120,7 @@ private extension SigningInfoViewController {
 
     func setupButtons() {
         ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_log_in))
-        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register))
+        ThemableButton.signinInfo.apply(registerButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register))
     }
 }
 
