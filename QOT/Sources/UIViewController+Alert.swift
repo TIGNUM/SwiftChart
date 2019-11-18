@@ -71,7 +71,7 @@ enum AlertType {
         case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_edit_settings_title_open_settings)
         case .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_button_settings)
-        default: return AppTextService.get(AppTextKey.coach_prepare_result_long_edit_strategies_section_footer_button_save_changes)
+        default: return AppTextService.get(AppTextKey.generic_view_button_done)
         }
     }
 
