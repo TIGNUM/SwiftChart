@@ -237,7 +237,6 @@ extension AppCoordinator {
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         isReadyToProcessURL = false
-        environment.dynamicBaseURL = nil
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
