@@ -1,6 +1,4 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.3.0)
-  - Anchorage (4.3.1)
   - AppCenter (2.5.1):
     - AppCenter/Analytics (= 2.5.1)
     - AppCenter/Crashes (= 2.5.1)
@@ -32,14 +30,12 @@ PODS:
   - UrbanAirship-iOS-SDK (11.1.2)
 
 DEPENDENCIES:
-  - ActionSheetPicker-3.0
-  - Anchorage
   - AppCenter
   - Buglife
   - DifferenceKit
   - JTAppleCalendar (= 7.1.6)
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/Apptext`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -49,8 +45,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - ActionSheetPicker-3.0
-    - Anchorage
     - Buglife
     - DifferenceKit
     - JTAppleCalendar
@@ -67,21 +61,20 @@ SPEC REPOS:
 
 EXTERNAL SOURCES:
   qot_dal:
+    :branch: feature/Apptext
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 743b083ab9a31f2ade867754d77b76e83298ffa3
+    :commit: 372223558d910fa8b7df638ee368b72ddc848154
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
     :git: "git@github.com:voicusimu/SwiftChart.git"
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
-  Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   AppCenter: fddcbac6e4baae3d93a196ceb0bfe0e4ce407dec
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
@@ -97,6 +90,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: 5796ee7c0c468c64f6fe4257fc561479ea435d1f
+PODFILE CHECKSUM: 71a569bbdd7cc3161dba04abcbe02b5c0302c1d7
 
 COCOAPODS: 1.8.4

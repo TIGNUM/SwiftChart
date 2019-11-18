@@ -50,7 +50,7 @@ private extension TBVDataGraphAnswersTableViewCell {
 
     func setupTheme(_ sentence: QDMToBeVisionSentence) {
         ThemeText.tbvTrackerAnswer.apply(sentence.text, to: answerLabel)
-        ThemeText.tbvTrackerRating.apply(R.string.localized.tbvTrackerLastRating(), to: lastRatingLabel)
+        ThemeText.tbvTrackerRating.apply("===We need to Add AppTextKey here==="/*R.string.localized.tbvTrackerLastRating()*/, to: lastRatingLabel)
     }
 
     func setupView(_ sentence: QDMToBeVisionSentence) {

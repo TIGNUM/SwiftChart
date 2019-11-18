@@ -97,7 +97,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
         switch TBVGraph.Section.allCases[section] {
         case .header:
             let headerView = R.nib.qotBaseHeaderView.firstView(owner: self)
-            let title = viewModel?.title ?? ""
+            let title = interactor.title
             headerView?.configure(title: title, subtitle: nil)
             ThemeText.tbvTrackerHeader.apply(title.uppercased(), to: headerView?.titleLabel)
             return headerView

@@ -56,15 +56,9 @@ private extension MyQotSupportRouter {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
     }
 
-    func presentTutorial() {
-        let configurator = TutorialConfigurator.make()
-        let controller = TutorialViewController(configure: configurator, from: .settings)
-        viewController?.pushToStart(childViewController: controller)
-    }
-
     func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            viewController?.showAlert(type: .message("===We need to add AppTextKey here==="/*(R.string.localized.alertMessageEmailNotSetup())*/))
             return
         }
         let composer = MFMailComposeViewController()

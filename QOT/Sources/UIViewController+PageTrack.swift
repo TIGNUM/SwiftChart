@@ -88,10 +88,6 @@ extension UIViewController {
         case is MediaPlayerViewController: return AppTextService.get(AppTextKey.generic_content_video)
         case is PDFReaderViewController: return AppTextService.get(AppTextKey.generic_content_pdf)
         case is DailyBriefViewController: return AppTextService.get(AppTextKey.daily_brief)
-        case is MyToBeVisionDataNullStateViewController: return AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data)
-        case is WalkthroughSearchViewController: return AppTextService.get(AppTextKey.onboarding_walkthrough_search)
-        case is WalkthroughCoachViewController: return AppTextService.get(AppTextKey.onboarding_walkthrough_coach)
-        case is WalkthroughSwipeViewController: return AppTextService.get(AppTextKey.onboarding_walkthrough_my_qot)
         case is QuestionnaireViewController: return AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount)
         case is OnboardingLoginViewController: return AppTextService.get(AppTextKey.onboarding_log_in)
         case is PaymentReminderViewController: return subscriptionReminderPageKey
@@ -114,7 +110,7 @@ private extension UIViewController {
 // MARK: - MyDataExplanationViewController
 private extension UIViewController {
     var myToBeVisionTrackerViewControllerPageKey: String {
-        switch (self as? MyToBeVisionTrackerViewController)?.interactor?.controllerType {
+        switch (self as? MyToBeVisionTrackerViewController)?.interactor?.getDisplayType {
         case .tracker?: return AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result)
         case .data?: return AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data)
         default: preconditionFailure()

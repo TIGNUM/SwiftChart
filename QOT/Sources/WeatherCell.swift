@@ -217,13 +217,9 @@ final class WeatherCell: BaseDailyBriefCell {
         accessButtonHeightConstraint.constant = accessButtonHeight
 
         headerHeightConstraint.constant = shouldHideHeader ? 0 : baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-        imageViewTopConstraint.constant = shouldHideHeader ? weatherImageViewTop : 0
         headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader
-        bucketTitleLabel.isHidden = shouldHideHeader
-        introLabel.isHidden = shouldHideHeader
-        lineView.isHidden = shouldHideHeader
         lastUpdateLabel.isHidden = !shouldHideHeader
         layoutIfNeeded()
     }

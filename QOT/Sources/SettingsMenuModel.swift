@@ -54,6 +54,37 @@ enum SettingsType: Int {
     }
 }
 
+enum Gender: String {
+    case female = "FEMALE"
+    case male = "MALE"
+    case other = "OTHER"
+    case preferNotToSay = "PREFER_NOT_TO_SAY"
+
+    static var allValues: [Gender] {
+        return [.female,
+                .male,
+                .other,
+                .preferNotToSay]
+    }
+
+    var dsiplayValue: String {
+        switch self {
+        case .female,
+             .male,
+             .other: return rawValue.capitalized
+        case .preferNotToSay: return rawValue.replacingOccurrences(of: "_", with: " ").capitalized
+        }
+    }
+
+    static var allValuesAsStrings: [String] {
+        return Gender.allValues.map { $0.rawValue }
+    }
+
+    var selectedIndex: Int? {
+        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: rawValue.lowercased())
+    }
+}
+
 // MARK: - Form
 
 protocol SettingsSection {

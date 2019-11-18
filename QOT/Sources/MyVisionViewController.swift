@@ -46,7 +46,6 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     private var tempImageURL: URL?
     private var imagePickerController: ImagePickerController!
     let skeletonManager = SkeletonManager()
-    var didShowNullStateView = false
     var interactor: MyVisionInteractorInterface!
 
     override func viewDidLoad() {

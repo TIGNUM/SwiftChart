@@ -118,8 +118,8 @@ private extension SigningInfoViewController {
     }
 
     func setupButtons() {
-        ThemableButton.signinInfo.apply(loginButton, title: R.string.localized.onboardingIntroButtonLogin())
-        ThemableButton.signinInfo.apply(startButton, title: R.string.localized.onboardingIntroButtonRegister())
+        ThemableButton.signinInfo.apply(loginButton, title: "===We need to Add AppTextKey here==="/*R.string.localized.onboardingIntroButtonLogin()*/)
+        ThemableButton.signinInfo.apply(startButton, title: "===We need to Add AppTextKey here==="/*R.string.localized.onboardingIntroButtonRegister()*/)
     }
 }
 

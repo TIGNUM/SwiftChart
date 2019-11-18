@@ -115,7 +115,7 @@ final class SearchWorker {
             suggestionItems = searchCollection?.contentItems.sorted(by: {
                 $0.sortOrder < $1.sortOrder
             }).compactMap({ $0.valueText }) ?? []
-            completion(SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),
+            completion(SearchSuggestions(header: "===We need to add AppTextKey here==="/*ScreenTitleService.main.searchSuggestionsHeader()*/,
                                          suggestions: suggestionItems))
         }
     }

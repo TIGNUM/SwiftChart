@@ -62,7 +62,7 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     }()
 
     lazy var buttonChangeEmail: String = {
-        return R.string.localized.onboardingRegistrationCodeChangeEmail()
+        return "===We need to Add AppTextKey here==="//R.string.localized.onboardingRegistrationCodeChangeEmail()
     }()
 
     lazy var buttonResendCode: String = {
@@ -70,6 +70,6 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     }()
 
     lazy var buttonSeparator: String = {
-        return R.string.localized.onboardingLoginButtonSeparator()
+        return "===We need to Add AppTextKey here==="//R.string.localized.onboardingLoginButtonSeparator()
     }()
 }

@@ -33,6 +33,7 @@ final class ImagePickerController {
     let imagePicker: ImagePicker
     var imageCropper: ImageCropper?
     let adapter: ImagePickerControllerAdapter?
+    let permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
 
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
@@ -152,7 +153,7 @@ final class ImagePickerController {
             return
         }
 
-        permissionsManager.askPermission(for: identifier, completion: { [unowned self] status in
+        permissionsManager?.askPermission(for: identifier, completion: { [unowned self] status in
             guard let status = status[identifier] else { return }
             switch status {
             case .granted:
@@ -167,7 +168,7 @@ final class ImagePickerController {
                     self.delegate?.cancelSelection()
                 })
             case .restricted:
-                self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
+                self.permissionsManager?.updateAskStatus(.canAsk, for: identifier)
                 self.handleAuthorizationForOption(option)
             default:
                 break

@@ -30,16 +30,16 @@ final class MyVisionWorker {
         }
     }
 
-    lazy var nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
-    lazy var nullStateTitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
-    lazy var updateAlertTitle = R.string.localized.myQOTToBeVisionUpdateAlertTitle()
-    lazy var updateAlertMessage = R.string.localized.myQOTToBeVisionUpdateAlertMessage()
-    lazy var updateAlertEditTitle = R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
-    lazy var updateAlertCreateTitle = R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
-    lazy var emptyTBVTextPlaceholder = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
-    lazy var emptyTBVTitlePlaceholder = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
-    private lazy var notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
-    private lazy var syncingText = ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
+    lazy var nullStateSubtitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
+    lazy var nullStateTitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
+    lazy var updateAlertTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertTitle()
+    lazy var updateAlertMessage = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertMessage()
+    lazy var updateAlertEditTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
+    lazy var updateAlertCreateTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
+    lazy var emptyTBVTextPlaceholder = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
+    lazy var emptyTBVTitlePlaceholder = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+    private lazy var notRatedText = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
+    private lazy var syncingText = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false

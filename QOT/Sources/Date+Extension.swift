@@ -95,6 +95,10 @@ extension Date {
         return 60 * (components.hour ?? 0) + (components.minute ?? 0)
     }
 
+    var dayOfMonth: Int {
+        return Calendar.current.component(.day, from: self)
+    }
+
     var dayOfWeek: Int {
         return Calendar.current.component(.weekday, from: self)
     }

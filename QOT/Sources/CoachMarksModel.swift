@@ -35,8 +35,8 @@ struct CoachMark {
         }
 
         var rightButtonTitle: String? {
-            if .search == self { return R.string.localized.coachGetStartedButtonTitle() }
-            return R.string.localized.alertButtonTitleContinue()
+            if .search == self { return "===We need to Add AppTextKey here===" /*R.string.localized.coachGetStartedButtonTitle() */}
+            return "===We need to Add AppTextKey here==="//R.string.localized.alertButtonTitleContinue()
         }
 
         var hideBackButton: Bool {
