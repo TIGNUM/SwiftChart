@@ -130,9 +130,6 @@ extension SearchViewController {
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
         }
-        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
-        }
         mySearchBar.isUserInteractionEnabled = true
     }
 
@@ -179,11 +176,18 @@ private extension SearchViewController {
         mySearchBar.backgroundImage = UIImage()
         mySearchBar.placeholder = R.string.localized.searchPlaceholder()
         mySearchBar.delegate = self
+        enableCancelButton()
     }
 
     func sendSearchResult(for query: String) {
         let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
         interactor.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
+    }
+
+    func enableCancelButton() {
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+        }
     }
 }
 
@@ -223,6 +227,7 @@ extension SearchViewController: UISearchBarDelegate {
             segmentedControl.selectedSegmentIndex = 0
             searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
             updateViewsState(false)
+            enableCancelButton()
         } else {
             updateViewsState(true)
         }
