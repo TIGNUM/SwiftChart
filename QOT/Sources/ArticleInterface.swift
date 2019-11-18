@@ -50,7 +50,7 @@ protocol ArticleInteractorInterface: class, Interactor {
     func isSectionSupport() -> Bool
     func openEmailComposer()
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void)
-    func isRead(completion:@escaping (_ read: Bool) -> Void)
+    func isRead(completion: @escaping (_ read: Bool) -> Void)
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)
     var whatsHotShareable: WhatsHotShareable { get }
