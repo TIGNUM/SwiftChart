@@ -12,7 +12,6 @@ import qot_dal
 final class RegistrationEmailWorker: BaseSigningWorker {
 
     // MARK: - Properties
-
     lazy var title: String = {
         return titleService.localizedString(for: .OnboardingRegistrationEmailTitle)
     }()

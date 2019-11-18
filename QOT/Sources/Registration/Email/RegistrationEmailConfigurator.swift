@@ -12,10 +12,8 @@ final class RegistrationEmailConfigurator {
 
     static func make() -> (RegistrationEmailViewController, RegistrationDelegate) -> Void {
         return { (viewController, delegate) in
-            let router = RegistrationEmailRouter(viewController: viewController)
-            let worker = RegistrationEmailWorker()
             let presenter = RegistrationEmailPresenter(viewController: viewController)
-            let interactor = RegistrationEmailInteractor(worker: worker, presenter: presenter, router: router, delegate: delegate)
+            let interactor = RegistrationEmailInteractor(presenter: presenter, delegate: delegate)
             viewController.interactor = interactor
         }
     }
