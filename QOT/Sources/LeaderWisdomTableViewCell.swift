@@ -62,7 +62,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         videoThumbnailImageView.isHidden = model.format != .video
         skeletonManager.addOtherView(videoThumbnailImageView)
         videoThumbnailImageView.setImage(url: mediaURL,
-                                         skeletonManager: self.skeletonManager)
+                                         skeletonManager: self.skeletonManager) { (_) in /* */}
         videoTitle.isHidden = model.format != .video
     }
 

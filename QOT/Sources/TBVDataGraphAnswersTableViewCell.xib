@@ -158,14 +158,14 @@
             <connections>
                 <outlet property="answerLabel" destination="wNE-OO-7f4" id="U5U-hI-ZXP"/>
                 <outlet property="firstDot" destination="tfB-S7-2qz" id="smV-6l-MNc"/>
-                <outlet property="firstRating" destination="xyO-3k-rCc" id="Z2y-jB-WRQ"/>
-                <outlet property="firstRatingContainerView" destination="h1d-0U-QHv" id="vkv-Yp-Ycd"/>
                 <outlet property="lastRatingLabel" destination="IeS-oz-Y6f" id="ySA-Sz-eF5"/>
                 <outlet property="secondDot" destination="2RE-Lm-IM1" id="7yA-2D-h3I"/>
-                <outlet property="secondRating" destination="Uff-jI-lDc" id="Jd7-e9-xCd"/>
-                <outlet property="secondRatingContainerView" destination="4sh-OP-IPm" id="MKN-GN-AWx"/>
-                <outlet property="thirdRating" destination="slK-SV-FI5" id="XgN-ks-hfD"/>
-                <outlet property="thirdRatingContainerView" destination="22w-cY-FQi" id="ccS-Rd-jQe"/>
+                <outletCollection property="ratingLabels" destination="xyO-3k-rCc" collectionClass="NSMutableArray" id="Ob2-nU-DPM"/>
+                <outletCollection property="ratingLabels" destination="Uff-jI-lDc" collectionClass="NSMutableArray" id="R0i-NY-Blm"/>
+                <outletCollection property="ratingLabels" destination="slK-SV-FI5" collectionClass="NSMutableArray" id="4qc-Zd-t94"/>
+                <outletCollection property="ratingContainerViews" destination="h1d-0U-QHv" collectionClass="NSMutableArray" id="tZu-07-Abi"/>
+                <outletCollection property="ratingContainerViews" destination="4sh-OP-IPm" collectionClass="NSMutableArray" id="dQD-2k-H78"/>
+                <outletCollection property="ratingContainerViews" destination="22w-cY-FQi" collectionClass="NSMutableArray" id="ED2-MT-2Uh"/>
             </connections>
             <point key="canvasLocation" x="282.60869565217394" y="173.4375"/>
         </tableViewCell>

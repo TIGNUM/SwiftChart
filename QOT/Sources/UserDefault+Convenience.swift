@@ -24,7 +24,9 @@ enum UserDefault: String {
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
     case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
     case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
-    case skipRequestHealthDataAccess = "qot.userdefault.key.skip.request.healthdata.access"
+    case myBestDate = "qot.userdefault.key.my.best.date"
+    case myBestText = "qot.userdefault.key.my.best.text"
+    case existingEmail = "qot.userdefault.key.existing.email"
 }
 
 extension UserDefault {
@@ -37,11 +39,31 @@ extension UserDefault {
                 .finishedAudioItems,
                 .myDataSelectedItems,
                 .prepareLocalEventsDictionary,
-                .skipRequestHealthDataAccess]
+                .existingEmail]
+    }
+
+    static func objectsToClearOnNewRegistration() -> [UserDefault] {
+        return [.calendarDictionary,
+                .newGuideItem,
+                .lastInstaledAppVersion,
+                .hasShownOnbordingSlideShowInAppBuild,
+                .whatsHotListLastViewed,
+                .iPadAdviceDoNotShowAgain,
+                .firstInstallationTimestamp,
+                .restartRouteURLString,
+                .subscriptionInfoShow,
+                .finishedAudioItems,
+                .myDataSelectedItems,
+                .prepareLocalEventsDictionary,
+                .existingEmail]
     }
 
     var boolValue: Bool {
         return UserDefaults.standard.bool(forKey: self.rawValue)
+    }
+
+    var doubleValue: Double {
+        return UserDefaults.standard.double(forKey: self.rawValue)
     }
 
     var stringValue: String? {
@@ -52,16 +74,20 @@ extension UserDefault {
         return UserDefaults.standard.object(forKey: self.rawValue)
     }
 
+    func setObject(_ object: Any?) {
+        UserDefaults.standard.setValue(object, forKey: self.rawValue)
+    }
+
     func setBoolValue(value: Bool) {
+        UserDefaults.standard.set(value, forKey: self.rawValue)
+    }
+
+    func setDoubleValue(value: Double) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
     }
 
     func setStringValue(value: String) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-    }
-
-    func setObject(_ object: Any?) {
-        UserDefaults.standard.setValue(object, forKey: self.rawValue)
     }
 
     func clearObject() {
@@ -71,5 +97,9 @@ extension UserDefault {
     static func clearAllDataLogOut() {
         ExtensionUserDefaults.allCases.forEach { $0.clearWidgetObject() }
         self.objectsToClearOnLogout().forEach { $0.clearObject() }
+    }
+
+    static func clearAllDataRegistration() {
+        self.objectsToClearOnNewRegistration().forEach { $0.clearObject() }
     }
 }

@@ -25,8 +25,6 @@ final class AppCoordinator {
 
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
-    private var canProcessRemoteNotifications = false
-    private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
@@ -57,6 +55,8 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDeletedEventForPreparation(_:)),
                                                name: .needToCheckDeletedEventForPreparation, object: nil)
+
+        locationManager.startWeatherLocationMonitoring {_ in}
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -119,6 +119,14 @@ final class AppCoordinator {
     func checkVersionIfNeeded() {
         //guard services?.userService.user()?.appUpdatePrompt == true else { return }
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
+    }
+
+    private func handleSetupError(error: Error) {
+        log("Error setting up database: \(error)", level: .error)
+        let message = "There was a problem initializing the app's data. Please restart the app and try again"
+        self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
+            exit(0)
+        })
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
@@ -285,31 +293,38 @@ extension AppCoordinator: PermissionManagerDelegate {
 
     func permissionManager(_ manager: PermissionsManager,
                             didUpdatePermissions permissions: [PermissionsManager.Permission]) {
-        manager.fetchDescriptions { (descriptions) in
-            var devicePermissions = [QDMDevicePermission]()
-            for permissionIdentifer in descriptions.keys {
-                guard let statusString = descriptions[permissionIdentifer],
-                    let status = QotDevicePermissionState(rawValue: statusString) else { continue }
-                var devicePermission = QDMDevicePermission()
-                devicePermission.permissionState = status
-                switch permissionIdentifer {
-                case .calendar:
-                    devicePermission.feature = .calendar
-                case .notifications:
-                    devicePermission.feature = .notifcations
-                case .location:
-                    devicePermission.feature = .location
-                case .photos:
-                    devicePermission.feature = .photos
-                case .camera:
-                    devicePermission.feature = .camera
-                }
-
-                devicePermissions.append(devicePermission)
+        var devicePermissions = [QDMDevicePermission]()
+        for permission in manager.allPermissions {
+            var devicePermission = QDMDevicePermission()
+            switch manager.currentStatusFor(for: permission.identifier) {
+            case .granted:
+                devicePermission.permissionState = .authorized
+            case .grantedWhileInForeground:
+                devicePermission.permissionState = .authorizedOnForeground
+            case .denied:
+                devicePermission.permissionState = .denied
+            case .notDetermined:
+                devicePermission.permissionState = .notDetermined
+            case .restricted:
+                devicePermission.permissionState = .restricted
             }
-            guard !devicePermissions.isEmpty else { return }
-            QOTService.main.updateDevicePermissions(permissions: devicePermissions)
+            switch permission.identifier {
+            case .calendar:
+                devicePermission.feature = .calendar
+            case .notifications:
+                devicePermission.feature = .notifcations
+            case .location:
+                devicePermission.feature = .location
+            case .photos:
+                devicePermission.feature = .photos
+            case .camera:
+                devicePermission.feature = .camera
+            }
+
+            devicePermissions.append(devicePermission)
         }
+        guard !devicePermissions.isEmpty else { return }
+        QOTService.main.updateDevicePermissions(permissions: devicePermissions)
     }
 }
 

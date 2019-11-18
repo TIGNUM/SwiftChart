@@ -64,13 +64,16 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Actions
 
 private extension RegistrationViewController {
-
     @objc func loginWithTBV() {
-        interactor?.navigateToLogin(shouldSaveToBeVision: true)
+        if hasInternet() {
+            interactor?.navigateToLogin(shouldSaveToBeVision: true)
+        }
     }
 
     @objc func loginWithoutTBV() {
-        interactor?.navigateToLogin(shouldSaveToBeVision: false)
+        if hasInternet() {
+            interactor?.navigateToLogin(shouldSaveToBeVision: false)
+        }
     }
 }
 

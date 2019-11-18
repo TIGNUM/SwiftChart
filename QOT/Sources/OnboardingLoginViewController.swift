@@ -31,8 +31,12 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
     @IBOutlet weak var emailInstructionsLabel: UILabel!
     @IBOutlet weak var precodeLabel: UILabel!
     @IBOutlet weak var digitDescriptionLabel: UILabel!
+    @IBOutlet weak var buttonSeparator: UILabel!
     @IBOutlet weak var sendButtonYPosition: NSLayoutConstraint!
     @IBOutlet weak var buttonSendCode: UIButton!
+    @IBOutlet weak var viewResendButtons: UIView!
+    @IBOutlet weak var buttonSendCode2: UIButton!
+    @IBOutlet weak var buttonChangeEmail: UIButton!
     @IBOutlet weak var buttonGetHelp: UIButton!
     @IBOutlet var digitTextFields: [TextField]!
     @IBOutlet var codeEntryViews: [UIView]!
@@ -58,6 +62,7 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         // Email has been set by registration screens
+        updateView()
         if let email = preSetUserEmail {
             emailField.text = email
             preSetUserEmail = nil
@@ -122,7 +127,20 @@ private extension OnboardingLoginViewController {
 
     func setupButtons() {
         buttonSendCode.cornerDefault()
+        buttonSendCode2.cornerDefault()
         buttonGetHelp.cornerDefault()
+        buttonChangeEmail.cornerDefault()
+
+        viewResendButtons.alpha = 0.0
+        buttonGetHelp.alpha = 0.0
+
+        ThemeButton.onboarding.apply(buttonSendCode2)
+        ThemeButton.onboarding.apply(buttonChangeEmail)
+        ThemeText.loginSeparator.apply(interactor?.buttonSeparator ?? "", to: buttonSeparator)
+        buttonSendCode2.setTitle(interactor?.buttonResendCode ?? "", for: .normal)
+        buttonChangeEmail.setTitle(interactor?.buttonChangeEmail ?? "", for: .normal)
+        buttonGetHelp.setTitle(interactor?.buttonGetHelp ?? "", for: .normal)
+        buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
     func sendCodeIfPossible(textField: UITextField) {
@@ -146,9 +164,11 @@ private extension OnboardingLoginViewController {
         UIView.animate(withDuration: Animation.duration_02) {
             self.view.layoutIfNeeded()
             self.buttonSendCode.alpha = 0
+            self.viewResendButtons.alpha = 1.0
             self.emailField.alpha = 0
             self.emailInstructionsLabel.alpha = 0
             self.updateCodeEntry(isEnabled: true)
+            self.buttonGetHelp.alpha = 1.0
         }
     }
 
@@ -157,14 +177,13 @@ private extension OnboardingLoginViewController {
         UIView.animate(withDuration: Animation.duration_02) {
             self.view.layoutIfNeeded()
             self.buttonSendCode.alpha = 1
+            self.viewResendButtons.alpha = 0.0
             self.emailField.alpha = 1
             self.emailInstructionsLabel.alpha = 1
+            self.buttonGetHelp.alpha = 0.0
         }
 
         updateCodeEntry(isEnabled: false)
-        buttonGetHelp.setTitle(AppTextService.get(AppTextKey.onboarding_log_in_section_code_verification_button_get_help), for: .normal)
-        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
-        buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
     func presentEmailError(_ error: String) {
@@ -178,10 +197,6 @@ private extension OnboardingLoginViewController {
             $0.layer.borderColor = UIColor.redOrange.cgColor
         }
         ThemeText.loginEmailCodeErrorMessage.apply(error, to: digitDescriptionLabel)
-
-        buttonGetHelp.setTitle(AppTextService.get(AppTextKey.onboarding_log_in_section_code_verification_button_resend_code), for: .normal)
-        buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
-        buttonGetHelp.addTarget(self, action: #selector(didTapSendCode), for: .touchUpInside)
     }
 
     func sendEmail() {
@@ -205,22 +220,27 @@ private extension OnboardingLoginViewController {
 
 // MARK: - Actions
 private extension OnboardingLoginViewController {
-
     @IBAction func didTapVerifyEmail() {
-        trackUserEvent(.VERIFY_EMAIL, action: .TAP)
-        emailField.textField.resignFirstResponder()
-        emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
-        interactor?.didTapVerify(email: emailField.text)
+        if hasInternet() {
+            trackUserEvent(.VERIFY_EMAIL, action: .TAP)
+            emailField.textField.resignFirstResponder()
+            emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
+            interactor?.didTapVerify(email: emailField.text)
+        }
     }
 
     @objc func didTapSendCode() {
-        trackUserEvent(.SEND_CODE, action: .TAP)
-        interactor?.didTapSendCode(to: emailField.text)
+        if hasInternet() {
+            trackUserEvent(.SEND_CODE, action: .TAP)
+            interactor?.didTapSendCode(to: emailField.text)
+        }
     }
 
     @IBAction func didTapGetHelp() {
-        trackUserEvent(.GET_HELP, action: .TAP)
-        interactor?.showFAQScreen()
+        if hasInternet() {
+            trackUserEvent(.GET_HELP, action: .TAP)
+            interactor?.showFAQScreen()
+        }
     }
 
     // Superclass already has a `didTapBackButton()` method
@@ -353,6 +373,12 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         let canSendCode = interactor?.viewModel.sendCodeEnabled ?? true
         emailField.textField.isUserInteractionEnabled = canSendCode
         buttonSendCode.isUserInteractionEnabled = canSendCode
+        buttonSendCode2.isUserInteractionEnabled = canSendCode
+    }
+
+    func resetView() {
+        shouldBeginEmailEntry = true
+        updateView()
     }
 
     func beginCodeEntry() {

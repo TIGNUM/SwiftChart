@@ -194,10 +194,9 @@ final class LaunchHandler {
              .featureExplainer:
             guard let contentIdString = queries[scheme.queryName] ?? nil, let contentId = Int(contentIdString) else { break }
             showContentCollection(contentId)
-        case .qrcode0001,
-             .qrcode0002,
-             .qrcode0003,
-             .qrcode0004: presentQRCodeURL(url)
+        case .qrcode0001, .qrcode0002, .qrcode0003, .qrcode0004, .qrcode0005, .qrcode0006, .qrcode0007, .qrcode0008,
+             .qrcode0009, .qrcode0010:
+            presentQRCodeURL(url)
         case .recovery3DPlanner: show3DRecoveryDecisionTree()
         case .mindsetShifterPlanner: showMindsetShifterDecisionTree()
         default: break
@@ -273,15 +272,6 @@ extension LaunchHandler {
             }
             if results?.first != nil {
                 self?.showFirstLevelScreen(page: .dailyBrief, DailyBriefBucketName.DAILY_CHECK_IN_1)
-            } else if UserDefault.skipRequestHealthDataAccess.boolValue != true,
-                self?.getHealthKitAuthStatus() == .notDetermined {
-                self?.requestHealthKitAuthorization({ (_) in
-                    self?.importHealthKitData()
-                    UserDefault.skipRequestHealthDataAccess.setBoolValue(value: true)
-                    DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(200), execute: {
-                        self?.showDailyCheckIn()
-                    })
-                })
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
@@ -389,7 +379,11 @@ extension LaunchHandler {
     }
 
     func dismissChatBotFlow() {
-        baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true, completion: nil)
+        if baseRootViewController?.QOTVisibleViewController() is CoachViewController {
+            baseRootViewController?.QOTVisibleViewController()?.dismiss(animated: true)
+        } else {
+            baseRootViewController?.dismiss(animated: true)
+        }
     }
 
     func showLearnStrategy(_ category: ContentCategory?) {

@@ -32,7 +32,8 @@ extension UIViewController {
         return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_button_done),
                                     buttonWidth: .Done,
                                     action: action,
-                                    backgroundColor: .carbon)
+                                    backgroundColor: .carbon,
+                                    borderColor: borderColor ?? .clear)
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {

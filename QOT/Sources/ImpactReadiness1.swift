@@ -83,7 +83,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         } else {
             ThemeText.readinessScore.apply(String(score), to: impactReadinessScore)
         }
-        toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder())
+        toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder()) { (_) in /* */}
         self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
         ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_section_header_title), to: titleLabel)

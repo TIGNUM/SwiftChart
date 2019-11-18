@@ -38,18 +38,18 @@ final class MyQotSupportWorker {
         guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
             return ""
         }
-        return item.title()
+        return item.title(for: contentService)
     }
 
     func subtitle(at indexPath: IndexPath) -> String {
         guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
             return ""
         }
-        return item.subtitle()
+        return item.subtitle(for: contentService)
     }
 
     var supportText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_section_header_title)
+        return ScreenTitleService.main.localizedString(for: .Support)
     }
 
     func email(_ completion: @escaping(String) -> Void) {

@@ -12,6 +12,9 @@ import CoreLocation
 import Buglife
 import Kingfisher
 import SVProgressHUD
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 import qot_dal
 
 @UIApplicationMain
@@ -67,7 +70,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
-            setupHockeyApp()
+            setupAppCenter()
             setupKingfisherCache()
             QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
@@ -188,15 +191,10 @@ private extension AppDelegate {
         UAirship.shared().analytics.isEnabled = true
     }
 
-    func setupHockeyApp() {
-        let hockeyAppID = Bundle.main.object(forInfoDictionaryKey: "HOCKEY_APP_ID") as? String
-        BITHockeyManager.shared().configure(withIdentifier: hockeyAppID ?? "4f2cc0d018ea4a2884e052d72eb9c456")
-//        #if DEBUG
-        BITHockeyManager.shared().isUpdateManagerDisabled = true
-//        #endif
-        BITHockeyManager.shared().crashManager.crashManagerStatus = BITCrashManagerStatus.autoSend
-        BITHockeyManager.shared().start()
-        BITHockeyManager.shared().authenticator.authenticateInstallation()
+    func setupAppCenter() {
+        if let appCenterID = Bundle.main.object(forInfoDictionaryKey: "APP_CENTER_ID") as? String {
+            MSAppCenter.start(appCenterID, withServices:[MSAnalytics.self, MSCrashes.self])
+        }
     }
 
     func setupKingfisherCache() {

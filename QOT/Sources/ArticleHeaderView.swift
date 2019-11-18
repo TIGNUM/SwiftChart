@@ -80,7 +80,7 @@ private extension ArticleHeaderView {
         if let imageURL = imageURL {
             skeletonManager.addOtherView(imageView)
             imageView.setImage(url: URL(string: imageURL),
-                               skeletonManager: self.skeletonManager)
+                               skeletonManager: self.skeletonManager) { (_) in /* */}
         } else {
             imageView.isHidden = true
         }

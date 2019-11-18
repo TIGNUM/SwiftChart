@@ -61,7 +61,15 @@ final class OnboardingLoginWorker: BaseSigningWorker {
         return AppTextService.get(AppTextKey.onboarding_log_in_section_code_verification_button_get_help)
     }()
 
+    lazy var buttonChangeEmail: String = {
+        return R.string.localized.onboardingRegistrationCodeChangeEmail()
+    }()
+
     lazy var buttonResendCode: String = {
         return AppTextService.get(AppTextKey.onboarding_log_in_section_code_verification_button_resend_code)
+    }()
+
+    lazy var buttonSeparator: String = {
+        return R.string.localized.onboardingLoginButtonSeparator()
     }()
 }

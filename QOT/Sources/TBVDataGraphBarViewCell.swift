@@ -17,28 +17,30 @@ final class TBVDataGraphBarViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var ratingLabelContainerView: UIView!
     @IBOutlet private weak var progressBarHeightConstraint: NSLayoutConstraint!
 
-    let barHeight: CGFloat = 202
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        ratingLabelContainerView.corner(radius: ratingLabelContainerView.frame.size.width/2)
+        ratingLabelContainerView.circle()
     }
 
-    func setup(with config: TBVGraph.BarGraphConfig, isSelected: Bool, ratingTime: Date?, rating: CGFloat, range: TBVGraph.Range) {
-        self.ratingLabelContainerView.clipsToBounds = false
-        ratingLabel.text = rating == 0 ? "" : String(format: "%.1f", rating)
+    func setup(with config: TBVGraph.BarGraphConfig,
+               isSelected: Bool,
+               ratingTime: Date?,
+               rating: CGFloat,
+               range: TBVGraph.Range) {
+
+        progressBarHeightConstraint.constant = range.barHeight(for: rating)
+        ratingLabelContainerView.backgroundColor = isSelected ? config.ratingCircleColor : .clear
+        progressView.backgroundColor = isSelected ? config.selectedBarColor : config.progressBarColor
+        graphBarView.backgroundColor = config.graphBarColor
+
+        ratingLabel.text = rating <= 0 ? "" : String(format: "%.1f", rating)
         ratingLabel.font = isSelected ? config.selectedFont : config.unSelectedFont
         ratingLabel.textColor = isSelected ? config.selectedBarRatingColor : config.unSelectedBarRatingColor
-        progressView.backgroundColor = isSelected ? config.selectedBarColor : config.progressBarColor
-        ratingLabelContainerView.backgroundColor = !isSelected ? .clear : config.ratingCircleColor
-        graphBarView.backgroundColor = config.graphBarColor
-        let height = (barHeight / CGFloat(range.final)) * rating
-        progressBarHeightConstraint.constant = height
-        ratingTimeLabel.isHidden = false
-        guard let time = ratingTime else {
-            ratingTimeLabel.isHidden = true
-            return
+
+        ratingTimeLabel.isHidden = true
+        if let time = ratingTime {
+            ratingTimeLabel.isHidden = false
+            ratingTimeLabel.text = DateFormatter.tbvTracker.string(from: time)
         }
-        ratingTimeLabel.text = DateFormatter.tbvTracker.string(from: time)
     }
 }

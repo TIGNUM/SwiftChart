@@ -25,17 +25,14 @@ final class MyQotSupportRouter {
 
 extension MyQotSupportRouter: MyQotSupportRouterInterface {
     func handleSelection(for item: MyQotSupportModel.MyQotSupportModelItem, email: String) {
-        guard let viewController = viewController else { return }
         switch item {
         case .usingQOT: presentUsingQOT()
         case .faq: presentFAQ()
-        case .contactSupport: UIViewController.presentMailComposer(from: viewController,
-                                                                   recipients: [Defaults.firstLevelSupportEmail],
-                                                                   subject: "ID: Support")
+        case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
+                                               subject: "ID: Support", id: item)
         case .contactSupportNovartis: break
-        case .featureRequest: UIViewController.presentMailComposer(from: viewController,
-                                                                   recipients: [Defaults.firstLevelFeatureEmail],
-                                                                   subject: "ID: Feature")
+        case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
+                                                  subject: "ID: Feature", id: item)
         }
     }
 
@@ -57,5 +54,23 @@ private extension MyQotSupportRouter {
 
     func presentUsingQOT() {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
+    }
+
+    func presentTutorial() {
+        let configurator = TutorialConfigurator.make()
+        let controller = TutorialViewController(configure: configurator, from: .settings)
+        viewController?.pushToStart(childViewController: controller)
+    }
+
+    func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
+        guard MFMailComposeViewController.canSendMail() == true else {
+            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            return
+        }
+        let composer = MFMailComposeViewController()
+        composer.setToRecipients(recipients)
+        composer.setSubject(subject)
+        composer.mailComposeDelegate = viewController
+        viewController?.present(composer, animated: true, completion: nil)
     }
 }

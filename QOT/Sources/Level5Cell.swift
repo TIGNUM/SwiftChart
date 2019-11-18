@@ -67,11 +67,11 @@ final class Level5Cell: BaseDailyBriefCell {
     }
 
     func createCloseButton() -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
-        button.setImage(R.image.ic_close_rounded(), for: .normal)
-        button.imageView?.contentMode = .center
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        let button = RoundedButton.init(title: nil, target: self, action: #selector(dismissAction))
+        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        button.addConstraints([heightConstraint, widthConstraint])
+        button.setImage(R.image.ic_close(), for: .normal)
         ThemeButton.closeButton(.dark).apply(button)
         return UIBarButtonItem(customView: button)
     }

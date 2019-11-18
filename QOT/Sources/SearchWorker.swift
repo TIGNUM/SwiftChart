@@ -106,35 +106,17 @@ final class SearchWorker {
         // TODO: report search result.
     }
 
-    private func suggestions() -> [String] {
-        let keys: [AppTextKey] = [AppTextKey.coach_search_section_body_label_self_image,
-                                  AppTextKey.coach_search_section_body_label_daily_prep,
-                                  AppTextKey.coach_search_section_body_label_no_excuse,
-                                  AppTextKey.coach_search_section_body_label_build_capacity,
-                                  AppTextKey.coach_search_section_body_label_sleep_ritual,
-                                  AppTextKey.coach_search_section_body_label_power_nap,
-                                  AppTextKey.coach_search_section_body_label_mindset_shifter,
-                                  AppTextKey.coach_search_section_body_label_reframe,
-                                  AppTextKey.coach_search_section_body_label_breathing,
-                                  AppTextKey.coach_search_section_body_label_hp_snacks,
-                                  AppTextKey.coach_search_section_body_label_brain_performance,
-                                  AppTextKey.coach_search_section_body_label_work_to_home,
-                                  AppTextKey.coach_search_section_body_label_travel]
-        var array: [String] = []
-        for key in keys {
-            array.append(AppTextService.get(key))
-        }
-        return array
-    }
-
     func suggestions(completion: @escaping (SearchSuggestions?) -> Void) {
         var suggestionItems: [String] = []
         ContentService.main.getContentCategory(.Search) { (searchCategory) in
-            searchCategory?.contentCollections.filter { $0.searchTags.contains("search_suggestions")}.first?.contentItems.sorted(by: {$0.sortOrder < $1.sortOrder}).forEach {(suggestionItem) in
-                suggestionItems.append(suggestionItem.valueText)
-            }
-            completion(SearchSuggestions(header: AppTextService.get(AppTextKey.coach_search_section_body_title),
-                                 suggestions: self.suggestions()))
+            let searchCollection = searchCategory?.contentCollections.filter {
+                $0.searchTags.contains("search_suggestions")
+                }.first
+            suggestionItems = searchCollection?.contentItems.sorted(by: {
+                $0.sortOrder < $1.sortOrder
+            }).compactMap({ $0.valueText }) ?? []
+            completion(SearchSuggestions(header: ScreenTitleService.main.searchSuggestionsHeader(),
+                                         suggestions: suggestionItems))
         }
     }
 

@@ -41,7 +41,7 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
                                   subtitle: AppTextService.get(AppTextKey.daily_brief_section_wh_subtitle))
         skeletonManager.addOtherView(whatsHotImage)
         whatsHotImage.setImage(url: model.image,
-                               skeletonManager: self.skeletonManager)
+                               skeletonManager: self.skeletonManager) { (_) in /* */}
         ThemeText.author.apply(model.author, to: authorLabel)
         dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: model.publisheDate) + " | "  + "\((model.timeToRead) / 60)" + " min read"
         if model.isNew == true { newLabel.isHidden = false }

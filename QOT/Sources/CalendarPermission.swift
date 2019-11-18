@@ -9,9 +9,9 @@
 import Foundation
 import EventKit
 
-struct CalendarPermission: PermissionInterface {
-    func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(EKEventStore.authorizationStatus(for: .event).stringValue)
+class CalendarPermission: PermissionInterface {
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus {
+        return EKEventStore.authorizationStatus(for: .event).authorizationStatus
     }
 
     var authorizationStatus: EKAuthorizationStatus {
@@ -30,16 +30,16 @@ struct CalendarPermission: PermissionInterface {
 
 // MARK: - EKAuthorizationStatus
 private extension EKAuthorizationStatus {
-    var stringValue: String {
+    var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
         case .notDetermined:
-            return "notDetermined"
-        case .restricted:
-            return "restricted"
+            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
-            return "denied"
+            return PermissionsManager.AuthorizationStatus.denied
+        case .restricted:
+            return PermissionsManager.AuthorizationStatus.restricted
         case .authorized:
-            return "authorized"
+            return PermissionsManager.AuthorizationStatus.granted
         }
     }
 }

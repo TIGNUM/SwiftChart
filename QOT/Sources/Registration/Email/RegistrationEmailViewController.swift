@@ -72,11 +72,12 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Actions
 
 private extension RegistrationEmailViewController {
-
     @objc private func didTapNextButton() {
-        trackUserEvent(.NEXT, action: .TAP)
-        interactor?.setEmail(emailField.textField.text)
-        interactor?.didTapNext()
+        if hasInternet() {
+            trackUserEvent(.NEXT, action: .TAP)
+            interactor?.setEmail(emailField.textField.text)
+            interactor?.didTapNext()
+        }
     }
 }
 
@@ -99,6 +100,9 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
         emailField.textField.autocorrectionType = .no
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
+        if let email = interactor?.existingEmail {
+            emailField.text = email
+        }
     }
 
     func updateView() {

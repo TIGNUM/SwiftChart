@@ -120,15 +120,16 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let tools = interactor?.tools(),
+            indexPath.row < tools.count else { return UITableViewCell() }
+
         let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
-        let toolCount = interactor?.tools()[indexPath.item].itemCount
-        let toolNumber = toolCount.map({String($0)})
-        let number = toolNumber ?? ""
-        cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? "", subtitle: number + " tools")
+        let toolCount = tools[indexPath.item].itemCount
+        cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? "", subtitle: "\(toolCount) tools")
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         cell.selectedBackgroundView = backgroundView
-         cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
+        cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         cell.addTopLine(for: indexPath.row)
         return cell
     }

@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CBB237FF1E6FFF1200AB5AEF"
+               BlueprintIdentifier = "BB8807192372B453001D61CE"
                BuildableName = "QOTTests.xctest"
                BlueprintName = "QOTTests"
                ReferencedContainer = "container:QOT.xcodeproj">

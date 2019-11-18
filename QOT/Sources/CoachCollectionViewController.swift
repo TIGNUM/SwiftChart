@@ -195,6 +195,7 @@ extension CoachCollectionViewController {
             self.view.layoutIfNeeded()
         }
         refreshCoachButton()
+        searchViewController?.showing = panSearchShowing
         if panSearchShowing {
             searchViewController?.activate(duration)
         }

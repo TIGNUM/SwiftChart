@@ -10,115 +10,77 @@ import Foundation
 import qot_dal
 
 final class MyVisionWorker {
-    var nullStateSubtitle: String?
-    var nullStateTitle: String?
-    private var notRatedText: String? = ""
-    private var syncingText: String? = ""
-    private var toBeVision: QDMToBeVision?
-    private var isMyVisionInitialized: Bool = false
-    private var tracks: [QDMToBeVisionTrack]?
-    private var report: QDMToBeVisionRatingReport?
-    private let contentService: qot_dal.ContentService
-    private let userService: qot_dal.UserService
-    private let widgetDataManager: ExtensionsDataManager
-    static var toBeSharedVisionHTML: String?
 
-    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, widgetDataManager: ExtensionsDataManager) {
-        self.userService = userService
-        self.contentService = contentService
-        self.widgetDataManager = widgetDataManager
-        getNullStateSubtitle()
-        getNullStateTitle()
-        // Make sure that image directory is created.
-        do {
-            try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
-        } catch {
-            qot_dal.log("failed to create image directory", level: .debug)
-        }
-    }
+    private enum SharingKeys: String {
+        case firstName = "*|FIRSTNAME|*"
+        case tbv = "*|MTBV|*"
+        case genderHerHis = "*|GENDER-HER-HIS|*"
+        case genderSheHe = "*|GENDER-SHE-HE|*"
+        case genderHerHim = "*|GENDER-HER-HIM|*"
+        case genderHerselfHimself = "*|GENDER-HERSELF-HIMSELF|*"
 
-    var myVision: QDMToBeVision? {
-        return toBeVision
-    }
-
-    var myVisionReport: QDMToBeVisionRatingReport? {
-        return report
-    }
-
-    lazy var updateAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_title)
-    }()
-
-    lazy var updateAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_body)
-    }()
-
-    lazy var updateAlertEditTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_edit)
-    }()
-
-    lazy var updateAlertCreateTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_create)
-    }()
-
-    lazy var emptyTBVTextPlaceholder: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
-    }()
-
-    lazy var emptyTBVTitlePlaceholder: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_placeholder)
-    }()
-
-    private func getNullStateSubtitle() {
-        nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_body)
-    }
-
-    private func getNullStateTitle() {
-        nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_title)
-    }
-
-    func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
-        let dispatchGroup = DispatchGroup()
-        myToBeVision(dispatchGroup)
-        getRatingReport(dispatchGroup)
-        getSyncingText(dispatchGroup)
-        getNotRatedText(dispatchGroup)
-        dispatchGroup.notify(queue: .main) {[weak self] in
-            self?.getVisionTracks {
-                completion(self?.isMyVisionInitialized ?? false)
+        func pronoun(_ gender: Gender) -> String {
+            switch self {
+            case .genderHerHim: return gender == .female ? "her" : (gender == .male ? "him" : "them")
+            case .genderSheHe: return gender == .female ? "she" : (gender == .male ? "he" : "they")
+            case .genderHerHis: return gender == .female ? "her" : (gender == .male ? "his" : "their")
+            case .genderHerselfHimself: return gender == .female ? "herself" : (gender == .male ? "himself" : "themself")
+            default: return ""
             }
         }
     }
 
-    private func myToBeVision(_ dispatchGroup: DispatchGroup) {
-        dispatchGroup.enter()
-        userService.getMyToBeVision({ [weak self] (vision, initialized, error) in
+    lazy var nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
+    lazy var nullStateTitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
+    lazy var updateAlertTitle = R.string.localized.myQOTToBeVisionUpdateAlertTitle()
+    lazy var updateAlertMessage = R.string.localized.myQOTToBeVisionUpdateAlertMessage()
+    lazy var updateAlertEditTitle = R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
+    lazy var updateAlertCreateTitle = R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
+    lazy var emptyTBVTextPlaceholder = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
+    lazy var emptyTBVTitlePlaceholder = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
+    private lazy var notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
+    private lazy var syncingText = ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
+    private lazy var widgetDataManager = ExtensionsDataManager()
+    private var toBeVision: QDMToBeVision?
+    private var isMyVisionInitialized: Bool = false
+    var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
+    static var toBeSharedVisionHTML: String?
+
+    init() {
+        // Make sure that image directory is created.
+        do {
+            try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
+        } catch {
+            log("failed to create image directory", level: .debug)
+        }
+    }
+
+    func getRatingReport(_ completion: @escaping (QDMToBeVisionRatingReport?) -> Void) {
+        UserService.main.getToBeVisionTrackingReport(last: 3) { (report) in
+            completion(report)
+        }
+    }
+
+    func getToBeVision(_ completion: @escaping (_ initialized: Bool, _ toBeVision: QDMToBeVision?) -> Void) {
+        UserService.main.getMyToBeVision { [weak self] (vision, initialized, _) in
             self?.toBeVision = vision
             self?.isMyVisionInitialized = initialized
-            dispatchGroup.leave()
-        })
-    }
-
-    private func getRatingReport(_ dispatchGroup: DispatchGroup) {
-        dispatchGroup.enter()
-        userService.getToBeVisionTrackingReport(last: 1) {[weak self] (report) in
-            self?.report = report
-            dispatchGroup.leave()
+            completion(initialized, vision)
         }
     }
 
-    private func getVisionTracks(_ completion: @escaping() -> Void) {
-        userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
-            guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.toBeVision?.remoteID }) else { return }
-            self?.tracks = finalTracks
-            completion()
+    func getVisionTracks(_ completion: @escaping ([QDMToBeVisionTrack]) -> Void) {
+        UserService.main.getToBeVisionTracksForRating { (tracks) in
+            completion(tracks)
         }
     }
 
-    func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping () -> Void) {
-        userService.updateMyToBeVision(new) { error in
-            self.updateWidget()
-            completion()
+    func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping (_ toBeVision: QDMToBeVision?) -> Void) {
+        UserService.main.updateMyToBeVision(new) { [weak self] error in
+            self?.getToBeVision { [weak self] (_, qdmVision) in
+                self?.updateWidget()
+                completion(qdmVision)
+            }
         }
     }
 
@@ -126,23 +88,30 @@ final class MyVisionWorker {
         return try image.save(withName: UUID().uuidString)
     }
 
-    func shouldShowWarningIcon() -> Bool {
-        guard let date =  toBeVision?.date else {
-            return true
+    func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void) {
+        getVisionTracks { (tracks) in
+            let date = Date(timeIntervalSince1970: 0)
+
+            if let track = tracks.sorted(by: { $0.createdAt ?? date > $1.createdAt ?? date }).first,
+                let rating = track.ratings.sorted(by: { $0.isoDate > $1.isoDate }).first {
+
+                let daysOld = DateComponentsFormatter.numberOfDays(rating.isoDate)
+                let fourWeeks = 28 // 4 weeks = 28 days
+                completion(daysOld > fourWeeks)
+                return
+            }
+            completion(false)
         }
-        let daysOld = DateComponentsFormatter.numberOfDays(date)
-        let fourWeeks = 28 // 4 weeks = 28 days
-        return daysOld > fourWeeks
     }
 
     func lastUpdatedVision() -> String? {
-        guard let date =  toBeVision?.date else { return nil }
+        guard let date = toBeVision?.date else { return nil }
         let days = DateComponentsFormatter.numberOfDays(date)
         return dateString(for: days)
     }
 
     func visionToShare(_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
-        userService.getMyToBeVisionShareData { (visionShare, initialized, error) in
+        UserService.main.getMyToBeVisionShareData { (visionShare, _, _) in
             MyVisionWorker.toBeSharedVisionHTML = visionShare?.body
             completion(visionShare)
         }
@@ -152,26 +121,27 @@ final class MyVisionWorker {
         widgetDataManager.update(.toBeVision)
     }
 
-    func getSyncingText(_ dispatchGroup: DispatchGroup) {
-        syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_loading_body_syncing)
-    }
+    func getRateButtonValues(_ completion: @escaping (String?, Bool?, Bool) -> Void) {
+        getRatingReport { [weak self] (report) in
+            self?.getVisionTracks { [weak self] (tracks) in
+                guard let strongSelf = self else { return }
 
-    func getNotRatedText(_ dispatchGroup: DispatchGroup) {
-        notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_null_state_title)
-    }
-
-    func updateRateButton() -> (String?, Bool?, Bool) {
-        guard let tracks = self.tracks, tracks.count > 0 else {
-            return (syncingText, nil, false)
+                guard !tracks.isEmpty else {
+                    completion(strongSelf.syncingText, nil, false)
+                    return
+                }
+                guard let report = report, report.days.count > 0 else {
+                    completion(strongSelf.notRatedText, true, true)
+                    return
+                }
+                guard let date = report.days.first else {
+                    completion(strongSelf.syncingText, true, false)
+                    return
+                }
+                let days = DateComponentsFormatter.numberOfDays(date)
+                completion(strongSelf.dateString(for: days), false, true)
+            }
         }
-        guard let report = self.report, report.days.count > 0 else {
-            return (notRatedText, true, true)
-        }
-        guard let date = report.days.first else {
-            return (syncingText, true, false)
-        }
-        let days = DateComponentsFormatter.numberOfDays(date)
-        return (dateString(for: days), false, true)
     }
 
     private func dateString(for day: Int) -> String {

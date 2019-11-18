@@ -215,6 +215,9 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
         pageIndicator.currentPageIndex = index
         backButton.isHidden = index < 1
         isLastPage = index == (tracks.count - 1)
+
+        interactor?.addRating(for: questionIdentifier ?? 0,
+                              value: itemsOf(viewController) - (tracks[index].selectedAnswerIndex ?? 5))
         refreshBottomNavigationItems()
     }
 

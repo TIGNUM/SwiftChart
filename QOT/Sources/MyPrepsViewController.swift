@@ -310,6 +310,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension MyPrepsViewController {
 
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        guard editPressed else { return super.bottomNavigationLeftBarItems() }
+        return []
+    }
+
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         guard editPressed else { return nil }
         return [deleteButton, cancelButton]

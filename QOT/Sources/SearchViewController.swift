@@ -11,7 +11,7 @@ import qot_dal
 
 final class SearchViewController: BaseViewController, ScreenZLevelOverlay, SearchViewControllerInterface {
 
-    var interactor: SearchInteractorInterface?
+    var interactor: SearchInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var suggestionsTableView: UITableView!
@@ -32,7 +32,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
-    private var firstTime: Bool = true
+    public var showing = false
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +55,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         ThemeView.level1.apply(bottomView)
         self.navigationItem.hidesBackButton = true
         setupSegementedControl()
-        interactor?.showSuggestions()
+        interactor.showSuggestions()
         suggestionsHeader.autoresizingMask = []
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
@@ -67,12 +67,13 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if firstTime && (interactor?.shouldStartDeactivated() ?? false) {
-            deactivate(animated: false)
+        if interactor.shouldStartDeactivated() ?? false {
+            if !showing {
+                deactivate(animated: false)
+            }
         } else {
             doActivate()
         }
-        firstTime = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -88,6 +89,9 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if !interactor.shouldStartDeactivated() {
+            deactivate()
+        }
     }
 
     func reload(_ searchResults: [Search.Result]) {
@@ -184,7 +188,7 @@ private extension SearchViewController {
 
     func sendSearchResult(for query: String) {
         let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
-        interactor?.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
+        interactor.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
     }
 }
 
@@ -194,7 +198,7 @@ extension SearchViewController {
 
     @IBAction func close(_ sender: UIButton) {
         trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.didTapClose()
+        interactor.didTapClose()
         mySearchBar.resignFirstResponder()
     }
 
@@ -248,7 +252,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func updateSearchResults() {
-        interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
+        interactor.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -398,16 +402,16 @@ private extension SearchViewController {
 
     func handleSelection(for indexPath: IndexPath) {
         let selectedSearchResult = searchResults[indexPath.row]
-        interactor?.sendUserSearchResult(contentId: selectedSearchResult.contentID,
-                                         contentItemId: selectedSearchResult.contentItemID,
-                                         filter: selectedSearchResult.filter,
-                                         query: searchQuery)
+        interactor.sendUserSearchResult(contentId: selectedSearchResult.contentID,
+                                        contentItemId: selectedSearchResult.contentItemID,
+                                        filter: selectedSearchResult.filter,
+                                        query: searchQuery)
         switch selectedSearchResult.filter {
         case .all, .read, .tools:
-            interactor?.handleSelection(searchResult: selectedSearchResult)
+            interactor.handleSelection(searchResult: selectedSearchResult)
         case .watch, .listen:
             if let url = selectedSearchResult.mediaURL {
-                interactor?.contentItem(for: selectedSearchResult) { item in
+                interactor.contentItem(for: selectedSearchResult) { item in
                     self.handleMediaSelection(mediaURL: url, contentItem: item)
                 }
             }

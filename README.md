@@ -31,8 +31,10 @@ To view the current linting rules see the `.swiftlint.yml` file. Please discuss 
 For code, aim to keep lines to 120 characters but let Xcode soft wrap the text. For comments, please hard wrap at 120 characters.
 
 # Project Structure
-
 The choosen architecture is [Clean Swift](https://clean-swift.com/clean-swift-ios-architecture/).
+
+Please take a look at our [Confluence](https://tignum.atlassian.net/wiki/spaces/Q3D/pages/579239954/Developer+-+Clean+Swift+Review?atlOrigin=eyJpIjoiNGZhZDJiMDQzOTIyNDQzNjgwMmE4YjY3ZGYzYTVhMzgiLCJwIjoiYyJ9).
+
 We organize each use case under a new group nested within Scenes.
 A new created scene consits of the following files:
 

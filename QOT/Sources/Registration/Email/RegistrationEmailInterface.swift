@@ -26,6 +26,7 @@ protocol RegistrationEmailInteractorInterface: Interactor {
     var isNextButtonEnabled: Bool { get }
     var isDisplayingError: Bool { get }
     var descriptionMessage: String? { get }
+    var existingEmail: String? { get }
 
     func didTapBack()
     func didTapNext()

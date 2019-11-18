@@ -18,8 +18,8 @@ class LocationPermission: NSObject, PermissionInterface {
         locationManager.delegate = self
     }
 
-    func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(CLLocationManager.authorizationStatus().stringValue)
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus {
+        return CLLocationManager.authorizationStatus().authorizationStatus
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {
@@ -50,18 +50,18 @@ extension LocationPermission: CLLocationManagerDelegate {
 // MARK: - CLAuthorizationStatus
 
 private extension CLAuthorizationStatus {
-    var stringValue: String {
+    var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
         case .notDetermined:
-            return "notDetermined"
-        case .restricted:
-            return "restricted"
+            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
-            return "denied"
+            return PermissionsManager.AuthorizationStatus.denied
+        case .restricted:
+            return PermissionsManager.AuthorizationStatus.restricted
         case .authorizedWhenInUse:
-            return "authorizedWhenInUse"
+            return PermissionsManager.AuthorizationStatus.grantedWhileInForeground
         case .authorizedAlways:
-            return "authorizedAlways"
+            return PermissionsManager.AuthorizationStatus.granted
         }
     }
 }

@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import Anchorage
 import AVFoundation
 import AVKit
 import qot_dal
 
 final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
     var overlayControls: MediaPlayerOverlay?
-    var videoGravityObserver: Any?
+    var videoGravityObserver: NSKeyValueObservation?
+    var zoomed: Bool = false
     var interactor: StreamVideoInteractorInterface? {
         didSet {
             interactor?.delegate = self
@@ -34,6 +36,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         let value = UIInterfaceOrientation.portrait.rawValue
         UIDevice.current.setValue(value, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
+        videoGravityObserver?.invalidate()
     }
 
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {

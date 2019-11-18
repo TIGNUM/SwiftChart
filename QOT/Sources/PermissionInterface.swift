@@ -9,6 +9,6 @@
 import Foundation
 
 protocol PermissionInterface {
-    func authorizationStatusDescription(completion: @escaping (String) -> Void)
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus
     func askPermission(completion: @escaping (Bool) -> Void)
 }

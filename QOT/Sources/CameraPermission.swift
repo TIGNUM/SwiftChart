@@ -9,9 +9,9 @@
 import Foundation
 import AVFoundation
 
-struct CameraPermission: PermissionInterface {
-    func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        completion(AVCaptureDevice.authorizationStatus(for: .video).stringValue)
+class CameraPermission: PermissionInterface {
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus {
+        return AVCaptureDevice.authorizationStatus(for: .video).authorizationStatus
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {
@@ -24,16 +24,16 @@ struct CameraPermission: PermissionInterface {
 // MARK: - AVAuthorizationStatus
 
 private extension AVAuthorizationStatus {
-    var stringValue: String {
+    var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
         case .notDetermined:
-            return "notDetermined"
+            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
-            return "denied"
+            return PermissionsManager.AuthorizationStatus.denied
         case .restricted:
-            return "restricted"
+            return PermissionsManager.AuthorizationStatus.restricted
         case .authorized:
-            return "authorized"
+            return PermissionsManager.AuthorizationStatus.granted
         }
     }
 }

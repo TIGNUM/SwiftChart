@@ -55,6 +55,12 @@ enum URLScheme: String {
     case qrcode0002 = "qrcode-open-0002"
     case qrcode0003 = "qrcode-open-0003"
     case qrcode0004 = "qrcode-open-0004"
+    case qrcode0005 = "qrcode-open-0005"
+    case qrcode0006 = "qrcode-open-0006"
+    case qrcode0007 = "qrcode-open-0007"
+    case qrcode0008 = "qrcode-open-0008"
+    case qrcode0009 = "qrcode-open-0009"
+    case qrcode0010 = "qrcode-open-0010"
     case recovery3DPlanner = "3d-recovery-planner"
     case mindsetShifterPlanner = "mindset-shifter-planner"
 
