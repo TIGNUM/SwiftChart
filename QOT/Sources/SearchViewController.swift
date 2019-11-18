@@ -67,7 +67,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if interactor.shouldStartDeactivated() ?? false {
+        if interactor.shouldStartDeactivated() {
             if !showing {
                 deactivate(animated: false)
             }
@@ -80,9 +80,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         super.viewDidAppear(animated)
         trackPage()
         let hasUserInput = mySearchBar.text?.isEmpty == false
-        if hasUserInput {
-            mySearchBar.becomeFirstResponder()
-        }
         updateViewsState(hasUserInput)
         updateIndicator()
     }
@@ -158,7 +155,6 @@ extension SearchViewController {
 }
 
 // MARK: - Bottom Navigation
-
 extension SearchViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
@@ -170,7 +166,6 @@ extension SearchViewController {
 }
 
 // MARK: - Private
-
 private extension SearchViewController {
 
     func setupSegementedControl() {
@@ -193,7 +188,6 @@ private extension SearchViewController {
 }
 
 // MARK: - Actions
-
 extension SearchViewController {
 
     @IBAction func close(_ sender: UIButton) {
@@ -219,7 +213,6 @@ extension SearchViewController {
 }
 
 // MARK: - UISearchBarDelegate
-
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -333,7 +326,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
             searchQuery = suggestion
-            mySearchBar.becomeFirstResponder()
             updateSearchResults()
         default:
             preconditionFailure()
