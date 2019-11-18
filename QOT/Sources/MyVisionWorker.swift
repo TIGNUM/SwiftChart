@@ -30,16 +30,16 @@ final class MyVisionWorker {
         }
     }
 
-    lazy var nullStateSubtitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
-    lazy var nullStateTitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
-    lazy var updateAlertTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertTitle()
-    lazy var updateAlertMessage = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertMessage()
-    lazy var updateAlertEditTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
-    lazy var updateAlertCreateTitle = "===We need to Add AppTextKey here==="//R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
-    lazy var emptyTBVTextPlaceholder = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
-    lazy var emptyTBVTitlePlaceholder = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
-    private lazy var notRatedText = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
-    private lazy var syncingText = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
+    lazy var nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_body)
+    lazy var nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_title)
+    lazy var updateAlertTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_title)
+    lazy var updateAlertMessage = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_body)
+    lazy var updateAlertEditTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_edit)
+    lazy var updateAlertCreateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_create)
+    lazy var emptyTBVTextPlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
+    lazy var emptyTBVTitlePlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_placeholder)
+    private lazy var notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_null_state_title)
+    private lazy var syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false

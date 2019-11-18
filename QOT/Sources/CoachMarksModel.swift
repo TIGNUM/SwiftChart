@@ -35,8 +35,8 @@ struct CoachMark {
         }
 
         var rightButtonTitle: String? {
-            if .search == self { return "===We need to Add AppTextKey here===" /*R.string.localized.coachGetStartedButtonTitle() */}
-            return "===We need to Add AppTextKey here==="//R.string.localized.alertButtonTitleContinue()
+            if .search == self { return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_get_started)}
+            return AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_keep)
         }
 
         var hideBackButton: Bool {

@@ -26,7 +26,7 @@ final class TBVRateHistoryNullStateViewController: BaseViewController, ScreenZLe
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
-        ThemableButton.myTbvDataRate.apply(button, title: "===We need to Add AppTextKey here==="/*R.string.localized.rateViewControllerRateMyTBVButton()*/)
+        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_button_rate))
         return button.barButton
     }()
 

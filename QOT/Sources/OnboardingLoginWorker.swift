@@ -62,7 +62,7 @@ final class OnboardingLoginWorker: BaseSigningWorker {
     }()
 
     lazy var buttonChangeEmail: String = {
-        return "===We need to Add AppTextKey here==="//R.string.localized.onboardingRegistrationCodeChangeEmail()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_code_verification_section_help_button_change_email)
     }()
 
     lazy var buttonResendCode: String = {

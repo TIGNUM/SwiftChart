@@ -9,6 +9,7 @@
 import UIKit
 import AVFoundation
 import SVProgressHUD
+import qot_dal
 
 final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
 
@@ -118,8 +119,8 @@ private extension SigningInfoViewController {
     }
 
     func setupButtons() {
-        ThemableButton.signinInfo.apply(loginButton, title: "===We need to Add AppTextKey here==="/*R.string.localized.onboardingIntroButtonLogin()*/)
-        ThemableButton.signinInfo.apply(startButton, title: "===We need to Add AppTextKey here==="/*R.string.localized.onboardingIntroButtonRegister()*/)
+        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_log_in))
+        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register))
     }
 }
 

@@ -12,9 +12,11 @@ import qot_dal
 final class TBVRateHistoryWorker {
 
     lazy var isDataType = displayType == .data
-    lazy var subtitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataSubtitle : .TbvTrackerSubtitle)
-    lazy var title = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataTitle : .TbvTrackerTitle)
-    lazy var graphTitle = "===We need to Add AppTextKey here==="//ScreenTitleService.main.localizedString(for: isDataType ? .TbvDataGraphTitle : .TbvTrackerGraphTitle)
+    lazy var title = isDataType ? AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_header_title) :
+                                  AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result_section_header_title)
+    lazy var subtitle = isDataType ? AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_header_subtitle) :
+                                     AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_result_section_header_body)
+    lazy var graphTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_my_tbv_title)
 
     private let displayType: TBVGraph.DisplayType
     var dataModel: ToBeVisionReport?
