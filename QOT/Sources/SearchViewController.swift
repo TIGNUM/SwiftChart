@@ -60,7 +60,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
-        setupSearchBar()
         setAllControl(newAlpha: 1.0)
     }
 
@@ -82,12 +81,25 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         let hasUserInput = mySearchBar.text?.isEmpty == false
         updateViewsState(hasUserInput)
         updateIndicator()
+        enableCancelButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if !interactor.shouldStartDeactivated() {
             deactivate()
+        }
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.removeObserver(self, forKeyPath: "enabled")
+        }
+    }
+
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if let cancelButton = object as? UIButton, !cancelButton.isEnabled {
+            cancelButton.isEnabled = true
         }
     }
 
@@ -176,7 +188,6 @@ private extension SearchViewController {
         mySearchBar.backgroundImage = UIImage()
         mySearchBar.placeholder = R.string.localized.searchPlaceholder()
         mySearchBar.delegate = self
-        enableCancelButton()
     }
 
     func sendSearchResult(for query: String) {
@@ -187,6 +198,7 @@ private extension SearchViewController {
     func enableCancelButton() {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
+            cancelButton.addObserver(self, forKeyPath: "enabled", options: .new, context: nil)
         }
     }
 }
@@ -227,7 +239,6 @@ extension SearchViewController: UISearchBarDelegate {
             segmentedControl.selectedSegmentIndex = 0
             searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
             updateViewsState(false)
-            enableCancelButton()
         } else {
             updateViewsState(true)
         }
