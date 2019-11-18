@@ -95,7 +95,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     private var didScrollToRead = false
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
@@ -132,7 +131,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
 }
 
 // MARK: - Private
-
 private extension ArticleViewController {
     func setupTableView() {
         tableView.registerDequeueable(ContentItemTextTableViewCell.self)
@@ -199,7 +197,6 @@ extension ArticleViewController {
 }
 
 // MARK: - Actions
-
 extension ArticleViewController: ArticleTopNavBarProtocol {
 
     func didTapBookmarkItem() {
@@ -250,7 +247,6 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
 }
 
 // MARK: - ArticleViewControllerInterface
-
 extension ArticleViewController: ArticleViewControllerInterface {
     func setTopBarButtonItems(isShareable: Bool, hasBookMarkItem: Bool) {
         articleTopNavBar.configure(self, isShareable: isShareable, isBookMarkable: hasBookMarkItem)
@@ -284,7 +280,6 @@ extension ArticleViewController: ArticleViewControllerInterface {
 }
 
 // MARK: - Transition
-
 extension ArticleViewController {
     func transitionArticle(remoteID: Int) {
         if let image = view.screenshot() {
@@ -309,7 +304,6 @@ extension ArticleViewController {
 }
 
 // MARK: - Cells
-
 extension ArticleViewController {
     func articleItemTextViewCell(tableView: UITableView,
                                  indexPath: IndexPath,
@@ -396,7 +390,6 @@ extension ArticleViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
 extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return interactor?.sectionCount ?? 1
@@ -589,7 +582,6 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 // MARK: - ClickableLabelDelegate
-
 extension ArticleViewController: ClickableLabelDelegate {
     func openLink(withURL url: URL) {
         interactor?.didTapLink(url)
@@ -598,7 +590,6 @@ extension ArticleViewController: ClickableLabelDelegate {
 }
 
 // MARK: - UIScrollViewDelegate
-
 extension ArticleViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if !didScrollToRead {
@@ -610,7 +601,6 @@ extension ArticleViewController: UIScrollViewDelegate {
 }
 
 // MARK: - NavigationBar Show Hide
-
 extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
         guard let shouldHideNavBar = interactor?.shouldHideTopBar,
