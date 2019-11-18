@@ -77,7 +77,11 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 160, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(),
+                                     buttonWidth: 160,
+                                     action: #selector(myTBVData),
+                                     backgroundColor: .carbon,
+                                     borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -128,6 +132,7 @@ private extension MyVisionViewController {
     @IBAction func cameraButtonAction(_ sender: UIButton) {
         trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
         imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
+        imagePickerController.delegate = self
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 }
@@ -177,9 +182,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func hideNullState() {
-        didShowNullStateView = false
-        nullStateView.isHidden = true
-        refreshBottomNavigationItems()
+        if didShowNullStateView {
+            didShowNullStateView = false
+            nullStateView.isHidden = true
+            refreshBottomNavigationItems()
+        }
     }
 
     func setupView() {
