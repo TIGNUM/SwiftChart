@@ -12,10 +12,8 @@ import qot_dal
 final class RegistrationEmailInteractor {
 
     // MARK: - Properties
-
-    private let worker: RegistrationEmailWorker
+    private let worker = RegistrationEmailWorker()
     private let presenter: RegistrationEmailPresenterInterface
-    private let router: RegistrationEmailRouterInterface
     private weak var delegate: RegistrationDelegate?
 
     private var email: String?
@@ -24,19 +22,12 @@ final class RegistrationEmailInteractor {
     var descriptionMessage: String?
 
     // MARK: - Init
-
-    init(worker: RegistrationEmailWorker,
-        presenter: RegistrationEmailPresenterInterface,
-        router: RegistrationEmailRouterInterface,
-        delegate: RegistrationDelegate) {
-        self.worker = worker
+    init(presenter: RegistrationEmailPresenterInterface, delegate: RegistrationDelegate) {
         self.presenter = presenter
-        self.router = router
         self.delegate = delegate
     }
 
     // MARK: - Interactor
-
     var title: String {
         return worker.title
     }
@@ -55,7 +46,6 @@ final class RegistrationEmailInteractor {
 }
 
 // MARK: - RegistrationEmailInteractorInterface
-
 extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
 
     func viewDidLoad() {
@@ -111,7 +101,6 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
 }
 
 // MARK: - Private methods
-
 private extension RegistrationEmailInteractor {
     @discardableResult func checkEmailValidity(_ email: String?) -> String? {
         if let email = email, worker.isValidEmail(email) {

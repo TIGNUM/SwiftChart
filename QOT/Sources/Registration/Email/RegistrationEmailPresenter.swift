@@ -11,18 +11,15 @@ import UIKit
 final class RegistrationEmailPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: RegistrationEmailViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: RegistrationEmailViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - RegistrationEmailInterface
-
 extension RegistrationEmailPresenter: RegistrationEmailPresenterInterface {
     func setupView() {
         viewController?.setupView()

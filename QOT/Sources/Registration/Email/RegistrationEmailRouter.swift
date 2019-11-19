@@ -11,16 +11,13 @@ import UIKit
 final class RegistrationEmailRouter {
 
     // MARK: - Properties
-
     private weak var viewController: RegistrationEmailViewController?
 
     // MARK: - Init
-
     init(viewController: RegistrationEmailViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - RegistrationEmailRouterInterface
-
 extension RegistrationEmailRouter: RegistrationEmailRouterInterface { }

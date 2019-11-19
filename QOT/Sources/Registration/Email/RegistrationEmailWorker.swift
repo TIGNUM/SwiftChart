@@ -12,7 +12,6 @@ import qot_dal
 final class RegistrationEmailWorker: BaseSigningWorker {
 
     // MARK: - Properties
-
     lazy var title: String = {
         return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_header_title)
     }()
