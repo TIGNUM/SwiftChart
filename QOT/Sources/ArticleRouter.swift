@@ -38,7 +38,7 @@ extension ArticleRouter: ArticleRouterInterface {
         }
     }
 
-    func openSupportEmailComposer(for item: Article.Item?, emailAdress: String?) {
+    func openSupportEmailComposer(emailAdress: String?) {
         guard let viewController = viewController else { return }
         UIViewController.presentMailComposer(from: viewController,
                                              recipients: [emailAdress ?? Defaults.firstLevelSupportEmail],
