@@ -14,6 +14,7 @@ final class PaymentHeaderView: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet weak var subtitleTopConstraint: NSLayoutConstraint!
 
     static func instantiateFromNib(title: String?, subtitle: String?) -> PaymentHeaderView {
         guard let headerView = R.nib.paymentHeaderView.instantiate(withOwner: self).first as? PaymentHeaderView else {
@@ -26,8 +27,8 @@ final class PaymentHeaderView: UIView {
     }
 
     func configure(title: String?, subtitle: String?) {
-        guard let titleText = title, let subtitleText = subtitle else { return }
-        ThemeText.paymentReminderHeaderTitle.apply(titleText, to: titleLabel)
-        ThemeText.paymentReminderHeaderSubtitle.apply(subtitleText, to: subtitleLabel)
+        subtitleTopConstraint.constant = subtitle == nil ? 0 : 30
+        ThemeText.paymentReminderHeaderTitle.apply(title, to: titleLabel)
+        ThemeText.paymentReminderHeaderSubtitle.apply(subtitle, to: subtitleLabel)
     }
 }
