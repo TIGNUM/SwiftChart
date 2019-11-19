@@ -21,13 +21,13 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
     private var bottomConstraintInitialValue: CGFloat = 0
 
     private lazy var buttonNext: RoundedButton = {
-        return RoundedButton(title: interactor?.nextButtonTitle ?? "", target: self, action: #selector(didTapNextButton))
+        return RoundedButton(title: interactor.nextButtonTitle, target: self, action: #selector(didTapNextButton))
     }()
 
-    var interactor: RegistrationEmailInteractorInterface?
+    var interactor: RegistrationEmailInteractorInterface!
+    private lazy var router: RegistrationEmailRouterInterface = RegistrationEmailRouter(viewController: self)
 
     // MARK: - Init
-
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -45,19 +45,19 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         bottomConstraintInitialValue = bottomConstraint.constant
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         startObservingKeyboard()
         hideKeyboardWhenTappedAround()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        buttonNext.isEnabled = emailField.textField.isFirstResponder ? false : (interactor?.isNextButtonEnabled ?? false)
+        buttonNext.isEnabled = emailField.textField.isFirstResponder ? false : interactor.isNextButtonEnabled
         return [buttonNext.barButton]
     }
 
     override func didTapBackButton() {
         trackUserEvent(.BACK, action: .TAP)
-        interactor?.didTapBack()
+        interactor.didTapBack()
     }
 
     override func dismissKeyboard() {
@@ -65,34 +65,32 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
             return
         }
         super.dismissKeyboard()
-        interactor?.setEmail(emailField.text)
+        interactor.setEmail(emailField.text)
     }
 }
 
 // MARK: - Actions
-
 private extension RegistrationEmailViewController {
     @objc private func didTapNextButton() {
         if hasInternet() {
             trackUserEvent(.NEXT, action: .TAP)
-            interactor?.setEmail(emailField.textField.text)
-            interactor?.didTapNext()
+            interactor.setEmail(emailField.textField.text)
+            interactor.didTapNext()
         }
     }
 }
 
 // MARK: - RegistrationEmailViewControllerInterface
-
 extension RegistrationEmailViewController: RegistrationEmailViewControllerInterface {
 
     func setupView() {
         viewTheme.apply(view)
         viewTheme.apply(emailField.textField)
 
-        buttonNext.isEnabled = interactor?.isNextButtonEnabled ?? false
+        buttonNext.isEnabled = interactor.isNextButtonEnabled
 
-        ThemeText.registrationEmailTitle.apply(interactor?.title, to: titleLabel)
-        ThemeText.onboardingInputPlaceholder.apply(interactor?.emailPlaceholder, to: emailField.placeholderLabel)
+        ThemeText.registrationEmailTitle.apply(interactor.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.emailPlaceholder, to: emailField.placeholderLabel)
         emailField.delegate = self
         emailField.textField.corner(radius: .Nine, borderColor: .sand40)
         emailField.textField.autocapitalizationType = .none
@@ -100,19 +98,21 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
         emailField.textField.autocorrectionType = .no
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
-        if let email = interactor?.existingEmail {
+
+        if let email = interactor.existingEmail {
+            interactor.setEmail(email)
             emailField.text = email
+            buttonNext.isEnabled = interactor.isNextButtonEnabled
         }
     }
 
     func updateView() {
-        buttonNext.isEnabled = interactor?.isNextButtonEnabled ?? false
-        updateMessageUI(message: interactor?.descriptionMessage, isError: interactor?.isDisplayingError ?? false)
+        buttonNext.isEnabled = interactor.isNextButtonEnabled
+        updateMessageUI(message: interactor.descriptionMessage, isError: interactor.isDisplayingError)
     }
 }
 
 // MARK: - Private
-
 private extension RegistrationEmailViewController {
     func updateMessageUI(message: String?, isError: Bool) {
         if isError {
@@ -126,7 +126,6 @@ private extension RegistrationEmailViewController {
 }
 
 // MARK: - UITextField delegate
-
 extension RegistrationEmailViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
@@ -136,13 +135,12 @@ extension RegistrationEmailViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         trackUserEvent(.EDIT, action: .TAP)
-        interactor?.resetError()
+        interactor.resetError()
         buttonNext.isEnabled = false
     }
 }
 
 // MARK: - Keyboard
-
 extension RegistrationEmailViewController {
 
     override func keyboardWillAppear(notification: NSNotification) {
