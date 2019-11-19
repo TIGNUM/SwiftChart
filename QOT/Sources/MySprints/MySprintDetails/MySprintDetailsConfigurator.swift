@@ -13,10 +13,9 @@ final class MySprintDetailsConfigurator {
 
     static func make(sprintId: String) -> (MySprintDetailsViewController) -> Void {
         return { (viewController) in
-            let router = MySprintDetailsRouter(viewController: viewController)
             let worker = MySprintDetailsWorker(sprintId: sprintId)
             let presenter = MySprintDetailsPresenter(viewController: viewController)
-            let interactor = MySprintDetailsInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = MySprintDetailsInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor
         }
     }
