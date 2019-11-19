@@ -7,13 +7,11 @@
 //
 
 import Foundation
-
 import UIKit
 
 final class ToolsTableHeaderView: UIView {
 
     // MARK: - Properties
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
 

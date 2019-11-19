@@ -15,7 +15,6 @@ private enum ToolType: String {
     case pdf
 }
 
-
 protocol IsPlayingDelegate: class {
     func isPlaying(remoteID: Int?) -> Bool
 }
@@ -67,10 +66,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
         trackPage()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-    }
-
     @objc override func trackPage() {
         var pageTrack = QDMPageTracking()
         pageTrack.pageId = 0
@@ -102,7 +97,7 @@ private extension ToolsItemsViewController {
     }
 }
 
-// MARK: - CoachViewControllerInterface
+// MARK: - ToolsItemsViewControllerInterface
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
         setupTableView()
@@ -119,10 +114,11 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
             array.append(oldIndexPath)
         }
         lastAudioIndexPath = indexPath
-        tableView.reloadRows(at: array, with: UITableViewRowAnimation.none)
+        tableView.reloadRows(at: array, with: .none)
     }
 }
 
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor.rowCount
@@ -139,7 +135,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 90
+        return 160
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
