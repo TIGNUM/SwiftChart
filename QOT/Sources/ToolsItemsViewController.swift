@@ -132,8 +132,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.init(title: interactor?.headerTitle ?? "",
-                                             subtitle: interactor?.headerSubtitle ?? "")
+            return ToolsTableHeaderView.init(title: (interactor?.headerTitle ?? "").uppercased(),
+                                             subtitle: interactor?.headerSubtitle)
         default: return nil
         }
     }

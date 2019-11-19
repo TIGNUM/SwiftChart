@@ -89,6 +89,8 @@ private extension ToolsCollectionsViewController {
         tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.tableFooterView = UIView()
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 60
     }
 }
 
@@ -137,16 +139,12 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             let headerTitle = interactor?.headerTitle ?? ""
             if headerTitle.count > 0 {
                 let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
-                return ToolsTableHeaderView.init(title: title, subtitle: "")
+                return ToolsTableHeaderView.init(title: title.uppercased(), subtitle: nil)
             }
         default:
             break
         }
         return nil
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
