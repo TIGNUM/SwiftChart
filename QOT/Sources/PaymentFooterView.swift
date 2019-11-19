@@ -23,11 +23,8 @@ final class PaymentFooterView: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, buttonTitle: String?) {
-        guard let titleText = title, let buttonText = buttonTitle else {
-            return
-        }
-        ThemeText.paymentReminderCellSubtitle.apply(titleText, to: infoLabel)
-        ThemableButton.paymentReminder.apply(contactButton, title: buttonText)
+        ThemeText.paymentReminderCellSubtitle.apply(title, to: infoLabel)
+        ThemableButton.paymentReminder.apply(contactButton, title: buttonTitle)
     }
 
     @IBAction func didTapContactButton(_ sender: UIButton) {

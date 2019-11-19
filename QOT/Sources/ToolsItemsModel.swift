@@ -9,7 +9,6 @@
 import UIKit
 
 struct Tools {
-
     struct Item {
         let remoteID: Int
         let categoryTitle: String

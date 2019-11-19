@@ -4877,7 +4877,14 @@
 		F95B922E228EADF4000DEAEC /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				F9838F3522AFBD39003F9394 /* Core */,
+				F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */,
+				F95B9239228EAE96000DEAEC /* ToolsInteractor.swift */,
+				F95B9235228EAE69000DEAEC /* ToolsInterface.swift */,
+				F95B923B228EAEAC000DEAEC /* ToolsModel.swift */,
+				F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */,
+				F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */,
+				F95B9237228EAE82000DEAEC /* ToolsViewController.swift */,
+				F95B9231228EAE46000DEAEC /* ToolsWorker.swift */,
 			);
 			name = Tools;
 			sourceTree = "<group>";
@@ -4911,21 +4918,6 @@
 				F96B23B22350BFAB00130EFF /* DepartureBespokeFeastImageCell.swift */,
 			);
 			name = "Multiple Images Bucket";
-			sourceTree = "<group>";
-		};
-		F9838F3522AFBD39003F9394 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */,
-				F95B9231228EAE46000DEAEC /* ToolsWorker.swift */,
-				F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */,
-				F95B9235228EAE69000DEAEC /* ToolsInterface.swift */,
-				F95B9237228EAE82000DEAEC /* ToolsViewController.swift */,
-				F95B9239228EAE96000DEAEC /* ToolsInteractor.swift */,
-				F95B923B228EAEAC000DEAEC /* ToolsModel.swift */,
-				F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		F9838F3922AFFE93003F9394 /* MyQotMain */ = {
@@ -4982,13 +4974,13 @@
 		F99DF61622959B4000341DAB /* ToolsItems */ = {
 			isa = PBXGroup;
 			children = (
-				F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */,
-				F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */,
-				F9A8A01C229681E500DE3A9C /* ToolsItemsInterface.swift */,
-				F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */,
-				F9A8A01E2296821400DE3A9C /* ToolsItemsInteractor.swift */,
-				F9A8A020229682B000DE3A9C /* ToolsItemsModel.swift */,
 				F9A8A022229682D300DE3A9C /* ToolsItemsConfigurator.swift */,
+				F9A8A01E2296821400DE3A9C /* ToolsItemsInteractor.swift */,
+				F9A8A01C229681E500DE3A9C /* ToolsItemsInterface.swift */,
+				F9A8A020229682B000DE3A9C /* ToolsItemsModel.swift */,
+				F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */,
+				F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */,
+				F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */,
 			);
 			name = ToolsItems;
 			sourceTree = "<group>";
