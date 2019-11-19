@@ -21,7 +21,7 @@ final class StrategyListHeaderView: UIView {
         ThemeText.strategyHeader.apply(title?.uppercased(), to: baseHeaderView?.titleLabel)
         theme?.apply(headerView)
         baseHeaderView?.addTo(superview: headerView)
-        
+
         return headerView
     }
 }

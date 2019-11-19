@@ -809,7 +809,7 @@ enum ThemeText {
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle,
+             .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle,
              .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
             return Fonts.fontRegular16
         case .baseHeaderSubtitle, .leaderVideoTitle, .searchExploreTopic, .searchBar,

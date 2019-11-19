@@ -96,7 +96,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
 
     override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
-                               change: [NSKeyValueChangeKey : Any]?,
+                               change: [NSKeyValueChangeKey: Any]?,
                                context: UnsafeMutableRawPointer?) {
         if let cancelButton = object as? UIButton, !cancelButton.isEnabled {
             cancelButton.isEnabled = true
