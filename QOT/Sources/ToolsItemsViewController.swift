@@ -45,7 +45,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
         super.viewDidLoad()
         ThemeView.qotTools.apply(view)
         ThemeView.qotTools.apply(tableView)
-        setCustomBackButton()
         interactor.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didEndAudio(_:)),
@@ -57,7 +56,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
             backButton.isHidden = true
         }
         super.viewWillAppear(animated)
-        setCustomBackButton()
         setStatusBar(colorMode: .darkNot)
     }
 
@@ -129,8 +127,8 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: interactor.headerTitle.uppercased(),
-                                                           subtitle: interactor.headerSubtitle)
+            return ToolsTableHeaderView.init(title: interactor.headerTitle.uppercased(),
+                                             subtitle: interactor.headerSubtitle)
         default: return nil
         }
     }

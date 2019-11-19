@@ -30,7 +30,7 @@ protocol MySprintDetailsPresenterInterface {
 protocol MySprintDetailsInteractorInterface: Interactor {
     var viewModel: MySprintDetailsViewModel { get }
     var sprint: QDMSprint? { get }
-    
+
     func updateViewModel()
     func didDismissAlert()
 }

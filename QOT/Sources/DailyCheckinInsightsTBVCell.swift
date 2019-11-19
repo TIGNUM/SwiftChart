@@ -13,11 +13,10 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
-    
     @IBOutlet private weak var button: AnimatedButton!
-    var interactor: DailyBriefInteractorInterface?
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
+
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
