@@ -59,7 +59,7 @@
                                     <action selector="didChangeSegmentedControl:" destination="ciS-My-UAr" eventType="valueChanged" id="HPS-vp-AL8"/>
                                 </connections>
                             </segmentedControl>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7BQ-4U-u9M" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="354" y="173" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="giH-rU-ibm"/>

@@ -13,7 +13,7 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Properties
 
     var interactor: MySprintsListInteractorInterface?
-    @IBOutlet private weak var editButton: AnimatedButton!
+    @IBOutlet private weak var editButton: RoundedButton!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
@@ -126,7 +126,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
         ThemeText.mySprintsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
-        ThemeTint.accent.apply(editButton)
+        ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)
 

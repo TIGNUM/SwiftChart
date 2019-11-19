@@ -26,7 +26,7 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var userDobLabel: UILabel!
 
     @IBOutlet private weak var subHeaderView: UIView!
-    @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: RoundedButton!
 
     var interactor: MyQotAccountSettingsInteractor?
 
@@ -83,7 +83,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 
         ThemeView.level3.apply(headerView)
         subHeaderView.addHeader(with: .level3)
-        editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
+        ThemeButton.editButton.apply(editButton)
         setContentForView()
     }
 

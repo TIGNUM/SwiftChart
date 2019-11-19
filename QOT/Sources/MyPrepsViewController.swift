@@ -34,7 +34,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
-    @IBOutlet private weak var editButton: UIButton!
+    @IBOutlet private weak var editButton: RoundedButton!
     @IBOutlet private weak var noPreparationsView: UIView!
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
@@ -68,7 +68,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
+        ThemeButton.editButton.apply(editButton)
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)

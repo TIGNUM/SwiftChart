@@ -889,7 +889,7 @@
                                     <constraint firstItem="vl2-o5-5qv" firstAttribute="top" secondItem="fgZ-Ah-mC0" secondAttribute="top" id="x5k-gx-qGJ"/>
                                 </constraints>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-dp-pkH">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F3h-dp-pkH" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="313" y="70" width="38" height="38"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="38" id="Zk9-2f-KGp"/>

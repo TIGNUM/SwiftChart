@@ -20,7 +20,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var editButton: AnimatedButton!
+    @IBOutlet private weak var editButton: RoundedButton!
     @IBOutlet private weak var addButton: RoundedButton!
     @IBOutlet weak var addButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var editButtonWidthConstraint: NSLayoutConstraint!
@@ -50,7 +50,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
 
-        editButton.tintColor = .accent
+        ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
 
         interactor?.viewDidLoad()

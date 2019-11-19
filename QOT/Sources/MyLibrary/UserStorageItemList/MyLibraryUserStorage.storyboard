@@ -26,21 +26,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NsV-cT-rre" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="350" y="105" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="40" id="32d-1n-7OU"/>
                                     <constraint firstAttribute="height" constant="40" id="LZ3-X0-PEd"/>
                                 </constraints>
                                 <state key="normal" image="edit"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="20"/>
-                                    </userDefinedRuntimeAttribute>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="1"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didTapEditButtonWithSender:" destination="hQZ-Se-pf1" eventType="touchUpInside" id="zlo-zL-suJ"/>
                                 </connections>
