@@ -23,11 +23,8 @@ final class PaymentSwitchAccountTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, buttonTitle: String?) {
-        guard let titleText = title, let buttonText = buttonTitle else {
-            return
-        }
-        ThemeText.paymentReminderCellSubtitle.apply(titleText, to: signInLabel)
-        switchAccountButton.setTitle(buttonText, for: .normal)
+        ThemeText.paymentReminderCellSubtitle.apply(title, to: signInLabel)
+        switchAccountButton.setTitle(buttonTitle, for: .normal)
         switchAccountButton.setTitleColor(.accent, for: .normal)
         switchAccountButton.setTitleColor(.accent40, for: .highlighted)
     }
