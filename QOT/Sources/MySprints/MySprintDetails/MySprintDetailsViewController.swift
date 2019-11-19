@@ -13,7 +13,8 @@ final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    var interactor: MySprintDetailsInteractorInterface?
+    var interactor: MySprintDetailsInteractorInterface!
+    private lazy var router: MySprintDetailsRouterInterface = MySprintDetailsRouter(viewController: self)
     private let tableHeaderView = MySprintDetailsHeaderView.instantiateFromNib()
     @IBOutlet private weak var tableView: UITableView!
 
@@ -34,12 +35,12 @@ final class MySprintDetailsViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.alwaysBounceVertical = false
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.updateViewModel()
+        interactor.updateViewModel()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -89,7 +90,7 @@ private extension MySprintDetailsViewController {
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(model.transparent ? .carbon80 : self.view.backgroundColor)
         infoAlertView?.onDismiss = { [weak self] in
-            self?.interactor?.didDismissAlert()
+            self?.interactor.didDismissAlert()
         }
     }
 
@@ -116,7 +117,25 @@ private extension MySprintDetailsViewController {
 
 private extension MySprintDetailsViewController {
     @objc private func itemActionTapped(_ sender: UIButton) {
-        interactor?.didTapItemAction(sender.tag)
+        guard
+            let action = MySprintDetailsItem.Action(rawValue: sender.tag),
+            let sprint = interactor.sprint else {
+                return
+        }
+
+        NotificationCenter.default.post(name: .updateBottomNavigation,
+                                        object: BottomNavigationItem(leftBarButtonItems: [],
+                                                                     rightBarButtonItems: [],
+                                                                     backgroundColor: .clear),
+                                        userInfo: nil)
+        switch action {
+        case .captureTakeaways:
+            router.presentTakeawayCapture(for: sprint)
+        case .benefits,
+             .highlights,
+             .strategies:
+            router.presentNoteEditing(for: sprint, action: action)
+        }
     }
 }
 
@@ -128,9 +147,7 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
     }
 
     func update() {
-        guard let viewModel = interactor?.viewModel else {
-            return
-        }
+        let viewModel = interactor.viewModel
         // Header
         updateHeader(for: tableView, with: viewModel)
         // Alert
@@ -162,14 +179,11 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
 extension MySprintDetailsViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.viewModel.items.count ?? 0
+        return interactor.viewModel.items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor?.viewModel.items[indexPath.row] else {
-            return UITableViewCell()
-        }
-
+        let item = interactor.viewModel.items[indexPath.row]
         switch item.type {
         case .header(action: let tag):
             let cell: HeaderDetailsItemCell = tableView.dequeueCell(for: indexPath)

@@ -60,7 +60,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
-        setupSearchBar()
         setAllControl(newAlpha: 1.0)
     }
 
@@ -80,17 +79,27 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         super.viewDidAppear(animated)
         trackPage()
         let hasUserInput = mySearchBar.text?.isEmpty == false
-        if hasUserInput {
-            mySearchBar.becomeFirstResponder()
-        }
         updateViewsState(hasUserInput)
         updateIndicator()
+        enableCancelButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if !interactor.shouldStartDeactivated() {
             deactivate()
+        }
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.removeObserver(self, forKeyPath: "enabled")
+        }
+    }
+
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey : Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if let cancelButton = object as? UIButton, !cancelButton.isEnabled {
+            cancelButton.isEnabled = true
         }
     }
 
@@ -133,9 +142,6 @@ extension SearchViewController {
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
         }
-        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
-        }
         mySearchBar.isUserInteractionEnabled = true
     }
 
@@ -158,7 +164,6 @@ extension SearchViewController {
 }
 
 // MARK: - Bottom Navigation
-
 extension SearchViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
@@ -170,7 +175,6 @@ extension SearchViewController {
 }
 
 // MARK: - Private
-
 private extension SearchViewController {
 
     func setupSegementedControl() {
@@ -190,10 +194,16 @@ private extension SearchViewController {
         let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
         interactor.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
     }
+
+    func enableCancelButton() {
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+            cancelButton.addObserver(self, forKeyPath: "enabled", options: .new, context: nil)
+        }
+    }
 }
 
 // MARK: - Actions
-
 extension SearchViewController {
 
     @IBAction func close(_ sender: UIButton) {
@@ -219,7 +229,6 @@ extension SearchViewController {
 }
 
 // MARK: - UISearchBarDelegate
-
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -333,7 +342,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
             searchQuery = suggestion
-            mySearchBar.becomeFirstResponder()
             updateSearchResults()
         default:
             preconditionFailure()

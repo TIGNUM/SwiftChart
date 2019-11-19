@@ -12,13 +12,11 @@ import qot_dal
 final class ArticleInteractor {
 
     // MARK: - Properties
-
     private var worker: ArticleWorker
     private let presenter: ArticlePresenterInterface
     private let router: ArticleRouterInterface
 
     // MARK: - Init
-
     init(worker: ArticleWorker,
         presenter: ArticlePresenterInterface,
         router: ArticleRouterInterface) {
@@ -28,7 +26,6 @@ final class ArticleInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
         presenter.setupArticleHeader(header: worker.articleHeader)
@@ -120,7 +117,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         worker.markArticleAsRead(read, completion: completion)
     }
 
-    func isRead(completion:@escaping (_ read: Bool) -> Void) {
+    func isRead(completion: @escaping (_ read: Bool) -> Void) {
         worker.isRead(completion: completion)
     }
 

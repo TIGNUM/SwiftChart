@@ -12,12 +12,10 @@ import qot_dal
 final class MySprintDetailsInteractor {
 
     // MARK: - Properties
-
     private let worker: MySprintDetailsWorker
     private let presenter: MySprintDetailsPresenterInterface
-    private let router: MySprintDetailsRouterInterface
-    private let notificationCenter: NotificationCenter
-    private var sprint: QDMSprint?
+    private let notificationCenter: NotificationCenter = NotificationCenter.default
+    var sprint: QDMSprint?
 
     public private(set) var viewModel = MySprintDetailsViewModel()
 
@@ -76,16 +74,9 @@ final class MySprintDetailsInteractor {
     }()
 
     // MARK: - Init
-
-    init(worker: MySprintDetailsWorker,
-        presenter: MySprintDetailsPresenterInterface,
-        router: MySprintDetailsRouterInterface,
-        notificationCenter: NotificationCenter = NotificationCenter.default) {
+    init(worker: MySprintDetailsWorker, presenter: MySprintDetailsPresenterInterface) {
         self.worker = worker
         self.presenter = presenter
-        self.router = router
-
-        self.notificationCenter = notificationCenter
         self.notificationCenter.addObserver(self,
                                             selector: #selector(didUpdateSprintDetails(_:)),
                                             name: .didUpdateMySprintsData,
@@ -93,14 +84,12 @@ final class MySprintDetailsInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 }
 
 // MARK: - MySprintDetailsInteractorInterface
-
 extension MySprintDetailsInteractor: MySprintDetailsInteractorInterface {
     func updateViewModel() {
         worker.getSprint { [weak self] (sprint) in
@@ -115,25 +104,9 @@ extension MySprintDetailsInteractor: MySprintDetailsInteractorInterface {
     func didDismissAlert() {
         cancelAction()
     }
-
-    func didTapItemAction(_ rawValue: Int) {
-        guard let action = MySprintDetailsItem.Action(rawValue: rawValue) else {
-            assertionFailure("Unknown action tapped!")
-            return
-        }
-        switch action {
-        case .captureTakeaways:
-            if let sprint = sprint {
-                router.presentTakeawayCapture(for: sprint)
-            }
-        case .benefits, .highlights, .strategies:
-            updateSprintReflection(action)
-        }
-    }
 }
 
 // MARK: - Bottom button actions
-
 extension MySprintDetailsInteractor {
 
     @objc private func continueAction() {
@@ -204,7 +177,6 @@ extension MySprintDetailsInteractor {
 }
 
 // MARK: - View model creation methods
-
 extension MySprintDetailsInteractor {
 
     private func updateSprintViewModel(with sprint: QDMSprint) {
@@ -323,16 +295,9 @@ extension MySprintDetailsInteractor {
 }
 
 // MARK: - Private methods
-
 extension MySprintDetailsInteractor {
     private func titles(for items: [QDMContentItem]) -> [String] {
         return items.sorted(by: { $0.sortOrder < $1.sortOrder }).compactMap { $0.valueText }
-    }
-
-    private func updateSprintReflection(_ type: MySprintDetailsItem.Action) {
-        if let sprint = sprint {
-            router.presentNoteEditing(for: sprint, action: type)
-        }
     }
 
     private func showSprintInProgressAlert(with sprint: QDMSprint) {

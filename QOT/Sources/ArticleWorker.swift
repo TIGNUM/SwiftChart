@@ -386,16 +386,16 @@ final class ArticleWorker {
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
         guard let content = content else { return }
-        qot_dal.ContentService.main.markContentCollectionAs(read: read, content) { (error) in
+        ContentService.main.markContentCollectionAs(read: read, content) { (error) in
             completion()
         }
     }
 
     func isRead(completion:@escaping (_ read: Bool) -> Void) {
-        qot_dal.ContentService.main.getContentCollectionById(selectedID, { (content) in
+        ContentService.main.getContentCollectionById(selectedID) { (content) in
             let read = content?.viewedAt != nil
             completion(read)
-        })
+        }
     }
 
     func itemCount(in section: Int) -> Int {
@@ -431,13 +431,13 @@ final class ArticleWorker {
         var hasBookmark = (self.bookmark != nil)
         if hasBookmark {
             // remove
-            qot_dal.UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
+            UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
                 self?.bookmark = nil
             }
             hasBookmark = false
         } else if let content = self.content {
             // add
-            qot_dal.UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
+            UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
                 self?.bookmark = bookmark
             }
             hasBookmark = true

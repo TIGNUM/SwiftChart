@@ -69,13 +69,13 @@ final class ImagePickerController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_choose_picture),
                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.photo)
+                                            self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
         let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_take_a_picture),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.camera)
-            self?.resetAlertViewAppearance()
+                                            self?.handleOption(.camera)
+                                            self?.resetAlertViewAppearance()
         }
         let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_delete_photo),
                                          style: .destructive) { [weak self] (alertAction: UIAlertAction) in
@@ -97,7 +97,7 @@ final class ImagePickerController {
         }
         alertController.addAction(cancelAction)
         alertController.view.tintColor = .accent
-        self.viewController?.present(alertController, animated: true, completion: nil)
+        self.viewController?.present(alertController, animated: true)
     }
 
     // MARK: - private
