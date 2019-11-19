@@ -47,6 +47,8 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
         tableView.registerDequeueable(PaymentTableViewCell.self)
         tableView.registerDequeueable(PaymentSwitchAccountTableViewCell.self)
         tableView.registerDequeueable(PaymentFooterView.self)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 150
     }
 
     private func sendEmail() {
@@ -85,12 +87,8 @@ extension PaymentReminderViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return PaymentHeaderView.instantiateFromNib(title: paymentModel?.headerTitle ?? "",
-                                                    subtitle: paymentModel?.headerSubtitle ?? "")
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 150
+        return PaymentHeaderView.instantiateFromNib(title: paymentModel?.headerTitle,
+                                                    subtitle: paymentModel?.headerSubtitle)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
