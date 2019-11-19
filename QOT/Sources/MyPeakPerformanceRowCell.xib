@@ -54,7 +54,7 @@
                             </constraints>
                         </imageView>
                     </subviews>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="InW-gE-jrZ" secondAttribute="trailing" constant="25" id="B56-7m-xVF"/>
                         <constraint firstAttribute="bottom" secondItem="Ri9-OQ-Mzb" secondAttribute="bottom" id="CEI-YI-sbo"/>
@@ -72,7 +72,7 @@
                     <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="2Vh-ni-EIq"/>
                 <constraint firstItem="iN0-l3-epB" firstAttribute="top" secondItem="G29-b0-5W4" secondAttribute="top" id="LKa-Nr-iYN"/>

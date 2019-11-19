@@ -20,11 +20,11 @@ struct Search {
 
         var title: String {
             switch self {
-            case .all: return R.string.localized.searchFilterAll()
-            case .read: return R.string.localized.searchFilterRead()
-            case .listen: return R.string.localized.searchFilterListen()
-            case .watch: return R.string.localized.searchFilterWatch()
-            case .tools: return R.string.localized.searchFilterTools()
+            case .all: return AppTextService.get(AppTextKey.coach_search_section_filters_label_all)
+            case .read: return AppTextService.get(AppTextKey.coach_search_section_filters_label_read)
+            case .listen: return AppTextService.get(AppTextKey.coach_search_section_filters_label_listen)
+            case .watch: return AppTextService.get(AppTextKey.coach_search_section_filters_label_watch)
+            case .tools: return AppTextService.get(AppTextKey.coach_search_section_filters_label_tools)
             }
         }
         var userEvent: String {

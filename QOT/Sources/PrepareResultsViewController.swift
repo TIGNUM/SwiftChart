@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import qot_dal
 
 protocol PrepareResultsDelegatge: class {
@@ -84,11 +83,6 @@ private extension PrepareResultsViewController {
         cell.delegate = self
         return cell
     }
-
-    func shouldShowHeader(in section: Int) -> Bool {
-        return (section == PrepareResult.Daily.REMINDER_LIST && interactor?.getType == .LEVEL_DAILY) ||
-            (section == PrepareResult.Critical.REMINDER_LIST && interactor?.getType == .LEVEL_CRITICAL)
-    }
 }
 
 // MARK: - Actions
@@ -134,7 +128,7 @@ private extension PrepareResultsViewController {
     }
 
     func showAlert() {
-        let confirm = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleConfirm()) { [weak self] (_) in
+        let confirm = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
             self?.interactor?.setReminder = true
             self?.interactor?.updatePreparation { (_) in
                 if self?.interactor?.getResultType == .prepareDecisionTree {
@@ -144,7 +138,7 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        let decline = QOTAlertAction(title: R.string.localized.prepareAlertReminderButtonTitleDecline()) { [weak self] (_) in
+        let decline = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
             self?.interactor?.updatePreparation { (_) in
                 if self?.interactor?.getResultType == .prepareDecisionTree {
                     self?.interactor?.presentFeedback()
@@ -153,8 +147,8 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        QOTAlert.show(title: R.string.localized.prepareAlertReminderTitle(),
-                      message: R.string.localized.prepareAlertReminderMessage(),
+        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_title),
+                      message: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_body),
                       bottomItems: [confirm, decline])
     }
 }
@@ -180,27 +174,13 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func setupView() {
-        view.addSubview(tableView)
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
         tableView.delegate = self
         tableView.dataSource = self
-
-        if #available(iOS 11.0, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-            tableView.safeTopAnchor == view.safeTopAnchor
-            tableView.leftAnchor == view.leftAnchor
-            tableView.rightAnchor == view.rightAnchor
-            tableView.contentInset.top = 84
-            tableView.contentInset.bottom = 40
-        } else {
-            tableView.topAnchor == view.topAnchor
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.rightAnchor == view.rightAnchor
-            tableView.leftAnchor == view.leftAnchor
-            tableView.contentInset.top = 84
-        }
-        tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
+        self.view.fill(subview: tableView)
+        tableView.contentInset.top = 84
+        tableView.contentInset.bottom = 40
         tableView.estimatedSectionHeaderHeight = 100
         view.layoutIfNeeded()
     }

@@ -12,9 +12,8 @@ import qot_dal
 final class WeatherCell: BaseDailyBriefCell {
     // MARK: - Properties
     //Header section
-    @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var bucketTitleLabel: UILabel!
-    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet private var headerHeightConstraint: NSLayoutConstraint!
+    private var baseView: QOTBaseHeaderView?
 
     //WeatherView section
     @IBOutlet weak var headerView: UIView!
@@ -26,7 +25,6 @@ final class WeatherCell: BaseDailyBriefCell {
     @IBOutlet weak var hourlyStackView: UIStackView!
     @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var weatherImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
@@ -37,7 +35,6 @@ final class WeatherCell: BaseDailyBriefCell {
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
-    private var score: Int = 0
     private let formatter = MeasurementFormatter()
     private let numberFormatter = NumberFormatter()
 
@@ -50,6 +47,8 @@ final class WeatherCell: BaseDailyBriefCell {
             arrangedView.isHidden = true
         }
         ThemeView.level1.apply(accessImageContainerView)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView)
     }
 
     override func prepareForReuse() {
@@ -83,8 +82,11 @@ final class WeatherCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         viewModel = weatherViewModel
-        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
-        ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
+        baseView?.configure(title: viewModel?.bucketTitle?.uppercased(),
+                            subtitle: viewModel?.intro)
+        baseView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseView?.titleLabel)
+        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
@@ -128,8 +130,11 @@ final class WeatherCell: BaseDailyBriefCell {
 
     // MARK: - Private
     private func startSkeleton() {
-        skeletonManager.addTitle(bucketTitleLabel)
-        skeletonManager.addSubtitle(introLabel)
+        if let baseView = self.baseView {
+            for subview in baseView.subviews {
+                skeletonManager.addSubtitle(subview)
+            }
+        }
         skeletonManager.addSubtitle(weatherDescriptionLabel)
         skeletonManager.addSubtitle(weatherTitleLabel)
         skeletonManager.addSubtitle(weatherBodyLabel)
@@ -166,7 +171,7 @@ final class WeatherCell: BaseDailyBriefCell {
                     return
             }
             if index == 0 {
-                hourlyView.set(time: R.string.localized.weatherNow(),
+                hourlyView.set(time: AppTextService.get(AppTextKey.daily_brief_section_weather_label_now),
                                temperature: temperature,
                                isNow: true)
             } else {
@@ -189,7 +194,6 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
-        let weatherImageViewTop: CGFloat = 60
         var shouldHideHeader = false
         switch viewModel?.locationPermissionStatus {
         case .granted?, .grantedWhileInForeground?:
@@ -209,19 +213,11 @@ final class WeatherCell: BaseDailyBriefCell {
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
         accessButtonHeightConstraint.constant = accessButtonHeight
-        for constraint in verticalHeaderConstraints {
-            constraint.isActive = !shouldHideHeader
-        }
 
-        weatherImageViewTopConstraint.constant = shouldHideHeader ?
-                                                weatherImageViewTop :
-                                                weatherImageViewTop + headerView.frame.size.height
+        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseView?.calculateHeight(for: self.frame.size.width) ?? 0
         headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader
-        bucketTitleLabel.isHidden = shouldHideHeader
-        introLabel.isHidden = shouldHideHeader
-        lineView.isHidden = shouldHideHeader
         lastUpdateLabel.isHidden = !shouldHideHeader
         layoutIfNeeded()
     }

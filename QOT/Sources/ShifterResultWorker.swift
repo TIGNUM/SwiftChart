@@ -52,14 +52,14 @@ extension ShifterResultWorker {
 // MARK: - Private
 private extension ShifterResultWorker {
     func setTitles() {
-        headerSubTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderSubtitle)
-        headerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHeaderTitle)
-        highTitle = ScreenTitleService.main.localizedString(for: .ShifterResultHighTitle)
-        lowTitle = ScreenTitleService.main.localizedString(for: .ShifterResultLowTitle)
-        lowToHighTitle = ScreenTitleService.main.localizedString(for: .ShifterResultLowToHighTitle)
-        reactionsTitle = ScreenTitleService.main.localizedString(for: .ShifterResultReactionsTitle)
-        triggerTitle = ScreenTitleService.main.localizedString(for: .ShifterResultTriggerTitle)
-        visionTitle = ScreenTitleService.main.localizedString(for: .ShifterResultVisionTitle)
+        headerTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_header_title)
+        headerSubTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title)
+        triggerTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_trigger)
+        reactionsTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_reactions)
+        lowToHighTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos)
+        lowTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low)
+        highTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high)
+        visionTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_vision)
     }
 
     var getHeader: MindsetResult.Section {

@@ -102,47 +102,41 @@ final class MyQotSiriShortcutsWorker {
     }
 
     var siriShortcutsHeaderText: String {
-        return ScreenTitleService.main.localizedString(for: .AppSettingsSiriShortcuts)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_title)
     }
 }
 
 extension MyQotSiriShortcutsWorker {
-
-    var siriExplanation: String {
-        return ScreenTitleService.main.localizedString(for: .MyQOTSiriExplanation)
-    }
-
-    func siriTag(for shortcut: ShortcutType) -> Tags {
-        switch shortcut {
-        case .toBeVision:
-            return Tags.MyQOTSiriToBeVisionTitle
-        case .whatsHot:
-            return Tags.MyQOTSiriWhatsHotTitle
-        case .morningInterview:
-            return Tags.MyQOTSiriDailyPrepTitle
-        }
-    }
-
-    func siriTagSubtitle(for shortcut: ShortcutType) -> Tags {
-        switch shortcut {
-        case .toBeVision:
-            return Tags.MyQOTSiriToBeVisionSuggestionPhrase
-        case .whatsHot:
-            return Tags.MyQOTSiriWhatsHotSuggestionPhrase
-        case .morningInterview:
-            return Tags.MyQOTSiriDailyPrepSuggestionPhrase
-        }
-    }
-
     func siriTrackingKey(for shortcut: ShortcutType) -> String? {
-        return siriTag(for: shortcut).rawValue
+        switch shortcut {
+        case .toBeVision:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_tbv)
+        case .whatsHot:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_wh)
+        case .morningInterview:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_daily_check_in)
+        }
     }
 
     func siriTitle(for shortcut: ShortcutType) -> String {
-        return ScreenTitleService.main.localizedString(for: siriTag(for: shortcut))
+        switch shortcut {
+        case .toBeVision:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_tobevision_title)
+        case .whatsHot:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_wh_title)
+        case .morningInterview:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_daily_prep_title)
+        }
     }
 
     func siriSuggestionPhrase(for shortcut: ShortcutType) -> String {
-        return ScreenTitleService.main.localizedString(for: siriTagSubtitle(for: shortcut))
+        switch shortcut {
+        case .toBeVision:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_tobevision_subtitle)
+        case .whatsHot:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_wh_subtitle)
+        case .morningInterview:
+            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_siri_shortcuts_section_daily_prep_subtitle)
+        }
     }
 }

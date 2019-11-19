@@ -14,7 +14,7 @@ final class MyLibraryCategoryListWorker {
     private let service = UserStorageService.main
 
     lazy var titleText: String = {
-        return R.string.localized.myLibraryTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_library_section_header_title)
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ categories: [MyLibraryCategoryListModel]?) -> Void) {
@@ -43,23 +43,23 @@ final class MyLibraryCategoryListWorker {
                 storage.userStorageType == .EXTERNAL_LINK ? storage : nil
             })
 
-            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleAll(),
+            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_section_all_title),
                                                          items: strongSelf.removeDuplicates(from: sorted ?? []),
                                                          icon: R.image.my_library_group(),
                                                          type: .ALL))
-            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleBookmarks(),
+            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_section_bookmarks_title),
                                                          items: bookmarks,
                                                          icon: R.image.my_library_bookmark(),
                                                          type: .BOOKMARKS))
-            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleDownloads(),
+            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_section_downloads_title),
                                                          items: downloads,
                                                          icon: R.image.my_library_download(),
                                                          type: .DOWNLOADS))
-            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleLinks(),
+            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_section_links_title),
                                                          items: links,
                                                          icon: R.image.my_library_link(),
                                                          type: .LINKS))
-            userStorages.append(strongSelf.viewModelWith(title: R.string.localized.myLibraryGroupTitleNotes(),
+            userStorages.append(strongSelf.viewModelWith(title: AppTextService.get(AppTextKey.my_qot_my_library_section_notes_title),
                                                          items: notes,
                                                          icon: R.image.my_library_note_light(),
                                                          type: .NOTES))

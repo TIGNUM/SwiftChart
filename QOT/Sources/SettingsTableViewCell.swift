@@ -24,10 +24,9 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     private lazy var pickerItems = [String]()
     private lazy var selectedIndex = 0
     private lazy var indexPath = IndexPath(row: 0, section: 0)
-    private lazy var settingsType = SettingsType.calendar
+    private lazy var settingsType = SettingsType.company
     private var calendarIdentifier: String?
     private var calendarSource: String?
-    var controlUpdate = false
     var keyboardInputView: MyQotProfileSettingsKeybaordInputView?
     weak var settingsDelegate: SettingsViewControllerDelegate?
     weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
@@ -74,10 +73,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupDateCell(title: title, selectedYear: selectedYear, settingsType: settingsType)
         case .label(let title, let value, let settingsType):
-            if settingsType == .dateOfBirth,
-                settingsType == .height,
-                settingsType == .weight,
-                settingsType == .gender {
+            if settingsType == .dateOfBirth {
                 expandArrow.isHidden = false
             } else {
                 expandArrow.isHidden = true
@@ -88,21 +84,10 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: pickerItems[selectedIndex], settingsType: settingsType)
-        case .multipleStringPicker(let title, let userMeasurement, _, let settingsType):
-            self.settingsType = settingsType
-            let displayableValue = userMeasurement.currentTitle()
-            setupTextFieldCell(title: title, value: displayableValue, settingsType: settingsType)
         case .textField(let title, let value, _, let settingsType):
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: value, settingsType: settingsType)
         }
-        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .adminSettings {
-            accessoryType = .disclosureIndicator
-        }
-    }
-
-    func setupHeaderCell(title: String) {
-        setupLabelCell(title: title, value: nil)
     }
 
     func setupControls(isSyncFinished: Bool) {
@@ -114,9 +99,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             switchControl.isHidden = true
             loadingIndicatorView.isHidden = false
             loadingIndicatorView.startAnimating()
-        }
-        if self.settingsType == .calendarOnOtherDevices {
-            switchControl.isHidden = true
         }
     }
 }
@@ -143,32 +125,12 @@ private extension SettingsTableViewCell {
         setupTextFieldCell(title: title, value: selectedYear, settingsType: settingsType)
     }
 
-    func setupLabelCell(title: String, value: String?) {
-        setValue(value: value)
-        if value == nil {
-            titleLabel.attributedText = NSMutableAttributedString(
-                string: title.uppercased(),
-                letterSpacing: 2,
-                font: .H7Tag,
-                lineSpacing: 4,
-                textColor: .white60
-            )
-            valueLabel.isHidden = true
-        } else {
-            setTitle(title: title)
-        }
-    }
-
     func setupTextFieldCell(title: String, value: String, settingsType: SettingsType) {
         textField.text = value
         textField.delegate = self
         textField.keyboardType = .default
         textField.autocapitalizationType = UITextAutocapitalizationType.words
         setTitle(title: title)
-		if settingsType == .phone {
-            textField.autocapitalizationType = UITextAutocapitalizationType.none
-			textField.keyboardType = .phonePad
-		}
         if settingsType == .company || settingsType == .email {
             ThemeText.accountDetailEmail.apply(value, to: textField)
         }
@@ -203,8 +165,6 @@ private extension SettingsTableViewCell {
         }
         let theme: ThemeText
         switch settingsType {
-        case .calendar, .calendarOnOtherDevices:
-            theme = .settingsTitleFade
         default:
             theme = .settingsTitle
         }
@@ -218,7 +178,6 @@ extension SettingsTableViewCell {
 
     @objc func valueChanged(sender: UISwitch) {
         switch settingsType {
-        case .calendar: updateCalendarSettings(sender)
         case .strategies,
              .dailyPrep,
              .weeklyChoices: updateNotificationSettings(sender)
@@ -234,13 +193,6 @@ extension SettingsTableViewCell {
     private func updateNotificationSettings(_ sender: UISwitch) {
         settingsDelegate?.didChangeNotificationValue(sender: sender, settingsCell: self, key: settingsType.notificationKey)
         setSwitchState(switchControl: sender)
-    }
-
-    private func updateCalendarSettings(_ sender: UISwitch) {
-        if let calendarIdentifier = calendarIdentifier {
-            calendarSyncDelegate?.didChangeCalendarSyncValue(sender: sender, calendarIdentifier: calendarIdentifier)
-            setSwitchState(switchControl: sender)
-        }
     }
 
     func setSwitchState(switchControl: UISwitch) {

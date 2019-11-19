@@ -43,7 +43,7 @@ after action review is a high performance tool. </string>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="xKL-SJ-VzL" secondAttribute="bottom" constant="15" id="DW6-PJ-5YM"/>
                                 <constraint firstAttribute="trailing" secondItem="IXz-tv-d2p" secondAttribute="trailing" constant="24" id="EGW-Qf-wTf"/>
@@ -57,7 +57,7 @@ after action review is a high performance tool. </string>
                             <viewLayoutGuide key="safeArea" id="8fY-dI-Gll"/>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.58456763698630132" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="IuR-aP-FDG" firstAttribute="leading" secondItem="Qja-5K-rYw" secondAttribute="leading" id="EdO-mB-wQG"/>
                         <constraint firstAttribute="trailing" secondItem="IuR-aP-FDG" secondAttribute="trailing" id="Usd-8K-5Nh"/>
@@ -66,7 +66,7 @@ after action review is a high performance tool. </string>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Qja-5K-rYw" firstAttribute="leading" secondItem="FuD-iV-jFd" secondAttribute="leading" id="4Ap-n2-Mpy"/>
                 <constraint firstAttribute="bottom" secondItem="Qja-5K-rYw" secondAttribute="bottom" id="ZAZ-h2-7bR"/>

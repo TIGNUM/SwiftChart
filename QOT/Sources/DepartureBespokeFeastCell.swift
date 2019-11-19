@@ -11,7 +11,8 @@ import SafariServices
 
 final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Properties
-    @IBOutlet private weak var bucketTitle: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    private var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicator: UIPageControl!
     @IBOutlet weak var copyrightButton: UIButton!
@@ -27,7 +28,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         departureBespokeFeastModel = nil
-        bucketTitle.text = nil
+        baseView?.titleLabel.text = nil
         bespokeTitleLabel.text = nil
         departureBespokeText.text = nil
         collectionView.reloadData()
@@ -38,8 +39,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         collectionView.registerDequeueable(DepartureBespokeFeastImageCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(departureBespokeText)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView)
     }
 
     // MARK: Public
@@ -49,11 +50,12 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         initialSetup()
         skeletonManager.hide()
         if let title = model.title {
-            ThemeText.dailyBriefTitle.apply(title.uppercased(), to: bucketTitle)
+            baseView?.configure(title: title.uppercased(), subtitle: nil)
         }
         if let subtitle = model.subtitle {
             ThemeText.bespokeTitle.apply(subtitle.uppercased(), to: bespokeTitleLabel)
         }
+        baseView?.subtitleTextViewBottomConstraint.constant = 0
         showCopyrightButtonIfNeeded()
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
         titleToSubtitleVerticalSpacingConstraint.constant = (model.text?.isEmpty ?? true) ? 0 : 14

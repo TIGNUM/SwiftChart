@@ -14,9 +14,6 @@ final class CoachRouter {
     // MARK: - Properties
     private weak var viewController: CoachViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
-    private var permissionsManager: PermissionsManager {
-        return AppCoordinator.permissionsManager!
-    }
 
     // MARK: - Init
     init(viewController: CoachViewController) {
@@ -35,9 +32,6 @@ extension CoachRouter: CoachRouterInterface {
         case .search:
             let configurator = SearchConfigurator.make(delegate: delegate)
             let searchViewController = SearchViewController(configure: configurator)
-            let navController = UINavigationController(rootViewController: searchViewController)
-            navController.navigationBar.applyDefaultStyle()
-            navController.modalTransitionStyle = .crossDissolve
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:

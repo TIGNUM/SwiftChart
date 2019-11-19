@@ -36,6 +36,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var singleMessageRatingLabel: UILabel!
     @IBOutlet private weak var detailTextView: UITextView!
     @IBOutlet private weak var navigationBarViewTopMarginConstraint: NSLayoutConstraint!
+    var didShowNullStateView = false
     private let containerViewSize: CGFloat = 232.0
     private let containerViewRatio: CGFloat = 1.2
     private let lowerBoundAlpha: CGFloat = 0.6
@@ -45,7 +46,6 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     private var tempImageURL: URL?
     private var imagePickerController: ImagePickerController!
     let skeletonManager = SkeletonManager()
-    var didShowNullStateView = false
     var interactor: MyVisionInteractorInterface!
 
     override func viewDidLoad() {
@@ -77,7 +77,7 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(),
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_section_footer_button_title_my_tbv_data),
                                      buttonWidth: 160,
                                      action: #selector(myTBVData),
                                      backgroundColor: .carbon,
@@ -195,8 +195,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .MyToBeVisionSectionTitle),
-                                         to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
@@ -209,7 +208,6 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
-                                                      permissionsManager: AppCoordinator.permissionsManager!,
                                                       adapter: adapter)
         imagePickerController.delegate = self
         userImageView.image = R.image.circlesWarning()
@@ -247,9 +245,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
-        ThemeText.tvbTimeSinceTitle.apply(interactor.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(R.string.localized.tbvLastUpdatedComment(), to: lastUpdatedComment)
-        ThemeText.datestamp.apply(R.string.localized.tbvLastRatedComment(), to: lastRatedComment)
+        ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_update_subtitle), to: lastUpdatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_subtiitle), to: lastRatedComment)
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled

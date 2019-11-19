@@ -21,17 +21,10 @@ final class SigningInfoWorker {
 
     // MARK: - Texts
     lazy var titleText: String? = {
-        return R.string.localized.onboardingIntroTitle()
+        return AppTextService.get(AppTextKey.onboarding_launch_screen_section_header_title_intro)
     }()
 
     var bodyText: String? = {
-        return R.string.localized.onboardingIntroBody()
+        return ""
     }()
-}
-
-// MARK: - Public
-extension SigningInfoWorker {
-    func shouldShowUnoptimizedScreenWarning() -> Bool {
-        return UIDevice.isPad || UIDevice.isSmallScreenDevice
-    }
 }

@@ -62,7 +62,6 @@ final class LocationManager: CLLocationManager {
 }
 
 extension LocationManager: CLLocationManagerDelegate {
-
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let lastLocation = locations.last else { return }
         CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: lastLocation.coordinate.latitude, longitude: lastLocation.coordinate.longitude)) { [weak self] placemark, error in

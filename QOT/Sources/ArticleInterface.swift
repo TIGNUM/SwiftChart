@@ -60,5 +60,5 @@ protocol ArticleInteractorInterface: class, Interactor {
 
 protocol ArticleRouterInterface {
     func didTapLink(_ url: URL)
-    func openSupportEmailComposer(for item: Article.Item?, emailAdress: String?)
+    func openSupportEmailComposer(emailAdress: String?)
 }

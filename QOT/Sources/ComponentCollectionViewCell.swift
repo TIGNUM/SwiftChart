@@ -26,31 +26,6 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         layer.shadowRadius = 12
     }
 
-    func resetTransform() {
-        transform = .identity
-    }
-
-    func freezeAnimations() {
-        disabledHighlightedAnimation = true
-        layer.removeAllAnimations()
-    }
-
-    func unfreezeAnimations() {
-        disabledHighlightedAnimation = false
-    }
-
-//    func configure(title: String,
-//                   image: URL?,
-//                   author: String,
-//                   publishDate: Date?,
-//                   timeToRead: String?) {
-//        componentContentView.configure(title: title,
-//                                       image: image,
-//                                       author: author,
-//                                       publishDate: publishDate,
-//                                       timeToRead: timeToRead)
-//    }
-
     // Make it appears very responsive to touch
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -71,16 +46,15 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
         if disabledHighlightedAnimation {
             return
         }
-        let animationOptions: UIViewAnimationOptions = GlobalConstants.isEnabledAllowsUserInteractionWhileHighlightingCard
-            ? [.allowUserInteraction] : []
+        let animationOptions: UIViewAnimationOptions = [.allowUserInteraction]
         if isHighlighted {
             UIView.animate(withDuration: 0.5,
                            delay: 0,
                            usingSpringWithDamping: 1,
                            initialSpringVelocity: 0,
                            options: animationOptions, animations: {
-                            self.transform = .init(scaleX: GlobalConstants.cardHighlightedFactor,
-                                                   y: GlobalConstants.cardHighlightedFactor)
+                            self.transform = .init(scaleX: 0.96,
+                                                        y: 0.96)
             }, completion: completion)
         } else {
             UIView.animate(withDuration: 0.5,

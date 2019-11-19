@@ -10,8 +10,11 @@ import UIKit
 
 final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var videoViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var audioViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var videoThumbnailImageView: UIImageView!
     @IBOutlet private weak var videoTitle: UILabel!
@@ -28,8 +31,8 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         super.awakeFromNib()
         audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(subtitleLabel)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(descriptionLabel)
         skeletonManager.addOtherView(audioView)
         skeletonManager.addOtherView(videoView)
@@ -38,15 +41,23 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: subtitleLabel)
+
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(),
+                                  subtitle: model.subtitle)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+
         videoView.isHidden = model.format != .video
+        videoViewHeightConstraint.constant = model.format == .video ? 72.0 : 0.0
         videoThumbnailImageView.isHidden = model.format != .video
+
         audioView.isHidden = model.format != .audio
+        videoViewHeightConstraint.constant = model.format == .audio ? 40.0 : 0.0
         audioButton.isHidden = model.format != .audio
-        titleLabel.isHidden = model.title == nil
-        subtitleLabel.isHidden = model.subtitle == nil
+
         descriptionLabel.isHidden = model.description == nil
         videoTitle.text = model.videoTitle?.uppercased()
         duration = model.audioDuration ?? model.videoDuration
@@ -54,9 +65,11 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         mediaURL = model.videoThumbnail
         videoDurationButton.isHidden = model.format != .video
         videoDurationButton.setTitle(model.durationString, for: .normal)
+
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
         videoThumbnailImageView.isHidden = model.format != .video
+
         skeletonManager.addOtherView(videoThumbnailImageView)
         videoThumbnailImageView.setImage(url: mediaURL,
                                          skeletonManager: self.skeletonManager) { (_) in /* */}
@@ -67,7 +80,9 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         let media = MediaPlayerModel(title: videoTitle.text ?? "",
                                      subtitle: "",
                                      url: mediaURL,
-                                     totalDuration: duration ?? 0, progress: 0, currentTime: 0, mediaRemoteId: remoteID ?? 0)
+                                     totalDuration: duration ?? 0, progress: 0,
+                                     currentTime: 0,
+                                     mediaRemoteId: remoteID ?? 0)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
         NotificationCenter.default.post(name: .showAudioFullScreen, object: media)
     }

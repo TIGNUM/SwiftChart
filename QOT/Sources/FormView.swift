@@ -116,15 +116,6 @@ final class FormView: UIView {
 // MARK: - Public
 
 extension FormView {
-
-    func activateTextField(_ active: Bool) {
-        if active == true {
-            textField.becomeFirstResponder()
-        } else {
-            endEditing(true)
-        }
-    }
-
     func configure(formType: FormType, enabled: Bool = true) {
         self.formType = formType
         setupLabels(placeholder: formType.placeholder)
@@ -137,12 +128,7 @@ extension FormView {
         bottomStatusLine.backgroundColor = .cherryRed90
         errorLabel.attributedText = attributedString(textColor: .cherryRed90, string: message)
     }
-
-    func hideError() {
-        errorLabel.isHidden = true
-        bottomStatusLine.backgroundColor = .white60
-    }
-
+    
     func resetPlaceholderLabelIfNeeded() {
         if textField.hasText == false {
             UIView.animate(withDuration: Animation.duration_06) { [unowned self] in

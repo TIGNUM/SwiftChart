@@ -7,29 +7,30 @@
 //
 
 import UIKit
+import qot_dal
 
 final class RegistrationNamesWorker: BaseSigningWorker {
 
     // MARK: - Properties
 
     lazy var title: String = {
-        return titleService.localizedString(for: .OnboardingRegistrationNamesTitle)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_enter_name_section_header_title)
     }()
 
     lazy var firstNameTitle: String = {
-        return R.string.localized.onboardingRegistrationNamesName()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_enter_name_section_body_placeholder_name)
     }()
 
     lazy var lastNameTitle: String = {
-        return R.string.localized.onboardingRegistrationNamesSurname()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_enter_name_section_body_placeholder_last_name)
     }()
 
     lazy var mandatoryText: String  = {
-        return R.string.localized.onboardingRegistrationNamesMandatory()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_enter_name_section_body_label_mandatory)
     }()
 
     lazy var nextButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationNamesNextTitle()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_enter_name_section_footer_button_next)
     }()
 
     // MARK: - Init

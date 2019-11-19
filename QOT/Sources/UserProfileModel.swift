@@ -43,14 +43,6 @@ struct UserProfileModel: Equatable {
 }
 
 extension UserProfileModel {
-    var userWeight: String {
-        return String(weight) + weightUnit
-    }
-
-    var userHeight: String {
-        return String(height) + heightUnit
-    }
-
     var name: String {
         let firstName = givenName?.capitalized ?? ""
         let lastName = familyName?.capitalized ?? ""

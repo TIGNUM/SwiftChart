@@ -11,29 +11,19 @@ import UIKit
 
 final class ToolsTableHeaderView: UIView {
 
+    private var baseView: QOTBaseHeaderView?
     // MARK: - Properties
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-
-    static func instantiateFromNib(title: String, subtitle: String) -> ToolsTableHeaderView {
-        guard let headerView = R.nib.toolsTableHeaderView.instantiate(withOwner: self).first as? ToolsTableHeaderView else {
-            fatalError("Cannot load header view")
-        }
-        headerView.setNeedsLayout()
-        headerView.layoutIfNeeded()
-        headerView.backgroundColor = .sand
-        headerView.configure(title: title, subtitle: subtitle)
-        return headerView
+    convenience init(title: String, subtitle: String?) {
+        self.init(frame: .zero)
+        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
+        baseView?.configure(title: title, subtitle: subtitle)
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel.preferredMaxLayoutWidth = titleLabel.bounds.width
-        subtitleLabel.preferredMaxLayoutWidth = subtitleLabel.bounds.width
+    override init(frame: CGRect) {
+        super.init(frame: frame)
     }
 
-    func configure(title: String, subtitle: String) {
-        ThemeText.qotToolsTitle.apply(title.uppercased(), to: titleLabel)
-        ThemeText.qotToolsSubtitle.apply(subtitle, to: subtitleLabel)
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }

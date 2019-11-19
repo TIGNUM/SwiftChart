@@ -18,20 +18,6 @@ extension Date {
         self.init(milliseconds: Double(milliseconds))
     }
 
-    /// dateFormatter.dateStyle = .long
-    /// dateFormatter.timeStyle = .short
-    /// March 30. 2018 at 12:00 AM
-    var longDateShortTime: String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateStyle = .long
-        dateFormatter.timeStyle = .short
-        return dateFormatter.string(from: self)
-    }
-
-    var twentyOneYearsAgo: Date {
-        return Calendar.current.date(byAdding: .year, value: -21, to: self) ?? self
-    }
-
     var minimumDateOfBirth: Date {
         return Calendar.current.date(byAdding: .year, value: -130, to: self) ?? self
     }
@@ -48,10 +34,6 @@ extension Date {
         return Calendar.current.date(byAdding: .minute, value: -1, to: self.nextDay.startOfDay) ?? self
     }
 
-    var nextHour: Date {
-        return Calendar.current.nextDate(after: self, matching: DateComponents(minute: 0), matchingPolicy: .nextTime) ?? self
-    }
-
     var nextDate: Date {
         return Calendar.current.nextDate(after: self, matching: DateComponents(hour: 0), matchingPolicy: .nextTime) ?? self
     }
@@ -62,10 +44,6 @@ extension Date {
 
     func isNextDay(date: Date) -> Bool {
         return date.isSameDay(nextDay)
-    }
-
-    func dayBefore(days: Int) -> Date {
-        return Calendar.current.date(byAdding: .day, value: (-days), to: self) ?? self
     }
 
     func dayAfter(days: Int) -> Date {
@@ -129,10 +107,6 @@ extension Date {
         return Calendar.current.component(.weekOfYear, from: self)
     }
 
-    var monthOfYear: Int {
-        return Calendar.current.component(.month, from: self)
-    }
-
     var monthDescription: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM"
@@ -179,10 +153,6 @@ extension Date {
         return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
     }
 
-    var timeIntervalToNow: TimeInterval {
-        return -timeIntervalSinceNow
-    }
-
     var isNight: Bool {
         return minutesSinceMidnight <= 5*60 || minutesSinceMidnight >= 21*60
     }
@@ -201,10 +171,6 @@ extension Date {
 
     var isTomorrow: Bool {
         return Date().isNextDay(date: self)
-    }
-
-    var isWeekend: Bool {
-        return Calendar.current.isDateInWeekend(self)
     }
 
     var is24hoursOld: Bool {
@@ -244,10 +210,5 @@ extension Date {
             dayOfWeek += 7
         }
         return dayOfWeek
-    }
-
-    static func numerOfWeeksBetween(firstDate: Date, andSecondDate: Date) -> Int {
-        let theComponents = Calendar.current.dateComponents([.weekOfYear], from: firstDate, to: andSecondDate)
-        return theComponents.weekOfYear ?? 0
     }
 }

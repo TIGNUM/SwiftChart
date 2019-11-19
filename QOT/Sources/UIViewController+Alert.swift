@@ -10,167 +10,83 @@ import UIKit
 import qot_dal
 
 enum AlertType {
-    case empty
-    case noContent
     case title(String)
     case message(String)
     case custom(title: String, message: String)
-    case unauthenticated
+    case dbError
     case noNetworkConnection
     case noNetworkConnectionFile
-    case comingSoon
     case unknown
     case loginFailed
-    case notificationsNotAuthorized
-    case tutorialReset
-    case settingsLoccationService
-    case settingsCalendars
-    case emailNotFound
     case cameraNotAvailable
-    case permissionNotGranted
-    case imagePicker
-    case notSynced
-    case canNotUploadPhoto
-    case canNotSendMail
-    case canNotSendEmailToBeVision
-    case canNotSendEmailWeeklyChoices
-    case prepareEditStrategy
-    case changePermissions
     case changeNotifications
-    case toBeVisionActionSheet
-    case partnerIncomplete
-    case canNotDeletePartner
-    case noWeeklyChoice
-    case noMyToBeVision
     case calendarNotSynced
-    case eventDateNotAvailable
     case photosPermissionNotAuthorized
     case cameraPermissionNotAuthorized
 
     var title: String? {
         switch self {
-        case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .title(let title): return title
-        case .unauthenticated: return R.string.localized.alertTitleUnauthenticated()
+        case .dbError: return AppTextService.get(AppTextKey.generic_alert_database_error_title)
         case .noNetworkConnection,
-             .noNetworkConnectionFile: return R.string.localized.alertTitleNoNetworkConnection()
-        case .unknown: return R.string.localized.alertTitleUnknown()
-        case .loginFailed: return R.string.localized.loginViewLoginFailed()
-        case .notificationsNotAuthorized: return R.string.localized.alertTitleNotificationsNotAuthorized()
-        case .tutorialReset: return R.string.localized.settingsTutorialResetTitle()
-        case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
-        case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
-        case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
-        case .permissionNotGranted: return R.string.localized.alertTitleCustom()
-        case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle()
-        case .canNotSendMail,
-             .canNotSendEmailToBeVision,
-             .canNotSendEmailWeeklyChoices: return R.string.localized.alertTitleCouldNotSendEmail()
-        case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
-        case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
-        case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
-        case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
-        case .noMyToBeVision,
-             .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
-        case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
-        case .eventDateNotAvailable: return R.string.localized.alertTitleEventDateNotAvailable()
-        case .changeNotifications: return R.string.localized.alertTitleSettingsChangeNotifications()
+             .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_file_title)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_error_title)
+        case .loginFailed: return AppTextService.get(AppTextKey.onboarding_log_in_section_email_verification_alert_subtitle_unauthenticated)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_title)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_calendar_not_sync_section_header_title)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_edit_settings_title_change_notifications)
         default: return nil
         }
     }
 
     var message: String? {
         switch self {
-        case .noContent: return R.string.localized.alertMessageNoContent()
         case .custom(_, let message): return message
         case .message(let message): return message
-        case .unauthenticated: return R.string.localized.alertMessageUnauthenticated()
-        case .noNetworkConnection: return R.string.localized.alertMessageNoNetworkConnection()
-        case .noNetworkConnectionFile: return R.string.localized.alertMessageNoNetworkConnectionFile()
-        case .comingSoon: return R.string.localized.alertMessageComingSoon()
-        case .unknown: return R.string.localized.alertMessageUnknown()
-        case .notificationsNotAuthorized: return R.string.localized.alertMessageNotificationsNotAuthorized()
-        case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
-        case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
-        case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
-        case .photosPermissionNotAuthorized: return R.string.localized.alertPhotosPermissionNotGrantedMessage()
-        case .cameraPermissionNotAuthorized: return R.string.localized.alertCameraPermissionNotGrantedMessage()
-        case .cameraNotAvailable: return R.string.localized.alertBodyCameraNotAvailable()
-        case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
-        case .notSynced: return R.string.localized.alertNotSyncedMessage()
-        case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage()
-        case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
-        case .canNotSendEmailToBeVision: return R.string.localized.alertMessageCouldNotSendEmailToBeVision()
-        case .canNotSendEmailWeeklyChoices: return R.string.localized.alertMessageCouldNotSendEmailWeeklyChoices()
-        case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
-        case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
-        case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
-        case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
-        case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
-        case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
-        case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
-        case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
-        case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
+        case .dbError: return AppTextService.get(AppTextKey.generic_alert_database_error_body)
+        case .noNetworkConnection: return AppTextService.get(AppTextKey.generic_alert_no_network_file_title)
+        case .noNetworkConnectionFile: return AppTextService.get(AppTextKey.generic_alert_no_network_file_body)
+        case .unknown: return AppTextService.get(AppTextKey.generic_alert_unknown_error_title)
+        case .photosPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body_photo_not_granted)
+        case .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_camera_not_granted_body)
+        case .cameraNotAvailable: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_body)
+        case .calendarNotSynced: return AppTextService.get(AppTextKey.coach_prepare_calendar_not_sync_section_header_body)
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_edit_settings_body_change_notifications)
         default: return nil
         }
     }
 
     var buttonTitleCancel: String? {
         switch self {
-        case .notificationsNotAuthorized,
-             .settingsLoccationService,
-             .settingsCalendars,
-             .imagePicker,
-             .changePermissions,
-             .changeNotifications,
-             .toBeVisionActionSheet,
-             .prepareEditStrategy,
+        case .changeNotifications,
              .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.generic_view_button_cancel)
         default: return nil
         }
     }
 
     var buttonTitleDefault: String? {
         switch self {
-        case .notificationsNotAuthorized,
-             .settingsLoccationService,
-             .settingsCalendars,
-             .changePermissions,
-             .changeNotifications: return R.string.localized.alertButtonTitleOpenSettings()
+        case .changeNotifications: return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_notifications_alert_edit_settings_title_open_settings)
         case .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
-        case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
-        case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
-        default: return R.string.localized.alertButtonTitleOk()
+             .cameraPermissionNotAuthorized: return AppTextService.get(AppTextKey.my_qot_my_tbv_alert_camera_not_available_button_settings)
+        default: return AppTextService.get(AppTextKey.generic_view_button_done)
         }
     }
 
     var buttonTitleDestructive: String? {
         switch self {
-        case .changePermissions,
-             .settingsCalendars,
-             .photosPermissionNotAuthorized,
+        case .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .changeNotifications: return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
-        case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
-        case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
+             .changeNotifications: return AppTextService.get(AppTextKey.generic_view_button_cancel)
         default: return nil
         }
     }
 
     var actionStyle: [UIAlertActionStyle] {
         switch self {
-        case .notificationsNotAuthorized,
-             .settingsLoccationService: return [.cancel]
-        case .imagePicker,
-             .toBeVisionActionSheet: return [.cancel]
-        case .prepareEditStrategy: return [.default, .destructive, .cancel]
-        case .changePermissions,
-             .settingsCalendars,
-             .cameraPermissionNotAuthorized,
+        case .cameraPermissionNotAuthorized,
              .photosPermissionNotAuthorized,
              .changeNotifications: return [.destructive, .default]
         default: return [.default]
@@ -178,24 +94,7 @@ enum AlertType {
     }
 
     var alertStyle: UIAlertControllerStyle {
-        switch self {
-        case .imagePicker,
-             .prepareEditStrategy,
-             .toBeVisionActionSheet: return .actionSheet
-        default: return .alert
-        }
-    }
-
-    static func makeCustom(title: String?, message: String?) -> AlertType? {
-        if let title = title, let message = message {
-            return .custom(title: title, message: message)
-        } else if let title = title {
-            return .title(title)
-        } else if let message = message {
-            return .message(message)
-        } else {
-            return nil
-        }
+        return .alert
     }
 }
 
@@ -278,27 +177,27 @@ extension UIViewController {
             switch networkError.type {
             case .unauthenticated: showAlert(type: .loginFailed)
             case .noNetworkConnection: showAlert(type: .noNetworkConnection)
-            case .cancelled: showAlert(messaggeType: "cancelled")
+            case .cancelled: showAlert(messageType: "cancelled")
             case .failedToParseData(let data, let error):
-                showAlert(messaggeType: String(format: "data: %@\nError: %@",
+                showAlert(messageType: String(format: "data: %@\nError: %@",
                                                data.base64EncodedString(),
                                                error.localizedDescription))
-            case .notFound: showAlert(messaggeType: "notFound")
+            case .notFound: showAlert(messageType: "notFound")
             case .unknown(let error, let statusCode):
-                showAlert(messaggeType: String(format: "error: %@\nStatusCode: %d",
+                showAlert(messageType: String(format: "error: %@\nStatusCode: %d",
                                                error?.localizedDescription ?? "", statusCode ?? 0))
-            case .badRequest: showAlert(messaggeType: "Bad Request")
+            case .badRequest: showAlert(messageType: "Bad Request")
             case .unknownError: showAlert(type: .unknown)
-            case .forbidden: showAlert(messaggeType: "Forbidden")
+            case .forbidden: showAlert(messageType: "Forbidden")
             }
         } else {
             showAlert(type: .unknown)
         }
     }
 
-    func showAlert(messaggeType: String) {
-        let message = R.string.localized.alertMessageUnknownType(messaggeType)
-        let title = R.string.localized.alertTitleCustom()
+    func showAlert(messageType: String) {
+        let title = AppTextService.get(AppTextKey.generic_alert_custom_error_title)
+        let message = AppTextService.get(AppTextKey.generic_alert_unknown_error_body).replacingOccurrences(of: "%@", with: messageType)
         showAlert(type: .custom(title: title, message: message))
     }
 }

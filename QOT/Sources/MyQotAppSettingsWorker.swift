@@ -27,7 +27,7 @@ final class MyQotAppSettingsWorker {
 extension MyQotAppSettingsWorker {
 
     var appSettingsText: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotProfileAppSettings)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_section_app_settings_title)
     }
 
     var calendarAuthorizationStatus: EKAuthorizationStatus {

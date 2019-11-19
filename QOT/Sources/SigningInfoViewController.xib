@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +10,7 @@
             <connections>
                 <outlet property="bodyLabel" destination="vSM-mr-lrB" id="QPr-8U-RhC"/>
                 <outlet property="loginButton" destination="7Zc-MD-3Ih" id="16c-7p-FLa"/>
-                <outlet property="startButton" destination="pEJ-dl-5zv" id="B8z-cN-2Nt"/>
+                <outlet property="registerButton" destination="pEJ-dl-5zv" id="B8z-cN-2Nt"/>
                 <outlet property="titleLabel" destination="sYp-yY-lbk" id="7lw-Gp-xXg"/>
                 <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
                 <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
@@ -26,11 +22,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unA-EJ-O6O" userLabel="Spacer View">
-                    <rect key="frame" x="0.0" y="656.33333333333337" width="375" height="121.66666666666663"/>
+                    <rect key="frame" x="0.0" y="690" width="375" height="122"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-i8-2Ke">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.33333333333337"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1024:2218" id="GqP-UU-Uxj"/>
@@ -76,13 +72,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
-                    <rect key="frame" x="24" y="636" width="281.33333333333331" height="20.333333333333371"/>
+                    <rect key="frame" x="24" y="669.5" width="281.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-mr-lrB">
-                    <rect key="frame" x="24" y="674.33333333333337" width="327" height="20.333333333333371"/>
+                    <rect key="frame" x="24" y="708" width="327" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>

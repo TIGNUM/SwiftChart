@@ -47,7 +47,7 @@ final class MySprintDetailsInteractor {
 
     /// Pauses the sprint
     private lazy var yesPauseButton: UIBarButtonItem = {
-        return RoundedButton(title: worker.buttonYesPause, target: self, action: #selector(pauseSprint)).barButton
+        return RoundedButton(title: worker.buttonContinue, target: self, action: #selector(pauseSprint)).barButton
     }()
 
     /// Shows continue paused sprint alert

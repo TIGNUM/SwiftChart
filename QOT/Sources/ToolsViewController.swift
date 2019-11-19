@@ -62,6 +62,8 @@ private extension ToolsViewController {
         tableView.registerDequeueable(ToolsTableViewCell.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.tableFooterView = UIView()
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 60
     }
 }
 
@@ -89,7 +91,6 @@ extension ToolsViewController: ToolsViewControllerInterface {
 
     func setupView() {
         setupTableView()
-        setCustomBackButton()
     }
 
     func setup(for toolSection: ToolModel) {
@@ -111,13 +112,9 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: "")
+            return ToolsTableHeaderView.init(title: toolModel?.headerTitle?.uppercased() ?? "", subtitle: nil)
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

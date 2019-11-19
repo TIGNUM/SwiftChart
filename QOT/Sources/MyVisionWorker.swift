@@ -30,16 +30,16 @@ final class MyVisionWorker {
         }
     }
 
-    lazy var nullStateSubtitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateSubtitle)
-    lazy var nullStateTitle = ScreenTitleService.main.localizedString(for: .MyVisionNullStateTitle)
-    lazy var updateAlertTitle = R.string.localized.myQOTToBeVisionUpdateAlertTitle()
-    lazy var updateAlertMessage = R.string.localized.myQOTToBeVisionUpdateAlertMessage()
-    lazy var updateAlertEditTitle = R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
-    lazy var updateAlertCreateTitle = R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
-    lazy var emptyTBVTextPlaceholder = ScreenTitleService.main.localizedString(for: .MyVisionVisionDescription)
-    lazy var emptyTBVTitlePlaceholder = ScreenTitleService.main.localizedString(for: .MyToBeVisionTitlePlaceholder)
-    private lazy var notRatedText = ScreenTitleService.main.localizedString(for: .MyVisionNotRatedText)
-    private lazy var syncingText = ScreenTitleService.main.localizedString(for: .MyVisionSyncingText)
+    lazy var nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_body)
+    lazy var nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_title)
+    lazy var updateAlertTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_title)
+    lazy var updateAlertMessage = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_body)
+    lazy var updateAlertEditTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_edit)
+    lazy var updateAlertCreateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_create)
+    lazy var emptyTBVTextPlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
+    lazy var emptyTBVTitlePlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_placeholder)
+    private lazy var notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_null_state_title)
+    private lazy var syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false

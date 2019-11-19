@@ -15,9 +15,6 @@ final class DTSprintReflectionInteractor: DTInteractor {
     var sprint: QDMSprint?
     weak var sprintRefelctionPresenter: DTSprintReflectionPresenter?
     private lazy var sprintReflectionWorker: DTSprintReflectionWorker? = DTSprintReflectionWorker()
-    private var notes01: String = ""
-    private var notes02: String = ""
-    private var notes03: String = ""
 
     override init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String) {
         super.init(presenter, questionGroup: questionGroup, introKey: introKey)

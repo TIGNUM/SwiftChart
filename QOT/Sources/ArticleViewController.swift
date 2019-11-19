@@ -15,6 +15,12 @@ protocol ArticleDelegate: class {
     func section() -> ContentSection
 }
 
+protocol ArticleItemViewControllerDelegate: class {
+    func didTapClose(in viewController: UIViewController)
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController)
+    func didTapLink(_ url: URL, in viewController: UIViewController)
+}
+
 var colorMode = ColorMode.dark
 var textScale = TextScale.scaleNot
 var colorModeIsActive = false
@@ -34,20 +40,6 @@ enum ColorMode {
         }
     }
 
-    var audioBackground: UIColor {
-        switch self {
-        case .dark: return .sand
-        case .darkNot: return .carbon
-        }
-    }
-
-    var audioText: UIColor {
-        switch self {
-        case .dark: return UIColor.carbon.withAlphaComponent(0.6)
-        case .darkNot: return UIColor.sand.withAlphaComponent(0.6)
-        }
-    }
-
     var fade: UIColor {
         switch self {
         case .dark: return UIColor.carbon.withAlphaComponent(0.1)
@@ -59,13 +51,6 @@ enum ColorMode {
         switch self {
         case .dark: return .accent
         case .darkNot: return .accent
-        }
-    }
-
-    var statusBarStyle: UIStatusBarStyle {
-        switch self {
-        case .dark: return .lightContent
-        case .darkNot: return .default
         }
     }
 
@@ -84,7 +69,6 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
-    private var topBarButtonItems: [UIBarButtonItem] = []
     private weak var readButtonCell: MarkAsReadTableViewCell?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var articleTopNavBar: ArticleTopNavBar!
@@ -135,8 +119,6 @@ private extension ArticleViewController {
     func setupTableView() {
         tableView.registerDequeueable(ContentItemTextTableViewCell.self)
         tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
-        tableView.registerDequeueable(ArticleRelatedCell.self)
-        tableView.registerDequeueable(LearnPDFCell.self)
         tableView.registerDequeueable(ErrorCell.self)
         tableView.registerDequeueable(ArticleTextHeaderTableViewCell.self)
         tableView.registerDequeueable(ArticleImageHeaderTableViewCell.self)
@@ -282,11 +264,10 @@ extension ArticleViewController: ArticleViewControllerInterface {
 // MARK: - Transition
 extension ArticleViewController {
     func transitionArticle(remoteID: Int) {
-        if let image = view.screenshot() {
-            let shot = UIImageView(image: image)
-            shot.tag = 871234
-            view.addSubview(shot)
-        }
+        let image = view.takeSnapshot()
+        let shot = UIImageView(image: image)
+        shot.tag = 871234
+        view.addSubview(shot)
 
         interactor.showRelatedArticle(remoteID: remoteID)
         reloadData(showNavigationBar: false)
@@ -315,22 +296,6 @@ extension ArticleViewController {
         return itemTextCell
     }
 
-    func mediaStreamCell(tableView: UITableView,
-                         indexPath: IndexPath,
-                         title: String,
-                         imageURL: URL?,
-                         placeholderImage: UIImage? = R.image.preloading(),
-                         attributedString: NSAttributedString,
-                         canStream: Bool) -> ImageSubtitleTableViewCell {
-        let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(imageURL: imageURL,
-                            placeholderImage: placeholderImage,
-                            description: attributedString,
-                            canStream: canStream)
-        imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-        return imageCell
-    }
-
     func imageTableViewCell(tableView: UITableView,
                             indexPath: IndexPath,
                             attributeString: NSAttributedString,
@@ -343,22 +308,9 @@ extension ArticleViewController {
         return imageCell
     }
 
-    func PDFTableViewCell(tableView: UITableView,
-                          indexPath: IndexPath,
-                          attributedString: NSAttributedString,
-                          timeToReadSeconds: Int) -> LearnPDFCell {
-        let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
-        cell.backgroundColor = .clear
-        cell.configure(titleText: attributedString,
-                       timeToReadSeconds: timeToReadSeconds,
-                       titleColor: .white,
-                       timeColor: .gray)
-        return cell
-    }
-
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: Article.Item) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
+        cell.configure(text: AppTextService.get(AppTextKey.generic_content_error_title_invalid_content), item: item)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
         return cell
@@ -495,7 +447,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(header: R.string.localized.learnArticleItemNextUp(),
+            cell.configure(header: AppTextService.get(AppTextKey.know_strategy_list_strategy_section_next_up_title),
                            title: title,
                            durationString: description,
                            icon: R.image.ic_seen_of())

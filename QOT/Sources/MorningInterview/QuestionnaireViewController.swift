@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum QuestionnairePresentationType {
     case selection
@@ -96,7 +97,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
     static var hasArrowsAnimated: Bool = false
-    var chosenValue: String?
     @IBOutlet weak var questionToTop: NSLayoutConstraint!
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
@@ -159,17 +159,12 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         progressView.backgroundColor = UIColor.clear
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         trackPage()
         if showAnimated == false {
             animationShow()
         }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        animateToIndex()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -190,7 +185,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         animationHide()
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
             self.animationShow()
-            self.animateToIndex()
         }
     }
 
@@ -213,12 +207,18 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-            ThemeText.dailyBriefTitle.apply(R.string.localized.tbvCustomizeTarget(), to: customizeTargetTitle)
-            ThemeText.tbvCustomizeBody.apply(R.string.localized.tbvCustomizeBody(), to: labelCustomizeView)
+            ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
+            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-        default:
-            break
+            titleContainerHeight.constant = 500
+            questionToTableView.constant = 60
+        case .dailyCheckin:
+            titleContainerHeight.constant = 0
+            questionToTableView.constant = 140
+        case .vision:
+           titleContainerHeight.constant = 0
+           questionToTableView.constant = 140
         }
 
     }
@@ -263,7 +263,6 @@ extension QuestionnaireViewController {
         tableView.isHidden = true
         tableView.reloadData()
         progressView.alpha = 0.0
-        indexLabel.alpha = 0.0
         showAnimated = false
     }
 
@@ -326,8 +325,8 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            ThemeText.tbvCustomizeBody.apply(R.string.localized.dailyBriefCustomizeSleepIntro(), to: labelCustomizeView)
-            attributedQuestion = ThemeText.tbvBody.attributedString(R.string.localized.dailyBriefCustomizeSleepQuestion())
+            labelCustomizeView.text = AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body)
+            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
                 attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)
@@ -337,7 +336,7 @@ extension QuestionnaireViewController {
         case .vision:
             if let question = questionText {
                 let combined = NSMutableAttributedString()
-                combined.append(ThemeText.tbvQuestionLight.attributedString(R.string.localized.tbvHowWouldYou()))
+                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
@@ -345,23 +344,22 @@ extension QuestionnaireViewController {
             }
         }
         questionLabel.attributedText = attributedQuestion
-        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-        self.questionLabel.alpha = 1
-        self.progressView.alpha = 1
-        self.setupImages()
-        self.questionLabel.isHidden = false
-        self.tableView.isHidden = false
-        self.questionLabel.attributedText = attributedQuestion
-        self.tableView.reloadData()
-    }
+        UIView.animate(withDuration: Animation.duration_02,
+                       delay: Animation.duration_02,
+                       options: [.curveEaseInOut],
+                       animations: {
+                        self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                        self.questionLabel.alpha = 1
+                        self.progressView.alpha = 1
+        }, completion: { [weak self] finished in
+            self?.setupImages()
+            self?.questionLabel.alpha = 1
+            self?.questionLabel.isHidden = false
+            self?.tableView.isHidden = false
+            self?.questionLabel.attributedText = attributedQuestion
+            self?.tableView.reloadData()
+        })
 
-    func animationShowIndex() {
-        UIView.animate(withDuration: Animation.duration_1) {
-            self.indexLabel.alpha = 1.0
-        }
-    }
-
-    func animateToIndex() {
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
             self.animateToIndex(index: self.currentIndex, isTouch: false)
             self.answerDelegate?.isPresented(for: self.questionID(), from: self)
@@ -406,8 +404,8 @@ extension QuestionnaireViewController {
         let attrString = NSMutableAttributedString(string: title,
                                                     attributes: [.font: UIFont.sfProDisplayThin(ofSize: 34)])
         if questionkey == .amount {
-            let maxHourUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffixMax()
-            let hoursUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffix()
+            let maxHourUnit = AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more)
+            let hoursUnit = AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours)
             attrString.append(NSMutableAttributedString(string: isLast ? maxHourUnit : hoursUnit,
                                                         attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
         }
@@ -448,10 +446,9 @@ extension QuestionnaireViewController {
             }
         } else {
             indexLabel.text = String(items - index)
-            var subtitles = [R.string.localized.tbvRateNever(), "", "", "", R.string.localized.tbvRateSometimes(), "", "", "", "", R.string.localized.tbvRateAlways()]
+            var subtitles = [AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
-        animationShowIndex()
 
         if isTouch == true {
             switch index {
@@ -655,7 +652,7 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             if saveShouldShow {
-                return [roundedBarButtonItem(title: R.string.localized.mySprintDetailsNotesButtonSave(),
+                return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_button_save),
                                              buttonWidth: .Done,
                                              action: #selector(didTapSave),
                                              backgroundColor: .clear,

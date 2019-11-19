@@ -17,15 +17,23 @@ final class MyQotSensorsInteractor {
     private let presenter: MyQotSensorsPresenterInterface
     private let router: MyQotSensorsRouterInterface
 
+    private var localizedSensorsConnected: String {
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_connect)
+    }
+
+    private var localizedSensorsDisconnected: String {
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_disconnect)
+    }
+
+    private var localizedSensorsNoData: String {
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_no_data)
+    }
+
     // MARK: - Init
     init(worker: MyQotSensorsWorker, presenter: MyQotSensorsPresenterInterface, router: MyQotSensorsRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-    }
-
-    var requestTracker: MyQotSensorsModel {
-        return MyQotSensorsModel(sensor: .requestTracker)
     }
 }
 
@@ -61,27 +69,24 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
     }
 
     func updateHealthKitStatus() {
-        var status: String = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-        var buttonEnabled = false
+        var status: String = localizedSensorsDisconnected
         switch worker.getHealthKitAuthStatus() {
         case .notDetermined:
-            status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            buttonEnabled = true
+            status = localizedSensorsDisconnected
             self.presenter.setHealthKit(title: self.worker.healthKitSensor.sensor.title,
                                         status: status,
                                         showNoDataInfo: false,
-                                        buttonEnabled: buttonEnabled)
+                                        buttonEnabled: true)
         default:
-            status = R.string.localized.sidebarSensorsMenuSensorsConnected()
+            status = localizedSensorsConnected
             HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
-                buttonEnabled = !hasData
-                status = hasData ? R.string.localized.sidebarSensorsMenuSensorsConnected() :
-                    R.string.localized.sidebarSensorsMenuSensorsNoData()
+                guard let strongSelf = self else { return }
+                status = hasData ? strongSelf.localizedSensorsConnected : strongSelf.localizedSensorsNoData
                 DispatchQueue.main.async {
-                    self?.presenter.setHealthKit(title: self?.worker.healthKitSensor.sensor.title ?? "",
+                    strongSelf.presenter.setHealthKit(title: strongSelf.worker.healthKitSensor.sensor.title,
                                                  status: status,
                                                  showNoDataInfo: !hasData,
-                                                 buttonEnabled: buttonEnabled)
+                                                 buttonEnabled: !hasData)
                 }
             }
         }
@@ -110,13 +115,11 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
 private extension MyQotSensorsInteractor {
     func updateOuraStatus() {
         worker.getOuraRingAuthStatus { [weak self] (authorized) in
-            var status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            if authorized == true {
-                status = R.string.localized.sidebarSensorsMenuSensorsConnected()
-            }
-            self?.presenter.setOuraRing(title: self?.worker.ouraSensor.sensor.title ?? "",
+            guard let strongSelf = self else { return }
+            let status = authorized ? strongSelf.localizedSensorsConnected : strongSelf.localizedSensorsDisconnected
+            strongSelf.presenter.setOuraRing(title: strongSelf.worker.ouraSensor.sensor.title,
                                         status: status,
-                                        labelStatus: self?.worker.ouraSensor.sensor.labelStatus ?? "")
+                                        labelStatus: strongSelf.worker.ouraSensor.sensor.labelStatus)
         }
     }
 }

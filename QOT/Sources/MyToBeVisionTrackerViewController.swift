@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyToBeVisionTrackerViewController: BaseViewController, ScreenZLevel3 {
 
@@ -40,7 +41,6 @@ extension MyToBeVisionTrackerViewController: TBVRateHistoryViewControllerInterfa
         tableView.registerDequeueable(TBVDataGraphTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphSubHeadingTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphAnswersTableViewCell.self)
-        tableView.registerDequeueable(TBVDataGraphHeaderView.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.dataSource = self
@@ -96,8 +96,10 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         switch TBVGraph.Section.allCases[section] {
         case .header:
-            let headerView: TBVDataGraphHeaderView = tableView.dequeueHeaderFooter()
-            headerView.configure(title: interactor.title)
+            let headerView = R.nib.qotBaseHeaderView.firstView(owner: self)
+            let title = interactor.title
+            headerView?.configure(title: title, subtitle: nil)
+            ThemeText.tbvTrackerHeader.apply(title.uppercased(), to: headerView?.titleLabel)
             return headerView
         case .sentence:
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()

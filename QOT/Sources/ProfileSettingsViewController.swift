@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ActionSheetPicker_3_0
 import SVProgressHUD
 import qot_dal
 
@@ -20,13 +19,10 @@ protocol SettingsViewControllerDelegate: class {
 final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    @IBOutlet private weak var headerTitle: UILabel!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
     private var selectedCell: SettingsTableViewCell?
-    private var pickerItems: UserMeasurement?
-    private var pickerViewHeight: NSLayoutConstraint?
-    private var pickerInitialSelection = [Index]()
-    private var pickerIndexPath = IndexPath(item: 0, section: 0)
     var interactor: ProfileSettingsInteractorInterface?
     var launchOptions: [LaunchOption: String?]?
 
@@ -35,6 +31,8 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
             keyboardInputView.shouldAllowSave = newValue
         }
     }
+
+    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_placeholder_date_picker)
 
     private lazy var yearPickerItems: [String] = {
         var items = [String]()
@@ -46,7 +44,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
 
         items.reverse()
-        items.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
+        items.insert(localizedYear, at: 0)
         return items
     }()
 
@@ -85,7 +83,9 @@ private extension ProfileSettingsViewController {
     func setupView() {
         tableView.tableFooterView = UIView()
         registerCells()
-        headerTitle.text = interactor?.editAccountTitle
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        baseHeaderView?.configure(title: interactor?.editAccountTitle, subtitle: nil)
         view.backgroundColor = .carbon
         keyboardInputView.delegate = self
     }
@@ -126,24 +126,6 @@ extension ProfileSettingsViewController {
         yearPicker.selectRow(row, inComponent: 0, animated: true)
         cell.textField.inputView = yearPicker
         cell.textField.becomeFirstResponder()
-    }
-
-    func updateUserHeightWeight() {
-        guard let userMeasurement = pickerItems, var interactor = self.interactor else { return }
-        switch interactor.row(at: pickerIndexPath) {
-        case .multipleStringPicker(_, _, _, let settingsType):
-            if settingsType == .height {
-                interactor.profile?.height = userMeasurement.selectedValue
-                interactor.profile?.heightUnit = userMeasurement.selectedUnit
-                reloadData()
-            } else if settingsType == .weight {
-                interactor.profile?.weight = userMeasurement.selectedValue
-                interactor.profile?.weightUnit = userMeasurement.selectedUnit
-                reloadData()
-            }
-        default:
-            return
-        }
     }
 }
 
@@ -186,18 +168,6 @@ extension ProfileSettingsViewController {
         guard let interactor = self.interactor else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         switch interactor.row(at: indexPath) {
-        case .label(_, _, let settingsType):
-            switch settingsType {
-            case .logout:
-                let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-                let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { (_) in
-                    ExtensionsDataManager.didUserLogIn(false)
-                    UIApplication.shared.shortcutItems?.removeAll()
-                    NotificationHandler.postNotification(withName: .logoutNotification)
-                }
-                QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
-            default: return
-            }
         case .datePicker(let title, let selectedYear, _):
             showDatePicker(title: title, selectedYear: selectedYear, indexPath: indexPath)
         default:
@@ -296,7 +266,7 @@ extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataS
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         let selectedValue = yearPickerItems[row]
-        if selectedValue != R.string.localized.yearPickerTitleSelect() {
+        if selectedValue != localizedYear {
             selectedCell?.textField.text = selectedValue
             let selectedDate = DateFormatter.yyyyMMdd.date(from: selectedValue+"-01-02")
             interactor?.profile?.dateOfBirth = DateFormatter.yyyyMMdd.string(from: selectedDate ?? Date())

@@ -13,7 +13,6 @@ final class MyPrepsPresenter {
     // MARK: - Properties
 
     private weak var viewController: MyPrepsViewControllerInterface?
-    private var myPrepsModel: MyPrepsModel?
 
     // MARK: - Init
 

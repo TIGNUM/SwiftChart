@@ -12,12 +12,11 @@ import qot_dal
 final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
-    @IBOutlet private weak var accountSettingsHeaderLabel: UILabel!
-    @IBOutlet private weak var contactHeaderLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var emailHeaderLabel: UILabel!
     @IBOutlet private weak var companyHeaderLabel: UILabel!
-    @IBOutlet private weak var genderHeaderLabel: UILabel!
     @IBOutlet private weak var dobHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotTitleLabel: UILabel!
@@ -25,10 +24,9 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
     @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
     @IBOutlet private weak var userDobLabel: UILabel!
-    @IBOutlet private weak var headerTitle: UILabel!
-    @IBOutlet private weak var headerLine: UIView!
-    @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var editButton: UIButton!
+
+    @IBOutlet private weak var subHeaderView: UIView!
+    @IBOutlet private weak var editButton: RoundedButton!
 
     var interactor: MyQotAccountSettingsInteractor?
 
@@ -36,6 +34,8 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
     }
 
@@ -78,31 +78,29 @@ final class MyQotAccountSettingsViewController: BaseViewController, ScreenZLevel
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
         ThemeView.level3.apply(view)
-        ThemeText.sectionHeader.apply(headerTitle.text, to: headerTitle)
-        ThemeView.headerLine.apply(headerLine)
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_profile_section_account_settings_title), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeView.level3.apply(headerView)
-        headerView.addHeader(with: .level3)
-        editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
+        subHeaderView.addHeader(with: .level3)
+        ThemeButton.editButton.apply(editButton)
         setContentForView()
     }
 
     func showLogoutAlert() {
-        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-        let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { [weak self] (_) in
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
+        let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_log_out_button_logout)) { [weak self] (_) in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
             self?.dismiss(animated: false, completion: nil)
             self?.interactor?.logout()
         }
-        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_log_out_body_logout), bottomItems: [cancel, logout])
     }
 }
 
 private extension MyQotAccountSettingsViewController {
     func setContentForView() {
-        ThemeText.myQOTSectionHeader.apply(interactor?.accountSettingsText, to: accountSettingsHeaderLabel)
-        ThemeText.accountHeader.apply(interactor?.contactText, to: contactHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.emailText, to: emailHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.dateOfBirthText, to: dobHeaderLabel)
         ThemeText.accountHeader.apply(interactor?.companyText, to: companyHeaderLabel)

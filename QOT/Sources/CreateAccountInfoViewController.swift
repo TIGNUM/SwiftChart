@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol CreateAccountInfoViewControllerDelegate: class {
     func didTapBack(_ controller: CreateAccountInfoViewController)
@@ -21,7 +22,7 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel1 {
 
     lazy var buttonCreate: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(didTapCreate))
-        ThemableButton.createAccountInfo.apply(button, title: R.string.localized.onboardingCreateInfoButtonCreateAccount())
+        ThemableButton.createAccountInfo.apply(button, title: AppTextService.get(AppTextKey.onboarding_sign_up_create_account_section_footer_button_create_account))
         return button.barButton
     }()
 
@@ -30,7 +31,7 @@ class CreateAccountInfoViewController: BaseViewController, ScreenZLevel1 {
 
         // Do any additional setup after loading the view.
         ThemeView.onboarding.apply(view)
-        ThemeText.createAccountMessage.apply(R.string.localized.onboardingCreateInfoTextDescription(), to: textLabel)
+        ThemeText.createAccountMessage.apply(AppTextService.get(AppTextKey.onboarding_sign_up_create_account_section_header_body_description), to: textLabel)
     }
 
     override func viewDidAppear(_ animated: Bool) {

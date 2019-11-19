@@ -40,12 +40,12 @@ final class DTSprintViewController: DTViewController {
                        stringValue: sprintInteractor?.getSelectedSprintTitle(),
                        valueType: .CONTENT,
                        action: .PRESS)
-        let cancelButtonItem = roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+        let cancelButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
                                                     buttonWidth: .Cancel,
                                                     action: #selector(didPressDimissInfoView),
                                                     backgroundColor: .carbonDark,
                                                     borderColor: .accent40)
-        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleContinue(),
+        let continueButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_sprints_alert_button_continue),
                                                       buttonWidth: .Continue,
                                                       action: #selector(didTapStartSprint),
                                                       backgroundColor: .carbonDark,

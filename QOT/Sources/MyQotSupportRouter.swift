@@ -29,10 +29,10 @@ extension MyQotSupportRouter: MyQotSupportRouterInterface {
         case .usingQOT: presentUsingQOT()
         case .faq: presentFAQ()
         case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
-                                               subject: "ID: Support", id: item)
+                                               subject: "ID: Support")
         case .contactSupportNovartis: break
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
-                                                  subject: "ID: Feature", id: item)
+                                                  subject: "ID: Feature")
         }
     }
 
@@ -56,15 +56,9 @@ private extension MyQotSupportRouter {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
     }
 
-    func presentTutorial() {
-        let configurator = TutorialConfigurator.make()
-        let controller = TutorialViewController(configure: configurator, from: .settings)
-        viewController?.pushToStart(childViewController: controller)
-    }
-
-    func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
+    func presentMailComposer(recipients: [String], subject: String) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.generic_alert_no_email_body)))
             return
         }
         let composer = MFMailComposeViewController()

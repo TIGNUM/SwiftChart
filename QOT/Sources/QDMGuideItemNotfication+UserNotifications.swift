@@ -1,5 +1,5 @@
 //
-//  QDMGuideItemNotfication+UserNotifications.swift
+//  QDMGuideItemNotification+UserNotifications.swift
 //  QOT
 //
 //  Created by Sanggeon Park on 22.08.19.
@@ -11,7 +11,7 @@ import UserNotifications
 
 import qot_dal
 
-extension QDMGuideItemNotfication {
+extension QDMGuideItemNotification {
 
     static func notificationIdentifier(with type: String?, date: Date?, link: String?) -> String {
         let triggerDate = date
@@ -39,7 +39,7 @@ extension QDMGuideItemNotfication {
     }
 
     var notificationIdentifier: String {
-        return QDMGuideItemNotfication.notificationIdentifier(with: type, date: localNotificationDate, link: link)
+        return QDMGuideItemNotification.notificationIdentifier(with: type, date: localNotificationDate, link: link)
     }
 
     var notificationRequest: UNNotificationRequest? {

@@ -43,11 +43,26 @@ extension ToolsWorker: ToolsWorkerInterface {
     }
 
     func toolsSections() -> ToolModel {
-        return ToolModel(headerTitle: ScreenTitleService.main.toolsHeaderTitle(),
-                         headerSubtitle: ScreenTitleService.main.toolsHeaderSubtitle(),
+        return ToolModel(headerTitle: AppTextService.get(AppTextKey.coach_tools_section_header_title),
+                         headerSubtitle: AppTextService.get(AppTextKey.coach_tools_section_header_subtitle),
                          toolItems: ToolSection.allCases.map {
                             return ToolModel.Item(toolSections: $0,
-                                                  title: ScreenTitleService.main.toolSectionTitles(for: $0),
+                                                  title: toolSectionTitles(for: $0),
                                                   subtitle: "Number of Tools") })
+    }
+
+    func toolSectionTitles(for toolItem: ToolSection) -> String {
+        switch toolItem {
+        case .mindset:
+            return AppTextService.get(AppTextKey.coach_tools_section_mindset_title)
+        case .nutrition:
+            return AppTextService.get(AppTextKey.coach_tools_section_nutrition_title)
+        case .movement:
+            return AppTextService.get(AppTextKey.coach_tools_section_movement_title)
+        case .recovery:
+            return AppTextService.get(AppTextKey.coach_tools_section_recovery_title)
+        case .habituation:
+            return AppTextService.get(AppTextKey.coach_tools_section_habituation_title)
+        }
     }
 }

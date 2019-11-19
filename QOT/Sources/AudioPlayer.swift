@@ -66,10 +66,6 @@ class AudioPlayer {
         return _isPlaying
     }
 
-    var isReset: Bool {
-        return _isReset
-    }
-
     var duration: Double {
         return _totalTime
     }

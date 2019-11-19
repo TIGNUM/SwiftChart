@@ -40,13 +40,6 @@ final class MyQotAboutUsWorker {
         return item.title(for: contentService)
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
-        guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
-            return ""
-        }
-        return item.subtitle(for: contentService)
-    }
-
     func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem,
                            _ completion: @escaping(QDMContentCollection?) -> Void) {
         item.contentCollection(for: contentService) { (collection) in
@@ -55,6 +48,6 @@ final class MyQotAboutUsWorker {
     }
 
     var aboutUsText: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotProfileAboutTignum)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_section_about_us_section_header_title)
     }
 }

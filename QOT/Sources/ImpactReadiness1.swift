@@ -12,8 +12,9 @@ import HealthKit
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var toBeVisionImage: UIImageView!
-    @IBOutlet weak var bucketTitle: UILabel!
     @IBOutlet weak var impactReadinessScore: UILabel!
     @IBOutlet weak var impactReadinessOutOf100Label: UILabel!
     @IBOutlet weak var content: UILabel!
@@ -40,7 +41,9 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
-        bucketTitle.isHidden = true
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView?.titleLabel.isHidden = true
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
@@ -66,12 +69,13 @@ final class ImpactReadiness1: BaseDailyBriefCell {
 
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         guard let model = viewModel else { return }
-        bucketTitle.isHidden = false
+        baseHeaderView?.titleLabel.isHidden = false
 
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
                                   model.domainModel?.dailyCheckInResult == nil)
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: bucketTitle)
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefSubtitle.apply(model.readinessIntro, to: content)
         let score: Int = model.readinessScore ?? 0
         if score == -1 {
@@ -82,7 +86,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder()) { (_) in /* */}
         self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
-        ThemeText.navigationBarHeader.apply(R.string.localized.dailyBriefTitle(), to: titleLabel)
+        ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
         actionLeft = tapLeft
@@ -98,11 +102,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         }
 
         if showDailyCheckInScreen {
-            impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
         } else {
             trackState = model.isExpanded
             impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
             impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()

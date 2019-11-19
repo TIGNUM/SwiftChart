@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol ChoiceViewControllerDelegate: class {
     func dismiss(_ viewController: UIViewController)
@@ -53,26 +54,7 @@ private extension ChoiceViewController {
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: .Footer))
         tableView.tableHeaderView = tableHeaderView
-        tableHeaderViewLabel.text = R.string.localized.choiceViewHeaderEditPrepare()
-    }
-
-    func navigationTitle(selected: Int) -> String {
-        let max = interactor?.maxSelectionCount ?? 0
-        return R.string.localized.prepareNavigationTitleAddRemoveStrategies("\(selected)", "\(max)")
-    }
-
-    func showMaxSelectionCountAlert() {
-        let alert = UIAlertController(
-            title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
-            message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),
-            preferredStyle: .alert)
-        alert.addAction(
-            UIAlertAction(
-                title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertButton(),
-                style: .default,
-                handler: nil)
-        )
-        present(alert, animated: true, completion: nil)
+        tableHeaderViewLabel.text = AppTextService.get(AppTextKey.coach_prepare_result_long_edit_strategies_section_header_title)
     }
 }
 
@@ -97,7 +79,7 @@ extension ChoiceViewController: UITableViewDelegate {
         if interactor?.isParentNode(atIndexPath: indexPath) == true {
             guard let node = interactor?.node(in: indexPath.section) else { return }
             interactor?.setIsOpen(!node.isOpen, in: indexPath.section)
-            tableView.reloadDataWithAnimation()
+            tableView.reloadData()
         } else if let readMoreId = interactor?.item(at: indexPath).contentId {
             delegate?.didTapRow(self, contentId: readMoreId)
         }
@@ -154,13 +136,12 @@ extension ChoiceViewController: CollapsableContentCellDelegate {
         guard var item = interactor?.item(at: indexPath) else { return }
         if item.selected == false && interactor?.choiceType == .CHOICE {
             guard interactor?.selectedCount ?? 0 < interactor?.maxSelectionCount ?? 0 else {
-                showMaxSelectionCountAlert()
                 return
             }
         }
         item.selected = !item.selected
         interactor?.replace(item, at: indexPath)
-        tableView.reloadDataWithAnimation()
+        tableView.reloadData()
     }
 }
 
@@ -169,7 +150,7 @@ extension ChoiceViewController: CollapsableCellDelegate {
     func collapsableCell(_ cell: CollapsableCell, didTapCollapseAt indexPath: IndexPath) {
         guard let isOpen = cell.isOpen else { return }
         interactor?.setIsOpen(!isOpen, in: indexPath.section)
-        tableView.reloadDataWithAnimation()
+        tableView.reloadData()
     }
 }
 

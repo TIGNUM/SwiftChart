@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class ImpactReadinessCell2: BaseDailyBriefCell {
 
@@ -96,7 +97,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             skeletonManager.hide()
         }
 
-        ThemeText.dailyBriefImpactReadinessRolling.apply(R.string.localized.dailyBriefImpactReadinessRollingData().uppercased(), to: rollingDataLabel)
+        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)

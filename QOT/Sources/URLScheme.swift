@@ -175,18 +175,6 @@ enum URLScheme: String {
         return ""
     }
 
-    var alternativeURLString: String! {
-        return ""
-    }
-
-    func queryParameter(url: URL) -> String? {
-        return url.queryStringParameter(param: queryName)
-    }
-
-    func pushNotificationID(url: URL) -> String? {
-        return url.queryStringParameter(param: "nid")
-    }
-
     func launchPathWithParameterValue(_ value: String) -> String {
         guard let urlSchemes = URLScheme.urlSchemes() else { return "qot://" }
         var urlString = "\(urlSchemes[0])://\(self.rawValue)"

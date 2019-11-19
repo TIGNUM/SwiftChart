@@ -24,67 +24,67 @@ final class MySprintsListWorker {
     // FIXME: Translate strings
     // MARK: Texts
     lazy var title: String = {
-        return R.string.localized.mySprintsTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_title_header)
     }()
 
     lazy var editingTitle: String = {
-        return R.string.localized.mySprintsEditTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_edit_title)
     }()
 
     lazy var sprintPlanHeader: String = {
-        return R.string.localized.mySprintsSprintPlan()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_section_sprint_plan_title_sprint_plan)
     }()
 
     lazy var completeHeader: String = {
-       return R.string.localized.mySprintsComplete()
+       return AppTextService.get(AppTextKey.my_qot_my_sprints_section_completed_title_completed)
     }()
 
     lazy var cancelTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var removeTitle: String = {
-        return R.string.localized.buttonTitleRemove()
+        return AppTextService.get(AppTextKey.generic_view_button_delete)
     }()
 
     lazy var continueTitle: String = {
-        return R.string.localized.alertButtonTitleContinue()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_button_continue)
     }()
 
     lazy var saveTitle: String = {
-        return R.string.localized.alertButtonTitleSave()
+        return AppTextService.get(AppTextKey.coach_prepare_calendar_not_sync_section_footer_button_save)
     }()
 
     lazy var removeItemsAlertTitle: String = {
-        return R.string.localized.mySprintsAlertRemoveTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_delete_title)
     }()
 
     lazy var removeItemsAlertMessage: String = {
-        return R.string.localized.mySprintsAlertRemoveMessage()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_alert_delete_body)
     }()
 
     lazy var emptyContentAlertTitle: String = {
-        return R.string.localized.mySprintsAlertEmptyTitle()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_title)
     }()
 
     lazy var emptyContentAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: R.string.localized.mySprintsAlertEmptyMessage())
+        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_body))
     }()
 
     lazy var statusActive: String = {
-        return R.string.localized.mySprintsStatusActive()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_section_item_label_active)
     }()
 
     lazy var statusUpcoming: String = {
-        return R.string.localized.mySprintsStatusUpcoming()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_section_item_label_upcoming)
     }()
 
     lazy var statusPaused: String = {
-        return R.string.localized.mySprintsStatusPaused()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_section_item_label_pause)
     }()
 
     lazy var statusCompleted: String = {
-        return R.string.localized.mySprintsStatusCompleted()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_section_item_label_completed)
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ sprints: [QDMSprint]) -> Void) {

@@ -9,17 +9,6 @@
 import UIKit
 import qot_dal
 
-// CHANGE ME : NEED TO USE ScreenTitleService
-enum LearnContentTitle: String {
-    case mindset = "PERFORMANCE MINDSET"
-    case nutrition = "PERFORMANCE NUTRITION"
-    case movement = "PERFORMANCE MOVEMENT"
-    case recovery = "PERFORMANCE RECOVERY"
-    case habituation = "PERFORMANCE HABITUATION"
-    case foundation = "PERFORMANCE FOUNDATION"
-    static let allTitles = [mindset, nutrition, movement, recovery, habituation, foundation]
-}
-
 final class StrategyListWorker {
 
     // MARK: - Properties
@@ -29,7 +18,7 @@ final class StrategyListWorker {
 
     func headerTitle() -> String {
         if isFoundation == true {
-            return LearnContentTitle.foundation.rawValue
+            return AppTextService.get(AppTextKey.know_section_strategies_title_foundation)
         }
         return selectedStrategy?.title ?? ""
     }

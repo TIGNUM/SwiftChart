@@ -29,7 +29,7 @@ extension UIViewController {
 extension UIViewController {
     ///TODO: Generelise button creation, enum with types.
     func doneButtonItem(_ action: Selector, borderColor: UIColor? = nil) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_button_done),
                                     buttonWidth: .Done,
                                     action: action,
                                     backgroundColor: .carbon,
@@ -37,7 +37,7 @@ extension UIViewController {
     }
 
     func cancelButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .clear,
@@ -45,7 +45,7 @@ extension UIViewController {
     }
 
     func continueButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.buttonTitleYesLeave(),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_button_continue),
                                     buttonWidth: .Continue,
                                     action: action,
                                     backgroundColor: .clear,
@@ -53,14 +53,14 @@ extension UIViewController {
     }
 
     func saveButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.alertButtonTitleSave(),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_button_save),
                                     buttonWidth: .Cancel,
                                     action: action,
                                     backgroundColor: .sand08)
     }
 
     func saveChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: R.string.localized.buttonTitleSaveChanges(),
+        return roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_plans_edit_button_delete),
                                     buttonWidth: .SaveChanges,
                                     action: action,
                                     borderColor: .accent40)

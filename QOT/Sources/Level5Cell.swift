@@ -11,8 +11,8 @@ import qot_dal
 
 final class Level5Cell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var introLabel: UILabel!
+    @IBOutlet var headerView: UIView!
+    private var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!
@@ -36,8 +36,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(introLabel)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(questionLabel)
         skeletonManager.addSubtitle(levelTitle)
         skeletonManager.addSubtitle(levelText)
@@ -77,8 +77,9 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func configure(with: Level5ViewModel?) {
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply(with?.title, to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: introLabel)
+        baseView?.configure(title: with?.title, subtitle: with?.intro)
+        ThemeText.dailyBriefTitle.apply(with?.title, to: baseView?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: baseView?.subtitleTextView)
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []

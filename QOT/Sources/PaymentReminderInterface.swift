@@ -20,8 +20,7 @@ protocol PaymentReminderPresenterInterface {
 
 protocol PaymentReminderInteractorInterface: Interactor {
     func didTapSwitchAccounts()
-    var showCloseButton: Bool { get }
-    var showSwitchAccountButton: Bool { get }
+    var isExpired: Bool { get }
 }
 
 protocol PaymentReminderRouterInterface {

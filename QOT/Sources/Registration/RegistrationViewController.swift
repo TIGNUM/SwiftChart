@@ -17,7 +17,6 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
 
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
-    private let alertButtonWidth: CGFloat = 140
     private var bottomItems = UINavigationItem()
 
     var interactor: RegistrationInteractorInterface?
@@ -59,19 +58,6 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
             return buttons
         }
         return interactor?.currentController?.bottomNavigationRightBarItems()
-    }
-}
-
-// MARK: - Private
-
-private extension RegistrationViewController {
-    func bottomButton(with title: String, selector: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: title,
-                                    image: nil,
-                                    buttonWidth: alertButtonWidth,
-                                    action: selector,
-                                    backgroundColor: .clear,
-                                    borderColor: .accent40)
     }
 }
 
@@ -131,13 +117,6 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
             pageIndicator.isHidden = true
         }
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
-    }
-
-    func showExistingAccountAlert(title: String, message: String) {
-        let infoAlertView = InfoAlertView()
-        infoAlertView.set(icon: R.image.ic_warning(), title: title, text: message)
-        infoAlertView.bottomInset = BottomNavigationContainer.height
-        infoAlertView.present(on: self.view)
     }
 
     func showAlert(message: String) {

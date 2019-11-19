@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 import AVFoundation
 import AVKit
 import qot_dal

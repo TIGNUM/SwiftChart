@@ -45,7 +45,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
         super.viewDidLoad()
         ThemeView.qotTools.apply(view)
         ThemeView.qotTools.apply(tableView)
-        setCustomBackButton()
         interactor.viewDidLoad()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didEndAudio(_:)),
@@ -57,7 +56,6 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
             backButton.isHidden = true
         }
         super.viewWillAppear(animated)
-        setCustomBackButton()
         setStatusBar(colorMode: .darkNot)
     }
 
@@ -81,6 +79,8 @@ private extension ToolsItemsViewController {
     func setupTableView() {
         tableView.registerDequeueable(ToolsCollectionsAudioTableViewCell.self)
         tableView.registerDequeueable(ToolsCollectionsVideoTableViewCell.self)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 90
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
     }
 }
@@ -101,7 +101,6 @@ private extension ToolsItemsViewController {
 extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
         setupTableView()
-        setCustomBackButton()
     }
 
     func reload() {
@@ -128,14 +127,10 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return ToolsTableHeaderView.instantiateFromNib(title: interactor.headerTitle,
-                                                           subtitle: interactor.headerSubtitle)
+            return ToolsTableHeaderView.init(title: interactor.headerTitle.uppercased(),
+                                             subtitle: interactor.headerSubtitle)
         default: return nil
         }
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 160
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

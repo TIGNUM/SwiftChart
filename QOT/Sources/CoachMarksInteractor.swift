@@ -15,7 +15,7 @@ final class CoachMarksInteractor {
     private lazy var worker = CoachMarksWorker()
     private let presenter: CoachMarksPresenterInterface
     private var contentCategory: QDMContentCategory?
-
+    var currentPage: Int = 0
     // MARK: - Init
     init(presenter: CoachMarksPresenterInterface) {
         self.presenter = presenter
@@ -51,6 +51,7 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
 // MARK: - Private  
 private extension CoachMarksInteractor {
     func updateView(_ page: Int) {
+        currentPage = page
         if let step = CoachMark.Step(rawValue: page) {
             let presentationModel = createPresentationModel(step, contentCategory)
             presenter.updateView(presentationModel)

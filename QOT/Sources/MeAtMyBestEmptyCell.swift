@@ -10,9 +10,10 @@ import UIKit
 
 final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var intro: UILabel!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var buttonText: AnimatedButton!
-    @IBOutlet private weak var title: UILabel!
     weak var delegate: DailyBriefViewControllerDelegate?
 
     @IBAction func presentTBV(_ sender: Any) {
@@ -22,16 +23,19 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        skeletonManager.addSubtitle(title)
-        skeletonManager.addSubtitle(intro)
         skeletonManager.addOtherView(buttonText)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
     }
 
     func configure(with: MeAtMyBestCellEmptyViewModel?) {
         guard let model = with else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: title)
-        ThemeText.sprintText.apply(model.intro, to: intro)
+        baseView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
+        baseView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseView?.titleLabel)
+        ThemeText.sprintText.apply(model.intro, to: baseView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
         buttonText.setTitle(model.buttonText ?? "none", for: .normal)
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }

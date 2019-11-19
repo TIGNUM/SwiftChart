@@ -23,8 +23,6 @@ final class AppCoordinator {
 
     private var isReadyToProcessURL = false
 
-    var checkListIDToPresent: String?
-    private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var onDismiss: (() -> Void)?
@@ -38,17 +36,11 @@ final class AppCoordinator {
         let manager = PermissionsManager(delegate: self)
         return manager
     }()
-    lazy var userLoggedIn: Bool = {
-        return SessionService.main.getCurrentSession() != nil
-    }()
 
-    private var reachability = QOTReachability()
     // MARK: - Life Cycle
 
-    init(windowManager: WindowManager,
-         remoteNotificationHandler: RemoteNotificationHandler,
+    init(remoteNotificationHandler: RemoteNotificationHandler,
          locationManager: LocationManager) {
-        self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
@@ -129,14 +121,6 @@ final class AppCoordinator {
         // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
-    private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: .error)
-        let message = "There was a problem initializing the app's data. Please restart the app and try again"
-        self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
-            exit(0)
-        })
-    }
-
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
         ExtensionsDataManager.didUserLogIn(true)
         ExtensionsDataManager().update(.toBeVision)
@@ -147,7 +131,11 @@ final class AppCoordinator {
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        self.windowManager.show(naviController, animated: true) {
+
+        self.setRootViewController(naviController,
+                                   transitionStyle: .transitionCrossDissolve,
+                                   duration: 0.7,
+                                   animated: true) {
             DispatchQueue.main.async {
                 // Show coach marks on first launch (of v3.0 app)
                 let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
@@ -159,6 +147,24 @@ final class AppCoordinator {
                 }
             }
         }
+    }
+
+    private func setRootViewController(_ viewController: UIViewController, transitionStyle: UIViewAnimationOptions, duration: TimeInterval, animated: Bool, completion: (() -> Void)?) {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window,
+            let rootViewController = window.rootViewController else {
+            assertionFailure("rootViewController should not be nil")
+            return
+        }
+        window.makeKeyAndVisible()
+        // FIXME: Setting the frame here is necessary to avoid an unintended animation in some situations.
+        // Not sure why this is happening. We should investigate.
+        viewController.view.frame = rootViewController.view.bounds
+        viewController.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: duration, options: transitionStyle, animations: {
+            window.rootViewController = viewController
+        }, completion: { _ in
+            completion?()
+        })
     }
 
     func isReadyToOpenURL() -> Bool {
@@ -197,19 +203,6 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
-
-    func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
-        let alert = UIViewController.alert(forType: type, handler: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handler?()
-        }, handlerDestructive: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handlerDestructive?()
-        })
-        windowManager.showAlert(alert, animated: true, completion: nil)
-        currentPresentedController = alert
-    }
-
     func showTrackChoice() {
         guard let controller = R.storyboard.trackSelection.trackSelectionViewController(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
@@ -226,10 +219,11 @@ extension AppCoordinator {
 
         let navigationController = UINavigationController(rootViewController: landingController)
         navigationController.navigationBar.isHidden = true
-        navigationController.navigationBar.applyDefaultStyle()
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.modalPresentationStyle = .overFullScreen
-        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
+        guard let window = UIApplication.shared.delegate?.window else { return }
+        window?.makeKeyAndVisible()
+        window?.rootViewController?.present(navigationController, animated: false, completion: nil)
     }
 
     func logout() {
@@ -252,21 +246,21 @@ extension AppCoordinator {
         let whatsHot = URLScheme.latestWhatsHotArticle
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleWhatsHot(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_wh_article),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
                                              userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleLibrary(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_tools),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
                                              userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleMeUniverse(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_review_my_data),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                              userInfo: ["link": myData.launchPathWithParameterValue("")]))

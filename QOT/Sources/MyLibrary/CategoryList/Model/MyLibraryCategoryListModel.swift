@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum MyLibraryCategoryType: String {
     case ALL
@@ -26,14 +27,14 @@ struct MyLibraryCategoryListModel {
     func infoText() -> String {
         var info: String
         if itemCount == 1 {
-            info = R.string.localized.myLibraryGroupItemCountSingular("\(itemCount)")
+            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_subtitle_item_title_group_singular), "\(itemCount)")
         } else {
-            info = R.string.localized.myLibraryGroupItemCountPlural("\(itemCount)")
+            info = String(format: AppTextService.get(AppTextKey.my_qot_my_library_subtitle_items_title_group_plural), "\(itemCount)")
         }
 
         if let date = lastUpdated {
             let stringDate = DateFormatter.ddMMM.string(from: date)
-            info += R.string.localized.myLibraryGroupLastUpdate(stringDate)
+            info += String(format: AppTextService.get(AppTextKey.my_qot_my_library_subtitle_last_updated_title_group_last_update), stringDate)
         }
 
         return info

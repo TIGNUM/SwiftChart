@@ -13,7 +13,7 @@ final class KnowingNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(KnowingNavigationController.classForCoder())
 }
 
-final class KnowingViewController: HomeViewController {
+final class KnowingViewController: BaseViewController {
 
     // MARK: - Properties
 
@@ -21,6 +21,12 @@ final class KnowingViewController: HomeViewController {
     var interactor: KnowingInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
+    lazy var collectionView: UICollectionView = {
+        return UICollectionView(layout: UICollectionViewFlowLayout(),
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: ComponentCollectionViewCell.self)
+    }()
 
     // MARK: - Life Cycle
 
@@ -28,7 +34,6 @@ final class KnowingViewController: HomeViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         ThemeView.level1.apply(self.view)
-
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -60,7 +65,18 @@ final class KnowingViewController: HomeViewController {
 
 // MARK: - Private
 
-private extension KnowingViewController {}
+private extension KnowingViewController {
+    func setupCollectionView() {
+        view.fill(subview: collectionView)
+        collectionView.delaysContentTouches = false
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 0
+            layout.minimumInteritemSpacing = 0
+            layout.sectionInset = .zero
+        }
+        collectionView.clipsToBounds = false
+    }
+}
 
 // MARK: - KnowingViewControllerInterface
 
@@ -70,6 +86,7 @@ extension KnowingViewController: KnowingViewControllerInterface {
     func setupView() {
         navigationController?.navigationBar.isHidden = true
         ThemeView.level1.apply(view)
+        setupCollectionView()
         collectionView.backgroundColor = .clear
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
@@ -85,12 +102,12 @@ extension KnowingViewController: KnowingViewControllerInterface {
     }
 }
 
-extension KnowingViewController {
-    override func numberOfSections(in collectionView: UICollectionView) -> Int {
+extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
         return Knowing.Section.allCases.count
     }
 
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         switch section {
         case Knowing.Section.header.rawValue:
             return 1
@@ -107,12 +124,12 @@ extension KnowingViewController {
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            let title = R.string.localized.knowTitle()
+            let title = AppTextService.get(AppTextKey.know_section_header_title)
             cell.configure(title: title, tapRight: { [weak self] in
                 self?.delegate?.moveToCell(item: 1)
             })
@@ -165,7 +182,7 @@ extension KnowingViewController {
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
@@ -182,7 +199,7 @@ extension KnowingViewController {
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
@@ -199,7 +216,7 @@ extension KnowingViewController {
         }
     }
 
-    override func collectionView(_ collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: 0, height: 0)
@@ -236,7 +253,7 @@ extension KnowingViewController {
         return UICollectionReusableView()
     }
 
-    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         indexPathDeselect = indexPath
         switch indexPath.section {
         case Knowing.Section.header.rawValue:

@@ -16,10 +16,14 @@ final class MyQotSiriShortcutsViewController: BaseViewController, ScreenZLevel3 
     var interactor: MyQotSiriShortcutsInteractorInterface?
     private var shortcutType: ShortcutType = .toBeVision
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TitleTableViewCell.self)
@@ -37,7 +41,8 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
         ThemeView.level3.apply(tableView)
         tableView.delegate = self
         tableView.dataSource = self
-        ThemeText.myQOTSectionHeader.apply(interactor?.siriShortcutsHeaderText, to: headerLabel)
+        baseHeaderView?.configure(title: interactor?.siriShortcutsHeaderText, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         tableView.reloadData()
     }
 }
@@ -69,7 +74,6 @@ extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewData
 // MARK: - INUIAddVoiceShortcutViewControllerDelegate
 
 extension MyQotSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
-
     @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
                                         didFinishWith voiceShortcut: INVoiceShortcut?,

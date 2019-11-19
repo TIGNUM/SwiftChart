@@ -36,18 +36,6 @@ class ComponentDetailViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         setupView()
     }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-//        scrollView.scrollIndicatorInsets = .init(top: componentContentView.bounds.height, left: 0, bottom: 0, right: 0)
-        if GlobalConstants.isEnabledTopSafeAreaInsetsFixOnCardDetailViewController {
-            if #available(iOS 11.0, *) {
-                self.additionalSafeAreaInsets = .init(top: max(-view.safeAreaInsets.top, 0), left: 0, bottom: 0, right: 0)
-            } else {
-                // Fallback on earlier versions
-            }
-        }
-    }
 }
 
 // MARK: - UIScrollViewDelegate
@@ -83,12 +71,6 @@ extension ComponentDetailViewController: UIGestureRecognizerDelegate {
 
 private extension ComponentDetailViewController {
     func setupView() {
-        if GlobalConstants.isEnabledDebugAnimatingViews {
-            scrollView.layer.borderWidth = 3
-            scrollView.layer.borderColor = UIColor.green.cgColor
-            scrollView.subviews.first!.layer.borderWidth = 3
-            scrollView.subviews.first!.layer.borderColor = UIColor.purple.cgColor
-        }
         scrollView.delegate = self
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
@@ -143,7 +125,7 @@ private extension ComponentDetailViewController {
         let currentLocation = gesture.location(in: nil)
         let progress = isScreenEdgePan ? (gesture.translation(in: targetAnimatedView).x / 100) : (currentLocation.y - startingPoint.y) / 100
         let targetShrinkScale: CGFloat = 0.86
-        let targetCornerRadius: CGFloat = GlobalConstants.cardCornerRadius
+        let targetCornerRadius: CGFloat = 16
 
         func createInteractiveDismissalAnimatorIfNeeded() -> UIViewPropertyAnimator {
             if let animator = dismissalAnimator {

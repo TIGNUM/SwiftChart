@@ -11,7 +11,6 @@ import UIKit
 struct MyQotProfileModel {
 
     struct TableViewPresentationData {
-        let headingKey: String
         let heading: String
         let subHeading: String
     }

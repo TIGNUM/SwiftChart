@@ -96,10 +96,6 @@ final class RegistrationInteractor {
 // MARK: - RegistrationInteractorInterface
 
 extension RegistrationInteractor: RegistrationInteractorInterface {
-    var presentedController: UIViewController {
-        return presentedControllers.last ?? UIViewController()
-    }
-
     func navigateToLogin(shouldSaveToBeVision: Bool) {
         navigateToLogin(with: registrationData.email, toBeVision: shouldSaveToBeVision)
     }
@@ -171,7 +167,7 @@ private extension RegistrationInteractor {
         // Save ToBeVision
         if var tbv = cachedTBV {
             if tbv.headline?.isEmpty != false {
-                tbv.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionDefaultTitle)
+                tbv.headline = AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title_headline)
             }
             worker.updateToBeVision(with: tbv)
         }

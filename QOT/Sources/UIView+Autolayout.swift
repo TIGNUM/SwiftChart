@@ -10,11 +10,10 @@ import Foundation
 
 extension UIView {
     func fill(subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
         if subview.superview != self {
             self.addSubview(subview)
         }
-
-        subview.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint(item: subview,
                            attribute: .centerX,
                            relatedBy: .equal,
@@ -61,29 +60,5 @@ extension UIView {
                                      rightAnchor.constraint(equalTo: view.rightAnchor, constant: right),
                                      topAnchor.constraint(equalTo: view.topAnchor, constant: top),
                                      bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: bottom)])
-    }
-
-    func center(to view: UIView, leading: CGFloat = 0, top: CGFloat = 0) {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([view.centerXAnchor.constraint(equalTo: centerXAnchor),
-                                     view.centerYAnchor.constraint(equalTo: centerYAnchor),
-                                     view.leadingAnchor.constraint(equalTo: leadingAnchor),
-                                     view.topAnchor.constraint(equalTo: topAnchor)])
-    }
-
-    func bottomNavigationItem(to view: UIView,
-                              width: CGFloat = .DecisionTree,
-                              widthOffset: CGFloat = 0,
-                              height: CGFloat = .Default,
-                              leading: CGFloat = 0,
-                              top: CGFloat = 0) {
-        translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([widthAnchor.constraint(equalToConstant: width),
-                                     heightAnchor.constraint(equalToConstant: height),
-                                     view.widthAnchor.constraint(equalTo: widthAnchor, constant: widthOffset),
-                                     view.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leading),
-                                     view.trailingAnchor.constraint(equalTo: trailingAnchor, constant: leading),
-                                     view.topAnchor.constraint(equalTo: topAnchor, constant: top),
-                                     view.bottomAnchor.constraint(equalTo: bottomAnchor, constant: top)])
     }
 }

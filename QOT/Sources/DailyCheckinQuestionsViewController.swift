@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLevel3 {
 
@@ -16,7 +17,6 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!
     @IBOutlet private weak var backButton: UIButton!
-    private var currentAnswer: Int?
 
     var isDoneButtonEnabled: Bool = false
     var interactor: DailyCheckinQuestionsInteractorInterface?
@@ -54,7 +54,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
         }
         var backgroundColor = UIColor.carbon.withAlphaComponent(0.5)
             backgroundColor = .carbon
-        return [roundedBarButtonItem(title: R.string.localized.questionnaireViewControllerDoneButton(),
+        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_footer_button_done),
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),
                                      backgroundColor: backgroundColor,

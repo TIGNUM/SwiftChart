@@ -26,7 +26,7 @@ final class TBVRateHistoryNullStateViewController: BaseViewController, ScreenZLe
 
     private lazy var tbvRateButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(doneAction))
-        ThemableButton.myTbvDataRate.apply(button, title: R.string.localized.rateViewControllerRateMyTBVButton())
+        ThemableButton.myTbvDataRate.apply(button, title: AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_button_rate))
         return button.barButton
     }()
 
@@ -63,10 +63,14 @@ private extension TBVRateHistoryNullStateViewController {
     }
 
     func setupEmptySate() {
-        ThemeText.tbvStatement.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderTitle).uppercased(), to: headingLabel)
-        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateHeaderDesc), to: headingDescriptionLabel)
-        ThemeText.tbvSectionHeader.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleTitle).uppercased(), to: titleLabel)
-        ThemeText.tbvBody.apply(ScreenTitleService.main.localizedString(for: .TbvDataEmptyStateTitleDesc), to: titleDescriptionLabel)
+        ThemeText.tbvStatement.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_header_header),
+            to: headingLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_header_body),
+            to: headingDescriptionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title),
+            to: titleLabel)
+        ThemeText.tbvBody.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_null_state_section_my_tbv_title_description),
+            to: titleDescriptionLabel)
     }
 }
 

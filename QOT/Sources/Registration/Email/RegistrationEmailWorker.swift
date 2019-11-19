@@ -13,27 +13,27 @@ final class RegistrationEmailWorker: BaseSigningWorker {
 
     // MARK: - Properties
     lazy var title: String = {
-        return titleService.localizedString(for: .OnboardingRegistrationEmailTitle)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_header_title)
     }()
 
     lazy var emailPlaceholder: String = {
-        return R.string.localized.onboardingRegistrationEmailPlaceholder()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_body_placeholder)
     }()
 
     lazy var nextButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationEmailButtonNext()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_footer_button_next)
     }()
 
     lazy var emailError: String = {
-        return R.string.localized.onboardingRegistrationEmailError()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_error_enter_email_text)
     }()
 
     lazy var unableToRegisterError: String = {
-        return R.string.localized.onboardingRegistrationEmailErrorUnableToRegister()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_error_body_unable_to_register_error)
     }()
 
     lazy var generalError: String = {
-        return R.string.localized.onboardingErrorGeneral()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_general_error_body)
     }()
 
 }

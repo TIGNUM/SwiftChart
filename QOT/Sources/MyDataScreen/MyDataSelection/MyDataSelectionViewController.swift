@@ -18,11 +18,9 @@ final class MyDataSelectionViewController: BaseViewController, ScreenZLevel3 {
     var interactor: MyDataSelectionInteractorInterface?
     var router: MyDataSelectionRouterInterface?
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
+    private var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataSelectionModel: MyDataSelectionModel?
-    private let skeletonManager = SkeletonManager()
     weak var delegate: MyDataSelectionViewControllerDelegate?
 
     // MARK: - Init
@@ -39,8 +37,7 @@ final class MyDataSelectionViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(subtitleLabel)
+        setupView()
         interactor?.viewDidLoad()
     }
 
@@ -94,12 +91,18 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
     }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return baseView
+    }
 }
 
 // MARK: - Private
 private extension MyDataSelectionViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyDataSelectionScreenTableViewCell.self)
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 150
         tableView.separatorInset = .zero
         tableView.separatorColor = .sand30
     }
@@ -116,9 +119,11 @@ extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface 
     func setup(for myDataSelectionSection: MyDataSelectionModel,
                myDataSelectionHeaderTitle: String,
                myDataSelectionHeaderSubtitle: String) {
-        skeletonManager.hide()
         myDataSelectionModel = myDataSelectionSection
-        ThemeText.myDataSectionHeaderTitle.apply(myDataSelectionHeaderTitle, to: titleLabel)
-        ThemeText.myDataSectionHeaderSubTitle.apply(myDataSelectionHeaderSubtitle, to: subtitleLabel)
+        if let headerView = R.nib.qotBaseHeaderView.firstView(owner: self) {
+            headerView.configure(title: myDataSelectionHeaderTitle, subtitle: myDataSelectionHeaderSubtitle)
+            baseView = headerView
+            ThemeView.level3.apply(headerView)
+        }
     }
 }

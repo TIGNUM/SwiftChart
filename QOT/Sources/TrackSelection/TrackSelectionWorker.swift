@@ -15,19 +15,19 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionTitle()
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_header_title)
     }()
 
     lazy var descriptionText: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionMessage()
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_header_body)
     }()
 
     lazy var fastTrackButton: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionButtonFastTrack()
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_fast_track)
     }()
 
     lazy var guidedTrackButton: String = {
-        return R.string.localized.onboardingRegistrationTrackSelectionButtonGuidedTrack()
+        return AppTextService.get(AppTextKey.onboarding_guided_track_section_footer_button_guided_track)
     }()
 
     // MARK: - Init
@@ -41,7 +41,7 @@ final class TrackSelectionWorker {
                 switch status {
                 case .authorized, .provisional: completion(nil)
                 case .denied: completion(.notificationOpenSettings)
-                case .notDetermined: completion(.notification)
+                case .notDetermined: completion(.notificationOnboarding)
                 }
             }
         }

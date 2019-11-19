@@ -23,26 +23,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
 
     var window: UIWindow?
-    private var unhandledNotifications = [UNNotification]()
     private var unhandledShortCuts = [UIApplicationShortcutItem]()
     lazy var locationManager = LocationManager()
 
-    lazy var windowManager: WindowManager = {
-        guard let window = self.window else {
-            fatalError("window shouldn't be nil")
-        }
-        let frame = UIScreen.main.bounds
-        let windowManager = WindowManager(
-            alertWindow: UIWindow(frame: frame),
-            priorityWindow: UIWindow(frame: frame),
-            overlayWindow: UIWindow(frame: frame),
-            normalWindow: window
-        )
-        return windowManager
-    }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(windowManager: windowManager,
-                              remoteNotificationHandler: remoteNotificationHandler,
+        return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler,
                               locationManager: locationManager)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
@@ -73,7 +58,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 return true
             }
             isRunning = true
-            ScreenTitleService.main.load()
             _ = UserNotificationsManager.main
             setupProgressHud()
             swizzleUIViewController()
@@ -211,11 +195,6 @@ private extension AppDelegate {
         if let appCenterID = Bundle.main.object(forInfoDictionaryKey: "APP_CENTER_ID") as? String {
             MSAppCenter.start(appCenterID, withServices: [MSAnalytics.self, MSCrashes.self])
         }
-    }
-
-    var appFilePath: String {
-        let url = URL.documentDirectory.deletingLastPathComponent()
-        return url.absoluteString.removeFilePrefix
     }
 
     func setupKingfisherCache() {

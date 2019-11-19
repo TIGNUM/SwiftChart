@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct MyQotSensorsModel {
     let sensor: Sensor
@@ -14,38 +15,27 @@ struct MyQotSensorsModel {
     enum Sensor {
         case oura
         case healthKit
-        case requestTracker
 
         var title: String {
             switch self {
             case .oura:
-                return R.string.localized.sidebarSensorsMenuOuraRing()
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_oura)
             case .healthKit:
-                return R.string.localized.sidebarSensorsMenuHealthKit()
-            case .requestTracker:
-                return R.string.localized.sidebarSensorsMenuRequestSensor().capitalized
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_label_health_app)
             }
         }
 
         var status: String {
             switch self {
-            case .oura:
-                return R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            case .healthKit:
-                return R.string.localized.sidebarSensorsMenuSensorsDisconnected()
-            case .requestTracker:
-                return ""
+            case .oura, .healthKit:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_disconnect)
             }
         }
 
         var labelStatus: String {
             switch self {
-            case .oura:
-                return R.string.localized.sidebarSensorsMenuSeonsorsNoData()
-            case .healthKit:
-                return R.string.localized.sidebarSensorsMenuSeonsorsNoData()
-            case .requestTracker:
-                return ""
+            case .oura, .healthKit:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_no_data)
             }
         }
     }

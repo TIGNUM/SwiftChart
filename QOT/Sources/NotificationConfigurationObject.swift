@@ -44,7 +44,7 @@ extension NotificationConfigurationObject {
 
     static func scheduleDailyNotificationsIfNeeded() {
         NotificationConfigurationObject.needsSchedule { (isNeeded) in
-            if isNeeded == true {
+            if isNeeded {
                 NotificationConfigurationObject.all().forEach {
                     UNUserNotificationCenter.current().add( $0.notificationRequest)
                 }

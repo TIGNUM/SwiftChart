@@ -146,7 +146,6 @@ class QOTAlertViewController: BaseViewController {
 
     // MARK: - Variables
     private var initialPanLocation: CGFloat = 0
-    private var lastPanLocation: CGFloat = 0
 
     var cancelHander: (() -> Void)?
     weak var delegate: QOTAlertViewControllerDelegate?

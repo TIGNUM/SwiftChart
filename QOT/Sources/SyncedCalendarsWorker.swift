@@ -11,18 +11,18 @@ import qot_dal
 
 final class SyncedCalendarsWorker {
     lazy var viewSubtitle: String = {
-        return ScreenTitleService.main.localizedString(for: .syncedCalendars)
+        return AppTextService.get(AppTextKey.coach_prepare_sync_calendar_section_header_title)
     }()
 
     lazy var viewTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .syncedCalendarsTitle)
+        return AppTextService.get(AppTextKey.coach_prepare_sync_calendar_section_header_body)
     }()
 
     lazy var skipButton: String = {
-        return R.string.localized.syncedCalendarsButtonSkip()
+        return AppTextService.get(AppTextKey.coach_prepare_sync_calendar_edit_button_skip_enable)
     }()
 
     lazy var saveButton: String = {
-        return R.string.localized.syncedCalendarsButtonSave()
+        return AppTextService.get(AppTextKey.coach_prepare_sync_calendar_edit_button_save)
     }()
 }

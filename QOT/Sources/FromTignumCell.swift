@@ -10,22 +10,31 @@ import UIKit
 
 final class FromTignumCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var fromTignumText: UILabel!
-    @IBOutlet weak var fromTignumTitle: UILabel!
+    private var detailsExpanded = false
+    @IBOutlet private weak var button: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
+        ThemeBorder.accent.apply(button)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(fromTignumText)
-        skeletonManager.addSubtitle(fromTignumTitle)
+        skeletonManager.addOtherView(button)
+    }
+
+    @IBAction func discoverButton(_ sender: Any) {
+        detailsExpanded.toggle()
     }
 
     func configure(with viewModel: FromTignumCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: fromTignumTitle)
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.subtitle)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
     }
 }

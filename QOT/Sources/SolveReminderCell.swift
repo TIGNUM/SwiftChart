@@ -10,18 +10,18 @@ import UIKit
 
 final class SolveReminderCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var twoDayAgo: UILabel!
+    @IBOutlet weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    var baseView: QOTBaseHeaderView?
     @IBOutlet private weak var question1: UILabel!
     @IBOutlet private weak var question2: UILabel!
     @IBOutlet private weak var question3: UILabel!
-    private var solveViewModels: [SolveReminderCellViewModel.SolveViewModel]? = []
     weak var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(twoDayAgo)
+        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(question1)
         skeletonManager.addSubtitle(question2)
         skeletonManager.addSubtitle(question3)
@@ -30,11 +30,13 @@ final class SolveReminderCell: BaseDailyBriefCell {
     func configure(with viewModel: SolveReminderCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: bucketTitle)
+        baseView?.configure(title: (model.bucketTitle ?? "").uppercased(), subtitle: model.twoDayAgo)
+        ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseView?.titleLabel)
+        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
+        ThemeText.sprintText.apply(model.twoDayAgo, to: baseView?.subtitleTextView)
         ThemeText.solveQuestions.apply(model.question1, to: question1)
         ThemeText.solveQuestions.apply(model.question2, to: question2)
         ThemeText.solveQuestions.apply(model.question3, to: question3)
-        ThemeText.sprintText.apply(model.twoDayAgo, to: twoDayAgo)
         ThemeView.level2.apply(contentView)
     }
 }

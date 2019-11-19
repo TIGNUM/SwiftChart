@@ -10,14 +10,6 @@ import UIKit
 import MessageUI
 
 final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
-
-    private enum CellType: Int, CaseIterable {
-        case header = 0
-        case sections
-        case selectAccount
-        case footer
-    }
-
     // MARK: - Properties
 
     @IBOutlet private weak var tableView: UITableView!
@@ -44,6 +36,8 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Private
 
     private func setupTableView() {
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 150
         tableView.registerDequeueable(PaymentTableViewCell.self)
         tableView.registerDequeueable(PaymentSwitchAccountTableViewCell.self)
         tableView.registerDequeueable(PaymentFooterView.self)
@@ -87,8 +81,14 @@ extension PaymentReminderViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return PaymentHeaderView.instantiateFromNib(title: paymentModel?.headerTitle,
-                                                    subtitle: paymentModel?.headerSubtitle)
+        if let headerView = R.nib.qotBaseHeaderView.firstView(owner: self) {
+            ThemeView.baseHeaderView(.light).apply(headerView)
+            headerView.configure(title: paymentModel?.headerTitle,
+                                  subtitle: paymentModel?.headerSubtitle,
+                                  darkMode: false)
+            return headerView
+        }
+        return nil
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -128,7 +128,7 @@ extension PaymentReminderViewController: PaymentSwitchAccountTableViewCellDelega
 
 extension PaymentReminderViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return interactor?.showCloseButton ?? true ? [dismissNavigationItem()] : nil
+        return interactor?.isExpired ?? true ? [dismissNavigationItem()] : nil
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

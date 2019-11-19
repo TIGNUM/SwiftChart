@@ -31,16 +31,13 @@ class BaseSigningWorker {
 
     let sessionService: SessionService
     let userService: qot_dal.UserService
-    let titleService: ScreenTitleService
 
     // MARK: - Init
 
     init(_ sessionService: SessionService = SessionService.main,
-         _ userService: qot_dal.UserService = qot_dal.UserService.main,
-         _ titleService: ScreenTitleService = qot_dal.ScreenTitleService.main) {
+         _ userService: qot_dal.UserService = qot_dal.UserService.main) {
         self.sessionService = sessionService
         self.userService = userService
-        self.titleService = titleService
     }
 }
 

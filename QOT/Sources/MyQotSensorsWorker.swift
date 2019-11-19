@@ -30,10 +30,6 @@ final class MyQotSensorsWorker {
         return MyQotSensorsModel(sensor: .healthKit)
     }
 
-    var requestTracker: MyQotSensorsModel {
-        return MyQotSensorsModel(sensor: .requestTracker)
-    }
-
     func headlineHealthKit(_ completion: @escaping(String?) -> Void) {
         // FIXME: find better way instead of using id.
         contentService.getContentItemById(107863) { (contentItem) in
@@ -63,11 +59,11 @@ final class MyQotSensorsWorker {
     }
 
     var headerTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotTrackerActivityTrackers)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_header_title)
     }
 
     var sensorTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyQotTrackerSensors)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_title_sensor)
     }
 }
 

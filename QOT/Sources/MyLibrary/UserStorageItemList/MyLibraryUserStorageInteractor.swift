@@ -134,8 +134,8 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return !(isEditing || items?.isEmpty != false)
     }
 
-    var contentType: MyLibraryUserStorageContentType {
-        return worker.contentType
+    var itemType: MyLibraryCategoryType {
+        return worker.item.type
     }
 
     func didTapEdit(isEditing: Bool) {
@@ -428,7 +428,7 @@ extension MyLibraryUserStorageInteractor {
         case .NONE:
             cellType = .DOWNLOAD
             cellStatus = .waiting
-            description = worker.tapToDownload
+            description = ""
         case .WAITING:
             cellType = .DOWNLOAD
             cellStatus = .waiting
