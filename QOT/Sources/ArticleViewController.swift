@@ -80,7 +80,7 @@ enum ColorMode {
 final class ArticleViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    var interactor: ArticleInteractorInterface?
+    var interactor: ArticleInteractorInterface!
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
@@ -95,10 +95,9 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
     private var didScrollToRead = false
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
         setColorMode()
         articleTopNavBar.isHidden = true
@@ -126,7 +125,7 @@ final class ArticleViewController: BaseViewController, ScreenZLevel3 {
         pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
         pageTrack.associatedValueType = .CONTENT_COLLECTION
-        pageTrack.associatedValueId = interactor?.remoteID
+        pageTrack.associatedValueId = interactor.remoteID
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
@@ -153,16 +152,16 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleContactSupportTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 50, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
+        tableView.estimatedSectionHeaderHeight = interactor.sectionHeaderHeight
         tableView.backgroundColor = .clear
     }
 
     func setupAudioItem() {
-        guard let audioItem = interactor?.audioItem else { return }
+        guard let audioItem = interactor.audioItem else { return }
         audioButton = AudioButton.instantiateFromNib()
-        audioButton.configure(categoryTitle: interactor?.categoryTitle ?? "",
-                              title: interactor?.title ?? "",
-                              audioURL: interactor?.audioURL,
+        audioButton.configure(categoryTitle: interactor.categoryTitle,
+                              title: interactor.title,
+                              audioURL: interactor.audioURL,
                               remoteID: audioItem.remoteID,
                               duration: audioItem.type.duration)
     }
@@ -190,7 +189,7 @@ extension ArticleViewController {
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if self.interactor?.audioItem != nil {
+        if self.interactor.audioItem != nil {
             setupAudioItem()
             return [UIBarButtonItem(customView: audioButton)]
         }
@@ -203,12 +202,12 @@ extension ArticleViewController {
 extension ArticleViewController: ArticleTopNavBarProtocol {
 
     func didTapBookmarkItem() {
-        trackUserEvent(.BOOKMARK, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
-        interactor?.toggleBookmark()
+        trackUserEvent(.BOOKMARK, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
+        interactor.toggleBookmark()
     }
 
     func didTapDarkModeItem() {
-        trackUserEvent(.COLOR_MODE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
+        trackUserEvent(.COLOR_MODE, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
@@ -216,14 +215,14 @@ extension ArticleViewController: ArticleTopNavBarProtocol {
     }
 
     func didTapTextScaleItem() {
-        trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
+        trackUserEvent(.FONT_SIZE, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
     }
 
     func didTapShareItem() {
-        trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
-        guard let share = interactor?.whatsHotShareable else { return }
+        trackUserEvent(.SHARE, value: interactor.remoteID, valueType: .CONTENT, action: .TAP)
+        let share = interactor.whatsHotShareable
         guard let title = share.message else { return }
         guard let shareLink = share.shareableLink, let url = URL(string: shareLink) else { return }
         let dispatchGroup = DispatchGroup()
@@ -257,7 +256,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 
     func reloadData() {
-        let navigationBarIsHidden = interactor?.alwaysHideTopBar ?? true
+        let navigationBarIsHidden = interactor.alwaysHideTopBar
         reloadData(showNavigationBar: !navigationBarIsHidden)
     }
 
@@ -293,7 +292,7 @@ extension ArticleViewController {
             view.addSubview(shot)
         }
 
-        interactor?.showRelatedArticle(remoteID: remoteID)
+        interactor.showRelatedArticle(remoteID: remoteID)
         reloadData(showNavigationBar: false)
     }
 
@@ -372,7 +371,7 @@ extension ArticleViewController {
 
     func relatedArticleCell(tableView: UITableView, indexPath: IndexPath) -> ArticleRelatedWhatsHotTableViewCell {
         let relatedArticleCell: ArticleRelatedWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
-        let relatedArticle = interactor?.relatedArticle(at: indexPath)
+        let relatedArticle = interactor.relatedArticle(at: indexPath)
         relatedArticleCell.configure(title: relatedArticle?.title,
                                      publishDate: relatedArticle?.publishDate,
                                      author: relatedArticle?.author,
@@ -389,8 +388,8 @@ extension ArticleViewController {
     }
 
     func sectionHasContent(_ section: Int) -> Bool {
-        let numRows = interactor?.itemCount(in: section) ?? 0
-        let title = interactor?.headerTitle(for: section) ?? ""
+        let numRows = interactor.itemCount(in: section)
+        let title = interactor.headerTitle(for: section) ?? ""
         return !title.isEmpty && numRows > 0
     }
 }
@@ -399,15 +398,15 @@ extension ArticleViewController {
 
 extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.sectionCount ?? 1
+        return interactor.sectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.itemCount(in: section) ?? 1
+        return interactor.itemCount(in: section)
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let item = interactor?.articleItem(at: indexPath) else { return }
+        guard let item = interactor.articleItem(at: indexPath) else { return }
         switch item.type {
         case .headerText: articleTopNavBar.title = nil
         default: break
@@ -415,7 +414,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let item = interactor?.articleItem(at: indexPath) else { return }
+        guard let item = interactor.articleItem(at: indexPath) else { return }
         switch item.type {
         case .headerText: articleTopNavBar.title = header?.title
         default: return
@@ -423,7 +422,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor?.articleItem(at: indexPath) else {
+        guard let item = interactor.articleItem(at: indexPath) else {
             return emptyCell(tableView: tableView, indexPath: indexPath)
         }
         switch item.type {
@@ -488,7 +487,9 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .button:
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(selected: true)
+            interactor.isRead { (isRead) in
+                cell.configure(selected: isRead)
+            }
             cell.delegate = self
             readButtonCell = cell
             return cell
@@ -507,7 +508,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .contactSupport:
             let cell: ArticleContactSupportTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(attributtedText: interactor?.contactSupportAttributtedString(),
+            cell.configure(attributtedText: interactor.contactSupportAttributtedString(),
                            textViewDelegate: self)
             return cell
         default:
@@ -516,7 +517,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        guard let item = interactor?.articleItem(at: indexPath) else {
+        guard let item = interactor.articleItem(at: indexPath) else {
             return UITableViewAutomaticDimension
         }
         switch item.type {
@@ -532,7 +533,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let item = interactor?.articleItem(at: indexPath) else { return }
+        guard let item = interactor.articleItem(at: indexPath) else { return }
         switch item.type {
         case .audio( let remoteId, _, _, _, _, _, _):
             if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(remoteId)) {
@@ -557,17 +558,17 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if !sectionHasContent(section) || interactor?.isSectionSupport() ?? false {
+        if !sectionHasContent(section) || interactor.isSectionSupport() {
             return nil
         }
 
-        guard let headerTitle = interactor?.headerTitle(for: section) else {
+        guard let headerTitle = interactor.headerTitle(for: section) else {
             return nil
         }
 
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
         headerView.backgroundColor = .clear
-        if interactor?.sectionNeedsLine ?? false {
+        if interactor.sectionNeedsLine {
             let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
             ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
@@ -579,11 +580,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (sectionHasContent(section) && !(interactor?.isSectionSupport() ?? false)) ? tableView.estimatedSectionHeaderHeight : 0
+        return (sectionHasContent(section) && !(interactor.isSectionSupport())) ? tableView.estimatedSectionHeaderHeight : 0
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let sectionCount = interactor?.sectionCount ?? 1
+        let sectionCount = interactor.sectionCount
         return section == sectionCount - 1 ? 80.0 : 0.0
     }
 }
@@ -592,7 +593,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 
 extension ArticleViewController: ClickableLabelDelegate {
     func openLink(withURL url: URL) {
-        interactor?.didTapLink(url)
+        interactor.didTapLink(url)
         trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
     }
 }
@@ -613,10 +614,7 @@ extension ArticleViewController: UIScrollViewDelegate {
 
 extension ArticleViewController {
     func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
-        guard let shouldHideNavBar = interactor?.shouldHideTopBar,
-            !shouldHideNavBar else {
-                return
-        }
+        guard !interactor.shouldHideTopBar else { return }
 
         let pixelBuffer: CGFloat = 50
         let scrollViewOffsetY = scrollView.contentOffset.y
@@ -668,8 +666,6 @@ extension ArticleViewController {
 // MARK: - Mark as Read
 extension ArticleViewController {
     func checkMarkAsReadButton(_ read: Bool) {
-        guard let interactor = interactor else { return }
-
         interactor.markArticleAsRead(read) { [weak self] in
             if let cell = self?.readButtonCell {
                 cell.configure(selected: read)
@@ -682,15 +678,15 @@ extension ArticleViewController {
 extension ArticleViewController: ArticleDelegate {
     func didTapMarkAsRead(_ read: Bool) {
         let state: QDMUserEventTracking.Name = read ? .MARK_AS_READ : .MARK_AS_UNREAD
-        trackUserEvent(state, value: interactor?.remoteID, stringValue: .CONTENT, action: .TAP)
-        interactor?.markArticleAsRead(read) { [weak self] in
+        trackUserEvent(state, value: interactor.remoteID, stringValue: .CONTENT, action: .TAP)
+        interactor.markArticleAsRead(read) { [weak self] in
             self?.checkMarkAsReadButton(read)
         }
-        didScrollToRead = read
+        didScrollToRead = true
     }
 
     func section() -> ContentSection {
-        return interactor?.section ?? .Unkown
+        return interactor.section
     }
 }
 
@@ -705,7 +701,7 @@ extension ArticleViewController {
 extension ArticleViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
         if URL.absoluteString.isEmail {
-            interactor?.openEmailComposer()
+            interactor.openEmailComposer()
             return false
         }
         return true
