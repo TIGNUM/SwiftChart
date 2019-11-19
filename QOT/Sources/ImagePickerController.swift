@@ -73,13 +73,13 @@ final class ImagePickerController {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.photo)
+                                            self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
         let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.camera)
-            self?.resetAlertViewAppearance()
+                                            self?.handleOption(.camera)
+                                            self?.resetAlertViewAppearance()
         }
         let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
                                          style: .destructive) { [weak self] (alertAction: UIAlertAction) in
@@ -101,7 +101,7 @@ final class ImagePickerController {
         }
         alertController.addAction(cancelAction)
         alertController.view.tintColor = .accent
-        self.viewController?.present(alertController, animated: true, completion: nil)
+        self.viewController?.present(alertController, animated: true)
     }
 
     // MARK: - private
