@@ -25,4 +25,5 @@ protocol DTSprintInteractorInterface: Interactor {
 
 protocol DTSprintRouterInterface {
     func openPermissionView(_ permissionType: AskPermission.Kind)
+    func presentMySprintsViewController()
 }

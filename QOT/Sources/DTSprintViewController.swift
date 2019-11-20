@@ -12,7 +12,7 @@ import qot_dal
 final class DTSprintViewController: DTViewController {
 
     // MARK: - Properties
-    var sprintInteractor: DTSprintInteractorInterface?
+    var sprintInteractor: DTSprintInteractorInterface!
 
     // MARK: - Init
     init(configure: Configurator<DTSprintViewController>) {
@@ -26,7 +26,8 @@ final class DTSprintViewController: DTViewController {
 
     @IBAction override func didTapNext() {
         if viewModel?.question.key == Sprint.QuestionKey.Last {
-            didTapClose()
+            guard let router = router as? DTSprintRouter else { return }
+            router.presentMySprintsViewController()
         } else {
             //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
             setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()
@@ -37,7 +38,7 @@ final class DTSprintViewController: DTViewController {
     // MARK: - DTViewControllerInterface
     override func presentInfoView(icon: UIImage?, title: String?, text: String?) {
         trackUserEvent(.OPEN,
-                       stringValue: sprintInteractor?.getSelectedSprintTitle(),
+                       stringValue: sprintInteractor.getSelectedSprintTitle(),
                        valueType: .CONTENT,
                        action: .PRESS)
         let cancelButtonItem = roundedBarButtonItem(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
@@ -58,9 +59,9 @@ final class DTSprintViewController: DTViewController {
         let selectionModel = DTSelectionModel(selectedAnswers: [answer], question: viewModel?.question)
         switch answer.keys.first {
         case Sprint.AnswerKey.StartTomorrow:
-            sprintInteractor?.startSprintTomorrow(selection: selectionModel)
+            sprintInteractor.startSprintTomorrow(selection: selectionModel)
         case Sprint.AnswerKey.AddToQueue:
-            sprintInteractor?.addSprintToQueue(selection: selectionModel)
+            sprintInteractor.addSprintToQueue(selection: selectionModel)
         default:
             return
         }
@@ -70,12 +71,12 @@ final class DTSprintViewController: DTViewController {
 // MARK: - Actions
 private extension DTSprintViewController {
     @objc func didTapStartSprint() {
-        sprintInteractor?.stopActiveSprintAndStartNewSprint()
+        sprintInteractor.stopActiveSprintAndStartNewSprint()
     }
 
     @objc func didPressDimissInfoView() {
         trackUserEvent(.CLOSE,
-                       stringValue: sprintInteractor?.getSelectedSprintTitle(),
+                       stringValue: sprintInteractor.getSelectedSprintTitle(),
                        valueType: .CONTENT,
                        action: .PRESS)
     }
