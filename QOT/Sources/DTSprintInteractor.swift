@@ -52,7 +52,7 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
     func isPresentedFromCoach() -> Bool {
         return sprintWorker?.isPresentedFromCoach ?? false
     }
-    
+
     func startSprintTomorrow(selection: DTSelectionModel) {
         lastQuestionSelection = selection
         sprintWorker?.isSprintInProgress { [weak self] (sprint, endDate) in
