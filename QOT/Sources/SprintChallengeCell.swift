@@ -11,7 +11,6 @@ import qot_dal
 
 final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITableViewDataSource {
 
-    weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var sprintTitle: UILabel!
     @IBOutlet private weak var sprintInfo: UILabel!
@@ -19,13 +18,16 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet private weak var sprintStepNumber: UILabel!
     @IBOutlet weak var outOf5Label: UILabel!
     @IBOutlet weak var gotItButton: AnimatedButton!
-    private var currentSprint: QDMSprint?
-    var relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel]()
-    var showMore = false
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
     @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
+
+    weak var delegate: DailyBriefViewControllerDelegate?
+    private var currentSprint: QDMSprint?
     private var observers: [NSKeyValueObservation] = []
+    var relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel]()
+    var showMore = false
+
     @IBAction func gotItTapped(_ sender: Any) {
         ThemeView.audioPlaying.apply(gotItButton)
         gotItButton.layer.borderWidth = 0

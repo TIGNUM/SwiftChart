@@ -805,6 +805,13 @@ extension DailyBriefViewController: QuestionnaireAnswer {
             question?.selectedAnswerIndex = (answers - 1) - answer
         })
     }
+
+    func showSprintCompletedAlert() {
+        let OK = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_done))
+        QOTAlert.show(title: AppTextService.get(AppTextKey.daily_brief_sprint_challenge_alert_title),
+                      message: AppTextService.get(AppTextKey.daily_brief_sprint_challenge_alert_body),
+                      bottomItems: [OK])
+    }
 }
 
 extension DailyBriefViewController: PopUpCopyrightViewControllerProtocol {
