@@ -16,14 +16,13 @@ final class DTSprintRouter: DTRouter {
         viewController?.present(controller, animated: true, completion: nil)
     }
 
-    func presentMySprintsViewController() {
+    func presentMySprintsViewController(_ isPresentedFromCoach: Bool) {
         guard let mySprintsController = R.storyboard.mySprints.mySprintsListViewController() else {
             return
         }
         let configurator = MySprintsListConfigurator.make()
         configurator(mySprintsController)
-        if let interactor = viewController?.interactor as? DTSprintInteractorInterface,
-                interactor.isPresentedFromCoach() {
+        if isPresentedFromCoach {
             viewController?.pushToStart(childViewController: mySprintsController)
         }
         viewController?.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)

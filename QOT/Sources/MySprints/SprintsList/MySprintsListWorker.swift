@@ -14,7 +14,7 @@ final class MySprintsListWorker {
     // MARK: - Properties
     private let service = UserService.main
     private var sprints = [QDMSprint]()
-    
+
     // MARK: - Init
 
     init() {

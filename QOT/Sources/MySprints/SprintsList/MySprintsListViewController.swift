@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
@@ -66,7 +67,8 @@ private extension MySprintsListViewController {
             return
         }
 
-        let button = RoundedButton(title: "Add a sprint", target: self, action: #selector(addSprint))
+        let button = RoundedButton(title: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_button_add_sprint),
+                                   target: self, action: #selector(addSprint))
         button.isEnabled = true
         bottomNavigationItems.rightBarButtonItems = [button.barButton]
 

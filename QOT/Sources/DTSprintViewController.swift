@@ -27,7 +27,7 @@ final class DTSprintViewController: DTViewController {
     @IBAction override func didTapNext() {
         if viewModel?.question.key == Sprint.QuestionKey.Last {
             guard let router = router as? DTSprintRouter else { return }
-            router.presentMySprintsViewController()
+            router.presentMySprintsViewController(sprintInteractor.isPresentedFromCoach())
         } else {
             //multi-select and OK buttons call the same 'setAnswerNeedsSelection' method, this always selects answer[0]
             setAnswerNeedsSelectionIfNoOtherAnswersAreSelectedAlready()

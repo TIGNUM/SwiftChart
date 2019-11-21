@@ -10,7 +10,7 @@ import Foundation
 import qot_dal
 
 struct DTPresentationModel {
-    let question: QDMQuestion? 
+    let question: QDMQuestion?
     let questionUpdate: String?
     let answerFilter: String?
     let userInputText: String?
