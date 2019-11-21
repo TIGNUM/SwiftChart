@@ -114,14 +114,14 @@ final class WeatherCell: BaseDailyBriefCell {
             ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
             ThemeText.weatherTitle.apply(weatherModel.title, to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
-            if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
+            if let imageUrl = weather.imageURL {
+                weatherImageView.setImage(url: imageUrl, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
+            } else if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
                 weatherImageView.image = image(for: weatherType,
                                                largeSize: true,
                                                isNight: isNight(currentDate: weather.date,
                                                                 sunriseDate: weatherModel.sunriseDate,
                                                                 sunsetDate: weatherModel.sunsetDate))
-            } else {
-                weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
             }
         }
         setupUIAccordingToLocationPermissions()
@@ -227,12 +227,12 @@ final class WeatherCell: BaseDailyBriefCell {
                                   and imageURL: URL?,
                                   and shortDescription: String?,
                                   isNow: Bool) {
-        if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
-            let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
-            hourlyView.set(image: hourlyImage, isNow: isNow)
+        if let url = imageURL {
+            hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
         } else {
-            if let url = imageURL {
-                hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
+            if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
+                let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
+                hourlyView.set(image: hourlyImage, isNow: isNow)
             } else if let fallbackDescription = shortDescription {
                 hourlyView.setFallback(text: fallbackDescription)
             }
