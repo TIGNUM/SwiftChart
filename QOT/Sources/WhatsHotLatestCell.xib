@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -27,7 +27,7 @@
             <rect key="frame" x="0.0" y="0.0" width="390" height="316"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jM-NN-SAe">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jM-NN-SAe">
                     <rect key="frame" x="24" y="226" width="346" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -39,14 +39,14 @@
                         <constraint firstAttribute="height" constant="80" id="hMa-4E-kwJ"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9c-fG-btF">
-                    <rect key="frame" x="24" y="253.5" width="31.5" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9c-fG-btF">
+                    <rect key="frame" x="24" y="253.5" width="39.5" height="14.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-wy-J8N">
-                    <rect key="frame" x="262" y="253.5" width="104" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30. Nov | 99 min read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-wy-J8N">
+                    <rect key="frame" x="241" y="253.5" width="125" height="14.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -76,6 +76,7 @@
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="Hqs-9D-hyo" secondAttribute="trailing" id="N32-rn-F2g"/>
                 <constraint firstItem="s9c-fG-btF" firstAttribute="top" secondItem="5jM-NN-SAe" secondAttribute="bottom" constant="8" id="Xz4-dW-6PL"/>
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="5jM-NN-SAe" secondAttribute="trailing" constant="20" id="Yjm-mo-3Hl"/>
+                <constraint firstItem="C7t-wy-J8N" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="s9c-fG-btF" secondAttribute="trailing" id="bSB-MS-0Fw"/>
                 <constraint firstItem="Hqs-9D-hyo" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" id="bmO-LW-kxz"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="top" secondItem="owJ-Y4-wnU" secondAttribute="bottom" constant="8" id="cPC-Yk-off"/>
                 <constraint firstAttribute="bottom" secondItem="C7t-wy-J8N" secondAttribute="bottom" constant="48" id="etK-Fd-Nib"/>

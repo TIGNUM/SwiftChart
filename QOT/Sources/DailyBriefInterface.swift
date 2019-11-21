@@ -14,12 +14,14 @@ protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
+    func showSprintCompletedAlert()
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
     func scrollToSection(at: Int)
+    func showSprintCompletedAlert()
 }
 
 protocol DailyBriefInteractorInterface: Interactor {

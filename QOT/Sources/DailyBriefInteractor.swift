@@ -393,6 +393,7 @@ extension DailyBriefInteractor {
 
     func didPressGotItSprint(sprint: QDMSprint) {
         worker.didPressGotItSprint(sprint: sprint)
+        presenter.showSprintCompletedAlert()
     }
 
     func startTimer(forCell: BaseDailyBriefCell, at indexPath: IndexPath) {
