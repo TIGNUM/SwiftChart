@@ -91,8 +91,7 @@ final class WeatherCell: BaseDailyBriefCell {
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
                 forecastModel.date != nil &&
-                (Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedAscending ||
-                Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedSame) {
+                isDateAfterNow(forecastModel.date!) {
                 relevantForecastModels.append(forecastModel)
             }
 
@@ -100,7 +99,10 @@ final class WeatherCell: BaseDailyBriefCell {
                 return
             }
             var temperature = ""
-            if let value = formatTemperature(value: weather.currentTempInCelcius, shortStyle: false) {
+            if let value = formatTemperature(value: weather.currentTempInCelcius?.rounded(), shortStyle: false),
+                isDateAfterNow(weather.date ?? Date()) {
+                temperature = value
+            } else if let value = formatTemperature(value: relevantForecastModels.first?.currentTempInCelcius, shortStyle: false) {
                 temperature = value
             }
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
@@ -114,14 +116,14 @@ final class WeatherCell: BaseDailyBriefCell {
             ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
             ThemeText.weatherTitle.apply(weatherModel.title, to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
-            if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
+            if let imageUrl = weather.imageURL {
+                weatherImageView.setImage(url: imageUrl, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
+            } else if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
                 weatherImageView.image = image(for: weatherType,
                                                largeSize: true,
                                                isNight: isNight(currentDate: weather.date,
                                                                 sunriseDate: weatherModel.sunriseDate,
                                                                 sunsetDate: weatherModel.sunsetDate))
-            } else {
-                weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
             }
         }
         setupUIAccordingToLocationPermissions()
@@ -129,6 +131,11 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     // MARK: - Private
+
+    private func isDateAfterNow(_ date: Date) -> Bool {
+        return (Calendar.current.compare(Date(), to: date, toGranularity: .hour) == .orderedAscending ||
+                Calendar.current.compare(Date(), to: date, toGranularity: .hour) == .orderedSame)
+    }
     private func startSkeleton() {
         if let baseView = self.baseView {
             for subview in baseView.subviews {
@@ -167,7 +174,7 @@ final class WeatherCell: BaseDailyBriefCell {
         for (index, forecastModel) in relevantForecastModels.enumerated() {
             guard let hourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView,
                 let date = forecastModel.date,
-                    let temperature = formatTemperature(value: forecastModel.tempLowInCelcius) else {
+                    let temperature = formatTemperature(value: forecastModel.currentTempInCelcius) else {
                     return
             }
             if index == 0 {
@@ -227,12 +234,12 @@ final class WeatherCell: BaseDailyBriefCell {
                                   and imageURL: URL?,
                                   and shortDescription: String?,
                                   isNow: Bool) {
-        if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
-            let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
-            hourlyView.set(image: hourlyImage, isNow: isNow)
+        if let url = imageURL {
+            hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
         } else {
-            if let url = imageURL {
-                hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
+            if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
+                let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
+                hourlyView.set(image: hourlyImage, isNow: isNow)
             } else if let fallbackDescription = shortDescription {
                 hourlyView.setFallback(text: fallbackDescription)
             }
