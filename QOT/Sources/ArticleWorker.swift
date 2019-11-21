@@ -426,7 +426,7 @@ final class ArticleWorker {
             return section != 1 ? nil : AppTextService.get(AppTextKey.know_strategy_list_strategy_section_related_content_title)
         }
     }
-    
+
     func toggleBookmark() -> Bool {
         var hasBookmark = (self.bookmark != nil)
         if hasBookmark {
