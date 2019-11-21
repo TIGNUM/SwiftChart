@@ -33,4 +33,10 @@ extension MySprintsListRouter: MySprintsListRouterInterface {
         configurator(sprintDetailsController)
         viewController?.present(sprintDetailsController, animated: true)
     }
+
+    func presentAddSprint() {
+        let configurator = DTSprintConfigurator.make(isPresentedFromCoach: false)
+        let controller = DTSprintViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
+    }
 }

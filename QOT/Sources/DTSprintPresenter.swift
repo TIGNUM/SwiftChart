@@ -16,7 +16,7 @@ final class DTSprintPresenter: DTPresenter {
     }
 
     override func dismissButtonIsHidden(questionKey: String) -> Bool {
-        return questionKey == Sprint.QuestionKey.Last
+        return false
     }
 
     override func hasTypingAnimation(answerType: AnswerType, answers: [DTViewModel.Answer]) -> Bool {

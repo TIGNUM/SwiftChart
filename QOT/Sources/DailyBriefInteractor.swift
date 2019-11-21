@@ -922,7 +922,6 @@ extension DailyBriefInteractor {
 
             return leadersWisdomList
         }
-
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: leadersWisdom.bucketText?.contentItems.first?.valueText ?? "",
                                                            subtitle: "\(leadersWisdom.bucketText?.contentItems.last?.valueText ?? "") \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
             description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
@@ -935,6 +934,7 @@ extension DailyBriefInteractor {
             remoteID: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.remoteID ?? 0,
             durationString: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.durationString ?? "",
             domainModel: leadersWisdom))
+
         return leadersWisdomList
     }
 

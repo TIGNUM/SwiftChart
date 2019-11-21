@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
-    var interactor: MySprintsListInteractorInterface?
+    var interactor: MySprintsListInteractorInterface!
     @IBOutlet private weak var editButton: RoundedButton!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
@@ -40,13 +41,12 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
         baseHeaderView?.addTo(superview: headerView)
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .sprintsActive)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showDefaultBottomButtons()
-        trackPage()
+        interactor.load()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -61,13 +61,19 @@ final class MySprintsListViewController: BaseViewController, ScreenZLevel2 {
 // MARK: - Private
 
 private extension MySprintsListViewController {
-    private func showDefaultBottomButtons() {
+    private func showDefaultBottomButtons(hasSprints: Bool = false) {
         // Do not reload if not displayed
         if self.viewIfLoaded?.window == nil {
             return
         }
+
+        let button = RoundedButton(title: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_button_add_sprint),
+                                   target: self, action: #selector(addSprint))
+        button.isEnabled = true
+        bottomNavigationItems.rightBarButtonItems = [button.barButton]
+
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
-        bottomNavigationItems.rightBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItems = hasSprints ? nil : [button.barButton]
         refreshBottomNavigationItems()
     }
 
@@ -98,6 +104,13 @@ private extension MySprintsListViewController {
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
 
+    @objc func addSprint() {
+        bottomNavigationItems.leftBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItem = nil
+        refreshBottomNavigationItems()
+        interactor.showAddSprint()
+    }
+
     private func setEditButton(enabled: Bool) {
         editButton.isEnabled = enabled
         let color = enabled ? UIColor.accent : UIColor.sand08
@@ -111,7 +124,7 @@ private extension MySprintsListViewController {
 
 private extension MySprintsListViewController {
     @IBAction func didTapEditButton() {
-        interactor?.didTapEdit()
+        interactor.didTapEdit()
     }
 }
 
@@ -122,8 +135,8 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
         ThemeView.sprintsActive.apply(view)
         ThemeView.level2.apply(tableView)
 
-        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
-        ThemeText.mySprintsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
+        baseHeaderView?.configure(title: interactor.title, subtitle: nil)
+        ThemeText.mySprintsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         ThemeButton.editButton.apply(editButton)
@@ -134,18 +147,18 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
     }
 
     func update() {
-        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        baseHeaderView?.configure(title: interactor.title, subtitle: nil)
 
-        let isEditing = interactor?.viewModel.isEditing ?? false
+        let isEditing = interactor.viewModel.isEditing
         tableView.setEditing(isEditing, animated: true)
-        editButton.isHidden = !(interactor?.viewModel.shouldShowEditButton ?? true)
-        setEditButton(enabled: interactor?.viewModel.canEdit ?? false)
+        editButton.isHidden = !(interactor.viewModel.shouldShowEditButton)
+        setEditButton(enabled: interactor.viewModel.canEdit)
 
-        updateInfoViewWithViewModel(interactor?.viewModel.infoViewModel)
-        if let bottomButtons = interactor?.viewModel.bottomButtons {
+        updateInfoViewWithViewModel(interactor.viewModel.infoViewModel)
+        if let bottomButtons = interactor.viewModel.bottomButtons {
             showBottomButtons(bottomButtons)
         } else {
-            showDefaultBottomButtons()
+            showDefaultBottomButtons(hasSprints: interactor.viewModel.infoViewModel == nil)
         }
     }
 
@@ -163,17 +176,17 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 extension MySprintsListViewController: UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.viewModel.displayData.count ?? 0
+        return interactor.viewModel.displayData.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard section < (interactor?.viewModel.displayData.count ?? 0) else { return 0 }
-        return interactor?.viewModel.displayData[section].items.count ?? 0
+        guard section < (interactor.viewModel.displayData.count) else { return 0 }
+        return interactor.viewModel.displayData[section].items.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let sprintCell: MySprintsListTableViewCell = tableView.dequeueCell(for: indexPath)
-        guard let item = interactor?.viewModel.item(at: indexPath) else {
+        guard let item = interactor.viewModel.item(at: indexPath) else {
             sprintCell.set(title: nil, status: nil, description: nil, progress: nil)
             return sprintCell
         }
@@ -189,16 +202,16 @@ extension MySprintsListViewController: UITableViewDelegate {
             tableView.deselectRow(at: selectedPath, animated: true)
         }
 
-        _ = interactor?.handleSelectedItem(at: indexPath)
+        _ = interactor.handleSelectedItem(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         guard tableView.isEditing else { return }
-        _ = interactor?.handleSelectedItem(at: indexPath)
+        _ = interactor.handleSelectedItem(at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let item = interactor?.viewModel.displayData[section] else { return nil }
+        let item = interactor.viewModel.displayData[section]
         return MySprintsListHeaderView.instantiateFromNib(title: item.title, isActive: item.isActive)
     }
 
@@ -206,11 +219,11 @@ extension MySprintsListViewController: UITableViewDelegate {
         if sourceIndexPath == destinationIndexPath {
             return
         }
-        interactor?.moveItem(at: sourceIndexPath, to: destinationIndexPath)
+        interactor.moveItem(at: sourceIndexPath, to: destinationIndexPath)
     }
 
     func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        guard tableView.isEditing, let item = interactor?.viewModel.item(at: indexPath) else { return false }
+        guard tableView.isEditing, let item = interactor.viewModel.item(at: indexPath) else { return false }
         return item.isReordable
     }
 
@@ -222,19 +235,19 @@ extension MySprintsListViewController: UITableViewDelegate {
             return sourceIndexPath
         }
         // Forbid moving cells in place of active sprints
-        if let item = interactor?.viewModel.item(at: proposedDestinationIndexPath) {
+        if let item = interactor.viewModel.item(at: proposedDestinationIndexPath) {
             return item.isReordable ? proposedDestinationIndexPath : sourceIndexPath
         }
         return proposedDestinationIndexPath
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        guard tableView.isEditing, let item = interactor?.viewModel.item(at: indexPath) else { return false }
+        guard tableView.isEditing, let item = interactor.viewModel.item(at: indexPath) else { return false }
         return item.isRemovable
     }
 
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        guard tableView.isEditing, let item = interactor?.viewModel.item(at: indexPath) else { return true }
+        guard tableView.isEditing, let item = interactor.viewModel.item(at: indexPath) else { return true }
         return item.isRemovable
     }
 }

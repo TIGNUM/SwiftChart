@@ -18,7 +18,6 @@ final class MySprintsListWorker {
     // MARK: - Init
 
     init() {
-
     }
 
     // FIXME: Translate strings

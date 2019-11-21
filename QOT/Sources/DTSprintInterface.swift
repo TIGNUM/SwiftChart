@@ -17,6 +17,7 @@ protocol DTSprintPresenterInterface {
 }
 
 protocol DTSprintInteractorInterface: Interactor {
+    func isPresentedFromCoach() -> Bool
     func startSprintTomorrow(selection: DTSelectionModel)
     func stopActiveSprintAndStartNewSprint()
     func addSprintToQueue(selection: DTSelectionModel)
@@ -25,4 +26,5 @@ protocol DTSprintInteractorInterface: Interactor {
 
 protocol DTSprintRouterInterface {
     func openPermissionView(_ permissionType: AskPermission.Kind)
+    func presentMySprintsViewController()
 }

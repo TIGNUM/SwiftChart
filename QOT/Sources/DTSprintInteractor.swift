@@ -26,6 +26,11 @@ final class DTSprintInteractor: DTInteractor {
         checkNotificationPermissions()
     }
 
+    init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String, isPresentedFromCoach: Bool) {
+        super.init(presenter, questionGroup: questionGroup, introKey: introKey)
+        sprintWorker?.isPresentedFromCoach = isPresentedFromCoach
+    }
+
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
         let firstSelectedAnswer = selectedAnswers.first
         if firstSelectedAnswer?.keys.contains(Sprint.AnswerKey.SelectionAnswer) == true {
@@ -44,6 +49,10 @@ final class DTSprintInteractor: DTInteractor {
 
 // MARK: - Sprint Handling
 extension DTSprintInteractor: DTSprintInteractorInterface {
+    func isPresentedFromCoach() -> Bool {
+        return sprintWorker?.isPresentedFromCoach ?? false
+    }
+    
     func startSprintTomorrow(selection: DTSelectionModel) {
         lastQuestionSelection = selection
         sprintWorker?.isSprintInProgress { [weak self] (sprint, endDate) in
