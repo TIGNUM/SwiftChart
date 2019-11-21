@@ -128,7 +128,7 @@ extension FormView {
         bottomStatusLine.backgroundColor = .cherryRed90
         errorLabel.attributedText = attributedString(textColor: .cherryRed90, string: message)
     }
-    
+
     func resetPlaceholderLabelIfNeeded() {
         if textField.hasText == false {
             UIView.animate(withDuration: Animation.duration_06) { [unowned self] in
