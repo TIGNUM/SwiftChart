@@ -17,6 +17,7 @@ protocol DTSprintPresenterInterface {
 }
 
 protocol DTSprintInteractorInterface: Interactor {
+    func isPresentedFromCoach() -> Bool
     func startSprintTomorrow(selection: DTSelectionModel)
     func stopActiveSprintAndStartNewSprint()
     func addSprintToQueue(selection: DTSelectionModel)

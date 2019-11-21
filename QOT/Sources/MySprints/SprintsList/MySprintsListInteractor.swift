@@ -125,6 +125,23 @@ extension MySprintsListInteractor: MySprintsListInteractorInterface {
             presenter.present()
         }
     }
+
+    @objc func load() {
+        items.removeAll()
+        worker.loadData { [weak self] (initiated, sprints) in
+            guard let strongSelf = self else { return }
+            if !initiated || sprints.isEmpty {
+                strongSelf.viewModel.infoViewModel = strongSelf.emptyDataAlert
+            } else {
+                strongSelf.viewModel.infoViewModel = nil
+                strongSelf.items.append(contentsOf: sprints)
+                strongSelf.handle(sprints: strongSelf.items)
+            }
+            strongSelf.isEditing = false
+            strongSelf.presenter.present()
+            strongSelf.presenter.presentData()
+        }
+    }
 }
 
 // MARK: - Private methods
@@ -139,22 +156,6 @@ extension MySprintsListInteractor {
         // Cannot edit if already editing OR there is no data which can be removed
         // (Reordering can only be done for upcoming items, which are also removable)
         return !(isEditing || viewModel.displayData.allSatisfy { $0.items.filter { $0.isRemovable }.isEmpty })
-    }
-
-    @objc private func load() {
-        items.removeAll()
-        worker.loadData { [weak self] (initiated, sprints) in
-            guard let strongSelf = self else { return }
-            if !initiated || sprints.isEmpty {
-                strongSelf.viewModel.infoViewModel = strongSelf.emptyDataAlert
-            } else {
-                strongSelf.items.append(contentsOf: sprints)
-                strongSelf.handle(sprints: strongSelf.items)
-            }
-            strongSelf.isEditing = false
-            strongSelf.presenter.present()
-            strongSelf.presenter.presentData()
-        }
     }
 
     private func handle(sprints: [QDMSprint]) {
@@ -316,6 +317,10 @@ extension MySprintsListInteractor {
         viewModel.infoViewModel = nil
         identifiersForCheck.removeAll()
         reorderedDisplayData.removeAll()
+    }
+
+    func showAddSprint() {
+        router.presentAddSprint()
     }
 }
 
