@@ -105,7 +105,7 @@ final class MyVisionWorker {
     }
 
     func lastUpdatedVision() -> String? {
-        guard let date = toBeVision?.date else { return nil }
+        guard let date = toBeVision?.date?.beginingOfDate() else { return nil }
         let days = DateComponentsFormatter.numberOfDays(date)
         return dateString(for: days)
     }
@@ -134,7 +134,7 @@ final class MyVisionWorker {
                     completion(strongSelf.notRatedText, true, true)
                     return
                 }
-                guard let date = report.days.first else {
+                guard let date = report.days.sorted().last?.beginingOfDate() else {
                     completion(strongSelf.syncingText, true, false)
                     return
                 }
