@@ -24,7 +24,6 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     var bookmark: QDMUserStorage?
     var download: QDMUserStorage?
     private var colorMode: ColorMode = .dark
-    private let reachability: QOTReachability = QOTReachability()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -181,7 +180,7 @@ extension AudioFullScreenViewController {
             return
         }
 
-        switch reachability.status {
+        switch QOTReachability().status {
         case .ethernetOrWiFi:
             continueDownload()
         case .wwan:
