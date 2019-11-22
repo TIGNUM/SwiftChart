@@ -97,7 +97,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
     static var hasArrowsAnimated: Bool = false
-    @IBOutlet weak var questionToTop: NSLayoutConstraint!
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
     private var questionHtml: NSAttributedString? = nil
@@ -123,8 +122,6 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     weak var answerDelegate: QuestionnaireAnswer?
     weak var dailyCheckinDelegate: DailyBriefViewControllerDelegate?
 
-    @IBOutlet weak var questionToTableView: NSLayoutConstraint!
-    @IBOutlet weak var titleContainerHeight: NSLayoutConstraint!
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
                                   dailyCheckinDelegate: DailyBriefViewControllerDelegate? = nil,
@@ -211,16 +208,8 @@ extension QuestionnaireViewController {
             ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
-            titleContainerHeight.constant = 500
-            questionToTableView.constant = 60
-        case .dailyCheckin:
-            titleContainerHeight.constant = 0
-            questionToTableView.constant = 140
-        case .vision:
-           titleContainerHeight.constant = 0
-           questionToTableView.constant = 140
+        default: break
         }
-
     }
 
     func animateArrows() {
