@@ -21,18 +21,22 @@ protocol MyPrepsInteractorInterface: Interactor {
     func preparations(completion: @escaping ((MyPrepsModel?) -> Void))
     func recoveries(completion: @escaping ((RecoveriesModel?) -> Void))
     func mindsetShifters(completion: @escaping ((MindsetShiftersModel?) -> Void))
-    func remove(segmentedControl: Int, at indexPath: IndexPath)
+
     func numberOfRowsPreparations(in section: Int) -> Int
     func numberOfRowsRecoveries(in section: Int) -> Int
     func numberOfRowsMindsetShifters(in section: Int) -> Int
+
     func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Items?
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Items?
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Items?
+
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController)
     func present3DRecovery(item: QDMRecovery3D, viewController: UIViewController)
-    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController)
+
     func fetchItemsAndUpdateView()
+    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
+    func remove(segmentedControl: Int, at indexPath: IndexPath)
 }
 
 protocol MyPrepsRouterInterface {

@@ -1101,7 +1101,6 @@
 		F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */; };
 		F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93422B27D7E00AB2E94 /* MyPreps.storyboard */; };
 		F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */; };
-		F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */; };
 		F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */; };
 		F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94122B7CD8100AB2E94 /* PaymentReminderConfigurator.swift */; };
 		F9A5C94422B7D02C00AB2E94 /* PaymentReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94322B7D02B00AB2E94 /* PaymentReminderInteractor.swift */; };
@@ -2291,7 +2290,6 @@
 		F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsWorker.swift; sourceTree = "<group>"; };
 		F9A5C93422B27D7E00AB2E94 /* MyPreps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPreps.storyboard; sourceTree = "<group>"; };
 		F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsTableViewCell.swift; sourceTree = "<group>"; };
-		F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPrepsTableViewCell.xib; sourceTree = "<group>"; };
 		F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coach.storyboard; sourceTree = "<group>"; };
 		F9A5C94122B7CD8100AB2E94 /* PaymentReminderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderConfigurator.swift; sourceTree = "<group>"; };
 		F9A5C94322B7D02B00AB2E94 /* PaymentReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderInteractor.swift; sourceTree = "<group>"; };
@@ -2569,8 +2567,6 @@
 				B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */,
 				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
 				B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */,
-				F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */,
-				F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */,
 				F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */,
 				F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */,
 				BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */,
@@ -4849,6 +4845,7 @@
 				F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */,
 				F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */,
 				F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */,
+				F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */,
 				F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */,
 				F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */,
 			);
@@ -5500,7 +5497,6 @@
 				B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
-				F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */,
 				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,

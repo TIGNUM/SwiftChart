@@ -112,7 +112,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
             indicatorView.isHidden = !editPressed
             segmentedControl.isHidden = !editPressed
             tableView.setEditing(!editPressed, animated: true)
-            tableView.reloadData()
+            //tableView.reloadData()
             editPressed = !editPressed
         }
     }
@@ -207,7 +207,6 @@ private extension MyPrepsViewController {
         ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body), to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
-        tableView.registerDequeueable(MyPrepsTableViewCell.self)
         setupSegementedControl()
     }
 
@@ -259,7 +258,8 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
     private func tableView(tableView: UITableView,
                            editingStyleForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCellEditingStyle {
-        guard let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row, section: indexPath.section)) as? MyPrepsTableViewCell,
+        guard let cell = tableView.cellForRow(at: IndexPath(row: indexPath.row,
+                                                            section: indexPath.section)) as? MyPrepsTableViewCell,
             cell.hasData else { return .none }
         return UITableViewCellEditingStyle.init(rawValue: 3)!
     }
@@ -273,10 +273,10 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             let item = interactor?.itemPrep(at: indexPath)
-            cell.configure(title: item?.title.uppercased(), subtitle: (item?.date ?? "") + " | " + (item?.eventType ?? ""))
+            let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
+            cell.configure(title: item?.title.uppercased(), subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor?.itemMind(at: indexPath)
-
             cell.configure(title: item?.title, subtitle: item?.date)
         case SegmentView.recovery.rawValue:
             let item = interactor?.itemRec(at: indexPath)
@@ -305,6 +305,38 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
             }
         }
         updateIndicator()
+    }
+
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        if sourceIndexPath == destinationIndexPath {
+            return
+        }
+    }
+
+    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView,
+                   targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath,
+                   toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
+//        // Forbid moving cells between sections
+//        if sourceIndexPath.section != proposedDestinationIndexPath.section {
+//            return sourceIndexPath
+//        }
+//        // Forbid moving cells in place of active sprints
+//        if let item = interactor.viewModel.item(at: proposedDestinationIndexPath) {
+//            return item.isReordable ? proposedDestinationIndexPath : sourceIndexPath
+//        }
+        return proposedDestinationIndexPath
+    }
+
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return true
     }
 }
 

@@ -10,18 +10,25 @@ import UIKit
 
 final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
-    // MARK: - Properties
+    private static let gradientIdentifier = "MyPrepsTableViewCell.gradient"
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var calendarIcon: UIImageView!
 
+    private var editingOverlay: UIView!
     var skeletonManager = SkeletonManager()
     var hasData = false
+
+    private lazy var reorderImage: UIImage? = {
+        return UIImage.qot_reorderControlImage()
+    }()
 
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
+        editingOverlay = UIView()
+        self.addSubview(editingOverlay)
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(subtitleLabel)
         skeletonManager.addOtherView(calendarIcon)
@@ -29,6 +36,23 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         setSelectedColor(.carbon, alphaComponent: 1)
         hasData = false
         selectionStyle = .none
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        editingOverlay.isHidden = !editing
+
+        if editing {
+            changeReorderControlImage()
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        editingOverlay.frame = self.bounds
+
+        removeGradient(from: editingOverlay)
+        addGradient(to: editingOverlay)
     }
 
     // MARK: Configure
@@ -39,5 +63,39 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.hide()
         ThemeText.myQOTPrepCellTitle.apply(titleText, to: titleLabel)
         ThemeText.datestamp.apply(subtitle, to: subtitleLabel)
+    }
+}
+
+// MARK: - Private methods
+extension MyPrepsTableViewCell {
+    private func removeGradient(from view: UIView) {
+        view.layer.sublayers?.forEach {
+            if let name = $0.name, name == MyPrepsTableViewCell.gradientIdentifier {
+                $0.removeFromSuperlayer()
+            }
+        }
+    }
+
+    private func addGradient(to view: UIView) {
+        let gradient: CAGradientLayer = CAGradientLayer()
+        gradient.name = MyPrepsTableViewCell.gradientIdentifier
+        gradient.colors = [UIColor.carbonNew.withAlphaComponent(0).cgColor, UIColor.carbonNew.cgColor]
+        gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
+        gradient.endPoint = CGPoint(x: 0.8, y: 1.0)
+        gradient.frame = view.bounds
+        view.layer.insertSublayer(gradient, at: 0)
+    }
+
+    private func changeReorderControlImage() {
+        guard let reorderImage = self.reorderImage else {
+            return
+        }
+
+        for view in subviews where view.description.contains("Reorder") {
+            for case let subview as UIImageView in view.subviews {
+                subview.image = reorderImage
+                subview.frame = CGRect(center: CGPoint(x: subview.center.x, y: self.frame.size.height/2.0), size: reorderImage.size)
+            }
+        }
     }
 }
