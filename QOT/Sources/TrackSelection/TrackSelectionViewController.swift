@@ -102,7 +102,6 @@ extension TrackSelectionViewController: TrackSelectionViewControllerInterface {
 
         if let type = interactor?.type, case .registration = type {
             baseHeaderView?.lineView.isHidden = true
-            headerViewTopConstraint.priority = .defaultHigh
         }
         baseHeaderView?.configure(title: interactor?.title, subtitle: interactor?.descriptionText)
         ThemeText.trackSelectionTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
