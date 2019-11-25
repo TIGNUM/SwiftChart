@@ -225,6 +225,7 @@ enum ThemeButton {
     case onboarding
     case backButton
     case editButton
+    case carbonButton
 
     var defaultHeight: CGFloat {
         get {
@@ -258,7 +259,7 @@ enum ThemeButton {
             colorSelected = .clear
         case .onboarding:
             colorSelected = Palette.accent40
-        case .backButton, .editButton:
+        case .backButton, .editButton, .carbonButton:
             colorUnselected = Palette.carbon
             colorBorder = Palette.accent40
         }
