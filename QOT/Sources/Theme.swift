@@ -89,7 +89,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .audioPlaying, .selectedButton:
             return Palette.accent40
-        case .onboarding:
+        case .onboarding, .sprintsActive:
             return Palette.carbon
         case .toolSeparator:
             return Palette.carbon10
@@ -133,8 +133,6 @@ enum ThemeView {
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
             return Palette.heatMapDarkBlue
-        case .sprintsActive:
-            return .carbonNew
         case .mindsetShifter:
             return .sand
         case .clear:
@@ -225,6 +223,7 @@ enum ThemeButton {
     case onboarding
     case backButton
     case editButton
+    case carbonButton
 
     var defaultHeight: CGFloat {
         get {
@@ -258,7 +257,7 @@ enum ThemeButton {
             colorSelected = .clear
         case .onboarding:
             colorSelected = Palette.accent40
-        case .backButton, .editButton:
+        case .backButton, .editButton, .carbonButton:
             colorUnselected = Palette.carbon
             colorBorder = Palette.accent40
         }

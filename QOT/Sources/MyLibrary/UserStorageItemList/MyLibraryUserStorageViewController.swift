@@ -14,7 +14,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
 
     // MARK: - Properties
 
-    var interactor: MyLibraryUserStorageInteractorInterface?
+    var interactor: MyLibraryUserStorageInteractorInterface!
 
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
@@ -53,7 +53,7 @@ final class MyLibraryUserStorageViewController: BaseViewController, ScreenZLevel
         ThemeButton.editButton.apply(editButton)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
 
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
@@ -120,16 +120,16 @@ private extension MyLibraryUserStorageViewController {
 
 private extension MyLibraryUserStorageViewController {
     @IBAction func didTapEditButton(sender: UIButton) {
-        interactor?.didTapEdit(isEditing: true)
-        trackUserEvent(.EDIT, stringValue: interactor?.itemType.rawValue, valueType: .EDIT_LIBRARY, action: .TAP)
+        interactor.didTapEdit(isEditing: true)
+        trackUserEvent(.EDIT, stringValue: interactor.itemType.rawValue, valueType: .EDIT_LIBRARY, action: .TAP)
     }
 
     @IBAction func didTapAddNote(sender: RoundedButton!) {
-        interactor?.didTapAddNote()
+        interactor.didTapAddNote()
     }
 
     @IBAction func didTapPlayButton(sender: UIButton) {
-        interactor?.didTapPlayItem(at: sender.tag)
+        interactor.didTapPlayItem(at: sender.tag)
     }
 }
 
@@ -139,34 +139,40 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     func setupView() {
         ThemeView.level3.apply(view)
         tableView.allowsSelection = false
-        addButtonWidthConstraint.constant = (interactor?.showAddButton ?? false) ? 80 : 0.0
+        addButtonWidthConstraint.constant = interactor.showAddButton ? 80 : 0.0
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.setImage(R.image.my_library_note_light()?.withRenderingMode(.alwaysTemplate), for: .disabled)
-        ThemableButton.myLibrary.apply(addButton, title: " " + (interactor?.addTitle ?? ""))
-        // (interactor?.items == nil) means, need to show skeleton
-        tableView.isHidden = interactor?.items == nil ? false : (interactor?.items?.count ?? 0) == 0
+        ThemableButton.myLibrary.apply(addButton, title: " " + interactor.addTitle)
+        // (interactor.items == nil) means, need to show skeleton
+        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
     }
 
     func update() {
-        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
-        ThemeText.myLibraryItemsTitle.apply(interactor?.title, to: baseHeaderView?.titleLabel)
+        baseHeaderView?.configure(title: interactor.title, subtitle: nil)
+        ThemeText.myLibraryItemsTitle.apply(interactor.title, to: baseHeaderView?.titleLabel)
 
-        let isEditing = interactor?.isEditing ?? false
-        editButtonWidthConstraint.constant = (interactor?.showEditButton ?? true) ? 40.0 : 0.0
-        setEditButton(enabled: interactor?.canEdit ?? false)
+        let isEditing = interactor.isEditing
+        editButtonWidthConstraint.constant = interactor.showEditButton ? 40.0 : 0.0
+        setEditButton(enabled: interactor.canEdit)
         addButton.isEnabled = !isEditing
 
-        // (interactor?.items == nil) means, need to show skeleton
-        tableView.isHidden = interactor?.items == nil ? false : (interactor?.items?.count ?? 0) == 0
+        // (interactor.items == nil) means, need to show skeleton
+        tableView.isHidden = interactor.items == nil ? false : (interactor.items?.count ?? 0) == 0
         tableView.allowsSelection = true
         tableView.allowsMultipleSelection = isEditing
         tableView.setEditing(isEditing, animated: true)
 
-        updateInfoViewWithViewModel(interactor?.infoViewModel)
-        if let bottomButtons = interactor?.bottomButtons {
+        updateInfoViewWithViewModel(interactor.infoViewModel)
+        if let bottomButtons = interactor.bottomButtons {
             showBottomButtons(bottomButtons)
         } else {
             showDefaultBottomButtons()
+        }
+        if isEditing, let items = interactor.items {
+            for (index, item) in items.enumerated() where interactor.getIdentifiersForCheckedItems().contains(item.identifier) {
+                let indexPath = IndexPath(row: index, section: 0)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+            }
         }
     }
 
@@ -189,7 +195,7 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
 extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let items = interactor?.items else {
+        guard let items = interactor.items else {
             return 1
         }
         return items.count
@@ -197,43 +203,37 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var item: MyLibraryCellViewModel? = nil
-        if let items = interactor?.items, items.count > 0 {
-            item = interactor?.items?[indexPath.row]
+        if let items = interactor.items, items.count > 0 {
+            item = interactor.items?[indexPath.row]
         }
 
         let cellType = item?.cellType ?? MyLibraryCellViewModel.CellType.DOWNLOAD
-
         var returnCell: BaseMyLibraryTableViewCell?
         switch cellType {
         case .VIDEO:
-            let cell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(withUrl: item?.previewURL)
-
-            returnCell = cell
+            let videoCell: VideoBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
+            videoCell.configure(withUrl: item?.previewURL)
+            returnCell = videoCell
         case .AUDIO:
-            let cell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(playButtonTitle: item?.duration, playButtonTag: indexPath.row)
-
-            returnCell = cell
+            let audioCell: AudioBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
+            audioCell.configure(playButtonTitle: item?.duration, playButtonTag: indexPath.row)
+            returnCell = audioCell
         case .ARTICLE:
-            let cell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(previewImageUrl: item?.previewURL)
-
-            returnCell = cell
+            let articleCell: ArticleBookmarkTableViewCell = tableView.dequeueCell(for: indexPath)
+            articleCell.configure(previewImageUrl: item?.previewURL)
+            returnCell = articleCell
         case .NOTE:
-            let cell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure()
-
-            returnCell = cell
+            let noteCell: NoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            noteCell.configure()
+            returnCell = noteCell
         case .DOWNLOAD:
-            let cell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure()
+            let downloadCell: DownloadTableViewCell = tableView.dequeueCell(for: indexPath)
+            downloadCell.configure()
 
             if let itemModel = item {
-                cell.setStatus(itemModel.downloadStatus)
+                downloadCell.setStatus(itemModel.downloadStatus)
             }
-
-            returnCell = cell
+            returnCell = downloadCell
         }
 
         returnCell?.setTitle(item?.title)
@@ -247,7 +247,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension MyLibraryUserStorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = interactor?.handleSelectedItem(at: indexPath.row)
+        interactor.handleSelectedItem(at: indexPath.row)
         if tableView.isEditing == false {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -257,7 +257,7 @@ extension MyLibraryUserStorageViewController: UITableViewDelegate {
         guard tableView.isEditing else {
             return
         }
-        _ = interactor?.handleSelectedItem(at: indexPath.row)
+        interactor.handleSelectedItem(at: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
