@@ -27,9 +27,10 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
-    var interactor: MyPrepsInteractorInterface?
+    var interactor: MyPrepsInteractorInterface!
+    private lazy var router = MyPrepsRouter(viewController: self)
     weak var delegate: CoachCollectionViewControllerDelegate?
-    private var baseHeaderView: QOTBaseHeaderView?
+    private lazy var baseHeaderView: QOTBaseHeaderView? = R.nib.qotBaseHeaderView.firstView(owner: self)
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var tableView: UITableView!
@@ -63,10 +64,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     }()
 
     // MARK: - LifeCycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeButton.editButton.apply(editButton)
         tableView.allowsMultipleSelectionDuringEditing = true
@@ -74,7 +73,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         setupView()
         updateIndicator()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -82,7 +81,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         hideAllNoDataViews()
         updateIndicator()
         refreshBottomNavigationItems()
-        interactor?.fetchItemsAndUpdateView()
+        interactor.fetchItemsAndUpdateView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -91,30 +90,26 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     }
 
     // MARK: - Actions
-
     @IBAction func didChangeSegment(_ sender: Any) {
         tableView.reloadData()
         updateIndicator()
-        trackUserEvent(.OPEN, value: segmentedControl.selectedSegmentIndex, valueType: .MY_PLANS_SEGMENT_CHANGE, action: .TAP)
+        trackUserEvent(.OPEN,
+                       value: segmentedControl.selectedSegmentIndex,
+                       valueType: .MY_PLANS_SEGMENT_CHANGE,
+                       action: .TAP)
     }
 
     @IBAction func cancelButton(_ sender: Any) {
-        refreshBottomNavigationItems()
-        editPressed = false
-        segmentedControl.isHidden = false
-        tableView.setEditing(false, animated: true)
-        tableView.reloadData()
+        editButton(sender)
     }
 
     @IBAction func editButton(_ sender: Any) {
-        if noPreparationsView.isHidden == true {
-            refreshBottomNavigationItems()
-            indicatorView.isHidden = !editPressed
-            segmentedControl.isHidden = !editPressed
-            tableView.setEditing(!editPressed, animated: true)
-            //tableView.reloadData()
-            editPressed = !editPressed
-        }
+        editPressed = !editPressed
+        refreshBottomNavigationItems()
+        editButton.isHidden = editPressed
+        indicatorView.isHidden = editPressed
+        segmentedControl.isHidden = editPressed
+        tableView.setEditing(editPressed, animated: true)
     }
 
     @IBAction func removeRows(_ sender: Any) {
@@ -143,7 +138,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         if let selectedRows = tableView.indexPathsForSelectedRows {
             let sortedArray = selectedRows.sorted { $1.row < $0.row }
             for indexPath in sortedArray {
-                interactor?.remove(segmentedControl: segmentedControl.selectedSegmentIndex, at: indexPath)
+                interactor.remove(segmentedControl: segmentedControl.selectedSegmentIndex, at: indexPath)
             }
             showEmptyStateViewIfNeeded(segmentedControl)
         }
@@ -197,14 +192,21 @@ private extension MyPrepsViewController {
     func setupView() {
         ThemeView.level3.apply(view)
         ThemeView.level3.apply(headerView)
-        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title), subtitle: nil)
+        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title),
+                                  subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title), to: noPrepsTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_body), to: noPrepsComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title), to: noMindsetTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body), to: noMindsetComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title), to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body), to: noRecoveryComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title),
+                                       to: noPrepsTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_body),
+                                         to: noPrepsComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title),
+                                       to: noMindsetTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body),
+                                         to: noMindsetComment)
+        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title),
+                                       to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body),
+                                         to: noRecoveryComment)
 
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
@@ -272,14 +274,14 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            let item = interactor?.itemPrep(at: indexPath)
+            let item = interactor.itemPrep(at: indexPath)
             let subtitle = (item?.date ?? "") + " | " + (item?.eventType ?? "")
             cell.configure(title: item?.title.uppercased(), subtitle: subtitle)
         case SegmentView.mindsetShifter.rawValue:
-            let item = interactor?.itemMind(at: indexPath)
+            let item = interactor.itemMind(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
         case SegmentView.recovery.rawValue:
-            let item = interactor?.itemRec(at: indexPath)
+            let item = interactor.itemRec(at: indexPath)
             cell.configure(title: item?.title, subtitle: item?.date)
         default:
             break
@@ -289,59 +291,26 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if segmentedControl.selectedSegmentIndex == 0 {
-            if let item = interactor?.itemPrep(at: indexPath), tableView.isEditing == false {
+            if let item = interactor.itemPrep(at: indexPath), tableView.isEditing == false {
                 tableView.deselectRow(at: indexPath, animated: true)
-                interactor?.presentPreparation(item: item.qdmPrep, viewController: self)
+                interactor.presentPreparation(item: item.qdmPrep, viewController: self)
             }
         } else if segmentedControl.selectedSegmentIndex == 1 {
-            if let item = interactor?.itemMind(at: indexPath), tableView.isEditing == false {
+            if let item = interactor.itemMind(at: indexPath), tableView.isEditing == false {
                 tableView.deselectRow(at: indexPath, animated: true)
-                interactor?.presentMindsetShifter(item: item.qdmMind, viewController: self)
+                interactor.presentMindsetShifter(item: item.qdmMind, viewController: self)
             }
         } else if segmentedControl.selectedSegmentIndex == 2 {
-            if let item = interactor?.itemRec(at: indexPath), tableView.isEditing == false {
+            if let item = interactor.itemRec(at: indexPath), tableView.isEditing == false {
                 tableView.deselectRow(at: indexPath, animated: true)
-                interactor?.present3DRecovery(item: item.qdmRec, viewController: self)
+                interactor.present3DRecovery(item: item.qdmRec, viewController: self)
             }
         }
         updateIndicator()
     }
-
-    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        if sourceIndexPath == destinationIndexPath {
-            return
-        }
-    }
-
-    func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView,
-                   targetIndexPathForMoveFromRowAt sourceIndexPath: IndexPath,
-                   toProposedIndexPath proposedDestinationIndexPath: IndexPath) -> IndexPath {
-//        // Forbid moving cells between sections
-//        if sourceIndexPath.section != proposedDestinationIndexPath.section {
-//            return sourceIndexPath
-//        }
-//        // Forbid moving cells in place of active sprints
-//        if let item = interactor.viewModel.item(at: proposedDestinationIndexPath) {
-//            return item.isReordable ? proposedDestinationIndexPath : sourceIndexPath
-//        }
-        return proposedDestinationIndexPath
-    }
-
-    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
 }
 
 extension MyPrepsViewController {
-
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         guard editPressed else { return super.bottomNavigationLeftBarItems() }
         return []

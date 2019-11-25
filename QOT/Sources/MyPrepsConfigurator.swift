@@ -9,10 +9,8 @@ import Foundation
 
 final class MyPrepsConfigurator {
     static func configure(viewController: MyPrepsViewController, delegate: CoachCollectionViewControllerDelegate?) {
-        let router = MyPrepsRouter(viewController: viewController)
-        let worker = MyPrepsWorker()
         let presenter = MyPrepsPresenter(viewController: viewController)
-        let interactor = MyPrepsInteractor(worker: worker, presenter: presenter, router: router)
+        let interactor = MyPrepsInteractor(presenter: presenter)
         viewController.interactor = interactor
         viewController.delegate = delegate
     }

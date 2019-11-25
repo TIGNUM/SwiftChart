@@ -145,7 +145,6 @@ extension MySprintsListInteractor: MySprintsListInteractorInterface {
 }
 
 // MARK: - Private methods
-
 extension MySprintsListInteractor {
 
     private var shouldshowEditButton: Bool {
@@ -299,7 +298,7 @@ extension MySprintsListInteractor {
     func continueRemovingItems(_ sprints: [QDMSprint]) {
         worker.remove(sprints: sprints) { [weak self] (error) in
             if let error = error {
-                qot_dal.log("Failed to remove sprints. Error \(error)")
+                log("Failed to remove sprints. Error \(error)")
                 return
             }
             guard let strongSelf = self else { return }

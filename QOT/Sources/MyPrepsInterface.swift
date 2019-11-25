@@ -18,6 +18,8 @@ protocol MyPrepsPresenterInterface {
 }
 
 protocol MyPrepsInteractorInterface: Interactor {
+    var title: String { get }
+
     func preparations(completion: @escaping ((MyPrepsModel?) -> Void))
     func recoveries(completion: @escaping ((RecoveriesModel?) -> Void))
     func mindsetShifters(completion: @escaping ((MindsetShiftersModel?) -> Void))
@@ -37,6 +39,8 @@ protocol MyPrepsInteractorInterface: Interactor {
     func fetchItemsAndUpdateView()
     func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
     func remove(segmentedControl: Int, at indexPath: IndexPath)
+
+    func didTapEdit(for selectedSegmentIndex: Int)
 }
 
 protocol MyPrepsRouterInterface {

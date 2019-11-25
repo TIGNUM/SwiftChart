@@ -12,17 +12,14 @@ import qot_dal
 final class MyPrepsInteractor {
 
     // MARK: - Properties
-    private let worker: MyPrepsWorker
-    private let presenter: MyPrepsPresenterInterface
-    private let router: MyPrepsRouterInterface
+    private let worker = MyPrepsWorker()
+    private let presenter: MyPrepsPresenterInterface    
+    private var isEditing = false
+    private var canEdit = true
 
     // MARK: - Init
-    init(worker: MyPrepsWorker,
-         presenter: MyPrepsPresenterInterface,
-         router: MyPrepsRouterInterface) {
-        self.worker = worker
+    init(presenter: MyPrepsPresenterInterface) {
         self.presenter = presenter
-        self.router = router
     }
 
     // MARK: - Interactor
@@ -33,6 +30,10 @@ final class MyPrepsInteractor {
 
 // MARK: - MyPrepsInteractorInterface
 extension MyPrepsInteractor: MyPrepsInteractorInterface {
+    var title: String {
+        return ""//isEditing ? worker.editingTitle : worker.title
+    }
+    
     func fetchItemsAndUpdateView() {
         worker.createModels {
             self.presenter.dataUpdated()
@@ -115,6 +116,17 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
     }
 
    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
-        router.showDeleteConfirmation(delegate: delegate)
+//        router.showDeleteConfirmation(delegate: delegate)
     }
+
+    func didTapEdit(for selectedSegmentIndex: Int) {
+        
+    }
+}
+
+// MARK: - Private
+private extension MyPrepsInteractor {
+//    var shouldshowEditButton: Bool {
+//        return !(isEditing || viewModel.displayData.isEmpty || viewModel.infoViewModel != nil)
+//    }
 }

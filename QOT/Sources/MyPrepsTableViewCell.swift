@@ -20,10 +20,6 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     var skeletonManager = SkeletonManager()
     var hasData = false
 
-    private lazy var reorderImage: UIImage? = {
-        return UIImage.qot_reorderControlImage()
-    }()
-
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,10 +37,6 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         editingOverlay.isHidden = !editing
-
-        if editing {
-            changeReorderControlImage()
-        }
     }
 
     override func layoutSubviews() {
@@ -84,18 +76,5 @@ extension MyPrepsTableViewCell {
         gradient.endPoint = CGPoint(x: 0.8, y: 1.0)
         gradient.frame = view.bounds
         view.layer.insertSublayer(gradient, at: 0)
-    }
-
-    private func changeReorderControlImage() {
-        guard let reorderImage = self.reorderImage else {
-            return
-        }
-
-        for view in subviews where view.description.contains("Reorder") {
-            for case let subview as UIImageView in view.subviews {
-                subview.image = reorderImage
-                subview.frame = CGRect(center: CGPoint(x: subview.center.x, y: self.frame.size.height/2.0), size: reorderImage.size)
-            }
-        }
     }
 }
