@@ -232,14 +232,14 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="9SJ-QD-P3C">
-                                                            <rect key="frame" x="0.0" y="29" width="18" height="18"/>
+                                                            <rect key="frame" x="0.0" y="33" width="18" height="18"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="18" id="8rb-Ql-F3Z"/>
                                                                 <constraint firstAttribute="width" constant="18" id="LUt-KZ-J5A"/>
                                                             </constraints>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ygw-ya-kK0">
-                                                            <rect key="frame" x="34" y="27.5" width="308" height="21"/>
+                                                            <rect key="frame" x="34" y="31.5" width="308" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -252,7 +252,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="SP9-dr-hid" secondAttribute="trailing" id="Xme-He-Kuk"/>
                                                         <constraint firstItem="ygw-ya-kK0" firstAttribute="centerY" secondItem="9SJ-QD-P3C" secondAttribute="centerY" id="YNZ-UO-7D8"/>
                                                         <constraint firstItem="SP9-dr-hid" firstAttribute="leading" secondItem="d5q-JP-uQR" secondAttribute="leading" id="YnQ-Da-tK4"/>
-                                                        <constraint firstItem="9SJ-QD-P3C" firstAttribute="top" secondItem="SP9-dr-hid" secondAttribute="bottom" constant="8" id="ZOq-f9-h7O"/>
+                                                        <constraint firstItem="9SJ-QD-P3C" firstAttribute="top" secondItem="SP9-dr-hid" secondAttribute="bottom" constant="12" id="ZOq-f9-h7O"/>
                                                         <constraint firstItem="9SJ-QD-P3C" firstAttribute="leading" secondItem="d5q-JP-uQR" secondAttribute="leading" id="fF2-8a-fMY"/>
                                                         <constraint firstItem="SP9-dr-hid" firstAttribute="top" secondItem="d5q-JP-uQR" secondAttribute="top" id="zfa-UK-dmj"/>
                                                     </constraints>
