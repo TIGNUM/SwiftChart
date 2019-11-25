@@ -60,6 +60,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
+        setupSearchBar()
         setAllControl(newAlpha: 1.0)
     }
 
