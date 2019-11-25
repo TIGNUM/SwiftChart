@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BaseMyLibraryTableViewCell: UITableViewCell {
+class BaseMyLibraryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var infoText: UILabel!
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!

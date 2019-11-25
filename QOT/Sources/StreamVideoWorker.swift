@@ -23,7 +23,6 @@ final class StreamVideoWorker {
     weak var delegate: StreamVideoWorkerDelegate?
 
     private let service = UserStorageService.main
-    private let reachability = QOTReachability()
 
     init(content: QDMContentItem?) {
         self.content = content
@@ -38,7 +37,7 @@ final class StreamVideoWorker {
     }
 
     var reachabilityStatus: ReachabilityStatus {
-        return reachability.status
+        return QOTReachability().status
     }
 
     lazy var downloadButtonTitle: String = {

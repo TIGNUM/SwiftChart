@@ -41,7 +41,9 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     func didTapEdit(isEditing: Bool)
     func didTapPlayItem(at row: Int)
     func didTapAddNote()
-    func handleSelectedItem(at index: Int) -> Bool
+    func handleSelectedItem(at index: Int)
+    func getIdentifiersForCheckedItems() -> Set<String>
+    func clearCheckedItems()
 }
 
 protocol MyLibraryUserStorageRouterInterface {

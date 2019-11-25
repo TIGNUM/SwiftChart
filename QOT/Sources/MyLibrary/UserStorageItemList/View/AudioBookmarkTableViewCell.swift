@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet weak var playButton: UIButton!
 
     override func setSelected(_ selected: Bool, animated: Bool) {
