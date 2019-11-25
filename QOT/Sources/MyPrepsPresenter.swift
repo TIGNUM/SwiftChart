@@ -11,21 +11,21 @@ import UIKit
 final class MyPrepsPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: MyPrepsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MyPrepsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - MyPrepsInterface
-
 extension MyPrepsPresenter: MyPrepsPresenterInterface {
-
     func dataUpdated() {
         viewController?.dataUpdated()
+    }
+
+    func setupView(viewModel: MyPlansViewModel) {
+        viewController?.setupView(viewModel: viewModel)
     }
 }

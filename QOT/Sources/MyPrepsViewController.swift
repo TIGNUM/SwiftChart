@@ -39,8 +39,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var noPreparationsView: UIView!
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
-    private var editPressed: Bool = false
-
     @IBOutlet weak var noPrepsTitle: UILabel!
     @IBOutlet weak var noPrepsComment: UILabel!
     @IBOutlet weak var noMindsetTitle: UILabel!
@@ -50,6 +48,9 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
+
+    private var editPressed: Bool = false
+    private var viewModel: MyPlansViewModel!
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
@@ -71,7 +72,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         tableView.allowsMultipleSelectionDuringEditing = true
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        setupView()
         updateIndicator()
         interactor.viewDidLoad()
     }
@@ -105,6 +105,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func editButton(_ sender: Any) {
         editPressed = !editPressed
+        let title = editPressed ? viewModel?.titleEditMode : viewModel.title
+        baseHeaderView?.configure(title: title, subtitle: nil)
         refreshBottomNavigationItems()
         editButton.isHidden = editPressed
         indicatorView.isHidden = editPressed
@@ -167,19 +169,19 @@ private extension MyPrepsViewController {
         tableView.alpha = 1
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            if interactor?.numberOfRowsPreparations(in: 0) == Optional(0) {
+            if interactor.numberOfRowsPreparations() == 0 {
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
             }
         case SegmentView.mindsetShifter.rawValue:
-            if interactor?.numberOfRowsMindsetShifters(in: 0) == Optional(0) {
+            if interactor.numberOfRowsMindsetShifters() == 0 {
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
             }
         case SegmentView.recovery.rawValue:
-            if interactor?.numberOfRowsRecoveries(in: 0) == Optional(0) {
+            if interactor.numberOfRowsRecoveries() == 0 {
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -187,29 +189,6 @@ private extension MyPrepsViewController {
         default:
             return
         }
-    }
-
-    func setupView() {
-        ThemeView.level3.apply(view)
-        ThemeView.level3.apply(headerView)
-        baseHeaderView?.configure(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title),
-                                  subtitle: nil)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title),
-                                       to: noPrepsTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_body),
-                                         to: noPrepsComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title),
-                                       to: noMindsetTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body),
-                                         to: noMindsetComment)
-        ThemeText.myQOTPrepTitle.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title),
-                                       to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body),
-                                         to: noRecoveryComment)
-
-        ThemeView.level3.apply(tableView)
-        setupSegementedControl()
     }
 
     func updateEditButton(hidden: Bool) {
@@ -232,6 +211,22 @@ private extension MyPrepsViewController {
 
 // MARK: - MyPrepsViewControllerInterface
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
+    func setupView(viewModel: MyPlansViewModel) {
+        ThemeView.level3.apply(view)
+        ThemeView.level3.apply(headerView)
+        baseHeaderView?.configure(title: viewModel.title, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+        ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsComment)
+        ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetComment)
+        ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.recoveryTitle, to: noRecoveryComment)
+        ThemeView.level3.apply(tableView)
+        setupSegementedControl()
+        self.viewModel = viewModel
+    }
+
     func dataUpdated() {
         hideAllNoDataViews()
         if tableView.alpha == 0 {
@@ -244,18 +239,16 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
 
 extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count = 0
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
-            count = interactor?.numberOfRowsPreparations(in: section) ?? 0
+            return interactor.numberOfRowsPreparations()
         case SegmentView.mindsetShifter.rawValue:
-            count = interactor?.numberOfRowsMindsetShifters(in: section) ?? 0
+            return interactor.numberOfRowsMindsetShifters()
         case SegmentView.recovery.rawValue:
-            count = interactor?.numberOfRowsRecoveries(in: section) ?? 0
+            return interactor.numberOfRowsRecoveries()
         default:
-            count = 0
+            return 0
         }
-        return count > 0 ? count : 3
     }
 
     private func tableView(tableView: UITableView,

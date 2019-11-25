@@ -176,7 +176,6 @@ extension SearchViewController {
 
 // MARK: - Private
 private extension SearchViewController {
-
     func setupSegementedControl() {
         ThemeSegment.accent.apply(segmentedControl)
     }
@@ -205,7 +204,6 @@ private extension SearchViewController {
 
 // MARK: - Actions
 extension SearchViewController {
-
     @IBAction func close(_ sender: UIButton) {
         trackUserEvent(.CLOSE, action: .TAP)
         interactor.didTapClose()

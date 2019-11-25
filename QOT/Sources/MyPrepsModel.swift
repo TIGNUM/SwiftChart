@@ -9,11 +9,25 @@
 import Foundation
 import qot_dal
 
+struct MyPlansViewModel {
+    let title: String
+    let titleEditMode: String
+
+    let myPrepsTitle: String
+    let myPrepsBody: String
+
+    let mindsetShifterTitle: String
+    let mindsetShifterBody: String
+
+    let recoveryTitle: String
+    let recoveryBody: String
+}
+
 struct MyPrepsModel {
 
-    var prepItems: [Items]
+    var items: [Item]
 
-    struct Items {
+    struct Item {
         var title: String
         var date: String
         var eventType: String
@@ -23,9 +37,9 @@ struct MyPrepsModel {
 
 struct RecoveriesModel {
 
-    var prepItems: [Items]
+    var items: [Item]
 
-    struct Items {
+    struct Item {
         var title: String
         var date: String
         let qdmRec: QDMRecovery3D
@@ -34,9 +48,9 @@ struct RecoveriesModel {
 
 struct MindsetShiftersModel {
 
-    var prepItems: [Items]
+    var items: [Item]
 
-    struct Items {
+    struct Item {
         var title: String
         var date: String
         let qdmMind: QDMMindsetShifter
