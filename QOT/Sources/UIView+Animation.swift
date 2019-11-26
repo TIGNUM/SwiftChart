@@ -62,4 +62,12 @@ extension UIView {
             self.layer.removeAnimation(forKey: kAnimationKey)
         }
     }
+
+    func fadeTransition(_ duration: CFTimeInterval) {
+        let animation = CATransition()
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+        animation.type = kCATransitionFade
+        animation.duration = duration
+        layer.add(animation, forKey: kCATransition)
+    }
 }

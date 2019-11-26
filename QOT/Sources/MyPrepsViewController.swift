@@ -109,6 +109,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         editPressed = !editPressed
         canDelete = false
         let title = editPressed ? viewModel?.titleEditMode : viewModel.title
+        baseHeaderView?.fadeTransition(0.5)
         baseHeaderView?.configure(title: title, subtitle: nil)
         refreshBottomNavigationItems()
         editButton.isHidden = editPressed

@@ -37,7 +37,7 @@ final class QOTBaseHeaderView: UIView {
         }
     }
 
-    func configure(title: String?, subtitle: String?, darkMode: Bool? = nil) {
+    func configure(title: String?, subtitle: String?, darkMode: Bool? = nil, animated: Bool = false) {
         self.title = title
         self.subtitle = subtitle
         if subtitle == nil {
@@ -55,10 +55,10 @@ final class QOTBaseHeaderView: UIView {
         skeletonManager.hide()
         subtitleTextView.textContainerInset = .zero
         subtitleTextView.textContainer.lineFragmentPadding = 0
-        refresh(darkMode: darkMode)
+        refresh(darkMode: darkMode, animated: animated)
     }
 
-    func refresh(darkMode: Bool? = nil) {
+    func refresh(darkMode: Bool? = nil, animated: Bool = false) {
         let mode: ThemeColorMode = darkMode ?? self.darkMode ? .dark : .light
         ThemeView.baseHeaderLineView(mode).apply(lineView)
         ThemeText.baseHeaderTitle(mode).apply(title, to: titleLabel)
