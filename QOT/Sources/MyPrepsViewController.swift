@@ -50,6 +50,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var indicatorView: UIView!
 
     private var editPressed: Bool = false
+    private var canDelete: Bool = false
     private var viewModel: MyPlansViewModel!
 
     lazy var cancelButton: UIBarButtonItem = {
@@ -58,11 +59,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         return button.barButton
     }()
 
-    lazy var deleteButton: UIBarButtonItem = {
+    func getDeleteButton(isEnabled: Bool) -> UIBarButtonItem {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
         ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_button_delete))
+        button.isEnabled = isEnabled
         return button.barButton
-    }()
+    }
 
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -105,6 +107,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func editButton(_ sender: Any) {
         editPressed = !editPressed
+        canDelete = false
         let title = editPressed ? viewModel?.titleEditMode : viewModel.title
         baseHeaderView?.configure(title: title, subtitle: nil)
         refreshBottomNavigationItems()
@@ -200,6 +203,11 @@ private extension MyPrepsViewController {
         noRecoveriesView.isHidden = true
         noMIndsetShiftersView.isHidden = true
     }
+
+    func updateDeleteButtonIfNeeded(_ tableView: UITableView) {
+        canDelete = !(tableView.indexPathsForSelectedRows?.isEmpty ?? true)
+        refreshBottomNavigationItems()
+    }
 }
 
 // MARK: - Actions
@@ -283,23 +291,33 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if segmentedControl.selectedSegmentIndex == 0 {
-            if let item = interactor.itemPrep(at: indexPath), tableView.isEditing == false {
-                tableView.deselectRow(at: indexPath, animated: true)
-                interactor.presentPreparation(item: item.qdmPrep, viewController: self)
+        if tableView.isEditing {
+            updateDeleteButtonIfNeeded(tableView)
+        } else {
+            if segmentedControl.selectedSegmentIndex == 0 {
+                if let item = interactor.itemPrep(at: indexPath), tableView.isEditing == false {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    interactor.presentPreparation(item: item.qdmPrep, viewController: self)
+                }
+            } else if segmentedControl.selectedSegmentIndex == 1 {
+                if let item = interactor.itemMind(at: indexPath), tableView.isEditing == false {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    interactor.presentMindsetShifter(item: item.qdmMind, viewController: self)
+                }
+            } else if segmentedControl.selectedSegmentIndex == 2 {
+                if let item = interactor.itemRec(at: indexPath), tableView.isEditing == false {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    interactor.present3DRecovery(item: item.qdmRec, viewController: self)
+                }
             }
-        } else if segmentedControl.selectedSegmentIndex == 1 {
-            if let item = interactor.itemMind(at: indexPath), tableView.isEditing == false {
-                tableView.deselectRow(at: indexPath, animated: true)
-                interactor.presentMindsetShifter(item: item.qdmMind, viewController: self)
-            }
-        } else if segmentedControl.selectedSegmentIndex == 2 {
-            if let item = interactor.itemRec(at: indexPath), tableView.isEditing == false {
-                tableView.deselectRow(at: indexPath, animated: true)
-                interactor.present3DRecovery(item: item.qdmRec, viewController: self)
-            }
+            updateIndicator()
         }
-        updateIndicator()
+    }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        if tableView.isEditing {
+            updateDeleteButtonIfNeeded(tableView)
+        }
     }
 }
 
@@ -311,7 +329,7 @@ extension MyPrepsViewController {
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         guard editPressed else { return nil }
-        return [deleteButton, cancelButton]
+        return [getDeleteButton(isEnabled: canDelete), cancelButton]
     }
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {
