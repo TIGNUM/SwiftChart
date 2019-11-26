@@ -13,7 +13,6 @@ final class MyLibraryUserStorageWorker {
     private let service = UserStorageService.main
     private var storages = [QDMUserStorage]()
     let item: MyLibraryCategoryListModel
-    private let reachability = QOTReachability()
 
     init(item: MyLibraryCategoryListModel) {
         self.item = item
@@ -261,7 +260,7 @@ extension MyLibraryUserStorageWorker {
     }
 
     var reachabilityStatus: ReachabilityStatus {
-        return reachability.status
+        return QOTReachability().status
     }
 }
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet weak var preview: UIImageView!
 
     override func awakeFromNib() {

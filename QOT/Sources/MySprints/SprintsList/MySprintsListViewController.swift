@@ -70,6 +70,7 @@ private extension MySprintsListViewController {
         let button = RoundedButton(title: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_button_add_sprint),
                                    target: self,
                                    action: #selector(addSprint))
+        ThemeButton.carbonButton.apply(button)
         button.isEnabled = true
         bottomNavigationItems.rightBarButtonItems = [button.barButton]
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]

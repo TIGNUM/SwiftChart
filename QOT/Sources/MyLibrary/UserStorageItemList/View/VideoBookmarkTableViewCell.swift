@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var playButton: UIButton!
 

@@ -165,9 +165,9 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         router.presentCreateNote(noteId: nil)
     }
 
-    func handleSelectedItem(at index: Int) -> Bool {
+    func handleSelectedItem(at index: Int) {
         guard let items = self.items, items.count > index else {
-            return false
+            return
         }
 
         let item = items[index]
@@ -176,8 +176,14 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         } else {
             openItemDetails(item)
         }
+    }
 
-        return true
+    func getIdentifiersForCheckedItems() -> Set<String> {
+        return identifiersForCheck
+    }
+
+    func clearCheckedItems() {
+        identifiersForCheck.removeAll()
     }
 }
 
@@ -187,7 +193,7 @@ extension MyLibraryUserStorageInteractor {
     @objc private func cancelEditingTapped() {
         isEditing = false
         bottomButtons = nil
-        identifiersForCheck.removeAll()
+        clearCheckedItems()
         presenter.present()
     }
 
@@ -238,7 +244,7 @@ extension MyLibraryUserStorageInteractor {
         presenter.present()
     }
 
-    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) -> Bool {
+    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) {
         let previouslySelected = identifiersForCheck.contains(item.identifier)
         if !previouslySelected {
             identifiersForCheck.insert(item.identifier)
@@ -247,7 +253,6 @@ extension MyLibraryUserStorageInteractor {
         }
         bottomButtons = editingButtons
         presenter.present()
-        return !previouslySelected
     }
 
     private func successfullyDeleted(identifier: String) {

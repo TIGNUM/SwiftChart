@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DownloadTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class DownloadTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet private weak var activityIcon: UIImageView!
     @IBOutlet private weak var activityView: GradientArcView!
 

@@ -8,6 +8,6 @@
 
 import UIKit
 
-class NoteTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class NoteTableViewCell: BaseMyLibraryTableViewCell {
 
 }

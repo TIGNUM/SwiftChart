@@ -22,9 +22,12 @@ final class DTSprintRouter: DTRouter {
         }
         let configurator = MySprintsListConfigurator.make()
         configurator(mySprintsController)
-        if isPresentedFromCoach {
-            viewController?.pushToStart(childViewController: mySprintsController)
+        if isPresentedFromCoach, let vc = viewController {
+            vc.pushToStart(childViewController: mySprintsController)
+            vc.view.alpha = 0.0
+            vc.presentingViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            viewController?.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
         }
-        viewController?.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
