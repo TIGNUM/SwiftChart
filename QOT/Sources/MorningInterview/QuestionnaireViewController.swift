@@ -206,7 +206,7 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-            ThemeText.tbvVisionBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
+            ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
@@ -319,7 +319,8 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            labelCustomizeView.text = AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body)
+            ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body),
+                                                                to: labelCustomizeView)
             attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
