@@ -37,11 +37,9 @@ protocol MyPrepsInteractorInterface: Interactor {
     func presentMindsetShifter(item: QDMMindsetShifter, viewController: UIViewController)
 
     func fetchItemsAndUpdateView()
-    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
     func remove(segmentedControl: Int, at indexPath: IndexPath)
 }
 
 protocol MyPrepsRouterInterface {
-    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?)
     func dismiss()
 }

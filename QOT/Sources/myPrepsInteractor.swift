@@ -111,15 +111,4 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         let controller = ShifterResultViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
-
-   func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
-//        router.showDeleteConfirmation(delegate: delegate)
-    }
-}
-
-// MARK: - Private
-private extension MyPrepsInteractor {
-//    var shouldshowEditButton: Bool {
-//        return !(isEditing || viewModel.displayData.isEmpty || viewModel.infoViewModel != nil)
-//    }
 }
