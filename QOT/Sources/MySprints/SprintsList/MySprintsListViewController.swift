@@ -68,11 +68,11 @@ private extension MySprintsListViewController {
         }
 
         let button = RoundedButton(title: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_button_add_sprint),
-                                   target: self, action: #selector(addSprint))
+                                   target: self,
+                                   action: #selector(addSprint))
         ThemeButton.carbonButton.apply(button)
         button.isEnabled = true
         bottomNavigationItems.rightBarButtonItems = [button.barButton]
-
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
         bottomNavigationItems.rightBarButtonItems = hasSprints ? nil : [button.barButton]
         refreshBottomNavigationItems()
@@ -191,7 +191,10 @@ extension MySprintsListViewController: UITableViewDataSource {
             sprintCell.set(title: nil, status: nil, description: nil, progress: nil)
             return sprintCell
         }
-        sprintCell.set(title: item.title.uppercased(), status: item.status, description: item.statusDescription, progress: item.progress)
+        sprintCell.set(title: item.title.uppercased(),
+                       status: item.status,
+                       description: item.statusDescription,
+                       progress: item.progress)
         return sprintCell
     }
 }

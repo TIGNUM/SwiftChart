@@ -22,14 +22,6 @@ final class MyPrepsRouter {
 
 // MARK: - MyPrepsRouterInterface
 extension MyPrepsRouter: MyPrepsRouterInterface {
-
-    func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
-//        let confirmDeleteViewController = DeleteConfirmationViewController(nibName: "DeleteConfirmationViewController", bundle: nil)
-//        confirmDeleteViewController.delegate = delegate
-//        viewController.present(confirmDeleteViewController, animated: true, completion: nil)
-//TODO - QOT Alert goes here 
-    }
-
     func dismiss() {
         viewController?.dismiss(animated: true)
     }
