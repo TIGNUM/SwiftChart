@@ -12,14 +12,14 @@ final class AboutMeCell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseView: QOTBaseHeaderView?
+    var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var aboutMeMoreInfo: UILabel!
     @IBOutlet weak var footnoteView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(aboutMeMoreInfo)
     }
 
@@ -29,11 +29,11 @@ final class AboutMeCell: BaseDailyBriefCell {
             return
         }
         skeletonManager.hide()
-        baseView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.aboutMeContent)
-        ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseView?.titleLabel)
-        ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseView?.subtitleTextView)
-        baseView?.subtitleTextViewBottomConstraint.constant = 0
-        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.aboutMeContent)
+        ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseHeaderView?.subtitleTextView)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo
         footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
     }

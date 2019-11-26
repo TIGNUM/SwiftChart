@@ -11,12 +11,12 @@ import UIKit
 
 final class ToolsTableHeaderView: UIView {
 
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     // MARK: - Properties
     convenience init(title: String, subtitle: String?) {
         self.init(frame: .zero)
-        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
-        baseView?.configure(title: title, subtitle: subtitle)
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
+        baseHeaderView?.configure(title: title, subtitle: subtitle)
     }
 
     override init(frame: CGRect) {

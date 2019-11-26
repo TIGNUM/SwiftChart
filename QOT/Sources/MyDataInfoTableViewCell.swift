@@ -15,13 +15,13 @@ protocol MyDataInfoTableViewCellDelegate: class {
 final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
     weak var delegate: MyDataInfoTableViewCellDelegate?
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     private let infoText = " ⓘ "
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
-        baseView?.subtitleTextView.isSelectable = true
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        baseHeaderView?.subtitleTextView.isSelectable = true
         backgroundColor = .clear
     }
 
@@ -30,10 +30,10 @@ final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, subtitle: String?, showInfoLink: Bool = false) {
-        guard let title = title, let subtitle = subtitle, let baseView = baseView else {
+        guard let title = title, let subtitle = subtitle, let baseHeaderView = baseHeaderView else {
             return
         }
-        baseView.configure(title: title, subtitle: subtitle)
+        baseHeaderView.configure(title: title, subtitle: subtitle)
 
         if showInfoLink {
             addInfoLink()
@@ -42,7 +42,7 @@ final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: Add the circle info charcter with tap action
     private func addInfoLink() {
-        guard let baseView = baseView, let subtitle = baseView.subtitleTextView.attributedText else {
+        guard let baseHeaderView = baseHeaderView, let subtitle = baseHeaderView.subtitleTextView.attributedText else {
             return
         }
 
@@ -55,9 +55,9 @@ final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
                                                                                              alignment: .left)
         infoLinkAttributtedString.addAttribute(.link, value: "MoreInfo", range: NSRange(location: 0, length: infoText.count))
         subtitleMutable.append(infoLinkAttributtedString)
-        baseView.subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
-        baseView.subtitleTextView.attributedText = subtitleMutable
-        baseView.subtitleTextView.delegate = self
+        baseHeaderView.subtitleTextView.linkTextAttributes = [kCTForegroundColorAttributeName: UIColor.accent] as [String: Any]
+        baseHeaderView.subtitleTextView.attributedText = subtitleMutable
+        baseHeaderView.subtitleTextView.delegate = self
     }
 }
 

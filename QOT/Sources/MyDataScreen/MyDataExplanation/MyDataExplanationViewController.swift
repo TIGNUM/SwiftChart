@@ -14,7 +14,7 @@ final class MyDataExplanationViewController: BaseViewController, ScreenZLevel3 {
     var interactor: MyDataExplanationInteractorInterface?
     var router: MyDataExplanationRouterInterface?
 
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataExplanationModel: MyDataExplanationModel?
 
@@ -57,7 +57,7 @@ extension MyDataExplanationViewController: UITableViewDelegate, UITableViewDataS
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return baseView
+        return baseHeaderView
     }
 }
 
@@ -86,7 +86,7 @@ extension MyDataExplanationViewController: MyDataExplanationViewControllerInterf
         myDataExplanationModel = myDataExplanationSection
         if let headerView = R.nib.qotBaseHeaderView.firstView(owner: self) {
             headerView.configure(title: myDataExplanationHeaderTitle, subtitle: nil)
-            baseView = headerView
+            baseHeaderView = headerView
             ThemeView.level3.apply(headerView)
         }
     }
