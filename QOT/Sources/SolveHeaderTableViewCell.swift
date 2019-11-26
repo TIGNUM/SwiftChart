@@ -10,12 +10,12 @@ import UIKit
 
 final class SolveHeaderTableViewCell: DTResultBaseTableViewCell, Dequeueable {
     // MARK: - Properties
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
         backgroundColor = .clear
     }
 
@@ -25,6 +25,6 @@ final class SolveHeaderTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 
     // MARK: - Configuration
     func configure(title: String, solutionText: String) {
-        baseView?.configure(title: title.uppercased(), subtitle: solutionText, darkMode: false)
+        baseHeaderView?.configure(title: title.uppercased(), subtitle: solutionText, darkMode: false)
     }
 }

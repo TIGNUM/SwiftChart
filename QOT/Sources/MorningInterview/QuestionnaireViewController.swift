@@ -19,7 +19,8 @@ enum DailyCheckInQuestionKey: String {
     case amount = "sleep.quantity.time"
     case recovered = "recovery.today"
     case load = "load.today"
-    case demad = "load.upcoming.week"
+    case demand = "load.upcoming.week"
+    case peak = "daily.checkin.peak.performances"
 }
 
 enum ControllerType {
@@ -277,7 +278,7 @@ extension QuestionnaireViewController {
             topImageView.image = R.image.sleepBig()
             bottomImageView.image = R.image.sleepSmall()
             topAndBottomImage(isHidden: false)
-        case .demad?:
+        case .demand?:
             topImageView.image = R.image.upcomingEventBig()
             bottomImageView.image = R.image.upcomingEventSmall()
             topAndBottomImage(isHidden: false)
@@ -292,6 +293,10 @@ extension QuestionnaireViewController {
         case .recovered?:
             topImageView.image = R.image.recoverBig()
             bottomImageView.image = R.image.recoverSmall()
+            topAndBottomImage(isHidden: false)
+        case .peak?:
+            topImageView.image = R.image.taskBig()
+            bottomImageView.image = R.image.taskSmall()
             topAndBottomImage(isHidden: false)
         default:
             topIndex.text = String(10)

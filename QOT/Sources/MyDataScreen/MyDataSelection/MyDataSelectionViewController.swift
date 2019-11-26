@@ -18,7 +18,7 @@ final class MyDataSelectionViewController: BaseViewController, ScreenZLevel3 {
     var interactor: MyDataSelectionInteractorInterface?
     var router: MyDataSelectionRouterInterface?
 
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataSelectionModel: MyDataSelectionModel?
     weak var delegate: MyDataSelectionViewControllerDelegate?
@@ -93,7 +93,7 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return baseView
+        return baseHeaderView
     }
 }
 
@@ -122,7 +122,7 @@ extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface 
         myDataSelectionModel = myDataSelectionSection
         if let headerView = R.nib.qotBaseHeaderView.firstView(owner: self) {
             headerView.configure(title: myDataSelectionHeaderTitle, subtitle: myDataSelectionHeaderSubtitle)
-            baseView = headerView
+            baseHeaderView = headerView
             ThemeView.level3.apply(headerView)
         }
     }

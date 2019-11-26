@@ -10,15 +10,15 @@ import Foundation
 
 final class GuidedTrackSectionCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
-    var baseView: QOTBaseHeaderView?
+    var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var button: AnimatedButton!
     var trackState = false
 
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(button)
     }
 
@@ -31,7 +31,7 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
     func configure(with: GuidedTrackViewModel?) {
         guard let model = with else { return }
         skeletonManager.hide()
-        baseView?.configure(title: model.bucketTitle, subtitle: model.content)
+        baseHeaderView?.configure(title: model.bucketTitle, subtitle: model.content)
         button.setTitle(model.buttonText, for: .normal)
     }
 }

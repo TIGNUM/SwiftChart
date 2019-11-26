@@ -12,7 +12,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
-    var baseView: QOTBaseHeaderView?
+    var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var meAtMyBestContent: UILabel!
     @IBOutlet private weak var meAtMyBestFuture: UILabel!
     @IBOutlet private weak var meAtMyBestButtonText: AnimatedButton!
@@ -28,8 +28,8 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         skeletonManager.addSubtitle(meAtMyBestContent)
         skeletonManager.addOtherView(meAtMyBestFuture)
         skeletonManager.addOtherView(meAtMyBestButtonText)
-        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: headerView, showSkeleton: true)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
     }
 
     func configure(with viewModel: MeAtMyBestCellViewModel?) {
@@ -37,11 +37,11 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
             return
         }
         skeletonManager.hide()
-        baseView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
-        baseView?.subtitleTextViewBottomConstraint.constant = 10
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseView?.titleLabel)
-        ThemeText.sprintText.apply(model.intro, to: baseView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseView?.calculateHeight(for: self.frame.size.width) ?? 0
+        baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 10
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
         ThemeText.solveFuture.apply(model.intro2, to: meAtMyBestFuture)
         meAtMyBestButtonText.setTitle(model.buttonText, for: .normal)

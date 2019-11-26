@@ -11,14 +11,14 @@ import UIKit
 final class CoachTableHeaderView: UIView {
 
     // MARK: - Properties
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
 
     convenience init(title: String, subtitle: String) {
         self.init(frame: .zero)
-        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
-        baseView?.configure(title: title, subtitle: subtitle)
-        ThemeText.coachHeader.apply(title.uppercased(), to: baseView?.titleLabel)
-        ThemeText.coachHeaderSubtitle.apply(subtitle, to: baseView?.subtitleTextView)
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self, darkMode: false)
+        baseHeaderView?.configure(title: title, subtitle: subtitle)
+        ThemeText.coachHeader.apply(title.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.coachHeaderSubtitle.apply(subtitle, to: baseHeaderView?.subtitleTextView)
     }
 
     override init(frame: CGRect) {
@@ -30,6 +30,6 @@ final class CoachTableHeaderView: UIView {
     }
 
     func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        return baseView?.calculateHeight(for: cellWidth) ?? 0
+        return baseHeaderView?.calculateHeight(for: cellWidth) ?? 0
     }
 }

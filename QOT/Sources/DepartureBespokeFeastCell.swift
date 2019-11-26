@@ -12,7 +12,7 @@ import SafariServices
 final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     // MARK: Properties
     @IBOutlet private weak var headerView: UIView!
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicator: UIPageControl!
     @IBOutlet weak var copyrightButton: UIButton!
@@ -28,7 +28,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         departureBespokeFeastModel = nil
-        baseView?.titleLabel.text = nil
+        baseHeaderView?.titleLabel.text = nil
         bespokeTitleLabel.text = nil
         departureBespokeText.text = nil
         collectionView.reloadData()
@@ -39,8 +39,8 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         collectionView.registerDequeueable(DepartureBespokeFeastImageCell.self)
         collectionView.delegate = self
         collectionView.dataSource = self
-        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
     }
 
     // MARK: Public
@@ -50,12 +50,12 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         initialSetup()
         skeletonManager.hide()
         if let title = model.title {
-            baseView?.configure(title: title.uppercased(), subtitle: nil)
+            baseHeaderView?.configure(title: title.uppercased(), subtitle: nil)
         }
         if let subtitle = model.subtitle {
             ThemeText.bespokeTitle.apply(subtitle.uppercased(), to: bespokeTitleLabel)
         }
-        baseView?.subtitleTextViewBottomConstraint.constant = 0
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         showCopyrightButtonIfNeeded()
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
         titleToSubtitleVerticalSpacingConstraint.constant = (model.text?.isEmpty ?? true) ? 0 : 14

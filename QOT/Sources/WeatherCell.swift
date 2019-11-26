@@ -13,7 +13,7 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: - Properties
     //Header section
     @IBOutlet private var headerHeightConstraint: NSLayoutConstraint!
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
 
     //WeatherView section
     @IBOutlet weak var headerView: UIView!
@@ -47,12 +47,13 @@ final class WeatherCell: BaseDailyBriefCell {
             arrangedView.isHidden = true
         }
         ThemeView.level1.apply(accessImageContainerView)
-        baseView = R.nib.qotBaseHeaderView.firstView(owner: self)
-        baseView?.addTo(superview: headerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        baseHeaderView?.titleLabel.text = nil
         hourlyStackView.removeAllArrangedSubviews()
         numberFormatter.maximumFractionDigits = 1
         numberFormatter.minimumFractionDigits = 1
@@ -82,11 +83,11 @@ final class WeatherCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         viewModel = weatherViewModel
-        baseView?.configure(title: viewModel?.bucketTitle?.uppercased(),
+        baseHeaderView?.configure(title: viewModel?.bucketTitle?.uppercased(),
                             subtitle: viewModel?.intro)
-        baseView?.subtitleTextViewBottomConstraint.constant = 0
-        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseView?.titleLabel)
-        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseView?.subtitleTextView)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
@@ -137,8 +138,8 @@ final class WeatherCell: BaseDailyBriefCell {
                 Calendar.current.compare(Date(), to: date, toGranularity: .hour) == .orderedSame)
     }
     private func startSkeleton() {
-        if let baseView = self.baseView {
-            for subview in baseView.subviews {
+        if let baseHeaderView = self.baseHeaderView {
+            for subview in baseHeaderView.subviews {
                 skeletonManager.addSubtitle(subview)
             }
         }
@@ -221,7 +222,7 @@ final class WeatherCell: BaseDailyBriefCell {
         accessButton.setTitle(accessButtonTitle, for: .normal)
         accessButtonHeightConstraint.constant = accessButtonHeight
 
-        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseView?.calculateHeight(for: self.frame.size.width) ?? 0
+        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader

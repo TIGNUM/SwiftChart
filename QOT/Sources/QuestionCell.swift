@@ -10,12 +10,12 @@ import UIKit
 
 final class QuestionCell: BaseDailyBriefCell {
 
-    private var baseView: QOTBaseHeaderView?
+    private var baseHeaderView: QOTBaseHeaderView?
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
-        baseView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
         backgroundColor = .clear
     }
 
@@ -25,9 +25,9 @@ final class QuestionCell: BaseDailyBriefCell {
 
     func configure(with viewModel: QuestionCellViewModel?) {
         guard let model = viewModel else { return }
-        baseView?.configure(title: model.title, subtitle: model.text)
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseView?.titleLabel)
-        ThemeText.quotation.apply(model.text, to: baseView?.subtitleTextView)
-        baseView?.subtitleTextViewBottomConstraint.constant = 45.0
+        baseHeaderView?.configure(title: model.title, subtitle: model.text)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.quotation.apply(model.text, to: baseHeaderView?.subtitleTextView)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 45.0
     }
 }
