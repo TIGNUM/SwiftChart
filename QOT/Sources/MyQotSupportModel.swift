@@ -52,7 +52,7 @@ struct MyQotSupportModel {
             case .contactSupportNovartis:
                 return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title_novartis)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_title)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_title)
             }
         }
 
@@ -63,9 +63,9 @@ struct MyQotSupportModel {
             case .faq:
                 return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_subtitle)
             case .contactSupport, .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_subtitle)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_subtitle)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_subtitle)
             }
         }
     }
