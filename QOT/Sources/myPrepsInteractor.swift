@@ -12,22 +12,20 @@ import qot_dal
 final class MyPrepsInteractor {
 
     // MARK: - Properties
-    private let worker: MyPrepsWorker
-    private let presenter: MyPrepsPresenterInterface
-    private let router: MyPrepsRouterInterface
+    private let worker = MyPrepsWorker()
+    private let presenter: MyPrepsPresenterInterface    
+    private var isEditing = false
+    private var canEdit = true
 
     // MARK: - Init
-    init(worker: MyPrepsWorker,
-         presenter: MyPrepsPresenterInterface,
-         router: MyPrepsRouterInterface) {
-        self.worker = worker
+    init(presenter: MyPrepsPresenterInterface) {
         self.presenter = presenter
-        self.router = router
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-       fetchItemsAndUpdateView()
+        fetchItemsAndUpdateView()
+        presenter.setupView(viewModel: worker.getViewModel())
     }
 }
 
@@ -39,37 +37,37 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         }
     }
 
-    func numberOfRowsPreparations(in section: Int) -> Int {
-        return (worker.model?.prepItems.count ?? 0)
+    func numberOfRowsPreparations() -> Int {
+        return (worker.model?.items.count ?? 0)
     }
 
-    func numberOfRowsRecoveries(in section: Int) -> Int {
-        return (worker.recModel?.prepItems.count ?? 0)
+    func numberOfRowsRecoveries() -> Int {
+        return (worker.recModel?.items.count ?? 0)
     }
 
-    func numberOfRowsMindsetShifters(in section: Int) -> Int {
-        return (worker.mindModel?.prepItems.count ?? 0)
+    func numberOfRowsMindsetShifters() -> Int {
+        return (worker.mindModel?.items.count ?? 0)
     }
 
-    func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Items? {
-        guard worker.model?.prepItems.count ?? 0 > indexPath.row else {
+    func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Item? {
+        guard worker.model?.items.count ?? 0 > indexPath.row else {
             return nil
         }
-        return worker.model?.prepItems[indexPath.row]
+        return worker.model?.items[indexPath.row]
     }
 
-    func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Items? {
-        guard worker.recModel?.prepItems.count ?? 0 > indexPath.row else {
+    func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Item? {
+        guard worker.recModel?.items.count ?? 0 > indexPath.row else {
             return nil
         }
-        return worker.recModel?.prepItems[indexPath.row]
+        return worker.recModel?.items[indexPath.row]
     }
 
-    func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Items? {
-        guard worker.mindModel?.prepItems.count ?? 0 > indexPath.row else {
+    func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Item? {
+        guard worker.mindModel?.items.count ?? 0 > indexPath.row else {
             return nil
         }
-        return worker.mindModel?.prepItems[indexPath.row]
+        return worker.mindModel?.items[indexPath.row]
     }
 
     func preparations(completion: @escaping ((MyPrepsModel?) -> Void)) {
@@ -112,9 +110,5 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         let configurator = ShifterResultConfigurator.make(mindsetShifter: item, resultType: .mindsetShifterMyPlans)
         let controller = ShifterResultViewController(configure: configurator)
         viewController.present(controller, animated: true)
-    }
-
-   func showDeleteConfirmation(delegate: MyPrepsViewControllerDelegate?) {
-        router.showDeleteConfirmation(delegate: delegate)
     }
 }
