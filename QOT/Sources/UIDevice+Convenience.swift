@@ -22,12 +22,4 @@ extension UIDevice {
 
         return isFourSeries || isFiveSeries || isiPod || isSEiPhone
     }
-
-    static var isVersion10: Bool {
-        if #available(iOS 11.0, *) {
-            return false
-        } else {
-            return true
-        }
-    }
 }

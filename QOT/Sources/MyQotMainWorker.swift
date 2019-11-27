@@ -14,9 +14,6 @@ final class MyQotMainWorker {
     // MARK: - Properties
 
     private let userService = qot_dal.UserService.main
-    private lazy var firstInstallTimeStamp: Date? = {
-        return UserDefault.firstInstallationTimestamp.object as? Date
-    }()
 
     // MARK: - Init
 
@@ -35,7 +32,24 @@ final class MyQotMainWorker {
     }
 
     func myQOTTitle(for section: MyQotSection) -> String {
-        return ScreenTitleService.main.myQotSectionTitles(for: section) ?? ""
+        return myQotSectionTitles(for: section)
+    }
+
+    func myQotSectionTitles(for myQotItem: MyQotSection) -> String {
+        switch myQotItem {
+        case .profile:
+            return AppTextService.get(AppTextKey.my_qot_section_my_profile_title)
+        case .library:
+            return AppTextService.get(AppTextKey.my_qot_section_my_library_title)
+        case .preps:
+            return AppTextService.get(AppTextKey.my_qot_section_my_plans_title)
+        case .sprints:
+            return AppTextService.get(AppTextKey.my_qot_section_my_sprints_title)
+        case .data:
+            return AppTextService.get(AppTextKey.my_qot_section_my_data_title)
+        case .toBeVision:
+            return AppTextService.get(AppTextKey.my_qot_section_my_tbv_title)
+        }
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {

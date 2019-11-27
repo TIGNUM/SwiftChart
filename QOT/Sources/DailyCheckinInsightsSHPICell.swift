@@ -10,8 +10,10 @@ import Foundation
 
 final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var bucketTitle: UILabel!
-    @IBOutlet private weak var SHPIText: UILabel!
+    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerView: UIView!
+
     @IBOutlet weak var shpiQuestionLabel: UILabel!
     @IBOutlet weak var barsTitleLabel: UILabel!
     @IBOutlet weak var barsStackView: UIStackView!
@@ -25,23 +27,27 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
             bar.frame = CGRect(x: 0, y: 0, width: 1, height: 35)
         }
         super.awakeFromNib()
-        skeletonManager.addTitle(bucketTitle)
-        skeletonManager.addSubtitle(SHPIText)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(barsStackView)
 
     }
     func configure(with: DailyCheck2SHPIModel?) {
         guard let model = with else { return }
-        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0)
+        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0, shpiQuestion: model.shpiQuestion)
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply(model.title, to: bucketTitle)
-        ThemeText.searchTopic.apply(model.shpiQuestion, to: shpiQuestionLabel)
+        baseHeaderView?.configure(title: model.title,
+                                  subtitle: model.shpiQuestion)
+        ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
+        ThemeText.searchTopic.apply(model.shpiQuestion, to: baseHeaderView?.subtitleTextView)
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }
 
 private extension DailyCheckinInsightsSHPICell {
-    func updateView(text: String?, rating: Int) {
-        SHPIText.text = text
+    func updateView(text: String?, rating: Int, shpiQuestion: String?) {
+        baseHeaderView?.subtitleTextView.text = text
+        ThemeText.shpiQuestion.apply(shpiQuestion, to: shpiQuestionLabel)
         let selectedIndex = max(0, rating - 1)
         for index in 0...9 {
             var barHeight: CGFloat = 32.0

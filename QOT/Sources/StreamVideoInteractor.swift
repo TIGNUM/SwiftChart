@@ -109,6 +109,7 @@ extension StreamVideoInteractor: StreamVideoInteractorInterface {
         worker.toggleBookmark { [weak self] in
             guard let strongSelf = self else { return }
             strongSelf.delegate?.didUpdateData(interactor: strongSelf)
+            NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
         }
     }
 }

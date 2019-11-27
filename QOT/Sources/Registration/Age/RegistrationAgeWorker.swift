@@ -7,29 +7,30 @@
 //
 
 import UIKit
+import qot_dal
 
 final class RegistrationAgeWorker: BaseSigningWorker {
 
     // MARK: - Properties
 
     lazy var title: String = {
-        return titleService.localizedString(for: .OnboardingRegistrationAgeTitle)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_header_title)
     }()
 
     lazy var agePlaceholder: String = {
-        return R.string.localized.onboardingRegistrationAgePlaceholder()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_body_placeholder_title)
     }()
 
     lazy var descriptionText: String = {
-        return R.string.localized.onboardingRegistrationAgeDescription()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_view_create_account_body_description)
     }()
 
     lazy var ageRestrictionText: String = {
-        return R.string.localized.onboardingRegistrationAgeRestriction()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_body_create_account_label_restriction)
     }()
 
     lazy var nextButtonTitle: String = {
-        return R.string.localized.onboardingRegistrationAgeNextTitle()
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_footer_button_next)
     }()
 
     // MARK: - Init

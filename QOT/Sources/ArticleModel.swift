@@ -110,10 +110,4 @@ struct Article {
         let imageURL: URL?
         let isNew: Bool
     }
-
-    struct RelatedArticleStrategy {
-        let title: String
-        let durationString: String
-        let remoteID: Int
-    }
 }

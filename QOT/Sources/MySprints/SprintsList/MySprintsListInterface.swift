@@ -28,10 +28,13 @@ protocol MySprintsListInteractorInterface: Interactor {
     var viewModel: MySprintsListViewModel { get }
 
     func didTapEdit()
+    func showAddSprint()
     func handleSelectedItem(at indexPath: IndexPath) -> Bool
     func moveItem(at source: IndexPath, to destination: IndexPath)
+    func load()
 }
 
 protocol MySprintsListRouterInterface {
     func presentSprint(_ sprint: QDMSprint)
+    func presentAddSprint()
 }

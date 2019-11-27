@@ -26,11 +26,6 @@ extension UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear(notification:)), name: .UIKeyboardWillHide, object: nil)
     }
 
-    func stopObservingKeyboard() {
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.removeObserver(self, name: .UIKeyboardWillHide, object: nil)
-    }
-
     @objc func keyboardWillAppear(notification: NSNotification) {
         fatalError("keyboardWillAppear: must be overriden")
     }
@@ -54,50 +49,8 @@ extension UIViewController {
     }
 
     func pushToStart(childViewController: UIViewController, enableInteractivePop: Bool = true) {
-        let navigationBar = navigationController?.navigationBar
-        navigationBar?.tintColor = .white
-        navigationBar?.topItem?.title = ""
-        navigationBar?.backIndicatorImage = R.image.ic_back()
-        navigationBar?.backIndicatorTransitionMaskImage = R.image.ic_back()
-        navigationBar?.titleTextAttributes = [.font: UIFont.H5SecondaryHeadline, .foregroundColor: UIColor.white]
         navigationController?.pushViewController(childViewController, animated: true)
         navigationController?.interactivePopGestureRecognizer?.isEnabled = enableInteractivePop
-    }
-
-    /**
-     Sets `contentInset` on `scrollView` with consideration for `UINavigationController` and `UITabBarController`.
-     - note: This is meant to be the *one method to rule them all* for setting up a scrollView such a `UITableView` with
-     `contentInsets` taking account of any nav / tab bars. This method should be called in:
-     1. viewDidLayoutSubviews()
-     2. viewSafeAreaInsetsDidChange()
-    */
-    func configureContentInset(inset: UIEdgeInsets, scrollView: UIScrollView) {
-        automaticallyAdjustsScrollViewInsets = false
-
-        let safeArea: UIEdgeInsets
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-            safeArea = view.safeAreaInsets
-        } else {
-            let top = topLayoutGuide.length
-            let bottom = bottomLayoutGuide.length
-            safeArea = UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
-        }
-
-        var newInset = inset
-        newInset.bottom += safeArea.bottom
-        newInset.top += safeArea.top
-        newInset.left += safeArea.left
-        newInset.right += safeArea.right
-
-        let currentInset = scrollView.contentInset
-        if currentInset != newInset {
-            let currentOffest = scrollView.contentOffset
-            let newOffest = CGPoint(x: currentOffest.x - (newInset.left - currentInset.left),
-                                    y: currentOffest.y - (newInset.top - currentInset.top))
-            scrollView.contentInset = newInset
-            scrollView.contentOffset = newOffest
-        }
     }
 
     var safeAreaInsets: UIEdgeInsets {
@@ -111,9 +64,9 @@ extension UIViewController {
     }
 
     func showNoInternetConnectionAlert() {
-        let OK = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleDone))
-        QOTAlert.show(title: ScreenTitleService.main.localizedString(for: .NoInternetConnectionTitle),
-                      message: ScreenTitleService.main.localizedString(for: .NoInternetConnectionMessage),
+        let OK = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_done))
+        QOTAlert.show(title: AppTextService.get(AppTextKey.generic_alert_no_internet_title),
+                      message: AppTextService.get(AppTextKey.generic_alert_no_internet_body),
                                                                        bottomItems: [OK])
     }
 

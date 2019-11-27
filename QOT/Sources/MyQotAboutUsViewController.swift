@@ -12,7 +12,9 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
 
     var interactor: MyQotAboutUsInteractorInterface?
@@ -21,6 +23,8 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         ThemeView.level3.apply(view)
         setUpTableView()
         interactor?.viewDidLoad()
@@ -44,7 +48,8 @@ final class MyQotAboutUsViewController: BaseViewController, ScreenZLevel3 {
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
-        ThemeText.myQOTSectionHeader.apply(title, to: headerLabel)
+        baseHeaderView?.configure(title: title, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }
 
@@ -59,7 +64,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: interactor?.title(at: indexPath) ?? "", themeCell: .level3)
-        cell.configure(subTitle: interactor?.subtitle(at: indexPath) ?? "", isHidden: true)
+        cell.configure(subTitle: "", isHidden: true)
         cell.hideArrow = true
         return cell
     }

@@ -29,18 +29,6 @@ final class MyQotAccountSettingsWorker {
         ExtensionsDataManager.didUserLogIn(false)
     }
 
-    func alertType(for error: QOTNetworkError?) -> AlertType {
-        guard let error = error else { return .unknown }
-        switch error.type {
-        case .noNetworkConnection:
-            return .noNetworkConnection
-        case .notFound:
-            return .emailNotFound
-        default:
-            return .unknown
-        }
-    }
-
     func getUserProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
         userService.getUserData {[weak self] (user) in
             let profile = self?.formProfile(for: user)
@@ -55,76 +43,41 @@ final class MyQotAccountSettingsWorker {
 extension MyQotAccountSettingsWorker {
 
     var accountSettingsText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccountSettings)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_header_title)
     }
 
     var contactText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsContact)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_contact)
     }
 
     var emailText: String {
-        return ScreenTitleService.main.localizedString(for: .MyProfileEmail)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_email)
     }
 
     var dateOfBirthText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_date_of_birth)
     }
 
     var companyText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsCompany)
-    }
-
-    var personalDataText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsPersonalData)
-    }
-
-    var heightText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsHeight)
-    }
-
-    var weightText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsWeight)
-    }
-
-    var accountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsAccount)
-    }
-
-    var changePasswordText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsChangePassword)
-    }
-
-    var protectYourAccountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsProtectYourAccount)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_company)
     }
 
     var logoutQotText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsLogoutQot)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_title)
     }
 
     var withoutDeletingAccountText: String {
-        return ScreenTitleService.main.localizedString(for: .AccountSettingsWithoutDeletingAccountText)
-    }
-
-    var changePasswordKey: String {
-        return Tags.AccountSettingsChangePassword.rawValue
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_subtitle)
     }
 
     var logoutQOTKey: String {
-        return Tags.AccountSettingsLogoutQot.rawValue
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_title)
     }
 }
 
 // MARK: - Private extension
 
 private extension MyQotAccountSettingsWorker {
-    func getUserEmail(_ completion: @escaping (String) -> Void) {
-        userService.getUserData {[weak self] (user) in
-            let profile = self?.formProfile(for: user)
-            completion(profile?.email ?? "")
-        }
-    }
-
     func formProfile(for user: QDMUser?) -> UserProfileModel? {
         return UserProfileModel(imageURL: user?.profileImage?.url(),
                                 givenName: user?.givenName,

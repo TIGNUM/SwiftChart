@@ -12,7 +12,9 @@ final class MyQotAppSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var appSettingsHeaderLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var tableView: UITableView!
 
     private var settingsModel: MyQotAppSettingsModel!
@@ -23,6 +25,8 @@ final class MyQotAppSettingsViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
         ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
@@ -57,7 +61,8 @@ extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterfac
     func setup(_ settings: MyQotAppSettingsModel) {
         ThemeView.level3.apply(view)
         settingsModel = settings
-        ThemeText.myQOTSectionHeader.apply(interactor?.appSettingsText, to: appSettingsHeaderLabel)
+        baseHeaderView?.configure(title: interactor?.appSettingsText, subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
     }
 }
 
@@ -113,8 +118,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let settingsTapped = settingsModel.settingItem(at: indexPath)
-        let key = settingsModel.trackingKeyForItem(at: indexPath)
-        trackUserEvent(.OPEN, valueType: key, action: .TAP)
+        trackUserEvent(.OPEN, action: .TAP)
         selectedSettings = settingsTapped
         interactor?.handleTap(setting: settingsTapped)
     }

@@ -12,44 +12,25 @@ class ComponentHeaderView: UICollectionReusableView {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    @IBOutlet private var verticalConstraints: [NSLayoutConstraint]!
-    @IBOutlet private var horizontalConstraints: [NSLayoutConstraint]!
-    let skeletonManager = SkeletonManager()
+    private var baseHeaderView: QOTBaseHeaderView?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(subtitleLabel)
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
     }
 
     func configure(title: String?, subtitle: String?, secondary: Bool) {
         guard let title = title, let subtitle = subtitle else { return }
-        skeletonManager.hide()
         let theme = secondary ? ThemeView.level1Secondary : ThemeView.level1
-        ThemeText.strategyHeader.apply(title.uppercased(), to: titleLabel)
-        ThemeText.strategySubHeader.apply(subtitle, to: subtitleLabel)
+        baseHeaderView?.configure(title: title.uppercased(), subtitle: subtitle)
+        ThemeText.strategyHeader.apply(title.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.strategySubHeader.apply(subtitle, to: baseHeaderView?.subtitleTextView)
         theme.apply(self)
     }
 
     // MARK: Public
 
     func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        var height: CGFloat = 0
-        var verticalConstraintsSum: CGFloat = 0
-        var horizontalConstraintsSum: CGFloat = 0
-        for constraint in verticalConstraints {
-            verticalConstraintsSum += constraint.constant
-        }
-        for constraint in horizontalConstraints {
-            horizontalConstraintsSum += constraint.constant
-        }
-        let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
-        let subtitleLabelSize = subtitleLabel.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
-
-        height = titleLabelSize.height + subtitleLabelSize.height + verticalConstraintsSum
-
-        return height
+        return baseHeaderView?.calculateHeight(for: cellWidth) ?? 0
     }
 }

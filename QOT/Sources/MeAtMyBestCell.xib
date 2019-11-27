@@ -13,12 +13,6 @@
         <array key="SF-Pro-Display-Light.otf">
             <string>SFProDisplay-Light</string>
         </array>
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
-        <array key="SF-Pro-Text-Light.otf">
-            <string>SFProText-Light</string>
-        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -36,29 +30,6 @@
                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
                         <rect key="frame" x="0.0" y="0.0" width="426" height="375.5"/>
                         <subviews>
-                            <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfO-wv-Fpb">
-                                <rect key="frame" x="24" y="48" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="OGS-Jr-1Ub"/>
-                                    <constraint firstAttribute="width" constant="16" id="OZk-yN-X3B"/>
-                                </constraints>
-                            </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME AT MY BEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vi4-ue-UZu">
-                                <rect key="frame" x="24" y="57" width="378" height="24"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="24" id="ijm-op-l0j"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="The TBV is a critical element fto Rule your Impact and reach your goals." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ee8-gE-gfd">
-                                <rect key="frame" x="24" y="105" width="378" height="18.5"/>
-                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="252" y="287.5" width="150" height="40"/>
                                 <constraints>
@@ -74,7 +45,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URP-Fj-vXg">
-                                <rect key="frame" x="24" y="225" width="378" height="38.5"/>
+                                <rect key="frame" x="24" y="95.5" width="378" height="168"/>
                                 <string key="text">What could you do today to become 
 that statement statement?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
@@ -82,32 +53,34 @@ that statement statement?</string>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="“I am a great listener in high pressure meetings” " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcg-bf-cKP">
-                                <rect key="frame" x="24" y="139.5" width="378" height="57.5"/>
+                                <rect key="frame" x="24" y="10" width="378" height="57.5"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDh-rv-tXP">
+                                <rect key="frame" x="0.0" y="0.0" width="426" height="0.0"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="eNu-8S-pa3"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="rhA-xn-lOn" firstAttribute="top" secondItem="URP-Fj-vXg" secondAttribute="bottom" constant="24" id="49x-OU-YRi"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="top" secondItem="Tcg-bf-cKP" secondAttribute="bottom" constant="28" id="4zs-iR-xL7"/>
                             <constraint firstAttribute="bottom" secondItem="rhA-xn-lOn" secondAttribute="bottom" constant="48" id="5VC-L5-usE"/>
-                            <constraint firstItem="mfO-wv-Fpb" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="7dC-vM-xZv"/>
-                            <constraint firstItem="Vi4-ue-UZu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="BrN-SV-ZKL"/>
-                            <constraint firstItem="Ee8-gE-gfd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="GoP-Ex-ggg"/>
-                            <constraint firstItem="Vi4-ue-UZu" firstAttribute="top" secondItem="mfO-wv-Fpb" secondAttribute="bottom" constant="8" id="MZl-vU-RpU"/>
+                            <constraint firstItem="qDh-rv-tXP" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Ecf-4g-8dS"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="TrZ-B3-LXk"/>
-                            <constraint firstItem="Tcg-bf-cKP" firstAttribute="top" secondItem="Ee8-gE-gfd" secondAttribute="bottom" constant="16" id="XdJ-bw-nHt"/>
-                            <constraint firstItem="mfO-wv-Fpb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="baN-wQ-8Y3"/>
-                            <constraint firstAttribute="trailing" secondItem="Ee8-gE-gfd" secondAttribute="trailing" constant="24" id="deo-AC-h9a"/>
+                            <constraint firstItem="qDh-rv-tXP" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="Z9K-L3-H1s"/>
                             <constraint firstItem="Tcg-bf-cKP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="g1C-VP-4fm"/>
                             <constraint firstAttribute="trailing" secondItem="URP-Fj-vXg" secondAttribute="trailing" constant="24" id="gFl-eJ-rm1"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="hDW-CJ-eb5"/>
-                            <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vi4-ue-UZu" secondAttribute="trailing" constant="24" id="i0t-Mq-4q8"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Tcg-bf-cKP" secondAttribute="trailing" constant="24" id="j8d-tD-JEz"/>
-                            <constraint firstItem="Ee8-gE-gfd" firstAttribute="top" secondItem="Vi4-ue-UZu" secondAttribute="bottom" constant="24" id="m42-V9-u48"/>
+                            <constraint firstItem="Tcg-bf-cKP" firstAttribute="top" secondItem="qDh-rv-tXP" secondAttribute="bottom" constant="10" id="mSQ-Hs-8Um"/>
                             <constraint firstAttribute="trailing" secondItem="Tcg-bf-cKP" secondAttribute="trailing" constant="24" id="vRm-sQ-Uhq"/>
+                            <constraint firstItem="qDh-rv-tXP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wgj-Jn-mZc"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rhA-xn-lOn" secondAttribute="trailing" constant="24" id="xX2-lr-CO0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -123,11 +96,11 @@ that statement statement?</string>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="headerView" destination="qDh-rv-tXP" id="gmo-5m-0WB"/>
+                <outlet property="headerViewHeightConstraint" destination="eNu-8S-pa3" id="4k2-Nv-nl3"/>
                 <outlet property="meAtMyBestButtonText" destination="rhA-xn-lOn" id="4Xc-E4-UbY"/>
                 <outlet property="meAtMyBestContent" destination="Tcg-bf-cKP" id="ZD8-lI-Had"/>
                 <outlet property="meAtMyBestFuture" destination="URP-Fj-vXg" id="WUJ-lc-jEf"/>
-                <outlet property="meAtMyBestLabel" destination="Ee8-gE-gfd" id="1tR-79-cxy"/>
-                <outlet property="meAtMyBestTitle" destination="Vi4-ue-UZu" id="3JE-Q8-zbd"/>
             </connections>
             <point key="canvasLocation" x="944.92753623188412" y="-289.28571428571428"/>
         </tableViewCell>

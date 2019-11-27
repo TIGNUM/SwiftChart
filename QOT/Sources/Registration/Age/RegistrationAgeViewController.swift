@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
@@ -41,7 +42,6 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     }()
 
     lazy private var years: [String] = {
-        let currentYear = Calendar.current.component(.year, from: Date())
         let lowerBound = Date().minimumDateOfBirth.year()
         let upperBound = Date().maximumDateOfBirth.year()
 
@@ -51,7 +51,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         }
 
         array.reverse()
-        array.insert(R.string.localized.yearPickerTitleSelect(), at: 0)
+        array.insert(AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_section_year_picker_place_holder_year_picker), at: 0)
         return array
     }()
 

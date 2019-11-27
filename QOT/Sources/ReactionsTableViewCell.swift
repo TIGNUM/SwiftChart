@@ -21,6 +21,7 @@ final class ReactionsTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 extension ReactionsTableViewCell {
     func configure(title: String, reactions: [String]) {
         selectionStyle = .none
+        ThemeView.mindsetShifter.apply(self)
         ThemeText.resultTitle.apply(title, to: titleLabel)
         ThemeText.resultHeader2.apply(reactions[0, default: "Reaction_01 not set"], to: firstReactionLabel)
         ThemeText.resultHeader2.apply(reactions[1, default: "Reaction_02 not set"], to: secondReactionLabel)

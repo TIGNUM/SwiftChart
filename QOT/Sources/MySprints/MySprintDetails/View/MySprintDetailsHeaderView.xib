@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Light.otf">
-            <string>SFProDisplay-Light</string>
-        </array>
         <array key="SF-Pro-Text-Light.otf">
             <string>SFProText-Light</string>
         </array>
@@ -30,20 +27,6 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s3m-A8-d02" userLabel="Content View">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="141"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1t1-mW-US1" userLabel="Dash">
-                            <rect key="frame" x="24" y="36" width="16" height="2"/>
-                            <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="16" id="a6q-55-nT2"/>
-                                <constraint firstAttribute="height" constant="2" id="z6s-BZ-bjS"/>
-                            </constraints>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U3m-vF-TG7">
-                            <rect key="frame" x="24" y="52" width="319" height="29"/>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
-                            <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-/-" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dh-l0-Gu3" userLabel="Progress Label">
                             <rect key="frame" x="343" y="62" width="71" height="17"/>
                             <constraints>
@@ -54,29 +37,31 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qsd-dJ-l55" userLabel="Description Label">
-                            <rect key="frame" x="24" y="105" width="366" height="12"/>
+                            <rect key="frame" x="24" y="97.5" width="366" height="19.5"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hN-dk-p1S">
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="81.5"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="qsd-dJ-l55" secondAttribute="trailing" constant="24" id="4OE-Jm-7v2"/>
+                        <constraint firstItem="9hN-dk-p1S" firstAttribute="top" secondItem="s3m-A8-d02" secondAttribute="top" id="9ZE-Nw-pLN"/>
                         <constraint firstAttribute="trailing" secondItem="6dh-l0-Gu3" secondAttribute="trailing" id="Bnf-v8-y6C"/>
-                        <constraint firstItem="qsd-dJ-l55" firstAttribute="top" secondItem="U3m-vF-TG7" secondAttribute="bottom" constant="24" id="FH5-7u-Q6B"/>
-                        <constraint firstItem="6dh-l0-Gu3" firstAttribute="leading" secondItem="U3m-vF-TG7" secondAttribute="trailing" id="NbW-su-zgO"/>
-                        <constraint firstItem="U3m-vF-TG7" firstAttribute="leading" secondItem="s3m-A8-d02" secondAttribute="leading" constant="24" id="V6J-Qa-C5K"/>
-                        <constraint firstItem="U3m-vF-TG7" firstAttribute="top" secondItem="1t1-mW-US1" secondAttribute="bottom" constant="14" id="cBk-Rh-Y6N"/>
-                        <constraint firstItem="1t1-mW-US1" firstAttribute="leading" secondItem="s3m-A8-d02" secondAttribute="leading" constant="24" id="nKS-5w-acn"/>
+                        <constraint firstItem="9hN-dk-p1S" firstAttribute="leading" secondItem="s3m-A8-d02" secondAttribute="leading" id="VG8-6T-5u3"/>
+                        <constraint firstItem="6dh-l0-Gu3" firstAttribute="leading" secondItem="9hN-dk-p1S" secondAttribute="trailing" constant="8" id="jTE-Ei-iuw"/>
+                        <constraint firstItem="qsd-dJ-l55" firstAttribute="top" secondItem="9hN-dk-p1S" secondAttribute="bottom" constant="16" id="nR9-Cy-r6h"/>
                         <constraint firstAttribute="bottom" secondItem="qsd-dJ-l55" secondAttribute="bottom" constant="24" id="uP3-q0-S2Y"/>
                         <constraint firstItem="qsd-dJ-l55" firstAttribute="leading" secondItem="s3m-A8-d02" secondAttribute="leading" constant="24" id="v4h-QJ-8L6"/>
-                        <constraint firstItem="1t1-mW-US1" firstAttribute="top" secondItem="s3m-A8-d02" secondAttribute="top" constant="36" id="vNh-x1-JK0"/>
                         <constraint firstItem="6dh-l0-Gu3" firstAttribute="top" secondItem="s3m-A8-d02" secondAttribute="top" constant="62" id="x9q-co-gbz"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="s3m-A8-d02" secondAttribute="trailing" id="ADb-YI-bkp"/>
                 <constraint firstItem="s3m-A8-d02" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="aeE-jB-YBz"/>
@@ -89,9 +74,8 @@
             <connections>
                 <outlet property="contentView" destination="s3m-A8-d02" id="CcN-eW-xZi"/>
                 <outlet property="descriptionLabel" destination="qsd-dJ-l55" id="XCP-E3-N5e"/>
-                <outlet property="headerLine" destination="1t1-mW-US1" id="V8z-vU-TEL"/>
+                <outlet property="headerView" destination="9hN-dk-p1S" id="FZo-Bq-m23"/>
                 <outlet property="progressLabel" destination="6dh-l0-Gu3" id="dco-dp-4ap"/>
-                <outlet property="titleLabel" destination="U3m-vF-TG7" id="jfj-Ro-fNs"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="44.53125"/>
         </view>

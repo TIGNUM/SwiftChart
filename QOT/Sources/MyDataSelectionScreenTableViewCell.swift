@@ -40,7 +40,7 @@ final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
     }
 
     private func setupForSelected(selected: Bool) {
-        let image = selected ? UIImage.init(named: "activeCircle") : UIImage.init(named: "inactiveCircle")
+        let image = selected ? UIImage.init(named: "ic_radio_selected") : UIImage.init(named: "ic_radio_unselected")
         checkMarkImageView.image = image
     }
 }

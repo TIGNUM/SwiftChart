@@ -8,41 +8,24 @@
 
 import UIKit
 
-protocol TBVDataGraphTableViewCellProtocol: class {
-    func didSelect(date: Date?)
+protocol TBVDataGraphProtocol: class {
+    func didSelect(date: Date)
 }
 
-final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable {
+final class TBVDataGraphTableViewCell: UITableViewCell, Dequeueable, TBVDataGraphProtocol {
 
     @IBOutlet weak var collectionView: TBVDataGraphCollectionView!
-    weak var delegate: TBVDataGraphTableViewCellProtocol?
+    weak var delegate: TBVDataGraphProtocol?
 
-    var configOfGraph: TBVGraph.BarGraphConfig = .tbvDataConfig()
-    var itemsOfGraph: [TBVGraph.Rating] = []
-    var rangeOfGraph: TBVGraph.Range = .defaultRange()
-
-    func setup(items: [TBVGraph.Rating]?, config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
-        configOfGraph = config
-        itemsOfGraph = items ?? []
-        rangeOfGraph = range
-        collectionView.collectionDelegate = self
+    func setup(report: ToBeVisionReport?, config: TBVGraph.BarGraphConfig, range: TBVGraph.Range) {
+        collectionView.tbvReport = report
+        collectionView.config = config
+        collectionView.range = range
+        collectionView.graphDelegate = self
         collectionView.reloadData()
     }
-}
-extension TBVDataGraphTableViewCell: TBVDataGraphCollectionViewProtocol {
-    func didSelect(date: Date?) {
+
+    func didSelect(date: Date) {
         delegate?.didSelect(date: date)
-    }
-
-    func range() -> TBVGraph.Range {
-        return rangeOfGraph
-    }
-
-    func ratings() -> [TBVGraph.Rating] {
-        return itemsOfGraph
-    }
-
-    func config() -> TBVGraph.BarGraphConfig {
-        return configOfGraph
     }
 }

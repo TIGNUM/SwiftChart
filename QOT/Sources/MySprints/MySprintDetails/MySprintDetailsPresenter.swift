@@ -11,18 +11,15 @@ import UIKit
 final class MySprintDetailsPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: MySprintDetailsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MySprintDetailsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - MySprintDetailsInterface
-
 extension MySprintDetailsPresenter: MySprintDetailsPresenterInterface {
     func setupView() {
         viewController?.setupView()

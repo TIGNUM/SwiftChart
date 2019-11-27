@@ -18,6 +18,6 @@ final class ArticleImageHeaderTableViewCell: UITableViewCell, Dequeueable {
         guard let urlString = imageURLString else { return }
         skeletonManager.addOtherView(headerImageView)
         headerImageView?.setImage(url: URL(string: urlString),
-                                  skeletonManager: skeletonManager)
+                                  skeletonManager: skeletonManager) { (_) in /* */}
     }
 }

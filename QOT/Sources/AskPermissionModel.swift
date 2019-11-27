@@ -12,6 +12,7 @@ struct AskPermission {
     enum Kind: String {
         case location
         case notification
+        case notificationOnboarding
         case notificationOpenSettings
         case calendar
         case calendarOpenSettings
@@ -20,7 +21,7 @@ struct AskPermission {
             switch self {
             case .location:
                 return 102076
-            case .notification:
+            case .notification, .notificationOnboarding:
                 return 102038
             case .notificationOpenSettings:
                 return 102107
@@ -32,19 +33,26 @@ struct AskPermission {
         }
 
         var titleTag: String {
-            return self.rawValue + "_permission_title"
+            return self.tagRawValue() + "_permission_title"
         }
 
         var bodyTag: String {
-            return self.rawValue + "_permission_body"
+            return self.tagRawValue() + "_permission_body"
         }
 
         var buttonConfirmTag: String {
-            return self.rawValue + "_permission_button_confirm"
+            return self.tagRawValue() + "_permission_button_confirm"
         }
 
         var buttonCancelTag: String {
-            return self.rawValue + "_permission_button_cancel"
+            return self.tagRawValue() + "_permission_button_cancel"
+        }
+
+        func tagRawValue() -> String {
+            if self == .notificationOnboarding {
+                return AskPermission.Kind.notification.rawValue
+            }
+            return self.rawValue
         }
     }
 

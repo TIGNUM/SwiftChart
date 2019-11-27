@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
         <array key="SF-Pro-Text-Light.otf">
             <string>SFProText-Light</string>
         </array>
@@ -27,28 +24,8 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lay-gR-kMz">
                     <rect key="frame" x="0.0" y="0.0" width="403" height="336"/>
                     <subviews>
-                        <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gwq-nu-K1r">
-                            <rect key="frame" x="24" y="48" width="10" height="1"/>
-                            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="10" id="Vpi-8f-cJz"/>
-                                <constraint firstAttribute="height" constant="1" id="f4J-ev-JZY"/>
-                            </constraints>
-                        </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SOLVE REMINDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKU-8H-YUQ">
-                            <rect key="frame" x="24" y="57" width="355" height="24"/>
-                            <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
-                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Two days ago you explored some solutions to help you during difficult high-performance situations." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uTu-zZ-9re">
-                            <rect key="frame" x="24" y="105" width="355" height="57.5"/>
-                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Hope the suggested solution has worked for you?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZBF-4w-PHD">
-                            <rect key="frame" x="24" y="186.5" width="355" height="38.5"/>
+                            <rect key="frame" x="24" y="174" width="355" height="51"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                             <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -76,7 +53,7 @@
                             </constraints>
                         </view>
                         <view alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ibp-jg-x3D">
-                            <rect key="frame" x="0.0" y="205.5" width="18" height="1"/>
+                            <rect key="frame" x="0.0" y="199" width="18" height="1"/>
                             <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="18" id="glw-Be-QY9"/>
@@ -99,16 +76,21 @@
                                 <constraint firstAttribute="height" constant="1" id="fss-EN-e7X"/>
                             </constraints>
                         </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3eX-aO-Uqy">
+                            <rect key="frame" x="0.0" y="0.0" width="403" height="150"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="U1K-Qc-VYC"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="JKU-8H-YUQ" secondAttribute="trailing" constant="24" id="0QD-OE-PrK"/>
                         <constraint firstItem="nPk-IS-ZnT" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="25H-J8-Wxk"/>
                         <constraint firstItem="ZBF-4w-PHD" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="3QI-ui-jDX"/>
                         <constraint firstAttribute="trailing" secondItem="ZBF-4w-PHD" secondAttribute="trailing" constant="24" id="5V1-JZ-Ryq"/>
+                        <constraint firstItem="3eX-aO-Uqy" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="6nZ-iy-Atl"/>
                         <constraint firstItem="YYQ-95-kZ6" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="C8O-fB-8ci"/>
-                        <constraint firstItem="JKU-8H-YUQ" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="DN8-SO-oak"/>
-                        <constraint firstItem="JKU-8H-YUQ" firstAttribute="top" secondItem="Gwq-nu-K1r" secondAttribute="bottom" constant="8" id="DZh-ec-mho"/>
                         <constraint firstAttribute="trailing" secondItem="nPk-IS-ZnT" secondAttribute="trailing" id="Dmz-fc-r2r"/>
                         <constraint firstItem="Ibp-jg-x3D" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="Dsh-Ls-nr9"/>
                         <constraint firstItem="nPk-IS-ZnT" firstAttribute="top" secondItem="NJc-X2-PJ2" secondAttribute="bottom" constant="20.5" id="F8p-zV-PxC"/>
@@ -116,17 +98,14 @@
                         <constraint firstItem="ecL-Bg-eCc" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="Jmz-7R-xMD"/>
                         <constraint firstItem="YYQ-95-kZ6" firstAttribute="centerY" secondItem="NJc-X2-PJ2" secondAttribute="centerY" id="NoS-NH-vgb"/>
                         <constraint firstItem="Ibp-jg-x3D" firstAttribute="centerY" secondItem="ZBF-4w-PHD" secondAttribute="centerY" id="Oaz-Xm-xDh"/>
-                        <constraint firstItem="uTu-zZ-9re" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="Tsk-qW-Kdf"/>
-                        <constraint firstItem="ZBF-4w-PHD" firstAttribute="top" secondItem="uTu-zZ-9re" secondAttribute="bottom" constant="24" id="UHr-7L-xe7"/>
                         <constraint firstItem="IoC-QV-JDo" firstAttribute="top" secondItem="ZBF-4w-PHD" secondAttribute="bottom" constant="24" id="XPv-5k-n6N"/>
-                        <constraint firstItem="Gwq-nu-K1r" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="ZGD-sf-Ay1"/>
                         <constraint firstItem="NJc-X2-PJ2" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" constant="24" id="aPY-ti-BM4"/>
+                        <constraint firstAttribute="trailing" secondItem="3eX-aO-Uqy" secondAttribute="trailing" id="ce8-1y-K7P"/>
                         <constraint firstItem="ecL-Bg-eCc" firstAttribute="leading" secondItem="Lay-gR-kMz" secondAttribute="leading" id="e9s-m6-w1z"/>
                         <constraint firstAttribute="trailing" secondItem="IoC-QV-JDo" secondAttribute="trailing" constant="24" id="eDe-J3-Jtt"/>
-                        <constraint firstItem="Gwq-nu-K1r" firstAttribute="top" secondItem="Lay-gR-kMz" secondAttribute="top" constant="48" id="eSq-tp-slc"/>
-                        <constraint firstAttribute="trailing" secondItem="uTu-zZ-9re" secondAttribute="trailing" constant="24" id="eey-z7-3OZ"/>
-                        <constraint firstItem="uTu-zZ-9re" firstAttribute="top" secondItem="JKU-8H-YUQ" secondAttribute="bottom" constant="24" id="guR-DD-DjU"/>
+                        <constraint firstItem="3eX-aO-Uqy" firstAttribute="top" secondItem="Lay-gR-kMz" secondAttribute="top" id="gVQ-Pb-a9J"/>
                         <constraint firstItem="NJc-X2-PJ2" firstAttribute="top" secondItem="IoC-QV-JDo" secondAttribute="bottom" constant="24" id="ksO-L3-4V9"/>
+                        <constraint firstItem="ZBF-4w-PHD" firstAttribute="top" secondItem="3eX-aO-Uqy" secondAttribute="bottom" constant="24" id="mkd-wD-6ic"/>
                         <constraint firstItem="ecL-Bg-eCc" firstAttribute="centerY" secondItem="IoC-QV-JDo" secondAttribute="centerY" id="nQU-kh-75x"/>
                         <constraint firstAttribute="bottom" secondItem="nPk-IS-ZnT" secondAttribute="bottom" constant="2" id="nXe-1Q-Dah"/>
                         <constraint firstAttribute="trailing" secondItem="NJc-X2-PJ2" secondAttribute="trailing" constant="24" id="rly-xc-NVB"/>
@@ -143,11 +122,11 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="bucketTitle" destination="JKU-8H-YUQ" id="mYR-a4-FlM"/>
+                <outlet property="headerView" destination="3eX-aO-Uqy" id="gp0-Xy-lYe"/>
+                <outlet property="headerViewHeightConstraint" destination="U1K-Qc-VYC" id="CNm-3w-P7f"/>
                 <outlet property="question1" destination="ZBF-4w-PHD" id="bH7-MP-4Zz"/>
                 <outlet property="question2" destination="IoC-QV-JDo" id="DjH-1x-07C"/>
                 <outlet property="question3" destination="NJc-X2-PJ2" id="4jZ-v1-XCd"/>
-                <outlet property="twoDayAgo" destination="uTu-zZ-9re" id="UsP-ZN-SdD"/>
             </connections>
             <point key="canvasLocation" x="129.71014492753625" y="-34.151785714285715"/>
         </view>

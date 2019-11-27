@@ -8,6 +8,7 @@
 
 import UIKit
 import SafariServices
+import qot_dal
 
 protocol PopUpCopyrightViewControllerProtocol: class {
     func cancelAction()
@@ -48,7 +49,6 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        trackPage()
     }
 
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
@@ -60,6 +60,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
+        //track tap gesture
         showSafariVC(for: copyrightURL ?? "")
     }
 
@@ -80,7 +81,7 @@ final class PopUpCopyrightViewController: BaseViewController, ScreenZLevelOverla
     private func setupView() {
         containerView.backgroundColor = .carbon
         backgroundView.backgroundColor = UIColor.carbon.withAlphaComponent(0.95)
-        descriptionLabel.text = R.string.localized.copyrightText() + (copyrightURL ?? "")
+        descriptionLabel.text = AppTextService.get(AppTextKey.daily_brief_alert_copyright_title) + (copyrightURL ?? "")
     }
 
     @IBAction func didTapClose(_ sender: Any) {

@@ -23,11 +23,11 @@ protocol MyQotSupportInteractorInterface: Interactor {
     func item(at indexPath: IndexPath) -> MyQotSupportModel.MyQotSupportModelItem?
     func title(at indexPath: IndexPath) -> String
     func subtitle(at indexPath: IndexPath) -> String
-    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void)
     func handleSelection(for indexPath: IndexPath)
     var supportText: String { get }
 }
 
 protocol MyQotSupportRouterInterface {
     func handleSelection(for item: MyQotSupportModel.MyQotSupportModelItem, email: String)
+    func presentSupportNovartis(header: String?, subHeader: String?)
 }

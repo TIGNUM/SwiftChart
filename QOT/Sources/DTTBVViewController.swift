@@ -13,13 +13,10 @@ final class DTTBVViewController: DTViewController {
     // MARK: - Properties
     var tbvInteractor: DTTBVInteractorInterface?
     var tbvRouter: DTTBVRouter?
-    private weak var permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
     private lazy var imagePickerController: ImagePickerController? = {
-        guard let permissionsManager = permissionsManager else { return nil }
         return ImagePickerController(cropShape: .square,
                                      imageQuality: .medium,
                                      imageSize: .medium,
-                                     permissionsManager: permissionsManager,
                                      adapter: ImagePickerControllerAdapter(self))
     }()
 

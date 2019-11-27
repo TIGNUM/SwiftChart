@@ -55,6 +55,8 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
 private extension StrategyListViewController {
     func setupTableView() {
         tableView.backgroundColor = .clear
+        tableView.sectionHeaderHeight = UITableViewAutomaticDimension
+        tableView.estimatedSectionHeaderHeight = 120
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
@@ -149,10 +151,6 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle, theme: .level2)
         }
         return nil
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 76
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

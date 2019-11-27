@@ -37,13 +37,8 @@ final class PaymentReminderInteractor {
 // MARK: - PaymentReminderInteractorInterface
 
 extension PaymentReminderInteractor: PaymentReminderInteractorInterface {
-
-    var showCloseButton: Bool {
-        return worker.expired == false
-    }
-
-    var showSwitchAccountButton: Bool {
-        return worker.expired == true
+    var isExpired: Bool {
+        return worker.expired
     }
 
     func didTapSwitchAccounts() {

@@ -59,40 +59,12 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         return worker.companyText
     }
 
-    var personalDataText: String {
-        return worker.personalDataText
-    }
-
-    var heightText: String {
-        return worker.heightText
-    }
-
-    var weightText: String {
-        return worker.weightText
-    }
-
-    var accountText: String {
-        return worker.accountText
-    }
-
-    var changePasswordText: String {
-        return worker.changePasswordText
-    }
-
-    var protectYourAccountText: String {
-        return worker.protectYourAccountText
-    }
-
     var logoutQotText: String {
         return worker.logoutQotText
     }
 
     var withoutDeletingAccountText: String {
         return worker.withoutDeletingAccountText
-    }
-
-    var changePasswordKey: String {
-        return worker.changePasswordKey
     }
 
     var logoutQOTKey: String {

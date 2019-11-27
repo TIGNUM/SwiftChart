@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class TBVDataGraphBarNextDurationViewCell: UICollectionViewCell, Dequeueable {
 
@@ -14,7 +15,7 @@ final class TBVDataGraphBarNextDurationViewCell: UICollectionViewCell, Dequeueab
 
     var duration: String? {
         willSet {
-            durationlabel.text = R.string.localized.tbvDataGraphBarNextDurationViewCellInFourWeeks()
+            durationlabel.text = AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_data_section_chart_label_four_weeks)
             let degrees: Double = -90 //the value in degrees
             durationlabel.transform = CGAffineTransform(rotationAngle: CGFloat(degrees * .pi/180))
             durationlabel.translatesAutoresizingMaskIntoConstraints = true

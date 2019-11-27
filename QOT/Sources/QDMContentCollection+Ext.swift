@@ -10,12 +10,6 @@ import Foundation
 import qot_dal
 
 extension QDMContentCollection {
-    func getCategories(_ completion: @escaping (([QDMContentCategory]?) -> Void)) {
-        ContentService.main.getContentCategoriesByIds(relatedContentIDsPrepareAll, completion)
-    }
-}
-
-extension QDMContentCollection {
     var relatedContentIDsPrepareDefault: [Int] {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentID }
     }
@@ -38,15 +32,15 @@ extension QDMContentCollection {
         get {
             if hasVideoOnly == true {
                 let durations = contentItems.compactMap { $0.valueDuration }
-                let total = Int(durations.reduce(0) { ($0/60) + ($1/60) })
-                return R.string.localized.learnContentDurationVideo(String(total))
+                let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
+                return String(format: AppTextService.get(AppTextKey.generic_content_section_item_label_video), total)
             } else if hasAudioItems == true {
 
             } else if isFoundation == true {
                 let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
                 return videoItem?.durationString ?? ""
             }
-            return R.string.localized.learnContentListViewMinutesLabel(String(max(minutesToRead, 1)))
+            return String(format: AppTextService.get(AppTextKey.generic_content_section_item_label_read), String(max(minutesToRead, 1)))
         }
     }
 

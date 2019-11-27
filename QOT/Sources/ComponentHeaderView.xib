@@ -8,65 +8,16 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Apercu-Regular.otf">
-            <string>Apercu-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sg4-P2-IFa" customClass="ComponentHeaderView" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eQb-Bt-EwV">
-                    <rect key="frame" x="24" y="30" width="16" height="1"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="eDW-8f-Ylf"/>
-                        <constraint firstAttribute="width" constant="16" id="xML-zn-uPL"/>
-                    </constraints>
-                </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-4e-jYi">
-                    <rect key="frame" x="24" y="43" width="327" height="15"/>
-                    <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="15"/>
-                    <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ds7-VQ-mul">
-                    <rect key="frame" x="24" y="66" width="327" height="24"/>
-                    <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="14"/>
-                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-            </subviews>
-            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
-            <constraints>
-                <constraint firstAttribute="trailing" secondItem="ikd-4e-jYi" secondAttribute="trailing" constant="24" id="1N3-mK-Zhn"/>
-                <constraint firstItem="ikd-4e-jYi" firstAttribute="top" secondItem="eQb-Bt-EwV" secondAttribute="bottom" constant="12" id="5Rz-GX-fYJ"/>
-                <constraint firstItem="ds7-VQ-mul" firstAttribute="top" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="8" id="72q-k7-04M"/>
-                <constraint firstItem="eQb-Bt-EwV" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="24" id="7LP-AE-rTP"/>
-                <constraint firstItem="ds7-VQ-mul" firstAttribute="leading" secondItem="ikd-4e-jYi" secondAttribute="leading" id="NKm-1a-1Vc"/>
-                <constraint firstItem="ikd-4e-jYi" firstAttribute="leading" secondItem="Sg4-P2-IFa" secondAttribute="leading" constant="24" id="YGO-Ow-KQD"/>
-                <constraint firstItem="ds7-VQ-mul" firstAttribute="trailing" secondItem="ikd-4e-jYi" secondAttribute="trailing" id="cMs-GZ-HfX"/>
-                <constraint firstAttribute="bottom" secondItem="ds7-VQ-mul" secondAttribute="bottom" constant="10" id="iYx-eH-8et"/>
-                <constraint firstItem="eQb-Bt-EwV" firstAttribute="top" secondItem="Sg4-P2-IFa" secondAttribute="top" constant="30" id="l7g-sx-Pyo"/>
-            </constraints>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <connections>
-                <outlet property="subtitleLabel" destination="ds7-VQ-mul" id="2Y8-yk-tjH"/>
-                <outlet property="titleLabel" destination="ikd-4e-jYi" id="HxV-hc-QBb"/>
-                <outletCollection property="verticalConstraints" destination="eDW-8f-Ylf" collectionClass="NSMutableArray" id="zYt-kW-fYS"/>
-                <outletCollection property="verticalConstraints" destination="l7g-sx-Pyo" collectionClass="NSMutableArray" id="vHe-Wj-L8Y"/>
-                <outletCollection property="verticalConstraints" destination="5Rz-GX-fYJ" collectionClass="NSMutableArray" id="g6t-EI-Bc0"/>
-                <outletCollection property="verticalConstraints" destination="72q-k7-04M" collectionClass="NSMutableArray" id="FZy-3M-UYd"/>
-                <outletCollection property="verticalConstraints" destination="iYx-eH-8et" collectionClass="NSMutableArray" id="JED-oG-3C0"/>
-                <outletCollection property="horizontalConstraints" destination="1N3-mK-Zhn" collectionClass="NSMutableArray" id="Dcy-nu-zfV"/>
-                <outletCollection property="horizontalConstraints" destination="7LP-AE-rTP" collectionClass="NSMutableArray" id="0G3-qN-sS7"/>
-            </connections>
             <point key="canvasLocation" x="404" y="267.61619190404798"/>
         </view>
     </objects>

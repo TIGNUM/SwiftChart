@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet weak var preview: UIImageView!
 
     override func awakeFromNib() {
@@ -19,6 +19,6 @@ class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
     func configure(previewImageUrl: URL?) {
         configure()
         skeletonManager.addOtherView(preview)
-        preview.setImage(url: previewImageUrl, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
+        preview.setImage(url: previewImageUrl, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager) { (_) in /* */}
     }
 }

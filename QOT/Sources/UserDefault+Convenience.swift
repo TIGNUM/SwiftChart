@@ -24,7 +24,9 @@ enum UserDefault: String {
     case didShowCoachMarks = "qot.userdefault.key.didShowCoachMarks"
     case showGuideTrackBucket = "qot.userdefault.key.showsGuideTrackBuckets"
     case prepareLocalEventsDictionary = "qot.userdefault.key.prepare.local.events.dictionary"
-    case skipRequestHealthDataAccess = "qot.userdefault.key.skip.request.healthdata.access"
+    case myBestDate = "qot.userdefault.key.my.best.date"
+    case myBestText = "qot.userdefault.key.my.best.text"
+    case existingEmail = "qot.userdefault.key.existing.email"
 }
 
 extension UserDefault {
@@ -37,7 +39,7 @@ extension UserDefault {
                 .finishedAudioItems,
                 .myDataSelectedItems,
                 .prepareLocalEventsDictionary,
-                .skipRequestHealthDataAccess]
+                .existingEmail]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -53,7 +55,7 @@ extension UserDefault {
                 .finishedAudioItems,
                 .myDataSelectedItems,
                 .prepareLocalEventsDictionary,
-                .skipRequestHealthDataAccess]
+                .existingEmail]
     }
 
     var boolValue: Bool {
@@ -74,27 +76,22 @@ extension UserDefault {
 
     func setObject(_ object: Any?) {
         UserDefaults.standard.setValue(object, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setBoolValue(value: Bool) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setDoubleValue(value: Double) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func setStringValue(value: String) {
         UserDefaults.standard.set(value, forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     func clearObject() {
         UserDefaults.standard.removeObject(forKey: self.rawValue)
-        UserDefaults.standard.synchronize()
     }
 
     static func clearAllDataLogOut() {

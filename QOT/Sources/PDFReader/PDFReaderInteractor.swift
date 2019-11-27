@@ -45,10 +45,6 @@ final class PDFReaderInteractor {
 
     static var shareMailTitle: String!
     static var shareMailBody: String!
-
-    private var shareTitle: String!
-    private var shareLink: String!
-
     private var shareContent: Share.ContentItem?
 
     // MARK: - Init

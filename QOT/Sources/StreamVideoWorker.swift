@@ -23,7 +23,6 @@ final class StreamVideoWorker {
     weak var delegate: StreamVideoWorkerDelegate?
 
     private let service = UserStorageService.main
-    private let reachability = QOTReachability()
 
     init(content: QDMContentItem?) {
         self.content = content
@@ -38,35 +37,35 @@ final class StreamVideoWorker {
     }
 
     var reachabilityStatus: ReachabilityStatus {
-        return reachability.status
+        return QOTReachability().status
     }
 
     lazy var downloadButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownload()
+        return AppTextService.get(AppTextKey.generic_download_status_video_button_download)
     }()
 
     lazy var downloadingButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownloading()
+        return AppTextService.get(AppTextKey.generic_download_status_video_button_downloading)
     }()
 
     lazy var downloadedButtonTitle: String = {
-        return R.string.localized.videoFullScreenButtonDownloaded()
+        return AppTextService.get(AppTextKey.generic_download_status_video_button_downloaded)
     }()
 
     lazy var noWifiTitle: String = {
-        return R.string.localized.alertTitleUseMobileData()
+        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_title_use_mobile_data)
     }()
 
     lazy var noWifiMessage: String = {
-        return R.string.localized.alertMessageUseMobileData()
+        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_body_use_mobile_data)
     }()
 
     lazy var cancelButtonTitle: String  = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return R.string.localized.alertButtonTitleContinue()
+        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_button_continue)
     }()
 
     lazy var contentItemId: Int? = {

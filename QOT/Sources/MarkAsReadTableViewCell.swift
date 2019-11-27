@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
 
@@ -23,7 +24,7 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     func configure(selected: Bool) {
         isRead = selected
 
-        let text = selected ? R.string.localized.markAsUnread() : R.string.localized.markAsRead()
+        let text = selected ? AppTextService.get(AppTextKey.know_strategy_list_strategy_section_body_button_mark_as_read) : AppTextService.get(AppTextKey.know_strategy_list_strategy_section_body_button_mark_as_unread)
         ThemableButton.articleMarkAsRead(selected: selected).apply(markAsReadButton, title: text)
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol SyncedCalendarsViewControllerDelegate: class {
     func didChangeCalendarSyncValue(enabled: Bool, identifier: String)
@@ -15,8 +16,9 @@ protocol SyncedCalendarsViewControllerDelegate: class {
 final class SyncedCalendarsViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var separator: UIView!
     @IBOutlet private weak var tableView: UITableView!
     private var viewModel: SyncedCalendarsViewModel?
@@ -33,6 +35,8 @@ final class SyncedCalendarsViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         setupTableView()
         interactor?.viewDidLoad()
     }
@@ -56,10 +60,12 @@ extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface 
     func setupView(_ viewModel: SyncedCalendarsViewModel?) {
         self.viewModel = viewModel
         ThemeView.level3.apply(view)
-        ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: headerLabel)
-        ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: descriptionLabel)
+        baseHeaderView?.configure(title: viewModel?.viewTitle, subtitle: viewModel?.viewSubtitle)
+        ThemeText.syncedCalendarTitle.apply(viewModel?.viewTitle, to: baseHeaderView?.titleLabel)
+        ThemeText.syncedCalendarDescription.apply(viewModel?.viewSubtitle, to: baseHeaderView?.subtitleTextView)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeView.syncedCalendarSeparator.apply(separator)
-        tableView.reloadDataWithAnimation()
+        tableView.reloadData()
     }
 
     func updateViewModel(_ viewModel: SyncedCalendarsViewModel?) {
@@ -111,7 +117,7 @@ extension SyncedCalendarsViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == 0 {
-            let title = R.string.localized.settingsCalendarsSubscribed()
+            let title = AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_section_footer_title_calendars_you_own)
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
             headerView.configure(title: title, theme: .level3, themeText: .syncedCalendarTableHeader)
             return headerView

@@ -30,25 +30,28 @@ protocol MyVisionPresenterInterface {
 }
 
 protocol MyVisionInteractorInterface: Interactor {
-    func shouldShowWarningIcon() -> Bool
-    func showTracker()
-    func showUpdateConfirmationScreen()
-    func showNullState(with title: String, message: String)
-    func hideNullState()
-    func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision)
-    var myVision: QDMToBeVision? { get }
     var emptyTBVTextPlaceholder: String { get }
     var emptyTBVTitlePlaceholder: String { get }
     var nullStateSubtitle: String? { get }
     var nullStateTitle: String? { get }
-    func isShareBlocked() -> Bool
-    func lastUpdatedVision() -> String?
-    func shareMyToBeVision()
+
+    func showTracker()
+    func showUpdateConfirmationScreen()
+    func showNullState(with title: String, message: String)
     func showTBVData()
     func showEditVision(isFromNullState: Bool)
+    func showRateScreen()
+
+    func hideNullState()
+    func saveToBeVision(image: UIImage?)
+    func lastUpdatedVision() -> String?
+    func shareMyToBeVision()
+
     func openToBeVisionGenerator()
-    func showRateScreen(with id: Int)
     func viewWillAppear()
+    func isShareBlocked(_ completion: @escaping (Bool) -> Void)
+    func getToBeVision(_ completion: @escaping (QDMToBeVision?) -> Void)
+    func shouldShowWarningIcon(_ completion: @escaping (Bool) -> Void)
 }
 
 protocol MyVisionRouterInterface {
@@ -56,6 +59,6 @@ protocol MyVisionRouterInterface {
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
     func showEditVision(title: String, vision: String, isFromNullState: Bool)
     func showRateScreen(with id: Int)
-    func presentViewController(viewController: UIViewController, completion: (() -> Void)?)
-    func openToBeVisionGenerator()
+    func showViewController(viewController: UIViewController, completion: (() -> Void)?)
+    func showTBVGenerator()
 }

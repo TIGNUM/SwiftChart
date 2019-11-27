@@ -169,11 +169,12 @@ final class ArticleWorker {
         }
         content?.contentItems.filter {
             $0.tabs.isEmpty
-            && content?.section == .ExclusiveRecoveryContent
-            && $0.format != .pdf
-            && $0.format != .video
-            && $0.format != .title }.forEach { item in
-                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+                && content?.section == .ExclusiveRecoveryContent
+                && $0.remoteID != self.articleAudioItem?.remoteID
+                && $0.format != .pdf
+                && $0.format != .video
+                && $0.format != .title }.forEach { item in
+                    items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
         if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
@@ -194,7 +195,7 @@ final class ArticleWorker {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
                 if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
+                    timeToReadText = "PDF | \(timeString)  " + AppTextService.get(AppTextKey.generic_content_section_item_label_pdf)
                 }
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: timeToReadText,
@@ -244,6 +245,7 @@ final class ArticleWorker {
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
         content?.contentItems.forEach { item in
+            guard item.remoteID != self.articleAudioItem?.remoteID else { return }
             items.append(Article.Item(remoteID: item.remoteID ?? 0,
                                       type: ContentItemValue(item: item),
                                       content: item.valueText,
@@ -372,28 +374,28 @@ final class ArticleWorker {
 
     func contactSupportAttributtedString() -> NSAttributedString {
         let contactSupport = NSMutableAttributedString(attributedString:
-            ThemeText.articleContactSupportInfoTitle.attributedString(R.string.localized.settingsGeneralSupportContactEmailTitle() + "\n"))
+            ThemeText.articleContactSupportInfoTitle.attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_faq_section_contact_support_title) + "\n"))
         // Contact support
         guard let emailAddress = contactSupportItems.first?.content else {
             return contactSupport
         }
-        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(R.string.localized.settingsGeneralSupportContactEmailLink()))
+        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_email)))
 
         return contactSupport
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
         guard let content = content else { return }
-        qot_dal.ContentService.main.markContentCollectionAs(read: read, content) { (error) in
+        ContentService.main.markContentCollectionAs(read: read, content) { (error) in
             completion()
         }
     }
 
     func isRead(completion:@escaping (_ read: Bool) -> Void) {
-        qot_dal.ContentService.main.getContentCollectionById(selectedID, { (content) in
+        ContentService.main.getContentCollectionById(selectedID) { (content) in
             let read = content?.viewedAt != nil
             completion(read)
-        })
+        }
     }
 
     func itemCount(in section: Int) -> Int {
@@ -419,27 +421,23 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : R.string.localized.prepareContentReadMore().uppercased()
+            return section == 0 ? nil : AppTextService.get(AppTextKey.know_wh_article_section_read_more_title)
         default:
-            return section != 1 ? nil : R.string.localized.learnArticleItemRelatedContent()
+            return section != 1 ? nil : AppTextService.get(AppTextKey.know_strategy_list_strategy_section_related_content_title)
         }
-    }
-
-    func updateSelectedContent(selectedID: Int) {
-        self.selectedID = selectedID
     }
 
     func toggleBookmark() -> Bool {
         var hasBookmark = (self.bookmark != nil)
         if hasBookmark {
             // remove
-            qot_dal.UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
+            UserStorageService.main.deleteUserStorage(self.bookmark!) { [weak self] (error) in
                 self?.bookmark = nil
             }
             hasBookmark = false
         } else if let content = self.content {
             // add
-            qot_dal.UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
+            UserStorageService.main.addBookmarkContentCollection(content) { [weak self] (bookmark, error) in
                 self?.bookmark = bookmark
             }
             hasBookmark = true

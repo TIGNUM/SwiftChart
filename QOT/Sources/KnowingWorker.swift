@@ -87,12 +87,10 @@ final class KnowingWorker {
     var whatsHotItems = [Knowing.WhatsHotItem]()
 
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
-        guard let titlePredicate = section.titlePredicate,
-            let subtitlePredicate = section.subtitlePredicate else {
+        guard let title = section.title,
+            let subtitle = section.subtitle else {
                 return (title: "", subtitle: "")
         }
-        let title = ScreenTitleService.main.localizedString(for: titlePredicate)
-        let subtitle = ScreenTitleService.main.localizedString(for: subtitlePredicate)
         return (title: title, subtitle: subtitle)
     }
 }

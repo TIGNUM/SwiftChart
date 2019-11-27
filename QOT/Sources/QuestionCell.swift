@@ -10,19 +10,24 @@ import UIKit
 
 final class QuestionCell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var questionLabel: UILabel!
+    private var baseHeaderView: QOTBaseHeaderView?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(questionLabel)
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        self.selectionStyle = .none
+        baseHeaderView = QOTBaseHeaderView.instantiateBaseHeader(superview: self)
+        backgroundColor = .clear
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     func configure(with viewModel: QuestionCellViewModel?) {
         guard let model = viewModel else { return }
-        skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: titleLabel)
-        ThemeText.quotation.apply(model.text, to: questionLabel)
+        baseHeaderView?.configure(title: model.title, subtitle: model.text)
+        ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.quotation.apply(model.text, to: baseHeaderView?.subtitleTextView)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 45.0
     }
 }

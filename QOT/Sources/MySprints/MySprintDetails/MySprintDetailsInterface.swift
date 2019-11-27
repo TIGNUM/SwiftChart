@@ -29,10 +29,10 @@ protocol MySprintDetailsPresenterInterface {
 
 protocol MySprintDetailsInteractorInterface: Interactor {
     var viewModel: MySprintDetailsViewModel { get }
-    func updateViewModel()
+    var sprint: QDMSprint? { get }
 
+    func updateViewModel()
     func didDismissAlert()
-    func didTapItemAction(_ rawValue: Int)
 }
 
 protocol MySprintDetailsRouterInterface {

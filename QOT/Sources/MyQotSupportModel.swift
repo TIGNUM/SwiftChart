@@ -14,76 +14,59 @@ struct MyQotSupportModel {
     enum MyQotSupportModelItem: Int {
         case usingQOT
         case faq
-        case reportIssue
+        case contactSupport
+        case contactSupportNovartis
         case featureRequest
 
         static var supportValues: [MyQotSupportModelItem] {
-            return [.usingQOT, .faq, .reportIssue, .featureRequest]
-        }
-
-        var primaryKey: Int {
-            switch self {
-            case .usingQOT: return 101192
-            case .faq: return 100704
-            case .reportIssue: return 0
-            case .featureRequest: return 0
-            }
-        }
-
-        func tag() -> Tags {
-            switch self {
-            case .usingQOT:
-                return Tags.SupportUsingQOT
-            case .faq:
-                return Tags.SupportFaq
-            case .reportIssue:
-                return Tags.SupportContactSupport
-            case .featureRequest:
-                return Tags.SupportFeatureRequest
-            }
-        }
-
-        func tagSubtitle() -> Tags {
-            switch self {
-            case .usingQOT:
-                return Tags.SupportLearnHowToUseQot
-            case .faq:
-                return Tags.SupportCheckTheMostAskedQuestion
-            case .reportIssue:
-                return Tags.SupportContactUsForAnyQuestion
-            case .featureRequest:
-                return Tags.SupportAreYouMissingSomething
-            }
+            #if NOVARTIS
+                return [.usingQOT, .faq, .contactSupportNovartis, .featureRequest]
+            #else
+                return [.usingQOT, .faq, .contactSupport, .featureRequest]
+            #endif
         }
 
         func trackingKeys() -> String {
-            return tag().rawValue
-        }
-
-        func title(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tag())
-        }
-
-        func subtitle(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tagSubtitle())
-        }
-
-        func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
             case .usingQOT:
-                contentService.getContentCollectionById(primaryKey) { (collection) in
-                    completion(collection)
-                }
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot)
             case .faq:
-                contentService.getContentCollectionById(primaryKey) { (collection) in
-                    completion(collection)
-                }
-            case .reportIssue:
-                completion(nil)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_faq)
+            case .contactSupport:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_contact_support)
+            case .contactSupportNovartis:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_contact_support_novartis)
             case .featureRequest:
-                completion(nil)
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_feature_request)
             }
+        }
 
+        func title() -> String {
+            switch self {
+            case .usingQOT:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_section_header_title)
+            case .faq:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_title)
+            case .contactSupport:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title)
+            case .contactSupportNovartis:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title_novartis)
+            case .featureRequest:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_title)
+            }
+        }
+
+        func subtitle() -> String {
+            switch self {
+            case .usingQOT:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_subtitle)
+            case .faq:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_subtitle)
+            case .contactSupport, .contactSupportNovartis:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_subtitle)
+            case .featureRequest:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_subtitle)
+            }
         }
     }
 }

@@ -14,28 +14,28 @@ final class RegistrationWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var generalError: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationCreateAccountError)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_age_verification_alert_email_error_body)
     }()
 
     lazy var existingAccountAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmailTitle)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_account_exist_title)
     }()
 
     lazy var existingAccountAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailErrorExistingEmail)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_account_exist_body)
     }()
 
     lazy var yesButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonYes)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_account_exist_button_save)
     }()
 
     lazy var noButtonTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .OnboardingRegistrationEmailButtonNo)
+        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_account_exist_button_dismiss)
     }()
 
     // MARK: - Init
 
-    init(_ sessionService: SessionService = SessionService.main,
+    override init(_ sessionService: SessionService = SessionService.main,
          _ userService: qot_dal.UserService = qot_dal.UserService.main) {
         super.init(sessionService, userService)
     }

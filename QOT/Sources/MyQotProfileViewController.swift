@@ -13,9 +13,9 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Properties
 
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var headerView: UIView!
+    @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
 
     var interactor: MyQotProfileInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
@@ -23,6 +23,8 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
         interactor?.viewDidLoad()
         setupTableView()
     }
@@ -60,8 +62,9 @@ private extension MyQotProfileViewController {
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
         ThemeView.level2.apply(self.view)
-        ThemeText.sectionHeader.apply(interactor?.myProfileText(), to: headerLabel)
-        ThemeView.headerLine.apply(headerLine)
+        baseHeaderView?.configure(title: interactor?.myProfileText(), subtitle: nil)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
+
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = UIView.headerView(with: .level2)
@@ -100,8 +103,7 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let key = interactor?.getMenuItems()[indexPath.row].headingKey
-        trackUserEvent(.OPEN, valueType: key, action: .TAP)
+        trackUserEvent(.OPEN, action: .TAP)
         interactor?.presentController(for: indexPath.row)
     }
 

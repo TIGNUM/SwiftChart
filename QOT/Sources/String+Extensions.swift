@@ -32,50 +32,6 @@ extension String {
         return boundingBox.height
     }
 
-    func fromBase64() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
-
-        return String(data: data, encoding: .utf8)
-    }
-
-    func toBase64() -> String {
-        return Data(self.utf8).base64EncodedString()
-    }
-
-    func makingTwoLines() -> String {
-        guard rangeOfCharacter(from: .newlines) == nil else {
-            return self
-        }
-
-        guard let regex = try? NSRegularExpression(pattern: " ", options: .caseInsensitive) else {
-            fatalError("invalid regex")
-        }
-
-        let results = regex.matches(in: self, options: [], range: NSRange(location: 0, length: utf16.count))
-
-        if results.count == 0 {
-            return self
-        }
-
-        let minIndex = utf16.count / 2
-        var candidate = results[0]
-        for result in results.dropFirst() {
-            if abs(minIndex - result.range.location) < abs(minIndex - candidate.range.location) {
-                candidate = result
-            }
-        }
-
-        return (self as NSString).replacingCharacters(in: candidate.range, with: "\n") as String
-    }
-
-    /// Returns nil if string contains only whitespace or new line characters
-    var nilled: String? {
-        let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
-        return trimmed.isEmpty ? nil : trimmed
-    }
-
     var isTrimmedTextEmpty: Bool? {
         return self.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces).first?.isEmpty
     }
@@ -86,23 +42,6 @@ extension String {
 }
 
 extension String {
-
-    var isPhoneNumber: Bool {
-        do {
-            let detector = try NSDataDetector(types: NSTextCheckingResult.CheckingType.phoneNumber.rawValue)
-            let matches = detector.matches(in: self, options: [], range: NSRange(location: 0, length: self.count))
-            if let res = matches.first {
-                return res.resultType == .phoneNumber &&
-                    res.range.location == 0 &&
-                    res.range.length == self.count
-            } else {
-                return false
-            }
-        } catch {
-            return false
-        }
-    }
-
     var isEmail: Bool {
         let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
@@ -118,25 +57,6 @@ extension String {
         }
 
         return false
-    }
-}
-
-// MARK: - Attributed Button Title - Charts SegmentedView
-
-extension String {
-
-    func attrString(_ selected: Bool?) -> NSAttributedString {
-        let color: UIColor = selected == true ? .white : .white30
-        let attrString = NSMutableAttributedString(string: self)
-        let style = NSMutableParagraphStyle()
-        let range = NSRange(location: 0, length: count)
-        style.alignment = .center
-        attrString.addAttribute(.paragraphStyle, value: style, range: range)
-        attrString.addAttribute(.font, value: UIFont.H7Tag, range: range)
-        attrString.addAttribute(.kern, value: 2, range: range)
-        attrString.addAttribute(.foregroundColor, value: color, range: range)
-
-        return attrString
     }
 }
 

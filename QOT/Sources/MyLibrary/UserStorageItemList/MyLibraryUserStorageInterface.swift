@@ -35,13 +35,15 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     var isEditing: Bool { get }
     var infoViewModel: MyLibraryUserStorageInfoViewModel? { get }
     var bottomButtons: [ButtonParameters]? { get }
-    var contentType: MyLibraryUserStorageContentType { get }
+    var itemType: MyLibraryCategoryType { get }
 
     var items: [MyLibraryCellViewModel]? { get }
     func didTapEdit(isEditing: Bool)
     func didTapPlayItem(at row: Int)
     func didTapAddNote()
-    func handleSelectedItem(at index: Int) -> Bool
+    func handleSelectedItem(at index: Int)
+    func getIdentifiersForCheckedItems() -> Set<String>
+    func clearCheckedItems()
 }
 
 protocol MyLibraryUserStorageRouterInterface {

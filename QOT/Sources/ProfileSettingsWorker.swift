@@ -27,19 +27,19 @@ final class ProfileSettingsWorker {
     private var emailTxt = ""
 
     lazy var confirmationAlertTitle: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationheader)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_title)
     }()
 
     lazy var confirmationAlertMessage: String = {
-        return ScreenTitleService.main.localizedString(for: .ProfileConfirmationdescription)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_body)
     }()
 
     lazy var confirmationAlertDone: String = {
-        return ScreenTitleService.main.localizedString(for: .MySprintDetailsButtonContinue)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_button_continue)
     }()
 
     lazy var confirmationAlertCancel: String = {
-        return ScreenTitleService.main.localizedString(for: .ButtonTitleCancel)
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     init(contentService: qot_dal.ContentService) {
@@ -89,7 +89,7 @@ extension ProfileSettingsWorker {
     }
 
     var editAccountTitle: String {
-        return ScreenTitleService.main.localizedString(for: .MyProfileEditAccount)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_edit_account)
     }
 
     func numberOfSections() -> Int {
@@ -115,33 +115,28 @@ extension ProfileSettingsWorker {
 
 // MARK: - ContentService
 private extension ProfileSettingsWorker {
-
-    func personalDataTitle() {
-        personalTxt = ScreenTitleService.main.localizedString(for: .MyProfilePersonalData)
-    }
-
     func contactTitle() {
-        contactTxt = ScreenTitleService.main.localizedString(for: .MyProfileContact)
+        contactTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_contact)
     }
 
     func nameTitle() {
-        nameTxt = ScreenTitleService.main.localizedString(for: .MyProfileName)
+        nameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_name)
     }
 
     func surnameTitle() {
-        surnameTxt = ScreenTitleService.main.localizedString(for: .MyProfileSurname)
+        surnameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_surname)
     }
 
     func dateOfBirthTitle() {
-        dateOfBirthTxt = ScreenTitleService.main.localizedString(for: .AccountSettingsYearOfBirth)
+        dateOfBirthTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_date_of_birth)
     }
 
     func companyTitle() {
-        companyTxt = ScreenTitleService.main.localizedString(for: .MyProfileCompany)
+        companyTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_company)
     }
 
     func emailTitle() {
-        emailTxt = ScreenTitleService.main.localizedString(for: .MyProfileEmail)
+        emailTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_email)
     }
 }
 

@@ -10,20 +10,21 @@ import Foundation
 import qot_dal
 
 final class WeatherCell: BaseDailyBriefCell {
+    // MARK: - Properties
     //Header section
-    @IBOutlet weak var lineView: UIView!
-    @IBOutlet weak var bucketTitleLabel: UILabel!
-    @IBOutlet weak var introLabel: UILabel!
+    @IBOutlet private var headerHeightConstraint: NSLayoutConstraint!
+    private var baseHeaderView: QOTBaseHeaderView?
 
     //WeatherView section
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var weatherImageView: UIImageView!
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var weatherTitleLabel: UILabel!
+    @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var weatherBodyLabel: UILabel!
     @IBOutlet weak var hourlyStackView: UIStackView!
+    @IBOutlet weak var lastUpdateLabel: UILabel!
     @IBOutlet weak var weatherImageViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet var verticalHeaderConstraints: [NSLayoutConstraint]!
 
     //Allow access section
     @IBOutlet weak var accessLabel: UILabel!
@@ -34,10 +35,10 @@ final class WeatherCell: BaseDailyBriefCell {
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
-    private var score: Int = 0
     private let formatter = MeasurementFormatter()
     private let numberFormatter = NumberFormatter()
 
+    // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
@@ -46,29 +47,35 @@ final class WeatherCell: BaseDailyBriefCell {
             arrangedView.isHidden = true
         }
         ThemeView.level1.apply(accessImageContainerView)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        baseHeaderView?.titleLabel.text = nil
         hourlyStackView.removeAllArrangedSubviews()
         numberFormatter.maximumFractionDigits = 1
         numberFormatter.minimumFractionDigits = 1
     }
 
+    // MARK: - Actions
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
-        viewModel?.updateLocationPermissionStatus { [weak self] (status) in
+        viewModel?.requestLocationPermission { [weak self] (status) in
             switch status {
             case .denied:
                 UIApplication.openAppSettings()
             default:
-                self?.viewModel?.requestLocationPermission { [weak self] (granted) in
+                self?.viewModel?.requestLocationPermission(completion: { [weak self] (status) in
+                    let granted = (status == .granted)
                     self?.delegate?.didChangeLocationPermission(granted: granted)
                     granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
-                }
+                })
             }
         }
     }
 
+    // MARK: - Public
     func configure(with model: WeatherViewModel?) {
         guard let weatherViewModel = model else { return }
         for arrangedView in hourlyStackView.arrangedSubviews {
@@ -76,14 +83,16 @@ final class WeatherCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         viewModel = weatherViewModel
-        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: bucketTitleLabel)
-        ThemeText.weatherIntro.apply(viewModel?.intro, to: introLabel)
+        baseHeaderView?.configure(title: viewModel?.bucketTitle?.uppercased(),
+                            subtitle: viewModel?.intro)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
+        ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
                 forecastModel.date != nil &&
-                (Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedAscending ||
-                Calendar.current.compare(Date(), to: forecastModel.date!, toGranularity: .hour) == .orderedSame) {
+                isDateAfterNow(forecastModel.date!) {
                 relevantForecastModels.append(forecastModel)
             }
 
@@ -91,33 +100,49 @@ final class WeatherCell: BaseDailyBriefCell {
                 return
             }
             var temperature = ""
-            if let celcius = weather.currentTempInCelcius,
-                let value = numberFormatter.number(from: numberFormatter.string(for: celcius) ?? "") as? Double {
-                let measurement = Measurement(value: value, unit: UnitTemperature.celsius)
-                temperature = formatter.string(from: measurement)
+            if let value = formatTemperature(value: weather.currentTempInCelcius?.rounded(), shortStyle: false),
+                isDateAfterNow(weather.date ?? Date()) {
+                temperature = value
+            } else if let value = formatTemperature(value: relevantForecastModels.first?.currentTempInCelcius, shortStyle: false) {
+                temperature = value
             }
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
+            var lastUpdate = ""
+            if let weatherDate = weather.date {
+                lastUpdate = formatLastUpdatedString(date: weatherDate)
+            }
+
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
+            ThemeText.weatherLastUpdate.apply(lastUpdate, to: lastUpdateLabel)
+            ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
             ThemeText.weatherTitle.apply(weatherModel.title, to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
-            if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
+            if let imageUrl = weather.imageURL {
+                weatherImageView.setImage(url: imageUrl, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
+            } else if let weatherType = WeatherType.init(rawValue: weather.shortDescription ?? "") {
                 weatherImageView.image = image(for: weatherType,
                                                largeSize: true,
                                                isNight: isNight(currentDate: weather.date,
                                                                 sunriseDate: weatherModel.sunriseDate,
                                                                 sunsetDate: weatherModel.sunsetDate))
-            } else {
-                weatherImageView.setImage(url: weather.imageURL, placeholder: UIImage(named: "placeholder_large"))
             }
         }
         setupUIAccordingToLocationPermissions()
         populateHourlyViews(relevantForecastModels: relevantForecastModels)
     }
 
-    // MARK: Private
+    // MARK: - Private
+
+    private func isDateAfterNow(_ date: Date) -> Bool {
+        return (Calendar.current.compare(Date(), to: date, toGranularity: .hour) == .orderedAscending ||
+                Calendar.current.compare(Date(), to: date, toGranularity: .hour) == .orderedSame)
+    }
     private func startSkeleton() {
-        skeletonManager.addTitle(bucketTitleLabel)
-        skeletonManager.addSubtitle(introLabel)
+        if let baseHeaderView = self.baseHeaderView {
+            for subview in baseHeaderView.subviews {
+                skeletonManager.addSubtitle(subview)
+            }
+        }
         skeletonManager.addSubtitle(weatherDescriptionLabel)
         skeletonManager.addSubtitle(weatherTitleLabel)
         skeletonManager.addSubtitle(weatherBodyLabel)
@@ -128,18 +153,39 @@ final class WeatherCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(accessButton)
     }
 
+    // MARK: Helpers
+    private func formatTemperature(value: Double?, shortStyle: Bool = true) -> String? {
+        if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
+            formatter.numberFormatter.maximumFractionDigits = 0
+            formatter.unitStyle = shortStyle ? .short : .medium
+            let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
+
+            return formatter.string(from: measurement)
+        }
+        return nil
+    }
+
+    func formatLastUpdatedString(date: Date) -> String {
+        return "Last updated \(date.eventDateString)"
+    }
+
     private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
         guard let weatherModel = viewModel?.domainModel?.weather else { return }
 
         for (index, forecastModel) in relevantForecastModels.enumerated() {
             guard let hourlyView = R.nib.weatherHourlyView.instantiate(withOwner: self).first as? WeatherHourlyView,
-                let date = forecastModel.date else {
+                let date = forecastModel.date,
+                    let temperature = formatTemperature(value: forecastModel.currentTempInCelcius) else {
                     return
             }
             if index == 0 {
-                hourlyView.setTime(text: R.string.localized.weatherNow(), isNow: true)
+                hourlyView.set(time: AppTextService.get(AppTextKey.daily_brief_section_weather_label_now),
+                               temperature: temperature,
+                               isNow: true)
             } else {
-                hourlyView.setTime(text: DateFormatter.HH.string(from: date), isNow: false)
+                hourlyView.set(time: DateFormatter.HH.string(from: date),
+                               temperature: temperature,
+                               isNow: false)
             }
             setupHourlyImage(for: hourlyView,
                              isNight: isNight(currentDate: forecastModel.date,
@@ -156,39 +202,31 @@ final class WeatherCell: BaseDailyBriefCell {
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
-        let weatherImageViewTop: CGFloat = 60
         var shouldHideHeader = false
         switch viewModel?.locationPermissionStatus {
-        case .notSet?:
-            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
-            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
-            accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
+        case .granted?, .grantedWhileInForeground?:
+            shouldHideHeader = true
+            accessImageView.image = nil
         case .denied?:
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
             accessImageView.image = R.image.location_permission()
         default:
-            shouldHideHeader = true
-            accessImageView.image = nil
+            accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
+            accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
+            accessButtonHeight = ThemeButton.accent40.defaultHeight
+            accessImageView.image = R.image.location_permission()
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
         accessButtonHeightConstraint.constant = accessButtonHeight
-        for constraint in verticalHeaderConstraints {
-            constraint.isActive = !shouldHideHeader
-        }
 
-        weatherImageViewTopConstraint.constant = shouldHideHeader ?
-                                                weatherImageViewTop :
-                                                weatherImageViewTop + headerView.frame.size.height
+        headerHeightConstraint.constant = shouldHideHeader ? 0 : baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         headerView.isHidden = shouldHideHeader
         accessImageView.isHidden = shouldHideHeader
         accessImageContainerView.isHidden = shouldHideHeader
-        bucketTitleLabel.isHidden = shouldHideHeader
-        introLabel.isHidden = shouldHideHeader
-        lineView.isHidden = shouldHideHeader
+        lastUpdateLabel.isHidden = !shouldHideHeader
         layoutIfNeeded()
     }
 
@@ -197,12 +235,12 @@ final class WeatherCell: BaseDailyBriefCell {
                                   and imageURL: URL?,
                                   and shortDescription: String?,
                                   isNow: Bool) {
-        if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
-            let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
-            hourlyView.set(image: hourlyImage, isNow: isNow)
+        if let url = imageURL {
+            hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
         } else {
-            if let url = imageURL {
-                hourlyView.set(imageUrl: url, placeholder: UIImage(named: "placeholder_small"))
+            if let weatherType = WeatherType.init(rawValue: shortDescription ?? ""),
+                let hourlyImage = image(for: weatherType, largeSize: false, isNight: isNight) {
+                hourlyView.set(image: hourlyImage, isNow: isNow)
             } else if let fallbackDescription = shortDescription {
                 hourlyView.setFallback(text: fallbackDescription)
             }

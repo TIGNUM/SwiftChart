@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina3_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Coach Marks View Controller-->
+        <scene sceneID="cRe-XA-GLL">
+            <objects>
+                <viewController storyboardIdentifier="CoachMarksViewController" id="Ue7-uK-cjD" customClass="CoachMarksViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Rp5-pY-aQs">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bE2-L0-5IW" userLabel="PageIndicatorView">
+                                <rect key="frame" x="24" y="46" width="0.0" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="UGi-nP-7gP"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="dmx-Ze-Tbl"/>
+                                </constraints>
+                            </view>
+                            <collectionView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="cs4-Rv-yhc">
+                                <rect key="frame" x="0.0" y="68" width="320" height="314"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="6ba-7o-rWi">
+                                    <size key="itemSize" width="0.0" height="0.0"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Ue7-uK-cjD" id="XRy-rz-7x3"/>
+                                    <outlet property="delegate" destination="Ue7-uK-cjD" id="6nT-kV-1L5"/>
+                                </connections>
+                            </collectionView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="reM-N6-HQO" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="24" y="416" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="40" id="Nxs-hY-7Jt"/>
+                                    <constraint firstAttribute="height" constant="40" id="yGE-bG-bpM"/>
+                                </constraints>
+                                <state key="normal" image="ic_arrow_left"/>
+                                <connections>
+                                    <action selector="didTapBack" destination="Ue7-uK-cjD" eventType="touchUpInside" id="Xd3-zt-2bZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wv0-5y-PdB" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="223" y="422" width="73" height="34"/>
+                                <state key="normal" title="Continue">
+                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapContinue" destination="Ue7-uK-cjD" eventType="touchUpInside" id="vE0-pA-yzf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.074509803921568626" green="0.074509803921568626" blue="0.066666666666666666" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Wv0-5y-PdB" firstAttribute="top" secondItem="cs4-Rv-yhc" secondAttribute="bottom" constant="40" id="4T0-9w-rRl"/>
+                            <constraint firstItem="mqe-LI-IOR" firstAttribute="trailing" secondItem="Wv0-5y-PdB" secondAttribute="trailing" constant="24" id="7wJ-4S-Vsn"/>
+                            <constraint firstItem="cs4-Rv-yhc" firstAttribute="top" secondItem="bE2-L0-5IW" secondAttribute="bottom" constant="20" id="8wH-T4-uaq"/>
+                            <constraint firstItem="mqe-LI-IOR" firstAttribute="trailing" secondItem="cs4-Rv-yhc" secondAttribute="trailing" id="L3B-Ba-BR1"/>
+                            <constraint firstItem="mqe-LI-IOR" firstAttribute="bottom" secondItem="Wv0-5y-PdB" secondAttribute="bottom" constant="24" id="MNT-JQ-upf"/>
+                            <constraint firstItem="cs4-Rv-yhc" firstAttribute="top" secondItem="mqe-LI-IOR" secondAttribute="top" constant="48" id="U8i-wf-UdY"/>
+                            <constraint firstItem="bE2-L0-5IW" firstAttribute="leading" secondItem="mqe-LI-IOR" secondAttribute="leading" constant="24" id="UVM-5H-xfJ"/>
+                            <constraint firstItem="reM-N6-HQO" firstAttribute="leading" secondItem="mqe-LI-IOR" secondAttribute="leading" constant="24" id="bae-il-AKg"/>
+                            <constraint firstItem="cs4-Rv-yhc" firstAttribute="leading" secondItem="mqe-LI-IOR" secondAttribute="leading" id="osL-Mb-mJ6"/>
+                            <constraint firstItem="mqe-LI-IOR" firstAttribute="bottom" secondItem="reM-N6-HQO" secondAttribute="bottom" constant="24" id="srT-V9-ptn"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="mqe-LI-IOR"/>
+                    </view>
+                    <connections>
+                        <outlet property="buttonBack" destination="reM-N6-HQO" id="QhT-E0-pE1"/>
+                        <outlet property="buttonContinue" destination="Wv0-5y-PdB" id="rC1-pV-lYi"/>
+                        <outlet property="collectionView" destination="cs4-Rv-yhc" id="Wio-G7-pX7"/>
+                        <outlet property="pageIndicatorView" destination="bE2-L0-5IW" id="owM-wZ-Vrw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iGm-r3-0Yo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-336.23188405797106" y="66.964285714285708"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_arrow_left" width="16" height="16"/>
+    </resources>
+</document>

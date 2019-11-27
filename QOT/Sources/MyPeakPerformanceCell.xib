@@ -19,20 +19,34 @@
                 <rect key="frame" x="0.0" y="0.0" width="472" height="474.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yO5-Mh-rnj">
-                        <rect key="frame" x="24" y="48" width="424" height="426.5"/>
-                    </stackView>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e45-nD-d1q">
+                        <rect key="frame" x="24" y="48" width="424" height="378.5"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="yO5-Mh-rnj">
+                                <rect key="frame" x="0.0" y="0.0" width="424" height="378.5"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yO5-Mh-rnj" firstAttribute="centerX" secondItem="e45-nD-d1q" secondAttribute="centerX" id="D6J-x2-j4M"/>
+                            <constraint firstItem="yO5-Mh-rnj" firstAttribute="width" secondItem="e45-nD-d1q" secondAttribute="width" id="Ibb-2F-2Qx"/>
+                            <constraint firstItem="yO5-Mh-rnj" firstAttribute="centerY" secondItem="e45-nD-d1q" secondAttribute="centerY" id="RwM-j3-6p8"/>
+                            <constraint firstItem="yO5-Mh-rnj" firstAttribute="height" secondItem="e45-nD-d1q" secondAttribute="height" id="kKR-4y-faB"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="yO5-Mh-rnj" secondAttribute="trailing" constant="24" id="UXs-zI-lKH"/>
-                    <constraint firstItem="yO5-Mh-rnj" firstAttribute="leading" secondItem="ceV-UI-Xgd" secondAttribute="leading" constant="24" id="dyN-dY-wpf"/>
-                    <constraint firstAttribute="bottom" secondItem="yO5-Mh-rnj" secondAttribute="bottom" id="f4Y-3O-lSz"/>
-                    <constraint firstAttribute="top" secondItem="yO5-Mh-rnj" secondAttribute="top" constant="-48" id="hDb-Yz-8xP"/>
+                    <constraint firstAttribute="bottom" secondItem="e45-nD-d1q" secondAttribute="bottom" constant="48" id="42e-gm-1Bo"/>
+                    <constraint firstItem="e45-nD-d1q" firstAttribute="leading" secondItem="ceV-UI-Xgd" secondAttribute="leading" constant="24" id="712-QY-m98"/>
+                    <constraint firstItem="e45-nD-d1q" firstAttribute="top" secondItem="ceV-UI-Xgd" secondAttribute="top" constant="48" id="Wtd-92-2d8"/>
+                    <constraint firstAttribute="trailing" secondItem="e45-nD-d1q" secondAttribute="trailing" constant="24" id="sUD-cG-mP1"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="5FQ-1v-eld"/>
             <connections>
+                <outlet property="stackContainerView" destination="e45-nD-d1q" id="0mY-oT-i2S"/>
                 <outlet property="stackView" destination="yO5-Mh-rnj" id="5CY-If-xoD"/>
             </connections>
             <point key="canvasLocation" x="247.82608695652175" y="297.65625"/>

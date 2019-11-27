@@ -40,7 +40,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
         skeletonManager.addOtherView(previewImageView)
-        previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager)
+        previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)

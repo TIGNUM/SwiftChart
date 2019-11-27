@@ -11,10 +11,10 @@ import qot_dal
 
 final class MyQotSupportWorker {
 
-    private let contentService: qot_dal.ContentService
-    private let userService: qot_dal.UserService
+    private let contentService: ContentService
+    private let userService: UserService
 
-    init(contentService: qot_dal.ContentService, userService: qot_dal.UserService) {
+    init(contentService: ContentService, userService: UserService) {
         self.contentService = contentService
         self.userService = userService
     }
@@ -24,38 +24,32 @@ final class MyQotSupportWorker {
     }
 
     func item(at indexPath: IndexPath) -> MyQotSupportModel.MyQotSupportModelItem? {
-        return MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row)
+        return MyQotSupportModel.MyQotSupportModelItem.supportValues[indexPath.row]
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
-        guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
+        guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
             return ""
         }
         return item.trackingKeys()
     }
 
     func title(at indexPath: IndexPath) -> String {
-        guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
+        guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
             return ""
         }
-        return item.title(for: contentService)
+        return item.title()
     }
 
     func subtitle(at indexPath: IndexPath) -> String {
-        guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
+        guard let item = MyQotSupportModel.MyQotSupportModelItem.supportValues.at(index: indexPath.row) else {
             return ""
         }
-        return item.subtitle(for: contentService)
-    }
-
-    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
-        item.contentCollection(for: contentService) { (collection) in
-            completion(collection)
-        }
+        return item.subtitle()
     }
 
     var supportText: String {
-        return ScreenTitleService.main.localizedString(for: .Support)
+        return AppTextService.get(AppTextKey.my_qot_my_profile_section_support_title)
     }
 
     func email(_ completion: @escaping(String) -> Void) {
@@ -65,6 +59,13 @@ final class MyQotSupportWorker {
                 return
             }
             completion(email)
+        }
+    }
+
+    func supportNovartis(collectionId: Int, _ completion: @escaping(String?, String?) -> Void) {
+        contentService.getContentCollectionById(collectionId) { (qdmContentCollection) in
+            completion(qdmContentCollection?.contentItems.first?.valueText,
+                       qdmContentCollection?.contentItems.last?.valueText)
         }
     }
 }

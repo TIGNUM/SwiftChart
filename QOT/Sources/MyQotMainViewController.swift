@@ -93,7 +93,7 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             switch indexPath.section {
             case MyQotViewModel.Section.header.rawValue:
                 let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-                let title = R.string.localized.myQOTTitle()
+                let title = AppTextService.get(AppTextKey.my_qot_section_header_title)
                 cell.configure(title: title, tapLeft: { [weak self] in
                     self?.delegate?.moveToCell(item: 1)
                 })

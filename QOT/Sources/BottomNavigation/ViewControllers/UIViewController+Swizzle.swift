@@ -14,7 +14,6 @@ protocol ScreenZLevel {}
 
 var viewWillAppearIsSwizzled = false
 var viewDidAppearIsSwizzled = false
-var preferredStatusBarStyleIsSwizzled = false
 var presentViewControllerIsSwizzled = false
 var dismissViewControllerIsSwizzled = false
 var timer: Timer?
@@ -100,7 +99,7 @@ extension UIViewController {
             return false
         }
         let center = window.frame.center
-        let targetPoint = center.adding(x: 0, y: center.y / 3)
+        let targetPoint = CGPoint(x: center.x, y: center.y * 1.333333)
         guard let view = window.hitTest(targetPoint, with: nil) else {
             return false
         }
@@ -333,12 +332,12 @@ extension UIViewController {
     }
 
     @objc open func backNavigationItem() -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
-        button.setImage(R.image.ic_back_rounded(), for: .normal)
-        button.imageView?.contentMode = .center
-        button.backgroundColor = .clear
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        let button = RoundedButton.init(title: nil, target: self, action: #selector(didTapBackButton))
+        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        button.addConstraints([heightConstraint, widthConstraint])
+        button.setImage(R.image.ic_arrow_left(), for: .normal)
+        ThemeButton.backButton.apply(button)
         return UIBarButtonItem(customView: button)
     }
 
@@ -347,13 +346,15 @@ extension UIViewController {
         if let action = action {
             buttonAction = action
         }
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: buttonAction, for: .touchUpInside)
 
         let isLight = isLightBackground()
-        button.setImage(isLight ? R.image.ic_close_sand() : R.image.ic_close_rounded(), for: .normal)
-        button.imageView?.contentMode = .center
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        let button = RoundedButton.init(title: nil, target: self, action: buttonAction)
+        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        button.addConstraints([heightConstraint, widthConstraint])
+        button.setImage(R.image.ic_arrow_left(), for: .normal)
+        ThemeButton.backButton.apply(button)
+        button.setImage(R.image.ic_close(), for: .normal)
         ThemeButton.closeButton(isLight ? .light : .dark).apply(button)
         return UIBarButtonItem(customView: button)
     }
@@ -365,11 +366,9 @@ extension UIViewController {
         }
         let button = UIButton(type: .custom)
         button.addTarget(self, action: buttonAction, for: .touchUpInside)
-        button.setImage(R.image.ic_close(), for: .normal)
+        button.setImage(R.image.ic_close_sand(), for: .normal)
         button.frame.size.height = .Default
         button.frame.size.width = .Default
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.accent.cgColor
         button.layer.cornerRadius =  button.frame.size.height/2
         button.layer.backgroundColor = UIColor.sand.cgColor
         button.imageView?.contentMode = .center

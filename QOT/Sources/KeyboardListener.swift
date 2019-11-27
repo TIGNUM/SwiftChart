@@ -40,26 +40,6 @@ final class KeyboardListener {
         didSet { changeHandler?(state) }
     }
 
-    func startObserving() {
-        let notifications: [Selector: NSNotification.Name] = [
-            #selector(keyboardWillHide(notification:)): .UIKeyboardWillHide,
-            #selector(keyboardDidHide(notification:)): .UIKeyboardDidHide,
-            #selector(keyboardWillChangeFrame(notification:)): .UIKeyboardWillChangeFrame,
-            #selector(keyboardDidChangeFrame(notification:)): .UIKeyboardDidChangeFrame
-        ]
-        for (selector, name) in notifications {
-            NotificationCenter.default.addObserver(self, selector: selector, name: name, object: nil)
-        }
-    }
-
-    func stopObserving() {
-        NotificationCenter.default.removeObserver(self)
-    }
-
-    func onStateChange(_ handler: @escaping Handler) {
-        changeHandler = handler
-    }
-
     @objc func keyboardWillHide(notification: NSNotification) {
         guard let info = notification.keyboardInfo,
             let duration = info.animationDuration,

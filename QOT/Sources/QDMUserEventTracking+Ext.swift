@@ -33,6 +33,7 @@ extension QDMUserEventTracking.Name {
     static let FAST_TRACK = "FAST_TRACK"
     static let GUIDED_TRACK = "GUIDED_TRACK"
     static let GOT_IT = "GOT_IT"
+    static let EDIT_LIBRARY = "EDIT_LIBRARY"
 }
 
 public extension QDMUserEventTracking.ValueType {

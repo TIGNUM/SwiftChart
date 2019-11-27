@@ -11,7 +11,7 @@ import qot_dal
 
 final class SearchViewController: BaseViewController, ScreenZLevelOverlay, SearchViewControllerInterface {
 
-    var interactor: SearchInteractorInterface?
+    var interactor: SearchInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var suggestionsTableView: UITableView!
@@ -32,7 +32,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
     private var activateAnimateDuration: Double = 0.0
-    private var firstTime: Bool = true
+    public var showing = false
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -55,7 +55,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         ThemeView.level1.apply(bottomView)
         self.navigationItem.hidesBackButton = true
         setupSegementedControl()
-        interactor?.showSuggestions()
+        interactor.showSuggestions()
         suggestionsHeader.autoresizingMask = []
         suggestionsTableView.tableHeaderView = suggestionsHeader
         tableView.registerDequeueable(SearchTableViewCell.self)
@@ -67,27 +67,41 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        if firstTime && (interactor?.shouldStartDeactivated() ?? false) {
-            deactivate(animated: false)
+        if interactor.shouldStartDeactivated() {
+            if !showing {
+                deactivate(animated: false)
+            }
         } else {
             doActivate()
         }
-        firstTime = false
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
         let hasUserInput = mySearchBar.text?.isEmpty == false
-        if hasUserInput {
-            mySearchBar.becomeFirstResponder()
-        }
         updateViewsState(hasUserInput)
         updateIndicator()
+        enableCancelButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if !interactor.shouldStartDeactivated() {
+            deactivate()
+        }
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.removeObserver(self, forKeyPath: "enabled")
+        }
+    }
+
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey: Any]?,
+                               context: UnsafeMutableRawPointer?) {
+        if let cancelButton = object as? UIButton, !cancelButton.isEnabled {
+            cancelButton.isEnabled = true
+        }
     }
 
     func reload(_ searchResults: [Search.Result]) {
@@ -129,9 +143,6 @@ extension SearchViewController {
         UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
         }
-        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
-        }
         mySearchBar.isUserInteractionEnabled = true
     }
 
@@ -154,7 +165,6 @@ extension SearchViewController {
 }
 
 // MARK: - Bottom Navigation
-
 extension SearchViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
@@ -166,9 +176,7 @@ extension SearchViewController {
 }
 
 // MARK: - Private
-
 private extension SearchViewController {
-
     func setupSegementedControl() {
         ThemeSegment.accent.apply(segmentedControl)
     }
@@ -178,23 +186,28 @@ private extension SearchViewController {
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
         mySearchBar.backgroundImage = UIImage()
-        mySearchBar.placeholder = R.string.localized.searchPlaceholder()
+        mySearchBar.placeholder = AppTextService.get(AppTextKey.coach_search_section_search_bar_placeholder_search)
         mySearchBar.delegate = self
     }
 
     func sendSearchResult(for query: String) {
         let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
-        interactor?.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
+        interactor.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
+    }
+
+    func enableCancelButton() {
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+            cancelButton.addObserver(self, forKeyPath: "enabled", options: .new, context: nil)
+        }
     }
 }
 
 // MARK: - Actions
-
 extension SearchViewController {
-
     @IBAction func close(_ sender: UIButton) {
         trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.didTapClose()
+        interactor.didTapClose()
         mySearchBar.resignFirstResponder()
     }
 
@@ -215,7 +228,6 @@ extension SearchViewController {
 }
 
 // MARK: - UISearchBarDelegate
-
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -248,7 +260,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func updateSearchResults() {
-        interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
+        interactor.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -282,7 +294,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
             if searchResults.isEmpty == true && searchQuery.isEmpty == false {
-                searchCell.configure(title: R.string.localized.alertTitleNoContent(), contentType: nil, duration: nil)
+                searchCell.configure(title: AppTextService.get(AppTextKey.coach_search_null_state_body), contentType: nil, duration: nil)
             } else {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,
@@ -329,7 +341,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             sendSearchResult(for: suggestion)
             mySearchBar.text = suggestion
             searchQuery = suggestion
-            mySearchBar.becomeFirstResponder()
             updateSearchResults()
         default:
             preconditionFailure()
@@ -398,16 +409,16 @@ private extension SearchViewController {
 
     func handleSelection(for indexPath: IndexPath) {
         let selectedSearchResult = searchResults[indexPath.row]
-        interactor?.sendUserSearchResult(contentId: selectedSearchResult.contentID,
-                                         contentItemId: selectedSearchResult.contentItemID,
-                                         filter: selectedSearchResult.filter,
-                                         query: searchQuery)
+        interactor.sendUserSearchResult(contentId: selectedSearchResult.contentID,
+                                        contentItemId: selectedSearchResult.contentItemID,
+                                        filter: selectedSearchResult.filter,
+                                        query: searchQuery)
         switch selectedSearchResult.filter {
         case .all, .read, .tools:
-            interactor?.handleSelection(searchResult: selectedSearchResult)
+            interactor.handleSelection(searchResult: selectedSearchResult)
         case .watch, .listen:
             if let url = selectedSearchResult.mediaURL {
-                interactor?.contentItem(for: selectedSearchResult) { item in
+                interactor.contentItem(for: selectedSearchResult) { item in
                     self.handleMediaSelection(mediaURL: url, contentItem: item)
                 }
             }

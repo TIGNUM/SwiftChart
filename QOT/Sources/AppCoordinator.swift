@@ -23,12 +23,8 @@ final class AppCoordinator {
 
     private var isReadyToProcessURL = false
 
-    var checkListIDToPresent: String?
-    private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
-    private var canProcessRemoteNotifications = false
-    private var canProcessLocalNotifications = false
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
@@ -40,22 +36,13 @@ final class AppCoordinator {
         let manager = PermissionsManager(delegate: self)
         return manager
     }()
-    lazy var userLoggedIn: Bool = {
-        return SessionService.main.getCurrentSession() != nil
-    }()
 
-    private var reachability = QOTReachability()
     // MARK: - Life Cycle
 
-    init(windowManager: WindowManager,
-         remoteNotificationHandler: RemoteNotificationHandler,
+    init(remoteNotificationHandler: RemoteNotificationHandler,
          locationManager: LocationManager) {
-        self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
-        AppDelegate.current.localNotificationHandlerDelegate = self
-        AppDelegate.current.shortcutHandlerDelegate = self
-        remoteNotificationHandler.delegate = self
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -65,6 +52,11 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didFinishSynchronization(_:)),
                                                name: .didFinishSynchronization, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(checkDeletedEventForPreparation(_:)),
+                                               name: .needToCheckDeletedEventForPreparation, object: nil)
+
+        locationManager.startWeatherLocationMonitoring {_ in}
     }
 
     func start(completion: @escaping (() -> Void)) {
@@ -125,16 +117,8 @@ final class AppCoordinator {
     }
 
     func checkVersionIfNeeded() {
-//        guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        // CHANGE ME
-    }
-
-    private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: .error)
-        let message = "There was a problem initializing the app's data. Please restart the app and try again"
-        self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
-            exit(0)
-        })
+        //guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        // TODO: We need to handle response from "/personal/p/qot/qotversionexpirydate"
     }
 
     func showApp(with displayedScreen: CoachCollectionViewController.Pages? = .dailyBrief) {
@@ -147,7 +131,11 @@ final class AppCoordinator {
             let baseRootViewController = naviController.viewControllers.first as? BaseRootViewController else {
                 return
         }
-        self.windowManager.show(naviController, animated: true) {
+
+        self.setRootViewController(naviController,
+                                   transitionStyle: .transitionCrossDissolve,
+                                   duration: 0.7,
+                                   animated: true) {
             DispatchQueue.main.async {
                 // Show coach marks on first launch (of v3.0 app)
                 let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
@@ -155,12 +143,28 @@ final class AppCoordinator {
                     self.showTrackChoice()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
-                    self.canProcessRemoteNotifications = true
-                    self.canProcessLocalNotifications = true
                     self.isReadyToProcessURL = true
                 }
             }
         }
+    }
+
+    private func setRootViewController(_ viewController: UIViewController, transitionStyle: UIViewAnimationOptions, duration: TimeInterval, animated: Bool, completion: (() -> Void)?) {
+        guard let window = (UIApplication.shared.delegate as? AppDelegate)?.window,
+            let rootViewController = window.rootViewController else {
+            assertionFailure("rootViewController should not be nil")
+            return
+        }
+        window.makeKeyAndVisible()
+        // FIXME: Setting the frame here is necessary to avoid an unintended animation in some situations.
+        // Not sure why this is happening. We should investigate.
+        viewController.view.frame = rootViewController.view.bounds
+        viewController.view.layoutIfNeeded()
+        UIView.transition(with: window, duration: duration, options: transitionStyle, animations: {
+            window.rootViewController = viewController
+        }, completion: { _ in
+            completion?()
+        })
     }
 
     func isReadyToOpenURL() -> Bool {
@@ -199,19 +203,6 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
-
-    func showMajorAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
-        let alert = UIViewController.alert(forType: type, handler: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handler?()
-        }, handlerDestructive: {
-            self.windowManager.resignWindow(atLevel: .alert)
-            handlerDestructive?()
-        })
-        windowManager.showAlert(alert, animated: true, completion: nil)
-        currentPresentedController = alert
-    }
-
     func showTrackChoice() {
         guard let controller = R.storyboard.trackSelection.trackSelectionViewController(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
@@ -228,17 +219,18 @@ extension AppCoordinator {
 
         let navigationController = UINavigationController(rootViewController: landingController)
         navigationController.navigationBar.isHidden = true
-        navigationController.navigationBar.applyDefaultStyle()
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.modalPresentationStyle = .overFullScreen
-        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
+        guard let window = UIApplication.shared.delegate?.window else { return }
+        window?.makeKeyAndVisible()
+        window?.rootViewController?.present(navigationController, animated: false, completion: nil)
     }
 
     func logout() {
         permissionsManager.reset()
         setupBugLife()
         UserDefault.clearAllDataLogOut()
-        environment.dynamicBaseURL = nil
+        isReadyToProcessURL = false
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
@@ -254,59 +246,37 @@ extension AppCoordinator {
         let whatsHot = URLScheme.latestWhatsHotArticle
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: whatsHot.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleWhatsHot(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_wh_article),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
                                              userInfo: ["link": whatsHot.launchPathWithParameterValue("")]))
         let tools = URLScheme.tools
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: tools.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleLibrary(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_tools),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
                                              userInfo: ["link": tools.launchPathWithParameterValue("")]))
         let myData = URLScheme.myData
         UIApplication.shared.shortcutItems?.append(
             UIMutableApplicationShortcutItem(type: myData.rawValue,
-                                             localizedTitle: R.string.localized.shortcutItemTitleMeUniverse(),
+                                             localizedTitle: AppTextService.get(AppTextKey.generic_long_press_shortcut_title_review_my_data),
                                              localizedSubtitle: nil,
                                              icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
                                              userInfo: ["link": myData.launchPathWithParameterValue("")]))
     }
 }
 
-// MARK: - RemoteNotificationHandlerDelegate (Handle Response)
-
-extension AppCoordinator: RemoteNotificationHandlerDelegate {
-
-    func remoteNotificationHandler(_ handler: RemoteNotificationHandler,
-                                   canProcessNotificationResponse: UANotificationResponse) -> Bool {
-        return canProcessRemoteNotifications
-    }
-}
-
 // MARK: - Handle incomming RemoteNotification
 
 extension AppCoordinator {
-    func handleIncommingNotificationDeepLinkURL(url: URL) {
+    func handleIncommingNotificationDeepLinkURL(url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
-    }
-}
-
-extension AppCoordinator: LocalNotificationHandlerDelegate {
-
-    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool {
-        return canProcessLocalNotifications
-    }
-}
-
-extension AppCoordinator: ShortcutHandlerDelegate {
-
-    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool {
-        return canProcessLocalNotifications
+        // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
+        completionHandler(.noData)
     }
 }
 
@@ -316,31 +286,38 @@ extension AppCoordinator: PermissionManagerDelegate {
 
     func permissionManager(_ manager: PermissionsManager,
                             didUpdatePermissions permissions: [PermissionsManager.Permission]) {
-        manager.fetchDescriptions { (descriptions) in
-            var devicePermissions = [QDMDevicePermission]()
-            for permissionIdentifer in descriptions.keys {
-                guard let statusString = descriptions[permissionIdentifer],
-                    let status = QotDevicePermissionState(rawValue: statusString) else { continue }
-                var devicePermission = QDMDevicePermission()
-                devicePermission.permissionState = status
-                switch permissionIdentifer {
-                case .calendar:
-                    devicePermission.feature = .calendar
-                case .notifications:
-                    devicePermission.feature = .notifcations
-                case .location:
-                    devicePermission.feature = .location
-                case .photos:
-                    devicePermission.feature = .photos
-                case .camera:
-                    devicePermission.feature = .camera
-                }
-
-                devicePermissions.append(devicePermission)
+        var devicePermissions = [QDMDevicePermission]()
+        for permission in manager.allPermissions {
+            var devicePermission = QDMDevicePermission()
+            switch manager.currentStatusFor(for: permission.identifier) {
+            case .granted:
+                devicePermission.permissionState = .authorized
+            case .grantedWhileInForeground:
+                devicePermission.permissionState = .authorizedOnForeground
+            case .denied:
+                devicePermission.permissionState = .denied
+            case .notDetermined:
+                devicePermission.permissionState = .notDetermined
+            case .restricted:
+                devicePermission.permissionState = .restricted
             }
-            guard !devicePermissions.isEmpty else { return }
-            QOTService.main.updateDevicePermissions(permissions: devicePermissions)
+            switch permission.identifier {
+            case .calendar:
+                devicePermission.feature = .calendar
+            case .notifications:
+                devicePermission.feature = .notifcations
+            case .location:
+                devicePermission.feature = .location
+            case .photos:
+                devicePermission.feature = .photos
+            case .camera:
+                devicePermission.feature = .camera
+            }
+
+            devicePermissions.append(devicePermission)
         }
+        guard !devicePermissions.isEmpty else { return }
+        QOTService.main.updateDevicePermissions(permissions: devicePermissions)
     }
 }
 
@@ -348,7 +325,7 @@ extension AppCoordinator: PermissionManagerDelegate {
 extension AppCoordinator {
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .PREPARATION, .USER]
+        let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
@@ -366,13 +343,14 @@ extension AppCoordinator {
             case .CONTENT_COLLECTION:
                 guard syncResult.hasUpdatedContent else { return }
                 self.handleContentDownSync()
-            case .PREPARATION:
-                guard syncResult.syncRequestType == .DOWN_SYNC,
-                    EKEventStore.authorizationStatus(for: .event) == .authorized else { break }
-                self.handlePreparationDownSync()
             default: break
             }
         }
+    }
+
+    @objc func checkDeletedEventForPreparation(_ notification: Notification) {
+        guard EKEventStore.authorizationStatus(for: .event) == .authorized else { return }
+        self.handlePreparationDownSync()
     }
 
     func handlePreparationDownSync() {
@@ -392,7 +370,7 @@ extension AppCoordinator {
 
         dispatchGroup.notify(queue: .main, execute: {
             guard let preps = preparations, preps.count > 0, didDownCalendarEvents else { return }
-            log("preps with missing events : \(preps)")
+            log("preps with missing events : \(preps)", level: .debug)
             let configurator = PreparationWithMissingEventConfigurator.make(preps)
             let viewController = PreparationWithMissingEventViewController.init(configure: configurator)
             baseRootViewController?.present(viewController, animated: true, completion: nil)

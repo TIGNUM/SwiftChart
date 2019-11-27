@@ -12,13 +12,11 @@ import qot_dal
 final class ArticleInteractor {
 
     // MARK: - Properties
-
     private var worker: ArticleWorker
     private let presenter: ArticlePresenterInterface
     private let router: ArticleRouterInterface
 
     // MARK: - Init
-
     init(worker: ArticleWorker,
         presenter: ArticlePresenterInterface,
         router: ArticleRouterInterface) {
@@ -28,7 +26,6 @@ final class ArticleInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
         presenter.setupArticleHeader(header: worker.articleHeader)
@@ -112,15 +109,14 @@ extension ArticleInteractor: ArticleInteractorInterface {
     }
 
     func openEmailComposer() {
-        router.openSupportEmailComposer(for: worker.articleItem(at: IndexPath(row: 0, section: 0)),
-                                        emailAdress: worker.contactSupportItems.first?.content)
+        router.openSupportEmailComposer(emailAdress: worker.contactSupportItems.first?.content)
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {
         worker.markArticleAsRead(read, completion: completion)
     }
 
-    func isRead(completion:@escaping (_ read: Bool) -> Void) {
+    func isRead(completion: @escaping (_ read: Bool) -> Void) {
         worker.isRead(completion: completion)
     }
 

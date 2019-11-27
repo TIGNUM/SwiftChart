@@ -11,11 +11,9 @@ import UIKit
 final class ArticlePresenter {
 
     // MARK: - Properties
-
     private weak var viewController: ArticleViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: ArticleViewControllerInterface) {
         self.viewController = viewController
     }

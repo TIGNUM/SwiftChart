@@ -14,7 +14,6 @@ final class DTSprintInteractor: DTInteractor {
     // MARK: - Properties
     private lazy var sprintWorker: DTSprintWorker? = DTSprintWorker()
     private var activeSprint: QDMSprint?
-    private var sprintToUpdate: QDMSprint?
     private var newSprintContentId: Int?
     private var lastSprintQuestionId: Int?
     private var selectedSprintContentId: Int = 0
@@ -25,6 +24,11 @@ final class DTSprintInteractor: DTInteractor {
     override func viewDidLoad() {
         super.viewDidLoad()
         checkNotificationPermissions()
+    }
+
+    init(_ presenter: DTPresenterInterface, questionGroup: QuestionGroup, introKey: String, isPresentedFromCoach: Bool) {
+        super.init(presenter, questionGroup: questionGroup, introKey: introKey)
+        sprintWorker?.isPresentedFromCoach = isPresentedFromCoach
     }
 
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
@@ -45,6 +49,10 @@ final class DTSprintInteractor: DTInteractor {
 
 // MARK: - Sprint Handling
 extension DTSprintInteractor: DTSprintInteractorInterface {
+    func isPresentedFromCoach() -> Bool {
+        return sprintWorker?.isPresentedFromCoach ?? false
+    }
+
     func startSprintTomorrow(selection: DTSelectionModel) {
         lastQuestionSelection = selection
         sprintWorker?.isSprintInProgress { [weak self] (sprint, endDate) in
@@ -53,8 +61,8 @@ extension DTSprintInteractor: DTSprintInteractorInterface {
                 self?.activeSprint = sprint
                 self?.newSprintContentId = self?.selectedSprintContentId
                 self?.lastSprintQuestionId = self?.selectedSprintTargetQuestionId
-                let title = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoTitleSprintInProgress)
-                let messageFormat = ScreenTitleService.main.localizedString(for: .MySprintDetailsInfoBodyInProgress)
+                let title = AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_alert_sprint_in_progress_title)
+                let messageFormat = AppTextService.get(AppTextKey.coach_sprints_alert_sprint_in_progress_body)
                 let updatedMessageFormat = self?.replaceMessagePlaceHolders(sprintInProgressTitle: sprint.title ?? "",
                                                                             newSprintTitle: self?.selectedSprintTitle ?? "",
                                                                             message: messageFormat)

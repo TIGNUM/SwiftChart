@@ -23,10 +23,10 @@ final class PreparationWithMissingEventWorker {
 
     init(preparations: [QDMUserPreparation]) {
         self.preparations = preparations
-        self.title = ScreenTitleService.main.localizedString(for: .missingEventForPrepationPopUpTitle)
-        self.text = ScreenTitleService.main.localizedString(for: .missingEventForPrepationPopUpDescription)
-        self._keepButtonTitle = ScreenTitleService.main.localizedString(for: .missingEventForPrepationPopUpKeepButtonTitle)
-        self._removeButtonTitle = ScreenTitleService.main.localizedString(for: .missingEventForPrepationPopUpRemoveButtonTitle)
+        self.title = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_title)
+        self.text = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_body)
+        self._keepButtonTitle = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_keep)
+        self._removeButtonTitle = AppTextService.get(AppTextKey.generic_event_removed_alert_event_removed_button_remove)
     }
 
     func keepPreparation(preparation: QDMUserPreparation) {

@@ -99,7 +99,7 @@ extension MySprintsListTableViewCell {
     private func addGradient(to view: UIView) {
         let gradient: CAGradientLayer = CAGradientLayer()
         gradient.name = MySprintsListTableViewCell.gradientIdentifier
-        gradient.colors = [UIColor.carbonNew.withAlphaComponent(0).cgColor, UIColor.carbonNew.cgColor]
+        gradient.colors = [UIColor.carbon.withAlphaComponent(0).cgColor, UIColor.carbon.cgColor]
         gradient.startPoint = CGPoint(x: 0.0, y: 1.0)
         gradient.endPoint = CGPoint(x: 0.8, y: 1.0)
         gradient.frame = view.bounds

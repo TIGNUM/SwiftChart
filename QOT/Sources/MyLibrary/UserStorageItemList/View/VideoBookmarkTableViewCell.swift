@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
+class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell {
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var playButton: UIButton!
 
@@ -21,6 +21,6 @@ class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, Dequeueable {
         guard let url = withUrl else { return }
         configure()
         skeletonManager.addOtherView(preview)
-        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager)
+        preview.setImage(url: url, placeholder: R.image.preloading(), skeletonManager: self.skeletonManager) { (_) in /* */}
     }
 }

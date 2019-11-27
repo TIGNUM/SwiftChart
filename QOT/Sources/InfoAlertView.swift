@@ -81,7 +81,6 @@ class InfoAlertView: UIView {
 
     // Touch locations used in `halfScreenBlur` appearance
     private var initialLocation: CGFloat = 0
-    private var lastLocation: CGFloat = 0
 
     /// Closure to be executed when the alert is dismissed. Important for `halfScreen` style as user can dismiss the
     /// alert by tapping on blur or swiping down

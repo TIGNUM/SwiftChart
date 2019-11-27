@@ -53,16 +53,16 @@ extension MyQotSupportInteractor: MyQotSupportInteractorInterface {
         return worker.subtitle(at: indexPath)
     }
 
-    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
-        worker.contentCollection(item) { (collection) in
-            completion(collection)
-        }
-    }
-
     func handleSelection(for indexPath: IndexPath) {
         guard let item = worker.item(at: indexPath) else { return }
-        worker.email {[weak self] (email) in
-            self?.router.handleSelection(for: item, email: email)
+        if case .contactSupportNovartis = item {
+            worker.supportNovartis(collectionId: 102520) { [weak self] (header, subHeader) in
+                self?.router.presentSupportNovartis(header: header, subHeader: subHeader)
+            }
+        } else {
+            worker.email { [weak self] (email) in
+                self?.router.handleSelection(for: item, email: email)
+            }
         }
     }
 

@@ -84,16 +84,29 @@ final class MyLibraryUserStorageInteractor {
             guard let strongSelf = self else { return }
             if strongSelf.items == nil {
                 strongSelf.items = [MyLibraryCellViewModel]()
+                strongSelf.presenter.presentData()
             }
             strongSelf.items?.removeAll()
             if !initiated || items.count == 0 {
+                strongSelf.presenter.presentData()
                 strongSelf.showEmptyAlert()
             } else {
                 strongSelf.infoViewModel = nil
                 strongSelf.items?.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
+                strongSelf.items = strongSelf.removeDuplicates(from: strongSelf.items ?? [])
                 strongSelf.presenter.presentData()
             }
         }
+    }
+
+    private func removeDuplicates(from results: [MyLibraryCellViewModel]) -> [MyLibraryCellViewModel] {
+        var tempResults = [MyLibraryCellViewModel]()
+        for result in results {
+            if tempResults.contains(obj: result) == false {
+                tempResults.append(result)
+            }
+        }
+        return tempResults
     }
 }
 
@@ -121,8 +134,8 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         return !(isEditing || items?.isEmpty != false)
     }
 
-    var contentType: MyLibraryUserStorageContentType {
-        return worker.contentType
+    var itemType: MyLibraryCategoryType {
+        return worker.item.type
     }
 
     func didTapEdit(isEditing: Bool) {
@@ -152,9 +165,9 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         router.presentCreateNote(noteId: nil)
     }
 
-    func handleSelectedItem(at index: Int) -> Bool {
+    func handleSelectedItem(at index: Int) {
         guard let items = self.items, items.count > index else {
-            return false
+            return
         }
 
         let item = items[index]
@@ -163,8 +176,14 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
         } else {
             openItemDetails(item)
         }
+    }
 
-        return true
+    func getIdentifiersForCheckedItems() -> Set<String> {
+        return identifiersForCheck
+    }
+
+    func clearCheckedItems() {
+        identifiersForCheck.removeAll()
     }
 }
 
@@ -174,7 +193,7 @@ extension MyLibraryUserStorageInteractor {
     @objc private func cancelEditingTapped() {
         isEditing = false
         bottomButtons = nil
-        identifiersForCheck.removeAll()
+        clearCheckedItems()
         presenter.present()
     }
 
@@ -225,7 +244,7 @@ extension MyLibraryUserStorageInteractor {
         presenter.present()
     }
 
-    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) -> Bool {
+    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) {
         let previouslySelected = identifiersForCheck.contains(item.identifier)
         if !previouslySelected {
             identifiersForCheck.insert(item.identifier)
@@ -234,7 +253,6 @@ extension MyLibraryUserStorageInteractor {
         }
         bottomButtons = editingButtons
         presenter.present()
-        return !previouslySelected
     }
 
     private func successfullyDeleted(identifier: String) {
@@ -415,7 +433,7 @@ extension MyLibraryUserStorageInteractor {
         case .NONE:
             cellType = .DOWNLOAD
             cellStatus = .waiting
-            description = worker.tapToDownload
+            description = ""
         case .WAITING:
             cellType = .DOWNLOAD
             cellStatus = .waiting

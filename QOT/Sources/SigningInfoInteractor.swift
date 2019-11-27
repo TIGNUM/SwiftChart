@@ -39,9 +39,9 @@ final class SigningInfoInteractor {
 
     func presentUnoptimizedAlertViewIfNeeded() {
         if UIDevice.isPad || UIDevice.isSmallScreenDevice {
-            let title = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertTitle)
-            let message = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceAlertMessage)
-            let dismissButtonTitle = ScreenTitleService.main.localizedString(for: .OnboardingUnoptimizedDeviceButtonGotIt)
+            let title = AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_title)
+            let message = AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_body)
+            let dismissButtonTitle = AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_button_got_it)
             presenter.presentUnoptimizedAlertView(title: title, message: message, dismissButtonTitle: dismissButtonTitle)
         }
     }

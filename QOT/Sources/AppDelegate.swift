@@ -12,15 +12,10 @@ import CoreLocation
 import Buglife
 import Kingfisher
 import SVProgressHUD
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 import qot_dal
-
-protocol LocalNotificationHandlerDelegate: class {
-    func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
-}
-
-protocol ShortcutHandlerDelegate: class {
-    func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool
-}
 
 @UIApplicationMain
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,28 +23,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
 
     var window: UIWindow?
-    private var unhandledNotifications = [UNNotification]()
     private var unhandledShortCuts = [UIApplicationShortcutItem]()
-    weak var localNotificationHandlerDelegate: LocalNotificationHandlerDelegate?
-    weak var shortcutHandlerDelegate: ShortcutHandlerDelegate?
     lazy var locationManager = LocationManager()
 
-    lazy var windowManager: WindowManager = {
-        guard let window = self.window else {
-            fatalError("window shouldn't be nil")
-        }
-        let frame = UIScreen.main.bounds
-        let windowManager = WindowManager(
-            alertWindow: UIWindow(frame: frame),
-            priorityWindow: UIWindow(frame: frame),
-            overlayWindow: UIWindow(frame: frame),
-            normalWindow: window
-        )
-        return windowManager
-    }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(windowManager: windowManager,
-                              remoteNotificationHandler: remoteNotificationHandler,
+        return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler,
                               locationManager: locationManager)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
@@ -80,7 +58,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
                 return true
             }
             isRunning = true
-            ScreenTitleService.main.load()
             _ = UserNotificationsManager.main
             setupProgressHud()
             swizzleUIViewController()
@@ -93,7 +70,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
 
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
-            setupHockeyApp()
+            setupAppCenter()
             setupKingfisherCache()
             QOTService.main.reportAppStatus(.start)
             sendSiriEventsIfNeeded()
@@ -106,6 +83,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
+            application.applicationIconBadgeNumber = 0
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
         #endif //#if UNIT_TEST
@@ -176,11 +154,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        if shortcutHandlerDelegate?.shortcutHandler(self, canProcessShortcut: shortcutItem) == true {
-            handleShortcut(shortcutItem: shortcutItem)
-        } else {
-            unhandledShortCuts.append(shortcutItem)
-        }
+        handleShortcut(shortcutItem: shortcutItem)
     }
 
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
@@ -217,20 +191,10 @@ private extension AppDelegate {
         UAirship.shared().analytics.isEnabled = true
     }
 
-    func setupHockeyApp() {
-        let hockeyAppID = Bundle.main.object(forInfoDictionaryKey: "HOCKEY_APP_ID") as? String
-        BITHockeyManager.shared().configure(withIdentifier: hockeyAppID ?? "4f2cc0d018ea4a2884e052d72eb9c456")
-//        #if DEBUG
-        BITHockeyManager.shared().isUpdateManagerDisabled = true
-//        #endif
-        BITHockeyManager.shared().crashManager.crashManagerStatus = BITCrashManagerStatus.autoSend
-        BITHockeyManager.shared().start()
-        BITHockeyManager.shared().authenticator.authenticateInstallation()
-    }
-
-    var appFilePath: String {
-        let url = URL.documentDirectory.deletingLastPathComponent()
-        return url.absoluteString.removeFilePrefix
+    func setupAppCenter() {
+        if let appCenterID = Bundle.main.object(forInfoDictionaryKey: "APP_CENTER_ID") as? String {
+            MSAppCenter.start(appCenterID, withServices: [MSAnalytics.self, MSCrashes.self])
+        }
     }
 
     func setupKingfisherCache() {

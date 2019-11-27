@@ -12,18 +12,15 @@ import qot_dal
 final class MySprintDetailsRouter {
 
     // MARK: - Properties
-
     private weak var viewController: MySprintDetailsViewController?
 
     // MARK: - Init
-
     init(viewController: MySprintDetailsViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - MySprintDetailsRouterInterface
-
 extension MySprintDetailsRouter: MySprintDetailsRouterInterface {
     func presentTakeawayCapture(for sprint: QDMSprint) {
         let configurator = DTSprintReflectionConfigurator.make(sprint: sprint)

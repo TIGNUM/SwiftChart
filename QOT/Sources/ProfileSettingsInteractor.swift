@@ -9,17 +9,6 @@
 import UIKit
 import qot_dal
 
-enum ProfileField {
-	case telephone
-	case jobTitle
-    case givenName
-    case familyName
-	case gender
-	case birthday
-	case height
-	case weight
-}
-
 final class ProfileSettingsInteractor {
 
     private let worker: ProfileSettingsWorker

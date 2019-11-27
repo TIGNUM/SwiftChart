@@ -5,15 +5,13 @@ inhibit_all_warnings!
 
 target 'QOT' do
   use_frameworks!
-  pod 'Anchorage'
   pod 'R.swift'
-  pod 'ActionSheetPicker-3.0'
   pod 'RSKImageCropper'
   pod 'SVProgressHUD'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'
-  pod 'HockeySDK'
+  pod 'AppCenter'
   pod 'Kingfisher'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git', :branch => 'ios13b'
   pod 'DifferenceKit'

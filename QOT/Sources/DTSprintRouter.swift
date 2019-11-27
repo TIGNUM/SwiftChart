@@ -15,4 +15,19 @@ final class DTSprintRouter: DTRouter {
         AskPermissionConfigurator.make(viewController: controller, type: permissionType)
         viewController?.present(controller, animated: true, completion: nil)
     }
+
+    func presentMySprintsViewController(_ isPresentedFromCoach: Bool) {
+        guard let mySprintsController = R.storyboard.mySprints.mySprintsListViewController() else {
+            return
+        }
+        let configurator = MySprintsListConfigurator.make()
+        configurator(mySprintsController)
+        if isPresentedFromCoach, let vc = viewController {
+            vc.pushToStart(childViewController: mySprintsController)
+            vc.view.alpha = 0.0
+            vc.presentingViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            viewController?.navigationController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        }
+    }
 }

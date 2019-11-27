@@ -26,7 +26,7 @@ class QOTReachability: QOTReachabilityInterface {
 
     var onStatusChange: ((ReachabilityStatus) -> Void)?
 
-    private let reachability = Reachability(hostName: environment.baseURL.host ?? "http://google.com")
+    private let reachability = Reachability(hostName: "http://google.com")
 
     var status: ReachabilityStatus {
         return convert(reachability?.currentReachabilityStatus())

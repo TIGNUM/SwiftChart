@@ -26,26 +26,6 @@ extension NSAttributedString {
                                     lineBreakMode: lineBreakMode)
         self.init(string: string, attributes: attributes)
     }
-
-    static func makeAttributes(letterSpacing: CGFloat = 1,
-                               font: UIFont,
-                               lineSpacing: CGFloat = 0,
-                               textColor: UIColor = .white,
-                               alignment: NSTextAlignment = .left,
-                               lineBreakMode: NSLineBreakMode? = nil) -> [NSAttributedStringKey: Any] {
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineSpacing = lineSpacing
-        paragraphStyle.alignment = alignment
-        if let lineBreakMode = lineBreakMode {
-            paragraphStyle.lineBreakMode = lineBreakMode
-        }
-        return [
-            .foregroundColor: textColor,
-            .paragraphStyle: paragraphStyle,
-            .font: font,
-            .kern: letterSpacing
-        ]
-    }
 }
 
 func Attributes(letterSpacing: CGFloat = 1,

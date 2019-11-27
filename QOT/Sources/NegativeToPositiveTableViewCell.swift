@@ -55,7 +55,7 @@ final class NegativeToPositiveTableViewCell: DTResultBaseTableViewCell, Dequeuea
 extension NegativeToPositiveTableViewCell {
     func configure(title: String, lowTitle: String, lowItems: [String], highTitle: String, highItems: [String]) {
         selectionStyle = .none
-
+        ThemeView.mindsetShifter.apply(self)
         ThemeView.tbvLowPerformance.apply(lowPerformanceView)
         ThemeText.resultTitle.apply(title, to: titleLabel)
 

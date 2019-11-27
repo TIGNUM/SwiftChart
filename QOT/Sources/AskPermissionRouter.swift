@@ -39,7 +39,7 @@ private extension AskPermissionRouter {
         switch permissionType {
         case .location:
             requestLocationAccess(permissionType)
-        case .notification:
+        case .notification, .notificationOnboarding:
             requestNotificationAccess(permissionType)
         case .calendar:
             requestCalendarAccess(permissionType)

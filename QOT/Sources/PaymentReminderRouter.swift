@@ -34,12 +34,12 @@ extension PaymentReminderRouter: PaymentReminderRouterInterface {
     }
 
     func showLogoutDialog() {
-        let cancel = QOTAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel))
-        let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { (_) in
+        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel))
+        let logout = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_payment_screen_section_footer_button_switch_account)) { (_) in
             SessionService.main.logout()
             ExtensionsDataManager.didUserLogIn(false)
             UIApplication.shared.shortcutItems?.removeAll()
         }
-        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
+        QOTAlert.show(title: nil, message: AppTextService.get(AppTextKey.generic_payment_screen_alert_log_out_body_logout), bottomItems: [cancel, logout])
     }
 }

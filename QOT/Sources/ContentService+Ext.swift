@@ -10,13 +10,6 @@ import Foundation
 import qot_dal
 
 extension ContentService {
-    func getRelatedStrategiesPrepareDefault(_ contentCollectionId: Int,
-                                            _ completion: @escaping ([QDMContentCollection]?) -> Void) {
-        getContentCollectionById(contentCollectionId) { [weak self] item in
-            self?.getContentCollectionsByIds(item?.relatedContentIDsPrepareDefault ?? [], completion)
-        }
-    }
-
     func questionId(_ contentItem: QDMContentItem) -> Int {
         if contentItem.valueText.contains(Prepare.Key.perceived.tag) {
             return Prepare.Key.perceived.questionID

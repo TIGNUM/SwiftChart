@@ -50,34 +50,34 @@ final class MySprintNotesWorker {
     lazy var title: String = {
         switch action {
         case .benefits:
-            return R.string.localized.mySprintDetailsHeaderBenefits()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_benefits)
         case .highlights:
-            return R.string.localized.mySprintDetailsHeaderHighlights()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_highlights)
         case .strategies:
-            return R.string.localized.mySprintDetailsHeaderStrategies()
+            return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_section_header_title_header_strategies)
         case .captureTakeaways:
             return "-"
         }
     }()
 
     lazy var saveTitle: String = {
-        return R.string.localized.mySprintDetailsNotesButtonSave()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_button_save)
     }()
 
     lazy var dismissAlertTitle: String = {
-        return R.string.localized.mySprintDetailsNotesInfoTitleLeave()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_alert_continue_without_saving_title_leave)
     }()
 
     lazy var dismissAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: R.string.localized.mySprintDetailsNotesInfoMessageLeave())
+        return NSAttributedString(string: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_takeaways_alert_continue_without_saving_body_leave))
     }()
 
     lazy var cancelTitle: String = {
-       return R.string.localized.mySprintDetailsNotesButtonCancel()
+        return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
     lazy var leaveButtonTitle: String = {
-        return R.string.localized.mySprintDetailsNotesButtonLeave()
+        return AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_alert_button_continue)
     }()
 }
 

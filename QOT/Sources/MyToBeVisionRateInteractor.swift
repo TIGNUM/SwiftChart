@@ -13,42 +13,40 @@ final class MyToBeVisionRateInteractor {
     let presenter: MyToBeVisionRatePresenterInterface
     let worker: MyToBeVisionRateWorker
     let router: MyToBeVisionRateRouter
+    private let isoDate: Date
 
     init(presenter: MyToBeVisionRatePresenterInterface,
          worker: MyToBeVisionRateWorker,
-         router: MyToBeVisionRateRouter) {
+         router: MyToBeVisionRateRouter,
+         isoDate: Date) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        self.isoDate = isoDate
     }
-
-    private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
-        guard let questions = worker.questions else {
-            showScreenLoader()
-            worker.getQuestions {[weak self] (tracks, isInitialized, error) in
-                self?.hideScreenLoader()
-                guard let finalTracks = tracks else {
-                    completion([])
-                    return
-                }
-                completion(finalTracks)
-            }
-            return
-        }
-        completion(questions)
-    }
-}
-
-extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
 
     func viewDidLoad() {
-        getQuestions {[weak self] (questions) in
+        getQuestions { [weak self] (questions) in
             self?.presenter.setupView(questions: questions)
         }
     }
 
+    private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
+        if let questions = worker.questions {
+            completion(questions)
+        } else {
+            showScreenLoader()
+            worker.getQuestions { [weak self] (tracks) in
+                self?.hideScreenLoader()
+                completion(tracks)
+            }
+        }
+    }
+}
+
+extension MyToBeVisionRateInteractor: MyToBeVisionRateInteracorInterface {
     func addRating(for questionId: Int, value: Int) {
-        worker.addRating(for: questionId, value: value)
+        worker.addRating(for: questionId, value: value, isoDate: isoDate)
     }
 
     func saveQuestions() {

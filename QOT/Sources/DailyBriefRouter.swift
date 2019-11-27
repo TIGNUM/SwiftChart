@@ -42,7 +42,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentMyToBeVision() {
-
         let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
         let myVisionViewController = R.storyboard
             .myToBeVision().instantiateViewController(withIdentifier: identifier) as? MyVisionViewController

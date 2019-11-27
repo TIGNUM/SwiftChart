@@ -81,7 +81,7 @@ private extension SolveResultsViewController {
     }
 
     func showAlert() {
-        let activate = QOTAlertAction(title: R.string.localized.solveLeaveAlertActivate()) { [weak self] _ in
+        let activate = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_activate)) { [weak self] _ in
             self?.isFollowUpActive = true
             if self?.resultViewModel?.type == .solveDecisionTree {
                 self?.saveSolveAndDismiss()
@@ -89,11 +89,11 @@ private extension SolveResultsViewController {
                 self?.router?.dismiss()
             }
         }
-        let leave = QOTAlertAction(title: R.string.localized.solveLeaveAlertContinueButton()) { [weak self] _ in
+        let leave = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_continue)) { [weak self] _ in
             self?.saveSolveAndDismiss()
         }
-        QOTAlert.show(title: R.string.localized.solveLeaveAlertTitle(),
-                      message: R.string.localized.solveLeaveAlertMessage(),
+        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_title),
+                      message: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_body),
                       bottomItems: [activate, leave])
     }
 
@@ -169,7 +169,6 @@ extension SolveResultsViewController: UITableViewDataSource {
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, solutionText: solution)
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
-            cell.delegate = self
             return cell
         case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?,
              .strategyContentItem(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
@@ -223,15 +222,6 @@ extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
         case .recoveryPlaner: router?.openRecovery()
         default: break
         }
-    }
-}
-
-// MARK: - SolveHeaderTableViewCellDelegate
-extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
-    func didTapShowMoreLess() {
-        trackUserEvent(.SELECT, valueType: "SHOW MORE/LESS", action: .TAP)
-        tableView.beginUpdates()
-        tableView.endUpdates()
     }
 }
 

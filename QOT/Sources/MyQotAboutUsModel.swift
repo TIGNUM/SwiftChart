@@ -37,46 +37,34 @@ struct MyQotAboutUsModel {
                    ]
         }
 
-        func tag() -> Tags {
-            switch self {
-            case .benefits:
-                return .AboutUsQotBenefits
-            case .about:
-                return .AboutUsAboutTignum
-            case .privacy:
-                return .AboutUsPrivacy
-            case .terms:
-                return .AboutUsTermsAndConditions
-            case .copyright:
-                return .AboutUsCopyright
-            }
-        }
-
-        func tagSubtitle() -> Tags {
-            switch self {
-            case .benefits:
-                return .AboutUsQotBenefitsSubtitle
-            case .about:
-                return .AboutUsAboutTignumSubtitle
-            case .privacy:
-                return .AboutUsPrivacySubtitle
-            case .terms:
-                return .AboutUsTermsAndConditionSubtitle
-            case .copyright:
-                return .AboutUsContentAndCopyrightSubtitle
-            }
-        }
-
         func trackingKeys() -> String {
-            return tag().rawValue
+            switch self {
+            case .benefits:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_about_qot)
+            case .about:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_about_tignum)
+            case .privacy:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_privacy_policy)
+            case .terms:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_terms_and_conditions)
+            case .copyright:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_content_and_copyright)
+            }
         }
 
         func title(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tag())
-        }
-
-        func subtitle(for contentService: qot_dal.ContentService) -> String {
-            return ScreenTitleService.main.localizedString(for: tagSubtitle())
+            switch self {
+            case .benefits:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_about_qot_title)
+            case .about:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_about_tignum_title)
+            case .privacy:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_privacy_title)
+            case .terms:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_terms_and_conditions_title)
+            case .copyright:
+                return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_copyright_title)
+            }
         }
 
         func contentCollection(for contentService: qot_dal.ContentService,

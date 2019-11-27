@@ -18,7 +18,7 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     @IBOutlet weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var solve: QDMSolve?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)

@@ -16,6 +16,7 @@ final class DTSprintWorker: DTWorker {
         case settings
         case permission
     }
+    var isPresentedFromCoach: Bool = true
 }
 
 // MARK: - Sprint

@@ -18,6 +18,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var appLink: QDMAppLink?
     @IBOutlet weak var dividerView: UIView!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)

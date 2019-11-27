@@ -16,19 +16,19 @@ struct Knowing {
         case strategies
         case whatsHot
 
-        var titlePredicate: Tags? {
+        var title: String? {
             switch self {
             case .header: return nil
-            case .strategies: return .knowSectionTitleStrategies
-            case .whatsHot: return .knowSectionTitleWhatsHot
+            case .strategies: return AppTextService.get(AppTextKey.know_section_strategies_title)
+            case .whatsHot: return AppTextService.get(AppTextKey.know_section_wh_articles_title)
             }
         }
 
-        var subtitlePredicate: Tags? {
+        var subtitle: String? {
             switch self {
             case .header: return nil
-            case .strategies: return  .knowSectionSubtitleStrategies
-            case .whatsHot: return .knowSectionSubtitleWhatsHot
+            case .strategies: return AppTextService.get(AppTextKey.know_section_strategies_subtitle)
+            case .whatsHot: return AppTextService.get(AppTextKey.know_section_wh_articles_subtitle)
             }
         }
     }

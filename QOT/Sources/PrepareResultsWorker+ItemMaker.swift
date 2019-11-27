@@ -178,11 +178,6 @@ extension PrepareResultsWorker {
         }
     }
 
-    func filteredAnswers(_ tag: Prepare.Key,
-                         _ answers: [DecisionTreeModel.SelectedAnswer]) -> [DecisionTreeModel.SelectedAnswer] {
-        return answers.filter { $0.questionID == tag.questionID }
-    }
-
     func strategyIDsAll(_ relatedStrategyID: Int?, _ completion: @escaping (([Int]) -> Void)) {
         if let relatedStrategyID = relatedStrategyID {
             ContentService.main.getContentCollectionById(relatedStrategyID) { content in

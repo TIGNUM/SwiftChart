@@ -19,6 +19,7 @@ final class TriggerTableViewCell: DTResultBaseTableViewCell, Dequeueable {
 extension TriggerTableViewCell {
     func configure(title: String, triggerItem: String) {
         selectionStyle = .none
+        ThemeView.mindsetShifter.apply(self)
         ThemeText.resultTitle.apply(title, to: triggerTitleLabel)
         ThemeText.resultHeader2.apply(triggerItem, to: triggerItemLabel)
     }

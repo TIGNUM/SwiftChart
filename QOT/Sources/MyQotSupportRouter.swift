@@ -24,38 +24,30 @@ final class MyQotSupportRouter {
 }
 
 extension MyQotSupportRouter: MyQotSupportRouterInterface {
-
     func handleSelection(for item: MyQotSupportModel.MyQotSupportModelItem, email: String) {
         switch item {
         case .usingQOT: presentUsingQOT()
         case .faq: presentFAQ()
-        case .reportIssue: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
-                                               subject: "ID: Support", id: item)
+        case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
+                                               subject: "ID: Support")
+        case .contactSupportNovartis: break
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
-                                                  subject: "ID: Feature", id: item)
+                                                  subject: "ID: Feature")
         }
+    }
+
+    func presentSupportNovartis(header: String?, subHeader: String?) {
+        guard let supportNovartisController = R.storyboard.myQot.myQotSupportNovartisViewController() else {
+            assertionFailure("Failed to initialize `MyQotSupportNovartisViewController`")
+            return
+        }
+        supportNovartisController.header = header
+        supportNovartisController.subTitle = subHeader
+        viewController?.pushToStart(childViewController: supportNovartisController)
     }
 }
 
 private extension MyQotSupportRouter {
-
-    func showNovartisSupportIfNeeded(email: String, for item: MyQotSupportModel.MyQotSupportModelItem) {
-        if Bundle.main.bundleIdentifier?.contains("novartis") == true {
-            presentContentItem(id: item.primaryKey)
-        } else {
-            presentMailComposer(recipients: [email], subject: "ID: Support", id: item)
-        }
-    }
-
-    func presentContentItem(id: Int) {
-        guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
-            assertionFailure("Failed to initialize `ArticleViewController`")
-            return
-        }
-        ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController?.present(articleViewController, animated: true, completion: nil)
-    }
-
     func presentFAQ() {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.FAQ)
     }
@@ -64,15 +56,9 @@ private extension MyQotSupportRouter {
         viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
     }
 
-    func presentTutorial() {
-        let configurator = TutorialConfigurator.make()
-        let controller = TutorialViewController(configure: configurator, from: .settings)
-        viewController?.pushToStart(childViewController: controller)
-    }
-
-    func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
+    func presentMailComposer(recipients: [String], subject: String) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
+            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.generic_alert_no_email_body)))
             return
         }
         let composer = MFMailComposeViewController()

@@ -20,13 +20,8 @@ enum UserInfo: String {
 
 extension Notification.Name {
     static let logoutNotification = Notification.Name(rawValue: "qot_logoutNotification")
-    static let fitbitAccessTokenReceivedNotification = Notification.Name(rawValue: "qot_fitbitAccessTokenReceivedNotification")
     static let showSigningInfoView = Notification.Name(rawValue: "qot_show_signing_info_view_controller")
     static let didUpdateSelectionCounter = Notification.Name(rawValue: "qot_decision_tree_multi_selection_counter")
-    static let typingAnimationStart = Notification.Name("qot_decision_tree_typing_animation_start")
-    static let typingAnimationDidFinish = Notification.Name("qot_decision_tree_typing_animation_did_finish")
-    static let dismissCoachView = Notification.Name(rawValue: "qot_coach_view_dismiss")
-    static let questionnaireBottomNavigationUpdate = Notification.Name(rawValue: "qot_questionnaire_bottom_navigation_update")
 }
 
 final class NotificationHandler {

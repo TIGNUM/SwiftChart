@@ -71,10 +71,12 @@ extension BaseRootViewController {
 // MARK: - Audio player
 extension BaseRootViewController {
     @objc func playPauseAudio(_ notification: Notification) {
-        guard let mediaModel = notification.object as? MediaPlayerModel else {
+        guard let mediaModel = notification.object as? MediaPlayerModel,
+        let url = mediaModel.url else {
             return
         }
-        guard QOTReachability().isReachable else {
+        if url.isFileURL == false, // if it's not local file
+            QOTReachability().isReachable == false { // and there is no internet
             self.showNoInternetConnectionAlert()
             return
         }

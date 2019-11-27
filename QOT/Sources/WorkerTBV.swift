@@ -26,7 +26,7 @@ class WorkerTBV {
             completion(vision)
             guard var newVision = vision else { return }
             if newVision.headline?.isEmpty != false {
-                newVision.headline = ScreenTitleService.main.localizedString(for: .MyToBeVisionDefaultTitle)
+                newVision.headline = AppTextService.get(AppTextKey.my_qot_my_tbv_edit_body_placeholder)
             }
             if shouldSave, SessionService.main.getCurrentSession() != nil {
                 UserService.main.updateMyToBeVision(newVision, { (error) in /* WOW ;) */})

@@ -20,11 +20,6 @@ extension UIDevice {
         return identifier
     }
 
-    var fullSystemVersion: String {
-        let osVersion = ProcessInfo.processInfo.operatingSystemVersion
-        return "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
-    }
-
     var deviceName: String {
         var machineString: String = ""
         #if targetEnvironment(simulator)

@@ -33,7 +33,6 @@ final class ChatViewLayout: UICollectionViewLayout {
 
     private var cache: [Section] = []
     private var contentSize: CGSize = .zero
-    private var sectionInsertionTimes: [Int: Date] = [:]
     private var insertedSections: [Int] = []
     weak var delegate: ChatViewLayoutDelegate?
 
@@ -314,7 +313,7 @@ private class Section {
             return supplementaryViewAttributes[kind]
     }
 
-    func layoutAttributesForItem(at index: Index) -> ChatViewLayoutAttibutes? {
+    func layoutAttributesForItem(at index: Int) -> ChatViewLayoutAttibutes? {
         return attributes[index]
     }
 

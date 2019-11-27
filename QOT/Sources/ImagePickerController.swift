@@ -30,10 +30,10 @@ final class ImagePickerController {
 
     let imageQuality: ImageQuality
     let imageSize: ImageSize
-    let permissionsManager: PermissionsManager
     let imagePicker: ImagePicker
     var imageCropper: ImageCropper?
     let adapter: ImagePickerControllerAdapter?
+    let permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
 
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
@@ -41,12 +41,10 @@ final class ImagePickerController {
     init(cropShape: ImageCropper.Shape,
          imageQuality: ImageQuality,
          imageSize: ImageSize,
-         permissionsManager: PermissionsManager,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
-        self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
         let imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
@@ -56,12 +54,10 @@ final class ImagePickerController {
 
     init(imageQuality: ImageQuality,
          imageSize: ImageSize,
-         permissionsManager: PermissionsManager,
          adapter: ImagePickerControllerAdapter?) {
         self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
-        self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
         imagePicker.delegte = self
     }
@@ -71,23 +67,23 @@ final class ImagePickerController {
 
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
+        let photoAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_choose_picture),
                                         style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.photo)
+                                            self?.handleOption(.photo)
                                             self?.resetAlertViewAppearance()
         }
-        let cameraAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonCamera(),
+        let cameraAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_take_a_picture),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
-            self?.handleOption(.camera)
-            self?.resetAlertViewAppearance()
+                                            self?.handleOption(.camera)
+                                            self?.resetAlertViewAppearance()
         }
-        let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
+        let deleteAction = UIAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_tbv_alert_edit_photo_button_delete_photo),
                                          style: .destructive) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.deleteImageEvent()
                                             self?.delegate?.deleteImage()
                                             self?.resetAlertViewAppearance()
         }
-        let cancelAction = UIAlertAction(title: ScreenTitleService.main.localizedString(for: .ButtonTitleCancel),
+        let cancelAction = UIAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
                                          style: .default) { [weak self] (alertAction: UIAlertAction) in
                                             self?.adapter?.cancelSelectionEvent()
                                             self?.delegate?.cancelSelection()
@@ -101,7 +97,7 @@ final class ImagePickerController {
         }
         alertController.addAction(cancelAction)
         alertController.view.tintColor = .accent
-        self.viewController?.present(alertController, animated: true, completion: nil)
+        self.viewController?.present(alertController, animated: true)
     }
 
     // MARK: - private
@@ -157,7 +153,7 @@ final class ImagePickerController {
             return
         }
 
-        permissionsManager.askPermission(for: [identifier], completion: { [unowned self] status in
+        permissionsManager?.askPermission(for: identifier, completion: { [unowned self] status in
             guard let status = status[identifier] else { return }
             switch status {
             case .granted:
@@ -171,9 +167,11 @@ final class ImagePickerController {
                     self.adapter?.cancelSelectionEvent()
                     self.delegate?.cancelSelection()
                 })
-            case .later:
-                self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
+            case .restricted:
+                self.permissionsManager?.updateAskStatus(.canAsk, for: identifier)
                 self.handleAuthorizationForOption(option)
+            default:
+                break
             }
         })
     }

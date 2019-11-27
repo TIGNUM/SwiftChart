@@ -32,12 +32,6 @@ final class RegistrationCodeInteractor {
     private weak var delegate: RegistrationDelegate?
     private var termsAccepted: Bool = false
 
-    private lazy var defaultAttributes: [NSAttributedStringKey: Any] = {
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 5
-        return [.font: UIFont.sfProtextRegular(ofSize: 14), .foregroundColor: UIColor.sand70, .paragraphStyle: style]
-    }()
-
     private lazy var linkAttributes: [NSAttributedStringKey: Any] = {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .foregroundColor: UIColor.accent]
     }()

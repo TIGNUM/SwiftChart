@@ -41,18 +41,6 @@ final class OnboardingLandingPageViewController: BaseViewController, ScreenZLeve
     }
 }
 
-// MARK: - Private
-
-private extension OnboardingLandingPageViewController {
-
-}
-
-// MARK: - Actions
-
-private extension OnboardingLandingPageViewController {
-
-}
-
 // MARK: - OnboardingLandingPageViewControllerInterface
 
 extension OnboardingLandingPageViewController: OnboardingLandingPageViewControllerInterface {
@@ -65,11 +53,15 @@ extension OnboardingLandingPageViewController: OnboardingLandingPageViewControll
 
 extension OnboardingLandingPageViewController: SigningInfoDelegate {
     func didTapLogin() {
-        interactor?.didTapLogin(with: nil, cachedToBeVision: nil)
+        if hasInternet() {
+            interactor?.didTapLogin(with: nil, cachedToBeVision: nil)
+        }
     }
 
     func didTapStart() {
-        interactor?.didTapStart()
+        if hasInternet() {
+            interactor?.didTapStart()
+        }
     }
 }
 
@@ -87,5 +79,10 @@ extension OnboardingLandingPageViewController: OnboardingLoginDelegate {
 
     func didTapBack() {
         interactor?.didTapBack()
+    }
+
+    func didNeedToRouteToRegistration() {
+        interactor?.didTapBack()
+        didTapStart()
     }
 }

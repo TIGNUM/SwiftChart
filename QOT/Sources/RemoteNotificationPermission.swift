@@ -10,8 +10,16 @@ import Foundation
 import UserNotifications
 import AirshipKit
 
-struct RemoteNotificationPermission: PermissionInterface {
+class RemoteNotificationPermission: PermissionInterface {
+    var status: UNAuthorizationStatus = .notDetermined
     let notificationCenter: UNUserNotificationCenter = UNUserNotificationCenter.current()
+
+    func refreshStatus(completion: @escaping () -> Void) {
+        notificationCenter.getNotificationSettings { settings in
+            self.status = settings.authorizationStatus
+            completion()
+        }
+    }
 
     func authorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
         notificationCenter.getNotificationSettings(completionHandler: { (settings) in
@@ -19,10 +27,8 @@ struct RemoteNotificationPermission: PermissionInterface {
         })
     }
 
-    func authorizationStatusDescription(completion: @escaping (String) -> Void) {
-        notificationCenter.getNotificationSettings { settings in
-            completion(settings.authorizationStatus.stringValue)
-        }
+    func authorizationStatusDescription() -> PermissionsManager.AuthorizationStatus {
+        return self.status.authorizationStatus
     }
 
     func askPermission(completion: @escaping (Bool) -> Void) {
@@ -36,16 +42,16 @@ struct RemoteNotificationPermission: PermissionInterface {
 // MARK: - UNAuthorizationStatus
 
 private extension UNAuthorizationStatus {
-    var stringValue: String {
+    var authorizationStatus: PermissionsManager.AuthorizationStatus {
         switch self {
         case .notDetermined:
-            return "notDetermined"
+            return PermissionsManager.AuthorizationStatus.notDetermined
         case .denied:
-            return "denied"
-        case .authorized:
-            return "authorized"
+            return PermissionsManager.AuthorizationStatus.denied
         case .provisional:
-            return "provisional"
+            return PermissionsManager.AuthorizationStatus.restricted
+        case .authorized:
+            return PermissionsManager.AuthorizationStatus.granted
         }
     }
 }

@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import Kingfisher
-import Anchorage
 import qot_dal
 
 // MARK: - String
@@ -113,27 +112,6 @@ extension UIBezierPath {
         return path
     }
 
-    class func horseshoe(center: CGPoint,
-                         innerRadius: CGFloat,
-                         outerRadius: CGFloat,
-                         startAngle: CGFloat,
-                         endAngle: CGFloat) -> UIBezierPath {
-        let start = startAngle.degreesToRadians
-        let end = endAngle.degreesToRadians
-        let path = UIBezierPath(arcCenter: center,
-                                radius: outerRadius,
-                                startAngle: start,
-                                endAngle: end,
-                                clockwise: true)
-        path.addArc(withCenter: center,
-                    radius: innerRadius,
-                    startAngle: end,
-                    endAngle: start,
-                    clockwise: false)
-        path.close()
-        return path
-    }
-
     // @see adapted from https://stackoverflow.com/questions/24767978/how-to-round-corners-of-uiimage-with-hexagon-mask
     /// Create UIBezierPath for regular polygon with rounded corners
     ///
@@ -223,31 +201,11 @@ extension CALayer {
             add(animation, forKey: "qot_shadowOpacity")
         }
     }
-
-    func removeAllSublayer() {
-        sublayers?.forEach { $0.removeFromSuperlayer() }
-    }
 }
 
 // MARK: - CAShapeLayer
 
 extension CAShapeLayer {
-
-    func glowEffect(color: UIColor, shadowRadius: CGFloat = 10, shadowOpacity: Float = 0.9, animate: Bool = true) {
-        self.shadowColor = color.cgColor
-        self.shadowRadius = shadowRadius
-        self.shadowOffset = .zero
-        self.shadowOpacity = shadowOpacity
-
-        if animate {
-            let animation = CABasicAnimation(keyPath: "shadowOpacity")
-            animation.fromValue = 0.0
-            animation.toValue = shadowOpacity
-            animation.duration = 0.5
-            add(animation, forKey: "qot_shadowOpacity")
-        }
-    }
-
     class func circle(center: CGPoint, radius: CGFloat, fillColor: UIColor, strokeColor: UIColor, lineWidth: CGFloat = 1.0) -> CAShapeLayer {
         let circlePath = UIBezierPath.circlePath(center: center, radius: radius).cgPath
         let shapeLayer = CAShapeLayer()
@@ -272,56 +230,9 @@ extension CAShapeLayer {
     }
 }
 
-// MARK: - FloatingPoint
-
-extension FloatingPoint {
-
-    var degreesToRadians: Self { return self * .pi / 180 }
-    var radiansToDegrees: Self { return self * 180 / .pi }
-}
-
-// MARK: - CGFLoat
-
-extension CGFloat {
-
-    func radians() -> CGFloat {
-        let b = CGFloat(Float.pi) * (self/180)
-        return b
-    }
-}
-
-// MARK: - Collection
-
-extension MutableCollection where Index == Int {
-
-    mutating func shuffle() {
-        guard count > 2 else {
-            return
-        }
-
-        for index in startIndex ..< endIndex - 1 {
-            let element = Int(arc4random_uniform(UInt32(endIndex - index))) + index
-            if index != element {
-                self.swapAt(index, element)
-            }
-        }
-    }
-}
-
 // MAARK: - UIView
 
 extension UIView {
-
-    var isVisible: Bool {
-        get { return !isHidden }
-        set { isHidden = !newValue }
-    }
-
-    enum FadeViewLocation {
-        case top
-        case bottom
-    }
-
     func addHeader(with theme: ThemeView) {
         self.addSubview(UIView.headerView(with: theme))
     }
@@ -335,135 +246,10 @@ extension UIView {
         return header
     }
 
-    @discardableResult func addFadeView(at location: FadeViewLocation,
-                                        height: CGFloat = 70.0,
-                                        primaryColor: UIColor = .darkIndigo,
-                                        fadeColor: UIColor = .clear) -> GradientView {
-        guard height > 0 else {
-            assertionFailure("height must be > 0")
-            return GradientView(colors: [], locations: [])
-        }
-
-        let fadeView: GradientView
-        switch location {
-        case .top:
-            fadeView = GradientView(colors: [primaryColor, fadeColor], locations: [0.5, 1])
-        case .bottom:
-            fadeView = GradientView(colors: [fadeColor, primaryColor], locations: [0, 0.5])
-        }
-
-        addSubview(fadeView)
-        fadeView.horizontalAnchors == horizontalAnchors
-        fadeView.heightAnchor == height
-        switch location {
-        case .top:
-            fadeView.topAnchor == topAnchor
-        case .bottom:
-            fadeView.bottomAnchor == bottomAnchor
-        }
-
-        return fadeView
-    }
-
-    enum FadeMaskLocation {
-        case top
-        case bottom
-        case topAndBottom
-    }
-
-    @discardableResult func setFadeMask(at location: FadeMaskLocation,
-                                        height: CGFloat = 70.0,
-                                        primaryColor: CGColor = UIColor.black.cgColor) -> CALayer {
-        guard height > 0 else {
-            assertionFailure("height must be > 0")
-            return CALayer()
-        }
-        let fadeColor = UIColor.clear.cgColor
-
-        let wrapperLayer = CALayer()
-        wrapperLayer.backgroundColor = fadeColor
-
-        switch location {
-        case .top:
-            wrapperLayer.frame = bounds.offsetBy(dx: 0, dy: safeMargins.top / 2)
-
-            let fadeLayer = CAGradientLayer()
-            fadeLayer.colors = [fadeColor, fadeColor, primaryColor]
-            fadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
-
-            let contentLayer = CALayer()
-            contentLayer.backgroundColor = primaryColor
-            contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
-
-            wrapperLayer.addSublayer(fadeLayer)
-            wrapperLayer.addSublayer(contentLayer)
-        case .bottom:
-            wrapperLayer.frame = bounds
-
-            let fadeLayer = CAGradientLayer()
-            fadeLayer.colors = [primaryColor, fadeColor, fadeColor]
-            fadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
-
-            let contentLayer = CALayer()
-            contentLayer.backgroundColor = primaryColor
-            contentLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - height)
-
-            wrapperLayer.addSublayer(fadeLayer)
-            wrapperLayer.addSublayer(contentLayer)
-        case .topAndBottom:
-            wrapperLayer.frame = bounds.insetBy(dx: 0, dy: safeMargins.top / 2)
-
-            let topFadeLayer = CAGradientLayer()
-            topFadeLayer.colors = [fadeColor, fadeColor, primaryColor]
-            topFadeLayer.frame = CGRect(x: 0, y: 0, width: wrapperLayer.bounds.width, height: height)
-
-            let bottomFadeLayer = CAGradientLayer()
-            bottomFadeLayer.colors = [primaryColor, fadeColor, fadeColor]
-            bottomFadeLayer.frame = CGRect(x: 0, y: wrapperLayer.bounds.height - height, width: wrapperLayer.bounds.width, height: height)
-
-            let contentLayer = CALayer()
-            contentLayer.backgroundColor = primaryColor
-            contentLayer.frame = CGRect(x: 0, y: height, width: wrapperLayer.bounds.width, height: wrapperLayer.bounds.height - (height * 2.0))
-
-            wrapperLayer.addSublayer(topFadeLayer)
-            wrapperLayer.addSublayer(bottomFadeLayer)
-            wrapperLayer.addSublayer(contentLayer)
-        }
-
-        layer.mask = wrapperLayer
-        return wrapperLayer
-    }
-
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in
             subView.removeFromSuperview()
         })
-    }
-
-    func removeSubLayers() {
-        layer.sublayers?.forEach({ (subLayer: CALayer) in
-            subLayer.removeFromSuperlayer()
-        })
-    }
-
-    func screenshot() -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(bounds.size, false, UIScreen.main.scale)
-        guard let context = UIGraphicsGetCurrentContext() else {
-            UIGraphicsEndImageContext()
-            log("couldnt take screenshot")
-            return nil
-        }
-        layer.render(in: context)
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
-        return image
-    }
-
-    func applyHexagonMask() {
-        let clippingBorderPath = UIBezierPath.hexagonPath(forRect: bounds)
-        let borderMask = CAShapeLayer()
-        borderMask.path = clippingBorderPath.cgPath
-        layer.mask = borderMask
     }
 
     var safeTopAnchor: NSLayoutYAxisAnchor {
@@ -481,72 +267,11 @@ extension UIView {
             return bottomAnchor
         }
     }
-
-    var safeVerticalAnchors: AnchorPair<NSLayoutYAxisAnchor, NSLayoutYAxisAnchor> {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.verticalAnchors
-        } else {
-            return verticalAnchors
-        }
-    }
-
-    var safeEdgeAnchors: EdgeAnchors {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.edgeAnchors
-        } else {
-            return edgeAnchors
-        }
-    }
-
-    var safeMargins: UIEdgeInsets {
-        if #available(iOS 11.0, *) {
-            return safeAreaInsets
-        } else {
-            return layoutMargins
-        }
-    }
-
-    func addBlackNavigationView() {
-        let blackTopView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: Layout.statusBarHeight * 2))
-        blackTopView.backgroundColor = .black
-        addSubview(blackTopView)
-    }
-}
-
-// MARK: - UILabel
-
-extension UILabel {
-    func maxLines(for font: UIFont) -> Int {
-        guard let text = self.text, text.count > 0 else {
-            return 0
-        }
-        let maxSize = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
-        let textHeight = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
-        let lineHeight = font.lineHeight
-        return Int(ceil(textHeight / lineHeight))
-    }
 }
 
 // MARK: - UIImage
 
 extension UIImage {
-
-    // This is a static func because of a possible bug causing a crash: @see: https://petercompernolle.com/2015/excbadaccess-with-coreimage
-    static func makeGrayscale(_ image: UIImage) -> UIImage? {
-        guard let image = CIImage(image: image), let filter = CIFilter(name: "CIPhotoEffectNoir") else {
-            return nil
-        }
-
-        filter.setDefaults()
-        filter.setValue(image, forKey: kCIInputImageKey)
-
-        let context = CIContext(options: nil)
-        if let output = filter.outputImage, let cgImage = context.createCGImage(output, from: output.extent) {
-            return UIImage(cgImage: cgImage)
-        }
-        return nil
-    }
-
     // @see adapted from https://stackoverflow.com/questions/6496441/creating-a-uiimage-from-a-uicolor-to-use-as-a-background-image-for-uibutton
     static func from(color: UIColor, size: CGSize = CGSize(width: 1, height: 1)) -> UIImage? {
         guard size.width > 0, size.height > 0 else {
@@ -563,56 +288,11 @@ extension UIImage {
         UIGraphicsEndImageContext()
         return img
     }
-
-    convenience init?(dataUrl: URL) {
-        do {
-            let data = try Data(contentsOf: dataUrl)
-            self.init(data: data)
-        } catch {
-            log(error)
-            return nil
-        }
-    }
-}
-
-// MARK: - UIImageView
-
-extension UIImageView {
-
-    convenience init(frame: CGRect, image: UIImage?) {
-        self.init(frame: frame)
-        self.image = image
-        self.contentMode = .scaleAspectFill
-        self.layer.cornerRadius = frame.width * 0.5
-        self.clipsToBounds = true
-    }
-}
-
-// MARK: - UIButton
-
-extension UIButton {
-
-    func prepareAndSetTitleAttributes(text: String, font: UIFont, color: UIColor, for state: UIControlState) {
-        let attrString = NSMutableAttributedString(string: text)
-        let style = NSMutableParagraphStyle()
-        style.lineSpacing = 13
-        attrString.addAttribute(.paragraphStyle, value: style, range: NSRange(location: 0, length: text.count))
-        attrString.addAttribute(.font, value: font, range: NSRange(location: 0, length: text.count))
-        attrString.addAttribute(.foregroundColor, value: color, range: NSRange(location: 0, length: text.count))
-        self.setAttributedTitle(attrString, for: state)
-    }
 }
 
 // MARK: - UITableView
 
 extension UITableView {
-
-    func reloadDataWithAnimation(duration: TimeInterval = 0.35) {
-        UIView.transition(with: self, duration: duration, options: .transitionCrossDissolve, animations: {
-            self.reloadData()
-        })
-    }
-
     func scrollToBottom(animated: Bool) {
         let sections = numberOfSections
         guard sections > 0 else {
@@ -631,96 +311,6 @@ extension UITableView {
     }
 }
 
-// MARK: - UIScrollView
-
-extension UIScrollView {
-
-    var currentPage: Int {
-        guard bounds.size.width != 0 else { return 0 }
-
-        return Int(round(contentOffset.x / bounds.size.width))
-    }
-}
-
-// MARK: - UIResponder
-
-extension UIResponder {
-
-    func findParentResponder<T>() -> T? {
-        var responder: UIResponder? = self
-        while responder != nil {
-            responder = responder?.next
-            if let result = responder as? T {
-                return result
-            }
-        }
-        return nil
-    }
-}
-
-// MARK: - SequSequenceType
-
-extension Sequence where Iterator.Element == String {
-
-    func mondayFirst(withWeekend: Bool = true) -> [String] {
-        let selfCast = self as? [String]
-
-        guard var week = selfCast else {
-            return []
-        }
-
-        let tempDay = week.first
-        week.removeFirst()
-
-        if withWeekend == false {
-            week.removeLast()
-        } else if let day = tempDay {
-            week.append(day)
-        }
-
-        return week
-    }
-}
-
-// MARK: - Double
-
-extension Double {
-
-    var toFloat: CGFloat {
-        return CGFloat(self)
-    }
-
-    var toInt: Int {
-        return Int(self)
-    }
-
-    func roundToPlaces(places: Int) -> Double {
-        let divisor = pow(10.0, Double(places))
-        return (self * divisor).rounded() / divisor
-    }
-}
-
-// MARK: - Int
-
-extension Int {
-
-    mutating func plus(_ value: Int) {
-        self += value
-    }
-
-    mutating func minus(_ value: Int) {
-        self -= value
-    }
-
-    mutating func reset() {
-        self = 0
-    }
-
-    var toFloat: CGFloat {
-        return CGFloat(self)
-    }
-}
-
 extension UIEdgeInsets {
 
     var horizontal: CGFloat {
@@ -729,35 +319,6 @@ extension UIEdgeInsets {
 
     var vertical: CGFloat {
         return top + bottom
-    }
-}
-
-extension Comparable {
-
-    func constrainedTo(min minimum: Self, max maximum: Self) -> Self {
-        return max(minimum, min(self, maximum))
-    }
-}
-
-// MARK: - CGSize
-
-extension CGSize {
-
-    var ceiled: CGSize {
-        return CGSize(width: ceil(width), height: ceil(height))
-    }
-}
-
-// MARK: - NSMutableAttributedString
-
-extension NSMutableAttributedString {
-
-    func setColorForText(_ textToFind: String, with color: UIColor) {
-        let range = mutableString.range(of: textToFind, options: .caseInsensitive)
-        if let font = R.font.apercuBold(size: 16), range.location != NSNotFound {
-            addAttribute(.foregroundColor, value: color, range: range)
-            addAttribute(.font, value: font, range: range)
-        }
     }
 }
 

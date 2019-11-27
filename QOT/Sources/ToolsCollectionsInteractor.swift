@@ -19,7 +19,6 @@ final class ToolsCollectionsInteractor {
 
     // MARK: - Init
     private var toolItems = [Tool.Item]()
-    private var videoToolItems = [Tool.Item]()
     private var isMediaPlaying = false
     private var remoteID: Int?
 

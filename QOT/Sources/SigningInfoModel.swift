@@ -26,13 +26,5 @@ struct SigningInfoModel {
             case .fifth: return 101666
             }
         }
-
-        static var allSlides: [Slide] {
-            return [.first(title: "", body: ""),
-                    .second(title: "", body: ""),
-                    .third(title: "", body: ""),
-                    .fourth(title: "", body: ""),
-                    .fifth(title: "", body: "")]
-        }
     }
 }

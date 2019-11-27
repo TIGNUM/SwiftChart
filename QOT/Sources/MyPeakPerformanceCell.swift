@@ -11,10 +11,17 @@ import Foundation
 final class MyPeakPerformanceCell: BaseDailyBriefCell {
 
     @IBOutlet weak var stackView: UIStackView!
+    @IBOutlet weak var stackContainerView: UIView!
     weak var dailyBriefViewControllerDelegate: DailyBriefViewControllerDelegate?
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        stackContainerView.corner(radius: Layout.cornerRadius08)
+    }
 
     func configure(with data: MyPeakPerformanceCellViewModel?) {
         stackView.removeSubViews()
+        ThemeView.peakPerformanceCell.apply(stackContainerView)
         addFormHeaderView(with: data?.title)
         for message in data?.sections ?? [] {
             addFormSectionView(with: message.sections)
@@ -27,10 +34,8 @@ final class MyPeakPerformanceCell: BaseDailyBriefCell {
     }
 
     private func addFormHeaderView(with data: MyPeakPerformanceCellViewModel.MypeakPerformanceTitle?) {
-        guard let view = MyPeakPerformanceTitleCell.instantiateFromNib() else {
-            return
-        }
-        view.configure(bucketTitle: data?.title)
+        guard let view = R.nib.qotBaseHeaderView.firstView(owner: self) else { return }
+        view.configure(title: data?.title, subtitle: nil, darkMode: false)
         stackView.addArrangedSubview(view)
     }
 

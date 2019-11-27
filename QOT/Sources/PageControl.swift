@@ -56,7 +56,7 @@ private extension PageControl {
         }
     }
 
-    func createDot(index: Index, subView: UIView) -> UIImageView? {
+    func createDot(index: Int, subView: UIView) -> UIImageView? {
         let imageView = index == currentPage ? UIImageView(image: R.image.pageControlSelected()) : UIImageView(image: R.image.pageControlUnSelected())
         imageView.center = subView.center
         subView.addSubview(imageView)

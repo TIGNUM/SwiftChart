@@ -27,7 +27,7 @@
                             </constraints>
                         </view>
                     </subviews>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="7Lr-6E-kIa" firstAttribute="top" secondItem="jGp-lD-hbm" secondAttribute="top" constant="22" id="6xg-KF-gk0"/>
                         <constraint firstItem="7Lr-6E-kIa" firstAttribute="leading" secondItem="jGp-lD-hbm" secondAttribute="leading" constant="24" id="Uss-Hx-GzI"/>
@@ -36,7 +36,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="jGp-lD-hbm" firstAttribute="leading" secondItem="Cuo-2Q-Vhf" secondAttribute="leading" id="72p-Wl-MwI"/>
                 <constraint firstItem="jGp-lD-hbm" firstAttribute="top" secondItem="Cuo-2Q-Vhf" secondAttribute="top" id="UZv-GR-NXi"/>

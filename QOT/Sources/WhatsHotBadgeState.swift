@@ -41,18 +41,6 @@ final class WhatsHotBadgeState {
         return _state.value
     }
 
-    /// Saves the date the most recently updated whats hot article was modified in user defaults.
-    func updateVisited() {
-        UserDefault.whatsHotListLastViewed.setObject(articles.lastModified)
-    }
-
-    func onChange(_ closure: @escaping (State) -> Void) -> TokenProtocol {
-        let disposable = _state.observeNext(with: closure)
-        return BlockToken {
-            disposable.dispose()
-        }
-    }
-
     private func update() {
         let newState = calculateState()
         if state != newState {

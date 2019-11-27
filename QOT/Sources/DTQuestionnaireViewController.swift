@@ -9,6 +9,11 @@
 import UIKit
 import qot_dal
 
+enum CellType: Int, CaseIterable {
+    case question
+    case answer
+}
+
 protocol DTQuestionnaireViewControllerDelegate: class {
     func didTapBinarySelection(_ answer: DTViewModel.Answer)
     func didSelectAnswer(_ answer: DTViewModel.Answer)

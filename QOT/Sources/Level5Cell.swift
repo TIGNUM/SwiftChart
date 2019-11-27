@@ -11,8 +11,8 @@ import qot_dal
 
 final class Level5Cell: BaseDailyBriefCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var introLabel: UILabel!
+    @IBOutlet var headerView: UIView!
+    private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private var buttons: [AnimatedButton]!
     @IBOutlet private weak var levelTitle: UILabel!
@@ -36,8 +36,8 @@ final class Level5Cell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        skeletonManager.addTitle(titleLabel)
-        skeletonManager.addSubtitle(introLabel)
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(questionLabel)
         skeletonManager.addSubtitle(levelTitle)
         skeletonManager.addSubtitle(levelText)
@@ -66,19 +66,20 @@ final class Level5Cell: BaseDailyBriefCell {
     }
 
     func createCloseButton() -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(dismissAction), for: .touchUpInside)
-        button.setImage(R.image.ic_close_rounded(), for: .normal)
-        button.imageView?.contentMode = .center
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
+        let button = RoundedButton.init(title: nil, target: self, action: #selector(dismissAction))
+        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        button.addConstraints([heightConstraint, widthConstraint])
+        button.setImage(R.image.ic_close(), for: .normal)
         ThemeButton.closeButton(.dark).apply(button)
         return UIBarButtonItem(customView: button)
     }
 
     func configure(with: Level5ViewModel?) {
         skeletonManager.hide()
-        ThemeText.dailyBriefTitle.apply(with?.title, to: titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: introLabel)
+        baseHeaderView?.configure(title: with?.title, subtitle: with?.intro)
+        ThemeText.dailyBriefTitle.apply(with?.title, to: baseHeaderView?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: baseHeaderView?.subtitleTextView)
         ThemeText.level5Question.apply(with?.question, to: questionLabel)
         confirmationMessage = with?.confirmationMessage
         levelMessages = with?.levelMessages ?? []

@@ -11,18 +11,15 @@ import UIKit
 final class ToolsItemsPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: ToolsItemsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: ToolsItemsViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - CoachInterface
-
 extension ToolsItemsPresenter: ToolsItemsPresenterInterface {
     func setupView() {
         viewController?.setupView()

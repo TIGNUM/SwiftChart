@@ -7,17 +7,12 @@
 //
 
 import Foundation
+import CoreLocation
 import qot_dal
 
-enum LocationPermissionStatus {
-    case allowed
-    case notSet
-    case denied
-}
-
 enum WeatherType: String {
-    case clearSky = "Clear sky"
-    case cloudy = "Cloudy"
+    case clearSky = "Clear"
+    case cloudy = "Clouds"
     case rain = "Rain"
     case thunderStorm = "Thunderstorm"
     case snow = "Snow"
@@ -33,8 +28,9 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var requestLocationPermissionButtonTitle: String?
     var deniedLocationPermissionDescription: String?
     var deniedLocationPermissionButtonTitle: String?
-    var locationPermissionStatus: LocationPermissionStatus = .notSet
-    private var locationPermission = LocationPermission()
+    var locationPermissionStatus: PermissionsManager.AuthorizationStatus = .notDetermined
+    var locationName: String?
+    let permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
 
     // MARK: - Init
     internal init(bucketTitle: String = "",
@@ -51,7 +47,17 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
         self.deniedLocationPermissionButtonTitle = deniedLocationPermissionButtonTitle
         super.init(domain)
-        self.updateLocationPermissionStatus { (_) in}
+        updatePermissionStatus()
+        updateLocationName()
+    }
+
+    private func updatePermissionStatus() {
+        locationPermissionStatus = permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
+    }
+
+    private func updateLocationName() {
+        guard let name = AppDelegate.current.locationManager.currentLocalityName else { return }
+        locationName = name
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -71,34 +77,13 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
 
     }
 
-    public func updateLocationPermissionStatus(completion: @escaping (LocationPermissionStatus) -> Void ) {
-        locationPermission.authorizationStatusDescription { [weak self] (string) in
-            guard let strongSelf = self else {
-                return
-            }
-            let status = strongSelf.convertStatusFrom(string: string)
+    public func requestLocationPermission(completion: @escaping (PermissionsManager.AuthorizationStatus) -> Void ) {
+        permissionsManager?.askPermission(for: .location) { [weak self] (status) in
+            guard let strongSelf = self,
+                let status = status[.location]
+                else { return }
             strongSelf.locationPermissionStatus = status
             completion(status)
-        }
-    }
-
-    public func requestLocationPermission(completion: @escaping (Bool) -> Void) {
-        locationPermission.askPermission { [weak self] (granted) in
-            guard let strongSelf = self else {
-                return
-            }
-            strongSelf.locationPermissionStatus = granted ? .allowed : .denied
-            completion(granted)
-        }
-    }
-
-    func convertStatusFrom(string: String) -> LocationPermissionStatus {
-        if string == "notDetermined" {
-            return .notSet
-        } else if string == "authorizedWhenInUse" || string == "authorizedAlways" {
-            return .allowed
-        } else {
-            return .denied
         }
     }
 }

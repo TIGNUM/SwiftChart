@@ -17,7 +17,7 @@ protocol EKEventEditable {
 extension EKEvent: EKEventEditable {
     func addPreparationLink(preparationID: String?, permissionsManager: PermissionsManager) {
         guard let localID = preparationID else { return }
-        permissionsManager.askPermission(for: [.calendar], completion: { [weak self] status in
+        permissionsManager.askPermission(for: .calendar, completion: { [weak self] status in
             guard let status = status[.calendar], let strongSelf = self else { return }
             switch status {
             case .granted:
@@ -32,7 +32,7 @@ extension EKEvent: EKEventEditable {
                     log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
                     return
                 }
-            case .later:
+            case .restricted:
                 permissionsManager.updateAskStatus(.canAsk, for: .calendar)
             default:
                 break

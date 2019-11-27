@@ -45,6 +45,10 @@ extension OnboardingLoginPresenter: OnboardingLoginPresenterInterface {
         viewController?.updateView()
     }
 
+    func presentReset() {
+        viewController?.resetView()
+    }
+
     func presentActivity(state: ActivityState?) {
         let difference = DispatchTime.now().uptimeNanoseconds - lastActivityChange.uptimeNanoseconds
         // If indicator has been displayed for longer than the minimum required time

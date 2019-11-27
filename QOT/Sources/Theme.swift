@@ -9,11 +9,6 @@
 import Foundation
 
 struct ThemeAppearance {
-    static func setNavigationBar() {
-        UINavigationBar.appearance().titleTextAttributes = [.font: Fonts.fontMedium20,
-                                                            .foregroundColor: Palette.light(Palette.carbon, or: Palette.sand)]
-    }
-
     static func setNavigation(bar: UINavigationBar?, theme: ThemeView) {
         bar?.barTintColor = theme.color
         bar?.isTranslucent = true
@@ -39,6 +34,8 @@ enum ThemeView {
     case level1Secondary
     case level1Selected
     case level2Selected
+    case baseHeaderView(ThemeColorMode?)
+    case baseHeaderLineView(ThemeColorMode?)
     case onboarding
     case article
     case articleBackground(ThemeColorMode?)
@@ -67,7 +64,10 @@ enum ThemeView {
     case myDataHeatMapLegendHigh
     case myDataHeatMapLegendLow
     case paymentReminder
+    case peakPerformanceCell
+    case mindsetShifter
     case clear
+    case coachMarkPageIndicator
 
     var color: UIColor {
         switch self {
@@ -83,9 +83,13 @@ enum ThemeView {
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
+        case .baseHeaderView(let mode):
+            return Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
+        case .baseHeaderLineView(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .audioPlaying, .selectedButton:
             return Palette.accent40
-        case .onboarding:
+        case .onboarding, .sprintsActive:
             return Palette.carbon
         case .toolSeparator:
             return Palette.carbon10
@@ -97,7 +101,7 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder:
+        case .audioBar, .headerLine, .qSearch, .chatbot, .qotTools, .paymentReminder, .peakPerformanceCell, .coachMarkPageIndicator:
             return Palette.sand
         case .chatbotDark:
             return ThemeView.level1.color
@@ -129,8 +133,8 @@ enum ThemeView {
             return Palette.heatMapBrightRed
         case .myDataHeatMapLegendLow:
             return Palette.heatMapDarkBlue
-        case .sprintsActive:
-            return .carbonNew
+        case .mindsetShifter:
+            return .sand
         case .clear:
             return .clear
         }
@@ -216,6 +220,10 @@ enum ThemeButton {
     case closeButton(ThemeColorMode)
     case level5
     case clear
+    case onboarding
+    case backButton
+    case editButton
+    case carbonButton
 
     var defaultHeight: CGFloat {
         get {
@@ -241,14 +249,17 @@ enum ThemeButton {
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
-            colorBorder = .accent
         case .level5:
             colorSelected = .accent40
             colorUnselected = .clear
             colorBorder = .accent40
         case .clear:
             colorSelected = .clear
-            colorBorder = .clear
+        case .onboarding:
+            colorSelected = Palette.accent40
+        case .backButton, .editButton, .carbonButton:
+            colorUnselected = Palette.carbon
+            colorBorder = Palette.accent40
         }
 
         if let color = colorBorder {
@@ -308,6 +319,7 @@ enum ThemableButton {
     case paymentReminder
     case articleMarkAsRead(selected: Bool)
     case level5
+    case continueButton
 
     var titleAttributes: [NSAttributedStringKey: Any]? {
         switch self {
@@ -326,7 +338,8 @@ enum ThemableButton {
              .trackSelection,
              .paymentReminder,
              .articleMarkAsRead,
-             .level5:
+             .level5,
+             .continueButton:
             return [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
         }
     }
@@ -340,7 +353,8 @@ enum ThemableButton {
              .myTbvDataRate,
              .createAccountInfo,
              .trackSelection,
-             .level5:
+             .level5,
+             .continueButton:
             return ButtonTheme(foreground: .accent, background: .carbon, border: .accent30)
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent, background: .carbonNew, border: .accent30)
@@ -371,7 +385,7 @@ enum ThemableButton {
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
             return ButtonTheme(foreground: .accent70, background: (selected ? .accent40 : nil), border: .accent10)
-        case .level5:
+        case .level5, .continueButton:
             return ButtonTheme(foreground: .accent70, background: .carbon, border: .accent10)
         }
     }
@@ -490,6 +504,10 @@ enum ThemeText {
     case performanceTitle
     case author
     case datestamp
+    case tbvCustomizeBody
+
+    case baseHeaderTitle(ThemeColorMode?)
+    case baseHeaderSubtitle(ThemeColorMode?)
 
     case linkMenuItem
     case linkMenuComment        //???
@@ -596,6 +614,7 @@ enum ThemeText {
     case sprintTitle
     case durationString
     case solveQuestions
+    case aboutMeContent
     case tbvStatement
     case solveFuture
     case level5Question
@@ -606,6 +625,9 @@ enum ThemeText {
     case bespokeTitle
     case bespokeText
     case leaderText
+    case insightsTBVText
+    case insightsTBVSentence
+    case insightsSHPIText
     case leaderVideoTitle
     case strategyTitle
     case fromCoachTitle
@@ -635,6 +657,7 @@ enum ThemeText {
     case loginEmailCode
     case loginEmailCodeMessage
     case loginEmailCodeErrorMessage
+    case loginSeparator
     case createAccountMessage
     case registrationEmailTitle
     case registrationEmailMessage
@@ -658,6 +681,7 @@ enum ThemeText {
     case trackSelectionTitle
     case trackSelectionMessage
     case walkthroughMessage
+    case shpiQuestion
 
     case tbvSectionHeader
     case tbvHeader
@@ -683,8 +707,6 @@ enum ThemeText {
     case audioLabel
     case dailyQuestion
 
-    case myDataSectionHeaderTitle
-    case myDataSectionHeaderSubTitle
     case myDataMonthYearTitle
     case myDataWeekdaysNotHighlighted(Bool)
     case myDataWeekdaysHighlighted(Bool)
@@ -731,11 +753,13 @@ enum ThemeText {
     case syncedCalendarRowSubtitle
 
     case weatherIntro
+    case weatherLocation
     case weatherDescription
     case weatherTitle
     case weatherBody
     case weatherHourlyLabels
     case weatherHourlyLabelNow
+    case weatherLastUpdate
 
     case myLibraryTitle
     case myLibraryGroupName
@@ -773,26 +797,31 @@ enum ThemeText {
     case mySensorsDescriptionTitle
     case mySensorsDescriptionBody
 
+    case coachMarkTitle
+    case coachMarkSubtitle
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel:
             return Fonts.fontRegular12
-        case .asterix:
+        case .asterix, .weatherLocation:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .myDataSectionHeaderTitle, .dailyBriefDailyCheckInClosedBucket,
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
           .mySprintsTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle,
-             .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
+             .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
+             .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
-             .weatherIntro, .weatherDescription, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle, .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage:
+             .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle,
+             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
             return Fonts.fontRegular16
-        case .leaderVideoTitle, .searchExploreTopic, .searchBar,
+        case .baseHeaderSubtitle, .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
              .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage,
-             .tbvTrackerRatingDigits, .myDataSectionHeaderSubTitle, .registrationEmailMessage, .registrationEmailError,
+             .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .registrationAgeRestriction, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader:
@@ -800,8 +829,7 @@ enum ThemeText {
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
              .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
-             .myLibraryGroupDescription, .myLibraryItemsItemDescription,
-             .mySprintsCellStatus:
+             .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle,
              .myLibraryGroupName:
@@ -809,10 +837,11 @@ enum ThemeText {
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
         case .chatbotButton, .audioBar, .articleAudioBar, .segmentHeading, .tbvButton, .myDataSwitchButtons, .myDataWeekdaysHighlighted, .registrationCodeLink, .articleContactSupportLink,
+             .loginSeparator,
              .chatbotProgress,
              .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             return Fonts.fontSemiBold14
-        case .registrationCodeDescriptionEmail, .walkthroughMessage:
+        case .registrationCodeDescriptionEmail, .walkthroughMessage, .coachMarkTitle, .weatherDescription:
             return Fonts.fontSemiBold16
         case .articleCategory, .articleDatestamp:
             switch textScale {
@@ -854,7 +883,7 @@ enum ThemeText {
              .qotTools, .qotToolsSubtitle, .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
              .myLibraryItemsItemName, .dailyQuestion,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
-             .mySensorsDescriptionTitle, .mySensorsSensorTitle:
+             .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -864,7 +893,7 @@ enum ThemeText {
             return Fonts.fontMedium14
         case .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
-        case .quotation:
+        case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
         case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
@@ -912,7 +941,7 @@ enum ThemeText {
             return Fonts.fontRegular14
         case .tvbCounter:
             return Fonts.fontDisplayUltralight120
-        case .myDataHeatMapLegendText, .myDataParameterLegendText:
+        case .myDataHeatMapLegendText, .myDataParameterLegendText, .weatherLastUpdate:
             return Fonts.fontRegular12
         case .myDataHeatMapDetailCellValue:
             return Fonts.fontDisplayThin34
@@ -931,13 +960,13 @@ enum ThemeText {
 
     private var color: UIColor {
         switch self {
-        case .navigationBarHeader, .quotation, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
+        case .navigationBarHeader, .quotation, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle,
              .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .onboardingInputText,
              .tbvVisionHeader, .tbvVisionBody, .tvbTimeSinceTitle, .tvbCounter, .tbvTrackerHeader, .tbvTrackerRating, .questionHintLabel,
-             .loginEmailTitle, .myDataSectionHeaderTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
+             .loginEmailTitle, .myDataMonthYearTitle, .myDataWeekdaysHighlighted,
              .myDataHeatMapDetailCellValue, .myDataHeatMapCellDateHighlighted, .registrationEmailTitle, .registrationCodeTitle,
              .dailyBriefLevelTitle, .searchSuggestion,
              .registrationNamesTitle, .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .walkthroughMessage,
@@ -945,7 +974,7 @@ enum ThemeText {
              .askPermissionTitle, .syncedCalendarTitle, .syncedCalendarRowTitle, .weatherTitle, .weatherHourlyLabelNow, .accountUserName,
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
-             .mySensorsSensorTitle, .mySensorsDescriptionTitle:
+             .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
             return Palette.sand60
@@ -961,6 +990,7 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle,
              .audioLabel,
+             .loginSeparator,
              .myLibraryGroupName, .customAlertAction,
              .mySprintDetailsCta:
             return Palette.accent
@@ -972,14 +1002,15 @@ enum ThemeText {
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
              .myQOTPrepComment, .tbvHeader, .tbvBody, .tbvTrackerBody, .tbvTrackerAnswer, .loginEmailMessage, .loginEmailCode,
-             .loginEmailCodeMessage, .myDataSectionHeaderSubTitle, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
+             .loginEmailCodeMessage, .myDataWeekdaysNotHighlighted, .myDataHeatMapCellDateText,
              .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate, .onboardingInputPlaceholder, .createAccountMessage,
              .registrationEmailMessage, .registrationCodeDescription, .registrationCodeDescriptionEmail, .trackSelectionMessage,
              .registrationCodePreCode, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .registrationAgeDescription,
-             .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights, .audioPlayerTitleLight,
-             .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherBody, .weatherHourlyLabels, .onboardingInfoBody,
-             .mySprintsCellProgress, .mySprintDetailsDescription, .mySprintDetailsProgress, .mySprintDetailsTextRegular,
-             .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody, .mySensorsTitle:
+             .registrationAgeRestriction, .articleContactSupportInfoTitle, .locationPermissionMessage, .author, .dailyBriefDailyCheckInSights,
+             .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
+             .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
+             .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText:
             return Palette.sand70
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1012,7 +1043,7 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-        case .version:
+        case .version, .weatherLastUpdate:
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
@@ -1056,6 +1087,10 @@ enum ThemeText {
             } else {
                 return isDark ? Palette.sand70 : Palette.carbon70
             }
+        case .baseHeaderTitle(let mode):
+            return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
+        case .baseHeaderSubtitle(let mode):
+            return Palette.light(Palette.carbon40, or: Palette.sand70, forcedColorMode: mode)
         case .tbvTrackerRatingDigits(let lowValue):
             return lowValue ? Palette.redOrange40 : Palette.sand40
         case .tbvTrackerRatingDigitsSelected(let lowValue):
@@ -1088,7 +1123,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
         case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
              .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle,
-             .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge:
+             .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .tbvCustomizeBody, .shpiQuestion:
              string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
@@ -1096,8 +1131,9 @@ enum ThemeText {
              .registrationEmailMessage, .registrationEmailError, .registrationCodeTitle, .registrationCodePreCode,
              .registrationCodeError, .registrationCodeDisclaimerError, .registrationNamesTitle, .registrationNamesMandatory,
              .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .askPermissionTitle,
-             .weatherDescription, .weatherTitle, .weatherBody, .mySensorsSensorTitle, .mySensorsTitle, .mySensorsNoDataInfoLabel,
-             .mySensorsDescriptionTitle, .mySensorsDescriptionBody:
+             .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
+             .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody,
+             .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader,
              .mySprintsTableHeader:
@@ -1105,7 +1141,7 @@ enum ThemeText {
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed,
              .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
-        case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
+        case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .mySprintsCellProgress, .mySprintDetailsHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
@@ -1158,10 +1194,11 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
-        case .myDataSectionHeaderTitle, .myDataSectionHeaderSubTitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle,
+        case .baseHeaderTitle, .baseHeaderSubtitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle,
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
+             .loginSeparator,
              .dailyBriefSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
@@ -1176,7 +1213,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow:
+        case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow, .coachMarkTitle, .coachMarkSubtitle:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
         case .createAccountMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
@@ -1260,7 +1297,7 @@ enum ThemeText {
             view.backgroundColor = .clear
 
             switch self {
-            case .myDataSectionHeaderSubTitle:
+            case .baseHeaderSubtitle:
                 view.contentMode = .topLeft
             default:
                 break
@@ -1308,7 +1345,6 @@ private struct Fonts {
     static let fontRegular12 = UIFont.sfProtextRegular(ofSize: 12.0)
     static let fontRegular13 = UIFont.sfProtextRegular(ofSize: 13.0)
     static let fontRegular14 = UIFont.sfProtextRegular(ofSize: 14.0)
-    static let fontRegular15 = UIFont.sfProtextRegular(ofSize: 15.0)
     static let fontRegular16 = UIFont.sfProtextRegular(ofSize: 16.0)
     static let fontRegular18 = UIFont.sfProtextRegular(ofSize: 18.0)
     static let fontRegular20 = UIFont.sfProtextRegular(ofSize: 20.0)
@@ -1317,7 +1353,6 @@ private struct Fonts {
     static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
     static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
     static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
-    static let fontMedium20 = UIFont.sfProtextMedium(ofSize: 20.0)
 
     static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
     static let fontLight14 = UIFont.sfProtextLight(ofSize: 14.0)
@@ -1338,10 +1373,8 @@ private struct Fonts {
 
     static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
     static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
-    static let fontDisplayRegular16 = UIFont.sfProDisplayRegular(ofSize: 16.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
-    static let fontDisplayThin42 = UIFont.sfProDisplayThin(ofSize: 42.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
     static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
