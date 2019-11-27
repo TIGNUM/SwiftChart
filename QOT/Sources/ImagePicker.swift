@@ -49,7 +49,9 @@ class ImagePicker: NSObject {
 
     // MARK: - private
 
-    private func show(in viewController: UIViewController, for type: UIImagePickerControllerSourceType, completion: (() -> Void)?) throws {
+    private func show(in viewController: UIViewController,
+                      for type: UIImagePickerControllerSourceType,
+                      completion: (() -> Void)?) throws {
         guard UIImagePickerController.isSourceTypeAvailable(type) else {
             throw ImagePickerError.sourceNotAvailable
         }
@@ -74,7 +76,6 @@ class ImagePicker: NSObject {
 }
 
 // MARK: - UIImagePickerControllerDelegate
-
 extension ImagePicker: UIImagePickerControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         delegte?.imagePickerDidPressCancel(self)
@@ -89,6 +90,5 @@ extension ImagePicker: UIImagePickerControllerDelegate {
 }
 
 // MARK: - UINavigationControllerDelegate
-
 extension ImagePicker: UINavigationControllerDelegate {
 }
