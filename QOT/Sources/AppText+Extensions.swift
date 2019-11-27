@@ -270,6 +270,7 @@ public extension AppTextKey {
     static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
     static let my_qot_my_plans_recovery_plans_null_state_title = AppTextKey("my_qot.my_plans.recovery_plans.null_state.title")
     static let my_qot_my_plans_section_header_title = AppTextKey("my_qot.my_plans.section_header.title")
+    static let my_qot_my_plans_section_header_title_edit = AppTextKey("my_qot.my_plans.section_header.title_edit")
     static let my_qot_my_profile_about_us_section_about_qot_title = AppTextKey("my_qot.my_profile.about_us.section_about_qot.title")
     static let my_qot_my_profile_about_us_section_about_tignum_title = AppTextKey("my_qot.my_profile.about_us.section_about_tignum.title")
     static let my_qot_my_profile_about_us_section_copyright_title = AppTextKey("my_qot.my_profile.about_us.section_copyright.title")

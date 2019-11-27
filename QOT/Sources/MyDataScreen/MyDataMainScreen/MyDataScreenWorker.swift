@@ -57,9 +57,9 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataSectionSubtitle(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
-            return AppTextService.get(AppTextKey.my_qot_my_data_section_impact_readiness_body)
+            return AppTextService.get(AppTextKey.my_qot_my_data_section_impact_readiness_body).replacingOccurrences(of: "\\n", with: "\n")
         case .heatMap:
-            return AppTextService.get(AppTextKey.my_qot_my_data_section_heat_map_body)
+            return AppTextService.get(AppTextKey.my_qot_my_data_section_heat_map_body).replacingOccurrences(of: "\\n", with: "\n")
         }
     }
 
