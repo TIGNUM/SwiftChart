@@ -42,7 +42,7 @@
                                     <segment title="Recovery plans"/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="selectedSegmentTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="selectedSegmentTintColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <action selector="didChangeSegment:" destination="ciS-My-UAr" eventType="valueChanged" id="HzQ-O3-65J"/>
                                     <action selector="didChangeSegmentedControl:" destination="ciS-My-UAr" eventType="valueChanged" id="HPS-vp-AL8"/>
