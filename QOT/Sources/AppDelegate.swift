@@ -25,6 +25,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     private var unhandledShortCuts = [UIApplicationShortcutItem]()
     lazy var locationManager = LocationManager()
+    var backgroundCompletionHandler: (() -> Void)?
 
     lazy var appCoordinator: AppCoordinator = {
         return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler,
@@ -157,6 +158,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         handleShortcut(shortcutItem: shortcutItem)
     }
 
+    func application(_ application: UIApplication,
+                     handleEventsForBackgroundURLSession identifier: String,
+                     completionHandler: @escaping () -> Void) {
+        backgroundCompletionHandler = completionHandler
+    }
+
     func handleShortcut(shortcutItem: UIApplicationShortcutItem) {
         guard
             let linkString = shortcutItem.userInfo?["link"] as? String,
@@ -165,7 +172,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     //Interface Orientation
-    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+    func application(_ application: UIApplication,
+                     supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
         return AppCoordinator.orientationManager.supportedOrientations
     }
 }
