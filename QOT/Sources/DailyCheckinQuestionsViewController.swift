@@ -31,7 +31,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = .sand
+        setStatusBar(color: .sand)
     }
 
     override func viewDidAppear(_ animated: Bool) {

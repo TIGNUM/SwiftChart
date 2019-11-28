@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>APP_CENTER_ID</key>
+	<string>b0fc4862-5edc-47fc-bd1d-83a5a5f9f8a4</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -59,8 +61,6 @@
 			</dict>
 		</array>
 	</dict>
-	<key>APP_CENTER_ID</key>
-	<string>b0fc4862-5edc-47fc-bd1d-83a5a5f9f8a4</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>

@@ -158,9 +158,8 @@ extension UIViewController {
     }
 
     func setStatusBar(color: UIColor?) {
-        guard let statusBar = UIApplication.shared.statusBarView,
-            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) else {
-                return
+        guard let statusBar = UIApplication.shared.statusBarView else {
+            return
         }
         statusBar.backgroundColor = color
     }
@@ -221,6 +220,14 @@ extension UIViewController {
             naviController.modalPresentationCapturesStatusBarAppearance = viewControllerToPresent.modalPresentationCapturesStatusBarAppearance
 
             vc = naviController
+        }
+
+        switch vc.modalPresentationStyle {
+        case .currentContext,
+             .overFullScreen,
+             .overCurrentContext,
+             .custom: break
+        default: vc.modalPresentationStyle = .fullScreen
         }
 
         baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
