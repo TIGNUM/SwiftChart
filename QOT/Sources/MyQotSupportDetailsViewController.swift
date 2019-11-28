@@ -34,7 +34,7 @@ final class MyQotSupportDetailsViewController: BaseViewController, ScreenZLevel3
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = .carbon
+        setStatusBar(color: .carbon)
     }
 }
 

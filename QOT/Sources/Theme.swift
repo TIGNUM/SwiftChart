@@ -445,15 +445,22 @@ enum ThemeSegment {
     func apply(_ view: UISegmentedControl) {
         var normal: [NSAttributedString.Key: Any]?
         var selected: [NSAttributedString.Key: Any]?
-
+        let fakeBackgroundColor = UIColor(red: 7/255, green: 6/255, blue: 3/255, alpha: 1)
+        let fakeDividerImage = UIImage(color: .carbon,
+                                       size: CGSize(width: 1, height: 32))
         switch self {
         case .accent:
             normal = [NSAttributedStringKey.font: Fonts.fontRegular14,
                       NSAttributedStringKey.foregroundColor: Palette.accent60]
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
-            view.tintColor = .clear
-            view.backgroundColor = .carbon
+            view.setDividerImage(fakeDividerImage,
+                            forLeftSegmentState: .normal,
+                            rightSegmentState: .normal, barMetrics: .default)
+            if #available(iOS 13, *) {
+                view.tintColor = fakeBackgroundColor
+                view.backgroundColor = fakeBackgroundColor
+            }
         }
 
         if let normal = normal,
@@ -477,10 +484,17 @@ enum ThemeSearchBar {
 
             view.tintColor = Palette.accent
             view.keyboardAppearance = .dark
-            if let searchField = view.value(forKey: "_searchField") as? UITextField {
+            if #available(iOS 13, *) {
+                let searchField = view.searchTextField
                 searchField.corner(radius: 20)
                 searchField.backgroundColor = Palette.sand10
                 searchField.textColor = Palette.sand
+            } else {
+                if let searchField = view.value(forKey: "_searchField") as? UITextField {
+                    searchField.corner(radius: 20)
+                    searchField.backgroundColor = Palette.sand10
+                    searchField.textColor = Palette.sand
+                }
             }
             view.setShowsCancelButton(true, animated: false)
         }
@@ -1606,4 +1620,20 @@ private struct Palette {
             return Palette.sand
         }
     }
+}
+
+extension UIImage {
+
+convenience init?(color: UIColor, size: CGSize) {
+    UIGraphicsBeginImageContextWithOptions(size, false, 1)
+    color.set()
+    guard let ctx = UIGraphicsGetCurrentContext() else { return nil }
+    ctx.fill(CGRect(origin: .zero, size: size))
+    guard let image = UIGraphicsGetImageFromCurrentImageContext(),
+        let imagePNGData = UIImagePNGRepresentation(image)
+    else { return nil }
+    UIGraphicsEndImageContext()
+
+    self.init(data: imagePNGData)
+   }
 }
