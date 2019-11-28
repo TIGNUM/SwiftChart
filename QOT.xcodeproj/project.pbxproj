@@ -4518,6 +4518,7 @@
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
+				9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
@@ -4525,12 +4526,12 @@
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
-				B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */,
 				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				DB84AF1E231AAA1A005487BD /* UIImageView+Kingfisher.swift */,
 				363C3DC0231962AB0025C256 /* UIScrollView+Ext.swift */,
 				BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */,
+				B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
@@ -4553,7 +4554,6 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				36CB720922B8772300C99AFC /* qot_dal */,
 				8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */,
-				9C6E48C5232A4E4E004D657F /* UIButton+Animations.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";

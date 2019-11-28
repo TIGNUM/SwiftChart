@@ -9,6 +9,9 @@
 import UIKit
 import RSKImageCropper
 
+extension UIImagePickerController: ScreenZLevelOverlay {}
+extension RSKImageCropViewController: ScreenZLevelOverlay {}
+
 protocol ImageCropperDelegate: class {
     func imageCropper(_ imageCropper: ImageCropper, croppedImage image: UIImage)
     func imageCropperDidPressCancel(_ imageCropper: ImageCropper)

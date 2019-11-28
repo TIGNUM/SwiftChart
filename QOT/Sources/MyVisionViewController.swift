@@ -77,7 +77,8 @@ final class MyVisionViewController: BaseViewController, ScreenZLevel2 {
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_tbv_section_footer_button_title_my_tbv_data),
+        let title = AppTextService.get(AppTextKey.my_qot_my_tbv_section_footer_button_title_my_tbv_data)
+        return [roundedBarButtonItem(title: title,
                                      buttonWidth: 160,
                                      action: #selector(myTBVData),
                                      backgroundColor: .carbon,
@@ -195,7 +196,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(imageContainerView)
         navigationBarView.delegate = self
-        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title), to: toBeVisionLabel)
+        ThemeText.tbvSectionHeader.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title),
+                                         to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         ThemeBorder.accent40.apply(cameraButton)
@@ -213,7 +215,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         userImageView.image = R.image.circlesWarning()
     }
 
-    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessageRating: Bool?) {
+    func load(_ myVision: QDMToBeVision?,
+              rateText: String?,
+              isRateEnabled: Bool,
+              shouldShowSingleMessageRating: Bool?) {
         if myVision == nil {
             interactor.showNullState(with: interactor.nullStateTitle ?? "", message: interactor.nullStateSubtitle ?? "")
             return
@@ -246,8 +251,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: singleMessageRatingLabel)
         ThemeText.tvbTimeSinceTitle.apply(rateText, to: lastRatedLabel)
         ThemeText.tvbTimeSinceTitle.apply(interactor?.lastUpdatedVision(), to: lastUpdatedLabel)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_update_subtitle), to: lastUpdatedComment)
-        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_subtiitle), to: lastRatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_update_subtitle),
+                                  to: lastUpdatedComment)
+        ThemeText.datestamp.apply(AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_subtiitle),
+                                  to: lastRatedComment)
 
         rateButton.isEnabled = isRateEnabled
         singleMessageRateButton.isEnabled = isRateEnabled
@@ -265,7 +272,9 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
-        let createNew = RoundedButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV)).barButton
+        let createNew = RoundedButton(title: createNewTitle,
+                                      target: self,
+                                      action: #selector(continueUpdatingTBV)).barButton
         let edit = RoundedButton(title: editTitle, target: self, action: #selector(editTBV)).barButton
         QOTAlert.show(title: title, message: message, bottomItems: [createNew, edit])
     }
