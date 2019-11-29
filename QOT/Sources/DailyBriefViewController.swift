@@ -12,18 +12,16 @@ import DifferenceKit
 import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
-    func presentSafari( _ vc: SFSafariViewController)
     func openToolFromSprint(toolID: Int?)
     func openStrategyFromSprint(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
-    func saveAnswerValue(_ value: Int, from cell: UITableViewCell) // Save Get To Level 5 Answer Value
-    func saveTargetValue(value: Int?) //save sleep target
+    func saveAnswerValue(_ value: Int, from cell: UITableViewCell)
+    func saveTargetValue(value: Int?)
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?)
-    func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
+    func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentCopyRight(copyrightURL: String?)
     func reloadSprintCell(cell: UITableViewCell)
     func didUpdateLevel5()
@@ -43,13 +41,15 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     // MARK: - Properties
     weak var delegate: CoachCollectionViewControllerDelegate?
     var interactor: DailyBriefInteractorInterface?
+    var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
+
+    private var navBarHeader: NavBarTableViewCell?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
-    var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
-    private var navBarHeader: NavBarTableViewCell?
+
+    private lazy var router = DailyBriefRouter(viewController: self)
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.level1.apply(view)
@@ -258,7 +258,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .LATEST_WHATS_HOT?:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
-             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticleId)
+             router.presentWhatsHotArticle(articleID: whatsHotArticleId)
         case .SOLVE_REFLECTION?:
             didSelectRow(at: indexPath)
             if (bucketItem as? SolveReminderTableCellViewModel) != nil {
@@ -645,22 +645,13 @@ private extension DailyBriefViewController {
     }
 }
 
-// MARK: - DumViewControllerInterface
-
+// MARK: - DailyBriefViewControllerInterface
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
         tableView.reload(using: differenceList, with: .fade) { data in
             self.interactor?.updateViewModelListNew(data)
         }
-    }
-
-    @objc func openStrategy(sender: UITapGestureRecognizer) {
-        interactor?.presentStrategyList(selectedStrategyID: selectedStrategyID ?? 0)
-    }
-
-    @objc func openTool(sender: UITapGestureRecognizer) {
-        interactor?.presentToolsItems(selectedToolID: selectedToolID ?? 0)
     }
 
     func setupView() {
@@ -699,32 +690,12 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     }
 }
 
+// MARK: - DailyBriefViewControllerDelegate
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
-
-    func presentSafari( _ vc: SFSafariViewController) {
-        present(vc, animated: true)
-    }
-
-    func showDailyCheckInQuestions() {
-        interactor?.showDailyCheckInQuestions()
-    }
-
     func didChangeLocationPermission(granted: Bool) {
         if granted {
             AppDelegate.current.locationManager.startWeatherLocationMonitoring { (_) in }
         }
-    }
-
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        interactor?.openGuidedTrackAppLink(appLink)
-    }
-
-    func displayCoachPreparationScreen() {
-        interactor?.displayCoachPreparationScreen()
-    }
-
-    func presentMyDataScreen() {
-        interactor?.presentMyDataScreen()
     }
 
     func didUpdateLevel5() {
@@ -742,18 +713,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         tableView.endUpdates()
     }
 
-    func showSolveResults(solve: QDMSolve) {
-        interactor?.showSolveResults(solve: solve)
-    }
-
-    func presentMyToBeVision() {
-        interactor?.presentMyToBeVision()
-    }
-
-    func showCustomizeTarget() {
-        interactor?.showCustomizeTarget()
-    }
-
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
         interactor?.saveAnswerValue(value)
     }
@@ -762,30 +721,66 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor?.saveTargetValue(value: value)
     }
 
-    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
-        interactor?.customzieSleepQuestion(completion: completion)
-    }
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem)
     }
+}
 
-    func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
-        let configurator = PrepareResultsConfigurator.make(qdmUserPreparation, resultType: .prepareDailyBrief)
-        let controller = PrepareResultsViewController(configure: configurator)
-        present(controller, animated: true)
+// MARK: - Navigation
+extension DailyBriefViewController {
+    func showCustomizeTarget() {
+        interactor?.customzieSleepQuestion() { [weak self] (question) in
+            self?.router.presentCustomizeTarget(question)
+        }
+    }
+
+    func showDailyCheckInQuestions() {
+        router.presentDailyCheckInQuestions()
+    }
+
+    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
+        router.launchAppLinkGuidedTrack(appLink)
+    }
+
+    func displayCoachPreparationScreen() {
+        router.presentCoachPreparation()
+    }
+
+    func presentMyDataScreen() {
+        router.showMyDataScreen()
     }
 
     func presentCopyRight(copyrightURL: String?) {
-        interactor?.presentCopyRight(copyrightURL: copyrightURL)
+        router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     func openStrategyFromSprint(strategyID: Int?) {
-        interactor?.presentStrategyList(selectedStrategyID: strategyID ?? 0)
+        router.presentStrategyList(strategyID: strategyID)
     }
 
     func openToolFromSprint(toolID: Int?) {
-        interactor?.presentToolsItems(selectedToolID: toolID ?? 0)
+        router.presentToolsItems(toolID: toolID)
+    }
+
+    func showSolveResults(solve: QDMSolve) {
+        router.presentSolveResults(solve: solve)
+    }
+
+    func presentPrepareResults(for preparation: QDMUserPreparation?) {
+        router.presentPrepareResults(for: preparation)
+    }
+
+    func presentMyToBeVision() {
+        router.showMyToBeVision()
+    }
+
+    @objc func openStrategy(sender: UITapGestureRecognizer) {
+        router.presentStrategyList(strategyID: selectedStrategyID)
+    }
+
+    @objc func openTool(sender: UITapGestureRecognizer) {
+        router.presentToolsItems(toolID: selectedToolID)
     }
 }
 
@@ -805,17 +800,10 @@ extension DailyBriefViewController: QuestionnaireAnswer {
             question?.selectedAnswerIndex = (answers - 1) - answer
         })
     }
-
-    func showSprintCompletedAlert() {
-        let OK = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_done))
-        QOTAlert.show(title: AppTextService.get(AppTextKey.daily_brief_sprint_challenge_alert_title),
-                      message: AppTextService.get(AppTextKey.daily_brief_sprint_challenge_alert_body),
-                      bottomItems: [OK])
-    }
 }
 
 extension DailyBriefViewController: PopUpCopyrightViewControllerProtocol {
     func cancelAction() {
-         self.dismiss(animated: true, completion: nil)
+         dismiss(animated: true)
     }
 }

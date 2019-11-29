@@ -10,10 +10,9 @@ import Foundation
 import qot_dal
 
 final class DailyBriefConfigurator {
-    static func configure(delegate: CoachCollectionViewControllerDelegate?, viewController: DailyBriefViewController) {
-        let router = DailyBriefRouter(viewController: viewController)
+    static func configure(delegate: CoachCollectionViewControllerDelegate?, viewController: DailyBriefViewController) {        
         let presenter = DailyBriefPresenter(viewController: viewController)
-        let interactor = DailyBriefInteractor(presenter: presenter, router: router)
+        let interactor = DailyBriefInteractor(presenter: presenter)
         viewController.interactor = interactor
         viewController.delegate = delegate
     }

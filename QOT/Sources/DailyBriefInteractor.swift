@@ -18,13 +18,13 @@ final class DailyBriefInteractor {
 
     // MARK: - Properties
     private let presenter: DailyBriefPresenterInterface
-    private let router: DailyBriefRouterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
-// Boolean to keep track of the guided closed track.
+
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
     private var needToLoadBuckets: Bool = false
+
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
     private var targetBucketName: DailyBriefBucketName?
@@ -35,10 +35,8 @@ final class DailyBriefInteractor {
                                                settingService: SettingService.main)
 
     // MARK: - Init
-    init(presenter: DailyBriefPresenterInterface,
-         router: DailyBriefRouterInterface) {
+    init(presenter: DailyBriefPresenterInterface) {
         self.presenter = presenter
-        self.router = router
 
         // Listen about UpSync Daily Check In User Answers
         NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
@@ -107,7 +105,8 @@ extension DailyBriefInteractor {
         expendImpactReadiness = !expendImpactReadiness
         updateDailyBriefBucket()
     }
-//  Display the expand/collapse of the guided close track
+
+    //  Display the expand/collapse of the guided close track
     @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
         guidedClosedTrack = !guidedClosedTrack
         updateDailyBriefBucket()
@@ -297,49 +296,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getToBeVisionImage(completion: completion)
     }
 
-    // MARK: - Present methods
-    func presentMyDataScreen() {
-        router.presentMyDataScreen()
-    }
-
-    func presentWhatsHotArticle(selectedID: Int) {
-        router.presentWhatsHotArticle(selectedID: selectedID)
-    }
-
-    func presentMyToBeVision() {
-        router.presentMyToBeVision()
-    }
-
-    func presentStrategyList(selectedStrategyID: Int) {
-        router.presentStrategyList(selectedStrategyID: selectedStrategyID)
-    }
-
-    func presentToolsItems(selectedToolID: Int?) {
-        router.presentToolsItems(selectedToolID: selectedToolID)
-    }
-
-    func presentCopyRight(copyrightURL: String?) {
-        router.presentCopyRight(copyrightURL: copyrightURL)
-    }
-
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        router.openGuidedTrackAppLink(appLink)
-    }
-
-    func showSolveResults(solve: QDMSolve) {
-        router.showSolveResults(solve: solve)
-    }
-
-    func showCustomizeTarget() {
-        worker.customzieSleepQuestion { [weak self] (model) in
-            self?.router.showCustomizeTarget(model)
-        }
-    }
-
-    func displayCoachPreparationScreen() {
-        router.displayCoachPreparationScreen()
-    }
-
     // MARK: Save methods
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
@@ -361,10 +317,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
-    }
-
-    func showDailyCheckInQuestions() {
-        router.showDailyCheckInQuestions()
     }
 }
 
