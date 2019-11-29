@@ -32,28 +32,25 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentStrategyList(strategyID: Int?) {
-        let identifier = R.storyboard.main.qotArticleViewController.identifier
         if let selectedID = strategyID,
-            let controller = R.storyboard.main()
-            .instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
+            let controller = R.storyboard.main.qotArticleViewController() {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
             viewController?.present(controller, animated: true)
         }
     }
 
     func presentToolsItems(toolID: Int?) {
-        if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
+        if let toolID = toolID,
+            let controller = R.storyboard.tools.qotToolsItemsViewController() {
             ToolsItemsConfigurator.make(viewController: controller, selectedToolID: toolID)
-            viewController?.present(controller, animated: true)
             controller.backButton.isHidden = true
+            viewController?.present(controller, animated: true)
         }
     }
 
     func presentWhatsHotArticle(articleID: Int?) {
-        let identifier = R.storyboard.main.qotArticleViewController.identifier
         if let selectedID = articleID,
-            let controller = R.storyboard
-            .main().instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
+            let controller = R.storyboard.main.qotArticleViewController() {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
             viewController?.present(controller, animated: true)
         }
@@ -72,11 +69,12 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentDailyCheckInQuestions() {
-        guard let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
-        DailyCheckinQuestionsConfigurator.configure(viewController: newController)
-        let navigationController = UINavigationController(rootViewController: newController)
-        navigationController.isNavigationBarHidden = true
-        viewController?.present(navigationController, animated: true)
+        if let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() {
+            DailyCheckinQuestionsConfigurator.configure(viewController: newController)
+            let navigationController = UINavigationController(rootViewController: newController)
+            navigationController.isNavigationBarHidden = true
+            viewController?.present(navigationController, animated: true)
+        }
     }
 
     func presentCoachPreparation() {
