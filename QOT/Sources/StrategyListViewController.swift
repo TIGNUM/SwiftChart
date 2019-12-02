@@ -30,6 +30,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level2.color)
         trackPage()
+        tableView.reloadData()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -128,6 +129,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                                mediaURL: nil,
                                duration: nil,
                                mediaItemId: nil,
+                               isRead: nil,
                                delegate: self)
                 return cell
             }
@@ -137,6 +139,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                            mediaURL: strategy.mediaURL,
                            duration: strategy.duration,
                            mediaItemId: strategy.mediaItem?.remoteID,
+                           isRead: strategy.isRead,
                            delegate: self)
             return cell
         }

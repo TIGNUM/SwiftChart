@@ -104,7 +104,7 @@ private extension ToolsCollectionsViewController {
     }
 }
 
-// MARK: - CoachViewControllerInterface
+// MARK: - ToolsViewControllerInterface
 
 extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterface {
 

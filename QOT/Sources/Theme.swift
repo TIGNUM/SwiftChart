@@ -161,6 +161,7 @@ enum ThemeBorder {
     case accent
     case accentBackground
     case accent40
+    case sand60
 
     func apply(_ view: UIView) {
         var color: UIColor?
@@ -171,6 +172,8 @@ enum ThemeBorder {
             color = Palette.accent30
         case .accent40:
             color = Palette.accent40
+        case .sand60:
+            color = Palette.sand60
         }
 
         if let color = color {
@@ -224,6 +227,8 @@ enum ThemeButton {
     case backButton
     case editButton
     case carbonButton
+    case audioButtonGrey
+    case audioButtonStrategy
 
     var defaultHeight: CGFloat {
         get {
@@ -246,10 +251,14 @@ enum ThemeButton {
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
             colorUnselected = colorSelected
             colorBorder = .accent40
+        case .audioButtonGrey:
+            colorSelected = .accent40
+            colorUnselected = .clear
+            colorBorder = .sand60
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
-        case .level5:
+        case .level5, .audioButtonStrategy:
             colorSelected = .accent40
             colorUnselected = .clear
             colorBorder = .accent40
@@ -539,9 +548,11 @@ enum ThemeText {
     case articleDatestamp(ThemeColorMode?)
     case articleToolBarTint
     case articleRelatedTitle(ThemeColorMode?)
+    case articleStrategyTitle
     case articleRelatedTitleInStrategy
     case articleRelatedDetail(ThemeColorMode?)
     case articleRelatedDetailInStrategy
+    case articleStrategyRead
     case articleNextTitle
     case audioPlayerTitleDark
     case audioPlayerTitleLight
@@ -880,7 +891,7 @@ enum ThemeText {
             case .scale: return Fonts.fontRegular24
             case .scaleNot: return Fonts.fontRegular16
             }
-        case .articleRelatedTitle, .articleRelatedTitleInStrategy, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
+        case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .myQOTPrepCellTitle, .myQOTPrepComment,
              .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .accountHeaderTitle,
@@ -997,7 +1008,7 @@ enum ThemeText {
              .myDataSwitchButtons, .registrationCodeLink, .accountHeaderTitle, .chatbotButton, .articleContactSupportLink,
              .articleAudioBar, .coachTitle,
              .audioLabel,
-             .loginSeparator,
+             .loginSeparator, .articleStrategyTitle,
              .myLibraryGroupName, .customAlertAction,
              .mySprintDetailsCta:
             return Palette.accent
@@ -1086,6 +1097,8 @@ enum ThemeText {
             return Palette.carbon30
         case .mySprintDetailsCtaHighlight:
             return Palette.accent30
+        case .articleStrategyRead:
+            return Palette.sand60
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
         case .chatbotProgress(let active, let isDark):
@@ -1152,7 +1165,7 @@ enum ThemeText {
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .mySprintsCellProgress, .mySprintDetailsHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .articleRelatedTitle, .articleRelatedTitleInStrategy, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
+        case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
              .dailyBriefLevelTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
         case .articleBullet, .sectionHeader,
