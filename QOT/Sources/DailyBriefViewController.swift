@@ -39,9 +39,11 @@ final class DailyBriefNavigationController: UINavigationController {
 final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
+    typealias SectionData = [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]
+
     weak var delegate: CoachCollectionViewControllerDelegate?
-    var interactor: DailyBriefInteractorInterface?
-    var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
+    var interactor: DailyBriefInteractorInterface!
+    var sectionDataList: SectionData = []
 
     private var navBarHeader: NavBarTableViewCell?
     private var selectedStrategyID: Int?
@@ -55,35 +57,34 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         ThemeView.level1.apply(view)
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
-        interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
-                                               name: .didUpdateDailyBriefBuckets, object: nil)
+        interactor.viewDidLoad()
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateDailyBriefFromNotification(_:)),
+                                               name: .didUpdateDailyBriefBuckets,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.getDailyBriefBucketsForViewModel()
+        interactor.getDailyBriefBucketsForViewModel()
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level1.color)
         trackPage()
     }
+}
 
+// MARK - UITableViewDelegate, UITableViewDataSource
+extension DailyBriefViewController {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.rowViewSectionCount ?? 0
+        return interactor.rowViewSectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let sections = interactor?.bucketViewModelNew()?.at(index: section) else {
-            return 0
-        }
-        return sections.elements.count
+        return interactor.bucketViewModelNew()?.at(index: section)?.elements.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 0 {
-            return 1
-        }
-        return CGFloat.leastNormalMagnitude
+        return section == 0 ? 1 : .leastNormalMagnitude
     }
 
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -91,23 +92,19 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        // UIView with sand40 background for section-separators as Section Footer
-        if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
-            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100))
-            sectionColor.backgroundColor = ThemeView.level1.color
-            return sectionColor
-        } else {
-            let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
-            sectionColor.backgroundColor = .sand10
-            return sectionColor
+        let footer = UIView(frame: CGRect(origin: .zero, size: tableView.frame.size))
+
+        if section == interactor.rowViewSectionCount - 1 {
+            footer.backgroundColor = ThemeView.level1.color
+            return footer
         }
+
+        footer.backgroundColor = .sand10
+        return footer
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        // Section Footer height
-        if section == (interactor?.rowViewSectionCount ?? 1) - 1 {
-            return 100
-        } else { return 1.0 }
+        return (section == interactor.rowViewSectionCount - 1) ? 100 : 1
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -115,21 +112,19 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let dailyBriefCell = cell as? BaseDailyBriefCell else {
-            return
+        if let dailyBriefCell = cell as? BaseDailyBriefCell {
+            interactor.startTimer(forCell: dailyBriefCell, at: indexPath)
         }
-        interactor?.startTimer(forCell: dailyBriefCell, at: indexPath)
     }
 
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let dailyBriefCell = cell as? BaseDailyBriefCell else {
-            return
+        if let dailyBriefCell = cell as? BaseDailyBriefCell {
+            interactor.invalidateTimer(forCell: dailyBriefCell)
         }
-        interactor?.invalidateTimer(forCell: dailyBriefCell)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section),
+        guard let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section),
                 let domainModel = bucketModel.elements[indexPath.row].domainModel else {
             switch indexPath.section {
             case 0:
@@ -168,14 +163,15 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         }
         let bucketList = bucketModel.elements
         let bucketItem = bucketList[indexPath.row]
+
         switch domainModel.bucketName {
         case .DAILY_CHECK_IN_1?:
-            if (bucketItem as? ImpactReadinessCellViewModel) != nil {
-                guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { return UITableViewCell()}
-                return getImpactReadinessCell(tableView, indexPath, impactReadinessCellViewModel)
-            } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
-                guard let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel else { return UITableViewCell()}
-                return getImpactReadinessScoreCell(tableView, indexPath, impactReadinessScoreViewModel)
+            if (bucketItem as? ImpactReadinessCellViewModel) != nil,
+                let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel {
+                    return getImpactReadinessCell(tableView, indexPath, impactReadinessCellViewModel)
+            } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil,
+                let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel {
+                    return getImpactReadinessScoreCell(tableView, indexPath, impactReadinessScoreViewModel)
             }
             return getImpactReadinessCell(tableView, indexPath, nil)
         case .DAILY_CHECK_IN_2?:
@@ -204,9 +200,8 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
         case .ME_AT_MY_BEST?:
             if bucketItem.domainModel?.toBeVisionTrack?.sentence?.isEmpty != false {
                 return getMeAtMyBestEmpty(tableView, indexPath, bucketItem as? MeAtMyBestCellEmptyViewModel)
-            } else {
-                return getMeAtMyBest(tableView, indexPath, bucketItem as? MeAtMyBestCellViewModel)
             }
+            return getMeAtMyBest(tableView, indexPath, bucketItem as? MeAtMyBestCellViewModel)
         case .ABOUT_ME?:
             return getAboutMeCell(tableView, indexPath, bucketItem as? AboutMeViewModel)
         case .SOLVE_REFLECTION?:
@@ -251,9 +246,10 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section)
+        let bucketModel = interactor.bucketViewModelNew()?.at(index: indexPath.section)
         let bucketList = bucketModel?.elements
         let bucketItem = bucketList?[indexPath.row]
+
         switch bucketItem?.domainModel?.bucketName {
         case .LATEST_WHATS_HOT?:
              didSelectRow(at: indexPath)
@@ -272,14 +268,12 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     }
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if let bar = navBarHeader {
-            bar.updateAlpha(basedOn: scrollView.contentOffset.y)
-        }
+        navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)
     }
 }
 
-// MARK: IBActions
+// MARK: - IBActions
 private extension DailyBriefViewController {
     @IBAction func didTapLeftArrowButton(_ sender: Any?) {
         delegate?.moveToCell(item: 0)
@@ -290,13 +284,14 @@ private extension DailyBriefViewController {
     }
 }
 
-// MARK: Daily Brief Update Notification
+// MARK: - Daily Brief Update Notification
 private extension DailyBriefViewController {
     @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
-        interactor?.getDailyBriefBucketsForViewModel()
+        interactor.getDailyBriefBucketsForViewModel()
     }
 }
 
+// MARK: - Get TableViewCells
 private extension DailyBriefViewController {
 
     /**
@@ -319,12 +314,13 @@ private extension DailyBriefViewController {
     }
 
     func getImpactReadinessScoreCell(_ tableView: UITableView,
-                                _ indexPath: IndexPath,
-                                _ impactReadinessScoreViewModel: ImpactReadinessScoreViewModel?) -> UITableViewCell {
-        let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
-        cell.configure(viewModel: impactReadinessScoreViewModel)
-        cell.delegate = self
-        return cell
+                                     _ indexPath: IndexPath,
+                                     _ impactReadinessScoreViewModel: ImpactReadinessScoreViewModel?)
+        -> UITableViewCell {
+            let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
+            cell.configure(viewModel: impactReadinessScoreViewModel)
+            cell.delegate = self
+            return cell
     }
 
     /**
@@ -332,7 +328,8 @@ private extension DailyBriefViewController {
      * Description: Placeholder to display the Random Question Cell Information.
      * Parameters: [tableView], [IndexPath]
      */
-    func getRandomQuestionCell(_ tableView: UITableView, _ indexPath: IndexPath,
+    func getRandomQuestionCell(_ tableView: UITableView,
+                               _ indexPath: IndexPath,
                                _ questionCellViewModel: QuestionCellViewModel?) -> UITableViewCell {
         let cell: QuestionCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: questionCellViewModel)
@@ -490,10 +487,12 @@ private extension DailyBriefViewController {
      * Parameters: [tableView], [IndexPath]
      */
     func getSolveReminderTableCell(_ tableView: UITableView,
-                          _ indexPath: IndexPath,
-                          _ solveReminderTableCellViewModel: SolveReminderTableCellViewModel?) -> UITableViewCell {
+                                   _ indexPath: IndexPath,
+                                   _ solveReminderTableCellViewModel: SolveReminderTableCellViewModel?) -> UITableViewCell {
         let cell: SolveTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: solveReminderTableCellViewModel?.title, date: solveReminderTableCellViewModel?.date, solve: solveReminderTableCellViewModel?.solve)
+        cell.configure(title: solveReminderTableCellViewModel?.title,
+                       date: solveReminderTableCellViewModel?.date,
+                       solve: solveReminderTableCellViewModel?.solve)
         cell.delegate = self
         return cell
     }
@@ -560,8 +559,8 @@ private extension DailyBriefViewController {
      */
     func getDailyCheckIn2PeakPerformanceCell(_ tableView: UITableView,
                                              _ indexPath: IndexPath,
-                                             _ dailyCheckIn2PeakPerformanceModel: DailyCheckIn2PeakPerformanceModel?) ->
-        UITableViewCell {
+                                             _ dailyCheckIn2PeakPerformanceModel: DailyCheckIn2PeakPerformanceModel?)
+        -> UITableViewCell {
             let cell: DailyCheckinInsightsPeakPerformanceCell = tableView.dequeueCell(for: indexPath)
             cell.configure(with: dailyCheckIn2PeakPerformanceModel)
             cell.delegate = self
@@ -647,10 +646,9 @@ private extension DailyBriefViewController {
 
 // MARK: - DailyBriefViewControllerInterface
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
-
     func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
         tableView.reload(using: differenceList, with: .fade) { data in
-            self.interactor?.updateViewModelListNew(data)
+            self.interactor.updateViewModelListNew(data)
         }
     }
 
@@ -704,21 +702,21 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         tableView.endUpdates()
     }
 
-    func didPressGotItSprint(sprint: QDMSprint) {
-        interactor?.didPressGotItSprint(sprint: sprint)
-    }
-
     func reloadSprintCell(cell: UITableViewCell) {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
 
+    func didPressGotItSprint(sprint: QDMSprint) {
+        interactor.didPressGotItSprint(sprint: sprint)
+    }
+
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
-        interactor?.saveAnswerValue(value)
+        interactor.saveAnswerValue(value)
     }
 
     func saveTargetValue(value: Int?) {
-        interactor?.saveTargetValue(value: value)
+        interactor.saveTargetValue(value: value)
     }
 
     // TODO Set correct pageName
@@ -730,7 +728,7 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 // MARK: - Navigation
 extension DailyBriefViewController {
     func showCustomizeTarget() {
-        interactor?.customzieSleepQuestion() { [weak self] (question) in
+        interactor.customzieSleepQuestion { [weak self] (question) in
             self?.router.presentCustomizeTarget(question)
         }
     }
@@ -795,10 +793,10 @@ extension DailyBriefViewController: QuestionnaireAnswer {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = 0
         if index == NSNotFound { return }
-        interactor?.customzieSleepQuestion(completion: {(question) in
+        interactor.customzieSleepQuestion { (question) in
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
-        })
+        }
     }
 }
 
