@@ -136,14 +136,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return viewModelOldListModels.count
     }
 
-    var shpiAnswer: QDMDailyCheckInAnswer? {
-        return worker.shpiAnswer
-    }
-
-    var peakPerformanceCount: Int? {
-        return worker.peakPerformanceCount
-    }
-
     // MARK: Retrieve methods
 
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
