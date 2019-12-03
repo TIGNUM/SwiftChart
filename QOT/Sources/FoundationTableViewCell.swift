@@ -36,7 +36,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addOtherView(previewImageView)
         skeletonManager.addOtherView(mediaIconImageView)
         selectionStyle = .none
-//        checkIfSeen()
+        checkIfSeen()
     }
 
     func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?, isSeen: Bool?) {
@@ -53,8 +53,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
-        mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)
-        ThemeTint.accent.apply(mediaIconImageView)
+        mediaIconImageView.image = R.image.ic_camera_sand()
         checkIfSeen()
     }
 
@@ -63,6 +62,7 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         if let isSeen = isSeen {
             if isSeen {
                 ThemeText.articleStrategyRead.apply(titleText, to: titleLabel)
+                ThemeTint.sand60.apply(seenCheckMark)
                 seenCheckMark.fadeIn()
                 let image = previewImageView.image
                 previewImageView.image = image?.noir

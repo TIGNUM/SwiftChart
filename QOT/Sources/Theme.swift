@@ -186,12 +186,15 @@ enum ThemeBorder {
 
 enum ThemeTint {
     case accent
+    case sand60
 
     func apply(_ view: UIView) {
         var color: UIColor?
         switch self {
         case .accent:
             color = Palette.accent
+        case .sand60:
+            color = Palette.sand60
         }
         if let color = color {
             view.tintColor = color
