@@ -35,7 +35,6 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         audioView.corner(radius: 20)
         ThemeView.level2.apply(self)
         contentView.backgroundColor = .clear
-        audioIcon.image = R.image.ic_audio_grey_light()
         selectionStyle = .none
         skeletonManager.addTitle(titleLabel)
         skeletonManager.addSubtitle(detailLabel)
@@ -62,21 +61,20 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     }
 
     private func checkIfRead() {
-        guard let isRead = isRead else { return }
-        if isRead {
-            ThemeText.articleStrategyRead.apply(title, to: titleLabel)
-//             TODO change color of time to watch text
-            ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
-            ThemeButton.audioButtonGrey.apply(audioButton)
-            readCheckMark.alpha = 1
-        } else {
-            ThemeButton.audioButtonStrategy.apply(audioButton)
-            ThemeBorder.accent.apply(audioButton)
-            ThemeText.articleRelatedDetailInStrategy.apply(timeToWatch, to: detailLabel)
-            ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
-            audioIcon.image = R.image.ic_audio()
-            ThemeView.level1.apply(audioView)}
-            readCheckMark.alpha = 0
+        if let isRead = isRead {
+            if isRead {
+                ThemeText.articleStrategyRead.apply(title, to: titleLabel)
+                ThemeButton.audioButtonGrey.apply(audioButton)
+                audioIcon.image = R.image.ic_audio_grey_light()
+                readCheckMark.fadeIn()
+            } else {
+                ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
+                ThemeButton.audioButtonStrategy.apply(audioButton)
+                ThemeBorder.accent.apply(audioButton)
+                audioIcon.image = R.image.ic_audio()
+                readCheckMark.alpha = 0
+            }
+        }
     }
 
     func configure(categoryTitle: String?,
@@ -107,9 +105,9 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
         skeletonManager.hide()
-        checkIfRead()
         ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
+        checkIfRead()
         showDuration(durationValue)
         checkIfPlaying()
         setAudioAsCompleteIfNeeded(remoteID: id)
@@ -134,7 +132,7 @@ extension StrategyContentTableViewCell {
 private extension StrategyContentTableViewCell {
     func showDuration(_ duration: Double) {
         let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        ThemeText.audioBar.apply(text, to: audioLabel)
+        isRead ?? false ? ThemeText.articleRelatedDetailInStrategyRead.apply(text, to: audioLabel) : ThemeText.audioBar.apply(text, to: audioLabel)
     }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {

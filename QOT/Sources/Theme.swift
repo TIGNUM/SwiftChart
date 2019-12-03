@@ -552,6 +552,7 @@ enum ThemeText {
     case articleRelatedTitleInStrategy
     case articleRelatedDetail(ThemeColorMode?)
     case articleRelatedDetailInStrategy
+    case articleRelatedDetailInStrategyRead
     case articleStrategyRead
     case articleNextTitle
     case audioPlayerTitleDark
@@ -844,7 +845,7 @@ enum ThemeText {
              .registrationAgeRestriction, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
              .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader:
             return Fonts.fontRegular14
-        case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .durationString,
+        case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString,
              .resultDate, .resultFollowUp,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .myDataChartValueLabels,
              .myLibraryGroupDescription, .myLibraryItemsItemDescription, .mySprintsCellStatus:
@@ -1097,7 +1098,7 @@ enum ThemeText {
             return Palette.carbon30
         case .mySprintDetailsCtaHighlight:
             return Palette.accent30
-        case .articleStrategyRead:
+        case .articleStrategyRead, .articleRelatedDetailInStrategyRead:
             return Palette.sand60
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
@@ -1173,7 +1174,7 @@ enum ThemeText {
              .weatherIntro,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextInfo, .mySprintDetailsTextActive:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
-        case .articleRelatedDetail, .articleRelatedDetailInStrategy, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
+        case .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
              .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .dailyQuestion, .tbvQuestionMedium:

@@ -30,7 +30,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level2.color)
         trackPage()
-        tableView.reloadData()
+        reloadStrategies()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -191,6 +191,11 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 // MARK: - Audio Player Related
 extension StrategyListViewController {
     @objc func didEndAudio(_ notification: Notification) {
+        tableView.reloadData()
+    }
+// for read status
+    func reloadStrategies() {
+        interactor?.loadStrategies()
         tableView.reloadData()
     }
 }

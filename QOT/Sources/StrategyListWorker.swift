@@ -45,7 +45,18 @@ final class StrategyListWorker {
 
     init(selectedStrategyID: Int?) {
         self.selectedStrategyID = selectedStrategyID
+        loadStrategies()
+    }
 
+    var foundationStrategies = [Strategy.Item]()
+
+    var strategies = [Strategy.Item]()
+    
+    func selectedStrategyId() -> Int {
+        return selectedStrategyID ?? 0
+    }
+
+    func loadStrategies() {
         qot_dal.ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in
             var items = [Strategy.Item]()
             for contentCollection in foundation?.contentCollections.filter({ (collection) -> Bool in
@@ -86,13 +97,5 @@ final class StrategyListWorker {
             self?.strategies = items
             self?.interactor?.reloadData()
         }
-    }
-
-    var foundationStrategies = [Strategy.Item]()
-
-    var strategies = [Strategy.Item]()
-
-    func selectedStrategyId() -> Int {
-        return selectedStrategyID ?? 0
     }
 }
