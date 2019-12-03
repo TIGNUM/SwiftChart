@@ -14,6 +14,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     var interactor: AskPermissionInteractorInterface!
     private lazy var router = AskPermissionRouter(viewController: self, delegate: delegate)
     private var rightBarButtonItems = [UIBarButtonItem]()
+    private var leftBarButtonItems = [UIBarButtonItem]()
     private var baseHeaderView: QOTBaseHeaderView?
     weak var delegate: AskPermissionDelegate?
     @IBOutlet weak var headerView: UIView!
@@ -50,7 +51,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
 
     // MARK: Bottom Navigation
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
+        return leftBarButtonItems
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
@@ -70,6 +71,17 @@ private extension AskPermissionViewController {
         let button = RoundedButton(title: title, target: self, action: #selector(didTapConfirmButton))
         ThemableButton.askPermissions.apply(button, title: title)
         return button.barButton
+    }
+
+    func setupBottomNavigation(_ viewModel: AskPermission.ViewModel) {
+        rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " ")]
+
+        switch interactor.getPermissionType {
+        case .calendar: leftBarButtonItems = [dismissNavigationItem()]
+        default: rightBarButtonItems.append(cancelButton(viewModel.buttonTitleCancel ?? ""))
+        }
+
+        updateBottomNavigation(leftBarButtonItems, rightBarButtonItems)
     }
 }
 
@@ -94,8 +106,6 @@ extension AskPermissionViewController: AskPermissionViewControllerInterface {
         ThemeText.askPermissionMessage.apply(viewModel.description, to: baseHeaderView?.subtitleTextView)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? 0
         imageView.image = interactor.placeholderImage
-        rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
-                               cancelButton(viewModel.buttonTitleCancel ?? " ")]
-        updateBottomNavigation([], rightBarButtonItems)
+        setupBottomNavigation(viewModel)
     }
 }
