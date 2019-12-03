@@ -37,9 +37,7 @@ final class MyPeakPerformanceRowCell: UIView {
         ThemeText.performanceSubtitle.apply(with.subtitle ?? "", to: peakPerformanceRowSubtitle)
     }
 
-    // function which is triggered when handleTap is called
     @IBAction func handleTap() {
-        guard let preview = qdmUserPreparation else { /* Handle nil case */ return }
-        delegate?.openPreparation(preview)
+        delegate?.presentPrepareResults(for: qdmUserPreparation)
     }
 }

@@ -13,25 +13,17 @@ final class DailyBriefWorker {
 
     // MARK: - Properties
     var model: MyPrepsModel?
-    private let questionService: qot_dal.QuestionService
-    private let contentService: qot_dal.ContentService
-    private let userService: qot_dal.UserService
-    private let healthService: qot_dal.HealthService
-    private let settingService: qot_dal.SettingService
+    private let questionService: QuestionService
+    private let userService: UserService
+    private let settingService: SettingService
     private var buckets = [QDMDailyBriefBucket]()
     var questions: [RatingQuestionViewModel.Question]?
 
     // MARK: - Init
-    init(questionService: qot_dal.QuestionService,
-         userService: qot_dal.UserService,
-         contentService: qot_dal.ContentService,
-         settingService: qot_dal.SettingService,
-         healthService: qot_dal.HealthService) {
+    init(questionService: QuestionService, userService: UserService, settingService: SettingService) {
         self.settingService = settingService
         self.userService = userService
-        self.contentService = contentService
         self.questionService = questionService
-        self.healthService = healthService
 
         if let emails = UserDefault.showGuideTrackBucket.object as? [String],
             let currentAccount = SessionService.main.getCurrentSession()?.useremail,
@@ -46,9 +38,9 @@ final class DailyBriefWorker {
 
     // Get Daily Brief bucket
     func getDailyBriefBucketsForViewModel(completion: @escaping ([QDMDailyBriefBucket]) -> Void) {
-        qot_dal.DailyBriefService.main.getDailyBriefBuckets({ (buckets, error) in
+        DailyBriefService.main.getDailyBriefBuckets({ (buckets, error) in
             if let error = error {
-                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
             if let bucketsList = buckets {
                 completion(bucketsList)
@@ -84,7 +76,7 @@ extension DailyBriefWorker {
     func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
         userService.getMyToBeVision {(vision, initialized, error) in
             if let error = error {
-                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
             completion(vision?.profileImageResource?.url())
         }
@@ -98,7 +90,7 @@ extension DailyBriefWorker {
                 updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30))
                 self.settingService.updateSetting(updatedSetting, {(error) in
                     if let error = error {
-                        qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                        log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
                 })
             }
@@ -120,7 +112,7 @@ extension DailyBriefWorker {
     func didPressGotItSprint(sprint: QDMSprint) {
         userService.markAsDoneForToday(sprint, { (sprint, error) in
             if let error = error {
-                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
         })
     }
@@ -141,9 +133,9 @@ extension DailyBriefWorker {
                 var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
                 level5Bucket?.currentGetToLevel5Value = value
                 if let level5Bucket = level5Bucket {
-                    qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                    DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
                         if let error = error {
-                            qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                            log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                         }
                     })
                 }
