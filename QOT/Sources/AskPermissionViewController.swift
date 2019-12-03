@@ -11,9 +11,11 @@ import UIKit
 final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
 
     // MARK: - Properties
-    var interactor: AskPermissionInteractorInterface?
+    var interactor: AskPermissionInteractorInterface!
+    private lazy var router = AskPermissionRouter(viewController: self, delegate: delegate)
     private var rightBarButtonItems = [UIBarButtonItem]()
     private var baseHeaderView: QOTBaseHeaderView?
+    weak var delegate: AskPermissionDelegate?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageView: UIImageView!
@@ -30,7 +32,7 @@ final class AskPermissionViewController: BaseViewController, ScreenZLevel1 {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         ThemeView.askPermissions.apply(view)
@@ -75,12 +77,12 @@ private extension AskPermissionViewController {
 private extension AskPermissionViewController {
     @objc func didTapCancelButton() {
         trackUserEvent(.SKIP, valueType: .ASK_PERMISSION_NOTIFICATIONS, action: .TAP)
-        interactor?.didTapSkip()
+        router.didTapDismiss(interactor.getPermissionType)
     }
 
     @objc func didTapConfirmButton() {
         trackUserEvent(.ALLOW, valueType: .ASK_PERMISSION_NOTIFICATIONS, action: .TAP)
-        interactor?.didTapConfirm()
+        router.didTapConfirm(interactor.getPermissionType)
     }
 }
 
@@ -91,7 +93,7 @@ extension AskPermissionViewController: AskPermissionViewControllerInterface {
         ThemeText.askPermissionTitle.apply(viewModel.title, to: baseHeaderView?.titleLabel)
         ThemeText.askPermissionMessage.apply(viewModel.description, to: baseHeaderView?.subtitleTextView)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.view.frame.size.width) ?? 0
-        imageView.image = interactor?.placeholderImage
+        imageView.image = interactor.placeholderImage
         rightBarButtonItems = [confirmButton(viewModel.buttonTitleConfirm ?? " "),
                                cancelButton(viewModel.buttonTitleCancel ?? " ")]
         updateBottomNavigation([], rightBarButtonItems)
