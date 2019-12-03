@@ -9,16 +9,14 @@
 import Foundation
 import qot_dal
 
-import UIKit
-
 final class SolveTableViewCell: BaseDailyBriefCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var button: AnimatedButton!
-    weak var delegate: DailyBriefViewControllerDelegate?
     private var solve: QDMSolve?
-    
+    weak var delegate: DailyBriefViewControllerDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         ThemeBorder.accent.apply(button)

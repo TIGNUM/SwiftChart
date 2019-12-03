@@ -12,65 +12,18 @@ import qot_dal
 final class DailyBriefRouter {
 
     // MARK: - Properties
-
     private weak var viewController: DailyBriefViewController?
 
     // MARK: - Init
-
     init(viewController: DailyBriefViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - DailyBriefRouterInterface
-
 extension DailyBriefRouter: DailyBriefRouterInterface {
-
-    func presentWhatsHotArticle(selectedID: Int) {
-        let identifier = R.storyboard.main.qotArticleViewController.identifier
-        if let controller = R.storyboard
-            .main().instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
-            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
-            viewController?.present(controller, animated: true, completion: nil)
-        }
-    }
-
-    func presentCopyRight(copyrightURL: String?) {
-        let popUpController = PopUpCopyrightViewController(delegate: viewController, copyrightURL: copyrightURL)
-        popUpController.modalPresentationStyle = .overCurrentContext
-        viewController?.present(popUpController, animated: true, completion: nil)
-    }
-
-    func presentMyToBeVision() {
-        let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
-        let myVisionViewController = R.storyboard
-            .myToBeVision().instantiateViewController(withIdentifier: identifier) as? MyVisionViewController
-        if let myVisionViewController = myVisionViewController {
-            MyVisionConfigurator.configure(viewController: myVisionViewController)
-            viewController?.pushToStart(childViewController: myVisionViewController)
-        }
-    }
-
-    func presentStrategyList(selectedStrategyID: Int) {
-        let identifier = R.storyboard.main.qotArticleViewController.identifier
-        if let controller = R.storyboard.main()
-            .instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
-            ArticleConfigurator.configure(selectedID: selectedStrategyID, viewController: controller)
-            viewController?.present(controller, animated: true, completion: nil)
-        }
-    }
-
-    func presentToolsItems(selectedToolID: Int?) {
-        if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
-            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
-            viewController?.present(controller, animated: true, completion: nil)
-            controller.backButton.isHidden = true
-        }
-    }
-
-    func showCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
-        if
-            let data = data,
+    func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
+        if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
                                                                         delegate: viewController,
                                                                         controllerType: .customize) {
@@ -78,43 +31,82 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func showSolveResults(solve: QDMSolve) {
+    func presentStrategyList(strategyID: Int?) {
+        if let selectedID = strategyID,
+            let controller = R.storyboard.main.qotArticleViewController() {
+            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
+            viewController?.present(controller, animated: true)
+        }
+    }
+
+    func presentToolsItems(toolID: Int?) {
+        if let toolID = toolID,
+            let controller = R.storyboard.tools.qotToolsItemsViewController() {
+            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: toolID)
+            controller.backButton.isHidden = true
+            viewController?.present(controller, animated: true)
+        }
+    }
+
+    func presentWhatsHotArticle(articleID: Int?) {
+        if let selectedID = articleID,
+            let controller = R.storyboard.main.qotArticleViewController() {
+            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
+            viewController?.present(controller, animated: true)
+        }
+    }
+
+    func presentCopyRight(copyrightURL: String?) {
+        let popUpController = PopUpCopyrightViewController(delegate: viewController, copyrightURL: copyrightURL)
+        popUpController.modalPresentationStyle = .overCurrentContext
+        viewController?.present(popUpController, animated: true)
+    }
+
+    func presentSolveResults(solve: QDMSolve) {
         let configurator = SolveResultsConfigurator.make(from: solve, resultType: .solveDailyBrief)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         viewController?.present(solveResultsController, animated: true)
     }
 
-    /**
-     * Method name: displayCoachPreparationScreen.
-     * Description: method which is used to trigger the preparation in the coach screen.
-     */
-    func displayCoachPreparationScreen() {
+    func presentDailyCheckInQuestions() {
+        if let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() {
+            DailyCheckinQuestionsConfigurator.configure(viewController: newController)
+            let navigationController = UINavigationController(rootViewController: newController)
+            navigationController.isNavigationBarHidden = true
+            viewController?.present(navigationController, animated: true)
+        }
+    }
+
+    func presentCoachPreparation() {
         let configurator = DTPrepareConfigurator.make()
         let controller = DTPrepareViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        appLink?.launch()
-
-    }
-
-    func presentMyDataScreen() {
-        let storyboardID = R.storyboard.myDataScreen.myDataScreenViewControllerID.identifier
-        let myDataScreenViewController = R.storyboard
-            .myDataScreen().instantiateViewController(withIdentifier: storyboardID) as? MyDataScreenViewController
-        if let myDataScreenViewController = myDataScreenViewController {
-            let configurator = MyDataScreenConfigurator.make()
-            configurator(myDataScreenViewController)
-            viewController?.pushToStart(childViewController: myDataScreenViewController)
+    func presentPrepareResults(for preparation: QDMUserPreparation?) {
+        if let preparation = preparation {
+            let configurator = PrepareResultsConfigurator.make(preparation, resultType: .prepareDailyBrief)
+            let controller = PrepareResultsViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
         }
     }
 
-    func showDailyCheckInQuestions() {
-        guard let newController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
-        DailyCheckinQuestionsConfigurator.configure(viewController: newController)
-        let navigationController = UINavigationController(rootViewController: newController)
-        navigationController.isNavigationBarHidden = true
-        viewController?.present(navigationController, animated: true, completion: nil)
+    func showMyToBeVision() {
+        if let childViewController = R.storyboard.myToBeVision.myVisionViewController() {
+            MyVisionConfigurator.configure(viewController: childViewController)
+            viewController?.pushToStart(childViewController: childViewController)
+        }
+    }
+
+    func showMyDataScreen() {
+        if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
+            let configurator = MyDataScreenConfigurator.make()
+            configurator(childViewController)
+            viewController?.pushToStart(childViewController: childViewController)
+        }
+    }
+
+    func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?) {
+        appLink?.launch()
     }
 }
