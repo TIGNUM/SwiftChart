@@ -6,41 +6,34 @@
 //  Copyright (c) 2019 Tignum. All rights reserved.
 //
 
-import UIKit
+import qot_dal
 
 final class AskPermissionInteractor {
 
     // MARK: - Properties
-    private let worker: AskPermissionWorker
+    private lazy var worker = AskPermissionWorker(contentService: ContentService.main)
     private let presenter: AskPermissionPresenterInterface
-    private let router: AskPermissionRouterInterface
+    private let permissionType: AskPermission.Kind
 
     // MARK: - Init
-    init(worker: AskPermissionWorker,
-         presenter: AskPermissionPresenterInterface,
-         router: AskPermissionRouterInterface) {
-        self.worker = worker
+    init(presenter: AskPermissionPresenterInterface, permissionType: AskPermission.Kind) {
         self.presenter = presenter
-        self.router = router
+        self.permissionType = permissionType
     }
 
     // MARK: - Interactor
     func viewDidLoad() {
-        worker.getPermissionContent { [weak self] (contentCollection, type) in
-            self?.presenter.setupView(contentCollection, type: type)
+        worker.getPermissionContent(permissionType: permissionType) { [weak self] (contentCollection) in
+            self?.presenter.setupView(contentCollection, type: self?.permissionType)
         }
     }
 }
 
 // MARK: - AskPermissionInteractorInterface
 extension AskPermissionInteractor: AskPermissionInteractorInterface {
-    var permissionType: AskPermission.Kind {
-        return worker.getPermissionType
-    }
-
     var placeholderImage: UIImage? {
         let image: UIImage?
-        switch worker.getPermissionType {
+        switch permissionType {
         case .notification, .notificationOnboarding, .notificationOpenSettings: image = R.image.notification_permission()
         case .location: image = R.image.location_permission()
         case .calendar, .calendarOpenSettings: image = R.image.calendar_permission()
@@ -48,11 +41,7 @@ extension AskPermissionInteractor: AskPermissionInteractorInterface {
         return image
     }
 
-    func didTapSkip() {
-        router.didTapDismiss(worker.getPermissionType)
-    }
-
-    func didTapConfirm() {
-        router.didTapConfirm(worker.getPermissionType)
+    var getPermissionType: AskPermission.Kind {
+        return permissionType
     }
 }
