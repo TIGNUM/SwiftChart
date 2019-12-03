@@ -17,31 +17,26 @@ public extension Notification.Name {
 final class DailyBriefInteractor {
 
     // MARK: - Properties
-    private let worker: DailyBriefWorker
     private let presenter: DailyBriefPresenterInterface
-    private let router: DailyBriefRouterInterface
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
-// Boolean to keep track of the guided closed track.
+
     private var guidedClosedTrack: Bool = false
     private var isLoadingBuckets: Bool = false
     private var needToLoadBuckets: Bool = false
+
     private let dailyCheckInResultRequestTimeOut: Int = 20 // seconds
     private var dailyCheckInResultRequestCheckTimer: Timer?
     private var targetBucketName: DailyBriefBucketName?
 
-    private lazy var firstInstallTimeStamp: Date? = {
-        return UserDefault.firstInstallationTimestamp.object as? Date
-    }()
+    private lazy var firstInstallTimeStamp = UserDefault.firstInstallationTimestamp.object as? Date
+    private lazy var worker = DailyBriefWorker(questionService: QuestionService.main,
+                                               userService: UserService.main,
+                                               settingService: SettingService.main)
 
     // MARK: - Init
-
-    init(worker: DailyBriefWorker,
-         presenter: DailyBriefPresenterInterface,
-         router: DailyBriefRouterInterface) {
-        self.worker = worker
+    init(presenter: DailyBriefPresenterInterface) {
         self.presenter = presenter
-        self.router = router
 
         // Listen about UpSync Daily Check In User Answers
         NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
@@ -61,6 +56,8 @@ final class DailyBriefInteractor {
 
         getDailyBriefBucketsForViewModel()
     }
+
+    // MARK: - Life Cycle
     func viewDidLoad() {
         presenter.setupView()
         getDailyBriefDummySectionModels()
@@ -69,8 +66,8 @@ final class DailyBriefInteractor {
 }
 
 // MARK: Private methods
-extension DailyBriefInteractor {
-    private func setVisibleBucketsAsSeenIfNeeded(indexPath: IndexPath) {
+private extension DailyBriefInteractor {
+    func setVisibleBucketsAsSeenIfNeeded(indexPath: IndexPath) {
         let bucketModel = bucketViewModelNew()?.at(index: indexPath.section)
         let bucketList = bucketModel?.elements
         if let bucketList = bucketList,
@@ -81,7 +78,7 @@ extension DailyBriefInteractor {
         }
     }
 
-    private func scrollToBucket(_ bucketName: DailyBriefBucketName) {
+    func scrollToBucket(_ bucketName: DailyBriefBucketName) {
         var modelIndex: Int?
         for (index, item) in viewModelOldListModels.enumerated() {
             guard item.elements.first?.domainModel?.bucketName == bucketName else { continue }
@@ -108,7 +105,8 @@ extension DailyBriefInteractor {
         expendImpactReadiness = !expendImpactReadiness
         updateDailyBriefBucket()
     }
-//  Display the expand/collapse of the guided close track
+
+    //  Display the expand/collapse of the guided close track
     @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
         guidedClosedTrack = !guidedClosedTrack
         updateDailyBriefBucket()
@@ -127,11 +125,9 @@ extension DailyBriefInteractor {
 }
 
 // MARK: - DailyBriefInteractorInterface
-
 extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
-    // MARK: Properties
-
+    // MARK: - Properties
     var rowViewSectionCount: Int {
         return viewModelOldListModels.count
     }
@@ -144,8 +140,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return worker.peakPerformanceCount
     }
 
-    // MARK: Retrieve methods
-
+    // MARK: - Retrieve methods
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
         return worker.bucket(at: row)
     }
@@ -301,52 +296,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         worker.getToBeVisionImage(completion: completion)
     }
 
-    // MARK: Present methods
-
-    func presentMyDataScreen() {
-        router.presentMyDataScreen()
-    }
-
-    func presentWhatsHotArticle(selectedID: Int) {
-        router.presentWhatsHotArticle(selectedID: selectedID)
-    }
-
-    func presentMyToBeVision() {
-        router.presentMyToBeVision()
-    }
-
-    func presentStrategyList(selectedStrategyID: Int) {
-        router.presentStrategyList(selectedStrategyID: selectedStrategyID)
-    }
-
-    func presentToolsItems(selectedToolID: Int?) {
-        router.presentToolsItems(selectedToolID: selectedToolID)
-    }
-
-    func presentCopyRight(copyrightURL: String?) {
-        router.presentCopyRight(copyrightURL: copyrightURL)
-    }
-
-    func openGuidedTrackAppLink(_ appLink: QDMAppLink?) {
-        router.openGuidedTrackAppLink(appLink)
-    }
-
-    func showSolveResults(solve: QDMSolve) {
-        router.showSolveResults(solve: solve)
-    }
-
-    func showCustomizeTarget() {
-        worker.customzieSleepQuestion { [weak self] (model) in
-            self?.router.showCustomizeTarget(model)
-        }
-    }
-
-    func displayCoachPreparationScreen() {
-        router.displayCoachPreparationScreen()
-    }
-
     // MARK: Save methods
-
     func saveAnswerValue(_ value: Int) {
         worker.saveAnswerValue(value)
     }
@@ -368,15 +318,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
     }
-
-    func showDailyCheckInQuestions() {
-        router.showDailyCheckInQuestions()
-    }
 }
 
+// MARK: Helpers
 extension DailyBriefInteractor {
-
-    // MARK: Helpers
     func getSprintInfo(_ bucket: QDMDailyBriefBucket, _ tag1: String, _ tag2: String) -> String {
         return bucket.contentCollections?.filter {
             $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)

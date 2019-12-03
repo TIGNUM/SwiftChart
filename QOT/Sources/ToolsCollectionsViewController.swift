@@ -62,9 +62,10 @@ final class ToolsCollectionsViewController: BaseWithTableViewController, ScreenZ
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let controller = segue.destination as? ToolsItemsViewController {
+        if let toolID = sender as? Int,
+            let controller = segue.destination as? ToolsItemsViewController {
             ToolsItemsConfigurator.make(viewController: controller,
-                                              selectedToolID: sender as? Int)
+                                              selectedToolID: toolID)
         }
     }
 

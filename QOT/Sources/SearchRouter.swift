@@ -64,9 +64,10 @@ private extension SearchRouter {
     }
 
     func presentToolsItems(selectedToolID: Int?) {
-        if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
-            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: selectedToolID)
-            searchViewController?.present(controller, animated: true, completion: nil)
+        if let toolID = selectedToolID,
+            let controller = R.storyboard.tools.qotToolsItemsViewController() {
+            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: toolID)
+            searchViewController?.present(controller, animated: true)
         }
     }
 }
