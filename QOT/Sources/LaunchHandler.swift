@@ -202,7 +202,6 @@ final class LaunchHandler {
         default: break
         }
         NotificationCenter.default.post(name: .stopAudio, object: nil)
-        NotificationService.main.reportVisitedNotificationLink(url.absoluteString) { (_) in /* WOW */}
     }
 
     func presentQRCodeURL(_ url: URL) {
