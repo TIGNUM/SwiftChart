@@ -8,22 +8,20 @@
 
 import UIKit
 import DifferenceKit
+import qot_dal
 
 final class DailyBriefPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: DailyBriefViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: DailyBriefViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
-// MARK: - DailyBriefInterface
-
+// MARK: - DailyBriefPresenterInterface
 extension DailyBriefPresenter: DailyBriefPresenterInterface {
     func setupView() {
         viewController?.setupView()
@@ -38,6 +36,9 @@ extension DailyBriefPresenter: DailyBriefPresenterInterface {
     }
 
     func showSprintCompletedAlert() {
-        viewController?.showSprintCompletedAlert()
+        let actionDone = QOTAlertAction(title: AppTextService.get(.generic_view_button_done))
+        QOTAlert.show(title: AppTextService.get(.daily_brief_sprint_challenge_alert_title),
+                      message: AppTextService.get(.daily_brief_sprint_challenge_alert_body),
+                      bottomItems: [actionDone])
     }
 }

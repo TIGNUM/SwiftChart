@@ -185,13 +185,13 @@ private extension UIViewController {
 // MARK: AskPermission IDs
 private extension UIViewController {
     var askPermissionPageKey: String {
-        switch (self as? AskPermissionViewController)?.interactor?.permissionType {
-        case .location?: return AppTextService.get(AppTextKey.coach_prepare_calendar_permission)
-        case .notification?: return AppTextService.get(AppTextKey.coach_sprints_notification_permission)
-        case .notificationOnboarding?: return AppTextService.get(AppTextKey.onboarding_notification_permission)
-        case .calendar?: return AppTextService.get(AppTextKey.coach_prepare_calendar_permission)
-        case .calendarOpenSettings?: return AppTextService.get(AppTextKey.coach_prepare_calendar_settings_permission)
-        case .notificationOpenSettings?: return AppTextService.get(AppTextKey.coach_sprints_notification_settings_permission)
+        switch (self as? AskPermissionViewController)?.interactor.getPermissionType {
+        case .location?: return AppTextService.get(.coach_prepare_calendar_permission)
+        case .notification?: return AppTextService.get(.coach_sprints_notification_permission)
+        case .notificationOnboarding?: return AppTextService.get(.onboarding_notification_permission)
+        case .calendar?: return AppTextService.get(.coach_prepare_calendar_permission)
+        case .calendarOpenSettings?: return AppTextService.get(.coach_prepare_calendar_settings_permission)
+        case .notificationOpenSettings?: return AppTextService.get(.coach_sprints_notification_settings_permission)
         default: preconditionFailure()
         }
     }
