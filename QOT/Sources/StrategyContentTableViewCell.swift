@@ -54,29 +54,6 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         checkIfRead()
     }
 
-    private func checkIfPlaying() {
-        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
-    }
-
-    private func checkIfRead() {
-        if let isRead = isRead {
-            if isRead {
-                ThemeText.articleStrategyRead.apply(title, to: titleLabel)
-                ThemeButton.audioButtonGrey.apply(audioButton)
-                audioIcon.image = R.image.ic_audio_grey_light()
-                readCheckMark.fadeIn()
-            } else {
-                ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
-                ThemeButton.audioButtonStrategy.apply(audioButton)
-                ThemeBorder.accent.apply(audioButton)
-                audioIcon.image = R.image.ic_audio()
-                readCheckMark.alpha = 0
-            }
-        }
-    }
-
     func configure(categoryTitle: String?,
                    title: String?,
                    timeToWatch: String?,
@@ -140,4 +117,28 @@ private extension StrategyContentTableViewCell {
             ThemeView.audioPlaying.apply(audioView)
         }
     }
+
+    private func checkIfPlaying() {
+        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
+    }
+
+    private func checkIfRead() {
+        if let isRead = isRead {
+            if isRead {
+                ThemeText.articleStrategyRead.apply(title, to: titleLabel)
+                ThemeButton.audioButtonGrey.apply(audioButton)
+                audioIcon.image = R.image.ic_audio_grey_light()
+                readCheckMark.fadeIn()
+            } else {
+                ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
+                ThemeButton.audioButtonStrategy.apply(audioButton)
+                ThemeBorder.accent.apply(audioButton)
+                audioIcon.image = R.image.ic_audio()
+                readCheckMark.alpha = 0
+            }
+        }
+    }
+
 }

@@ -16,6 +16,11 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewImageView: UIImageView!
     @IBOutlet private weak var previewPlayImageView: UIImageView!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
+    @IBOutlet private weak var seenCheckMark: UIImageView!
+    private var isSeen: Bool?
+    private var titleText: String?
+    private var timeText: String?
+    private var imageURL: URL?
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -31,12 +36,17 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addOtherView(previewImageView)
         skeletonManager.addOtherView(mediaIconImageView)
         selectionStyle = .none
+//        checkIfSeen()
     }
 
-    func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?) {
+    func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?, isSeen: Bool?) {
         guard let titleText = title, let timeText = timeToWatch else { return }
         selectionStyle = .default
         skeletonManager.hide()
+        self.isSeen = isSeen
+        self.titleText = titleText
+        self.timeText = timeText
+        self.imageURL = imageURL
         ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
         skeletonManager.addOtherView(previewImageView)
@@ -45,5 +55,21 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)
         ThemeTint.accent.apply(mediaIconImageView)
+        checkIfSeen()
+    }
+
+//    do we have to watch the videos until the end for it to be watched?
+    private func checkIfSeen() {
+        if let isSeen = isSeen {
+            if isSeen {
+                ThemeText.articleStrategyRead.apply(titleText, to: titleLabel)
+                seenCheckMark.fadeIn()
+                let image = previewImageView.image
+                previewImageView.image = image?.noir
+            } else {
+                ThemeText.articleStrategyTitle.apply(titleText, to: titleLabel)
+                seenCheckMark.alpha = 0
+            }
+        }
     }
 }

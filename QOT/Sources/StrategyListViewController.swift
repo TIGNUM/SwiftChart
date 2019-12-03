@@ -110,14 +110,16 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 cell.configure(title: nil,
                                timeToWatch: nil,
                                imageURL: nil,
-                               forcedColorMode: nil)
+                               forcedColorMode: nil,
+                               isSeen: nil)
                 return cell
             }
 
             cell.configure(title: strategy.title,
                            timeToWatch: strategy.durationString,
                            imageURL: strategy.imageURL,
-                           forcedColorMode: .dark)
+                           forcedColorMode: .dark,
+                           isSeen: strategy.isRead)
             return cell
         } else {
             let cell: StrategyContentTableViewCell = tableView.dequeueCell(for: indexPath)
