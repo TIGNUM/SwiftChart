@@ -22,10 +22,8 @@ protocol AskPermissionPresenterInterface {
 }
 
 protocol AskPermissionInteractorInterface: Interactor {
-    var permissionType: AskPermission.Kind { get }
     var placeholderImage: UIImage? { get }
-    func didTapSkip()
-    func didTapConfirm()
+    var getPermissionType: AskPermission.Kind { get }
 }
 
 protocol AskPermissionRouterInterface {

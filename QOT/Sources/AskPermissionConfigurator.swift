@@ -13,10 +13,9 @@ final class AskPermissionConfigurator {
     static func make(viewController: AskPermissionViewController?,
                      type: AskPermission.Kind,
                      delegate: AskPermissionDelegate? = nil) {
-        let router = AskPermissionRouter(viewController: viewController, delegate: delegate)
-        let worker = AskPermissionWorker(contentService: qot_dal.ContentService.main, permissionType: type)
         let presenter = AskPermissionPresenter(viewController: viewController)
-        let interactor = AskPermissionInteractor(worker: worker, presenter: presenter, router: router)
+        let interactor = AskPermissionInteractor(presenter: presenter, permissionType: type)
         viewController?.interactor = interactor
+        viewController?.delegate = delegate
     }
 }
