@@ -30,7 +30,7 @@ final class StrategyListViewController: BaseWithTableViewController, ScreenZLeve
         setStatusBar(colorMode: ColorMode.dark)
         setStatusBar(color: ThemeView.level2.color)
         trackPage()
-        reloadStrategies()
+        interactor?.loadStrategies()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -107,32 +107,18 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             guard interactor?.foundationStrategies.count ?? 0 > indexPath.row,
                     let strategy = interactor?.foundationStrategies[indexPath.item] else {
-                cell.configure(title: nil,
-                               timeToWatch: nil,
-                               imageURL: nil,
-                               forcedColorMode: nil,
-                               isSeen: nil)
                 return cell
             }
-
             cell.configure(title: strategy.title,
                            timeToWatch: strategy.durationString,
                            imageURL: strategy.imageURL,
                            forcedColorMode: .dark,
-                           isSeen: strategy.isRead)
+                           isSeen: strategy.isRead ?? false)
             return cell
         } else {
             let cell: StrategyContentTableViewCell = tableView.dequeueCell(for: indexPath)
             guard interactor?.strategies.count ?? 0 > indexPath.row,
                     let strategy = interactor?.strategies[indexPath.item] else {
-                cell.configure(categoryTitle: nil,
-                               title: nil,
-                               timeToWatch: nil,
-                               mediaURL: nil,
-                               duration: nil,
-                               mediaItemId: nil,
-                               isRead: nil,
-                               delegate: self)
                 return cell
             }
             cell.configure(categoryTitle: strategy.categoryTitle,
@@ -165,6 +151,9 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                 let foundation = interactor?.foundationStrategies[indexPath.row],
                 let videoURL = foundation.mediaURL else { return }
             didSelectRow(at: indexPath)
+            if let cell = tableView.cellForRow(at: indexPath) as? FoundationTableViewCell {
+                cell.setToSeen()
+            }
             trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             let contentItem = foundation.contentItems?.filter({ $0.format == .video }).first
             let playerController = stream(videoURL: videoURL, contentItem: contentItem)
@@ -193,11 +182,6 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 // MARK: - Audio Player Related
 extension StrategyListViewController {
     @objc func didEndAudio(_ notification: Notification) {
-        tableView.reloadData()
-    }
-// for read status
-    func reloadStrategies() {
-        interactor?.loadStrategies()
         tableView.reloadData()
     }
 }

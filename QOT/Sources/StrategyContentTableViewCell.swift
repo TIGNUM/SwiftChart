@@ -41,6 +41,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addOtherView(mediaIconImageView)
         skeletonManager.addOtherView(audioView)
         skeletonManager.addOtherView(audioLabel)
+        skeletonManager.addOtherView(readCheckMark)
         checkIfPlaying()
         checkIfRead()
     }
@@ -81,13 +82,13 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
-        skeletonManager.hide()
         ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         checkIfRead()
         showDuration(durationValue)
         checkIfPlaying()
         setAudioAsCompleteIfNeeded(remoteID: id)
+        skeletonManager.hide()
     }
 }
 
@@ -130,7 +131,9 @@ private extension StrategyContentTableViewCell {
                 ThemeText.articleStrategyRead.apply(title, to: titleLabel)
                 ThemeButton.audioButtonGrey.apply(audioButton)
                 audioIcon.image = R.image.ic_audio_grey_light()
-                readCheckMark.fadeIn()
+                readCheckMark.image?.withRenderingMode(.alwaysOriginal)
+                readCheckMark.tintColor = .sand60
+                readCheckMark.alpha = 1
             } else {
                 ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
                 ThemeButton.audioButtonStrategy.apply(audioButton)
@@ -140,5 +143,4 @@ private extension StrategyContentTableViewCell {
             }
         }
     }
-
 }

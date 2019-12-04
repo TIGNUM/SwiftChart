@@ -51,7 +51,6 @@ final class StrategyListWorker {
     var foundationStrategies = [Strategy.Item]()
 
     var strategies = [Strategy.Item]()
-    
     func selectedStrategyId() -> Int {
         return selectedStrategyID ?? 0
     }

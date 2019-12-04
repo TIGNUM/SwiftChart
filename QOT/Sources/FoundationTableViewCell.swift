@@ -17,10 +17,10 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewPlayImageView: UIImageView!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
     @IBOutlet private weak var seenCheckMark: UIImageView!
-    private var isSeen: Bool?
     private var titleText: String?
     private var timeText: String?
     private var imageURL: URL?
+    private var isSeen = false
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -35,41 +35,49 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addSubtitle(detailLabel)
         skeletonManager.addOtherView(previewImageView)
         skeletonManager.addOtherView(mediaIconImageView)
+        skeletonManager.addOtherView(seenCheckMark)
+        previewPlayImageView.backgroundColor = UIColor.sand08
+        previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         selectionStyle = .none
-        checkIfSeen()
     }
 
-    func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?, isSeen: Bool?) {
+    func configure(title: String?, timeToWatch: String?, imageURL: URL?, forcedColorMode: ThemeColorMode?, isSeen: Bool) {
         guard let titleText = title, let timeText = timeToWatch else { return }
         selectionStyle = .default
-        skeletonManager.hide()
         self.isSeen = isSeen
         self.titleText = titleText
         self.timeText = timeText
         self.imageURL = imageURL
-        ThemeText.articleRelatedTitle(forcedColorMode).apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetail(forcedColorMode).apply(timeText, to: detailLabel)
-        skeletonManager.addOtherView(previewImageView)
         previewImageView.setImage(url: imageURL, skeletonManager: self.skeletonManager) { (_) in /* */}
-        previewPlayImageView.backgroundColor = UIColor.sand08
-        previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()
         checkIfSeen()
+        skeletonManager.hide()
     }
 
-//    do we have to watch the videos until the end for it to be watched?
+    func setToSeen() {
+        isSeen = true
+    }
+}
+
+private extension FoundationTableViewCell {
+
     private func checkIfSeen() {
-        if let isSeen = isSeen {
-            if isSeen {
-                ThemeText.articleStrategyRead.apply(titleText, to: titleLabel)
-                ThemeTint.sand60.apply(seenCheckMark)
-                seenCheckMark.fadeIn()
-                let image = previewImageView.image
-                previewImageView.image = image?.noir
-            } else {
-                ThemeText.articleStrategyTitle.apply(titleText, to: titleLabel)
-                seenCheckMark.alpha = 0
-            }
+        if isSeen {
+            ThemeText.articleStrategyRead.apply(titleText, to: titleLabel)
+            seenCheckMark.image?.withRenderingMode(.alwaysOriginal)
+            seenCheckMark.tintColor = .sand30
+            seenCheckMark.isHidden = false
+            setToBlackAndWhite(image: previewImageView.image)
+        } else {
+            ThemeText.articleStrategyTitle.apply(titleText, to: titleLabel)
+            seenCheckMark.isHidden = true
         }
+    }
+
+    private func setToBlackAndWhite(image: UIImage?) {
+        guard let originalImage = image, let ciImage = CIImage(image: originalImage) else { return }
+        let grayscale = ciImage.applyingFilter("CIColorControls", parameters: [ kCIInputSaturationKey: 0.0 ])
+        previewImageView.image = UIImage(ciImage: grayscale)
     }
 }
