@@ -127,7 +127,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                            mediaURL: strategy.mediaURL,
                            duration: strategy.duration,
                            mediaItemId: strategy.mediaItem?.remoteID,
-                           isRead: strategy.isRead,
+                           isRead: strategy.isRead ?? false,
                            delegate: self)
             return cell
         }

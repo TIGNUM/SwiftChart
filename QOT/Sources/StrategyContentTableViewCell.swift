@@ -61,7 +61,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
                    mediaURL: URL?,
                    duration: Double?,
                    mediaItemId: Int?,
-                   isRead: Bool?,
+                   isRead: Bool,
                    delegate: IsPlayingDelegate?) {
         guard let category = categoryTitle,
             let titleText = title,
@@ -110,7 +110,7 @@ extension StrategyContentTableViewCell {
 private extension StrategyContentTableViewCell {
     func showDuration(_ duration: Double) {
         let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        isRead ?? false ? ThemeText.articleRelatedDetailInStrategyRead.apply(text, to: audioLabel) : ThemeText.audioBar.apply(text, to: audioLabel)
+        isRead ? ThemeText.articleRelatedDetailInStrategyRead.apply(text, to: audioLabel) : ThemeText.audioBar.apply(text, to: audioLabel)
     }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
