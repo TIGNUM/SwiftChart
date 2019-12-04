@@ -264,3 +264,15 @@ extension MyLibraryUserStorageViewController: UITableViewDelegate {
         return true
     }
 }
+
+extension MyLibraryUserStorageViewController: URLSessionDelegate {
+    func urlSessionDidFinishEvents(forBackgroundURLSession session: URLSession) {
+        DispatchQueue.main.async {
+            if let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+                let backgroundCompletionHandler = appDelegate.backgroundCompletionHandler {
+                appDelegate.backgroundCompletionHandler = nil
+                backgroundCompletionHandler()
+            }
+        }
+    }
+}
