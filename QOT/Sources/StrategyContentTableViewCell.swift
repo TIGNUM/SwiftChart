@@ -26,7 +26,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var remoteID: Int = 0
     private var duration: Double = 0
     private var categoryTitle = ""
-    private var isRead: Bool?
+    private var isRead = false
     weak var delegate: IsPlayingDelegate?
     let skeletonManager = SkeletonManager()
 
@@ -126,21 +126,19 @@ private extension StrategyContentTableViewCell {
     }
 
     private func checkIfRead() {
-        if let isRead = isRead {
-            if isRead {
-                ThemeText.articleStrategyRead.apply(title, to: titleLabel)
-                ThemeButton.audioButtonGrey.apply(audioButton)
-                audioIcon.image = R.image.ic_audio_grey_light()
-                readCheckMark.image?.withRenderingMode(.alwaysOriginal)
-                readCheckMark.tintColor = .sand30
-                readCheckMark.alpha = 1
-            } else {
-                ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
-                ThemeButton.audioButtonStrategy.apply(audioButton)
-                ThemeBorder.accent.apply(audioButton)
-                audioIcon.image = R.image.ic_audio()
-                readCheckMark.alpha = 0
-            }
+        if isRead {
+            ThemeText.articleStrategyRead.apply(title, to: titleLabel)
+            ThemeButton.audioButtonGrey.apply(audioButton)
+            audioIcon.image = R.image.ic_audio_grey_light()
+            readCheckMark.image?.withRenderingMode(.alwaysOriginal)
+            readCheckMark.tintColor = .sand30
+            readCheckMark.alpha = 1
+        } else {
+            ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
+            ThemeButton.audioButtonStrategy.apply(audioButton)
+            ThemeBorder.accent.apply(audioButton)
+            audioIcon.image = R.image.ic_audio()
+            readCheckMark.alpha = 0
         }
     }
 }
