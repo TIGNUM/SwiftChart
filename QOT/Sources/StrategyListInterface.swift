@@ -30,6 +30,7 @@ protocol StrategyListInteractorInterface: class, Interactor {
     func presentArticle(selectedID: Int?)
     func selectedStrategyId() -> Int
     func reloadData()
+    func loadStrategies()
 }
 
 protocol StrategyListRouterInterface {
