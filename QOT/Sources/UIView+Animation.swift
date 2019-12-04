@@ -70,10 +70,4 @@ extension UIView {
         animation.duration = duration
         layer.add(animation, forKey: kCATransition)
     }
-
-    func fadeIn(duration: TimeInterval = 0.5) {
-        UIView.animate(withDuration: duration, animations: {
-            self.alpha = 1.0
-        })
-    }
 }
