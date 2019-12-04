@@ -258,14 +258,18 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         log("QOT will present notification:: \(notification)")
-        completionHandler([.alert, .sound])
+        NotificationService.main.reportPresentedNotification(internalNotificationIdentifier: notification.request.identifier) { (_) in
+            completionHandler([.alert, .sound])
+        }
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
         handleNotification(notification: response.notification)
-        completionHandler()
+        NotificationService.main.reportSelectedNotification(internalNotificationIdentifier: response.notification.request.identifier) { (_) in
+            completionHandler()
+        }
     }
 }
 
