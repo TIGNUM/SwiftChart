@@ -10,12 +10,12 @@ import Foundation
 import qot_dal
 
 final class SigningInfoConfigurator {
-    static func make() -> (SigningInfoViewController, SigningInfoDelegate) -> Void {
-        return { (viewController, delegate) in
+    static func make() -> (SigningInfoViewController) -> Void {
+        return { (viewController) in
             let router = SigningInfoRouter(viewController: viewController)
             let worker = SigningInfoWorker(model: SigningInfoModel())
             let presenter = SigningInfoPresenter(viewController: viewController)
-            let interactor = SigningInfoInteractor(worker: worker, presenter: presenter, router: router, delegate: delegate)
+            let interactor = SigningInfoInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

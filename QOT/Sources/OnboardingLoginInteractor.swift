@@ -16,7 +16,6 @@ final class OnboardingLoginInteractor {
     private let worker: OnboardingLoginWorker
     private let presenter: OnboardingLoginPresenterInterface
     private let router: OnboardingLoginRouterInterface
-    private weak var delegate: OnboardingLoginDelegate?
 
     var viewModel = OnboardingLoginViewModel()
 
@@ -24,12 +23,10 @@ final class OnboardingLoginInteractor {
 
     init(worker: OnboardingLoginWorker,
         presenter: OnboardingLoginPresenterInterface,
-        router: OnboardingLoginRouterInterface,
-        delegate: OnboardingLoginDelegate) {
+        router: OnboardingLoginRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        self.delegate = delegate
     }
 
     // MARK: - Interactor
@@ -81,7 +78,6 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 
     func didTapBack() {
         viewModel.sendCodeEnabled = true
-        delegate?.didTapBack()
     }
 
     func didTapVerify(email: String?) {
@@ -111,8 +107,8 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
             strongSelf.viewModel.sendCodeEnabled = true
             if strongSelf.testForPreRegisteredUser() {
                 UserDefault.existingEmail.setStringValue(value: email)
-                strongSelf.delegate?.didNeedToRouteToRegistration()
                 strongSelf.presenter.presentReset()
+                strongSelf.router.goToRegister()
             } else {
                 strongSelf.presenter.present()
                 strongSelf.presenter.presentActivity(state: nil)
@@ -185,13 +181,11 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 // MARK: - Private methods
 
 private extension OnboardingLoginInteractor {
-
     func handleSuccessfulLogin(for email: String) {
-        delegate?.didFinishLogin()
-
+//        delegate?.didFinishLogin()
         let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
         if !emails.contains(email) {
-            delegate?.showTrackSelection()
+            router.showTrackSelection()
         } else {
             router.showHomeScreen()
         }

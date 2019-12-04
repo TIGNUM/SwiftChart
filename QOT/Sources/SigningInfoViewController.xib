@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,8 +11,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SigningInfoViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="bodyLabel" destination="vSM-mr-lrB" id="QPr-8U-RhC"/>
-                <outlet property="loginButton" destination="7Zc-MD-3Ih" id="16c-7p-FLa"/>
-                <outlet property="registerButton" destination="pEJ-dl-5zv" id="B8z-cN-2Nt"/>
                 <outlet property="titleLabel" destination="sYp-yY-lbk" id="7lw-Gp-xXg"/>
                 <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
                 <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
@@ -18,67 +18,35 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="kye-X6-AOl">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="unA-EJ-O6O" userLabel="Spacer View">
-                    <rect key="frame" x="0.0" y="690" width="375" height="122"/>
+                    <rect key="frame" x="0.0" y="727.5" width="414" height="134.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="muA-i8-2Ke">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812.5"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="muA-i8-2Ke" secondAttribute="height" multiplier="1024:2218" id="GqP-UU-Uxj"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QBN-FH-QrV">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                    <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Zc-MD-3Ih" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="24" y="730" width="84" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="84" id="8mj-Y2-jqm"/>
-                                <constraint firstAttribute="height" constant="40" id="Fvg-Y1-5iD"/>
-                            </constraints>
-                            <state key="normal" title="Log in">
-                                <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="didTapLogin" destination="-1" eventType="touchUpInside" id="kfI-nR-Mfq"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pEJ-dl-5zv" customClass="RoundedButton" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="211" y="730" width="140" height="40"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="40" id="nET-yG-wTA"/>
-                                <constraint firstAttribute="width" constant="140" id="yc0-45-1m5"/>
-                            </constraints>
-                            <state key="normal" title="New user">
-                                <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
-                            </state>
-                            <connections>
-                                <action selector="didTapStart" destination="-1" eventType="touchUpInside" id="1wv-Ll-B81"/>
-                            </connections>
-                        </button>
-                    </subviews>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="7Zc-MD-3Ih" firstAttribute="leading" secondItem="QBN-FH-QrV" secondAttribute="leading" constant="24" id="3lx-vC-wR1"/>
                         <constraint firstAttribute="width" secondItem="QBN-FH-QrV" secondAttribute="height" multiplier="375:812" id="6Bm-TG-ATO"/>
-                        <constraint firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" constant="42" id="ff9-f9-XoM"/>
-                        <constraint firstAttribute="trailing" secondItem="pEJ-dl-5zv" secondAttribute="trailing" constant="24" id="lOI-M3-QSi"/>
-                        <constraint firstItem="pEJ-dl-5zv" firstAttribute="bottom" secondItem="7Zc-MD-3Ih" secondAttribute="bottom" id="xuI-xo-ALe"/>
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
-                    <rect key="frame" x="24" y="669.5" width="281.5" height="20.5"/>
+                    <rect key="frame" x="24" y="707" width="310.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vSM-mr-lrB">
-                    <rect key="frame" x="24" y="708" width="327" height="20.5"/>
+                    <rect key="frame" x="24" y="745.5" width="366" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -87,7 +55,7 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="1Dx-R3-fx9"/>
-                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="QBN-FH-QrV" secondAttribute="trailing" id="77D-NS-7Lg"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="QBN-FH-QrV" secondAttribute="trailing" priority="999" id="77D-NS-7Lg"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="9M2-oh-H48"/>
                 <constraint firstItem="vSM-mr-lrB" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="Aav-aT-RnD"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="vSM-mr-lrB" secondAttribute="trailing" constant="24" id="Fql-V9-UwC"/>

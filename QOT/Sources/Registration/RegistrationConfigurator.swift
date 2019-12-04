@@ -11,12 +11,12 @@ import qot_dal
 
 final class RegistrationConfigurator {
 
-    static func make() -> (RegistrationViewController, QDMToBeVision?) -> Void {
-        return { (viewController, cachedTBV) in
+    static func make() -> (RegistrationViewController) -> Void {
+        return { (viewController) in
             let router = RegistrationRouter(viewController: viewController)
             let worker = RegistrationWorker()
             let presenter = RegistrationPresenter(viewController: viewController)
-            let interactor = RegistrationInteractor(worker: worker, presenter: presenter, router: router, cachedTBV: cachedTBV)
+            let interactor = RegistrationInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
         }
     }

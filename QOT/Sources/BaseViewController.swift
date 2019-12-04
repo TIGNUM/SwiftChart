@@ -14,6 +14,10 @@ class BaseViewController: UIViewController {
         return isLightBackground() ? .default : .lightContent
     }
 
+    func canRotate() -> Bool {
+        return false
+    }
+
     deinit {
         print("DEINIT \(self)")
     }

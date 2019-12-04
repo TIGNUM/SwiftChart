@@ -51,11 +51,6 @@ protocol OnboardingLoginInteractorInterface: Interactor {
 protocol OnboardingLoginRouterInterface {
     func showHomeScreen()
     func showFAQScreen()
-}
-
-protocol OnboardingLoginDelegate: class {
-    func didFinishLogin()
     func showTrackSelection()
-    func didTapBack()
-    func didNeedToRouteToRegistration()
+    func goToRegister()
 }

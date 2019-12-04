@@ -213,11 +213,11 @@ extension AppCoordinator {
     }
 
     func showSigning() {
-        let landingConfigurator = OnboardingLandingPageConfigurator.make()
-        let landingController = OnboardingLandingPageViewController()
-        landingConfigurator(landingController)
+        let signinInfoConfigurator = SigningInfoConfigurator.make()
+        let signinInfoController = SigningInfoViewController()
+        signinInfoConfigurator(signinInfoController)
 
-        let navigationController = UINavigationController(rootViewController: landingController)
+        let navigationController = UINavigationController(rootViewController: signinInfoController)
         navigationController.navigationBar.isHidden = true
         navigationController.modalTransitionStyle = .crossDissolve
         navigationController.modalPresentationStyle = .overFullScreen

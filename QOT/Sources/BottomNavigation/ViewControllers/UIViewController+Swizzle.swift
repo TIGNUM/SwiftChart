@@ -290,7 +290,8 @@ extension UIViewController {
             }
         } else if (self as? UINavigationController) == nil,
             (self as? UIPageViewController) == nil,
-            ((self as? ScreenZLevel1) != nil || (self as? ScreenZLevel2) != nil || (self as? ScreenZLevel3) != nil) {
+            ((self as? ScreenZLevel1) != nil || (self as? ScreenZLevel2) != nil || (self as? ScreenZLevel3) != nil) ||
+               (self as? ScreenZLevelLogin) != nil {
             log("refreshBottomNavigationItems for : \(swiftClassName)", level: .info)
             if let notificationBlock = navigationNotificationBlock() {
                 notificationBlock()
