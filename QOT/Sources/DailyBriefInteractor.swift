@@ -261,8 +261,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                             elements: models))
                     }
                 case .GUIDE_TRACK?:
-                    sectionDataList.append(ArraySection(model: .guidedTrack,
-                                                        elements: strongSelf.createGuidedTrack(guidedTrackBucket: bucket)))
+                    let elements = strongSelf.createGuidedTrack(guidedTrackBucket: bucket)
+                    if elements.isEmpty == false {
+                        sectionDataList.append(ArraySection(model: .guidedTrack, elements: elements))
+                    }
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -784,40 +786,53 @@ extension DailyBriefInteractor {
      */
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
-        let guidedTrackBucketTitle = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_title")}
-            .first?.valueText ?? ""
-        let guidedTrackIntro = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_intro")}
-            .first?.valueText ?? ""
-        let guidedTrackCta = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_cta")}
-            .first?.valueText ?? ""
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: guidedTrackBucketTitle,
-                                                    levelTitle: "",
-                                                    content: guidedTrackIntro,
-                                                    buttonText: guidedTrackCta,
-                                                    type: GuidedTrackItemType.SECTION,
-                                                    appLink: nil,
-                                                    domain: guidedTrack))
+        let title = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_title") }
+            .first?.valueText
+        let intro = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_intro") }
+            .first?.valueText
+        let buttonTitle = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_cta") }
+            .first?.valueText
+
+        if let title = title, let intro = intro, let buttonTitle = buttonTitle {
+            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: title,
+                                                        levelTitle: "",
+                                                        content: intro,
+                                                        buttonText: buttonTitle,
+                                                        type: GuidedTrackItemType.SECTION,
+                                                        appLink: nil,
+                                                        domain: guidedTrack))
+        }
+
         guard guidedClosedTrack == true else {
             return guidedtrackList
         }
 
-        guidedTrack.contentCollections?.forEach {(contentItem) in
+        guidedTrack.contentCollections?.forEach { (contentItem) in
             let stepTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let qdmAppLink = contentItem.links.first
-            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
-                                                        levelTitle: levelTitle,
-                                                        content: levelDescription,
-                                                        buttonText: levelCta,
-                                                        type: GuidedTrackItemType.ROW,
-                                                        appLink: qdmAppLink,
-                                                        domain: guidedTrack))
+
+            if let stepTitle = stepTitle,
+                let levelTitle = levelTitle,
+                let levelDescription = levelDescription,
+                let levelCta = levelCta,
+                let qdmAppLink = qdmAppLink {
+
+                guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
+                                                            levelTitle: levelTitle,
+                                                            content: levelDescription,
+                                                            buttonText: levelCta,
+                                                            type: GuidedTrackItemType.ROW,
+                                                            appLink: qdmAppLink,
+                                                            domain: guidedTrack))
+
+            }
         }
         return guidedtrackList
     }

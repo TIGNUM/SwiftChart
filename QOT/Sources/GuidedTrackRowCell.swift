@@ -14,10 +14,10 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var subtitle: UILabel!
     @IBOutlet private weak var content: UILabel!
+    @IBOutlet weak var dividerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var appLink: QDMAppLink?
-    @IBOutlet weak var dividerView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()

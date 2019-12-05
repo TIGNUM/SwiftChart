@@ -9,9 +9,10 @@
 import Foundation
 
 final class GuidedTrackSectionCell: BaseDailyBriefCell {
+
     @IBOutlet weak var headerView: UIView!
-    var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var button: AnimatedButton!
+    var baseHeaderView: QOTBaseHeaderView?
     var trackState = false
 
     override func awakeFromNib() {
