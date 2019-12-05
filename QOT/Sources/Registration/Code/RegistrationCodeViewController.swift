@@ -15,7 +15,7 @@ final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
     private let helpEmail = Defaults.firstLevelSupportEmail
     private let viewTheme = ThemeView.onboarding
 
-    var interactor: RegistrationCodeInteractorInterface?
+    var interactor: RegistrationCodeInteractorInterface!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var preCodeLabel: UILabel!
@@ -27,7 +27,6 @@ final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var codeInfoTextView: UITextView!
 
     // MARK: - Init
-
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,7 +37,7 @@ final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -49,12 +48,11 @@ final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
 
     override func didTapBackButton() {
         trackUserEvent(.BACK, action: .TAP)
-        interactor?.didTapBack()
+        interactor.didTapBack()
     }
 }
 
 // MARK: - Private
-
 private extension RegistrationCodeViewController {
     func setupTextFields() {
         digitTextFields.forEach { (digitTextField) in
@@ -69,7 +67,7 @@ private extension RegistrationCodeViewController {
     func sendCodeIfPossible() {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
-        interactor?.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }))
+        interactor.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }))
     }
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
@@ -92,7 +90,7 @@ private extension RegistrationCodeViewController {
     }
 
     func updateCodeDefaultUI() {
-        interactor?.resetErrors()
+        interactor.resetErrors()
         codeErrorLabel.attributedText = nil
         digitTextFields.forEach {
             $0.text = ""
@@ -110,46 +108,44 @@ private extension RegistrationCodeViewController {
 }
 
 // MARK: - Actions
-
 private extension RegistrationCodeViewController {
     @IBAction func didTapCheckboxButton() {
         buttonCheckbox.isSelected.toggle()
         buttonCheckbox.backgroundColor = buttonCheckbox.isSelected ? .sand15 : .clear
-        interactor?.toggleTermsOfUse(accepted: buttonCheckbox.isSelected)
+        interactor.toggleTermsOfUse(accepted: buttonCheckbox.isSelected)
         trackUserEvent(.CHECK_TERMS_PRIVACY, valueType: buttonCheckbox.isSelected ? .SELECT : .DESELECT, action: .TAP)
         sendCodeIfPossible()
     }
 }
 
 // MARK: - RegistrationCodeViewControllerInterface
-
 extension RegistrationCodeViewController: RegistrationCodeViewControllerInterface {
     func setupView() {
         viewTheme.apply(view)
-        ThemeText.registrationCodeTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.registrationCodeTitle.apply(interactor.title, to: titleLabel)
         let description = NSMutableAttributedString(attributedString:
-            ThemeText.registrationCodeDescription.attributedString(interactor?.description))
-        description.append(ThemeText.registrationCodeDescriptionEmail.attributedString(interactor?.descriptionEmail))
+            ThemeText.registrationCodeDescription.attributedString(interactor.description))
+        description.append(ThemeText.registrationCodeDescriptionEmail.attributedString(interactor.descriptionEmail))
         descriptionLabel.attributedText = description
 
-        ThemeText.registrationCodePreCode.apply(interactor?.preCode, to: preCodeLabel)
+        ThemeText.registrationCodePreCode.apply(interactor.preCode, to: preCodeLabel)
 
         buttonCheckbox.corner(radius: .Three, borderColor: .sand40)
         buttonCheckbox.setImage(R.image.registration_checkmark(), for: .selected)
 
-        ThemeText.registrationCodeDisclaimerError.apply(interactor?.disclaimerError, to: disclaimerErrorLabel)
+        ThemeText.registrationCodeDisclaimerError.apply(interactor.disclaimerError, to: disclaimerErrorLabel)
         // Theme applied in interactor which handles actions
-        privacyAndTermsTextView.attributedText = interactor?.disclaimer ?? NSAttributedString()
+        privacyAndTermsTextView.attributedText = interactor.disclaimer
         // Theme applied in interactor which handles actions
-        codeInfoTextView.attributedText = interactor?.codeInfo ?? NSAttributedString()
+        codeInfoTextView.attributedText = interactor.codeInfo
 
         setupTextFields()
     }
 
     func update() {
-        ThemeText.registrationCodeError.apply(interactor?.errorMessage, to: codeErrorLabel)
+        ThemeText.registrationCodeError.apply(interactor.errorMessage, to: codeErrorLabel)
 
-        if interactor?.hasDisclaimerError ?? false {
+        if interactor.hasDisclaimerError {
             disclaimerErrorLabel.isHidden = false
             buttonCheckbox.layer.borderColor = UIColor.redOrange70.cgColor
         } else {
@@ -157,22 +153,21 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
             buttonCheckbox.layer.borderColor = UIColor.sand40.cgColor
         }
 
-        if interactor?.hasCodeError ?? false {
+        if interactor.hasCodeError {
             updateCodeErrorUI()
         }
     }
 
     func presentFAQScreen() {
         trackUserEvent(.GET_HELP, action: .TAP)
-        interactor?.showFAQScreen()
+        interactor.showFAQScreen()
     }
 }
 
 // MARK: - UITextViewDelegate
-
 extension RegistrationCodeViewController: UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        interactor?.handleURLAction(url: URL)
+        interactor.handleURLAction(url: URL)
         return false
     }
 }
@@ -183,8 +178,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
-        if let hasError = interactor?.hasCodeError,
-            hasError == true,
+        if interactor.hasCodeError == true,
             let index = digitTextFields.index(of: field), index != 0 {
             digitTextFields.first?.becomeFirstResponder()
             return false
@@ -197,7 +191,7 @@ extension RegistrationCodeViewController: UITextFieldDelegate {
 
         guard let textField = textField as? TextField, digitTextFields.index(of: textField) != nil else { return }
 
-        if interactor?.hasCodeError ?? true {
+        if interactor.hasCodeError {
             updateCodeDefaultUI()
         }
         if let text = textField.text, !text.isEmpty {
