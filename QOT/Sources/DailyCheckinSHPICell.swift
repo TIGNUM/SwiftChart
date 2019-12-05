@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
+final class DailyCheckinSHPICell: BaseDailyBriefCell {
 
     @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
@@ -44,7 +44,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
     }
 }
 
-private extension DailyCheckinInsightsSHPICell {
+private extension DailyCheckinSHPICell {
     func updateView(text: String?, rating: Int, shpiQuestion: String?) {
         baseHeaderView?.subtitleTextView.text = text
         ThemeText.shpiQuestion.apply(shpiQuestion, to: shpiQuestionLabel)

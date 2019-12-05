@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ExploreCell: BaseDailyBriefCell {
 
@@ -17,7 +18,8 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var strategyTitleLabel: UILabel!
     @IBOutlet private weak var exploreButton: UIButton!
-    private var strategyID: Int?
+    private var contentID: Int?
+    private var isStrategy = true
     weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
@@ -28,17 +30,22 @@ final class ExploreCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(exploreButton)
     }
 
-    func configure(title: String?, introText: String?, bucketTitle: String?, remoteID: Int?) {
+    func configure(title: String?, introText: String?, bucketTitle: String?, isStrategy: Bool, remoteID: Int?) {
         baseHeaderView?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
         skeletonManager.hide()
+        self.contentID = remoteID
+        self.isStrategy = isStrategy
     }
 
-    @IBAction func didTapExplore(strategyID: Int) {
-        delegate?.presentStrategyList(strategyID: self.strategyID)
+    @IBAction func didTapExplore(_ sender: Any) {
+        if isStrategy {
+            delegate?.presentStrategyList(strategyID: self.contentID)
+        } else {
+            delegate?.openTools(toolID: self.contentID)
+        }
     }
 }
-

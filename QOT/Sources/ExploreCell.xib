@@ -30,7 +30,7 @@
                     <rect key="frame" x="24" y="230.5" width="101" height="85.5"/>
                     <state key="normal" title="Explore Button"/>
                     <connections>
-                        <action selector="didTapExplore:" destination="iN0-l3-epB" eventType="touchUpInside" id="RBJ-qc-BAP"/>
+                        <action selector="didTapExplore:" destination="iN0-l3-epB" eventType="touchUpInside" id="EoA-HQ-dKE"/>
                     </connections>
                 </button>
             </subviews>

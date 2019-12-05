@@ -12,7 +12,7 @@ import DifferenceKit
 import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
-    func openToolFromSprint(toolID: Int?)
+    func openTools(toolID: Int?)
     func presentStrategyList(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
@@ -533,7 +533,7 @@ private extension DailyBriefViewController {
     func getDailyCheckinInsightsSHPICell(_ tableView: UITableView,
                                          _ indexPath: IndexPath,
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
-        let cell: DailyCheckinInsightsSHPICell = tableView.dequeueCell(for: indexPath)
+        let cell: DailyCheckinSHPICell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheck2SHPIModel)
         return cell
     }
@@ -597,14 +597,16 @@ private extension DailyBriefViewController {
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
                            bucketTitle: exploreViewModel?.bucketTitle ?? "",
-                           remoteID: exploreModel?.remoteID)
+                           isStrategy: true,
+                           remoteID: exploreViewModel?.remoteID)
             cell.delegate = self
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
                            bucketTitle: exploreViewModel?.bucketTitle ?? "",
-                           remoteID: exploreModel?.remoteID)
+                           isStrategy: false,
+                           remoteID: exploreViewModel?.remoteID)
             cell.delegate = self
         }
         return cell
@@ -660,7 +662,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(GoodToKnowCell.self)
         tableView.registerDequeueable(FromTignumCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
-        tableView.registerDequeueable(DailyCheckinInsightsSHPICell.self)
+        tableView.registerDequeueable(DailyCheckinSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
         tableView.registerDequeueable(ExploreCell.self)
         tableView.registerDequeueable(AboutMeCell.self)
@@ -751,11 +753,7 @@ extension DailyBriefViewController {
         router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
-    func presentStrategyList(strategyID: Int?) {
-        router.presentStrategyList(strategyID: strategyID)
-    }
-
-    func openToolFromSprint(toolID: Int?) {
+    func openTools(toolID: Int?) {
         router.presentToolsItems(toolID: toolID)
     }
 
@@ -773,6 +771,10 @@ extension DailyBriefViewController {
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {
         router.presentStrategyList(strategyID: selectedStrategyID)
+    }
+
+    func presentStrategyList(strategyID: Int?) {
+        router.presentStrategyList(strategyID: strategyID)
     }
 
     @objc func openTool(sender: UITapGestureRecognizer) {

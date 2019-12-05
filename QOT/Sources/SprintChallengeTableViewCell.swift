@@ -68,6 +68,6 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func openToolFromSprint() {
-        delegate?.openToolFromSprint(toolID: selectedToolID)
+        delegate?.openTools(toolID: selectedToolID)
     }
 }
