@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,8 +48,8 @@
             <viewLayoutGuide key="safeArea" id="hHY-0y-igv"/>
             <connections>
                 <outlet property="button" destination="J2g-Ge-Z5X" id="wRq-nl-6O6"/>
-                <outlet property="headerHeightConstraint" destination="nKz-xo-mm3" id="vTL-qa-lpv"/>
-                <outlet property="headerView" destination="nKz-xo-mm3" id="KeC-vW-SaL"/>
+                <outlet property="headerHeightConstraint" destination="CdO-Qt-BKn" id="sFT-V1-AhV"/>
+                <outlet property="headerView" destination="nKz-xo-mm3" id="Dxp-1G-Vly"/>
             </connections>
             <point key="canvasLocation" x="111.59420289855073" y="-70.982142857142847"/>
         </view>

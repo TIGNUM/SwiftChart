@@ -38,5 +38,4 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     @IBAction func preparations(_ sender: Any) {
         delegate?.displayCoachPreparationScreen()
     }
-
 }
