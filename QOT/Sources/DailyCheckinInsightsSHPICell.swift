@@ -10,67 +10,53 @@ import Foundation
 
 final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
-    private var baseHeaderView: QOTBaseHeaderView?
+    @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
-
+    @IBOutlet weak var shpiContentLabel: UILabel!
     @IBOutlet weak var shpiQuestionLabel: UILabel!
     @IBOutlet weak var barsTitleLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel!
+    @IBOutlet weak var maxLabel: UILabel!
     @IBOutlet weak var barsStackView: UIStackView!
-
     @IBOutlet private var bars: [UIView]?
     @IBOutlet private var labels: [UILabel]?
     @IBOutlet private var heights: [NSLayoutConstraint]?
+    private lazy var baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
 
     override func awakeFromNib() {
-        bars?.forEach {(bar) in
-            bar.frame = CGRect(x: 0, y: 0, width: 1, height: 35)
-        }
         super.awakeFromNib()
-        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        bars?.forEach { ThemeView.dailyInsightsChartBarUnselected.apply($0) }
+        labels?.forEach {
+            $0.font.withSize(16)
+            $0.textColor = .sand40
+        }
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(barsStackView)
-
+        ThemeText.dailyInsightsChartBarLabelUnselected.apply(minLabel.text, to: minLabel)
+        ThemeText.dailyInsightsChartBarLabelUnselected.apply(maxLabel.text, to: maxLabel)
     }
+
     func configure(with: DailyCheck2SHPIModel?) {
         guard let model = with else { return }
-        updateView(text: model.shpiContent, rating: model.shpiRating ?? 0, shpiQuestion: model.shpiQuestion)
         skeletonManager.hide()
-        baseHeaderView?.configure(title: model.title,
-                                  subtitle: model.shpiQuestion)
+        setupRatingChart(rating: model.shpiRating ?? 0)
+        baseHeaderView?.configure(title: model.title, subtitle: nil)
+
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
-        ThemeText.searchTopic.apply(model.shpiQuestion, to: baseHeaderView?.subtitleTextView)
-        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        ThemeText.shpiQuestion.apply(model.shpiQuestion, to: shpiQuestionLabel)
+        ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)
     }
 }
 
 private extension DailyCheckinInsightsSHPICell {
-    func updateView(text: String?, rating: Int, shpiQuestion: String?) {
-        baseHeaderView?.subtitleTextView.text = text
-        ThemeText.shpiQuestion.apply(shpiQuestion, to: shpiQuestionLabel)
+    func setupRatingChart(rating: Int) {
         let selectedIndex = max(0, rating - 1)
-        for index in 0...9 {
-            var barHeight: CGFloat = 32.0
-            var fontSize: CGFloat = 12.0
-            var color: UIColor = .white40
-            if index == selectedIndex {
-                barHeight = 56.0
-                fontSize = 16.0
-                color = .white
-            }
-            if labels?.count ?? 0 > index {
-                labels?[index].font = labels?[index].font.withSize(fontSize)
-                labels?[index].textColor = color
-            }
-
-            if heights?.count ?? 0 > index {
-                heights?[index].constant = barHeight
-            }
-
-            if bars?.count ?? 0 > index {
-                bars?[index].backgroundColor = color
-                bars?[index].setNeedsUpdateConstraints()
-            }
-        }
+        labels?.at(index: selectedIndex)?.font.withSize(16)
+        labels?.at(index: selectedIndex)?.textColor = .sand
+        heights?.at(index: selectedIndex)?.constant = 56
+        bars?.at(index: selectedIndex)?.backgroundColor = .sand
+        bars?.at(index: selectedIndex)?.setNeedsUpdateConstraints()
+        minLabel.textColor = selectedIndex == 0 ? .sand : .sand40
+        maxLabel.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
     }
 }
