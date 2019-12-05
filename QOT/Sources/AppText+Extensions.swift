@@ -22,7 +22,6 @@ import qot_dal
  */
 
 public extension AppTextKey {
-    PageName
     static let generic_content_error_title_invalid_content = AppTextKey("generic.content.error.title_invalid_content")
     static let know_strategy_list_strategy_section_next_up_title = AppTextKey("know.strategy_list.strategy.section_next_up.title")
     static let know_strategy_list_strategy_section_related_content_title = AppTextKey("know.strategy_list.strategy.section_related_content.title")
@@ -577,8 +576,6 @@ public extension AppTextKey {
     static let onboarding_launch_screen_view_body_intro = AppTextKey("onboarding.launch_screen.view.body_intro")
     static let onboarding_launch_screen_view_button_log_in = AppTextKey("onboarding.launch_screen.view.button_log_in")
     static let onboarding_launch_screen_view_button_register = AppTextKey("onboarding.launch_screen.view.button_register")
-    static let generic_alert_database_error_title = AppTextKey("generic.alert_database_error.title")
-    static let generic_alert_database_error_body = AppTextKey("generic.alert_database_error.body")
     static let onboarding_guided_track_view_title = AppTextKey("onboarding.guided_track.view.title")
     static let onboarding_guided_track_view_body = AppTextKey("onboarding.guided_track.view.body")
     static let onboarding_guided_track_view_button_fast_track = AppTextKey("onboarding.guided_track.view.button_fast_track")
