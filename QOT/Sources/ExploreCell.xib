@@ -11,27 +11,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ExploreCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="403" height="552"/>
+            <rect key="frame" x="0.0" y="0.0" width="403" height="357"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t7g-5T-pqp">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t7g-5T-pqp">
                     <rect key="frame" x="0.0" y="0.0" width="403" height="170"/>
-                    <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="170" id="oY7-LM-7tc"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strategy Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhL-zl-qLA">
-                    <rect key="frame" x="24" y="193" width="355" height="76"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="76" id="SDw-E4-gjo"/>
-                    </constraints>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strategy Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhL-zl-qLA">
+                    <rect key="frame" x="24" y="193" width="355" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeX-Re-eY0">
-                    <rect key="frame" x="24" y="286" width="101" height="30"/>
+                    <rect key="frame" x="24" y="230.5" width="101" height="85.5"/>
                     <state key="normal" title="Explore Button"/>
                 </button>
             </subviews>
@@ -42,6 +38,8 @@
                 <constraint firstItem="xhL-zl-qLA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Fb7-Jc-ADU"/>
                 <constraint firstItem="xhL-zl-qLA" firstAttribute="top" secondItem="t7g-5T-pqp" secondAttribute="bottom" constant="23" id="GT3-zp-S2x"/>
                 <constraint firstItem="t7g-5T-pqp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MrM-kz-dIr"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eeX-Re-eY0" secondAttribute="bottom" constant="41" id="Plb-Bs-usc"/>
+                <constraint firstItem="t7g-5T-pqp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WsP-ee-sLZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xhL-zl-qLA" secondAttribute="trailing" constant="24" id="gA5-CR-qUL"/>
                 <constraint firstItem="eeX-Re-eY0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="xtI-oT-qUY"/>
             </constraints>
@@ -53,7 +51,7 @@
                 <outlet property="headerView" destination="t7g-5T-pqp" id="24a-JC-4vm"/>
                 <outlet property="strategyTitleLabel" destination="xhL-zl-qLA" id="nG9-Rd-WUV"/>
             </connections>
-            <point key="canvasLocation" x="51.449275362318843" y="24.776785714285712"/>
+            <point key="canvasLocation" x="51.449275362318843" y="-40.513392857142854"/>
         </view>
     </objects>
 </document>
