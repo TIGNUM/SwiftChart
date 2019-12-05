@@ -18,12 +18,16 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var audioView: UIView!
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioLabel: UILabel!
+    @IBOutlet private weak var readCheckMark: UIImageView!
+    @IBOutlet private weak var audioIcon: UIImageView!
     private var mediaURL: URL?
+    private var timeToWatch: String?
     private var title: String?
     private var remoteID: Int = 0
     private var duration: Double = 0
     private var categoryTitle = ""
-    private weak var delegate: IsPlayingDelegate?
+    private var isRead = false
+    weak var delegate: IsPlayingDelegate?
     let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -37,20 +41,18 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addOtherView(mediaIconImageView)
         skeletonManager.addOtherView(audioView)
         skeletonManager.addOtherView(audioLabel)
+        skeletonManager.addOtherView(readCheckMark)
         checkIfPlaying()
+        checkIfRead()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        readCheckMark.isHidden = false
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
         selectedBackgroundView = nil
         checkIfPlaying()
-    }
-
-    private func checkIfPlaying() {
-        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
-        }
+        checkIfRead()
     }
 
     func configure(categoryTitle: String?,
@@ -59,6 +61,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
                    mediaURL: URL?,
                    duration: Double?,
                    mediaItemId: Int?,
+                   isRead: Bool,
                    delegate: IsPlayingDelegate?) {
         guard let category = categoryTitle,
             let titleText = title,
@@ -67,23 +70,25 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
             let id = mediaItemId else {
                 return
         }
+        self.isRead = isRead
         self.delegate = delegate
         self.categoryTitle = category
         self.mediaURL = mediaURL
         self.title = titleText
         self.remoteID = id
         self.duration = durationValue
+        self.timeToWatch = timeToWatch
         selectionStyle = .gray
         let bkView = UIView()
         ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
-        skeletonManager.hide()
-        ThemeText.articleRelatedTitleInStrategy.apply(titleText, to: titleLabel)
         ThemeText.articleRelatedDetailInStrategy.apply(timeText, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
+        checkIfRead()
         showDuration(durationValue)
         checkIfPlaying()
         setAudioAsCompleteIfNeeded(remoteID: id)
+        skeletonManager.hide()
     }
 }
 
@@ -105,12 +110,35 @@ extension StrategyContentTableViewCell {
 private extension StrategyContentTableViewCell {
     func showDuration(_ duration: Double) {
         let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        ThemeText.audioBar.apply(text, to: audioLabel)
+        isRead ? ThemeText.articleRelatedDetailInStrategyRead.apply(text, to: audioLabel) : ThemeText.audioBar.apply(text, to: audioLabel)
     }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
             ThemeView.audioPlaying.apply(audioView)
+        }
+    }
+
+    private func checkIfPlaying() {
+        if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
+            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+        }
+    }
+
+    private func checkIfRead() {
+        if isRead {
+            ThemeText.articleStrategyRead.apply(title, to: titleLabel)
+            ThemeButton.audioButtonGrey.apply(audioButton)
+            audioIcon.image = R.image.ic_audio_grey_light()
+            readCheckMark.image?.withRenderingMode(.alwaysOriginal)
+            readCheckMark.tintColor = .sand30
+            readCheckMark.alpha = 1
+        } else {
+            ThemeText.articleStrategyTitle.apply(title, to: titleLabel)
+            ThemeButton.audioButtonStrategy.apply(audioButton)
+            ThemeBorder.accent.apply(audioButton)
+            audioIcon.image = R.image.ic_audio()
+            readCheckMark.alpha = 0
         }
     }
 }
