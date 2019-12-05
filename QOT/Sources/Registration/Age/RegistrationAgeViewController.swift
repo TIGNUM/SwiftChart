@@ -17,16 +17,20 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var ageInputField: QotPlaceholderTextField!
     @IBOutlet private weak var ageRestrictionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-
     private let viewTheme = ThemeView.onboarding
-
     private var bottomConstraintInitialValue: CGFloat = 0
-    var interactor: RegistrationAgeInteractorInterface?
+    var interactor: RegistrationAgeInteractorInterface!
 
     lazy private var saveButton: RoundedButton = {
-        return RoundedButton(title: interactor?.createButtonTitle ?? "",
-                                       target: self,
-                                       action: #selector(didTapCreateAccountButton))
+        return RoundedButton(title: interactor.createButtonTitle,
+                             target: self,
+                             action: #selector(didTapCreateAccountButton))
+    }()
+
+    private lazy var createAccountButton: RoundedButton = {
+        return RoundedButton(title: interactor.createButtonTitle,
+                             target: self,
+                             action: #selector(didTapCreateAccountButton))
     }()
 
     lazy private var keyboardToolbar: UIToolbar = {
@@ -63,12 +67,7 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         return picker
     }()
 
-    private lazy var createAccountButton: RoundedButton = {
-        return RoundedButton(title: interactor?.createButtonTitle ?? "", target: self, action: #selector(didTapCreateAccountButton))
-    }()
-
     // MARK: - Init
-
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -77,11 +76,12 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
         super.init(coder: aDecoder)
     }
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         startObservingKeyboard()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         bottomConstraintInitialValue = bottomConstraint.constant
     }
 
@@ -92,44 +92,36 @@ final class RegistrationAgeViewController: BaseViewController, ScreenZLevel3 {
 
     override func didTapBackButton() {
         trackUserEvent(.BACK, action: .TAP)
-        interactor?.didTapBack()
+        interactor.didTapBack()
     }
 
+    // MARK: - Bottom Navigation
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         createAccountButton.isEnabled = !(ageInputField.text?.isEmpty ?? true)
         return [createAccountButton.barButton]
     }
 }
 
-// MARK: - Private
-
-private extension RegistrationAgeViewController {
-}
-
 // MARK: - Actions
-
 private extension RegistrationAgeViewController {
-
     @objc func didTapCreateAccountButton() {
         ageInputField.textField.resignFirstResponder()
         guard let year = ageInputField.text, Int(year) != nil else { return }
         trackUserEvent(.CREATE_ACCOUNT, stringValue: year, valueType: .USER_BIRTH_YEAR, action: .TAP)
-        interactor?.didTapNext(with: year)
+        interactor.didTapNext(with: year)
     }
 }
 
 // MARK: - RegistrationAgeViewControllerInterface
-
 extension RegistrationAgeViewController: RegistrationAgeViewControllerInterface {
-
     func setupView() {
         viewTheme.apply(view)
         viewTheme.apply(ageInputField.textField)
 
-        ThemeText.registrationAgeTitle.apply(interactor?.title, to: titleLabel)
-        ThemeText.onboardingInputPlaceholder.apply(interactor?.agePlaceholder, to: ageInputField.placeholderLabel)
-        ThemeText.registrationAgeDescription.apply(interactor?.descriptionText, to: descriptionLabel)
-        ThemeText.registrationAgeRestriction.apply(interactor?.ageRestrictionText, to: ageRestrictionLabel)
+        ThemeText.registrationAgeTitle.apply(interactor.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.agePlaceholder, to: ageInputField.placeholderLabel)
+        ThemeText.registrationAgeDescription.apply(interactor.descriptionText, to: descriptionLabel)
+        ThemeText.registrationAgeRestriction.apply(interactor.ageRestrictionText, to: ageRestrictionLabel)
 
         ageInputField.textField.inputView = yearPicker
         ageInputField.textField.inputAccessoryView = keyboardToolbar
@@ -139,7 +131,6 @@ extension RegistrationAgeViewController: RegistrationAgeViewControllerInterface 
 }
 
 // MARK: - UIPickerViewDataSource
-
 extension RegistrationAgeViewController: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -151,9 +142,7 @@ extension RegistrationAgeViewController: UIPickerViewDataSource {
 }
 
 // MARK: - UIPickerViewDelegate
-
 extension RegistrationAgeViewController: UIPickerViewDelegate {
-
     func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
         return NSAttributedString(string: years[row],
                                   attributes: [.font: UIFont.sfProtextRegular(ofSize: 24), .foregroundColor: UIColor.sand])
@@ -184,9 +173,7 @@ extension RegistrationAgeViewController: UITextFieldDelegate {
 }
 
 // MARK: - Keyboard
-
 extension RegistrationAgeViewController {
-
     override func keyboardWillAppear(notification: NSNotification) {
         animateKeyboardNotification(notification)
     }

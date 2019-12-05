@@ -20,13 +20,11 @@ struct RegistrationData {
 final class RegistrationInteractor {
 
     // MARK: - Properties
-
-    private let worker: RegistrationWorker
     private let presenter: RegistrationPresenterInterface
     private let router: RegistrationRouterInterface
-
     private var registrationData = RegistrationData()
     private var presentedControllers: [UIViewController] = [UIViewController]()
+    private lazy var worker = RegistrationWorker()
 
     private var codeController: RegistrationCodeViewController {
         let configurator = RegistrationCodeConfigurator.make()
@@ -70,10 +68,7 @@ final class RegistrationInteractor {
 
     // MARK: - Init
 
-    init(worker: RegistrationWorker,
-        presenter: RegistrationPresenterInterface,
-        router: RegistrationRouterInterface) {
-        self.worker = worker
+    init(presenter: RegistrationPresenterInterface, router: RegistrationRouter) {
         self.presenter = presenter
         self.router = router
 
