@@ -236,8 +236,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .feastForYourEyes,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
                 case .FROM_MY_COACH?:
-                    sectionDataList.append(ArraySection(model: .fromMyCoach,
-                                                        elements: strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)))
+                    let elements = strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)
+                    if elements.isEmpty == false {
+                        sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
+                    }
+
                 case .MY_PEAK_PERFORMANCE?:
                     let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
                     if elements.count > 0 {
@@ -972,14 +975,25 @@ extension DailyBriefInteractor {
     }
 
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
+        var modelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
+
         fromCoach.coachMessages?.forEach {(message) in
-            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!),
-                                                                             text: message.body ?? ""))
+            if let date = message.issueDate, let text = message.body {
+                let formattedDate = DateFormatter.messageDate.string(from: date)
+                messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: formattedDate, text: text))
+            }
+
         }
-        createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
-        return createFromMyCoachModelList
+
+        if let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""),
+            let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
+                let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
+                let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)
+                modelList.append(model)
+        }
+
+        return modelList
     }
 
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
