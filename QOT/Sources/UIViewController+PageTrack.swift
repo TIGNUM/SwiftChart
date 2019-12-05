@@ -92,6 +92,7 @@ extension UIViewController {
         case is OnboardingLoginViewController: return AppTextService.get(AppTextKey.onboarding_log_in)
         case is PaymentReminderViewController: return subscriptionReminderPageKey
         case is CoachMarksViewController: return guidedTrackPageKey
+        case is RegisterIntroViewController: return AppTextService.get(.onboarding_sign_up_intro)
         default: preconditionFailure()
         }
     }

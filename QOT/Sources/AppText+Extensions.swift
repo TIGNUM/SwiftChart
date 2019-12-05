@@ -637,4 +637,5 @@ public extension AppTextKey {
     static let onboarding_walkthrough_know = AppTextKey("onboarding.walkthrough.know")
     static let onboarding_walkthrough_my_qot = AppTextKey("onboarding.walkthrough.my_qot")
     static let onboarding_walkthrough_search = AppTextKey("onboarding.walkthrough.search")
+    static let onboarding_sign_up_intro = AppTextKey("onboarding.sign_up.intro")
 }

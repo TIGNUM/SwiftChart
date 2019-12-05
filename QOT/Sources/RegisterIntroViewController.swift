@@ -54,6 +54,11 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         getVideoCell()?.startPlayingFromBeggining()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_button_got_it),
