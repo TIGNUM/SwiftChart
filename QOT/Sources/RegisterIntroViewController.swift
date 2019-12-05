@@ -88,6 +88,7 @@ extension RegisterIntroViewController {
                 videoCell.playerController.removeFromParentViewController()
                 videoCell.mediaContentView.fill(subview: videoCell.playerController.view)
                 videoCell.playerController.showsPlaybackControls = false
+                videoCell.soundToggleButton.isSelected = !(videoCell.playerController.player?.isMuted ?? true)
                 self.refreshBottomNavigationItems()
             }
         }

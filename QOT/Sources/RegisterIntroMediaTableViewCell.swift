@@ -14,6 +14,7 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mediaContentView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var soundToggleButton: UIButton!
     var playerController = AVPlayerViewController()
 
     func configure(title: String?, body: String?, videoURL: String?) {
@@ -22,6 +23,10 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
         if let url = URL.init(string: videoURL ?? "") {
             embededableMediaPlayer(videoURL: url)
         }
+    }
+    @IBAction func didTapSoundToggleButton(_ sender: UIButton) {
+        sender.isSelected = !sender.isSelected
+        playerController.player?.isMuted = !sender.isSelected
     }
 
     func stopPlaying() {
@@ -53,5 +58,6 @@ private extension RegisterIntroMediaTableViewCell {
         playerController.view.frame = mediaContentView.bounds
         playerController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         playerController.player?.play()
+        playerController.player?.isMuted = true
     }
 }
