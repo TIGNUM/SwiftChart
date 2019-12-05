@@ -501,7 +501,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_code_verification_alert_code_error_body = AppTextKey("onboarding.sign_up.code_verification.alert.code_error.body")
     static let onboarding_sign_up_code_verification_section_body_label_code = AppTextKey("onboarding.sign_up.code_verification.section_body.label_code")
     static let onboarding_sign_up_code_verification_section_header_body_description = AppTextKey("onboarding.sign_up.code_verification.section_header.body_description")
-    static let onboarding_sign_up_code_verification_section_header_title = AppTextKey("onboarding.sign_up.code_verification.section_header.title")
+    static let onboarding_sign_up_code_verification_section_header_title = AppTextKey("onboarding.sign_up.code_verification.section_header.title") // TODO update title in live ADMIN
     static let onboarding_sign_up_code_verification_section_help_body_code_info = AppTextKey("onboarding.sign_up.code_verification.section_help.body_code_info")
     static let onboarding_sign_up_code_verification_section_help_button_change_email = AppTextKey("onboarding.sign_up.code_verification.section_help.button_change_email")
     static let onboarding_sign_up_code_verification_section_help_button_help = AppTextKey("onboarding.sign_up.code_verification.section_help.button_help")
@@ -517,12 +517,12 @@ public extension AppTextKey {
     static let onboarding_sign_up_email_verification_error_enter_email_text = AppTextKey("onboarding.sign_up.email_verification.error.enter_email_text")
     static let onboarding_sign_up_email_verification_section_body_placeholder = AppTextKey("onboarding.sign_up.email_verification.section_body.placeholder")
     static let onboarding_sign_up_email_verification_section_footer_button_next = AppTextKey("onboarding.sign_up.email_verification.section_footer.button_next")
-    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
+    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title") // TODO update title in live ADMIN
     static let onboarding_sign_up_enter_name_section_body_label_mandatory = AppTextKey("onboarding.sign_up.enter_name.section_body.label_mandatory")
     static let onboarding_sign_up_enter_name_section_body_placeholder_last_name = AppTextKey("onboarding.sign_up.enter_name.section_body.placeholder_last_name")
     static let onboarding_sign_up_enter_name_section_body_placeholder_name = AppTextKey("onboarding.sign_up.enter_name.section_body.placeholder_name")
     static let onboarding_sign_up_enter_name_section_footer_button_next = AppTextKey("onboarding.sign_up.enter_name.section_footer.button_next")
-    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
+    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title") // TODO update title in live ADMIN
     static let onboarding_walkthrough_coach_section_body_body = AppTextKey("onboarding.walkthrough.coach.section_body.body")
     static let onboarding_walkthrough_my_qot_section_body_body = AppTextKey("onboarding.walkthrough.my_qot.section_body.body")
     static let onboarding_walkthrough_search_section_body_body = AppTextKey("onboarding.walkthrough.search.section_body.body")
