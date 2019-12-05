@@ -626,7 +626,7 @@ public extension AppTextKey {
     static let onboarding_guided_track = AppTextKey("onboarding.guided_track")
     static let onboarding_launch_screen = AppTextKey("onboarding.launch_screen")
     static let onboarding_log_in = AppTextKey("onboarding.log_in")
-    static let onboarding_log_in_faq = AppTextKey("onboarding.log_in_faq")
+    static let onboarding_log_in_faq = AppTextKey("onboarding.log_in_faq") //TODO: Add in Live ADMIN
     static let onboarding_notification_permission = AppTextKey("onboarding.notification_permission")
     static let onboarding_sign_up_age_verification = AppTextKey("onboarding.sign_up.age_verification")
     static let onboarding_sign_up_code_verification = AppTextKey("onboarding.sign_up.code_verification")
@@ -638,5 +638,5 @@ public extension AppTextKey {
     static let onboarding_walkthrough_know = AppTextKey("onboarding.walkthrough.know")
     static let onboarding_walkthrough_my_qot = AppTextKey("onboarding.walkthrough.my_qot")
     static let onboarding_walkthrough_search = AppTextKey("onboarding.walkthrough.search")
-    static let onboarding_sign_up_intro = AppTextKey("onboarding.sign_up.intro")
+    static let onboarding_sign_up_intro = AppTextKey("onboarding.sign_up.intro") //TODO: Add in Live ADMIN
 }
