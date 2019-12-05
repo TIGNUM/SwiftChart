@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7Mp-YA-r8m" id="Gmw-5n-YAE">
-                <rect key="frame" x="0.0" y="0.0" width="375" height="135.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="375" height="136"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehM-mL-nRb">
@@ -26,7 +24,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 Seen of 5" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j1y-So-E4M">
-                        <rect key="frame" x="50" y="62.5" width="189" height="15"/>
+                        <rect key="frame" x="50" y="62.5" width="65" height="15"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -39,7 +37,7 @@
                         </constraints>
                     </imageView>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sw8-fo-yob" userLabel="Line">
-                        <rect key="frame" x="24" y="134.5" width="351" height="1"/>
+                        <rect key="frame" x="24" y="135" width="351" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="678-WY-Tpg"/>
@@ -78,6 +76,14 @@
                             <action selector="didTapAudioButton" destination="7Mp-YA-r8m" eventType="touchUpInside" id="XuS-gt-vh2"/>
                         </connections>
                     </button>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="my_sprints_completed" translatesAutoresizingMaskIntoConstraints="NO" id="4b4-4c-RR9">
+                        <rect key="frame" x="123" y="64" width="12" height="12"/>
+                        <color key="tintColor" cocoaTouchSystemColor="lightTextColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="12" id="Qd4-cm-kvB"/>
+                            <constraint firstAttribute="width" constant="12" id="rha-0P-nnK"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -86,8 +92,8 @@
                     <constraint firstItem="ehM-mL-nRb" firstAttribute="leading" secondItem="Gmw-5n-YAE" secondAttribute="leadingMargin" constant="8" id="ElT-Qj-7DS"/>
                     <constraint firstItem="ehM-mL-nRb" firstAttribute="top" secondItem="Gmw-5n-YAE" secondAttribute="topMargin" constant="21.5" id="FsI-hI-aPH"/>
                     <constraint firstItem="6Si-9q-0Zf" firstAttribute="bottom" secondItem="LYb-v5-V3v" secondAttribute="bottom" id="HVc-hm-K0f"/>
+                    <constraint firstItem="4b4-4c-RR9" firstAttribute="centerY" secondItem="j1y-So-E4M" secondAttribute="centerY" id="Ids-qf-AAb"/>
                     <constraint firstItem="6Si-9q-0Zf" firstAttribute="trailing" secondItem="LYb-v5-V3v" secondAttribute="trailing" id="NhZ-xD-hnK"/>
-                    <constraint firstItem="LYb-v5-V3v" firstAttribute="leading" secondItem="j1y-So-E4M" secondAttribute="trailing" constant="25" id="Oer-Yc-yij"/>
                     <constraint firstItem="j1y-So-E4M" firstAttribute="leading" secondItem="Ssr-Ea-c9v" secondAttribute="trailing" constant="12" id="TWL-Tc-dc2"/>
                     <constraint firstItem="j1y-So-E4M" firstAttribute="centerY" secondItem="Ssr-Ea-c9v" secondAttribute="centerY" id="VUK-Hx-wfx"/>
                     <constraint firstItem="Ssr-Ea-c9v" firstAttribute="leading" secondItem="Gmw-5n-YAE" secondAttribute="leadingMargin" constant="8" id="VVc-mS-W1O"/>
@@ -98,23 +104,27 @@
                     <constraint firstItem="Sw8-fo-yob" firstAttribute="leading" secondItem="Gmw-5n-YAE" secondAttribute="leading" constant="24" id="eK3-BG-7De"/>
                     <constraint firstItem="Ssr-Ea-c9v" firstAttribute="top" secondItem="ehM-mL-nRb" secondAttribute="bottom" constant="12" id="ico-wL-P7J"/>
                     <constraint firstItem="LYb-v5-V3v" firstAttribute="leading" secondItem="ehM-mL-nRb" secondAttribute="trailing" constant="12" id="tyQ-TT-C8i"/>
+                    <constraint firstItem="4b4-4c-RR9" firstAttribute="leading" secondItem="j1y-So-E4M" secondAttribute="trailing" constant="8" id="uD2-q6-2Gd"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="XSK-0F-Ydj"/>
             <connections>
                 <outlet property="audioButton" destination="6Si-9q-0Zf" id="hJg-Qt-JTB"/>
+                <outlet property="audioIcon" destination="4iG-de-5fb" id="2hC-gV-ogY"/>
                 <outlet property="audioLabel" destination="3m8-k8-xub" id="Ezk-UF-fBl"/>
                 <outlet property="audioView" destination="LYb-v5-V3v" id="B9G-Tx-Glk"/>
                 <outlet property="detailLabel" destination="j1y-So-E4M" id="yCp-Pu-wJl"/>
                 <outlet property="mediaIconImageView" destination="Ssr-Ea-c9v" id="CS2-wb-xsT"/>
+                <outlet property="readCheckMark" destination="4b4-4c-RR9" id="ZuS-hN-eNh"/>
                 <outlet property="titleLabel" destination="ehM-mL-nRb" id="DFg-BN-Unu"/>
             </connections>
-            <point key="canvasLocation" x="260" y="153.82308845577214"/>
+            <point key="canvasLocation" x="165.94202898550725" y="135.9375"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ic_audio" width="16" height="16"/>
         <image name="ic_seen_of" width="11" height="12"/>
+        <image name="my_sprints_completed" width="16" height="16"/>
     </resources>
 </document>

@@ -270,13 +270,36 @@ extension AppCoordinator {
 // MARK: - Handle incomming RemoteNotification
 
 extension AppCoordinator {
-    func handleIncommingNotificationDeepLinkURL(url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+    func handleIncommingNotificationDeepLinkURLInBackground(identifier: String,
+                                                            url: URL, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
+            completionHandler(.noData)
             return
         }
         log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
+        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (error) in
+            completionHandler(.noData)
+        }
         // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
-        completionHandler(.noData)
+    }
+
+    func handleIncommingNotificationDeepLinkURL(identifier: String,
+                                                url: URL, completionHandler: @escaping () -> Void) {
+        guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
+            completionHandler()
+            return
+        }
+        log("handleIncommingNotificationDeepLinkURL[\(scheme)]: \(url)", level: .info)
+        NotificationService.main.reportReceivedPushNotification(identifier: nil, internalNotificationIdentifier: identifier, link: url.absoluteString) { (error) in
+            completionHandler()
+        }
+        // TODO: handle silent push notification... ie. Sync Content or import Calendar Events .. and so on
+    }
+
+    func handlePushNotificationResponse(identifier: String, completionHandler: @escaping () -> Void) {
+        NotificationService.main.reportSelectedNotification(internalNotificationIdentifier: identifier) { (_) in
+            completionHandler()
+        }
     }
 }
 

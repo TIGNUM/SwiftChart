@@ -19,6 +19,7 @@ struct Strategy {
         let mediaItem: QDMContentItem?
         let contentItems: [QDMContentItem]?
         let valueDuration: Int
+        let isRead: Bool?
 
         var mediaURL: URL? {
             if let download = mediaItem?.userStorages?.filter({ (storage) -> Bool in

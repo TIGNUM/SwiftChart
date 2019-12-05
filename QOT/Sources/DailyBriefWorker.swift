@@ -100,29 +100,6 @@ extension DailyBriefWorker {
 
 // MARK: - Daily Checkin 2
 extension DailyBriefWorker {
-    var shpiAnswer: QDMDailyCheckInAnswer? {
-        var shpiAnswer: QDMDailyCheckInAnswer?
-        buckets.forEach { (bucket) in
-            bucket.dailyCheckInAnswers?.forEach({ (dailyAnswer) in
-                if dailyAnswer.SHPIQuestionId != nil && dailyAnswer.answerId != nil {
-                    shpiAnswer = dailyAnswer
-                }
-            })
-        }
-        return shpiAnswer
-    }
-
-    var peakPerformanceCount: Int? {
-        var numberOfPeakPerformances: Int?
-        buckets.forEach {(bucket) in
-            bucket.dailyCheckInAnswers?.forEach({ (dailyAnswer) in
-                if dailyAnswer.PeakPerformanceCount != nil && dailyAnswer.answerId != nil {
-                    numberOfPeakPerformances = dailyAnswer.answerId
-                }
-            })
-        }
-        return numberOfPeakPerformances
-    }
 
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
         return buckets[row]

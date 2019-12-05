@@ -24,8 +24,10 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
 
     func receivedBackgroundNotification(_ notificationContent: UANotificationContent,
                                         completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        if let deepLinkURL = notificationContent.deepLinkURL {
-            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(url: deepLinkURL,
+        if let deepLinkURL = notificationContent.deepLinkURL,
+            let identifier = notificationContent.notification?.request.identifier {
+            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURLInBackground(identifier: identifier,
+                                                                              url: deepLinkURL,
                                                                               completionHandler: completionHandler)
         } else {
             completionHandler(.noData)
@@ -35,12 +37,23 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     func receivedNotificationResponse(_ notificationResponse: UANotificationResponse,
                                       completionHandler: @escaping () -> Void) {
         process(notificationResponse)
-        completionHandler()
+        if let identifier = notificationResponse.notificationContent.notification?.request.identifier {
+            appDelegate.appCoordinator.handlePushNotificationResponse(identifier: identifier, completionHandler: completionHandler)
+        } else {
+            completionHandler()
+        }
     }
 
     func receivedForegroundNotification(_ notificationContent: UANotificationContent,
                                         completionHandler: @escaping () -> Void) {
-        completionHandler()
+        if let deepLinkURL = notificationContent.deepLinkURL,
+            let identifier = notificationContent.notification?.request.identifier {
+            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(identifier: identifier,
+                                                                              url: deepLinkURL,
+                                                                              completionHandler: completionHandler)
+        } else {
+            completionHandler()
+        }
     }
 
     func presentationOptions(for notification: UNNotification) -> UNNotificationPresentationOptions {

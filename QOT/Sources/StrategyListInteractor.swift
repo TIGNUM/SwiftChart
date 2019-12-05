@@ -78,6 +78,10 @@ extension StrategyListInteractor: StrategyListInteractorInterface {
     func selectedStrategyId() -> Int {
         return worker.selectedStrategyId()
     }
+
+    func loadStrategies() {
+        return worker.loadStrategies()
+    }
 }
 
 // FIXME: Refactor all logics in one place

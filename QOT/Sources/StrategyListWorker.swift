@@ -45,7 +45,17 @@ final class StrategyListWorker {
 
     init(selectedStrategyID: Int?) {
         self.selectedStrategyID = selectedStrategyID
+        loadStrategies()
+    }
 
+    var foundationStrategies = [Strategy.Item]()
+
+    var strategies = [Strategy.Item]()
+    func selectedStrategyId() -> Int {
+        return selectedStrategyID ?? 0
+    }
+
+    func loadStrategies() {
         qot_dal.ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in
             var items = [Strategy.Item]()
             for contentCollection in foundation?.contentCollections.filter({ (collection) -> Bool in
@@ -59,7 +69,8 @@ final class StrategyListWorker {
                                            imageURL: imageURL,
                                            mediaItem: foundationItem,
                                            contentItems: contentCollection.contentItems,
-                                           valueDuration: contentCollection.secondsRequired))
+                                           valueDuration: contentCollection.secondsRequired,
+                                           isRead: contentCollection.viewedAt != nil))
             }
             self?.foundationStrategies = items
         }
@@ -79,18 +90,11 @@ final class StrategyListWorker {
                                            imageURL: nil,
                                            mediaItem: firstAudioItem,
                                            contentItems: contentCollection.contentItems,
-                                           valueDuration: Int(firstAudioItem?.valueDuration ?? 0)))
+                                           valueDuration: Int(firstAudioItem?.valueDuration ?? 0),
+                                           isRead: contentCollection.viewedAt != nil ))
             }
             self?.strategies = items
             self?.interactor?.reloadData()
         }
-    }
-
-    var foundationStrategies = [Strategy.Item]()
-
-    var strategies = [Strategy.Item]()
-
-    func selectedStrategyId() -> Int {
-        return selectedStrategyID ?? 0
     }
 }

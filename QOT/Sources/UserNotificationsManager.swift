@@ -63,6 +63,8 @@ final class UserNotificationsManager {
             let futureRequests = items.filter { $0.localNotificationDate ?? now > now }
             requests.append(contentsOf: futureRequests.compactMap({ $0.notificationRequest }))
             scheduledNotificationItems.append(contentsOf: futureRequests)
+            // report scheduled guide item notifications
+            NotificationService.main.reportScheduledLocalNotification(items) { (_) in /* WOW */ }
             dispatchGroup.leave()
         }
 
@@ -119,9 +121,15 @@ final class UserNotificationsManager {
             let preparationNotificationRequests = ciriticalPreparations.compactMap({
                 $0.notificationRequest(with: preparationNotificationContents.shuffled().first ?? "")
             })
+            // report scheduled preparation notifications
+            for request in preparationNotificationRequests {
+                guard let link = request.content.link() else { continue }
+                NotificationService.main.reportScheduledLocalNotification(identifier: nil,
+                                                                          internalNotificationIdentifier: request.identifier,
+                                                                          link: link) { (_) in /* WOW */ }
+            }
             requests.append(contentsOf: preparationNotificationRequests)
             self._scheduleNotifications(currentSprint, sprintNotificationConfig, requests)
-            NotificationService.main.reportScheduledNotification(scheduledNotificationItems) { (error) in }
         }
     }
 
@@ -132,6 +140,13 @@ final class UserNotificationsManager {
         self.createSprintNotifications(currentSprint, sprintNotificationConfig, requests) { (requests, identifiersToRemove) in
             guard let newRequests = requests, newRequests.isEmpty == false else {
                 return
+            }
+            // report scheduled sprint notifications
+            for request in newRequests {
+                guard let link = request.content.link() else { continue }
+                NotificationService.main.reportScheduledLocalNotification(identifier: nil,
+                                                                          internalNotificationIdentifier: request.identifier,
+                                                                          link: link) { (_) in /* WOW */ }
             }
             let notificationCenter = UNUserNotificationCenter.current()
 
@@ -271,17 +286,9 @@ extension UserNotificationsManager {
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.SPRINT, .GUIDE_ITEM_USER_NOTIFICATION, .NONE]
+        let dataTypes: [SyncDataType] = [.SPRINT, .LOCAL_NOTIFICATION, .NONE]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
         scheduleNotifications()
-    }
-}
-
-extension UserNotificationsManager {
-    func notificationUpSync(_ object: QDMNotification) {
-        NotificationService.main.notificationsUpSync([object]) { error in
-            print("notificationUpSync - \(error?.localizedDescription ?? "No Errors")")
-        }
     }
 }
