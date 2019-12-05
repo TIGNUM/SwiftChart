@@ -174,23 +174,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     //Interface Orientation
     func application(_ application: UIApplication,
                      supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
-        if let rootViewController = self.topViewControllerWithRootViewController(rootViewController: window?.rootViewController) as? BaseViewController {
-            return rootViewController.canRotate() ? .all : .portrait
-        }
-        return .portrait
-    }
-
-    private func topViewControllerWithRootViewController(rootViewController: UIViewController!) -> UIViewController? {
-        if rootViewController == nil { return nil }
-        if rootViewController.isKind(of: UITabBarController.self) {
-            return topViewControllerWithRootViewController(rootViewController: (rootViewController as? UITabBarController)?.selectedViewController)
-        } else if rootViewController.isKind(of: UINavigationController.self) {
-            return topViewControllerWithRootViewController(rootViewController: (rootViewController as?
-                UINavigationController)?.visibleViewController)
-        } else if rootViewController.presentedViewController != nil {
-            return topViewControllerWithRootViewController(rootViewController: rootViewController.presentedViewController)
-        }
-        return rootViewController
+        return AppCoordinator.orientationManager.supportedOrientations
     }
 }
 

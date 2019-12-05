@@ -13,11 +13,7 @@ class BaseViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isLightBackground() ? .default : .lightContent
     }
-
-    func canRotate() -> Bool {
-        return false
-    }
-
+    
     deinit {
         print("DEINIT \(self)")
     }

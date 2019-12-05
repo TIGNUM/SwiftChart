@@ -11,7 +11,7 @@ import AVFoundation
 import SVProgressHUD
 import qot_dal
 
-final class SigningInfoViewController: BaseViewController, ScreenZLevelLogin {
+final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     let mediaName = "LoginVideo"

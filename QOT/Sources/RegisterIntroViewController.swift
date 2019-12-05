@@ -14,7 +14,7 @@ enum RegisterIntroCellTypes: Int, CaseIterable {
     case NoteCell
 }
 
-final class RegisterIntroViewController: BaseViewController, ScreenZLevelLogin {
+final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
@@ -45,18 +45,16 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevelLogin {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         getVideoCell()?.stopPlaying()
+        AppCoordinator.orientationManager.regular()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppCoordinator.orientationManager.videos()
         getVideoCell()?.startPlayingFromBeggining()
     }
 
     // MARK: - Overridden
-    override func canRotate() -> Bool {
-        return true
-    }
-
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_button_got_it),
                                         target: self,
