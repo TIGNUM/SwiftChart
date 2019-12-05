@@ -13,7 +13,7 @@ class BaseViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isLightBackground() ? .default : .lightContent
     }
-
+    
     deinit {
         print("DEINIT \(self)")
     }

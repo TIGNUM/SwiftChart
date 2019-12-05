@@ -27,7 +27,6 @@ final class RegistrationInteractor {
 
     private var registrationData = RegistrationData()
     private var presentedControllers: [UIViewController] = [UIViewController]()
-    private let cachedTBV: QDMToBeVision?
 
     private var codeController: RegistrationCodeViewController {
         let configurator = RegistrationCodeConfigurator.make()
@@ -73,12 +72,10 @@ final class RegistrationInteractor {
 
     init(worker: RegistrationWorker,
         presenter: RegistrationPresenterInterface,
-        router: RegistrationRouterInterface,
-        cachedTBV: QDMToBeVision?) {
+        router: RegistrationRouterInterface) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        self.cachedTBV = cachedTBV
 
         let controller = R.storyboard.registrationEmail.registrationEmailViewController() ?? RegistrationEmailViewController()
         let configurator = RegistrationEmailConfigurator.make()
@@ -164,14 +161,6 @@ extension RegistrationInteractor: RegistrationDelegate {
 private extension RegistrationInteractor {
 
     func handleSuccess() {
-        // Save ToBeVision
-        if var tbv = cachedTBV {
-            if tbv.headline?.isEmpty != false {
-                tbv.headline = AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title_headline)
-            }
-            worker.updateToBeVision(with: tbv)
-        }
-
         self.presentedControllers.append(self.trackSelectionController)
         self.presenter.present(controller: self.trackSelectionController, direction: .forward)
     }
@@ -179,7 +168,6 @@ private extension RegistrationInteractor {
     func navigateToLogin(with email: String?, toBeVision: Bool) {
         var userInfo = [String: Any]()
         if let email = email { userInfo[Notification.Name.RegistrationKeys.email] = email }
-        if toBeVision { userInfo[Notification.Name.RegistrationKeys.toBeVision] = cachedTBV }
         NotificationCenter.default.post(name: .registrationShouldShowLogin, object: nil, userInfo: userInfo)
     }
 }

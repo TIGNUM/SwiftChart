@@ -11,7 +11,7 @@ import AVFoundation
 import SVProgressHUD
 import qot_dal
 
-final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
+final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     // MARK: - Properties
     let mediaName = "LoginVideo"
@@ -22,13 +22,13 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     var playerLayer: AVPlayerLayer?
     var playerLooper: AVPlayerLooper?
 
+    var loginButton: UIBarButtonItem = UIBarButtonItem.init()
+    var registerButton: UIBarButtonItem = UIBarButtonItem.init()
+
     // Outlets
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
-    @IBOutlet private weak var loginButton: RoundedButton!
-    @IBOutlet private weak var registerButton: RoundedButton!
-    weak var delegate: SigningInfoDelegate?
 
     // MARK: - Init
     init() {
@@ -42,6 +42,16 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
         playerLayer = AVPlayerLayer(player: player)
 
         super.init(nibName: nil, bundle: nil)
+        loginButton = roundedBarButtonItem(title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_log_in),
+                                           buttonWidth: .Done,
+                                           action: #selector(didTapLogin),
+                                           backgroundColor: .carbon,
+                                           borderColor: .accent40)
+        registerButton = roundedBarButtonItem(title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register),
+                                              buttonWidth: .SaveChanges,
+                                              action: #selector(didTapStart),
+                                              backgroundColor: .carbon,
+                                              borderColor: .accent40)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -93,11 +103,11 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevelOverlay {
     }
 
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
+        return [loginButton]
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return nil
+        return [registerButton]
     }
 
     override func viewDidLayoutSubviews() {
@@ -117,22 +127,17 @@ private extension SigningInfoViewController {
             self.bodyLabel.alpha = 1.0
         }
     }
-
-    func setupButtons() {
-        ThemableButton.signinInfo.apply(loginButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_log_in))
-        ThemableButton.signinInfo.apply(registerButton, title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register))
-    }
 }
 
 // MARK: - Actions
 private extension SigningInfoViewController {
 
-    @IBAction func didTapLogin() {
+    @objc func didTapLogin() {
         trackUserEvent(.LOG_IN, action: .TAP)
         interactor?.didTapLoginButton()
     }
 
-    @IBAction func didTapStart() {
+    @objc func didTapStart() {
         trackUserEvent(.NEW_USER, action: .TAP)
         interactor?.didTapStartButton()
     }
@@ -142,7 +147,6 @@ private extension SigningInfoViewController {
 extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
         ThemeView.level1.apply(view)
-        setupButtons()
         titleLabel.alpha = 0.0
         bodyLabel.alpha = 0.0
     }

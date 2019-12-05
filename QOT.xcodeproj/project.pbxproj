@@ -583,13 +583,6 @@
 		8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */; };
 		8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */; };
 		8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE106A231526D400A247A5 /* QOTAlert.swift */; };
-		8DBE1ED722F46B7400BB1086 /* OnboardingLandingPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ECF22F46B7400BB1086 /* OnboardingLandingPagePresenter.swift */; };
-		8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED022F46B7400BB1086 /* OnboardingLandingPageWorker.swift */; };
-		8DBE1ED922F46B7400BB1086 /* OnboardingLandingPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED122F46B7400BB1086 /* OnboardingLandingPageRouter.swift */; };
-		8DBE1EDA22F46B7400BB1086 /* OnboardingLandingPageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED222F46B7400BB1086 /* OnboardingLandingPageInterface.swift */; };
-		8DBE1EDB22F46B7400BB1086 /* OnboardingLandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED322F46B7400BB1086 /* OnboardingLandingPageViewController.swift */; };
-		8DBE1EDC22F46B7400BB1086 /* OnboardingLandingPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED422F46B7400BB1086 /* OnboardingLandingPageInteractor.swift */; };
-		8DBE1EDE22F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED622F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift */; };
 		8DC2F7242313F2B70002F29F /* StreamVideoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2F7232313F2B70002F29F /* StreamVideoInteractor.swift */; };
 		8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC2F7252313F4470002F29F /* StreamVideoWorker.swift */; };
 		8DC59B6322FD75D700587EA4 /* BaseSigningWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */; };
@@ -805,6 +798,14 @@
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
 		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
 		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
+		B474CA8D2398F85F00A829B5 /* RegisterIntroPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */; };
+		B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */; };
+		B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */; };
+		B474CA902398F85F00A829B5 /* RegisterIntroInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */; };
+		B474CA912398F85F00A829B5 /* RegisterIntroViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */; };
+		B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */; };
+		B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */; };
+		B474CA942398F85F00A829B5 /* RegisterIntroConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */; };
 		B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */; };
 		B47953B4230AD512006EFE0F /* MyDataScreenPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */; };
 		B47953B5230AD512006EFE0F /* MyDataScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */; };
@@ -816,6 +817,11 @@
 		B47CA1AE2334F66C001A65AE /* ArticleEmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */; };
 		B47CA1AF2334F66C001A65AE /* ArticleEmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */; };
 		B4993F49233243D4001E5676 /* SkeletonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4993F48233243D4001E5676 /* SkeletonManager.swift */; };
+		B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */; };
+		B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */; };
+		B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499A7052395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift */; };
+		B499A7092395289B00BDD4CE /* RegisterIntroNoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B499A7072395289B00BDD4CE /* RegisterIntroNoteTableViewCell.swift */; };
+		B499A70A2395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B499A7082395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib */; };
 		B49AC28D233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */; };
 		B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */; };
 		B49AC292233BA5DC009AC1CF /* PaymentFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */; };
@@ -1787,13 +1793,6 @@
 		8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertView.swift; sourceTree = "<group>"; };
 		8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoAlertView.xib; sourceTree = "<group>"; };
 		8DAE106A231526D400A247A5 /* QOTAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTAlert.swift; sourceTree = "<group>"; };
-		8DBE1ECF22F46B7400BB1086 /* OnboardingLandingPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPagePresenter.swift; sourceTree = "<group>"; };
-		8DBE1ED022F46B7400BB1086 /* OnboardingLandingPageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageWorker.swift; sourceTree = "<group>"; };
-		8DBE1ED122F46B7400BB1086 /* OnboardingLandingPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageRouter.swift; sourceTree = "<group>"; };
-		8DBE1ED222F46B7400BB1086 /* OnboardingLandingPageInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageInterface.swift; sourceTree = "<group>"; };
-		8DBE1ED322F46B7400BB1086 /* OnboardingLandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageViewController.swift; sourceTree = "<group>"; };
-		8DBE1ED422F46B7400BB1086 /* OnboardingLandingPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageInteractor.swift; sourceTree = "<group>"; };
-		8DBE1ED622F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageConfigurator.swift; sourceTree = "<group>"; };
 		8DC2F7232313F2B70002F29F /* StreamVideoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoInteractor.swift; sourceTree = "<group>"; };
 		8DC2F7252313F4470002F29F /* StreamVideoWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamVideoWorker.swift; sourceTree = "<group>"; };
 		8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSigningWorker.swift; sourceTree = "<group>"; };
@@ -1987,6 +1986,14 @@
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
 		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
+		B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroPresenter.swift; sourceTree = "<group>"; };
+		B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroWorker.swift; sourceTree = "<group>"; };
+		B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroRouter.swift; sourceTree = "<group>"; };
+		B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroInterface.swift; sourceTree = "<group>"; };
+		B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroViewController.swift; sourceTree = "<group>"; };
+		B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroInteractor.swift; sourceTree = "<group>"; };
+		B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroModel.swift; sourceTree = "<group>"; };
+		B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroConfigurator.swift; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -1998,6 +2005,11 @@
 		B47CA1AC2334F66B001A65AE /* ArticleEmptyTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleEmptyTableViewCell.xib; sourceTree = "<group>"; };
 		B47CA1AD2334F66B001A65AE /* ArticleEmptyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleEmptyTableViewCell.swift; sourceTree = "<group>"; };
 		B4993F48233243D4001E5676 /* SkeletonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkeletonManager.swift; sourceTree = "<group>"; };
+		B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegisterIntro.storyboard; sourceTree = "<group>"; };
+		B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RegisterIntroMediaTableViewCell.xib; sourceTree = "<group>"; };
+		B499A7052395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterIntroMediaTableViewCell.swift; sourceTree = "<group>"; };
+		B499A7072395289B00BDD4CE /* RegisterIntroNoteTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RegisterIntroNoteTableViewCell.swift; sourceTree = "<group>"; };
+		B499A7082395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = RegisterIntroNoteTableViewCell.xib; sourceTree = "<group>"; };
 		B49AC28C233BA3B2009AC1CF /* PaymentSwitchAccountTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentSwitchAccountTableViewCell.xib; sourceTree = "<group>"; };
 		B49AC28E233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentSwitchAccountTableViewCell.swift; sourceTree = "<group>"; };
 		B49AC290233BA5DC009AC1CF /* PaymentFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentFooterView.swift; sourceTree = "<group>"; };
@@ -2737,7 +2749,7 @@
 				8DC59B6222FD75D700587EA4 /* BaseSigningWorker.swift */,
 				8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */,
 				366AFD1620BDAD0800109F29 /* FormView */,
-				8DBE1EBE22F460CC00BB1086 /* OnboardingLandingPage */,
+				B499A7012395282500BDD4CE /* RegisterVideoIntro */,
 				36796A4B20D3C4A800B55429 /* SigningInfo */,
 				367CD17622EF4EAD00AF2187 /* Login_3.0 */,
 				8D13B8DD22FB1F0300B776E8 /* CreateAccountInfo */,
@@ -3627,20 +3639,6 @@
 			path = Email;
 			sourceTree = "<group>";
 		};
-		8DBE1EBE22F460CC00BB1086 /* OnboardingLandingPage */ = {
-			isa = PBXGroup;
-			children = (
-				8DBE1ED622F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift */,
-				8DBE1ED422F46B7400BB1086 /* OnboardingLandingPageInteractor.swift */,
-				8DBE1ED222F46B7400BB1086 /* OnboardingLandingPageInterface.swift */,
-				8DBE1ECF22F46B7400BB1086 /* OnboardingLandingPagePresenter.swift */,
-				8DBE1ED122F46B7400BB1086 /* OnboardingLandingPageRouter.swift */,
-				8DBE1ED322F46B7400BB1086 /* OnboardingLandingPageViewController.swift */,
-				8DBE1ED022F46B7400BB1086 /* OnboardingLandingPageWorker.swift */,
-			);
-			name = OnboardingLandingPage;
-			sourceTree = "<group>";
-		};
 		8DC2F7222313F11D0002F29F /* UIViewController+StreamVideo */ = {
 			isa = PBXGroup;
 			children = (
@@ -4060,6 +4058,34 @@
 				B4AB48AC230BF859003B3C1F /* MyDataSelection */,
 			);
 			path = MyDataScreen;
+			sourceTree = "<group>";
+		};
+		B499A7012395282500BDD4CE /* RegisterVideoIntro */ = {
+			isa = PBXGroup;
+			children = (
+				B499A7022395283900BDD4CE /* Components */,
+				B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */,
+				B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */,
+				B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */,
+				B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */,
+				B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */,
+				B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */,
+				B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */,
+				B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */,
+				B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */,
+			);
+			name = RegisterVideoIntro;
+			sourceTree = "<group>";
+		};
+		B499A7022395283900BDD4CE /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B499A7032395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib */,
+				B499A7052395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift */,
+				B499A7082395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib */,
+				B499A7072395289B00BDD4CE /* RegisterIntroNoteTableViewCell.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		B49EACCB2328EA47006BA566 /* Weather */ = {
@@ -5391,6 +5417,7 @@
 				BB7A669B2327F45C00CCE8A4 /* AnimatedAnswerTableViewCell.xib in Resources */,
 				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */,
+				B499A70A2395289B00BDD4CE /* RegisterIntroNoteTableViewCell.xib in Resources */,
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,
 				ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */,
@@ -5506,7 +5533,9 @@
 				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,
 				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
+				B499A6F02391518900BDD4CE /* RegisterIntro.storyboard in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
+				B499A7042395286700BDD4CE /* RegisterIntroMediaTableViewCell.xib in Resources */,
 				754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */,
 				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				DB512168233258D5009BFF22 /* PreparationWithMissingEventViewController.xib in Resources */,
@@ -5757,6 +5786,7 @@
 				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
+				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportDetailsPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
@@ -5765,7 +5795,6 @@
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
-				8DBE1EDC22F46B7400BB1086 /* OnboardingLandingPageInteractor.swift in Sources */,
 				36EC23062323F45700DB5696 /* DTSprintInteractor.swift in Sources */,
 				36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
@@ -5847,7 +5876,6 @@
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
 				8DF7870822FEB50800CDE0A9 /* RegistrationCodeRouter.swift in Sources */,
 				8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */,
-				8DBE1ED722F46B7400BB1086 /* OnboardingLandingPagePresenter.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
 				F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */,
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
@@ -5872,7 +5900,6 @@
 				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
 				3655F2DE2326FCA800334719 /* DTPresenter.swift in Sources */,
-				8DBE1EDB22F46B7400BB1086 /* OnboardingLandingPageViewController.swift in Sources */,
 				3655F2D72326EBD600334719 /* DTMindsetViewController.swift in Sources */,
 				367A58532326A15D0089A082 /* DTSolvePresenter.swift in Sources */,
 				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
@@ -5954,16 +5981,17 @@
 				8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */,
 				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				DBFD7EED230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift in Sources */,
-				8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */,
 				8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */,
 				8D8AA76322FDCB6700B59A81 /* RegistrationConfigurator.swift in Sources */,
 				36EC23022323F45700DB5696 /* DTSprintWorker.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
 				8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */,
+				B499A7092395289B00BDD4CE /* RegisterIntroNoteTableViewCell.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
+				B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
 				389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
@@ -6079,6 +6107,7 @@
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
+				B474CA922398F85F00A829B5 /* RegisterIntroInteractor.swift in Sources */,
 				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
@@ -6120,7 +6149,6 @@
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */,
-				8DBE1ED922F46B7400BB1086 /* OnboardingLandingPageRouter.swift in Sources */,
 				B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
@@ -6158,6 +6186,7 @@
 				3666FD48232A4B7D00FC67D0 /* DTRecoveryConfigurator.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */,
+				B474CA8D2398F85F00A829B5 /* RegisterIntroPresenter.swift in Sources */,
 				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				367A58592326A15D0089A082 /* DTSolve.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
@@ -6235,6 +6264,7 @@
 				8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */,
 				8DECF9AF22DE079D00451E65 /* MySprintsListHeaderView.swift in Sources */,
 				9C7F419D232BF4F2007E4B5D /* MyPeakperformanceFooter.swift in Sources */,
+				B474CA942398F85F00A829B5 /* RegisterIntroConfigurator.swift in Sources */,
 				36E12EC9232B57F0009E96EA /* DTPrepareConfigurator.swift in Sources */,
 				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
@@ -6260,6 +6290,7 @@
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				367CD18022EF4EDE00AF2187 /* OnboardingLoginWorker.swift in Sources */,
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
+				B474CA902398F85F00A829B5 /* RegisterIntroInterface.swift in Sources */,
 				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
 				8D8AA75F22FDCB6700B59A81 /* RegistrationRouter.swift in Sources */,
 				8D5668BB22DCAD4800AA172F /* MySprintsListInteractor.swift in Sources */,
@@ -6332,6 +6363,7 @@
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
 				369353A222983AB9008BBB72 /* PrepareResultsWorker.swift in Sources */,
 				3658257C2327D19200AC3F4A /* DTShortTBVViewController.swift in Sources */,
+				B499A7062395287000BDD4CE /* RegisterIntroMediaTableViewCell.swift in Sources */,
 				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
@@ -6362,6 +6394,7 @@
 				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
 				DB51215D2331945F009BFF22 /* PreparationWithMissingEventPresenter.swift in Sources */,
+				B474CA912398F85F00A829B5 /* RegisterIntroViewController.swift in Sources */,
 				3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */,
 				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
 				38532AAF236AFBB100155643 /* CoachMarkCollectionViewCell.swift in Sources */,
@@ -6384,6 +6417,7 @@
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
 				B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */,
+				B474CA8F2398F85F00A829B5 /* RegisterIntroRouter.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
@@ -6494,7 +6528,6 @@
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
 				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
-				8DBE1EDA22F46B7400BB1086 /* OnboardingLandingPageInterface.swift in Sources */,
 				BB8807292372B627001D61CE /* DailyBriefAtMyBestWorker.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
 				8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */,
@@ -6585,7 +6618,6 @@
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
-				8DBE1EDE22F46B7400BB1086 /* OnboardingLandingPageConfigurator.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */,
 				8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */,

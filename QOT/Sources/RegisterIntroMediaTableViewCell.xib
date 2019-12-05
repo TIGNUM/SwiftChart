@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="634" id="LGm-Os-55F" customClass="RegisterIntroMediaTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="464" height="634"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" tableViewCell="LGm-Os-55F" id="Uad-Yf-Fe8">
+                <rect key="frame" x="0.0" y="0.0" width="464" height="634"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="A skill requires learning, practice, reflection, fine-tuning, repetition. QOT is a tools set that helps you training everyday." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-3V-Kdh">
+                        <rect key="frame" x="24" y="415" width="416" height="195"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmQ-rG-7cJ">
+                        <rect key="frame" x="24" y="15" width="416" height="107.5"/>
+                        <string key="text">SUSTAINABLE
+HIGH PERFORMANCE
+IS A SKILL</string>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="30"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vO-FN-oGK">
+                        <rect key="frame" x="24" y="152.5" width="416" height="233.5"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="0vO-FN-oGK" secondAttribute="height" multiplier="41:23" id="4lj-OV-o5A"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="0vO-FN-oGK" firstAttribute="trailing" secondItem="xmQ-rG-7cJ" secondAttribute="trailing" id="BqF-UC-Cna"/>
+                    <constraint firstItem="6ZI-3V-Kdh" firstAttribute="leading" secondItem="0vO-FN-oGK" secondAttribute="leading" id="Kqu-1T-7Y8"/>
+                    <constraint firstItem="xmQ-rG-7cJ" firstAttribute="top" secondItem="SsV-xG-Lmd" secondAttribute="top" constant="15" id="Pus-SS-dCJ"/>
+                    <constraint firstItem="0vO-FN-oGK" firstAttribute="width" secondItem="0vO-FN-oGK" secondAttribute="height" multiplier="41:23" id="RJk-i2-by5"/>
+                    <constraint firstItem="0vO-FN-oGK" firstAttribute="top" secondItem="xmQ-rG-7cJ" secondAttribute="bottom" constant="30" id="U78-wh-g99"/>
+                    <constraint firstItem="6ZI-3V-Kdh" firstAttribute="top" secondItem="0vO-FN-oGK" secondAttribute="bottom" constant="29" id="Wac-Ev-qyF"/>
+                    <constraint firstItem="xmQ-rG-7cJ" firstAttribute="leading" secondItem="Uad-Yf-Fe8" secondAttribute="leading" constant="24" id="bIj-PL-J6l"/>
+                    <constraint firstItem="6ZI-3V-Kdh" firstAttribute="trailing" secondItem="0vO-FN-oGK" secondAttribute="trailing" id="lI4-dV-Ilt"/>
+                    <constraint firstItem="SsV-xG-Lmd" firstAttribute="bottom" secondItem="6ZI-3V-Kdh" secondAttribute="bottom" constant="24" id="yIN-qc-gkU"/>
+                    <constraint firstAttribute="trailing" secondItem="xmQ-rG-7cJ" secondAttribute="trailing" constant="24" id="z3b-AL-90i"/>
+                    <constraint firstItem="0vO-FN-oGK" firstAttribute="leading" secondItem="xmQ-rG-7cJ" secondAttribute="leading" id="zE5-gc-xng"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="SsV-xG-Lmd"/>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="P6u-Oc-mSu"/>
+            <connections>
+                <outlet property="descriptionLabel" destination="6ZI-3V-Kdh" id="Erw-Le-cZz"/>
+                <outlet property="mediaContentView" destination="0vO-FN-oGK" id="b9S-E3-826"/>
+                <outlet property="titleLabel" destination="xmQ-rG-7cJ" id="Huk-RX-PQL"/>
+            </connections>
+            <point key="canvasLocation" x="20.289855072463769" y="-76.339285714285708"/>
+        </tableViewCell>
+    </objects>
+</document>
