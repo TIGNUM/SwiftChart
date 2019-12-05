@@ -12,7 +12,6 @@ import qot_dal
 final class ExploreCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties
-    var labelPosition: Int?
     var introText: String?
     var bucketTitle: String?
     var title: String?
@@ -20,9 +19,8 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
     var section: ContentSection
 
     // MARK: - Init
-    init(bucketTitle: String?, title: String?, introText: String?, labelPosition: Int?, remoteID: Int?, domainModel: QDMDailyBriefBucket?, section: ContentSection) {
+    init(bucketTitle: String?, title: String?, introText: String?, remoteID: Int?, domainModel: QDMDailyBriefBucket?, section: ContentSection) {
         self.introText = introText
-        self.labelPosition = labelPosition
         self.bucketTitle = bucketTitle
         self.title = title
         self.remoteID = remoteID
@@ -35,7 +33,6 @@ final class ExploreCellViewModel: BaseDailyBriefViewModel {
             return false
         }
         return super.isContentEqual(to: source) &&
-            labelPosition == source.labelPosition &&
             introText == source.introText &&
             bucketTitle == source.bucketTitle &&
             title == source.title &&

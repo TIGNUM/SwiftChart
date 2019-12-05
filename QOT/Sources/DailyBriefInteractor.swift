@@ -573,7 +573,6 @@ extension DailyBriefInteractor {
             exploreModelList.append(ExploreCellViewModel(bucketTitle: "",
                                                          title: "",
                                                          introText: "",
-                                                         labelPosition: 0,
                                                          remoteID: 0,
                                                          domainModel: explore,
                                                          section: ContentSection.Unkown))
@@ -584,16 +583,14 @@ extension DailyBriefInteractor {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
                                                              title: exploreContentCollections.first?.title,
                                                              introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
-                                                             labelPosition: 40,
                                                              remoteID: exploreContentCollections.first?.remoteID,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
                 return exploreModelList
             } else if 12 <= hour && hour < 18 {
-                exploreModelList.append( ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
                                                               title: exploreContentCollections.at(index: 1)?.title,
                                                               introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
-                                                              labelPosition: 125,
                                                               remoteID: exploreContentCollections.at(index: 1)?.remoteID,
                                                               domainModel: explore,
                                                               section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
@@ -602,7 +599,6 @@ extension DailyBriefInteractor {
                 exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
                                                              title: exploreContentCollections.last?.title,
                                                              introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
-                                                             labelPosition: 230,
                                                              remoteID: exploreContentCollections.last?.remoteID,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
@@ -610,7 +606,7 @@ extension DailyBriefInteractor {
         }
         exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.first?.valueText,
                                                      title: "", introText: "",
-                                                     labelPosition: 0, remoteID: 666,
+                                                     remoteID: 666,
                                                      domainModel: explore,
                                                      section: ContentSection.Unkown))
         return exploreModelList

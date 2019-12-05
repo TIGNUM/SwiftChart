@@ -13,7 +13,7 @@ import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
     func openToolFromSprint(toolID: Int?)
-    func openStrategyFromSprint(strategyID: Int?)
+    func presentStrategyList(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
@@ -596,12 +596,16 @@ private extension DailyBriefViewController {
             self.selectedStrategyID = exploreViewModel?.remoteID
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
+                           remoteID: exploreModel?.remoteID)
+            cell.delegate = self
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
+                           remoteID: exploreModel?.remoteID)
+            cell.delegate = self
         }
         return cell
     }
@@ -747,7 +751,7 @@ extension DailyBriefViewController {
         router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
-    func openStrategyFromSprint(strategyID: Int?) {
+    func presentStrategyList(strategyID: Int?) {
         router.presentStrategyList(strategyID: strategyID)
     }
 

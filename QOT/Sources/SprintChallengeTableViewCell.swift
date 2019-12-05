@@ -64,7 +64,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func openStrategyFromSprint() {
-        delegate?.openStrategyFromSprint(strategyID: selectedStrategyID)
+        delegate?.presentStrategyList(strategyID: selectedStrategyID)
     }
 
     func openToolFromSprint() {

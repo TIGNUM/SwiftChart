@@ -17,6 +17,8 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var strategyTitleLabel: UILabel!
     @IBOutlet private weak var exploreButton: UIButton!
+    private var strategyID: Int?
+    weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,7 +28,7 @@ final class ExploreCell: BaseDailyBriefCell {
         skeletonManager.addOtherView(exploreButton)
     }
 
-    func configure(title: String?, introText: String?, bucketTitle: String?) {
+    func configure(title: String?, introText: String?, bucketTitle: String?, remoteID: Int?) {
         baseHeaderView?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
@@ -34,4 +36,9 @@ final class ExploreCell: BaseDailyBriefCell {
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
         skeletonManager.hide()
     }
+
+    @IBAction func didTapExplore(strategyID: Int) {
+        delegate?.presentStrategyList(strategyID: self.strategyID)
+    }
 }
+
