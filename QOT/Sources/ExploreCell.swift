@@ -15,28 +15,23 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var timeOfDayPosition: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet weak var strategyView: UIView!
-    @IBOutlet private weak var lineView: UIView!
-    @IBOutlet private var hourLabels: [UILabel]!
+    @IBOutlet private weak var strategyTitleLabel: UILabel!
+    @IBOutlet private weak var exploreButton: UIButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
-        skeletonManager.addOtherView(strategyView)
-        skeletonManager.addOtherView(lineView)
-        for label in hourLabels {
-            skeletonManager.addOtherView(label)
-        }
+        skeletonManager.addSubtitle(strategyTitleLabel)
+        skeletonManager.addOtherView(exploreButton)
     }
 
-    func configure(title: String?, introText: String?, labelPosition: CGFloat?, bucketTitle: String?) {
+    func configure(title: String?, introText: String?, bucketTitle: String?) {
         baseHeaderView?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-        ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)
-        timeOfDayPosition.constant = labelPosition ?? 0
+        ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
         skeletonManager.hide()
     }
 }

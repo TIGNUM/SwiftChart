@@ -594,19 +594,13 @@ private extension DailyBriefViewController {
         let cell: ExploreCell = tableView.dequeueCell(for: indexPath)
         if exploreViewModel?.section == .LearnStrategies {
             self.selectedStrategyID = exploreViewModel?.remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openStrategy))
-            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openTool))
-            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
                            bucketTitle: exploreViewModel?.bucketTitle ?? "")
         }
         return cell
