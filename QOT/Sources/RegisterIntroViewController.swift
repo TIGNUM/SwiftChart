@@ -121,10 +121,14 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.row {
         case 0:
             let reusableCell: RegisterIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
-            reusableCell.configure(title: nil, subtitle: nil, videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
+            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_header_title),
+                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_body),
+                                   videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
             cell = reusableCell
         default:
             let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_title),
+                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_body))
             cell = reusableCell
         }
         return cell
