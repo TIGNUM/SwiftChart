@@ -1,28 +1,28 @@
 //
-//  RegisterVideoIntroViewController.swift
+//  RegisterIntroViewController.swift
 //  QOT
 //
-//  Created by Simu Voicu-Mircea on 29/11/2019.
+//  Created by Simu Voicu-Mircea on 05/12/2019.
 //  Copyright (c) 2019 Tignum. All rights reserved.
 //
 
 import UIKit
 import qot_dal
 
-enum RegisterVideoIntroCellTypes: Int, CaseIterable {
+enum RegisterIntroCellTypes: Int, CaseIterable {
     case VideoCell = 0
     case NoteCell
 }
 
-final class RegisterVideoIntroViewController: BaseViewController, ScreenZLevelLogin {
+final class RegisterIntroViewController: BaseViewController, ScreenZLevelLogin {
 
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
-    var interactor: RegisterVideoIntroInteractorInterface?
-    var router: RegisterVideoIntroRouterInterface?
+    var interactor: RegisterIntroInteractorInterface!
+    private lazy var router = RegisterIntroRouter(viewController: self)
 
     // MARK: - Init
-    init(configure: Configurator<RegisterVideoIntroViewController>) {
+    init(configure: Configurator<RegisterIntroViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
@@ -31,7 +31,7 @@ final class RegisterVideoIntroViewController: BaseViewController, ScreenZLevelLo
         super.init(coder: aDecoder)
     }
 
-    // MARK: - Lifecycle
+     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
@@ -70,13 +70,12 @@ final class RegisterVideoIntroViewController: BaseViewController, ScreenZLevelLo
 
     // MARK: - Actions
     @objc func didTapContinue() {
-        router?.openRegistration()
+        router.openRegistration()
     }
-
 }
 
 // MARK: - Private
-extension RegisterVideoIntroViewController {
+extension RegisterIntroViewController {
     @objc func didChangeOrientation() {
         guard let videoCell = getVideoCell() else { return }
         DispatchQueue.main.async {
@@ -96,24 +95,24 @@ extension RegisterVideoIntroViewController {
         }
     }
 
-    private func getVideoCell() -> RegisterVideoIntroMediaTableViewCell? {
-        return (tableView.cellForRow(at: IndexPath(row: RegisterVideoIntroCellTypes.VideoCell.rawValue, section: 0)) as? RegisterVideoIntroMediaTableViewCell)
+    private func getVideoCell() -> RegisterIntroMediaTableViewCell? {
+        return (tableView.cellForRow(at: IndexPath(row: RegisterIntroCellTypes.VideoCell.rawValue, section: 0)) as? RegisterIntroMediaTableViewCell)
     }
 }
 
-// MARK: - RegisterVideoIntroViewControllerInterface
-extension RegisterVideoIntroViewController: RegisterVideoIntroViewControllerInterface {
+// MARK: - RegisterIntroViewControllerInterface
+extension RegisterIntroViewController: RegisterIntroViewControllerInterface {
     func setupView() {
         ThemeView.level2.apply(view)
-        tableView.registerDequeueable(RegisterVideoIntroMediaTableViewCell.self)
-        tableView.registerDequeueable(RegisterVideoIntroNoteTableViewCell.self)
+        tableView.registerDequeueable(RegisterIntroMediaTableViewCell.self)
+        tableView.registerDequeueable(RegisterIntroNoteTableViewCell.self)
     }
 }
 
 // MARK: - UITableView delegates and dataSource
-extension RegisterVideoIntroViewController: UITableViewDelegate, UITableViewDataSource {
+extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RegisterVideoIntroCellTypes.allCases.count
+        return RegisterIntroCellTypes.allCases.count
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -123,11 +122,11 @@ extension RegisterVideoIntroViewController: UITableViewDelegate, UITableViewData
         var cell = UITableViewCell()
         switch indexPath.row {
         case 0:
-            let reusableCell: RegisterVideoIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
+            let reusableCell: RegisterIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
             reusableCell.configure(title: nil, subtitle: nil, videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
             cell = reusableCell
         default:
-            let reusableCell: RegisterVideoIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
             cell = reusableCell
         }
         return cell

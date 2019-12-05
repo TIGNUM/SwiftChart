@@ -1,5 +1,5 @@
 //
-//  RegisterVideoIntroNoteTableViewCell.swift
+//  RegisterIntroNoteTableViewCell.swift
 //  QOT
 //
 //  Created by Simu Voicu-Mircea on 02/12/2019.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class RegisterVideoIntroNoteTableViewCell: UITableViewCell, Dequeueable {
+final class RegisterIntroNoteTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!

@@ -1,5 +1,5 @@
 //
-//  RegisterVideoIntroMediaTableViewCell.swift
+//  RegisterIntroMediaTableViewCell.swift
 //  QOT
 //
 //  Created by Simu Voicu-Mircea on 02/12/2019.
@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import AVKit
 
-final class RegisterVideoIntroMediaTableViewCell: UITableViewCell, Dequeueable {
+final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var mediaContentView: UIView!
     @IBOutlet weak var descriptionLabel: UILabel!
@@ -32,7 +32,7 @@ final class RegisterVideoIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     }
 }
 
-private extension RegisterVideoIntroMediaTableViewCell {
+private extension RegisterIntroMediaTableViewCell {
     func embededableMediaPlayer(videoURL: URL) {
         playerController.player = AVPlayer(url: videoURL)
 

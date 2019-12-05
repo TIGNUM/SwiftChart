@@ -1,26 +1,30 @@
 //
-//  RegisterVideoIntroRouter.swift
+//  RegisterIntroRouter.swift
 //  QOT
 //
-//  Created by Simu Voicu-Mircea on 29/11/2019.
+//  Created by Simu Voicu-Mircea on 05/12/2019.
 //  Copyright (c) 2019 Tignum. All rights reserved.
 //
 
 import UIKit
 
-final class RegisterVideoIntroRouter {
+final class RegisterIntroRouter {
 
     // MARK: - Properties
-    private weak var viewController: RegisterVideoIntroViewController?
+    private weak var viewController: RegisterIntroViewController?
 
     // MARK: - Init
-    init(viewController: RegisterVideoIntroViewController?) {
+    init(viewController: RegisterIntroViewController?) {
         self.viewController = viewController
     }
 }
 
-// MARK: - RegisterVideoIntroRouterInterface
-extension RegisterVideoIntroRouter: RegisterVideoIntroRouterInterface {
+// MARK: - RegisterIntroRouterInterface
+extension RegisterIntroRouter: RegisterIntroRouterInterface {
+    func dismiss() {
+        viewController?.dismiss(animated: true, completion: nil)
+    }
+
     func openRegistration() {
         guard let controller = R.storyboard.registration.registrationViewController() else { return }
         let configurator = RegistrationConfigurator.make()

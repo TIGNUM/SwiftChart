@@ -25,8 +25,8 @@ final class SigningInfoRouter {
 
 extension SigningInfoRouter: SigningInfoRouterInterface {
     func goToRegister() {
-        if let controller = R.storyboard.registerVideoIntro().instantiateInitialViewController() as? RegisterVideoIntroViewController {
-            let configurator = RegisterVideoIntroConfigurator.make()
+        if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
+            let configurator = RegisterIntroConfigurator.make()
             configurator(controller)
             viewController?.navigationController?.pushViewController(controller, animated: true)
         }
