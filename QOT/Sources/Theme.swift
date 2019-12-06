@@ -1445,7 +1445,6 @@ private struct Fonts {
 
     static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
     static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
-    static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
 }
 
 private struct Palette {
