@@ -23,10 +23,10 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     private let defaultBorderColor = UIColor.sand40.cgColor
 
     private lazy var buttonNext: RoundedButton = {
-        return RoundedButton(title: interactor?.nextButtonTitle ?? "", target: self, action: #selector(didTapNextButton))
+        return RoundedButton(title: interactor.nextButtonTitle, target: self, action: #selector(didTapNextButton))
     }()
 
-    var interactor: RegistrationNamesInteractorInterface?
+    var interactor: RegistrationNamesInteractorInterface!
 
     // MARK: - Init
 
@@ -42,7 +42,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
         startObservingKeyboard()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -57,11 +57,11 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
 
     override func didTapBackButton() {
         trackUserEvent(.BACK, action: .TAP)
-        interactor?.resetErrors()
+        interactor.resetErrors()
         firstNameField.text = nil
         lastNameField.text = nil
 
-        interactor?.didTapBack()
+        interactor.didTapBack()
     }
 }
 
@@ -75,7 +75,7 @@ private extension RegistrationNamesViewController {
 private extension RegistrationNamesViewController {
     @objc func didTapNextButton() {
         guard let name = firstNameField.text else { return }
-        interactor?.didTapNext(with: name, lastName: lastNameField.text)
+        interactor.didTapNext(with: name, lastName: lastNameField.text)
         let userName = name + " " + (lastNameField.text ?? "")
         trackUserEvent(.NEXT, stringValue: userName, valueType: .USER_ANSWER, action: .TAP)
     }
@@ -89,10 +89,10 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         viewTheme.apply(firstNameField.textField)
         viewTheme.apply(lastNameField.textField)
 
-        ThemeText.registrationNamesTitle.apply(interactor?.title, to: titleLabel)
-        ThemeText.onboardingInputPlaceholder.apply(interactor?.firstNameTitle, to: firstNameField.placeholderLabel)
-        ThemeText.onboardingInputPlaceholder.apply(interactor?.lastNameTitle, to: lastNameField.placeholderLabel)
-        ThemeText.registrationNamesMandatory.apply(interactor?.mandatoryText, to: mandatoryLabel)
+        ThemeText.registrationNamesTitle.apply(interactor.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.firstNameTitle, to: firstNameField.placeholderLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.lastNameTitle, to: lastNameField.placeholderLabel)
+        ThemeText.registrationNamesMandatory.apply(interactor.mandatoryText, to: mandatoryLabel)
 
         firstNameField.textField.returnKeyType = .next
         firstNameField.delegate = self
@@ -101,8 +101,8 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
     }
 
     func updateView() {
-        firstNameField.textField.layer.borderColor = (interactor?.hasFirstNameError ?? false) ? errorBorderColor : defaultBorderColor
-        lastNameField.textField.layer.borderColor = (interactor?.hasLastNameError ?? false) ? errorBorderColor : defaultBorderColor
+        firstNameField.textField.layer.borderColor = (interactor.hasFirstNameError) ? errorBorderColor : defaultBorderColor
+        lastNameField.textField.layer.borderColor = (interactor.hasLastNameError) ? errorBorderColor : defaultBorderColor
     }
 }
 
@@ -158,7 +158,7 @@ extension RegistrationNamesViewController: UITextFieldDelegate {
     }
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        interactor?.resetErrors()
+        interactor.resetErrors()
         guard lastNameField.textField.isFirstResponder, let notification = keyboardNotification else { return }
         animateKeyboardNotification(notification)
     }
