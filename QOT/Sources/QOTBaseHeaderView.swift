@@ -86,8 +86,10 @@ extension QOTBaseHeaderView {
         for constraint in horizontalConstraints {
             horizontalConstraintsSum += constraint.constant
         }
-        let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
-        var subtitleLabelSize = subtitleTextView.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum, height: .greatestFiniteMagnitude))
+        let titleLabelSize = titleLabel.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum,
+                                                            height: .greatestFiniteMagnitude))
+        var subtitleLabelSize = subtitleTextView.sizeThatFits(CGSize(width: cellWidth - horizontalConstraintsSum,
+                                                                     height: .greatestFiniteMagnitude))
         if subtitleTextView.text.isEmpty {
             subtitleLabelSize = .zero
         }

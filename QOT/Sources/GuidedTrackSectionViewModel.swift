@@ -30,10 +30,6 @@ final class GuidedTrackSectionViewModel: BaseDailyBriefViewModel, GuideTrackMode
         super.init(domain)
     }
 
-//    // MARK: - Properties
-//    var guidedTrackList = [GuideTrackModelItem]()
-
-    // MARK: - Init
     init(domainModel: QDMDailyBriefBucket?) {
         super.init(domainModel)
     }

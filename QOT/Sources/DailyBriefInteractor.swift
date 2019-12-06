@@ -236,8 +236,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     sectionDataList.append(ArraySection(model: .feastForYourEyes,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
                 case .FROM_MY_COACH?:
-                    sectionDataList.append(ArraySection(model: .fromMyCoach,
-                                                        elements: strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)))
+                    let elements = strongSelf.createFromMyCoachModel(fromCoachBucket: bucket)
+                    if elements.isEmpty == false {
+                        sectionDataList.append(ArraySection(model: .fromMyCoach, elements: elements))
+                    }
+
                 case .MY_PEAK_PERFORMANCE?:
                     let elements = strongSelf.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)
                     if elements.count > 0 {
@@ -261,8 +264,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                             elements: models))
                     }
                 case .GUIDE_TRACK?:
-                    sectionDataList.append(ArraySection(model: .guidedTrack,
-                                                        elements: strongSelf.createGuidedTrack(guidedTrackBucket: bucket)))
+                    let elements = strongSelf.createGuidedTrack(guidedTrackBucket: bucket)
+                    if elements.isEmpty == false {
+                        sectionDataList.append(ArraySection(model: .guidedTrack, elements: elements))
+                    }
                 default:
                     print("Default : \(bucket.bucketName ?? "" )")
                 }
@@ -785,40 +790,53 @@ extension DailyBriefInteractor {
      */
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
-        let guidedTrackBucketTitle = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_title")}
-            .first?.valueText ?? ""
-        let guidedTrackIntro = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_intro")}
-            .first?.valueText ?? ""
-        let guidedTrackCta = guidedTrack.bucketText?.contentItems.filter {$0.searchTags.contains("bucket_cta")}
-            .first?.valueText ?? ""
-        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: guidedTrackBucketTitle,
-                                                    levelTitle: "",
-                                                    content: guidedTrackIntro,
-                                                    buttonText: guidedTrackCta,
-                                                    type: GuidedTrackItemType.SECTION,
-                                                    appLink: nil,
-                                                    domain: guidedTrack))
+        let title = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_title") }
+            .first?.valueText
+        let intro = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_intro") }
+            .first?.valueText
+        let buttonTitle = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_cta") }
+            .first?.valueText
+
+        if let title = title, let intro = intro, let buttonTitle = buttonTitle {
+            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: title,
+                                                        levelTitle: "",
+                                                        content: intro,
+                                                        buttonText: buttonTitle,
+                                                        type: GuidedTrackItemType.SECTION,
+                                                        appLink: nil,
+                                                        domain: guidedTrack))
+        }
+
         guard guidedClosedTrack == true else {
             return guidedtrackList
         }
 
-        guidedTrack.contentCollections?.forEach {(contentItem) in
+        guidedTrack.contentCollections?.forEach { (contentItem) in
             let stepTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
-                .first?.valueText ?? ""
+                .first?.valueText
             let qdmAppLink = contentItem.links.first
-            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
-                                                        levelTitle: levelTitle,
-                                                        content: levelDescription,
-                                                        buttonText: levelCta,
-                                                        type: GuidedTrackItemType.ROW,
-                                                        appLink: qdmAppLink,
-                                                        domain: guidedTrack))
+
+            if let stepTitle = stepTitle,
+                let levelTitle = levelTitle,
+                let levelDescription = levelDescription,
+                let levelCta = levelCta,
+                let qdmAppLink = qdmAppLink {
+
+                guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
+                                                            levelTitle: levelTitle,
+                                                            content: levelDescription,
+                                                            buttonText: levelCta,
+                                                            type: GuidedTrackItemType.ROW,
+                                                            appLink: qdmAppLink,
+                                                            domain: guidedTrack))
+
+            }
         }
         return guidedtrackList
     }
@@ -958,14 +976,25 @@ extension DailyBriefInteractor {
     }
 
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
-        var createFromMyCoachModelList: [BaseDailyBriefViewModel] = []
+        var modelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
+
         fromCoach.coachMessages?.forEach {(message) in
-            messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: DateFormatter.messageDate.string(from: message.issueDate!),
-                                                                             text: message.body ?? ""))
+            if let date = message.issueDate, let text = message.body {
+                let formattedDate = DateFormatter.messageDate.string(from: date)
+                messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: formattedDate, text: text))
+            }
+
         }
-        createFromMyCoachModelList.append(FromMyCoachCellViewModel(detail: FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""), title: fromCoach.bucketText?.contentItems.first?.valueText ?? "FROM MY COACH"), messages: messageModels, domainModel: fromCoach))
-        return createFromMyCoachModelList
+
+        if let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
+            let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
+            let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
+            let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)
+            modelList.append(model)
+        }
+
+        return modelList
     }
 
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
