@@ -54,6 +54,11 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
         getVideoCell()?.startPlayingFromBeggining()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_button_got_it),
@@ -88,6 +93,7 @@ extension RegisterIntroViewController {
                 videoCell.playerController.removeFromParentViewController()
                 videoCell.mediaContentView.fill(subview: videoCell.playerController.view)
                 videoCell.playerController.showsPlaybackControls = false
+                videoCell.soundToggleButton.isSelected = !(videoCell.playerController.player?.isMuted ?? true)
                 self.refreshBottomNavigationItems()
             }
         }
@@ -121,10 +127,14 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.row {
         case 0:
             let reusableCell: RegisterIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
-            reusableCell.configure(title: nil, subtitle: nil, videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
+            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_header_title),
+                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_body),
+                                   videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
             cell = reusableCell
         default:
             let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_title),
+                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_body))
             cell = reusableCell
         }
         return cell
