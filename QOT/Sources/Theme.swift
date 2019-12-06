@@ -934,8 +934,9 @@ enum ThemeText {
             return Fonts.fontDisplayRegular20
         case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
-        case .dailyBriefTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
-             .registrationAgeTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
+
+        // MARK: - fontDisplayRegular20
+        case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack:
             return Fonts.fontDisplayRegular20
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle:
@@ -995,8 +996,11 @@ enum ThemeText {
         // MARK: - .fontLight12
         case .dailyInsightsChartBarLabelSelected, .dailyInsightsChartBarLabelUnselected:
             return Fonts.fontLight12
-        case .registerIntroTitle:
+        // MARK: - .fontDisplayBold30
+        case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
+             .registrationAgeTitle:
             return Fonts.fontDisplayBold30
+        // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
         }
@@ -1005,7 +1009,7 @@ enum ThemeText {
     private var color: UIColor {
         switch self {
 
-        // MARK: - Palette.sand
+        // MARK: - .sand
         case .navigationBarHeader, .quotation, .aboutMeContent, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
              .articleRelatedTitleInStrategy, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
@@ -1438,6 +1442,8 @@ private struct Fonts {
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
+
+    static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
     static let fontDisplayBold60 = UIFont.apercuBold(ofSize: 90)
     static let fontDisplayBold30 = UIFont.apercuBold(ofSize: 30)
 }

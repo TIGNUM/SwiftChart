@@ -11,14 +11,12 @@ import UIKit
 final class RegistrationAgeInteractor {
 
     // MARK: - Properties
-
     private let worker: RegistrationAgeWorker
     private let presenter: RegistrationAgePresenterInterface
     private let router: RegistrationAgeRouterInterface
     private weak var delegate: RegistrationDelegate?
 
     // MARK: - Init
-
     init(worker: RegistrationAgeWorker,
         presenter: RegistrationAgePresenterInterface,
         router: RegistrationAgeRouterInterface,
@@ -30,13 +28,11 @@ final class RegistrationAgeInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 
     // MARK: - Texts
-
     var title: String {
         return worker.title
     }

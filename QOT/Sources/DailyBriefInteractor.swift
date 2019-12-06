@@ -986,11 +986,11 @@ extension DailyBriefInteractor {
 
         }
 
-        if let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? ""),
-            let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
-                let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
-                let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)
-                modelList.append(model)
+        if let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
+            let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
+            let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
+            let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)
+            modelList.append(model)
         }
 
         return modelList
