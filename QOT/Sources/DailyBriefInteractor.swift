@@ -349,6 +349,7 @@ extension DailyBriefInteractor {
      * Description: Create the impact readiness model which is required for the dailyCheck in Bucket.
      * Parameters: [QDMDailyBriefBucket]
      */
+//    MARK: - Impact Readiness
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
         var readinessIntro: String? = ""
@@ -437,6 +438,7 @@ extension DailyBriefInteractor {
         return impactReadinessList
     }
 
+// MARK: - LEVEL UP
     func createLevel5Cell(level5Bucket level5: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
@@ -489,6 +491,7 @@ extension DailyBriefInteractor {
         return createLevel5List
     }
 
+//    MARK: - MULTIPLE IMAGE BUCKETS: VISUAL DELIGHTS - PRODUCTS WE LOVE - ON THE ROAD
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
@@ -519,6 +522,7 @@ extension DailyBriefInteractor {
         return departureBespokeFeastList
     }
 
+//    SOLVE
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSolveList: [BaseDailyBriefViewModel] = []
         guard (solveBucket.solves?.first) != nil else {
@@ -551,7 +555,7 @@ extension DailyBriefInteractor {
         }
         return createSolveList
     }
-
+//    BIG QUESTIONS
     func createQuestionsWithoutAnswer(questionsWithoutAnswerBucket questionsWithoutAnswer: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createQuestionWithoutAnswerList: [BaseDailyBriefViewModel] = []
 
@@ -565,6 +569,7 @@ extension DailyBriefInteractor {
         return createQuestionWithoutAnswerList
     }
 
+//    EXPLORE BUCKET
     func createExploreModel(exploreBucket explore: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var exploreModelList: [BaseDailyBriefViewModel] = []
         let date = Date()
