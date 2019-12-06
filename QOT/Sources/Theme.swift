@@ -832,6 +832,10 @@ enum ThemeText {
     case dailyInsightsChartBarLabelSelected
     case dailyInsightsChartBarLabelUnselected
 
+    case registerIntroTitle
+    case registerIntroNoteTitle
+    case registerIntroBody
+
     private var font: UIFont {
         switch self {
         case .registrationCodeDisclaimerError, .resultCounterMax, .mySensorsNoDataInfoLabel:
@@ -841,14 +845,14 @@ enum ThemeText {
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .baseHeaderTitle, .fromCoachTitle, .myQOTSectionHeader, .tbvTrackerHeader, .dailyBriefDailyCheckInClosedBucket,
           .askPermissionTitle, .syncedCalendarTitle, .weatherTitle,
           .myLibraryTitle, .myLibraryItemsTitle,
-          .mySprintsTitle:
+          .mySprintsTitle, .registerIntroNoteTitle:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
              .leaderText, .tbvVision, .tbvVisionBody, .myDataMonthYearTitle, .myDataExplanationCellSubtitle, .myDataHeatMapDetailCellDate,
              .registrationCodeDescription, .registrationCodePreCode, .registrationAgeDescription,
              .locationPermissionMessage, .accountDetail, .dailyBriefDailyCheckInSights, .quotationLight, .askPermissionMessage,
              .weatherIntro, .weatherBody, .dailyBriefSubtitle, .paymentReminderCellTitle,
-             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle:
+             .paymentReminderCellSubtitle, .customAlertAction, .customAlertDestructiveAction, .trackSelectionMessage, .shpiQuestion, .coachMarkSubtitle, .registerIntroBody:
             return Fonts.fontRegular16
         case .baseHeaderSubtitle, .leaderVideoTitle, .searchExploreTopic, .searchBar,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .tbvTrackerBody, .loginEmailMessage,
@@ -989,16 +993,13 @@ enum ThemeText {
             return Fonts.fontRegular20
         case .onboardingInfoTitle:
             return Fonts.fontDisplayBold60
-
         // MARK: - .fontLight12
         case .dailyInsightsChartBarLabelSelected, .dailyInsightsChartBarLabelUnselected:
             return Fonts.fontLight12
-
         // MARK: - .fontDisplayBold30
-        case .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
+        case .registerIntroTitle, .loginEmailTitle, .registrationEmailTitle, .registrationCodeTitle, .registrationNamesTitle,
              .registrationAgeTitle:
             return Fonts.fontDisplayBold30
-
         // MARK: - .fontRegular20
         default:
             return Fonts.fontRegular20
@@ -1024,9 +1025,9 @@ enum ThemeText {
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence,
-             .dailyInsightsChartBarLabelSelected:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle:
             return Palette.sand
-        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle:
+        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody:
             return Palette.sand60
 
         // MARK: - .sand40
@@ -1299,6 +1300,12 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .syncedCalendarRowTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: .byTruncatingTail)
+        case .registerIntroTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.18, font: self.font, lineSpacing: 3, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .registerIntroBody:
+            string = NSAttributedString(string: text, letterSpacing: 0.23, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .registerIntroNoteTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.63, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
