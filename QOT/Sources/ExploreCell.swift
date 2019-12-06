@@ -17,17 +17,19 @@ final class ExploreCell: BaseDailyBriefCell {
     @IBOutlet private weak var timeOfDayPosition: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var strategyTitleLabel: UILabel!
-    @IBOutlet private weak var exploreButton: UIButton!
+    @IBOutlet private weak var exploreButton: AnimatedButton!
     private var contentID: Int?
     private var isStrategy = true
     weak var delegate: DailyBriefViewController?
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        ThemeBorder.accent.apply(exploreButton)
+        skeletonManager.addOtherView(exploreButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(strategyTitleLabel)
-        skeletonManager.addOtherView(exploreButton)
+        exploreButton.setButtonContentInset(padding: 16)
     }
 
     func configure(title: String?, introText: String?, bucketTitle: String?, isStrategy: Bool, remoteID: Int?) {

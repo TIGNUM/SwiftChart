@@ -776,10 +776,6 @@ extension DailyBriefViewController {
     func presentStrategyList(strategyID: Int?) {
         router.presentStrategyList(strategyID: strategyID)
     }
-
-    @objc func openTool(sender: UITapGestureRecognizer) {
-        router.presentToolsItems(toolID: selectedToolID)
-    }
 }
 
 extension DailyBriefViewController: QuestionnaireAnswer {

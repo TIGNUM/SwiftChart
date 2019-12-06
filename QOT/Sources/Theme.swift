@@ -59,6 +59,7 @@ enum ThemeView {
     case qotTools
     case syncedCalendarSeparator
     case audioPlaying
+    case exploreButton
     case selectedButton
     case tbvLowPerformance
     case myDataHeatMapLegendHigh
@@ -87,7 +88,7 @@ enum ThemeView {
             return Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
         case .baseHeaderLineView(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
-        case .audioPlaying, .selectedButton:
+        case .audioPlaying, .selectedButton, .exploreButton:
             return Palette.accent40
         case .onboarding, .sprintsActive:
             return Palette.carbon

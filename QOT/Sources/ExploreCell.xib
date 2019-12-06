@@ -21,14 +21,17 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Strategy Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xhL-zl-qLA">
-                    <rect key="frame" x="24" y="193" width="355" height="20.5"/>
+                    <rect key="frame" x="24" y="193" width="355" height="59"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeX-Re-eY0">
-                    <rect key="frame" x="24" y="230.5" width="101" height="85.5"/>
-                    <state key="normal" title="Explore Button"/>
+                    <rect key="frame" x="24" y="269" width="52" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="yRz-U1-iJx"/>
+                    </constraints>
+                    <state key="normal" title="Explore"/>
                     <connections>
                         <action selector="didTapExplore:" destination="iN0-l3-epB" eventType="touchUpInside" id="EoA-HQ-dKE"/>
                     </connections>
@@ -41,7 +44,7 @@
                 <constraint firstItem="xhL-zl-qLA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Fb7-Jc-ADU"/>
                 <constraint firstItem="xhL-zl-qLA" firstAttribute="top" secondItem="t7g-5T-pqp" secondAttribute="bottom" constant="23" id="GT3-zp-S2x"/>
                 <constraint firstItem="t7g-5T-pqp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MrM-kz-dIr"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eeX-Re-eY0" secondAttribute="bottom" constant="41" id="Plb-Bs-usc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eeX-Re-eY0" secondAttribute="bottom" constant="48" id="Plb-Bs-usc"/>
                 <constraint firstItem="t7g-5T-pqp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WsP-ee-sLZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xhL-zl-qLA" secondAttribute="trailing" constant="24" id="gA5-CR-qUL"/>
                 <constraint firstItem="eeX-Re-eY0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="xtI-oT-qUY"/>
