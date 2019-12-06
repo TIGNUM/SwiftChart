@@ -20,6 +20,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet weak var tableView: UITableView!
     var interactor: RegisterIntroInteractorInterface!
     private lazy var router = RegisterIntroRouter(viewController: self)
+    private var expanded = false
 
     // MARK: - Init
     init(configure: Configurator<RegisterIntroViewController>) {
@@ -61,7 +62,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_log_in_alert_device_small_screen_button_got_it),
+        let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_footer_button_next),
                                         target: self,
                                         action: #selector(didTapContinue))
         ThemeButton.carbonButton.apply(continueButton)
@@ -133,10 +134,23 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
             cell = reusableCell
         default:
             let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
+            let longBody = AppTextService.get(AppTextKey.onboarding_register_intro_note_section_body)
+            let shortBody = String.init(longBody.split(separator: "\n").first ?? "")
             reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_title),
-                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_body))
+                                   body: expanded ? longBody : shortBody,
+                                   expanded: expanded)
+            reusableCell.delegate = self
             cell = reusableCell
         }
         return cell
+    }
+}
+
+extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
+    func didTapReadMore() {
+        expanded = true
+        tableView.reloadRows(at: [IndexPath(row: RegisterIntroCellTypes.NoteCell.rawValue,
+                                           section: 0)],
+                             with: .fade)
     }
 }
