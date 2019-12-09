@@ -32,6 +32,10 @@ final class RegistrationEmailInteractor {
         return worker.title
     }
 
+    var subtitle: String {
+        return worker.subtitle
+    }
+
     var emailPlaceholder: String {
         return worker.emailPlaceholder
     }
