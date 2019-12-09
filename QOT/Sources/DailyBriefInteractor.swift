@@ -348,13 +348,14 @@ extension DailyBriefInteractor {
         forCell.stopTimer()
     }
 
-    // MARK: Create buckets models
+    // MARK: - CREATING BUCKET MODELS
     /**
-     * Method name: createImpactReadinessCell.
+     * Method name:  createImpactReadinessCell.
      * Description: Create the impact readiness model which is required for the dailyCheck in Bucket.
      * Parameters: [QDMDailyBriefBucket]
      */
-    //    MARK: - Impact Readiness
+
+    // MARK: - Impact Readiness
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var impactReadinessList: [BaseDailyBriefViewModel] = []
         var readinessIntro: String? = ""
@@ -537,7 +538,7 @@ extension DailyBriefInteractor {
         return createLevel5List
     }
 
-    //    MARK: - Visual delights / Products we love / On the road
+    //  MARK: - Visual delights / Products we love / On the road
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
@@ -664,7 +665,7 @@ extension DailyBriefInteractor {
         return exploreModelList
     }
 
-    //   MARK: - My Peak Performances
+    // MARK: - My Peak Performances
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
         let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
@@ -742,7 +743,7 @@ extension DailyBriefInteractor {
         return aboutMeList
     }
 
-    //    MARK: - Weather
+    // MARK: - Weather
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
@@ -842,7 +843,8 @@ extension DailyBriefInteractor {
         return guidedtrackList
     }
 
-    //    MARK: - Tignum Messages
+
+    // MARK: - Tignum Messages
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
         let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
@@ -898,7 +900,7 @@ extension DailyBriefInteractor {
         return leadersWisdomList
     }
 
-    //    MARK: - My Best
+    // MARK: - My Best
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
         let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
@@ -923,7 +925,7 @@ extension DailyBriefInteractor {
 
     }
 
-    //    MARK: - Big Thoughts
+    // MARK: - Big Thoughts
     func createThoughtsToPonder(thoughtsToPonderBucket thoughtsToPonder: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createThoughtsToPonderList: [BaseDailyBriefViewModel] = []
 
@@ -940,7 +942,7 @@ extension DailyBriefInteractor {
         return createThoughtsToPonderList
     }
 
-    //    MARK: - Good to Know
+    // MARK: - Good to Know
     func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
         guard let collection = createGoodToKnow.contentCollections?.first else {
@@ -957,7 +959,7 @@ extension DailyBriefInteractor {
         return createGoodToKnowList
     }
 
-    //    MARK: - Latest What's hot
+    // MARK: - Latest What's hot
     func createLatestWhatsHot(whatsHotLatestCell whatsHotLatest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var latestWhatsHotList: [BaseDailyBriefViewModel] = []
 
@@ -1005,7 +1007,7 @@ extension DailyBriefInteractor {
         return modelList
     }
 
-    //    MARK: - My sprints
+    // MARK: - My sprints
     func createSprintChallenge(bucket sprintBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createSprintChanllengeList: [BaseDailyBriefViewModel] = []
 
