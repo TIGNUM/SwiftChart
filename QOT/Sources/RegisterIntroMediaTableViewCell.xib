@@ -23,13 +23,13 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="751" text="A skill requires learning, practice, reflection, fine-tuning, repetition. QOT is a tools set that helps you training everyday." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZI-3V-Kdh">
-                        <rect key="frame" x="24" y="415" width="416" height="195"/>
+                        <rect key="frame" x="24" y="434" width="416" height="176"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xmQ-rG-7cJ">
-                        <rect key="frame" x="24" y="15" width="416" height="107.5"/>
+                        <rect key="frame" x="24" y="34" width="416" height="107.5"/>
                         <string key="text">SUSTAINABLE
 HIGH PERFORMANCE
 IS A SKILL</string>
@@ -38,14 +38,14 @@ IS A SKILL</string>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vO-FN-oGK">
-                        <rect key="frame" x="24" y="152.5" width="416" height="233.5"/>
+                        <rect key="frame" x="24" y="171.5" width="416" height="233.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="0vO-FN-oGK" secondAttribute="height" multiplier="41:23" id="4lj-OV-o5A"/>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tp-TF-KYU">
-                        <rect key="frame" x="385" y="321" width="45" height="45"/>
+                        <rect key="frame" x="385" y="340" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="6ke-qz-L0w"/>
                             <constraint firstAttribute="height" constant="45" id="zkA-jC-oUe"/>
@@ -63,7 +63,7 @@ IS A SKILL</string>
                     <constraint firstItem="0vO-FN-oGK" firstAttribute="trailing" secondItem="xmQ-rG-7cJ" secondAttribute="trailing" id="BqF-UC-Cna"/>
                     <constraint firstItem="4tp-TF-KYU" firstAttribute="trailing" secondItem="0vO-FN-oGK" secondAttribute="trailing" constant="-10" id="DWD-hs-e3R"/>
                     <constraint firstItem="6ZI-3V-Kdh" firstAttribute="leading" secondItem="0vO-FN-oGK" secondAttribute="leading" id="Kqu-1T-7Y8"/>
-                    <constraint firstItem="xmQ-rG-7cJ" firstAttribute="top" secondItem="SsV-xG-Lmd" secondAttribute="top" constant="15" id="Pus-SS-dCJ"/>
+                    <constraint firstItem="xmQ-rG-7cJ" firstAttribute="top" secondItem="SsV-xG-Lmd" secondAttribute="top" constant="34" id="Pus-SS-dCJ"/>
                     <constraint firstItem="0vO-FN-oGK" firstAttribute="width" secondItem="0vO-FN-oGK" secondAttribute="height" multiplier="41:23" id="RJk-i2-by5"/>
                     <constraint firstItem="0vO-FN-oGK" firstAttribute="top" secondItem="xmQ-rG-7cJ" secondAttribute="bottom" constant="30" id="U78-wh-g99"/>
                     <constraint firstItem="6ZI-3V-Kdh" firstAttribute="top" secondItem="0vO-FN-oGK" secondAttribute="bottom" constant="29" id="Wac-Ev-qyF"/>
