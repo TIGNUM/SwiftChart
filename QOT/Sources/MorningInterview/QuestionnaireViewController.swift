@@ -441,7 +441,7 @@ extension QuestionnaireViewController {
             }
         } else {
             indexLabel.text = String(items - index)
-            var subtitles = [AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
+            let subtitles = [AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 

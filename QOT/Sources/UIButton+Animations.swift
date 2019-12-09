@@ -17,4 +17,14 @@ extension UIButton {
                         self.imageView?.transform = CGAffineTransform(scaleX: 1.0, y: state ? 1.0 : -1.0)
         }, completion: completion)
     }
+
+    func setButtonContentInset(padding: CGFloat) {
+        let contentPadding = UIEdgeInsets(top: padding, left: padding, bottom: padding, right: padding)
+        self.contentEdgeInsets = UIEdgeInsets(
+            top: contentPadding.top,
+            left: contentPadding.left,
+            bottom: contentPadding.bottom,
+            right: contentPadding.right
+        )
+    }
 }
