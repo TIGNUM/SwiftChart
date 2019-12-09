@@ -843,7 +843,6 @@ extension DailyBriefInteractor {
         return guidedtrackList
     }
 
-
     // MARK: - Tignum Messages
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
