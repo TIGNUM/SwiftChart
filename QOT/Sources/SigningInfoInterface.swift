@@ -12,7 +12,6 @@ protocol SigningInfoViewControllerInterface: UIViewController {
     func setup()
     func presentUnoptimizedAlertView(title: String, message: String, dismissButtonTitle: String)
     func didFinishLogin()
-    var delegate: SigningInfoDelegate? { get set }
 }
 
 protocol SigningInfoPresenterInterface {
@@ -28,10 +27,6 @@ protocol SigningInfoInteractorInterface: Interactor {
 }
 
 protocol SigningInfoRouterInterface {
-
-}
-
-protocol SigningInfoDelegate: class {
-    func didTapLogin()
-    func didTapStart()
+    func goToRegister()
+    func goToLogin()
 }

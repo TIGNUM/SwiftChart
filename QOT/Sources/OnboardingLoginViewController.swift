@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import MessageUI
 
-final class OnboardingLoginViewController: BaseViewController, ScreenZLevelOverlay {
+final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     let digitsActiveOffset: CGFloat = -230

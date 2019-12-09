@@ -11,18 +11,14 @@ import UIKit
 final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
     @IBOutlet private weak var pageIndicatorView: UIView!
     @IBOutlet private weak var pageContainerView: UIView!
-
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
     private var bottomItems = UINavigationItem()
-
-    var interactor: RegistrationInteractorInterface?
+    var interactor: RegistrationInteractorInterface!
 
     // MARK: - Init
-
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -31,9 +27,10 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
         super.init(coder: aDecoder)
     }
 
+    // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidLayoutSubviews() {
@@ -46,33 +43,33 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
         refreshBottomNavigationItems()
     }
 
+    // MARK: - Bottom Navigation
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         if let buttons = bottomItems.leftBarButtonItems {
             return buttons
         }
-        return interactor?.currentController?.bottomNavigationLeftBarItems()
+        return interactor.currentController?.bottomNavigationLeftBarItems()
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if let buttons = bottomItems.rightBarButtonItems {
             return buttons
         }
-        return interactor?.currentController?.bottomNavigationRightBarItems()
+        return interactor.currentController?.bottomNavigationRightBarItems()
     }
 }
 
 // MARK: - Actions
-
 private extension RegistrationViewController {
     @objc func loginWithTBV() {
         if hasInternet() {
-            interactor?.navigateToLogin(shouldSaveToBeVision: true)
+            interactor.navigateToLogin(shouldSaveToBeVision: true)
         }
     }
 
     @objc func loginWithoutTBV() {
         if hasInternet() {
-            interactor?.navigateToLogin(shouldSaveToBeVision: false)
+            interactor.navigateToLogin(shouldSaveToBeVision: false)
         }
     }
 }
@@ -80,7 +77,6 @@ private extension RegistrationViewController {
 // MARK: - RegistrationViewControllerInterface
 
 extension RegistrationViewController: RegistrationViewControllerInterface {
-
     func setupView() {
         view.backgroundColor = .carbon
 
@@ -88,7 +84,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = .sand
-        pageIndicator.pageCount = interactor?.totalPageCount ?? 4
+        pageIndicator.pageCount = interactor.totalPageCount
         pageIndicator.currentPageIndex = 0
 
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -97,7 +93,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         pageContainerView.fill(subview: pageController.view)
         self.addChildViewController(pageController)
 
-        if let controller = interactor?.currentController {
+        if let controller = interactor.currentController {
             pageController.setViewControllers([controller], direction: .forward, animated: false, completion: nil)
         }
         refreshBottomNavigationItems()
@@ -110,9 +106,9 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
     }
 
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {
-        if let page = interactor?.currentPage, page < pageIndicator.pageCount {
+        if interactor.currentPage < pageIndicator.pageCount {
             pageIndicator.isHidden = false
-            pageIndicator.currentPageIndex = page
+            pageIndicator.currentPageIndex = interactor.currentPage
         } else {
             pageIndicator.isHidden = true
         }

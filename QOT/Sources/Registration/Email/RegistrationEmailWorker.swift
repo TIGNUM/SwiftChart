@@ -16,6 +16,10 @@ final class RegistrationEmailWorker: BaseSigningWorker {
         return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_header_title)
     }()
 
+    lazy var subtitle: String = {
+        return AppTextService.get(AppTextKey.onboarding_sign_up_create_account_section_header_body_description)
+    }()
+
     lazy var emailPlaceholder: String = {
         return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_body_placeholder)
     }()

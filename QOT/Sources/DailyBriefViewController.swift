@@ -12,8 +12,8 @@ import DifferenceKit
 import SafariServices
 
 protocol DailyBriefViewControllerDelegate: class {
-    func openToolFromSprint(toolID: Int?)
-    func openStrategyFromSprint(strategyID: Int?)
+    func openTools(toolID: Int?)
+    func presentStrategyList(strategyID: Int?)
     func didPressGotItSprint(sprint: QDMSprint)
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
@@ -533,7 +533,7 @@ private extension DailyBriefViewController {
     func getDailyCheckinInsightsSHPICell(_ tableView: UITableView,
                                          _ indexPath: IndexPath,
                                          _ dailyCheck2SHPIModel: DailyCheck2SHPIModel?) -> UITableViewCell {
-        let cell: DailyCheckinInsightsSHPICell = tableView.dequeueCell(for: indexPath)
+        let cell: DailyCheckinSHPICell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: dailyCheck2SHPIModel)
         return cell
     }
@@ -594,20 +594,20 @@ private extension DailyBriefViewController {
         let cell: ExploreCell = tableView.dequeueCell(for: indexPath)
         if exploreViewModel?.section == .LearnStrategies {
             self.selectedStrategyID = exploreViewModel?.remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openStrategy))
-            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
+                           isStrategy: true,
+                           remoteID: exploreViewModel?.remoteID)
+            cell.delegate = self
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
-            let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openTool))
-            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
-                           labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0),
-                           bucketTitle: exploreViewModel?.bucketTitle ?? "")
+                           bucketTitle: exploreViewModel?.bucketTitle ?? "",
+                           isStrategy: false,
+                           remoteID: exploreViewModel?.remoteID)
+            cell.delegate = self
         }
         return cell
     }
@@ -662,7 +662,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(GoodToKnowCell.self)
         tableView.registerDequeueable(FromTignumCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
-        tableView.registerDequeueable(DailyCheckinInsightsSHPICell.self)
+        tableView.registerDequeueable(DailyCheckinSHPICell.self)
         tableView.registerDequeueable(DailyCheckinInsightsPeakPerformanceCell.self)
         tableView.registerDequeueable(ExploreCell.self)
         tableView.registerDequeueable(AboutMeCell.self)
@@ -753,11 +753,7 @@ extension DailyBriefViewController {
         router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
-    func openStrategyFromSprint(strategyID: Int?) {
-        router.presentStrategyList(strategyID: strategyID)
-    }
-
-    func openToolFromSprint(toolID: Int?) {
+    func openTools(toolID: Int?) {
         router.presentToolsItems(toolID: toolID)
     }
 
@@ -777,8 +773,8 @@ extension DailyBriefViewController {
         router.presentStrategyList(strategyID: selectedStrategyID)
     }
 
-    @objc func openTool(sender: UITapGestureRecognizer) {
-        router.presentToolsItems(toolID: selectedToolID)
+    func presentStrategyList(strategyID: Int?) {
+        router.presentStrategyList(strategyID: strategyID)
     }
 }
 

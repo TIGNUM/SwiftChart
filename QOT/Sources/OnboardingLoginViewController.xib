@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_9" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,17 +51,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h0e-qM-qc8">
-                    <rect key="frame" x="311" y="69" width="40" height="40"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="40" id="Bwj-LL-Rej"/>
-                        <constraint firstAttribute="height" constant="40" id="y2t-c6-FHD"/>
-                    </constraints>
-                    <state key="normal" image="ic_arrow_up"/>
-                    <connections>
-                        <action selector="didTapBack" destination="-1" eventType="touchUpInside" id="gEG-jS-UbM"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9oz-5Q-wLY" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="115.66666666666669" y="365.66666666666669" width="144" height="40"/>
                     <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
@@ -257,7 +244,7 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qDo-10-Xri">
-                    <rect key="frame" x="0.0" y="44" width="311" height="65"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="65"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="65" id="5ap-fH-TPd"/>
@@ -280,11 +267,9 @@
                 <constraint firstItem="Dwk-pD-HYZ" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="E8Z-G1-yk0"/>
                 <constraint firstItem="NxH-I0-Qa5" firstAttribute="top" secondItem="OhO-lt-yI7" secondAttribute="top" id="Hqq-yL-n2V"/>
                 <constraint firstItem="qDo-10-Xri" firstAttribute="top" secondItem="6M7-3A-lmN" secondAttribute="top" id="LeE-pP-vdX"/>
-                <constraint firstItem="h0e-qM-qc8" firstAttribute="leading" secondItem="qDo-10-Xri" secondAttribute="trailing" id="NdM-wW-RPR"/>
-                <constraint firstItem="qDo-10-Xri" firstAttribute="bottom" secondItem="h0e-qM-qc8" secondAttribute="bottom" id="OYF-3a-yIq"/>
+                <constraint firstItem="6M7-3A-lmN" firstAttribute="trailing" secondItem="qDo-10-Xri" secondAttribute="trailing" id="PWI-No-2wA"/>
                 <constraint firstItem="OhO-lt-yI7" firstAttribute="top" secondItem="uX7-Am-z8w" secondAttribute="bottom" constant="8" id="Pr6-EA-tQu"/>
                 <constraint firstItem="zm3-4e-5WS" firstAttribute="leading" secondItem="NxH-I0-Qa5" secondAttribute="trailing" id="S9I-3X-r9t"/>
-                <constraint firstItem="6M7-3A-lmN" firstAttribute="trailing" secondItem="h0e-qM-qc8" secondAttribute="trailing" constant="24" id="Sst-Xf-jTD"/>
                 <constraint firstItem="OhO-lt-yI7" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="UIm-nQ-4a1"/>
                 <constraint firstItem="uX7-Am-z8w" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="Vob-4Q-lW9"/>
                 <constraint firstItem="qUz-6e-E5n" firstAttribute="leading" secondItem="zm3-4e-5WS" secondAttribute="trailing" id="WF6-E0-62J"/>
@@ -307,7 +292,4 @@
             <point key="canvasLocation" x="55.200000000000003" y="79.802955665024641"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_arrow_up" width="40" height="40"/>
-    </resources>
 </document>

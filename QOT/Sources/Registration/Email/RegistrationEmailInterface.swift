@@ -21,6 +21,7 @@ protocol RegistrationEmailPresenterInterface {
 
 protocol RegistrationEmailInteractorInterface: Interactor {
     var title: String { get }
+    var subtitle: String { get }
     var emailPlaceholder: String { get }
     var nextButtonTitle: String { get }
     var isNextButtonEnabled: Bool { get }

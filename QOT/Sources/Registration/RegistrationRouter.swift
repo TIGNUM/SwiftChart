@@ -11,18 +11,15 @@ import UIKit
 final class RegistrationRouter {
 
     // MARK: - Properties
-
     private weak var viewController: RegistrationViewController?
 
     // MARK: - Init
-
     init(viewController: RegistrationViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - RegistrationRouterInterface
-
 extension RegistrationRouter: RegistrationRouterInterface {
     func popBack() {
         viewController?.navigationController?.popViewController(animated: true)

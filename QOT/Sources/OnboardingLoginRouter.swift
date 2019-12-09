@@ -37,4 +37,19 @@ extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
             viewController?.present(controller, animated: true, completion: nil)
         }
     }
+
+    func showTrackSelection() {
+        guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
+        let configurator = TrackSelectionConfigurator.make()
+        configurator(controller, TrackSelectionControllerType.registration)
+        viewController?.pushToStart(childViewController: controller)
+    }
+
+    func goToRegister() {
+        if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
+            let configurator = RegisterIntroConfigurator.make()
+            configurator(controller)
+            viewController?.navigationController?.pushViewController(controller, animated: true)
+        }
+    }
 }

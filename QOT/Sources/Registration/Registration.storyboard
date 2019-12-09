@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -26,16 +24,8 @@
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" id="k6Z-sz-uPr"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVQ-bk-7z3" userLabel="Dash View">
-                                <rect key="frame" x="24" y="112" width="16" height="1"/>
-                                <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="1" id="ZTP-v3-gkd"/>
-                                    <constraint firstAttribute="width" constant="16" id="kRc-1k-tdw"/>
-                                </constraints>
-                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-gi-e74" userLabel="Page Container View">
-                                <rect key="frame" x="0.0" y="126" width="414" height="636"/>
+                                <rect key="frame" x="0.0" y="105" width="414" height="657"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                         </subviews>
@@ -44,11 +34,9 @@
                             <constraint firstItem="Pac-Ve-UBL" firstAttribute="top" secondItem="3PL-jb-Sso" secondAttribute="top" constant="25" id="4DR-a7-9k4"/>
                             <constraint firstItem="Pac-Ve-UBL" firstAttribute="leading" secondItem="3PL-jb-Sso" secondAttribute="leading" constant="24" id="5bY-s1-3di"/>
                             <constraint firstItem="l0v-gi-e74" firstAttribute="leading" secondItem="xUf-tc-ZbG" secondAttribute="leading" id="7pH-Dx-CQ1"/>
-                            <constraint firstItem="XVQ-bk-7z3" firstAttribute="bottom" secondItem="Pac-Ve-UBL" secondAttribute="top" constant="44" id="9kc-Rs-U2D"/>
                             <constraint firstItem="3PL-jb-Sso" firstAttribute="bottom" secondItem="l0v-gi-e74" secondAttribute="bottom" constant="100" id="CVy-D6-Hjm"/>
-                            <constraint firstItem="XVQ-bk-7z3" firstAttribute="leading" secondItem="xUf-tc-ZbG" secondAttribute="leading" constant="24" id="ISS-KD-JlC"/>
+                            <constraint firstItem="l0v-gi-e74" firstAttribute="top" secondItem="Pac-Ve-UBL" secondAttribute="bottom" constant="34" id="UMS-aJ-mSj"/>
                             <constraint firstAttribute="trailing" secondItem="l0v-gi-e74" secondAttribute="trailing" id="kxi-dw-zAL"/>
-                            <constraint firstItem="l0v-gi-e74" firstAttribute="top" secondItem="XVQ-bk-7z3" secondAttribute="bottom" constant="13" id="xqJ-MM-zVd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3PL-jb-Sso"/>
                     </view>

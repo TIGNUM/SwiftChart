@@ -92,6 +92,7 @@ extension UIViewController {
         case is OnboardingLoginViewController: return AppTextService.get(AppTextKey.onboarding_log_in)
         case is PaymentReminderViewController: return subscriptionReminderPageKey
         case is CoachMarksViewController: return guidedTrackPageKey
+        case is RegisterIntroViewController: return AppTextService.get(.onboarding_sign_up_intro)
         default: preconditionFailure()
         }
     }
@@ -101,8 +102,9 @@ extension UIViewController {
 private extension UIViewController {
     var myQOTSupportDetailsViewControllerPageKey: String {
         switch (self as? MyQotSupportDetailsViewController)?.interactor?.category {
-        case .FAQ?: return AppTextService.get(AppTextKey.my_qot_my_profile_support_faq)
-        case .UsingQOT?: return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot)
+        case .FAQ?: return AppTextService.get(.my_qot_my_profile_support_faq)
+        case .FAQBeforeLogin?: return AppTextService.get(.onboarding_log_in_faq)
+        case .UsingQOT?: return AppTextService.get(.my_qot_my_profile_support_using_qot)
         default: preconditionFailure()
         }
     }

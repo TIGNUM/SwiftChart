@@ -13,12 +13,6 @@ import qot_dal
 
 extension QDMGuideItemNotification {
 
-    static func notificationIdentifier(with type: String?, date: Date?, link: String?) -> String {
-        let triggerDate = date
-        let dateString = triggerDate != nil ? DateFormatter.iso8601UTC.string(from: triggerDate!) : ""
-        return "\(type ?? "UNKNOWN")[:]\(dateString)[:]\(link ?? "qot://")"
-    }
-
     enum ItemType: String {
         case morningInterview = "MORNING_INTERVIEW"
         case morningInterviewReminder = "MORNING_INTERVIEW_REMINDER"
@@ -29,10 +23,6 @@ extension QDMGuideItemNotification {
         case fitBitSyncReminder = "FITBIT_SYNC_REMINDER"
     }
 
-    var localNotificationDate: Date? {
-        guard let issueDate = issueDate, let displayTime = displayTime else { return nil }
-        return displayTime.date(with: issueDate)
-    }
     var isDailyPrep: Bool {
         guard let itemType = ItemType(rawValue: type ?? "") else { return false }
         return itemType == .morningInterview || itemType == .weeklyInterview

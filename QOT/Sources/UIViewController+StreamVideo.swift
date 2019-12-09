@@ -147,17 +147,10 @@ extension UIViewController {
         playerController.overlayControls = overlay
         if let contentView = playerController.view {
             contentView.addSubview(overlay)
-
-            NSLayoutConstraint(item: overlay,
-                               attribute: .centerY,
-                               relatedBy: .equal,
-                               toItem: contentView,
-                               attribute: .centerY,
-                               multiplier: 1.45,
-                               constant: 0).isActive = true
-            overlay.trailingAnchor == contentView.trailingAnchor
-            overlay.leadingAnchor == contentView.leadingAnchor
-            overlay.heightAnchor.constraint(equalToConstant: MediaPlayerOverlay.height).isActive = true
+            overlay.frame = CGRect(x: 0,
+                                   y: (contentView.frame.height * 0.66) + MediaPlayerOverlay.height,
+                                   width: contentView.frame.width,
+                                   height: MediaPlayerOverlay.height)
         }
         if let interactor = playerController.interactor {
             overlay.configure(downloadTitle: interactor.downloadButtonTitle,
