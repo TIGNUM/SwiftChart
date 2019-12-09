@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
+final class DailyCheckinSHPICell: BaseDailyBriefCell {
 
     @IBOutlet weak var headerHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerView: UIView!
@@ -48,7 +48,7 @@ final class DailyCheckinInsightsSHPICell: BaseDailyBriefCell {
     }
 }
 
-private extension DailyCheckinInsightsSHPICell {
+private extension DailyCheckinSHPICell {
     func setupRatingChart(rating: Int) {
         let selectedIndex = max(0, rating - 1)
         labels?.at(index: selectedIndex)?.font.withSize(16)

@@ -12,7 +12,7 @@ import qot_dal
 final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     @IBOutlet weak var howYouFeelToday: UILabel!
-    @IBOutlet weak var asterickText: UILabel!
+    @IBOutlet weak var asterixText: UILabel!
 //// sleepQuantity
     @IBOutlet weak var sleepQuantityTitle: UILabel!
     @IBOutlet weak var sleepQuantitySubtitle: UILabel!
@@ -52,7 +52,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         skeletonManager.addSubtitle(rollingDataLabel)
         skeletonManager.addSubtitle(howYouFeelToday)
-        skeletonManager.addSubtitle(asterickText)
+        skeletonManager.addSubtitle(asterixText)
         for view in mainStackView.arrangedSubviews {
             skeletonManager.addOtherView(view)
         }
@@ -63,7 +63,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     func hide(_ hidden: Bool) {
         rollingDataLabel.isHidden = hidden
         howYouFeelToday.isHidden = hidden
-        asterickText.isHidden = hidden
+        asterixText.isHidden = hidden
         sleepQuantityTitle.isHidden = hidden
         sleepQuantitySubtitle.isHidden = hidden
         sleepQuantity.isHidden = hidden
@@ -99,13 +99,15 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterickText)
+        ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterixText)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
-
-        sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
-                                                   ThemeText.quotation,
-                                                   "h",
-                                                   ThemeText.quotationSmall)
+        var asterixCharacter: String?
+        if viewModel?.asteriskText != nil {
+            asterixCharacter = "*"
+        }
+        sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
+                                                   "h", ThemeText.quotationSmall,
+                                                   asterixCharacter, ThemeText.quotation)
 
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5

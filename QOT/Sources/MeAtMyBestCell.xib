@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -24,17 +22,16 @@
             <rect key="frame" x="0.0" y="0.0" width="426" height="376"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jbC-tc-Nav" id="rYi-FS-C8c">
-                <rect key="frame" x="0.0" y="0.0" width="426" height="375.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="426" height="376"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                        <rect key="frame" x="0.0" y="0.0" width="426" height="375.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="426" height="376"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="252" y="287.5" width="150" height="40"/>
+                                <rect key="frame" x="333" y="288" width="69" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="dvw-lH-XlC"/>
-                                    <constraint firstAttribute="width" constant="150" id="zLB-N4-Gjb"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="16" maxY="0.0"/>
                                 <state key="normal" title="Rate">
@@ -45,7 +42,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URP-Fj-vXg">
-                                <rect key="frame" x="24" y="95.5" width="378" height="168"/>
+                                <rect key="frame" x="24" y="95.5" width="378" height="168.5"/>
                                 <string key="text">What could you do today to become 
 that statement statement?</string>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
@@ -96,9 +93,9 @@ that statement statement?</string>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="ctaButton" destination="rhA-xn-lOn" id="4Xc-E4-UbY"/>
                 <outlet property="headerView" destination="qDh-rv-tXP" id="gmo-5m-0WB"/>
                 <outlet property="headerViewHeightConstraint" destination="eNu-8S-pa3" id="4k2-Nv-nl3"/>
-                <outlet property="meAtMyBestButtonText" destination="rhA-xn-lOn" id="4Xc-E4-UbY"/>
                 <outlet property="meAtMyBestContent" destination="Tcg-bf-cKP" id="ZD8-lI-Had"/>
                 <outlet property="meAtMyBestFuture" destination="URP-Fj-vXg" id="WUJ-lc-jEf"/>
             </connections>

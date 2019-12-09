@@ -15,7 +15,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var meAtMyBestContent: UILabel!
     @IBOutlet private weak var meAtMyBestFuture: UILabel!
-    @IBOutlet private weak var meAtMyBestButtonText: AnimatedButton!
+    @IBOutlet private weak var ctaButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
 
     @IBAction func presentTBV(_ sender: Any) {
@@ -24,10 +24,10 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        meAtMyBestButtonText.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         skeletonManager.addSubtitle(meAtMyBestContent)
         skeletonManager.addOtherView(meAtMyBestFuture)
-        skeletonManager.addOtherView(meAtMyBestButtonText)
+        skeletonManager.addOtherView(ctaButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
     }
@@ -44,6 +44,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
         ThemeText.solveFuture.apply(model.intro2, to: meAtMyBestFuture)
-        meAtMyBestButtonText.setTitle(model.buttonText, for: .normal)
+        ctaButton.setButtonContentInset(padding: 16)
+        ctaButton.setTitle(model.buttonText, for: .normal)
     }
 }

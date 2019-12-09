@@ -1033,7 +1033,7 @@
 		E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0AF2135284700C0723E /* PDFReaderRouter.swift */; };
 		E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0B12135285A00C0723E /* PDFReaderWorker.swift */; };
 		E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8552136F17F005E787C /* PDFReaderInterface.swift */; };
-		F902CF4F22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */; };
+		F902CF4F22DE0FC700FFC836 /* DailyCheckinSHPICell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */; };
 		F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */; };
 		F902CF5322DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */; };
 		F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */; };
@@ -2228,7 +2228,7 @@
 		E813F0AF2135284700C0723E /* PDFReaderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderRouter.swift; sourceTree = "<group>"; };
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
-		F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsSHPICell.swift; sourceTree = "<group>"; };
+		F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinSHPICell.swift; sourceTree = "<group>"; };
 		F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsTBVCell.swift; sourceTree = "<group>"; };
 		F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsPeakPerformanceCell.swift; sourceTree = "<group>"; };
 		F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsCellViewModel.swift; sourceTree = "<group>"; };
@@ -2459,10 +2459,11 @@
 				9CC426142306A41E00F8072E /* GuidedTrack */,
 				F9F70C1222F9A24000E85BF3 /* SprintChallenge */,
 				9C24237A22F093E700B911E6 /* SolveReminder  */,
+				9C24237022F0817F00B911E6 /* AboutMe */,
 				9C24237722F08A4600B911E6 /* MeAtMyBest */,
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
-				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
+				F902CF4D22DE0F8F00FFC836 /* Daily Insights */,
 				75423F0422CF2FF9008EE726 /* BeSpoke to delete */,
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
 				F9D6381722D745940092C482 /* Explore */,
@@ -3797,7 +3798,6 @@
 		9C24237722F08A4600B911E6 /* MeAtMyBest */ = {
 			isa = PBXGroup;
 			children = (
-				9C24237022F0817F00B911E6 /* AboutMe */,
 				9C24237822F08A6200B911E6 /* MeAtMyBestCell.xib */,
 				9C24237D22F0999C00B911E6 /* MeAtMyBestCell.swift */,
 				9C24238122F099BE00B911E6 /* MeAtMyBestCellViewModel.swift */,
@@ -4842,7 +4842,7 @@
 			path = PDFReader;
 			sourceTree = "<group>";
 		};
-		F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */ = {
+		F902CF4D22DE0F8F00FFC836 /* Daily Insights */ = {
 			isa = PBXGroup;
 			children = (
 				9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */,
@@ -4852,13 +4852,13 @@
 				9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */,
 				F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */,
 				F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */,
-				F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */,
+				F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */,
 				F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */,
 				F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */,
 				F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */,
 				F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */,
 			);
-			name = "Daily Checkin II";
+			name = "Daily Insights";
 			sourceTree = "<group>";
 		};
 		F909961322B23F1A00EAEAC6 /* MyPreps */ = {
@@ -6053,7 +6053,7 @@
 				8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */,
 				5FA66644229C208F0027EE74 /* MyVisionEditDetailsConfigurator.swift in Sources */,
 				8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */,
-				F902CF4F22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift in Sources */,
+				F902CF4F22DE0FC700FFC836 /* DailyCheckinSHPICell.swift in Sources */,
 				DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */,
 				F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */,
 				75DC687022C11D5D00FF183D /* MyToBeVisionRateWorker.swift in Sources */,

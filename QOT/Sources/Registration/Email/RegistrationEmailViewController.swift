@@ -14,6 +14,7 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
     let viewTheme = ThemeView.onboarding
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailField: QotPlaceholderTextField!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
@@ -91,6 +92,7 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
 
         ThemeText.registrationEmailTitle.apply(interactor.title, to: titleLabel)
         ThemeText.onboardingInputPlaceholder.apply(interactor.emailPlaceholder, to: emailField.placeholderLabel)
+        ThemeText.registrationCodeDescription.apply(interactor.subtitle, to: subtitleLabel)
         emailField.delegate = self
         emailField.textField.corner(radius: .Nine, borderColor: .sand40)
         emailField.textField.autocapitalizationType = .none

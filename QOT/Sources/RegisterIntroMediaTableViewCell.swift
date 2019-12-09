@@ -17,6 +17,16 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var soundToggleButton: UIButton!
     var playerController = AVPlayerViewController()
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        addTapRecognizer()
+    }
+
+    func addTapRecognizer() {
+        let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(didTapMediaContentView))
+        mediaContentView.addGestureRecognizer(tapRecognizer)
+    }
+
     func configure(title: String?, body: String?, videoURL: String?) {
         ThemeText.registerIntroTitle.apply(title, to: titleLabel)
         ThemeText.registerIntroBody.apply(body, to: descriptionLabel)
@@ -27,6 +37,11 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBAction func didTapSoundToggleButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         playerController.player?.isMuted = !sender.isSelected
+    }
+
+    @objc func didTapMediaContentView() {
+        let value = UIInterfaceOrientation.landscapeLeft.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
 
     func stopPlaying() {

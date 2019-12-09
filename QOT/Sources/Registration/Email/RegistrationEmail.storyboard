@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,10 +21,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjF-FM-Bxv">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DjF-FM-Bxv">
                                 <rect key="frame" x="24" y="0.0" width="366" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKG-Xd-qIY">
+                                <rect key="frame" x="24" y="34" width="366" height="19.5"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="16"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62Y-Sc-rY0">
@@ -48,14 +52,17 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="kKG-Xd-qIY" secondAttribute="trailing" constant="24" id="92T-78-ccw"/>
                             <constraint firstItem="62Y-Sc-rY0" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="Bmr-OR-DSk"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="UXk-BO-USW" secondAttribute="trailing" constant="24" id="Ods-nK-fgs"/>
+                            <constraint firstItem="kKG-Xd-qIY" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="R4f-Xd-Sb1"/>
                             <constraint firstItem="62Y-Sc-rY0" firstAttribute="top" secondItem="UXk-BO-USW" secondAttribute="bottom" constant="14" id="RHS-Fr-gsM"/>
                             <constraint firstItem="DjF-FM-Bxv" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="TBY-yK-kV2"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="DjF-FM-Bxv" secondAttribute="trailing" constant="24" id="Xcc-98-7zQ"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="bottom" secondItem="62Y-Sc-rY0" secondAttribute="bottom" constant="50" id="Yh6-jQ-yQu"/>
                             <constraint firstItem="UXk-BO-USW" firstAttribute="leading" secondItem="0Jj-jd-HRi" secondAttribute="leading" constant="24" id="dbd-nB-JB1"/>
                             <constraint firstItem="DjF-FM-Bxv" firstAttribute="top" secondItem="H1e-Qb-dOW" secondAttribute="top" id="kXh-Qe-QRS"/>
+                            <constraint firstItem="kKG-Xd-qIY" firstAttribute="top" secondItem="DjF-FM-Bxv" secondAttribute="bottom" constant="10" id="qsg-Sl-LfV"/>
                             <constraint firstItem="0Jj-jd-HRi" firstAttribute="trailing" secondItem="62Y-Sc-rY0" secondAttribute="trailing" constant="24" id="xYB-V2-RZJ"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Jj-jd-HRi"/>
@@ -64,6 +71,7 @@
                         <outlet property="bottomConstraint" destination="Yh6-jQ-yQu" id="Pee-OO-HKu"/>
                         <outlet property="descriptionLabel" destination="62Y-Sc-rY0" id="and-we-peO"/>
                         <outlet property="emailField" destination="UXk-BO-USW" id="3qC-mF-t9D"/>
+                        <outlet property="subtitleLabel" destination="kKG-Xd-qIY" id="Udp-6x-xkD"/>
                         <outlet property="titleLabel" destination="DjF-FM-Bxv" id="h7a-gX-84j"/>
                     </connections>
                 </viewController>
