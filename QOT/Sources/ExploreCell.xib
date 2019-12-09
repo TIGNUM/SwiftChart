@@ -27,11 +27,11 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeX-Re-eY0">
-                    <rect key="frame" x="24" y="269" width="52" height="40"/>
+                    <rect key="frame" x="24" y="269" width="76" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="yRz-U1-iJx"/>
                     </constraints>
-                    <state key="normal" title="Explore"/>
+                    <state key="normal" title="Button text"/>
                     <connections>
                         <action selector="didTapExplore:" destination="iN0-l3-epB" eventType="touchUpInside" id="EoA-HQ-dKE"/>
                     </connections>

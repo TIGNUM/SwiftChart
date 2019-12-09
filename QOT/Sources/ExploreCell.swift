@@ -34,10 +34,12 @@ final class ExploreCell: BaseDailyBriefCell {
 
     func configure(title: String?, introText: String?, bucketTitle: String?, isStrategy: Bool, remoteID: Int?) {
         baseHeaderView?.configure(title: (bucketTitle ?? "").uppercased(), subtitle: introText)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
+        let exploreButtonText =  AppTextService.get(AppTextKey("daily_brief.section_explore.button"))
+        exploreButton.setTitle(exploreButtonText, for: .normal)
         skeletonManager.hide()
         self.contentID = remoteID
         self.isStrategy = isStrategy
