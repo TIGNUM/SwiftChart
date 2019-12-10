@@ -96,15 +96,16 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             hide(false)
             skeletonManager.hide()
         }
-
+        var asterixCharacter: String = "\n*"
         ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
-        ThemeText.dailyBriefSubtitle.apply(viewModel?.asteriskText, to: asterixText)
+        asterixText.attributedText = buildString(asterixCharacter, ThemeText.impactReadinessAsterix,
+                                                 (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""), ThemeText.dailyBriefSubtitle,
+                                                 textAlignment: .left)
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
-        var asterixCharacter: String?
-        if viewModel?.asteriskText != nil {
-            asterixCharacter = "*"
-        }
+
+        asterixCharacter = viewModel?.asteriskText != nil ? "*" : ""
+
         sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
                                                    "h", ThemeText.quotationSmall,
                                                    asterixCharacter, ThemeText.quotation)
@@ -153,7 +154,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     private func buildString(_ text1: String, _ theme1: ThemeText,
                              _ text2: String, _ theme2: ThemeText,
-                             _ text3: String? = nil, _ theme3: ThemeText? = nil) -> NSAttributedString {
+                             _ text3: String? = nil, _ theme3: ThemeText? = nil,
+                             textAlignment: NSTextAlignment = .right) -> NSAttributedString {
 
         let combine = NSMutableAttributedString()
         combine.append(theme1.attributedString(text1))
@@ -163,7 +165,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             combine.append(theme3.attributedString(text3))
         }
         let style = NSMutableParagraphStyle()
-        style.alignment = .right
+        style.alignment = textAlignment
         combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }

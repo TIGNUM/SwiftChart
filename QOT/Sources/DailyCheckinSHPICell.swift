@@ -15,8 +15,8 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
     @IBOutlet weak var shpiContentLabel: UILabel!
     @IBOutlet weak var shpiQuestionLabel: UILabel!
     @IBOutlet weak var barsTitleLabel: UILabel!
-    @IBOutlet weak var minLabel: UILabel!
-    @IBOutlet weak var maxLabel: UILabel!
+    @IBOutlet weak var minLabel: UILabel?
+    @IBOutlet weak var maxLabel: UILabel?
     @IBOutlet weak var barsStackView: UIStackView!
     @IBOutlet private var bars: [UIView]?
     @IBOutlet private var labels: [UILabel]?
@@ -32,8 +32,8 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
         }
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(barsStackView)
-        ThemeText.dailyInsightsChartBarLabelUnselected.apply(minLabel.text, to: minLabel)
-        ThemeText.dailyInsightsChartBarLabelUnselected.apply(maxLabel.text, to: maxLabel)
+        ThemeText.dailyInsightsChartBarLabelUnselected.apply(minLabel?.text, to: minLabel)
+        ThemeText.dailyInsightsChartBarLabelUnselected.apply(maxLabel?.text, to: maxLabel)
     }
 
     func configure(with: DailyCheck2SHPIModel?) {
@@ -56,7 +56,7 @@ private extension DailyCheckinSHPICell {
         heights?.at(index: selectedIndex)?.constant = 56
         bars?.at(index: selectedIndex)?.backgroundColor = .sand
         bars?.at(index: selectedIndex)?.setNeedsUpdateConstraints()
-        minLabel.textColor = selectedIndex == 0 ? .sand : .sand40
-        maxLabel.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
+        minLabel?.textColor = selectedIndex == 0 ? .sand : .sand40
+        maxLabel?.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
     }
 }
