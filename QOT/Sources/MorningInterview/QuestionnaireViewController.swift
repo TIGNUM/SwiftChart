@@ -572,7 +572,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
 }
 
 // MARK: GestureRecognizer
-extension QuestionnaireViewController: UIGestureRecognizerDelegate {
+extension QuestionnaireViewController {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
         guard gestureRecognizer.view != nil else { return false }
         let piece = gestureRecognizer.view!

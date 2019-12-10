@@ -45,12 +45,11 @@ IS A SKILL</string>
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4tp-TF-KYU">
-                        <rect key="frame" x="385" y="340" width="45" height="45"/>
+                        <rect key="frame" x="395" y="360" width="45" height="45"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="45" id="6ke-qz-L0w"/>
                             <constraint firstAttribute="height" constant="45" id="zkA-jC-oUe"/>
                         </constraints>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <state key="normal" image="ic_speaker_off"/>
                         <state key="selected" image="ic_speaker_on"/>
                         <connections>
@@ -59,9 +58,9 @@ IS A SKILL</string>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="4tp-TF-KYU" firstAttribute="bottom" secondItem="0vO-FN-oGK" secondAttribute="bottom" constant="-20" id="7pX-uR-MxP"/>
+                    <constraint firstItem="4tp-TF-KYU" firstAttribute="bottom" secondItem="0vO-FN-oGK" secondAttribute="bottom" id="7pX-uR-MxP"/>
                     <constraint firstItem="0vO-FN-oGK" firstAttribute="trailing" secondItem="xmQ-rG-7cJ" secondAttribute="trailing" id="BqF-UC-Cna"/>
-                    <constraint firstItem="4tp-TF-KYU" firstAttribute="trailing" secondItem="0vO-FN-oGK" secondAttribute="trailing" constant="-10" id="DWD-hs-e3R"/>
+                    <constraint firstItem="4tp-TF-KYU" firstAttribute="trailing" secondItem="0vO-FN-oGK" secondAttribute="trailing" id="DWD-hs-e3R"/>
                     <constraint firstItem="6ZI-3V-Kdh" firstAttribute="leading" secondItem="0vO-FN-oGK" secondAttribute="leading" id="Kqu-1T-7Y8"/>
                     <constraint firstItem="xmQ-rG-7cJ" firstAttribute="top" secondItem="SsV-xG-Lmd" secondAttribute="top" constant="34" id="Pus-SS-dCJ"/>
                     <constraint firstItem="0vO-FN-oGK" firstAttribute="width" secondItem="0vO-FN-oGK" secondAttribute="height" multiplier="41:23" id="RJk-i2-by5"/>
@@ -87,7 +86,7 @@ IS A SKILL</string>
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_speaker_off" width="109" height="107.66666412353516"/>
-        <image name="ic_speaker_on" width="109" height="107.66666412353516"/>
+        <image name="ic_speaker_off" width="20" height="18"/>
+        <image name="ic_speaker_on" width="20" height="18"/>
     </resources>
 </document>

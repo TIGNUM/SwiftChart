@@ -172,7 +172,7 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension MyDataScreenViewController: UIGestureRecognizerDelegate {
+extension MyDataScreenViewController {
 
     // MARK: Pinch to zoom and pan functionality
 
@@ -238,7 +238,7 @@ extension MyDataScreenViewController: UIGestureRecognizerDelegate {
 
     // MARK: Gesture recognizer Delegate
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
 

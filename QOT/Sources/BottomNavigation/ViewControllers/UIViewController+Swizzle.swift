@@ -138,8 +138,6 @@ extension UIViewController {
     @objc func viewDidAppearSwizzled(animated: Bool) {
         if self is ScreenZLevel1 || self is ScreenZLevelBottom {
             NotificationCenter.default.post(name: .stopAudio, object: nil)
-        } else if !self.isModal() && (self is ScreenZLevel2 || self is ScreenZLevel3) {
-            addGestureSwipeBack()
         }
 
         let viewControllerName = NSStringFromClass(type(of: self))
@@ -162,16 +160,6 @@ extension UIViewController {
             return
         }
         statusBar.backgroundColor = color
-    }
-
-    @objc func handleSwipeBackGesture(gesture: UISwipeGestureRecognizer) {
-        dismissLeftToRight()
-    }
-
-    private func addGestureSwipeBack() {
-        let swipeBack = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipeBackGesture))
-        swipeBack.direction = .right
-        view.addGestureRecognizer(swipeBack)
     }
 
     private func navigationNotificationBlock() -> (() -> Void)? {
