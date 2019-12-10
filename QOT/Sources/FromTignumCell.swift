@@ -10,7 +10,6 @@ import UIKit
 
 final class FromTignumCell: BaseDailyBriefCell {
 
-    @IBOutlet var headerHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var fromTignumText: UILabel!
@@ -31,10 +30,9 @@ final class FromTignumCell: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.subtitle)
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 6
         ThemeText.dailyBriefFromTignumTitle.apply((model.subtitle ?? ""), to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
-        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
     }
 }
