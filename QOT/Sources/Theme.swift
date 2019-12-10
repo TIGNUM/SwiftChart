@@ -636,6 +636,7 @@ enum ThemeText {
     case quotationSlash
     case dailyBriefTitle
     case dailyBriefSubtitle
+    case impactReadinessAsterix
     case dailyBriefImpactReadinessRolling
     case sprintName
     case quoteAuthor
@@ -982,7 +983,7 @@ enum ThemeText {
             return Fonts.fontDisplayUltralight120
         case .onboardingInfoTitle:
             return Fonts.fontDisplayBold60
-        case .quotation, .aboutMeContent:
+        case .quotation, .aboutMeContent, .impactReadinessAsterix:
             return Fonts.fontDisplayThin34
         // MARK: - fontDisplayRegular20
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
@@ -1026,7 +1027,7 @@ enum ThemeText {
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
              .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle:
             return Palette.sand
-        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody:
+        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody, .impactReadinessAsterix:
             return Palette.sand60
 
         // MARK: - .sand40
@@ -1255,8 +1256,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
-             .loginSeparator,
-             .dailyBriefSubtitle:
+             .loginSeparator, .dailyBriefSubtitle, .impactReadinessAsterix:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
             var alignment: NSTextAlignment = .left
