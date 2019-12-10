@@ -30,7 +30,7 @@ final class FromTignumCell: BaseDailyBriefCell {
         guard let model = viewModel else { return }
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.subtitle)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 6
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefFromTignumTitle.apply((model.subtitle ?? ""), to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
