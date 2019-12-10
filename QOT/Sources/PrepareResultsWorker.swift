@@ -209,6 +209,8 @@ extension PrepareResultsWorker {
 
     func deletePreparation() {
         if let preparation = preparation {
+            let externalIdentifier = preparation.eventExternalUniqueIdentifierId?.components(separatedBy: "[//]").first
+            WorkerCalendar().deleteLocalEvent(externalIdentifier)
             UserService.main.deleteUserPreparation(preparation) { (error) in
                 if let error = error {
                     log("Error deleteUserPreparation \(error.localizedDescription)", level: .error)

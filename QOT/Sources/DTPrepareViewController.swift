@@ -36,6 +36,7 @@ final class DTPrepareViewController: DTViewController {
             prepareRouter?.dismissResultView()
             trackQuestionInteraction()
         } else {
+            prepareInteractor?.removeCreatedCalendarEvent()
             super.didTapClose()
         }
     }

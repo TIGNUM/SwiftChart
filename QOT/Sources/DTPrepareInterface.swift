@@ -31,6 +31,7 @@ protocol DTPrepareInteractorInterface: Interactor {
                             _ completion: @escaping (QDMUserPreparation?) -> Void)
     func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void)
     func setUserCalendarEvents(_ events: [QDMUserCalendarEvent])
+    func removeCreatedCalendarEvent()
 }
 
 protocol DTPrepareRouterInterface {
