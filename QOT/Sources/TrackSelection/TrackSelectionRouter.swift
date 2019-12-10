@@ -28,7 +28,7 @@ extension TrackSelectionRouter: TrackSelectionRouterInterface {
     func openWalktrough(with trackType: SelectedTrackType) {
         guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
         let configurator = CoachMarksConfigurator.make()
-        configurator(controller, trackType)
+        configurator(controller)
         viewController?.pushToStart(childViewController: controller)
     }
 

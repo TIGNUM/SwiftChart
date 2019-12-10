@@ -185,7 +185,7 @@ private extension OnboardingLoginInteractor {
 //        delegate?.didFinishLogin()
         let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
         if !emails.contains(email) {
-            router.showTrackSelection()
+            router.showCoachMarks()
         } else {
             router.showHomeScreen()
         }

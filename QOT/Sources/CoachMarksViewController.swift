@@ -22,6 +22,8 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageIndicatorView: UIView!
 
+    private var askedNotificationPermissions: Bool = false
+
     private var getCurrentPage: Int {
         return viewModel?.page ?? 0
     }
@@ -55,6 +57,16 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
+
+        if !askedNotificationPermissions {
+            interactor?.askNotificationPermissions()
+            askedNotificationPermissions = true
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        trackPage()
+        refreshBottomNavigationItems()
     }
 }
 
