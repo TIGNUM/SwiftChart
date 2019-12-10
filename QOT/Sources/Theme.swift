@@ -757,6 +757,7 @@ enum ThemeText {
     case dailyBriefTitleBlack
     case dailyBriefDailyCheckInSights
     case dailyBriefDailyCheckInClosedBucket
+    case dailyBriefFromTignumTitle
     case accountDetailEmail
     case accountDetailAge
 
@@ -887,7 +888,7 @@ enum ThemeText {
             }
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
-        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader:
+        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader, .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
         case .articleCategoryNotScaled, .qotToolsSectionSubtitle:
             return Fonts.fontMedium12
@@ -1023,7 +1024,7 @@ enum ThemeText {
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle:
             return Palette.sand
         case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody:
             return Palette.sand60
@@ -1202,7 +1203,7 @@ enum ThemeText {
              .mySprintsCellProgress, .mySprintDetailsHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult,
-             .dailyBriefLevelTitle:
+             .dailyBriefLevelTitle, .dailyBriefFromTignumTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
         case .articleBullet, .sectionHeader,
              .dailyBriefLevelContent,
