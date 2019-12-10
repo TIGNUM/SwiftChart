@@ -10,6 +10,10 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.interactivePopGestureRecognizer?.delegate = nil
+    }
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return isLightBackground() ? .default : .lightContent
     }
