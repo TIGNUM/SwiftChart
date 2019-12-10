@@ -989,7 +989,7 @@ enum ThemeText {
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
         case .strategyTitle:
-            return Fonts.fontDisplayRegular40
+            return Fonts.fontDisplayThin30
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle:
             return Fonts.fontDisplayLight24
