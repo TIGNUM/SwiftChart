@@ -11,25 +11,18 @@ import UIKit
 final class RegistrationPresenter {
 
     // MARK: - Properties
-
     private weak var viewController: RegistrationViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: RegistrationViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - RegistrationInterface
-
 extension RegistrationPresenter: RegistrationPresenterInterface {
     func setupView() {
         viewController?.setupView()
-    }
-
-    func present(alert: RegistrationExistingUserAlertViewModel) {
-        viewController?.show(alert: alert)
     }
 
     func present(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {

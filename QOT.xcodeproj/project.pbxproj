@@ -607,7 +607,6 @@
 		8DF7870B22FEB50800CDE0A9 /* RegistrationCodeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7870322FEB50800CDE0A9 /* RegistrationCodeInteractor.swift */; };
 		8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7870522FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift */; };
 		8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8DF7870E22FEB53D00CDE0A9 /* RegistrationCode.storyboard */; };
-		8DF7E5B9230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF7E5B8230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift */; };
 		9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912AB11620F38BD700E34328 /* ExtensionUserDefaults.swift */; };
 		9100195020F6413900049118 /* ExtensionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* ExtensionModel.swift */; };
 		9100195220F88EE600049118 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
@@ -1818,7 +1817,6 @@
 		8DF7870322FEB50800CDE0A9 /* RegistrationCodeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeInteractor.swift; sourceTree = "<group>"; };
 		8DF7870522FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationCodeConfigurator.swift; sourceTree = "<group>"; };
 		8DF7870E22FEB53D00CDE0A9 /* RegistrationCode.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistrationCode.storyboard; sourceTree = "<group>"; };
-		8DF7E5B8230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationExistingUserAlertViewModel.swift; sourceTree = "<group>"; };
 		9100195620F8A0E200049118 /* ExtensionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsDataManager.swift; sourceTree = "<group>"; };
 		91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		91086E3A20909E7A0035DA1F /* ProfileSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsModel.swift; sourceTree = "<group>"; };
@@ -2853,9 +2851,9 @@
 				367CD17722EF4EDE00AF2187 /* OnboardingLoginPresenter.swift */,
 				367CD17922EF4EDE00AF2187 /* OnboardingLoginRouter.swift */,
 				367CD17B22EF4EDE00AF2187 /* OnboardingLoginViewController.swift */,
-				367CD18722EF4F0800AF2187 /* OnboardingLoginViewController.xib */,
 				8D25778822F8748300D42B90 /* OnboardingLoginViewModel.swift */,
 				367CD17822EF4EDE00AF2187 /* OnboardingLoginWorker.swift */,
+				367CD18722EF4F0800AF2187 /* OnboardingLoginViewController.xib */,
 			);
 			name = Login_3.0;
 			sourceTree = "<group>";
@@ -3614,7 +3612,6 @@
 				8D8AA74F22FDCB6700B59A81 /* RegistrationPresenter.swift */,
 				8D8AA74E22FDCB6700B59A81 /* RegistrationRouter.swift */,
 				8D8AA75322FDCB6700B59A81 /* RegistrationViewController.swift */,
-				8DF7E5B8230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift */,
 				8D8AA74C22FDCB6700B59A81 /* RegistrationWorker.swift */,
 				8D8AA75122FDCB6700B59A81 /* Registration.storyboard */,
 				8D8AA75422FDCB6700B59A81 /* Email */,
@@ -4063,16 +4060,16 @@
 		B499A7012395282500BDD4CE /* RegisterVideoIntro */ = {
 			isa = PBXGroup;
 			children = (
-				B499A7022395283900BDD4CE /* Components */,
 				B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */,
-				B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */,
-				B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */,
-				B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */,
-				B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */,
-				B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */,
-				B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */,
-				B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */,
 				B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */,
+				B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */,
+				B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */,
+				B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */,
+				B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */,
+				B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */,
+				B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */,
+				B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */,
+				B499A7022395283900BDD4CE /* Components */,
 			);
 			name = RegisterVideoIntro;
 			sourceTree = "<group>";
@@ -6522,7 +6519,6 @@
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				5FA66640229C206D0027EE74 /* MyVisionEditDetailsInteractor.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
-				8DF7E5B9230C2172007AFC30 /* RegistrationExistingUserAlertViewModel.swift in Sources */,
 				5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */,
 				36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,

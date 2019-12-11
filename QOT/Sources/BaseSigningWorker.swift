@@ -30,12 +30,12 @@ class BaseSigningWorker {
     // MARK: - Properties
 
     let sessionService: SessionService
-    let userService: qot_dal.UserService
+    let userService: UserService
 
     // MARK: - Init
 
     init(_ sessionService: SessionService = SessionService.main,
-         _ userService: qot_dal.UserService = qot_dal.UserService.main) {
+         _ userService: UserService = qot_dal.UserService.main) {
         self.sessionService = sessionService
         self.userService = userService
     }
@@ -70,13 +70,6 @@ extension BaseSigningWorker {
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegEx)
         return emailPredicate.evaluate(with: email)
-    }
-
-    func updateToBeVision(with cachedVision: QDMToBeVision) {
-        userService.updateMyToBeVision(cachedVision) { (error) in
-            guard let error = error else { return }
-            qot_dal.log("Failed to save user's ToBeVision: \(error)", level: .debug)
-        }
     }
 }
 
