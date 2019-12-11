@@ -28,7 +28,7 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     // MARK: - Properties
     var interactor: ToolsItemsInteractorInterface!
-    @IBOutlet weak var backButton: UIButton!
+    @IBOutlet weak var backButton: UIButton?
     private var lastAudioIndexPath: IndexPath?
 
     // MARK: - Init
@@ -53,7 +53,7 @@ final class ToolsItemsViewController: BaseWithTableViewController, ScreenZLevel3
 
     override func viewWillAppear(_ animated: Bool) {
         if self == navigationController?.viewControllers.first {
-            backButton.isHidden = true
+            backButton?.isHidden = true
         }
         super.viewWillAppear(animated)
         setStatusBar(colorMode: .darkNot)

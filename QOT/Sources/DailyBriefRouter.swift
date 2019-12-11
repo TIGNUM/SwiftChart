@@ -43,7 +43,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         if let toolID = toolID,
             let controller = R.storyboard.tools.qotToolsItemsViewController() {
             ToolsItemsConfigurator.make(viewController: controller, selectedToolID: toolID)
-            controller.backButton.isHidden = true
+            controller.backButton?.isHidden = true
             viewController?.present(controller, animated: true)
         }
     }
