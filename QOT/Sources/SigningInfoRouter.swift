@@ -27,10 +27,13 @@ final class SigningInfoRouter {
 }
 
 // MARK: - Private
-extension SigningInfoRouter {
+private extension SigningInfoRouter {
     @objc func goToLogin(notification: Notification) {
         let email = notification.userInfo?[Notification.Name.RegistrationKeys.email] as? String
-        let loginConfigurator = OnboardingLoginConfigurator.make(email: email)
+        showLogin(OnboardingLoginConfigurator.make(email: email))
+    }
+
+    func showLogin(_ loginConfigurator: (OnboardingLoginViewController) -> Void) {
         let loginController = OnboardingLoginViewController()
         loginConfigurator(loginController)
         viewController?.navigationController?.pushViewController(loginController, animated: true)
@@ -48,9 +51,6 @@ extension SigningInfoRouter: SigningInfoRouterInterface {
     }
 
     func goToLogin() {
-        let loginConfigurator = OnboardingLoginConfigurator.make()
-        let loginController = OnboardingLoginViewController()
-        loginConfigurator(loginController)
-        viewController?.navigationController?.pushViewController(loginController, animated: true)
+        showLogin(OnboardingLoginConfigurator.make())
     }
 }
