@@ -24,4 +24,11 @@ extension RegistrationRouter: RegistrationRouterInterface {
     func popBack() {
         viewController?.navigationController?.popViewController(animated: true)
     }
+
+    func showCoachMarksViewController() {
+        let configurator = CoachMarksConfigurator.make()
+        let controller = R.storyboard.coachMark.coachMarksViewController() ?? CoachMarksViewController()
+        configurator(controller)
+        viewController?.pushToStart(childViewController: controller)
+    }
 }

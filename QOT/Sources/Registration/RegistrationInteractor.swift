@@ -47,13 +47,6 @@ final class RegistrationInteractor {
         return controller
     }
 
-    private lazy var coachMarksController: CoachMarksViewController = {
-        let configurator = CoachMarksConfigurator.make()
-        let controller = R.storyboard.coachMark.coachMarksViewController() ?? CoachMarksViewController()
-        configurator(controller)
-        return controller
-    }()
-
     var totalPageCount: Int {
         return 4
     }
@@ -156,8 +149,8 @@ extension RegistrationInteractor: RegistrationDelegate {
 private extension RegistrationInteractor {
 
     func handleSuccess() {
-        self.presentedControllers.append(self.coachMarksController)
-        self.presenter.present(controller: self.coachMarksController, direction: .forward)
+        // shows CoachMarksController
+        router.showCoachMarksViewController()
     }
 
     func navigateToLogin(with email: String?, toBeVision: Bool) {
