@@ -44,4 +44,8 @@ extension MyQotProfileRouter: MyQotProfileRouterInterface {
     func presentMyLibrary() {
         viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotMyLibrarySegueIdentifier, sender: nil)
     }
+
+    func presentAdminSettings() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAdminSettingsSegueIdentifier, sender: nil)
+    }
 }
