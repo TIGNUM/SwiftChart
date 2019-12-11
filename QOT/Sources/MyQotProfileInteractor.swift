@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotProfileInteractor {
 
@@ -36,6 +37,9 @@ final class MyQotProfileInteractor {
 
     func viewDidLoad() {
         getData({ [weak self] (profile) in
+            SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
+                self?.worker.developmentMode = setting?.booleanValue ?? false
+            }
             self?.presenter.updateView()
         })
     }
@@ -49,7 +53,7 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     }
 
     func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData] {
-        return worker.menuItems
+        return worker.menuItems()
     }
 
     func memberSinceText() -> String {

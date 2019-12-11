@@ -27,6 +27,7 @@ final class MyQotProfileWorker {
     var myProfileText = ""
     var memberSinceText = ""
     var userProfile: UserProfileModel?
+    var developmentMode = false
 
     // MARK: - Init
 
@@ -35,15 +36,19 @@ final class MyQotProfileWorker {
         self.contentService = contentService
     }
 
-    lazy var menuItems: [MyQotProfileModel.TableViewPresentationData] = {
+    func menuItems() -> [MyQotProfileModel.TableViewPresentationData] {
         var items = [MyQotProfileModel.TableViewPresentationData]()
         let accountSettings = MyQotProfileModel.TableViewPresentationData(heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
         let appSettings = MyQotProfileModel.TableViewPresentationData(heading: appSettingsText, subHeading: enableNotificationsText)
         let support = MyQotProfileModel.TableViewPresentationData(heading: supportText, subHeading: walkthroughOurFeaturesText)
         let aboutTignum = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText, subHeading: learnMoreAboutUsText)
+        let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "Admin Settings", subHeading: "Settings for debug and testing")
         items = [accountSettings, appSettings, support, aboutTignum]
+        if developmentMode {
+            items.append(adminSettings)
+        }
         return items
-    }()
+    }
 
     func getData(_ completion: @escaping (UserProfileModel?) -> Void) {
         getUserProfile()
