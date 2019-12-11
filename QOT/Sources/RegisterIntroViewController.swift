@@ -88,6 +88,7 @@ extension RegisterIntroViewController {
                 self.view.fill(subview: videoCell.playerController.view)
                 self.addChildViewController(videoCell.playerController)
                 videoCell.playerController.showsPlaybackControls = true
+                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])
             } else {
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
@@ -95,6 +96,7 @@ extension RegisterIntroViewController {
                 videoCell.mediaContentView.fill(subview: videoCell.playerController.view)
                 videoCell.playerController.showsPlaybackControls = false
                 videoCell.soundToggleButton.isSelected = !(videoCell.playerController.player?.isMuted ?? true)
+                self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.refreshBottomNavigationItems()
             }
         }

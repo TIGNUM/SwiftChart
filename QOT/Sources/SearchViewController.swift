@@ -25,6 +25,7 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
     @IBOutlet private weak var masterView: UIView!
     @IBOutlet private weak var bottomView: UIView!
 
+    var observers = [NSKeyValueObservation]()
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
     private var avPlayerObserver: AVPlayerObserver?
     private var searchResults = [Search.Result]()
@@ -89,18 +90,6 @@ final class SearchViewController: BaseViewController, ScreenZLevelOverlay, Searc
         super.viewWillDisappear(animated)
         if !interactor.shouldStartDeactivated() {
             deactivate()
-        }
-        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.removeObserver(self, forKeyPath: "enabled")
-        }
-    }
-
-    override func observeValue(forKeyPath keyPath: String?,
-                               of object: Any?,
-                               change: [NSKeyValueChangeKey: Any]?,
-                               context: UnsafeMutableRawPointer?) {
-        if let cancelButton = object as? UIButton, !cancelButton.isEnabled {
-            cancelButton.isEnabled = true
         }
     }
 
@@ -198,7 +187,11 @@ private extension SearchViewController {
     func enableCancelButton() {
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
             cancelButton.isEnabled = true
-            cancelButton.addObserver(self, forKeyPath: "enabled", options: .new, context: nil)
+            observers = [cancelButton.observe(\.isEnabled) { (cancelButton, value) in
+                if !cancelButton.isEnabled {
+                    cancelButton.isEnabled = true
+                }
+            }]
         }
     }
 }

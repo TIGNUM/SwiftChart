@@ -49,7 +49,7 @@ extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
             let configurator = RegisterIntroConfigurator.make()
             configurator(controller)
-            viewController?.navigationController?.pushViewController(controller, animated: true)
+            viewController?.pushToStart(childViewController: controller)
         }
     }
 }
