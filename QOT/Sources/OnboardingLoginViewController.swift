@@ -23,7 +23,8 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
         return sendButtonYPosition.constant != 0
     }
 
-    var interactor: OnboardingLoginInteractorInterface?
+    var interactor: OnboardingLoginInteractorInterface!
+    private lazy var router: OnboardingLoginRouterInterface = OnboardingLoginRouter(viewController: self)
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
@@ -56,7 +57,7 @@ final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboardWhenTappedAround()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,7 +95,7 @@ private extension OnboardingLoginViewController {
         emailField.textField.enablesReturnKeyAutomatically = true
         emailField.textField.returnKeyType = .go
         viewTheme.apply(emailField.textField)
-        ThemeText.onboardingInputPlaceholder.apply(interactor?.emailPlaceholder ?? "", to: emailField.placeholderLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.emailPlaceholder, to: emailField.placeholderLabel)
 
         digitTextFields.forEach { (digitTextField) in
             digitTextField.delegate = self
@@ -107,22 +108,22 @@ private extension OnboardingLoginViewController {
     }
 
     func loadEmailTextFieldDefaultUI() {
-        interactor?.resetEmailError()
+        interactor.resetEmailError()
 
         emailField.textField.layer.borderColor = UIColor.sand20.cgColor
-        ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
+        ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
         emailInstructionsLabel.alpha = didHideEmail ? 0 : 1
     }
 
     func loadDigitTextFieldsDefaultUI() {
-        interactor?.resetCodeError()
+        interactor.resetCodeError()
 
         digitTextFields.forEach {
             $0.text = ""
             $0.textColor = .sand
             $0.layer.borderColor = UIColor.sand20.cgColor
         }
-        ThemeText.loginEmailCodeMessage.apply(interactor?.digitDescription, to: digitDescriptionLabel)
+        ThemeText.loginEmailCodeMessage.apply(interactor.digitDescription, to: digitDescriptionLabel)
     }
 
     func setupButtons() {
@@ -136,10 +137,10 @@ private extension OnboardingLoginViewController {
 
         ThemeButton.onboarding.apply(buttonSendCode2)
         ThemeButton.onboarding.apply(buttonChangeEmail)
-        ThemeText.loginSeparator.apply(interactor?.buttonSeparator ?? "", to: buttonSeparator)
-        buttonSendCode2.setTitle(interactor?.buttonResendCode ?? "", for: .normal)
-        buttonChangeEmail.setTitle(interactor?.buttonChangeEmail ?? "", for: .normal)
-        buttonGetHelp.setTitle(interactor?.buttonGetHelp ?? "", for: .normal)
+        ThemeText.loginSeparator.apply(interactor.buttonSeparator, to: buttonSeparator)
+        buttonSendCode2.setTitle(interactor.buttonResendCode, for: .normal)
+        buttonChangeEmail.setTitle(interactor.buttonChangeEmail, for: .normal)
+        buttonGetHelp.setTitle(interactor.buttonGetHelp, for: .normal)
         buttonGetHelp.addTarget(self, action: #selector(didTapGetHelp), for: .touchUpInside)
     }
 
@@ -147,9 +148,14 @@ private extension OnboardingLoginViewController {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         guard active == true else { return }
         textField.resignFirstResponder()
-        interactor?.validateLoginCode(digitTextFields.reduce("", { $0 + ($1.text ?? "") }),
-                                      for: emailField.text,
-                                      toBeVision: cachedToBeVision)
+        let code = digitTextFields.reduce("", { $0 + ($1.text ?? "") })
+        interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showTrackSelection) in
+            if showTrackSelection {
+                self?.router.showTrackSelection()
+            } else {
+                self?.router.showHomeScreen()
+            }
+        }
     }
 
     func goToNextDigitField(_ currentTextField: UITextField, nextTextField: UITextField?) {
@@ -225,21 +231,23 @@ private extension OnboardingLoginViewController {
             trackUserEvent(.VERIFY_EMAIL, action: .TAP)
             emailField.textField.resignFirstResponder()
             emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
-            interactor?.didTapVerify(email: emailField.text)
+            interactor.didTapVerify(email: emailField.text) {
+                self.router.goToRegister()
+            }
         }
     }
 
     @objc func didTapSendCode() {
         if hasInternet() {
             trackUserEvent(.SEND_CODE, action: .TAP)
-            interactor?.didTapSendCode(to: emailField.text)
+            interactor.didTapSendCode(to: emailField.text)
         }
     }
 
     @IBAction func didTapGetHelp() {
         if hasInternet() {
             trackUserEvent(.GET_HELP, action: .TAP)
-            interactor?.showFAQScreen()
+            router.showFAQScreen()
         }
     }
 
@@ -254,7 +262,7 @@ private extension OnboardingLoginViewController {
             shouldBeginEmailEntry = true
             loadEmailTextFieldDefaultUI()
             emailField.text = nil
-            interactor?.didTapBack()
+            interactor.didTapBack()
         }
     }
 }
@@ -265,7 +273,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         // On error make first field editable
         guard let field = textField as? TextField else { return true }
-        if interactor?.viewModel.codeError != nil, let index = digitTextFields.index(of: field), index != 0 {
+        if interactor.viewModel.codeError != nil, let index = digitTextFields.index(of: field), index != 0 {
             digitTextFields.first?.becomeFirstResponder()
             return false
         }
@@ -274,7 +282,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == emailField.textField {
-            if interactor?.viewModel.emailError != nil {
+            if interactor.viewModel.emailError != nil {
                 loadEmailTextFieldDefaultUI()
             }
             return
@@ -285,7 +293,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
         if !didHideEmail {
             moveCodeInputToTop()
         }
-        if interactor?.viewModel.codeError != nil {
+        if interactor.viewModel.codeError != nil {
             loadDigitTextFieldsDefaultUI()
         }
         if let text = textField.text, !text.isEmpty {
@@ -348,11 +356,11 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         viewTheme.apply(view)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        baseHeaderView?.configure(title: interactor?.title, subtitle: nil)
+        baseHeaderView?.configure(title: interactor.title, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
-        ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
-        ThemeText.loginEmailCode.apply(interactor?.preCode, to: precodeLabel)
-        ThemeText.loginEmailCodeMessage.apply(interactor?.digitDescription, to: digitDescriptionLabel)
+        ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
+        ThemeText.loginEmailCode.apply(interactor.preCode, to: precodeLabel)
+        ThemeText.loginEmailCodeMessage.apply(interactor.digitDescription, to: digitDescriptionLabel)
 
         setupTextFields()
         setupButtons()
@@ -360,17 +368,17 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
 
     func updateView() {
         // Errors
-        if let error = interactor?.viewModel.emailError {
+        if let error = interactor.viewModel.emailError {
             presentEmailError(error)
             resetCodeInputPosition()
         } else {
             loadEmailTextFieldDefaultUI()
         }
-        if let error = interactor?.viewModel.codeError {
+        if let error = interactor.viewModel.codeError {
             presentCodeError(error)
         }
 
-        let canSendCode = interactor?.viewModel.sendCodeEnabled ?? true
+        let canSendCode = interactor.viewModel.sendCodeEnabled
         emailField.textField.isUserInteractionEnabled = canSendCode
         buttonSendCode.isUserInteractionEnabled = canSendCode
         buttonSendCode2.isUserInteractionEnabled = canSendCode
@@ -388,10 +396,10 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
-
 extension OnboardingLoginViewController {
     override internal func mailComposeController(_ controller: MFMailComposeViewController,
-                                                 didFinishWith result: MFMailComposeResult, error: Error?) {
+                                                 didFinishWith result: MFMailComposeResult,
+                                                 error: Error?) {
         controller.dismiss(animated: true)
     }
 }

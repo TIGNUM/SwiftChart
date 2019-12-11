@@ -142,15 +142,6 @@ extension RegistrationInteractor: RegistrationDelegate {
             }
         }
     }
-
-    func handleExistingUser(email: String) {
-        registrationData.email = email
-        let existingUserAlertViewModel = RegistrationExistingUserAlertViewModel(alertTitle: worker.existingAccountAlertTitle,
-                                                                            alertMessage: worker.existingAccountAlertMessage,
-                                                                            discardTBVTitle: worker.noButtonTitle,
-                                                                            saveTBVTitle: worker.yesButtonTitle)
-        presenter.present(alert: existingUserAlertViewModel)
-    }
 }
 
 private extension RegistrationInteractor {

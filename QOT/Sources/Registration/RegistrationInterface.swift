@@ -40,5 +40,4 @@ protocol RegistrationDelegate: class {
     func didVerifyCode(_ code: String)
     func didSave(firstName: String, lastName: String?)
     func didTapCreateAccount(with birthYear: String)
-    func handleExistingUser(email: String)
 }

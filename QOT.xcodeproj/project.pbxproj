@@ -2853,9 +2853,9 @@
 				367CD17722EF4EDE00AF2187 /* OnboardingLoginPresenter.swift */,
 				367CD17922EF4EDE00AF2187 /* OnboardingLoginRouter.swift */,
 				367CD17B22EF4EDE00AF2187 /* OnboardingLoginViewController.swift */,
-				367CD18722EF4F0800AF2187 /* OnboardingLoginViewController.xib */,
 				8D25778822F8748300D42B90 /* OnboardingLoginViewModel.swift */,
 				367CD17822EF4EDE00AF2187 /* OnboardingLoginWorker.swift */,
+				367CD18722EF4F0800AF2187 /* OnboardingLoginViewController.xib */,
 			);
 			name = Login_3.0;
 			sourceTree = "<group>";
@@ -4063,16 +4063,16 @@
 		B499A7012395282500BDD4CE /* RegisterVideoIntro */ = {
 			isa = PBXGroup;
 			children = (
-				B499A7022395283900BDD4CE /* Components */,
 				B499A6EF2391518900BDD4CE /* RegisterIntro.storyboard */,
-				B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */,
-				B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */,
-				B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */,
-				B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */,
-				B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */,
-				B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */,
-				B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */,
 				B474CA8C2398F85F00A829B5 /* RegisterIntroConfigurator.swift */,
+				B474CA8A2398F85F00A829B5 /* RegisterIntroInteractor.swift */,
+				B474CA882398F85F00A829B5 /* RegisterIntroInterface.swift */,
+				B474CA8B2398F85F00A829B5 /* RegisterIntroModel.swift */,
+				B474CA852398F85F00A829B5 /* RegisterIntroPresenter.swift */,
+				B474CA872398F85F00A829B5 /* RegisterIntroRouter.swift */,
+				B474CA892398F85F00A829B5 /* RegisterIntroViewController.swift */,
+				B474CA862398F85F00A829B5 /* RegisterIntroWorker.swift */,
+				B499A7022395283900BDD4CE /* Components */,
 			);
 			name = RegisterVideoIntro;
 			sourceTree = "<group>";
