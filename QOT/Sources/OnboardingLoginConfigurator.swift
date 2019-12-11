@@ -9,11 +9,12 @@
 import Foundation
 
 final class OnboardingLoginConfigurator {
-    static func make() -> (OnboardingLoginViewController) -> Void {
+    static func make(email: String? = nil) -> (OnboardingLoginViewController) -> Void {
         return { (viewController) in
             let presenter = OnboardingLoginPresenter(viewController: viewController)
             let interactor = OnboardingLoginInteractor(presenter: presenter)
             viewController.interactor = interactor
+            viewController.preSetUserEmail = email
         }
     }
 }

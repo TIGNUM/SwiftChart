@@ -72,7 +72,6 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
             guard let strongSelf = self else { return }
             // Existing account
             if case .userExists = result.code {
-                strongSelf.requestCode(for: email)
                 strongSelf.presenter.presentActivity(state: nil)
                 let userInfo = [Notification.Name.RegistrationKeys.email: email]
                 NotificationCenter.default.post(name: .registrationShouldShowLogin, object: nil, userInfo: userInfo)
