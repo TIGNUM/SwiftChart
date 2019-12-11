@@ -31,4 +31,5 @@ protocol MyQotProfileRouterInterface {
     func presentAppSettings()
     func presentSupport()
     func presentAboutTignum()
+    func presentAdminSettings()
 }

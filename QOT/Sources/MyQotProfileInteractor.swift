@@ -16,6 +16,7 @@ final class MyQotProfileInteractor {
         case appSettings
         case support
         case aboutTignum
+        case adminSettings
     }
 
     // MARK: - Properties
@@ -39,8 +40,8 @@ final class MyQotProfileInteractor {
         getData({ [weak self] (profile) in
             SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
                 self?.worker.developmentMode = setting?.booleanValue ?? false
+                self?.presenter.updateView()
             }
-            self?.presenter.updateView()
         })
     }
 }
@@ -81,6 +82,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
             router.presentSupport()
         case .aboutTignum:
             router.presentAboutTignum()
+        case .adminSettings:
+            router.presentAdminSettings()
         }
     }
 }

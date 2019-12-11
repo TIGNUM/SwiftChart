@@ -42,7 +42,7 @@ final class MyQotProfileWorker {
         let appSettings = MyQotProfileModel.TableViewPresentationData(heading: appSettingsText, subHeading: enableNotificationsText)
         let support = MyQotProfileModel.TableViewPresentationData(heading: supportText, subHeading: walkthroughOurFeaturesText)
         let aboutTignum = MyQotProfileModel.TableViewPresentationData(heading: aboutTignumText, subHeading: learnMoreAboutUsText)
-        let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "Admin Settings", subHeading: "Settings for debug and testing")
+        let adminSettings = MyQotProfileModel.TableViewPresentationData(heading: "ADMIN SETTINGS", subHeading: "Settings for debug and testing")
         items = [accountSettings, appSettings, support, aboutTignum]
         if developmentMode {
             items.append(adminSettings)
