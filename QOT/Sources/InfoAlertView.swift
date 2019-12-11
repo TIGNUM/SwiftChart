@@ -189,11 +189,13 @@ extension InfoAlertView {
     }
 
     func present(on view: UIView, animated: Bool = true) {
-        self.alpha = 0
-        view.addSubview(self)
-        self.addConstraints(to: view)
-        UIView.animate(withDuration: duration(animated)) { [weak self] in
-            self?.alpha = 1
+        if self.superview != view {
+            self.alpha = 0
+            view.addSubview(self)
+            self.addConstraints(to: view)
+            UIView.animate(withDuration: duration(animated)) { [weak self] in
+                self?.alpha = 1
+            }
         }
     }
 

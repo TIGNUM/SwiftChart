@@ -90,18 +90,20 @@ private extension MySprintsListViewController {
 
     private func updateInfoViewWithViewModel(_ model: MySprintsInfoAlertViewModel?) {
         tableView.isHidden = model != nil
-        infoAlertView?.dismiss()
-        infoAlertView = nil
         guard let model = model else {
+            infoAlertView?.dismiss()
+            infoAlertView = nil
             return
         }
 
-        infoAlertView = InfoAlertView()
-        infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.present(on: self.view)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
-        infoAlertView?.bottomInset = BottomNavigationContainer.height
-        infoAlertView?.setBackgroundColor(self.view.backgroundColor)
+        if infoAlertView == nil {
+            infoAlertView = InfoAlertView()
+            infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
+            infoAlertView?.present(on: self.view)
+            infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
+            infoAlertView?.bottomInset = BottomNavigationContainer.height
+            infoAlertView?.setBackgroundColor(self.view.backgroundColor)
+        }
     }
 
     @objc func addSprint() {
