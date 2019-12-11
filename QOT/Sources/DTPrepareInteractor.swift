@@ -143,6 +143,11 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
             return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
         }).unique
     }
+
+    func removeCreatedCalendarEvent() {
+        let externalIdentifier = createdUserCalendarEvent?.storedExternalIdentifier.components(separatedBy: "[//]").first
+        workerCalendar?.deleteLocalEvent(externalIdentifier)
+    }
 }
 
 // MARK: - CalendarPermission

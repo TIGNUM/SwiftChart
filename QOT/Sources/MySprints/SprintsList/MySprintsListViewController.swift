@@ -90,10 +90,9 @@ private extension MySprintsListViewController {
 
     private func updateInfoViewWithViewModel(_ model: MySprintsInfoAlertViewModel?) {
         tableView.isHidden = model != nil
-
+        infoAlertView?.dismiss()
+        infoAlertView = nil
         guard let model = model else {
-            infoAlertView?.dismiss()
-            infoAlertView = nil
             return
         }
 

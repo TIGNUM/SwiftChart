@@ -13,7 +13,7 @@ final class MyPrepsInteractor {
 
     // MARK: - Properties
     private let worker = MyPrepsWorker()
-    private let presenter: MyPrepsPresenterInterface    
+    private let presenter: MyPrepsPresenterInterface
     private var isEditing = false
     private var canEdit = true
 

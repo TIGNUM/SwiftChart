@@ -333,9 +333,9 @@ private extension CoachCollectionViewController {
 
 // MARK: - UIGestureRecognizerDelegate
 
-extension CoachCollectionViewController: UIGestureRecognizerDelegate {
+extension CoachCollectionViewController {
 
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

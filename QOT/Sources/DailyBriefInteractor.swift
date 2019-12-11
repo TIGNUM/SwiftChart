@@ -538,7 +538,7 @@ extension DailyBriefInteractor {
         return createLevel5List
     }
 
-    //  MARK: - Visual delights / Products we love / On the road
+    // MARK: - Visual delights / Products we love / On the road
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
@@ -789,7 +789,7 @@ extension DailyBriefInteractor {
         return weatherList
     }
 
-    //  MARK: - Guided tour
+    // MARK: - Guided tour
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
         let title = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_title") }
@@ -842,7 +842,6 @@ extension DailyBriefInteractor {
         }
         return guidedtrackList
     }
-
 
     // MARK: - Tignum Messages
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {

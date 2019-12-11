@@ -51,6 +51,7 @@ extension UIViewController {
     func pushToStart(childViewController: UIViewController, enableInteractivePop: Bool = true) {
         navigationController?.pushViewController(childViewController, animated: true)
         navigationController?.interactivePopGestureRecognizer?.isEnabled = enableInteractivePop
+        navigationController?.interactivePopGestureRecognizer?.delegate = childViewController
     }
 
     var safeAreaInsets: UIEdgeInsets {
@@ -86,5 +87,15 @@ extension UIViewController {
         let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title, url: url)
         pdfReaderConfigurator(readerViewController)
         self.present(navigationController, animated: true, completion: nil)
+    }
+}
+
+extension UIViewController: UIGestureRecognizerDelegate {
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
+    }
+
+    public func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return (otherGestureRecognizer is UIScreenEdgePanGestureRecognizer)
     }
 }

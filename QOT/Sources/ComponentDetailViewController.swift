@@ -60,8 +60,8 @@ extension ComponentDetailViewController: UIScrollViewDelegate {
 
 // MARK: - UIGestureRecognizerDelegate
 
-extension ComponentDetailViewController: UIGestureRecognizerDelegate {
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+extension ComponentDetailViewController {
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }
