@@ -464,21 +464,17 @@ enum ThemeSegment {
     func apply(_ view: UISegmentedControl) {
         var normal: [NSAttributedString.Key: Any]?
         var selected: [NSAttributedString.Key: Any]?
-        let fakeBackgroundColor = UIColor(red: 7/255, green: 6/255, blue: 3/255, alpha: 1)
-        let fakeDividerImage = UIImage(color: .carbon,
-                                       size: CGSize(width: 1, height: 32))
+
         switch self {
         case .accent:
             normal = [NSAttributedStringKey.font: Fonts.fontRegular14,
                       NSAttributedStringKey.foregroundColor: Palette.accent60]
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
-            view.setDividerImage(fakeDividerImage,
-                            forLeftSegmentState: .normal,
-                            rightSegmentState: .normal, barMetrics: .default)
+            view.tintColor = .clear
+            view.backgroundColor = .clear
             if #available(iOS 13, *) {
-                view.tintColor = fakeBackgroundColor
-                view.backgroundColor = fakeBackgroundColor
+                view.selectedSegmentTintColor = .clear
             }
         }
 
@@ -989,7 +985,7 @@ enum ThemeText {
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
         case .strategyTitle:
-            return Fonts.fontDisplayRegular40
+            return Fonts.fontDisplayThin40
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle:
             return Fonts.fontDisplayLight24
@@ -1440,6 +1436,7 @@ private struct Fonts {
     static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
+    static let fontDisplayThin40 = UIFont.sfProDisplayThin(ofSize: 40.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
 
