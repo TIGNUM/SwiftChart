@@ -109,6 +109,17 @@ private extension PrepareResultsViewController {
         }
     }
 
+    @objc func didTapActivate() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        if interactor?.setReminder == false {
+            showAlert()
+        } else {
+            interactor?.updatePreparation { [weak self] (_) in
+                self?.interactor?.didTapDismissView()
+            }
+        }
+    }
+
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         if interactor?.setReminder == false {
@@ -124,6 +135,7 @@ private extension PrepareResultsViewController {
         case .cancel: return #selector(didTapCancel)
         case .done: return #selector(didTapDone)
         case .save: return #selector(didTapSave)
+        case .activate: return #selector(didTapActivate)
         }
     }
 
