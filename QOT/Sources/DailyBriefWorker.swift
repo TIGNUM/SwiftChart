@@ -24,12 +24,6 @@ final class DailyBriefWorker {
         self.settingService = settingService
         self.userService = userService
         self.questionService = questionService
-
-        if let emails = UserDefault.showGuideTrackBucket.object as? [String],
-            let currentAccount = SessionService.main.getCurrentSession()?.useremail,
-            emails.contains(obj: currentAccount) != true { // if emails for showing guide track isn't set.
-            DailyBriefService.main.setInvalidBucketNames([.GUIDE_TRACK]) // hide guide track
-        }
     }
 
     private lazy var firstInstallTimeStamp: Date? = {

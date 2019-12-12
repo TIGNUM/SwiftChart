@@ -23,7 +23,7 @@ final class QOTBaseHeaderView: UIView {
     @IBOutlet private var horizontalConstraints: [NSLayoutConstraint]!
     @IBOutlet weak var subtitleTextViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelBottomConstraint: NSLayoutConstraint!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         self.backgroundColor = .clear

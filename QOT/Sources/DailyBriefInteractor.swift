@@ -983,7 +983,7 @@ extension DailyBriefInteractor {
         return latestWhatsHotList
     }
 
-    //  MARK: - From my coach
+    // MARK: - From my coach
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var modelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []

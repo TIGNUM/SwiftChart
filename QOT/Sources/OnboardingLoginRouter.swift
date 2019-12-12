@@ -38,10 +38,10 @@ extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
         }
     }
 
-    func showTrackSelection() {
-        guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
-        let configurator = TrackSelectionConfigurator.make()
-        configurator(controller, TrackSelectionControllerType.registration)
+    func showCoachMarks() {
+        guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
+        let configurator = CoachMarksConfigurator.make()
+        configurator(controller)
         viewController?.pushToStart(childViewController: controller)
     }
 
