@@ -59,10 +59,7 @@ final class QOTBaseHeaderView: UIView {
         refresh(darkMode: darkMode, animated: animated)
     }
 
-    func refresh(darkMode: Bool? = nil,
-                 animated: Bool = false,
-                 titleThemeText: ThemeText = ThemeText.baseHeaderTitle(ThemeColorMode.dark),
-                 subtitleThemeText: ThemeText = ThemeText.baseHeaderSubtitle(ThemeColorMode.dark)) {
+    func refresh(darkMode: Bool? = nil, animated: Bool = false) {
         let mode: ThemeColorMode = darkMode ?? self.darkMode ? .dark : .light
         ThemeView.baseHeaderLineView(mode).apply(lineView)
         ThemeText.baseHeaderTitle(mode).apply(title, to: titleLabel)
