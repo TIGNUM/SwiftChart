@@ -81,7 +81,7 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
         switch indexPath.row {
         case 0:
             var environment = "PRODUCTION"
-            if NetworkRequestManager.main.getCurrentEnvironmentName() == "DEVELOPMENT" {
+            if NetworkRequestManager.main.getCurrentEnvironment() == .development {
                 environment = "STAGING"
             }
             cell.configure(title: "Environment settings", subtitle: environment)

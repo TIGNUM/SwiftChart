@@ -66,7 +66,7 @@ extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        let isStaging = NetworkRequestManager.main.getCurrentEnvironmentName() == "DEVELOPMENT"
+        let isStaging = NetworkRequestManager.main.getCurrentEnvironment() == .development
         let checkMark = R.image.registration_checkmark()
         switch indexPath.row {
         case 0:
@@ -84,8 +84,7 @@ extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITa
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        NetworkRequestManager.main.switchTo(environment: indexPath.row == 0 ?
-            NetworkEnvironment.development : NetworkEnvironment.production)
+        NetworkRequestManager.main.switchTo(environmentType: indexPath.row == 0 ? .development : .production)
         self.navigationController?.popViewController(animated: true)
     }
 }
