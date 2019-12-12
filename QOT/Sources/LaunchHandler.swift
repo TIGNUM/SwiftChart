@@ -176,11 +176,11 @@ final class LaunchHandler {
             guard let controller = R.storyboard.myQot.myQotSiriShortcutsViewController() else { return }
             MyQotSiriShortcutsConfigurator.configure(viewController: controller)
             push(viewController: controller)
-        case .qotBenefits: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.benefits.primaryKey)
-        case .aboutTignumDetail: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.about.primaryKey)
-        case .privacy: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.privacy.primaryKey)
-        case .termsAndConditions: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.terms.primaryKey)
-        case .contentCopyrights: showContentCollection(MyQotAboutUsModel.MyQotAboutUsModelItem.copyright.primaryKey)
+        case .qotBenefits: showContentCollection(MyQotAboutUsModel.Item.benefits.primaryKey)
+        case .aboutTignumDetail: showContentCollection(MyQotAboutUsModel.Item.about.primaryKey)
+        case .privacy: showContentCollection(MyQotAboutUsModel.Item.privacy.primaryKey)
+        case .termsAndConditions: showContentCollection(MyQotAboutUsModel.Item.terms.primaryKey)
+        case .contentCopyrights: showContentCollection(MyQotAboutUsModel.Item.copyright.primaryKey)
         case .performanceFoundation: showLearnStrategy(nil)
         case .performanceHabituation: showLearnStrategy(.PerformanceHabituation)
         case .performanceRecovery: showLearnStrategy(.PerformanceRecovery)
@@ -312,17 +312,16 @@ extension LaunchHandler {
             }
 
             switch contentCollection.section {
-            case .LearnStrategies, .WhatsHot, .ExclusiveRecoveryContent:
+            case .Tools, .QOTLibrary:
+                if let controller = R.storyboard.tools.qotToolsItemsViewController() {
+                    ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
+                    self?.present(viewController: controller)
+                }
+            default:
                 if let controller = R.storyboard.main.qotArticleViewController() {
                     ArticleConfigurator.configure(selectedID: collectionId, viewController: controller)
                     self?.present(viewController: controller)
                 }
-            case .Tools, .QOTLibrary:
-                if let controller = R.storyboard.tools().instantiateViewController(withIdentifier: R.storyboard.tools.qotToolsItemsViewController.identifier) as? ToolsItemsViewController {
-                    ToolsItemsConfigurator.make(viewController: controller, selectedToolID: collectionId)
-                    self?.present(viewController: controller)
-                }
-            default: break
             }
         })
     }

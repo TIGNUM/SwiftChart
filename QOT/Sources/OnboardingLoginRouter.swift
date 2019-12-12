@@ -8,41 +8,17 @@
 
 import UIKit
 
-final class OnboardingLoginRouter {
-
-    // MARK: - Properties
-
-    private weak var viewController: OnboardingLoginViewController?
-
-    // MARK: - Init
-
-    init(viewController: OnboardingLoginViewController) {
-        self.viewController = viewController
+final class OnboardingLoginRouter: BaseRouter, OnboardingLoginRouterInterface {
+    override func showHomeScreen() {
+        super.showHomeScreen()
     }
-}
 
-// MARK: - OnoardingLoginRouterInterface
-
-extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
-    func showHomeScreen() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.showApp()
+    override func showCoachMarks() {
+        super.showCoachMarks()
     }
 
     func showFAQScreen() {
-        let identifier = R.storyboard.myQot.myQotSupportDetailsViewController.identifier
-        if let controller = R.storyboard
-            .myQot().instantiateViewController(withIdentifier: identifier) as? MyQotSupportDetailsViewController {
-            MyQotSupportDetailsConfigurator.configure(viewController: controller, category: .FAQBeforeLogin)
-            viewController?.present(controller, animated: true, completion: nil)
-        }
-    }
-
-    func showCoachMarks() {
-        guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
-        let configurator = CoachMarksConfigurator.make()
-        configurator(controller)
-        viewController?.pushToStart(childViewController: controller)
+        super.showFAQScreen(category: .FAQBeforeLogin)
     }
 
     func goToRegister() {

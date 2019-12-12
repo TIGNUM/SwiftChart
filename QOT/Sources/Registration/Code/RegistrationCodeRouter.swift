@@ -22,13 +22,13 @@ final class RegistrationCodeRouter {
 // MARK: - RegistrationCodeRouterInterface
 extension RegistrationCodeRouter: RegistrationCodeRouterInterface {
     func showPrivacyPolicy() {
-        let value = MyQotAboutUsModel.MyQotAboutUsModelItem.privacy.primaryKey
+        let value = MyQotAboutUsModel.Item.privacy.primaryKey
         viewController?.trackUserEvent(.OPEN, value: value, valueType: .SHOW_PRIVACY_POLICY, action: .TAP)
         showArticle(with: value)
     }
 
     func showTermsOfUse() {
-        let value = MyQotAboutUsModel.MyQotAboutUsModelItem.terms.primaryKey
+        let value = MyQotAboutUsModel.Item.terms.primaryKey
         viewController?.trackUserEvent(.OPEN, value: value, valueType: .SHOW_TERMS_OF_USE, action: .TAP)
         showArticle(with: value)
     }
