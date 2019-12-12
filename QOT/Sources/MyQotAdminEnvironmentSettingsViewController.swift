@@ -1,30 +1,21 @@
 //
-//  MyQotAdminSettingsListViewController.swift
+//  MyQotAdminEnvironmentSettingsViewController.swift
 //  QOT
 //
 //  Created by Simu Voicu-Mircea on 12/12/2019.
-//  Copyright (c) 2019 Tignum. All rights reserved.
+//  Copyright © 2019 Tignum. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import qot_dal
 
-final class MyQotAdminSettingsListViewController: UIViewController {
-
+final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
-
-    var interactor: MyQotAdminSettingsListInteractorInterface!
-    private lazy var router = MyQotAdminSettingsListRouter(viewController: self)
-
-    // MARK: - Init
-    init(configure: Configurator<MyQotAdminSettingsListViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -35,7 +26,6 @@ final class MyQotAdminSettingsListViewController: UIViewController {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        interactor.viewDidLoad()
         setupTableView()
     }
 
@@ -50,16 +40,15 @@ final class MyQotAdminSettingsListViewController: UIViewController {
         trackPage()
     }
 }
-
-// MARK: - Private
-private extension MyQotAdminSettingsListViewController {
+    // MARK: - Private
+private extension MyQotAdminEnvironmentSettingsViewController {
     func setupTableView() {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(tableView)
         ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         ThemeView.level2.apply(self.view)
-        baseHeaderView?.configure(title: "ADMIN SETTINGS", subtitle: nil)
+        baseHeaderView?.configure(title: "ENVIRONMENT SETTINGS", subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         tableView.delegate = self
@@ -68,31 +57,24 @@ private extension MyQotAdminSettingsListViewController {
         tableView.reloadData()
     }
 }
+    // MARK: - TableView Delegate and Datasource
 
-// MARK: - TableView Delegate and Datasource
-
-extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+            return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
+        let isStaging = NetworkRequestManager.main.getCurrentEnvironment() == .development
+        let checkMark = R.image.registration_checkmark()
         switch indexPath.row {
         case 0:
-            var environment = "PRODUCTION"
-            if NetworkRequestManager.main.getCurrentEnvironment() == .development {
-                environment = "STAGING"
-            }
-            cell.configure(title: "Environment settings", subtitle: environment)
+            cell.configure(title: "STAGING", subtitle: nil)
+            cell.customAccessoryImageView.image = isStaging ? checkMark : nil
         case 1:
-            cell.configure(title: "Daily brief buckets", subtitle: "CUSTOM SETTING")
-        case 2:
-            cell.configure(title: "Daily Checkin Question #6", subtitle: "DEFAULT SETTING")
-        case 3:
-            cell.configure(title: "Trigger daily checkin", subtitle: "DEFAULT SETTING")
-        case 4:
-            cell.configure(title: "Modify Sprints", subtitle: "DEFAULT SETTING")
+            cell.configure(title: "PRODUCTION", subtitle: nil)
+            cell.customAccessoryImageView.image = isStaging ? nil : checkMark
         default:
             cell.configure(title: nil, subtitle: nil)
         }
@@ -102,19 +84,9 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        trackUserEvent(.OPEN, action: .TAP)
-        switch indexPath.row {
-        case 0:
-            router.presentAccountSettings()
-        default:
-            break
-        }
-    }
-}
-
-// MARK: - MyQotAdminSettingsListViewControllerInterface
-extension MyQotAdminSettingsListViewController: MyQotAdminSettingsListViewControllerInterface {
-    func setupView() {
-        // Do any additional setup after loading the view.
+        NetworkRequestManager.main.switchTo(environmentType: indexPath.row == 0 ? .development : .production)
+        self.navigationController?.popViewController(animated: true)
+        qot_dal.SessionService.main.logout()
+        ExtensionsDataManager.didUserLogIn(false)
     }
 }

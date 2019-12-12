@@ -794,6 +794,7 @@
 		B44F303B23A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303323A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift */; };
 		B44F303C23A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303423A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift */; };
 		B44F303D23A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */; };
+		B44F304023A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303F23A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
 		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
 		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
@@ -1981,6 +1982,7 @@
 		B44F303323A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListInteractor.swift; sourceTree = "<group>"; };
 		B44F303423A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListModel.swift; sourceTree = "<group>"; };
 		B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListConfigurator.swift; sourceTree = "<group>"; };
+		B44F303F23A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminEnvironmentSettingsViewController.swift; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
 		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
@@ -4034,6 +4036,7 @@
 		B44F302D23A22E2E00B07D86 /* MyQotAdminSettings */ = {
 			isa = PBXGroup;
 			children = (
+				B44F303E23A26B3400B07D86 /* Components */,
 				B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */,
 				B44F302F23A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift */,
 				B44F303023A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift */,
@@ -4044,6 +4047,14 @@
 				B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */,
 			);
 			name = MyQotAdminSettings;
+			sourceTree = "<group>";
+		};
+		B44F303E23A26B3400B07D86 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B44F303F23A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift */,
+			);
+			name = Components;
 			sourceTree = "<group>";
 		};
 		B47953AA230AD512006EFE0F /* MyDataScreen */ = {
@@ -6596,6 +6607,7 @@
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				367CD18122EF4EDE00AF2187 /* OnboardingLoginRouter.swift in Sources */,
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
+				B44F304023A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
 				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,

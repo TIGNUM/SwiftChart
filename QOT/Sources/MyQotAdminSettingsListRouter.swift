@@ -24,4 +24,8 @@ extension MyQotAdminSettingsListRouter: MyQotAdminSettingsListRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
+
+    func presentAccountSettings() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEnvironmentSettingsSegueIdentifier, sender: nil)
+    }
 }

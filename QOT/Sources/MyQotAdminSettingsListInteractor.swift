@@ -27,5 +27,4 @@ final class MyQotAdminSettingsListInteractor {
 
 // MARK: - MyQotAdminSettingsListInteractorInterface
 extension MyQotAdminSettingsListInteractor: MyQotAdminSettingsListInteractorInterface {
-
 }
