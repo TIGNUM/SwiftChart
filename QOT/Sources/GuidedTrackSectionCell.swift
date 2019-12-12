@@ -22,6 +22,7 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         button.flipImage(trackState)
         skeletonManager.addOtherView(button)
+        ThemeView.guidedTrackBackground.apply(self)
     }
 
     @IBAction func clickAction(_ sender: Any) {

@@ -30,6 +30,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
         if button != nil {
             skeletonManager.addSubtitle(button!)
         }
+        ThemeView.guidedTrackBackground.apply(self)
     }
 
     func configure(with: GuidedTrackViewModel?, _ hideDivider: Bool) {
