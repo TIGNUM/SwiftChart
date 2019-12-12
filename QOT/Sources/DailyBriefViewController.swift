@@ -73,7 +73,7 @@ final class DailyBriefViewController: BaseWithTableViewController, ScreenZLevelB
     }
 }
 
-// MARK - UITableViewDelegate, UITableViewDataSource
+// MARK: - UITableViewDelegate, UITableViewDataSource
 extension DailyBriefViewController {
     func numberOfSections(in tableView: UITableView) -> Int {
         return interactor.rowViewSectionCount

@@ -201,12 +201,11 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
 
 // MARK: Animation
 extension QuestionnaireViewController {
-
     func adjustUI() {
         switch controllerType {
         case .customize:
-            ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-            ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: labelCustomizeView)
+        ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
+        ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break

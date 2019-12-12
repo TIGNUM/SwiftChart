@@ -14,6 +14,11 @@ enum RegisterIntroCellTypes: Int, CaseIterable {
     case NoteCell
 }
 
+protocol RegisterIntroUserEventTrackDelegate: class {
+    func didMuteVideo()
+    func didUnMuteVideo()
+}
+
 final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -66,7 +71,13 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
                                         target: self,
                                         action: #selector(didTapContinue))
         ThemeButton.carbonButton.apply(continueButton)
-        let heightConstraint = NSLayoutConstraint.init(item: continueButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let heightConstraint = NSLayoutConstraint.init(item: continueButton,
+                                                       attribute: .height,
+                                                       relatedBy: .equal,
+                                                       toItem: nil,
+                                                       attribute: .notAnAttribute,
+                                                       multiplier: 1,
+                                                       constant: 40)
         continueButton.addConstraints([heightConstraint])
 
         return [UIBarButtonItem(customView: continueButton)]
@@ -74,6 +85,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Actions
     @objc func didTapContinue() {
+        trackUserEvent(.CONTINUE, stringValue: "openRegistration", action: .TAP)
         router.openRegistration()
     }
 }
@@ -84,6 +96,7 @@ extension RegisterIntroViewController {
         guard let videoCell = getVideoCell() else { return }
         DispatchQueue.main.async {
             if UIDevice.current.orientation.isLandscape {
+                self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .LANDSCAPE, action: .ROTATE)
                 videoCell.playerController.removeFromParentViewController()
                 self.view.fill(subview: videoCell.playerController.view)
                 self.addChildViewController(videoCell.playerController)
@@ -91,6 +104,7 @@ extension RegisterIntroViewController {
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])
             } else {
+                self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .PORTRAIT, action: .ROTATE)
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
                 videoCell.playerController.removeFromParentViewController()
                 videoCell.mediaContentView.fill(subview: videoCell.playerController.view)
@@ -130,15 +144,16 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
         switch indexPath.row {
         case 0:
             let reusableCell: RegisterIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
-            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_header_title),
-                                   body: AppTextService.get(AppTextKey.onboarding_register_intro_video_section_body),
+            reusableCell.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
+                                   body: AppTextService.get(.onboarding_register_intro_video_section_body),
                                    videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
+            reusableCell.delegate = self
             cell = reusableCell
         default:
             let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
-            let longBody = AppTextService.get(AppTextKey.onboarding_register_intro_note_section_body)
+            let longBody = AppTextService.get(.onboarding_register_intro_note_section_body)
             let shortBody = String.init(longBody.split(separator: "\n").first ?? "")
-            reusableCell.configure(title: AppTextService.get(AppTextKey.onboarding_register_intro_note_section_title),
+            reusableCell.configure(title: AppTextService.get(.onboarding_register_intro_note_section_title),
                                    body: expanded ? longBody : shortBody,
                                    expanded: expanded)
             reusableCell.delegate = self
@@ -150,9 +165,21 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
 
 extension RegisterIntroViewController: RegisterIntroNoteTableViewCellDelegate {
     func didTapReadMore() {
+        trackUserEvent(.READ_MORE, action: .TAP)
         expanded = true
         tableView.reloadRows(at: [IndexPath(row: RegisterIntroCellTypes.NoteCell.rawValue,
                                            section: 0)],
                              with: .fade)
+    }
+}
+
+// MARK: - RegisterIntroUserEventTrackDelegate
+extension RegisterIntroViewController: RegisterIntroUserEventTrackDelegate {
+    func didMuteVideo() {
+        trackUserEvent(.MUTE_VIDEO, action: .TAP)
+    }
+
+    func didUnMuteVideo() {
+        trackUserEvent(.UNMUTE_VIDEO, action: .TAP)
     }
 }

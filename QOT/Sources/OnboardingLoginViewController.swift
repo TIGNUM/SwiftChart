@@ -149,9 +149,9 @@ private extension OnboardingLoginViewController {
         guard active == true else { return }
         textField.resignFirstResponder()
         let code = digitTextFields.reduce("", { $0 + ($1.text ?? "") })
-        interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showTrackSelection) in
-            if showTrackSelection {
-                self?.router.showTrackSelection()
+        interactor.validateLoginCode(code, for: emailField.text) { [weak self] (showCoachMarks) in
+            if showCoachMarks {
+                self?.router.showCoachMarks()
             } else {
                 self?.router.showHomeScreen()
             }
@@ -357,6 +357,7 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         baseHeaderView?.configure(title: interactor.title, subtitle: nil)
+        baseHeaderView?.refresh(titleThemeText: .registrationEmailTitle, subtitleThemeText: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
         ThemeText.loginEmailCode.apply(interactor.preCode, to: precodeLabel)

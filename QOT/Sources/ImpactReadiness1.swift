@@ -107,7 +107,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             trackState = model.isExpanded
             impactReadinessButton.flipImage(trackState)
             impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
+            impactReadinessButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
             impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()
         }

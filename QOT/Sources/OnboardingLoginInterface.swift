@@ -50,6 +50,6 @@ protocol OnboardingLoginInteractorInterface: Interactor {
 protocol OnboardingLoginRouterInterface {
     func showHomeScreen()
     func showFAQScreen()
-    func showTrackSelection()
+    func showCoachMarks()
     func goToRegister()
 }

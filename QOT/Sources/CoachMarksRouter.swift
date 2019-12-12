@@ -12,12 +12,10 @@ final class CoachMarksRouter {
 
     // MARK: - Properties
     private weak var viewController: CoachMarksViewController?
-    private var trackType: SelectedTrackType
 
     // MARK: - Init
-    init(viewController: CoachMarksViewController?, trackType: SelectedTrackType) {
+    init(viewController: CoachMarksViewController?) {
         self.viewController = viewController
-        self.trackType = trackType
     }
 }
 
@@ -29,10 +27,18 @@ extension CoachMarksRouter: CoachMarksRouterInterface {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
         appDelegate.appCoordinator.showApp()
         // Guided
-        if case .guided = trackType, let url = URLScheme.dailyBriefURL(for: .GUIDE_TRACK) {
+        if let url = URLScheme.dailyBriefURL(for: .GUIDE_TRACK) {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
+    }
+
+    func showNotificationPersmission(type: AskPermission.Kind, completion: (() -> Void)?) {
+        guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as? AskPermissionViewController else {
+            return
+        }
+        AskPermissionConfigurator.make(viewController: controller, type: type)
+        viewController?.present(controller, animated: true, completion: completion)
     }
 }
