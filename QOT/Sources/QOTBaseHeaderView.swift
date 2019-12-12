@@ -7,9 +7,9 @@
 //
 
 import Foundation
-import UIKit
 
 final class QOTBaseHeaderView: UIView {
+
     // MARK: - Properties
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -59,11 +59,19 @@ final class QOTBaseHeaderView: UIView {
         refresh(darkMode: darkMode, animated: animated)
     }
 
-    func refresh(darkMode: Bool? = nil, animated: Bool = false) {
+    func refresh(darkMode: Bool? = nil,
+                 animated: Bool = false,
+                 titleThemeText: ThemeText = ThemeText.baseHeaderTitle(ThemeColorMode.dark),
+                 subtitleThemeText: ThemeText = ThemeText.baseHeaderSubtitle(ThemeColorMode.dark)) {
         let mode: ThemeColorMode = darkMode ?? self.darkMode ? .dark : .light
         ThemeView.baseHeaderLineView(mode).apply(lineView)
         ThemeText.baseHeaderTitle(mode).apply(title, to: titleLabel)
         ThemeText.baseHeaderSubtitle(mode).apply(subtitle, to: subtitleTextView)
+    }
+
+    func refresh(titleThemeText: ThemeText, subtitleThemeText: ThemeText?) {
+        titleThemeText.apply(title, to: titleLabel)
+        subtitleThemeText?.apply(subtitle, to: subtitleTextView)
     }
 }
 
