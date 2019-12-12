@@ -12,25 +12,16 @@ import qot_dal
 final class OnboardingLoginInteractor {
 
     // MARK: - Properties
-
-    private let worker: OnboardingLoginWorker
+    private lazy var worker = OnboardingLoginWorker()
     private let presenter: OnboardingLoginPresenterInterface
-    private let router: OnboardingLoginRouterInterface
-
     var viewModel = OnboardingLoginViewModel()
 
     // MARK: - Init
-
-    init(worker: OnboardingLoginWorker,
-        presenter: OnboardingLoginPresenterInterface,
-        router: OnboardingLoginRouterInterface) {
-        self.worker = worker
+    init(presenter: OnboardingLoginPresenterInterface) {
         self.presenter = presenter
-        self.router = router
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
@@ -80,7 +71,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         viewModel.sendCodeEnabled = true
     }
 
-    func didTapVerify(email: String?) {
+    func didTapVerify(email: String?, completion: @escaping () -> Void) {
         UserDefault.existingEmail.setStringValue(value: "")
 
         guard checkAndPresentEmailValidity(email) == true, let email = email else {
@@ -108,7 +99,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
             if strongSelf.testForPreRegisteredUser() {
                 UserDefault.existingEmail.setStringValue(value: email)
                 strongSelf.presenter.presentReset()
-                strongSelf.router.goToRegister()
+                completion()
             } else {
                 strongSelf.presenter.present()
                 strongSelf.presenter.presentActivity(state: nil)
@@ -137,7 +128,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         }
     }
 
-    func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?) {
+    func validateLoginCode(_ code: String, for email: String?, completion: @escaping (Bool) -> Void) {
         guard checkAndPresentEmailValidity(email) == true, let email = email else {
             return
         }
@@ -148,12 +139,8 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
             switch result.code {
             case .codeValid,
                  .valid:
-                // Update ToBeVision
-                if let tbv = toBeVision {
-                    self?.worker.updateToBeVision(with: tbv)
-                }
                 // Show main app
-                self?.handleSuccessfulLogin(for: email)
+                self?.handleSuccessfulLogin(for: email, completion: completion)
                 return
             default:
                 break
@@ -172,22 +159,17 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
     func resetCodeError() {
         viewModel.codeError = nil
     }
-
-    func showFAQScreen() {
-        router.showFAQScreen()
-    }
 }
 
 // MARK: - Private methods
-
 private extension OnboardingLoginInteractor {
-    func handleSuccessfulLogin(for email: String) {
+    func handleSuccessfulLogin(for email: String, completion: (Bool) -> Void) {
 //        delegate?.didFinishLogin()
         let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
         if !emails.contains(email) {
-            router.showTrackSelection()
+            completion(true)
         } else {
-            router.showHomeScreen()
+            completion(false)
         }
     }
 

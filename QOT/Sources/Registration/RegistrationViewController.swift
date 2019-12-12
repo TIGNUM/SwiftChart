@@ -59,23 +59,7 @@ final class RegistrationViewController: BaseViewController, ScreenZLevel3 {
     }
 }
 
-// MARK: - Actions
-private extension RegistrationViewController {
-    @objc func loginWithTBV() {
-        if hasInternet() {
-            interactor.navigateToLogin(shouldSaveToBeVision: true)
-        }
-    }
-
-    @objc func loginWithoutTBV() {
-        if hasInternet() {
-            interactor.navigateToLogin(shouldSaveToBeVision: false)
-        }
-    }
-}
-
 // MARK: - RegistrationViewControllerInterface
-
 extension RegistrationViewController: RegistrationViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
@@ -97,12 +81,6 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
             pageController.setViewControllers([controller], direction: .forward, animated: false, completion: nil)
         }
         refreshBottomNavigationItems()
-    }
-
-    func show(alert: RegistrationExistingUserAlertViewModel) {
-        let withoutTBV = QOTAlertAction(title: alert.discardTBVTitle, target: self, action: #selector(loginWithoutTBV))
-        let saveTBV = QOTAlertAction(title: alert.saveTBVTitle, target: self, action: #selector(loginWithTBV))
-        QOTAlert.show(title: alert.alertTitle, message: alert.alertMessage, bottomItems: [withoutTBV, saveTBV])
     }
 
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {

@@ -20,7 +20,9 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
+        button.flipImage(trackState)
         skeletonManager.addOtherView(button)
+        ThemeView.guidedTrackBackground.apply(self)
     }
 
     @IBAction func clickAction(_ sender: Any) {

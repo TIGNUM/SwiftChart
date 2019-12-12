@@ -92,7 +92,7 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
 
         ThemeText.registrationEmailTitle.apply(interactor.title, to: titleLabel)
         ThemeText.onboardingInputPlaceholder.apply(interactor.emailPlaceholder, to: emailField.placeholderLabel)
-        ThemeText.registrationCodeDescription.apply(interactor.subtitle, to: subtitleLabel)
+        subtitleLabel.isHidden = true
         emailField.delegate = self
         emailField.textField.corner(radius: .Nine, borderColor: .sand40)
         emailField.textField.autocapitalizationType = .none
@@ -160,7 +160,8 @@ extension RegistrationEmailViewController {
 
         if parameters.endFrameY >= UIScreen.main.bounds.size.height {
             // Keyboard is hiding
-            animateOffset(bottomConstraintInitialValue, duration: parameters.duration, animationCurve: parameters.animationCurve)
+            animateOffset(bottomConstraintInitialValue, duration: parameters.duration,
+                          animationCurve: parameters.animationCurve)
         } else {
             // Keyboard is showing
             let offset = parameters.height - bottomConstraintInitialValue

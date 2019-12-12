@@ -140,7 +140,7 @@ final class AppCoordinator {
                 // Show coach marks on first launch (of v3.0 app)
                 let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()
                 if let email = SessionService.main.getCurrentSession()?.useremail, !emails.contains(email) {
-                    self.showTrackChoice()
+                    self.showCoachMarks()
                 } else {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
                     self.isReadyToProcessURL = true
@@ -203,12 +203,12 @@ private extension AppCoordinator {
 // MARK: - Navigation
 
 extension AppCoordinator {
-    func showTrackChoice() {
-        guard let controller = R.storyboard.trackSelection.trackSelectionViewController(),
+    func showCoachMarks() {
+        guard let controller = R.storyboard.coachMark.coachMarksViewController(),
             let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
             let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
-        let configurator = TrackSelectionConfigurator.make()
-        configurator(controller, .login)
+        let configurator = CoachMarksConfigurator.make()
+        configurator(controller)
         baseController.setContent(viewController: controller)
     }
 

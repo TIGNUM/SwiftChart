@@ -71,6 +71,7 @@ enum ThemeView {
     case coachMarkPageIndicator
     case dailyInsightsChartBarUnselected
     case dailyInsightsChartBarSelected
+    case guidedTrackBackground
 
     var color: UIColor {
         switch self {
@@ -128,6 +129,8 @@ enum ThemeView {
             return Palette.carbon
         case .resultWhite:
             return Palette.white40
+        case .guidedTrackBackground:
+            return Palette.sand03
 
         // MARK: - .sand40
         case .syncedCalendarSeparator, .dailyInsightsChartBarUnselected:
@@ -464,21 +467,17 @@ enum ThemeSegment {
     func apply(_ view: UISegmentedControl) {
         var normal: [NSAttributedString.Key: Any]?
         var selected: [NSAttributedString.Key: Any]?
-        let fakeBackgroundColor = UIColor(red: 7/255, green: 6/255, blue: 3/255, alpha: 1)
-        let fakeDividerImage = UIImage(color: .carbon,
-                                       size: CGSize(width: 1, height: 32))
+
         switch self {
         case .accent:
             normal = [NSAttributedStringKey.font: Fonts.fontRegular14,
                       NSAttributedStringKey.foregroundColor: Palette.accent60]
             selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
                         NSAttributedStringKey.foregroundColor: Palette.sand]
-            view.setDividerImage(fakeDividerImage,
-                            forLeftSegmentState: .normal,
-                            rightSegmentState: .normal, barMetrics: .default)
+            view.tintColor = .clear
+            view.backgroundColor = .clear
             if #available(iOS 13, *) {
-                view.tintColor = fakeBackgroundColor
-                view.backgroundColor = fakeBackgroundColor
+                view.selectedSegmentTintColor = .clear
             }
         }
 
@@ -1491,6 +1490,10 @@ private struct Palette {
 
     static var carbonDark80: UIColor {
         return UIColor.carbonDark.withAlphaComponent(0.8)
+    }
+
+    static var sand03: UIColor {
+        return UIColor.sand.withAlphaComponent(0.03)
     }
 
     static var sand10: UIColor {

@@ -39,18 +39,17 @@ protocol OnboardingLoginInteractorInterface: Interactor {
 
     var viewModel: OnboardingLoginViewModel { get }
     func didTapBack()
-    func didTapVerify(email: String?)
+    func didTapVerify(email: String?, completion: @escaping () -> Void)
     func didTapSendCode(to email: String?)
 
-    func validateLoginCode(_ code: String, for email: String?, toBeVision: QDMToBeVision?)
+    func validateLoginCode(_ code: String, for email: String?, completion: @escaping (Bool) -> Void)
     func resetEmailError()
     func resetCodeError()
-    func showFAQScreen()
 }
 
 protocol OnboardingLoginRouterInterface {
     func showHomeScreen()
     func showFAQScreen()
-    func showTrackSelection()
+    func showCoachMarks()
     func goToRegister()
 }
