@@ -34,6 +34,10 @@ extension QDMUserEventTracking.Name {
     static let GUIDED_TRACK = "GUIDED_TRACK"
     static let GOT_IT = "GOT_IT"
     static let EDIT_LIBRARY = "EDIT_LIBRARY"
+    static let MUTE_VIDEO = "MUTE_VIDEO"
+    static let UNMUTE_VIDEO = "UNMUTE_VIDEO"
+    static let READ_MORE = "READ_MORE"
+    static let ORIENTATION_CHANGE = "ORIENTATION_CHANGE"
 }
 
 public extension QDMUserEventTracking.ValueType {
@@ -41,4 +45,10 @@ public extension QDMUserEventTracking.ValueType {
     static let SHOW_PRIVACY_POLICY = "SHOW_PRIVACY_POLICY"
     static let SHOW_TERMS_OF_USE = "SHOW_TERMS_OF_USE"
     static let USER_BIRTH_YEAR = "USER_BIRTH_YEAR"
+    static let LANDSCAPE = "LANDSCAPE"
+    static let PORTRAIT = "PORTRAIT"
+}
+
+public extension QDMUserEventTracking.Action {
+    static let ROTATE = "ROTATE"
 }

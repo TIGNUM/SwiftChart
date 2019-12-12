@@ -25,5 +25,6 @@ final class RegisterIntroNoteTableViewCell: UITableViewCell, Dequeueable {
     }
     @IBAction func didTapReadMoreButton(_ sender: UIButton) {
         delegate?.didTapReadMore()
+
     }
 }
