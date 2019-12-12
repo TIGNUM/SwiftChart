@@ -597,6 +597,15 @@ extension QuestionnaireViewController {
         // Only vertical direction
         return abs(velocity.y) > abs(velocity.x)
     }
+
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
+
+    override func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return false
+    }
 }
 
 extension QuestionnaireViewController {
