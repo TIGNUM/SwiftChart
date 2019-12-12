@@ -130,7 +130,7 @@ enum ThemeView {
         case .resultWhite:
             return Palette.white40
         case .guidedTrackBackground:
-            return Palette.sand03
+            return Palette.carbon
 
         // MARK: - .sand40
         case .syncedCalendarSeparator, .dailyInsightsChartBarUnselected:
