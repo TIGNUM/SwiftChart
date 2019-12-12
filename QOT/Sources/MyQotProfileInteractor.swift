@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotProfileInteractor {
 
@@ -15,6 +16,7 @@ final class MyQotProfileInteractor {
         case appSettings
         case support
         case aboutTignum
+        case adminSettings
     }
 
     // MARK: - Properties
@@ -36,7 +38,10 @@ final class MyQotProfileInteractor {
 
     func viewDidLoad() {
         getData({ [weak self] (profile) in
-            self?.presenter.updateView()
+            SettingService.main.getSettingFor(key: SettingKey.SystemDevelopmentMode) { [weak self] (setting, _, _) in
+                self?.worker.developmentMode = setting?.booleanValue ?? false
+                self?.presenter.updateView()
+            }
         })
     }
 }
@@ -49,7 +54,7 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     }
 
     func getMenuItems() -> [MyQotProfileModel.TableViewPresentationData] {
-        return worker.menuItems
+        return worker.menuItems()
     }
 
     func memberSinceText() -> String {
@@ -77,6 +82,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
             router.presentSupport()
         case .aboutTignum:
             router.presentAboutTignum()
+        case .adminSettings:
+            router.presentAdminSettings()
         }
     }
 }

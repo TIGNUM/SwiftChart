@@ -786,6 +786,14 @@
 		ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */; };
 		B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */; };
 		B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */; };
+		B44F303623A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */; };
+		B44F303723A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F302F23A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift */; };
+		B44F303823A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303023A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift */; };
+		B44F303923A22E7D00B07D86 /* MyQotAdminSettingsListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303123A22E7D00B07D86 /* MyQotAdminSettingsListInterface.swift */; };
+		B44F303A23A22E7D00B07D86 /* MyQotAdminSettingsListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303223A22E7D00B07D86 /* MyQotAdminSettingsListViewController.swift */; };
+		B44F303B23A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303323A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift */; };
+		B44F303C23A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303423A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift */; };
+		B44F303D23A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */; };
 		B45BAA2F231D85DD000EB7B0 /* BaseDailyBriefCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */; };
 		B45FB2142344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */; };
 		B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */; };
@@ -1965,6 +1973,14 @@
 		AE5B5709A00341CFD794D10A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
+		B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListPresenter.swift; sourceTree = "<group>"; };
+		B44F302F23A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListWorker.swift; sourceTree = "<group>"; };
+		B44F303023A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListRouter.swift; sourceTree = "<group>"; };
+		B44F303123A22E7D00B07D86 /* MyQotAdminSettingsListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListInterface.swift; sourceTree = "<group>"; };
+		B44F303223A22E7D00B07D86 /* MyQotAdminSettingsListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListViewController.swift; sourceTree = "<group>"; };
+		B44F303323A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListInteractor.swift; sourceTree = "<group>"; };
+		B44F303423A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListModel.swift; sourceTree = "<group>"; };
+		B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListConfigurator.swift; sourceTree = "<group>"; };
 		B45BAA2E231D85DD000EB7B0 /* BaseDailyBriefCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseDailyBriefCell.swift; sourceTree = "<group>"; };
 		B45FB2122344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B45FB2132344F7B500A14F78 /* MyDataHeatMapLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapLegendTableViewCell.swift; sourceTree = "<group>"; };
@@ -2476,6 +2492,7 @@
 				5F7BE77B2289581F00BA5DCF /* MyQotSupport */,
 				5F62BE8A228AB57F00852F7E /* MyQotSupportFAQ */,
 				5F360731228C1EBA0074FEC4 /* MyQotCalendars */,
+				B44F302D23A22E2E00B07D86 /* MyQotAdminSettings */,
 				5FF1A0DF2285615700D76D55 /* Components */,
 			);
 			name = MyQOT;
@@ -4012,6 +4029,21 @@
 				BBB47C64232A387900B165F8 /* DTResultBaseTableViewCell.swift */,
 			);
 			name = Cells;
+			sourceTree = "<group>";
+		};
+		B44F302D23A22E2E00B07D86 /* MyQotAdminSettings */ = {
+			isa = PBXGroup;
+			children = (
+				B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */,
+				B44F302F23A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift */,
+				B44F303023A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift */,
+				B44F303123A22E7D00B07D86 /* MyQotAdminSettingsListInterface.swift */,
+				B44F303223A22E7D00B07D86 /* MyQotAdminSettingsListViewController.swift */,
+				B44F303323A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift */,
+				B44F303423A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift */,
+				B44F303523A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift */,
+			);
+			name = MyQotAdminSettings;
 			sourceTree = "<group>";
 		};
 		B47953AA230AD512006EFE0F /* MyDataScreen */ = {
@@ -5803,6 +5835,7 @@
 				B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
+				B44F303A23A22E7D00B07D86 /* MyQotAdminSettingsListViewController.swift in Sources */,
 				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
 				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
 				7582615B22D77531000094DE /* TBVRateHistoryNullStateViewController.swift in Sources */,
@@ -6021,6 +6054,7 @@
 				DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */,
 				F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */,
 				75DC687022C11D5D00FF183D /* MyToBeVisionRateWorker.swift in Sources */,
+				B44F303823A22E7D00B07D86 /* MyQotAdminSettingsListRouter.swift in Sources */,
 				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
 				8D8AA76522FDCB6700B59A81 /* RegistrationEmailPresenter.swift in Sources */,
 				363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */,
@@ -6061,6 +6095,8 @@
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				363C3DC1231962AB0025C256 /* UIScrollView+Ext.swift in Sources */,
 				759AB42622C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift in Sources */,
+				B44F303D23A22E7D00B07D86 /* MyQotAdminSettingsListConfigurator.swift in Sources */,
+				B44F303723A22E7D00B07D86 /* MyQotAdminSettingsListWorker.swift in Sources */,
 				5FD890A822807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift in Sources */,
 				9CE28A2322E1C78C00013C44 /* DailyBriefViewModel.swift in Sources */,
 				5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */,
@@ -6091,6 +6127,7 @@
 				B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */,
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */,
+				B44F303923A22E7D00B07D86 /* MyQotAdminSettingsListInterface.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				36E12EC5232B57F0009E96EA /* DTPrepareInterface.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
@@ -6115,6 +6152,7 @@
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
 				B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */,
+				B44F303B23A22E7D00B07D86 /* MyQotAdminSettingsListInteractor.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
@@ -6217,6 +6255,7 @@
 				8DF7870D22FEB50800CDE0A9 /* RegistrationCodeConfigurator.swift in Sources */,
 				9CF3BE3F22FC62140027D111 /* MyPeakPerformanceModelItemType.swift in Sources */,
 				5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */,
+				B44F303C23A22E7D00B07D86 /* MyQotAdminSettingsListModel.swift in Sources */,
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
 				F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
@@ -6444,6 +6483,7 @@
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				8DF7870922FEB50800CDE0A9 /* RegistrationCodeInterface.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
+				B44F303623A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift in Sources */,
 				36376630223A66AF00C2C429 /* CoachRouter.swift in Sources */,
 				36E6E3F122493016001BE9C7 /* ComponentDetailViewController.swift in Sources */,
 				8DECF9A822DDD37300451E65 /* MySprintsListTableViewCell.swift in Sources */,
