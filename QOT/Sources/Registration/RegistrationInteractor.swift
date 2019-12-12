@@ -47,13 +47,6 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
         return controller
     }
 
-    private lazy var trackSelectionController: TrackSelectionViewController = {
-        let configurator = TrackSelectionConfigurator.make()
-        let controller = R.storyboard.trackSelection.trackSelectionViewController() ?? TrackSelectionViewController()
-        configurator(controller, TrackSelectionControllerType.registration)
-        return controller
-    }()
-
     var totalPageCount: Int {
         return 4
     }
@@ -134,7 +127,7 @@ extension RegistrationInteractor: RegistrationDelegate {
 
 private extension RegistrationInteractor {
     func handleSuccess() {
-        self.presentedControllers.append(self.trackSelectionController)
-        self.presenter.present(controller: self.trackSelectionController, direction: .forward)
+        // shows CoachMarksController
+        router.showCoachMarksViewController()
     }
 }

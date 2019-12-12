@@ -14,11 +14,13 @@ final class CoachMarksInteractor {
     // MARK: - Properties
     private lazy var worker = CoachMarksWorker()
     private let presenter: CoachMarksPresenterInterface
+    private let router: CoachMarksRouterInterface
     private var contentCategory: QDMContentCategory?
     var currentPage: Int = 0
     // MARK: - Init
-    init(presenter: CoachMarksPresenterInterface) {
+    init(presenter: CoachMarksPresenterInterface, router: CoachMarksRouterInterface) {
         self.presenter = presenter
+        self.router = router
     }
 
     // MARK: - Interactor
@@ -45,6 +47,13 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
 
     func saveCoachMarksViewed() {
         worker.saveCoachMarksViewed()
+    }
+
+    func askNotificationPermissions() {
+        worker.notificationRequestType { [weak self] (type) in
+            guard let type = type else { return }
+            self?.router.showNotificationPersmission(type: type, completion: nil)
+        }
     }
 }
 

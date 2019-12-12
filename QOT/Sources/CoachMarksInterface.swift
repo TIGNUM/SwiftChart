@@ -22,9 +22,11 @@ protocol CoachMarksInteractorInterface: Interactor {
     func loadNextStep(page: Int)
     func loadPreviousStep(page: Int)
     func saveCoachMarksViewed()
+    func askNotificationPermissions()
     var currentPage: Int { get }
 }
 
 protocol CoachMarksRouterInterface {
     func navigateToTrack()
+    func showNotificationPersmission(type: AskPermission.Kind, completion: (() -> Void)?)
 }

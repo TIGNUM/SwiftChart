@@ -20,4 +20,16 @@ final class CoachMarksWorker {
         emails.append(email)
         UserDefault.didShowCoachMarks.setObject(emails)
     }
+
+    func notificationRequestType(completion: @escaping ((AskPermission.Kind?) -> Void)) {
+        RemoteNotificationPermission().authorizationStatus { (status) in
+            DispatchQueue.main.async {
+                switch status {
+                case .authorized, .provisional: completion(nil)
+                case .denied: completion(.notificationOpenSettings)
+                case .notDetermined: completion(.notificationOnboarding)
+                }
+            }
+        }
+    }
 }
