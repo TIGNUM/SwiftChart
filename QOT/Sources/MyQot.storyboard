@@ -35,22 +35,6 @@
             </objects>
             <point key="canvasLocation" x="1812" y="300"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="QWj-oV-J9r">
-            <objects>
-                <viewController id="RKF-Rk-C03" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="I2K-tR-28u">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="cmv-8G-6Wg"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="L7B-UK-u7r"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3gb-jF-1Td" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1088" y="660"/>
-        </scene>
         <!--My Qot Profile View Controller-->
         <scene sceneID="Wdr-OO-R0H">
             <objects>
@@ -94,7 +78,7 @@
                         <segue destination="VSV-MR-rgC" kind="show" identifier="myQot.support.segue.identifier" id="u65-uW-Uh7"/>
                         <segue destination="6Hh-bM-OFn" kind="show" identifier="myQot.aboutTignum.segue.identifier" id="Klj-WE-CB8"/>
                         <segue destination="bUa-0I-I46" kind="show" identifier="myQot.myLibrary.segue.identifier" id="nLz-oJ-HxZ"/>
-                        <segue destination="RKF-Rk-C03" kind="show" identifier="myQot.adminSettings.segue.identifier" id="uCa-zt-NxB"/>
+                        <segue destination="3ZV-BA-t3g" kind="show" identifier="myQot.adminSettings.segue.identifier" id="kVG-3l-IG5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iN9-WJ-cdn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1045,6 +1029,51 @@
                 </view>
             </objects>
             <point key="canvasLocation" x="2980" y="525"/>
+        </scene>
+        <!--My Qot Admin Settings List View Controller-->
+        <scene sceneID="9cZ-ns-nOm">
+            <objects>
+                <viewController storyboardIdentifier="MyQotAdminSettingsID" id="3ZV-BA-t3g" customClass="MyQotAdminSettingsListViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JCO-W1-yh2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="JAf-sZ-nEW">
+                                <rect key="frame" x="0.0" y="98" width="375" height="469"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ywj-fm-jGd">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="98"/>
+                                <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="98" id="mMB-Rj-xmW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ywj-fm-jGd" firstAttribute="leading" secondItem="JCO-W1-yh2" secondAttribute="leading" id="4e9-mP-DOQ"/>
+                            <constraint firstItem="ywj-fm-jGd" firstAttribute="top" secondItem="Vis-oX-hEG" secondAttribute="top" id="M5y-7f-d0G"/>
+                            <constraint firstItem="JAf-sZ-nEW" firstAttribute="leading" secondItem="Vis-oX-hEG" secondAttribute="leading" id="NwS-t5-Kcr"/>
+                            <constraint firstItem="Vis-oX-hEG" firstAttribute="trailing" secondItem="ywj-fm-jGd" secondAttribute="trailing" id="PC8-aC-KY4"/>
+                            <constraint firstItem="JAf-sZ-nEW" firstAttribute="top" secondItem="ywj-fm-jGd" secondAttribute="bottom" id="jjI-QK-rXx"/>
+                            <constraint firstItem="JAf-sZ-nEW" firstAttribute="trailing" secondItem="Vis-oX-hEG" secondAttribute="trailing" id="kjC-lH-ICM"/>
+                            <constraint firstItem="Vis-oX-hEG" firstAttribute="bottom" secondItem="JAf-sZ-nEW" secondAttribute="bottom" constant="80" id="q40-ox-nTi"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Vis-oX-hEG"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="pm6-m8-PfI"/>
+                    <connections>
+                        <outlet property="headerView" destination="ywj-fm-jGd" id="jZ8-06-K29"/>
+                        <outlet property="headerViewHeightConstraint" destination="mMB-Rj-xmW" id="j3p-IW-rKD"/>
+                        <outlet property="tableView" destination="JAf-sZ-nEW" id="9rP-T6-wRZ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="laC-IC-b13" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1089" y="649"/>
         </scene>
     </scenes>
     <resources>

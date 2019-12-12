@@ -17,7 +17,7 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
 
-    var interactor: MyQotProfileInteractorInterface?
+    var interactor: MyQotProfileInteractorInterface!
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Life Cycle
@@ -25,7 +25,7 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
         setupTableView()
     }
 
@@ -48,6 +48,8 @@ final class MyQotProfileViewController: BaseViewController, ScreenZLevel2 {
             MyQotSupportConfigurator.configure(viewController: supportVC)
         } else if let aboutTignum = segue.destination as? MyQotAboutUsViewController {
             MyQotAboutUsConfigurator.configure(viewController: aboutTignum)
+        } else if let adminSettings = segue.destination as? MyQotAdminSettingsListViewController {
+            MyQotAdminSettingsListConfigurator.configure(viewController: adminSettings)
         }
     }
 }
@@ -62,7 +64,7 @@ private extension MyQotProfileViewController {
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
         ThemeView.level2.apply(self.view)
-        baseHeaderView?.configure(title: interactor?.myProfileText(), subtitle: nil)
+        baseHeaderView?.configure(title: interactor.myProfileText(), subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         tableView.delegate = self
@@ -84,19 +86,19 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
 
 extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let items = interactor?.getMenuItems(), items.count > 0 else {
+        guard interactor.getMenuItems().count > 0 else {
             return 5
         }
-        return items.count
+        return interactor.getMenuItems().count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        if let items = interactor?.getMenuItems(),
-                indexPath.row < items.count {
-            cell.configure(interactor?.getMenuItems()[indexPath.row])
+        if indexPath.row < interactor.getMenuItems().count {
+            let data = interactor.getMenuItems()[indexPath.row]
+            cell.configure(title: data.heading, subtitle: data.subHeading)
         } else {
-            cell.configure(nil)
+            cell.configure(title: nil, subtitle: nil)
         }
         return cell
     }
@@ -104,7 +106,7 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         trackUserEvent(.OPEN, action: .TAP)
-        interactor?.presentController(for: indexPath.row)
+        interactor.presentController(for: indexPath.row)
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -113,8 +115,8 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: MyQotProfileHeaderView = tableView.dequeueHeaderFooter()
-        let data = MyQotProfileModel.HeaderViewModel(user: interactor?.getProfile(),
-                                                     memberSinceTitle: interactor?.memberSinceText())
+        let data = MyQotProfileModel.HeaderViewModel(user: interactor.getProfile(),
+                                                     memberSinceTitle: interactor.memberSinceText())
         headerView.configure(data: data)
         return headerView
     }
