@@ -17,7 +17,7 @@ struct RegistrationData {
     var birthYear: String = ""
 }
 
-final class RegistrationInteractor {
+final class RegistrationInteractor: RegistrationInteractorInterface {
 
     // MARK: - Properties
     private let presenter: RegistrationPresenterInterface
@@ -60,7 +60,6 @@ final class RegistrationInteractor {
     }
 
     // MARK: - Init
-
     init(presenter: RegistrationPresenterInterface, router: RegistrationRouter) {
         self.presenter = presenter
         self.router = router
@@ -71,25 +70,14 @@ final class RegistrationInteractor {
         configurator(controller, self)
     }
 
-    // MARK: - Interactor
-
+    // MARK: - Interactorq
     func viewDidLoad() {
         presenter.setupView()
     }
 }
 
-// MARK: - RegistrationInteractorInterface
-
-extension RegistrationInteractor: RegistrationInteractorInterface {
-    func navigateToLogin(shouldSaveToBeVision: Bool) {
-        navigateToLogin(with: registrationData.email, toBeVision: shouldSaveToBeVision)
-    }
-}
-
 // MARK: - RegistrationDelegate
-
 extension RegistrationInteractor: RegistrationDelegate {
-
     func didTapBack() {
         guard presentedControllers.count > 1 else {
             router.popBack()
@@ -135,27 +123,11 @@ extension RegistrationInteractor: RegistrationDelegate {
             }
         }
     }
-
-    func handleExistingUser(email: String) {
-        registrationData.email = email
-        let existingUserAlertViewModel = RegistrationExistingUserAlertViewModel(alertTitle: worker.existingAccountAlertTitle,
-                                                                            alertMessage: worker.existingAccountAlertMessage,
-                                                                            discardTBVTitle: worker.noButtonTitle,
-                                                                            saveTBVTitle: worker.yesButtonTitle)
-        presenter.present(alert: existingUserAlertViewModel)
-    }
 }
 
 private extension RegistrationInteractor {
-
     func handleSuccess() {
         // shows CoachMarksController
         router.showCoachMarksViewController()
-    }
-
-    func navigateToLogin(with email: String?, toBeVision: Bool) {
-        var userInfo = [String: Any]()
-        if let email = email { userInfo[Notification.Name.RegistrationKeys.email] = email }
-        NotificationCenter.default.post(name: .registrationShouldShowLogin, object: nil, userInfo: userInfo)
     }
 }

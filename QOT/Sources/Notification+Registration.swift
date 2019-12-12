@@ -14,6 +14,5 @@ extension Notification.Name {
         static let toBeVision = "toBeVision"
     }
 
-    // MySprints data was updated and the list needs to be reloaded
     static let registrationShouldShowLogin = Notification.Name("registrationShouldShowLogin")
 }

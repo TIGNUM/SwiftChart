@@ -12,12 +12,10 @@ protocol RegistrationViewControllerInterface: UIViewController {
     func setupView()
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
     func showAlert(message: String)
-    func show(alert: RegistrationExistingUserAlertViewModel)
 }
 
 protocol RegistrationPresenterInterface {
     func setupView()
-    func present(alert: RegistrationExistingUserAlertViewModel)
     func present(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
     func presentActivity(state: ActivityState?)
     func presentAlert(message: String)
@@ -27,7 +25,6 @@ protocol RegistrationInteractorInterface: Interactor {
     var currentController: UIViewController? { get }
     var totalPageCount: Int { get }
     var currentPage: Int { get }
-    func navigateToLogin(shouldSaveToBeVision: Bool)
 }
 
 protocol RegistrationRouterInterface {
@@ -41,5 +38,4 @@ protocol RegistrationDelegate: class {
     func didVerifyCode(_ code: String)
     func didSave(firstName: String, lastName: String?)
     func didTapCreateAccount(with birthYear: String)
-    func handleExistingUser(email: String)
 }
