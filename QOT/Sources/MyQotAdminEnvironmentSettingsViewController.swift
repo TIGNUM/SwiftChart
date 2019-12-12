@@ -86,5 +86,7 @@ extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITa
         tableView.deselectRow(at: indexPath, animated: true)
         NetworkRequestManager.main.switchTo(environmentType: indexPath.row == 0 ? .development : .production)
         self.navigationController?.popViewController(animated: true)
+        qot_dal.SessionService.main.logout()
+        ExtensionsDataManager.didUserLogIn(false)
     }
 }
