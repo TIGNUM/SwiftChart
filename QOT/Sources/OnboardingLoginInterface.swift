@@ -47,9 +47,6 @@ protocol OnboardingLoginInteractorInterface: Interactor {
     func resetCodeError()
 }
 
-protocol OnboardingLoginRouterInterface {
-    func showHomeScreen()
-    func showFAQScreen()
-    func showCoachMarks()
+protocol OnboardingLoginRouterInterface: BaseRouterInterface {
     func goToRegister()
 }

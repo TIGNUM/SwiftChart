@@ -247,7 +247,7 @@ private extension OnboardingLoginViewController {
     @IBAction func didTapGetHelp() {
         if hasInternet() {
             trackUserEvent(.GET_HELP, action: .TAP)
-            router.showFAQScreen()
+            router.showFAQScreen(category: .FAQBeforeLogin)
         }
     }
 

@@ -9,31 +9,13 @@
 import UIKit
 import qot_dal
 
-final class MyLibraryUserStorageRouter {
+final class MyLibraryUserStorageRouter: BaseRouter {
 
-    // MARK: - Properties
-
-    private weak var viewController: MyLibraryUserStorageViewController?
-
-    // MARK: - Init
-
-    init(viewController: MyLibraryUserStorageViewController) {
-        self.viewController = viewController
-    }
 }
 
 // MARK: - MyLibraryBookmarksRouterInterface
 
 extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
-    func presentArticle(id: Int) {
-        guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
-            assertionFailure("Failed to initialize `ArticleViewController`")
-            return
-        }
-        ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController?.present(articleViewController, animated: true, completion: nil)
-    }
-
     func presentVideo(url: URL, item: QDMContentItem?) {
         viewController?.stream(videoURL: url, contentItem: item)
     }

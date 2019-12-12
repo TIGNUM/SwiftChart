@@ -254,7 +254,7 @@ extension DailyBriefViewController {
         case .LATEST_WHATS_HOT?:
              didSelectRow(at: indexPath)
              guard let whatsHotArticleId = bucketItem?.domainModel?.contentCollectionIds?.first else { break }
-             router.presentWhatsHotArticle(articleID: whatsHotArticleId)
+             router.presentContent(whatsHotArticleId)
         case .SOLVE_REFLECTION?:
             didSelectRow(at: indexPath)
             if (bucketItem as? SolveReminderTableCellViewModel) != nil {
@@ -770,11 +770,13 @@ extension DailyBriefViewController {
     }
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {
-        router.presentStrategyList(strategyID: selectedStrategyID)
+        presentStrategyList(strategyID: selectedStrategyID)
     }
 
     func presentStrategyList(strategyID: Int?) {
-        router.presentStrategyList(strategyID: strategyID)
+        if let contentId = strategyID {
+            router.presentContent(contentId)
+        }
     }
 }
 

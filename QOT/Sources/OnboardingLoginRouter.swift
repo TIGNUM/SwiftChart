@@ -9,18 +9,6 @@
 import UIKit
 
 final class OnboardingLoginRouter: BaseRouter, OnboardingLoginRouterInterface {
-    override func showHomeScreen() {
-        super.showHomeScreen()
-    }
-
-    override func showCoachMarks() {
-        super.showCoachMarks()
-    }
-
-    func showFAQScreen() {
-        super.showFAQScreen(category: .FAQBeforeLogin)
-    }
-
     func goToRegister() {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
             let configurator = RegisterIntroConfigurator.make()

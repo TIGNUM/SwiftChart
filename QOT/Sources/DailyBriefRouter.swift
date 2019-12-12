@@ -9,14 +9,15 @@
 import UIKit
 import qot_dal
 
-final class DailyBriefRouter {
+final class DailyBriefRouter: BaseRouter {
 
     // MARK: - Properties
-    private weak var viewController: DailyBriefViewController?
+    private weak var dailyBriefViewController: DailyBriefViewController?
 
     // MARK: - Init
     init(viewController: DailyBriefViewController) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.dailyBriefViewController = viewController
     }
 }
 
@@ -25,16 +26,8 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?) {
         if let data = data,
             let controller = QuestionnaireViewController.viewController(with: data,
-                                                                        delegate: viewController,
+                                                                        delegate: dailyBriefViewController,
                                                                         controllerType: .customize) {
-            viewController?.present(controller, animated: true)
-        }
-    }
-
-    func presentStrategyList(strategyID: Int?) {
-        if let selectedID = strategyID,
-            let controller = R.storyboard.main.qotArticleViewController() {
-            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
             viewController?.present(controller, animated: true)
         }
     }
@@ -48,16 +41,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentWhatsHotArticle(articleID: Int?) {
-        if let selectedID = articleID,
-            let controller = R.storyboard.main.qotArticleViewController() {
-            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
-            viewController?.present(controller, animated: true)
-        }
-    }
-
     func presentCopyRight(copyrightURL: String?) {
-        let popUpController = PopUpCopyrightViewController(delegate: viewController, copyrightURL: copyrightURL)
+        let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
+                                                           copyrightURL: copyrightURL)
         popUpController.modalPresentationStyle = .overCurrentContext
         viewController?.present(popUpController, animated: true)
     }
