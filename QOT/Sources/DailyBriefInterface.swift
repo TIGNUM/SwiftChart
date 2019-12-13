@@ -44,7 +44,6 @@ protocol DailyBriefInteractorInterface: Interactor {
 
 protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
-    func presentToolsItems(toolID: Int?)
     func presentCopyRight(copyrightURL: String?)
     func presentSolveResults(solve: QDMSolve)
     func presentPrepareResults(for preparation: QDMUserPreparation?)

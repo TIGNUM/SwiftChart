@@ -32,15 +32,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func presentToolsItems(toolID: Int?) {
-        if let toolID = toolID,
-            let controller = R.storyboard.tools.qotToolsItemsViewController() {
-            ToolsItemsConfigurator.make(viewController: controller, selectedToolID: toolID)
-            controller.backButton?.isHidden = true
-            viewController?.present(controller, animated: true)
-        }
-    }
-
     func presentCopyRight(copyrightURL: String?) {
         let popUpController = PopUpCopyrightViewController(delegate: dailyBriefViewController,
                                                            copyrightURL: copyrightURL)

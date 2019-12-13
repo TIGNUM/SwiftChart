@@ -26,7 +26,8 @@ final class LaunchHandler {
     }
 
     func process(url: URL) {
-        guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
+        guard let host = url.host,
+            let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
             return
         }
@@ -49,14 +50,20 @@ final class LaunchHandler {
 
         switch scheme {
         case .dailyBrief,
-             .guide: showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryName] ?? nil)
+             .guide:
+            showFirstLevelScreen(page: .dailyBrief, queries[scheme.queryName] ?? nil)
+
         case .dailyCheckIn,
-             .dailyPrep: showDailyCheckIn()
+             .dailyPrep:
+
+            showDailyCheckIn()
         case .latestWhatsHotArticle:
+
             ContentService.main.getContentCollectionBySection(.WhatsHot, { [weak self] (items) in
                 guard let contentId = items?.first?.remoteID else { return }
                 self?.showContentCollection(contentId)
             })
+
         case .ouraring: NotificationCenter.default.post(name: .requestOpenUrl, object: url)
         case .content_item,
              .contentItem:
@@ -114,11 +121,10 @@ final class LaunchHandler {
             configurator(controller)
             push(viewController: controller)
         case .toBeVision:
-            let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
-            guard let controller = R.storyboard.myToBeVision()
-                .instantiateViewController(withIdentifier: identifier) as? MyVisionViewController else { return }
-            MyVisionConfigurator.configure(viewController: controller)
-            push(viewController: controller)
+            if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+                MyVisionConfigurator.configure(viewController: controller)
+                push(viewController: controller)
+            }
         case .mySprints:
             guard let controller = R.storyboard.mySprints.mySprintsListViewController() else { return }
             let configurator = MySprintsListConfigurator.make()

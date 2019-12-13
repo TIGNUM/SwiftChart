@@ -754,7 +754,9 @@ extension DailyBriefViewController {
     }
 
     func openTools(toolID: Int?) {
-        router.presentToolsItems(toolID: toolID)
+        if let contentId = toolID {
+            router.presentContent(contentId)
+        }
     }
 
     func showSolveResults(solve: QDMSolve) {

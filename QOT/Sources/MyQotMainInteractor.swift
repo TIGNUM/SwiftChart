@@ -13,7 +13,6 @@ import qot_dal
 final class MyQotMainInteractor {
 
     // MARK: - Properties
-
     private let worker: MyQotMainWorker
     private let presenter: MyQotMainPresenterInterface
     private let router: MyQotMainRouterInterface
@@ -22,7 +21,6 @@ final class MyQotMainInteractor {
     private var eventType: String?
 
     // MARK: - Init
-
     init(worker: MyQotMainWorker,
          presenter: MyQotMainPresenterInterface,
          router: MyQotMainRouterInterface) {
@@ -32,7 +30,6 @@ final class MyQotMainInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
         createInitialData()
@@ -60,7 +57,7 @@ final class MyQotMainInteractor {
 
     private func createMyData(irScore: Int?) -> [MyQotViewModel.Item] {
         var item = worker.myQotSections().myQotItems[MyQotSection.data.rawValue]
-        item.subtitle = String(irScore ?? 0) + AppTextService.get(AppTextKey.my_qot_section_my_data_subtitle)
+        item.subtitle = String(irScore ?? 0) + AppTextService.get(.my_qot_section_my_data_subtitle)
         return [item]
     }
 
@@ -73,7 +70,7 @@ final class MyQotMainInteractor {
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
                 item.showSubtitleInRed = true
-                subtitleVision = AppTextService.get(AppTextKey.my_qot_section_my_tbv_subtitle_more_than) + AppTextService.get(AppTextKey.my_qot_section_my_tbv_subtitle_months_since)
+                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_more_than) + AppTextService.get(.my_qot_section_my_tbv_subtitle_months_since)
             } else {
                 subtitleVision = AppTextService.get(AppTextKey.my_qot_section_my_tbv_subtitle_less_than_3_months)
             }
@@ -153,7 +150,6 @@ final class MyQotMainInteractor {
 }
 
 // MARK: - MyQotMainInteractorInterface
-
 extension MyQotMainInteractor: MyQotMainInteractorInterface {
 
     func presentMyPreps() {
@@ -169,7 +165,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     }
 
     func presentMyToBeVision() {
-        router.presentMyToBeVision()
+        router.showTBV()
     }
 
     func presentMyLibrary() {

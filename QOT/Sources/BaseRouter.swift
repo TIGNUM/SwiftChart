@@ -30,7 +30,7 @@ class BaseRouter: BaseRouterInterface {
 
     // MARK: - BaseRouterInterface
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.dismiss(animated: true)
     }
 
     func presentContent(_ contentId: Int) {
@@ -42,21 +42,30 @@ class BaseRouter: BaseRouterInterface {
     }
 
     func showHomeScreen() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.showApp()
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            appDelegate.appCoordinator.showApp()
+        }
     }
 
     func showFAQScreen(category: ContentCategory) {
         if let controller = R.storyboard.myQot.myQotSupportDetailsViewController() {
             MyQotSupportDetailsConfigurator.configure(viewController: controller, category: category)
-            viewController?.present(controller, animated: true, completion: nil)
+            viewController?.present(controller, animated: true)
         }
     }
 
     func showCoachMarks() {
-        guard let controller = R.storyboard.coachMark.coachMarksViewController() else { return }
-        let configurator = CoachMarksConfigurator.make()
-        configurator(controller)
-        viewController?.pushToStart(childViewController: controller)
+        if let controller = R.storyboard.coachMark.coachMarksViewController() {
+            let configurator = CoachMarksConfigurator.make()
+            configurator(controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
+    }
+
+    func showTBV() {
+        if let controller = R.storyboard.myToBeVision.myVisionViewController() {
+            MyVisionConfigurator.configure(viewController: controller)
+            viewController?.pushToStart(childViewController: controller)
+        }
     }
 }

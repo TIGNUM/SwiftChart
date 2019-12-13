@@ -26,7 +26,8 @@ extension CoachRouter: CoachRouterInterface {
     func handleTap(coachSection: CoachSection) {
         NotificationCenter.default.post(name: .updateBottomNavigation,
                                         object: BottomNavigationItem(leftBarButtonItems: [],
-                                                                     rightBarButtonItems: [], backgroundColor: .clear),
+                                                                     rightBarButtonItems: [],
+                                                                     backgroundColor: .clear),
                                         userInfo: nil)
         switch coachSection {
         case .search:
@@ -35,9 +36,7 @@ extension CoachRouter: CoachRouterInterface {
             viewController?.pushToStart(childViewController: searchViewController)
             searchViewController.activate(0.0)
         case .tools:
-            let storyboardID = R.storyboard.tools.toolsViewControllerID.identifier
-            let toolsViewController = R.storyboard
-                .tools().instantiateViewController(withIdentifier: storyboardID) as? ToolsViewController
+            let toolsViewController = R.storyboard.tools.toolsViewControllerID()
             if let toolsViewController = toolsViewController {
                 ToolsConfigurator.make(viewController: toolsViewController)
                 viewController?.present(toolsViewController, animated: true, completion: nil)
