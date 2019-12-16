@@ -94,8 +94,6 @@ extension UIViewController {
         case is CoachMarksViewController: return walkThroughPageKey
         case is PaymentReminderViewController: return subscriptionReminderPageKey
         case is RegisterIntroViewController: return "onboarding.createaccount.info"
-        case is MyQotAdminSettingsListViewController: return "myqot.adminsettings"
-        case is MyQotAdminEnvironmentSettingsViewController: return "myqot.adminsettings.environment"
         default: preconditionFailure()
         }
     }
