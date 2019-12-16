@@ -54,6 +54,11 @@ private extension SolveResultsViewController {
         }
     }
 
+    @objc func didTapActivate() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        handleDidTapDoneSolve()
+    }
+
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
         interactor?.deleteRecovery()
@@ -113,6 +118,7 @@ private extension SolveResultsViewController {
         case .cancel: return #selector(didTapCancel)
         case .done: return #selector(didTapDone)
         case .save: return #selector(didTapSave)
+        case .activate: return #selector(didTapActivate)
         }
     }
 }

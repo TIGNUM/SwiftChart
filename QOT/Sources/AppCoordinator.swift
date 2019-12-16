@@ -133,9 +133,9 @@ final class AppCoordinator {
         }
 
         self.setRootViewController(naviController,
-                                   transitionStyle: .transitionCrossDissolve,
-                                   duration: 0.7,
-                                   animated: true) {
+                                   transitionStyle: .curveEaseIn,
+                                   duration: 0,
+                                   animated: false) {
             DispatchQueue.main.async {
                 // Show coach marks on first launch (of v3.0 app)
                 let emails = UserDefault.didShowCoachMarks.object as? [String] ?? [String]()

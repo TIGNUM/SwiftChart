@@ -86,6 +86,8 @@ private extension DTSprintViewController {
 extension DTSprintViewController: DTSprintViewControllerInterface {
     func presentPermissionView(_ permissionType: AskPermission.Kind) {
         guard let router = router as? DTSprintRouter else { return }
-        router.openPermissionView(permissionType)
+        DispatchQueue.main.async {
+            router.openPermissionView(permissionType)
+        }
     }
 }

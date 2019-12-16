@@ -1037,7 +1037,7 @@
 		F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */; };
 		F902CF5322DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */; };
 		F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */; };
-		F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */; };
+		F902CF5722DE10B800FFC836 /* DailyCheckinSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
@@ -2232,7 +2232,7 @@
 		F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsTBVCell.swift; sourceTree = "<group>"; };
 		F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsPeakPerformanceCell.swift; sourceTree = "<group>"; };
 		F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinInsightsCellViewModel.swift; sourceTree = "<group>"; };
-		F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsSHPICell.xib; sourceTree = "<group>"; };
+		F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinSHPICell.xib; sourceTree = "<group>"; };
 		F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsTBVCell.xib; sourceTree = "<group>"; };
 		F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsPeakPerformanceCell.xib; sourceTree = "<group>"; };
 		F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
@@ -4855,7 +4855,7 @@
 				F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */,
 				F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */,
 				F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */,
-				F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */,
+				F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */,
 				F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */,
 			);
 			name = "Daily Insights";
@@ -5473,7 +5473,7 @@
 				9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */,
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
 				B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */,
-				F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */,
+				F902CF5722DE10B800FFC836 /* DailyCheckinSHPICell.xib in Resources */,
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
 				F96B23B12350BF1100130EFF /* DepartureBespokeFeastImageCell.xib in Resources */,
 				759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */,
