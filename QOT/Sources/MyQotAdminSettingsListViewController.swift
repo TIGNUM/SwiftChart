@@ -44,11 +44,6 @@ final class MyQotAdminSettingsListViewController: UIViewController {
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
         tableView.reloadData()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
 }
 
 // MARK: - Private
@@ -86,11 +81,11 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
             }
             cell.configure(title: "Environment settings", subtitle: environment)
         case 1:
-            cell.configure(title: "Daily brief buckets", subtitle: "CUSTOM SETTING")
+            cell.configure(title: "Local notifications", subtitle: nil)
         case 2:
-            cell.configure(title: "Daily Checkin Question #6", subtitle: "DEFAULT SETTING")
+            cell.configure(title: "Daily brief buckets", subtitle: "CUSTOM SETTING")
         case 3:
-            cell.configure(title: "Trigger daily checkin", subtitle: "DEFAULT SETTING")
+            cell.configure(title: "Daily Checkin Question #6", subtitle: "DEFAULT SETTING")
         case 4:
             cell.configure(title: "Modify Sprints", subtitle: "DEFAULT SETTING")
         default:
@@ -102,10 +97,11 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        trackUserEvent(.OPEN, action: .TAP)
         switch indexPath.row {
         case 0:
-            router.presentAccountSettings()
+            router.presentEnvironmentSettings()
+        case 1:
+            router.presentLocalNotificationsSettings()
         default:
             break
         }

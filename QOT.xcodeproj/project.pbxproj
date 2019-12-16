@@ -867,6 +867,7 @@
 		B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */; };
 		B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */; };
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
+		B4D2CEA023A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D2CE9F23A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
@@ -2055,6 +2056,7 @@
 		B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4D2CE9F23A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminLocalNotificationsViewController.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
@@ -4053,6 +4055,7 @@
 			isa = PBXGroup;
 			children = (
 				B44F303F23A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift */,
+				B4D2CE9F23A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -5876,6 +5879,7 @@
 				36E12EC4232B57F0009E96EA /* DTPrepareRouter.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
 				B86E744C22A9519900B0AE75 /* MyLibraryCategoryListInterface.swift in Sources */,
+				B4D2CEA023A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				8D04FA3423041E9C00AE7CA0 /* RegistrationAgeViewController.swift in Sources */,

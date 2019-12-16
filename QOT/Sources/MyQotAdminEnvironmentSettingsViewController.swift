@@ -34,11 +34,6 @@ final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
         tableView.reloadData()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
 }
     // MARK: - Private
 private extension MyQotAdminEnvironmentSettingsViewController {
