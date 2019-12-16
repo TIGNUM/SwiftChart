@@ -99,6 +99,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
             if strongSelf.testForPreRegisteredUser() {
                 UserDefault.existingEmail.setStringValue(value: email)
                 strongSelf.presenter.presentReset()
+                strongSelf.presenter.presentActivity(state: nil)
                 completion()
             } else {
                 strongSelf.presenter.present()
