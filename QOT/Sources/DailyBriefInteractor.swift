@@ -482,7 +482,7 @@ extension DailyBriefInteractor {
             dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // Peak Performance
-            let peakPerformanceTitle = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
+            let peakPerformanceTitle = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_title)
             let performanceCount = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
@@ -944,7 +944,7 @@ extension DailyBriefInteractor {
                                                                     author: "String?",
                                                                     domainModel: thoughtsToPonder))
             return createThoughtsToPonderList}
-        createThoughtsToPonderList.append(ThoughtsCellViewModel(title: thoughtsToPonder.bucketText?.contentItems.first?.valueText,
+        createThoughtsToPonderList.append(ThoughtsCellViewModel(title: AppTextService.get(AppTextKey.daily_brief_section_big_thoughts_title),
                                                                 thought: collection.contentItems.first?.valueText ?? "",
                                                                 author: collection.author ?? "",
                                                                 domainModel: thoughtsToPonder))
