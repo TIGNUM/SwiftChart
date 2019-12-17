@@ -426,7 +426,7 @@ extension DailyBriefInteractor {
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
         if expendImpactReadiness {
-            var asteriskText: String? = impactReadiness.contentCollections?.filter {
+            let asteriskText: String? = impactReadiness.contentCollections?.filter {
                 $0.searchTags.contains("additional")
             }.first?.contentItems.first?.valueText
 
@@ -613,7 +613,7 @@ extension DailyBriefInteractor {
         return createSolveList
     }
 
-    // MARK: - Question without answer
+    // MARK: - Big questions
     func createQuestionsWithoutAnswer(questionsWithoutAnswerBucket questionsWithoutAnswer: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createQuestionWithoutAnswerList: [BaseDailyBriefViewModel] = []
 
@@ -621,7 +621,7 @@ extension DailyBriefInteractor {
             createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: "", text: "", domainModel: questionsWithoutAnswer))
             return createQuestionWithoutAnswerList
         }
-        createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: questionsWithoutAnswer.bucketText?.contentItems.first?.valueText,
+        createQuestionWithoutAnswerList.append(QuestionCellViewModel(title: AppTextService.get(AppTextKey.daily_brief_section_big_questions_title),
                                                                      text: collection.contentItems.first?.valueText,
                                                                      domainModel: questionsWithoutAnswer))
         return createQuestionWithoutAnswerList

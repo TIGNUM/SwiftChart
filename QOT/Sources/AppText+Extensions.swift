@@ -120,6 +120,13 @@ public extension AppTextKey {
         static let daily_brief_section_impact_readiness_section_5_day_rolling_title = AppTextKey("daily_brief.section_impact_readiness.section_5_day_rolling.title")
         static let daily_brief_section_weather_label_now = AppTextKey("daily_brief.section_weather.label_now")
         static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
+//
+        static let daily_brief_section_big_questions_title = AppTextKey("daily_brief.section_big_questions.title")
+        static let daily_brief_section_whats_hot_title = AppTextKey("daily_brief.section_whats_hot.title")
+    static let daily_brief_section_big_thoughts_title = AppTextKey("daily_brief.section_big_thoughts.title")
+    static let daily_brief_section_daily_insights_peak_performances_title = AppTextKey("daily_brief.section_daily_insights.peak_performances.title")
+    static let daily_brief_section_daily_insights_shpi_title = AppTextKey("daily_brief.section_daily_insights.shpi.title")
+//    
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_cognitive")
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_emotional = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_emotional")
         static let coach_sprints_alert_sprint_in_progress_body = AppTextKey("coach.sprints.alert.sprint_in_progress.body")
