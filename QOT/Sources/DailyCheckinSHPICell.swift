@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class DailyCheckinSHPICell: BaseDailyBriefCell {
 
@@ -41,7 +42,7 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
         skeletonManager.hide()
         setupRatingChart(rating: model.shpiRating ?? 0)
         baseHeaderView?.configure(title: model.title, subtitle: nil)
-
+        ThemeText.shpiContent.apply(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_shpi_title_rated_yourself), to: barsTitleLabel)
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.shpiQuestion.apply(model.shpiQuestion, to: shpiQuestionLabel)
         ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)

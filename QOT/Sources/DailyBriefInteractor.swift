@@ -474,7 +474,7 @@ extension DailyBriefInteractor {
                                                                                  cta: ctaText)
         } else if dailyCheckIn2.SHPIQuestionId != nil {
             // Shpi
-            let shpiTitle: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
+            let shpiTitle: String = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_shpi_title)
             let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
             let rating = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0

@@ -126,6 +126,12 @@ public extension AppTextKey {
         static let daily_brief_section_big_thoughts_title = AppTextKey("daily_brief.section_big_thoughts.title")
         static let daily_brief_section_daily_insights_peak_performances_title = AppTextKey("daily_brief.section_daily_insights.peak_performances.title")
         static let daily_brief_section_daily_insights_shpi_title = AppTextKey("daily_brief.section_daily_insights.shpi.title")
+        static let daily_brief_section_daily_insights_shpi_title_rated_yourself = AppTextKey("daily_brief.section_daily_insights.shpi.title_rated_yourself")
+        static let daily_brief_section_daily_insights_tbv_title = AppTextKey("daily_brief.section_daily_insights.tbv.title")
+        static let daily_brief_section_explore_title = AppTextKey("daily_brief.section_explore.title")
+        static let daily_brief_section_from_my_coach_title = AppTextKey("daily_brief.section_from_my_coach.title")
+        static let daily_brief_section_from_tignum_title = AppTextKey("daily_brief.section_from_tignum.title")
+        static let daily_brief_section_good_to_know_title = AppTextKey("daily_brief.section_good_to_know.title")
 //    
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_cognitive")
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_emotional = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_emotional")
