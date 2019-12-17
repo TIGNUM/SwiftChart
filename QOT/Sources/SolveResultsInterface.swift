@@ -25,8 +25,7 @@ protocol SolveResultsInteractorInterface: Interactor {
     func deleteRecovery()
 }
 
-protocol SolveResultsRouterInterface {
-    func dismiss()
+protocol SolveResultsRouterInterface: BaseRouterInterface {
     func openContent(with id: Int)
     func openContentItem(with id: Int)
     func openVisionGenerator()

@@ -50,7 +50,6 @@ protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
 
-    func showMyToBeVision()
     func showMyDataScreen()
 
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)

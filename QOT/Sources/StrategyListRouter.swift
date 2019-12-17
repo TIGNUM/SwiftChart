@@ -11,21 +11,18 @@ import UIKit
 final class StrategyListRouter {
 
     // MARK: - Properties
-
     private weak var viewController: StrategyListViewController?
 
     // MARK: - Init
-
     init(viewController: StrategyListViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - StrategyListRouterInterface
-
 extension StrategyListRouter: StrategyListRouterInterface {
     func presentArticle(selectedID: Int?) {
         viewController?.performSegue(withIdentifier: R.segue.strategyListViewController.knowStrategyArticleSegueIdentifier,
-                                    sender: selectedID)
+                                     sender: selectedID)
     }
 }

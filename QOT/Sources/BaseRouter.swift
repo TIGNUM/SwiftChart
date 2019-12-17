@@ -10,12 +10,17 @@ import Foundation
 import qot_dal
 
 protocol BaseRouterInterface {
-    func dismiss()
     func presentContent(_ contentId: Int)
+    func presentMindsetShifter()
+
     func playMediaItem(_ contentItemId: Int)
+
     func showHomeScreen()
     func showFAQScreen(category: ContentCategory)
     func showCoachMarks()
+
+    func dismiss()
+    func dismissChatBotFlow()
 }
 
 class BaseRouter: BaseRouterInterface {
@@ -33,8 +38,18 @@ class BaseRouter: BaseRouterInterface {
         viewController?.dismiss(animated: true)
     }
 
+    func dismissChatBotFlow() {
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
+    }
+
     func presentContent(_ contentId: Int) {
         AppDelegate.current.launchHandler.showContentCollection(contentId)
+    }
+
+    func presentMindsetShifter() {
+        let configurator = DTMindsetConfigurator.make()
+        let controller = DTMindsetViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 
     func playMediaItem(_ contentItemId: Int) {

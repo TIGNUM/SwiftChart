@@ -9,12 +9,7 @@
 import UIKit
 import qot_dal
 
-final class SearchRouter: BaseRouter {
-
-}
-
-// MARK: - SearchPresenterInterface
-extension SearchRouter: SearchRouterInterface {
+final class SearchRouter: BaseRouter, SearchRouterInterface {
     func handleSelection(searchResult: Search.Result) {
         if let contentItemID = searchResult.contentItemID,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemID)) {

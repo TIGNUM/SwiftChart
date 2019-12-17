@@ -68,13 +68,6 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
-    func showMyToBeVision() {
-        if let childViewController = R.storyboard.myToBeVision.myVisionViewController() {
-            MyVisionConfigurator.configure(viewController: childViewController)
-            viewController?.pushToStart(childViewController: childViewController)
-        }
-    }
-
     func showMyDataScreen() {
         if let childViewController = R.storyboard.myDataScreen.myDataScreenViewControllerID() {
             let configurator = MyDataScreenConfigurator.make()

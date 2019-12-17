@@ -3344,13 +3344,13 @@
 		7582617322DCA000000094DE /* DailyCheckinQuestions */ = {
 			isa = PBXGroup;
 			children = (
-				7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */,
-				7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */,
-				7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */,
-				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
-				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
-				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
 				7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */,
+				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
+				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
+				7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */,
+				7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */,
+				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
+				7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */,
 			);
 			name = DailyCheckinQuestions;
 			sourceTree = "<group>";

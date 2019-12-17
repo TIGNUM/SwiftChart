@@ -768,7 +768,7 @@ extension DailyBriefViewController {
     }
 
     func presentMyToBeVision() {
-        router.showMyToBeVision()
+        router.showTBV()
     }
 
     @objc func openStrategy(sender: UITapGestureRecognizer) {
