@@ -412,7 +412,6 @@ extension DailyBriefInteractor {
                                                                      enableButton: enableButton,
                                                                      domainModel: impactReadiness))
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
-        let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
         let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
@@ -427,11 +426,22 @@ extension DailyBriefInteractor {
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
         if expendImpactReadiness {
+            var asteriskText: String? = impactReadiness.contentCollections?.filter {
+                $0.searchTags.contains("additional")
+            }.first?.contentItems.first?.valueText
+
+            let hasFullLoadData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForLoad
+            let hasFullSleepQuantityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuantity
+            let hasFullSleepQualityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuality
+
             impactReadinessList.append(ImpactReadinessScoreViewModel.init(howYouFeelToday: howYouFeelToday,
                                                                           asteriskText: asteriskText,
                                                                           sleepQuantityValue: sleepQuantity,
+                                                                          hasFiveDaySleepQuantityValues: hasFullSleepQuantityData,
                                                                           sleepQualityValue: sleepQuality,
+                                                                          hasFiveDaySleepQualityValue: hasFullSleepQualityData,
                                                                           loadValue: load,
+                                                                          hasFiveDayLoadValue: hasFullLoadData,
                                                                           futureLoadValue: futureLoad,
                                                                           targetSleepQuantity: targetSleepQuantity,
                                                                           sleepQualityReference: sleepQualityReference,

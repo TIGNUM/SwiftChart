@@ -25,6 +25,14 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet weak var tableView: UITableView!
     var interactor: RegisterIntroInteractorInterface!
     private lazy var router = RegisterIntroRouter(viewController: self)
+    private lazy var videoCell: RegisterIntroMediaTableViewCell = {
+        let cell = R.nib.registerIntroMediaTableViewCell.firstView(owner: self)
+        cell?.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
+                       body: AppTextService.get(.onboarding_register_intro_video_section_body),
+                       videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
+        return cell ?? RegisterIntroMediaTableViewCell()
+    }()
+
     private var expanded = false
 
     // MARK: - Init
@@ -50,14 +58,14 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        getVideoCell()?.stopPlaying()
+        videoCell.stopPlaying()
         AppCoordinator.orientationManager.regular()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppCoordinator.orientationManager.videos()
-        getVideoCell()?.startPlayingFromBeggining()
+        videoCell.startPlayingFromBeggining()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -93,31 +101,37 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 // MARK: - Private
 extension RegisterIntroViewController {
     @objc func didChangeOrientation() {
-        guard let videoCell = getVideoCell() else { return }
         DispatchQueue.main.async {
             if UIDevice.current.orientation.isLandscape {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .LANDSCAPE, action: .ROTATE)
-                videoCell.playerController.removeFromParentViewController()
-                self.view.fill(subview: videoCell.playerController.view)
-                self.addChildViewController(videoCell.playerController)
-                videoCell.playerController.showsPlaybackControls = true
+                self.videoCell.playerController.removeFromParentViewController()
+                self.view.fill(subview: self.videoCell.playerController.view)
+                self.addChildViewController(self.videoCell.playerController)
+                self.videoCell.playerController.showsPlaybackControls = true
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = false
                 self.updateBottomNavigation([], [])
             } else {
                 self.trackUserEvent(.ORIENTATION_CHANGE, valueType: .PORTRAIT, action: .ROTATE)
                 UIDevice.current.setValue(Int(UIInterfaceOrientation.portrait.rawValue), forKey: "orientation")
-                videoCell.playerController.removeFromParentViewController()
-                videoCell.mediaContentView.fill(subview: videoCell.playerController.view)
-                videoCell.playerController.showsPlaybackControls = false
-                videoCell.soundToggleButton.isSelected = !(videoCell.playerController.player?.isMuted ?? true)
+                self.videoCell.playerController.removeFromParentViewController()
+                self.videoCell.mediaContentView.fill(subview: self.videoCell.playerController.view)
+                self.videoCell.playerController.showsPlaybackControls = false
+                self.videoCell.soundToggleButton.isSelected = !(self.videoCell.playerController.player?.isMuted ?? true)
                 self.navigationController?.interactivePopGestureRecognizer?.isEnabled = true
                 self.refreshBottomNavigationItems()
             }
         }
     }
 
-    private func getVideoCell() -> RegisterIntroMediaTableViewCell? {
-        return (tableView.cellForRow(at: IndexPath(row: RegisterIntroCellTypes.VideoCell.rawValue, section: 0)) as? RegisterIntroMediaTableViewCell)
+    private func getNoteCell() -> RegisterIntroNoteTableViewCell {
+        let cell = R.nib.registerIntroNoteTableViewCell.firstView(owner: self)
+        let longBody = AppTextService.get(.onboarding_register_intro_note_section_body)
+        let shortBody = String.init(longBody.split(separator: "\n").first ?? "")
+        cell?.configure(title: AppTextService.get(.onboarding_register_intro_note_section_title),
+                        body: expanded ? longBody : shortBody,
+                        expanded: expanded)
+        cell?.delegate = self
+        return cell ?? RegisterIntroNoteTableViewCell()
     }
 }
 
@@ -140,26 +154,7 @@ extension RegisterIntroViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell = UITableViewCell()
-        switch indexPath.row {
-        case 0:
-            let reusableCell: RegisterIntroMediaTableViewCell = tableView.dequeueCell(for: indexPath)
-            reusableCell.configure(title: AppTextService.get(.onboarding_register_intro_video_section_header_title),
-                                   body: AppTextService.get(.onboarding_register_intro_video_section_body),
-                                   videoURL: "https://d2gjspw5enfim.cloudfront.net/qot_web/qot_video.mp4")
-            reusableCell.delegate = self
-            cell = reusableCell
-        default:
-            let reusableCell: RegisterIntroNoteTableViewCell = tableView.dequeueCell(for: indexPath)
-            let longBody = AppTextService.get(.onboarding_register_intro_note_section_body)
-            let shortBody = String.init(longBody.split(separator: "\n").first ?? "")
-            reusableCell.configure(title: AppTextService.get(.onboarding_register_intro_note_section_title),
-                                   body: expanded ? longBody : shortBody,
-                                   expanded: expanded)
-            reusableCell.delegate = self
-            cell = reusableCell
-        }
-        return cell
+        return indexPath.row == 0 ? videoCell : getNoteCell()
     }
 }
 

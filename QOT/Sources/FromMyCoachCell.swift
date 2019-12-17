@@ -21,7 +21,7 @@ final class FromMyCoachCell: BaseDailyBriefCell {
         guard let model = data else { return }
         skeletonManager.hide()
         stackView.removeSubViews()
-        formHeaderView(with: model.detail )
+        formHeaderView(with: model.detail)
         for (index, message) in model.messages.enumerated() {
             formMessageView(isFirst: index == 0, with: message)
         }

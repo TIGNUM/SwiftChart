@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,8 +37,8 @@
                                 <constraint firstAttribute="height" constant="1" id="tuC-Ng-uCJ"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqo-hs-ZzW">
-                            <rect key="frame" x="24" y="82" width="342" height="24"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqo-hs-ZzW">
+                            <rect key="frame" x="24" y="82" width="334" height="24"/>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="20"/>
                             <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -55,7 +53,7 @@
                         <constraint firstItem="vqo-hs-ZzW" firstAttribute="leading" secondItem="bGH-8w-oqQ" secondAttribute="leading" constant="24" id="UlQ-yp-fb6"/>
                         <constraint firstItem="vqo-hs-ZzW" firstAttribute="top" secondItem="jtW-m0-re0" secondAttribute="bottom" constant="8" id="hlQ-sR-jxD"/>
                         <constraint firstItem="vqo-hs-ZzW" firstAttribute="top" secondItem="jtW-m0-re0" secondAttribute="bottom" constant="8" id="n6R-Ek-9ja"/>
-                        <constraint firstAttribute="trailing" secondItem="vqo-hs-ZzW" secondAttribute="trailing" id="xhU-Hp-LND"/>
+                        <constraint firstAttribute="trailing" secondItem="vqo-hs-ZzW" secondAttribute="trailing" constant="8" id="xhU-Hp-LND"/>
                         <constraint firstItem="HgS-wy-yVQ" firstAttribute="bottom" secondItem="jtW-m0-re0" secondAttribute="bottom" id="yei-Vc-yqg"/>
                     </constraints>
                 </view>
