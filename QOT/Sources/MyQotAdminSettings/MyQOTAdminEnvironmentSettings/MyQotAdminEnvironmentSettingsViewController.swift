@@ -68,7 +68,7 @@ extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITa
 
         cell.configure(title: interactor.getTitle(at: indexPath.row),
                     subtitle: nil)
-        cell.customAccessoryImageView.image = interactor.getIsSelected(for: indexPath.row) ? nil : checkMark
+        cell.customAccessoryImageView.image = interactor.getIsSelected(for: indexPath.row) ? checkMark : nil
 
         return cell
     }
