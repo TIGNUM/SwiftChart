@@ -26,8 +26,8 @@ protocol SolveResultsInteractorInterface: Interactor {
 }
 
 protocol SolveResultsRouterInterface: BaseRouterInterface {
-    func openContent(with id: Int)
-    func openContentItem(with id: Int)
+//    func openContent(with id: Int)
+//    func openContentItem(with id: Int)
     func openVisionGenerator()
     func openMindsetShifter()
     func openRecovery()

@@ -11,7 +11,9 @@ import qot_dal
 
 protocol BaseRouterInterface {
     func presentContent(_ contentId: Int)
+    func presentContentItem(with id: Int)
     func presentMindsetShifter()
+    func presentRecovery()
 
     func playMediaItem(_ contentItemId: Int)
 
@@ -24,7 +26,6 @@ protocol BaseRouterInterface {
 }
 
 class BaseRouter: BaseRouterInterface {
-
     // MARK: - Properties
     weak var viewController: UIViewController?
 
@@ -46,9 +47,19 @@ class BaseRouter: BaseRouterInterface {
         AppDelegate.current.launchHandler.showContentCollection(contentId)
     }
 
+    func presentContentItem(with id: Int) {
+        AppDelegate.current.launchHandler.showContentItem(id)
+    }
+
     func presentMindsetShifter() {
         let configurator = DTMindsetConfigurator.make()
         let controller = DTMindsetViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
+    }
+
+    func presentRecovery() {
+        let configurator = DTRecoveryConfigurator.make()
+        let controller = DTRecoveryViewController(configure: configurator)
         viewController?.present(controller, animated: true)
     }
 

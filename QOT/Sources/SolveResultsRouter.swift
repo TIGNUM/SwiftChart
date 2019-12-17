@@ -23,14 +23,6 @@ final class SolveResultsRouter: BaseRouter {
 
 // MARK: - SolveResultsRouterInterface
 extension SolveResultsRouter: SolveResultsRouterInterface {
-    func openContent(with id: Int) {
-        AppDelegate.current.launchHandler.showContentCollection(id)
-    }
-
-    func openContentItem(with id: Int) {
-        AppDelegate.current.launchHandler.showContentItem(id)
-    }
-
     func openVisionGenerator() {
         let configurator = DTShortTBVConfigurator.make(introKey: ShortTBV.QuestionKey.IntroMindSet, delegate: nil)
         let controller = DTShortTBVViewController(configure: configurator)
@@ -39,16 +31,12 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     }
 
     func openMindsetShifter() {
-        let configurator = DTMindsetConfigurator.make()
-        let controller = DTMindsetViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        presentMindsetShifter()
         viewController?.removeBottomNavigation()
     }
 
     func openRecovery() {
-        let configurator = DTRecoveryConfigurator.make()
-        let controller = DTRecoveryViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        presentRecovery()
         viewController?.removeBottomNavigation()
     }
 
