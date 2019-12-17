@@ -19,7 +19,7 @@ final class MyQotAdminSettingsListViewController: UIViewController {
 
     var interactor: MyQotAdminSettingsListInteractorInterface!
     private lazy var router = MyQotAdminSettingsListRouter(viewController: self)
-
+    var currentSixthQuestionSetting: [Int]?
     // MARK: - Init
     init(configure: Configurator<MyQotAdminSettingsListViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -42,7 +42,10 @@ final class MyQotAdminSettingsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
-        tableView.reloadData()
+        MyQotAdminDCSixthQuestionSettingsViewController.getSixthQuestionPriority { [weak self] (setting) in
+            self?.currentSixthQuestionSetting = setting
+            self?.tableView.reloadData()
+        }
     }
 }
 
@@ -68,7 +71,7 @@ private extension MyQotAdminSettingsListViewController {
 
 extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+            return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -83,11 +86,21 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
         case 1:
             cell.configure(title: "Local notifications", subtitle: nil)
         case 2:
-            cell.configure(title: "Daily brief buckets", subtitle: "CUSTOM SETTING")
-        case 3:
-            cell.configure(title: "Daily Checkin Question #6", subtitle: "DEFAULT SETTING")
-        case 4:
-            cell.configure(title: "Modify Sprints", subtitle: "DEFAULT SETTING")
+            var subtitle = ""
+            if currentSixthQuestionSetting == [0, 1, 2] {
+                subtitle = "TBV - SHPI - PEAK"
+            } else if currentSixthQuestionSetting == [0, 2, 1] {
+                subtitle = "TBV - PEAK - SHPI"
+            } else if currentSixthQuestionSetting == [1, 0, 2] {
+                subtitle = "SHPI - TBV - PEAK"
+            } else if currentSixthQuestionSetting == [1, 2, 0] {
+                subtitle = "SHPI - PEAK - TBV"
+            } else if currentSixthQuestionSetting == [2, 0, 1] {
+                subtitle = "PEAK - TBV - SHPI"
+            } else if currentSixthQuestionSetting == [2, 1, 0] {
+                subtitle =  "PEAK - SHPI - TBV"
+            }
+            cell.configure(title: "DC Question #6 priority", subtitle: subtitle)
         default:
             cell.configure(title: nil, subtitle: nil)
         }
@@ -102,6 +115,8 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
             router.presentEnvironmentSettings()
         case 1:
             router.presentLocalNotificationsSettings()
+        case 2:
+            router.presentSixthQuestionPriority()
         default:
             break
         }

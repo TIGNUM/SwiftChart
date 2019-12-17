@@ -784,6 +784,7 @@
 		ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */; };
 		ACFB725222BB8126003D0BA3 /* CauseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */; };
 		ACFB725322BB8126003D0BA3 /* CauseTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */; };
+		B430D7AD23A8C89B00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B430D7AC23A8C89A00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift */; };
 		B438811223129E6F00EF41B5 /* MyDataHeatMapDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */; };
 		B438811423129E7B00EF41B5 /* MyDataHeatMapDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */; };
 		B44F303623A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */; };
@@ -1973,6 +1974,7 @@
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
 		AE5B5709A00341CFD794D10A /* Pods_QOT.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOT.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B430D7AC23A8C89A00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQotAdminDCSixthQuestionSettingsViewController.swift; sourceTree = "<group>"; };
 		B438811123129E6F00EF41B5 /* MyDataHeatMapDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDetailView.swift; sourceTree = "<group>"; };
 		B438811323129E7A00EF41B5 /* MyDataHeatMapDetailView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDetailView.xib; sourceTree = "<group>"; };
 		B44F302E23A22E7D00B07D86 /* MyQotAdminSettingsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAdminSettingsListPresenter.swift; sourceTree = "<group>"; };
@@ -4056,6 +4058,7 @@
 			children = (
 				B44F303F23A26B6600B07D86 /* MyQotAdminEnvironmentSettingsViewController.swift */,
 				B4D2CE9F23A3CBBF0024CECC /* MyQotAdminLocalNotificationsViewController.swift */,
+				B430D7AC23A8C89A00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift */,
 			);
 			name = Components;
 			sourceTree = "<group>";
@@ -6575,6 +6578,7 @@
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				B4AB48B9230BF891003B3C1F /* MyDataSelectionViewController.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
+				B430D7AD23A8C89B00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift in Sources */,
 				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
 				F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */,
 				369353A322983AB9008BBB72 /* PrepareResultsRouter.swift in Sources */,
