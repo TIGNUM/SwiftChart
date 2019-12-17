@@ -4093,14 +4093,14 @@
 		B430D7B023A911DD00C75C9C /* MyQOTAdminSettingsList */ = {
 			isa = PBXGroup;
 			children = (
-				B430D7B123A911DD00C75C9C /* MyQotAdminSettingsListWorker.swift */,
-				B430D7B223A911DD00C75C9C /* MyQotAdminSettingsListInteractor.swift */,
-				B430D7B323A911DD00C75C9C /* MyQotAdminSettingsListRouter.swift */,
-				B430D7B423A911DD00C75C9C /* MyQotAdminSettingsListInterface.swift */,
-				B430D7B523A911DD00C75C9C /* MyQotAdminSettingsListPresenter.swift */,
 				B430D7B623A911DD00C75C9C /* MyQotAdminSettingsListConfigurator.swift */,
-				B430D7B723A911DD00C75C9C /* MyQotAdminSettingsListViewController.swift */,
+				B430D7B223A911DD00C75C9C /* MyQotAdminSettingsListInteractor.swift */,
+				B430D7B423A911DD00C75C9C /* MyQotAdminSettingsListInterface.swift */,
 				B430D7B823A911DE00C75C9C /* MyQotAdminSettingsListModel.swift */,
+				B430D7B523A911DD00C75C9C /* MyQotAdminSettingsListPresenter.swift */,
+				B430D7B323A911DD00C75C9C /* MyQotAdminSettingsListRouter.swift */,
+				B430D7B723A911DD00C75C9C /* MyQotAdminSettingsListViewController.swift */,
+				B430D7B123A911DD00C75C9C /* MyQotAdminSettingsListWorker.swift */,
 			);
 			path = MyQOTAdminSettingsList;
 			sourceTree = "<group>";
@@ -4108,13 +4108,13 @@
 		B430D7B923A911DE00C75C9C /* MyQOTAdminLocalNotificationSettings */ = {
 			isa = PBXGroup;
 			children = (
-				B430D7BA23A911DE00C75C9C /* MyQotAdminLocalNotificationsViewController.swift */,
 				B430D7F723A916B500C75C9C /* MyQotAdminLocalNotificationsConfigurator.swift */,
 				B430D7F423A916B500C75C9C /* MyQotAdminLocalNotificationsInteractor.swift */,
 				B430D7FA23A916B500C75C9C /* MyQotAdminLocalNotificationsInterface.swift */,
 				B430D7F823A916B500C75C9C /* MyQotAdminLocalNotificationsModel.swift */,
 				B430D7F623A916B500C75C9C /* MyQotAdminLocalNotificationsPresenter.swift */,
 				B430D7F523A916B500C75C9C /* MyQotAdminLocalNotificationsRouter.swift */,
+				B430D7BA23A911DE00C75C9C /* MyQotAdminLocalNotificationsViewController.swift */,
 				B430D7F923A916B500C75C9C /* MyQotAdminLocalNotificationsWorker.swift */,
 			);
 			path = MyQOTAdminLocalNotificationSettings;
@@ -4123,14 +4123,14 @@
 		B430D7BB23A911DE00C75C9C /* MyQOTAdminDCSixthQuestionSettings */ = {
 			isa = PBXGroup;
 			children = (
-				B430D7BC23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsWorker.swift */,
-				B430D7BD23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsModel.swift */,
-				B430D7BE23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsRouter.swift */,
-				B430D7BF23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInteractor.swift */,
-				B430D7C023A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift */,
-				B430D7C123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift */,
-				B430D7C223A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift */,
 				B430D7C323A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsConfigurator.swift */,
+				B430D7BF23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInteractor.swift */,
+				B430D7C223A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsInterface.swift */,
+				B430D7BD23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsModel.swift */,
+				B430D7C123A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsPresenter.swift */,
+				B430D7BE23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsRouter.swift */,
+				B430D7C023A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift */,
+				B430D7BC23A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsWorker.swift */,
 			);
 			path = MyQOTAdminDCSixthQuestionSettings;
 			sourceTree = "<group>";
@@ -4144,8 +4144,8 @@
 				B430D7EC23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsModel.swift */,
 				B430D7E823A915EC00C75C9C /* MyQotAdminEnvironmentSettingsPresenter.swift */,
 				B430D7EB23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsRouter.swift */,
-				B430D7EA23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift */,
 				B430D7C523A911DE00C75C9C /* MyQotAdminEnvironmentSettingsViewController.swift */,
+				B430D7EA23A915ED00C75C9C /* MyQotAdminEnvironmentSettingsWorker.swift */,
 			);
 			path = MyQOTAdminEnvironmentSettings;
 			sourceTree = "<group>";
