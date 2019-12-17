@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotAdminLocalNotificationsInteractor {
 
@@ -27,4 +28,56 @@ final class MyQotAdminLocalNotificationsInteractor {
 
 // MARK: - MyQotAdminLocalNotificationsInterface
 extension MyQotAdminLocalNotificationsInteractor: MyQotAdminLocalNotificationsInteractorInterface {
+    func getHeaderTitle() -> String {
+        return "LOCAL NOTIFICATION TRIGGER"
+    }
+
+    func getNotificationTitle() -> String {
+        return "TEST DEBUG TRIGGER NOTIFICATION"
+    }
+
+    func getTitle(at index: Int) -> String {
+        let titles = [String](worker.datasource.values)
+        return titles[index]
+    }
+
+    func getSubtitle(at index: Int) -> String {
+        let subtitles = [String](worker.datasource.keys)
+        return subtitles[index]
+    }
+
+    func getDatasourceCount() -> Int {
+        return worker.datasource.count
+    }
+
+    func scheduleNotification(title: String,
+                              body: String,
+                              link: String,
+                              completionHandler: @escaping () -> Void) {
+        UNUserNotificationCenter.current().getNotificationSettings { settings in
+            switch settings.authorizationStatus {
+            case .authorized, .provisional:
+                UNUserNotificationCenter.current().getDeliveredNotifications(completionHandler: { (deliveredNotifications) in
+                    for deliveredNotification in deliveredNotifications where deliveredNotification.request.content.link() == link {
+                        UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [deliveredNotification.request.identifier])
+                    }
+                    let triggerDate = Date().addingTimeInterval(10)
+                    let type = "DEBUG_TEST:\(triggerDate):\(link)"
+                    // if it's valid sprint notification for today
+                    let content = UNMutableNotificationContent(title: title,
+                                                               body: body,
+                                                               soundName: "QotNotification.aiff",
+                                                               link: link)
+                    let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
+                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: type,
+                                                                                    date: triggerDate,
+                                                                                    link: link)
+                    UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { (_) in
+                        completionHandler()
+                    }
+                })
+            default: break
+            }
+        }
+    }
 }

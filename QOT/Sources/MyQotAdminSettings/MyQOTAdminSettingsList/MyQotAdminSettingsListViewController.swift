@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import qot_dal
 
 final class MyQotAdminSettingsListViewController: UIViewController {
 
@@ -19,7 +18,7 @@ final class MyQotAdminSettingsListViewController: UIViewController {
 
     var interactor: MyQotAdminSettingsListInteractorInterface!
     private lazy var router = MyQotAdminSettingsListRouter(viewController: self)
-    var currentSixthQuestionSetting: [Int]?
+
     // MARK: - Init
     init(configure: Configurator<MyQotAdminSettingsListViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -42,8 +41,8 @@ final class MyQotAdminSettingsListViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
-        MyQotAdminDCSixthQuestionSettingsViewController.getSixthQuestionPriority { [weak self] (setting) in
-            self?.currentSixthQuestionSetting = setting
+        MyQotAdminDCSixthQuestionSettingsInteractor.getSixthQuestionPriority { [weak self] (setting) in
+            self?.interactor.setCurrentSixthQuestionSetting(setting: setting)
             self?.tableView.reloadData()
         }
     }
@@ -57,7 +56,8 @@ private extension MyQotAdminSettingsListViewController {
         ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         ThemeView.level2.apply(self.view)
-        baseHeaderView?.configure(title: "ADMIN SETTINGS", subtitle: nil)
+        baseHeaderView?.configure(title: interactor.getHeaderTitle(),
+                                  subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         tableView.delegate = self
@@ -78,29 +78,14 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         switch indexPath.row {
         case 0:
-            var environment = "PRODUCTION"
-            if NetworkRequestManager.main.getCurrentEnvironment() == .development {
-                environment = "STAGING"
-            }
-            cell.configure(title: "Environment settings", subtitle: environment)
+            cell.configure(title: interactor.getTitleForEnvironmentSettings(),
+                           subtitle: interactor.getSubtitleForEnvironmentSettings())
         case 1:
-            cell.configure(title: "Local notifications", subtitle: nil)
+            cell.configure(title: interactor.getTitleForLocalNotifications(),
+                           subtitle: nil)
         case 2:
-            var subtitle = ""
-            if currentSixthQuestionSetting == [0, 1, 2] {
-                subtitle = "TBV - SHPI - PEAK"
-            } else if currentSixthQuestionSetting == [0, 2, 1] {
-                subtitle = "TBV - PEAK - SHPI"
-            } else if currentSixthQuestionSetting == [1, 0, 2] {
-                subtitle = "SHPI - TBV - PEAK"
-            } else if currentSixthQuestionSetting == [1, 2, 0] {
-                subtitle = "SHPI - PEAK - TBV"
-            } else if currentSixthQuestionSetting == [2, 0, 1] {
-                subtitle = "PEAK - TBV - SHPI"
-            } else if currentSixthQuestionSetting == [2, 1, 0] {
-                subtitle =  "PEAK - SHPI - TBV"
-            }
-            cell.configure(title: "DC Question #6 priority", subtitle: subtitle)
+            cell.configure(title: interactor.getTitleForDCQuestion(),
+                           subtitle: interactor.getSubtitleForDCQuestion())
         default:
             cell.configure(title: nil, subtitle: nil)
         }

@@ -16,7 +16,16 @@ protocol MyQotAdminSettingsListPresenterInterface {
     func setupView()
 }
 
-protocol MyQotAdminSettingsListInteractorInterface: Interactor {}
+protocol MyQotAdminSettingsListInteractorInterface: Interactor {
+    func getHeaderTitle() -> String
+    func getTitleForEnvironmentSettings() -> String
+    func getSubtitleForEnvironmentSettings() -> String
+    func getTitleForLocalNotifications() -> String
+    func getTitleForDCQuestion() -> String
+    func getSubtitleForDCQuestion() -> String
+    func getCurrentSixthQuestionSetting() -> [Int]
+    func setCurrentSixthQuestionSetting(setting: [Int])
+}
 
 protocol MyQotAdminSettingsListRouterInterface {
     func dismiss()

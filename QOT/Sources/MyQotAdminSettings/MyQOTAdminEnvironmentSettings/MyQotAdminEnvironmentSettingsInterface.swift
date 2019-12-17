@@ -16,7 +16,13 @@ protocol MyQotAdminEnvironmentSettingsPresenterInterface {
     func setupView()
 }
 
-protocol MyQotAdminEnvironmentSettingsInteractorInterface: Interactor {}
+protocol MyQotAdminEnvironmentSettingsInteractorInterface: Interactor {
+    func getHeaderTitle() -> String
+    func getTitle(at index: Int) -> String
+    func getIsSelected(for index: Int) -> Bool
+    func changeSelection(for index: Int)
+    func getDatasourceCount() -> Int
+}
 
 protocol MyQotAdminEnvironmentSettingsRouterInterface {
     func dismiss()

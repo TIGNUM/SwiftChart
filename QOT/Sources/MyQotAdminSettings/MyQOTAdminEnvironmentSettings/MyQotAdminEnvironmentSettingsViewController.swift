@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import qot_dal
 
 final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
     // MARK: - Properties
@@ -21,6 +20,7 @@ final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        MyQotAdminEnvironmentSettingsConfigurator.configure(viewController: self)
     }
 
     // MARK: - Life Cycle
@@ -45,7 +45,8 @@ private extension MyQotAdminEnvironmentSettingsViewController {
         ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         ThemeView.level2.apply(self.view)
-        baseHeaderView?.configure(title: "ENVIRONMENT SETTINGS", subtitle: nil)
+        baseHeaderView?.configure(title: interactor.getHeaderTitle(),
+                                  subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         tableView.delegate = self
@@ -58,33 +59,25 @@ private extension MyQotAdminEnvironmentSettingsViewController {
 
 extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 2
+        return interactor.getDatasourceCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        let isStaging = NetworkRequestManager.main.getCurrentEnvironment() == .development
         let checkMark = R.image.registration_checkmark()
-        switch indexPath.row {
-        case 0:
-            cell.configure(title: "STAGING", subtitle: nil)
-            cell.customAccessoryImageView.image = isStaging ? checkMark : nil
-        case 1:
-            cell.configure(title: "PRODUCTION", subtitle: nil)
-            cell.customAccessoryImageView.image = isStaging ? nil : checkMark
-        default:
-            cell.configure(title: nil, subtitle: nil)
-        }
+
+        cell.configure(title: interactor.getTitle(at: indexPath.row),
+                    subtitle: nil)
+        cell.customAccessoryImageView.image = interactor.getIsSelected(for: indexPath.row) ? nil : checkMark
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        NetworkRequestManager.main.switchTo(environmentType: indexPath.row == 0 ? .development : .production)
+        interactor.changeSelection(for: indexPath.row)
         self.navigationController?.popViewController(animated: true)
-        DatabaseManager.main.deleteUserRelatedData()
-        NotificationCenter.default.post(name: .requestSynchronization, object: nil)
+
     }
 }
 

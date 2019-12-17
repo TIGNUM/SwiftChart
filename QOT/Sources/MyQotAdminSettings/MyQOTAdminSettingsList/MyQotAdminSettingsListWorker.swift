@@ -10,6 +10,7 @@ import UIKit
 
 final class MyQotAdminSettingsListWorker {
 
+    var currentSixthQuestionSetting: [Int] = [0, 1, 2]
     // MARK: - Init
     init() { /**/ }
 }

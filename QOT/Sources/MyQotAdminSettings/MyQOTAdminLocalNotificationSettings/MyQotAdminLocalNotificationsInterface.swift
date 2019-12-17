@@ -16,7 +16,17 @@ protocol MyQotAdminLocalNotificationsPresenterInterface {
     func setupView()
 }
 
-protocol MyQotAdminLocalNotificationsInteractorInterface: Interactor {}
+protocol MyQotAdminLocalNotificationsInteractorInterface: Interactor {
+    func getHeaderTitle() -> String
+    func getNotificationTitle() -> String
+    func getTitle(at index: Int) -> String
+    func getSubtitle(at index: Int) -> String
+    func getDatasourceCount() -> Int
+    func scheduleNotification(title: String,
+                              body: String,
+                              link: String,
+                              completionHandler: @escaping () -> Void) 
+}
 
 protocol MyQotAdminLocalNotificationsRouterInterface {
     func dismiss()
