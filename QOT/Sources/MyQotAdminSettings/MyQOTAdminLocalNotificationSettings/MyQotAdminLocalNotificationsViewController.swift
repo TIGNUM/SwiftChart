@@ -65,6 +65,7 @@ final class MyQotAdminLocalNotificationsViewController: BaseViewController {
                                         "qot://qrcode-open-0002": "QRCode 2",
                                         "qot://qrcode-open-0003": "QRCode 3",
                                         "qot://qrcode-open-0004": "QRCode 4"]
+    var interactor: MyQotAdminLocalNotificationsInteractorInterface!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -156,5 +157,12 @@ extension MyQotAdminLocalNotificationsViewController: UITableViewDelegate, UITab
             default: break
             }
         }
+    }
+}
+
+// MARK: - MyQotAdminLocalNotificationsViewControllerInterface
+extension MyQotAdminLocalNotificationsViewController: MyQotAdminLocalNotificationsViewControllerInterface {
+    func setupView() {
+        // Do any additional setup after loading the view.
     }
 }

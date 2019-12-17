@@ -17,6 +17,8 @@ final class MyQotAdminEnvironmentSettingsViewController: BaseViewController {
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
 
+    var interactor: MyQotAdminEnvironmentSettingsInteractorInterface!
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -83,5 +85,12 @@ extension MyQotAdminEnvironmentSettingsViewController: UITableViewDelegate, UITa
         self.navigationController?.popViewController(animated: true)
         DatabaseManager.main.deleteUserRelatedData()
         NotificationCenter.default.post(name: .requestSynchronization, object: nil)
+    }
+}
+
+// MARK: - MyQotAdminEnvironmentSettingsViewControllerInterface
+extension MyQotAdminEnvironmentSettingsViewController: MyQotAdminEnvironmentSettingsViewControllerInterface {
+    func setupView() {
+        // Do any additional setup after loading the view.
     }
 }

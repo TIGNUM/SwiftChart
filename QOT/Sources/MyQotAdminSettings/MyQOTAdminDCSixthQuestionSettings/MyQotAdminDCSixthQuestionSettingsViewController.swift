@@ -16,6 +16,8 @@ final class MyQotAdminDCSixthQuestionSettingsViewController: BaseViewController 
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
+
+    var interactor: MyQotAdminDCSixthQuestionSettingsInteractorInterface!
     var currentSetting: [Int]?
     var datasource: [[Int]] = [[0, 1, 2],
                                [0, 2, 1],
@@ -157,5 +159,12 @@ extension MyQotAdminDCSixthQuestionSettingsViewController: UITableViewDelegate, 
                 }
             }
         }
+    }
+}
+
+// MARK: - MyQotAdminDCSixthQuestionSettingsViewControllerInterface
+extension MyQotAdminDCSixthQuestionSettingsViewController: MyQotAdminDCSixthQuestionSettingsViewControllerInterface {
+    func setupView() {
+        // Do any additional setup after loading the view.
     }
 }
