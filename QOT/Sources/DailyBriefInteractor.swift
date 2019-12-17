@@ -460,7 +460,7 @@ extension DailyBriefInteractor {
         let dailyCheckIn2ViewModel = DailyCheckin2ViewModel(domainModel: dailyCheckIn2)
         if dailyCheckIn2.toBeVisionTrackId != nil {
             // TBV Rated sentence
-            let title: String = dailyCheckIn2.bucketText?.contentItems.first?.valueText ?? ""
+            let title: String = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_title)
             let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
             let intro: String = (dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "") + " " + String(tbvRating)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
@@ -643,25 +643,25 @@ extension DailyBriefInteractor {
         }
         if let hour = dateComponents.hour {
             if 6 <= hour && hour < 12 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(AppTextKey.daily_brief_section_explore_title),
                                                              title: exploreContentCollections.first?.title,
-                                                             introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
+                                                             introText: AppTextService.get(AppTextKey.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.first?.remoteID,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.first?.section ?? ContentSection.Unkown))
                 return exploreModelList
             } else if 12 <= hour && hour < 18 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(AppTextKey.daily_brief_section_explore_title),
                                                              title: exploreContentCollections.at(index: 1)?.title,
-                                                             introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
+                                                             introText: AppTextService.get(AppTextKey.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.at(index: 1)?.remoteID,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.at(index: 1)?.section ?? ContentSection.Unkown))
                 return exploreModelList
             } else if 18 <= hour && hour <= 24 || hour < 6 {
-                exploreModelList.append(ExploreCellViewModel(bucketTitle: explore.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
+                exploreModelList.append(ExploreCellViewModel(bucketTitle: AppTextService.get(AppTextKey.daily_brief_section_explore_title),
                                                              title: exploreContentCollections.last?.title,
-                                                             introText: explore.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
+                                                             introText: AppTextService.get(AppTextKey.daily_brief_section_explore_body),
                                                              remoteID: exploreContentCollections.last?.remoteID,
                                                              domainModel: explore,
                                                              section: exploreContentCollections.last?.section ?? ContentSection.Unkown))
@@ -997,13 +997,11 @@ extension DailyBriefInteractor {
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var modelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
-
         fromCoach.coachMessages?.forEach {(message) in
             if let date = message.issueDate, let text = message.body {
                 let formattedDate = DateFormatter.messageDate.string(from: date)
                 messageModels.append(FromMyCoachCellViewModel.FromMyCoachMessage(date: formattedDate, text: text))
             }
-
         }
 
         if let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
