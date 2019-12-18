@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum adminSettingsItem: Int, CaseIterable {
+    case environmentSettings = 0
+    case localNotifications
+    case dailyCheckinSixthQuestion
+}
+
 final class MyQotAdminSettingsListViewController: UIViewController {
 
     // MARK: - Properties
@@ -71,19 +77,19 @@ private extension MyQotAdminSettingsListViewController {
 
 extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 3
+        return adminSettingsItem.allCases.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         switch indexPath.row {
-        case 0:
+        case adminSettingsItem.environmentSettings.rawValue:
             cell.configure(title: interactor.getTitleForEnvironmentSettings(),
                            subtitle: interactor.getSubtitleForEnvironmentSettings())
-        case 1:
+        case adminSettingsItem.localNotifications.rawValue:
             cell.configure(title: interactor.getTitleForLocalNotifications(),
                            subtitle: nil)
-        case 2:
+        case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             cell.configure(title: interactor.getTitleForDCQuestion(),
                            subtitle: interactor.getSubtitleForDCQuestion())
         default:
@@ -96,11 +102,11 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
-        case 0:
+        case adminSettingsItem.environmentSettings.rawValue:
             router.presentEnvironmentSettings()
-        case 1:
+        case adminSettingsItem.localNotifications.rawValue:
             router.presentLocalNotificationsSettings()
-        case 2:
+        case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             router.presentSixthQuestionPriority()
         default:
             break

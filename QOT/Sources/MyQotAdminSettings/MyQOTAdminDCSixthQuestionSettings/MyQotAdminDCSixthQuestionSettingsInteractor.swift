@@ -26,22 +26,23 @@ final class MyQotAdminDCSixthQuestionSettingsInteractor {
     }
 
     public static func getSixthQuestionPriority(completion: @escaping ([Int]) -> Void) {
+        let defaultPriority = dailyCheckinQuestionsPriorities.tbvShpiPeak
         SettingService.main.getSettingFor(key: SettingKey.DailyCheckInSixthQuestionWeight) { (setting, _, _) in
             if let json = setting?.textValue, let jsonData = json.data(using: .utf8) {
                 do {
                     let weights = try JSONDecoder().decode(DailyCheckInSixthQuestionWeight.self, from: jsonData)
                     let weekday = (Calendar.current.dateComponents([.weekday], from: Date()).weekday ?? 1)
                     switch weekday {
-                    case 2: completion(weights.monday ?? [0, 1, 2])
-                    case 3: completion(weights.tuesday ?? [0, 1, 2])
-                    case 4: completion(weights.wednesday ?? [0, 1, 2])
-                    case 5: completion(weights.thursday ?? [0, 1, 2])
-                    case 6: completion(weights.friday ?? [0, 1, 2])
-                    case 7: completion(weights.saturday ?? [0, 1, 2])
-                    default: completion(weights.sunday ?? [0, 1, 2])
+                    case 2: completion(weights.monday ?? defaultPriority)
+                    case 3: completion(weights.tuesday ?? defaultPriority)
+                    case 4: completion(weights.wednesday ?? defaultPriority)
+                    case 5: completion(weights.thursday ?? defaultPriority)
+                    case 6: completion(weights.friday ?? defaultPriority)
+                    case 7: completion(weights.saturday ?? defaultPriority)
+                    default: completion(weights.sunday ?? defaultPriority)
                     }
                 } catch {
-                    completion([0, 1, 2])
+                    completion(defaultPriority)
                     print("failed to get DC 6th question settings")
                 }
             }
@@ -112,17 +113,17 @@ extension MyQotAdminDCSixthQuestionSettingsInteractor: MyQotAdminDCSixthQuestion
     func getTitle(for index: Int) -> String {
         switch index {
         case 0:
-            return "TBV - SHPI - PEAK"
+            return dailyCheckinQuestionPriorityString.tbvShpiPeak.rawValue
         case 1:
-            return "TBV - PEAK - SHPI"
+            return dailyCheckinQuestionPriorityString.tbvPeakShpi.rawValue
         case 2:
-            return "SHPI - TBV - PEAK"
+            return dailyCheckinQuestionPriorityString.shpiTbvPeak.rawValue
         case 3:
-            return "SHPI - PEAK - TBV"
+            return dailyCheckinQuestionPriorityString.shpiPeakTbv.rawValue
         case 4:
-            return "PEAK - TBV - SHPI"
+            return dailyCheckinQuestionPriorityString.peakTbvShpi.rawValue
         default:
-            return "PEAK - SHPI - TBV"
+            return dailyCheckinQuestionPriorityString.peakShpiTbv.rawValue
         }
     }
 
