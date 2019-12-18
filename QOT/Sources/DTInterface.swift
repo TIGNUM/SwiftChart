@@ -38,10 +38,6 @@ protocol DTInteractorInterface: Interactor {
     var getIntroKey: String { get }
 }
 
-protocol DTRouterInterface {
-    func dismiss()
-    func dismissChatBotFlow()
+protocol DTRouterInterface: BaseRouterInterface {
     func goBackToSolveResult()
-    func presentContent(_ contentId: Int)
-    func playMediaItem(_ contentItemId: Int)
 }

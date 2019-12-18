@@ -63,17 +63,17 @@ extension UIViewController {
             || self.tabBarController?.presentingViewController is UITabBarController
     }
 
-    static func presentMailComposer(from viewController: UIViewController,
-                                    recipients: [String],
-                                    subject: String) {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            viewController.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_email_try_again_body)))
-            return
-        }
-        let composer = MFMailComposeViewController()
-        composer.setToRecipients(recipients)
-        composer.setSubject(subject)
-        composer.mailComposeDelegate = viewController
-        viewController.present(composer, animated: true, completion: nil)
-    }
+//    static func presentMailComposer(from viewController: UIViewController,
+//                                    recipients: [String],
+//                                    subject: String) {
+//        guard MFMailComposeViewController.canSendMail() == true else {
+//            viewController.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_email_try_again_body)))
+//            return
+//        }
+//        let composer = MFMailComposeViewController()
+//        composer.setToRecipients(recipients)
+//        composer.setSubject(subject)
+//        composer.mailComposeDelegate = viewController
+//        viewController.present(composer, animated: true, completion: nil)
+//    }
 }

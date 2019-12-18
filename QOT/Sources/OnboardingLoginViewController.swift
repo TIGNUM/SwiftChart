@@ -8,7 +8,6 @@
 
 import UIKit
 import qot_dal
-import MessageUI
 
 final class OnboardingLoginViewController: BaseViewController, ScreenZLevel3 {
 
@@ -205,17 +204,6 @@ private extension OnboardingLoginViewController {
         ThemeText.loginEmailCodeErrorMessage.apply(error, to: digitDescriptionLabel)
     }
 
-    func sendEmail() {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            return
-        }
-
-        let mail = MFMailComposeViewController()
-        mail.mailComposeDelegate = self
-        mail.setToRecipients([helpEmail])
-        present(mail, animated: true)
-    }
-
     func updateCodeEntry(isEnabled: Bool) {
         codeEntryViews.forEach {
             $0.alpha = isEnabled ? 1 : codeEntryViewsDisabledAlpha
@@ -393,14 +381,5 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
     func beginCodeEntry() {
         updateCodeEntry(isEnabled: true)
         digitTextFields.first?.becomeFirstResponder()
-    }
-}
-
-// MARK: - MFMailComposeViewControllerDelegate
-extension OnboardingLoginViewController {
-    override internal func mailComposeController(_ controller: MFMailComposeViewController,
-                                                 didFinishWith result: MFMailComposeResult,
-                                                 error: Error?) {
-        controller.dismiss(animated: true)
     }
 }

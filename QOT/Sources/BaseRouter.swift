@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import MessageUI
 import qot_dal
 
 protocol BaseRouterInterface {
+    func presentMailComposer(recipients: [String], subject: String)
     func presentContent(_ contentId: Int)
     func presentContentItem(with id: Int)
     func presentMindsetShifter()
@@ -92,6 +94,18 @@ class BaseRouter: BaseRouterInterface {
         if let controller = R.storyboard.myToBeVision.myVisionViewController() {
             MyVisionConfigurator.configure(viewController: controller)
             viewController?.pushToStart(childViewController: controller)
+        }
+    }
+
+    func presentMailComposer(recipients: [String], subject: String) {
+        if MFMailComposeViewController.canSendMail() == true {
+            let composer = MFMailComposeViewController()
+            composer.setToRecipients(recipients)
+            composer.setSubject(subject)
+            composer.mailComposeDelegate = viewController
+            viewController?.present(composer, animated: true)
+        } else {
+            viewController?.showAlert(type: .message(AppTextService.get(.generic_alert_no_email_body)))
         }
     }
 }
