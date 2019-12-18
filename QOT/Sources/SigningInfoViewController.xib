@@ -12,6 +12,7 @@
             <connections>
                 <outlet property="bodyLabel" destination="vSM-mr-lrB" id="QPr-8U-RhC"/>
                 <outlet property="titleLabel" destination="sYp-yY-lbk" id="7lw-Gp-xXg"/>
+                <outlet property="titleLabelWidthConstraint" destination="jGt-5h-upU" id="AC0-uk-Zdc"/>
                 <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
                 <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
             </connections>
@@ -61,14 +62,14 @@
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="vSM-mr-lrB" secondAttribute="trailing" constant="24" id="Fql-V9-UwC"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="centerX" secondItem="rYY-wO-Y1g" secondAttribute="centerX" id="Hlw-dz-iqe"/>
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="bottom" secondItem="unA-EJ-O6O" secondAttribute="bottom" id="J0m-T7-h1r"/>
+                <constraint firstItem="unA-EJ-O6O" firstAttribute="centerX" secondItem="kye-X6-AOl" secondAttribute="centerX" id="J8h-oA-xkY"/>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Jls-hW-lYF"/>
-                <constraint firstItem="unA-EJ-O6O" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="Qm8-7w-TV2"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="height" secondItem="kye-X6-AOl" secondAttribute="height" multiplier="0.15" id="VEj-MG-0xQ"/>
                 <constraint firstItem="sYp-yY-lbk" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="WDu-1u-D1E"/>
                 <constraint firstItem="vSM-mr-lrB" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" constant="18" id="ag2-aK-vdl"/>
-                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="unA-EJ-O6O" secondAttribute="trailing" id="fwQ-SX-CAt"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="gti-Za-C3y"/>
-                <constraint firstItem="sYp-yY-lbk" firstAttribute="width" secondItem="unA-EJ-O6O" secondAttribute="width" multiplier="0.75" id="jGt-5h-upU"/>
+                <constraint firstItem="sYp-yY-lbk" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" multiplier="0.75" id="jGt-5h-upU"/>
+                <constraint firstItem="unA-EJ-O6O" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="ngt-AM-HeI"/>
                 <constraint firstAttribute="bottom" secondItem="QBN-FH-QrV" secondAttribute="bottom" id="s5g-lo-Jaf"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" id="yOG-oq-42t"/>
             </constraints>

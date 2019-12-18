@@ -30,6 +30,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
 
+    @IBOutlet private weak var titleLabelWidthConstraint: NSLayoutConstraint!
     // MARK: - Init
     init() {
         if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension), let player = player {
@@ -119,7 +120,8 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 // MARK: - Private
 private extension SigningInfoViewController {
     func setupText() {
-        ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: titleLabel.bounds.width)
+        let maxWidth = view.bounds.width * titleLabelWidthConstraint.multiplier
+        ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: maxWidth)
         ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
 
         UIView.animate(withDuration: 3.0) {
