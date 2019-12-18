@@ -75,4 +75,8 @@ extension MyQotAdminSettingsListInteractor: MyQotAdminSettingsListInteractorInte
     func setCurrentSixthQuestionSetting(setting: [Int]) {
         worker.currentSixthQuestionSetting = setting
     }
+
+    func getTitleForChooseBuckets() -> String {
+        return "Choose Daily Brief buckets"
+    }
 }

@@ -12,6 +12,7 @@ enum adminSettingsItem: Int, CaseIterable {
     case environmentSettings = 0
     case localNotifications
     case dailyCheckinSixthQuestion
+    case chooseDailyBriefBuckets
 }
 
 final class MyQotAdminSettingsListViewController: UIViewController {
@@ -92,6 +93,9 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
         case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             cell.configure(title: interactor.getTitleForDCQuestion(),
                            subtitle: interactor.getSubtitleForDCQuestion())
+        case adminSettingsItem.chooseDailyBriefBuckets.rawValue:
+            cell.configure(title: interactor.getTitleForChooseBuckets(),
+                           subtitle: nil)
         default:
             cell.configure(title: nil, subtitle: nil)
         }
@@ -108,6 +112,8 @@ extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableView
             router.presentLocalNotificationsSettings()
         case adminSettingsItem.dailyCheckinSixthQuestion.rawValue:
             router.presentSixthQuestionPriority()
+        case adminSettingsItem.chooseDailyBriefBuckets.rawValue:
+            router.presentChooseDailyBriefBuckets()
         default:
             break
         }

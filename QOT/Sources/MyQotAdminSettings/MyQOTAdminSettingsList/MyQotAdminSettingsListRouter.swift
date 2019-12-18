@@ -36,4 +36,8 @@ extension MyQotAdminSettingsListRouter: MyQotAdminSettingsListRouterInterface {
     func presentSixthQuestionPriority() {
         viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminDCSixthQuestionSegueIdentifier, sender: nil)
     }
+
+    func presentChooseDailyBriefBuckets() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminChooseBucketsSegueIdentifier, sender: nil)
+    }
 }

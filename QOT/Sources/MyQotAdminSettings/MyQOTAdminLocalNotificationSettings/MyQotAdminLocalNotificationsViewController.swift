@@ -65,8 +65,8 @@ extension MyQotAdminLocalNotificationsViewController: UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
 
-        cell.configure(title: interactor.getTitle(at:indexPath.row),
-                       subtitle: interactor.getSubtitle(at:indexPath.row))
+        cell.configure(title: interactor.getTitle(at: indexPath.row),
+                       subtitle: interactor.getSubtitle(at: indexPath.row))
 
         return cell
     }
@@ -74,8 +74,8 @@ extension MyQotAdminLocalNotificationsViewController: UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         interactor.scheduleNotification(title: interactor.getNotificationTitle(),
-                                        body: interactor.getTitle(at:indexPath.row),
-                                        link: interactor.getSubtitle(at:indexPath.row)) { [weak self] in
+                                        body: interactor.getTitle(at: indexPath.row),
+                                        link: interactor.getSubtitle(at: indexPath.row)) { [weak self] in
                                 DispatchQueue.main.async {
                                     self?.navigationController?.popViewController(animated: true)
                                 }
