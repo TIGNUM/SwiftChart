@@ -856,7 +856,7 @@ extension DailyBriefInteractor {
     // MARK: - Tignum Messages
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
-        let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
+        let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_from_tignum_title)
         guard (fromTignum.contentCollections?.first) != nil else {
             createFromTignumList.append( FromTignumCellViewModel(title: "",
                                                                  text: "",
@@ -960,7 +960,7 @@ extension DailyBriefInteractor {
                                                                 copyright: "",
                                                                 domainModel: createGoodToKnow))
             return createGoodToKnowList }
-        createGoodToKnowList.append(GoodToKnowCellViewModel(title: createGoodToKnow.bucketText?.contentItems.first?.valueText,
+        createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(AppTextKey.daily_brief_section_good_to_know_title),
                                                             fact: collection.contentItems.first?.valueText,
                                                             image: URL(string: (collection.thumbnailURLString ?? "")),
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
