@@ -32,4 +32,12 @@ extension MyQotAdminSettingsListRouter: MyQotAdminSettingsListRouterInterface {
     func presentLocalNotificationsSettings() {
         viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminLocalNotificationsSegueIdentifier, sender: nil)
     }
+
+    func presentSixthQuestionPriority() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminDCSixthQuestionSegueIdentifier, sender: nil)
+    }
+
+    func presentChooseDailyBriefBuckets() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminChooseBucketsSegueIdentifier, sender: nil)
+    }
 }
