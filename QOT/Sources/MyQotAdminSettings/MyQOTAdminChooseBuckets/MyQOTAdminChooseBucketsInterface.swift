@@ -18,6 +18,12 @@ protocol MyQOTAdminChooseBucketsPresenterInterface {
 
 protocol MyQOTAdminChooseBucketsInteractorInterface: Interactor {
     func getHeaderTitle() -> String
+    func getDoneButtonTitle() -> String
+    func getDatasourceCount() -> Int
+    func getBucketTitle(at index: Int) -> String
+    func isSelected(at index: Int) -> Bool
+    func setSelected(_ selected: Bool, at index: Int)
+    func showSelectedBucketsInDailyBrief()
 }
 
 protocol MyQOTAdminChooseBucketsRouterInterface {

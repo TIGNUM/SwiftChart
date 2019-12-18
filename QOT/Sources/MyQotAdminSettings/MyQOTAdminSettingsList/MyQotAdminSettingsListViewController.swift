@@ -52,6 +52,7 @@ final class MyQotAdminSettingsListViewController: UIViewController {
             self?.interactor.setCurrentSixthQuestionSetting(setting: setting)
             self?.tableView.reloadData()
         }
+        updateBottomNavigation([backNavigationItem()], [])
     }
 }
 
