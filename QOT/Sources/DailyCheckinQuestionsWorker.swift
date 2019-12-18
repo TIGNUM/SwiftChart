@@ -38,7 +38,7 @@ final class DailyCheckinQuestionsWorker {
             checkInAnswer.questionGroupId = question.groups?.first?.id
             checkInAnswer.answerId = question.selectedAnswer()?.remoteID
             if question.key == "daily.checkin.peak.performances" {
-                checkInAnswer.PeakPerformanceCount = (question.selectedAnswerIndex ?? 0) + 1 // it's count
+                checkInAnswer.PeakPerformanceCount = (question.selectedAnswerIndex ?? 0) // index is count
             }
             answers.append(checkInAnswer)
         }
@@ -84,28 +84,27 @@ final class DailyCheckinQuestionsWorker {
 
             let finalQuestions = dailyCheckInQuestions.filter {
                 keysToFilter.contains(obj: $0.key) != true && $0.key != dailyCheckInIntroQuestionKey
-                }.compactMap { (question) -> RatingQuestionViewModel.Question? in
-                    guard let remoteID = question.remoteID else { return nil }
-                    let answers = question.answers.sorted(by: {$0.sortOrder ?? 0 > $1.sortOrder ?? 0})
-                        .compactMap({ (answer) -> RatingQuestionViewModel.Answer in
-                            return RatingQuestionViewModel.Answer(remoteID: answer.remoteID,
-                                                                  title: answer.title,
-                                                                  subtitle: answer.subtitle)
-                        })
+            }.compactMap { (question) -> RatingQuestionViewModel.Question? in
+                guard let remoteID = question.remoteID else { return nil }
+                let answers = question.answers.compactMap({ (answer) -> RatingQuestionViewModel.Answer in
+                    return RatingQuestionViewModel.Answer(remoteID: answer.remoteID,
+                                                          title: answer.title,
+                                                          subtitle: answer.subtitle)
+                })
 
-                    return RatingQuestionViewModel.Question(remoteID: remoteID,
-                                                            title: question.title,
-                                                            htmlTitle: question.htmlTitleString,
-                                                            subtitle: question.subtitle,
-                                                            dailyPrepTitle: question.dailyPrepTitle,
-                                                            key: question.key,
-                                                            answers: answers,
-                                                            range: nil,
-                                                            toBeVisionTrackId: question.toBeVisionTrackId,
-                                                            SHPIQuestionId: question.SHPIQuestionId,
-                                                            groups: question.groups,
-                                                            buttonText: question.defaultButtonText,
-                                                            selectedAnswerIndex: nil)
+                return RatingQuestionViewModel.Question(remoteID: remoteID,
+                                                        title: question.title,
+                                                        htmlTitle: question.htmlTitleString,
+                                                        subtitle: question.subtitle,
+                                                        dailyPrepTitle: question.dailyPrepTitle,
+                                                        key: question.key,
+                                                        answers: answers,
+                                                        range: nil,
+                                                        toBeVisionTrackId: question.toBeVisionTrackId,
+                                                        SHPIQuestionId: question.SHPIQuestionId,
+                                                        groups: question.groups,
+                                                        buttonText: question.defaultButtonText,
+                                                        selectedAnswerIndex: nil)
             }
             self?.questions = finalQuestions
             completion(finalQuestions)
