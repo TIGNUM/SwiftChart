@@ -33,5 +33,16 @@ final class MyQOTAdminChooseBucketsWorker {
                                                                  (key: .WEATHER, value: false),
                                                                  (key: .GUIDE_TRACK, value: false)]
     // MARK: - Init
-    init() { /**/ }
+    init() { /**/
+        updateDisplayingBuckets()
+    }
+
+    private func updateDisplayingBuckets() {
+        let displayingBuckets = DailyBriefService.main.getGeneratedBucketNamesForToday()
+        for displayingBucket in displayingBuckets {
+            for (index, object) in datasource.enumerated() where object.key == displayingBucket {
+                datasource[index].value = true
+            }
+        }
+    }
 }
