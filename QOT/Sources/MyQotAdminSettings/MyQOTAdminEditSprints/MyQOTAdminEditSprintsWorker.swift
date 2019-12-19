@@ -15,12 +15,13 @@ final class MyQOTAdminEditSprintsWorker {
 
     // MARK: - Init
     init() {
-        getSprints()
+
     }
 
-    private func getSprints() {
+    func getSprints(completion: @escaping () -> Void) {
         UserService.main.getSprints { [weak self] (sprints, _, _) in
             self?.datasource = sprints ?? []
+            completion()
         }
     }
 }

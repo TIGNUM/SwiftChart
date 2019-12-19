@@ -21,6 +21,7 @@ protocol MyQOTAdminEditSprintsInteractorInterface: Interactor {
     func getHeaderTitle() -> String
     func getDatasourceCount() -> Int
     func getSprint(at index: Int) -> QDMSprint
+    func getSprints(completion: @escaping () -> Void)
 }
 
 protocol MyQOTAdminEditSprintsRouterInterface {

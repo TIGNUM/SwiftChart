@@ -31,12 +31,15 @@ final class MyQOTAdminEditSprintsViewController: UIViewController {
     }
 
      override func viewDidLoad() {
-           super.viewDidLoad()
-           interactor.viewDidLoad()
-           baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
-           baseHeaderView?.addTo(superview: headerView)
-           setupTableView()
-       }
+        super.viewDidLoad()
+        interactor.viewDidLoad()
+        baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
+        baseHeaderView?.addTo(superview: headerView)
+        setupTableView()
+        interactor.getSprints(completion: { [weak self] in
+            self?.tableView.reloadData()
+        })
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

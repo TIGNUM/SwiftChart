@@ -39,4 +39,8 @@ extension MyQOTAdminEditSprintsInteractor: MyQOTAdminEditSprintsInteractorInterf
     func getSprint(at index: Int) -> QDMSprint {
         return worker.datasource[index]
     }
+
+    func getSprints(completion: @escaping () -> Void) {
+        worker.getSprints(completion: completion)
+    }
 }
