@@ -1,32 +1,26 @@
 //
-//  MyQotAdminSettingsListViewController.swift
+//  MyQotAdminDCSixthQuestionSettingsViewController.swift
 //  QOT
 //
-//  Created by Simu Voicu-Mircea on 12/12/2019.
-//  Copyright (c) 2019 Tignum. All rights reserved.
+//  Created by Simu Voicu-Mircea on 16/12/2019.
+//  Copyright © 2019 Tignum. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-final class MyQotAdminSettingsListViewController: UIViewController {
-
+final class MyQotAdminDCSixthQuestionSettingsViewController: BaseViewController {
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
 
-    var interactor: MyQotAdminSettingsListInteractorInterface!
-    private lazy var router = MyQotAdminSettingsListRouter(viewController: self)
-
-    // MARK: - Init
-    init(configure: Configurator<MyQotAdminSettingsListViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
+    var interactor: MyQotAdminDCSixthQuestionSettingsInteractorInterface!
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        MyQotAdminDCSixthQuestionSettingsConfigurator.configure(viewController: self)
     }
 
     // MARK: - Life Cycle
@@ -34,7 +28,10 @@ final class MyQotAdminSettingsListViewController: UIViewController {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
-        interactor.viewDidLoad()
+        MyQotAdminDCSixthQuestionSettingsInteractor.getSixthQuestionPriority { [weak self] (setting) in
+            self?.interactor.setCurrentSetting(setting: setting)
+            self?.tableView.reloadData()
+        }
         setupTableView()
     }
 
@@ -42,22 +39,17 @@ final class MyQotAdminSettingsListViewController: UIViewController {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        trackPage()
-    }
 }
-
-// MARK: - Private
-private extension MyQotAdminSettingsListViewController {
+    // MARK: - Private
+private extension MyQotAdminDCSixthQuestionSettingsViewController {
     func setupTableView() {
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(tableView)
         ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         ThemeView.level2.apply(self.view)
-        baseHeaderView?.configure(title: "ADMIN SETTINGS", subtitle: nil)
+        baseHeaderView?.configure(title: interactor.getHeaderTitle(),
+                                  subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
 
         tableView.delegate = self
@@ -66,43 +58,35 @@ private extension MyQotAdminSettingsListViewController {
         tableView.reloadData()
     }
 }
+    // MARK: - TableView Delegate and Datasource
 
-// MARK: - TableView Delegate and Datasource
-
-extension MyQotAdminSettingsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension MyQotAdminDCSixthQuestionSettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            return 5
+        return interactor.getDatasourceCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
-        switch indexPath.row {
-        case 0:
-            cell.configure(title: "Environment settings", subtitle: "STAGING")
-        case 1:
-            cell.configure(title: "Daily brief buckets", subtitle: "CUSTOM SETTING")
-        case 2:
-            cell.configure(title: "Daily Checkin Question #6", subtitle: "DEFAULT SETTING")
-        case 3:
-            cell.configure(title: "Trigger daily checkin", subtitle: "DEFAULT SETTING")
-        case 4:
-            cell.configure(title: "Modify Sprints", subtitle: "DEFAULT SETTING")
-        default:
-            cell.configure(title: nil, subtitle: nil)
-        }
+        let isSelected = interactor.isSelected(at: indexPath.row)
+        let checkMark = R.image.registration_checkmark()
+
+        cell.configure(title: interactor.getTitle(for: indexPath.row),
+                       subtitle: nil)
+        cell.customAccessoryImageView.image = isSelected ? checkMark : nil
 
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        trackUserEvent(.OPEN, action: .TAP)
-//        interactor.presentController(for: indexPath.row)
+        interactor.selectPriority(at: indexPath.row, completion: {
+            self.navigationController?.popViewController(animated: true)
+        })
     }
 }
 
-// MARK: - MyQotAdminSettingsListViewControllerInterface
-extension MyQotAdminSettingsListViewController: MyQotAdminSettingsListViewControllerInterface {
+// MARK: - MyQotAdminDCSixthQuestionSettingsViewControllerInterface
+extension MyQotAdminDCSixthQuestionSettingsViewController: MyQotAdminDCSixthQuestionSettingsViewControllerInterface {
     func setupView() {
         // Do any additional setup after loading the view.
     }
