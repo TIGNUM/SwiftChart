@@ -588,6 +588,7 @@ public extension AppTextKey {
         static let generic_download_status_button_download = AppTextKey("generic.download_status.button_download")
         static let generic_download_status_button_downloading = AppTextKey("generic.download_status.button_downloading")
         static let generic_download_status_button_downloaded = AppTextKey("generic.download_status.button_downloaded")
+        static let generic_tobevision_default_title = AppTextKey("generic.tobevision.default_title")
         static let onboarding_walkthrough_view_button_got_it = AppTextKey("onboarding.walkthrough.view.button_got_it")
         static let onboarding_walkthrough_search_view_body = AppTextKey("onboarding.walkthrough.search.view.body")
         static let onboarding_walkthrough_coach_view_body = AppTextKey("onboarding.walkthrough.coach.view.body")

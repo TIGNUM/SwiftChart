@@ -13,6 +13,7 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var subHeadingLabel: UILabel!
     @IBOutlet private weak var separator: UIView!
+    @IBOutlet weak var customAccessoryImageView: UIImageView!
     private let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {

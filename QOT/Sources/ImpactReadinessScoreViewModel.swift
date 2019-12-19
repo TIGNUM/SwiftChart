@@ -14,8 +14,11 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     var howYouFeelToday: String?
     var asteriskText: String?
     var sleepQuantityValue: Double?
+    var hasFiveDaySleepQuantityValues: Bool?
     var sleepQualityValue: Double?
+    var hasFiveDaySleepQualityValue: Bool?
     var loadValue: Double?
+    var hasFiveDayLoadValue: Bool?
     var futureLoadValue: Double?
     var targetSleepQuantity: Double?
     var sleepQualityReference: Double?
@@ -32,8 +35,11 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     init(howYouFeelToday: String?,
          asteriskText: String?,
          sleepQuantityValue: Double?,
+         hasFiveDaySleepQuantityValues: Bool?,
          sleepQualityValue: Double?,
+         hasFiveDaySleepQualityValue: Bool?,
          loadValue: Double?,
+         hasFiveDayLoadValue: Bool?,
          futureLoadValue: Double?,
          targetSleepQuantity: Double?,
          sleepQualityReference: Double?,
@@ -47,12 +53,15 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
         self.asteriskText = asteriskText
 
         self.sleepQuantityValue = sleepQuantityValue
+        self.hasFiveDaySleepQuantityValues = hasFiveDaySleepQuantityValues
         self.sleepQualityValue = sleepQualityValue
+        self.hasFiveDaySleepQualityValue = hasFiveDaySleepQualityValue
 
         self.targetSleepQuantity = targetSleepQuantity
         self.sleepQualityReference = sleepQualityReference
 
         self.loadValue = loadValue
+        self.hasFiveDayLoadValue = hasFiveDayLoadValue
         self.futureLoadValue = futureLoadValue
 
         self.loadReference = loadReference
