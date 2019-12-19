@@ -71,6 +71,7 @@ enum ThemeView {
     case coachMarkPageIndicator
     case dailyInsightsChartBarUnselected
     case dailyInsightsChartBarSelected
+    case guidedTrackBackground
 
     var color: UIColor {
         switch self {
@@ -128,6 +129,8 @@ enum ThemeView {
             return Palette.carbon
         case .resultWhite:
             return Palette.white40
+        case .guidedTrackBackground:
+            return Palette.sand03
 
         // MARK: - .sand40
         case .syncedCalendarSeparator, .dailyInsightsChartBarUnselected:
@@ -1487,6 +1490,10 @@ private struct Palette {
 
     static var carbonDark80: UIColor {
         return UIColor.carbonDark.withAlphaComponent(0.8)
+    }
+
+    static var sand03: UIColor {
+        return UIColor.sand.withAlphaComponent(0.03)
     }
 
     static var sand10: UIColor {

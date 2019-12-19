@@ -357,6 +357,7 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         baseHeaderView?.configure(title: interactor.title, subtitle: nil)
+        baseHeaderView?.refresh(titleThemeText: .registrationEmailTitle, subtitleThemeText: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.loginEmailMessage.apply(interactor.emailInstructions, to: emailInstructionsLabel)
         ThemeText.loginEmailCode.apply(interactor.preCode, to: precodeLabel)

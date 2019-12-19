@@ -37,7 +37,7 @@ final class MyVisionWorker {
     lazy var updateAlertEditTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_edit)
     lazy var updateAlertCreateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_create)
     lazy var emptyTBVTextPlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
-    lazy var emptyTBVTitlePlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_edit_title_placeholder)
+    lazy var emptyTBVTitlePlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title_headline)
     private lazy var notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_null_state_title)
     private lazy var syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()

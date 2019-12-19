@@ -99,12 +99,19 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         var asterixCharacter: String = "\n*"
         ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
-        asterixText.attributedText = buildString(asterixCharacter, ThemeText.impactReadinessAsterix,
-                                                 (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""), ThemeText.dailyBriefSubtitle,
-                                                 textAlignment: .left)
+
+        if viewModel?.hasFiveDayLoadValue != true,
+            viewModel?.hasFiveDaySleepQualityValue != true,
+            viewModel?.hasFiveDaySleepQuantityValues != true {
+            asterixText.attributedText = buildString(asterixCharacter, ThemeText.impactReadinessAsterix,
+                                                     (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""), ThemeText.dailyBriefSubtitle,
+                                                     textAlignment: .left)
+        } else {
+            asterixText.attributedText = nil
+        }
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
 
-        asterixCharacter = viewModel?.asteriskText != nil ? "*" : ""
+        asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
 
         sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
                                                    "h", ThemeText.quotationSmall,

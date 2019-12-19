@@ -21,12 +21,6 @@
                 <rect key="frame" x="0.0" y="0.0" width="415" height="244"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vides about read about the importance of courageous, rebellious and imaginative." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FO1-gG-Tdb">
-                        <rect key="frame" x="24" y="72.5" width="367" height="41"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTu-tU-c9b" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="304" y="175.5" width="84" height="40"/>
                         <constraints>
@@ -48,25 +42,31 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Watch foundational videos" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DAN-6L-GwM">
-                        <rect key="frame" x="24" y="121.5" width="209" height="20"/>
+                        <rect key="frame" x="24" y="72.5" width="209" height="20"/>
                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vides about read about the importance of courageous, rebellious and imaginative." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FO1-gG-Tdb">
+                        <rect key="frame" x="24" y="100.5" width="367" height="41"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="DAN-6L-GwM" firstAttribute="leading" secondItem="FO1-gG-Tdb" secondAttribute="leading" id="7Or-KU-DjD"/>
+                    <constraint firstItem="DAN-6L-GwM" firstAttribute="bottom" secondItem="FO1-gG-Tdb" secondAttribute="top" constant="-8" id="NOV-5n-tRD"/>
                     <constraint firstItem="VTr-zE-Ggc" firstAttribute="top" secondItem="lTu-tU-c9b" secondAttribute="bottom" constant="20" id="QqR-dS-PeF"/>
+                    <constraint firstItem="lTu-tU-c9b" firstAttribute="top" secondItem="FO1-gG-Tdb" secondAttribute="bottom" constant="34" id="Usy-9e-KT7"/>
                     <constraint firstAttribute="trailing" secondItem="VTr-zE-Ggc" secondAttribute="trailing" id="Wmh-pn-gxv"/>
-                    <constraint firstItem="FO1-gG-Tdb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="unR-MB-ZBr" secondAttribute="top" constant="24" id="XRy-fh-JnS"/>
                     <constraint firstItem="FO1-gG-Tdb" firstAttribute="leading" secondItem="unR-MB-ZBr" secondAttribute="leading" constant="24" id="aEF-fK-Jah"/>
                     <constraint firstAttribute="bottom" secondItem="VTr-zE-Ggc" secondAttribute="bottom" constant="7.5" id="c9a-Md-cRA"/>
                     <constraint firstAttribute="trailing" secondItem="FO1-gG-Tdb" secondAttribute="trailing" constant="24" id="f34-Qv-8vV"/>
+                    <constraint firstItem="DAN-6L-GwM" firstAttribute="top" relation="greaterThanOrEqual" secondItem="unR-MB-ZBr" secondAttribute="top" constant="24" id="gcS-fN-6Df"/>
                     <constraint firstAttribute="trailing" secondItem="lTu-tU-c9b" secondAttribute="trailing" constant="27" id="gcV-ih-Z35"/>
-                    <constraint firstItem="DAN-6L-GwM" firstAttribute="top" secondItem="FO1-gG-Tdb" secondAttribute="bottom" constant="8" id="mpE-VB-she"/>
                     <constraint firstItem="VTr-zE-Ggc" firstAttribute="leading" secondItem="unR-MB-ZBr" secondAttribute="leading" constant="24" id="oPx-Am-mSP"/>
-                    <constraint firstItem="lTu-tU-c9b" firstAttribute="top" secondItem="DAN-6L-GwM" secondAttribute="bottom" constant="34" id="pve-Yc-HNP"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

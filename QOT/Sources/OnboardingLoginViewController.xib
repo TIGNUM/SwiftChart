@@ -69,7 +69,7 @@
                         <action selector="didTapVerifyEmail" destination="-1" eventType="touchUpInside" id="oed-9L-4uh"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will send an email with your code" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-uz-mAB">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We will send an email with your code" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhe-uz-mAB">
                     <rect key="frame" x="66.333333333333329" y="336.66666666666669" width="242.33333333333337" height="17"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70271832191780825" colorSpace="calibratedRGB"/>
@@ -269,12 +269,14 @@
                 <constraint firstItem="qDo-10-Xri" firstAttribute="top" secondItem="6M7-3A-lmN" secondAttribute="top" id="LeE-pP-vdX"/>
                 <constraint firstItem="6M7-3A-lmN" firstAttribute="trailing" secondItem="qDo-10-Xri" secondAttribute="trailing" id="PWI-No-2wA"/>
                 <constraint firstItem="OhO-lt-yI7" firstAttribute="top" secondItem="uX7-Am-z8w" secondAttribute="bottom" constant="8" id="Pr6-EA-tQu"/>
+                <constraint firstItem="bhe-uz-mAB" firstAttribute="width" relation="lessThanOrEqual" secondItem="6M7-3A-lmN" secondAttribute="width" multiplier="0.9" id="Rz2-Ng-5qX"/>
                 <constraint firstItem="zm3-4e-5WS" firstAttribute="leading" secondItem="NxH-I0-Qa5" secondAttribute="trailing" id="S9I-3X-r9t"/>
                 <constraint firstItem="OhO-lt-yI7" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="UIm-nQ-4a1"/>
                 <constraint firstItem="uX7-Am-z8w" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="Vob-4Q-lW9"/>
                 <constraint firstItem="qUz-6e-E5n" firstAttribute="leading" secondItem="zm3-4e-5WS" secondAttribute="trailing" id="WF6-E0-62J"/>
                 <constraint firstItem="2J3-SS-hN9" firstAttribute="centerX" secondItem="6M7-3A-lmN" secondAttribute="centerX" id="agz-r0-0Ai"/>
                 <constraint firstItem="N0J-hZ-RKY" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" constant="24" id="chg-tG-mv6"/>
+                <constraint firstItem="bhe-uz-mAB" firstAttribute="centerX" secondItem="6M7-3A-lmN" secondAttribute="centerX" id="glH-cI-fvG"/>
                 <constraint firstItem="NxH-I0-Qa5" firstAttribute="bottom" secondItem="OhO-lt-yI7" secondAttribute="bottom" id="h1d-8r-Ywj"/>
                 <constraint firstItem="PwT-sI-vg7" firstAttribute="centerY" secondItem="zm3-4e-5WS" secondAttribute="centerY" id="nwB-CZ-zFn"/>
                 <constraint firstItem="9oz-5Q-wLY" firstAttribute="centerY" secondItem="G73-uc-VGV" secondAttribute="centerY" multiplier="0.95" id="p3f-nO-UcU"/>
@@ -283,7 +285,6 @@
                 <constraint firstItem="0Oo-Xz-nZw" firstAttribute="width" secondItem="G73-uc-VGV" secondAttribute="width" multiplier="0.9" id="sLb-tE-w8S"/>
                 <constraint firstItem="9oz-5Q-wLY" firstAttribute="centerX" secondItem="G73-uc-VGV" secondAttribute="centerX" id="too-3i-o0F"/>
                 <constraint firstItem="2J3-SS-hN9" firstAttribute="top" secondItem="0Oo-Xz-nZw" secondAttribute="bottom" constant="12" id="uSg-VN-5iq"/>
-                <constraint firstItem="bhe-uz-mAB" firstAttribute="centerX" secondItem="G73-uc-VGV" secondAttribute="centerX" id="uUE-3V-cfn"/>
                 <constraint firstItem="qDo-10-Xri" firstAttribute="leading" secondItem="6M7-3A-lmN" secondAttribute="leading" id="wz9-BK-YSs"/>
                 <constraint firstItem="Dwk-pD-HYZ" firstAttribute="top" secondItem="OhO-lt-yI7" secondAttribute="bottom" constant="20" id="xqy-iw-LGY"/>
                 <constraint firstItem="6M7-3A-lmN" firstAttribute="trailing" secondItem="N0J-hZ-RKY" secondAttribute="trailing" constant="24" id="ybE-VM-H5A"/>

@@ -16,6 +16,7 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var soundToggleButton: UIButton!
     var playerController = AVPlayerViewController()
+    weak var delegate: RegisterIntroUserEventTrackDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -37,6 +38,12 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
     @IBAction func didTapSoundToggleButton(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         playerController.player?.isMuted = !sender.isSelected
+
+        if playerController.player?.isMuted == true {
+            delegate?.didMuteVideo()
+        } else {
+            delegate?.didUnMuteVideo()
+        }
     }
 
     @objc func didTapMediaContentView() {

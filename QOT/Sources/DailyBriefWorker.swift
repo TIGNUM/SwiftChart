@@ -82,11 +82,11 @@ extension DailyBriefWorker {
                 var updatedSetting = setting
                 //                    turning sleep target from an answer index to a number of hours per day
                 updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30))
-                self.settingService.updateSetting(updatedSetting, {(error) in
+                self.settingService.updateSetting(updatedSetting) { (error) in
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
-                })
+                }
             }
         })
     }
