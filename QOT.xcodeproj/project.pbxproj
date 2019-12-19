@@ -898,6 +898,24 @@
 		B4B0EB9E23152CE90029BB40 /* MyDataBaseTableViewCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */; };
 		B4B0EBA1231533720029BB40 /* MyDataChartCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */; };
 		B4B0EBA2231533720029BB40 /* MyDataChartCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */; };
+		B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0DE23AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift */; };
+		B4BCD0E723AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0DF23AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift */; };
+		B4BCD0E823AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E023AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift */; };
+		B4BCD0E923AB7CD900B80747 /* MyQOTAdminEditSprintsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E123AB7CD900B80747 /* MyQOTAdminEditSprintsInterface.swift */; };
+		B4BCD0EA23AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E223AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift */; };
+		B4BCD0EB23AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E323AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift */; };
+		B4BCD0EC23AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E423AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift */; };
+		B4BCD0ED23AB7CD900B80747 /* MyQOTAdminEditSprintsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0E523AB7CD900B80747 /* MyQOTAdminEditSprintsConfigurator.swift */; };
+		B4BCD0F723AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0EF23AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift */; };
+		B4BCD0F823AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F023AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift */; };
+		B4BCD0F923AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F123AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift */; };
+		B4BCD0FA23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F223AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift */; };
+		B4BCD0FB23AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F323AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift */; };
+		B4BCD0FC23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */; };
+		B4BCD0FD23AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */; };
+		B4BCD0FE23AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */; };
+		B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */; };
+		B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */; };
 		B4D6DF49234C6DE600685548 /* ArticleContactSupportTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */; };
 		B4D6DF4B234C6DF400685548 /* ArticleContactSupportTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */; };
 		B4ECF255235DB81E00529C66 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */; };
@@ -2117,6 +2135,24 @@
 		B4B0EB9D23152CE80029BB40 /* MyDataBaseTableViewCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4B0EB9F2315336F0029BB40 /* MyDataChartCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartCollectionViewCell.xib; sourceTree = "<group>"; };
 		B4B0EBA0231533700029BB40 /* MyDataChartCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartCollectionViewCell.swift; sourceTree = "<group>"; };
+		B4BCD0DE23AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsPresenter.swift; sourceTree = "<group>"; };
+		B4BCD0DF23AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsWorker.swift; sourceTree = "<group>"; };
+		B4BCD0E023AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsRouter.swift; sourceTree = "<group>"; };
+		B4BCD0E123AB7CD900B80747 /* MyQOTAdminEditSprintsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsInterface.swift; sourceTree = "<group>"; };
+		B4BCD0E223AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsViewController.swift; sourceTree = "<group>"; };
+		B4BCD0E323AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsInteractor.swift; sourceTree = "<group>"; };
+		B4BCD0E423AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsModel.swift; sourceTree = "<group>"; };
+		B4BCD0E523AB7CD900B80747 /* MyQOTAdminEditSprintsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsConfigurator.swift; sourceTree = "<group>"; };
+		B4BCD0EF23AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsPresenter.swift; sourceTree = "<group>"; };
+		B4BCD0F023AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsWorker.swift; sourceTree = "<group>"; };
+		B4BCD0F123AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsRouter.swift; sourceTree = "<group>"; };
+		B4BCD0F223AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsInterface.swift; sourceTree = "<group>"; };
+		B4BCD0F323AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsViewController.swift; sourceTree = "<group>"; };
+		B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsInteractor.swift; sourceTree = "<group>"; };
+		B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsModel.swift; sourceTree = "<group>"; };
+		B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsConfigurator.swift; sourceTree = "<group>"; };
+		B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQOTAdminEditSprintsDetailsTableViewCell.xib; sourceTree = "<group>"; };
+		B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQOTAdminEditSprintsDetailsTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF48234C6DE600685548 /* ArticleContactSupportTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleContactSupportTableViewCell.swift; sourceTree = "<group>"; };
 		B4D6DF4A234C6DF400685548 /* ArticleContactSupportTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleContactSupportTableViewCell.xib; sourceTree = "<group>"; };
 		B4ECF254235DB81D00529C66 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
@@ -4103,6 +4139,7 @@
 				B430D7B923A911DE00C75C9C /* MyQOTAdminLocalNotificationSettings */,
 				B430D7BB23A911DE00C75C9C /* MyQOTAdminDCSixthQuestionSettings */,
 				B45DA6B323AA62F6006E7E33 /* MyQOTAdminChooseBuckets */,
+				B4BCD0DD23AB7CCA00B80747 /* MyQOTAdminEditSprints */,
 			);
 			path = MyQotAdminSettings;
 			sourceTree = "<group>";
@@ -4276,6 +4313,39 @@
 				B4AB48BF230BF982003B3C1F /* MyDataExplanationWorker.swift */,
 			);
 			path = MyDataExplanation;
+			sourceTree = "<group>";
+		};
+		B4BCD0DD23AB7CCA00B80747 /* MyQOTAdminEditSprints */ = {
+			isa = PBXGroup;
+			children = (
+				B4BCD0EE23AB857200B80747 /* MyQOTAdminEditSprintsDetails */,
+				B4BCD0E523AB7CD900B80747 /* MyQOTAdminEditSprintsConfigurator.swift */,
+				B4BCD0E323AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift */,
+				B4BCD0E123AB7CD900B80747 /* MyQOTAdminEditSprintsInterface.swift */,
+				B4BCD0E423AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift */,
+				B4BCD0DE23AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift */,
+				B4BCD0E023AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift */,
+				B4BCD0E223AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift */,
+				B4BCD0DF23AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift */,
+			);
+			path = MyQOTAdminEditSprints;
+			sourceTree = "<group>";
+		};
+		B4BCD0EE23AB857200B80747 /* MyQOTAdminEditSprintsDetails */ = {
+			isa = PBXGroup;
+			children = (
+				B4BCD0EF23AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift */,
+				B4BCD0F023AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift */,
+				B4BCD0F123AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift */,
+				B4BCD0F223AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift */,
+				B4BCD0F323AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift */,
+				B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */,
+				B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */,
+				B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */,
+				B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */,
+				B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */,
+			);
+			path = MyQOTAdminEditSprintsDetails;
 			sourceTree = "<group>";
 		};
 		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {
@@ -5620,6 +5690,7 @@
 				B4F39509232BA3570007AC51 /* WeatherHourlyView.xib in Resources */,
 				B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */,
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
+				B4CB855923AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
 				3850F9082336741B009EAA64 /* ResultsFeedback.storyboard in Resources */,
@@ -5927,6 +5998,7 @@
 				9CF8176223184A320024BCCE /* Level5ViewModel.swift in Sources */,
 				9CC4261C2306A49E00F8072E /* GuidedTrackRowCell.swift in Sources */,
 				DBA3921D23247B2D0017E7F6 /* QuestionnaireProtocols.swift in Sources */,
+				B4BCD0F923AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift in Sources */,
 				36EC23062323F45700DB5696 /* DTSprintInteractor.swift in Sources */,
 				36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
@@ -5994,6 +6066,7 @@
 				B45FB2152344F7B600A14F78 /* MyDataHeatMapLegendTableViewCell.swift in Sources */,
 				8D0B4D292301CC4000A1AC47 /* RegistrationNamesConfigurator.swift in Sources */,
 				B430D7D323A911DE00C75C9C /* MyQotAdminDCSixthQuestionSettingsViewController.swift in Sources */,
+				B4BCD0FB23AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift in Sources */,
 				7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */,
 				367CD18622EF4EDE00AF2187 /* OnboardingLoginConfigurator.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
@@ -6020,6 +6093,7 @@
 				F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */,
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				36B5BD2D23142B4A00439A64 /* AskPermissionWorker.swift in Sources */,
+				B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
@@ -6028,6 +6102,7 @@
 				BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */,
 				F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */,
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
+				B4BCD0ED23AB7CD900B80747 /* MyQOTAdminEditSprintsConfigurator.swift in Sources */,
 				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
 				B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */,
 				DB5121602331945F009BFF22 /* PreparationWithMissingEventInterface.swift in Sources */,
@@ -6046,6 +6121,7 @@
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
 				3666FD43232A4B7D00FC67D0 /* DTRecoveryRouter.swift in Sources */,
+				B4BCD0E723AB7CD900B80747 /* MyQOTAdminEditSprintsWorker.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
 				3658257A2327D19200AC3F4A /* DTShortTBVRouter.swift in Sources */,
 				B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */,
@@ -6093,6 +6169,7 @@
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
 				F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */,
+				B4BCD0FE23AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */,
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
@@ -6126,6 +6203,7 @@
 				8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */,
 				8D8AA76322FDCB6700B59A81 /* RegistrationConfigurator.swift in Sources */,
 				36EC23022323F45700DB5696 /* DTSprintWorker.swift in Sources */,
+				B4BCD0E923AB7CD900B80747 /* MyQOTAdminEditSprintsInterface.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
 				8D8AA76C22FDCB6700B59A81 /* RegistrationEmailViewController.swift in Sources */,
@@ -6345,6 +6423,7 @@
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				F902CF5122DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift in Sources */,
 				389BBC88235EE68B0009FA02 /* CoachMarksInterface.swift in Sources */,
+				B4BCD0FC23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift in Sources */,
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
 				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
 				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
@@ -6367,6 +6446,7 @@
 				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
 				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
 				B47953B3230AD512006EFE0F /* MyDataScreenInterface.swift in Sources */,
+				B4BCD0EA23AB7CD900B80747 /* MyQOTAdminEditSprintsViewController.swift in Sources */,
 				3655F2D82326EBD600334719 /* DTMindsetInteractor.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */,
@@ -6420,6 +6500,7 @@
 				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
 				38290B8C2330F825004B5C14 /* DTSprintReflection.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
+				B4BCD0E823AB7CD900B80747 /* MyQOTAdminEditSprintsRouter.swift in Sources */,
 				9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */,
 				B856B47F22B0E29D0017A249 /* MyLibraryUserStorageConfigurator.swift in Sources */,
 				9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */,
@@ -6591,6 +6672,7 @@
 				DB51215E2331945F009BFF22 /* PreparationWithMissingEventWorker.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportDetailsInterface.swift in Sources */,
+				B4BCD0FD23AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift in Sources */,
 				38290B892330F825004B5C14 /* DTSprintReflectionInterface.swift in Sources */,
 				367A58572326A15D0089A082 /* DTSolveViewController.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
@@ -6608,6 +6690,7 @@
 				369353A522983AB9008BBB72 /* PrepareResultsViewController.swift in Sources */,
 				F9D2BC2022D4968B00DBF2CC /* FromTignumCell.swift in Sources */,
 				B45DA6C323AA6316006E7E33 /* MyQOTAdminChooseBucketsConfigurator.swift in Sources */,
+				B4BCD0FA23AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
@@ -6777,12 +6860,15 @@
 				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
+				B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				B49EACCE2328EAE1006BA566 /* WeatherCell.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				B430D7F023A915ED00C75C9C /* MyQotAdminEnvironmentSettingsInteractor.swift in Sources */,
 				5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */,
+				B4BCD0EC23AB7CD900B80747 /* MyQOTAdminEditSprintsModel.swift in Sources */,
+				B4BCD0F723AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift in Sources */,
 				8D8AA76B22FDCB6700B59A81 /* RegistrationEmailWorker.swift in Sources */,
 				F98D8ECE22D3742F0072FC73 /* QuestionCell.swift in Sources */,
 				ACFB725222BB8126003D0BA3 /* CauseTableViewCell.swift in Sources */,
@@ -6811,6 +6897,8 @@
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				DB2969EE22C645FD00B8A590 /* AVPlayerViewController+BottomNavigation.swift in Sources */,
 				5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */,
+				B4BCD0F823AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift in Sources */,
+				B4BCD0EB23AB7CD900B80747 /* MyQOTAdminEditSprintsInteractor.swift in Sources */,
 				9CBFF845234CCD0200833AC2 /* AppText+Extensions.swift in Sources */,
 				36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */,
 			);

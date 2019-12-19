@@ -1,0 +1,19 @@
+//
+//  MyQOTAdminEditSprintsDetailsConfigurator.swift
+//  QOT
+//
+//  Created by Simu Voicu-Mircea on 19/12/2019.
+//  Copyright (c) 2019 Tignum. All rights reserved.
+//
+
+import Foundation
+
+final class MyQOTAdminEditSprintsDetailsConfigurator {
+    static func make() -> (MyQOTAdminEditSprintsDetailsViewController) -> Void {
+        return { (viewController) in
+            let presenter = MyQOTAdminEditSprintsDetailsPresenter(viewController: viewController)
+            let interactor = MyQOTAdminEditSprintsDetailsInteractor(presenter: presenter)
+            viewController.interactor = interactor
+        }
+    }
+}
