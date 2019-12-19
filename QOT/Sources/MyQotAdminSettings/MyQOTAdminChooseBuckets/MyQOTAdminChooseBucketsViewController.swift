@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyQOTAdminChooseBucketsViewController: UIViewController {
+final class MyQOTAdminChooseBucketsViewController: BaseViewController {
 
     // MARK: - Properties
     @IBOutlet private weak var tableView: UITableView!
@@ -42,6 +42,11 @@ final class MyQOTAdminChooseBucketsViewController: UIViewController {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
     }
+
+    @objc func doneAction() {
+        interactor.showSelectedBucketsInDailyBrief()
+        router.dismiss()
+    }
 }
 
 // MARK: - Private
@@ -66,17 +71,37 @@ private extension MyQOTAdminChooseBucketsViewController {
 // MARK: - TableView delegates
 extension MyQOTAdminChooseBucketsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return interactor.getDatasourceCount()
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
+        let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
+        let isSelected = interactor.isSelected(at: indexPath.row)
+        let checkMark = R.image.registration_checkmark()
+
+        cell.configure(title: interactor.getBucketTitle(at: indexPath.row),
+                       subtitle: nil)
+        cell.customAccessoryImageView.image = isSelected ? checkMark : nil
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        interactor.setSelected(!interactor.isSelected(at: indexPath.row),
+                               at: indexPath.row)
+        tableView.reloadData()
     }
 }
 
 // MARK: - MyQOTAdminChooseBucketsViewControllerInterface
 extension MyQOTAdminChooseBucketsViewController: MyQOTAdminChooseBucketsViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        let rightButtons = [roundedBarButtonItem(title: interactor.getDoneButtonTitle(),
+                                               buttonWidth: .Done,
+                                               action: #selector(doneAction),
+                                               backgroundColor: .carbon,
+                                               borderColor: .accent40)]
+        updateBottomNavigation([backNavigationItem()], rightButtons)
     }
 }

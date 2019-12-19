@@ -61,15 +61,14 @@ extension MyQotAdminLocalNotificationsInteractor: MyQotAdminLocalNotificationsIn
                     for deliveredNotification in deliveredNotifications where deliveredNotification.request.content.link() == link {
                         UNUserNotificationCenter.current().removeDeliveredNotifications(withIdentifiers: [deliveredNotification.request.identifier])
                     }
-                    let triggerDate = Date().addingTimeInterval(10)
-                    let type = "DEBUG_TEST:\(triggerDate):\(link)"
+                    let triggerDate = Date().addingTimeInterval(20)
                     // if it's valid sprint notification for today
                     let content = UNMutableNotificationContent(title: title,
                                                                body: body,
                                                                soundName: "QotNotification.aiff",
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
-                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: type,
+                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER,
                                                                                     date: triggerDate,
                                                                                     link: link)
                     UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { (_) in

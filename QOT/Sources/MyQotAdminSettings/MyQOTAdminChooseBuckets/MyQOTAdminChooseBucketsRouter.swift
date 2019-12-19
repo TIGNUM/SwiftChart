@@ -22,6 +22,6 @@ final class MyQOTAdminChooseBucketsRouter {
 // MARK: - MyQOTAdminChooseBucketsRouterInterface
 extension MyQOTAdminChooseBucketsRouter: MyQOTAdminChooseBucketsRouterInterface {
     func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
+        viewController?.navigationController?.popViewController(animated: true)
     }
 }
