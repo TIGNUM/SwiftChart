@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyQOTAdminEditSprintsDetailsViewControllerInterface: class {
     func setupView()
@@ -20,7 +21,10 @@ protocol MyQOTAdminEditSprintsDetailsInteractorInterface: Interactor {
     func getHeaderTitle() -> String
     func getDoneButtonTitle() -> String
     func getDatasourceCount() -> Int
-    func getDatasourceObject(at index: Int) -> (type: SprintSettingType, property: SprintProperty, value: Any)
+    func getDatasourceObject(at index: Int) -> SprintEditObject
+    func getSprint() -> QDMSprint
+    func editSprints(property: SprintEditObject)
+    func updateSprint(completion: @escaping () -> Void)
 }
 
 protocol MyQOTAdminEditSprintsDetailsRouterInterface {

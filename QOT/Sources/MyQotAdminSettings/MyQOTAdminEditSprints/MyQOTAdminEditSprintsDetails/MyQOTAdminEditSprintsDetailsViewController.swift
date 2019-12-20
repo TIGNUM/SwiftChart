@@ -39,8 +39,9 @@ final class MyQOTAdminEditSprintsDetailsViewController: UIViewController {
     }
 
     @objc func doneAction() {
-//        interactor.showSelectedBucketsInDailyBrief()
-        router.dismiss()
+        interactor.updateSprint(completion: { [weak self] in
+            self?.router.dismiss()
+        })
     }
 }
 
@@ -72,14 +73,19 @@ extension MyQOTAdminEditSprintsDetailsViewController: UITableViewDelegate, UITab
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQOTAdminEditSprintsDetailsTableViewCell = tableView.dequeueCell(for: indexPath)
         let datasourceObject = interactor.getDatasourceObject(at: indexPath.row)
-        let subtitle: String = "\(datasourceObject.value)"
-        cell.configure(title: datasourceObject.property.rawValue, subTitle: subtitle)
+        cell.configure(datasourceObject)
+        cell.delegate = self
         return cell
     }
 }
 
 // MARK: - MyQOTAdminEditSprintsDetailsViewControllerInterface
-extension MyQOTAdminEditSprintsDetailsViewController: MyQOTAdminEditSprintsDetailsViewControllerInterface {
+extension MyQOTAdminEditSprintsDetailsViewController: MyQOTAdminEditSprintsDetailsViewControllerInterface, MyQOTAdminEditSprintsDetailsTableViewCellDelegate {
+    func didChangeProperty(_ property: SprintEditObject?) {
+        guard let prop = property else { return }
+        interactor.editSprints(property: prop)
+    }
+
     func setupView() {
         let rightButtons = [roundedBarButtonItem(title: interactor.getDoneButtonTitle(),
                                                buttonWidth: .Done,

@@ -36,14 +36,15 @@ final class MyQOTAdminEditSprintsViewController: UIViewController {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView)
         setupTableView()
-        interactor.getSprints(completion: { [weak self] in
-            self?.tableView.reloadData()
-        })
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         ThemeView.level2.apply(UIApplication.shared.statusBarView ?? UIView())
+        setupView()
+        interactor.getSprints(completion: { [weak self] in
+            self?.tableView.reloadData()
+        })
     }
 }
 
@@ -87,5 +88,7 @@ extension MyQOTAdminEditSprintsViewController: UITableViewDelegate, UITableViewD
 
 // MARK: - MyQOTAdminEditSprintsViewControllerInterface
 extension MyQOTAdminEditSprintsViewController: MyQOTAdminEditSprintsViewControllerInterface {
-    func setupView() {}
+    func setupView() {
+        updateBottomNavigation([backNavigationItem()], [])
+    }
 }
