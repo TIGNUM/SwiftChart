@@ -20,10 +20,6 @@ final class MyQOTAdminEditSprintsDetailsViewController: UIViewController {
     private lazy var router: MyQOTAdminEditSprintsDetailsRouter! = MyQOTAdminEditSprintsDetailsRouter(viewController: self)
 
     // MARK: - Init
-    init(configure: Configurator<MyQOTAdminEditSprintsDetailsViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -75,21 +71,10 @@ extension MyQOTAdminEditSprintsDetailsViewController: UITableViewDelegate, UITab
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQOTAdminEditSprintsDetailsTableViewCell = tableView.dequeueCell(for: indexPath)
-//        let isSelected = interactor.isSelected(at: indexPath.row)
-        let checkMark = R.image.registration_checkmark()
-
-//        cell.configure(title: interactor.getBucketTitle(at: indexPath.row),
-//                       subtitle: nil)
-//        cell.customAccessoryImageView.image = isSelected ? checkMark : nil
-
+        let datasourceObject = interactor.getDatasourceObject(at: indexPath.row)
+        let subtitle: String = "\(datasourceObject.value)"
+        cell.configure(title: datasourceObject.property.rawValue, subTitle: subtitle)
         return cell
-    }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-//        interactor.setSelected(!interactor.isSelected(at: indexPath.row),
-//                               at: indexPath.row)
-        tableView.reloadData()
     }
 }
 

@@ -7,13 +7,13 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQOTAdminEditSprintsDetailsConfigurator {
-    static func make() -> (MyQOTAdminEditSprintsDetailsViewController) -> Void {
-        return { (viewController) in
-            let presenter = MyQOTAdminEditSprintsDetailsPresenter(viewController: viewController)
-            let interactor = MyQOTAdminEditSprintsDetailsInteractor(presenter: presenter)
-            viewController.interactor = interactor
-        }
+    static func configure(_ sprint: QDMSprint,
+                          _ viewController: MyQOTAdminEditSprintsDetailsViewController) {
+        let presenter = MyQOTAdminEditSprintsDetailsPresenter(viewController: viewController)
+        let interactor = MyQOTAdminEditSprintsDetailsInteractor(presenter: presenter, sprint: sprint)
+        viewController.interactor = interactor
     }
 }

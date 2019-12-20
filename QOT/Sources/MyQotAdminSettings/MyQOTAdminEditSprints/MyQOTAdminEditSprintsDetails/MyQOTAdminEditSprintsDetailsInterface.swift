@@ -20,6 +20,7 @@ protocol MyQOTAdminEditSprintsDetailsInteractorInterface: Interactor {
     func getHeaderTitle() -> String
     func getDoneButtonTitle() -> String
     func getDatasourceCount() -> Int
+    func getDatasourceObject(at index: Int) -> (type: SprintSettingType, property: SprintProperty, value: Any)
 }
 
 protocol MyQOTAdminEditSprintsDetailsRouterInterface {

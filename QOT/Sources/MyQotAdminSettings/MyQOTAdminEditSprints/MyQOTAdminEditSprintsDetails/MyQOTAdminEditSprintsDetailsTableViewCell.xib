@@ -54,7 +54,7 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="textField" destination="tLH-BW-bEi" id="rIm-8F-Llh"/>
+                <outlet property="detailTextField" destination="tLH-BW-bEi" id="1Kd-pr-62w"/>
                 <outlet property="titleLabel" destination="yXp-nR-oAi" id="IuI-4c-1A0"/>
             </connections>
             <point key="canvasLocation" x="176.08695652173915" y="-179.46428571428569"/>

@@ -12,11 +12,13 @@ import qot_dal
 final class MyQOTAdminEditSprintsDetailsInteractor {
 
     // MARK: - Properties
-    private lazy var worker = MyQOTAdminEditSprintsDetailsWorker()
+    private let sprint: QDMSprint
+    private lazy var worker = MyQOTAdminEditSprintsDetailsWorker(sprint: self.sprint)
     private let presenter: MyQOTAdminEditSprintsDetailsPresenterInterface!
 
     // MARK: - Init
-    init(presenter: MyQOTAdminEditSprintsDetailsPresenterInterface) {
+    init(presenter: MyQOTAdminEditSprintsDetailsPresenterInterface, sprint: QDMSprint) {
+        self.sprint = sprint
         self.presenter = presenter
     }
 
@@ -38,5 +40,9 @@ extension MyQOTAdminEditSprintsDetailsInteractor: MyQOTAdminEditSprintsDetailsIn
 
     func getDatasourceCount() -> Int {
         return worker.datasource.count
+    }
+
+    func getDatasourceObject(at index: Int) -> (type: SprintSettingType, property: SprintProperty, value: Any) {
+        return worker.datasource[index]
     }
 }

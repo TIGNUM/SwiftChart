@@ -27,6 +27,9 @@ extension MyQOTAdminEditSprintsRouter: MyQOTAdminEditSprintsRouterInterface {
     }
 
     func openSprintDetails(for sprint: QDMSprint) {
-
+        guard let sprintDetailsViewController = R.storyboard.myQot.myQotAdminEditSprintsDetailsID() else { return }
+        MyQOTAdminEditSprintsDetailsConfigurator.configure(sprint, sprintDetailsViewController)
+        viewController?.navigationController?.pushViewController(sprintDetailsViewController,
+                                                                 animated: true)
     }
 }

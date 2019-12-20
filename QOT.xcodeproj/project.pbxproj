@@ -4334,16 +4334,16 @@
 		B4BCD0EE23AB857200B80747 /* MyQOTAdminEditSprintsDetails */ = {
 			isa = PBXGroup;
 			children = (
-				B4BCD0EF23AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift */,
-				B4BCD0F023AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift */,
-				B4BCD0F123AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift */,
-				B4BCD0F223AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift */,
-				B4BCD0F323AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift */,
-				B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */,
-				B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */,
 				B4BCD0F623AB858000B80747 /* MyQOTAdminEditSprintsDetailsConfigurator.swift */,
-				B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */,
+				B4BCD0F423AB858000B80747 /* MyQOTAdminEditSprintsDetailsInteractor.swift */,
+				B4BCD0F223AB858000B80747 /* MyQOTAdminEditSprintsDetailsInterface.swift */,
+				B4BCD0F523AB858000B80747 /* MyQOTAdminEditSprintsDetailsModel.swift */,
+				B4BCD0EF23AB858000B80747 /* MyQOTAdminEditSprintsDetailsPresenter.swift */,
+				B4BCD0F123AB858000B80747 /* MyQOTAdminEditSprintsDetailsRouter.swift */,
+				B4BCD0F323AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift */,
+				B4BCD0F023AB858000B80747 /* MyQOTAdminEditSprintsDetailsWorker.swift */,
 				B4CB855A23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift */,
+				B4CB855823AB9F0600B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.xib */,
 			);
 			path = MyQOTAdminEditSprintsDetails;
 			sourceTree = "<group>";

@@ -8,11 +8,28 @@
 
 import UIKit
 
+protocol MyQOTAdminEditSprintsDetailsTableViewCellDelegate: class {
+    func textFieldDidEndEditing(withText: String?)
+}
+
 class MyQOTAdminEditSprintsDetailsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var textField: UITextField!
+    @IBOutlet weak var detailTextField: UITextField!
+    weak var delegate: MyQOTAdminEditSprintsDetailsTableViewCellDelegate?
 
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
+        detailTextField.delegate = self
+    }
+
+    func configure(title: String, subTitle: String) {
+        titleLabel.text = title
+        detailTextField.text = subTitle
+    }
+}
+
+extension MyQOTAdminEditSprintsDetailsTableViewCell: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.textFieldDidEndEditing(withText: textField.text)
     }
 }
