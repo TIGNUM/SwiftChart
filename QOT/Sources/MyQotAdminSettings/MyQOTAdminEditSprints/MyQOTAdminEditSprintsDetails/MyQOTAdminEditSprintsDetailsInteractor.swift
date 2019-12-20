@@ -51,48 +51,46 @@ extension MyQOTAdminEditSprintsDetailsInteractor: MyQOTAdminEditSprintsDetailsIn
     }
 
     func editSprints(property: SprintEditObject) {
-        let dateFormatter = DateFormatter()
-               dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
-               switch property.property {
-               case .nextDay:
-                    guard let value = property.value as? Date else { return }
-                    worker.sprint.nextDay = value
-               case .startDate:
-                    guard let value = property.value as? Date else { return }
-                    worker.sprint.startDate = value
-               case .pausedAt:
-                    guard let value = property.value as? Date else { return }
-                    worker.sprint.pausedAt = value
-               case .completedAt:
-                    guard let value = property.value as? Date else { return }
-                    worker.sprint.completedAt = value
-               case .title:
-                    guard let value = property.value as? String else { return }
-                    worker.sprint.title = value
-               case .subtitle:
-                    guard let value = property.value as? String else { return }
-                    worker.sprint.subtitle = value
-               case .sortOrder:
-                    guard let value = property.value as? Int else { return }
-                    worker.sprint.sortOrder = value
-               case .currentDay:
-                    guard let value = property.value as? Int else { return }
-                    worker.sprint.currentDay = value
-               case .notesReflection:
-                    guard let value = property.value as? String else { return }
-                    worker.sprint.notesReflection = value
-               case .notesLearnings:
-                    guard let value = property.value as? String else { return }
-                    worker.sprint.notesLearnings = value
-               case .notesBenefits:
-                    guard let value = property.value as? String else { return }
-                    worker.sprint.notesBenefits = value
-               case .isInProgress:
-                    guard let value = property.value as? Bool else { return }
-                    worker.sprint.isInProgress = value
-               case .completedDays:
-                    guard let value = property.value as? Int else { return }
-                    worker.sprint.completedDays = value
+       switch property.property {
+       case .nextDay:
+            guard let value = property.value as? Date else { return }
+            worker.sprint.nextDay = value
+       case .startDate:
+            guard let value = property.value as? Date else { return }
+            worker.sprint.startDate = value
+       case .pausedAt:
+            guard let value = property.value as? Date else { return }
+            worker.sprint.pausedAt = value
+       case .completedAt:
+            guard let value = property.value as? Date else { return }
+            worker.sprint.completedAt = value
+       case .title:
+            guard let value = property.value as? String else { return }
+            worker.sprint.title = value
+       case .subtitle:
+            guard let value = property.value as? String else { return }
+            worker.sprint.subtitle = value
+       case .sortOrder:
+            guard let value = property.value as? Int else { return }
+            worker.sprint.sortOrder = value
+       case .currentDay:
+            guard let value = property.value as? Int else { return }
+            worker.sprint.currentDay = value
+       case .notesReflection:
+            guard let value = property.value as? String else { return }
+            worker.sprint.notesReflection = value
+       case .notesLearnings:
+            guard let value = property.value as? String else { return }
+            worker.sprint.notesLearnings = value
+       case .notesBenefits:
+            guard let value = property.value as? String else { return }
+            worker.sprint.notesBenefits = value
+       case .isInProgress:
+            guard let value = property.value as? Bool else { return }
+            worker.sprint.isInProgress = value
+       case .completedDays:
+            guard let value = property.value as? Int else { return }
+            worker.sprint.completedDays = value
         }
     }
 

@@ -41,6 +41,9 @@
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="17"/>
                         <textInputTraits key="textInputTraits"/>
                     </textField>
+                    <switch hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dQE-dY-IWt">
+                        <rect key="frame" x="20" y="36" width="51" height="31"/>
+                    </switch>
                 </subviews>
                 <constraints>
                     <constraint firstItem="yXp-nR-oAi" firstAttribute="leading" secondItem="6o4-vC-dqD" secondAttribute="leading" constant="20" id="2nH-em-7qn"/>
@@ -48,12 +51,15 @@
                     <constraint firstItem="tLH-BW-bEi" firstAttribute="leading" secondItem="yXp-nR-oAi" secondAttribute="leading" id="Bzx-D0-hfV"/>
                     <constraint firstItem="yXp-nR-oAi" firstAttribute="top" secondItem="6o4-vC-dqD" secondAttribute="top" constant="10" id="DA0-IN-Ftz"/>
                     <constraint firstAttribute="trailing" secondItem="yXp-nR-oAi" secondAttribute="trailing" constant="24" id="MUm-op-xgb"/>
+                    <constraint firstItem="dQE-dY-IWt" firstAttribute="top" secondItem="yXp-nR-oAi" secondAttribute="bottom" constant="5" id="OMG-3A-zHU"/>
+                    <constraint firstItem="dQE-dY-IWt" firstAttribute="leading" secondItem="yXp-nR-oAi" secondAttribute="leading" id="SIR-3n-1sz"/>
                     <constraint firstItem="tLH-BW-bEi" firstAttribute="top" secondItem="yXp-nR-oAi" secondAttribute="bottom" constant="5" id="ULk-eU-Glk"/>
                     <constraint firstAttribute="bottom" secondItem="tLH-BW-bEi" secondAttribute="bottom" constant="12" id="bhf-hi-K0J"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
+                <outlet property="boolValueSwitch" destination="dQE-dY-IWt" id="FrC-ZU-kUE"/>
                 <outlet property="detailTextField" destination="tLH-BW-bEi" id="1Kd-pr-62w"/>
                 <outlet property="titleLabel" destination="yXp-nR-oAi" id="IuI-4c-1A0"/>
             </connections>

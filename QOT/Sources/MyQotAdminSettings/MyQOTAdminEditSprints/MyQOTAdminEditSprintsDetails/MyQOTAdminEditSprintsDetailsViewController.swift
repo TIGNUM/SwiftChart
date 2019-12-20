@@ -15,6 +15,9 @@ final class MyQOTAdminEditSprintsDetailsViewController: UIViewController {
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
+    let datePicker = UIDatePicker()
+    var currentTextField: UITextField?
+    var currentProperty: SprintEditObject?
 
     var interactor: MyQOTAdminEditSprintsDetailsInteractorInterface!
     private lazy var router: MyQOTAdminEditSprintsDetailsRouter! = MyQOTAdminEditSprintsDetailsRouter(viewController: self)
@@ -48,6 +51,8 @@ final class MyQOTAdminEditSprintsDetailsViewController: UIViewController {
 // MARK: - Private
 private extension MyQOTAdminEditSprintsDetailsViewController {
     func setupTableView() {
+        let tapGesture = UITapGestureRecognizer.init(target: self, action: #selector(didTap))
+        view.addGestureRecognizer(tapGesture)
         ThemeView.level2.apply(view)
         ThemeView.level2.apply(tableView)
         ThemeView.level2.apply(headerView)
@@ -60,7 +65,12 @@ private extension MyQOTAdminEditSprintsDetailsViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableHeaderView = UIView.headerView(with: .level2)
+        tableView.allowsSelection = false
         tableView.reloadData()
+    }
+
+    @objc func didTap() {
+        self.view.endEditing(true)
     }
 }
 
@@ -83,7 +93,49 @@ extension MyQOTAdminEditSprintsDetailsViewController: UITableViewDelegate, UITab
 extension MyQOTAdminEditSprintsDetailsViewController: MyQOTAdminEditSprintsDetailsViewControllerInterface, MyQOTAdminEditSprintsDetailsTableViewCellDelegate {
     func didChangeProperty(_ property: SprintEditObject?) {
         guard let prop = property else { return }
+        currentProperty = property
         interactor.editSprints(property: prop)
+    }
+
+    func didBegiEditing(cell: MyQOTAdminEditSprintsDetailsTableViewCell, _ property: SprintEditObject?) {
+        guard let value = property?.value as? Date else {
+            currentTextField?.inputAccessoryView = nil
+            currentTextField?.inputView = nil
+            return
+        }
+        currentProperty = property
+        currentTextField = cell.detailTextField
+        showDatePicker(withDate: value)
+    }
+
+    func showDatePicker(withDate: Date) {
+        datePicker.datePickerMode = .date
+        datePicker.date = withDate
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+
+        //done button & cancel button
+        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker))
+        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker))
+        toolbar.setItems([doneButton, spaceButton, cancelButton], animated: false)
+
+        currentTextField?.inputAccessoryView = toolbar
+        currentTextField?.inputView = datePicker
+    }
+
+    @objc func doneDatePicker() {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd/MM/yyyy"
+        currentTextField?.text = formatter.string(from: datePicker.date)
+        self.view.endEditing(true)
+        currentProperty?.value = datePicker.date
+        guard let property = currentProperty else { return }
+        interactor.editSprints(property: property)
+      }
+
+    @objc func cancelDatePicker() {
+        self.view.endEditing(true)
     }
 
     func setupView() {
