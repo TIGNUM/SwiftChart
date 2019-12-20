@@ -23,7 +23,6 @@ final class PaymentFooterView: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, buttonTitle: String?) {
-        ThemeText.paymentReminderCellSubtitle.apply(title, to: infoLabel)
         ThemableButton.paymentReminder.apply(contactButton, title: buttonTitle)
     }
 
