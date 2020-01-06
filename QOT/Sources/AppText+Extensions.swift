@@ -460,6 +460,7 @@ public extension AppTextKey {
         static let generic_payment_screen_section_one_subtitle_prepared = AppTextKey("generic.payment_screen.section_one.subtitle_prepared")
         static let generic_payment_screen_section_one_title_prepared = AppTextKey("generic.payment_screen.section_one.title_prepared")
         static let generic_payment_screen_section_three_title_grow = AppTextKey("generic.payment_screen.section_three.title_grow")
+        static let generic_payment_screen_view_title_own = AppTextKey("generic.payment_screen.view.title_own")
         static let generic_payment_screen_section_four_subtitle_data = AppTextKey("generic.payment_screen.section_four.subtitle_data")
         static let generic_payment_screen_section_two_subtitle_impact = AppTextKey("generic.payment_screen.section_two.subtitle_impact")
         static let generic_payment_screen_section_footer_subtitle_footer = AppTextKey("generic.payment_screen.section_footer.subtitle_footer")

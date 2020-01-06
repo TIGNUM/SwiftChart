@@ -46,7 +46,7 @@ final class PaymentReminderWorker {
         case .grow:
             return AppTextService.get(AppTextKey.generic_payment_screen_section_three_title_grow)
         case .data:
-            return AppTextService.get(AppTextKey.generic_payment_screen_expire_soon_section_header_title_header)
+            return AppTextService.get(AppTextKey.generic_payment_screen_view_title_own)
         case .switchAccount:
             return AppTextService.get(AppTextKey.generic_payment_screen_section_four_title_data)
         case .footer:
