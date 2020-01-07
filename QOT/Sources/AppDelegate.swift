@@ -209,6 +209,7 @@ private extension AppDelegate {
         let cache = ImageCache.default
         cache.memoryStorage.config.expiration = .days(1)
         cache.diskStorage.config.expiration = .days(30)
+        KingfisherManager.shared.downloader.downloadTimeout = 60
     }
 }
 
