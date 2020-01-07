@@ -19,12 +19,14 @@ enum ButtonItem {
     case cancel
     case done
     case save
+    case activate
 
     var title: String {
         switch self {
         case .cancel: return AppTextService.get(AppTextKey.generic_view_button_cancel)
         case .done: return AppTextService.get(AppTextKey.generic_view_button_done)
         case .save: return AppTextService.get(AppTextKey.generic_view_button_save)
+        case .activate: return AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_activate)
         }
     }
 
@@ -33,6 +35,7 @@ enum ButtonItem {
         case .cancel: return .Cancel
         case .done: return .Done
         case .save: return .Save
+        case .activate: return .Activate
         }
     }
 
@@ -41,6 +44,7 @@ enum ButtonItem {
         case .cancel: return .sand
         case .done: return .carbon
         case .save: return .carbon
+        case .activate: return .carbon
         }
     }
 
@@ -49,6 +53,7 @@ enum ButtonItem {
         case .cancel: return .accent40
         case .done: return .carbon
         case .save: return .carbon
+        case .activate: return .carbon
         }
     }
 }
@@ -84,7 +89,7 @@ enum ResultType {
         case .recoveryDecisionTree,
              .mindsetShifterDecisionTree,
              .prepareDecisionTree: return [.save, .cancel]
-        case .solveDecisionTree: return [.done]
+        case .solveDecisionTree: return [.activate]
         }
     }
 }
