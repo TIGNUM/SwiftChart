@@ -802,22 +802,16 @@ extension DailyBriefInteractor {
     // MARK: - Guided tour
     func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var guidedtrackList: [BaseDailyBriefViewModel] = []
-        let title = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_title") }
-            .first?.valueText
-        let intro = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_intro") }
-            .first?.valueText
-        let buttonTitle = guidedTrack.bucketText?.contentItems.filter { $0.searchTags.contains("bucket_cta") }
-            .first?.valueText
-
-        if let title = title, let intro = intro, let buttonTitle = buttonTitle {
-            guidedtrackList.append(GuidedTrackViewModel(bucketTitle: title,
-                                                        levelTitle: "",
-                                                        content: intro,
-                                                        buttonText: buttonTitle,
-                                                        type: GuidedTrackItemType.SECTION,
-                                                        appLink: nil,
-                                                        domain: guidedTrack))
-        }
+        let title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_title)
+        let intro = AppTextService.get(AppTextKey.daily_brief_section_guided_track_body)
+        let buttonTitle = AppTextService.get(AppTextKey.daily_brief_section_guided_track_button_get_to_know_qot)
+        guidedtrackList.append(GuidedTrackViewModel(bucketTitle: title,
+                                                    levelTitle: "",
+                                                    content: intro,
+                                                    buttonText: buttonTitle,
+                                                    type: GuidedTrackItemType.SECTION,
+                                                    appLink: nil,
+                                                    domain: guidedTrack))
 
         guard guidedClosedTrack == true else {
             return guidedtrackList
