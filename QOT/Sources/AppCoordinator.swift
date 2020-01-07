@@ -183,7 +183,7 @@ private extension AppCoordinator {
                 // CHANGE ME
                 self?.showSubscriptionReminder(isExpired: true)
             } else if userData?.subscriptionExpireSoon == true &&
-                        (lastShownDate == nil || lastShownDate?.isToday == false) {
+                (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
                 // CHANGE ME
                 self?.showSubscriptionReminder(isExpired: false)
