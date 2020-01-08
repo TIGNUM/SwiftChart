@@ -13,6 +13,7 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var subHeadingLabel: UILabel!
     @IBOutlet private weak var separator: UIView!
+    @IBOutlet weak var customAccessoryImageView: UIImageView!
     private let skeletonManager = SkeletonManager()
 
     override func awakeFromNib() {
@@ -23,14 +24,14 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
         skeletonManager.addSubtitle(subHeadingLabel)
     }
 
-    func configure(_ data: MyQotProfileModel.TableViewPresentationData?) {
-        guard let model = data else { return }
+    func configure(title: String?, subtitle: String?) {
+        guard let heading = title else { return }
         selectionStyle = .default
         let bkgdView = UIView(frame: self.bounds)
         ThemeView.level2Selected.apply(bkgdView)
         selectedBackgroundView = bkgdView
         skeletonManager.hide()
-        ThemeText.linkMenuItem.apply(model.heading, to: headingLabel)
-        ThemeText.linkMenuComment.apply(model.subHeading, to: subHeadingLabel)
+        ThemeText.linkMenuItem.apply(heading, to: headingLabel)
+        ThemeText.linkMenuComment.apply(subtitle, to: subHeadingLabel)
     }
 }
