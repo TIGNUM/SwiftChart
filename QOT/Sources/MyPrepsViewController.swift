@@ -230,7 +230,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetComment)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(viewModel.recoveryTitle, to: noRecoveryComment)
+        ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoveryComment)
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
