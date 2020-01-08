@@ -37,8 +37,7 @@ final class ExploreCell: BaseDailyBriefCell {
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(introText, to: baseHeaderView?.subtitleTextView)
-//        ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
-        ThemeText.strategyTitle.apply(("performance supplementation" ?? "").uppercased(), to: strategyTitleLabel)
+        ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: strategyTitleLabel)
         let exploreButtonText =  AppTextService.get(AppTextKey("daily_brief.section_explore.button"))
         exploreButton.setTitle(exploreButtonText, for: .normal)
         skeletonManager.hide()
