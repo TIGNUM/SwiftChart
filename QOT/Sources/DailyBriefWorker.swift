@@ -88,7 +88,7 @@ extension DailyBriefWorker {
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
-                }
+                })
             }
         })
     }
