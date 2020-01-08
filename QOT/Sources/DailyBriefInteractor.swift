@@ -816,10 +816,28 @@ extension DailyBriefInteractor {
         guard guidedClosedTrack == true else {
             return guidedtrackList
         }
+        let level1Title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_1_subtitle)
+        let level1Description = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_1_body)
+        let level1Cta = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_1_button)
+
+        let level2Tile = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_2_subtitle)
+        let level2Description = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_2_body)
+        let level2Cta = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_2_button)
+
+        let level3Title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_3_subtitle)
+        let level3Description = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_3_body)
+        let level3Cta = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_3_button)
+
+        let level4Title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_4_subtitle)
+        let level4Description = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_4_body)
+        let level4Cta = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_4_button)
+
+        let level5Title = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_5_subtitle)
+        let level5Description = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_5_body)
+        let level5Cta = AppTextService.get(AppTextKey.daily_brief_section_guided_track_section_step_5_button)
+
 
         guidedTrack.contentCollections?.forEach { (contentItem) in
-            let stepTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TITLE")}
-                .first?.valueText
             let levelTitle = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_TITLE")}
                 .first?.valueText
             let levelDescription = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_DESCRIPTION")}
@@ -827,21 +845,20 @@ extension DailyBriefInteractor {
             let levelCta = contentItem.contentItems.filter {$0.searchTags.contains("STEP_TASK_CTA")}
                 .first?.valueText
             let qdmAppLink = contentItem.links.first
+            let qdmAppLinks = contentItem.links
 
-            if let stepTitle = stepTitle,
-                let levelTitle = levelTitle,
+            if  let levelTitle = levelTitle,
                 let levelDescription = levelDescription,
                 let levelCta = levelCta,
                 let qdmAppLink = qdmAppLink {
 
-                guidedtrackList.append(GuidedTrackViewModel(bucketTitle: stepTitle,
+                guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "",
                                                             levelTitle: levelTitle,
                                                             content: levelDescription,
                                                             buttonText: levelCta,
                                                             type: GuidedTrackItemType.ROW,
                                                             appLink: qdmAppLink,
                                                             domain: guidedTrack))
-
             }
         }
         return guidedtrackList

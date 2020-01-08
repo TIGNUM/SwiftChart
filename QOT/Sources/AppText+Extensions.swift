@@ -135,8 +135,8 @@ public extension AppTextKey {
         static let daily_brief_section_good_to_know_title = AppTextKey("daily_brief.section_good_to_know.title")
         static let daily_brief_section_guided_track_title = AppTextKey("daily_brief.section_guided_track.title")
         static let daily_brief_section_guided_track_body = AppTextKey("daily_brief.section_guided_track.body")
-    
         static let daily_brief_section_guided_track_button_get_to_know_qot = AppTextKey("daily_brief.section_guided_track.button_get_to_know_qot")
+
         static let daily_brief_section_guided_track_section_step_1_body = AppTextKey("daily_brief.section_guided_track.section_step_1.body")
         static let daily_brief_section_guided_track_section_step_1_button = AppTextKey("daily_brief.section_guided_track.section_step_1.button")
         static let daily_brief_section_guided_track_section_step_1_subtitle = AppTextKey("daily_brief.section_guided_track.section_step_1.subtitle")
