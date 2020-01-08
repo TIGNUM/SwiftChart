@@ -48,12 +48,14 @@ extension DailyBriefWorker {
 
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
         questionService.question(with: 100360, in: .DailyCheckIn1) { (question) in
+        // FIXME: need to separate question and answers from daily-check-in.
             guard let question = question else { return }
-            let answers = question.answers.compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
-                return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
-                                                      title: qdmAnswer.title,
-                                                      subtitle: qdmAnswer.subtitle)
-            })
+            let answers = question.answers.sorted(by: { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 })
+                .compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
+                    return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
+                                                          title: qdmAnswer.title,
+                                                          subtitle: qdmAnswer.subtitle)
+                })
             let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
                                                          title: question.title,
                                                          htmlTitle: question.htmlTitleString ?? "",
@@ -82,11 +84,11 @@ extension DailyBriefWorker {
                 var updatedSetting = setting
                 //                    turning sleep target from an answer index to a number of hours per day
                 updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30))
-                self.settingService.updateSetting(updatedSetting) { (error) in
+                self.settingService.updateSetting(updatedSetting, true, {(error) in
                     if let error = error {
                         log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
                     }
-                }
+                })
             }
         })
     }

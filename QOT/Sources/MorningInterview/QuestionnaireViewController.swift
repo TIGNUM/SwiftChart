@@ -294,8 +294,8 @@ extension QuestionnaireViewController {
             bottomImageView.image = R.image.recoverSmall()
             topAndBottomImage(isHidden: false)
         case .peak?:
-            topImageView.image = R.image.taskBig()
-            bottomImageView.image = R.image.taskSmall()
+            topImageView.image = R.image.upcomingEventBig()
+            bottomImageView.image = R.image.upcomingEventSmall()
             topAndBottomImage(isHidden: false)
         default:
             topIndex.text = String(10)
