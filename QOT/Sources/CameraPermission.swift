@@ -16,7 +16,9 @@ class CameraPermission: PermissionInterface {
 
     func askPermission(completion: @escaping (Bool) -> Void) {
         AVCaptureDevice.requestAccess(for: .video) { granted in
-            completion(granted)
+            DispatchQueue.main.async {
+                completion(granted)
+            }
         }
     }
 }
