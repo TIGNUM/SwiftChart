@@ -757,13 +757,6 @@ extension DailyBriefInteractor {
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        if AppCoordinator.permissionsManager?.currentStatusFor(for: .location) == .granted &&
-            (weatherBucket?.weather?.currentTempInCelcius == nil ||
-                weatherBucket?.weather?.currentTempInFahrenheit == nil ||
-                weatherBucket?.weather?.forecast?.count == 0) {
-            return []
-        }
-
         let title = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_TITLE")
         }).first?.valueText ?? "BUCKET_TITLE"
