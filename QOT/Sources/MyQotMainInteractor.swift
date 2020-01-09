@@ -70,9 +70,9 @@ final class MyQotMainInteractor {
             var subtitleVision: String?
             if timeSinceMonth >= 3 {
                 item.showSubtitleInRed = true
-                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_more_than) + AppTextService.get(.my_qot_section_my_tbv_subtitle_months_since)
+                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_more_than)
             } else {
-                subtitleVision = AppTextService.get(AppTextKey.my_qot_section_my_tbv_subtitle_less_than_3_months)
+                subtitleVision = AppTextService.get(.my_qot_section_my_tbv_subtitle_less_than_3_months)
             }
             item.subtitle = subtitleVision ?? subtitles[MyQotSection.toBeVision.rawValue] ?? ""
             return [item]
