@@ -23,13 +23,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: - Properties
 
     var window: UIWindow?
-    private var unhandledShortCuts = [UIApplicationShortcutItem]()
-    lazy var locationManager = LocationManager()
     var backgroundCompletionHandler: (() -> Void)?
 
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler,
-                              locationManager: locationManager)
+        return AppCoordinator(remoteNotificationHandler: remoteNotificationHandler)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
         return RemoteNotificationHandler(launchHandler: launchHandler)

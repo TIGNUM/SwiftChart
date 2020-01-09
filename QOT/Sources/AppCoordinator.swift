@@ -24,7 +24,6 @@ final class AppCoordinator {
     private var isReadyToProcessURL = false
 
     private let remoteNotificationHandler: RemoteNotificationHandler
-    private let locationManager: LocationManager
     private var onDismiss: (() -> Void)?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
@@ -39,10 +38,8 @@ final class AppCoordinator {
 
     // MARK: - Life Cycle
 
-    init(remoteNotificationHandler: RemoteNotificationHandler,
-         locationManager: LocationManager) {
+    init(remoteNotificationHandler: RemoteNotificationHandler) {
         self.remoteNotificationHandler = remoteNotificationHandler
-        self.locationManager = locationManager
         userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
@@ -55,8 +52,6 @@ final class AppCoordinator {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(checkDeletedEventForPreparation(_:)),
                                                name: .needToCheckDeletedEventForPreparation, object: nil)
-
-        locationManager.startWeatherLocationMonitoring {_ in}
     }
 
     func start(completion: @escaping (() -> Void)) {
