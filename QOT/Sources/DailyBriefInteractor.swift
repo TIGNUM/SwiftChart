@@ -426,7 +426,7 @@ extension DailyBriefInteractor {
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
         if expendImpactReadiness {
-            var asteriskText: String? = impactReadiness.contentCollections?.filter {
+            let asteriskText: String? = impactReadiness.contentCollections?.filter {
                 $0.searchTags.contains("additional")
             }.first?.contentItems.first?.valueText
 

@@ -93,7 +93,7 @@ extension MyQotAdminDCSixthQuestionSettingsInteractor: MyQotAdminDCSixthQuestion
     func getSetting(at index: Int) -> [Int] {
         return worker.datasource[index]
     }
-    
+
     func getDatasourceCount() -> Int {
         return worker.datasource.count
     }

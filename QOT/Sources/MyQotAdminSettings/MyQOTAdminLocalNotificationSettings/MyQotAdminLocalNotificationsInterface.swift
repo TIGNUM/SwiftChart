@@ -25,7 +25,7 @@ protocol MyQotAdminLocalNotificationsInteractorInterface: Interactor {
     func scheduleNotification(title: String,
                               body: String,
                               link: String,
-                              completionHandler: @escaping () -> Void) 
+                              completionHandler: @escaping () -> Void)
 }
 
 protocol MyQotAdminLocalNotificationsRouterInterface {
