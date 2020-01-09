@@ -37,10 +37,6 @@ extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSourc
         return events.count
     }
 
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 95
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
         let event = events.at(index: indexPath.row)
