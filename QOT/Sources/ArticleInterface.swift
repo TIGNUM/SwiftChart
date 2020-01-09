@@ -58,7 +58,6 @@ protocol ArticleInteractorInterface: class, Interactor {
     func toggleBookmark()
 }
 
-protocol ArticleRouterInterface {
+protocol ArticleRouterInterface: BaseRouterInterface {
     func didTapLink(_ url: URL)
-    func openSupportEmailComposer(emailAdress: String?)
 }

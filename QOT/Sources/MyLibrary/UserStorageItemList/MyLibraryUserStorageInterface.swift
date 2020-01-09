@@ -46,8 +46,7 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     func clearCheckedItems()
 }
 
-protocol MyLibraryUserStorageRouterInterface {
-    func presentArticle(id: Int)
+protocol MyLibraryUserStorageRouterInterface: BaseRouterInterface {
     func presentVideo(url: URL, item: QDMContentItem?)
     func presentExternalUrl(_ url: URL)
     func presentCreateNote(noteId: String?)

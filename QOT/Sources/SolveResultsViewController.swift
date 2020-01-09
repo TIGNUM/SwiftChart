@@ -13,8 +13,8 @@ import qot_dal
 final class SolveResultsViewController: BaseWithTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    private lazy var router: SolveResultsRouterInterface? = SolveResultsRouter(viewController: self)
-    var interactor: SolveResultsInteractorInterface?
+    private lazy var router: SolveResultsRouterInterface = SolveResultsRouter(viewController: self)
+    var interactor: SolveResultsInteractorInterface!
     var resultDelegate: DTRouterInterface?
     private var rightBarItems: [UIBarButtonItem] = []
     private var resultViewModel: SolveResult?
@@ -32,7 +32,7 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -45,24 +45,24 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
 private extension SolveResultsViewController {
     @objc func didTapDone() {
         trackUserEvent(.CLOSE, action: .TAP)
-        switch interactor?.resultType {
-        case .recoveryDecisionTree?,
-             .recoveryMyPlans?: router?.dismiss()
-        case .solveDailyBrief?,
-             .solveDecisionTree?: handleDidTapDoneSolve()
+        switch interactor.resultType {
+        case .recoveryDecisionTree,
+             .recoveryMyPlans: router.dismissChatBotFlow()
+        case .solveDailyBrief,
+             .solveDecisionTree: handleDidTapDoneSolve()
         default: break
         }
     }
 
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
-        interactor?.deleteRecovery()
+        interactor.deleteRecovery()
         resultDelegate?.goBackToSolveResult()
     }
 
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        router?.presentFeedback()
+        router.presentFeedback()
     }
 
     func handleDidTapDoneSolve() {
@@ -70,14 +70,14 @@ private extension SolveResultsViewController {
         case (.solveDecisionTree?, true): saveSolveAndDismiss()
         case (.solveDecisionTree?, false): showAlert()
         case (.solveDailyBrief?, false): showAlert()
-        case (.solveDailyBrief?, true): router?.dismiss()
+        case (.solveDailyBrief?, true): router.dismissChatBotFlow()
         default: return
         }
     }
 
     func saveSolveAndDismiss() {
-        interactor?.save(solveFollowUp: isFollowUpActive)
-        router?.dismiss()
+        interactor.save(solveFollowUp: isFollowUpActive)
+        router.dismissChatBotFlow()
     }
 
     func showAlert() {
@@ -86,7 +86,7 @@ private extension SolveResultsViewController {
             if self?.resultViewModel?.type == .solveDecisionTree {
                 self?.saveSolveAndDismiss()
             } else {
-                self?.router?.dismiss()
+                self?.router.dismissChatBotFlow()
             }
         }
         let leave = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_continue)) { [weak self] _ in
@@ -145,10 +145,10 @@ extension SolveResultsViewController: UITableViewDelegate {
         switch resultViewModel?.items[indexPath.row] {
         case .strategy(let id, _, _, _, _)?,
              .exclusiveContent(let id, _, _, _, _)?:
-            router?.openContent(with: id)
+            router.presentContent(id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         case .strategyContentItem(let id, _, _, _, _)?:
-            router?.openContentItem(with: id)
+            router.presentContentItem(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT_ITEM, action: .TAP)
         default:
             tableView.isUserInteractionEnabled = true
@@ -216,10 +216,10 @@ extension SolveResultsViewController: UITableViewDataSource {
 extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
     func didTapStart(_ type: SolveTriggerType) {
         trackUserEvent(.SELECT, valueType: "START \(type.rawValue)", action: .TAP)
-        interactor?.save(solveFollowUp: isFollowUpActive)
+        interactor.save(solveFollowUp: isFollowUpActive)
         switch type {
-        case .midsetShifter: router?.openMindsetShifter()
-        case .recoveryPlaner: router?.openRecovery()
+        case .midsetShifter: router.openMindsetShifter()
+        case .recoveryPlaner: router.openRecovery()
         default: break
         }
     }

@@ -60,7 +60,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func presentRelatedArticle(readMoreID: Int) {
-        router.presentRelatedArticle(readMoreID: readMoreID)
+        router.presentContent(readMoreID)
     }
 
     func presentEditStrategyView() {

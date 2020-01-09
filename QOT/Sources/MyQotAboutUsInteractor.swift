@@ -42,7 +42,7 @@ extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
         return worker.itemCount()
     }
 
-    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem? {
+    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.Item? {
         return worker.item(at: indexPath)
     }
 
@@ -54,7 +54,7 @@ extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
         return worker.title(at: indexPath)
     }
 
-    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+    func contentCollection(item: MyQotAboutUsModel.Item, _ completion: @escaping(QDMContentCollection?) -> Void) {
         worker.contentCollection(item: item) { (collection) in
             completion(collection)
         }

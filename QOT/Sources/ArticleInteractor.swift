@@ -109,7 +109,8 @@ extension ArticleInteractor: ArticleInteractorInterface {
     }
 
     func openEmailComposer() {
-        router.openSupportEmailComposer(emailAdress: worker.contactSupportItems.first?.content)
+        let receipients = [worker.contactSupportItems.first?.content ?? Defaults.firstLevelSupportEmail]
+        router.presentMailComposer(recipients: receipients, subject: "ID: Support")
     }
 
     func markArticleAsRead(_ read: Bool, completion: @escaping () -> Void) {

@@ -7,15 +7,14 @@
 //
 
 import UIKit
-import MessageUI
 
 final class RegistrationCodeViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    private let helpEmail = Defaults.firstLevelSupportEmail
     private let viewTheme = ThemeView.onboarding
 
     var interactor: RegistrationCodeInteractorInterface!
+    private lazy var router: RegistrationCodeRouterInterface = RegistrationCodeRouter(viewController: self)
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var descriptionLabel: UILabel!
     @IBOutlet private weak var preCodeLabel: UILabel!
@@ -79,14 +78,7 @@ private extension RegistrationCodeViewController {
     }
 
     func sendEmail() {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            return
-        }
-
-        let mail = MFMailComposeViewController()
-        mail.mailComposeDelegate = self
-        mail.setToRecipients([helpEmail])
-        present(mail, animated: true)
+        router.presentMailComposer(recipients: [Defaults.firstLevelSupportEmail], subject: "ID: Support")
     }
 
     func updateCodeDefaultUI() {

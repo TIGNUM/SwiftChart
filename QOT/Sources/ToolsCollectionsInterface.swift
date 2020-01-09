@@ -33,10 +33,8 @@ protocol ToolsCollectionsInteractorInterface: Interactor {
     func presentDTRecovery()
 }
 
-protocol ToolsCollectionsRouterInterface {
+protocol ToolsCollectionsRouterInterface: BaseRouterInterface {
     func presentToolsItems(selectedToolID: Int?)
-    func presentDTMindetShifter()
-    func presentDTRecovery()
 }
 
 protocol ToolsCollectionsWorkerInterface {

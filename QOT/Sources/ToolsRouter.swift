@@ -11,21 +11,18 @@ import UIKit
 final class ToolsRouter {
 
     // MARK: - Properties
-
     private weak var viewController: ToolsViewController?
 
     // MARK: - Init
-
     init(viewController: ToolsViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - ToolsRouterInterface
-
 extension ToolsRouter: ToolsRouterInterface {
     func presentToolsCollections(selectedToolID: Int?) {
         viewController?.performSegue(withIdentifier: R.segue.toolsViewController.toolsCollectionsSegueIdentifier,
-                                    sender: selectedToolID)
+                                     sender: selectedToolID)
     }
 }

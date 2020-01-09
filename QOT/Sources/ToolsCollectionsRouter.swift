@@ -8,33 +8,22 @@
 
 import UIKit
 
-final class ToolsCollectionsRouter {
+final class ToolsCollectionsRouter: BaseRouter {
 
     // MARK: - Properties
-    private weak var viewController: ToolsCollectionsViewController?
+    private weak var toolsViewController: ToolsCollectionsViewController?
 
     // MARK: - Init
     init(viewController: ToolsCollectionsViewController) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.toolsViewController = viewController
     }
 }
 
 // MARK: - CoachRouterInterface
 extension ToolsCollectionsRouter: ToolsCollectionsRouterInterface {
     func presentToolsItems(selectedToolID: Int?) {
-        viewController?.performSegue(withIdentifier: R.segue.toolsCollectionsViewController.collectionsItemsSegueIdentifier,
-                                     sender: selectedToolID)
-    }
-
-    func presentDTRecovery() {
-        let configurator = DTRecoveryConfigurator.make()
-        let controller = DTRecoveryViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
-    }
-
-    func presentDTMindetShifter() {
-        let configurator = DTMindsetConfigurator.make()
-        let controller = DTMindsetViewController(configure: configurator)
-        viewController?.present(controller, animated: true)
+        toolsViewController?.performSegue(withIdentifier: R.segue.toolsCollectionsViewController.collectionsItemsSegueIdentifier,
+                                          sender: selectedToolID)
     }
 }

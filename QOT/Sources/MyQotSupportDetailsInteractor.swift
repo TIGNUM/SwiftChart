@@ -12,13 +12,11 @@ import qot_dal
 final class MyQotSupportDetailsInteractor {
 
     // MARK: - Properties
-
     private let worker: MyQotSupportDetailsWorker
     private let presenter: MyQotSupportDetailsPresenterInterface
     private let router: MyQotSupportDetailsRouterInterface
 
     // MARK: - Init
-
     init(worker: MyQotSupportDetailsWorker,
          presenter: MyQotSupportDetailsPresenterInterface,
          router: MyQotSupportDetailsRouterInterface) {
@@ -28,7 +26,6 @@ final class MyQotSupportDetailsInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         worker.fetchItems {[weak self] in
             self?.presenter.setupView()
@@ -62,6 +59,6 @@ extension MyQotSupportDetailsInteractor: MyQotSupportDetailsInteractorInterface 
     }
 
     func presentContentItemSettings(contentID: Int) {
-        router.presentContentItemSettings(contentID: contentID)
+        router.presentContent(contentID)
     }
 }

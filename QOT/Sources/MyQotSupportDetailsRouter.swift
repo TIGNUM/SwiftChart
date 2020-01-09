@@ -8,26 +8,6 @@
 
 import Foundation
 
-final class MyQotSupportDetailsRouter {
-    // MARK: - Properties
+final class MyQotSupportDetailsRouter: BaseRouter, MyQotSupportDetailsRouterInterface {
 
-    private weak var viewController: MyQotSupportDetailsViewController?
-
-    // MARK: - Init
-
-    init(viewController: MyQotSupportDetailsViewController) {
-        self.viewController = viewController
-    }
-}
-
-extension MyQotSupportDetailsRouter: MyQotSupportDetailsRouterInterface {
-
-    func presentContentItemSettings(contentID: Int) {
-        guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
-            assertionFailure("Failed to initialize `ArticleViewController`")
-            return
-        }
-        ArticleConfigurator.configure(selectedID: contentID, viewController: articleViewController)
-        viewController?.present(articleViewController, animated: true, completion: nil)
-    }
 }

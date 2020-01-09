@@ -11,18 +11,15 @@ import UIKit
 final class ChoiceRouter {
 
     // MARK: - Properties
-
     private weak var viewController: ChoiceViewController?
 
     // MARK: - Init
-
     init(viewController: ChoiceViewController) {
         self.viewController = viewController
     }
 }
 
 // MARK: - ChoiceRouterInterface
-
 extension ChoiceRouter: ChoiceRouterInterface {
 
 }

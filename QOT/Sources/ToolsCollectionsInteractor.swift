@@ -78,11 +78,11 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     }
 
     func presentDTMindetShifter() {
-        router.presentDTMindetShifter()
+        router.presentMindsetShifter()
     }
 
     func presentDTRecovery() {
-        router.presentDTRecovery()
+        router.presentRecovery()
     }
 }
 

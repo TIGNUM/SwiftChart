@@ -25,10 +25,9 @@ protocol SolveResultsInteractorInterface: Interactor {
     func deleteRecovery()
 }
 
-protocol SolveResultsRouterInterface {
-    func dismiss()
-    func openContent(with id: Int)
-    func openContentItem(with id: Int)
+protocol SolveResultsRouterInterface: BaseRouterInterface {
+//    func openContent(with id: Int)
+//    func openContentItem(with id: Int)
     func openVisionGenerator()
     func openMindsetShifter()
     func openRecovery()

@@ -8,27 +8,7 @@
 
 import Foundation
 
-class DTRouter {
-
-    // MARK: - Properties
-    weak var viewController: DTViewController?
-
-    // MARK: - Init
-    init(viewController: DTViewController?) {
-        self.viewController = viewController
-    }
-}
-
-// MARK: - DTRouterInterface
-extension DTRouter: DTRouterInterface {
-    @objc func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func dismissChatBotFlow() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
-    }
-
+class DTRouter: BaseRouter, DTRouterInterface {
     func goBackToSolveResult() {
         if let pageViewController = viewController?.childViewControllers.first as? UIPageViewController {
             pageViewController.childViewControllers.forEach { (viewController) in
@@ -36,13 +16,5 @@ extension DTRouter: DTRouterInterface {
             }
         }
         viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func presentContent(_ contentId: Int) {
-        AppDelegate.current.launchHandler.showContentCollection(contentId)
-    }
-
-    func playMediaItem(_ contentItemId: Int) {
-        AppDelegate.current.launchHandler.showContentItem(contentItemId)
     }
 }

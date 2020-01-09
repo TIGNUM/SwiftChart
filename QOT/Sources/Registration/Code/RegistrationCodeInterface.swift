@@ -42,8 +42,5 @@ protocol RegistrationCodeInteractorInterface: Interactor {
     func showFAQScreen()
 }
 
-protocol RegistrationCodeRouterInterface {
-    func showPrivacyPolicy()
-    func showTermsOfUse()
-    func showFAQScreen()
+protocol RegistrationCodeRouterInterface: BaseRouterInterface {
 }

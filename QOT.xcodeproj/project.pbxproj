@@ -289,6 +289,7 @@
 		38532AB4236C355600155643 /* walkThrough_know.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 38532AB3236C355600155643 /* walkThrough_know.mp4 */; };
 		385449A8234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */; };
 		385449AB234C5A0900A4BB3E /* WorkerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */; };
+		3876051023A266D30034B451 /* BaseRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3876050F23A266D30034B451 /* BaseRouter.swift */; };
 		389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */; };
 		389BBC86235EE68B0009FA02 /* CoachMarksWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */; };
 		389BBC87235EE68B0009FA02 /* CoachMarksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */; };
@@ -1525,6 +1526,7 @@
 		38532AB3236C355600155643 /* walkThrough_know.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = walkThrough_know.mp4; sourceTree = "<group>"; };
 		385449A7234C27AC00A4BB3E /* QDMUserCalendarEvent+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Equatable.swift"; sourceTree = "<group>"; };
 		385449AA234C5A0900A4BB3E /* WorkerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkerCalendar.swift; sourceTree = "<group>"; };
+		3876050F23A266D30034B451 /* BaseRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseRouter.swift; sourceTree = "<group>"; };
 		389BBC7D235EE68B0009FA02 /* CoachMarksPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksPresenter.swift; sourceTree = "<group>"; };
 		389BBC7E235EE68B0009FA02 /* CoachMarksWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksWorker.swift; sourceTree = "<group>"; };
 		389BBC7F235EE68B0009FA02 /* CoachMarksRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksRouter.swift; sourceTree = "<group>"; };
@@ -2873,6 +2875,7 @@
 			isa = PBXGroup;
 			children = (
 				367BB013223956A700282AB6 /* Main.storyboard */,
+				3876050F23A266D30034B451 /* BaseRouter.swift */,
 				BB157759233A0E0500202978 /* BaseViewController.swift */,
 				3608381D225F3E9E00664B9B /* Article */,
 				36B5BD152314295E00439A64 /* AskPermission */,
@@ -3405,13 +3408,13 @@
 		7582617322DCA000000094DE /* DailyCheckinQuestions */ = {
 			isa = PBXGroup;
 			children = (
-				7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */,
-				7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */,
-				7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */,
-				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
-				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
-				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
 				7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */,
+				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
+				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
+				7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */,
+				7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */,
+				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
+				7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */,
 			);
 			name = DailyCheckinQuestions;
 			sourceTree = "<group>";
@@ -6135,6 +6138,7 @@
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
 				B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
+				3876051023A266D30034B451 /* BaseRouter.swift in Sources */,
 				389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */,

@@ -42,18 +42,14 @@ protocol DailyBriefInteractorInterface: Interactor {
     func updateDailyBriefBucket()
 }
 
-protocol DailyBriefRouterInterface {
+protocol DailyBriefRouterInterface: BaseRouterInterface {
     func presentCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
-    func presentStrategyList(strategyID: Int?)
-    func presentToolsItems(toolID: Int?)
-    func presentWhatsHotArticle(articleID: Int?)
     func presentCopyRight(copyrightURL: String?)
     func presentSolveResults(solve: QDMSolve)
     func presentPrepareResults(for preparation: QDMUserPreparation?)
     func presentDailyCheckInQuestions()
     func presentCoachPreparation()
 
-    func showMyToBeVision()
     func showMyDataScreen()
 
     func launchAppLinkGuidedTrack(_ appLink: QDMAppLink?)

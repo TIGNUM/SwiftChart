@@ -279,7 +279,7 @@ extension MyLibraryUserStorageInteractor {
         switch item.type {
         case .EXTERNAL_LINK:
             guard let url = item.mediaURL else {
-                qot_dal.log("Missing URL for bookmarked EXTERNAL_LINK", level: .error)
+                log("Missing URL for bookmarked EXTERNAL_LINK", level: .error)
                 return false
             }
             router.presentExternalUrl(url)
@@ -297,13 +297,13 @@ extension MyLibraryUserStorageInteractor {
     private func handleMedia(for item: MyLibraryCellViewModel) -> Bool {
         switch item.cellType {
         case .ARTICLE:
-            router.presentArticle(id: item.remoteId)
+            router.presentContent(item.remoteId)
         case .VIDEO:
             guard let url = item.mediaURL else {
                 assertionFailure("Cannot play video; missing URL")
                 return false
             }
-            qot_dal.ContentService.main.getContentItemById(item.remoteId) { [weak self] (item) in
+            ContentService.main.getContentItemById(item.remoteId) { [weak self] (item) in
                 self?.router.presentVideo(url: url, item: item)
             }
 
