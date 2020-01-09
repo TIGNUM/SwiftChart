@@ -781,12 +781,15 @@ extension DailyBriefInteractor {
             $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
         }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
 
+        let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,
                                             intro: intro,
                                             requestLocationPermissionDescription: requestLocationPermissionDescription,
                                             requestLocationPermissionButtonTitle: requestLocationPermissionButtonTitle,
                                             deniedLocationPermissionDescription: deniedLocationPermissionDescription,
                                             deniedLocationPermissionButtonTitle: deniedLocationPermissionButtonTitle,
+                                            locationName: weatherBucket?.weather?.locationName,
+                                            locationPermissionStatus: locationPermission,
                                             domain: weatherBucket))
 
         return weatherList

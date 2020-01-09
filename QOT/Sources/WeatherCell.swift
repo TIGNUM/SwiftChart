@@ -61,16 +61,15 @@ final class WeatherCell: BaseDailyBriefCell {
 
     // MARK: - Actions
     @IBAction func didTapAllowAccessButton(_ sender: Any) {
-        viewModel?.requestLocationPermission { [weak self] (status) in
+        AppCoordinator.permissionsManager?.askPermission(for: .location) { [weak self] (status) in
+            guard let status = status[.location] else { return }
             switch status {
             case .denied:
                 UIApplication.openAppSettings()
             default:
-                self?.viewModel?.requestLocationPermission(completion: { [weak self] (status) in
-                    let granted = (status == .granted)
-                    self?.delegate?.didChangeLocationPermission(granted: granted)
-                    granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
-                })
+                let granted = (status == .granted)
+                self?.delegate?.didChangeLocationPermission(granted: granted)
+                granted ? self?.startSkeleton() : self?.setupUIAccordingToLocationPermissions()
             }
         }
     }
