@@ -77,6 +77,7 @@ final class PermissionsManager {
     }
 
     func currentStatusFor(for permissionType: Permission.Identifier) -> PermissionsManager.AuthorizationStatus {
+        lastKnownAuthorizationStatusDescriptions = fetchDescriptions()
         return lastKnownAuthorizationStatusDescriptions[permissionType] ?? .notDetermined
     }
 

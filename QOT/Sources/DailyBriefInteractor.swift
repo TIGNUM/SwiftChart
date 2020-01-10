@@ -426,7 +426,7 @@ extension DailyBriefInteractor {
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
         if expendImpactReadiness {
-            var asteriskText: String? = impactReadiness.contentCollections?.filter {
+            let asteriskText: String? = impactReadiness.contentCollections?.filter {
                 $0.searchTags.contains("additional")
             }.first?.contentItems.first?.valueText
 
@@ -757,13 +757,6 @@ extension DailyBriefInteractor {
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        if AppCoordinator.permissionsManager?.currentStatusFor(for: .location) == .granted &&
-            (weatherBucket?.weather?.currentTempInCelcius == nil ||
-                weatherBucket?.weather?.currentTempInFahrenheit == nil ||
-                weatherBucket?.weather?.forecast?.count == 0) {
-            return []
-        }
-
         let title = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_TITLE")
         }).first?.valueText ?? "BUCKET_TITLE"
@@ -788,12 +781,15 @@ extension DailyBriefInteractor {
             $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
         }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
 
+        let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,
                                             intro: intro,
                                             requestLocationPermissionDescription: requestLocationPermissionDescription,
                                             requestLocationPermissionButtonTitle: requestLocationPermissionButtonTitle,
                                             deniedLocationPermissionDescription: deniedLocationPermissionDescription,
                                             deniedLocationPermissionButtonTitle: deniedLocationPermissionButtonTitle,
+                                            locationName: weatherBucket?.weather?.locationName,
+                                            locationPermissionStatus: locationPermission,
                                             domain: weatherBucket))
 
         return weatherList

@@ -86,7 +86,8 @@ final class DailyCheckinQuestionsWorker {
                 keysToFilter.contains(obj: $0.key) != true && $0.key != dailyCheckInIntroQuestionKey
             }.compactMap { (question) -> RatingQuestionViewModel.Question? in
                 guard let remoteID = question.remoteID else { return nil }
-                let answers = question.answers.compactMap({ (answer) -> RatingQuestionViewModel.Answer in
+                let answers = question.answers.sorted(by: { $0.sortOrder ?? 0 > $1.sortOrder ?? 0 })
+                    .compactMap({ (answer) -> RatingQuestionViewModel.Answer in
                     return RatingQuestionViewModel.Answer(remoteID: answer.remoteID,
                                                           title: answer.title,
                                                           subtitle: answer.subtitle)

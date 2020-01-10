@@ -28,9 +28,8 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
     var requestLocationPermissionButtonTitle: String?
     var deniedLocationPermissionDescription: String?
     var deniedLocationPermissionButtonTitle: String?
-    var locationPermissionStatus: PermissionsManager.AuthorizationStatus = .notDetermined
+    var locationPermissionStatus: PermissionsManager.AuthorizationStatus
     var locationName: String?
-    let permissionsManager: PermissionsManager? = AppCoordinator.permissionsManager
 
     // MARK: - Init
     internal init(bucketTitle: String = "",
@@ -39,6 +38,8 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
                   requestLocationPermissionButtonTitle: String?,
                   deniedLocationPermissionDescription: String?,
                   deniedLocationPermissionButtonTitle: String?,
+                  locationName: String?,
+                  locationPermissionStatus: PermissionsManager.AuthorizationStatus,
                   domain: QDMDailyBriefBucket?) {
         self.bucketTitle = bucketTitle
         self.intro = intro
@@ -46,18 +47,9 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
         self.requestLocationPermissionButtonTitle = requestLocationPermissionButtonTitle
         self.deniedLocationPermissionDescription = deniedLocationPermissionDescription
         self.deniedLocationPermissionButtonTitle = deniedLocationPermissionButtonTitle
+        self.locationName = locationName
+        self.locationPermissionStatus = locationPermissionStatus
         super.init(domain)
-        updatePermissionStatus()
-        updateLocationName()
-    }
-
-    private func updatePermissionStatus() {
-        locationPermissionStatus = permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
-    }
-
-    private func updateLocationName() {
-        guard let name = AppDelegate.current.locationManager.currentLocalityName else { return }
-        locationName = name
     }
 
     override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
@@ -75,15 +67,5 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             domainModel?.weather?.currentDate == source.domainModel?.weather?.currentDate &&
             domainModel?.weather?.currentTempInCelcius == source.domainModel?.weather?.currentTempInCelcius
 
-    }
-
-    public func requestLocationPermission(completion: @escaping (PermissionsManager.AuthorizationStatus) -> Void ) {
-        permissionsManager?.askPermission(for: .location) { [weak self] (status) in
-            guard let strongSelf = self,
-                let status = status[.location]
-                else { return }
-            strongSelf.locationPermissionStatus = status
-            completion(status)
-        }
     }
 }

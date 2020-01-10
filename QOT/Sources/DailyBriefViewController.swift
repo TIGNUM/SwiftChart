@@ -692,7 +692,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func didChangeLocationPermission(granted: Bool) {
         if granted {
-            AppDelegate.current.locationManager.startWeatherLocationMonitoring { (_) in }
+            requestSynchronization(.DAILY_BRIEF_WEATHER, .DOWN_SYNC)
         }
     }
 
