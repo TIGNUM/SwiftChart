@@ -411,25 +411,23 @@ extension DailyBriefInteractor {
                                                                      isExpanded: expendImpactReadiness,
                                                                      enableButton: enableButton,
                                                                      domainModel: impactReadiness))
-        let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
+//
+        let howYouFeelToday = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer)
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
         let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
-        let sleepQualityReference = impactReadiness.dailyCheckInResult?.sleepQualityReference ?? 0
-        let loadReference = impactReadiness.dailyCheckInResult?.loadReference ?? 0
-        let futureLoadReference = impactReadiness.dailyCheckInResult?.futureLoadReference ?? 0
-
+        let sleepQualityReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_number_ref)
+        let loadReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_label_ref)
+        let futureLoadReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_number_ref)
+//
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
                                                                             subTitle: collection.contentItems.first?.valueText))
         }
         if expendImpactReadiness {
-            let asteriskText: String? = impactReadiness.contentCollections?.filter {
-                $0.searchTags.contains("additional")
-            }.first?.contentItems.first?.valueText
-
+            let asteriskText = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_body_missing_five_days_data)
             let hasFullLoadData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForLoad
             let hasFullSleepQuantityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuantity
             let hasFullSleepQualityData = impactReadiness.dailyCheckInResult?.hasFiveDaysDataForSleepQuality
@@ -444,9 +442,9 @@ extension DailyBriefInteractor {
                                                                           hasFiveDayLoadValue: hasFullLoadData,
                                                                           futureLoadValue: futureLoad,
                                                                           targetSleepQuantity: targetSleepQuantity,
-                                                                          sleepQualityReference: sleepQualityReference,
-                                                                          loadReference: loadReference,
-                                                                          futureLoadReference: futureLoadReference,
+                                                                          sleepQualityReference: Double(sleepQualityReference),
+                                                                          loadReference: Double(loadReference),
+                                                                          futureLoadReference: Double(futureLoadReference),
                                                                           impactDataModels: models,
                                                                           domainModel: impactReadiness, "detail"))
         }

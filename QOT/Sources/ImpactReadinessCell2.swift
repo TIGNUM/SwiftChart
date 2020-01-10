@@ -109,10 +109,10 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         } else {
             asterixText.attributedText = nil
         }
-        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
+        ThemeText.sprintTitle.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_title), to: sleepQuantityTitle)
 
         asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
-
+        // Sleep Quantity
         sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
                                                    "h", ThemeText.quotationSmall,
                                                    asterixCharacter, ThemeText.quotation)
@@ -121,6 +121,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
 
+        // Sleep Quality
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 1)?.subTitle, to: sleepQualitySubtitle)
         sleepQuality.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
@@ -131,6 +132,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                   ThemeText.quotationLight)
         ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityRefrence)
 
+        // Load
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 2)?.title ?? "").uppercased(), to: loadTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 2)?.subTitle, to: loadSubtitle)
         load.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
@@ -141,6 +143,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                           ThemeText.quotationLight)
         ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadRefrence)
 
+        // Future Load
         ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 3)?.title ?? "").uppercased(), to: futureLoadTitle)
         ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 3)?.subTitle, to: futureLoadSubtitle)
         futureLoad.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
