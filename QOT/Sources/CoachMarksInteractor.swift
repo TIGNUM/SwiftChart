@@ -49,10 +49,13 @@ extension CoachMarksInteractor: CoachMarksInteractorInterface {
         worker.saveCoachMarksViewed()
     }
 
-    func askNotificationPermissions() {
+    func askNotificationPermissions(_ completion: @escaping () -> Void) {
         worker.notificationRequestType { [weak self] (type) in
-            guard let type = type else { return }
-            self?.router.showNotificationPersmission(type: type, completion: nil)
+            guard let type = type else {
+                completion()
+                return
+            }
+            self?.router.showNotificationPersmission(type: type, completion: completion)
         }
     }
 }

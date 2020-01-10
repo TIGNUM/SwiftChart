@@ -40,4 +40,8 @@ extension MyQotAdminSettingsListRouter: MyQotAdminSettingsListRouterInterface {
     func presentChooseDailyBriefBuckets() {
         viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminChooseBucketsSegueIdentifier, sender: nil)
     }
+
+    func presentEditSprints() {
+        viewController?.performSegue(withIdentifier: R.segue.myQotAdminSettingsListViewController.myQotAdminEditSprintsSegueIdentifier, sender: nil)
+    }
 }

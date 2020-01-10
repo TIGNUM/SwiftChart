@@ -20,12 +20,16 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTapRecognizer()
+        addRecognizers()
     }
 
-    func addTapRecognizer() {
+    func addRecognizers() {
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(didTapMediaContentView))
         mediaContentView.addGestureRecognizer(tapRecognizer)
+
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer.init(target: self, action: #selector(didSwipeDown(_:)))
+        swipeDownGestureRecognizer.direction = .down
+        playerController.view.addGestureRecognizer(swipeDownGestureRecognizer)
     }
 
     func configure(title: String?, body: String?, videoURL: String?) {
@@ -44,6 +48,11 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
         } else {
             delegate?.didUnMuteVideo()
         }
+    }
+
+    @objc func didSwipeDown(_ notification: NSNotification) {
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
     }
 
     @objc func didTapMediaContentView() {

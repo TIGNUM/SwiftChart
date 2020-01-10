@@ -22,7 +22,7 @@ protocol CoachMarksInteractorInterface: Interactor {
     func loadNextStep(page: Int)
     func loadPreviousStep(page: Int)
     func saveCoachMarksViewed()
-    func askNotificationPermissions()
+    func askNotificationPermissions(_ completion: @escaping () -> Void)
     var currentPage: Int { get }
 }
 

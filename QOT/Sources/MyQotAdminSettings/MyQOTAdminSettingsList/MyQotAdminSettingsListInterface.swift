@@ -26,6 +26,7 @@ protocol MyQotAdminSettingsListInteractorInterface: Interactor {
     func getCurrentSixthQuestionSetting() -> [Int]
     func setCurrentSixthQuestionSetting(setting: [Int])
     func getTitleForChooseBuckets() -> String
+    func getTitleForEditSprints() -> String
 }
 
 protocol MyQotAdminSettingsListRouterInterface {
