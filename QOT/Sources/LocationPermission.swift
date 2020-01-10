@@ -42,8 +42,10 @@ class LocationPermission: NSObject, PermissionInterface {
 
 extension LocationPermission: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        locationPermissionCompletion?(status == .authorizedAlways || status == .authorizedWhenInUse)
-        locationPermissionCompletion = nil
+        DispatchQueue.main.async {
+            self.locationPermissionCompletion?(status == .authorizedAlways || status == .authorizedWhenInUse)
+            self.locationPermissionCompletion = nil
+        }
     }
 }
 
