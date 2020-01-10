@@ -247,7 +247,8 @@ private extension UIViewController {
 // MARK: solveResults IDs
 private extension UIViewController {
     var walkThroughPageKey: String {
-        switch (self as? CoachMarksViewController)?.interactor?.currentPage ?? 0 {
+        let pageIndex: Int = (self as? CoachMarksViewController)?.interactor?.currentPage ?? 0
+        switch pageIndex {
         case 0:
             return "onboarding.walkthrough.know"
         case 1:
