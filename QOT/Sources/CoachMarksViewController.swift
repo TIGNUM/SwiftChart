@@ -51,22 +51,33 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.navigationBar.isHidden = true
-
         if !askedNotificationPermissions {
-            interactor?.askNotificationPermissions()
-            askedNotificationPermissions = true
+            interactor?.askNotificationPermissions {
+                self.askedNotificationPermissions = true
+                self.interactor?.viewDidLoad()
+                self.collectionView.reloadData()
+            }
+        } else {
+            self.interactor?.viewDidLoad()
         }
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        super.viewWillAppear(animated)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
-        trackPage()
-        refreshBottomNavigationItems()
+        super.viewDidAppear(animated)
+        if askedNotificationPermissions {
+            trackPage()
+        }
+    }
+
+    @objc override func refreshBottomNavigationItems() {
+        if askedNotificationPermissions {
+            super.refreshBottomNavigationItems()
+        }
     }
 }
 
@@ -74,6 +85,7 @@ final class CoachMarksViewController: UIViewController, ScreenZLevelOverlay {
 private extension CoachMarksViewController {
     func setupButtons(_ hideBackButton: Bool, _ rightButtonTitle: String?) {
         buttonBack.isHidden = hideBackButton
+        buttonContinue.isHidden = false
         ThemableButton.continueButton.apply(buttonContinue, title: rightButtonTitle)
     }
 }
@@ -100,6 +112,7 @@ private extension CoachMarksViewController {
 extension CoachMarksViewController: CoachMarksViewControllerInterface {
     func setupView() {
         ThemeButton.accent40.apply(buttonBack)
+        buttonBack.isHidden = true
         collectionView.registerDequeueable(CoachMarkCollectionViewCell.self)
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
@@ -122,7 +135,7 @@ extension CoachMarksViewController: CoachMarksViewControllerInterface {
 
 extension CoachMarksViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return CoachMark.Step.allCases.count
+        return askedNotificationPermissions ? CoachMark.Step.allCases.count : 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
