@@ -17,13 +17,17 @@ class RemoteNotificationPermission: PermissionInterface {
     func refreshStatus(completion: @escaping () -> Void) {
         notificationCenter.getNotificationSettings { settings in
             self.status = settings.authorizationStatus
-            completion()
+            DispatchQueue.main.async {
+                completion()
+            }
         }
     }
 
     func authorizationStatus(completion: @escaping (UNAuthorizationStatus) -> Void) {
         notificationCenter.getNotificationSettings(completionHandler: { (settings) in
-            completion(settings.authorizationStatus)
+            DispatchQueue.main.async {
+                completion(settings.authorizationStatus)
+            }
         })
     }
 
@@ -34,7 +38,9 @@ class RemoteNotificationPermission: PermissionInterface {
     func askPermission(completion: @escaping (Bool) -> Void) {
         notificationCenter.requestAuthorization(options: [.sound, .alert, .badge]) { (granted: Bool, _: Error?) in
             UAirship.push().userPushNotificationsEnabled = granted
-            completion(granted)
+            DispatchQueue.main.async {
+                completion(granted)
+            }
         }
     }
 }

@@ -7,29 +7,15 @@
 //
 
 import Foundation
-import MessageUI
 import qot_dal
 
-final class MyQotSupportRouter {
-
-    // MARK: - Properties
-
-    private weak var viewController: MyQotSupportViewController?
-
-    // MARK: - Init
-
-    init(viewController: MyQotSupportViewController) {
-        self.viewController = viewController
-    }
-}
-
-extension MyQotSupportRouter: MyQotSupportRouterInterface {
+final class MyQotSupportRouter: BaseRouter, MyQotSupportRouterInterface {
     func handleSelection(for item: MyQotSupportModel.MyQotSupportModelItem, email: String) {
         switch item {
         case .usingQOT: presentUsingQOT()
-        case .faq: presentFAQ()
+        case .faq: showFAQScreen(category: .FAQ)
         case .contactSupport: presentMailComposer(recipients: [Defaults.firstLevelSupportEmail],
-                                               subject: "ID: Support")
+                                                  subject: "ID: Support")
         case .contactSupportNovartis: break
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
                                                   subject: "ID: Feature")
@@ -48,23 +34,8 @@ extension MyQotSupportRouter: MyQotSupportRouterInterface {
 }
 
 private extension MyQotSupportRouter {
-    func presentFAQ() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.FAQ)
-    }
-
     func presentUsingQOT() {
-        viewController?.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier, sender: ContentCategory.UsingQOT)
-    }
-
-    func presentMailComposer(recipients: [String], subject: String) {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            viewController?.showAlert(type: .message(AppTextService.get(AppTextKey.generic_alert_no_email_body)))
-            return
-        }
-        let composer = MFMailComposeViewController()
-        composer.setToRecipients(recipients)
-        composer.setSubject(subject)
-        composer.mailComposeDelegate = viewController
-        viewController?.present(composer, animated: true, completion: nil)
+        let identifier = R.segue.myQotSupportViewController.myQotSupportDetailsSegueIdentifier.identifier
+        viewController?.performSegue(withIdentifier: identifier, sender: ContentCategory.UsingQOT)
     }
 }

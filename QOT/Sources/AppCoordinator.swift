@@ -145,6 +145,7 @@ final class AppCoordinator {
                     baseRootViewController.setContent(viewController: coachCollectionViewController)
                     self.isReadyToProcessURL = true
                 }
+                self.showSubscriptionReminderIfNeeded()
             }
         }
     }
@@ -182,10 +183,13 @@ private extension AppCoordinator {
                 // CHANGE ME
                 self?.showSubscriptionReminder(isExpired: true)
             } else if userData?.subscriptionExpireSoon == true &&
-                        (lastShownDate == nil || lastShownDate?.isToday == false) {
+                (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
                 // CHANGE ME
                 self?.showSubscriptionReminder(isExpired: false)
+            } else if userData?.subscriptionExpired != true, userData?.subscriptionExpireSoon != true,
+                let topViewController = AppDelegate.topViewController() as? PaymentReminderViewController {
+                topViewController.dismiss(animated: true, completion: nil)
             }
         })
     }
@@ -194,9 +198,11 @@ private extension AppCoordinator {
         let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
         let controller = PaymentReminderViewController(configure: configurator)
         let topViewController = AppDelegate.topViewController()
-        topViewController?.present(controller, animated: false, completion: {
-
-        })
+        if (topViewController is PaymentReminderViewController) == false {
+            topViewController?.present(controller, animated: false, completion: {
+                /* DO NOTHING */
+            })
+        }
     }
 }
 
@@ -350,6 +356,7 @@ extension AppCoordinator {
     @objc func didFinishSynchronization(_ notification: Notification) {
         let dataTypes: [SyncDataType] = [.CONTENT_COLLECTION, .DAILY_CHECK_IN_RESULT, .MY_TO_BE_VISION, .USER]
         guard let syncResult = notification.object as? SyncResultContext,
+            syncResult.hasUpdatedContent,
             dataTypes.contains(obj: syncResult.dataType) else { return }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
@@ -358,13 +365,10 @@ extension AppCoordinator {
                 guard syncResult.syncRequestType == .DOWN_SYNC else { break }
                 self.handleUserDataDownSync()
             case .MY_TO_BE_VISION:
-                guard syncResult.hasUpdatedContent else { return }
                 self.handleMyToBeVisionDownSync()
             case .DAILY_CHECK_IN_RESULT:
-                guard syncResult.hasUpdatedContent else { return }
                 self.handleDailyCheckInResultDownSync()
             case .CONTENT_COLLECTION:
-                guard syncResult.hasUpdatedContent else { return }
                 self.handleContentDownSync()
             default: break
             }

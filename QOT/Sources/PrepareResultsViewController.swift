@@ -21,7 +21,7 @@ protocol PrepareResultsDelegatge: class {
 final class PrepareResultsViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-    var interactor: PrepareResultsInteractorInterface?
+    var interactor: PrepareResultsInteractorInterface!
     private var rightBarItems: [UIBarButtonItem] = []
 
     // MARK: - Init
@@ -37,7 +37,7 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
     override func viewDidLoad() {
         super.viewDidLoad()
         ThemeView.chatbot.apply(view)
-        interactor?.viewDidLoad()
+        interactor.viewDidLoad()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -52,7 +52,7 @@ private extension PrepareResultsViewController {
                          title: String?,
                          indexPath: IndexPath) -> PrepareResultsContentTableViewCell {
         let cell: PrepareResultsContentTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(format, title: title, type: interactor?.getType ?? .LEVEL_DAILY)
+        cell.configure(format, title: title, type: interactor.getType)
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
         return cell
     }
@@ -89,44 +89,33 @@ private extension PrepareResultsViewController {
 private extension PrepareResultsViewController {
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
-        interactor?.deletePreparation()
-        interactor?.didTapDismissView()
+        interactor.deletePreparation()
+        interactor.didTapDismissView()
     }
 
     @objc func didTapDismiss() {
         trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.didTapDismissView()
+        interactor.didTapDismissView()
     }
 
     @objc func didTapDone() {
         trackUserEvent(.CLOSE, action: .TAP)
-        if interactor?.setReminder == false {
+        if interactor.setReminder == false {
             showAlert()
         } else {
-            interactor?.updatePreparation { [weak self] (_) in
-                self?.interactor?.didTapDismissView()
-            }
-        }
-    }
-
-    @objc func didTapActivate() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        if interactor?.setReminder == false {
-            showAlert()
-        } else {
-            interactor?.updatePreparation { [weak self] (_) in
-                self?.interactor?.didTapDismissView()
+            interactor.updatePreparation { [weak self] (_) in
+                self?.interactor.didTapDismissView()
             }
         }
     }
 
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
-        if interactor?.setReminder == false {
+        if interactor.setReminder == false {
             showAlert()
         } else {
-            interactor?.didClickSaveAndContinue()
-            interactor?.presentFeedback()
+            interactor.didClickSaveAndContinue()
+            interactor.presentFeedback()
         }
     }
 
@@ -135,27 +124,26 @@ private extension PrepareResultsViewController {
         case .cancel: return #selector(didTapCancel)
         case .done: return #selector(didTapDone)
         case .save: return #selector(didTapSave)
-        case .activate: return #selector(didTapActivate)
         }
     }
 
     func showAlert() {
         let confirm = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
-            self?.interactor?.setReminder = true
-            self?.interactor?.updatePreparation { (_) in
-                if self?.interactor?.getResultType == .prepareDecisionTree {
-                    self?.interactor?.presentFeedback()
+            self?.interactor.setReminder = true
+            self?.interactor.updatePreparation { (_) in
+                if self?.interactor.getResultType == .prepareDecisionTree {
+                    self?.interactor.presentFeedback()
                 } else {
-                    self?.interactor?.didTapDismissView()
+                    self?.interactor.didTapDismissView()
                 }
             }
         }
         let decline = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
-            self?.interactor?.updatePreparation { (_) in
-                if self?.interactor?.getResultType == .prepareDecisionTree {
-                    self?.interactor?.presentFeedback()
+            self?.interactor.updatePreparation { (_) in
+                if self?.interactor.getResultType == .prepareDecisionTree {
+                    self?.interactor.presentFeedback()
                 } else {
-                    self?.interactor?.didTapDismissView()
+                    self?.interactor.didTapDismissView()
                 }
             }
         }
@@ -201,15 +189,15 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return interactor?.sectionCount ?? 0
+        return interactor.sectionCount
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.rowCount(in: section) ?? 0
+        return interactor.rowCount(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let item = interactor?.item(at: indexPath) else { return UITableViewCell() }
+        guard let item = interactor.item(at: indexPath) else { return UITableViewCell() }
         switch item {
         case .contentItem(let format, let title):
             return contentItemCell(format: format,
@@ -250,20 +238,20 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectRow(at: indexPath)
-        guard let item = interactor?.item(at: indexPath) else { return }
+        guard let item = interactor.item(at: indexPath) else { return }
         switch item {
         case .strategy(_, _, let readMoreID):
-            interactor?.presentRelatedArticle(readMoreID: readMoreID)
+            interactor.presentRelatedArticle(readMoreID: readMoreID)
         case .intentionContentItem(_, _, let key):
             removeBottomNavigation()
-            interactor?.presentEditIntentions(key)
+            interactor.presentEditIntentions(key)
         case .benefitContentItem(_, _, let benefits, _):
             removeBottomNavigation()
-            interactor?.presentEditBenefits(benefits: benefits)
+            interactor.presentEditBenefits(benefits: benefits)
         case .contentItem(let format, _):
-            if interactor?.getType == .LEVEL_CRITICAL && format.hasEditImage(.LEVEL_CRITICAL) {
+            if interactor.getType == .LEVEL_CRITICAL && format.hasEditImage(.LEVEL_CRITICAL) {
                 removeBottomNavigation()
-                interactor?.presentEditStrategyView()
+                interactor.presentEditStrategyView()
             }
         default:
             return
@@ -285,13 +273,13 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
     }
 
     func didUpdateIntentions(_ answerIds: [Int]) {
-        interactor?.updateIntentions(answerIds)
+        interactor.updateIntentions(answerIds)
         refreshBottomNavigationItems()
     }
 
     func didUpdateBenefits(_ benefits: String) {
         refreshBottomNavigationItems()
-        interactor?.updateBenefits(benefits)
+        interactor.updateBenefits(benefits)
     }
 
     func reloadData() {
@@ -301,19 +289,19 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
         switch type {
         case .reminder:
-            interactor?.setReminder = isOn
+            interactor.setReminder = isOn
         default: break
         }
         refreshBottomNavigationItems()
     }
 
     func openEditStrategyView() {
-        interactor?.presentEditStrategyView()
+        interactor.presentEditStrategyView()
         refreshBottomNavigationItems()
     }
 
     func dismissResultView() {
-        interactor?.didTapDismissView()
+        interactor.didTapDismissView()
     }
 }
 
@@ -322,12 +310,12 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
     func dismiss(_ viewController: UIViewController, selections: [Choice]) {
         let selectedIds = selections.compactMap { $0.contentId }
         viewController.dismiss(animated: true) { [weak self] in
-            self?.interactor?.updateStrategies(selectedIds: selectedIds)
+            self?.interactor.updateStrategies(selectedIds: selectedIds)
         }
     }
 
     func didTapRow(_ viewController: UIViewController, contentId: Int) {
-        interactor?.presentRelatedArticle(readMoreID: contentId)
+        interactor.presentRelatedArticle(readMoreID: contentId)
     }
 
     func dismiss(_ viewController: UIViewController) {
@@ -342,7 +330,7 @@ extension PrepareResultsViewController {
     }
 
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor?.getType == .LEVEL_ON_THE_GO {
+        if interactor.getType == .LEVEL_ON_THE_GO {
             return [doneButtonItem(#selector(didTapDismiss))]
         }
         return rightBarItems

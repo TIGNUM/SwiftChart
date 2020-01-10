@@ -68,11 +68,6 @@ private extension ShifterResultViewController {
         router?.dismiss()
     }
 
-    @objc func didTapActivate() {
-           trackUserEvent(.CLOSE, action: .TAP)
-           router?.dismiss()
-       }
-
     @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         router?.presentFeedback()
@@ -100,7 +95,6 @@ private extension ShifterResultViewController {
         case .cancel: return #selector(didTapCancel)
         case .done: return #selector(didTapDone)
         case .save: return #selector(didTapSave)
-        case .activate: return #selector(didTapActivate)
         }
     }
 }

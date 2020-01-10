@@ -9,14 +9,15 @@
 import UIKit
 import qot_dal
 
-final class PrepareResultsRouter {
+final class PrepareResultsRouter: BaseRouter {
 
     // MARK: - Properties
-    private weak var viewController: PrepareResultsViewController?
+    private weak var prepareResultsViewController: PrepareResultsViewController?
 
     // MARK: - Init
     init(viewController: PrepareResultsViewController) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.prepareResultsViewController = viewController
     }
 }
 
@@ -31,14 +32,8 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?) {
         let configurator = DTPrepareConfigurator.make(viewModel: viewModel, question: question)
         let controller = DTPrepareViewController(configure: configurator)
-        controller.resultsDelegate = viewController
+        controller.resultsDelegate = prepareResultsViewController
         viewController?.present(controller, animated: true)
-    }
-
-    func presentRelatedArticle(readMoreID: Int) {
-        guard let controller = R.storyboard.main().instantiateViewController(withIdentifier: "QOT.ArticleViewController") as? ArticleViewController else { return }
-        ArticleConfigurator.configure(selectedID: readMoreID, viewController: controller)
-        AppDelegate.topViewController()?.present(controller, animated: true, completion: nil)
     }
 
     func didClickSaveAndContinue() {
@@ -48,16 +43,8 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {
         let configurator = ChoiceConfigurator.make(selectedIDs, relatedStrategyId)
         let controller = ChoiceViewController(configure: configurator)
-        controller.delegate = viewController
+        controller.delegate = prepareResultsViewController
         viewController?.present(controller, animated: true)
-    }
-
-    func dismiss() {
-        viewController?.dismiss(animated: true, completion: nil)
-    }
-
-    func dismissChatBotFlow() {
-        AppDelegate.current.launchHandler.dismissChatBotFlow()
     }
 
     func presentFeedback() {

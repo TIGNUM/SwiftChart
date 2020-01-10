@@ -988,7 +988,7 @@ enum ThemeText {
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
             return Fonts.fontDisplayRegular20
         case .strategyTitle:
-            return Fonts.fontDisplayThin40
+            return Fonts.fontDisplayThin38
         case .tbvStatement, .qotToolsTitle, .resultHeader1, .coachHeader, .accountUserName, .paymentReminderHeaderTitle,
              .mySprintDetailsTitle:
             return Fonts.fontDisplayLight24
@@ -1439,7 +1439,7 @@ private struct Fonts {
     static let fontDisplayRegular40 = UIFont.sfProDisplayRegular(ofSize: 40.0)
     static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
     static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
-    static let fontDisplayThin40 = UIFont.sfProDisplayThin(ofSize: 40.0)
+    static let fontDisplayThin38 = UIFont.sfProDisplayThin(ofSize: 38.0)
     static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
     static let fontDisplayUltralight120 = UIFont.sfProDisplayUltralight(ofSize: 110.0)
 

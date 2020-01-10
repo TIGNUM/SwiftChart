@@ -7,13 +7,11 @@
 //
 
 import UIKit
-import MessageUI
 import qot_dal
 
 final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Properties
-
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     private var baseHeaderView: QOTBaseHeaderView?
@@ -21,7 +19,6 @@ final class MyQotSupportViewController: BaseViewController, ScreenZLevel3 {
     var interactor: MyQotSupportInteractorInterface?
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
@@ -63,7 +60,6 @@ extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
 extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -82,20 +78,5 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
         let key = interactor?.trackingKeys(at: indexPath)
         trackUserEvent(.OPEN, valueType: key, action: .TAP)
         interactor?.handleSelection(for: indexPath)
-    }
-}
-
-// MARK: - MFMailComposeViewControllerDelegate
-
-extension MyQotSupportViewController {
-
-    override func mailComposeController(_ controller: MFMailComposeViewController,
-                                        didFinishWith result: MFMailComposeResult,
-                                        error: Error?) {
-        controller.dismiss(animated: true, completion: nil)
-        if let error = error {
-            showAlert(type: .message(error.localizedDescription))
-            log("Failed to open mail with error: \(error.localizedDescription))", level: .error)
-        }
     }
 }

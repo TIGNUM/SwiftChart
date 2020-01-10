@@ -16,7 +16,9 @@ class PhotosPermission: PermissionInterface {
 
     func askPermission(completion: @escaping (Bool) -> Void) {
         PHPhotoLibrary.requestAuthorization { status in
-            completion(status == .authorized)
+            DispatchQueue.main.async {
+                completion(status == .authorized)
+            }
         }
     }
 }

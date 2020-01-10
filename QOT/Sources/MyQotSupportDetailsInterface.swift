@@ -27,6 +27,4 @@ protocol MyQotSupportDetailsInteractorInterface: Interactor {
     func presentContentItemSettings(contentID: Int)
 }
 
-protocol MyQotSupportDetailsRouterInterface {
-    func presentContentItemSettings(contentID: Int)
-}
+protocol MyQotSupportDetailsRouterInterface: BaseRouterInterface {}

@@ -23,7 +23,9 @@ class CalendarPermission: PermissionInterface {
             if granted {
                 EKEventStore.shared = EKEventStore()
             }
-            completion(granted)
+            DispatchQueue.main.async {
+                completion(granted)
+            }
         }
     }
 }

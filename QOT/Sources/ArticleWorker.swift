@@ -176,7 +176,7 @@ final class ArticleWorker {
                 && $0.format != .title }.forEach { item in
                     items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
-        if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
+        if MyQotAboutUsModel.Item.allKeys.contains(selectedID) == false && shouldHideMarkAsReadButton() == false {
             items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: "BUTTON"))
         }
         let infoArticleSections: [ContentSection] = [.About, .FAQ_3_0, .USING_QOT]

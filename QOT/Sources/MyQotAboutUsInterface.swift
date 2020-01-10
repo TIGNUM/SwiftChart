@@ -20,12 +20,12 @@ protocol MyQotAboutUsPresenterInterface {
 protocol MyQotAboutUsInteractorInterface: Interactor {
     func trackingKeys(at indexPath: IndexPath) -> String
     func itemCount() -> Int
-    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem?
+    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.Item?
     func title(at indexPath: IndexPath) -> String
-    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void)
+    func contentCollection(item: MyQotAboutUsModel.Item, _ completion: @escaping(QDMContentCollection?) -> Void)
     func handleSelection(for indexPath: IndexPath)
 }
 
 protocol MyQotAboutUsRouterInterface {
-    func handleSelection(for item: MyQotAboutUsModel.MyQotAboutUsModelItem)
+    func handleSelection(for item: MyQotAboutUsModel.Item)
 }

@@ -8,25 +8,22 @@
 
 import UIKit
 
-final class MyQotMainRouter {
+final class MyQotMainRouter: BaseRouter {
 
     // MARK: - Properties
-
-    private weak var viewController: MyQotMainViewController?
+    private weak var myQotViewController: MyQotMainViewController?
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
-
     init(viewController: MyQotMainViewController, delegate: CoachCollectionViewControllerDelegate) {
-        self.viewController = viewController
+        super.init(viewController: viewController)
+        self.myQotViewController = viewController
         self.delegate = delegate
     }
 }
 
 // MARK: - MyQotMainRouterInterface
-
 extension MyQotMainRouter: MyQotMainRouterInterface {
-
     func presentMyPreps() {
         let storyboardID = R.storyboard.myPreps.myPrepsViewControllerID.identifier
         let myPrepsViewController = R.storyboard
@@ -54,16 +51,6 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         let configurator = MySprintsListConfigurator.make()
         configurator(mySprintsController)
         viewController?.pushToStart(childViewController: mySprintsController)
-    }
-
-    func presentMyToBeVision() {
-        let storyboardID = R.storyboard.myToBeVision.myVisionViewController.identifier
-        let myVisionViewController = R.storyboard
-            .myToBeVision().instantiateViewController(withIdentifier: storyboardID) as? MyVisionViewController
-        if let myVisionViewController = myVisionViewController {
-            MyVisionConfigurator.configure(viewController: myVisionViewController)
-            viewController?.pushToStart(childViewController: myVisionViewController)
-        }
     }
 
     func presentMyLibrary() {

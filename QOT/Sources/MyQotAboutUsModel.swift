@@ -11,7 +11,7 @@ import qot_dal
 
 struct MyQotAboutUsModel {
 
-    enum MyQotAboutUsModelItem: Int, CaseIterable {
+    enum Item: Int, CaseIterable {
         case about = 0
         case benefits
         case copyright
@@ -29,11 +29,11 @@ struct MyQotAboutUsModel {
         }
 
         static var allKeys: [Int] {
-            return [MyQotAboutUsModelItem.about.primaryKey,
-                    MyQotAboutUsModelItem.benefits.primaryKey,
-                    MyQotAboutUsModelItem.copyright.primaryKey,
-                    MyQotAboutUsModelItem.privacy.primaryKey,
-                    MyQotAboutUsModelItem.terms.primaryKey
+            return [Item.about.primaryKey,
+                    Item.benefits.primaryKey,
+                    Item.copyright.primaryKey,
+                    Item.privacy.primaryKey,
+                    Item.terms.primaryKey
                    ]
         }
 
@@ -52,7 +52,7 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func title(for contentService: qot_dal.ContentService) -> String {
+        func title(for contentService: ContentService) -> String {
             switch self {
             case .benefits:
                 return AppTextService.get(AppTextKey.my_qot_my_profile_about_us_section_about_qot_title)
@@ -67,7 +67,7 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func contentCollection(for contentService: qot_dal.ContentService,
+        func contentCollection(for contentService: ContentService,
                                _ completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
             case .benefits:

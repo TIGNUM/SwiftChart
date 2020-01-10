@@ -18,29 +18,29 @@ final class MyQotAboutUsWorker {
     }
 
     func itemCount() -> Int {
-        return MyQotAboutUsModel.MyQotAboutUsModelItem.allCases.count
+        return MyQotAboutUsModel.Item.allCases.count
     }
 
-    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem? {
-        guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else { return nil }
+    func item(at indexPath: IndexPath) -> MyQotAboutUsModel.Item? {
+        guard let item = MyQotAboutUsModel.Item(rawValue: indexPath.row) else { return nil }
         return item
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
-        guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
+        guard let item = MyQotAboutUsModel.Item(rawValue: indexPath.row) else {
             return ""
         }
         return item.trackingKeys()
     }
 
     func title(at indexPath: IndexPath) -> String {
-        guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
+        guard let item = MyQotAboutUsModel.Item(rawValue: indexPath.row) else {
             return ""
         }
         return item.title(for: contentService)
     }
 
-    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem,
+    func contentCollection(item: MyQotAboutUsModel.Item,
                            _ completion: @escaping(QDMContentCollection?) -> Void) {
         item.contentCollection(for: contentService) { (collection) in
             completion(collection)

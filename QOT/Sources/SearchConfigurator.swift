@@ -9,10 +9,10 @@
 import Foundation
 
 final class SearchConfigurator {
-
-    static func make(delegate: CoachCollectionViewControllerDelegate?, startDeactivated: Bool = false) -> (SearchViewController) -> Void {
+    static func make(delegate: CoachCollectionViewControllerDelegate?,
+                     startDeactivated: Bool = false) -> (SearchViewController) -> Void {
         return { (searchViewController) in
-            let router = SearchRouter(searchViewController: searchViewController)
+            let router = SearchRouter(viewController: searchViewController)
             let worker = SearchWorker(startDeactivated: startDeactivated)
             let presenter = SearchPresenter(viewController: searchViewController)
             let interactor = SearchInteractor(worker: worker, router: router, presenter: presenter)

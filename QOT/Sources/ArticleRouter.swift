@@ -9,22 +9,7 @@
 import UIKit
 import qot_dal
 
-final class ArticleRouter {
-
-    // MARK: - Properties
-
-    private weak var viewController: ArticleViewController?
-
-    // MARK: - Init
-
-    init(viewController: ArticleViewController) {
-        self.viewController = viewController
-    }
-}
-
-// MARK: - ArticleRouterInterface
-
-extension ArticleRouter: ArticleRouterInterface {
+final class ArticleRouter: BaseRouter, ArticleRouterInterface {
     func didTapLink(_ url: URL) {
         if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
             UIApplication.shared.open(url)
@@ -36,12 +21,5 @@ extension ArticleRouter: ArticleRouterInterface {
                 viewController?.showAlert(type: .message(error.localizedDescription))
             }
         }
-    }
-
-    func openSupportEmailComposer(emailAdress: String?) {
-        guard let viewController = viewController else { return }
-        UIViewController.presentMailComposer(from: viewController,
-                                             recipients: [emailAdress ?? Defaults.firstLevelSupportEmail],
-                                             subject: "ID: Support")
     }
 }

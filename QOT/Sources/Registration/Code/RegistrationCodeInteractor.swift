@@ -25,7 +25,6 @@ private enum URLActions: String {
 final class RegistrationCodeInteractor {
 
     // MARK: - Properties
-
     private let worker: RegistrationCodeWorker
     private let presenter: RegistrationCodePresenterInterface
     private let router: RegistrationCodeRouterInterface
@@ -41,7 +40,6 @@ final class RegistrationCodeInteractor {
     var errorMessage: String? = nil
 
     // MARK: - Init
-
     init(worker: RegistrationCodeWorker,
         presenter: RegistrationCodePresenterInterface,
         router: RegistrationCodeRouterInterface,
@@ -53,7 +51,6 @@ final class RegistrationCodeInteractor {
     }
 
     // MARK: - Texts
-
     var title: String {
         return worker.title
     }
@@ -110,7 +107,6 @@ final class RegistrationCodeInteractor {
 }
 
 // MARK: - RegistrationCodeInteractorInterface
-
 extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
 
     func viewDidLoad() {
@@ -131,9 +127,9 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         case .resendCode:
             resendCode()
         case .privacyPolicy:
-            router.showPrivacyPolicy()
+            router.presentContent(MyQotAboutUsModel.Item.privacy.primaryKey)
         case .termsOfUse:
-            router.showTermsOfUse()
+            router.presentContent(MyQotAboutUsModel.Item.terms.primaryKey)
         case .getHelp:
             presenter.presentFAQScreen()
         }
@@ -190,7 +186,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
     }
 
     func showFAQScreen() {
-        router.showFAQScreen()
+        router.showFAQScreen(category: .FAQBeforeLogin)
     }
 }
 

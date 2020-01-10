@@ -35,7 +35,8 @@ protocol MyQotMainRouterInterface {
     func presentMyPreps()
     func presentMyProfile()
     func presentMySprints()
-    func presentMyToBeVision()
     func presentMyLibrary()
     func presentMyDataScreen()
+
+    func showTBV()
 }
