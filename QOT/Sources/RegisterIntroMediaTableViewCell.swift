@@ -20,12 +20,13 @@ final class RegisterIntroMediaTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        addTapRecognizer()
+        addRecognizers()
     }
 
-    func addTapRecognizer() {
+    func addRecognizers() {
         let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(didTapMediaContentView))
         mediaContentView.addGestureRecognizer(tapRecognizer)
+
         let swipeDownGestureRecognizer = UISwipeGestureRecognizer.init(target: self, action: #selector(didSwipeDown(_:)))
         swipeDownGestureRecognizer.direction = .down
         playerController.view.addGestureRecognizer(swipeDownGestureRecognizer)

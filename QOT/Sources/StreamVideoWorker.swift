@@ -71,6 +71,10 @@ final class StreamVideoWorker {
     lazy var contentItemId: Int? = {
         return content?.remoteID
     }()
+
+    lazy var contentFormat: ContentFormat? = {
+        return content?.format
+    }()
 }
 
 extension StreamVideoWorker {

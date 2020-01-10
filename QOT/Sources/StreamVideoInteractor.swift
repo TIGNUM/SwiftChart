@@ -22,6 +22,7 @@ protocol StreamVideoInteractorInterface {
     var cancelButtonTitle: String { get }
     var yesContinueButtonTitle: String { get }
     var contentItemId: Int? { get }
+    var contentFormat: ContentFormat? { get }
 
     var isBookmarked: Bool { get }
     var isDownloaded: Bool { get }
@@ -80,6 +81,10 @@ final class StreamVideoInteractor {
 
     var contentItemId: Int? {
         return worker.contentItemId
+    }
+
+    var contentFormat: ContentFormat? {
+        return worker.contentFormat
     }
 }
 
