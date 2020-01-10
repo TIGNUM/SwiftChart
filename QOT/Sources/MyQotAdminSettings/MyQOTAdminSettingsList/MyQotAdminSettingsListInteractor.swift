@@ -79,4 +79,8 @@ extension MyQotAdminSettingsListInteractor: MyQotAdminSettingsListInteractorInte
     func getTitleForChooseBuckets() -> String {
         return "Choose Daily Brief buckets"
     }
+
+    func getTitleForEditSprints() -> String {
+        return "Edit your sprints"
+    }
 }
