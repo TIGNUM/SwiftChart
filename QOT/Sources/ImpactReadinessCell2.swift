@@ -153,6 +153,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                 "10",
                                                 ThemeText.quotationLight)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadRefrence)
+        // Button
+        moreData.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
 
     @IBAction func targetReference(_ sender: Any) {

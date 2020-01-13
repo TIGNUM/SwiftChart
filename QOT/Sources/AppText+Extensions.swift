@@ -128,7 +128,11 @@ public extension AppTextKey {
         static let daily_brief_section_daily_insights_peak_performances_title = AppTextKey("daily_brief.section_daily_insights.peak_performances.title")
         static let daily_brief_section_daily_insights_shpi_title = AppTextKey("daily_brief.section_daily_insights.shpi.title")
         static let daily_brief_section_daily_insights_shpi_title_rated_yourself = AppTextKey("daily_brief.section_daily_insights.shpi.title_rated_yourself")
+        static let daily_brief_section_daily_insights_shpi_label_always = AppTextKey("daily_brief.section_daily_insights.shpi.label_always")
+        static let daily_brief_section_daily_insights_shpi_label_never = AppTextKey("daily_brief.section_daily_insights.shpi.label_never")
+        static let daily_brief_section_daily_insights_tbv_subtitle_rating_of = AppTextKey("daily_brief.section_daily_insights.tbv.subtitle_rating_of")
         static let daily_brief_section_daily_insights_tbv_title = AppTextKey("daily_brief.section_daily_insights.tbv.title")
+        static let daily_brief_section_daily_insights_tbv_button_view_my_tbv = AppTextKey("daily_brief.section_daily_insights.tbv.button_view_my_tbv")
         static let daily_brief_section_explore_title = AppTextKey("daily_brief.section_explore.title")
         static let daily_brief_section_explore_body = AppTextKey("daily_brief.section_explore.body")
         static let daily_brief_section_from_my_coach_title = AppTextKey("daily_brief.section_from_my_coach.title")
@@ -161,7 +165,7 @@ public extension AppTextKey {
 //
         //  Impact Readiness being added
         static let daily_brief_section_impact_readiness_body_missing_five_days_data = AppTextKey("daily_brief.section_impact_readiness.body_missing_five_days_data")
-           static let daily_brief_section_impact_readiness_button_my_data = AppTextKey("daily_brief.section_impact_readiness.button_my_data")
+        static let daily_brief_section_impact_readiness_button_my_data = AppTextKey("daily_brief.section_impact_readiness.button_my_data")
         static let daily_brief_section_impact_readiness_empty_body = AppTextKey("daily_brief.section_impact_readiness.empty.body")
         static let daily_brief_section_impact_readiness_error_body = AppTextKey("daily_brief.section_impact_readiness.error.body")
         static let daily_brief_section_impact_readiness_label_out_of_100 = AppTextKey("daily_brief.section_impact_readiness.label_out_of_100")

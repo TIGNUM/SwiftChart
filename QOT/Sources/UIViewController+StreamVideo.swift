@@ -25,6 +25,7 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         super.viewDidAppear(animated)
         AppCoordinator.orientationManager.videos()
         addVideoGravityObserver()
+        addSwipeGestureRecognizer()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +67,18 @@ final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverl
         videoGravityObserver = self.observe(\.videoGravity) { [weak self] (_, _) in
             self?.overlayControls?.buttonsShowHide()
         }
+    }
+
+    func addSwipeGestureRecognizer() {
+        let swipeDownGestureRecognizer = UISwipeGestureRecognizer.init(target: self, action: #selector(didSwipeDown))
+        swipeDownGestureRecognizer.direction = .down
+        view.addGestureRecognizer(swipeDownGestureRecognizer)
+    }
+
+    @objc func didSwipeDown() {
+        let contentType: QDMUserEventTracking.ValueType = interactor?.contentFormat == .video ? .VIDEO : .AUDIO
+        trackUserEvent(.CLOSE, value: interactor?.contentItemId, valueType: contentType, action: .SWIPE)
+        dismiss(animated: true, completion: nil)
     }
 }
 

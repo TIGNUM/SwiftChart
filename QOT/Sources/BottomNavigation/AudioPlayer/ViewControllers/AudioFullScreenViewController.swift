@@ -145,6 +145,12 @@ extension AudioFullScreenViewController {
         self.dismiss(animated: true)
     }
 
+    @IBAction func didSwipeDown() {
+        trackUserEvent(.CLOSE, value: media?.mediaRemoteId, valueType: .AUDIO, action: .SWIPE)
+        NotificationCenter.default.post(name: .hideAudioFullScreen, object: media)
+        self.dismiss(animated: true)
+    }
+
     @IBAction func didTapPlayPauseButton() {
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
         trackUserEvent(playPauseButton.isSelected ? .PAUSE : .PLAY,

@@ -460,10 +460,10 @@ extension DailyBriefInteractor {
             // TBV Rated sentence
             let title: String = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_title)
             let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
-            let intro: String = (dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "") + " " + String(tbvRating)
+            let intro: String = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_subtitle_rating_of) + " " + String(tbvRating)
+            let ctaText = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_button_view_my_tbv)
             let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
             let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
-            let ctaText = dailyCheckIn2.bucketText?.contentItems.filter {$0.searchTags.contains("TO_BE_VISION_BUTTON")}.first?.valueText ?? ""
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
             dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
                                                                                  introText: intro,
@@ -755,13 +755,6 @@ extension DailyBriefInteractor {
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        if AppCoordinator.permissionsManager?.currentStatusFor(for: .location) == .granted &&
-            (weatherBucket?.weather?.currentTempInCelcius == nil ||
-                weatherBucket?.weather?.currentTempInFahrenheit == nil ||
-                weatherBucket?.weather?.forecast?.count == 0) {
-            return []
-        }
-
         let title = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_TITLE")
         }).first?.valueText ?? "BUCKET_TITLE"
@@ -786,12 +779,15 @@ extension DailyBriefInteractor {
             $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
         }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
 
+        let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,
                                             intro: intro,
                                             requestLocationPermissionDescription: requestLocationPermissionDescription,
                                             requestLocationPermissionButtonTitle: requestLocationPermissionButtonTitle,
                                             deniedLocationPermissionDescription: deniedLocationPermissionDescription,
                                             deniedLocationPermissionButtonTitle: deniedLocationPermissionButtonTitle,
+                                            locationName: weatherBucket?.weather?.locationName,
+                                            locationPermissionStatus: locationPermission,
                                             domain: weatherBucket))
 
         return weatherList
