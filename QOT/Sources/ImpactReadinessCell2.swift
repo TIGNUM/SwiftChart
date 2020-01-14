@@ -122,6 +122,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                    asterixCharacter, ThemeText.quotation)
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
+        targetLabel.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
 
         // Sleep Quality
@@ -136,6 +137,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                   ThemeText.quotationSlash,
                                                   "10",
                                                   ThemeText.quotationLight)
+        refLabel1.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_label_ref)
         ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReference)
 
         // Load
@@ -150,6 +152,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                           ThemeText.quotationSlash,
                                           "10",
                                           ThemeText.quotationLight)
+        refLabel2.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadReferenceLabel)
 
         // Future Load
@@ -164,6 +167,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                 ThemeText.quotationSlash,
                                                 "10",
                                                 ThemeText.quotationLight)
+        refLabel3.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
         // Button
         moreData.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_my_data), for: .normal)

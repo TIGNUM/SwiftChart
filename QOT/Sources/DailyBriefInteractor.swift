@@ -418,7 +418,7 @@ extension DailyBriefInteractor {
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
         let sleepQualityReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_number_ref)
-        let loadReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_label_ref)
+        let loadReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_number_ref)
         let futureLoadReference = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_number_ref)
         impactReadiness.contentCollections?.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessScoreViewModel.ImpactDataViewModel(title: collection.title,
