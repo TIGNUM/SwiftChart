@@ -114,6 +114,7 @@ public extension AppTextKey {
         static let daily_brief_customize_sleep_amount_section_question_body = AppTextKey("daily_brief.customize_sleep_amount.section_question.body")
         static let daily_brief_daily_check_in_questionnaire_section_footer_button_done = AppTextKey("daily_brief.daily_check_in.questionnaire.section_footer.button_done")
         static let daily_brief_section_impact_readiness_button_explore_score = AppTextKey("daily_brief.section_impact_readiness.button_explore_score")
+        static let daily_brief_section_daily_insights_tbv_button_view_my_tbv = AppTextKey("daily_brief.section_daily_insights.tbv.button_view_my_tbv")
         static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours")
         static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours_more")
         static let daily_brief_section_impact_readiness_null_state_button_start_dci = AppTextKey("daily_brief.section_impact_readiness.null_state.button_start_dci")
