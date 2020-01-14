@@ -14,25 +14,25 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var howYouFeelToday: UILabel!
     @IBOutlet weak var asterixText: UILabel!
 //// sleepQuantity
-    @IBOutlet weak var sleepQuantityTitle: UILabel!
-    @IBOutlet weak var sleepQuantitySubtitle: UILabel!
-    @IBOutlet weak var sleepQuantity: UILabel!
+    @IBOutlet weak var sleepQuantityTitleLabel: UILabel!
+    @IBOutlet weak var sleepQuantitySubtitleLabel: UILabel!
+    @IBOutlet weak var sleepQuantityLabel: UILabel!
     @IBOutlet weak var sleepQuantityTarget: UIButton!
     ////  sleepquality
     @IBOutlet weak var sleepQualityTitle: UILabel!
     @IBOutlet weak var sleepQualitySubtitle: UILabel!
-    @IBOutlet weak var sleepQuality: UILabel!
-    @IBOutlet weak var sleepQualityRefrence: UILabel!
+    @IBOutlet weak var sleepQualityLabel: UILabel!
+    @IBOutlet weak var sleepQualityReference: UILabel!
 ////  load
-    @IBOutlet weak var loadTitle: UILabel!
-    @IBOutlet weak var loadSubtitle: UILabel!
-    @IBOutlet weak var load: UILabel!
-    @IBOutlet weak var loadRefrence: UILabel!
+    @IBOutlet weak var loadTitleLabel: UILabel!
+    @IBOutlet weak var loadSubtitleLabel: UILabel!
+    @IBOutlet weak var loadLabel: UILabel!
+    @IBOutlet weak var loadReferenceLabel: UILabel!
 ////  futureload
-    @IBOutlet weak var futureLoadTitle: UILabel!
-    @IBOutlet weak var futureLoadSubtitle: UILabel!
-    @IBOutlet weak var futureLoad: UILabel!
-    @IBOutlet weak var futureLoadRefrence: UILabel!
+    @IBOutlet weak var futureLoadTitleLabel: UILabel!
+    @IBOutlet weak var futureLoadSubtitleLabel: UILabel!
+    @IBOutlet weak var futureLoadLabel: UILabel!
+    @IBOutlet weak var futureLoadReferenceLabel: UILabel!
 ////  delagate
     @IBOutlet weak var mainStackView: UIStackView!
     weak var delegate: DailyBriefViewControllerDelegate?
@@ -64,22 +64,22 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         rollingDataLabel.isHidden = hidden
         howYouFeelToday.isHidden = hidden
         asterixText.isHidden = hidden
-        sleepQuantityTitle.isHidden = hidden
-        sleepQuantitySubtitle.isHidden = hidden
-        sleepQuantity.isHidden = hidden
+        sleepQuantityTitleLabel.isHidden = hidden
+        sleepQuantitySubtitleLabel.isHidden = hidden
+        sleepQuantityLabel.isHidden = hidden
         sleepQuantityTarget.isHidden = hidden
         sleepQualityTitle.isHidden = hidden
         sleepQualitySubtitle.isHidden = hidden
-        sleepQuality.isHidden = hidden
-        sleepQualityRefrence.isHidden = hidden
-        loadTitle.isHidden = hidden
-        loadSubtitle.isHidden = hidden
-        load.isHidden = hidden
-        loadRefrence.isHidden = hidden
-        futureLoadTitle.isHidden = hidden
-        futureLoadSubtitle.isHidden = hidden
-        futureLoad.isHidden = hidden
-        futureLoadRefrence.isHidden = hidden
+        sleepQualityLabel.isHidden = hidden
+        sleepQualityReference.isHidden = hidden
+        loadTitleLabel.isHidden = hidden
+        loadSubtitleLabel.isHidden = hidden
+        loadLabel.isHidden = hidden
+        loadReferenceLabel.isHidden = hidden
+        futureLoadTitleLabel.isHidden = hidden
+        futureLoadSubtitleLabel.isHidden = hidden
+        futureLoadLabel.isHidden = hidden
+        futureLoadReferenceLabel.isHidden = hidden
         moreData.isHidden = hidden
         targetLabel.isHidden = hidden
         dividerView.isHidden = hidden
@@ -109,50 +109,62 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         } else {
             asterixText.attributedText = nil
         }
-        ThemeText.sprintTitle.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_title), to: sleepQuantityTitle)
 
         asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
         // Sleep Quantity
-        sleepQuantity.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
+        let quantityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_title)
+        let quantitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
+        ThemeText.sprintTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
+        ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
+
+        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
                                                    "h", ThemeText.quotationSmall,
                                                    asterixCharacter, ThemeText.quotation)
 
-        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
 
         // Sleep Quality
-        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
-        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 1)?.subTitle, to: sleepQualitySubtitle)
-        sleepQuality.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
+        let qualityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_title)
+        let qualitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
+        ThemeText.sprintTitle.apply(qualityTitle, to: sleepQualityTitle)
+        ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
+
+        sleepQualityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
                                                   ThemeText.quotation,
                                                   "/",
                                                   ThemeText.quotationSlash,
                                                   "10",
                                                   ThemeText.quotationLight)
-        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityRefrence)
+        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReference)
 
         // Load
-        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 2)?.title ?? "").uppercased(), to: loadTitle)
-        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 2)?.subTitle, to: loadSubtitle)
-        load.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
+        let loadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_title)
+        let loadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_subtitle)
+        ThemeText.sprintTitle.apply(loadTitle, to: loadTitleLabel)
+        ThemeText.durationString.apply(loadSubtitle, to: loadSubtitleLabel)
+
+        loadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
                                           ThemeText.quotation,
                                           "/",
                                           ThemeText.quotationSlash,
                                           "10",
                                           ThemeText.quotationLight)
-        ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadRefrence)
+        ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadReferenceLabel)
 
         // Future Load
-        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 3)?.title ?? "").uppercased(), to: futureLoadTitle)
-        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 3)?.subTitle, to: futureLoadSubtitle)
-        futureLoad.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
+        let futureLoadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_title)
+        let futureLoadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_subtitle)
+        ThemeText.sprintTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
+        ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
+
+        futureLoadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
                                                 ThemeText.quotation,
                                                 "/",
                                                 ThemeText.quotationSlash,
                                                 "10",
                                                 ThemeText.quotationLight)
-        ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadRefrence)
+        ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
         // Button
         moreData.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
