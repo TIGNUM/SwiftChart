@@ -93,6 +93,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
+        impactReadinessOutOf100Label.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_label_out_of_100)
 
         impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
         if impactReadinessButton.isEnabled {

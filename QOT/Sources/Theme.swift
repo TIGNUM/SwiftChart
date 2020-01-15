@@ -234,7 +234,7 @@ enum ThemeButton {
     case accent40
     case audioButton
     case closeButton(ThemeColorMode)
-    case level5
+    case dailyBriefButtons
     case clear
     case onboarding
     case backButton
@@ -271,7 +271,7 @@ enum ThemeButton {
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
-        case .level5, .audioButtonStrategy:
+        case .dailyBriefButtons, .audioButtonStrategy:
             colorSelected = .accent40
             colorUnselected = .clear
             colorBorder = .accent40

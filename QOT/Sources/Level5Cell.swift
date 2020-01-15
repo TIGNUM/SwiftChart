@@ -116,7 +116,7 @@ final class Level5Cell: BaseDailyBriefCell {
 
     func setButtonBackgroundColor() {
         buttons.forEach {(button) in
-            ThemeButton.level5.apply(button, selected: tmpAnswer == button.tag)
+            ThemeButton.dailyBriefButtons.apply(button, selected: tmpAnswer == button.tag)
         }
     }
 
@@ -136,11 +136,11 @@ final class Level5Cell: BaseDailyBriefCell {
 
         if tmpAnswer == savedAnswer {
             setButtonText("Saved")
-            ThemeButton.level5.apply(saveButton, selected: true)
+            ThemeButton.dailyBriefButtons.apply(saveButton, selected: true)
             saveButton.isEnabled = false
         } else {
             setButtonText("Save")
-            ThemeButton.level5.apply(saveButton, selected: false)
+            ThemeButton.dailyBriefButtons.apply(saveButton, selected: false)
             saveButton.isEnabled = true
         }
     }

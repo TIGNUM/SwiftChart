@@ -133,6 +133,9 @@ public extension AppTextKey {
         static let daily_brief_section_daily_insights_tbv_subtitle_rating_of = AppTextKey("daily_brief.section_daily_insights.tbv.subtitle_rating_of")
         static let daily_brief_section_daily_insights_tbv_title = AppTextKey("daily_brief.section_daily_insights.tbv.title")
         static let daily_brief_section_daily_insights_tbv_button_view_my_tbv = AppTextKey("daily_brief.section_daily_insights.tbv.button_view_my_tbv")
+        static let daily_brief_section_daily_insights_peak_performances_body = AppTextKey("daily_brief.section_daily_insights.peak_performances.body")
+        static let daily_brief_section_daily_insights_peak_performances_button_get_started = AppTextKey("daily_brief.section_daily_insights.peak_performances.button_get_started")
+
         static let daily_brief_section_explore_title = AppTextKey("daily_brief.section_explore.title")
         static let daily_brief_section_explore_body = AppTextKey("daily_brief.section_explore.body")
         static let daily_brief_section_from_my_coach_title = AppTextKey("daily_brief.section_from_my_coach.title")
@@ -162,8 +165,6 @@ public extension AppTextKey {
         static let daily_brief_section_guided_track_section_step_5_button = AppTextKey("daily_brief.section_guided_track.section_step_5.button")
         static let daily_brief_section_guided_track_section_step_5_subtitle = AppTextKey("daily_brief.section_guided_track.section_step_5.subtitle")
         static let daily_brief_section_guided_track_section_step_5_title = AppTextKey("daily_brief.section_guided_track.section_step_5.title")
-//
-        //  Impact Readiness being added
         static let daily_brief_section_impact_readiness_body_missing_five_days_data = AppTextKey("daily_brief.section_impact_readiness.body_missing_five_days_data")
         static let daily_brief_section_impact_readiness_button_my_data = AppTextKey("daily_brief.section_impact_readiness.button_my_data")
         static let daily_brief_section_impact_readiness_empty_body = AppTextKey("daily_brief.section_impact_readiness.empty.body")
@@ -189,6 +190,12 @@ public extension AppTextKey {
         static let daily_brief_section_impact_readiness_section_sleep_quantity_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.subtitle")
         static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
         static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
+//
+//
+//    adding
+        static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
+        static let daily_brief_section_leader_wisdom_title = AppTextKey("daily_brief.section_leader_wisdom.title")
+
 //
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_cognitive")
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_emotional = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_emotional")

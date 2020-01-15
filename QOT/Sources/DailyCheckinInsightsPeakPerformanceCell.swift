@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
 
@@ -19,6 +20,8 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ThemeButton.dailyBriefButtons.apply(button, selected: false)
+        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(button)
@@ -32,6 +35,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
         skeletonManager.hide()
     }
 

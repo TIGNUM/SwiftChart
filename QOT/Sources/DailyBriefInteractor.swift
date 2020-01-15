@@ -480,9 +480,8 @@ extension DailyBriefInteractor {
             // Peak Performance
             let peakPerformanceTitle = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_title)
             let performanceCount = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
-            let performanceTag = "\(performanceCount)_performances"
-            let performanceString = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first?.valueText
-            let replacedString = performanceString?.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
+            let performanceString = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_body)
+            let replacedString = performanceString.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
             let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: replacedString)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
@@ -895,8 +894,8 @@ extension DailyBriefInteractor {
 
             return leadersWisdomList
         }
-        leadersWisdomList.append(LeaderWisdomCellViewModel(title: leadersWisdom.bucketText?.contentItems.first?.valueText ?? "",
-                                                           subtitle: "\(leadersWisdom.bucketText?.contentItems.last?.valueText ?? "") \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
+        leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(AppTextKey.daily_brief_section_leader_wisdom_title),
+                                                           subtitle: AppTextService.get(AppTextKey.daily_brief_section_leader_wisdom_body) + "\(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
             description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
             audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.link ?? ""),
