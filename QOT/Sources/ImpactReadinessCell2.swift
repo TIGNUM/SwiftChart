@@ -118,7 +118,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
         sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
-                                                   "h", ThemeText.quotationSmall,
+                                                        AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
+                                                        ThemeText.quotationSmall,
                                                    asterixCharacter, ThemeText.quotation)
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5

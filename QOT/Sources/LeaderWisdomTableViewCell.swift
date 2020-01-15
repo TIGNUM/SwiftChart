@@ -48,6 +48,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
+//        TODO fix height here its too small for the leasder wisdom intros
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
 
         videoView.isHidden = model.format != .video

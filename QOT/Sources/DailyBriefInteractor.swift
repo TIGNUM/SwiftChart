@@ -895,7 +895,7 @@ extension DailyBriefInteractor {
             return leadersWisdomList
         }
         leadersWisdomList.append(LeaderWisdomCellViewModel(title: AppTextService.get(AppTextKey.daily_brief_section_leader_wisdom_title),
-                                                           subtitle: AppTextService.get(AppTextKey.daily_brief_section_leader_wisdom_body) + "\(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
+                                                           subtitle: "\(AppTextService.get(AppTextKey.daily_brief_section_leader_wisdom_body)) \(collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_NAME")}.first?.valueText ?? "")",
             description: collection.contentItems.filter {$0.searchTags.contains("LEADER_WISDOM_TRANSCRIPT")}.first?.valueText ?? "",
             audioDuration: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.valueDuration,
             audioLink: URL(string: collection.contentItems.filter { $0.searchTags.contains("LEADER_WISDOM_FILE")}.first?.link ?? ""),
