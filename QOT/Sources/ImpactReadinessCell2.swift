@@ -96,7 +96,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             hide(false)
             skeletonManager.hide()
         }
-        var asterixCharacter: String = "\n*"
+        var asterixCharacter: String = "*"
         ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
 
