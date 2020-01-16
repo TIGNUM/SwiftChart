@@ -13,14 +13,14 @@ final class AboutMeCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet private weak var aboutMeMoreInfo: UILabel!
+    @IBOutlet private weak var aboutMeMoreInfoLabel: UILabel!
     @IBOutlet weak var footnoteView: UIView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
-        skeletonManager.addSubtitle(aboutMeMoreInfo)
+        skeletonManager.addSubtitle(aboutMeMoreInfoLabel)
     }
 
     @IBOutlet weak var stackView: UIStackView!
@@ -34,7 +34,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseHeaderView?.subtitleTextView)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-        self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo
+        self.aboutMeMoreInfoLabel.text = viewModel.aboutMeMoreInfo
         footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
     }
 }

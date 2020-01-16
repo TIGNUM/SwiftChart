@@ -736,9 +736,9 @@ extension DailyBriefInteractor {
     // MARK: - My Stats
     func createAboutMe(aboutMeBucket aboutMeModel: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var aboutMeList: [BaseDailyBriefViewModel] = []
-        let aboutMeBucketTitle = aboutMeModel.bucketText?.contentItems.first?.valueText ?? ""
+        let aboutMeBucketTitle = AppTextService.get(AppTextKey.daily_brief_section_my_stats_title)
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = aboutMeModel.additionalDescription
+        let aboutMeAdditionalContent = AppTextService.get(AppTextKey.daily_brief_section_my_stats_body_missing_data)
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
                                             aboutMeContent: aboutMeContent,
                                             aboutMeMoreInfo: aboutMeAdditionalContent,
@@ -992,7 +992,7 @@ extension DailyBriefInteractor {
         return latestWhatsHotList
     }
 
-    // MARK: - From my coach
+    // MARK: - From My Tignum Coach
     func createFromMyCoachModel(fromCoachBucket fromCoach: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var modelList: [BaseDailyBriefViewModel] = []
         var messageModels: [FromMyCoachCellViewModel.FromMyCoachMessage] = []
@@ -1003,7 +1003,8 @@ extension DailyBriefInteractor {
             }
         }
 
-        if let detailTitle = fromCoach.bucketText?.contentItems.first?.valueText, !messageModels.isEmpty {
+        if !messageModels.isEmpty {
+            let detailTitle = AppTextService.get(AppTextKey.daily_brief_section_from_my_coach_title)
             let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
             let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
             let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)

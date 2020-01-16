@@ -32,7 +32,7 @@ final class FromMyCoachHeaderView: UIView {
 
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
         ThemeView.level1.apply(self)
-        ThemeText.fromCoachTitle.apply(AppTextService.get(AppTextKey.daily_brief_section_from_my_coach_title), to: title)
+        ThemeText.fromCoachTitle.apply(data.title, to: title)
         skeletonManager.addOtherView(coachImageView)
         coachImageView.setImage(url: data.imageUrl,
                                 skeletonManager: self.skeletonManager) { (_) in /* */}
