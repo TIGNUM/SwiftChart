@@ -225,7 +225,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                         elements: strongSelf.createFromTignum(fromTignum: bucket)))
                 case .BESPOKE?:
                     sectionDataList.append(ArraySection(model: .bespoke,
-                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
+                                                         elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
                                                         elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
@@ -571,6 +571,38 @@ extension DailyBriefInteractor {
         departureBespokeFeastList.append(model)
         return departureBespokeFeastList
     }
+
+    // MARK: - Products we love
+    func createProductsWeLove(productsBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+        var productsList: [BaseDailyBriefViewModel] = []
+        guard let collection = productsBucket.contentCollections?.first else {
+            productsList.append(DepartureBespokeFeastModel(title: "",
+                                                           subtitle: "",
+                                                           text: "",
+                                                           images: [""],
+                                                           copyrights: [""],
+                                                           domainModel: productsBucket))
+            return productsList
+        }
+        let title = AppTextService.get(AppTextKey.daily_brief_section_products_we_love_title)
+        let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
+        let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+        var copyrights: [String?] = []
+        var images: [String?] = []
+        collection.contentItems.filter { $0.format == .image }.forEach { (image) in
+            images.append(image.valueMediaURL)
+            copyrights.append(image.copyrightURLString)
+        }
+        let model = DepartureBespokeFeastModel(title: title,
+                                               subtitle: subtitle,
+                                               text: text,
+                                               images: images,
+                                               copyrights: copyrights,
+                                               domainModel: productsBucket)
+        productsList.append(model)
+        return productsList
+    }
+
 
     // MARK: - Solve Reminder
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
