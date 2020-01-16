@@ -121,7 +121,7 @@ public extension AppTextKey {
 
         static let daily_brief_section_weather_label_now = AppTextKey("daily_brief.section_weather.label_now")
         static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
-// // //  ADDED TO STAGING AND LIVE
+// // //
         static let daily_brief_section_big_questions_title = AppTextKey("daily_brief.section_big_questions.title")
         static let daily_brief_section_whats_hot_title = AppTextKey("daily_brief.section_whats_hot.title")
         static let daily_brief_section_big_thoughts_title = AppTextKey("daily_brief.section_big_thoughts.title")
@@ -190,12 +190,8 @@ public extension AppTextKey {
         static let daily_brief_section_impact_readiness_section_sleep_quantity_subtitle = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.subtitle")
         static let daily_brief_section_impact_readiness_section_sleep_quantity_title = AppTextKey("daily_brief.section_impact_readiness.section_sleep_quantity.title")
         static let daily_brief_section_impact_readiness_title = AppTextKey("daily_brief.section_impact_readiness.title")
-//
-//
-//    adding
         static let daily_brief_section_leader_wisdom_body = AppTextKey("daily_brief.section_leader_wisdom.body")
         static let daily_brief_section_leader_wisdom_title = AppTextKey("daily_brief.section_leader_wisdom.title")
-
         static let daily_brief_section_level_5_alert_body = AppTextKey("daily_brief.section_level_5.alert.body")
         static let daily_brief_section_level_5_alert_button_ok = AppTextKey("daily_brief.section_level_5.alert.button_ok")
         static let daily_brief_section_level_5_body = AppTextKey("daily_brief.section_level_5.body")
@@ -221,8 +217,35 @@ public extension AppTextKey {
         static let daily_brief_section_my_best_body = AppTextKey("daily_brief.section_my_best.body")
         static let daily_brief_section_my_best_button_my_tbv = AppTextKey("daily_brief.section_my_best.button_my_tbv")
         static let daily_brief_section_my_best_empty_body = AppTextKey("daily_brief.section_my_best.empty.body")
+        static let daily_brief_section_my_best_empty_button_create_tbv = AppTextKey("daily_brief.section_my_best.empty.button_create_tbv")
+        static let daily_brief_section_my_best_title = AppTextKey("daily_brief.section_my_best.title")
+        static let daily_brief_section_level_5_button_saved = AppTextKey("daily_brief.section_level_5.button_saved")
+// // // ADDED TO STAGING AND LIVE
 
-//
+        static let daily_brief_section_my_stats_body_missing_data = AppTextKey("daily_brief.section_my_stats.body_missing_data")
+        static let daily_brief_section_my_stats_title = AppTextKey("daily_brief.section_my_stats.title")
+        static let daily_brief_section_on_the_road_alert_copyright_body = AppTextKey("daily_brief.section_on_the_road.alert_copyright.body")
+        static let daily_brief_section_on_the_road_title = AppTextKey("daily_brief.section_on_the_road.title")
+        static let daily_brief_section_products_we_love_alert_copyright_body = AppTextKey("daily_brief.section_products_we_love.alert_copyright.body")
+        static let daily_brief_section_products_we_love_title = AppTextKey("daily_brief.section_products_we_love.title")
+        static let daily_brief_section_solve_reflection_body = AppTextKey("daily_brief.section_solve_reflection.body")
+        static let daily_brief_section_solve_reflection_bullet_1 = AppTextKey("daily_brief.section_solve_reflection.bullet_1")
+        static let daily_brief_section_solve_reflection_bullet_2 = AppTextKey("daily_brief.section_solve_reflection.bullet_2")
+        static let daily_brief_section_solve_reflection_bullet_3 = AppTextKey("daily_brief.section_solve_reflection.bullet_3")
+        static let daily_brief_section_solve_reflection_button_check_it = AppTextKey("daily_brief.section_solve_reflection.button_check_it")
+        static let daily_brief_section_solve_reflection_title = AppTextKey("daily_brief.section_solve_reflection.title")
+        static let daily_brief_section_sprint_challenge_button_got_it = AppTextKey("daily_brief.section_sprint_challenge.button_got_it")
+        static let daily_brief_section_sprint_challenge_button_show_more = AppTextKey("daily_brief.section_sprint_challenge.button_show_more")
+        static let daily_brief_section_sprint_challenge_title = AppTextKey("daily_brief.section_sprint_challenge.title")
+        static let daily_brief_section_visual_delights_title = AppTextKey("daily_brief.section_visual_delights.title")
+        static let daily_brief_section_weather_empty_body = AppTextKey("daily_brief.section_weather.empty.body")
+        static let daily_brief_section_weather_empty_body_under_pic = AppTextKey("daily_brief.section_weather.empty.body_under_pic")
+        static let daily_brief_section_weather_empty_button_allow = AppTextKey("daily_brief.section_weather.empty.button_allow")
+        static let daily_brief_section_weather_empty_button_open_settings = AppTextKey("daily_brief.section_weather.empty.button_open_settings")
+        static let daily_brief_section_weather_empty_title = AppTextKey("daily_brief.section_weather.empty.title")
+        static let daily_brief_section_wh_title = AppTextKey("daily_brief.section_wh.title")
+//  // //
+
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_cognitive")
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_emotional = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_emotional")
         static let coach_sprints_alert_sprint_in_progress_body = AppTextKey("coach.sprints.alert.sprint_in_progress.body")

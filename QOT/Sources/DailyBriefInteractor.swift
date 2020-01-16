@@ -362,8 +362,7 @@ extension DailyBriefInteractor {
         var models: [ImpactReadinessScoreViewModel.ImpactDataViewModel] = []
         let impactReadinessImageURL = impactReadiness.toBeVision?.profileImageResource?.url()
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
-            readinessIntro = impactReadiness.bucketText?.contentItems
-                .filter {$0.searchTags.contains("NO_CHECK_IN")}.first?.valueText
+            readinessIntro = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_empty_body)
         }
 
         let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_title)
@@ -382,8 +381,7 @@ extension DailyBriefInteractor {
             impactReadiness.dailyCheckInResult == nil {
             // if it took longer than dailyCheckInResultRequestTimeOut and still we don't have result
             if answerDate.dateAfterSeconds(dailyCheckInResultRequestTimeOut) < Date() {
-                readinessIntro = impactReadiness.bucketText?.contentItems
-                    .filter {$0.searchTags.contains("CANNOT_GET_DAILY_CHECK_IN_RESULT")}.first?.valueText
+                readinessIntro = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_error_body)
                 dailyCheckInResultRequestCheckTimer?.invalidate()
                 dailyCheckInResultRequestCheckTimer = nil
                 expendImpactReadiness = false
@@ -495,14 +493,14 @@ extension DailyBriefInteractor {
         var createLevel5List: [BaseDailyBriefViewModel] = []
         var levelMessageModels: [Level5ViewModel.LevelDetail] = []
 
-        let title = level5.bucketText?.contentItems.first?.valueText ?? ""
-        let intro = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("intro")}.first?.valueText ?? ""
-        let question = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("question1")}.first?.valueText ?? ""
-        let youRatedPart1 = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("you_rated_part1")}.first?.valueText ?? ""
-        let youRatedPart2 = level5.contentCollections?.filter {$0.searchTags.contains("INTRO")}.first?.contentItems.filter {$0.searchTags.contains("you_rated_part2")}.first?.valueText ?? ""
-        let confirmationMessage =  level5.bucketText?.contentItems.filter {$0.searchTags.contains("LEVEL_5_CONFIRMATION_MESSAGE")}.first?.valueText ?? ""
-        let level1Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_1")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level1Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_1")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        let title = AppTextService.get(AppTextKey.daily_brief_section_level_5_title)
+        let intro = AppTextService.get(AppTextKey.daily_brief_section_level_5_body)
+        let question = AppTextService.get(AppTextKey.daily_brief_section_level_5_question)
+        let youRatedPart1 = AppTextService.get(AppTextKey.daily_brief_section_level_5_question_with_data_one)
+        let youRatedPart2 = AppTextService.get(AppTextKey.daily_brief_section_level_5_question_with_data_two)
+        let confirmationMessage =  AppTextService.get(AppTextKey.daily_brief_section_level_5_alert_body)
+        let level1Title = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_1_title)
+        let level1Text = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_1_body)
         let comeBackText = level5.bucketText?.contentItems.filter {$0.searchTags.contains("COME_BACK")}.first?.valueText ?? "Noted! Come back in 1 month."
         var lastEstimatedLevel: Int?
         lastEstimatedLevel = level5.latestGetToLevel5Value
@@ -514,20 +512,20 @@ extension DailyBriefInteractor {
         }
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level1Title, levelContent: level1Text))
 
-        let level2Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level2Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_2")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        let level2Title = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_2_title)
+        let level2Text =  AppTextService.get(AppTextKey.daily_brief_section_level_5_level_2_body)
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level2Title, levelContent: level2Text))
 
-        let level3Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level3Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_3")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        let level3Title = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_3_title)
+        let level3Text =  AppTextService.get(AppTextKey.daily_brief_section_level_5_level_3_body)
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level3Title, levelContent: level3Text))
 
-        let level4Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level4Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_4")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        let level4Title = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_4_title)
+        let level4Text =  AppTextService.get(AppTextKey.daily_brief_section_level_5_level_4_body)
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level4Title, levelContent: level4Text))
 
-        let level5Title = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_title")}.first?.valueText ?? ""
-        let level5Text = level5.contentCollections?.filter {$0.searchTags.contains("LEVEL_5")}.first?.contentItems.filter {$0.searchTags.contains("item_text")}.first?.valueText ?? ""
+        let level5Title = AppTextService.get(AppTextKey.daily_brief_section_level_5_level_5_title)
+        let level5Text =  AppTextService.get(AppTextKey.daily_brief_section_level_5_level_5_body)
         levelMessageModels.append(Level5ViewModel.LevelDetail(levelTitle: level5Title, levelContent: level5Text))
 
         createLevel5List.append(Level5ViewModel(title: title,
@@ -913,17 +911,17 @@ extension DailyBriefInteractor {
     // MARK: - My Best
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var meAtMyBestList: [BaseDailyBriefViewModel] = []
-        let createMeAtMyBestTitle = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("MY_AT_MY_BEST_TITLE")}.first?.valueText ?? ""
+        let createMeAtMyBestTitle = AppTextService.get(AppTextKey.daily_brief_section_my_best_title)
         if meAtMyBest.toBeVisionTrack?.sentence?.isEmpty != false {
-            let tbvEmptyIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_INTRO")}.first?.valueText ?? "intro_empty"
-            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_NULL_STATE_CTA")}.first?.valueText ?? "Create your To Be Vision"
+            let tbvEmptyIntro = AppTextService.get(AppTextKey.daily_brief_section_my_best_empty_body)
+            let ctaTBVButtonText = AppTextService.get(AppTextKey.daily_brief_section_my_best_empty_button_create_tbv)
             meAtMyBestList.append(MeAtMyBestCellEmptyViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, buttonText: ctaTBVButtonText, domainModel: meAtMyBest))
             return meAtMyBestList
         } else {
-            let tbvIntro = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_INTRO")}.first?.valueText ?? ""
+            let tbvIntro = AppTextService.get(AppTextKey.daily_brief_section_my_best_body)
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
             let tbvIntro2 = DailyBriefAtMyBestWorker().storedText(meAtMyBest.contentCollections?.filter {$0.searchTags.contains("ME_AT_MY_BEST_REFLECTION")}.randomElement()?.contentItems.first?.valueText ?? " ")
-            let ctaTBVButtonText = meAtMyBest.bucketText?.contentItems.filter {$0.searchTags.contains("ME_AT_MY_BEST_CTA")}.first?.valueText ?? ""
+            let ctaTBVButtonText = AppTextService.get(AppTextKey.daily_brief_section_my_best_button_my_tbv)
             meAtMyBestList.append(MeAtMyBestCellViewModel(title: createMeAtMyBestTitle,
                                                           intro: tbvIntro,
                                                           tbvStatement: tbvSentence,

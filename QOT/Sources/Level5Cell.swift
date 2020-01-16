@@ -28,6 +28,11 @@ final class Level5Cell: BaseDailyBriefCell {
     @IBOutlet weak var awarenssProgress: UIProgressView!
     @IBOutlet weak var masteryProgress: UIProgressView!
     @IBOutlet weak var progressStackView: UIStackView!
+    @IBOutlet private weak var knowledgeLabel: UILabel!
+    @IBOutlet private weak var awarenessLabel: UILabel!
+    @IBOutlet private weak var readinessLabel: UILabel!
+    @IBOutlet private weak var masteryLabel: UILabel!
+
     var levelMessages: [Level5ViewModel.LevelDetail] = []
     weak var delegate: DailyBriefViewControllerDelegate?
     var savedAnswer: Int?
@@ -75,19 +80,23 @@ final class Level5Cell: BaseDailyBriefCell {
         return UIBarButtonItem(customView: button)
     }
 
-    func configure(with: Level5ViewModel?) {
+    func configure(with model: Level5ViewModel?) {
         skeletonManager.hide()
-        baseHeaderView?.configure(title: with?.title, subtitle: with?.intro)
-        ThemeText.dailyBriefTitle.apply(with?.title, to: baseHeaderView?.titleLabel)
-        ThemeText.dailyBriefSubtitle.apply(with?.intro, to: baseHeaderView?.subtitleTextView)
-        ThemeText.level5Question.apply(with?.question, to: questionLabel)
-        confirmationMessage = with?.confirmationMessage
-        levelMessages = with?.levelMessages ?? []
-        if let selectedValue = with?.domainModel?.currentGetToLevel5Value ?? with?.domainModel?.latestGetToLevel5Value {
+        baseHeaderView?.configure(title: model?.title, subtitle: model?.intro)
+        knowledgeLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_knowledge)
+        awarenessLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_awareness)
+        readinessLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_readiness)
+        masteryLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_mastery)
+        ThemeText.dailyBriefTitle.apply(model?.title, to: baseHeaderView?.titleLabel)
+        ThemeText.dailyBriefSubtitle.apply(model?.intro, to: baseHeaderView?.subtitleTextView)
+        ThemeText.level5Question.apply(model?.question, to: questionLabel)
+        confirmationMessage = model?.confirmationMessage
+        levelMessages = model?.levelMessages ?? []
+        if let selectedValue = model?.domainModel?.currentGetToLevel5Value ?? model?.domainModel?.latestGetToLevel5Value {
             tmpAnswer = selectedValue - 1
             savedAnswer = tmpAnswer
         }
-        if with?.domainModel?.currentGetToLevel5Value == nil && with?.domainModel?.latestGetToLevel5Value != nil {
+        if model?.domainModel?.currentGetToLevel5Value == nil && model?.domainModel?.latestGetToLevel5Value != nil {
             savedAnswer = nil
         }
         updateButtonStatus()
@@ -135,11 +144,11 @@ final class Level5Cell: BaseDailyBriefCell {
     func updateButtonStatus() {
 
         if tmpAnswer == savedAnswer {
-            setButtonText("Saved")
+            setButtonText(AppTextService.get(AppTextKey.daily_brief_section_level_5_button_saved))
             ThemeButton.dailyBriefButtons.apply(saveButton, selected: true)
             saveButton.isEnabled = false
         } else {
-            setButtonText("Save")
+            setButtonText(AppTextService.get(AppTextKey.daily_brief_section_level_5_button_save))
             ThemeButton.dailyBriefButtons.apply(saveButton, selected: false)
             saveButton.isEnabled = true
         }
