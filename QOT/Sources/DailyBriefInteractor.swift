@@ -649,10 +649,9 @@ extension DailyBriefInteractor {
 
         let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_title)
         let twoDaysAgo = solveBucket.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText ?? ""
-        let question1 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }.first?.valueText ?? ""
-        let filteredQuestions2 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }
-        let question2 = filteredQuestions2?.at(index: 1)?.valueText ?? ""
-        let question3 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }.last?.valueText ?? ""
+        let question1 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_1)
+        let question2 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_2)
+        let question3 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_3)
         createSolveList.append(SolveReminderCellViewModel(bucketTitle: bucketTitle,
                                                           twoDayAgo: twoDaysAgo,
                                                           question1: question1,
