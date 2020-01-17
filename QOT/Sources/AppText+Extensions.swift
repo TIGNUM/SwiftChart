@@ -244,6 +244,7 @@ public extension AppTextKey {
         static let daily_brief_section_weather_empty_button_open_settings = AppTextKey("daily_brief.section_weather.empty.button_open_settings")
         static let daily_brief_section_weather_empty_title = AppTextKey("daily_brief.section_weather.empty.title")
         static let daily_brief_section_wh_title = AppTextKey("daily_brief.section_wh.title")
+        static let daily_brief_section_sprint_challenge_button_show_less = AppTextKey("daily_brief.section_sprint_challenge.button_show_less")
 //  // //
 
         static let coach_tools_interactive_tool_3drecovery_questionnaire_section_body_label_cognitive = AppTextKey("coach.tools.interactive_tool.3drecovery.questionnaire.section_body.label_cognitive")

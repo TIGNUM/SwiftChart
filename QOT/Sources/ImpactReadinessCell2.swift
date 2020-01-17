@@ -114,7 +114,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quantity
         let quantityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         let quantitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
-        ThemeText.sprintTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
+        ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
         sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
@@ -129,7 +129,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Sleep Quality
         let qualityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_title)
         let qualitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
-        ThemeText.sprintTitle.apply(qualityTitle, to: sleepQualityTitle)
+        ThemeText.bucketTitle.apply(qualityTitle, to: sleepQualityTitle)
         ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
 
         sleepQualityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
@@ -144,7 +144,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Load
         let loadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_title)
         let loadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_subtitle)
-        ThemeText.sprintTitle.apply(loadTitle, to: loadTitleLabel)
+        ThemeText.bucketTitle.apply(loadTitle, to: loadTitleLabel)
         ThemeText.durationString.apply(loadSubtitle, to: loadSubtitleLabel)
 
         loadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
@@ -159,7 +159,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         // Future Load
         let futureLoadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_title)
         let futureLoadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_subtitle)
-        ThemeText.sprintTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
+        ThemeText.bucketTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
         ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
 
         futureLoadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),

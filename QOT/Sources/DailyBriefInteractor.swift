@@ -541,7 +541,7 @@ extension DailyBriefInteractor {
         return createLevel5List
     }
 
-    // MARK: - Visual delights / Products we love / On the road
+    // MARK: - Visual delights
     func createDepatureBespokeFeast(depatureBespokeFeastBucket depatureBespokeFeast: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var departureBespokeFeastList: [BaseDailyBriefViewModel] = []
         guard let collection = depatureBespokeFeast.contentCollections?.first else {
@@ -553,7 +553,7 @@ extension DailyBriefInteractor {
                                                                         domainModel: depatureBespokeFeast))
             return departureBespokeFeastList
         }
-        let title = depatureBespokeFeast.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText
+        let title = AppTextService.get(AppTextKey.daily_brief_section_visual_delights_title)
         let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
         let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
         var copyrights: [String?] = []
@@ -648,7 +648,7 @@ extension DailyBriefInteractor {
         }
 
         let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_title)
-        let twoDaysAgo = solveBucket.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText ?? ""
+        let twoDaysAgo = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_body)
         let question1 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_1)
         let question2 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_2)
         let question3 = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_bullet_3)
@@ -1112,7 +1112,7 @@ extension DailyBriefInteractor {
                                                                                            contentItem.format, 1))
         }
 
-        createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
+        createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: AppTextService.get(AppTextKey.daily_brief_section_sprint_challenge_title),
                                                                    sprintTitle: sprintBucket.sprint?.title,
                                                                    sprintInfo: sprintInfo,
                                                                    sprintStepNumber: sprintBucket.sprint?.currentDay,
