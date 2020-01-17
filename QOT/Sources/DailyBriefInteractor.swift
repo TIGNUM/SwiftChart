@@ -603,6 +603,36 @@ extension DailyBriefInteractor {
         return productsList
     }
 
+    // MARK: - On the Road
+     func createOnTheRoad(onTheRoadBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
+         var onTheRoadList: [BaseDailyBriefViewModel] = []
+         guard let collection = onTheRoadBucket.contentCollections?.first else {
+             onTheRoadList.append(DepartureBespokeFeastModel(title: "",
+                                                            subtitle: "",
+                                                            text: "",
+                                                            images: [""],
+                                                            copyrights: [""],
+                                                            domainModel: onTheRoadBucket))
+             return onTheRoadList
+         }
+         let title = AppTextService.get(AppTextKey.daily_brief_section_on_the_road_title)
+         let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
+         let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
+         var copyrights: [String?] = []
+         var images: [String?] = []
+         collection.contentItems.filter { $0.format == .image }.forEach { (image) in
+             images.append(image.valueMediaURL)
+             copyrights.append(image.copyrightURLString)
+         }
+         let model = DepartureBespokeFeastModel(title: title,
+                                                subtitle: subtitle,
+                                                text: text,
+                                                images: images,
+                                                copyrights: copyrights,
+                                                domainModel: onTheRoadBucket)
+         onTheRoadList.append(model)
+         return onTheRoadList
+     }
 
     // MARK: - Solve Reminder
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
@@ -617,7 +647,7 @@ extension DailyBriefInteractor {
             return createSolveList
         }
 
-        let bucketTitle = solveBucket.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText ?? ""
+        let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_title)
         let twoDaysAgo = solveBucket.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText ?? ""
         let question1 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }.first?.valueText ?? ""
         let filteredQuestions2 = solveBucket.bucketText?.contentItems.filter { $0.format == .textQuote }
