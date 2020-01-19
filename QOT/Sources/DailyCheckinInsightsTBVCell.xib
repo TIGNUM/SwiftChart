@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,29 +19,28 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="k0H-1I-Uwk" customClass="DailyCheckinInsightsTBVCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="407" height="322"/>
+            <rect key="frame" x="0.0" y="0.0" width="407" height="319"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
-                    <rect key="frame" x="20" y="143.5" width="367" height="19.5"/>
+                    <rect key="frame" x="20" y="143.5" width="367" height="19"/>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
-                    <rect key="frame" x="20" y="191" width="367" height="17"/>
+                    <rect key="frame" x="20" y="190.5" width="367" height="16.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="233" y="232" width="150" height="42"/>
+                    <rect key="frame" x="359" y="231" width="24" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="150" id="Shh-xa-dEy"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Sux-yG-yCB"/>
+                        <constraint firstAttribute="height" constant="40" id="Sux-yG-yCB"/>
                     </constraints>
                     <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
-                    <state key="normal" title="View my TBV">
+                    <state key="normal">
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
                     <connections>
@@ -60,14 +57,14 @@
             </subviews>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="War-05-zvi" firstAttribute="bottom" secondItem="nkR-EF-LfG" secondAttribute="bottom" constant="48" id="Drq-eb-cms"/>
                 <constraint firstItem="3XV-ES-B1T" firstAttribute="top" secondItem="5a5-dW-Fuu" secondAttribute="bottom" constant="28" id="EPl-ag-ag3"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="4RP-gq-xLT" secondAttribute="trailing" id="EVd-Ph-od4"/>
+                <constraint firstItem="nkR-EF-LfG" firstAttribute="top" secondItem="3XV-ES-B1T" secondAttribute="bottom" constant="24" id="F6M-LZ-fqi"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="3XV-ES-B1T" secondAttribute="trailing" constant="20" id="KHR-98-YFv"/>
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="NIO-xE-au6"/>
-                <constraint firstItem="nkR-EF-LfG" firstAttribute="top" secondItem="3XV-ES-B1T" secondAttribute="bottom" constant="24" id="Qsq-Tk-VIw"/>
                 <constraint firstItem="4RP-gq-xLT" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" id="Tq8-oz-i8P"/>
                 <constraint firstItem="3XV-ES-B1T" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="dOG-bI-uJE"/>
-                <constraint firstAttribute="bottom" secondItem="nkR-EF-LfG" secondAttribute="bottom" constant="48" id="fdg-5E-Io4"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="5a5-dW-Fuu" secondAttribute="trailing" constant="20" id="pc0-YU-t0W"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="24" id="rOJ-3A-QmN"/>
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="top" secondItem="4RP-gq-xLT" secondAttribute="bottom" constant="15.5" id="vMA-dN-1ko"/>
@@ -82,7 +79,7 @@
                 <outlet property="headerView" destination="4RP-gq-xLT" id="LVi-ua-2KX"/>
                 <outlet property="tbvSentence" destination="5a5-dW-Fuu" id="XPy-sv-RtY"/>
             </connections>
-            <point key="canvasLocation" x="150" y="-30"/>
+            <point key="canvasLocation" x="148.55072463768118" y="-31.138392857142854"/>
         </view>
     </objects>
 </document>
