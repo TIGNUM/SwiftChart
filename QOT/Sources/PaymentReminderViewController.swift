@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import qot_dal
 
 final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
@@ -31,6 +32,11 @@ final class PaymentReminderViewController: BaseViewController, ScreenZLevel3 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         ThemeView.paymentReminder.apply(self.view)
+    }
+
+     override func viewDidAppear(_ animated: Bool) {
+           super.viewDidAppear(animated)
+           trackPage()
     }
 
     // MARK: - Private
