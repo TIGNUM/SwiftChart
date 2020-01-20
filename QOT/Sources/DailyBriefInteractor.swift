@@ -811,30 +811,16 @@ extension DailyBriefInteractor {
     func createWeatherViewModel(weatherBucket: QDMDailyBriefBucket?) -> [BaseDailyBriefViewModel] {
         var weatherList: [BaseDailyBriefViewModel] = []
 
-        let title = weatherBucket?.bucketText?.contentItems.filter({
-            $0.searchTags.contains(obj: "BUCKET_TITLE")
-        }).first?.valueText ?? "BUCKET_TITLE"
+        let title = AppTextService.get(AppTextKey.daily_brief_section_weather_empty_title)
 
         let intro = weatherBucket?.bucketText?.contentItems.filter({
             $0.searchTags.contains(obj: "BUCKET_INTRO")
         }).first?.valueText ?? "BUCKET_INTRO"
 
-        let requestLocationPermissionDescription = weatherBucket?.bucketText?.contentItems.filter({
-            $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_TEXT")
-        }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_TEXT"
-
-        let requestLocationPermissionButtonTitle = weatherBucket?.bucketText?.contentItems.filter({
-            $0.searchTags.contains(obj: "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE")
-        }).first?.valueText ?? "REQUEST_LOCATION_PERMISSION_BUTTON_TITLE"
-
-        let deniedLocationPermissionDescription = weatherBucket?.bucketText?.contentItems.filter({
-            $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_TEXT")
-        }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_TEXT"
-
-        let deniedLocationPermissionButtonTitle = weatherBucket?.bucketText?.contentItems.filter({
-            $0.searchTags.contains(obj: "DENIED_LOCATION_PERMISSION_BUTTON_TITLE")
-        }).first?.valueText ?? "DENIED_LOCATION_PERMISSION_BUTTON_TITLE"
-
+        let requestLocationPermissionDescription = AppTextService.get(AppTextKey.daily_brief_section_weather_empty_body_under_pic)
+        let requestLocationPermissionButtonTitle = AppTextService.get(AppTextKey.daily_brief_section_weather_empty_button_allow)
+        let deniedLocationPermissionDescription = AppTextService.get(AppTextKey.daily_brief_section_weather_empty_body_under_pic)
+        let deniedLocationPermissionButtonTitle = AppTextService.get(AppTextKey.daily_brief_section_weather_empty_button_open_settings)
         let locationPermission = AppCoordinator.permissionsManager?.currentStatusFor(for: .location) ?? .notDetermined
         weatherList.append(WeatherViewModel(bucketTitle: title,
                                             intro: intro,
