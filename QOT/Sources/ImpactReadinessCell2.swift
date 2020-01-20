@@ -22,7 +22,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var sleepQualityTitle: UILabel!
     @IBOutlet weak var sleepQualitySubtitle: UILabel!
     @IBOutlet weak var sleepQualityLabel: UILabel!
-    @IBOutlet weak var sleepQualityReference: UILabel!
+    @IBOutlet weak var sleepQualityReferenceLabel: UILabel!
 ////  load
     @IBOutlet weak var loadTitleLabel: UILabel!
     @IBOutlet weak var loadSubtitleLabel: UILabel!
@@ -71,7 +71,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         sleepQualityTitle.isHidden = hidden
         sleepQualitySubtitle.isHidden = hidden
         sleepQualityLabel.isHidden = hidden
-        sleepQualityReference.isHidden = hidden
+        sleepQualityReferenceLabel.isHidden = hidden
         loadTitleLabel.isHidden = hidden
         loadSubtitleLabel.isHidden = hidden
         loadLabel.isHidden = hidden
@@ -139,7 +139,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                   "10",
                                                   ThemeText.quotationLight)
         refLabel1.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_label_ref)
-        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReference)
+        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReferenceLabel)
 
         // Load
         let loadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_title)

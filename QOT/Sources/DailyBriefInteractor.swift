@@ -228,7 +228,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                          elements: strongSelf.createProductsWeLove(productsBucket: bucket)))
                 case .DEPARTURE_INFO?:
                     sectionDataList.append(ArraySection(model: .departureInfo,
-                                                        elements: strongSelf.createDepatureBespokeFeast(depatureBespokeFeastBucket: bucket)))
+                                                        elements: strongSelf.createOnTheRoad(onTheRoadBucket: bucket)))
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom,
                                                         elements: strongSelf.createLeaderWisdom(createLeadersWisdom: bucket)))
@@ -553,7 +553,7 @@ extension DailyBriefInteractor {
                                                                         domainModel: depatureBespokeFeast))
             return departureBespokeFeastList
         }
-        let title = AppTextService.get(AppTextKey.daily_brief_section_visual_delights_title)
+        let title = AppTextService.get(AppTextKey.daily_brief_section_on_the_road_title)
         let subtitle = collection.contentItems.filter { $0.format == .title }.first?.valueText
         let text = collection.contentItems.filter { $0.searchTags.contains("BUCKET_CONTENT") }.first?.valueText
         var copyrights: [String?] = []
@@ -732,8 +732,9 @@ extension DailyBriefInteractor {
     // MARK: - My Peak Performances
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createMyPeakPerformanceList: [BaseDailyBriefViewModel] = []
-        let bucketTitle: String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
-        var contentSentence: String = ""
+        let bucketTitle = AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_title)
+        var contentSentence = ""
+        var contentSubtitle = ""
         var sectionsModels: [MyPeakPerformanceCellViewModel.MyPeakPerformanceSections] = []
         let beginingOfToday = Date().beginingOfDate()
         let endOfToday = Date().endOfDay()
@@ -750,6 +751,7 @@ extension DailyBriefInteractor {
                     let remainingDays = beginingOfToday.days(to: date)
                     return remainingDays == threeDays
                     } ?? [QDMUserPreparation]()
+                contentSubtitle = AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_section_in_three_days_label)
             } else if contentItem.searchTags.contains(obj: "TOMORROW") {
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")
@@ -758,6 +760,7 @@ extension DailyBriefInteractor {
                     guard let date = $0.eventDate else { return false }
                     return beginingOfToday.days(to: date) == tomorrow
                     } ?? [QDMUserPreparation]()
+                contentSubtitle = AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_section_tomorrow_label)
             } else if contentItem.searchTags.contains(obj: "TODAY") {
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_SAME_DAY")
@@ -766,6 +769,7 @@ extension DailyBriefInteractor {
                     guard let date = $0.eventDate else { return false }
                     return beginingOfToday == date.beginingOfDate()
                     } ?? [QDMUserPreparation]()
+                contentSubtitle = AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_section_today_label)
             } else if contentItem.searchTags.contains(obj: "REFLECT") {
                 contentSentence = myPeakperformance.contentCollections?.filter {
                     $0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_AFTER")
@@ -774,15 +778,16 @@ extension DailyBriefInteractor {
                     guard let date = $0.eventDate else { return false }
                     return endOfToday.days(to: date) == yesterday
                     } ?? [QDMUserPreparation]()
+                contentSubtitle = AppTextService.get(AppTextKey.daily_brief_section_my_peak_performances_section_reflect_label)
             }
             if localPreparationList.count > 0 {
                 localPreparationList.forEach({ (prepareItem) in
-                    let subtitle: String = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
+                    let subtitle = prepareItem.eventType ?? "" + DateFormatter.tbvTracker.string(from: prepareItem.eventDate ?? Date())
                     rows.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceRow(title: prepareItem.name,
                                                                                     subtitle: subtitle,
                                                                                     qdmUserPreparation: prepareItem))
                 })
-                let sections = MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow(sectionSubtitle: contentItem.valueText,
+                let sections = MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow(sectionSubtitle: contentSubtitle,
                                                                                           sectionContent: contentSentence)
                 sectionsModels.append(MyPeakPerformanceCellViewModel.MyPeakPerformanceSections(sections: sections, rows: rows))
             }

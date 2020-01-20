@@ -214,7 +214,6 @@ final class WeatherCell: BaseDailyBriefCell {
         default:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
             accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
-
             accessButtonHeight = ThemeButton.accent40.defaultHeight
             accessImageView.image = R.image.location_permission()
         }
