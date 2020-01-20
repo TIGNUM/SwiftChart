@@ -988,7 +988,6 @@
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
-		CB2FA0E820762914007F21D1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA0E720762914007F21D1 /* Environment.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
 		CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */; };
@@ -2226,7 +2225,6 @@
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
-		CB2FA0E720762914007F21D1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationObject.swift; sourceTree = "<group>"; };
@@ -4817,7 +4815,6 @@
 				B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
-				CB2FA0E720762914007F21D1 /* Environment.swift */,
 				BB4061612302F3A600E5AB19 /* OrientationManager.swift */,
 			);
 			name = App;
@@ -6857,7 +6854,6 @@
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
 				B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */,
-				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */,
