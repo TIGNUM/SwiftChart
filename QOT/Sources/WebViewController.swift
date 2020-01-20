@@ -44,6 +44,12 @@ extension WebViewController {
     }
 }
 
+extension SFSafariViewController: ScreenZLevelOverlay {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+}
+
 // MARK: - URL
 
 private extension URL {
