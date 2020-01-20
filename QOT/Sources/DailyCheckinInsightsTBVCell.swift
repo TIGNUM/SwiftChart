@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
@@ -39,7 +40,9 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
         button.setTitle(model.cta, for: .normal)
         button.setButtonContentInset(padding: 16)
         tbvSentence.text = model.tbvSentence
-        self.adviceText.text = model.adviceText
+        ThemeText.dailyInsightsTbvAdvice.apply(model.adviceText, to: adviceText)
+        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_button_view_my_tbv), for: .normal)
+        button.setButtonContentInset(padding: 16)
     }
 }
 

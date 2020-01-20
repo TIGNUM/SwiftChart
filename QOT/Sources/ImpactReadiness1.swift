@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import qot_dal
 import HealthKit
+import qot_dal
 
 final class ImpactReadiness1: BaseDailyBriefCell {
 
