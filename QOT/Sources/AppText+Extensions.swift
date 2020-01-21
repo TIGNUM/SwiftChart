@@ -125,7 +125,6 @@ public extension AppTextKey {
         static let daily_brief_section_my_peak_performances_title = AppTextKey("daily_brief.section_my_peak_performances.title")
         static let daily_brief_section_weather_label_now = AppTextKey("daily_brief.section_weather.label_now")
         static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
-// // //
         static let daily_brief_section_big_questions_title = AppTextKey("daily_brief.section_big_questions.title")
         static let daily_brief_section_whats_hot_title = AppTextKey("daily_brief.section_whats_hot.title")
         static let daily_brief_section_big_thoughts_title = AppTextKey("daily_brief.section_big_thoughts.title")
@@ -139,16 +138,14 @@ public extension AppTextKey {
         static let daily_brief_section_daily_insights_tbv_button_view_my_tbv = AppTextKey("daily_brief.section_daily_insights.tbv.button_view_my_tbv")
         static let daily_brief_section_daily_insights_peak_performances_body = AppTextKey("daily_brief.section_daily_insights.peak_performances.body")
         static let daily_brief_section_daily_insights_peak_performances_button_get_started = AppTextKey("daily_brief.section_daily_insights.peak_performances.button_get_started")
-
         static let daily_brief_section_explore_title = AppTextKey("daily_brief.section_explore.title")
         static let daily_brief_section_explore_body = AppTextKey("daily_brief.section_explore.body")
-        static let daily_brief_section_from_my_coach_title = AppTextKey("daily_brief.section_from_my_coach.title")
+        static let daily_brief_section_from_my_tignum_coach_title = AppTextKey("daily_brief.section_from_my_tignum_coach.title")
         static let daily_brief_section_from_tignum_title = AppTextKey("daily_brief.section_from_tignum.title")
         static let daily_brief_section_good_to_know_title = AppTextKey("daily_brief.section_good_to_know.title")
         static let daily_brief_section_guided_track_title = AppTextKey("daily_brief.section_guided_track.title")
         static let daily_brief_section_guided_track_body = AppTextKey("daily_brief.section_guided_track.body")
         static let daily_brief_section_guided_track_button_get_to_know_qot = AppTextKey("daily_brief.section_guided_track.button_get_to_know_qot")
-
         static let daily_brief_section_guided_track_section_step_1_body = AppTextKey("daily_brief.section_guided_track.section_step_1.body")
         static let daily_brief_section_guided_track_section_step_1_button = AppTextKey("daily_brief.section_guided_track.section_step_1.button")
         static let daily_brief_section_guided_track_section_step_1_subtitle = AppTextKey("daily_brief.section_guided_track.section_step_1.subtitle")
@@ -225,7 +222,6 @@ public extension AppTextKey {
         static let daily_brief_section_my_best_title = AppTextKey("daily_brief.section_my_best.title")
         static let daily_brief_section_level_5_button_saved = AppTextKey("daily_brief.section_level_5.button_saved")
 // // // ADDED TO STAGING AND LIVE
-
         static let daily_brief_section_my_stats_body_missing_data = AppTextKey("daily_brief.section_my_stats.body_missing_data")
         static let daily_brief_section_my_stats_title = AppTextKey("daily_brief.section_my_stats.title")
         static let daily_brief_section_on_the_road_alert_copyright_body = AppTextKey("daily_brief.section_on_the_road.alert_copyright.body")

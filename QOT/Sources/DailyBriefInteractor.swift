@@ -1056,13 +1056,12 @@ extension DailyBriefInteractor {
         }
 
         if !messageModels.isEmpty {
-            let detailTitle = AppTextService.get(AppTextKey.daily_brief_section_from_my_coach_title)
+            let detailTitle = AppTextService.get(AppTextKey.daily_brief_section_from_my_tignum_coach_title)
             let url = URL(string: fromCoach.coachMessages?.last?.coachProfileImageUrl ?? "")
             let detail = FromMyCoachCellViewModel.FromMyCoachDetail(imageUrl: url, title: detailTitle)
             let model = FromMyCoachCellViewModel(detail: detail, messages: messageModels, domainModel: fromCoach)
             modelList.append(model)
         }
-
         return modelList
     }
 
