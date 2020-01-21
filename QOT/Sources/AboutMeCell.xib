@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -16,32 +14,32 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="285" id="N4a-AE-uex" customClass="AboutMeCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="394" height="285"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="default" indentationWidth="10" rowHeight="300" id="N4a-AE-uex" customClass="AboutMeCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="300"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N4a-AE-uex" id="NpR-Bj-g1Q">
-                <rect key="frame" x="0.0" y="0.0" width="394" height="284.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="N4a-AE-uex" id="NpR-Bj-g1Q">
+                <rect key="frame" x="0.0" y="0.0" width="366" height="300"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yYJ-FT-RvM">
-                        <rect key="frame" x="0.0" y="0.0" width="394" height="150"/>
+                        <rect key="frame" x="0.0" y="0.0" width="366" height="150"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="150" id="hLV-K6-dO8"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDN-6N-0NN">
-                        <rect key="frame" x="24" y="150" width="346" height="134.5"/>
+                        <rect key="frame" x="24" y="150" width="318" height="135"/>
                         <subviews>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2y-6t-CeP" userLabel="SeparatorView">
-                                <rect key="frame" x="0.0" y="0.0" width="346" height="1"/>
+                                <rect key="frame" x="0.0" y="0.0" width="318" height="1"/>
                                 <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="PEW-qy-NYi"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*We estimated this for now check back after consistent use for more accurate data." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-ib-A11">
-                                <rect key="frame" x="0.0" y="25" width="346" height="61"/>
+                                <rect key="frame" x="0.0" y="25" width="318" height="61.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -54,6 +52,7 @@
                             <constraint firstAttribute="bottom" secondItem="guM-ib-A11" secondAttribute="bottom" constant="48.5" id="Yiw-9f-Hxw"/>
                             <constraint firstItem="guM-ib-A11" firstAttribute="leading" secondItem="q2y-6t-CeP" secondAttribute="leading" id="gbb-gK-UAA"/>
                             <constraint firstAttribute="trailing" secondItem="q2y-6t-CeP" secondAttribute="trailing" id="qAi-d8-u2T"/>
+                            <constraint firstAttribute="height" constant="135" id="r1y-VA-tci"/>
                             <constraint firstItem="guM-ib-A11" firstAttribute="top" secondItem="q2y-6t-CeP" secondAttribute="bottom" constant="24" id="sVi-6w-4wF"/>
                             <constraint firstItem="q2y-6t-CeP" firstAttribute="leading" secondItem="cDN-6N-0NN" secondAttribute="leading" id="zpt-Ss-Iuy"/>
                         </constraints>
@@ -73,11 +72,16 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="aboutMeMoreInfo" destination="guM-ib-A11" id="UfX-RL-GFX"/>
+                <outlet property="footnoteHeightConstraint" destination="r1y-VA-tci" id="LwN-2y-dQi"/>
                 <outlet property="footnoteView" destination="cDN-6N-0NN" id="4La-Gu-IkS"/>
                 <outlet property="headerView" destination="yYJ-FT-RvM" id="LNr-cg-cVi"/>
                 <outlet property="headerViewHeightConstraint" destination="hLV-K6-dO8" id="Qys-5D-6hM"/>
+                <outletCollection property="footerHorizontalConstraints" destination="Ixb-TT-pqp" collectionClass="NSMutableArray" id="ACo-LP-cDd"/>
+                <outletCollection property="footerHorizontalConstraints" destination="gbb-gK-UAA" collectionClass="NSMutableArray" id="JwA-CK-4ue"/>
+                <outletCollection property="footerVerticalConstraints" destination="sVi-6w-4wF" collectionClass="NSMutableArray" id="kE9-na-8qT"/>
+                <outletCollection property="footerVerticalConstraints" destination="Yiw-9f-Hxw" collectionClass="NSMutableArray" id="Axh-2I-RsD"/>
             </connections>
-            <point key="canvasLocation" x="-599" y="-211"/>
+            <point key="canvasLocation" x="-600" y="-211.60714285714286"/>
         </tableViewCell>
     </objects>
 </document>
