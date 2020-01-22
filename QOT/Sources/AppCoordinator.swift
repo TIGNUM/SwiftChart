@@ -193,7 +193,7 @@ private extension AppCoordinator {
         let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
         let controller = PaymentReminderViewController(configure: configurator)
         let topViewController = AppDelegate.topViewController()
-        if (topViewController is PaymentReminderViewController) == false {
+        if isExpired == true || (topViewController is PaymentReminderViewController) == false {
             topViewController?.present(controller, animated: false, completion: {
                 /* DO NOTHING */
             })
