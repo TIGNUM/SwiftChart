@@ -35,23 +35,20 @@ final class AboutMeCell: BaseDailyBriefCell {
         baseHeaderView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.aboutMeContent)
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseHeaderView?.subtitleTextView)
-        ThemeText.dailyBriefSubtitle.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfo)
+        ThemeText.dailyBriefTitle.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfo)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-//        self.aboutMeMoreInfo.text = viewModel.aboutMeMoreInfo
         self.footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
         self.footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
         self.headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         DispatchQueue.main.async {
-//            self.footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
             self.headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-//            self.frame.size.height = self.footnoteHeightConstraint.constant + self.headerViewHeightConstraint.constant
-//            self.setNeedsLayout()
             self.setNeedsUpdateConstraints()
         }
     }
 
     private func calculateFooterHeight(for width: CGFloat) -> CGFloat {
-        var height: CGFloat = 0
+        // setting minimum to 1
+        var height: CGFloat = 1
         var verticalConstraintsSum: CGFloat = 0
         var horizontalConstraintsSum: CGFloat = 0
         for constraint in footerVerticalConstraints {
