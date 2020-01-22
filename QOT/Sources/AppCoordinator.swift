@@ -175,12 +175,12 @@ private extension AppCoordinator {
         UserService.main.getUserData({ [weak self] (userData) in
             let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
             if userData?.subscriptionExpired == true {
-                // CHANGE ME
+                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: true)
             } else if userData?.subscriptionExpireSoon == true &&
                 (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
-                // CHANGE ME
+                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: false)
             } else if userData?.subscriptionExpired != true, userData?.subscriptionExpireSoon != true,
                 let topViewController = AppDelegate.topViewController() as? PaymentReminderViewController {
