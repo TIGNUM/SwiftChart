@@ -35,7 +35,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         baseHeaderView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.aboutMeContent)
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseHeaderView?.subtitleTextView)
-        ThemeText.dailyBriefTitle.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfo)
+        ThemeText.asterix.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfo)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         self.footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
         self.footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
