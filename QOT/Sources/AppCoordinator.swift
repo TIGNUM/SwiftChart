@@ -239,6 +239,11 @@ extension AppCoordinator {
     }
 
     func didLogin() {
+        if SessionService.main.getCurrentSession() != nil {
+            importHealthKitDataIfAuthorized()
+            importCalendarEventsIfAuthorized()
+            ExternalLinkImporter.main.importLink()
+        }
         showApp()
     }
 
@@ -447,5 +452,27 @@ extension AppCoordinator {
             }
         })
         showSubscriptionReminderIfNeeded()
+    }
+}
+
+// MARK: - Calendar event import
+extension AppCoordinator {
+    func importCalendarEventsIfAuthorized() {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .authorized:
+            CalendarService.main.importCalendarEvents()
+        default:
+            return
+        }
+    }
+}
+
+// MARK: - HealthKit Import Data
+extension AppCoordinator {
+    func importHealthKitDataIfAuthorized() {
+        if qot_dal.HealthService.main.isHealthDataAvailable() == true {
+            qot_dal.HealthService.main.importHealthKitSleepAnalysisData()
+        }
     }
 }
