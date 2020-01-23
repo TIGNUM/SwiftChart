@@ -82,8 +82,8 @@ extension QOTBaseHeaderView {
 
     // MARK: Public
 
-    func calculateHeight(for cellWidth: CGFloat) -> CGFloat {
-        var height: CGFloat = 16
+    func calculateHeight(for cellWidth: CGFloat, _ defaultHeight: CGFloat? = 16) -> CGFloat {
+        var height: CGFloat = defaultHeight ?? 0
         var verticalConstraintsSum: CGFloat = 0
         var horizontalConstraintsSum: CGFloat = 0
         for constraint in verticalConstraints {
