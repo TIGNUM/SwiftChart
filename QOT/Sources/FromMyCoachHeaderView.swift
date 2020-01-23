@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class FromMyCoachHeaderView: UIView {
 
@@ -31,7 +32,7 @@ final class FromMyCoachHeaderView: UIView {
 
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
         ThemeView.level1.apply(self)
-        ThemeText.fromCoachTitle.apply(data.title.uppercased(), to: title)
+        ThemeText.fromCoachTitle.apply(data.title, to: title)
         skeletonManager.addOtherView(coachImageView)
         coachImageView.setImage(url: data.imageUrl,
                                 skeletonManager: self.skeletonManager) { (_) in /* */}

@@ -60,7 +60,7 @@ private let whatsHotFormatter: DateFormatter = {
 
 private let coachMessageFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "dd.MM.yy - hh:mm"
+    formatter.dateFormat = "dd.MM.yy - HH:mm"
     formatter.timeZone = TimeZone.current
     return formatter
 }()

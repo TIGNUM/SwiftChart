@@ -13,7 +13,9 @@ final class AboutMeCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var headerViewHeightConstraint: NSLayoutConstraint!
     var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet private weak var aboutMeMoreInfo: UILabel!
+
+    @IBOutlet private weak var aboutMeMoreInfoLabel: UILabel!
+
     @IBOutlet private weak var footnoteView: UIView!
     @IBOutlet private weak var footnoteHeightConstraint: NSLayoutConstraint!
 
@@ -24,7 +26,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         super.awakeFromNib()
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
-        skeletonManager.addSubtitle(aboutMeMoreInfo)
+        skeletonManager.addSubtitle(aboutMeMoreInfoLabel)
     }
 
     func configure(with viewModel: AboutMeViewModel?) {
@@ -35,11 +37,13 @@ final class AboutMeCell: BaseDailyBriefCell {
         baseHeaderView?.configure(title: viewModel.title?.uppercased(), subtitle: viewModel.aboutMeContent)
         ThemeText.dailyBriefTitle.apply(viewModel.title?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.aboutMeContent.apply(viewModel.aboutMeContent, to: baseHeaderView?.subtitleTextView)
-        ThemeText.asterix.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfo)
+        ThemeText.asterix.apply(viewModel.aboutMeMoreInfo, to: aboutMeMoreInfoLabel)
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
-        self.footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
-        self.footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
-        self.headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+
+        self.aboutMeMoreInfoLabel.text = viewModel.aboutMeMoreInfo
+        footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
+        footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
+        headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         DispatchQueue.main.async {
             self.headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
             self.setNeedsUpdateConstraints()
@@ -57,7 +61,7 @@ final class AboutMeCell: BaseDailyBriefCell {
         for constraint in footerHorizontalConstraints {
             horizontalConstraintsSum += constraint.constant
         }
-        let moreInfoLabelSize = aboutMeMoreInfo.sizeThatFits(CGSize(width: width - horizontalConstraintsSum,
+        let moreInfoLabelSize = aboutMeMoreInfoLabel.sizeThatFits(CGSize(width: width - horizontalConstraintsSum,
                                                                     height: .greatestFiniteMagnitude))
         height = height + moreInfoLabelSize.height + verticalConstraintsSum
         return height

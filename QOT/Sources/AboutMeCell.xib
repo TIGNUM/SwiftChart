@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -30,6 +28,7 @@
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cDN-6N-0NN">
                         <rect key="frame" x="24" y="150" width="318" height="135"/>
+
                         <subviews>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="q2y-6t-CeP" userLabel="SeparatorView">
                                 <rect key="frame" x="0.0" y="0.0" width="318" height="1"/>
@@ -38,8 +37,8 @@
                                     <constraint firstAttribute="height" constant="1" id="PEW-qy-NYi"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="* We estimated this for now check back after consistent use for more accurate data." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-ib-A11">
-                                <rect key="frame" x="0.0" y="25" width="318" height="61.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*We estimated this for now check back after consistent use for more accurate data." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="guM-ib-A11">
+                                <rect key="frame" x="0.0" y="25" width="346" height="61.5"/>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="13"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -71,8 +70,9 @@
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="aboutMeMoreInfo" destination="guM-ib-A11" id="UfX-RL-GFX"/>
+                <outlet property="aboutMeMoreInfoLabel" destination="guM-ib-A11" id="UfX-RL-GFX"/>
                 <outlet property="footnoteHeightConstraint" destination="r1y-VA-tci" id="LwN-2y-dQi"/>
+
                 <outlet property="footnoteView" destination="cDN-6N-0NN" id="4La-Gu-IkS"/>
                 <outlet property="headerView" destination="yYJ-FT-RvM" id="LNr-cg-cVi"/>
                 <outlet property="headerViewHeightConstraint" destination="hLV-K6-dO8" id="Qys-5D-6hM"/>

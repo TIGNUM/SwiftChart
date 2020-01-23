@@ -32,7 +32,7 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, durationString: String?, remoteID: Int?, section: ContentSection?, format: ContentFormat?, numberOfItems: Int) {
-        ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
+        ThemeText.bucketTitle.apply((title ?? "").uppercased(), to: titleLabel)
         ThemeText.durationString.apply(durationString, to: durationLabel)
         var duration: String
         if numberOfItems > 1 {
