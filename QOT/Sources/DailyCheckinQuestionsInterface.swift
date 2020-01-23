@@ -23,6 +23,7 @@ protocol DailyCheckinQuestionsInteractorInterface: Interactor {
     var answeredQuestionCount: Int { get }
     func dismiss()
     func saveAnswers()
+    func viewDidAppear()
 }
 
 protocol DailyCheckinQuestionsRouterInterface {
