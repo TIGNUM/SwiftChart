@@ -28,9 +28,9 @@ final class SolveTableViewCell: BaseDailyBriefCell {
     func configure(title: String?, date: String?, solve: QDMSolve?) {
         skeletonManager.hide()
         guard let titleText = title, let dateString = date, let qdmSolve = solve else { return }
-// "Explore" exploreButton title to Apptext
+        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_solve_reflection_button_check_it), for: .normal)
         ThemeText.durationString.apply(dateString, to: dateLabel)
-        ThemeText.sprintTitle.apply(titleText.uppercased(), to: titleLabel)
+        ThemeText.bucketTitle.apply(titleText.uppercased(), to: titleLabel)
         self.solve = qdmSolve
     }
 

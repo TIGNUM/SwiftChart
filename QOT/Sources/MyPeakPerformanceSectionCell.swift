@@ -22,8 +22,8 @@ final class MyPeakPerformanceSectionCell: UIView {
         return section
     }
 
-    func configure(with: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow) {
-        ThemeText.performanceSections.apply((with.sectionSubtitle ?? "").uppercased(), to: myPeakPerformanceSectionTitle)
-        ThemeText.performanceSectionText.apply(with.sectionContent, to: myPeakperformanceSectionContent)
+    func configure(with model: MyPeakPerformanceCellViewModel.MyPeakPerformanceSectionRow) {
+        ThemeText.performanceSections.apply((model.sectionSubtitle ?? "").uppercased(), to: myPeakPerformanceSectionTitle)
+        ThemeText.performanceSectionText.apply(model.sectionContent, to: myPeakperformanceSectionContent)
     }
 }

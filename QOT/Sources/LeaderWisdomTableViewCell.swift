@@ -48,7 +48,10 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
-        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        DispatchQueue.main.async {
+            self.headerHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width, 0) ?? 0
+            self.setNeedsUpdateConstraints()
+        }
 
         videoView.isHidden = model.format != .video
         videoViewHeightConstraint.constant = model.format == .video ? 72.0 : 0.0
