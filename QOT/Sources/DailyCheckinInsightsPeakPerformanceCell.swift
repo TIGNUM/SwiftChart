@@ -21,7 +21,6 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
         super.awakeFromNib()
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         ThemeButton.dailyBriefButtons.apply(button, selected: false)
-        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(button)
