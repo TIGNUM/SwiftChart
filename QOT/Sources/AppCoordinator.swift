@@ -177,6 +177,7 @@ private extension AppCoordinator {
             if userData?.subscriptionExpired == true {
                 // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: true)
+                UserDefault.subscriptionInfoShow.clearObject()
             } else if userData?.subscriptionExpireSoon == true &&
                 (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
@@ -193,7 +194,15 @@ private extension AppCoordinator {
         let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
         let controller = PaymentReminderViewController(configure: configurator)
         let topViewController = AppDelegate.topViewController()
-        if isExpired == true || (topViewController is PaymentReminderViewController) == false {
+        if let vc = topViewController as? PaymentReminderViewController,
+            vc.interactor?.isExpired != isExpired {
+            let presenterVC = topViewController?.presentingViewController
+            presenterVC?.dismiss(animated: false, completion: {
+                presenterVC?.present(controller, animated: false, completion: {
+                    /* DO NOTHING */
+                })
+            })
+        } else {
             topViewController?.present(controller, animated: false, completion: {
                 /* DO NOTHING */
             })
