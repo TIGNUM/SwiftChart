@@ -49,6 +49,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        if SessionService.main.getCurrentSession() != nil {
+            appCoordinator.importHealthKitDataIfAuthorized()
+            appCoordinator.importCalendarEventsIfAuthorized()
+            ExternalLinkImporter.main.importLink()
+        }
+
         #if UNIT_TEST
             Logger.shared.setup()
         #else
@@ -111,9 +117,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
             sendSiriEventsIfNeeded()
             QOTService.main.reportAppStatus(.didBecomeActive)
             if SessionService.main.getCurrentSession() != nil {
-                self.importHealthKitDataIfAuthorized()
-                self.importCalendarEventsIfAuthorized()
-                ExternalLinkImporter.main.importLink()
+                appCoordinator.importHealthKitDataIfAuthorized()
+                appCoordinator.importCalendarEventsIfAuthorized()
                 NotificationCenter.default.post(name: .requestSynchronization, object: nil)
             }
         #endif //#if UNIT_TEST
@@ -123,6 +128,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         #if UNIT_TEST
             return
         #else
+            requestSynchronization(.PAGE_TRACK, .UP_SYNC)
+            requestSynchronization(.USER_EVENT_TRACK, .UP_SYNC)
             QOTService.main.reportAppStatus(.willResignActive)
         #endif //#if UNIT_TEST
     }
@@ -329,19 +336,6 @@ extension AppDelegate {
     }
 }
 
-// MARK: - Calendar event import
-extension AppDelegate {
-    func importCalendarEventsIfAuthorized() {
-        let authStatus = EKEventStore.authorizationStatus(for: .event)
-        switch authStatus {
-        case .authorized:
-            CalendarService.main.importCalendarEvents()
-        default:
-            return
-        }
-    }
-}
-
 // MARK: - SVProgressHUD
 
 extension AppDelegate {
@@ -349,14 +343,5 @@ extension AppDelegate {
         SVProgressHUD.setGraceTimeInterval(0.2)
         SVProgressHUD.setMinimumDismissTimeInterval(0.5)
         SVProgressHUD.setDefaultStyle(.dark)
-    }
-}
-
-// MARK: - HealthKit Import Data
-private extension AppDelegate {
-    func importHealthKitDataIfAuthorized() {
-        if qot_dal.HealthService.main.isHealthDataAvailable() == true {
-            qot_dal.HealthService.main.importHealthKitSleepAnalysisData()
-        }
     }
 }

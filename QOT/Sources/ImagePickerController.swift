@@ -110,23 +110,25 @@ final class ImagePickerController {
         guard let viewController = viewController else {
             return
         }
-        switch option {
-        case .photo:
-            do {
-                adapter?.didPickFromGalleryEvent()
-                try imagePicker.pickFromPhotos(in: viewController)
-            } catch let error as ImagePicker.ImagePickerError {
-                handleError(error, forOption: option)
-            } catch {}
-        case .camera:
-            do {
-                adapter?.didClickCameraEvent()
-                try imagePicker.pickFromCamera(in: viewController)
-            } catch let error as ImagePicker.ImagePickerError {
-                handleError(error, forOption: option)
-            } catch {}
-        case .delete :
-            break
+        DispatchQueue.main.async {
+            switch option {
+            case .photo:
+                do {
+                    self.adapter?.didPickFromGalleryEvent()
+                    try self.imagePicker.pickFromPhotos(in: viewController)
+                } catch let error as ImagePicker.ImagePickerError {
+                    self.handleError(error, forOption: option)
+                } catch {}
+            case .camera:
+                do {
+                    self.adapter?.didClickCameraEvent()
+                    try self.imagePicker.pickFromCamera(in: viewController)
+                } catch let error as ImagePicker.ImagePickerError {
+                    self.handleError(error, forOption: option)
+                } catch {}
+            case .delete :
+                break
+            }
         }
     }
 
