@@ -28,7 +28,6 @@
 		3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083825225F3ED000664B9B /* ArticleConfigurator.swift */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
-		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
@@ -948,6 +947,7 @@
 		B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744622A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift */; };
 		B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744722A9519900B0AE75 /* MyLibraryCategoryListModel.swift */; };
 		B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744822A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift */; };
+		B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */; };
 		B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412922C4BEDE002897E4 /* CoachButton.swift */; };
 		B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */; };
@@ -5963,7 +5963,6 @@
 			files = (
 				8D8AA76822FDCB6700B59A81 /* RegistrationEmailConfigurator.swift in Sources */,
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
-				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
@@ -6071,6 +6070,7 @@
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				36B5BD2D23142B4A00439A64 /* AskPermissionWorker.swift in Sources */,
 				B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */,
+				B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
