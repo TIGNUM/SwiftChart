@@ -42,7 +42,7 @@ final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
             return
         }
 
-        HealthService.main.availableHealthKitTrackerDataForToday { [weak self] (healthData) in
+        HealthService.main.availableHealthKitTrackerDataIndexesForToday { [weak self] (healthData) in
             guard let strongSelf = self else { return }
             strongSelf.resetContent()
             let hasHealthKitDataForToday: Bool = (healthData?.count ?? 0) > 0

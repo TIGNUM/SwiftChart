@@ -56,7 +56,7 @@ final class DailyCheckinQuestionsWorker {
         HealthService.main.ouraRingAuthStatus { [weak self] (tracker, config) in
             if tracker != nil { // if user has ouraring
                 var weakcompletion: (([RatingQuestionViewModel.Question]?) -> Void)? = completion
-                HealthService.main.availableHealthIndexesForToday({ (indexes) in
+                HealthService.main.availableOuraRingDataIndexesForToday({ (indexes) in
                     if indexes?.isEmpty == false {
                         if let completion = weakcompletion {
                             self?.getQuestions(completion)
