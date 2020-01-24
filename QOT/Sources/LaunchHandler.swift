@@ -280,7 +280,15 @@ extension LaunchHandler {
             } else {
                 guard let viewController = R.storyboard.dailyCheckin.dailyCheckinQuestionsViewController() else { return }
                 DailyCheckinQuestionsConfigurator.configure(viewController: viewController)
-                self?.present(viewController: viewController)
+                let topViewController = AppDelegate.topViewController()
+                if (topViewController as? DailyCheckinQuestionsViewController) != nil {
+                    topViewController?.dismiss(animated: false, completion: {
+                        self?.present(viewController: viewController)
+                    })
+                } else {
+                    self?.present(viewController: viewController)
+                }
+
             }
         }
     }

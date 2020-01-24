@@ -29,13 +29,16 @@ final class MyToBeVisionPageComponentView: UIView {
     }
 
     private func formView() {
-        stackView.alignment = .fill
-        stackView.distribution = .fill
-        stackView.axis = .horizontal
-        stackView.spacing = 8.0
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(stackView)
-        stackView.addConstraints(to: self)
+        if stackView.superview != self {
+            stackView.alignment = .fill
+            stackView.distribution = .fill
+            stackView.axis = .horizontal
+            stackView.spacing = 8.0
+            stackView.translatesAutoresizingMaskIntoConstraints = false
+            addSubview(stackView)
+            stackView.addConstraints(to: self)
+        }
+        stackView.removeAllArrangedSubviews()
         if pageCount == 0 { return }
         for _ in 1...pageCount {
             let view = UIView()

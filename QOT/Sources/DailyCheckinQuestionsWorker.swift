@@ -55,22 +55,15 @@ final class DailyCheckinQuestionsWorker {
         // check ouraRingAuthStatus
         HealthService.main.ouraRingAuthStatus { [weak self] (tracker, config) in
             if tracker != nil { // if user has ouraring
-                var weakcompletion: (([RatingQuestionViewModel.Question]?) -> Void)? = completion
                 HealthService.main.availableOuraRingDataIndexesForToday({ (indexes) in
                     if indexes?.isEmpty == false {
-                        if let completion = weakcompletion {
-                            self?.getQuestions(completion)
-                        }
-                        weakcompletion = nil
+                        self?.getQuestions(completion)
                         return
                     }
                     requestSynchronization(.HEALTH_DATA, .DOWN_SYNC) // request oura data
                     // wait for HEALTH_DATA sync for 3.5 seconds.
                     var expirationTimer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (timer) in
-                        if let completion = weakcompletion {
-                            self?.getQuestions(completion)
-                        }
-                        weakcompletion = nil
+                        self?.getQuestions(completion)
                     }
 
                     self?.notificationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { (notification) in
@@ -78,10 +71,7 @@ final class DailyCheckinQuestionsWorker {
                             syncResult.dataType == .HEALTH_DATA, syncResult.syncRequestType == .DOWN_SYNC else { return }
                         expirationTimer?.invalidate()
                         expirationTimer = nil
-                        if let completion = weakcompletion {
-                            self?.getQuestions(completion)
-                        }
-                        weakcompletion = nil
+                        self?.getQuestions(completion)
                     }
                 })
 
