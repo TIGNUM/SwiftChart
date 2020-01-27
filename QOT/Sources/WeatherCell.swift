@@ -110,11 +110,10 @@ final class WeatherCell: BaseDailyBriefCell {
             if let weatherDate = weather.date {
                 lastUpdate = formatLastUpdatedString(date: weatherDate)
             }
-
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
             ThemeText.weatherLastUpdate.apply(lastUpdate, to: lastUpdateLabel)
             ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
-            ThemeText.weatherTitle.apply(weatherModel.title, to: weatherTitleLabel)
+            ThemeText.weatherTitle.apply(weatherModel.title?.uppercased(), to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
             if let imageUrl = weather.imageURL {
                 weatherImageView.setImage(url: imageUrl, placeholder: UIImage(named: "placeholder_large")) { (_) in /* */}
