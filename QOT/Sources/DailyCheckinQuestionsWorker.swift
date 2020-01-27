@@ -15,6 +15,7 @@ final class DailyCheckinQuestionsWorker {
 
     // MARK: - Properties
     var questions: [RatingQuestionViewModel.Question]?
+    var notificationObserver: NSObjectProtocol?
 
     // MARK: - Init
 
@@ -50,11 +51,55 @@ final class DailyCheckinQuestionsWorker {
         }
     }
 
+    func checkHealthDataAndGetQuestions(_ completion: @escaping([RatingQuestionViewModel.Question]?) -> Void) {
+        // check ouraRingAuthStatus
+        HealthService.main.ouraRingAuthStatus { [weak self] (tracker, config) in
+            if tracker != nil { // if user has ouraring
+                var weakcompletion: (([RatingQuestionViewModel.Question]?) -> Void)? = completion
+                HealthService.main.availableOuraRingDataIndexesForToday({ (indexes) in
+                    if indexes?.isEmpty == false {
+                        if let completion = weakcompletion {
+                            self?.getQuestions(completion)
+                        }
+                        weakcompletion = nil
+                        return
+                    }
+                    requestSynchronization(.HEALTH_DATA, .DOWN_SYNC) // request oura data
+                    // wait for HEALTH_DATA sync for 3.5 seconds.
+                    var expirationTimer: Timer? = Timer.scheduledTimer(withTimeInterval: 3.5, repeats: false) { (timer) in
+                        if let completion = weakcompletion {
+                            self?.getQuestions(completion)
+                        }
+                        weakcompletion = nil
+                    }
+
+                    self?.notificationObserver = NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { (notification) in
+                        guard let syncResult = notification.object as? SyncResultContext,
+                            syncResult.dataType == .HEALTH_DATA, syncResult.syncRequestType == .DOWN_SYNC else { return }
+                        expirationTimer?.invalidate()
+                        expirationTimer = nil
+                        if let completion = weakcompletion {
+                            self?.getQuestions(completion)
+                        }
+                        weakcompletion = nil
+                    }
+                })
+
+            } else { // if user doesn't have Oura, keep going
+                self?.getQuestions(completion)
+            }
+        }
+    }
+
     func getQuestions(_ completion: @escaping([RatingQuestionViewModel.Question]?) -> Void) {
         let dispatchGroup = DispatchGroup()
         var dailyCheckInQuestions = [QDMQuestion]()
         var hasSleepQuality = false
         var hasSleepQuantity = false
+
+        if let observer = notificationObserver {
+            NotificationCenter.default.removeObserver(observer)
+        }
 
         dispatchGroup.enter()
         HealthService.main.availableHealthIndexesForToday({ (indexes) in

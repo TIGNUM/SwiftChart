@@ -28,7 +28,6 @@
 		3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083825225F3ED000664B9B /* ArticleConfigurator.swift */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
-		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
@@ -948,6 +947,7 @@
 		B86E744E22A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744622A9519900B0AE75 /* MyLibraryCategoryListInteractor.swift */; };
 		B86E744F22A9519900B0AE75 /* MyLibraryCategoryListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744722A9519900B0AE75 /* MyLibraryCategoryListModel.swift */; };
 		B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B86E744822A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift */; };
+		B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */; };
 		B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412922C4BEDE002897E4 /* CoachButton.swift */; };
 		B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */; };
@@ -984,7 +984,6 @@
 		CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
-		CB2FA0E820762914007F21D1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA0E720762914007F21D1 /* Environment.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
 		CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */; };
@@ -2220,7 +2219,6 @@
 		CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItemValue.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
-		CB2FA0E720762914007F21D1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationObject.swift; sourceTree = "<group>"; };
@@ -4800,7 +4798,6 @@
 				B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
-				CB2FA0E720762914007F21D1 /* Environment.swift */,
 				BB4061612302F3A600E5AB19 /* OrientationManager.swift */,
 			);
 			name = App;
@@ -5966,7 +5963,6 @@
 			files = (
 				8D8AA76822FDCB6700B59A81 /* RegistrationEmailConfigurator.swift in Sources */,
 				365825792327D19200AC3F4A /* DTShortTBVWorker.swift in Sources */,
-				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
 				B474CA8E2398F85F00A829B5 /* RegisterIntroWorker.swift in Sources */,
@@ -6074,6 +6070,7 @@
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				36B5BD2D23142B4A00439A64 /* AskPermissionWorker.swift in Sources */,
 				B4CB855B23AB9FA200B2A6B5 /* MyQOTAdminEditSprintsDetailsTableViewCell.swift in Sources */,
+				B8AE11A523DAEA16000AF4C4 /* PrepareResultsPresenter.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				8D0B4D242301CC4000A1AC47 /* RegistrationNamesRouter.swift in Sources */,
@@ -6837,7 +6834,6 @@
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				5F8A89952296DEDF0011A05C /* MyVisionConfigurator.swift in Sources */,
 				B45DA6BE23AA6316006E7E33 /* MyQOTAdminChooseBucketsRouter.swift in Sources */,
-				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				B4BCD0E623AB7CD900B80747 /* MyQOTAdminEditSprintsPresenter.swift in Sources */,

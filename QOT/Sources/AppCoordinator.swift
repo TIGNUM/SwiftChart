@@ -175,12 +175,13 @@ private extension AppCoordinator {
         UserService.main.getUserData({ [weak self] (userData) in
             let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
             if userData?.subscriptionExpired == true {
-                // CHANGE ME
+                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: true)
+                UserDefault.subscriptionInfoShow.clearObject()
             } else if userData?.subscriptionExpireSoon == true &&
                 (lastShownDate == nil || lastShownDate?.isToday == false) {
                 UserDefault.subscriptionInfoShow.setObject(Date())
-                // CHANGE ME
+                // CHANGE ME https://tignum.atlassian.net/browse/QOT-2628
                 self?.showSubscriptionReminder(isExpired: false)
             } else if userData?.subscriptionExpired != true, userData?.subscriptionExpireSoon != true,
                 let topViewController = AppDelegate.topViewController() as? PaymentReminderViewController {
@@ -193,7 +194,15 @@ private extension AppCoordinator {
         let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
         let controller = PaymentReminderViewController(configure: configurator)
         let topViewController = AppDelegate.topViewController()
-        if (topViewController is PaymentReminderViewController) == false {
+        if let vc = topViewController as? PaymentReminderViewController,
+            vc.interactor?.isExpired != isExpired {
+            let presenterVC = topViewController?.presentingViewController
+            presenterVC?.dismiss(animated: false, completion: {
+                presenterVC?.present(controller, animated: false, completion: {
+                    /* DO NOTHING */
+                })
+            })
+        } else {
             topViewController?.present(controller, animated: false, completion: {
                 /* DO NOTHING */
             })
@@ -239,6 +248,11 @@ extension AppCoordinator {
     }
 
     func didLogin() {
+        if SessionService.main.getCurrentSession() != nil {
+            importHealthKitDataIfAuthorized()
+            importCalendarEventsIfAuthorized()
+            ExternalLinkImporter.main.importLink()
+        }
         showApp()
     }
 
@@ -447,5 +461,27 @@ extension AppCoordinator {
             }
         })
         showSubscriptionReminderIfNeeded()
+    }
+}
+
+// MARK: - Calendar event import
+extension AppCoordinator {
+    func importCalendarEventsIfAuthorized() {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .authorized:
+            CalendarService.main.importCalendarEvents()
+        default:
+            return
+        }
+    }
+}
+
+// MARK: - HealthKit Import Data
+extension AppCoordinator {
+    func importHealthKitDataIfAuthorized() {
+        if qot_dal.HealthService.main.isHealthDataAvailable() == true {
+            qot_dal.HealthService.main.importHealthKitSleepAnalysisData()
+        }
     }
 }
