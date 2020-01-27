@@ -92,7 +92,7 @@ extension PrepareResultsWorker {
 
 extension PrepareResultsWorker {
     func getContentItems(_ contentId: Int, completion: @escaping (([QDMContentItem]?) -> Void)) {
-        qot_dal.ContentService.main.getContentCollectionById(contentId) { content in
+        ContentService.main.getContentCollectionById(contentId) { content in
             completion(content?.contentItems.sorted { $0.sortOrder < $1.sortOrder })
         }
     }

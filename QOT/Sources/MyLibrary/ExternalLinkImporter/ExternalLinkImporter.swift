@@ -37,7 +37,7 @@ final class ExternalLinkImporter {
     }
 
     func importLink() {
-        guard qot_dal.SessionService.main.getCurrentSession() != nil,
+        guard SessionService.main.getCurrentSession() != nil,
             let externalLink: ShareExtentionData = ExtensionUserDefaults.object(for: .share, key: .saveLink),
             let title = externalLink.title, let url = externalLink.url else {
                 return

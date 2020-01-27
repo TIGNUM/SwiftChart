@@ -18,9 +18,9 @@ struct MyQotAppSettingsModel {
 
     // MARK: - Properties
 
-    let contentService: qot_dal.ContentService
+    let contentService: ContentService
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 
@@ -159,7 +159,7 @@ extension MyQotAppSettingsModel {
             }
         }
 
-        func contentCollection(for service: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
+        func contentCollection(for service: ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
             case .sensors:
                 service.getContentCollectionById(primaryKey) { (collection) in

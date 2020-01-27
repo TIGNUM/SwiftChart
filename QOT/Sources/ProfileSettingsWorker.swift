@@ -14,7 +14,7 @@ import qot_dal
 final class ProfileSettingsWorker {
 
     private var settingsSections = [SettingsSection]()
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
     private var user: QDMUser?
     private let dispatchGroup = DispatchGroup()
 
@@ -42,7 +42,7 @@ final class ProfileSettingsWorker {
         return AppTextService.get(AppTextKey.generic_view_button_cancel)
     }()
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 
@@ -62,7 +62,7 @@ final class ProfileSettingsWorker {
 
     private func getProfile() {
         dispatchGroup.enter()
-        qot_dal.UserService.main.getUserData({[weak self] user in
+        UserService.main.getUserData({[weak self] user in
             self?.user = user
             self?.generateSections()
             self?.dispatchGroup.leave()
@@ -71,7 +71,7 @@ final class ProfileSettingsWorker {
 
     func update(user: QDMUser?, _ completion: @escaping () -> Void) {
         guard let userData = user else { return }
-        qot_dal.UserService.main.updateUserData(userData) { _ in
+        UserService.main.updateUserData(userData) { _ in
             completion()
         }
     }

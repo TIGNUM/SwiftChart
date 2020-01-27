@@ -35,7 +35,7 @@ class BaseSigningWorker {
     // MARK: - Init
 
     init(_ sessionService: SessionService = SessionService.main,
-         _ userService: UserService = qot_dal.UserService.main) {
+         _ userService: UserService = UserService.main) {
         self.sessionService = sessionService
         self.userService = userService
     }

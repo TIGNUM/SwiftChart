@@ -50,7 +50,7 @@ final class ExtensionsDataManager {
 private extension ExtensionsDataManager {
 
     func updateToBeVision() {
-        qot_dal.UserService.main.getMyToBeVision {(vision, status, error) in
+        UserService.main.getMyToBeVision {(vision, status, error) in
             let sharedVision = ExtensionModel.ToBeVision(headline: vision?.headline,
                                                          text: vision?.text,
                                                          imageURL: vision?.profileImageResource?.url())
@@ -59,7 +59,7 @@ private extension ExtensionsDataManager {
     }
 
     func updateUpcomingEvents() {
-        qot_dal.UserService.main.getUserPreparations { (preparations, initiated, error) in
+        UserService.main.getUserPreparations { (preparations, initiated, error) in
             guard let preparations = preparations, error == nil else {
                 return
             }

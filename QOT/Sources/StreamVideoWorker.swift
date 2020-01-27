@@ -33,7 +33,7 @@ final class StreamVideoWorker {
     }
 
     var isLoggedIn: Bool {
-        return qot_dal.SessionService.main.getCurrentSession() != nil
+        return SessionService.main.getCurrentSession() != nil
     }
 
     var reachabilityStatus: ReachabilityStatus {

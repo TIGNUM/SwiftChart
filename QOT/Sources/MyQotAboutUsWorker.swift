@@ -11,9 +11,9 @@ import qot_dal
 
 final class MyQotAboutUsWorker {
 
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 

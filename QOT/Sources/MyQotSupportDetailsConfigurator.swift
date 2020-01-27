@@ -13,7 +13,7 @@ final class MyQotSupportDetailsConfigurator {
 
     static func configure(viewController: MyQotSupportDetailsViewController, category: ContentCategory) {
         let router = MyQotSupportDetailsRouter(viewController: viewController)
-        let worker =  MyQotSupportDetailsWorker(contentService: qot_dal.ContentService.main, category: category)
+        let worker =  MyQotSupportDetailsWorker(contentService: ContentService.main, category: category)
         let presenter = MyQotSupportDetailsPresenter(viewController: viewController)
         let interactor =  MyQotSupportDetailsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

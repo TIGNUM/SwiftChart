@@ -45,7 +45,7 @@ final class DailyCheckinQuestionsWorker {
         }
         QuestionService.main.saveDailyCheckInAnswers(answers) { (error) in
             if let apiError = error {
-                qot_dal.log("Save answer error: \(apiError)", level: .error)
+                log("Save answer error: \(apiError)", level: .error)
             }
             completion()
         }

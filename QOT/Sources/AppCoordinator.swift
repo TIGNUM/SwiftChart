@@ -471,8 +471,8 @@ extension AppCoordinator {
 // MARK: - HealthKit Import Data
 extension AppCoordinator {
     func importHealthKitDataIfAuthorized() {
-        if qot_dal.HealthService.main.isHealthDataAvailable() == true {
-            qot_dal.HealthService.main.importHealthKitSleepAnalysisData()
+        if HealthService.main.isHealthDataAvailable() == true {
+            HealthService.main.importHealthKitSleepAnalysisData()
         }
     }
 }

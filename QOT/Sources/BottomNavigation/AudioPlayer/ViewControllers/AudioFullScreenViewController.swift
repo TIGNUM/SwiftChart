@@ -86,7 +86,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
             updatePlayButton(isPlaying)
             updateLabel()
         }
-        qot_dal.ContentService.main.getContentItemById(media.mediaRemoteId) { [weak self] (item) in
+        ContentService.main.getContentItemById(media.mediaRemoteId) { [weak self] (item) in
             self?.contentItem = item
             self?.bookmark = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .BOOKMARK
@@ -160,18 +160,18 @@ extension AudioFullScreenViewController {
     @IBAction func didTapBookmarkButton() {
         trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         if let currentBookmark = bookmark {
-            qot_dal.UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
+            UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
                 if let error = error {
-                    qot_dal.log("failed to remove bookmark: \(error)", level: .info)
+                    log("failed to remove bookmark: \(error)", level: .info)
                 }
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = nil
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
             }
         } else if let item = contentItem {
-            qot_dal.UserStorageService.main.addBookmarkContentItem(item) { [weak self] (storage, error) in
+            UserStorageService.main.addBookmarkContentItem(item) { [weak self] (storage, error) in
                 if let error = error {
-                    qot_dal.log("failed to add bookmark: \(error)", level: .info)
+                    log("failed to add bookmark: \(error)", level: .info)
                 }
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = storage
@@ -218,26 +218,26 @@ private extension AudioFullScreenViewController {
         }
 
         if let download = self.download {
-            let downloadStaus = qot_dal.UserStorageService.main.downloadStatus(for: download).status
+            let downloadStaus = UserStorageService.main.downloadStatus(for: download).status
             switch downloadStaus {
             case .NONE,
-                 .WAITING: qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
+                 .WAITING: UserStorageService.main.resumeDownload(download) { [weak self] (status) in
                     self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
                 }
-            case .DOWNLOADING: qot_dal.UserStorageService.main.deleteUserStorage(download) { [weak self] (error) in
+            case .DOWNLOADING: UserStorageService.main.deleteUserStorage(download) { [weak self] (error) in
                 self?.updateDownloadButtonState(.NONE)
                 self?.download = nil
                 }
             default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
             }
         } else {
-            qot_dal.UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in
+            UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in
                 self?.download = storage
                 self?.updateDownloadButtonState(storage?.downloadStaus ?? .NONE)
                 guard let download = storage else {
                     return
                 }
-                qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
+                UserStorageService.main.resumeDownload(download) { [weak self] (status) in
                     self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
                 }
             }

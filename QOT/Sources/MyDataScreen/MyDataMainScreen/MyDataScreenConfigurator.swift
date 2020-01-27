@@ -13,7 +13,7 @@ final class MyDataScreenConfigurator {
     static func make() -> (MyDataScreenViewController) -> Void {
         return { (viewController) in
             let router = MyDataScreenRouter(viewController: viewController)
-            let worker = MyDataScreenWorker(dataService: qot_dal.MyDataService.main)
+            let worker = MyDataScreenWorker(dataService: MyDataService.main)
             let presenter = MyDataScreenPresenter(viewController: viewController)
             let interactor = MyDataScreenInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

@@ -13,7 +13,7 @@ final class MyDataSelectionConfigurator {
     static func make() -> (MyDataSelectionViewController) -> Void {
         return { (viewController) in
             let router = MyDataSelectionRouter(viewController: viewController)
-            let worker = MyDataSelectionWorker(contentService: qot_dal.ContentService.main)
+            let worker = MyDataSelectionWorker(contentService: ContentService.main)
             let presenter = MyDataSelectionPresenter(viewController: viewController)
             let interactor = MyDataSelectionInteractor(worker: worker, presenter: presenter)
             viewController.interactor = interactor

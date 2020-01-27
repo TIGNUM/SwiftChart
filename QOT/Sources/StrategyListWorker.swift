@@ -56,7 +56,7 @@ final class StrategyListWorker {
     }
 
     func loadStrategies() {
-        qot_dal.ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in
+        ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in
             var items = [Strategy.Item]()
             for contentCollection in foundation?.contentCollections.filter({ (collection) -> Bool in
                 collection.section == .LearnStrategies
@@ -75,7 +75,7 @@ final class StrategyListWorker {
             self?.foundationStrategies = items
         }
 
-        qot_dal.ContentService.main.getContentCategoryById(selectedStrategyID ?? 0) { [weak self] (qdmCategory) in
+        ContentService.main.getContentCategoryById(selectedStrategyID ?? 0) { [weak self] (qdmCategory) in
             self?.selectedStrategy = qdmCategory
             let learnContentList = qdmCategory?.contentCollections.filter({ (content) -> Bool in
                 content.section == .LearnStrategies

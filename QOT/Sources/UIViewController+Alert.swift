@@ -172,7 +172,7 @@ extension UIViewController {
 extension UIViewController {
 
     func handleError(_ error: Error?) {
-        qot_dal.log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
+        log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
         if let networkError = error as? QOTNetworkError {
             switch networkError.type {
             case .unauthenticated: showAlert(type: .loginFailed)

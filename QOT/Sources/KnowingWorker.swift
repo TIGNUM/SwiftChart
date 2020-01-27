@@ -23,7 +23,7 @@ final class KnowingWorker {
     }
 
     func loadData() {
-        qot_dal.ContentService.main.getContentCategories(StrategyContentCategories) { [weak self] (categories) in
+        ContentService.main.getContentCategories(StrategyContentCategories) { [weak self] (categories) in
             var strategyItems: [Knowing.StrategyItem] = []
             for strategy in categories ?? [] {
                 let items = strategy.contentCollections.filter({ (content) -> Bool in
@@ -45,7 +45,7 @@ final class KnowingWorker {
             })
         }
 
-        qot_dal.ContentService.main.getContentCategory(.WhatsHot) { [weak self] (category) in
+        ContentService.main.getContentCategory(.WhatsHot) { [weak self] (category) in
             guard let strongSelf = self else {
                 return
             }

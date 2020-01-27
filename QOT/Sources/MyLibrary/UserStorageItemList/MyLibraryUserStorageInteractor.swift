@@ -313,7 +313,7 @@ extension MyLibraryUserStorageInteractor {
             }
             didTapPlayItem(at: index)
         case .DOWNLOAD, .NOTE:
-            qot_dal.log("Not a valid media type", level: .warning)
+            log("Not a valid media type", level: .warning)
             return false
         }
         return true

@@ -26,7 +26,7 @@ extension DTSprintWorker {
     }
 
     func isSprintInProgress(_ completion: @escaping (QDMSprint?, Date?) -> Void) {
-        qot_dal.UserService.main.isSprintAlreadyInProgress(completion)
+        UserService.main.isSprintAlreadyInProgress(completion)
     }
 
     func startSprintTomorrow(selectedSprintContentId: Int) {
@@ -35,9 +35,9 @@ extension DTSprintWorker {
 
     func stopActiveSprintAndStartNewSprint(activeSprint: QDMSprint?, newSprintContentId: Int?) {
         guard let activeSprint = activeSprint, let newSprintContentId = newSprintContentId else { return }
-        qot_dal.UserService.main.pauseSprint(activeSprint) { [weak self]  (sprint, error) in
+        UserService.main.pauseSprint(activeSprint) { [weak self]  (sprint, error) in
             if let error = error {
-                qot_dal.log("Error while trying to pause sprint: \(error.localizedDescription)", level: .error)
+                log("Error while trying to pause sprint: \(error.localizedDescription)", level: .error)
             }
             self?.createSprintAndStart(newSprintContentId)
         }
@@ -55,9 +55,9 @@ extension DTSprintWorker {
             default:
                 return
             }
-            qot_dal.UserService.main.updateSprint(tempSprint) { (sprint, error) in
+            UserService.main.updateSprint(tempSprint) { (sprint, error) in
                 if let error = error {
-                    qot_dal.log("Error while trying to update spint: \(error.localizedDescription)", level: .error)
+                    log("Error while trying to update spint: \(error.localizedDescription)", level: .error)
                 }
                 if let sprint = sprint {
                     NotificationCenter.default.post(name: .didUpdateMySprintsData,
@@ -90,30 +90,30 @@ private extension DTSprintWorker {
     func createSprintAndStart(_ targetContentId: Int) {
         createSprint(targetContentId) { (sprint) in
             if let sprint = sprint {
-                qot_dal.UserService.main.startSprint(sprint) { (sprint, error) in
+                UserService.main.startSprint(sprint) { (sprint, error) in
                 }
             } else {
-                qot_dal.log("Error while trying to create sprint: \(targetContentId)", level: .error)
+                log("Error while trying to create sprint: \(targetContentId)", level: .error)
             }
         }
     }
 
     func createSprint(_ targetContentId: Int, completion: @escaping (QDMSprint?) -> Void) {
-        qot_dal.ContentService.main.getContentCollectionById(targetContentId) { (content) in
+        ContentService.main.getContentCollectionById(targetContentId) { (content) in
             let sprintContentId = content?.remoteID
             let relatedContentIds = content?.relatedContentCollectionIDs
             let title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText
             let subTitle = content?.contentItems.filter { $0.format == .subtitle }.first?.valueText
             let taskItemIds = content?.contentItems.filter { $0.format == .title }.compactMap { $0.remoteID }
             let planItemIds = content?.contentItems.filter { $0.format == .listitem }.compactMap { $0.remoteID }
-            qot_dal.UserService.main.createSprint(title: title ?? "",
+            UserService.main.createSprint(title: title ?? "",
                                                   subTitle: subTitle ?? "",
                                                   sprintContentId: sprintContentId ?? 0,
                                                   relatedContentIds: relatedContentIds ?? [],
                                                   taskItemIds: taskItemIds ?? [],
                                                   planItemIds: planItemIds ?? []) { (sprint, error) in
                                                     if let error = error {
-                                                        qot_dal.log("Error while trying to create sprint: \(error.localizedDescription)", level: .error)
+                                                        log("Error while trying to create sprint: \(error.localizedDescription)", level: .error)
                                                     }
                                                     completion(sprint)
             }

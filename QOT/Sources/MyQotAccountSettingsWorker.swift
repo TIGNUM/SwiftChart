@@ -14,18 +14,18 @@ final class MyQotAccountSettingsWorker {
     // MARK: - Properties
 
     private var userEmail: String?
-    private let userService: qot_dal.UserService
-    private let contentService: qot_dal.ContentService
+    private let userService: UserService
+    private let contentService: ContentService
 
     // MARK: - Init
 
-    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService) {
+    init(userService: UserService, contentService: ContentService) {
         self.userService = userService
         self.contentService = contentService
     }
 
     func logout() {
-        qot_dal.SessionService.main.logout()
+        SessionService.main.logout()
         ExtensionsDataManager.didUserLogIn(false)
     }
 
