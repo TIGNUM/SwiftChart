@@ -77,13 +77,13 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
 
     private func showCopyrightButtonIfNeeded() {
         if visibleIndexPath.item < departureBespokeFeastModel?.copyrights.count ?? 0 {
-            copyrightButton.isHidden = departureBespokeFeastModel?.copyrights[visibleIndexPath.item] == nil
+            copyrightButton.isHidden = departureBespokeFeastModel?.copyrights.at(index: visibleIndexPath.item) == nil
         }
     }
 
     // MARK: Actions
     @IBAction func didTapCopyright(_ sender: Any) {
-        guard let urlString = departureBespokeFeastModel?.copyrights[visibleIndexPath.item] else { return }
+        guard let urlString = departureBespokeFeastModel?.copyrights.at(index: visibleIndexPath.item) else { return }
         delegate?.presentCopyRight(copyrightURL: urlString)
     }
 }
@@ -103,7 +103,7 @@ extension DepartureBespokeFeastCell: UICollectionViewDelegate, UICollectionViewD
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let urlString = departureBespokeFeastModel?.copyrights[indexPath.item] else { return }
+        guard let urlString = departureBespokeFeastModel?.copyrights.at(index: indexPath.item) else { return }
         delegate?.presentCopyRight(copyrightURL: urlString)
     }
 
