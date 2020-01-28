@@ -36,7 +36,7 @@ final class RegistrationWorker: BaseSigningWorker {
     // MARK: - Init
 
     override init(_ sessionService: SessionService = SessionService.main,
-         _ userService: qot_dal.UserService = qot_dal.UserService.main) {
+         _ userService: UserService = UserService.main) {
         super.init(sessionService, userService)
     }
 

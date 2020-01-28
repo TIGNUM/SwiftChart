@@ -76,7 +76,7 @@ extension MySprintNotesInteractor: MySprintNotesInteractorInterface {
     func saveNoteText(_ text: String?) {
         worker.saveText(text) { [weak self] (sprint, error) in
             if error != nil {
-                qot_dal.log("Failed to pdate sprint note. Error: \(String(describing: error))", level: .error)
+                log("Failed to pdate sprint note. Error: \(String(describing: error))", level: .error)
             } else if let sprint = sprint {
                 self?.notificationCenter.post(name: .didUpdateMySprintsData,
                                               object: nil,

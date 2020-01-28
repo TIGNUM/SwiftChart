@@ -115,7 +115,7 @@ private extension ChoiceWorker {
         getRelatedContents(relatedId) { [weak self] (relatedContents) in
             self?._maxSelectionCount = relatedContents?.count ?? 0
             let categoryIds = relatedContents?.flatMap { $0.categoryIDs } ?? []
-            qot_dal.ContentService.main.getContentCategoriesByIds(categoryIds) { (categories) in
+            ContentService.main.getContentCategoriesByIds(categoryIds) { (categories) in
                 categories?.forEach { (category) in
                     let children: [Choice] = (relatedContents ?? []).filter { $0.categoryIDs.first == category.remoteID }
                         .map { (content: QDMContentCollection) -> Choice in
@@ -136,9 +136,9 @@ private extension ChoiceWorker {
     }
 
     func getRelatedContents(_ relatedId: Int, completion: @escaping (([QDMContentCollection]?) -> Void)) {
-        qot_dal.ContentService.main.getContentCollectionById(relatedId) { (content) in
+        ContentService.main.getContentCollectionById(relatedId) { (content) in
             let relatedIds = content?.relatedContentIDsPrepareAll ?? []
-            qot_dal.ContentService.main.getContentCollectionsByIds(relatedIds, completion)
+            ContentService.main.getContentCollectionsByIds(relatedIds, completion)
         }
     }
 }

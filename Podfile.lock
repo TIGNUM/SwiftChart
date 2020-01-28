@@ -67,7 +67,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 933d3a6a8a3da46a2578db9fadf5aca320b8e838
+    :commit: 39d7048e898b59d64f57730e3e38b95fc64c7674
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -80,7 +80,7 @@ SPEC CHECKSUMS:
   JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 445e28864fe6d3458b41fa211bcdc39890e8bd5a
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
-  qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
+  qot_dal: 9311549cc4337ef385dae34ee8c3deebc28eacca
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
@@ -89,6 +89,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: e21b2e414bfe42c99c3cc4cbdf082f76cadd5c06
+PODFILE CHECKSUM: 836f2b17450f24ad8f18f2bbc5c4dc2c38d921be
 
 COCOAPODS: 1.8.4

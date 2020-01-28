@@ -12,7 +12,7 @@ import qot_dal
 final class MyDataScreenWorker {
 
     // MARK: - Properties
-    private let dataService: qot_dal.MyDataService
+    private let dataService: MyDataService
     var initialDataSelectionSections = MyDataSelectionModel(myDataSelectionItems: [])
     var firstLoad: Bool = true
     var datasourceLoaded: Bool = false
@@ -26,7 +26,7 @@ final class MyDataScreenWorker {
 
     // MARK: - Init
 
-    init(dataService: qot_dal.MyDataService) {
+    init(dataService: MyDataService) {
         self.dataService = dataService
         self.graphFirstWeekdaysDatasource = firstWeekdays(between: oldestAvailableDate, and: Date())
     }

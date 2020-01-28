@@ -19,7 +19,7 @@ final class RegistrationCodeWorker: BaseSigningWorker {
 
     init(email: String,
          _ sessionService: SessionService = SessionService.main,
-         _ userService: qot_dal.UserService = qot_dal.UserService.main) {
+         _ userService: UserService = UserService.main) {
         self.email = email
         super.init(sessionService, userService)
     }

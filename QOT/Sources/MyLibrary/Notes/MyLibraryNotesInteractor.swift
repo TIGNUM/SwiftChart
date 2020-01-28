@@ -87,7 +87,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
     func saveNoteText(_ text: String?) {
         worker.saveText(text) { [weak self] (_, error) in
             if error != nil {
-                qot_dal.log("Failed to save note. Error: \(String(describing: error))", level: .error)
+                log("Failed to save note. Error: \(String(describing: error))", level: .error)
             } else {
                 self?.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.router.dismiss()
@@ -127,7 +127,7 @@ extension MyLibraryNotesInteractor {
     @objc private func continueRemovingTapped() {
         worker.deleteNote { [weak self] (error) in
             guard error == nil else {
-                qot_dal.log("Failed to delete the note. Error: \(String(describing: error))")
+                log("Failed to delete the note. Error: \(String(describing: error))")
                 return
             }
             self?.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)

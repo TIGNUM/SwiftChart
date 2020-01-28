@@ -151,7 +151,7 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
         view.endEditing(true)
         trackUserEvent(.CONFIRM, valueType: "EditMyToBeVision", action: .TAP)
         guard let toBeVision = interactor?.myVision else {
-            qot_dal.UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
+            UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
                 guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
                 self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
                     self?.dismissController()

@@ -13,7 +13,7 @@ final class MyQotSiriShortcutsWorker {
 
     // MARK: - Properties
 
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
     private var shortcutModel = SiriShortcutsModel(explanation: nil, shortcuts: [])
     private let dispatchGroup = DispatchGroup()
 
@@ -23,7 +23,7 @@ final class MyQotSiriShortcutsWorker {
 
     // MARK: - Init
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 

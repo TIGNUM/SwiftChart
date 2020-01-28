@@ -13,7 +13,7 @@ final class MyQotAppSettingsConfigurator {
 
     static func configure(viewController: MyQotAppSettingsViewController) {
         let router =  MyQotAppSettingsRouter(viewController: viewController)
-        let worker = MyQotAppSettingsWorker(contentService: qot_dal.ContentService.main)
+        let worker = MyQotAppSettingsWorker(contentService: ContentService.main)
         let presenter = MyQotAppSettingsPresenter(viewController: viewController)
         let interactor = MyQotAppSettingsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

@@ -13,7 +13,7 @@ final class MyQotAboutUsConfigurator {
 
     static func configure(viewController: MyQotAboutUsViewController) {
         let router = MyQotAboutUsRouter(viewController: viewController)
-        let worker = MyQotAboutUsWorker(contentService: qot_dal.ContentService.main)
+        let worker = MyQotAboutUsWorker(contentService: ContentService.main)
         let presenter = MyQotAboutUsPresenter(viewController: viewController)
         let interactor = MyQotAboutUsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

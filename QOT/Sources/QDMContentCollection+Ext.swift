@@ -64,7 +64,7 @@ extension QDMContentCollection {
     }
 
     var isFoundation: Bool {
-        get { return categoryIDs.contains(qot_dal.ContentCategory.PerformanceFoundation.rawValue) }
+        get { return categoryIDs.contains(ContentCategory.PerformanceFoundation.rawValue) }
     }
 
     var hasAudioItems: Bool {

@@ -85,7 +85,7 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
             }
             // Error
             if let error = error {
-                qot_dal.log("Failed to get code before registration. Error \(error)")
+                log("Failed to get code before registration. Error \(error)")
                 strongSelf.showMessage(text: result.message ?? strongSelf.worker.generalError, isError: true)
                 strongSelf.presenter.presentActivity(state: nil)
                 return
@@ -136,7 +136,7 @@ private extension RegistrationEmailInteractor {
             }
             // Error
             if let error = error {
-                qot_dal.log("Failed to get code before registration. Error \(error)")
+                log("Failed to get code before registration. Error \(error)")
             }
             strongSelf.showMessage(text: result.message ?? strongSelf.worker.generalError, isError: true)
         }

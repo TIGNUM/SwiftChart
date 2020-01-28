@@ -38,7 +38,7 @@ final class MyVisionEditDetailsWorker {
     }
 
     func getMyToBeVision() {
-        qot_dal.UserService.main.getMyToBeVision({ [weak self] (vision, initilized, error) in
+        UserService.main.getMyToBeVision({ [weak self] (vision, initilized, error) in
             self?.myToBeVision = vision
         })
     }

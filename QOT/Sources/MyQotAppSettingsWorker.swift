@@ -11,11 +11,11 @@ import qot_dal
 
 final class MyQotAppSettingsWorker {
 
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
 
     // MARK: - Init
 
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 

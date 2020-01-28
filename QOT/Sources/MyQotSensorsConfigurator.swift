@@ -12,7 +12,7 @@ import qot_dal
 final class MyQotSensorsConfigurator {
     static func configure(viewController: MyQotSensorsViewController) {
         let router =  MyQotSensorsRouter(viewController: viewController)
-        let worker = MyQotSensorsWorker(contentService: qot_dal.ContentService.main)
+        let worker = MyQotSensorsWorker(contentService: ContentService.main)
         let presenter = MyQotSensorsPresenter(viewController: viewController)
         let interactor = MyQotSensorsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

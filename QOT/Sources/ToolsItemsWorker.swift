@@ -48,7 +48,7 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
             }
             return
         }
-        qot_dal.ContentService.main.getContentCollectionById(contentCollectionId) { [weak self] (contentCollection) in
+        ContentService.main.getContentCollectionById(contentCollectionId) { [weak self] (contentCollection) in
             self?.selectedTool = contentCollection
             let count = contentCollection?.contentItems.count ?? 0
             self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in

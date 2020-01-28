@@ -12,7 +12,7 @@ import qot_dal
 final class MyQotSiriShortcutsConfigurator {
     static func configure(viewController: MyQotSiriShortcutsViewController) {
         let router =  MyQotSiriShortcutsRouter(viewController: viewController)
-        let worker = MyQotSiriShortcutsWorker(contentService: qot_dal.ContentService.main)
+        let worker = MyQotSiriShortcutsWorker(contentService: ContentService.main)
         let presenter = MyQotSiriShortcutsPresenter(viewController: viewController)
         let interactor = MyQotSiriShortcutsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

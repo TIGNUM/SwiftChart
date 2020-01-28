@@ -12,8 +12,8 @@ import qot_dal
 final class MyQotProfileWorker {
 
     // MARK: - Properties
-    private let userService: qot_dal.UserService
-    private let contentService: qot_dal.ContentService
+    private let userService: UserService
+    private let contentService: ContentService
     private let dispatchGroup = DispatchGroup()
 
     private var accountSettingsText = ""
@@ -31,7 +31,7 @@ final class MyQotProfileWorker {
 
     // MARK: - Init
 
-    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService) {
+    init(userService: UserService, contentService: ContentService) {
         self.userService = userService
         self.contentService = contentService
     }

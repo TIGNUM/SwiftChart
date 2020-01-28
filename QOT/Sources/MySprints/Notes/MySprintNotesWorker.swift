@@ -17,7 +17,7 @@ final class MySprintNotesWorker {
 
     // MARK: - Properties
 
-    private let service = qot_dal.UserService.main
+    private let service = UserService.main
     private var sprint: QDMSprint
     private let action: MySprintDetailsItem.Action
 

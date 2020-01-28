@@ -13,7 +13,7 @@ final class MyDataExplanationConfigurator {
     static func make() -> (MyDataExplanationViewController, MyDataSection) -> Void {
         return { (viewController, section) in
             let router = MyDataExplanationRouter(viewController: viewController)
-            let worker = MyDataExplanationWorker(contentService: qot_dal.ContentService.main)
+            let worker = MyDataExplanationWorker(contentService: ContentService.main)
             let presenter = MyDataExplanationPresenter(viewController: viewController)
             let interactor = MyDataExplanationInteractor(worker: worker, presenter: presenter, presentedFromSection: section)
             viewController.interactor = interactor

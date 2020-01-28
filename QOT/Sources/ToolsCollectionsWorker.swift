@@ -66,6 +66,6 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
     }
 
     func contentItem(for id: Int, _ completion: @escaping (QDMContentItem?) -> Void) {
-        qot_dal.ContentService.main.getContentItemById(id, completion)
+        ContentService.main.getContentItemById(id, completion)
     }
 }

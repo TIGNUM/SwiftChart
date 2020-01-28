@@ -12,13 +12,13 @@ import qot_dal
 final class MyQotSupportDetailsWorker {
     // MARK: - Properties
 
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
     let category: ContentCategory
     private var items = [QDMContentCollection]()
 
     // MARK: - Init
 
-    init(contentService: qot_dal.ContentService, category: ContentCategory) {
+    init(contentService: ContentService, category: ContentCategory) {
         self.contentService = contentService
         self.category = category
     }

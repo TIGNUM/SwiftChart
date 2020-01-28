@@ -27,7 +27,7 @@ final class PDFReaderWorker {
     }
 
     func prepareShareContent(completion: @escaping ((Result) -> Void)) {
-        qot_dal.ContentService.main.getContentItemShareData(contentItemId: contentItemID) { (shareData, error) in
+        ContentService.main.getContentItemShareData(contentItemId: contentItemID) { (shareData, error) in
             guard let value = shareData else {
                 completion(.failure(error ?? NSError(domain: "QOT", code: 500, userInfo: nil) ))
                 return

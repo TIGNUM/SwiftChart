@@ -13,11 +13,11 @@ import HealthKit
 final class MyQotSensorsWorker {
 
     // MARK: - Properties
-    private let contentService: qot_dal.ContentService
+    private let contentService: ContentService
     var ouraRingAuthConfiguration: QDMOuraRingConfig?
 
     // MARK: - Init
-    init(contentService: qot_dal.ContentService) {
+    init(contentService: ContentService) {
         self.contentService = contentService
     }
 
@@ -72,14 +72,14 @@ extension MyQotSensorsWorker {
     func requestHealthKitAuthorization(_ completion: @escaping (Bool) -> Void) {
         HealthService.main.requestHealthKitAuthorization { (success, error) in
             if let error = error {
-                qot_dal.log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
+                log("Error requestHealthKitAuthorization: \(error.localizedDescription)", level: .error)
             }
             completion(success)
         }
     }
 
     func getHealthKitAuthStatus() -> HKAuthorizationStatus {
-        return qot_dal.HealthService.main.healthKitAuthorizationStatus()
+        return HealthService.main.healthKitAuthorizationStatus()
     }
 
     func importHealthKitData() {
@@ -106,7 +106,7 @@ extension MyQotSensorsWorker {
                                      completion: @escaping (QDMHealthTracker?) -> Void) {
         HealthService.main.handleOuraRingAuthResultURL(url, config: ouraRingAuthConfiguration) { (tracker, error) in
             if let error = error {
-                qot_dal.log("Error handleOuraRingAuthResultURL: \(error)", level: .error)
+                log("Error handleOuraRingAuthResultURL: \(error)", level: .error)
             }
             completion(tracker)
         }

@@ -253,7 +253,7 @@ extension MySprintsListInteractor {
         worker.save(sprints: self.items) { [weak self] (sprints, error) in
             guard let strongSelf = self else { return }
             if let error = error {
-                qot_dal.log("Saved updating sprints: \(error)", level: .error)
+                log("Saved updating sprints: \(error)", level: .error)
                 return
             }
             guard let sprints = sprints else { return }
