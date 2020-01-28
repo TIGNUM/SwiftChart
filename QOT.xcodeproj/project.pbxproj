@@ -7018,7 +7018,6 @@
 				ENABLE_TESTABILITY = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
-					"$(inherited)",
 					"COCOAPODS=1",
 					"NOVARTIS=1",
 				);
@@ -8225,7 +8224,6 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"$(inherited)",
-					"COCOAPODS=1",
 					"UNIT_TEST=1",
 				);
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
