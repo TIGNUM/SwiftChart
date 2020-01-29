@@ -72,17 +72,12 @@ extension ComponentDetailViewController {
 private extension ComponentDetailViewController {
     func setupView() {
         scrollView.delegate = self
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
-        }
-//        cardContentView.viewModel = cardViewModel
-//        componentContentView.setFontState(isHighlighted: isFontStateHighlighted)
+        scrollView.contentInsetAdjustmentBehavior = .never
         dismissalPanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
         dismissalPanGesture.delegate = self
         dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
         dismissalScreenEdgePanGesture.delegate = self
+
         // Make drag down/scroll pan gesture waits til screen edge pan to fail first to begin
         dismissalPanGesture.require(toFail: dismissalScreenEdgePanGesture)
         scrollView.panGestureRecognizer.require(toFail: dismissalScreenEdgePanGesture)

@@ -16,14 +16,10 @@ final class WebViewController: SFSafariViewController {
         guard url.canOpen else {
             throw SimpleError(localizedDescription: "Unsupported URL scheme for: \(url)")
         }
-        if #available(iOS 11.0, *) {
-            let configuration = SFSafariViewController.Configuration()
-            configuration.entersReaderIfAvailable = false
-            configuration.barCollapsingEnabled = false
-            super.init(url: url, configuration: configuration)
-        } else {
-            super.init(url: url, entersReaderIfAvailable: false)
-        }
+        let configuration = SFSafariViewController.Configuration()
+        configuration.entersReaderIfAvailable = false
+        configuration.barCollapsingEnabled = false
+        super.init(url: url, configuration: configuration)
     }
 }
 

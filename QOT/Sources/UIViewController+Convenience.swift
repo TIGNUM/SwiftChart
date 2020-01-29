@@ -55,13 +55,7 @@ extension UIViewController {
     }
 
     var safeAreaInsets: UIEdgeInsets {
-        if #available(iOS 11.0, *) {
-            return view.safeAreaInsets
-        } else {
-            let top = topLayoutGuide.length
-            let bottom = bottomLayoutGuide.length
-            return UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
-        }
+        return view.safeAreaInsets
     }
 
     func showNoInternetConnectionAlert() {
