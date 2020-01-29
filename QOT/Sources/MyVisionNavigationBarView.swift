@@ -21,7 +21,7 @@ final class MyVisionNavigationBarView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .carbon
-        title.text = AppTextService.get(AppTextKey.my_qot_my_tbv_section_navigation_bar_title)
+        title.text = AppTextService.get(.my_qot_my_tbv_section_navigation_bar_title)
     }
 
     @IBAction func shareButtonAction(_ sender: Any) {

@@ -98,39 +98,39 @@ struct MyQotAppSettingsModel {
     private func title(for item: Setting) -> String {
         switch item {
         case .permissions:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_general_settings_section_permissions_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_general_settings_section_permissions_title)
         case .notifications:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_general_settings_section_notifications_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_general_settings_section_notifications_title)
         case .calendars:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_section_header_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_synced_calendars_section_header_title)
         case .sensors:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_custom_settings_section_data_sources_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_custom_settings_section_data_sources_title)
         case .siriShortcuts:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_title)
         }
     }
 
     private func subtitle(for item: Setting) -> String {
         switch item {
         case .permissions:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_general_settings_section_permissions_subtitle)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_general_settings_section_permissions_subtitle)
         case .notifications:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_general_settings_section_notifications_subtitle)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_general_settings_section_notifications_subtitle)
         case .calendars:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_synced_calendars_section_header_subtitle)
+            return AppTextService.get(.my_qot_my_profile_app_settings_synced_calendars_section_header_subtitle)
         case .sensors:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_custom_settings_section_data_sources_subtitle)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_custom_settings_section_data_sources_subtitle)
         case .siriShortcuts:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_subtitle)
+            return AppTextService.get(.my_qot_my_profile_app_settings_my_qot_my_profile_app_settings_section_siri_shortcuts_subtitle)
         }
     }
 
     private func headertitle(for item: Section) -> String {
         switch item {
         case .general:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_general_settings_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_general_settings_title)
         case .custom:
-            return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_section_custom_settings_title)
+            return AppTextService.get(.my_qot_my_profile_app_settings_section_custom_settings_title)
         }
     }
 }

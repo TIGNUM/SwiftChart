@@ -59,11 +59,11 @@ final class MyQotSensorsWorker {
     }
 
     var headerTitle: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_header_title)
+        return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_header_title)
     }
 
     var sensorTitle: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_title_sensor)
+        return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_sensors_title_sensor)
     }
 }
 

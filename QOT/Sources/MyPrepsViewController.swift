@@ -55,13 +55,13 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_button_cancel))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(.generic_view_button_cancel))
         return button.barButton
     }()
 
     func getDeleteButton(isEnabled: Bool) -> UIBarButtonItem {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
-        ThemableButton.myPlans.apply(button, title: AppTextService.get(AppTextKey.generic_view_button_delete))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(.generic_view_button_delete))
         button.isEnabled = isEnabled
         return button.barButton
     }
@@ -120,16 +120,16 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func removeRows(_ sender: Any) {
         guard tableView.indexPathForSelectedRow != nil else { return }
-        let cancel = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_cancel),
+        let cancel = QOTAlertAction(title: AppTextService.get(.generic_view_button_cancel),
                                     target: self,
                                     action: #selector(cancelDeleteTapped(_:)),
                                     handler: nil)
-        let remove = QOTAlertAction(title: AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_button_continue),
+        let remove = QOTAlertAction(title: AppTextService.get(.my_qot_my_plans_alert_delete_button_continue),
                                     target: self,
                                     action: #selector(confirmDeleteTapped(_:)),
                                     handler: nil)
-        let title = AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_title)
-        let message = AppTextService.get(AppTextKey.my_qot_my_plans_alert_delete_body)
+        let title = AppTextService.get(.my_qot_my_plans_alert_delete_title)
+        let message = AppTextService.get(.my_qot_my_plans_alert_delete_body)
         QOTAlert.show(title: title, message: message, bottomItems: [cancel, remove])
     }
 

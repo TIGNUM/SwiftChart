@@ -75,7 +75,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
 
     // MARK: - Overridden
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let continueButton = RoundedButton.init(title: AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_footer_button_next),
+        let continueButton = RoundedButton.init(title: AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next),
                                         target: self,
                                         action: #selector(didTapContinue))
         ThemeButton.carbonButton.apply(continueButton)

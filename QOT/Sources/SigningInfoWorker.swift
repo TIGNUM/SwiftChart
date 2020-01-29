@@ -21,7 +21,7 @@ final class SigningInfoWorker {
 
     // MARK: - Texts
     lazy var titleText: String? = {
-        return AppTextService.get(AppTextKey.onboarding_launch_screen_section_header_title_intro)
+        return AppTextService.get(.onboarding_launch_screen_section_header_title_intro)
     }()
 
     var bodyText: String? = {

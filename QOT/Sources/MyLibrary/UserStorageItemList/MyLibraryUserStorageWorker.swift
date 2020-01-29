@@ -22,43 +22,43 @@ final class MyLibraryUserStorageWorker {
     // MARK: Texts
     lazy var title: String = {
         switch item.type {
-        case .ALL: return AppTextService.get(AppTextKey.my_qot_my_library_all_section_header_title)
-        case .BOOKMARKS: return AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_section_header_title)
-        case .DOWNLOADS: return AppTextService.get(AppTextKey.my_qot_my_library_downloads_section_header_title)
-        case .LINKS: return AppTextService.get(AppTextKey.my_qot_my_library_links_section_header_title)
-        case .NOTES: return AppTextService.get(AppTextKey.my_qot_my_library_notes_section_header_title)
+        case .ALL: return AppTextService.get(.my_qot_my_library_all_section_header_title)
+        case .BOOKMARKS: return AppTextService.get(.my_qot_my_library_bookmarks_section_header_title)
+        case .DOWNLOADS: return AppTextService.get(.my_qot_my_library_downloads_section_header_title)
+        case .LINKS: return AppTextService.get(.my_qot_my_library_links_section_header_title)
+        case .NOTES: return AppTextService.get(.my_qot_my_library_notes_section_header_title)
         }
     }()
 
     lazy var addTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_section_header_button_add)
+        return AppTextService.get(.my_qot_my_library_notes_section_header_button_add)
     }()
 
     lazy var editingTitle: String = {
         switch item.type {
         case .ALL:
-            return AppTextService.get(AppTextKey.my_qot_my_library_all_edit_title)
+            return AppTextService.get(.my_qot_my_library_all_edit_title)
         case .BOOKMARKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_edit_title)
+            return AppTextService.get(.my_qot_my_library_bookmarks_edit_title)
         case .DOWNLOADS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_downloads_edit_title)
+            return AppTextService.get(.my_qot_my_library_downloads_edit_title)
         case .LINKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_links_edit_title)
+            return AppTextService.get(.my_qot_my_library_links_edit_title)
         case .NOTES:
-            return AppTextService.get(AppTextKey.my_qot_my_library_notes_edit_title)
+            return AppTextService.get(.my_qot_my_library_notes_edit_title)
         }
     }()
 
     lazy var cancelTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_button_cancel)
+        return AppTextService.get(.generic_view_button_cancel)
     }()
 
     lazy var removeTitle: String = {
-        return AppTextService.get(AppTextKey.generic_view_button_delete)
+        return AppTextService.get(.generic_view_button_delete)
     }()
 
     lazy var continueTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_alert_delete_button_continue)
+        return AppTextService.get(.my_qot_my_library_alert_delete_button_continue)
     }()
 
     lazy var showAddButton: Bool = {
@@ -66,41 +66,41 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var cancelDownloadItemsAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_cancel_download_title)
+        return AppTextService.get(.my_qot_my_library_downloads_alert_cancel_download_title)
     }()
 
     lazy var cancelDownloadItemsAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_cancel_download_body)
+        return AppTextService.get(.my_qot_my_library_downloads_alert_cancel_download_body)
     }()
 
     lazy var removeItemsAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_alert_delete_title)
+        return AppTextService.get(.my_qot_my_library_alert_delete_title)
     }()
 
     lazy var removeItemsAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_alert_delete_body)
+        return AppTextService.get(.my_qot_my_library_alert_delete_body)
     }()
 
     lazy var cellullarDownloadTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_use_mobile_data_title)
+        return AppTextService.get(.my_qot_my_library_downloads_alert_use_mobile_data_title)
     }()
 
     lazy var cellullarDownloadMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_alert_use_mobile_data_body)
+        return AppTextService.get(.my_qot_my_library_downloads_alert_use_mobile_data_body)
     }()
 
     lazy var emtptyContentAlertTitle: String = {
         switch item.type {
         case .ALL:
-            return AppTextService.get(AppTextKey.my_qot_my_library_all_section_header_title)
+            return AppTextService.get(.my_qot_my_library_all_section_header_title)
         case .BOOKMARKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_section_header_title)
+            return AppTextService.get(.my_qot_my_library_bookmarks_section_header_title)
         case .DOWNLOADS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_downloads_section_header_title)
+            return AppTextService.get(.my_qot_my_library_downloads_section_header_title)
         case .LINKS:
-            return AppTextService.get(AppTextKey.my_qot_my_library_links_section_header_title)
+            return AppTextService.get(.my_qot_my_library_links_section_header_title)
         case .NOTES:
-            return AppTextService.get(AppTextKey.my_qot_my_library_notes_null_state_subtitle)
+            return AppTextService.get(.my_qot_my_library_notes_null_state_subtitle)
         }
     }()
 
@@ -143,16 +143,16 @@ final class MyLibraryUserStorageWorker {
         var icon: UIImage? = textIcon
         switch item.type {
         case .ALL:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_all_null_state_body)
+            text = AppTextService.get(.my_qot_my_library_all_null_state_body)
             icon = nil
         case .BOOKMARKS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_bookmarks_null_state_body)
+            text = AppTextService.get(.my_qot_my_library_bookmarks_null_state_body)
         case .DOWNLOADS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_downloads_null_state_body)
+            text = AppTextService.get(.my_qot_my_library_downloads_null_state_body)
         case .LINKS:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_links_null_state_body)
+            text = AppTextService.get(.my_qot_my_library_links_null_state_body)
         case .NOTES:
-            text = AppTextService.get(AppTextKey.my_qot_my_library_notes_null_state_title)
+            text = AppTextService.get(.my_qot_my_library_notes_null_state_title)
             icon = nil
         }
 
@@ -180,27 +180,27 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var personalNote: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_notes_section_item_label_personal_notes)
+        return AppTextService.get(.my_qot_my_library_notes_section_item_label_personal_notes)
     }()
 
     lazy var downloading: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_section_item_label_downloading)
+        return AppTextService.get(.my_qot_my_library_downloads_section_item_label_downloading)
     }()
 
     lazy var waitingForDownload: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_downloads_section_item_label_waiting)
+        return AppTextService.get(.my_qot_my_library_downloads_section_item_label_waiting)
     }()
 
     lazy var read: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_labels_title_read)
+        return AppTextService.get(.my_qot_my_library_labels_title_read)
     }()
 
     lazy var watch: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_labels_title_watch)
+        return AppTextService.get(.my_qot_my_library_labels_title_watch)
     }()
 
     lazy var listen: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_library_labels_title_listen)
+        return AppTextService.get(.my_qot_my_library_labels_title_listen)
     }()
 
     lazy var contentType: MyLibraryUserStorageContentType = {

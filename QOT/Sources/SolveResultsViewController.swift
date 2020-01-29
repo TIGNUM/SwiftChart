@@ -81,7 +81,7 @@ private extension SolveResultsViewController {
     }
 
     func showAlert() {
-        let activate = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_activate)) { [weak self] _ in
+        let activate = QOTAlertAction(title: AppTextService.get(.coach_solve_result_alert_follow_up_button_activate)) { [weak self] _ in
             self?.isFollowUpActive = true
             if self?.resultViewModel?.type == .solveDecisionTree {
                 self?.saveSolveAndDismiss()
@@ -89,11 +89,11 @@ private extension SolveResultsViewController {
                 self?.router.dismissChatBotFlow()
             }
         }
-        let leave = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_button_continue)) { [weak self] _ in
+        let leave = QOTAlertAction(title: AppTextService.get(.coach_solve_result_alert_follow_up_button_continue)) { [weak self] _ in
             self?.saveSolveAndDismiss()
         }
-        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_title),
-                      message: AppTextService.get(AppTextKey.coach_solve_result_alert_follow_up_body),
+        QOTAlert.show(title: AppTextService.get(.coach_solve_result_alert_follow_up_title),
+                      message: AppTextService.get(.coach_solve_result_alert_follow_up_body),
                       bottomItems: [activate, leave])
     }
 

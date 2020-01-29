@@ -171,7 +171,7 @@ private extension SearchViewController {
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
         mySearchBar.backgroundImage = UIImage()
-        mySearchBar.placeholder = AppTextService.get(AppTextKey.coach_search_section_search_bar_placeholder_search)
+        mySearchBar.placeholder = AppTextService.get(.coach_search_section_search_bar_placeholder_search)
         mySearchBar.delegate = self
     }
 
@@ -283,7 +283,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
             if searchResults.isEmpty == true && searchQuery.isEmpty == false {
-                searchCell.configure(title: AppTextService.get(AppTextKey.coach_search_null_state_body), contentType: nil, duration: nil)
+                searchCell.configure(title: AppTextService.get(.coach_search_null_state_body), contentType: nil, duration: nil)
             } else {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,

@@ -97,7 +97,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             skeletonManager.hide()
         }
         var asterixCharacter: String = "*"
-        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
+        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
 
         if viewModel?.hasFiveDayLoadValue != true,
@@ -112,23 +112,23 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
         // Sleep Quantity
-        let quantityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_title)
-        let quantitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
+        let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
+        let quantitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
         ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
         sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
-                                                        AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
+                                                        AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
                                                         ThemeText.quotationSmall,
                                                    asterixCharacter, ThemeText.quotation)
 
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
-        targetLabel.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
+        targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
 
         // Sleep Quality
-        let qualityTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_title)
-        let qualitySubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
+        let qualityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_title)
+        let qualitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_subtitle)
         ThemeText.bucketTitle.apply(qualityTitle, to: sleepQualityTitle)
         ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
 
@@ -138,12 +138,12 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                   ThemeText.quotationSlash,
                                                   "10",
                                                   ThemeText.quotationLight)
-        refLabel1.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_sleep_quality_label_ref)
+        refLabel1.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quality_label_ref)
         ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityReferenceLabel)
 
         // Load
-        let loadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_title)
-        let loadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_subtitle)
+        let loadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_title)
+        let loadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_load_subtitle)
         ThemeText.bucketTitle.apply(loadTitle, to: loadTitleLabel)
         ThemeText.durationString.apply(loadSubtitle, to: loadSubtitleLabel)
 
@@ -153,12 +153,12 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                           ThemeText.quotationSlash,
                                           "10",
                                           ThemeText.quotationLight)
-        refLabel2.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_load_label_ref)
+        refLabel2.text = AppTextService.get(.daily_brief_section_impact_readiness_section_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadReferenceLabel)
 
         // Future Load
-        let futureLoadTitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_title)
-        let futureLoadSubtitle = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_subtitle)
+        let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
+        let futureLoadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_subtitle)
         ThemeText.bucketTitle.apply(futureLoadTitle, to: futureLoadTitleLabel)
         ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
 
@@ -168,10 +168,10 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                 ThemeText.quotationSlash,
                                                 "10",
                                                 ThemeText.quotationLight)
-        refLabel3.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_section_future_load_label_ref)
+        refLabel3.text = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
         // Button
-        moreData.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_my_data), for: .normal)
+        moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
 
     @IBAction func targetReference(_ sender: Any) {

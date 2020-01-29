@@ -30,16 +30,16 @@ final class MyVisionWorker {
         }
     }
 
-    lazy var nullStateSubtitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_body)
-    lazy var nullStateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_null_state_title)
-    lazy var updateAlertTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_title)
-    lazy var updateAlertMessage = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_body)
-    lazy var updateAlertEditTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_edit)
-    lazy var updateAlertCreateTitle = AppTextService.get(AppTextKey.my_qot_my_tbv_alert_update_create)
-    lazy var emptyTBVTextPlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_empty_subtitle_vision)
-    lazy var emptyTBVTitlePlaceholder = AppTextService.get(AppTextKey.my_qot_my_tbv_section_header_title_headline)
-    private lazy var notRatedText = AppTextService.get(AppTextKey.my_qot_my_tbv_section_track_null_state_title)
-    private lazy var syncingText = AppTextService.get(AppTextKey.my_qot_my_tbv_loading_body_syncing)
+    lazy var nullStateSubtitle = AppTextService.get(.my_qot_my_tbv_null_state_body)
+    lazy var nullStateTitle = AppTextService.get(.my_qot_my_tbv_null_state_title)
+    lazy var updateAlertTitle = AppTextService.get(.my_qot_my_tbv_alert_update_title)
+    lazy var updateAlertMessage = AppTextService.get(.my_qot_my_tbv_alert_update_body)
+    lazy var updateAlertEditTitle = AppTextService.get(.my_qot_my_tbv_alert_update_edit)
+    lazy var updateAlertCreateTitle = AppTextService.get(.my_qot_my_tbv_alert_update_create)
+    lazy var emptyTBVTextPlaceholder = AppTextService.get(.my_qot_my_tbv_empty_subtitle_vision)
+    lazy var emptyTBVTitlePlaceholder = AppTextService.get(.my_qot_my_tbv_section_header_title_headline)
+    private lazy var notRatedText = AppTextService.get(.my_qot_my_tbv_section_track_null_state_title)
+    private lazy var syncingText = AppTextService.get(.my_qot_my_tbv_loading_body_syncing)
     private lazy var widgetDataManager = ExtensionsDataManager()
     private var toBeVision: QDMToBeVision?
     private var isMyVisionInitialized: Bool = false

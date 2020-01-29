@@ -59,9 +59,9 @@ extension UIViewController {
     }
 
     func showNoInternetConnectionAlert() {
-        let OK = QOTAlertAction(title: AppTextService.get(AppTextKey.generic_view_button_done))
-        QOTAlert.show(title: AppTextService.get(AppTextKey.generic_alert_no_internet_title),
-                      message: AppTextService.get(AppTextKey.generic_alert_no_internet_body),
+        let OK = QOTAlertAction(title: AppTextService.get(.generic_view_button_done))
+        QOTAlert.show(title: AppTextService.get(.generic_alert_no_internet_title),
+                      message: AppTextService.get(.generic_alert_no_internet_body),
                                                                        bottomItems: [OK])
     }
 

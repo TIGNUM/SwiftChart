@@ -41,7 +41,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
         button.setButtonContentInset(padding: 16)
         tbvSentence.text = model.tbvSentence
         ThemeText.dailyInsightsTbvAdvice.apply(model.adviceText, to: adviceText)
-        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_tbv_button_view_my_tbv), for: .normal)
+        button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv), for: .normal)
         button.setButtonContentInset(padding: 16)
     }
 }

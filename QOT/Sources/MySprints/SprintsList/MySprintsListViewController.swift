@@ -67,7 +67,7 @@ private extension MySprintsListViewController {
             return
         }
 
-        let button = RoundedButton(title: AppTextService.get(AppTextKey.my_qot_my_sprints_null_state_button_add_sprint),
+        let button = RoundedButton(title: AppTextService.get(.my_qot_my_sprints_null_state_button_add_sprint),
                                    target: self,
                                    action: #selector(addSprint))
         ThemeButton.carbonButton.apply(button)

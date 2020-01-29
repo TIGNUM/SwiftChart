@@ -67,7 +67,7 @@ extension UIViewController {
 //                                    recipients: [String],
 //                                    subject: String) {
 //        guard MFMailComposeViewController.canSendMail() == true else {
-//            viewController.showAlert(type: .message(AppTextService.get(AppTextKey.my_qot_my_profile_support_alert_email_try_again_body)))
+//            viewController.showAlert(type: .message(AppTextService.get(.my_qot_my_profile_support_alert_email_try_again_body)))
 //            return
 //        }
 //        let composer = MFMailComposeViewController()

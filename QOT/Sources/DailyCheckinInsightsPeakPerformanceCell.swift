@@ -34,7 +34,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-        button.setTitle(AppTextService.get(AppTextKey.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
+        button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
         skeletonManager.hide()
     }
 

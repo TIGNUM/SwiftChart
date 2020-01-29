@@ -29,43 +29,43 @@ struct MyQotSupportModel {
         func trackingKeys() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot)
+                return AppTextService.get(.my_qot_my_profile_support_using_qot)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_faq)
+                return AppTextService.get(.my_qot_my_profile_support_faq)
             case .contactSupport:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_contact_support)
+                return AppTextService.get(.my_qot_my_profile_support_contact_support)
             case .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_contact_support_novartis)
+                return AppTextService.get(.my_qot_my_profile_contact_support_novartis)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_feature_request)
+                return AppTextService.get(.my_qot_my_profile_support_feature_request)
             }
         }
 
         func title() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_using_qot_section_header_title)
+                return AppTextService.get(.my_qot_my_profile_support_using_qot_section_header_title)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_title)
+                return AppTextService.get(.my_qot_my_profile_support_section_faq_title)
             case .contactSupport:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title)
+                return AppTextService.get(.my_qot_my_profile_support_section_contact_support_title)
             case .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_title_novartis)
+                return AppTextService.get(.my_qot_my_profile_support_section_contact_support_title_novartis)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_title)
+                return AppTextService.get(.my_qot_my_profile_support_section_feature_request_title)
             }
         }
 
         func subtitle() -> String {
             switch self {
             case .usingQOT:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_using_qot_subtitle)
+                return AppTextService.get(.my_qot_my_profile_support_section_using_qot_subtitle)
             case .faq:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_faq_subtitle)
+                return AppTextService.get(.my_qot_my_profile_support_section_faq_subtitle)
             case .contactSupport, .contactSupportNovartis:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_subtitle)
+                return AppTextService.get(.my_qot_my_profile_support_section_contact_support_subtitle)
             case .featureRequest:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_support_section_feature_request_subtitle)
+                return AppTextService.get(.my_qot_my_profile_support_section_feature_request_subtitle)
             }
         }
     }

@@ -50,7 +50,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentFeedback() {
         guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
         viewController?.present(controller, animated: true)
-        controller.configure(text: AppTextService.get(AppTextKey.coach_prepare_questionnaire_section_body_body_last_step))
+        controller.configure(text: AppTextService.get(.coach_prepare_questionnaire_section_body_body_last_step))
         viewController?.removeBottomNavigation()
     }
 }

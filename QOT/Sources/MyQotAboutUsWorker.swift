@@ -48,6 +48,6 @@ final class MyQotAboutUsWorker {
     }
 
     var aboutUsText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_section_about_us_section_header_title)
+        return AppTextService.get(.my_qot_my_profile_section_about_us_section_header_title)
     }
 }

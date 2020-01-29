@@ -52,14 +52,14 @@ extension ShifterResultWorker {
 // MARK: - Private
 private extension ShifterResultWorker {
     func setTitles() {
-        headerTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_header_title)
-        headerSubTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title)
-        triggerTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_trigger)
-        reactionsTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_reactions)
-        lowToHighTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos)
-        lowTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low)
-        highTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high)
-        visionTitle = AppTextService.get(AppTextKey.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_vision)
+        headerTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_header_title)
+        headerSubTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title)
+        triggerTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_trigger)
+        reactionsTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_reactions)
+        lowToHighTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos)
+        lowTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_low)
+        highTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_neg_to_pos_high)
+        visionTitle = AppTextService.get(.coach_tools_interactive_tool_minsdset_shifter_result_section_your_answers_title_vision)
     }
 
     var getHeader: MindsetResult.Section {
