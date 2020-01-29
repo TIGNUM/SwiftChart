@@ -212,6 +212,7 @@ public extension AppTextKey {
     static let daily_brief_section_impact_readiness_section_5_day_rolling_title = AppTextKey("daily_brief.section_impact_readiness.section_5_day_rolling.title")
     static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours")
     static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_hours_more")
+    static let daily_brief_daily_check_in_questionnaire_section_slider_subtitle_peak_perpormances_more = AppTextKey("daily_brief.daily_check_in.questionnaire.section_slider.subtitle_peak_perpormances_more")
     static let daily_brief_section_my_peak_performances_section_in_three_days_label = AppTextKey("daily_brief.section_my_peak_performances.section_in_three_days.label")
     static let daily_brief_section_my_peak_performances_section_reflect_label = AppTextKey("daily_brief.section_my_peak_performances.section_reflect.label")
     static let daily_brief_section_my_peak_performances_section_today_label = AppTextKey("daily_brief.section_my_peak_performances.section_today.label")

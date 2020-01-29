@@ -402,6 +402,10 @@ extension QuestionnaireViewController {
             let hoursUnit = AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours)
             attrString.append(NSMutableAttributedString(string: isLast ? maxHourUnit : hoursUnit,
                                                         attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
+        } else if questionkey == .peak {
+            let moreText = AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_peak_perpormances_more)
+            attrString.append(NSMutableAttributedString(string: isLast ? moreText : " ",
+                                                        attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
         }
         return attrString
     }
