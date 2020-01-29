@@ -253,19 +253,11 @@ extension UIView {
     }
 
     var safeTopAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.topAnchor
-        } else {
-            return topAnchor
-        }
+        return safeAreaLayoutGuide.topAnchor
     }
 
     var safeBottomAnchor: NSLayoutYAxisAnchor {
-        if #available(iOS 11.0, *) {
-            return safeAreaLayoutGuide.bottomAnchor
-        } else {
-            return bottomAnchor
-        }
+        return safeAreaLayoutGuide.bottomAnchor
     }
 }
 

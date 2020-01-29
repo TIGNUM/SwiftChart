@@ -72,13 +72,9 @@ extension ComponentDetailViewController {
 private extension ComponentDetailViewController {
     func setupView() {
         scrollView.delegate = self
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        } else {
-            // Fallback on earlier versions
-        }
-//        cardContentView.viewModel = cardViewModel
-//        componentContentView.setFontState(isHighlighted: isFontStateHighlighted)
+        scrollView.contentInsetAdjustmentBehavior = .never
+        //        cardContentView.viewModel = cardViewModel
+        //        componentContentView.setFontState(isHighlighted: isFontStateHighlighted)
         dismissalPanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
         dismissalPanGesture.delegate = self
         dismissalScreenEdgePanGesture.addTarget(self, action: #selector(handleDismissalPan(gesture:)))
