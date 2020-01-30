@@ -19,8 +19,8 @@ final class CoachWorker {
     // MARK: - Functions
 
     func coachSections() -> CoachModel {
-        let headerTitle = AppTextService.get(AppTextKey.coach_section_header_title)
-        let headerSubtitle = AppTextService.get(AppTextKey.coach_section_header_subtitle)
+        let headerTitle = AppTextService.get(.coach_section_header_title)
+        let headerSubtitle = AppTextService.get(.coach_section_header_subtitle)
         let coachItems =  CoachSection.allCases.map {
             return CoachModel.Item(coachSections: $0,
                                    title: coachSectionTitles(for: $0),
@@ -31,30 +31,30 @@ final class CoachWorker {
     func coachSectionTitles(for coachItem: CoachSection) -> String? {
         switch coachItem {
         case .search:
-            return AppTextService.get(AppTextKey.coach_section_search_title)
+            return AppTextService.get(.coach_section_search_title)
         case .tools:
-            return AppTextService.get(AppTextKey.coach_section_tools_title)
+            return AppTextService.get(.coach_section_tools_title)
         case .sprint:
-            return AppTextService.get(AppTextKey.coach_section_sprint_title)
+            return AppTextService.get(.coach_section_sprint_title)
         case .event:
-            return AppTextService.get(AppTextKey.coach_section_prepare_title)
+            return AppTextService.get(.coach_section_prepare_title)
         case .challenge:
-            return AppTextService.get(AppTextKey.coach_section_solve_title)
+            return AppTextService.get(.coach_section_solve_title)
         }
     }
 
     func coachSectionSubtitles(for coachItem: CoachSection) -> String? {
         switch coachItem {
         case .search:
-            return AppTextService.get(AppTextKey.coach_section_search_subtitle)
+            return AppTextService.get(.coach_section_search_subtitle)
         case .tools:
-            return AppTextService.get(AppTextKey.coach_section_tools_subtitle)
+            return AppTextService.get(.coach_section_tools_subtitle)
         case .sprint:
-            return AppTextService.get(AppTextKey.coach_section_sprint_subtitle)
+            return AppTextService.get(.coach_section_sprint_subtitle)
         case .event:
-            return AppTextService.get(AppTextKey.coach_section_prepare_subtitle)
+            return AppTextService.get(.coach_section_prepare_subtitle)
         case .challenge:
-            return AppTextService.get(AppTextKey.coach_section_solve_subtitle)
+            return AppTextService.get(.coach_section_solve_subtitle)
         }
     }
 }

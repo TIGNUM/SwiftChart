@@ -39,7 +39,12 @@ final class DailyCheckinQuestionsWorker {
             checkInAnswer.questionGroupId = question.groups?.first?.id
             checkInAnswer.answerId = question.selectedAnswer()?.remoteID
             if question.key == "daily.checkin.peak.performances" {
-                checkInAnswer.PeakPerformanceCount = (question.selectedAnswerIndex ?? 0) // index is count
+                if let answers = question.answers,
+                    let answerIndex = question.selectedAnswerIndex,
+                    answers.count > answerIndex,
+                    let count = Int(answers[answerIndex].subtitle ?? "") {
+                    checkInAnswer.PeakPerformanceCount = count
+                }
             }
             answers.append(checkInAnswer)
         }

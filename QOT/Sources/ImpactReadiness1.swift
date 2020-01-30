@@ -86,14 +86,14 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         toBeVisionImage.setImage(url: model.dailyCheckImageURL, placeholder: R.image.tbvPlaceholder()) { (_) in /* */}
         self.score = model.readinessScore ?? 0
         ThemeView.level1.apply(self)
-        ThemeText.navigationBarHeader.apply(AppTextService.get(AppTextKey.daily_brief_section_header_title), to: titleLabel)
+        ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
         actionLeft = tapLeft
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
-        impactReadinessOutOf100Label.text = AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_label_out_of_100)
+        impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
 
         impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
         if impactReadinessButton.isEnabled {
@@ -103,11 +103,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         }
 
         if showDailyCheckInScreen {
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
         } else {
             trackState = model.isExpanded
             impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+            impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
             impactReadinessButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
             impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
             impactReadinessButton.layoutIfNeeded()

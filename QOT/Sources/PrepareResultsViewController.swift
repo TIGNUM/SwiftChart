@@ -128,7 +128,7 @@ private extension PrepareResultsViewController {
     }
 
     func showAlert() {
-        let confirm = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
+        let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
             self?.interactor.setReminder = true
             self?.interactor.updatePreparation { (_) in
                 if self?.interactor.getResultType == .prepareDecisionTree {
@@ -138,7 +138,7 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        let decline = QOTAlertAction(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
+        let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
             self?.interactor.updatePreparation { (_) in
                 if self?.interactor.getResultType == .prepareDecisionTree {
                     self?.interactor.presentFeedback()
@@ -147,8 +147,8 @@ private extension PrepareResultsViewController {
                 }
             }
         }
-        QOTAlert.show(title: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_title),
-                      message: AppTextService.get(AppTextKey.coach_prepare_alert_activate_reminder_body),
+        QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
+                      message: AppTextService.get(.coach_prepare_alert_activate_reminder_body),
                       bottomItems: [confirm, decline])
     }
 }

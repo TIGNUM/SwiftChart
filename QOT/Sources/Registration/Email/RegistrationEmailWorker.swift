@@ -13,31 +13,31 @@ final class RegistrationEmailWorker: BaseSigningWorker {
 
     // MARK: - Properties
     lazy var title: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_header_title)
+        return AppTextService.get(.onboarding_sign_up_email_verification_section_header_title)
     }()
 
     lazy var subtitle: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_create_account_section_header_body_description)
+        return AppTextService.get(.onboarding_sign_up_create_account_section_header_body_description)
     }()
 
     lazy var emailPlaceholder: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_body_placeholder)
+        return AppTextService.get(.onboarding_sign_up_email_verification_section_body_placeholder)
     }()
 
     lazy var nextButtonTitle: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_section_footer_button_next)
+        return AppTextService.get(.onboarding_sign_up_email_verification_section_footer_button_next)
     }()
 
     lazy var emailError: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_error_enter_email_text)
+        return AppTextService.get(.onboarding_sign_up_email_verification_error_enter_email_text)
     }()
 
     lazy var unableToRegisterError: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_error_body_unable_to_register_error)
+        return AppTextService.get(.onboarding_sign_up_email_verification_error_body_unable_to_register_error)
     }()
 
     lazy var generalError: String = {
-        return AppTextService.get(AppTextKey.onboarding_sign_up_email_verification_alert_general_error_body)
+        return AppTextService.get(.onboarding_sign_up_email_verification_alert_general_error_body)
     }()
 
 }

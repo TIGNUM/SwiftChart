@@ -27,19 +27,19 @@ final class ProfileSettingsWorker {
     private var emailTxt = ""
 
     lazy var confirmationAlertTitle: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_title)
+        return AppTextService.get(.my_qot_my_profile_account_settings_alert_continue_without_saving_title)
     }()
 
     lazy var confirmationAlertMessage: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_body)
+        return AppTextService.get(.my_qot_my_profile_account_settings_alert_continue_without_saving_body)
     }()
 
     lazy var confirmationAlertDone: String = {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_alert_continue_without_saving_button_continue)
+        return AppTextService.get(.my_qot_my_profile_account_settings_alert_continue_without_saving_button_continue)
     }()
 
     lazy var confirmationAlertCancel: String = {
-        return AppTextService.get(AppTextKey.generic_view_button_cancel)
+        return AppTextService.get(.generic_view_button_cancel)
     }()
 
     init(contentService: ContentService) {
@@ -89,7 +89,7 @@ extension ProfileSettingsWorker {
     }
 
     var editAccountTitle: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_edit_account)
+        return AppTextService.get(.my_qot_my_profile_account_settings_edit_title_edit_account)
     }
 
     func numberOfSections() -> Int {
@@ -116,27 +116,27 @@ extension ProfileSettingsWorker {
 // MARK: - ContentService
 private extension ProfileSettingsWorker {
     func contactTitle() {
-        contactTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_contact)
+        contactTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_title_contact)
     }
 
     func nameTitle() {
-        nameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_name)
+        nameTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_label_name)
     }
 
     func surnameTitle() {
-        surnameTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_surname)
+        surnameTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_title_surname)
     }
 
     func dateOfBirthTitle() {
-        dateOfBirthTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_date_of_birth)
+        dateOfBirthTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_title_date_of_birth)
     }
 
     func companyTitle() {
-        companyTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_company)
+        companyTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_label_company)
     }
 
     func emailTitle() {
-        emailTxt = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_label_email)
+        emailTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_label_email)
     }
 }
 

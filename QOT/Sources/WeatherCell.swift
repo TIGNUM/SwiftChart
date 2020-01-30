@@ -177,7 +177,7 @@ final class WeatherCell: BaseDailyBriefCell {
                     return
             }
             if index == 0 {
-                hourlyView.set(time: AppTextService.get(AppTextKey.daily_brief_section_weather_label_now),
+                hourlyView.set(time: AppTextService.get(.daily_brief_section_weather_label_now),
                                temperature: temperature,
                                isNow: true)
             } else {

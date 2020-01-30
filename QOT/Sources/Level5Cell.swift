@@ -83,10 +83,10 @@ final class Level5Cell: BaseDailyBriefCell {
     func configure(with model: Level5ViewModel?) {
         skeletonManager.hide()
         baseHeaderView?.configure(title: model?.title, subtitle: model?.intro)
-        knowledgeLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_knowledge)
-        awarenessLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_awareness)
-        readinessLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_readiness)
-        masteryLabel.text = AppTextService.get(AppTextKey.daily_brief_section_level_5_label_mastery)
+        knowledgeLabel.text = AppTextService.get(.daily_brief_section_level_5_label_knowledge)
+        awarenessLabel.text = AppTextService.get(.daily_brief_section_level_5_label_awareness)
+        readinessLabel.text = AppTextService.get(.daily_brief_section_level_5_label_readiness)
+        masteryLabel.text = AppTextService.get(.daily_brief_section_level_5_label_mastery)
         ThemeText.dailyBriefTitle.apply(model?.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model?.intro, to: baseHeaderView?.subtitleTextView)
         ThemeText.level5Question.apply(model?.question, to: questionLabel)
@@ -144,11 +144,11 @@ final class Level5Cell: BaseDailyBriefCell {
     func updateButtonStatus() {
 
         if tmpAnswer == savedAnswer {
-            setButtonText(AppTextService.get(AppTextKey.daily_brief_section_level_5_button_saved))
+            setButtonText(AppTextService.get(.daily_brief_section_level_5_button_saved))
             ThemeButton.dailyBriefButtons.apply(saveButton, selected: true)
             saveButton.isEnabled = false
         } else {
-            setButtonText(AppTextService.get(AppTextKey.daily_brief_section_level_5_button_save))
+            setButtonText(AppTextService.get(.daily_brief_section_level_5_button_save))
             ThemeButton.dailyBriefButtons.apply(saveButton, selected: false)
             saveButton.isEnabled = true
         }

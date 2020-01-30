@@ -43,35 +43,35 @@ final class MyQotAccountSettingsWorker {
 extension MyQotAccountSettingsWorker {
 
     var accountSettingsText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_header_title)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_header_title)
     }
 
     var contactText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_contact)
+        return AppTextService.get(.my_qot_my_profile_account_settings_edit_title_contact)
     }
 
     var emailText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_email)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_body_title_email)
     }
 
     var dateOfBirthText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_title_date_of_birth)
+        return AppTextService.get(.my_qot_my_profile_account_settings_edit_title_date_of_birth)
     }
 
     var companyText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_body_title_company)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_body_title_company)
     }
 
     var logoutQotText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_title)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_logout_title)
     }
 
     var withoutDeletingAccountText: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_subtitle)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_logout_subtitle)
     }
 
     var logoutQOTKey: String {
-        return AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_section_logout_title)
+        return AppTextService.get(.my_qot_my_profile_account_settings_section_logout_title)
     }
 }
 

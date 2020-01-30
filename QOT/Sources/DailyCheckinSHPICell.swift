@@ -57,8 +57,8 @@ private extension DailyCheckinSHPICell {
         heights?.at(index: selectedIndex)?.constant = 56
         bars?.at(index: selectedIndex)?.backgroundColor = .sand
         bars?.at(index: selectedIndex)?.setNeedsUpdateConstraints()
-        minLabel?.text = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_shpi_label_never)
-        maxLabel?.text = AppTextService.get(AppTextKey.daily_brief_section_daily_insights_shpi_label_always)
+        minLabel?.text = AppTextService.get(.daily_brief_section_daily_insights_shpi_label_never)
+        maxLabel?.text = AppTextService.get(.daily_brief_section_daily_insights_shpi_label_always)
         minLabel?.textColor = selectedIndex == 0 ? .sand : .sand40
         maxLabel?.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
     }

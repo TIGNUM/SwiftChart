@@ -84,14 +84,14 @@ final class MyPrepsWorker {
     }
 
     func getViewModel() -> MyPlansViewModel {
-        return MyPlansViewModel(title: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title),
-                                titleEditMode: AppTextService.get(AppTextKey.my_qot_my_plans_section_header_title_edit),
-                                myPrepsTitle: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_title),
-                                myPrepsBody: AppTextService.get(AppTextKey.my_qot_my_plans_event_preps_null_state_body),
-                                mindsetShifterTitle: AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_title),
-                                mindsetShifterBody: AppTextService.get(AppTextKey.my_qot_my_plans_mindset_shifts_null_state_body),
-                                recoveryTitle: AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_title),
-                                recoveryBody: AppTextService.get(AppTextKey.my_qot_my_plans_recovery_plans_null_state_body))
+        return MyPlansViewModel(title: AppTextService.get(.my_qot_my_plans_section_header_title),
+                                titleEditMode: AppTextService.get(.my_qot_my_plans_section_header_title_edit),
+                                myPrepsTitle: AppTextService.get(.my_qot_my_plans_event_preps_null_state_title),
+                                myPrepsBody: AppTextService.get(.my_qot_my_plans_event_preps_null_state_body),
+                                mindsetShifterTitle: AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_title),
+                                mindsetShifterBody: AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_body),
+                                recoveryTitle: AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_title),
+                                recoveryBody: AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_body))
     }
 }
 

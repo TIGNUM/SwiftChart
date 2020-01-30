@@ -41,31 +41,31 @@ final class StreamVideoWorker {
     }
 
     lazy var downloadButtonTitle: String = {
-        return AppTextService.get(AppTextKey.generic_download_status_video_button_download)
+        return AppTextService.get(.generic_download_status_video_button_download)
     }()
 
     lazy var downloadingButtonTitle: String = {
-        return AppTextService.get(AppTextKey.generic_download_status_video_button_downloading)
+        return AppTextService.get(.generic_download_status_video_button_downloading)
     }()
 
     lazy var downloadedButtonTitle: String = {
-        return AppTextService.get(AppTextKey.generic_download_status_video_button_downloaded)
+        return AppTextService.get(.generic_download_status_video_button_downloaded)
     }()
 
     lazy var noWifiTitle: String = {
-        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_title_use_mobile_data)
+        return AppTextService.get(.generic_content_video_alert_use_mobile_data_title_use_mobile_data)
     }()
 
     lazy var noWifiMessage: String = {
-        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_body_use_mobile_data)
+        return AppTextService.get(.generic_content_video_alert_use_mobile_data_body_use_mobile_data)
     }()
 
     lazy var cancelButtonTitle: String  = {
-        return AppTextService.get(AppTextKey.generic_view_button_cancel)
+        return AppTextService.get(.generic_view_button_cancel)
     }()
 
     lazy var yesContinueButtonTitle: String = {
-        return AppTextService.get(AppTextKey.generic_content_video_alert_use_mobile_data_button_continue)
+        return AppTextService.get(.generic_content_video_alert_use_mobile_data_button_continue)
     }()
 
     lazy var contentItemId: Int? = {

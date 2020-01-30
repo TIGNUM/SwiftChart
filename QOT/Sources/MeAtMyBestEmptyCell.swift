@@ -32,11 +32,15 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
         guard let model = with else { return }
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         buttonText.setTitle(model.buttonText ?? "none", for: .normal)
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }

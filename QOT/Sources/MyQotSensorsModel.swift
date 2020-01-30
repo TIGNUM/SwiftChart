@@ -19,23 +19,23 @@ struct MyQotSensorsModel {
         var title: String {
             switch self {
             case .oura:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_oura)
+                return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_sensors_button_oura)
             case .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_label_health_app)
+                return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_sensors_label_health_app)
             }
         }
 
         var status: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_disconnect)
+                return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_sensors_button_disconnect)
             }
         }
 
         var labelStatus: String {
             switch self {
             case .oura, .healthKit:
-                return AppTextService.get(AppTextKey.my_qot_my_profile_app_settings_data_sources_section_sensors_button_no_data)
+                return AppTextService.get(.my_qot_my_profile_app_settings_data_sources_section_sensors_button_no_data)
             }
         }
     }

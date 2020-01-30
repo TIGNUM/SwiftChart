@@ -19,16 +19,16 @@ struct Knowing {
         var title: String? {
             switch self {
             case .header: return nil
-            case .strategies: return AppTextService.get(AppTextKey.know_section_strategies_title)
-            case .whatsHot: return AppTextService.get(AppTextKey.know_section_wh_articles_title)
+            case .strategies: return AppTextService.get(.know_section_strategies_title)
+            case .whatsHot: return AppTextService.get(.know_section_wh_articles_title)
             }
         }
 
         var subtitle: String? {
             switch self {
             case .header: return nil
-            case .strategies: return AppTextService.get(AppTextKey.know_section_strategies_subtitle)
-            case .whatsHot: return AppTextService.get(AppTextKey.know_section_wh_articles_subtitle)
+            case .strategies: return AppTextService.get(.know_section_strategies_subtitle)
+            case .whatsHot: return AppTextService.get(.know_section_wh_articles_subtitle)
             }
         }
     }

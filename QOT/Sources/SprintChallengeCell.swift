@@ -38,7 +38,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBAction func showMoreButton(_ sender: Any) {
         showMore = !showMore
         self.sprintInfo?.numberOfLines = showMore ? 0 : 3
-        self.showMoreButton.setTitle(showMore ? AppTextService.get(AppTextKey.daily_brief_section_sprint_challenge_button_show_less) : AppTextService.get(AppTextKey.daily_brief_section_sprint_challenge_button_show_more), for: .normal)
+        self.showMoreButton.setTitle(showMore ? AppTextService.get(.daily_brief_section_sprint_challenge_button_show_less) : AppTextService.get(.daily_brief_section_sprint_challenge_button_show_more), for: .normal)
         self.sprintInfo?.sizeToFit()
         delegate?.reloadSprintCell(cell: self)
     }
@@ -82,7 +82,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
-        gotItButton.setTitle(AppTextService.get(AppTextKey.daily_brief_section_sprint_challenge_button_got_it), for: .normal)
+        gotItButton.setTitle(AppTextService.get(.daily_brief_section_sprint_challenge_button_got_it), for: .normal)
         updateGotItButton()
     }
 

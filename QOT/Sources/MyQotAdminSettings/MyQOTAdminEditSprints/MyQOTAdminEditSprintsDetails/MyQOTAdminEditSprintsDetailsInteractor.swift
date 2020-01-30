@@ -35,7 +35,7 @@ extension MyQOTAdminEditSprintsDetailsInteractor: MyQOTAdminEditSprintsDetailsIn
     }
 
     func getDoneButtonTitle() -> String {
-        return AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_footer_button_done)
+        return AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_done)
     }
 
     func getDatasourceCount() -> Int {

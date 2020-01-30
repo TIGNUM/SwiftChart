@@ -204,8 +204,8 @@ extension QuestionnaireViewController {
     func adjustUI() {
         switch controllerType {
         case .customize:
-        ThemeText.dailyBriefTitle.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
-        ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body), to: labelCustomizeView)
+        ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_header_title), to: customizeTargetTitle)
+        ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body), to: labelCustomizeView)
             ThemeView.level3.apply(view)
             hintLabel.isHidden = true
         default: break
@@ -318,9 +318,9 @@ extension QuestionnaireViewController {
         var attributedQuestion: NSAttributedString = NSAttributedString.init()
         switch controllerType {
         case .customize:
-            ThemeText.tbvCustomizeBody.apply(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_body),
+            ThemeText.tbvCustomizeBody.apply(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_body),
                                                                 to: labelCustomizeView)
-            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(AppTextKey.daily_brief_customize_sleep_amount_section_question_question))
+            attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
                 attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)
@@ -330,7 +330,7 @@ extension QuestionnaireViewController {
         case .vision:
             if let question = questionText {
                 let combined = NSMutableAttributedString()
-                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)))
+                combined.append(ThemeText.tbvQuestionLight.attributedString(AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_body_rate_yourself)))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(" \""))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString(question))
                 combined.append(ThemeText.tbvQuestionMedium.attributedString("\""))
@@ -398,9 +398,13 @@ extension QuestionnaireViewController {
         let attrString = NSMutableAttributedString(string: title,
                                                     attributes: [.font: UIFont.sfProDisplayThin(ofSize: 34)])
         if questionkey == .amount {
-            let maxHourUnit = AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more)
-            let hoursUnit = AppTextService.get(AppTextKey.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours)
+            let maxHourUnit = AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours_more)
+            let hoursUnit = AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_hours)
             attrString.append(NSMutableAttributedString(string: isLast ? maxHourUnit : hoursUnit,
+                                                        attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
+        } else if questionkey == .peak {
+            let moreText = AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_slider_subtitle_peak_perpormances_more)
+            attrString.append(NSMutableAttributedString(string: isLast ? moreText : " ",
                                                         attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
         }
         return attrString
@@ -440,7 +444,7 @@ extension QuestionnaireViewController {
             }
         } else {
             indexLabel.text = String(items - index)
-            let subtitles = [AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(AppTextKey.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
+            let subtitles = [AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
             ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 
@@ -655,7 +659,7 @@ extension QuestionnaireViewController {
         switch controllerType {
         case .customize:
             if saveShouldShow {
-                return [roundedBarButtonItem(title: AppTextService.get(AppTextKey.my_qot_my_sprints_my_sprint_details_edit_notes_button_save),
+                return [roundedBarButtonItem(title: AppTextService.get(.my_qot_my_sprints_my_sprint_details_edit_notes_button_save),
                                              buttonWidth: .Done,
                                              action: #selector(didTapSave),
                                              backgroundColor: .clear,

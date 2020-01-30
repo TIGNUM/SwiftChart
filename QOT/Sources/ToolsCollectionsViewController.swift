@@ -202,7 +202,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.configure(title: tool.title,
-                           subtitle: AppTextService.get(AppTextKey.coach_tools_labels_label_interactive))
+                           subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
             cell.accessoryView = .none
             return cell

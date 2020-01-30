@@ -32,7 +32,7 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         }
     }
 
-    private var localizedYear = AppTextService.get(AppTextKey.my_qot_my_profile_account_settings_edit_placeholder_date_picker)
+    private var localizedYear = AppTextService.get(.my_qot_my_profile_account_settings_edit_placeholder_date_picker)
 
     private lazy var yearPickerItems: [String] = {
         var items = [String]()

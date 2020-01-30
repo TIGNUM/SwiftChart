@@ -195,7 +195,7 @@ final class ArticleWorker {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
                 var timeToReadText = ""
                 if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "PDF | \(timeString)  " + AppTextService.get(AppTextKey.generic_content_section_item_label_pdf)
+                    timeToReadText = "PDF | \(timeString)  " + AppTextService.get(.generic_content_section_item_label_pdf)
                 }
                 itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
                                                                             description: timeToReadText,
@@ -374,12 +374,12 @@ final class ArticleWorker {
 
     func contactSupportAttributtedString() -> NSAttributedString {
         let contactSupport = NSMutableAttributedString(attributedString:
-            ThemeText.articleContactSupportInfoTitle.attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_faq_section_contact_support_title) + "\n"))
+            ThemeText.articleContactSupportInfoTitle.attributedString(AppTextService.get(.my_qot_my_profile_support_faq_section_contact_support_title) + "\n"))
         // Contact support
         guard let emailAddress = contactSupportItems.first?.content else {
             return contactSupport
         }
-        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(AppTextKey.my_qot_my_profile_support_section_contact_support_email)))
+        contactSupport.append(ThemeText.articleContactSupportLink(emailAddress).attributedString(AppTextService.get(.my_qot_my_profile_support_section_contact_support_email)))
 
         return contactSupport
     }
@@ -421,9 +421,9 @@ final class ArticleWorker {
         guard let content = content else { return nil }
         switch content.section {
         case .WhatsHot:
-            return section == 0 ? nil : AppTextService.get(AppTextKey.know_wh_article_section_read_more_title)
+            return section == 0 ? nil : AppTextService.get(.know_wh_article_section_read_more_title)
         default:
-            return section != 1 ? nil : AppTextService.get(AppTextKey.know_strategy_list_strategy_section_related_content_title)
+            return section != 1 ? nil : AppTextService.get(.know_strategy_list_strategy_section_related_content_title)
         }
     }
 

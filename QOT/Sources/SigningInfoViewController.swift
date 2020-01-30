@@ -43,12 +43,12 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         playerLayer = AVPlayerLayer(player: player)
 
         super.init(nibName: nil, bundle: nil)
-        loginButton = roundedBarButtonItem(title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_log_in),
+        loginButton = roundedBarButtonItem(title: AppTextService.get(.onboarding_launch_screen_section_footer_button_log_in),
                                            buttonWidth: .Done,
                                            action: #selector(didTapLogin),
                                            backgroundColor: .carbon,
                                            borderColor: .accent40)
-        registerButton = roundedBarButtonItem(title: AppTextService.get(AppTextKey.onboarding_launch_screen_section_footer_button_register),
+        registerButton = roundedBarButtonItem(title: AppTextService.get(.onboarding_launch_screen_section_footer_button_register),
                                               buttonWidth: .SaveChanges,
                                               action: #selector(didTapStart),
                                               backgroundColor: .carbon,
