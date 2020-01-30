@@ -106,12 +106,8 @@ final class WeatherCell: BaseDailyBriefCell {
                 temperature = value
             }
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
-            var lastUpdate = ""
-            if let weatherDate = weather.date {
-                lastUpdate = formatLastUpdatedString(date: weatherDate)
-            }
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
-            ThemeText.weatherLastUpdate.apply(lastUpdate, to: lastUpdateLabel)
+            ThemeText.weatherLastUpdate.apply(weatherModel.updatedTimeString, to: lastUpdateLabel)
             ThemeText.weatherLocation.apply(model?.locationName, to: locationLabel)
             ThemeText.weatherTitle.apply(weatherModel.title?.uppercased(), to: weatherTitleLabel)
             ThemeText.weatherBody.apply(weatherModel.body, to: weatherBodyLabel)
@@ -161,10 +157,6 @@ final class WeatherCell: BaseDailyBriefCell {
             return formatter.string(from: measurement)
         }
         return nil
-    }
-
-    func formatLastUpdatedString(date: Date) -> String {
-        return "Last updated \(date.eventDateString)"
     }
 
     private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
