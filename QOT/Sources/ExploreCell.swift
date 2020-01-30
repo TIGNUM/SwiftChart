@@ -45,6 +45,11 @@ final class ExploreCell: BaseDailyBriefCell {
         self.isStrategy = isStrategy
     }
 
+    override func updateConstraints() {
+        super.updateConstraints()
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+    }
+
     @IBAction func didTapExplore(_ sender: Any) {
         if isStrategy {
             delegate?.presentStrategyList(strategyID: self.contentID)

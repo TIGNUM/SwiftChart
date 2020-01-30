@@ -35,4 +35,9 @@ final class FromTignumCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.bespokeText.apply(model.text, to: fromTignumText)
     }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+    }
 }

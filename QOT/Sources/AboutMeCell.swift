@@ -42,12 +42,12 @@ final class AboutMeCell: BaseDailyBriefCell {
 
         self.aboutMeMoreInfoLabel.text = viewModel.aboutMeMoreInfo
         footnoteView.isHidden = viewModel.aboutMeMoreInfo?.isEmpty ?? true
-        footnoteHeightConstraint.constant = self.calculateFooterHeight(for: self.footnoteView.frame.width)
-        headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-        DispatchQueue.main.async {
-            self.headerViewHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
-            self.setNeedsUpdateConstraints()
-        }
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        footnoteHeightConstraint.constant = calculateFooterHeight(for: self.footnoteView.frame.width)
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 
     private func calculateFooterHeight(for width: CGFloat) -> CGFloat {

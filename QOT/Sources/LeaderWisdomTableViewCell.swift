@@ -27,10 +27,12 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
     private var remoteID: Int?
     weak var delegate: DailyBriefViewControllerDelegate?
 
+    let defaultVideoViewHeight: CGFloat = 72.0
+    let defaultAudioViewHeight: CGFloat = 40.0
+
     override func awakeFromNib() {
         super.awakeFromNib()
         audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(descriptionLabel)
@@ -48,35 +50,34 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefSubtitle.apply(model.subtitle, to: baseHeaderView?.subtitleTextView)
         ThemeText.dailyBriefSubtitle.apply(model.description, to: descriptionLabel)
-        DispatchQueue.main.async {
-            self.headerHeightConstraint.constant = self.baseHeaderView?.calculateHeight(for: self.frame.size.width, 0) ?? 0
-            self.setNeedsUpdateConstraints()
-        }
 
         videoView.isHidden = model.format != .video
-        videoViewHeightConstraint.constant = model.format == .video ? 72.0 : 0.0
-        videoThumbnailImageView.isHidden = model.format != .video
 
         audioView.isHidden = model.format != .audio
-        videoViewHeightConstraint.constant = model.format == .audio ? 40.0 : 0.0
-        audioButton.isHidden = model.format != .audio
 
         descriptionLabel.isHidden = model.description == nil
         videoTitle.text = model.videoTitle?.uppercased()
         duration = model.audioDuration ?? model.videoDuration
         remoteID = model.remoteID
         mediaURL = model.videoThumbnail
-        videoDurationButton.isHidden = model.format != .video
         videoDurationButton.setTitle(model.durationString, for: .normal)
 
-        let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
-        audioButton.setTitle(mediaDescription, for: .normal)
-        videoThumbnailImageView.isHidden = model.format != .video
+        if videoView.isHidden == false {
+            skeletonManager.addOtherView(videoThumbnailImageView)
+            videoThumbnailImageView.setImage(url: mediaURL, skeletonManager: self.skeletonManager) { (_) in /* */}
+        }
 
-        skeletonManager.addOtherView(videoThumbnailImageView)
-        videoThumbnailImageView.setImage(url: mediaURL,
-                                         skeletonManager: self.skeletonManager) { (_) in /* */}
-        videoTitle.isHidden = model.format != .video
+        if audioView.isHidden == false {
+            let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
+            audioButton.setTitle(mediaDescription, for: .normal)
+        }
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        videoViewHeightConstraint.constant = videoView.isHidden ? 0.0 : defaultVideoViewHeight
+        audioViewHeightConstraint.constant = audioView.isHidden ? 0.0 : defaultAudioViewHeight
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width, 0) ?? 0
     }
 
     @IBAction func audioAction(_ sender: Any) {

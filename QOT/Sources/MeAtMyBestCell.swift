@@ -38,13 +38,17 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         }
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: model.intro)
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 10
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
         ThemeText.solveFuture.apply(model.intro2, to: meAtMyBestFuture)
         ctaButton.setButtonContentInset(padding: 16)
         ctaButton.setTitle(model.buttonText, for: .normal)
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 10
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }

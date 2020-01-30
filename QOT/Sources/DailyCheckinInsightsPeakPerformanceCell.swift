@@ -33,9 +33,13 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
                                   subtitle: model.intro)
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderView?.subtitleTextView)
-        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
         skeletonManager.hide()
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 
     @IBAction func preparations(_ sender: Any) {

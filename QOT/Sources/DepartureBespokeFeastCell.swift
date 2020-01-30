@@ -23,6 +23,7 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
     weak var delegate: DailyBriefViewControllerDelegate?
     private var departureBespokeFeastModel: DepartureBespokeFeastModel?
     private var visibleIndexPath = IndexPath(row: 0, section: 0)
+    private var hasText: Bool = false
 
     // MARK: Lifecycle
     override func prepareForReuse() {
@@ -55,11 +56,16 @@ final class DepartureBespokeFeastCell: BaseDailyBriefCell {
         if let subtitle = model.subtitle {
             ThemeText.bespokeTitle.apply(subtitle.uppercased(), to: bespokeTitleLabel)
         }
-        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        hasText = model.text?.isEmpty == false
         showCopyrightButtonIfNeeded()
         ThemeText.dailyBriefSubtitle.apply(model.text, to: departureBespokeText)
-        titleToSubtitleVerticalSpacingConstraint.constant = (model.text?.isEmpty ?? true) ? 0 : 14
         collectionView.reloadData()
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        baseHeaderView?.subtitleTextViewBottomConstraint.constant = 0
+        titleToSubtitleVerticalSpacingConstraint.constant = hasText ? 14 : 0
     }
 
     // MARK: Private

@@ -32,11 +32,15 @@ final class SolveReminderCell: BaseDailyBriefCell {
         skeletonManager.hide()
         baseHeaderView?.configure(title: (model.bucketTitle ?? "").uppercased(), subtitle: model.twoDayAgo)
         ThemeText.dailyBriefTitle.apply((model.bucketTitle ?? "").uppercased(), to: baseHeaderView?.titleLabel)
-        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
         ThemeText.sprintText.apply(model.twoDayAgo, to: baseHeaderView?.subtitleTextView)
         ThemeText.solveQuestions.apply(model.question1, to: question1)
         ThemeText.solveQuestions.apply(model.question2, to: question2)
         ThemeText.solveQuestions.apply(model.question3, to: question3)
         ThemeView.level2.apply(contentView)
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
     }
 }

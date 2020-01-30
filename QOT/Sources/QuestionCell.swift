@@ -28,6 +28,10 @@ final class QuestionCell: BaseDailyBriefCell {
         baseHeaderView?.configure(title: model.title, subtitle: model.text)
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.quotation.apply(model.text, to: baseHeaderView?.subtitleTextView)
+    }
+
+    override func updateConstraints() {
+        super.updateConstraints()
         baseHeaderView?.subtitleTextViewBottomConstraint.constant = 45.0
     }
 }
