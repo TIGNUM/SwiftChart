@@ -845,4 +845,9 @@ public extension AppTextKey {
     static let know_strategy_list_strategy_details = AppTextKey("know.strategy_list.strategy.details")
     static let know_wh_article = AppTextKey("know.wh_article")
 
+    static let generic_event_date_format_prefix_today_at = AppTextKey("generic_event_date.format_prefix.today_at")
+    static let generic_event_date_format_prefix_yesterday_at = AppTextKey("generic_event_date.format_prefix.yesterday_at")
+    static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
+    static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
+
 }

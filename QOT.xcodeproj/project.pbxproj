@@ -920,6 +920,7 @@
 		B4F3950B232FF1930007AC51 /* UIStackView+RemoveAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */; };
 		B4F9763A2359EB090071F7EC /* QOTBaseHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */; };
 		B4F9763C2359EBA20071F7EC /* QOTBaseHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */; };
+		B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
 		B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */; };
@@ -2156,6 +2157,7 @@
 		B4F3950A232FF1930007AC51 /* UIStackView+RemoveAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStackView+RemoveAll.swift"; sourceTree = "<group>"; };
 		B4F976392359EB090071F7EC /* QOTBaseHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTBaseHeaderView.swift; sourceTree = "<group>"; };
 		B4F9763B2359EBA20071F7EC /* QOTBaseHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QOTBaseHeaderView.xib; sourceTree = "<group>"; };
+		B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+EventDate.swift"; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
 		B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Navigation.swift"; sourceTree = "<group>"; };
 		B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = bottomNavigation.storyboard; sourceTree = "<group>"; };
@@ -4717,6 +4719,7 @@
 				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
 				91CD12EF2037168900E27822 /* CGRect+Convenience.swift */,
 				8523E9BF1F1628B50000D20D /* Date+Extension.swift */,
+				B80FB0DC23E3200F0040D034 /* Date+EventDate.swift */,
 				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */,
@@ -6045,6 +6048,7 @@
 				B4BCD0FB23AB858000B80747 /* MyQOTAdminEditSprintsDetailsViewController.swift in Sources */,
 				7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */,
 				367CD18622EF4EDE00AF2187 /* OnboardingLoginConfigurator.swift in Sources */,
+				B80FB0DD23E3200F0040D034 /* Date+EventDate.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				B4AB48C6230BF982003B3C1F /* MyDataExplanationPresenter.swift in Sources */,
 				389BBC8A235EE68B0009FA02 /* CoachMarksInteractor.swift in Sources */,
