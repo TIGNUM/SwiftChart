@@ -120,6 +120,17 @@ final class WeatherCell: BaseDailyBriefCell {
                                                                 sunriseDate: weatherModel.sunriseDate,
                                                                 sunsetDate: weatherModel.sunsetDate))
             }
+        } else if viewModel?.locationPermissionStatus == .granted ||
+            viewModel?.locationPermissionStatus == .grantedWhileInForeground {
+            ThemeText.weatherDescription.apply("", to: weatherDescriptionLabel)
+            ThemeText.weatherLastUpdate.apply("", to: lastUpdateLabel)
+            ThemeText.weatherLocation.apply("", to: locationLabel)
+            let noData = AppTextService.get(.daily_brief_section_weather_view_label_no_data)
+            let noDataBody = AppTextService.get(.daily_brief_section_weather_view_label_no_data_body)
+            ThemeText.weatherTitle.apply(noData.isEmpty ? "No Data" : noData, to: weatherTitleLabel)
+            ThemeText.weatherBody.apply(noDataBody.isEmpty ? "We can't show you any weather data" : noDataBody,
+                                        to: weatherBodyLabel)
+            weatherImageView.image = UIImage(named: "placeholder_large")
         }
         setupUIAccordingToLocationPermissions()
         populateHourlyViews(relevantForecastModels: relevantForecastModels)
