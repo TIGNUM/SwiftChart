@@ -52,7 +52,6 @@ final class QOTBaseHeaderView: UIView {
             subtitleTextView.addConstraint(heightConstraint)
             subtitleTextViewBottomConstraint.constant = 0
         }
-
         skeletonManager.hide()
         subtitleTextView.textContainerInset = .zero
         subtitleTextView.textContainer.lineFragmentPadding = 0
