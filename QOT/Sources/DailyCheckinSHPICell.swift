@@ -47,6 +47,11 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
         ThemeText.shpiQuestion.apply(model.shpiQuestion, to: shpiQuestionLabel)
         ThemeText.shpiContent.apply(model.shpiContent, to: shpiContentLabel)
     }
+
+    override func updateConstraints() {
+        super.updateConstraints()
+        headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+    }
 }
 
 private extension DailyCheckinSHPICell {
