@@ -65,6 +65,7 @@ final class WeatherViewModel: BaseDailyBriefViewModel {
             deniedLocationPermissionButtonTitle == source.deniedLocationPermissionButtonTitle &&
             locationPermissionStatus == source.locationPermissionStatus &&
             domainModel?.weather?.currentDate == source.domainModel?.weather?.currentDate &&
+            domainModel?.weather?.updatedTimeString == source.domainModel?.weather?.updatedTimeString &&
             domainModel?.weather?.currentTempInCelcius == source.domainModel?.weather?.currentTempInCelcius
 
     }

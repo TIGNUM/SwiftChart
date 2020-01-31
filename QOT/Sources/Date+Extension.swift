@@ -181,22 +181,6 @@ extension Date {
         return DateFormatter.displayTime.string(from: self)
     }
 
-    var eventDateString: String {
-        if self.isToday == true {
-            return String(format: "Today at %@", self.time)
-        }
-        if self.isYesterday == true {
-            return String(format: "Yesterday at %@", self.time)
-        }
-        if self.isTomorrow == true {
-            return String(format: "Tomorrow at %@", self.time)
-        }
-        if self.isInCurrentWeek == true {
-            return String(format: "%@ at %@", self.weekDayName, self.time)
-        }
-        return DateFormatter.mediumDate.string(from: self)
-    }
-
     static func weekdayNameFrom(weekdayNumber: Int, short: Bool) -> String {
         let calendar = Calendar.current
         let dayIndex = ((weekdayNumber - 1) + (calendar.firstWeekday - 1)) % 7

@@ -337,13 +337,18 @@ public extension AppTextKey {
     static let daily_brief_section_weather_empty_button_allow = AppTextKey("daily_brief.section_weather.empty.button_allow")
     static let daily_brief_section_weather_empty_button_open_settings = AppTextKey("daily_brief.section_weather.empty.button_open_settings")
     static let daily_brief_section_weather_empty_title = AppTextKey("daily_brief.section_weather.empty.title")
+    static let daily_brief_section_weather_view_label_last_updated_at = AppTextKey("daily_brief.section_weather.view.label_last_updated_at")
+    static let daily_brief_section_weather_view_label_last_updated_today = AppTextKey("daily_brief.section_weather.view.label_last_updated_today")
+    static let daily_brief_section_weather_view_label_last_updated_yesterday = AppTextKey("daily_brief.section_weather.view.label_last_updated_yesterday")
+    static let daily_brief_section_weather_view_label_no_data = AppTextKey("daily_brief.section_weather.view.label_no_data")
+    static let daily_brief_section_weather_view_label_no_data_body = AppTextKey("daily_brief.section_weather.view.label_no_data_body")
     static let daily_brief_section_wh_title = AppTextKey("daily_brief.section_wh.title")
     static let daily_brief_section_sprint_challenge_button_show_less = AppTextKey("daily_brief.section_sprint_challenge.button_show_less")
     static let daily_brief_section_explore_button = AppTextKey("daily_brief.section_explore.button")
     static let daily_brief = AppTextKey("daily_brief")
     static let daily_brief_customize_sleep_amount = AppTextKey("daily_brief.customize_sleep_amount")
     static let daily_brief_daily_check_in_questionnaire = AppTextKey("daily_brief.daily_check_in.questionnaire")
-    
+
     static let generic_event_removed_alert_event_removed_button_remove = AppTextKey("generic.event_removed.alert.event_removed.button_remove")
     static let generic_event_removed_alert_event_removed_button_keep = AppTextKey("generic.event_removed.alert.event_removed.button_keep")
     static let generic_event_removed_alert_event_removed_body = AppTextKey("generic.event_removed.alert.event_removed.body")
@@ -844,5 +849,10 @@ public extension AppTextKey {
     static let know_strategy_list = AppTextKey("know.strategy_list")
     static let know_strategy_list_strategy_details = AppTextKey("know.strategy_list.strategy.details")
     static let know_wh_article = AppTextKey("know.wh_article")
+
+    static let generic_event_date_format_prefix_today_at = AppTextKey("generic_event_date.format_prefix.today_at")
+    static let generic_event_date_format_prefix_yesterday_at = AppTextKey("generic_event_date.format_prefix.yesterday_at")
+    static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
+    static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
 }
