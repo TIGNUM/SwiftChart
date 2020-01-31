@@ -126,10 +126,26 @@ final class MyVisionWorker {
             self?.getVisionTracks { [weak self] (tracks) in
                 guard let strongSelf = self else { return }
 
-                guard !tracks.isEmpty else {
+                guard let visionText = strongSelf.toBeVision?.text,
+                    !tracks.isEmpty else {
                     completion(strongSelf.syncingText, nil, false)
                     return
                 }
+                let sentences = tracks.compactMap({$0.sentence})
+                guard !sentences.isEmpty else {
+                    completion(strongSelf.syncingText, nil, false)
+                    requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                    return
+                }
+
+                for sentence in sentences {
+                    if visionText.contains(sentence) == false { // mismatched sentences.
+                        completion(strongSelf.syncingText, nil, false)
+                        requestSynchronization(.MY_TO_BE_VISION_TRACKER, .DOWN_SYNC)
+                        return
+                    }
+                }
+
                 guard let report = report, report.days.count > 0 else {
                     completion(strongSelf.notRatedText, true, true)
                     return

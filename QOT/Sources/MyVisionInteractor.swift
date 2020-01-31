@@ -41,9 +41,14 @@ final class MyVisionInteractor {
             guard let strongSelf = self else {
                 return
             }
-            guard let syncResult = notification.object as? SyncResultContext else { return }
-            if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
+            guard let syncResult = notification.object as? SyncResultContext,
+                syncResult.syncRequestType == .DOWN_SYNC,
+                syncResult.hasUpdatedContent else { return }
+            switch syncResult.dataType {
+            case .MY_TO_BE_VISION_TRACKER, .MY_TO_BE_VISION, .MY_TO_BE_VISION_SHARE:
                 strongSelf.didUpdateTBVRelatedData()
+            default:
+                break
             }
         }
         upSyncObserver = notificationCenter.addObserver(forName: .requestSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
