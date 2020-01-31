@@ -51,6 +51,6 @@ extension SigningInfoRouter: SigningInfoRouterInterface {
     }
 
     func goToLogin() {
-        showLogin(OnboardingLoginConfigurator.make())
+        goToRegister()
     }
 }

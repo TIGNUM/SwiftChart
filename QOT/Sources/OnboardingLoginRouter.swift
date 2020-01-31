@@ -10,10 +10,9 @@ import UIKit
 
 final class OnboardingLoginRouter: BaseRouter, OnboardingLoginRouterInterface {
     func goToRegister() {
-        if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
-            let configurator = RegisterIntroConfigurator.make()
-            configurator(controller)
-            viewController?.pushToStart(childViewController: controller)
-        }
+        guard let controller = R.storyboard.registration.registrationViewController() else { return }
+        let configurator = RegistrationConfigurator.make()
+        configurator(controller)
+        viewController?.pushToStart(childViewController: controller)
     }
 }
