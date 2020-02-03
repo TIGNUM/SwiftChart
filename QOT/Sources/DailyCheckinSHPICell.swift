@@ -26,11 +26,7 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        bars?.forEach { ThemeView.dailyInsightsChartBarUnselected.apply($0) }
-        labels?.forEach {
-            $0.font.withSize(16)
-            $0.textColor = .sand40
-        }
+        resetChart()
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addOtherView(barsStackView)
         ThemeText.dailyInsightsChartBarLabelUnselected.apply(minLabel?.text, to: minLabel)
@@ -56,6 +52,7 @@ final class DailyCheckinSHPICell: BaseDailyBriefCell {
 
 private extension DailyCheckinSHPICell {
     func setupRatingChart(rating: Int) {
+        resetChart()
         let selectedIndex = max(0, rating - 1)
         labels?.at(index: selectedIndex)?.font.withSize(16)
         labels?.at(index: selectedIndex)?.textColor = .sand
@@ -66,5 +63,14 @@ private extension DailyCheckinSHPICell {
         maxLabel?.text = AppTextService.get(.daily_brief_section_daily_insights_shpi_label_always)
         minLabel?.textColor = selectedIndex == 0 ? .sand : .sand40
         maxLabel?.textColor = selectedIndex + 1 == (labels?.count ?? 0) ? .sand : .sand40
+    }
+
+    func resetChart() {
+        bars?.forEach { ThemeView.dailyInsightsChartBarUnselected.apply($0) }
+        labels?.forEach {
+            $0.font.withSize(16)
+            $0.textColor = .sand40
+        }
+        heights?.forEach({ $0.constant = 35 })
     }
 }
