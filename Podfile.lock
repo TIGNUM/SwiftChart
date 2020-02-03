@@ -26,7 +26,7 @@ PODS:
   - RSKImageCropper (2.2.3)
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
-  - SwiftyBeaver (1.7.1)
+  - SwiftyBeaver (1.8.4)
   - UrbanAirship-iOS-SDK (11.1.2)
 
 DEPENDENCIES:
@@ -45,7 +45,6 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
-    - Buglife
     - DifferenceKit
     - JTAppleCalendar
     - Kingfisher
@@ -53,11 +52,12 @@ SPEC REPOS:
     - R.swift.Library
     - RSKImageCropper
     - SVProgressHUD
-    - SwiftyBeaver
     - UrbanAirship-iOS-SDK
   trunk:
     - AppCenter
+    - Buglife
     - KeychainAccess
+    - SwiftyBeaver
 
 EXTERNAL SOURCES:
   qot_dal:
@@ -86,7 +86,7 @@ SPEC CHECKSUMS:
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
-  SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
+  SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
 PODFILE CHECKSUM: 836f2b17450f24ad8f18f2bbc5c4dc2c38d921be
