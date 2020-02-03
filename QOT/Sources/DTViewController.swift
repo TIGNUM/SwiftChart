@@ -259,7 +259,7 @@ extension DTViewController {
                               _ valueType: QDMUserEventTracking.ValueType = .USER_ANSWER) {
         trackUserEvent(name,
                        value: answer.remoteId,
-                       stringValue: viewModel?.question.answerType.rawValue,
+                       stringValue: answer.title,
                        valueType: valueType,
                        action: .TAP)
     }
