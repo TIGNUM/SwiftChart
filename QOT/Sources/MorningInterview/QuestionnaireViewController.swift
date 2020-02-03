@@ -338,8 +338,8 @@ extension QuestionnaireViewController {
             }
         }
         questionLabel.attributedText = attributedQuestion
-        UIView.animate(withDuration: Animation.duration_02,
-                       delay: Animation.duration_02,
+        UIView.animate(withDuration: Animation.duration_01,
+                       delay: Animation.duration_01,
                        options: [.curveEaseInOut],
                        animations: {
                         self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
