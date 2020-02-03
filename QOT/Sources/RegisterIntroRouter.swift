@@ -31,4 +31,11 @@ extension RegisterIntroRouter: RegisterIntroRouterInterface {
         configurator(controller)
         viewController?.pushToStart(childViewController: controller)
     }
+
+    func openLogin() {
+        let configurator = OnboardingLoginConfigurator.make()
+        let loginController = OnboardingLoginViewController()
+        configurator(loginController)
+        viewController?.navigationController?.pushViewController(loginController, animated: true)
+    }
 }

@@ -42,15 +42,15 @@ private extension SigningInfoRouter {
 
 // MARK: - SigningInfoRouterInterface
 extension SigningInfoRouter: SigningInfoRouterInterface {
-    func goToRegister() {
+    func goToRegister(fromLogin: Bool) {
         if let controller = R.storyboard.registerIntro().instantiateInitialViewController() as? RegisterIntroViewController {
-            let configurator = RegisterIntroConfigurator.make()
+            let configurator = RegisterIntroConfigurator.make(fromLogin: fromLogin)
             configurator(controller)
             viewController?.navigationController?.pushViewController(controller, animated: true)
         }
     }
 
     func goToLogin() {
-        goToRegister()
+        goToRegister(fromLogin: true)
     }
 }

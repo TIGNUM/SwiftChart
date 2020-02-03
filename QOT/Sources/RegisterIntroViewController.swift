@@ -24,6 +24,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
     @IBOutlet weak var tableView: UITableView!
     var interactor: RegisterIntroInteractorInterface!
+    var fromLogin = false
     private lazy var router = RegisterIntroRouter(viewController: self)
     private lazy var videoCell: RegisterIntroMediaTableViewCell = {
         let cell = R.nib.registerIntroMediaTableViewCell.firstView(owner: self)
@@ -94,7 +95,11 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Actions
     @objc func didTapContinue() {
         trackUserEvent(.CONTINUE, stringValue: "openRegistration", action: .TAP)
-        router.openRegistration()
+        if fromLogin == true {
+            router.openLogin()
+        } else {
+            router.openRegistration()
+        }
     }
 }
 

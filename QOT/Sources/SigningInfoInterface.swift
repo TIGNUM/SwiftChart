@@ -27,6 +27,6 @@ protocol SigningInfoInteractorInterface: Interactor {
 }
 
 protocol SigningInfoRouterInterface {
-    func goToRegister()
+    func goToRegister(fromLogin: Bool)
     func goToLogin()
 }

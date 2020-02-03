@@ -61,6 +61,6 @@ extension SigningInfoInteractor: SigningInfoInteractorInterface {
     }
 
     func didTapStartButton() {
-        router.goToRegister()
+        router.goToRegister(fromLogin: false)
     }
 }
