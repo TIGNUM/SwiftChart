@@ -9,11 +9,12 @@
 import Foundation
 
 final class RegisterIntroConfigurator {
-    static func make() -> (RegisterIntroViewController) -> Void {
+    static func make(fromLogin: Bool) -> (RegisterIntroViewController) -> Void {
         return { (viewController) in
             let presenter = RegisterIntroPresenter(viewController: viewController)
             let interactor = RegisterIntroInteractor(presenter: presenter)
             viewController.interactor = interactor
+            viewController.fromLogin = fromLogin
         }
     }
 }

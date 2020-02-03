@@ -21,4 +21,5 @@ protocol RegisterIntroInteractorInterface: Interactor {}
 protocol RegisterIntroRouterInterface {
     func dismiss()
     func openRegistration()
+    func openLogin()
 }
