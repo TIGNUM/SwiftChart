@@ -72,9 +72,10 @@ extension ContentFormat {
         }
     }
 
-    func hasEditImage(_ type: QDMUserPreparation.Level) -> Bool {
+    func hasEditImage(_ type: QDMUserPreparation.Level, title: String?) -> Bool {
         switch self {
         case .title: return type == .LEVEL_CRITICAL
+        case .list: return type != .LEVEL_ON_THE_GO && title == "SUGGESTED STRATEGIES"
         default: return false
         }
     }

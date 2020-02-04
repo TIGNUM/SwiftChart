@@ -75,7 +75,7 @@ extension PrepareResultsWorker {
                                                                                                 prepare.benefits)
                             items[PrepareResult.Critical.BENEFITS] = [.benefitItem(benefits: prepare.benefits ?? "")]
 
-                            items[PrepareResult.Critical.STRATEGY_LIST] = [.contentItem(format: .title,
+                            items[PrepareResult.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
                                                                                         title: "SUGGESTED STRATEGIES")]
                             items[PrepareResult.Critical.STRATEGY_ITEMS] = strategyItems
 

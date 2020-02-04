@@ -25,7 +25,7 @@ final class PrepareResultsContentTableViewCell: UITableViewCell, Dequeueable {
         headerMark.isHidden = !format.hasHeaderMark
         listMark.isHidden = !format.hasListMark
         bottomSeperator.isHidden = !format.hasBottomSeperator(type)
-        editButton.isHidden = !format.hasEditImage(type)
+        editButton.isHidden = !format.hasEditImage(type, title: title)
 
         selectionStyle = editButton.isHidden ? .none : .default
 
