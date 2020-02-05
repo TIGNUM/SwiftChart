@@ -51,7 +51,10 @@ final class DTPrepareInteractor: DTInteractor {
     }
 
     override func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
-        return answerKeys?.contains(Prepare.AnswerKey.PeakPlanTemplate) == true ? preparations : []
+        if answerKeys?.contains(Prepare.AnswerKey.PeakPlanTemplate) == true {
+            return preparations.filter { $0.type == .LEVEL_CRITICAL }
+        }
+        return []
     }
 
     override func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
