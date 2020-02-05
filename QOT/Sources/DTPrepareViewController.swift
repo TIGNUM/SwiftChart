@@ -114,6 +114,11 @@ final class DTPrepareViewController: DTViewController {
             return nil
         }
     }
+
+    override func updateView(viewModel: DTViewModel) {
+        super.updateView(viewModel: viewModel)
+        closeButton.isHidden = (viewModel.question.key == Prepare.QuestionKey.BenefitsInput)
+    }
 }
 
 // MARK: - Private
