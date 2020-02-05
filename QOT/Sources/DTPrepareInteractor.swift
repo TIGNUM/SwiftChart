@@ -55,8 +55,9 @@ final class DTPrepareInteractor: DTInteractor {
     }
 
     override func getAnswerFilter(questionKey: String?, answerFilter: String?) -> String? {
-        if questionKey == Prepare.QuestionKey.BuildCritical && preparations.isEmpty {
-            return Prepare.AnswerKey.PeakPlanNew
+        if questionKey == Prepare.QuestionKey.BuildCritical {
+            let criticalPreparations = preparations.filter { $0.type == .LEVEL_CRITICAL }
+            return criticalPreparations.isEmpty ? Prepare.AnswerKey.PeakPlanNew : answerFilter
         }
         return answerFilter
     }
