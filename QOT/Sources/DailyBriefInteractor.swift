@@ -29,6 +29,11 @@ final class DailyBriefInteractor {
     private var dailyCheckInResultRequestCheckTimer: Timer?
     private var targetBucketName: DailyBriefBucketName?
 
+    var didDailyCheckIn = false
+    var hasSiriShortcuts = false
+    var hasToBeVision = false
+    var hasConnectedWearable = false
+
     private lazy var firstInstallTimeStamp = UserDefault.firstInstallationTimestamp.object as? Date
     private lazy var worker = DailyBriefWorker(questionService: QuestionService.main,
                                                userService: UserService.main,
@@ -188,12 +193,22 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             guard let strongSelf = self else {
                 return
             }
+
+            strongSelf.worker.hasConnectedWearable { (hasConnected) in
+                strongSelf.hasConnectedWearable = hasConnected
+            }
+            strongSelf.worker.hasSiriShortcuts { (hasShortcuts) in
+                strongSelf.hasSiriShortcuts = hasShortcuts
+            }
+
             bucketsList.forEach { [weak self] (bucket) in
                 guard let strongSelf = self else {
                     return
                 }
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
+                    strongSelf.hasToBeVision = (bucket.toBeVision != nil)
+                    strongSelf.didDailyCheckIn = (bucket.dailyCheckInAnswerIds?.isEmpty == false)
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1,
                                                         elements: strongSelf.createImpactReadinessCell(impactReadinessBucket: bucket)))
                 case .DAILY_CHECK_IN_2?:
@@ -908,14 +923,10 @@ extension DailyBriefInteractor {
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
         let bucketTitle = AppTextService.get(.daily_brief_section_from_tignum_title)
-        guard (fromTignum.contentCollections?.first) != nil else {
-            createFromTignumList.append( FromTignumCellViewModel(title: "",
-                                                                 text: "",
-                                                                 subtitle: "",
-                                                                 domainModel: fromTignum))
+        guard (fromTignum.contentCollections?.first) != nil, isValidFromTignumBucket(fromTignum) else {
             return createFromTignumList
-
         }
+
         fromTignum.contentCollections?.forEach {(fromTignumModel) in
             createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
                                                                 text: fromTignumModel.contentItems.first?.valueText ?? "",

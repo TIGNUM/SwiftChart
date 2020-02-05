@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+import Intents
 
 final class DailyBriefWorker {
 
@@ -40,6 +41,32 @@ final class DailyBriefWorker {
                 completion(bucketsList)
             }
         })
+    }
+
+    func hasConnectedWearable(_ completion: @escaping (Bool) -> Void) {
+        HealthService.main.ouraRingAuthStatus { (tracker, config) in
+            if tracker != nil {
+                completion(true)
+            } else if HealthService.main.isHealthDataAvailable() {
+                completion(true)
+            } else {
+                completion(false)
+            }
+        }
+    }
+
+    func hasSiriShortcuts(_ completion: @escaping (Bool) -> Void) {
+        if #available(iOS 12.0, *) {
+            INVoiceShortcutCenter.shared.getAllVoiceShortcuts { (shortcuts, error) in
+                DispatchQueue.main.async {
+                    completion(shortcuts?.isEmpty == false)
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                completion(false)
+            }
+        }
     }
 }
 
@@ -122,19 +149,19 @@ extension DailyBriefWorker {
     }
 }
 
-    // MARK: - Get to level 5
-    extension DailyBriefWorker {
-        func saveAnswerValue(_ value: Int) {
-            getDailyBriefBucketsForViewModel(completion: {(buckets) in
-                var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-                level5Bucket?.currentGetToLevel5Value = value
-                if let level5Bucket = level5Bucket {
-                    DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
-                        if let error = error {
-                            log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                        }
-                    })
-                }
-            })
-        }
+// MARK: - Get to level 5
+extension DailyBriefWorker {
+    func saveAnswerValue(_ value: Int) {
+        getDailyBriefBucketsForViewModel(completion: {(buckets) in
+            var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
+            level5Bucket?.currentGetToLevel5Value = value
+            if let level5Bucket = level5Bucket {
+                DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                    if let error = error {
+                        log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                    }
+                })
+            }
+        })
     }
+}
