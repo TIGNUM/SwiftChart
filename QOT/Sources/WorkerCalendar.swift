@@ -20,13 +20,13 @@ final class WorkerCalendar {
         }
     }
 
-    func importCalendarEvents(_ newEvent: EKEvent?, _ completion: @escaping (QDMUserCalendarEvent?) -> Void) {
-        CalendarService.main.importCalendarEvents { (events, _, error) in
-            if let error = error {
-                log("Error importCalendarEvents: \(error.localizedDescription)", level: .error)
-            }
-            let userEvent = events?.filter { $0.hasSameContent(from: newEvent) }.first
-            completion(userEvent)
+    func importCalendarEvent(_ newEvent: EKEvent?, _ completion: @escaping (QDMUserCalendarEvent?) -> Void) {
+        guard let ekEvent = newEvent else {
+            completion(nil)
+            return
+        }
+        CalendarService.main.importCalendarEvent(ekEvent) { (qdmEvent) in
+            completion(qdmEvent)
         }
     }
 
