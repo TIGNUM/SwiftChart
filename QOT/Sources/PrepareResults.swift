@@ -86,7 +86,7 @@ extension ContentFormat {
         case .header1: return ThemeText.resultHeader1.attributedString(title)
         case .header2,
              .listitem: return ThemeText.resultHeader2.attributedString(title)
-        case .list: return ThemeText.resultList.attributedString("\n\n" + title)
+        case .list: return ThemeText.resultList.attributedString("\n" + title + "\n")
         case .title: return ThemeText.resultTitle.attributedString(title)
         default: return nil
         }
