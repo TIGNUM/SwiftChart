@@ -15,7 +15,11 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
+    private var hasNoPerformance: Bool? = false
+    @IBOutlet weak var headerToBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var buttonToBottomConstraint: NSLayoutConstraint!
     weak var delegate: DailyBriefViewControllerDelegate?
+    @IBOutlet weak var buttonHeightConstraint: NSLayoutConstraint!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,6 +38,7 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
+        self.hasNoPerformance = model.hasNoPerformance
         if let hasNoPerformance = model.hasNoPerformance {
             button.isHidden = hasNoPerformance
         }
@@ -43,6 +48,10 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     override func updateConstraints() {
         super.updateConstraints()
         headerHeightConstraint.constant = baseHeaderView?.calculateHeight(for: self.frame.size.width) ?? 0
+        if self.hasNoPerformance ?? false {
+            buttonToBottomConstraint.constant = 0
+            buttonHeightConstraint.constant = 0
+        }
     }
 
     @IBAction func preparations(_ sender: Any) {
