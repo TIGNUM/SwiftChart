@@ -16,7 +16,6 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
     @IBOutlet weak var headerView: UIView!
     @IBOutlet private weak var button: AnimatedButton!
     private var hasNoPerformance: Bool? = false
-    @IBOutlet weak var headerToBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var buttonToBottomConstraint: NSLayoutConstraint!
     weak var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet weak var buttonHeightConstraint: NSLayoutConstraint!

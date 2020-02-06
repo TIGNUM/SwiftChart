@@ -15,7 +15,7 @@ struct DailyCheckIn2PeakPerformanceModel {
     let hasNoPerformance: Bool?
 
     // MARK: - Init
-    init(title: String?, intro: String?, hasNoPerformance: Bool) {
+    init(title: String?, intro: String?, hasNoPerformance: Bool?) {
         self.title = title
         self.intro = intro
         self.hasNoPerformance = hasNoPerformance
