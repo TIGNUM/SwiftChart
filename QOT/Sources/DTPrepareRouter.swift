@@ -66,9 +66,13 @@ extension DTPrepareRouter: DTPrepareRouterInterface {
         eventEditVC.eventStore = EKEventStore.shared
         eventEditVC.editViewDelegate = prepareViewController
         eventEditVC.event = EKEvent(eventStore: EKEventStore.shared)
-        eventEditVC.event?.calendar = EKEventStore.shared.calendars(for: .event).filter {
-            calendarToggleIdentifiers?.contains($0.toggleIdentifier) == true  && $0.allowsContentModifications
-        }.first ?? EKEventStore.shared.calendars(for: .event).first
+        eventEditVC.event?.calendar = EKEventStore.shared.calendars(for: .event).filter { // mutable & not subscribed
+            calendarToggleIdentifiers?.contains($0.toggleIdentifier) == true &&
+                $0.allowsContentModifications &&
+                $0.isSubscribed == false
+        }.first ?? EKEventStore.shared.calendars(for: .event).filter { // mutable
+            calendarToggleIdentifiers?.contains($0.toggleIdentifier) == true && $0.allowsContentModifications
+        }.first ?? EKEventStore.shared.calendars(for: .event).first // don't care
         viewController?.present(eventEditVC, animated: true)
     }
 }
