@@ -175,10 +175,6 @@ class DTInteractor: DTInteractorInterface {
 
     func didUpdateUserInput(_ text: String, questionKey: String) {
         inputText = text
-        if text.isEmpty {
-            presenter?.hideNavigationButtonForAnimation()
-        } else {
-            presenter?.showNavigationButtonAfterAnimation()
-        }
+        presenter?.showNavigationButtonAfterAnimation()
     }
 }

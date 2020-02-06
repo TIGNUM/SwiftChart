@@ -99,7 +99,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func updateBenefits(_ benefits: String) {
-       worker.updateBenefits(benefits)
+        worker.updateBenefits(benefits)
     }
 
     func presentFeedback() {
