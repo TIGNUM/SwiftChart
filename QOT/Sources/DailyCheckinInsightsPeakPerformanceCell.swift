@@ -34,6 +34,9 @@ final class DailyCheckinInsightsPeakPerformanceCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(model.title, to: baseHeaderView?.titleLabel)
         ThemeText.dailyBriefDailyCheckInSights.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         button.setTitle(AppTextService.get(.daily_brief_section_daily_insights_peak_performances_button_get_started), for: .normal)
+        if let hasNoPerformance = model.hasNoPerformance {
+            button.isHidden = hasNoPerformance
+        }
         skeletonManager.hide()
     }
 
