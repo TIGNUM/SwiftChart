@@ -153,6 +153,10 @@ class DTInteractor: DTInteractorInterface {
         return []
     }
 
+    func getCalendarSetting() -> [QDMUserCalendarSetting] {
+        return []
+    }
+
     func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
         return []
     }

@@ -61,7 +61,10 @@ final class DTPrepareViewController: DTViewController {
             createPreparationAndPresent()
         case Prepare.QuestionKey.CalendarEventSelectionCritical?,
              Prepare.QuestionKey.CalendarEventSelectionDaily?:
-            prepareRouter?.presentEditEventController()
+            let calendarIds = prepareInteractor?.getCalendarSetting()
+                .filter { $0.syncEnabled == true }
+                .compactMap { $0.calendarId }
+            prepareRouter?.presentEditEventController(calendarIds)
         default:
             loadNextQuestion()
         }
