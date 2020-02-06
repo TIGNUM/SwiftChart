@@ -928,6 +928,7 @@
 		B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */; };
 		B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */; };
 		B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */; };
+		B855C53A23EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B855C53923EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift */; };
 		B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */; };
 		B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */; };
 		B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */; };
@@ -2165,6 +2166,7 @@
 		B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRootViewController.swift; sourceTree = "<group>"; };
 		B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
 		B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationContainer.swift; sourceTree = "<group>"; };
+		B855C53923EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DailyBriefInteractor+BucketValidation.swift"; sourceTree = "<group>"; };
 		B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStoragePresenter.swift; sourceTree = "<group>"; };
 		B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageWorker.swift; sourceTree = "<group>"; };
 		B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageRouter.swift; sourceTree = "<group>"; };
@@ -2791,6 +2793,7 @@
 			children = (
 				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
 				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
+				B855C53923EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift */,
 				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
 				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
 				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
@@ -6198,6 +6201,7 @@
 				389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */,
+				B855C53A23EADAC600A5F6A3 /* DailyBriefInteractor+BucketValidation.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				8D6E058A22D7466E00EC2AEF /* MyLibraryNotesRouter.swift in Sources */,
 				5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */,
