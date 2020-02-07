@@ -45,14 +45,18 @@ extension BaseRootViewController {
         handleNavigationItems(leftItems: navigationItem.leftBarButtonItems,
                               rightItems: navigationItem.rightBarButtonItems,
                               backgroundColor: navigationItem.backgroundColor)
+        // check last navigation items.
+        checkBottomNavigationItemAfterPeriod(1.5, for: notification)
     }
 
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.05, animations: {
             self.bottomNavigationContainer.alpha = 1
             self.bottomNavigationContainer.layer.zPosition = 1
+        }, completion: { (_) in
+            self.bottomNavigationContainer.alpha = 1
             self.bottomNavigationContainer.superview?.bringSubview(toFront: self.bottomNavigationContainer)
-        }
+        })
     }
 
     func handleNavigationItems(leftItems: [UIBarButtonItem]?, rightItems: [UIBarButtonItem]?, backgroundColor: UIColor) {
@@ -65,6 +69,47 @@ extension BaseRootViewController {
         navigationItem.setRightBarButtonItems(rightItems, animated: false)
         bringBottomNavigationBarToFront()
         audioPlayerBar.refreshColorMode(isLight: backgroundColor.isLightColor())
+    }
+
+    private func checkBottomNavigationItemAfterPeriod(_ seconds: TimeInterval, for notification: Notification) {
+        guard let navigationItem = notification.object as? BottomNavigationItem else {
+            return
+        }
+        bottomNavigationUpdateTimer?.invalidate()
+        bottomNavigationUpdateTimer = Timer.scheduledTimer(withTimeInterval: seconds, repeats: false, block: { [weak self] (_) in
+            var needToUpdate = false
+            let currentNavigationItem = self?.navigationController?.navigationBar.items?.last
+            if navigationItem.leftBarButtonItems.count != currentNavigationItem?.leftBarButtonItems?.count ?? 0 ||
+                navigationItem.rightBarButtonItems.count != currentNavigationItem?.rightBarButtonItems?.count ?? 0 {
+                    needToUpdate = true
+            }
+
+            for (index, item) in navigationItem.leftBarButtonItems.enumerated() {
+                guard needToUpdate == false, let currentItem = currentNavigationItem?.leftBarButtonItems?[index] else {
+                    needToUpdate = true
+                    break
+                }
+                if (item.action != currentItem.action) || (item.customView != currentItem.customView) {
+                    needToUpdate = true
+                    break
+                }
+            }
+
+            for (index, item) in navigationItem.rightBarButtonItems.enumerated() {
+                guard needToUpdate == false, let currentItem = currentNavigationItem?.rightBarButtonItems?[index] else {
+                    needToUpdate = true
+                    break
+                }
+                if (item.action != currentItem.action) || (item.customView != currentItem.customView) {
+                    needToUpdate = true
+                    break
+                }
+            }
+
+            if needToUpdate {
+                self?.handleBottomNavigationBar(notification)
+            }
+        })
     }
 }
 
