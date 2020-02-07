@@ -738,7 +738,6 @@
 		AC87A7B1220DBDAB00622C90 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		AC87A7B2220DBDAC00622C90 /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */; };
-		AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */; };
 		ACA4B1882211CDB300552A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		ACA4B1892211CDB400552A54 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		ACA4B18C2211D13800552A54 /* NSUserActivity+Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4B18B2211D13800552A54 /* NSUserActivity+Keys.swift */; };
@@ -1990,7 +1989,6 @@
 		AC87A7AB220DBA2200622C90 /* ReadVisionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadVisionViewController.swift; sourceTree = "<group>"; };
 		AC87A7AF220DBAE000622C90 /* ReadVisionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReadVisionView.xib; sourceTree = "<group>"; };
 		AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
-		AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		ACA4B18A2211CFAF00552A54 /* Intent.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Intent.entitlements; sourceTree = "<group>"; };
 		ACA4B18B2211D13800552A54 /* NSUserActivity+Keys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUserActivity+Keys.swift"; sourceTree = "<group>"; };
 		ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotIntentHandler.swift; sourceTree = "<group>"; };
@@ -4758,7 +4756,6 @@
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				36343F202306EF4500F1EC66 /* UIViewController+BottomNavigation.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
-				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
 				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
 				AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
@@ -6540,7 +6537,6 @@
 				B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */,
 				AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */,
 				75DC686C22C11D2A00FF183D /* MyToBeVisionRateInteractor.swift in Sources */,
-				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */,
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				B45DA6BD23AA6316006E7E33 /* MyQOTAdminChooseBucketsWorker.swift in Sources */,
