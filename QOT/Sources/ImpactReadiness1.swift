@@ -47,7 +47,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
 //
-        exploreScoreButton.isHidden = true
+        exploreScoreButton.alpha = 0
+        impactReadinessButton.alpha = 0
     }
 
     @IBAction func exploreScoreButton(_ sender: Any) {
@@ -104,22 +105,25 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-        impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
+//        impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
         exploreScoreButton.isEnabled = viewModel?.enableButton ?? true
+
 //        buttonToRightConstraint.isActive = true
 
         if showDailyCheckInScreen {
+            impactReadinessButton.alpha = 1
+            exploreScoreButton.alpha = 0
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
             impactReadinessButton.setImage(nil, for: .normal)
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
 //            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-            buttonToRightConstraint.isActive = true
+//            buttonToRightConstraint.isActive = true
             buttonToRightConstraint.constant = 24
         } else {
             trackState = model.isExpanded
             exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            exploreScoreButton.isHidden = false
-            impactReadinessButton.isHidden = true
+            exploreScoreButton.alpha = 1
+            impactReadinessButton.alpha = 0
             ThemeButton.dailyBriefWithoutBorder.apply(exploreScoreButton)
             exploreScoreButton.flipImage(trackState)
             exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
