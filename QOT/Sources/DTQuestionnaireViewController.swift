@@ -106,7 +106,13 @@ private extension DTQuestionnaireViewController {
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
 
-        let constraintHeight = NSLayoutConstraint(item: tableView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1.0, constant: 0.0)
+        let constraintHeight = NSLayoutConstraint(item: tableView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: nil,
+                                                  attribute: .height,
+                                                  multiplier: 1.0,
+                                                  constant: 0.0)
         tableView.addConstraint(constraintHeight)
         constraintTableHeight = constraintHeight
     }
@@ -119,7 +125,13 @@ private extension DTQuestionnaireViewController {
         imageView.topAnchor.constraint(equalTo: tableView.bottomAnchor).isActive = true
         imageView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         imageView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        view.addConstraint(NSLayoutConstraint(item: imageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .height, multiplier: 1, constant: imageView.image?.size.height ?? 0.0))
+        view.addConstraint(NSLayoutConstraint(item: imageView,
+                                              attribute: .height,
+                                              relatedBy: .equal,
+                                              toItem: nil,
+                                              attribute: .height,
+                                              multiplier: 1,
+                                              constant: imageView.image?.size.height ?? 0.0))
     }
 }
 

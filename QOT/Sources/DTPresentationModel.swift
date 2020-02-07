@@ -61,7 +61,10 @@ struct DTPresentationModel {
             if let min = question.minPossibleSelections {
                 minSelections = min
             }
-            navigationButton.configure(title: defaultTitle, titleNext: confirmationTitle, minSelection: minSelections, isDark: isDark)
+            navigationButton.configure(title: defaultTitle,
+                                       titleNext: confirmationTitle,
+                                       minSelection: minSelections,
+                                       isDark: isDark)
             navigationButton.update(count: 0, maxSelections: maxSelections)
         }
         navigationButton.isHidden = isHidden
