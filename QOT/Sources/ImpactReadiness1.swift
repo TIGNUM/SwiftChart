@@ -13,25 +13,24 @@ import HealthKit
 final class ImpactReadiness1: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var toBeVisionImage: UIImageView!
-    @IBOutlet weak var impactReadinessScore: UILabel!
-    @IBOutlet weak var impactReadinessOutOf100Label: UILabel!
-    @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var impactReadinessButton: AnimatedButton!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var toBeVisionImage: UIImageView!
+    @IBOutlet private weak var impactReadinessScore: UILabel!
+    @IBOutlet private weak var impactReadinessOutOf100Label: UILabel!
+    @IBOutlet private weak var content: UILabel!
+    @IBOutlet private weak var impactReadinessButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
-    @IBOutlet weak var impactReadinessView: UIImageView!
-    @IBOutlet weak var buttonLeft: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var buttonRight: UIButton!
+    @IBOutlet private weak var impactReadinessView: UIImageView!
+    @IBOutlet private weak var buttonLeft: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
-
     var trackState: Bool = false
-    var showDailyCheckInScreen = false
-    @IBOutlet weak var exploreScoreButton: AnimatedButton!
+    private var showDailyCheckInScreen = false
+    @IBOutlet private weak var exploreScoreButton: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -117,7 +116,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             exploreScoreButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
         }
     }
-
 }
 
 extension UIButton {
