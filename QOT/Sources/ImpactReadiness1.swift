@@ -42,11 +42,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
+        skeletonManager.addOtherView(exploreScoreButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
-        exploreScoreButton.alpha = 0
-        impactReadinessButton.alpha = 0
+        exploreScoreButton.isHidden = true
+        impactReadinessButton.isHidden = true
     }
 
     @IBAction func exploreScoreButton(_ sender: Any) {
@@ -91,25 +92,24 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
+        exploreScoreButton.isHidden = true
+        impactReadinessButton.isHidden = true
         actionLeft = tapLeft
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-
         exploreScoreButton.isEnabled = viewModel?.enableButton ?? true
 
         if showDailyCheckInScreen {
-            impactReadinessButton.alpha = 1
-            exploreScoreButton.alpha = 0
+            impactReadinessButton.isHidden = false
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
-//            impactReadinessButton.setImage(nil, for: .normal)
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
             trackState = model.isExpanded
             exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            exploreScoreButton.alpha = 1
-            impactReadinessButton.alpha = 0
+            exploreScoreButton.isHidden = false
             ThemeButton.dailyBriefWithoutBorder.apply(exploreScoreButton)
             exploreScoreButton.flipImage(trackState)
             exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
@@ -117,6 +117,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             exploreScoreButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
         }
     }
+
 }
 
 extension UIButton {
