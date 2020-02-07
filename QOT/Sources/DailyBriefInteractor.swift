@@ -481,7 +481,7 @@ extension DailyBriefInteractor {
             var performanceBody: String?
             let hasNoPerformance = performanceCount == 0
             let performanceString = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_body)
-            if performanceCount == 0 {
+            if hasNoPerformance {
                 performanceBody = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_null_body)
             } else {
                 performanceBody = performanceString.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")

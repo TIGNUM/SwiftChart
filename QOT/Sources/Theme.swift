@@ -235,6 +235,7 @@ enum ThemeButton {
     case audioButton
     case closeButton(ThemeColorMode)
     case dailyBriefButtons
+    case dailyBriefWithoutBorder
     case clear
     case onboarding
     case backButton
@@ -275,6 +276,10 @@ enum ThemeButton {
             colorSelected = .accent40
             colorUnselected = .clear
             colorBorder = .accent40
+        case .dailyBriefWithoutBorder:
+            colorSelected = .accent40
+            colorUnselected = .clear
+            colorBorder = .none
         case .clear:
             colorSelected = .clear
         case .onboarding:

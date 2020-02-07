@@ -28,12 +28,14 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     typealias actionClosure = (() -> Void)
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
+
     var trackState: Bool = false
     var showDailyCheckInScreen = false
+    @IBOutlet var buttonToRightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var exploreScoreButton: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         toBeVisionImage.gradientBackground(top: true)
         toBeVisionImage.gradientBackground(top: false)
         skeletonManager.addSubtitle(impactReadinessScore)
@@ -44,7 +46,15 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
+//
+        exploreScoreButton.isHidden = true
     }
+
+    @IBAction func exploreScoreButton(_ sender: Any) {
+        trackState = !trackState
+        exploreScoreButton.flipImage(trackState)
+        NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+       }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
         // tell someone it's selected. -1 indicates the default condition.
@@ -52,10 +62,10 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
                 AppDelegate.current.launchHandler.process(url: launchURL)
             }
-        } else {
-            trackState = !trackState
-            impactReadinessButton.flipImage(trackState)
-            NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+//        } else {
+//            trackState = !trackState
+//            impactReadinessButton.flipImage(trackState)
+//            NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
         }
     }
 
@@ -94,23 +104,36 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-
         impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
-        if impactReadinessButton.isEnabled {
-            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        } else {
-            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        }
+        exploreScoreButton.isEnabled = viewModel?.enableButton ?? true
+//        buttonToRightConstraint.isActive = true
 
         if showDailyCheckInScreen {
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
+            impactReadinessButton.setImage(nil, for: .normal)
+            ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
+//            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+            buttonToRightConstraint.isActive = true
+            buttonToRightConstraint.constant = 24
         } else {
             trackState = model.isExpanded
-            impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            impactReadinessButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
-            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
-            impactReadinessButton.layoutIfNeeded()
+            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+            exploreScoreButton.isHidden = false
+            impactReadinessButton.isHidden = true
+            ThemeButton.dailyBriefWithoutBorder.apply(exploreScoreButton)
+            exploreScoreButton.flipImage(trackState)
+            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+            exploreScoreButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
+            exploreScoreButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
+
+//            ThemeButton.dailyBriefWithoutBorder.apply(impactReadinessButton)
+//            impactReadinessButton.flipImage(trackState)
+//            impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+//            impactReadinessButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
+//            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
+//            buttonToRightConstraint.isActive = false
+//            let margins = self.layoutMarginsGuide
+//            impactReadinessButton.leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: 0).isActive = true
         }
     }
 }

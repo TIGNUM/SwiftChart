@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIu-gB-GnD" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="179" y="144" width="165" height="40"/>
+                        <rect key="frame" x="182" y="144" width="165" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Wjd-za-LZN"/>
                         </constraints>
@@ -43,11 +43,11 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="cIu-gB-GnD" secondAttribute="trailing" constant="27" id="6Th-QZ-6VY"/>
                     <constraint firstItem="cIu-gB-GnD" firstAttribute="top" secondItem="znk-aJ-Hvm" secondAttribute="bottom" constant="24" id="9tZ-Nr-fQ0"/>
                     <constraint firstItem="znk-aJ-Hvm" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" id="LcT-RA-KMl"/>
                     <constraint firstAttribute="bottom" secondItem="cIu-gB-GnD" secondAttribute="bottom" constant="48" id="SOy-Fx-wVS"/>
                     <constraint firstItem="znk-aJ-Hvm" firstAttribute="top" secondItem="WOX-Ik-zWw" secondAttribute="top" id="Yar-54-KzY"/>
+                    <constraint firstAttribute="trailing" secondItem="cIu-gB-GnD" secondAttribute="trailing" constant="24" id="oOg-CL-eOt"/>
                     <constraint firstAttribute="trailing" secondItem="znk-aJ-Hvm" secondAttribute="trailing" id="tOg-ji-KQG"/>
                 </constraints>
             </tableViewCellContentView>
