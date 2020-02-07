@@ -21,6 +21,7 @@ struct MindsetResult {
     }
 
     struct Item {
+        let mindsetKillerAnswerId: Int?
         let triggerAnswerId: Int?
         let toBeVisionText: String?
         let reactionsAnswerIds: [Int]
