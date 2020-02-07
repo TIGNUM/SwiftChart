@@ -22,7 +22,7 @@ final class DailyCheckinInsightsTBVCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(tbvSentence)

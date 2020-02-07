@@ -32,7 +32,7 @@ final class LeaderWisdomTableViewCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        audioButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(descriptionLabel)

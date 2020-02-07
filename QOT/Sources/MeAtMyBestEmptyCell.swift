@@ -22,7 +22,7 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         skeletonManager.addOtherView(buttonText)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
@@ -35,7 +35,7 @@ final class MeAtMyBestEmptyCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         buttonText.setTitle(model.buttonText ?? "none", for: .normal)
-        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
     }
 
     override func updateConstraints() {

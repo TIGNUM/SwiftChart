@@ -493,9 +493,17 @@ extension DailyBriefInteractor {
             // Peak Performance
             let peakPerformanceTitle = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_title)
             let performanceCount = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
+            var performanceBody: String?
+            let hasNoPerformance = performanceCount == 0
             let performanceString = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_body)
-            let replacedString = performanceString.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
-            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: replacedString)
+            if hasNoPerformance {
+                performanceBody = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_null_body)
+            } else if performanceCount == 9 {
+                 performanceBody = AppTextService.get(.daily_brief_section_daily_insights_peak_performances_over_nine_body)
+            } else {
+                performanceBody = performanceString.replacingOccurrences(of: "${peak_performance_count}", with: "\(performanceCount)")
+            }
+            let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: performanceBody, hasNoPerformance: hasNoPerformance)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.PEAKPERFORMANCE
         }

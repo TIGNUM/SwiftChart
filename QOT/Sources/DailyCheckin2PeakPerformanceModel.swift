@@ -12,10 +12,12 @@ struct DailyCheckIn2PeakPerformanceModel {
     // MARK: - Properties
     let title: String?
     let intro: String?
+    let hasNoPerformance: Bool?
 
     // MARK: - Init
-    init(title: String?, intro: String?) {
+    init(title: String?, intro: String?, hasNoPerformance: Bool?) {
         self.title = title
         self.intro = intro
+        self.hasNoPerformance = hasNoPerformance
     }
 }
