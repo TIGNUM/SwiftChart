@@ -13,7 +13,7 @@ import HealthKit
 protocol MyQotSensorsViewControllerInterface: class {
     func setupView()
     func set(headerTitle: String, sensorTitle: String)
-    func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool)
+    func setHealthKit(title: String, status: String, showNoDataInfo: Bool)
     func setOuraRing(title: String, status: String, labelStatus: String)
     func setHealthKitDescription(title: String, description: String)
     func setOuraRingDescription(title: String, description: String)
@@ -22,7 +22,7 @@ protocol MyQotSensorsViewControllerInterface: class {
 protocol MyQotSensorsPresenterInterface {
     func setupView()
     func set(headerTitle: String, sensorTitle: String)
-    func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool)
+    func setHealthKit(title: String, status: String, showNoDataInfo: Bool)
     func setOuraRing(title: String, status: String, labelStatus: String)
     func setHealthKitDescription(title: String, description: String)
     func setOuraRingDescription(title: String, description: String)

@@ -28,11 +28,10 @@ extension MyQotSensorsPresenter: MyQotSensorsPresenterInterface {
         viewController?.set(headerTitle: headerTitle, sensorTitle: sensorTitle)
     }
 
-    func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool) {
+    func setHealthKit(title: String, status: String, showNoDataInfo: Bool) {
         viewController?.setHealthKit(title: title,
                                      status: status,
-                                     showNoDataInfo: showNoDataInfo,
-                                     buttonEnabled: buttonEnabled)
+                                     showNoDataInfo: showNoDataInfo)
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
