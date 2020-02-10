@@ -219,7 +219,6 @@ public extension AppTextKey {
     static let daily_brief_section_my_peak_performances_section_tomorrow_label = AppTextKey("daily_brief.section_my_peak_performances.section_tomorrow.label")
     static let daily_brief_section_my_peak_performances_title = AppTextKey("daily_brief.section_my_peak_performances.title")
     static let daily_brief_section_weather_label_now = AppTextKey("daily_brief.section_weather.label_now")
-    static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let daily_brief_section_big_questions_title = AppTextKey("daily_brief.section_big_questions.title")
     static let daily_brief_section_whats_hot_title = AppTextKey("daily_brief.section_whats_hot.title")
     static let daily_brief_section_big_thoughts_title = AppTextKey("daily_brief.section_big_thoughts.title")
@@ -857,4 +856,6 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
+    @available(*, deprecated, message: "Deprecated from QOT v3.1.3")
+    static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
 }
