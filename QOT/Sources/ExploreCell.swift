@@ -24,7 +24,7 @@ final class ExploreCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ThemeBorder.accent.apply(exploreButton)
+        ThemeBorder.accent40.apply(exploreButton)
         skeletonManager.addOtherView(exploreButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)

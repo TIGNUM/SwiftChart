@@ -197,6 +197,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            delegate: nil)
             cell.addTopLine(for: indexPath.row)
             cell.makePDFCell()
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         } else {
             let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -204,7 +205,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             cell.configure(title: tool.title,
                            subtitle: AppTextService.get(.coach_tools_labels_label_interactive))
             cell.addTopLine(for: indexPath.row)
-            cell.accessoryView = .none
+            cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
             return cell
         }
     }

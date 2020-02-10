@@ -61,7 +61,10 @@ final class DTPrepareViewController: DTViewController {
             createPreparationAndPresent()
         case Prepare.QuestionKey.CalendarEventSelectionCritical?,
              Prepare.QuestionKey.CalendarEventSelectionDaily?:
-            prepareRouter?.presentEditEventController()
+            let calendarIds = prepareInteractor?.getCalendarSetting()
+                .filter { $0.syncEnabled == true }
+                .compactMap { $0.calendarId }
+            prepareRouter?.presentEditEventController(calendarIds)
         default:
             loadNextQuestion()
         }
@@ -113,6 +116,11 @@ final class DTPrepareViewController: DTViewController {
         default:
             return nil
         }
+    }
+
+    override func updateView(viewModel: DTViewModel) {
+        super.updateView(viewModel: viewModel)
+        closeButton.isHidden = (viewModel.question.key == Prepare.QuestionKey.BenefitsInput)
     }
 }
 

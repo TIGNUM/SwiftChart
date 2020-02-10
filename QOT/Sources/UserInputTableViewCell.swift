@@ -46,6 +46,7 @@ final class UserInputTableViewCell: UITableViewCell, Dequeueable {
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.showKeyBoard()
+            self.delegate?.didUpdateUserInput(self.textView.text, questionKey: self.questionKey)
         }
     }
 

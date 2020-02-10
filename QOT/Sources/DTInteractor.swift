@@ -153,6 +153,10 @@ class DTInteractor: DTInteractorInterface {
         return []
     }
 
+    func getCalendarSetting() -> [QDMUserCalendarSetting] {
+        return []
+    }
+
     func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
         return []
     }
@@ -175,10 +179,6 @@ class DTInteractor: DTInteractorInterface {
 
     func didUpdateUserInput(_ text: String, questionKey: String) {
         inputText = text
-        if text.isEmpty {
-            presenter?.hideNavigationButtonForAnimation()
-        } else {
-            presenter?.showNavigationButtonAfterAnimation()
-        }
+        presenter?.showNavigationButtonAfterAnimation()
     }
 }

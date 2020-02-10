@@ -27,7 +27,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeX-Re-eY0">
-                    <rect key="frame" x="24" y="269" width="76" height="40"/>
+                    <rect key="frame" x="303" y="269" width="76" height="40"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="yRz-U1-iJx"/>
                     </constraints>
@@ -45,9 +45,9 @@
                 <constraint firstItem="xhL-zl-qLA" firstAttribute="top" secondItem="t7g-5T-pqp" secondAttribute="bottom" constant="2" id="GT3-zp-S2x"/>
                 <constraint firstItem="t7g-5T-pqp" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="MrM-kz-dIr"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="eeX-Re-eY0" secondAttribute="bottom" constant="48" id="Plb-Bs-usc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="eeX-Re-eY0" secondAttribute="trailing" constant="24" id="WZl-XF-pdy"/>
                 <constraint firstItem="t7g-5T-pqp" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="WsP-ee-sLZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="xhL-zl-qLA" secondAttribute="trailing" constant="24" id="gA5-CR-qUL"/>
-                <constraint firstItem="eeX-Re-eY0" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="xtI-oT-qUY"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

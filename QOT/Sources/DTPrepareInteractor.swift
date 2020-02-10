@@ -21,6 +21,8 @@ final class DTPrepareInteractor: DTInteractor {
     private var createdUserCalendarEvent: QDMUserCalendarEvent?
     var preparePresenter: DTPreparePresenterInterface?
 
+    var calendarSettings: [QDMUserCalendarSetting] = []
+
     // MARK: - DTInteractor
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,14 @@ final class DTPrepareInteractor: DTInteractor {
     }
 
     override func getEvents(questionKey: String?) -> [QDMUserCalendarEvent] {
+        workerCalendar?.getCalendarSettings({ [weak self] (settings) in
+            self?.calendarSettings = settings
+        })
         return Prepare.isCalendarEventSelection(questionKey ?? "") ? events : []
+    }
+
+    override func getCalendarSetting() -> [QDMUserCalendarSetting] {
+        return calendarSettings
     }
 
     override func getPreparations(answerKeys: [String]?) -> [QDMUserPreparation] {
@@ -133,7 +142,7 @@ extension DTPrepareInteractor: DTPrepareInteractorInterface {
     }
 
     func setCreatedCalendarEvent(_ event: EKEvent?, _ completion: @escaping (Bool) -> Void) {
-        workerCalendar?.importCalendarEvents(event) { [weak self] (userCalendarEvent) in
+        workerCalendar?.importCalendarEvent(event) { [weak self] (userCalendarEvent) in
             self?.workerCalendar?.storeLocalEvent(event?.eventIdentifier,
                                                   qdmEventIdentifier: userCalendarEvent?.calendarItemExternalId)
             self?.createdUserCalendarEvent = userCalendarEvent
