@@ -98,7 +98,7 @@ private extension MySprintsListViewController {
 
         if infoAlertView == nil {
             infoAlertView = InfoAlertView()
-            infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
+            infoAlertView?.set(icon: model.icon, title: model.title, attributedText: nil)
             infoAlertView?.present(on: self.view)
             infoAlertView?.topInset = model.isFullscreen ? 0 : headerViewHeightConstraint.constant
             infoAlertView?.bottomInset = BottomNavigationContainer.height
