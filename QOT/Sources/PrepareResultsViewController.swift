@@ -248,8 +248,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .benefitContentItem(_, _, let benefits, _):
             removeBottomNavigation()
             interactor.presentEditBenefits(benefits: benefits)
-        case .contentItem(let format, _):
-            if interactor.getType == .LEVEL_CRITICAL && format.hasEditImage(.LEVEL_CRITICAL) {
+        case .contentItem(let format, let title):
+            if format.hasEditImage(interactor.getType, title: title) {
                 removeBottomNavigation()
                 interactor.presentEditStrategyView()
             }

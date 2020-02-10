@@ -72,9 +72,10 @@ extension ContentFormat {
         }
     }
 
-    func hasEditImage(_ type: QDMUserPreparation.Level) -> Bool {
+    func hasEditImage(_ type: QDMUserPreparation.Level, title: String?) -> Bool {
         switch self {
         case .title: return type == .LEVEL_CRITICAL
+        case .list: return type != .LEVEL_ON_THE_GO && title == "SUGGESTED STRATEGIES"
         default: return false
         }
     }
@@ -85,7 +86,7 @@ extension ContentFormat {
         case .header1: return ThemeText.resultHeader1.attributedString(title)
         case .header2,
              .listitem: return ThemeText.resultHeader2.attributedString(title)
-        case .list: return ThemeText.resultList.attributedString("\n\n" + title)
+        case .list: return ThemeText.resultList.attributedString("\n" + title + "\n")
         case .title: return ThemeText.resultTitle.attributedString(title)
         default: return nil
         }
