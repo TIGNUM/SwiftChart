@@ -856,6 +856,6 @@ public extension AppTextKey {
     static let generic_event_date_format_prefix_tomorrow_at = AppTextKey("generic_event_date.format_prefix.tomorrow_at")
     static let generic_event_date_format_prefix_at = AppTextKey("generic_event_date.format_prefix.at")
 
-    @available(*, deprecated, message: "Deprecated from QOT v3.1.3")
+    @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
 }
