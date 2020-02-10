@@ -31,6 +31,7 @@ final class BaseRootViewController: BaseViewController, ScreenZLevel1 {
     internal var lastestBottomNavigationItem: BottomNavigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                                                        rightBarButtonItems: [],
                                                                                        backgroundColor: .black)
+    internal var bottomNavigationUpdateTimer: Timer?
 
     deinit {
         bottomNavigationContainer.removeFromSuperview()
