@@ -48,6 +48,8 @@
             <viewLayoutGuide key="safeArea" id="hHY-0y-igv"/>
             <connections>
                 <outlet property="button" destination="J2g-Ge-Z5X" id="wRq-nl-6O6"/>
+                <outlet property="buttonHeightConstraint" destination="SQB-lL-Zkw" id="clA-pu-abL"/>
+                <outlet property="buttonToBottomConstraint" destination="iiw-PN-WeZ" id="RRh-mK-75f"/>
                 <outlet property="headerHeightConstraint" destination="CdO-Qt-BKn" id="sFT-V1-AhV"/>
                 <outlet property="headerView" destination="nKz-xo-mm3" id="Dxp-1G-Vly"/>
             </connections>

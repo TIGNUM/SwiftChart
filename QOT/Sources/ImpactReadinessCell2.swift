@@ -49,7 +49,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        moreData.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         skeletonManager.addSubtitle(rollingDataLabel)
         skeletonManager.addSubtitle(howYouFeelToday)
         skeletonManager.addSubtitle(asterixText)

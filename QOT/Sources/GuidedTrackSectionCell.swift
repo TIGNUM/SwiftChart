@@ -17,7 +17,6 @@ final class GuidedTrackSectionCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         button.flipImage(trackState)

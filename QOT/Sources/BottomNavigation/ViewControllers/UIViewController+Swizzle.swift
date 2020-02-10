@@ -319,10 +319,20 @@ extension UIViewController {
         return self.view.backgroundColor
     }
 
+    private func getLayoutConstraint(item: Any, attribute attr1: NSLayoutConstraint.Attribute) -> NSLayoutConstraint {
+        return NSLayoutConstraint(item: item,
+                                  attribute: attr1,
+                                  relatedBy: .equal,
+                                  toItem: nil,
+                                  attribute: .notAnAttribute,
+                                  multiplier: 1,
+                                  constant: 40)
+    }
+
     @objc open func backNavigationItem() -> UIBarButtonItem {
         let button = RoundedButton.init(title: nil, target: self, action: #selector(didTapBackButton))
-        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
+        let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
         button.addConstraints([heightConstraint, widthConstraint])
         button.setImage(R.image.ic_arrow_left(), for: .normal)
         ThemeButton.backButton.apply(button)
@@ -337,10 +347,9 @@ extension UIViewController {
 
         let isLight = isLightBackground()
         let button = RoundedButton.init(title: nil, target: self, action: buttonAction)
-        let heightConstraint = NSLayoutConstraint.init(item: button, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
-        let widthConstraint = NSLayoutConstraint.init(item: button, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 40)
+        let heightConstraint = getLayoutConstraint(item: button, attribute: .height)
+        let widthConstraint = getLayoutConstraint(item: button, attribute: .width)
         button.addConstraints([heightConstraint, widthConstraint])
-        button.setImage(R.image.ic_arrow_left(), for: .normal)
         ThemeButton.backButton.apply(button)
         button.setImage(R.image.ic_close(), for: .normal)
         ThemeButton.closeButton(isLight ? .light : .dark).apply(button)

@@ -20,7 +20,7 @@ final class GuidedTrackRowCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        button?.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         if subtitle != nil {
             skeletonManager.addSubtitle(subtitle!)
         }

@@ -41,7 +41,7 @@ final class WeatherCell: BaseDailyBriefCell {
     // MARK: - Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
-        accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        accessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         startSkeleton()
         for arrangedView in hourlyStackView.arrangedSubviews {
             arrangedView.isHidden = true

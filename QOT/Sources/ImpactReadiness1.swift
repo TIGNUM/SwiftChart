@@ -13,27 +13,27 @@ import HealthKit
 final class ImpactReadiness1: BaseDailyBriefCell {
 
     private var baseHeaderView: QOTBaseHeaderView?
-    @IBOutlet weak var headerView: UIView!
-    @IBOutlet weak var toBeVisionImage: UIImageView!
-    @IBOutlet weak var impactReadinessScore: UILabel!
-    @IBOutlet weak var impactReadinessOutOf100Label: UILabel!
-    @IBOutlet weak var content: UILabel!
-    @IBOutlet weak var impactReadinessButton: AnimatedButton!
+    @IBOutlet private weak var headerView: UIView!
+    @IBOutlet private weak var toBeVisionImage: UIImageView!
+    @IBOutlet private weak var impactReadinessScore: UILabel!
+    @IBOutlet private weak var impactReadinessOutOf100Label: UILabel!
+    @IBOutlet private weak var content: UILabel!
+    @IBOutlet private weak var impactReadinessButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
     private var score: Int = 0
-    @IBOutlet weak var impactReadinessView: UIImageView!
-    @IBOutlet weak var buttonLeft: UIButton!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var buttonRight: UIButton!
+    @IBOutlet private weak var impactReadinessView: UIImageView!
+    @IBOutlet private weak var buttonLeft: UIButton!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
     var trackState: Bool = false
-    var showDailyCheckInScreen = false
+    private var showDailyCheckInScreen = false
+    @IBOutlet private weak var exploreScoreButton: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
         toBeVisionImage.gradientBackground(top: true)
         toBeVisionImage.gradientBackground(top: false)
         skeletonManager.addSubtitle(impactReadinessScore)
@@ -41,21 +41,23 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
+        skeletonManager.addOtherView(exploreScoreButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
+        exploreScoreButton.isHidden = true
+        impactReadinessButton.isHidden = true
     }
 
+    @IBAction func exploreScoreButton(_ sender: Any) {
+        trackState = !trackState
+        exploreScoreButton.flipImage(trackState)
+        NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+       }
+
     @IBAction func impactReadinessButton(_ sender: Any) {
-        // tell someone it's selected. -1 indicates the default condition.
-        if showDailyCheckInScreen {
-            if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
-                AppDelegate.current.launchHandler.process(url: launchURL)
-            }
-        } else {
-            trackState = !trackState
-            impactReadinessButton.flipImage(trackState)
-            NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
+        if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
 
@@ -89,28 +91,29 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
+        exploreScoreButton.isHidden = true
+        impactReadinessButton.isHidden = true
         actionLeft = tapLeft
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-
-        impactReadinessButton.isEnabled = viewModel?.enableButton ?? true
-        if impactReadinessButton.isEnabled {
-            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        } else {
-            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        }
+        exploreScoreButton.isEnabled = viewModel?.enableButton ?? true
 
         if showDailyCheckInScreen {
+            impactReadinessButton.isHidden = false
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
+            impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+            ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
             trackState = model.isExpanded
-            impactReadinessButton.flipImage(trackState)
-            impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            impactReadinessButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
-            impactReadinessButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
-            impactReadinessButton.layoutIfNeeded()
+            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+            exploreScoreButton.isHidden = false
+            ThemeButton.dailyBriefWithoutBorder.apply(exploreScoreButton)
+            exploreScoreButton.flipImage(trackState)
+            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
+            exploreScoreButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
+            exploreScoreButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
         }
     }
 }

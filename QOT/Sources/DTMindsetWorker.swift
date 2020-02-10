@@ -24,7 +24,8 @@ extension DTMindsetWorker {
 
 private extension DTMindsetWorker {
     func createMindsetShifter(mindsetItem: MindsetResult.Item, completion: @escaping (QDMMindsetShifter?) -> Void) {
-        UserService.main.createMindsetShifter(triggerAnswerId: mindsetItem.triggerAnswerId,
+        UserService.main.createMindsetShifter(mindsetKillerAnswerId: mindsetItem.mindsetKillerAnswerId,
+                                              triggerAnswerId: mindsetItem.triggerAnswerId,
                                               toBeVisionText: mindsetItem.toBeVisionText,
                                               reactionsAnswerIds: mindsetItem.reactionsAnswerIds,
                                               lowPerformanceAnswerIds: mindsetItem.lowPerformanceAnswerIds,
@@ -42,6 +43,7 @@ private extension DTMindsetWorker {
                                 tbv: QDMToBeVision?,
                                 completion: @escaping (MindsetResult.Item) -> Void) {
         let answers = selectedAnswers.flatMap { $0.answers }
+        let mindsetKillerAnswer = selectedAnswers.filter { $0.question?.key == Mindset.QuestionKey.Intro }.first
         let triggerAnswer = selectedAnswers.filter { $0.question?.key == Mindset.QuestionKey.MoreInfo }.first
         let reactionAnswers = filteredAnswers(answers, filter: Mindset.Filter.Reaction)
         let lowAnswers = filteredAnswers(answers, filter: Mindset.Filter.LowPerfomance)
@@ -49,7 +51,8 @@ private extension DTMindsetWorker {
 
         ContentService.main.getContentCollectionsByIds(lowAnswersContentIDs) { (contentCollections) in
             let highContentItemIds = contentCollections?.flatMap { $0.contentItems }.map { $0.remoteID ?? 0 } ?? []
-            let resultItem = MindsetResult.Item(triggerAnswerId: triggerAnswer?.answers.first?.remoteId,
+            let resultItem = MindsetResult.Item(mindsetKillerAnswerId: mindsetKillerAnswer?.answers.first?.remoteId,
+                                                triggerAnswerId: triggerAnswer?.answers.first?.remoteId,
                                                 toBeVisionText: tbv?.text,
                                                 reactionsAnswerIds: reactionAnswers.map { $0.remoteId },
                                                 lowPerformanceAnswerIds: lowAnswers.map { $0.remoteId },

@@ -24,7 +24,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        ctaButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         skeletonManager.addSubtitle(meAtMyBestContent)
         skeletonManager.addOtherView(meAtMyBestFuture)
         skeletonManager.addOtherView(ctaButton)
