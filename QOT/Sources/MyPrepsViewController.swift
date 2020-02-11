@@ -223,11 +223,8 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         baseHeaderView?.configure(title: viewModel.title, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
-//        ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsComment)
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
-//        ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetComment)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
-//        ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoveryComment)
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
