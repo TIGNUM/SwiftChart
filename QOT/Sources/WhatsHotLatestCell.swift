@@ -37,7 +37,7 @@ final class WhatsHotLatestCell: BaseDailyBriefCell {
         skeletonManager.hide()
         ThemeText.dailyBriefTitle.apply(model.title.uppercased(), to: whatsHotTitle)
         baseHeaderView?.configure(title: AppTextService.get(.daily_brief_section_whats_hot_title),
-                                  subtitle: AppTextService.get(.daily_brief_section_wh_subtitle))
+                                  subtitle: nil)
         skeletonManager.addOtherView(whatsHotImage)
         whatsHotImage.setImage(url: model.image,
                                skeletonManager: self.skeletonManager) { (_) in /* */}
