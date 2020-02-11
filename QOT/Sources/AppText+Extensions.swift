@@ -594,7 +594,6 @@ public extension AppTextKey {
     static let my_qot_my_sprints_null_state_title_header = AppTextKey("my_qot.my_sprints.null_state.title_header")
     static let my_qot_my_sprints_section_item_label_pause = AppTextKey("my_qot.my_sprints.section_item.label_pause")
     static let my_qot_my_sprints_section_sprint_plan_title_sprint_plan = AppTextKey("my_qot.my_sprints.section_sprint_plan.title_sprint_plan")
-    static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
     static let my_qot_my_sprints_section_item_label_upcoming = AppTextKey("my_qot.my_sprints.section_item.label_upcoming")
     static let my_qot_my_sprints_my_sprint_details_alert_sprint_in_progress_title = AppTextKey("my_qot.my_sprints.my_sprint_details.alert.sprint_in_progress.title")
     static let my_qot_my_sprints_null_state_title = AppTextKey("my_qot.my_sprints.null_state.title")
@@ -858,4 +857,5 @@ public extension AppTextKey {
 
     @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
+    static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
 }

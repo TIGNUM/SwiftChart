@@ -13,6 +13,6 @@ struct MySprintsInfoAlertViewModel {
     let style: InfoAlertView.Style
     let icon: UIImage
     let title: String
-    let message: NSAttributedString
+    let message: NSAttributedString?
     let transparent: Bool
 }
