@@ -40,11 +40,8 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
     @IBOutlet weak var noPrepsTitle: UILabel!
-    @IBOutlet weak var noPrepsComment: UILabel!
     @IBOutlet weak var noMindsetTitle: UILabel!
-    @IBOutlet weak var noMindsetComment: UILabel!
     @IBOutlet weak var noRecoveryTitle: UILabel!
-    @IBOutlet weak var noRecoveryComment: UILabel!
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
@@ -226,11 +223,11 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         baseHeaderView?.configure(title: viewModel.title, subtitle: nil)
         headerViewHeightConstraint.constant = baseHeaderView?.calculateHeight(for: headerView.frame.size.width) ?? 0
         ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
-        ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsComment)
+//        ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsComment)
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
-        ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetComment)
+//        ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetComment)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
-        ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoveryComment)
+//        ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoveryComment)
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
