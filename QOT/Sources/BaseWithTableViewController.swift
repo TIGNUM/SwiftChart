@@ -13,6 +13,11 @@ class BaseWithTableViewController: BaseViewController {
     private var selectedIndexPath: IndexPath?
     @IBOutlet weak var tableView: UITableView!
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.isUserInteractionEnabled = true
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
@@ -37,6 +42,11 @@ class BaseWithGroupedTableViewController: BaseViewController {
     lazy var tableView: UITableView = {
         return UITableView(frame: .zero, style: .grouped)
     }()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.isUserInteractionEnabled = true
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
