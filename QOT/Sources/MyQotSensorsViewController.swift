@@ -75,10 +75,9 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         ThemeText.mySensorsTitle.apply(sensorTitle, to: sensorHeaderLabel)
     }
 
-    func setHealthKit(title: String, status: String, showNoDataInfo: Bool, buttonEnabled: Bool) {
+    func setHealthKit(title: String, status: String, showNoDataInfo: Bool) {
         ThemeText.mySensorsDescriptionTitle.apply(title, to: healthKitLabel)
         healthKitStatusButton.setTitle(status, for: .normal)
-        healthKitStatusButton.isEnabled = buttonEnabled
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {
