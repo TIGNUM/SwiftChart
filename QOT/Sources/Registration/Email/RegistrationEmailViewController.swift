@@ -16,7 +16,7 @@ final class RegistrationEmailViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var emailField: QotPlaceholderTextField!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private weak var responseLabel: UILabel!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
 
     private var bottomConstraintInitialValue: CGFloat = 0
@@ -119,10 +119,10 @@ private extension RegistrationEmailViewController {
     func updateMessageUI(message: String?, isError: Bool) {
         if isError {
             emailField.textField.layer.borderColor = UIColor.redOrange.cgColor
-            ThemeText.registrationEmailError.apply(message, to: descriptionLabel)
+            ThemeText.registrationEmailError.apply(message, to: responseLabel)
         } else {
             emailField.textField.layer.borderColor = UIColor.sand40.cgColor
-            ThemeText.registrationEmailMessage.apply(message, to: descriptionLabel)
+            ThemeText.registrationEmailMessage.apply(message, to: responseLabel)
         }
     }
 }
