@@ -10,7 +10,11 @@ import UIKit
 
 class BaseWithTableViewController: BaseViewController {
 
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath? {
+        didSet {
+            tableView.isUserInteractionEnabled = (selectedIndexPath == nil)
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
 
     override func viewWillAppear(_ animated: Bool) {
@@ -20,11 +24,10 @@ class BaseWithTableViewController: BaseViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
-            selectedIndexPath = nil
         }
+        selectedIndexPath = nil
     }
 
     func didSelectRow(at indexPath: IndexPath) {
@@ -37,8 +40,11 @@ class BaseWithTableViewController: BaseViewController {
 }
 
 class BaseWithGroupedTableViewController: BaseViewController {
-
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath? {
+        didSet {
+            tableView.isUserInteractionEnabled = (selectedIndexPath == nil)
+        }
+    }
     lazy var tableView: UITableView = {
         return UITableView(frame: .zero, style: .grouped)
     }()
@@ -53,8 +59,8 @@ class BaseWithGroupedTableViewController: BaseViewController {
 
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
-            selectedIndexPath = nil
         }
+        selectedIndexPath = nil
     }
 
     func didSelectRow(at indexPath: IndexPath) {
