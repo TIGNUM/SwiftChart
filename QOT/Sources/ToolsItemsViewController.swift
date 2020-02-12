@@ -182,6 +182,10 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
         }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
 
 // MARK: - Audio Player Related

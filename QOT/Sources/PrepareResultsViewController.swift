@@ -257,6 +257,10 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return
         }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
 
 extension PrepareResultsViewController: PrepareResultsDelegatge {

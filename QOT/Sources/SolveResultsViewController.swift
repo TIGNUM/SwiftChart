@@ -155,6 +155,10 @@ extension SolveResultsViewController: UITableViewDelegate {
             return
         }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
 
 // MARK: - UITableViewDataSource

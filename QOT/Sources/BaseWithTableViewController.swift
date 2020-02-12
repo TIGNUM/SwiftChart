@@ -24,10 +24,10 @@ class BaseWithTableViewController: BaseViewController {
 
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        tableView.isUserInteractionEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            self.tableView.isUserInteractionEnabled = true
-        }
+    }
+
+    func didDeselectRow(at indexPath: IndexPath) {
+        selectedIndexPath = nil
     }
 }
 
@@ -49,5 +49,9 @@ class BaseWithGroupedTableViewController: BaseViewController {
 
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
+    }
+
+    func didDeselectRow(at indexPath: IndexPath) {
+        selectedIndexPath = nil
     }
 }
