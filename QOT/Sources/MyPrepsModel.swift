@@ -14,10 +14,13 @@ struct MyPlansViewModel {
     let titleEditMode: String
 
     let myPrepsTitle: String
+    let myPrepsBody: String
 
     let mindsetShifterTitle: String
+    let mindsetShifterBody: String
 
     let recoveryTitle: String
+    let recoveryBody: String
 }
 
 struct MyPrepsModel {

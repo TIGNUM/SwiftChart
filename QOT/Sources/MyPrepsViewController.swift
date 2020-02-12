@@ -39,9 +39,12 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var noPreparationsView: UIView!
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
-    @IBOutlet weak var noPrepsTitle: UILabel!
-    @IBOutlet weak var noMindsetTitle: UILabel!
-    @IBOutlet weak var noRecoveryTitle: UILabel!
+    @IBOutlet private weak var noPrepsTitle: UILabel!
+    @IBOutlet private weak var noMindsetTitle: UILabel!
+    @IBOutlet private weak var noRecoveryTitle: UILabel!
+    @IBOutlet private weak var noPrepsSubtitle: UILabel!
+    @IBOutlet private weak var noMindsetSubtitle: UILabel!
+    @IBOutlet private weak var noRecoverySubtitle: UILabel!
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorView: UIView!
@@ -49,6 +52,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
     private var editPressed: Bool = false
     private var canDelete: Bool = false
     private var viewModel: MyPlansViewModel!
+    private var bottomNavigationItems = UINavigationItem()
 
     lazy var cancelButton: UIBarButtonItem = {
         let button = RoundedButton(title: nil, target: self, action: #selector(cancelButton(_:)))
@@ -88,6 +92,15 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         trackPage()
     }
 
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        guard editPressed else { return super.bottomNavigationLeftBarItems() }
+        return []
+    }
+
+    override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return bottomNavigationItems.rightBarButtonItems
+    }
+
     // MARK: - Actions
     @IBAction func didChangeSegment(_ sender: Any) {
         tableView.reloadData()
@@ -104,6 +117,11 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
     @IBAction func editButton(_ sender: Any) {
         editPressed = !editPressed
+        if editPressed {
+            bottomNavigationItems.rightBarButtonItems = [getDeleteButton(isEnabled: editPressed), cancelButton]
+        } else {
+            bottomNavigationItems.rightBarButtonItems = nil
+        }
         canDelete = false
         let title = editPressed ? viewModel?.titleEditMode : viewModel.title
         baseHeaderView?.fadeTransition(0.5)
@@ -165,7 +183,39 @@ private extension MyPrepsViewController {
         editPressed = false
     }
 
+    @objc func addEventPrep() {
+        bottomNavigationItems.leftBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItem = nil
+        refreshBottomNavigationItems()
+        router.createEventPlan()
+    }
+
+    @objc func addMindsetShift() {
+        bottomNavigationItems.leftBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItem = nil
+        refreshBottomNavigationItems()
+        router.createMindsetShifter()
+    }
+
+    @objc func addRecovery() {
+        bottomNavigationItems.leftBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItem = nil
+        refreshBottomNavigationItems()
+        router.createRecoveryPlan()
+    }
+
+    func addButton(buttonTitle: String, action: Selector) {
+        let button = RoundedButton(title: buttonTitle,
+                                   target: self,
+                                   action: action)
+        ThemeButton.carbonButton.apply(button)
+        bottomNavigationItems.rightBarButtonItems = [button.barButton]
+        refreshBottomNavigationItems()
+    }
+
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
+        bottomNavigationItems.rightBarButtonItems = nil
+        refreshBottomNavigationItems()
         updateEditButton(hidden: false)
         tableView.alpha = 1
         switch sender.selectedSegmentIndex {
@@ -174,15 +224,23 @@ private extension MyPrepsViewController {
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
+                let buttonTitle = AppTextService.get(.my_qot_my_plans_event_preps_null_state_cta)
+                addButton(buttonTitle: buttonTitle, action: #selector(addEventPrep))
             }
         case SegmentView.mindsetShifter.rawValue:
             if interactor.numberOfRowsMindsetShifters() == 0 {
+
+                let buttonTitle = AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta)
+                addButton(buttonTitle: buttonTitle, action: #selector(addMindsetShift))
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
             }
         case SegmentView.recovery.rawValue:
             if interactor.numberOfRowsRecoveries() == 0 {
+
+                let buttonTitle = AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta)
+                addButton(buttonTitle: buttonTitle, action: #selector(addRecovery))
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -225,6 +283,9 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepTitle.apply(viewModel.myPrepsTitle, to: noPrepsTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.mindsetShifterTitle, to: noMindsetTitle)
         ThemeText.myQOTPrepTitle.apply(viewModel.recoveryTitle, to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
+        ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -317,15 +378,6 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 }
 
 extension MyPrepsViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        guard editPressed else { return super.bottomNavigationLeftBarItems() }
-        return []
-    }
-
-    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        guard editPressed else { return nil }
-        return [getDeleteButton(isEnabled: canDelete), cancelButton]
-    }
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {
         let button = RoundedButton(title: title, target: self, action: action)

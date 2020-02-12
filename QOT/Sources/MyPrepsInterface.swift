@@ -42,4 +42,7 @@ protocol MyPrepsInteractorInterface: Interactor {
 
 protocol MyPrepsRouterInterface {
     func dismiss()
+    func createRecoveryPlan()
+    func createEventPlan()
+    func createMindsetShifter()
 }

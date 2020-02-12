@@ -724,6 +724,13 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_data = AppTextKey("my_qot.my_tbv.tbv_tracker_data")
     static let my_qot_my_tbv_tbv_tracker_questionnaire = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire")
     static let my_qot_my_tbv_tbv_tracker_result = AppTextKey("my_qot.my_tbv.tbv_tracker.result")
+    static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
+    static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
+    static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
+    
+    static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
+    static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")
+    static let my_qot_my_plans_recovery_plans_null_state_cta = AppTextKey("my_qot.my_plans.recovery_plans.null_state.cta")
 
     static let notifications_view_title_daily_prep = AppTextKey("notifications.view.title_daily_prep")
     static let notifications_view_title_strategies = AppTextKey("notifications.view.title_strategies")
@@ -855,7 +862,5 @@ public extension AppTextKey {
     @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
-    static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
-    static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
-    static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
+
 }

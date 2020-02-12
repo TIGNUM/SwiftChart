@@ -72,7 +72,6 @@ private extension MySprintsListViewController {
                                    action: #selector(addSprint))
         ThemeButton.carbonButton.apply(button)
         button.isEnabled = true
-        bottomNavigationItems.rightBarButtonItems = [button.barButton]
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
         bottomNavigationItems.rightBarButtonItems = hasSprints ? nil : [button.barButton]
         refreshBottomNavigationItems()
