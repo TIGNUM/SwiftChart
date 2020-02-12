@@ -68,7 +68,7 @@ extension MyQotAdminLocalNotificationsInteractor: MyQotAdminLocalNotificationsIn
                                                                soundName: "QotNotification.aiff",
                                                                link: link)
                     let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
-                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER,
+                    let identifier = QDMGuideItemNotification.notificationIdentifier(with: DEBUG_LOCAL_NOTIFICATION_IDENTIFIER,
                                                                                     date: triggerDate,
                                                                                     link: link)
                     UNUserNotificationCenter.current().add(UNNotificationRequest(identifier: identifier, content: content, trigger: trigger)) { (_) in
