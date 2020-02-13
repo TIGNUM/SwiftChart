@@ -60,6 +60,24 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         return button.barButton
     }()
 
+    lazy var prepareEventButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(addEventPrep))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_event_preps_null_state_cta))
+        return button.barButton
+    }()
+
+    lazy var addMindsetShiftButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(addMindsetShift))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta))
+        return button.barButton
+    }()
+
+    lazy var planRecoveryButton: UIBarButtonItem = {
+        let button = RoundedButton(title: nil, target: self, action: #selector(addRecovery))
+        ThemableButton.myPlans.apply(button, title: AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta))
+        return button.barButton
+    }()
+
     func getDeleteButton(isEnabled: Bool) -> UIBarButtonItem {
         let button = RoundedButton(title: nil, target: self, action: #selector(removeRows(_:)))
         ThemableButton.myPlans.apply(button, title: AppTextService.get(.generic_view_button_delete))
@@ -83,7 +101,6 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         super.viewWillAppear(animated)
         hideAllNoDataViews()
         updateIndicator()
-        refreshBottomNavigationItems()
         interactor.fetchItemsAndUpdateView()
     }
 
@@ -152,6 +169,7 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
         hideAllNoDataViews()
         updateIndicator()
         showEmptyStateViewIfNeeded(sender)
+        updateButton()
     }
 
     @objc func confirmDeleteTapped(_ sender: Any) {
@@ -175,6 +193,20 @@ final class MyPrepsViewController: BaseViewController, ScreenZLevel2 {
 
 // MARK: - Private
 private extension MyPrepsViewController {
+
+    func updateButton() {
+        switch segmentedControl.selectedSegmentIndex {
+        case SegmentView.myPreps.rawValue:
+            updateBottomNavigation(super.bottomNavigationLeftBarItems() ?? [], [prepareEventButton])
+        case SegmentView.mindsetShifter.rawValue:
+            updateBottomNavigation(super.bottomNavigationLeftBarItems() ?? [], [addMindsetShiftButton])
+        case SegmentView.recovery.rawValue:
+            updateBottomNavigation(super.bottomNavigationLeftBarItems() ?? [], [planRecoveryButton])
+        default:
+            break
+        }
+    }
+
     func updateControls() {
         refreshBottomNavigationItems()
         segmentedControl.isHidden = false
@@ -199,41 +231,27 @@ private extension MyPrepsViewController {
 
     }
 
-    func addButton(buttonTitle: String, action: Selector) {
-        let button = RoundedButton(title: buttonTitle,
-                                   target: self,
-                                   action: action)
-        ThemeButton.carbonButton.apply(button)
-        bottomNavigationItems.rightBarButtonItems = [button.barButton]
-        refreshBottomNavigationItems()
-    }
-
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
-        bottomNavigationItems.rightBarButtonItems = nil
+        bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
         refreshBottomNavigationItems()
         updateEditButton(hidden: false)
         tableView.alpha = 1
+        updateButton()
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             if interactor.numberOfRowsPreparations() == 0 {
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
-                let buttonTitle = AppTextService.get(.my_qot_my_plans_event_preps_null_state_cta)
-                addButton(buttonTitle: buttonTitle, action: #selector(addEventPrep))
             }
         case SegmentView.mindsetShifter.rawValue:
             if interactor.numberOfRowsMindsetShifters() == 0 {
-                let buttonTitle = AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta)
-                addButton(buttonTitle: buttonTitle, action: #selector(addMindsetShift))
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
             }
         case SegmentView.recovery.rawValue:
             if interactor.numberOfRowsRecoveries() == 0 {
-                let buttonTitle = AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta)
-                addButton(buttonTitle: buttonTitle, action: #selector(addRecovery))
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
@@ -279,6 +297,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
+        bottomNavigationItems.rightBarButtonItem = prepareEventButton
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
@@ -321,7 +340,6 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         if editPressed == true {
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
         }
-
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             let item = interactor.itemPrep(at: indexPath)

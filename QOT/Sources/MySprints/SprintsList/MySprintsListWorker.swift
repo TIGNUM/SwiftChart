@@ -66,10 +66,6 @@ final class MySprintsListWorker {
         return AppTextService.get(.my_qot_my_sprints_null_state_title)
     }()
 
-//    lazy var emptyContentAlertMessage: NSAttributedString = {
-//        return NSAttributedString(string: AppTextService.get(.my_qot_my_sprints_null_state_body))
-//    }()
-
     lazy var statusActive: String = {
         return AppTextService.get(.my_qot_my_sprints_section_item_label_active)
     }()
