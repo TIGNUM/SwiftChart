@@ -10,6 +10,7 @@ import Foundation
 import UserNotifications
 import qot_dal
 
+let DEBUG_LOCAL_NOTIFICATION_IDENTIFIER = "DEBUG_LOCAL_NOTIFICATION_IDENTIFIER"
 final class UserNotificationsManager {
     static private var _main: UserNotificationsManager?
     static public var main: UserNotificationsManager {
@@ -22,7 +23,8 @@ final class UserNotificationsManager {
     }
     private let queue = DispatchQueue(label: "UserNotificationsManager", qos: .background)
     private let notificationCenter = UNUserNotificationCenter.current()
-
+    private var isScheduling = false
+    private var needToSchedule = false
     init() {
         // listen Sprint Up/Down, GuideItemNotification Down
         NotificationCenter.default.addObserver(self,
@@ -38,16 +40,40 @@ final class UserNotificationsManager {
         notificationCenter.removeAllDeliveredNotifications()
     }
 
+    func getDailyCheckInLocalNotificationConfigruations(_ completion: @escaping ([DailyCheckInLocalNotificationConfig]) -> Void) {
+        SettingService.main.getSettingFor(key: .DailyCheckInLocalNotifidationConfiguration) { (setting, _, _) in
+            var configs: [DailyCheckInLocalNotificationConfig] = Array(1...7).compactMap({ /// create default config
+                DailyCheckInLocalNotificationConfig(weekday: $0)
+            })
+            if let json = setting?.textValue, let jsonData = json.data(using: .utf8) {
+                do { /// update config from setting
+                    configs = try JSONDecoder().decode([DailyCheckInLocalNotificationConfig].self, from: jsonData)
+                } catch {
+                    log("failed to get Daily check in local notification configuration", level: .error)
+                }
+            }
+            completion(configs)
+        }
+    }
+
     func scheduleNotifications() {
-        notificationCenter.getNotificationSettings { settings in
+        guard isScheduling == false else {
+            needToSchedule = true
+            return
+        }
+        self.notificationCenter.getNotificationSettings { settings in
             switch settings.authorizationStatus {
-            case .authorized, .provisional: self._scheduleNotifications()
+            case .authorized, .provisional:
+                self.isScheduling = true
+                self.getDailyCheckInLocalNotificationConfigruations { (configs) in
+                    self._scheduleNotifications(with: configs)
+                }
             default: break
             }
         }
     }
 
-    func _scheduleNotifications() {
+    func _scheduleNotifications(with dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
         let dispatchGroup = DispatchGroup()
 
         // schedule new notifications
@@ -64,7 +90,7 @@ final class UserNotificationsManager {
             requests.append(contentsOf: futureRequests.compactMap({ $0.notificationRequest }))
             scheduledNotificationItems.append(contentsOf: futureRequests)
             // report scheduled guide item notifications
-            NotificationService.main.reportScheduledLocalNotification(items) { (_) in /* WOW */ }
+            NotificationService.main.reportScheduledLocalNotification(futureRequests) { (_) in /* WOW */ }
             dispatchGroup.leave()
         }
 
@@ -129,14 +155,22 @@ final class UserNotificationsManager {
                                                                           link: link) { (_) in /* WOW */ }
             }
             requests.append(contentsOf: preparationNotificationRequests)
-            self._scheduleNotifications(currentSprint, sprintNotificationConfig, requests)
+            self._scheduleNotifications(currentSprint, sprintNotificationConfig, requests, dailyCheckInNotificationConfigs)
         }
     }
 
     private func _scheduleNotifications(_ currentSprint: QDMSprint?,
                                         _ sprintNotificationConfig: [QDMSprintNotificationConfig],
-                                        _ requests: [UNNotificationRequest]) {
-        NotificationConfigurationObject.scheduleDailyNotificationsIfNeeded()
+                                        _ requests: [UNNotificationRequest],
+                                        _ dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
+        notificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
+            let pendingIdeintifiers = requests.compactMap({ $0.identifier })
+            for config in dailyCheckInNotificationConfigs {
+                if pendingIdeintifiers.contains(config.identifier()) == false {
+                    scheduleDailycheckInNotification(config: config)
+                }
+            }
+        })
         self.createSprintNotifications(currentSprint, sprintNotificationConfig, requests) { (requests, identifiersToRemove) in
             guard let newRequests = requests, newRequests.isEmpty == false else {
                 return
@@ -167,12 +201,15 @@ final class UserNotificationsManager {
             })
             notificationCenter.getPendingNotificationRequests(completionHandler: { (pendingNotifications) in
                 let pendingNotificaionIds = pendingNotifications.compactMap({ $0.identifier })
-                let allValidFutureNotificationIds = newRequests.compactMap({ $0.identifier })
+                var allValidFutureNotificationIds = newRequests.compactMap({ $0.identifier })
+                allValidFutureNotificationIds.append(contentsOf: dailyCheckInNotificationConfigs.compactMap({
+                    $0.identifier()
+                }))
                 let finalRequests = newRequests.filter({ pendingNotificaionIds.contains(obj: $0.identifier) == false })
 
                 // Remove Pending notifications which are not valid any more.
                 var pendingNotificationIdsToRemove = pendingNotificaionIds.filter({
-                    if allValidFutureNotificationIds.contains(obj: $0) || $0.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER) {
+                    if allValidFutureNotificationIds.contains(obj: $0) || $0.contains(DEBUG_LOCAL_NOTIFICATION_IDENTIFIER) {
                         return false
                     }
                     return true
@@ -194,6 +231,13 @@ final class UserNotificationsManager {
                                 }
                             }
                         }
+                        if self.needToSchedule {
+                            DispatchQueue.main.async {
+                                self.scheduleNotifications()
+                            }
+                        }
+                        self.needToSchedule = false
+                        self.isScheduling = false
                     }
                 })
             })
@@ -278,6 +322,35 @@ final class UserNotificationsManager {
             completion(filteredRequests, requestIdentifiersToRemove)
         }
     }
+
+    func checkDailyCheckInResultAndRemoveInvalidNotifications() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        var dailyNotifications = [UNNotification]()
+        var todayNotification: UNNotification?
+        var removeAll = false
+        let beginningOfToday = Date.beginingOfDay()
+
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, initiated, error) in
+            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? 0) > 0
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        notificationCenter.getDeliveredNotifications { (notifications) in
+            dailyNotifications = notifications.filter({$0.request.identifier.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)})
+            todayNotification = dailyNotifications.filter({$0.date.beginingOfDate() == beginningOfToday}).first
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if removeAll == false, let notificationToRemove = todayNotification {
+                dailyNotifications.remove(object: notificationToRemove)
+            }
+            notificationCenter.removeDeliveredNotifications(withIdentifiers: dailyNotifications.compactMap({ $0.request.identifier }))
+        }
+    }
 }
 
 extension UserNotificationsManager {
@@ -286,9 +359,13 @@ extension UserNotificationsManager {
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.SPRINT, .LOCAL_NOTIFICATION, .NONE]
+        let dataTypes: [SyncDataType] = [.SPRINT, .LOCAL_NOTIFICATION, .DAILY_CHECK_IN_RESULT, .PREPARATION]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
-        scheduleNotifications()
+        switch syncResult.dataType {
+        case .DAILY_CHECK_IN_RESULT: checkDailyCheckInResultAndRemoveInvalidNotifications()
+        default:
+            scheduleNotifications()
+        }
     }
 }

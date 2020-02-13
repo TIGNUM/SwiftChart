@@ -987,7 +987,7 @@
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
-		CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */; };
+		CB35503E20592C61000ECAFA /* DailyCheckInLocalNotificationConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB35503D20592C61000ECAFA /* DailyCheckInLocalNotificationConfig.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */; };
 		CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */; };
 		CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */ = {isa = PBXBuildFile; fileRef = CB78420C1FB30DA800C91546 /* EKParticipant+ObjC.m */; };
@@ -2223,7 +2223,7 @@
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
-		CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationConfigurationObject.swift; sourceTree = "<group>"; };
+		CB35503D20592C61000ECAFA /* DailyCheckInLocalNotificationConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckInLocalNotificationConfig.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuModel.swift; sourceTree = "<group>"; };
 		CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
 		CB7842061FB30AC000C91546 /* QOT-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "QOT-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -4554,7 +4554,7 @@
 		CB35503A20592BE1000ECAFA /* NotificationSetting */ = {
 			isa = PBXGroup;
 			children = (
-				CB35503D20592C61000ECAFA /* NotificationConfigurationObject.swift */,
+				CB35503D20592C61000ECAFA /* DailyCheckInLocalNotificationConfig.swift */,
 			);
 			name = NotificationSetting;
 			sourceTree = "<group>";
@@ -6229,7 +6229,7 @@
 				B45DA6C023AA6316006E7E33 /* MyQOTAdminChooseBucketsViewController.swift in Sources */,
 				B430D7C923A911DE00C75C9C /* MyQotAdminSettingsListInterface.swift in Sources */,
 				BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */,
-				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
+				CB35503E20592C61000ECAFA /* DailyCheckInLocalNotificationConfig.swift in Sources */,
 				DBA3921B23247B2D0017E7F6 /* QuestionaireCellIndicator.swift in Sources */,
 				75423EF822CE242B008EE726 /* TBVRateHistoryPresenter.swift in Sources */,
 				BB15775C233A1D1D00202978 /* ArticleTopNavBar.swift in Sources */,

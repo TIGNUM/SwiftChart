@@ -267,6 +267,10 @@ extension DailyBriefViewController {
         }
     }
 
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
+
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         navBarHeader?.updateAlpha(basedOn: scrollView.contentOffset.y)
         delegate?.handlePan(offsetY: scrollView.contentOffset.y)

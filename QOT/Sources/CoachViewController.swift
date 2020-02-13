@@ -109,4 +109,8 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         trackUserEvent(.SELECT, valueType: String(indexPath.row), action: .TAP)
         interactor?.handleTap(coachSection: sectionTapped ?? .search)
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
