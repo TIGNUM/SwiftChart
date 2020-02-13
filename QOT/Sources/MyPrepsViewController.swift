@@ -184,23 +184,17 @@ private extension MyPrepsViewController {
     }
 
     @objc func addEventPrep() {
-        bottomNavigationItems.leftBarButtonItems = nil
-        bottomNavigationItems.rightBarButtonItem = nil
-        refreshBottomNavigationItems()
+        updateBottomNavigation([], [])
         router.createEventPlan()
     }
 
     @objc func addMindsetShift() {
-        bottomNavigationItems.leftBarButtonItems = nil
-        bottomNavigationItems.rightBarButtonItem = nil
-        refreshBottomNavigationItems()
+        updateBottomNavigation([], [])
         router.createMindsetShifter()
     }
 
     @objc func addRecovery() {
-        bottomNavigationItems.leftBarButtonItems = nil
-        bottomNavigationItems.rightBarButtonItem = nil
-        refreshBottomNavigationItems()
+        updateBottomNavigation([], [])
         router.createRecoveryPlan()
 
     }
@@ -238,7 +232,6 @@ private extension MyPrepsViewController {
             }
         case SegmentView.recovery.rawValue:
             if interactor.numberOfRowsRecoveries() == 0 {
-
                 let buttonTitle = AppTextService.get(.my_qot_my_plans_recovery_plans_null_state_cta)
                 addButton(buttonTitle: buttonTitle, action: #selector(addRecovery))
                 noRecoveriesView.isHidden = false
