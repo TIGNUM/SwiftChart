@@ -202,6 +202,7 @@ private extension MyPrepsViewController {
         bottomNavigationItems.rightBarButtonItem = nil
         refreshBottomNavigationItems()
         router.createRecoveryPlan()
+
     }
 
     func addButton(buttonTitle: String, action: Selector) {
@@ -229,7 +230,6 @@ private extension MyPrepsViewController {
             }
         case SegmentView.mindsetShifter.rawValue:
             if interactor.numberOfRowsMindsetShifters() == 0 {
-
                 let buttonTitle = AppTextService.get(.my_qot_my_plans_mindset_shifts_null_state_cta)
                 addButton(buttonTitle: buttonTitle, action: #selector(addMindsetShift))
                 noMIndsetShiftersView.isHidden = false
