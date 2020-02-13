@@ -356,6 +356,7 @@ public extension AppTextKey {
     static let generic_event_removed_alert_event_removed_title = AppTextKey("generic.event_removed.alert.event_removed.title")
     static let generic_alert_unknown_error_body = AppTextKey("generic.alert.unknown_error.body")
     static let generic_view_button_cancel = AppTextKey("generic.view.button_cancel")
+    static let generic_view_button_update = AppTextKey("generic.view.button_update")
     static let generic_view_button_delete = AppTextKey("generic.view.button_delete")
     static let generic_view_button_done = AppTextKey("generic.view.button_done")
     static let generic_view_button_save = AppTextKey("generic.view.button_save")
