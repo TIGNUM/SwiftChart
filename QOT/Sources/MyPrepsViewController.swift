@@ -228,7 +228,6 @@ private extension MyPrepsViewController {
     @objc func addRecovery() {
         updateBottomNavigation([], [])
         router.createRecoveryPlan()
-
     }
 
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
@@ -297,7 +296,6 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         ThemeText.myQOTPrepComment.apply(viewModel.myPrepsBody, to: noPrepsSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.mindsetShifterBody, to: noMindsetSubtitle)
         ThemeText.myQOTPrepComment.apply(viewModel.recoveryBody, to: noRecoverySubtitle)
-        bottomNavigationItems.rightBarButtonItem = prepareEventButton
         ThemeView.level3.apply(tableView)
         setupSegementedControl()
         self.viewModel = viewModel
