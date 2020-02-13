@@ -161,6 +161,6 @@ extension ChoiceViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [saveChangesButtonItem(#selector(didTapSave)), cancelButtonItem(#selector(didTapCancel))]
+        return [updateChangesButtonItem(#selector(didTapSave)), cancelButtonItem(#selector(didTapCancel))]
     }
 }

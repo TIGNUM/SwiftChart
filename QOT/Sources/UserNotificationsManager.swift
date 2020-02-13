@@ -322,6 +322,35 @@ final class UserNotificationsManager {
             completion(filteredRequests, requestIdentifiersToRemove)
         }
     }
+
+    func checkDailyCheckInResultAndRemoveInvalidNotifications() {
+        let notificationCenter = UNUserNotificationCenter.current()
+        var dailyNotifications = [UNNotification]()
+        var todayNotification: UNNotification?
+        var removeAll = false
+        let beginningOfToday = Date.beginingOfDay()
+
+        let dispatchGroup = DispatchGroup()
+        dispatchGroup.enter()
+        MyDataService.main.getDailyCheckInResults(from: beginningOfToday, to: Date.endOfDay()) { (results, initiated, error) in
+            removeAll = (results?.filter({$0.date.beginingOfDate() == beginningOfToday}).count ?? 0) > 0
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.enter()
+        notificationCenter.getDeliveredNotifications { (notifications) in
+            dailyNotifications = notifications.filter({$0.request.identifier.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)})
+            todayNotification = dailyNotifications.filter({$0.date.beginingOfDate() == beginningOfToday}).first
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            if removeAll == false, let notificationToRemove = todayNotification {
+                dailyNotifications.remove(object: notificationToRemove)
+            }
+            notificationCenter.removeDeliveredNotifications(withIdentifiers: dailyNotifications.compactMap({ $0.request.identifier }))
+        }
+    }
 }
 
 extension UserNotificationsManager {
@@ -330,9 +359,13 @@ extension UserNotificationsManager {
     }
 
     @objc func didFinishSynchronization(_ notification: Notification) {
-        let dataTypes: [SyncDataType] = [.SPRINT, .LOCAL_NOTIFICATION, .NONE]
+        let dataTypes: [SyncDataType] = [.SPRINT, .LOCAL_NOTIFICATION, .DAILY_CHECK_IN_RESULT, .PREPARATION]
         guard let syncResult = notification.object as? SyncResultContext,
             dataTypes.contains(obj: syncResult.dataType) else { return }
-        scheduleNotifications()
+        switch syncResult.dataType {
+        case .DAILY_CHECK_IN_RESULT: checkDailyCheckInResultAndRemoveInvalidNotifications()
+        default:
+            scheduleNotifications()
+        }
     }
 }

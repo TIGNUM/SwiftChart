@@ -59,9 +59,9 @@ extension UIViewController {
                                     backgroundColor: .sand08)
     }
 
-    func saveChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
-        return roundedBarButtonItem(title: AppTextService.get(.my_qot_my_plans_edit_button_delete),
-                                    buttonWidth: .SaveChanges,
+    func updateChangesButtonItem(_ action: Selector) -> UIBarButtonItem {
+        return roundedBarButtonItem(title: AppTextService.get(.generic_view_button_update),
+                                    buttonWidth: .Update,
                                     action: action,
                                     borderColor: .accent40)
     }
