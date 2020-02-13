@@ -75,8 +75,7 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
             status = localizedSensorsDisconnected
             self.presenter.setHealthKit(title: self.worker.healthKitSensor.sensor.title,
                                         status: status,
-                                        showNoDataInfo: false,
-                                        buttonEnabled: true)
+                                        showNoDataInfo: false)
         default:
             status = localizedSensorsConnected
             HealthService.main.hasSleepData(from: Date().dateAfterYears(-1), to: Date()) { [weak self] (hasData) in
@@ -85,8 +84,7 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
                 DispatchQueue.main.async {
                     strongSelf.presenter.setHealthKit(title: strongSelf.worker.healthKitSensor.sensor.title,
                                                  status: status,
-                                                 showNoDataInfo: !hasData,
-                                                 buttonEnabled: !hasData)
+                                                 showNoDataInfo: !hasData)
                 }
             }
         }

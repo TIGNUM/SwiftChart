@@ -159,32 +159,21 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
             }
         default:
             let cell: WhatsHotCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            guard
-                interactor?.whatsHotArticles().count ?? 0 > indexPath.item,
-                let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item] else {
-                    cell.configure(title: nil,
-                                   publishDate: nil,
-                                   author: nil,
-                                   timeToRead: nil,
-                                   imageURL: nil,
-                                   isNew: false,
-                                   forcedColorMode: .dark)
-                    return cell
-            }
-            cell.configure(title: whatsHotArticle.title,
-                           publishDate: whatsHotArticle.publishDate,
-                           author: whatsHotArticle.author,
-                           timeToRead: whatsHotArticle.timeToRead,
-                           imageURL: whatsHotArticle.image,
-                           isNew: whatsHotArticle.isNew,
+            let whatsHotArticle = interactor?.whatsHotArticles().at(index: indexPath.item)
+            cell.configure(title: whatsHotArticle?.title,
+                           publishDate: whatsHotArticle?.publishDate,
+                           author: whatsHotArticle?.author,
+                           timeToRead: whatsHotArticle?.timeToRead,
+                           imageURL: whatsHotArticle?.image,
+                           isNew: whatsHotArticle?.isNew,
                            forcedColorMode: .dark)
             return cell
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 layout collectionViewLayout: UICollectionViewLayout,
-                                 sizeForItemAt indexPath: IndexPath) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
@@ -195,20 +184,30 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
                 return CGSize(width: view.frame.width * 0.5, height: 96)
             }
         default:
-            return CGSize(width: view.frame.width, height: 214)
+            let whatsHotArticle = interactor?.whatsHotArticles().at(index: indexPath.item)?.title ?? ""
+            let label = UILabel(frame: CGRect(x: 24,
+                                              y: 0,
+                                              width: view.frame.width,
+                                              height: CGFloat.greatestFiniteMagnitude))
+            label.numberOfLines = 0
+            label.lineBreakMode = .byWordWrapping
+            label.font = UIFont.sfProtextLight(ofSize: 16.0)
+            label.text = whatsHotArticle.uppercased()
+            label.sizeToFit()
+            return CGSize(width: view.frame.width, height: 214 + label.frame.height)
         }
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 layout collectionViewLayout: UICollectionViewLayout,
-                                 referenceSizeForHeaderInSection section: Int) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch section {
         case Knowing.Section.header.rawValue:
             return CGSize(width: view.frame.width, height: 0)
         default:
             if let componentHeader = self.collectionView(collectionView, viewForSupplementaryElementOfKind: UICollectionElementKindSectionHeader, at: IndexPath(row: 0, section: section)) as? ComponentHeaderView,
-            let sectionType = Knowing.Section(rawValue: section),
-            let header = interactor?.header(for: sectionType) {
+                let sectionType = Knowing.Section(rawValue: section),
+                let header = interactor?.header(for: sectionType) {
                 componentHeader.configure(title: header.title, subtitle: header.subtitle, secondary: true)
                 return CGSize(width: view.frame.width, height: componentHeader.calculateHeight(for: self.collectionView.frame.size.width))
             }
@@ -217,8 +216,8 @@ extension KnowingViewController: UICollectionViewDataSource, UICollectionViewDel
     }
 
     func collectionView(_ collectionView: UICollectionView,
-                                 layout collectionViewLayout: UICollectionViewLayout,
-                                 referenceSizeForFooterInSection section: Int) -> CGSize {
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        referenceSizeForFooterInSection section: Int) -> CGSize {
         return CGSize(width: 0, height: 0)
     }
 
