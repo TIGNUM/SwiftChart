@@ -177,6 +177,10 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             }
         }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
 
 // MARK: - Audio Player Related

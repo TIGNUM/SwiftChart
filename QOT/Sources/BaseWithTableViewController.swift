@@ -10,44 +10,64 @@ import UIKit
 
 class BaseWithTableViewController: BaseViewController {
 
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath? {
+        didSet {
+            tableView.isUserInteractionEnabled = (selectedIndexPath == nil)
+        }
+    }
     @IBOutlet weak var tableView: UITableView!
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.isUserInteractionEnabled = true
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
-            selectedIndexPath = nil
         }
+        selectedIndexPath = nil
     }
 
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
-        tableView.isUserInteractionEnabled = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(500)) {
-            self.tableView.isUserInteractionEnabled = true
-        }
+    }
+
+    func didDeselectRow(at indexPath: IndexPath) {
+        selectedIndexPath = nil
     }
 }
 
 class BaseWithGroupedTableViewController: BaseViewController {
-
-    private var selectedIndexPath: IndexPath?
+    private var selectedIndexPath: IndexPath? {
+        didSet {
+            tableView.isUserInteractionEnabled = (selectedIndexPath == nil)
+        }
+    }
     lazy var tableView: UITableView = {
         return UITableView(frame: .zero, style: .grouped)
     }()
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tableView.isUserInteractionEnabled = true
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         if let indexPath = selectedIndexPath {
             tableView.deselectRow(at: indexPath, animated: true)
-            selectedIndexPath = nil
         }
+        selectedIndexPath = nil
     }
 
     func didSelectRow(at indexPath: IndexPath) {
         selectedIndexPath = indexPath
+    }
+
+    func didDeselectRow(at indexPath: IndexPath) {
+        selectedIndexPath = nil
     }
 }

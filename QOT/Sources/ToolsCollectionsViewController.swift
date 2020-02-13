@@ -226,6 +226,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
             }
         }
     }
+
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        didDeselectRow(at: indexPath)
+    }
 }
 
 // MARK: - Bottom Navigation
