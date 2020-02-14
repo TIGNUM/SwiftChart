@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -47,30 +47,30 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TITLE" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-wp-JRq">
-                        <rect key="frame" x="24" y="124" width="365" height="16"/>
+                        <rect key="frame" x="24" y="124" width="365" height="19"/>
                         <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="16"/>
                         <color key="textColor" red="0.90196078430000004" green="0.90196078430000004" blue="0.90196078430000004" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="30. Nov | 99 min read" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWq-mh-37u">
-                        <rect key="frame" x="266.5" y="152" width="122.5" height="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="30. Nov | 99 min read" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZWq-mh-37u">
+                        <rect key="frame" x="248.5" y="155" width="144.5" height="14.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-RG-B48">
-                        <rect key="frame" x="24" y="152" width="234.5" height="15"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c9-Lt-U9a">
-                        <rect key="frame" x="24" y="191" width="389" height="1"/>
+                        <rect key="frame" x="24" y="193.5" width="389" height="1"/>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="fG8-tU-cqe"/>
                         </constraints>
                     </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Author" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3H-RG-B48">
+                        <rect key="frame" x="24" y="155" width="209.5" height="14.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                        <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
                     <constraint firstItem="M6a-wp-JRq" firstAttribute="leading" secondItem="DrR-Tb-gcP" secondAttribute="leading" constant="24" id="2LN-Am-Gbn"/>
@@ -81,15 +81,15 @@
                     <constraint firstItem="ILB-so-Yt1" firstAttribute="leading" secondItem="j52-eE-vA7" secondAttribute="leading" id="H8t-jp-kEC"/>
                     <constraint firstItem="d3H-RG-B48" firstAttribute="leading" secondItem="DrR-Tb-gcP" secondAttribute="leading" constant="24" id="T3A-7Q-rmg"/>
                     <constraint firstItem="1c9-Lt-U9a" firstAttribute="top" secondItem="ZWq-mh-37u" secondAttribute="bottom" constant="24" id="TRS-gr-6fC"/>
+                    <constraint firstItem="ZWq-mh-37u" firstAttribute="leading" secondItem="d3H-RG-B48" secondAttribute="trailing" constant="15" id="Uhm-qZ-dLm"/>
                     <constraint firstItem="j52-eE-vA7" firstAttribute="top" secondItem="DrR-Tb-gcP" secondAttribute="top" constant="32" id="VTu-6y-TBJ"/>
-                    <constraint firstItem="ZWq-mh-37u" firstAttribute="centerY" secondItem="d3H-RG-B48" secondAttribute="centerY" id="Vaj-lz-kZB"/>
                     <constraint firstItem="ILB-so-Yt1" firstAttribute="bottom" secondItem="j52-eE-vA7" secondAttribute="bottom" id="btR-to-610"/>
-                    <constraint firstAttribute="trailing" secondItem="ZWq-mh-37u" secondAttribute="trailing" constant="24" id="d0R-mK-bmj"/>
+                    <constraint firstAttribute="trailing" secondItem="ZWq-mh-37u" secondAttribute="trailing" constant="20" id="d0R-mK-bmj"/>
                     <constraint firstItem="j52-eE-vA7" firstAttribute="leading" secondItem="DrR-Tb-gcP" secondAttribute="leading" constant="24" id="hSc-Hd-jbJ"/>
-                    <constraint firstItem="1c9-Lt-U9a" firstAttribute="top" secondItem="d3H-RG-B48" secondAttribute="bottom" constant="24" id="kBT-hV-Ui7"/>
                     <constraint firstItem="d3H-RG-B48" firstAttribute="top" secondItem="M6a-wp-JRq" secondAttribute="bottom" constant="12" id="kmr-Og-jMD"/>
-                    <constraint firstItem="ZWq-mh-37u" firstAttribute="leading" relation="lessThanOrEqual" secondItem="d3H-RG-B48" secondAttribute="trailing" constant="8" id="sCG-9J-iFZ"/>
+                    <constraint firstItem="ZWq-mh-37u" firstAttribute="width" relation="lessThanOrEqual" secondItem="DrR-Tb-gcP" secondAttribute="width" multiplier="0.35" id="ob7-TQ-fvX"/>
                     <constraint firstItem="1c9-Lt-U9a" firstAttribute="leading" secondItem="DrR-Tb-gcP" secondAttribute="leading" constant="24" id="tYL-zR-ORc"/>
+                    <constraint firstItem="ZWq-mh-37u" firstAttribute="top" secondItem="M6a-wp-JRq" secondAttribute="bottom" constant="12" id="vum-lK-i0Q"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="413" height="214"/>
