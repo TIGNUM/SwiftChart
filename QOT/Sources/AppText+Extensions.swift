@@ -498,11 +498,8 @@ public extension AppTextKey {
     static let my_qot_my_plans_alert_delete_button_continue = AppTextKey("my_qot.my_plans.alert.delete.button_continue")
     static let my_qot_my_plans_alert_delete_title = AppTextKey("my_qot.my_plans.alert.delete.title")
     static let my_qot_my_plans_alert_delete_body = AppTextKey("my_qot.my_plans.alert.delete.body")
-    static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
     static let my_qot_my_plans_event_preps_null_state_title = AppTextKey("my_qot.my_plans.event_preps.null_state.title")
-    static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
     static let my_qot_my_plans_mindset_shifts_null_state_title = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.title")
-    static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
     static let my_qot_my_plans_recovery_plans_null_state_title = AppTextKey("my_qot.my_plans.recovery_plans.null_state.title")
     static let my_qot_my_profile_section_about_us_title = AppTextKey("my_qot.my_profile.section_about_us.title")
     static let my_qot_my_profile_section_account_settings_title = AppTextKey("my_qot.my_profile.section_account_settings.title")
@@ -595,7 +592,6 @@ public extension AppTextKey {
     static let my_qot_my_sprints_null_state_title_header = AppTextKey("my_qot.my_sprints.null_state.title_header")
     static let my_qot_my_sprints_section_item_label_pause = AppTextKey("my_qot.my_sprints.section_item.label_pause")
     static let my_qot_my_sprints_section_sprint_plan_title_sprint_plan = AppTextKey("my_qot.my_sprints.section_sprint_plan.title_sprint_plan")
-    static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
     static let my_qot_my_sprints_section_item_label_upcoming = AppTextKey("my_qot.my_sprints.section_item.label_upcoming")
     static let my_qot_my_sprints_my_sprint_details_alert_sprint_in_progress_title = AppTextKey("my_qot.my_sprints.my_sprint_details.alert.sprint_in_progress.title")
     static let my_qot_my_sprints_null_state_title = AppTextKey("my_qot.my_sprints.null_state.title")
@@ -729,6 +725,13 @@ public extension AppTextKey {
     static let my_qot_my_tbv_tbv_tracker_data = AppTextKey("my_qot.my_tbv.tbv_tracker_data")
     static let my_qot_my_tbv_tbv_tracker_questionnaire = AppTextKey("my_qot.my_tbv.tbv_tracker.questionnaire")
     static let my_qot_my_tbv_tbv_tracker_result = AppTextKey("my_qot.my_tbv.tbv_tracker.result")
+    static let my_qot_my_plans_recovery_plans_null_state_body = AppTextKey("my_qot.my_plans.recovery_plans.null_state.body")
+    static let my_qot_my_plans_mindset_shifts_null_state_body = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.body")
+    static let my_qot_my_plans_event_preps_null_state_body = AppTextKey("my_qot.my_plans.event_preps.null_state.body")
+
+    static let my_qot_my_plans_mindset_shifts_null_state_cta = AppTextKey("my_qot.my_plans.mindset_shifts.null_state.cta")
+    static let my_qot_my_plans_event_preps_null_state_cta = AppTextKey("my_qot.my_plans.event_preps.null_state.cta")
+    static let my_qot_my_plans_recovery_plans_null_state_cta = AppTextKey("my_qot.my_plans.recovery_plans.null_state.cta")
 
     static let notifications_view_title_daily_prep = AppTextKey("notifications.view.title_daily_prep")
     static let notifications_view_title_strategies = AppTextKey("notifications.view.title_strategies")
@@ -862,4 +865,6 @@ public extension AppTextKey {
 
     @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
+    static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
+
 }

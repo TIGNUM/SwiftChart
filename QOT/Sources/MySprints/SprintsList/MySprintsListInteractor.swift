@@ -54,7 +54,7 @@ final class MySprintsListInteractor {
                                            style: .regular,
                                            icon: R.image.my_sprints_completed() ?? UIImage(),
                                            title: self.worker.emptyContentAlertTitle,
-                                           message: self.worker.emptyContentAlertMessage,
+                                           message: nil,
                                            transparent: false)
     }()
 
