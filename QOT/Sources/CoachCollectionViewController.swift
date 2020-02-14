@@ -16,7 +16,7 @@ public extension Notification.Name {
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
-    func handlePan(offsetY: CGFloat)
+    func handlePan(offsetY: CGFloat, isDragging: Bool)
     func moveToCell(item: Int)
 }
 
@@ -43,6 +43,8 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
     }
     private var didDownSyncPreparations = false
     private var didDownSyncEvents = false
+    private var displaySearchDragOffset: CGFloat = 88.0
+    private var displaySearchWithDecelerating: Bool = false
 
     lazy var pageTitle: String? = {
         return AppTextService.get(.know_section_header_title)
@@ -110,6 +112,17 @@ final class CoachCollectionViewController: BaseViewController, ScreenZLevel1 {
         coachButton.alpha = 0.0
         UIView.animate(withDuration: 0.75) { [weak self] in
             self?.coachButton.alpha = self?.panSearchShowing == true ? 0.0 : 1.0
+        }
+
+        let settingService = SettingService.main
+        settingService.getSettingFor(key: .Level1ScreenSearchBarDragOffset) { (setting, _, _) in
+            if let offset = setting?.longValue {
+                self.displaySearchDragOffset = CGFloat(offset)
+            }
+        }
+
+        settingService.getSettingFor(key: .Level1ScreenDisplaySearchWithDecelerating) { (setting, _, _) in
+            self.displaySearchWithDecelerating = setting?.booleanValue ?? false
         }
     }
 
@@ -295,10 +308,10 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
         }
     }
 
-    func handlePan(offsetY: CGFloat) {
+    func handlePan(offsetY: CGFloat, isDragging: Bool) {
         if panSearchShowing { return }
 
-        let maxDistance = view.frame.height * 0.25
+        let maxDistance = displaySearchDragOffset
         var newY: CGFloat = offsetY
 
         if panActive {
@@ -310,7 +323,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
                 panActive = true
             }
         }
-        if offsetY <= -maxDistance {
+        if offsetY <= -maxDistance, (isDragging || displaySearchWithDecelerating) {
             panSearchShowing = true
             newY = -view.frame.height
         }

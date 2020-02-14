@@ -173,6 +173,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
-        delegate?.handlePan(offsetY: scrollView.contentOffset.y)
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y,
+                            isDragging: scrollView.isDragging && !scrollView.isDecelerating)
     }
 }
