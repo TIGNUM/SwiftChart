@@ -43,7 +43,7 @@
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30. Nov | 99 min read" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-wy-J8N">
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="30. Nov | 99 min read" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-wy-J8N">
                     <rect key="frame" x="241" y="253.5" width="125" height="14.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -77,7 +77,8 @@
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="5jM-NN-SAe" secondAttribute="trailing" constant="20" id="Yjm-mo-3Hl"/>
                 <constraint firstItem="Hqs-9D-hyo" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" id="bmO-LW-kxz"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="top" secondItem="owJ-Y4-wnU" secondAttribute="bottom" constant="8" id="cPC-Yk-off"/>
-                <constraint firstAttribute="bottom" secondItem="C7t-wy-J8N" secondAttribute="bottom" constant="48" id="etK-Fd-Nib"/>
+                <constraint firstItem="C7t-wy-J8N" firstAttribute="width" relation="lessThanOrEqual" secondItem="7pE-gw-D1r" secondAttribute="width" multiplier="0.35" id="dJT-8j-tJF"/>
+                <constraint firstAttribute="bottom" secondItem="C7t-wy-J8N" secondAttribute="bottom" priority="750" constant="48" id="etK-Fd-Nib"/>
                 <constraint firstItem="Hqs-9D-hyo" firstAttribute="top" secondItem="7pE-gw-D1r" secondAttribute="top" id="h08-GZ-iwk"/>
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="C7t-wy-J8N" secondAttribute="trailing" constant="24" id="j6Q-dK-cK9"/>
                 <constraint firstItem="C7t-wy-J8N" firstAttribute="top" secondItem="5jM-NN-SAe" secondAttribute="bottom" constant="8" id="lqt-KX-rsN"/>
