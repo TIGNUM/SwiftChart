@@ -680,6 +680,7 @@ enum ThemeText {
     case questionHintLabel
     case questionHintLabelDark
     case questionHintLabelRed
+    case suggestionMyBest
 
     case onboardingInfoTitle
     case onboardingInfoBody
@@ -928,7 +929,7 @@ enum ThemeText {
              .myLibraryItemsItemName, .dailyQuestion, .mySprintsCellTitle, .mySprintDetailsDescription,
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
-             .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle:
+             .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest:
             return Fonts.fontLight16
         case .articleNextTitle, .performanceSections, .searchSuggestionHeader, .tbvSectionHeader,
              .tbvTrackerRating, .tbvTrackerRatingDigitsSelected, .performanceStaticTitle, .resultList,
@@ -1030,10 +1031,8 @@ enum ThemeText {
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle:
             return Palette.sand
-        case .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody, .impactReadinessAsterix:
-            return Palette.sand60
 
         // MARK: - .sand40
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
@@ -1041,7 +1040,7 @@ enum ThemeText {
              .registrationNamesMandatory, .accountDetail, .quotationLight, .quotationSlash, .audioPlayerTime, .syncedCalendarRowSubtitle,
              .syncedCalendarTableHeader, .syncedCalendarDescription, .accountHeader, .myLibraryGroupDescription, .myLibraryItemsItemDescription,
              .mySprintsTableHeader, .mySprintsCellStatus, .mySprintDetailsHeader, .mySprintDetailsTextInfo,
-             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice:
+             .dailyInsightsChartBarLabelUnselected, .dailyInsightsTbvAdvice, .guideNavigationTitle:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -1059,6 +1058,17 @@ enum ThemeText {
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
              .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion:
             return Palette.carbon
+        case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
+             .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
+            return Palette.carbon70
+        case .articleHeadlineSmallFade, .articleTagSelected:
+            return Palette.sand50
+        case .articleHeadlineSmallLight:
+            return Palette.sand10
+        case .articleTag:
+            return Palette.sand30
+        case .articleStrategyRead, .articleRelatedDetailInStrategyRead, .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody, .impactReadinessAsterix:
+            return Palette.sand60
 
         // MARK: - .sand70
         case .linkMenuComment, .strategySubHeader, .sprintText, .goodToKnow, .readinessScore,
@@ -1071,11 +1081,8 @@ enum ThemeText {
              .audioPlayerTitleLight, .askPermissionMessage, .weatherIntro, .weatherDescription, .weatherLocation,
              .weatherBody, .weatherHourlyLabels, .onboardingInfoBody, .mySprintsCellProgress, .mySprintDetailsDescription,
              .mySprintDetailsProgress, .mySprintDetailsTextRegular, .mySensorsNoDataInfoLabel, .mySensorsDescriptionBody,
-             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent:
+             .mySensorsTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText, .shpiContent, .qotAlertMessage, .suggestionMyBest:
             return Palette.sand70
-        case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
-             .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
-            return Palette.carbon70
         case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage, .registrationEmailError,
              .registrationCodeDisclaimerError:
             return Palette.redOrange
@@ -1108,14 +1115,6 @@ enum ThemeText {
             return Palette.sand30
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
-        case .articleHeadlineSmallFade:
-            return Palette.sand50
-        case .articleHeadlineSmallLight:
-            return Palette.sand10
-        case .articleTag:
-            return Palette.sand30
-        case .articleTagSelected:
-            return Palette.sand50
         case .articleTagNight:
             return Palette.nightModeSubFont
         case .articlePostTitleNight:
@@ -1130,18 +1129,10 @@ enum ThemeText {
             return .sand10
         case .calendarNoAccess:
             return Palette.sand80
-        case .guideNavigationTitle:
-            return Palette.sand40
-        case .qotAlertTitle:
-            return Palette.sand
-        case .qotAlertMessage:
-            return Palette.sand70
         case .resultDate:
             return Palette.carbon30
         case .mySprintDetailsCtaHighlight:
             return Palette.accent30
-        case .articleStrategyRead, .articleRelatedDetailInStrategyRead:
-            return Palette.sand60
         case .myDataParameterLegendText(let parameter), .myDataParameterSelectionTitle(let parameter), .myDataParameterExplanationTitle(let parameter):
             return Palette.parameterColor(for: parameter)
         case .chatbotProgress(let active, let isDark):
@@ -1260,7 +1251,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
-             .loginSeparator, .dailyBriefSubtitle, .impactReadinessAsterix:
+             .loginSeparator, .dailyBriefSubtitle, .impactReadinessAsterix, .suggestionMyBest:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
             var alignment: NSTextAlignment = .left
