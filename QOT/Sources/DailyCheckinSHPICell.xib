@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,7 +19,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Kdu-7B-UOZ" customClass="DailyCheckinSHPICell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="522" height="516"/>
+            <rect key="frame" x="0.0" y="0.0" width="522" height="399"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KFV-WI-T0u">
@@ -30,25 +30,19 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shpi Content Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8co-Kt-RNK" userLabel="Shpi Content Label">
-                    <rect key="frame" x="24" y="112.5" width="474" height="19.5"/>
+                    <rect key="frame" x="24" y="356" width="474" height="19"/>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shpi Question Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpA-hZ-HKE">
-                    <rect key="frame" x="24" y="140" width="474" height="106.5"/>
-                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU RATED YOURSELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHN-Ev-Uoj">
-                    <rect key="frame" x="24" y="286.5" width="474" height="17"/>
+                    <rect key="frame" x="24" y="103" width="474" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="NgW-bi-Vgj">
-                    <rect key="frame" x="24" y="347.5" width="474" height="96"/>
+                    <rect key="frame" x="24" y="211.5" width="474" height="96"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V23-jD-AMs">
                             <rect key="frame" x="0.0" y="0.0" width="47.5" height="96"/>
@@ -456,14 +450,20 @@
                     </constraints>
                 </stackView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Htd-Bh-cdR">
-                    <rect key="frame" x="24" y="449.5" width="38.5" height="17"/>
+                    <rect key="frame" x="24" y="313.5" width="38.5" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Always" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HSP-Px-wmT">
-                    <rect key="frame" x="457" y="451" width="45" height="17"/>
+                    <rect key="frame" x="457" y="315" width="45" height="17"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Shpi Question Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IpA-hZ-HKE">
+                    <rect key="frame" x="24" y="140" width="474" height="51.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
@@ -471,21 +471,21 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="HSP-Px-wmT" secondAttribute="trailing" constant="20" id="62n-be-NjN"/>
-                <constraint firstItem="NgW-bi-Vgj" firstAttribute="top" secondItem="UHN-Ev-Uoj" secondAttribute="bottom" constant="44" id="8ie-5V-35S"/>
-                <constraint firstItem="UHN-Ev-Uoj" firstAttribute="top" secondItem="IpA-hZ-HKE" secondAttribute="bottom" constant="40" id="ARx-Us-fkn"/>
-                <constraint firstItem="IpA-hZ-HKE" firstAttribute="top" secondItem="8co-Kt-RNK" secondAttribute="bottom" constant="8" id="F1Y-EI-MZM"/>
-                <constraint firstItem="8co-Kt-RNK" firstAttribute="top" secondItem="KFV-WI-T0u" secondAttribute="bottom" constant="24.5" id="G1F-7A-QGt"/>
+                <constraint firstItem="UHN-Ev-Uoj" firstAttribute="top" secondItem="KFV-WI-T0u" secondAttribute="bottom" constant="15" id="CvB-iB-Ms5"/>
                 <constraint firstItem="NgW-bi-Vgj" firstAttribute="trailing" secondItem="Kdu-7B-UOZ" secondAttribute="trailing" constant="-24" id="HaJ-Xc-N5i"/>
                 <constraint firstItem="IpA-hZ-HKE" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="24" id="N4I-7Z-gzr"/>
                 <constraint firstAttribute="trailing" secondItem="8co-Kt-RNK" secondAttribute="trailing" constant="24" id="O6P-hw-eXr"/>
+                <constraint firstItem="NgW-bi-Vgj" firstAttribute="top" secondItem="IpA-hZ-HKE" secondAttribute="bottom" constant="20" id="P2W-b8-Obk"/>
+                <constraint firstItem="IpA-hZ-HKE" firstAttribute="top" secondItem="UHN-Ev-Uoj" secondAttribute="bottom" constant="20" id="S1t-sW-zTb"/>
                 <constraint firstItem="Htd-Bh-cdR" firstAttribute="top" secondItem="NgW-bi-Vgj" secondAttribute="bottom" constant="6" id="T0o-7v-yaY"/>
                 <constraint firstAttribute="trailing" secondItem="IpA-hZ-HKE" secondAttribute="trailing" constant="24" id="Z9x-dG-E1J"/>
                 <constraint firstItem="NgW-bi-Vgj" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="24" id="bUK-nu-P4X"/>
-                <constraint firstAttribute="bottom" secondItem="HSP-Px-wmT" secondAttribute="bottom" constant="48" id="dRU-Cu-Ck2"/>
                 <constraint firstItem="HSP-Px-wmT" firstAttribute="top" secondItem="NgW-bi-Vgj" secondAttribute="bottom" constant="7.5" id="gns-qT-duv"/>
+                <constraint firstAttribute="bottom" secondItem="8co-Kt-RNK" secondAttribute="bottom" constant="24" id="hke-mC-WJ4"/>
                 <constraint firstAttribute="trailing" secondItem="KFV-WI-T0u" secondAttribute="trailing" id="i1R-jY-Aqy"/>
                 <constraint firstItem="8co-Kt-RNK" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="24" id="kGq-Bj-F1V"/>
                 <constraint firstItem="KFV-WI-T0u" firstAttribute="top" secondItem="Kdu-7B-UOZ" secondAttribute="top" id="oGZ-NO-qNL"/>
+                <constraint firstItem="8co-Kt-RNK" firstAttribute="top" secondItem="HSP-Px-wmT" secondAttribute="bottom" constant="24" id="ooy-0T-31b"/>
                 <constraint firstItem="KFV-WI-T0u" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" id="pSS-Bp-ozv"/>
                 <constraint firstItem="UHN-Ev-Uoj" firstAttribute="leading" secondItem="Kdu-7B-UOZ" secondAttribute="leading" constant="24" id="pgb-0e-nTE"/>
                 <constraint firstItem="Htd-Bh-cdR" firstAttribute="leading" secondItem="NgW-bi-Vgj" secondAttribute="leading" id="wTF-cd-bFq"/>
@@ -532,7 +532,7 @@
                 <outletCollection property="bars" destination="FZX-Pa-tS4" collectionClass="NSMutableArray" id="NVx-3v-gYJ"/>
                 <outletCollection property="heights" destination="BAJ-2W-1u8" collectionClass="NSMutableArray" id="aRe-7R-Ax0"/>
             </connections>
-            <point key="canvasLocation" x="-2040.5797101449277" y="368.63839285714283"/>
+            <point key="canvasLocation" x="-2040.5797101449277" y="328.45982142857139"/>
         </view>
     </objects>
 </document>

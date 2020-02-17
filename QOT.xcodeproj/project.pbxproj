@@ -5037,10 +5037,10 @@
 				9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */,
 				F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */,
 				9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */,
-				F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */,
 				F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */,
 				F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */,
 				F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */,
+				F902CF4E22DE0FC700FFC836 /* DailyCheckinSHPICell.swift */,
 				F902CF5622DE10B800FFC836 /* DailyCheckinSHPICell.xib */,
 				F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */,
 			);
