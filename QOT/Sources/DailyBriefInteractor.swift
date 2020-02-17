@@ -467,27 +467,32 @@ extension DailyBriefInteractor {
     func createDailyCheckIn2(dailyCheckIn2Bucket dailyCheckIn2: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var dailyCheckIn2List: [BaseDailyBriefViewModel] = []
         let dailyCheckIn2ViewModel = DailyCheckin2ViewModel(domainModel: dailyCheckIn2)
-        if dailyCheckIn2.toBeVisionTrackId != nil {
-            // TBV Rated sentence
-            let title: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_title)
-            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
-            let intro: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_subtitle_rating_of) + " " + String(tbvRating)
-            let ctaText = AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv)
-            let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
-            let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
-            dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
-            dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
-                                                                                 introText: intro,
-                                                                                 tbvSentence: tbvSentence,
-                                                                                 adviceText: reflection,
-                                                                                 cta: ctaText)
-        } else if dailyCheckIn2.SHPIQuestionId != nil {
+//        if dailyCheckIn2.toBeVisionTrackId != nil {
+//            // TBV Rated sentence
+//            let title: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_title)
+//            let tbvRating: Int = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
+//            let intro: String = AppTextService.get(.daily_brief_section_daily_insights_tbv_subtitle_rating_of) + " " + String(tbvRating)
+//            let ctaText = AppTextService.get(.daily_brief_section_daily_insights_tbv_button_view_my_tbv)
+//            let tbvSentence: String = dailyCheckIn2.toBeVisionTrack?.sentence ?? ""
+//            let reflection = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro2")}.randomElement()?.contentItems.first?.valueText
+//            dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.TBV
+//            dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
+//                                                                                 introText: intro,
+//                                                                                 tbvSentence: tbvSentence,
+//                                                                                 adviceText: reflection,
+//                                                                                 cta: ctaText)
+//        } else if dailyCheckIn2.SHPIQuestionId != nil {
+//        replaced by
+        if true {
             // Shpi
             let shpiTitle: String = AppTextService.get(.daily_brief_section_daily_insights_shpi_title)
-            let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
+//            let shpiContent =  dailyCheckIn2.contentCollections?.first?.contentItems.first?.valueText
+            let shpiContent = "this is the shpi content label ncjncjasncjkascnajsksajdnsajkdnkjasdndjasdnsajdnsakjdnasjd"
             dailyCheckIn2ViewModel.type = DailyCheckIn2ModelItemType.SHPI
-            let rating = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
-            let question = dailyCheckIn2.SHPIQuestion?.title
+//            let rating = Int(dailyCheckIn2.dailyCheckInSixthQuestionAnswerValue ?? "") ?? 0
+            let rating = 8
+//            let question = dailyCheckIn2.SHPIQuestion?.title
+            let question = "this is the question lalalalalalalal alalalalalalal alaalala"
             dailyCheckIn2ViewModel.dailyCheck2SHPIModel = DailyCheck2SHPIModel(title: shpiTitle, shpiContent: shpiContent, shpiRating: rating, shpiQuestion: question)
         } else {
             // Peak Performance
