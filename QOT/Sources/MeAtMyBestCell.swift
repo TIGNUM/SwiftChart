@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MeAtMyBestCell: BaseDailyBriefCell {
 
@@ -43,7 +44,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
         ThemeText.tbvStatement.apply(model.intro2, to: meAtMyBestFuture)
-        ThemeText.suggestionMyBest.apply("Suggestion for today", to: suggestionLabel)
+        ThemeText.suggestionMyBest.apply(AppTextService.get(.daily_brief_section_my_best_suggestion_body), to: suggestionLabel)
         ctaButton.setButtonContentInset(padding: 16)
         ctaButton.setTitle(model.buttonText, for: .normal)
     }
