@@ -390,7 +390,7 @@ enum ThemableButton {
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent, background: .sand, border: .accent40)
         case .articleMarkAsRead(let selected):
-            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: .accent30)
+            return ButtonTheme(foreground: .accent, background: (selected ? .accent40 : nil), border: (selected ? nil : .accent30))
         }
     }
 
