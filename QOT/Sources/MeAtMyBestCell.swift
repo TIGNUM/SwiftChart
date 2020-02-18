@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MeAtMyBestCell: BaseDailyBriefCell {
 
@@ -15,6 +16,7 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
     var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet private weak var meAtMyBestContent: UILabel!
     @IBOutlet private weak var meAtMyBestFuture: UILabel!
+    @IBOutlet private weak var suggestionLabel: UILabel!
     @IBOutlet private weak var ctaButton: AnimatedButton!
     weak var delegate: DailyBriefViewControllerDelegate?
 
@@ -41,7 +43,8 @@ final class MeAtMyBestCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply((model.title ?? "").uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.sprintText.apply(model.intro, to: baseHeaderView?.subtitleTextView)
         ThemeText.tbvStatement.apply(model.tbvStatement, to: meAtMyBestContent)
-        ThemeText.solveFuture.apply(model.intro2, to: meAtMyBestFuture)
+        ThemeText.tbvStatement.apply(model.intro2, to: meAtMyBestFuture)
+        ThemeText.suggestionMyBest.apply(AppTextService.get(.daily_brief_section_my_best_suggestion_body), to: suggestionLabel)
         ctaButton.setButtonContentInset(padding: 16)
         ctaButton.setTitle(model.buttonText, for: .normal)
     }

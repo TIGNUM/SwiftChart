@@ -312,6 +312,7 @@ public extension AppTextKey {
     static let daily_brief_section_level_5_question_with_data_two = AppTextKey("daily_brief.section_level_5.question_with_data_two")
     static let daily_brief_section_level_5_title = AppTextKey("daily_brief.section_level_5.title")
     static let daily_brief_section_my_best_body = AppTextKey("daily_brief.section_my_best.body")
+    static let daily_brief_section_my_best_suggestion_body = AppTextKey("daily_brief.section_my_best.suggestion_body")
     static let daily_brief_section_my_best_button_my_tbv = AppTextKey("daily_brief.section_my_best.button_my_tbv")
     static let daily_brief_section_my_best_empty_body = AppTextKey("daily_brief.section_my_best.empty.body")
     static let daily_brief_section_my_best_empty_button_create_tbv = AppTextKey("daily_brief.section_my_best.empty.button_create_tbv")
