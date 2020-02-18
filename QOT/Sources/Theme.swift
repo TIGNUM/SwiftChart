@@ -1294,7 +1294,13 @@ enum ThemeText {
         case .askPermissionMessage:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .onboardingInfoTitle:
-            string = NSAttributedString(string: text, letterSpacing: -0.21, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: -0.21,
+                                        font: self.font,
+                                        lineSpacing: 0,
+                                        textColor: self.color,
+                                        alignment: .center,
+                                        lineBreakMode: nil)
         case .onboardingInfoBody:
             string = NSAttributedString(string: text, letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myLibraryItemsItemName:
@@ -1383,7 +1389,13 @@ enum ThemeText {
         var pointSize = testFont.pointSize
 
         while !fit {
-            let attrText = NSAttributedString(string: text, letterSpacing: -0.21, font: testFont, lineSpacing: 0, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            let attrText = NSAttributedString(string: text,
+                                              letterSpacing: -0.21,
+                                              font: testFont,
+                                              lineSpacing: 0,
+                                              textColor: self.color,
+                                              alignment: .center,
+                                              lineBreakMode: nil)
             let height = attrText.height(containerWidth: maxWidth)
 
             fit = true

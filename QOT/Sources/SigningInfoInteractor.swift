@@ -56,6 +56,10 @@ extension SigningInfoInteractor: SigningInfoInteractorInterface {
         return worker.bodyText
     }
 
+    var startButtonText: String? {
+        return worker.startButtonText
+    }
+
     func didTapLoginButton() {
         router.goToLogin()
     }

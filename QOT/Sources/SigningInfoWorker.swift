@@ -27,4 +27,8 @@ final class SigningInfoWorker {
     var bodyText: String? = {
         return ""
     }()
+
+    lazy var startButtonText: String? = {
+        return AppTextService.get(.onboarding_guided_track_section_footer_button_get_started)
+    }()
 }

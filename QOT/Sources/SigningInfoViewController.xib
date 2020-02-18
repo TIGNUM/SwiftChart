@@ -3,7 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SigningInfoViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="bodyLabel" destination="vSM-mr-lrB" id="QPr-8U-RhC"/>
+                <outlet property="startButton" destination="jrZ-rt-tRA" id="v1P-0E-Wip"/>
                 <outlet property="titleLabel" destination="sYp-yY-lbk" id="7lw-Gp-xXg"/>
                 <outlet property="titleLabelWidthConstraint" destination="jGt-5h-upU" id="AC0-uk-Zdc"/>
                 <outlet property="videoContainerView" destination="muA-i8-2Ke" id="fEK-CM-pBx"/>
@@ -41,7 +42,7 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="clip" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.10000000000000001" translatesAutoresizingMaskIntoConstraints="NO" id="sYp-yY-lbk">
-                    <rect key="frame" x="24" y="707" width="310.5" height="20.5"/>
+                    <rect key="frame" x="52" y="707" width="310.5" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -52,6 +53,17 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jrZ-rt-tRA">
+                    <rect key="frame" x="150" y="784" width="114" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="114" id="hNL-EG-nmX"/>
+                        <constraint firstAttribute="height" constant="40" id="ytG-Qi-fEZ"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="didTapStart" destination="-1" eventType="touchUpInside" id="W6g-3g-Xot"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -64,10 +76,12 @@
                 <constraint firstItem="rYY-wO-Y1g" firstAttribute="bottom" secondItem="unA-EJ-O6O" secondAttribute="bottom" id="J0m-T7-h1r"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="centerX" secondItem="kye-X6-AOl" secondAttribute="centerX" id="J8h-oA-xkY"/>
                 <constraint firstItem="QBN-FH-QrV" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="Jls-hW-lYF"/>
+                <constraint firstItem="sYp-yY-lbk" firstAttribute="centerX" secondItem="kye-X6-AOl" secondAttribute="centerX" id="Jyb-Yg-zyY"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="height" secondItem="kye-X6-AOl" secondAttribute="height" multiplier="0.15" id="VEj-MG-0xQ"/>
-                <constraint firstItem="sYp-yY-lbk" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="24" id="WDu-1u-D1E"/>
                 <constraint firstItem="vSM-mr-lrB" firstAttribute="top" secondItem="sYp-yY-lbk" secondAttribute="bottom" constant="18" id="ag2-aK-vdl"/>
+                <constraint firstItem="jrZ-rt-tRA" firstAttribute="centerX" secondItem="kye-X6-AOl" secondAttribute="centerX" id="aqD-gY-5k6"/>
                 <constraint firstItem="muA-i8-2Ke" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="gti-Za-C3y"/>
+                <constraint firstAttribute="bottom" secondItem="jrZ-rt-tRA" secondAttribute="bottom" constant="72" id="iIu-jM-gAQ"/>
                 <constraint firstItem="sYp-yY-lbk" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" multiplier="0.75" id="jGt-5h-upU"/>
                 <constraint firstItem="unA-EJ-O6O" firstAttribute="width" secondItem="kye-X6-AOl" secondAttribute="width" id="ngt-AM-HeI"/>
                 <constraint firstAttribute="bottom" secondItem="QBN-FH-QrV" secondAttribute="bottom" id="s5g-lo-Jaf"/>
