@@ -69,7 +69,7 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
         delegate?.didTapBack()
     }
 
-    func didTapNext(with firstName: String, lastName: String?) {
+    func didTapNext(with firstName: String, lastName: String?, birthDate: String?) {
         if !firstName.isValidName || firstName.isEmpty {
             hasFirstNameError = true
         }

@@ -15,15 +15,53 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var firstNameField: QotPlaceholderTextField!
     @IBOutlet private weak var lastNameField: QotPlaceholderTextField!
+    @IBOutlet private weak var ageInputField: QotPlaceholderTextField!
+    @IBOutlet private weak var ageRestrictionLabel: UILabel!
+    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var mandatoryLabel: UILabel!
     private var keyboardNotification: NSNotification?
 
+    private var bottomConstraintInitialValue: CGFloat = 0
     private let viewTheme = ThemeView.onboarding
     private let errorBorderColor = UIColor.redOrange.cgColor
     private let defaultBorderColor = UIColor.sand40.cgColor
 
+    lazy private var saveButton: RoundedButton = {
+        return RoundedButton(title: "interactor.createButtonTitle",
+                             target: self,
+                             action: #selector(didTapCreateAccountButton))
+    }()
+
     private lazy var buttonNext: RoundedButton = {
         return RoundedButton(title: interactor.nextButtonTitle, target: self, action: #selector(didTapNextButton))
+    }()
+
+    lazy private var keyboardToolbar: UIToolbar = {
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 100, height: 60))
+        toolbar.setBackgroundImage(UIImage(), forToolbarPosition: .any, barMetrics: .default)
+        toolbar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        toolbar.backgroundColor = .carbonNew
+
+        let space = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        saveButton.isEnabled = false
+        toolbar.items = [space, saveButton.barButton]
+        return toolbar
+    }()
+
+    lazy private var yearPicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.backgroundColor = .carbonNew
+        picker.minimumDate = Date().minimumDateOfBirth
+        picker.maximumDate = Date().maximumDateOfBirth
+        picker.addTarget(self, action:  #selector(datePickerValueChanged(datePicker:)), for: .valueChanged)
+        return picker
+    }()
+
+    private lazy var createAccountButton: RoundedButton = {
+        return RoundedButton(title: "interactor.createButtonTitle",
+                             target: self,
+                             action: #selector(didTapCreateAccountButton))
     }()
 
     var interactor: RegistrationNamesInteractorInterface!
@@ -66,18 +104,28 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
 }
 
 // MARK: - Private
-
 private extension RegistrationNamesViewController {
 }
 
 // MARK: - Actions
-
 private extension RegistrationNamesViewController {
     @objc func didTapNextButton() {
         guard let name = firstNameField.text else { return }
-        interactor.didTapNext(with: name, lastName: lastNameField.text)
+        interactor.didTapNext(with: name, lastName: lastNameField.text, birthDate: ageInputField.text)
         let userName = name + " " + (lastNameField.text ?? "")
         trackUserEvent(.NEXT, stringValue: userName, valueType: .USER_ANSWER, action: .TAP)
+    }
+
+    @objc func didTapCreateAccountButton() {
+        ageInputField.textField.resignFirstResponder()
+        guard let year = ageInputField.text, Int(year) != nil else { return }
+        trackUserEvent(.CREATE_ACCOUNT, stringValue: year, valueType: .USER_BIRTH_YEAR, action: .TAP)
+//        interactor.didTapNext(with: year)
+    }
+
+    @objc func datePickerValueChanged(datePicker: UIDatePicker) {
+        let formatter = DateFormatter.yyyyMMdd
+        ageInputField.text = formatter?.string(from: datePicker.date)
     }
 }
 
@@ -98,6 +146,17 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         firstNameField.delegate = self
         lastNameField.textField.returnKeyType = .go
         lastNameField.delegate = self
+
+
+        viewTheme.apply(ageInputField.textField)
+        ThemeText.registrationAgeTitle.apply(interactor.title, to: titleLabel)
+        ThemeText.onboardingInputPlaceholder.apply("interactor.agePlaceholder", to: ageInputField.placeholderLabel)
+        ThemeText.registrationAgeRestriction.apply("interactor.ageRestrictionText", to: ageRestrictionLabel)
+
+        ageInputField.textField.inputView = yearPicker
+        ageInputField.textField.inputAccessoryView = keyboardToolbar
+        ageInputField.textField.tintColor = .clear
+        ageInputField.delegate = self
     }
 
     func updateView() {

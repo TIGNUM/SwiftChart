@@ -28,7 +28,7 @@ protocol RegistrationNamesInteractorInterface: Interactor {
     var hasLastNameError: Bool { get }
 
     func didTapBack()
-    func didTapNext(with firstName: String, lastName: String?)
+    func didTapNext(with firstName: String, lastName: String?, birthDate: String?)
     func resetErrors()
 }
 
