@@ -95,11 +95,7 @@ final class RegisterIntroViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Actions
     @objc func didTapContinue() {
         trackUserEvent(.CONTINUE, stringValue: "openRegistration", action: .TAP)
-        if fromLogin == true {
-            router.openLogin()
-        } else {
-            router.openRegistration()
-        }
+        router.openRegistration()
     }
 }
 

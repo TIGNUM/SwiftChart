@@ -11,14 +11,11 @@ import UIKit
 final class SigningInfoRouter {
 
     // MARK: - Properties
-
     private weak var viewController: SigningInfoViewController?
 
     // MARK: - Init
-
     init(viewController: SigningInfoViewController) {
         self.viewController = viewController
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(goToLogin(notification:)),
                                                name: .registrationShouldShowLogin,
