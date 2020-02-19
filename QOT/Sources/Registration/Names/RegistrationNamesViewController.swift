@@ -54,7 +54,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         picker.backgroundColor = .carbonNew
         picker.minimumDate = Date().minimumDateOfBirth
         picker.maximumDate = Date().maximumDateOfBirth
-        picker.addTarget(self, action:  #selector(datePickerValueChanged(datePicker:)), for: .valueChanged)
+        picker.addTarget(self, action: #selector(datePickerValueChanged(datePicker:)), for: .valueChanged)
         return picker
     }()
 
@@ -98,6 +98,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         interactor.resetErrors()
         firstNameField.text = nil
         lastNameField.text = nil
+        ageInputField.text = nil
 
         interactor.didTapBack()
     }
@@ -144,7 +145,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 
         firstNameField.textField.returnKeyType = .next
         firstNameField.delegate = self
-        lastNameField.textField.returnKeyType = .go
+        lastNameField.textField.returnKeyType = .next
         lastNameField.delegate = self
 
 
@@ -155,6 +156,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 
         ageInputField.textField.inputView = yearPicker
         ageInputField.textField.inputAccessoryView = keyboardToolbar
+        ageInputField.textField.returnKeyType = .go
         ageInputField.textField.tintColor = .clear
         ageInputField.delegate = self
     }
@@ -166,9 +168,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 }
 
 // MARK: - Keyboard
-
 extension RegistrationNamesViewController {
-
     override func keyboardWillAppear(notification: NSNotification) {
         keyboardNotification = notification
         animateKeyboardNotification(notification)
@@ -209,6 +209,8 @@ extension RegistrationNamesViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == firstNameField.textField {
             lastNameField.textField.becomeFirstResponder()
+        } else if textField == lastNameField.textField {
+            ageInputField.textField.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
             didTapNextButton()
