@@ -260,22 +260,22 @@ enum ThemeButton {
         switch self {
         case .accent40:
             colorSelected = Palette.accent40
-            colorBorder = Palette.accent40
+            colorBorder = Palette.accent30
         case .audioButton:
             colorSelected = Palette.light(Palette.sand, or: Palette.carbon)
             colorUnselected = colorSelected
-            colorBorder = .accent40
+            colorBorder = .accent30
         case .audioButtonGrey:
             colorSelected = .accent40
             colorUnselected = .clear
-            colorBorder = .sand60
+            colorBorder = .sand30
         case .closeButton(let mode):
             colorSelected = Palette.light(Palette.accent, or: Palette.carbon, forcedColorMode: mode)
             colorUnselected = Palette.light(Palette.sand, or: Palette.carbon, forcedColorMode: mode)
         case .dailyBriefButtons, .audioButtonStrategy:
             colorSelected = .accent40
             colorUnselected = .clear
-            colorBorder = .accent40
+            colorBorder = .accent30
         case .dailyBriefWithoutBorder:
             colorSelected = .accent40
             colorUnselected = .clear
