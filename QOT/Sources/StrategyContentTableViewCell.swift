@@ -121,7 +121,13 @@ private extension StrategyContentTableViewCell {
 
     private func checkIfPlaying() {
         if let isPlaying = delegate?.isPlaying(remoteID: remoteID) {
-            isPlaying ? ThemeView.audioPlaying.apply(audioView) : ThemeView.level1.apply(audioView)
+            if isPlaying {
+                ThemeView.audioPlaying.apply(audioView)
+                audioButton.layer.borderWidth = 0
+            } else {
+                ThemeView.level1.apply(audioView)
+                audioButton.layer.borderWidth = 1
+            }
         }
     }
 
@@ -129,6 +135,7 @@ private extension StrategyContentTableViewCell {
         if isRead {
             ThemeText.articleStrategyRead.apply(title, to: titleLabel)
             ThemeButton.audioButtonGrey.apply(audioButton)
+            audioButton.layer.borderWidth = 0
             audioIcon.image = R.image.ic_audio_grey_light()
             readCheckMark.image?.withRenderingMode(.alwaysOriginal)
             readCheckMark.tintColor = .sand30
