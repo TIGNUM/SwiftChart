@@ -407,7 +407,7 @@ enum ThemableButton {
         case .myLibraryNotes:
             return ButtonTheme(foreground: .accent70, background: .carbonNew, border: .accent10)
         case .fullscreenAudioPlayerDownload, .fullscreenVideoPlayerDownload, .paymentReminder:
-            return ButtonTheme(foreground: .accent70, background: .carbonNew80, border: .accent10)
+            return ButtonTheme(foreground: .accent70, background: .carbonNew80, border:.accent10)
         case .fullscreenAudioPlayerDownloadLight:
             return ButtonTheme(foreground: .accent70, background: .accent40, border: .accent40)
         case .articleMarkAsRead(let selected):
