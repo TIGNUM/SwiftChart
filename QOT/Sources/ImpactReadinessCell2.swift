@@ -111,17 +111,19 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         }
 
         asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
+
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         let quantitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
         ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
-        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
+        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
+                                                        ThemeText.quotation,
                                                         AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
                                                         ThemeText.quotationSmall,
-                                                   asterixCharacter, ThemeText.quotation)
-
+                                                        asterixCharacter,
+                                                        ThemeText.quotation)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
@@ -170,6 +172,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                 ThemeText.quotationLight)
         refLabel3.text = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
+        
         // Button
         moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
