@@ -22,7 +22,6 @@ final class RegistrationNamesRouter {
 }
 
 // MARK: - RegistrationNamesRouterInterface
-
 extension RegistrationNamesRouter: RegistrationNamesRouterInterface {
 
 }

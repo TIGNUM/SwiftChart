@@ -81,6 +81,9 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
             return
         }
         delegate?.didSave(firstName: firstName, lastName: lastName)
+        if let birthDate = birthDate {
+            delegate?.didTapCreateAccount(with: birthDate)
+        }
     }
 
     func resetErrors() {

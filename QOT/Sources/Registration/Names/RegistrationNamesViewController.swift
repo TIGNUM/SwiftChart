@@ -148,7 +148,6 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         lastNameField.textField.returnKeyType = .next
         lastNameField.delegate = self
 
-
         viewTheme.apply(ageInputField.textField)
         ThemeText.registrationAgeTitle.apply(interactor.title, to: titleLabel)
         ThemeText.onboardingInputPlaceholder.apply("interactor.agePlaceholder", to: ageInputField.placeholderLabel)
@@ -169,6 +168,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 
 // MARK: - Keyboard
 extension RegistrationNamesViewController {
+
     override func keyboardWillAppear(notification: NSNotification) {
         keyboardNotification = notification
         animateKeyboardNotification(notification)
