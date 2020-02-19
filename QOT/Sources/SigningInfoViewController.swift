@@ -29,6 +29,7 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
+    @IBOutlet private weak var startButton: UIButton!
 
     @IBOutlet private weak var titleLabelWidthConstraint: NSLayoutConstraint!
     // MARK: - Init
@@ -43,16 +44,6 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         playerLayer = AVPlayerLayer(player: player)
 
         super.init(nibName: nil, bundle: nil)
-        loginButton = roundedBarButtonItem(title: AppTextService.get(.onboarding_launch_screen_section_footer_button_log_in),
-                                           buttonWidth: .Done,
-                                           action: #selector(didTapLogin),
-                                           backgroundColor: .carbon,
-                                           borderColor: .accent40)
-        registerButton = roundedBarButtonItem(title: AppTextService.get(.onboarding_launch_screen_section_footer_button_register),
-                                              buttonWidth: .SaveChanges,
-                                              action: #selector(didTapStart),
-                                              backgroundColor: .carbon,
-                                              borderColor: .accent40)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -73,8 +64,8 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        updateBottomNavigation([], [])
         navigationController?.navigationBar.isHidden = true
-        refreshBottomNavigationItems()
         player?.play()
         // QOT-2367: Dismiss Loading Indicator
         SVProgressHUD.dismiss()
@@ -82,8 +73,10 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updateBottomNavigation([], [])
         trackPage()
         setupText()
+        setupStartButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -101,14 +94,6 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidDisappear(animated)
         view.alpha = 1
         player?.pause()
-    }
-
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [loginButton]
-    }
-
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [registerButton]
     }
 
     override func viewDidLayoutSubviews() {
@@ -129,18 +114,22 @@ private extension SigningInfoViewController {
             self.bodyLabel.alpha = 1.0
         }
     }
+
+    func setupStartButton() {
+        let attributedString = NSAttributedString(string: interactor?.startButtonText ?? "",
+                                                  letterSpacing: 0.2,
+                                                  font: .sfProtextSemibold(ofSize: 14),
+                                                  textColor: .accent,
+                                                  alignment: .center)
+        startButton.setAttributedTitle(attributedString, for: .normal)
+        startButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+    }
 }
 
 // MARK: - Actions
 private extension SigningInfoViewController {
-
-    @objc func didTapLogin() {
-        trackUserEvent(.LOG_IN, action: .TAP)
-        interactor?.didTapLoginButton()
-    }
-
-    @objc func didTapStart() {
-        trackUserEvent(.NEW_USER, action: .TAP)
+    @IBAction func didTapStart() {
+        trackUserEvent(.GET_STARTED, action: .TAP)
         interactor?.didTapStartButton()
     }
 }

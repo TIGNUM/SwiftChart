@@ -38,6 +38,7 @@ extension QDMUserEventTracking.Name {
     static let UNMUTE_VIDEO = "UNMUTE_VIDEO"
     static let READ_MORE = "READ_MORE"
     static let ORIENTATION_CHANGE = "ORIENTATION_CHANGE"
+    static let GET_STARTED = "GET_STARTED"
 }
 
 public extension QDMUserEventTracking.ValueType {
