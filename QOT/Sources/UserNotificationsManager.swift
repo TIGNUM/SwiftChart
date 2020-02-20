@@ -165,8 +165,17 @@ final class UserNotificationsManager {
                                         _ dailyCheckInNotificationConfigs: [DailyCheckInLocalNotificationConfig]) {
         notificationCenter.getPendingNotificationRequests(completionHandler: { (requests) in
             let pendingIdeintifiers = requests.compactMap({ $0.identifier })
+            let newIdentifiers = dailyCheckInNotificationConfigs.compactMap({ $0.identifier() })
+            var pendingNotificationIds = pendingIdeintifiers
+            for identifier in pendingIdeintifiers {
+                if identifier.contains(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER),
+                newIdentifiers.contains(identifier) == false {
+                    self.notificationCenter.removePendingNotificationRequests(withIdentifiers: [identifier])
+                    pendingNotificationIds.remove(object: identifier)
+                }
+            }
             for config in dailyCheckInNotificationConfigs {
-                if pendingIdeintifiers.contains(config.identifier()) == false {
+                if pendingNotificationIds.contains(config.identifier()) == false {
                     scheduleDailycheckInNotification(config: config)
                 }
             }
