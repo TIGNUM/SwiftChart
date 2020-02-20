@@ -21,14 +21,13 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
     var player: AVQueuePlayer? = AVQueuePlayer()
     var playerLayer: AVPlayerLayer?
     var playerLooper: AVPlayerLooper?
-    var loginButton: UIBarButtonItem = UIBarButtonItem.init()
-    var registerButton: UIBarButtonItem = UIBarButtonItem.init()
+    var startButtonItem: UIBarButtonItem = UIBarButtonItem.init()
 
     // Outlets
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var titleLabelWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var startButton: UIButton!
 
     // MARK: - Init
     init() {
@@ -62,8 +61,9 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        updateBottomNavigation([], [])
         navigationController?.navigationBar.isHidden = true
+        setupStartButton()
+        refreshBottomNavigationItems()
         player?.play()
         // QOT-2367: Dismiss Loading Indicator
         SVProgressHUD.dismiss()
@@ -71,10 +71,10 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        updateBottomNavigation([], [])
+        setupStartButton()
+        refreshBottomNavigationItems()
         trackPage()
         setupText()
-        setupStartButton()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -91,6 +91,14 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         super.viewDidDisappear(animated)
         view.alpha = 1
         player?.pause()
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return []
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [startButtonItem]
     }
 
     override func viewDidLayoutSubviews() {
@@ -118,6 +126,11 @@ private extension SigningInfoViewController {
                                                   alignment: .center)
         startButton.setAttributedTitle(attributedString, for: .normal)
         startButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        startButtonItem = roundedBarButtonItem(title: "",
+                                              buttonWidth: view.frame.width,
+                                              action: #selector(didTapStart),
+                                              backgroundColor: .clear,
+                                              borderColor: .clear)
     }
 }
 
