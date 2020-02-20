@@ -21,17 +21,15 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
     var player: AVQueuePlayer? = AVQueuePlayer()
     var playerLayer: AVPlayerLayer?
     var playerLooper: AVPlayerLooper?
-
     var loginButton: UIBarButtonItem = UIBarButtonItem.init()
     var registerButton: UIBarButtonItem = UIBarButtonItem.init()
 
     // Outlets
     @IBOutlet private weak var videoContainerView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var startButton: UIButton!
-
     @IBOutlet private weak var titleLabelWidthConstraint: NSLayoutConstraint!
+
     // MARK: - Init
     init() {
         if let media = Bundle.main.url(forResource: mediaName, withExtension: mediaExtension), let player = player {
@@ -86,7 +84,6 @@ final class SigningInfoViewController: BaseViewController, ScreenZLevel2 {
         UIView.animate(withDuration: Animation.duration_03) {
             self.view.alpha = 0
             self.titleLabel.alpha = 0.0
-            self.bodyLabel.alpha = 0.0
         }
     }
 
@@ -107,11 +104,9 @@ private extension SigningInfoViewController {
     func setupText() {
         let maxWidth = view.bounds.width * titleLabelWidthConstraint.multiplier
         ThemeText.onboardingInfoTitle.applyScale(interactor?.titleText, to: titleLabel, maxWidth: maxWidth)
-        ThemeText.onboardingInfoBody.apply(interactor?.bodyText, to: bodyLabel)
 
         UIView.animate(withDuration: 3.0) {
             self.titleLabel.alpha = 1.0
-            self.bodyLabel.alpha = 1.0
         }
     }
 
@@ -139,7 +134,6 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
     func setup() {
         ThemeView.level1.apply(view)
         titleLabel.alpha = 0.0
-        bodyLabel.alpha = 0.0
     }
 
     func didFinishLogin() {
