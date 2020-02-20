@@ -427,6 +427,7 @@ extension DailyBriefInteractor {
         let howYouFeelToday = AppTextService.get(.daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer)
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
         let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
+        let minTrackingDays = impactReadiness.dailyCheckInResult?.minTrackingDays
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
@@ -457,6 +458,7 @@ extension DailyBriefInteractor {
                                                                           loadReference: Double(loadReference),
                                                                           futureLoadReference: Double(futureLoadReference),
                                                                           impactDataModels: models,
+                                                                          minTrackingDays: minTrackingDays,
                                                                           domainModel: impactReadiness, "detail"))
         }
 
