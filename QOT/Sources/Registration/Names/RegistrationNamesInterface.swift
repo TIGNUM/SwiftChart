@@ -22,8 +22,10 @@ protocol RegistrationNamesInteractorInterface: Interactor {
     var title: String { get }
     var firstNameTitle: String { get }
     var lastNameTitle: String { get }
+    var agePlaceholder: String { get }
+    var ageRestrictionText: String { get }
+    var createButtonTitle: String { get }
     var mandatoryText: String { get }
-    var nextButtonTitle: String { get }
     var hasFirstNameError: Bool { get }
     var hasLastNameError: Bool { get }
 

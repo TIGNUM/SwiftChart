@@ -33,13 +33,11 @@ final class RegistrationNamesInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 
     // MARK: - Texts
-
     var title: String {
         return worker.title
     }
@@ -56,15 +54,21 @@ final class RegistrationNamesInteractor {
         return worker.mandatoryText
     }
 
-    var nextButtonTitle: String {
+    var agePlaceholder: String {
+        return worker.agePlaceholder
+    }
+
+    var ageRestrictionText: String {
+        return worker.ageRestrictionText
+    }
+
+    var createButtonTitle: String {
         return worker.nextButtonTitle
     }
 }
 
 // MARK: - RegistrationNamesInteractorInterface
-
 extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
-
     func didTapBack() {
         delegate?.didTapBack()
     }

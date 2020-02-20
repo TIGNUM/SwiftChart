@@ -34,8 +34,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IeX-ZI-QHv" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="384" width="366" height="80"/>
-                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="24" y="426" width="366" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="eNb-io-ETn"/>
                                                 </constraints>
@@ -48,22 +47,19 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ek-E0-5cV" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="525" width="366" height="80"/>
-                                                <color key="backgroundColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="24" y="567" width="366" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="npT-gE-trQ"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRf-hX-jjL" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
-                                                <rect key="frame" x="24" y="665" width="366" height="80"/>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <rect key="frame" x="24" y="707" width="366" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="3cF-e5-S5a"/>
                                                 </constraints>
                                             </view>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="qewrwer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlU-cz-xof">
-                                                <rect key="frame" x="24" y="794" width="366" height="17"/>
-                                                <color key="backgroundColor" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hlU-cz-xof">
+                                                <rect key="frame" x="24" y="811" width="366" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -71,7 +67,7 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="hlU-cz-xof" firstAttribute="top" secondItem="xRf-hX-jjL" secondAttribute="bottom" constant="49" id="3cz-vR-Sxu"/>
+                                            <constraint firstItem="hlU-cz-xof" firstAttribute="top" secondItem="xRf-hX-jjL" secondAttribute="bottom" constant="24" id="3cz-vR-Sxu"/>
                                             <constraint firstAttribute="trailing" secondItem="xRf-hX-jjL" secondAttribute="trailing" constant="24" id="83I-su-cId"/>
                                             <constraint firstItem="yiC-nr-3gH" firstAttribute="top" secondItem="4vL-CQ-Oa3" secondAttribute="top" constant="13" id="8T0-d5-2lB"/>
                                             <constraint firstItem="3Ek-E0-5cV" firstAttribute="leading" secondItem="4vL-CQ-Oa3" secondAttribute="leading" constant="24" id="A9B-Rj-WYQ"/>

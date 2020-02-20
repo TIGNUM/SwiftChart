@@ -40,13 +40,6 @@ final class RegistrationInteractor: RegistrationInteractorInterface {
         return controller
     }()
 
-    private var ageController: RegistrationAgeViewController {
-        let configurator = RegistrationAgeConfigurator.make()
-        let controller = R.storyboard.registrationAge.registrationAgeViewController() ?? RegistrationAgeViewController()
-        configurator(controller, self)
-        return controller
-    }
-
     var totalPageCount: Int {
         return 4
     }
@@ -104,8 +97,6 @@ extension RegistrationInteractor: RegistrationDelegate {
     func didSave(firstName: String, lastName: String?) {
         registrationData.firstName = firstName
         registrationData.lastName = lastName
-        presentedControllers.append(ageController)
-        presenter.present(controller: ageController, direction: .forward)
     }
 
     func didTapCreateAccount(with birthYear: String) {

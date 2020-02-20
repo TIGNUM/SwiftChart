@@ -27,13 +27,13 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     private let defaultBorderColor = UIColor.sand40.cgColor
 
     lazy private var saveButton: RoundedButton = {
-        return RoundedButton(title: "interactor.createButtonTitle",
+        return RoundedButton(title: interactor.createButtonTitle,
                              target: self,
                              action: #selector(didTapCreateAccountButton))
     }()
 
     private lazy var buttonNext: RoundedButton = {
-        return RoundedButton(title: interactor.nextButtonTitle, target: self, action: #selector(didTapNextButton))
+        return RoundedButton(title: interactor.createButtonTitle, target: self, action: #selector(didTapNextButton))
     }()
 
     lazy private var keyboardToolbar: UIToolbar = {
@@ -59,7 +59,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
     }()
 
     private lazy var createAccountButton: RoundedButton = {
-        return RoundedButton(title: "interactor.createButtonTitle",
+        return RoundedButton(title: interactor.createButtonTitle,
                              target: self,
                              action: #selector(didTapCreateAccountButton))
     }()
@@ -150,8 +150,8 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
 
         viewTheme.apply(ageInputField.textField)
         ThemeText.registrationAgeTitle.apply(interactor.title, to: titleLabel)
-        ThemeText.onboardingInputPlaceholder.apply("interactor.agePlaceholder", to: ageInputField.placeholderLabel)
-        ThemeText.registrationAgeRestriction.apply("interactor.ageRestrictionText", to: ageRestrictionLabel)
+        ThemeText.onboardingInputPlaceholder.apply(interactor.agePlaceholder, to: ageInputField.placeholderLabel)
+        ThemeText.registrationAgeRestriction.apply(interactor.ageRestrictionText, to: ageRestrictionLabel)
 
         ageInputField.textField.inputView = yearPicker
         ageInputField.textField.inputAccessoryView = keyboardToolbar
