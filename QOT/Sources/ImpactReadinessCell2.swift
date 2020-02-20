@@ -46,6 +46,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var refLabel2: UILabel!
     @IBOutlet weak var refLabel3: UILabel!
     @IBOutlet weak var rollingDataLabel: UILabel!
+    @IBOutlet weak var trackedDaysLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -92,6 +93,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
+
         if viewModel?.domainModel?.dailyCheckInResult != nil {
             hide(false)
             skeletonManager.hide()
@@ -104,7 +106,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             viewModel?.hasFiveDaySleepQualityValue != true,
             viewModel?.hasFiveDaySleepQuantityValues != true {
             asterixText.attributedText = buildString(asterixCharacter,
-                                                     ThemeText.impactReadinessAsterix,
+                                                     ThemeText.dailyBriefSubtitle,
                                                      (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""),
                                                      ThemeText.dailyBriefSubtitle,
                                                      textAlignment: .left)
@@ -212,4 +214,9 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
+
+//    override func updateConstraints() {
+//           super.updateConstraints()
+//           self.frame.size.height = 2000
+//       }
 }
