@@ -535,6 +535,7 @@ enum ThemeText {
     case author
     case datestamp
     case tbvCustomizeBody
+    case trackedDays
 
     case baseHeaderTitle(ThemeColorMode?)
     case baseHeaderSubtitle(ThemeColorMode?)
@@ -869,7 +870,7 @@ enum ThemeText {
              .tbvTrackerRatingDigits, .registrationEmailMessage, .registrationEmailError,
              .registrationCodeError, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions, .articleContactSupportInfoTitle, .registrationNamesMandatory,
              .registrationAgeRestriction, .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed, .audioPlayerTitleDark, .audioPlayerTitleLight,
-             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader:
+             .weatherHourlyLabels, .weatherHourlyLabelNow, .accountHeader, .trackedDays:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .durationString,
              .resultDate, .resultFollowUp,
@@ -1031,7 +1032,7 @@ enum ThemeText {
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays:
             return Palette.sand
 
         // MARK: - .sand40
@@ -1197,7 +1198,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
         case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
-             .mySprintsCellProgress, .mySprintDetailsHeader:
+             .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle, .dailyBriefFromTignumTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)

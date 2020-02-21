@@ -181,6 +181,12 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
                                                      ThemeText.quotationLight)
         refLabel3.text = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
+        // Tracked days
+        if let  numberOfDays = viewModel?.maxTrackingDays {
+            let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
+            ThemeText.trackedDays.apply(trackedDays, to: trackedDaysLabel)
+        }
+
         // Button
         moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
@@ -214,9 +220,4 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         combine.addAttributes([.paragraphStyle: style], range: NSRange(location: 0, length: combine.length))
         return combine
     }
-
-//    override func updateConstraints() {
-//           super.updateConstraints()
-//           self.frame.size.height = 2000
-//       }
 }
