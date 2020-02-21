@@ -31,6 +31,13 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qQC-U6-n0Z" userLabel="HeaderView">
                         <rect key="frame" x="0.0" y="0.0" width="510" height="122"/>
                         <subviews>
+                            <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZRG-C1-VVR" userLabel="bucketDivider">
+                                <rect key="frame" x="0.0" y="0.0" width="510" height="1"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="vJq-9c-zWw"/>
+                                </constraints>
+                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 DAYS ROLLING DATA" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkS-1q-JJp">
                                 <rect key="frame" x="24" y="57" width="462" height="17"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -63,8 +70,11 @@
                             <constraint firstItem="PkS-1q-JJp" firstAttribute="leading" secondItem="qQC-U6-n0Z" secondAttribute="leading" constant="24" id="RKU-eQ-XF4"/>
                             <constraint firstItem="X28-rA-yUw" firstAttribute="top" secondItem="qQC-U6-n0Z" secondAttribute="top" constant="40" id="SET-fy-0Zy"/>
                             <constraint firstItem="X28-rA-yUw" firstAttribute="leading" secondItem="qQC-U6-n0Z" secondAttribute="leading" constant="24" id="ay0-il-lYS"/>
+                            <constraint firstAttribute="trailing" secondItem="ZRG-C1-VVR" secondAttribute="trailing" id="enc-Kz-Ogy"/>
                             <constraint firstItem="PkS-1q-JJp" firstAttribute="top" secondItem="X28-rA-yUw" secondAttribute="bottom" constant="16" id="ftQ-Sm-hRp"/>
+                            <constraint firstItem="ZRG-C1-VVR" firstAttribute="top" secondItem="qQC-U6-n0Z" secondAttribute="top" id="qNJ-eb-Bob"/>
                             <constraint firstItem="4qF-wR-EDc" firstAttribute="top" secondItem="PkS-1q-JJp" secondAttribute="bottom" constant="20" id="uwN-2U-bjj"/>
+                            <constraint firstItem="ZRG-C1-VVR" firstAttribute="leading" secondItem="qQC-U6-n0Z" secondAttribute="leading" id="xdu-UO-5kO"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-5Z-F6x">

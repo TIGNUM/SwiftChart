@@ -415,6 +415,7 @@ extension DailyBriefInteractor {
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
             readinessIntro = impactReadiness.dailyCheckInResult?.feedback
+            expendImpactReadiness = true
         }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,

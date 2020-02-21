@@ -107,13 +107,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
             trackState = model.isExpanded
-            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            exploreScoreButton.isHidden = false
-            ThemeButton.dailyBriefWithoutBorder.apply(exploreScoreButton)
-            exploreScoreButton.flipImage(trackState)
-            exploreScoreButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_explore_score), for: .normal)
-            exploreScoreButton.setInsets(forContentPadding: UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10), imageTitlePadding: 10.0)
-            exploreScoreButton.setImage(UIImage(named: "arrowUp.png"), for: .normal)
         }
     }
 }
