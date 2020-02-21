@@ -186,7 +186,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_code_verification_section_header_body_description = AppTextKey("onboarding.sign_up.code_verification.section_header.body_description")
     static let onboarding_sign_up_email_verification_alert_account_exist_title = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.title")
     static let onboarding_sign_up_email_verification_alert_general_error_body = AppTextKey("onboarding.sign_up.email_verification.alert.general_error.body")
-    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
+    static let onboarding_email_verification_section_header_headline = AppTextKey("onboarding.email_verification.section_header.headline")
     static let onboarding_sign_up_email_verification_error_body_unable_to_register_error = AppTextKey("onboarding.sign_up.email_verification.error.body_unable_to_register_error")
     static let onboarding_sign_up_email_verification_section_body_placeholder = AppTextKey("onboarding.sign_up.email_verification.section_body.placeholder")
     static let onboarding_sign_up_email_verification_error_enter_email_text = AppTextKey("onboarding.sign_up.email_verification.error.enter_email_text")
@@ -194,7 +194,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_email_verification_alert_account_exist_button_dismiss = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.button_dismiss")
     static let onboarding_sign_up_email_verification_alert_account_exist_button_save = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.button_save")
     static let onboarding_sign_up_email_verification_alert_account_exist_body = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.body")
-    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
+    static let onboarding_sign_up_personal_data_section_header_header = AppTextKey("onboarding_sign_up_enter_personal_data.section_header.header")
     static let onboarding_sign_up_enter_name_section_body_label_mandatory = AppTextKey("onboarding.sign_up.enter_name.section_body.label_mandatory")
     static let onboarding_sign_up_enter_name_section_body_placeholder_name = AppTextKey("onboarding.sign_up.enter_name.section_body.placeholder_name")
     static let onboarding_sign_up_enter_name_section_footer_button_next = AppTextKey("onboarding.sign_up.enter_name.section_footer.button_next")
@@ -867,5 +867,6 @@ public extension AppTextKey {
     @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
-
+    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
+    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
 }

@@ -14,7 +14,7 @@ final class RegistrationNamesWorker: BaseSigningWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return AppTextService.get(.onboarding_sign_up_enter_name_section_header_title)
+        return AppTextService.get(.onboarding_sign_up_personal_data_section_header_header)
     }()
 
     lazy var firstNameTitle: String = {
