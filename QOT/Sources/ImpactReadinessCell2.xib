@@ -77,7 +77,7 @@
                             <constraint firstItem="ZRG-C1-VVR" firstAttribute="leading" secondItem="qQC-U6-n0Z" secondAttribute="leading" id="xdu-UO-5kO"/>
                         </constraints>
                     </view>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-5Z-F6x">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalCentering" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="oE2-5Z-F6x">
                         <rect key="frame" x="24" y="122" width="462" height="686"/>
                         <subviews>
                             <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HWH-HC-kae" userLabel="Divider View0">
