@@ -30,7 +30,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     private var actionRight: actionClosure? = nil
     var trackState: Bool = false
     private var showDailyCheckInScreen = false
-    @IBOutlet private weak var exploreScoreButton: AnimatedButton!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,19 +40,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         skeletonManager.addSubtitle(content)
         skeletonManager.addOtherView(toBeVisionImage)
         skeletonManager.addOtherView(impactReadinessButton)
-        skeletonManager.addOtherView(exploreScoreButton)
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
-        exploreScoreButton.isHidden = true
-        impactReadinessButton.isHidden = true
+//        impactReadinessButton.isHidden = false
     }
-
-    @IBAction func exploreScoreButton(_ sender: Any) {
-        trackState = !trackState
-        exploreScoreButton.flipImage(trackState)
-        NotificationCenter.default.post(name: .dispayDailyCheckInScore, object: nil)
-       }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
         if let launchURL = URLScheme.dailyCheckIn.launchURLWithParameterValue("") {
@@ -72,7 +63,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     func configure(viewModel: ImpactReadinessCellViewModel?, tapLeft: actionClosure?, tapRight: actionClosure?) {
         guard let model = viewModel else { return }
         baseHeaderView?.titleLabel.isHidden = false
-
         skeletonManager.hide()
         showDailyCheckInScreen = (model.domainModel?.dailyCheckInAnswerIds?.isEmpty != false &&
                                   model.domainModel?.dailyCheckInResult == nil)
@@ -91,14 +81,12 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         ThemeText.navigationBarHeader.apply(AppTextService.get(.daily_brief_section_header_title), to: titleLabel)
         buttonLeft.isHidden = tapLeft == nil
         buttonRight.isHidden = tapRight == nil
-        exploreScoreButton.isHidden = true
         impactReadinessButton.isHidden = true
         actionLeft = tapLeft
         actionRight = tapRight
         buttonLeft.addTarget(self, action: #selector(didTapLeft), for: .touchUpInside)
         buttonRight.addTarget(self, action: #selector(didTapRight), for: .touchUpInside)
         impactReadinessOutOf100Label.text = AppTextService.get(.daily_brief_section_impact_readiness_label_out_of_100)
-        exploreScoreButton.isEnabled = viewModel?.enableButton ?? true
 
         if showDailyCheckInScreen {
             impactReadinessButton.isHidden = false
@@ -107,6 +95,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
             trackState = model.isExpanded
+            impactReadinessButton.isHidden = true
         }
     }
 }
