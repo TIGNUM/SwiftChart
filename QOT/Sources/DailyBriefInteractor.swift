@@ -829,7 +829,7 @@ extension DailyBriefInteractor {
         var aboutMeList: [BaseDailyBriefViewModel] = []
         let aboutMeBucketTitle = AppTextService.get(.daily_brief_section_my_stats_title)
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = AppTextService.get(.daily_brief_section_my_stats_body_missing_data)
+        let aboutMeAdditionalContent = aboutMeModel.additionalDescription
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
                                             aboutMeContent: aboutMeContent,
                                             aboutMeMoreInfo: aboutMeAdditionalContent,
