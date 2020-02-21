@@ -112,7 +112,7 @@ private extension MyQotAccountSettingsViewController {
         interactor?.userProfile({[weak self] (profile) in
             ThemeText.accountDetailEmail.apply(profile?.email, to: self?.userEmailLabel)
             ThemeText.accountDetailEmail.apply(profile?.company, to: self?.userCompanyLabel)
-            ThemeText.accountDetailAge.apply(profile?.yearOfBirth, to: self?.userDobLabel)
+            ThemeText.accountDetailAge.apply(profile?.birthday, to: self?.userDobLabel)
             ThemeText.accountUserName.apply(profile?.name, to: self?.userNameLabel)
         })
     }
