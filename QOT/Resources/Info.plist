@@ -107,7 +107,7 @@
 	<key>NSLocationUsageDescription</key>
 	<string>QOT needs access to your location to update your time zone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>QOT needs access to your location to track your steps.</string>
+	<string>QOT needs access to your location to update your time zone.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QOT needs access to your Library to set your images.</string>
 	<key>NSRemindersUsageDescription</key>
@@ -143,7 +143,6 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
-		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
