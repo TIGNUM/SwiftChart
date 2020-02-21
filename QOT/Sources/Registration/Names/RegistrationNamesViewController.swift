@@ -48,7 +48,7 @@ final class RegistrationNamesViewController: BaseViewController, ScreenZLevel3 {
         return toolbar
     }()
 
-    lazy private var yearPicker: UIDatePicker = {
+    lazy private var datePicker: UIDatePicker = {
         let picker = UIDatePicker()
         picker.datePickerMode = .date
         picker.backgroundColor = .carbonNew
@@ -153,7 +153,7 @@ extension RegistrationNamesViewController: RegistrationNamesViewControllerInterf
         ThemeText.onboardingInputPlaceholder.apply(interactor.agePlaceholder, to: ageInputField.placeholderLabel)
         ThemeText.registrationAgeRestriction.apply(interactor.ageRestrictionText, to: ageRestrictionLabel)
 
-        ageInputField.textField.inputView = yearPicker
+        ageInputField.textField.inputView = datePicker
         ageInputField.textField.inputAccessoryView = keyboardToolbar
         ageInputField.textField.returnKeyType = .go
         ageInputField.textField.tintColor = .clear

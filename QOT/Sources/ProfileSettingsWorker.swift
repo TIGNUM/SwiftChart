@@ -78,7 +78,6 @@ final class ProfileSettingsWorker {
 }
 
 extension ProfileSettingsWorker {
-
     var profile: QDMUser? {
         get {
             return user
@@ -141,7 +140,6 @@ private extension ProfileSettingsWorker {
 }
 
 private extension ProfileSettingsWorker {
-
     private func generalSettingsSection(for user: QDMUser?) -> [SettingsSection] {
         return [
             Sections(title: personalTxt, rows: personalRows(for: user)),
@@ -167,12 +165,8 @@ private extension ProfileSettingsWorker {
     private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         guard let user = user else { return [] }
         let date = DateFormatter.yyyyMMdd.date(from: user.dateOfBirth) ?? Date()
-        return [
-            .textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
-            .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
-            .datePicker(title: dateOfBirthTxt,
-                        yearOfBirth: String(date.year()),
-                        settingsType: .dateOfBirth)
-        ]
+        return [.textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
+                .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
+                .datePicker(title: dateOfBirthTxt, dateOfBirth: user.dateOfBirth, settingsType: .dateOfBirth)]
     }
 }

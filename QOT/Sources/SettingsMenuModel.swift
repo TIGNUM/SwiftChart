@@ -95,7 +95,7 @@ protocol SettingsSection {
 enum SettingsRow {
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Int, settingsType: SettingsType)
-    case datePicker(title: String, yearOfBirth: String, settingsType: SettingsType)
+    case datePicker(title: String, dateOfBirth: String, settingsType: SettingsType)
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
