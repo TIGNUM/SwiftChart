@@ -93,7 +93,6 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
-
         if viewModel?.domainModel?.dailyCheckInResult != nil {
             hide(false)
             skeletonManager.hide()

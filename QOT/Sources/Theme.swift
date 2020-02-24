@@ -641,7 +641,6 @@ enum ThemeText {
     case quotationSlash
     case dailyBriefTitle
     case dailyBriefSubtitle
-    case impactReadinessAsterix
     case dailyBriefImpactReadinessRolling
     case sprintName
     case quoteAuthor
@@ -991,7 +990,7 @@ enum ThemeText {
             return Fonts.fontDisplayUltralight120
         case .onboardingInfoTitle:
             return Fonts.fontDisplayBold60
-        case .quotation, .aboutMeContent, .impactReadinessAsterix:
+        case .quotation, .aboutMeContent:
             return Fonts.fontDisplayThin34
         // MARK: - fontDisplayRegular20
         case .dailyBriefTitle, .locationPermissionTitle, .trackSelectionTitle, .dailyBriefTitleBlack, .strategyHeader, .coachTitle:
@@ -1069,7 +1068,7 @@ enum ThemeText {
             return Palette.sand10
         case .articleTag:
             return Palette.sand30
-        case .articleStrategyRead, .articleRelatedDetailInStrategyRead, .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody, .impactReadinessAsterix:
+        case .articleStrategyRead, .articleRelatedDetailInStrategyRead, .quoteAuthor, .chatButton, .myDataChartValueLabels, .myDataHeatMapLegendText, .bespokeText, .accountDetailEmail, .dailyBriefSubtitle, .registerIntroBody:
             return Palette.sand60
 
         // MARK: - .sand70
@@ -1253,7 +1252,7 @@ enum ThemeText {
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
-             .loginSeparator, .dailyBriefSubtitle, .impactReadinessAsterix, .suggestionMyBest:
+             .loginSeparator, .dailyBriefSubtitle, .suggestionMyBest:
             string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
             var alignment: NSTextAlignment = .left
