@@ -26,6 +26,7 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
+    @IBOutlet private weak var contentStackView: UIStackView!
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
     var trackState: Bool = false
@@ -43,7 +44,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         baseHeaderView?.titleLabel.isHidden = true
-//        impactReadinessButton.isHidden = false
     }
 
     @IBAction func impactReadinessButton(_ sender: Any) {
@@ -92,22 +92,11 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             impactReadinessButton.isHidden = false
             impactReadinessButton.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_null_state_button_start_dci), for: .normal)
             impactReadinessButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+            impactReadinessButton.setButtonContentInset(padding: 16)
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
             trackState = model.isExpanded
             impactReadinessButton.isHidden = true
         }
-    }
-}
-
-extension UIButton {
-    func setInsets( forContentPadding contentPadding: UIEdgeInsets, imageTitlePadding: CGFloat) {
-        self.contentEdgeInsets = UIEdgeInsets(
-            top: contentPadding.top,
-            left: contentPadding.left + imageTitlePadding,
-            bottom: contentPadding.bottom,
-            right: contentPadding.right
-        )
-        self.titleEdgeInsets = UIEdgeInsets(top: 0, left: -imageTitlePadding, bottom: 0, right: imageTitlePadding)
     }
 }

@@ -108,7 +108,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             asterixText.attributedText = buildString(asterixCharacter,
                                                      ThemeText.dailyBriefSubtitle,
                                                      (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""),
-                                                     ThemeText.dailyBriefSubtitle,
+                                                     ThemeText.asterixText,
                                                      textAlignment: .left)
         } else {
             asterixText.attributedText = nil

@@ -100,11 +100,11 @@
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-6W-mgh">
+                    <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="equalCentering" alignment="bottom" spacing="17" translatesAutoresizingMaskIntoConstraints="NO" id="g20-6W-mgh">
                         <rect key="frame" x="24" y="429.33333333333331" width="388" height="143.66666666666669"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                                <rect key="frame" x="0.0" y="0.0" width="388" height="86.666666666666671"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
+                                <rect key="frame" x="0.0" y="0.0" width="388" height="76.666666666666671"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">On days that you don't feel your best let your High Performance Mindset take over. Spend some time visualizing, in detail, what it will look like to Rule Your Impact today.</string>
                                 <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
@@ -112,7 +112,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="252" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjm-ra-cbt" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="103.66666666666669" width="388" height="40"/>
+                                <rect key="frame" x="153" y="103.66666666666669" width="235" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="Bs0-gv-xpB"/>
                                 </constraints>
@@ -129,7 +129,9 @@
                             </button>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" id="b5I-U1-vWd"/>
                             <constraint firstAttribute="trailing" secondItem="Vjm-ra-cbt" secondAttribute="trailing" id="orJ-wr-hqi"/>
+                            <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="g20-6W-mgh" secondAttribute="leading" id="tev-2T-aPf"/>
                         </constraints>
                     </stackView>
                 </subviews>
@@ -163,6 +165,7 @@
                 <outlet property="buttonLeft" destination="cHB-0X-pIa" id="KqO-uQ-lMS"/>
                 <outlet property="buttonRight" destination="FoF-ku-DkF" id="b2D-Q0-Uzf"/>
                 <outlet property="content" destination="w4g-tE-UTh" id="46l-wH-Uvn"/>
+                <outlet property="contentStackView" destination="g20-6W-mgh" id="a4L-9Q-o8w"/>
                 <outlet property="headerView" destination="13j-PD-rak" id="cLW-Mq-FM7"/>
                 <outlet property="impactReadinessButton" destination="Vjm-ra-cbt" id="jpM-JP-Uvx"/>
                 <outlet property="impactReadinessOutOf100Label" destination="R2j-t5-POi" id="xFq-k8-tr4"/>
