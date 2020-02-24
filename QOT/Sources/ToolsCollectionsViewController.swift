@@ -222,8 +222,22 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         } else if tool.contentCollectionId == mindsetShifterChatBotId {
             interactor.presentDTMindetShifter()
         } else {
-            if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(tool.remoteID)) {
-                UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            switch ContentFormat(rawValue: tool.type) {
+            case .audio:
+                let media = MediaPlayerModel(title: tool.title,
+                                             subtitle: "",
+                                             url: tool.mediaURL,
+                                             totalDuration: tool.duration,
+                                             progress: 0,
+                                             currentTime: 0,
+                                             mediaRemoteId: tool.remoteID)
+                NotificationCenter.default.post(name: .playPauseAudio, object: media)
+                tableView.deselectRow(at: indexPath, animated: true)
+                didDeselectRow(at: indexPath)
+            default:
+                if let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(tool.remoteID)) {
+                    UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+                }
             }
         }
     }

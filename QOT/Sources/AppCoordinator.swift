@@ -227,13 +227,16 @@ extension AppCoordinator {
         let signinInfoController = SigningInfoViewController()
         signinInfoConfigurator(signinInfoController)
 
-        let navigationController = UINavigationController(rootViewController: signinInfoController)
-        navigationController.navigationBar.isHidden = true
-        navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.modalPresentationStyle = .overFullScreen
-        guard let window = UIApplication.shared.delegate?.window else { return }
-        window?.makeKeyAndVisible()
-        window?.rootViewController?.present(navigationController, animated: false, completion: nil)
+        guard let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController,
+        let baseController = navigationController.viewControllers.first as? BaseRootViewController else { return }
+
+        self.setRootViewController(navigationController, transitionStyle: .curveEaseIn, duration: 0, animated: false) {
+            let navigationController = UINavigationController(rootViewController: signinInfoController)
+            navigationController.navigationBar.isHidden = true
+            navigationController.modalTransitionStyle = .crossDissolve
+            navigationController.modalPresentationStyle = .overFullScreen
+            baseController.setContent(viewController: navigationController)
+        }
     }
 
     func logout() {

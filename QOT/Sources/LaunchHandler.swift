@@ -304,8 +304,17 @@ extension LaunchHandler {
                     return
                 }
                 baseRootViewController?.showPDFReader(withURL: pdfURL, title: contentItem.valueText, itemID: itemId)
-            case .audio,
-                 .video:
+            case .audio:
+                guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
+                let media = MediaPlayerModel(title: contentItem.valueText,
+                                             subtitle: "",
+                                             url: mediaURL,
+                                             totalDuration: Double(contentItem.valueDuration ?? 0),
+                                             progress: 0,
+                                             currentTime: 0,
+                                             mediaRemoteId: contentItem.remoteID ?? 0)
+                NotificationCenter.default.post(name: .playPauseAudio, object: media)
+            case .video:
                 guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
                 baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem)
             default: break
