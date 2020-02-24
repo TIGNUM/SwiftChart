@@ -231,7 +231,6 @@ private extension MyPrepsViewController {
     }
 
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
-
         updateEditButton(hidden: false)
         tableView.alpha = 1
         updateButton()
@@ -405,7 +404,7 @@ extension MyPrepsViewController {
         indicatorViewLeadingConstraint.constant = location.xCentre - location.width / 2
         indicatorWidthConstraint.constant = location.width
         UIView.animate(withDuration: 0.1) { [weak self] in
-            self?.view.layoutIfNeeded()
+        self?.view.layoutIfNeeded()
         }
     }
 }
