@@ -231,25 +231,30 @@ private extension MyPrepsViewController {
     }
 
     func showEmptyStateViewIfNeeded(_ sender: UISegmentedControl) {
-        bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
-        refreshBottomNavigationItems()
+
         updateEditButton(hidden: false)
         tableView.alpha = 1
         updateButton()
         switch sender.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
+            bottomNavigationItems.rightBarButtonItems = [prepareEventButton]
+            refreshBottomNavigationItems()
             if interactor.numberOfRowsPreparations() == 0 {
                 noPreparationsView.isHidden = false
                 tableView.alpha = 0
                 updateEditButton(hidden: true)
             }
         case SegmentView.mindsetShifter.rawValue:
+            bottomNavigationItems.rightBarButtonItems = [addMindsetShiftButton]
+            refreshBottomNavigationItems()
             if interactor.numberOfRowsMindsetShifters() == 0 {
                 noMIndsetShiftersView.isHidden = false
                 updateEditButton(hidden: true)
                 tableView.alpha = 0
             }
         case SegmentView.recovery.rawValue:
+            bottomNavigationItems.rightBarButtonItems = [planRecoveryButton]
+            refreshBottomNavigationItems()
             if interactor.numberOfRowsRecoveries() == 0 {
                 noRecoveriesView.isHidden = false
                 updateEditButton(hidden: true)
