@@ -165,7 +165,6 @@
                 <outlet property="buttonLeft" destination="cHB-0X-pIa" id="KqO-uQ-lMS"/>
                 <outlet property="buttonRight" destination="FoF-ku-DkF" id="b2D-Q0-Uzf"/>
                 <outlet property="content" destination="w4g-tE-UTh" id="46l-wH-Uvn"/>
-                <outlet property="contentStackView" destination="g20-6W-mgh" id="a4L-9Q-o8w"/>
                 <outlet property="headerView" destination="13j-PD-rak" id="cLW-Mq-FM7"/>
                 <outlet property="impactReadinessButton" destination="Vjm-ra-cbt" id="jpM-JP-Uvx"/>
                 <outlet property="impactReadinessOutOf100Label" destination="R2j-t5-POi" id="xFq-k8-tr4"/>

@@ -46,11 +46,6 @@ final class DailyBriefInteractor {
         // Listen about UpSync Daily Check In User Answers
         NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
                                                name: .requestSynchronization, object: nil)
-
-        // Listen about Expend/Collapse
-        NotificationCenter.default.addObserver(self, selector: #selector(didGetImpactReadinessCellSizeChanges(_ :)),
-                                               name: .dispayDailyCheckInScore, object: nil)
-
         // Listen about Expend/Collapse of Closed Guided Track
         NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
                                                name: .displayGuidedTrackRows, object: nil)
