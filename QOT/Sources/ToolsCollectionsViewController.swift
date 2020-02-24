@@ -184,6 +184,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                            remoteID: tool.remoteID,
                            delegate: self)
             cell.addTopLine(for: indexPath.row)
+            cell.accessoryView = .none
             return cell
         } else if tool.type == "pdf" {
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)

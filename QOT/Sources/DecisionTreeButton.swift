@@ -55,17 +55,19 @@ final class SelectionButton: AbstractTreeButton {
     @IBOutlet private weak var selectionLabel: UILabel!
     private var selectedBackgroundColor = UIColor.clear
     private var defaultBackgroundColor = UIColor.red
+    private var defaultBorderColor = UIColor.clear.cgColor
 
     func configure(title: String, isSelected: Bool) {
         defaultBackgroundColor = isSelected ? .accent30 : .clear
         selectedBackgroundColor = isSelected ? .clear : .accent30
         selectionLabel.attributedText = ThemeText.chatbotButton.attributedString(title)
+        corner(radius: .Twenty, borderColor: isSelected ? .clear : .accent40)
         switchBackgroundColor()
-        corner(radius: .Twenty, borderColor: .accent40)
     }
 
     func switchBackgroundColor() {
         backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
+        layer.borderWidth = (backgroundColor == defaultBackgroundColor) ? 1 : 0
     }
 }
 
