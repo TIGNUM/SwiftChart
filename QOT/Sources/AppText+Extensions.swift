@@ -864,7 +864,7 @@ public extension AppTextKey {
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
 
-    @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
+    @available(*, unavailable, message: "Deprecated from QOT v3.1.4")
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
     static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
