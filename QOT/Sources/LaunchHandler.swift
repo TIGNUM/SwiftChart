@@ -314,7 +314,6 @@ extension LaunchHandler {
                                              currentTime: 0,
                                              mediaRemoteId: contentItem.remoteID ?? 0)
                 NotificationCenter.default.post(name: .playPauseAudio, object: media)
-                NotificationCenter.default.post(name: .showAudioFullScreen, object: media)
             case .video:
                 guard let mediaURL = URL(string: contentItem.valueMediaURL ?? "") else { return }
                 baseRootViewController?.stream(videoURL: mediaURL, contentItem: contentItem)
