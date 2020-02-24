@@ -26,10 +26,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
-    @IBOutlet private weak var contentStackView: UIStackView!
     private var actionLeft: actionClosure? = nil
     private var actionRight: actionClosure? = nil
-    var trackState: Bool = false
     private var showDailyCheckInScreen = false
 
     override func awakeFromNib() {
@@ -95,7 +93,6 @@ final class ImpactReadiness1: BaseDailyBriefCell {
             impactReadinessButton.setButtonContentInset(padding: 16)
             ThemeButton.dailyBriefButtons.apply(impactReadinessButton)
         } else {
-            trackState = model.isExpanded
             impactReadinessButton.isHidden = true
         }
     }
