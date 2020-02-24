@@ -108,6 +108,7 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
         case .DONE:
             title = AppTextService.get(.generic_download_status_audio_button_downloaded)
             downloadButton.isEnabled = false
+            downloadButton.layer.borderWidth = 0
         }
 
         switch colorMode {
@@ -167,6 +168,7 @@ extension AudioFullScreenViewController {
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = nil
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
+                self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
             }
         } else if let item = contentItem {
             UserStorageService.main.addBookmarkContentItem(item) { [weak self] (storage, error) in
@@ -176,11 +178,13 @@ extension AudioFullScreenViewController {
                 NotificationCenter.default.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.bookmark = storage
                 self?.bookmarkButton.isSelected = self?.bookmark != nil
+                self?.bookmarkButton.isSelected ?? true ? (self?.bookmarkButton.layer.borderWidth = 0) : (self?.bookmarkButton.layer.borderWidth = 1)
             }
         }
     }
 
     @IBAction func didTapDownloadButton() {
+        self.downloadButton.layer.borderWidth = 0
         if download != nil {
             continueDownload()
             return

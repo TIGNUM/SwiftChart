@@ -295,12 +295,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 strongSelf.getDailyBriefBucketsForViewModel()
             }
 
-            if let bucketNameToScroll = strongSelf.targetBucketName {
+            if let bucketNameToScroll = strongSelf.targetBucketName, changeSet.count == 0 {
                 DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
                     strongSelf.scrollToBucket(bucketNameToScroll)
                 })
+                strongSelf.targetBucketName = nil
             }
-            strongSelf.targetBucketName = nil
         }
     }
 

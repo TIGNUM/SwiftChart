@@ -37,7 +37,7 @@ struct DailyCheckInLocalNotificationConfig: Codable {
     }
 
     func identifier() -> String {
-        return "\(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)[:]]\(version)[:]\(soundName ?? "silent")[:]\(titleKey)[:]\(weekday)[:]\(hour)[:]\(minute)[:]\(link)"
+        return "\(DAILY_CHECK_IN_NOTIFICATION_IDENTIFIER)[:]\(version)[:]\(soundName ?? "silent")[:]\(titleKey)[:]\(weekday)[:]\(hour)[:]\(minute)[:]\(link)"
     }
 
     func notificationRequest(with body: String) -> UNNotificationRequest {

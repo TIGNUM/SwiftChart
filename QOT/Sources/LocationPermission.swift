@@ -34,7 +34,7 @@ class LocationPermission: NSObject, PermissionInterface {
         }
 
         locationPermissionCompletion = completion
-        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
     }
 }
 

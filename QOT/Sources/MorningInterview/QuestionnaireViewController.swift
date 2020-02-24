@@ -255,13 +255,6 @@ extension QuestionnaireViewController {
         showAnimated = false
     }
 
-    private func topAndBottomImage(isHidden: Bool) {
-        topImageView.isHidden = isHidden
-        bottomImageView.isHidden = isHidden
-        topIndex.isHidden = !isHidden
-        bottomIndex.isHidden = !isHidden
-    }
-
     private func setupView() {
         let color = controllerType.color
         lineView.backgroundColor = color
@@ -272,35 +265,12 @@ extension QuestionnaireViewController {
     }
 
     private func setupImages() {
-        switch questionkey {
-        case .amount?:
-            topImageView.image = R.image.sleepBig()
-            bottomImageView.image = R.image.sleepSmall()
-            topAndBottomImage(isHidden: false)
-        case .demand?:
-            topImageView.image = R.image.upcomingEventBig()
-            bottomImageView.image = R.image.upcomingEventSmall()
-            topAndBottomImage(isHidden: false)
-        case .load?:
-            topImageView.image = R.image.taskBig()
-            bottomImageView.image = R.image.taskSmall()
-            topAndBottomImage(isHidden: false)
-        case .quality?:
-            topImageView.image = R.image.waveBig()
-            bottomImageView.image = R.image.waveSmall()
-            topAndBottomImage(isHidden: false)
-        case .recovered?:
-            topImageView.image = R.image.recoverBig()
-            bottomImageView.image = R.image.recoverSmall()
-            topAndBottomImage(isHidden: false)
-        case .peak?:
-            topImageView.image = R.image.upcomingEventBig()
-            bottomImageView.image = R.image.upcomingEventSmall()
-            topAndBottomImage(isHidden: false)
-        default:
-            topIndex.text = String(10)
-            bottomIndex.text = String(1)
-            topAndBottomImage(isHidden: true)
+        if let answers = self.answers {
+            topIndex.text = answers.last?.title
+            bottomIndex.text = answers.first?.title
+        } else {
+            topIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)
+            bottomIndex.text = AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never)
         }
     }
 
@@ -436,16 +406,12 @@ extension QuestionnaireViewController {
                 switch controllerType {
                 case .customize:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabel.apply(finalAnswers[answerIndex].title, to: hintLabel)
                 default:
                     indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                    ThemeText.questionHintLabelDark.apply(finalAnswers[answerIndex].title, to: hintLabel)
                  }
             }
         } else {
             indexLabel.text = String(items - index)
-            let subtitles = [AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_never), "", "", "", AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_sometimes), "", "", "", "", AppTextService.get(.my_qot_my_tbv_tbv_tracker_questionnaire_section_body_label_rate_always)]
-            ThemeText.questionHintLabel.apply(subtitles[items - index - 1], to: hintLabel)
         }
 
         if isTouch == true {
