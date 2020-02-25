@@ -555,8 +555,11 @@ enum ThemeText {
 
     case articleCategory
     case articleCategoryNotScaled
+    case audioFullScreenTitleDark
     case articleTitle
     case articleTitleNotScaled
+    case audioFullScreenTitle
+    case audioFullScreenCategory
     case articleBullet
     case articleBody
     case articleAuthor(ThemeColorMode?)
@@ -898,14 +901,14 @@ enum ThemeText {
             return Fonts.fontRegular18
         case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader, .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
-        case .articleCategoryNotScaled, .qotToolsSectionSubtitle:
+        case .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory:
             return Fonts.fontMedium12
         case .articleTitle:
             switch textScale {
             case .scale: return Fonts.fontLight40
             case .scaleNot: return Fonts.fontLight34
             }
-        case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader:
+        case .articleTitleNotScaled, .tbvHeader, .tbvVisionHeader, .audioFullScreenTitle, .audioFullScreenTitleDark:
             return Fonts.fontLight34
         case .articleBullet:
             switch textScale {
@@ -1032,7 +1035,7 @@ enum ThemeText {
              .accountDetailAge, .dailyBriefImpactReadinessRolling, .onboardingInfoTitle, .myLibraryTitle, .myLibraryItemsTitle,
              .myLibraryItemsItemName, .mySprintsTitle, .mySprintsCellTitle, .mySprintDetailsTitle, .mySprintDetailsTextActive,
              .mySensorsSensorTitle, .mySensorsDescriptionTitle, .shpiQuestion, .coachMarkTitle, .coachMarkSubtitle, .insightsTBVSentence, .strategyTitle,
-             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays:
+             .dailyInsightsChartBarLabelSelected, .registerIntroTitle, .registerIntroNoteTitle, .dailyBriefFromTignumTitle, .qotAlertTitle, .trackedDays, .audioFullScreenTitleDark:
             return Palette.sand
 
         // MARK: - .sand40
@@ -1057,7 +1060,7 @@ enum ThemeText {
              .resultCounter, .resultCounterMax, .paymentReminderHeaderSubtitle:
             return Palette.carbon40
         case .fromCoachTitle, .dailyBriefTitleBlack, .qotTools, .qotToolsTitle, .questionHintLabelDark, .coachHeader,
-             .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion:
+             .resultTitle, .resultHeader1, .resultClosingText, .paymentReminderCellTitle, .paymentReminderHeaderTitle, .dailyQuestion, .audioFullScreenTitle:
             return Palette.carbon
         case .performanceSectionText, .qotToolsSectionSubtitle, .resultHeader2,
              .audioPlayerTitleDark, .coachHeaderSubtitle, .coachSubtitle, .qotToolsSubtitle, .paymentReminderCellSubtitle:
@@ -1130,7 +1133,7 @@ enum ThemeText {
             return .sand10
         case .calendarNoAccess:
             return Palette.sand80
-        case .resultDate:
+        case .resultDate, .audioFullScreenCategory:
             return Palette.carbon30
         case .mySprintDetailsCtaHighlight:
             return Palette.accent30
@@ -1158,7 +1161,7 @@ enum ThemeText {
         let string: NSAttributedString
 
         switch self {
-        case .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
+        case .articleCategory, .articleCategoryNotScaled, .audioFullScreenCategory, .articleAuthor, .articleDatestamp,
              .author, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .dailyBriefTitleBlack,
              .myQOTPrepTitle, .tbvTrackerHeader, .dailyBriefDailyCheckInSights, .quotationLight, .quotationSlash,
              .resultFollowUp, .audioPlayerTime, .audioPlayerTimeLight, .qotToolsSectionSubtitle, .qotToolsTitle,
@@ -1170,7 +1173,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
-        case .articleTitle, .articleTitleNotScaled, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
+        case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
