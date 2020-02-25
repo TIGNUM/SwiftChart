@@ -1024,14 +1024,13 @@ extension DailyBriefInteractor {
     func createGoodToKnow(createGoodToKnowBucket createGoodToKnow: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createGoodToKnowList: [BaseDailyBriefViewModel] = []
         guard let collection = createGoodToKnow.contentCollections?.first else {
-            createGoodToKnowList.append(GoodToKnowCellViewModel(title: "", fact: "",
-                                                                image: URL(string: ""),
+            createGoodToKnowList.append(GoodToKnowCellViewModel(title: "",
+                                                                fact: "",
                                                                 copyright: "",
                                                                 domainModel: createGoodToKnow))
             return createGoodToKnowList }
         createGoodToKnowList.append(GoodToKnowCellViewModel(title: AppTextService.get(.daily_brief_section_good_to_know_title),
                                                             fact: collection.contentItems.first?.valueText,
-                                                            image: URL(string: (collection.thumbnailURLString ?? "")),
                                                             copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                                             domainModel: createGoodToKnow))
         return createGoodToKnowList
