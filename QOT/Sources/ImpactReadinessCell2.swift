@@ -46,6 +46,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     @IBOutlet weak var refLabel2: UILabel!
     @IBOutlet weak var refLabel3: UILabel!
     @IBOutlet weak var rollingDataLabel: UILabel!
+    @IBOutlet weak var trackedDaysLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -96,32 +97,36 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
             hide(false)
             skeletonManager.hide()
         }
-        var asterixCharacter: String = "*"
-        ThemeText.dailyBriefImpactReadinessRolling.apply(AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
+        var asterixCharacter = "*"
+        ThemeText.dailyBriefTitle.apply(AppTextService.get(.daily_brief_section_impact_readiness_section_5_day_rolling_title).uppercased(), to: rollingDataLabel)
         ThemeText.dailyBriefSubtitle.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
 
         if viewModel?.hasFiveDayLoadValue != true,
             viewModel?.hasFiveDaySleepQualityValue != true,
             viewModel?.hasFiveDaySleepQuantityValues != true {
-            asterixText.attributedText = buildString(asterixCharacter, ThemeText.impactReadinessAsterix,
-                                                     (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""), ThemeText.dailyBriefSubtitle,
+            asterixText.attributedText = buildString(asterixCharacter,
+                                                     ThemeText.dailyBriefSubtitle,
+                                                     (viewModel?.asteriskText ?? "").replacingOccurrences(of: asterixCharacter, with: ""),
+                                                     ThemeText.asterixText,
                                                      textAlignment: .left)
         } else {
             asterixText.attributedText = nil
         }
 
         asterixCharacter = viewModel?.hasFiveDaySleepQuantityValues == true ? "" : "*"
+        let asteriskQuality = viewModel?.hasFiveDaySleepQualityValue == true ? "" : "*"
+        let asteriskLoad = viewModel?.hasFiveDayLoadValue == true ? "" : "*"
+
         // Sleep Quantity
         let quantityTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_title)
         let quantitySubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_subtitle)
         ThemeText.bucketTitle.apply(quantityTitle, to: sleepQuantityTitleLabel)
         ThemeText.durationString.apply(quantitySubtitle, to: sleepQuantitySubtitleLabel)
 
-        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0), ThemeText.quotation,
+        sleepQuantityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQuantityValue ?? 0),
+                                                        ThemeText.quotation,
                                                         AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_h),
-                                                        ThemeText.quotationSmall,
-                                                   asterixCharacter, ThemeText.quotation)
-
+                                                        ThemeText.quotationSmall)
         let targetSleepQuantityInFiveDays = (viewModel?.targetSleepQuantity ?? 8) * 5
         targetLabel.text = AppTextService.get(.daily_brief_section_impact_readiness_section_sleep_quantity_label_target)
         sleepQuantityTarget.setTitle(String(targetSleepQuantityInFiveDays), for: .normal)
@@ -133,6 +138,8 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.durationString.apply(qualitySubtitle, to: sleepQualitySubtitle)
 
         sleepQualityLabel.attributedText = buildString(String(format: "%.1f", viewModel?.sleepQualityValue ?? 0),
+                                                  ThemeText.quotation,
+                                                  asteriskQuality,
                                                   ThemeText.quotation,
                                                   "/",
                                                   ThemeText.quotationSlash,
@@ -149,13 +156,14 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
 
         loadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.loadValue ?? 0),
                                           ThemeText.quotation,
+                                          asteriskLoad,
+                                          ThemeText.quotation,
                                           "/",
                                           ThemeText.quotationSlash,
                                           "10",
                                           ThemeText.quotationLight)
         refLabel2.text = AppTextService.get(.daily_brief_section_impact_readiness_section_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadReferenceLabel)
-
         // Future Load
         let futureLoadTitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_title)
         let futureLoadSubtitle = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_subtitle)
@@ -163,13 +171,21 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         ThemeText.durationString.apply(futureLoadSubtitle, to: futureLoadSubtitleLabel)
 
         futureLoadLabel.attributedText = buildString(String(format: "%.1f", viewModel?.futureLoadValue ?? 0),
-                                                ThemeText.quotation,
-                                                "/",
-                                                ThemeText.quotationSlash,
-                                                "10",
-                                                ThemeText.quotationLight)
+                                                     ThemeText.quotation,
+                                                     asteriskLoad,
+                                                     ThemeText.quotation,
+                                                     "/",
+                                                     ThemeText.quotationSlash,
+                                                     "10",
+                                                     ThemeText.quotationLight)
         refLabel3.text = AppTextService.get(.daily_brief_section_impact_readiness_section_future_load_label_ref)
         ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadReferenceLabel)
+        // Tracked days
+        if let  numberOfDays = viewModel?.maxTrackingDays {
+            let trackedDays = AppTextService.get(.daily_brief_section_impact_readiness_body_tracking_days).replacingOccurrences(of: "max_tracking_days", with: String(numberOfDays))
+            ThemeText.trackedDays.apply(trackedDays, to: trackedDaysLabel)
+        }
+
         // Button
         moreData.setTitle(AppTextService.get(.daily_brief_section_impact_readiness_button_my_data), for: .normal)
     }
@@ -184,6 +200,7 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
     private func buildString(_ text1: String, _ theme1: ThemeText,
                              _ text2: String, _ theme2: ThemeText,
                              _ text3: String? = nil, _ theme3: ThemeText? = nil,
+                             _ text4: String? = nil, _ theme4: ThemeText? = nil,
                              textAlignment: NSTextAlignment = .right) -> NSAttributedString {
 
         let combine = NSMutableAttributedString()
@@ -192,6 +209,10 @@ final class ImpactReadinessCell2: BaseDailyBriefCell {
         if let text3 = text3,
            let theme3 = theme3 {
             combine.append(theme3.attributedString(text3))
+        }
+        if let text4 = text4,
+            let theme4 = theme4 {
+            combine.append(theme4.attributedString(text4))
         }
         let style = NSMutableParagraphStyle()
         style.alignment = textAlignment

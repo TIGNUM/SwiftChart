@@ -46,11 +46,6 @@ final class DailyBriefInteractor {
         // Listen about UpSync Daily Check In User Answers
         NotificationCenter.default.addObserver(self, selector: #selector(didGetDataSyncRequest(_ :)),
                                                name: .requestSynchronization, object: nil)
-
-        // Listen about Expend/Collapse
-        NotificationCenter.default.addObserver(self, selector: #selector(didGetImpactReadinessCellSizeChanges(_ :)),
-                                               name: .dispayDailyCheckInScore, object: nil)
-
         // Listen about Expend/Collapse of Closed Guided Track
         NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
                                                name: .displayGuidedTrackRows, object: nil)
@@ -415,6 +410,7 @@ extension DailyBriefInteractor {
             dailyCheckInResultRequestCheckTimer?.invalidate()
             dailyCheckInResultRequestCheckTimer = nil
             readinessIntro = impactReadiness.dailyCheckInResult?.feedback
+            expendImpactReadiness = true
         }
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle,
@@ -427,6 +423,7 @@ extension DailyBriefInteractor {
         let howYouFeelToday = AppTextService.get(.daily_brief_section_impact_readiness_section_five_days_rolling_body_explainer)
         let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
         let sleepQuality = min(impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0, 10)
+        let maxTrackingDays = impactReadiness.dailyCheckInResult?.maxTrackingDays
         let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
         let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
@@ -457,6 +454,7 @@ extension DailyBriefInteractor {
                                                                           loadReference: Double(loadReference),
                                                                           futureLoadReference: Double(futureLoadReference),
                                                                           impactDataModels: models,
+                                                                          maxTrackingDays: maxTrackingDays,
                                                                           domainModel: impactReadiness, "detail"))
         }
 
@@ -827,7 +825,8 @@ extension DailyBriefInteractor {
         var aboutMeList: [BaseDailyBriefViewModel] = []
         let aboutMeBucketTitle = AppTextService.get(.daily_brief_section_my_stats_title)
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = AppTextService.get(.daily_brief_section_my_stats_body_missing_data)
+        let aboutMeAdditionalContent = aboutMeModel.additionalDescription
+
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle,
                                             aboutMeContent: aboutMeContent,
                                             aboutMeMoreInfo: aboutMeAdditionalContent,

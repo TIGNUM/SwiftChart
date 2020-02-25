@@ -28,6 +28,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
     var subTitle: String?
     var impactDataModels: [ImpactDataViewModel]?
     var type = ImpactReadinessType.DAILY_CHECK_IN
+    var maxTrackingDays: Int?
     struct ImpactDataViewModel {
         var title: String?
         var subTitle: String?
@@ -46,6 +47,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
          loadReference: Double?,
          futureLoadReference: Double?,
          impactDataModels: [ImpactDataViewModel]?,
+         maxTrackingDays: Int?,
          domainModel: QDMDailyBriefBucket,
          _ subIdentifier: String? = "") {
 
@@ -66,6 +68,8 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
 
         self.loadReference = loadReference
         self.futureLoadReference = futureLoadReference
+
+        self.maxTrackingDays = maxTrackingDays
 
         self.impactDataModels = impactDataModels
         super.init(domainModel, subIdentifier)
