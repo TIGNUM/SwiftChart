@@ -9,7 +9,6 @@
 import UIKit
 
 final class GoodToKnowCell: BaseDailyBriefCell {
-    @IBOutlet private weak var goodToKnowImage: UIImageView!
     @IBOutlet private weak var goodToKnowFact: UILabel!
     private var baseHeaderView: QOTBaseHeaderView?
     @IBOutlet weak var headerView: UIView!
@@ -21,15 +20,11 @@ final class GoodToKnowCell: BaseDailyBriefCell {
         baseHeaderView = R.nib.qotBaseHeaderView.firstView(owner: self)
         baseHeaderView?.addTo(superview: headerView, showSkeleton: true)
         skeletonManager.addSubtitle(goodToKnowFact)
-        skeletonManager.addOtherView(goodToKnowImage)
     }
 
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        skeletonManager.addOtherView(goodToKnowImage)
-        goodToKnowImage.setImage(url: model.image,
-                                 skeletonManager: self.skeletonManager) { (_) in /* */}
         baseHeaderView?.configure(title: (model.title ?? "").uppercased(), subtitle: nil)
         ThemeText.dailyBriefSubtitle.apply(model.fact, to: goodToKnowFact)
         self.goodToKnowModel = model
