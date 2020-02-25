@@ -16,7 +16,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var subtitleLabel: UILabel!
     let skeletonManager = SkeletonManager()
 
-    func configure(title: String?, subtitle: String?, isRed: Bool = false) {
+    func configure(title: String?, subtitle: String?) {
         ThemeText.myQOTBoxTitle.apply((title ?? ""), to: titleLabel)
 
         guard let newSubtitle = subtitle else {
@@ -26,8 +26,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
         skeletonManager.hide()
-        let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
-        theme.apply(newSubtitle, to: subtitleLabel)
+        ThemeText.linkMenuComment.apply(newSubtitle, to: subtitleLabel)
     }
 
     // MARK: - Life Cycle
