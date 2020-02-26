@@ -13,7 +13,7 @@ final class RegistrationEmailWorker: BaseSigningWorker {
 
     // MARK: - Properties
     lazy var title: String = {
-        return AppTextService.get(.onboarding_sign_up_email_verification_section_header_title)
+        return AppTextService.get(.onboarding_email_verification_section_header_headline)
     }()
 
     lazy var subtitle: String = {

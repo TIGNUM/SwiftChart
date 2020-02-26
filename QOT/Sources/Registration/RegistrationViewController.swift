@@ -81,6 +81,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
             pageController.setViewControllers([controller], direction: .forward, animated: false, completion: nil)
         }
         refreshBottomNavigationItems()
+        pageIndicator.isHidden = true
     }
 
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {
@@ -90,6 +91,7 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         } else {
             pageIndicator.isHidden = true
         }
+        pageIndicator.isHidden = true
         pageController?.setViewControllers([controller], direction: direction, animated: true, completion: nil)
     }
 

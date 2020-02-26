@@ -33,13 +33,11 @@ final class RegistrationNamesInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 
     // MARK: - Texts
-
     var title: String {
         return worker.title
     }
@@ -56,20 +54,26 @@ final class RegistrationNamesInteractor {
         return worker.mandatoryText
     }
 
-    var nextButtonTitle: String {
+    var agePlaceholder: String {
+        return worker.agePlaceholder
+    }
+
+    var ageRestrictionText: String {
+        return worker.ageRestrictionText
+    }
+
+    var createButtonTitle: String {
         return worker.nextButtonTitle
     }
 }
 
 // MARK: - RegistrationNamesInteractorInterface
-
 extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
-
     func didTapBack() {
         delegate?.didTapBack()
     }
 
-    func didTapNext(with firstName: String, lastName: String?) {
+    func didTapNext(with firstName: String, lastName: String?, birthDate: String?) {
         if !firstName.isValidName || firstName.isEmpty {
             hasFirstNameError = true
         }
@@ -81,6 +85,9 @@ extension RegistrationNamesInteractor: RegistrationNamesInteractorInterface {
             return
         }
         delegate?.didSave(firstName: firstName, lastName: lastName)
+        if let birthDate = birthDate {
+            delegate?.didTapCreateAccount(with: birthDate)
+        }
     }
 
     func resetErrors() {

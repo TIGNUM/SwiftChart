@@ -75,7 +75,6 @@ extension UIViewController {
         case is RegistrationEmailViewController: return "onboarding.createaccount.email"
         case is RegistrationCodeViewController: return "onboarding.createaccount.activationcode"
         case is RegistrationNamesViewController: return "onboarding.createaccount.name"
-        case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
         case is StrategyListViewController: return "know.feed.strategy.list"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"

@@ -32,7 +32,6 @@ final class MyQotAccountSettingsInteractor {
 
 // MARK: - MyQotAccountSettingsInteractorInterface
 extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterface {
-
     func userProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
         worker.getUserProfile { (userProfile) in
             completion(userProfile)

@@ -171,7 +171,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_age_verification_section_footer_button_next = AppTextKey("onboarding.sign_up.age_verification.section_footer.button_next")
     static let onboarding_sign_up_age_verification_section_header_title  = AppTextKey("onboarding.sign_up.age_verification.section_header.title ")
     static let onboarding_sign_up_age_verification_section_body_create_account_label_restriction = AppTextKey("onboarding.sign_up.age_verification.section_body.create_account_label_restriction")
-    static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
+
     static let onboarding_sign_up_code_verification_alert_code_error_body = AppTextKey("onboarding.sign_up.code_verification.alert.code_error.body")
     static let onboarding_sign_up_code_verification_section_disclaimer_body_disclaimer = AppTextKey("onboarding.sign_up.code_verification.section_disclaimer.body_disclaimer")
     static let onboarding_sign_up_code_verification_section_help_button_change_email = AppTextKey("onboarding.sign_up.code_verification.section_help.button_change_email")
@@ -186,7 +186,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_code_verification_section_header_body_description = AppTextKey("onboarding.sign_up.code_verification.section_header.body_description")
     static let onboarding_sign_up_email_verification_alert_account_exist_title = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.title")
     static let onboarding_sign_up_email_verification_alert_general_error_body = AppTextKey("onboarding.sign_up.email_verification.alert.general_error.body")
-    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
+    static let onboarding_email_verification_section_header_headline = AppTextKey("onboarding.email_verification.section_header.headline")
     static let onboarding_sign_up_email_verification_error_body_unable_to_register_error = AppTextKey("onboarding.sign_up.email_verification.error.body_unable_to_register_error")
     static let onboarding_sign_up_email_verification_section_body_placeholder = AppTextKey("onboarding.sign_up.email_verification.section_body.placeholder")
     static let onboarding_sign_up_email_verification_error_enter_email_text = AppTextKey("onboarding.sign_up.email_verification.error.enter_email_text")
@@ -194,7 +194,7 @@ public extension AppTextKey {
     static let onboarding_sign_up_email_verification_alert_account_exist_button_dismiss = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.button_dismiss")
     static let onboarding_sign_up_email_verification_alert_account_exist_button_save = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.button_save")
     static let onboarding_sign_up_email_verification_alert_account_exist_body = AppTextKey("onboarding.sign_up.email_verification.alert.account_exist.body")
-    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
+    static let onboarding_sign_up_personal_data_section_header_header = AppTextKey("onboarding_sign_up_enter_personal_data.section_header.header")
     static let onboarding_sign_up_enter_name_section_body_label_mandatory = AppTextKey("onboarding.sign_up.enter_name.section_body.label_mandatory")
     static let onboarding_sign_up_enter_name_section_body_placeholder_name = AppTextKey("onboarding.sign_up.enter_name.section_body.placeholder_name")
     static let onboarding_sign_up_enter_name_section_footer_button_next = AppTextKey("onboarding.sign_up.enter_name.section_footer.button_next")
@@ -398,7 +398,7 @@ public extension AppTextKey {
     static let onboarding_log_in_section_email_verification_error_subtitle_unknown_user = AppTextKey("onboarding.log_in.section_email_verification.error.subtitle_unknown_user")
     static let onboarding_log_in_section_email_verification_placeholder_email = AppTextKey("onboarding.log_in.section_email_verification.placeholder_email")
     static let onboarding_log_in_section_code_verification_error_subtitle_wrong_code = AppTextKey("onboarding.log_in.section_code_verification.error.subtitle_wrong_code")
-
+    static let onboarding_sign_up_age_verification_section_body_placeholder = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder")
     static let my_qot_my_library_downloads_download_status_button_waiting = AppTextKey("my_qot.my_library.downloads.download_status.button_waiting")
     static let my_qot_section_my_data_subtitle = AppTextKey("my_qot.section_my_data.subtitle")
     static let my_qot_section_my_tbv_subtitle_less_than_3_months = AppTextKey("my_qot.section_my_tbv.subtitle_less_than_3_months")
@@ -541,7 +541,6 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_new_user_title_last_name = AppTextKey("my_qot.my_profile.account_settings.new_user.title_last_name")
     static let my_qot_my_profile_about_us_section_terms_and_conditions_title_terms = AppTextKey("my_qot.my_profile.about_us.section_terms_and_conditions.title_terms")
     static let my_qot_my_profile_account_settings_section_logout_subtitle = AppTextKey("my_qot.my_profile.account_settings.section_logout.subtitle")
-    static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
     static let my_qot_my_profile_account_settings_section_body_title_birth_year = AppTextKey("my_qot.my_profile.account_settings.section_body.title_birth_year")
     static let my_qot_my_profile_app_settings_section_general_settings_section_notifications_subtitle = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_notifications.subtitle")
     static let my_qot_my_profile_app_settings_section_general_settings_section_permissions_subtitle = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_permissions.subtitle")
@@ -787,6 +786,7 @@ public extension AppTextKey {
     static let onboarding_register_intro_video_section_body = AppTextKey("onboarding.register_intro.video_section.body")
     static let onboarding_register_intro_note_section_title = AppTextKey("onboarding.register_intro.note_section.title")
     static let onboarding_register_intro_note_section_body = AppTextKey("onboarding.register_intro.note_section.body")
+    static let dateOfBirth = AppTextKey("onboarding.sign_up.age_verification.section_textfield_date_of_birth.placeholder")
 
     static let generic_payment_screen_expire_soon_view_title_header = AppTextKey("generic.payment_screen.expire_soon.view.title_header")
     static let generic_payment_screen_expire_soon_view_subtitle_header = AppTextKey("generic.payment_screen.expire_soon.view.subtitle_header")
@@ -864,9 +864,18 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+}
 
-    @available(*, unavailable, message: "Deprecated from QOT v3.1.3")
+@available(*, unavailable, message: "Unavailable from QOT v3.1.3")
+public extension AppTextKey {
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
+}
 
+@available(*, unavailable, message: "Unavailable from QOT v3.1.4")
+public extension AppTextKey {
+    static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
+    static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
+    static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
+    static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
 }

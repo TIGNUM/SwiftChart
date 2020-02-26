@@ -48,6 +48,17 @@ final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 
         return items
     }()
 
+    lazy private var datePicker: UIDatePicker = {
+        let picker = UIDatePicker()
+        picker.datePickerMode = .date
+        picker.backgroundColor = .carbonNew
+        picker.minimumDate = Date().minimumDateOfBirth
+        picker.maximumDate = Date().maximumDateOfBirth
+        picker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        picker.setValue(UIColor.sand, forKey: "textColor")
+        return picker
+    }()
+
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,7 +114,7 @@ private extension ProfileSettingsViewController {
     }
 }
 
-// MARK: - Private PickerView
+// MARK: - PickerView
 extension ProfileSettingsViewController {
     @objc func dateChanged(_ sender: UIDatePicker) {
         shouldAllowSave = true
@@ -112,19 +123,15 @@ extension ProfileSettingsViewController {
         selectedCell?.textField.text = dateOfBirth
     }
 
-    func showDatePicker(title: String, selectedYear: String, indexPath: IndexPath) {
+    func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
             return
         }
         selectedCell = cell
-        let yearPicker = UIPickerView()
-        yearPicker.backgroundColor = .carbonDark
-        yearPicker.setValue(UIColor.sand, forKeyPath: "textColor")
-        yearPicker.dataSource = self
-        yearPicker.delegate = self
-        let row = (yearPickerItems.index(of: selectedYear) ?? 0)
-        yearPicker.selectRow(row, inComponent: 0, animated: true)
-        cell.textField.inputView = yearPicker
+
+        let picker = self.datePicker
+        picker.setDate(selectedDate, animated: true)
+        cell.textField.inputView = picker
         cell.textField.becomeFirstResponder()
     }
 }
@@ -168,14 +175,16 @@ extension ProfileSettingsViewController {
         guard let interactor = self.interactor else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         switch interactor.row(at: indexPath) {
-        case .datePicker(let title, let selectedYear, _):
-            showDatePicker(title: title, selectedYear: selectedYear, indexPath: indexPath)
+        case .datePicker(let title, let selectedDate, _):
+            let dateOfBirth = DateFormatter.yyyyMMdd.date(from: selectedDate) ?? Date()
+            showDatePicker(title: title, selectedDate: dateOfBirth, indexPath: indexPath)
         default:
             break
         }
     }
 }
 
+// MARK: - SettingsViewControllerDelegate
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
 
@@ -248,33 +257,7 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
     }
 }
 
-// MARK: - UIPickerViewDelegate, UIPickerViewDataSource
-extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return yearPickerItems.count
-    }
-
-   func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        let title =  yearPickerItems[row]
-        let myTitle = NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.sand])
-        return myTitle
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        let selectedValue = yearPickerItems[row]
-        if selectedValue != localizedYear {
-            selectedCell?.textField.text = selectedValue
-            let selectedDate = DateFormatter.yyyyMMdd.date(from: selectedValue+"-01-02")
-            interactor?.profile?.dateOfBirth = DateFormatter.yyyyMMdd.string(from: selectedDate ?? Date())
-            shouldAllowSave = true
-        }
-    }
-}
-
+// MARK: - MyQotProfileSettingsKeybaordInputViewProtocol
 extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewProtocol {
     @objc func didCancel() {
         view.endEditing(true)

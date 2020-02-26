@@ -55,7 +55,7 @@ extension MyQotAccountSettingsWorker {
     }
 
     var dateOfBirthText: String {
-        return AppTextService.get(.my_qot_my_profile_account_settings_edit_title_date_of_birth)
+        return AppTextService.get(.dateOfBirth)
     }
 
     var companyText: String {
