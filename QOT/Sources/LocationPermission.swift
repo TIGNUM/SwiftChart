@@ -34,7 +34,11 @@ class LocationPermission: NSObject, PermissionInterface {
         }
 
         locationPermissionCompletion = completion
+        #if NOVARTIS
+        locationManager.requestAlwaysAuthorization()
+        #else
         locationManager.requestWhenInUseAuthorization()
+        #endif
     }
 }
 
