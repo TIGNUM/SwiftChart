@@ -540,7 +540,6 @@ public extension AppTextKey {
     static let my_qot_my_profile_account_settings_new_user_title_last_name = AppTextKey("my_qot.my_profile.account_settings.new_user.title_last_name")
     static let my_qot_my_profile_about_us_section_terms_and_conditions_title_terms = AppTextKey("my_qot.my_profile.about_us.section_terms_and_conditions.title_terms")
     static let my_qot_my_profile_account_settings_section_logout_subtitle = AppTextKey("my_qot.my_profile.account_settings.section_logout.subtitle")
-    static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
     static let my_qot_my_profile_account_settings_section_body_title_birth_year = AppTextKey("my_qot.my_profile.account_settings.section_body.title_birth_year")
     static let my_qot_my_profile_app_settings_section_general_settings_section_notifications_subtitle = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_notifications.subtitle")
     static let my_qot_my_profile_app_settings_section_general_settings_section_permissions_subtitle = AppTextKey("my_qot.my_profile.app_settings.section_general_settings.section_permissions.subtitle")
@@ -877,4 +876,5 @@ public extension AppTextKey {
     static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
     static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
     static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
+    static let my_qot_my_profile_account_settings_edit_title_date_of_birth = AppTextKey("my_qot.my_profile.account_settings.edit.title_date_of_birth")
 }

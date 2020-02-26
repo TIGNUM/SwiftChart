@@ -31,7 +31,7 @@ enum SettingsType: Int {
         case .email: return AppTextService.get(.my_qot_my_profile_account_settings_section_body_title_email)
         case .firstName: return AppTextService.get(.my_qot_my_profile_account_settings_new_user_title_first_name)
         case .lastName: return AppTextService.get(.my_qot_my_profile_account_settings_new_user_title_last_name)
-        case .dateOfBirth: return AppTextService.get(.my_qot_my_profile_account_settings_section_body_title_birth_year)
+        case .dateOfBirth: return AppTextService.get(.dateOfBirth)
         case .strategies: return AppTextService.get(.notifications_view_title_strategies)
         case .dailyPrep: return AppTextService.get(.notifications_view_title_daily_prep)
         case .weeklyChoices: return AppTextService.get(.notifications_view_title_weekly_choices)

@@ -127,7 +127,7 @@ private extension ProfileSettingsWorker {
     }
 
     func dateOfBirthTitle() {
-        dateOfBirthTxt = AppTextService.get(.my_qot_my_profile_account_settings_edit_title_date_of_birth)
+        dateOfBirthTxt = AppTextService.get(.dateOfBirth)
     }
 
     func companyTitle() {
@@ -164,7 +164,6 @@ private extension ProfileSettingsWorker {
 
     private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         guard let user = user else { return [] }
-        let date = DateFormatter.yyyyMMdd.date(from: user.dateOfBirth) ?? Date()
         return [.textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
                 .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
                 .datePicker(title: dateOfBirthTxt, dateOfBirth: user.dateOfBirth, settingsType: .dateOfBirth)]
