@@ -864,10 +864,16 @@ public extension AppTextKey {
 
     static let generic_local_notification_daily_check_in_default_title = AppTextKey("generic.local_notification.daily_check_in.default_title")
     static let generic_local_notification_daily_check_in_default_message = AppTextKey("generic.local_notification.daily_check_in.default_message")
+}
 
-    @available(*, unavailable, message: "Deprecated from QOT v3.1.4")
+@available(*, unavailable, message: "Unavailable from QOT v3.1.3")
+public extension AppTextKey {
     static let daily_brief_section_wh_subtitle = AppTextKey("daily_brief.section_wh.subtitle")
     static let my_qot_my_sprints_null_state_body = AppTextKey("my_qot.my_sprints.null_state.body")
+}
+
+@available(*, unavailable, message: "Unavailable from QOT v3.1.4")
+public extension AppTextKey {
     static let onboarding_sign_up_email_verification_section_header_title = AppTextKey("onboarding.sign_up.email_verification.section_header.title")
     static let onboarding_sign_up_enter_name_section_header_title = AppTextKey("onboarding.sign_up.enter_name.section_header.title")
     static let onboarding_sign_up_age_verification_section_body_placeholder_title = AppTextKey("onboarding.sign_up.age_verification.section_body.placeholder_title")
