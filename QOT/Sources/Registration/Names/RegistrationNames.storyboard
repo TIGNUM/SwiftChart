@@ -46,13 +46,13 @@
                                                 <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ek-E0-5cV" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
+                                            <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Ek-E0-5cV" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="567" width="366" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="npT-gE-trQ"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRf-hX-jjL" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
+                                            <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xRf-hX-jjL" customClass="QotPlaceholderTextField" customModule="QOT" customModuleProvider="target">
                                                 <rect key="frame" x="24" y="707" width="366" height="80"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="80" id="3cF-e5-S5a"/>

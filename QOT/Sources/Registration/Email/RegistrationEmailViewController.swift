@@ -90,7 +90,7 @@ extension RegistrationEmailViewController: RegistrationEmailViewControllerInterf
 
         buttonNext.isEnabled = interactor.isNextButtonEnabled
 
-        ThemeText.registrationEmailTitle.apply(interactor.title, to: titleLabel)
+        ThemeText.registrationEmailTitle.apply(interactor.title.uppercased(), to: titleLabel)
         ThemeText.onboardingInputPlaceholder.apply(interactor.emailPlaceholder, to: emailField.placeholderLabel)
         subtitleLabel.isHidden = true
         emailField.delegate = self

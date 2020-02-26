@@ -19,11 +19,11 @@ extension Date {
     }
 
     var minimumDateOfBirth: Date {
-        return Calendar.current.date(byAdding: .year, value: -130, to: self) ?? self
+        return Calendar.current.date(byAdding: .year, value: -160, to: self) ?? self
     }
 
     var maximumDateOfBirth: Date {
-        return Calendar.current.date(byAdding: .year, value: -16, to: self) ?? self
+        return Calendar.current.date(byAdding: .year, value: -18, to: self) ?? self
     }
 
     var startOfDay: Date {

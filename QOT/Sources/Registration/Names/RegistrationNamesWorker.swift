@@ -30,7 +30,7 @@ final class RegistrationNamesWorker: BaseSigningWorker {
     }()
 
     lazy var agePlaceholder: String = {
-           return AppTextService.get(.onboarding_sign_up_age_verification_section_body_placeholder_title)
+           return AppTextService.get(.dateOfBirth)
     }()
 
     lazy var ageRestrictionText: String = {
