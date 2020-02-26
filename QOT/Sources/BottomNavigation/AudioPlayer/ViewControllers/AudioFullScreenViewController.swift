@@ -68,8 +68,14 @@ final class AudioFullScreenViewController: BaseViewController, ScreenZLevel3 {
     }
 
     func updateLabel() {
-        ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
-        ThemeText.articleTitleNotScaled.apply((media?.title ?? "").uppercased(), to: titleLabel)
+        switch colorMode {
+        case.dark:
+            ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
+            ThemeText.audioFullScreenTitleDark.apply((media?.title ?? "").uppercased(), to: titleLabel)
+        case .darkNot:
+            ThemeText.audioFullScreenCategory.apply(media?.subtitle, to: categorytitleLabel)
+            ThemeText.audioFullScreenTitle.apply((media?.title ?? "").uppercased(), to: titleLabel)
+        }
     }
 
     func updatePlayButton(_ isPlaying: Bool) {
