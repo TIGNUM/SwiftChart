@@ -22,7 +22,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cIu-gB-GnD" customClass="AnimatedButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="182" y="144" width="165" height="40"/>
+                        <rect key="frame" x="24" y="144" width="165" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Wjd-za-LZN"/>
                         </constraints>
@@ -47,7 +47,7 @@
                     <constraint firstItem="znk-aJ-Hvm" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" id="LcT-RA-KMl"/>
                     <constraint firstAttribute="bottom" secondItem="cIu-gB-GnD" secondAttribute="bottom" constant="48" id="SOy-Fx-wVS"/>
                     <constraint firstItem="znk-aJ-Hvm" firstAttribute="top" secondItem="WOX-Ik-zWw" secondAttribute="top" id="Yar-54-KzY"/>
-                    <constraint firstAttribute="trailing" secondItem="cIu-gB-GnD" secondAttribute="trailing" constant="24" id="oOg-CL-eOt"/>
+                    <constraint firstItem="cIu-gB-GnD" firstAttribute="leading" secondItem="WOX-Ik-zWw" secondAttribute="leading" constant="24" id="dK0-s7-tLt"/>
                     <constraint firstAttribute="trailing" secondItem="znk-aJ-Hvm" secondAttribute="trailing" id="tOg-ji-KQG"/>
                 </constraints>
             </tableViewCellContentView>
