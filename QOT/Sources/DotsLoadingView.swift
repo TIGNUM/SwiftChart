@@ -13,7 +13,7 @@ final class DotsLoadingView: UIView {
     // MARK: - Properties
 
     private var dotsColor: UIColor? = .carbonDark
-    private var size: CGSize? = nil
+    private var size: CGSize?
 
     // MARK: - Configuration
     func configure(dotsColor: UIColor?, size: CGSize? = nil) {

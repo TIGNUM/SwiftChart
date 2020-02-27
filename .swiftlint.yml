@@ -16,7 +16,7 @@ disabled_rules:
   - line_length
   - weak_delegate
   - notification_center_detachment
-  - redundant_optional_initialization
+  #- redundant_optional_initialization
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT

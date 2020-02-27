@@ -13,7 +13,7 @@ class BaseDailyBriefViewModel: Differentiable {
 
     // MARK: - Properties
     typealias DifferenceIdentifier = String
-    var domainModel: QDMDailyBriefBucket? = nil
+    var domainModel: QDMDailyBriefBucket?
     var subIdentifier = ""
 
     // MARK: - Init

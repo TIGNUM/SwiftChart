@@ -26,8 +26,8 @@ final class ImpactReadiness1: BaseDailyBriefCell {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var buttonRight: UIButton!
     typealias actionClosure = (() -> Void)
-    private var actionLeft: actionClosure? = nil
-    private var actionRight: actionClosure? = nil
+    private var actionLeft: actionClosure?
+    private var actionRight: actionClosure?
     private var showDailyCheckInScreen = false
 
     override func awakeFromNib() {

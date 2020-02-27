@@ -100,8 +100,8 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
     static var hasArrowsAnimated: Bool = false
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
-    private var questionHtml: NSAttributedString? = nil
-    private var questionText: String? = nil
+    private var questionHtml: NSAttributedString?
+    private var questionText: String?
     private var items = 10
     private var answers: [RatingQuestionViewModel.Answer]?
     private var cellHeight: CGFloat = Layout.padding_24

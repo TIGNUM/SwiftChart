@@ -244,7 +244,7 @@ enum ThemeButton {
     case audioButtonGrey
     case audioButtonStrategy
 
-    var defaultHeight: CGFloat {
+    var defaultHeight: CGFloat q{
         return 40.0
     }
 
