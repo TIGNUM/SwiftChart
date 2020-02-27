@@ -57,7 +57,6 @@ extension AnimatedAnswerTableViewCell {
             dots.heightAnchor.constraint(equalToConstant: .TypingFooter).isActive = true
             dots.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
             typingAnimation = dots
-
             typingAnimationStart()
             textToDisplay = answerLabel.attributedText
             answerLabel.text = ""

@@ -163,19 +163,6 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         }
     }
 
-//    func dotsAnimationStart() {
-//        guard let loadingDots = loadingDots else { return }
-//        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
-//            UIView.animate(withDuration: Animation.duration_06, animations: {
-//                loadingDots.alpha = 1.0
-//            })
-//
-//            loadingDots.startAnimation(withDuration: Animation.duration_3) {
-//                self?.loadingDots?.stopAnimation()
-//            }
-//        }
-//    }
-
     func showLoadingDots() {
         let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
         dots.configure(dotsColor: .carbon60)
