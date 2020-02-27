@@ -23,6 +23,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     private var pageController: UIPageViewController?
     private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
+    private var loadingDots: DotsLoadingView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,12 +32,13 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        showLoadingDots()
         setStatusBar(color: .sand)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        interactor?.viewDidAppear()
+        interactor?.loadQuestions(dots: loadingDots)
         trackPage()
     }
 
@@ -152,7 +154,6 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         self.addChildViewController(pageController)
         view.insertSubview(pageController.view, belowSubview: pageContainerView)
         pageController.view.clipsToBounds = false
-
     }
 
     func showQuestions() {
@@ -160,6 +161,32 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         if let viewController = questionnaireViewController(with: interactor?.questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
+    }
+
+//    func dotsAnimationStart() {
+//        guard let loadingDots = loadingDots else { return }
+//        DispatchQueue.main.asyncAfter(deadline: .now()) { [weak self] in
+//            UIView.animate(withDuration: Animation.duration_06, animations: {
+//                loadingDots.alpha = 1.0
+//            })
+//
+//            loadingDots.startAnimation(withDuration: Animation.duration_3) {
+//                self?.loadingDots?.stopAnimation()
+//            }
+//        }
+//    }
+
+    func showLoadingDots() {
+        let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        dots.configure(dotsColor: .carbon60)
+        dots.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(dots)
+        dots.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dots.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingDots = dots
+        loadingDots?.animate()
     }
 
     @objc override public func didTapDismissButton() {

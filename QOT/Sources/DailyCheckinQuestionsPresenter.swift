@@ -24,6 +24,7 @@ final class DailyCheckinQuestionsPresenter {
 // MARK: - DailyCheckinQuestionsInterface
 
 extension DailyCheckinQuestionsPresenter: DailyCheckinQuestionsPresenterInterface {
+
     func setupView() {
         viewController?.setupView()
     }
