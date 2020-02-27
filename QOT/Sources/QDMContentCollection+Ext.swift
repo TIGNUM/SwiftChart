@@ -29,46 +29,42 @@ extension QDMContentCollection {
 
 extension QDMContentCollection {
     var durationString: String {
-        get {
-            if hasVideoOnly == true {
-                let durations = contentItems.compactMap { $0.valueDuration }
-                let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
-                return String(format: AppTextService.get(.generic_content_section_item_label_video), total)
-            } else if hasAudioItems == true {
+        if hasVideoOnly == true {
+            let durations = contentItems.compactMap { $0.valueDuration }
+            let total = String(Int(durations.reduce(0) { ($0/60) + ($1/60) }))
+            return String(format: AppTextService.get(.generic_content_section_item_label_video), total)
+        } else if hasAudioItems == true {
 
-            } else if isFoundation == true {
-                let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
-                return videoItem?.durationString ?? ""
-            }
-            return String(format: AppTextService.get(.generic_content_section_item_label_read), String(max(minutesToRead, 1)))
+        } else if isFoundation == true {
+            let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
+            return videoItem?.durationString ?? ""
         }
+        return String(format: AppTextService.get(.generic_content_section_item_label_read), String(max(minutesToRead, 1)))
     }
 
     var minutesToRead: Int {
-        get {
-            return contentItems.reduce(0, { (sum, item) -> Int in
-                switch item.format {
-                case .video, .audio, .image, .pdf: return sum
-                default: return sum + Int(item.valueDuration ?? 0)
-                }
-            }) / 60
-        }
+        return contentItems.reduce(0, { (sum, item) -> Int in
+            switch item.format {
+            case .video, .audio, .image, .pdf: return sum
+            default: return sum + Int(item.valueDuration ?? 0)
+            }
+        }) / 60
     }
 
     var hasVideoOnly: Bool {
-        get { return contentItems.filter { $0.format == ContentFormat.video }.count == contentItems.count }
+        return contentItems.filter { $0.format == ContentFormat.video }.count == contentItems.count
     }
 
     var isWhatsHot: Bool {
-        get { return section == ContentSection.WhatsHot }
+        return section == ContentSection.WhatsHot
     }
 
     var isFoundation: Bool {
-        get { return categoryIDs.contains(ContentCategory.PerformanceFoundation.rawValue) }
+        return categoryIDs.contains(ContentCategory.PerformanceFoundation.rawValue)
     }
 
     var hasAudioItems: Bool {
-        get { return !contentItems.filter { $0.tabs.contains(ContentFormat.audio.rawValue) }.isEmpty }
+        return !contentItems.filter { $0.tabs.contains(ContentFormat.audio.rawValue) }.isEmpty
     }
 }
 

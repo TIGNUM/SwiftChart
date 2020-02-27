@@ -245,12 +245,7 @@ enum ThemeButton {
     case audioButtonStrategy
 
     var defaultHeight: CGFloat {
-        get {
-            switch self {
-            default:
-                return 40.0
-            }
-        }
+        return 40.0
     }
 
     func apply(_ button: UIButton, selected: Bool = false, selectedImage: UIImage? = nil, unSelectedImage: UIImage? = nil) {

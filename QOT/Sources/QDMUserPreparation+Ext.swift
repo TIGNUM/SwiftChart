@@ -15,9 +15,7 @@ protocol EditResult {
 
 extension QDMUserPreparation: EditResult {
     var answerFilter: String? {
-        get {
-            return feelAnswers?.first?.keys.filter { knowAnswers?.last?.keys.contains($0) == true }.first ?? ""
-        }
+        return feelAnswers?.first?.keys.filter { knowAnswers?.last?.keys.contains($0) == true }.first ?? ""
     }
 
 }
