@@ -15,7 +15,7 @@ final class SolveResultsViewController: BaseWithTableViewController, ScreenZLeve
     // MARK: - Properties
     private lazy var router: SolveResultsRouterInterface = SolveResultsRouter(viewController: self)
     var interactor: SolveResultsInteractorInterface!
-    var resultDelegate: DTRouterInterface?
+    var baseRouter: DTRouterInterface?
     private var rightBarItems: [UIBarButtonItem] = []
     private var resultViewModel: SolveResult?
     private var isFollowUpActive = true
@@ -57,7 +57,7 @@ private extension SolveResultsViewController {
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
         interactor.deleteRecovery()
-        resultDelegate?.goBackToSolveResult()
+        baseRouter?.goBackToSolveResult()
     }
 
     @objc func didTapSave() {

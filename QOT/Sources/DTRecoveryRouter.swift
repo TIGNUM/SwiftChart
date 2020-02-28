@@ -16,7 +16,7 @@ extension DTRecoveryRouter: DTRecoveryRouterInterface {
     func presentRecoveryResults(_ recovery: QDMRecovery3D?, _ completion: (() -> Void)?) {
         let configurator = SolveResultsConfigurator.make(from: recovery, resultType: .recoveryDecisionTree)
         let controller = SolveResultsViewController(configure: configurator)
-        controller.resultDelegate = self
+        controller.baseRouter = self
         viewController?.present(controller, animated: true, completion: completion)
     }
 }
