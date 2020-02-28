@@ -149,8 +149,12 @@ private extension DailyCheckinQuestionsViewController {
         guard let vc = pageController?.viewControllers?.first as? QuestionnaireViewController else {
             return
         }
+        nextPageTimer?.invalidate()
+        nextPageTimer = nil
+        let answer = vc.currentAnswerIndex()
 
-        didSelect(answer: vc.currentAnswerIndex(), for: vc.questionID(), from: vc)
+        trackUserEvent(.NEXT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .TAP)
+        didSelect(answer: answer, for: vc.questionID(), from: vc)
     }
 }
 
