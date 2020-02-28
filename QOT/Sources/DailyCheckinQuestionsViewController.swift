@@ -64,7 +64,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
             backgroundColor: backgroundColor,
             borderColor: .clear)]
         } else if currentIndex != NSNotFound {
-            return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_done),
+            return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_next),
             buttonWidth: .Done,
             action: #selector(nextAction),
             backgroundColor: backgroundColor,
