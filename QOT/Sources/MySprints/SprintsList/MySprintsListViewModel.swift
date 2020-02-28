@@ -13,8 +13,8 @@ struct MySprintsListViewModel {
     var isEditing: Bool = false
     var shouldShowEditButton: Bool = false
     var canEdit: Bool = false
-    var infoViewModel: MySprintsInfoAlertViewModel? = nil
-    var bottomButtons: [ButtonParameters]? = nil
+    var infoViewModel: MySprintsInfoAlertViewModel?
+    var bottomButtons: [ButtonParameters]?
 
     var displayData = [MySprintsListDataViewModel]()
 

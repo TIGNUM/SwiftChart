@@ -17,7 +17,7 @@ final class AudioButton: UIView {
     @IBOutlet private weak var button: UIButton!
     private var categoryTitle = ""
     private var title = ""
-    private var audioURL: URL? = nil
+    private var audioURL: URL?
     private var audioRemoteID: Int = 0
     private var duration: Int = 0
 

@@ -18,8 +18,8 @@ final class MySprintNotesInteractor {
     private let router: MySprintNotesRouterInterface
     private let notificationCenter: NotificationCenter
 
-    private (set) var infoViewModel: MySprintsInfoAlertViewModel? = nil
-    private (set) var bottomButtons: [ButtonParameters]? = nil
+    private (set) var infoViewModel: MySprintsInfoAlertViewModel?
+    private (set) var bottomButtons: [ButtonParameters]?
     // Text received from the viewController
     private var text: String?
     private let maxCharacterCount = 250

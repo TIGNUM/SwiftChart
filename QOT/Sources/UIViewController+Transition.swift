@@ -36,7 +36,7 @@ extension UIViewController {
             transition.subtype = kCATransitionFromLeft
             self.view.window?.layer.add(transition, forKey: kCATransition)
 
-            var navController: UINavigationController? = nil
+            var navController: UINavigationController?
             if let nav = self as? UINavigationController {
                 navController = nav
             } else if let nav = self.navigationController {

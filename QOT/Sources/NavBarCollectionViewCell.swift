@@ -18,8 +18,8 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     let skeletonManager = SkeletonManager()
 
-    private var actionLeft: actionClosure? = nil
-    private var actionRight: actionClosure? = nil
+    private var actionLeft: actionClosure?
+    private var actionRight: actionClosure?
 
     override func awakeFromNib() {
         super.awakeFromNib()

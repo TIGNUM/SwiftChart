@@ -16,8 +16,8 @@ final class NavBarTableViewCell: UIView {
     @IBOutlet weak var buttonRight: UIButton!
     @IBOutlet weak var titleLabel: UILabel!
 
-    private var actionLeft: actionClosure? = nil
-    private var actionRight: actionClosure? = nil
+    private var actionLeft: actionClosure?
+    private var actionRight: actionClosure?
 
     static func instantiateFromNib(title: String, tapLeft: actionClosure? = nil, tapRight: actionClosure? = nil) -> NavBarTableViewCell {
         guard let navBar = R.nib.navBarTableViewCell.instantiate(withOwner: self).first as? NavBarTableViewCell else {
