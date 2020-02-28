@@ -210,7 +210,7 @@ class QOTAlertViewController: BaseViewController {
 extension QOTAlertViewController {
     func set(title: String?, message: String?, bottomItems: [QOTAlertAction]?) {
 
-        var items: [UIBarButtonItem]? = nil
+        var items: [UIBarButtonItem]?
         if let bottomItems = bottomItems {
             items = bottomItems.map { barButton(from: $0) }
         }

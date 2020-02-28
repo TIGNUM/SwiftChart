@@ -202,7 +202,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var item: MyLibraryCellViewModel? = nil
+        var item: MyLibraryCellViewModel?
         if let items = interactor.items, items.count > 0 {
             item = interactor.items?[indexPath.row]
         }

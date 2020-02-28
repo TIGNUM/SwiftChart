@@ -37,7 +37,7 @@ final class RegistrationCodeInteractor {
 
     var hasCodeError: Bool = false
     var hasDisclaimerError: Bool = false
-    var errorMessage: String? = nil
+    var errorMessage: String?
 
     // MARK: - Init
     init(worker: RegistrationCodeWorker,

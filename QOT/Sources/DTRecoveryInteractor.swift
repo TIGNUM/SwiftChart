@@ -11,7 +11,7 @@ import qot_dal
 
 final class DTRecoveryInteractor: DTInteractor {
 
-    var nextQuestionKey: String? = nil
+    var nextQuestionKey: String?
     private lazy var recoveryWorker: DTRecoveryWorker? = DTRecoveryWorker()
 
     override func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {

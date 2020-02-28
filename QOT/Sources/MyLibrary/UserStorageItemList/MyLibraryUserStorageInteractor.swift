@@ -19,8 +19,8 @@ final class MyLibraryUserStorageInteractor {
     private let notificationCenter: NotificationCenter
 
     private (set) var isEditing: Bool = false
-    private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel? = nil
-    private (set) var bottomButtons: [ButtonParameters]? = nil
+    private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel?
+    private (set) var bottomButtons: [ButtonParameters]?
 
     var items: [MyLibraryCellViewModel]?
     private var identifiersForCheck = Set<String>()

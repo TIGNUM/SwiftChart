@@ -66,7 +66,7 @@ extension UINavigationController {
             currentPresentedViewController = nil
         }
 
-        var leveledViewController: UIViewController? = nil
+        var leveledViewController: UIViewController?
         var parentNavigationController: UINavigationController = self
         while leveledViewController == nil {
             if let naviController = parentNavigationController.viewControllers.first as? UINavigationController {

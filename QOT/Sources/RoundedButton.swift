@@ -14,7 +14,7 @@ class RoundedButton: AnimatedButton, ButtonThemeable {
     var titleAttributes: [NSAttributedStringKey: Any]? = [.font: UIFont.sfProtextSemibold(ofSize: 14), .kern: 0.2]
     var normal: ButtonTheme? = ButtonTheme(foreground: .accent, background: nil, border: .accent40)
     var highlight: ButtonTheme? = ButtonTheme(foreground: .accent70, background: nil, border: .accent10)
-    var select: ButtonTheme? = nil
+    var select: ButtonTheme?
     var disabled: ButtonTheme? = ButtonTheme(foreground: .sand08, background: nil, border: .sand08)
 
     /// Closure used in specific cases (see `QOTAlert` implementation)
