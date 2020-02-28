@@ -50,16 +50,27 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        guard isDoneButtonEnabled else {
-            return []
-        }
         var backgroundColor = UIColor.carbon.withAlphaComponent(0.5)
-            backgroundColor = .carbon
-        return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_done),
-                                     buttonWidth: .Done,
-                                     action: #selector(doneAction),
-                                     backgroundColor: backgroundColor,
-                                     borderColor: .clear)]
+        var currentIndex = NSNotFound
+        if let vc = pageController?.viewControllers?.first as? QuestionnaireViewController {
+            currentIndex = indexOf(vc)
+        }
+
+        backgroundColor = .carbon
+        if isDoneButtonEnabled {
+            return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_done),
+            buttonWidth: .Done,
+            action: #selector(doneAction),
+            backgroundColor: backgroundColor,
+            borderColor: .clear)]
+        } else if currentIndex != NSNotFound {
+            return [roundedBarButtonItem(title: AppTextService.get(.daily_brief_daily_check_in_questionnaire_section_footer_button_next),
+            buttonWidth: .Done,
+            action: #selector(nextAction),
+            backgroundColor: backgroundColor,
+            borderColor: .clear)]
+        }
+        return []
     }
 }
 
@@ -132,6 +143,18 @@ private extension DailyCheckinQuestionsViewController {
         let question = interactor?.questions[index - 1]
         guard let viewController = questionnaireViewController(with: question) else { return }
         pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
+    }
+
+    @IBAction func nextAction() {
+        guard let vc = pageController?.viewControllers?.first as? QuestionnaireViewController else {
+            return
+        }
+        nextPageTimer?.invalidate()
+        nextPageTimer = nil
+        let answer = vc.currentAnswerIndex()
+
+        trackUserEvent(.NEXT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .TAP)
+        didSelect(answer: answer, for: vc.questionID(), from: vc)
     }
 }
 
