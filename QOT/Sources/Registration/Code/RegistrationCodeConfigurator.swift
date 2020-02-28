@@ -13,9 +13,8 @@ final class RegistrationCodeConfigurator {
     static func make() -> (RegistrationCodeViewController, String, RegistrationDelegate) -> Void {
         return { (viewController, email, delegate) in
             let router = RegistrationCodeRouter(viewController: viewController)
-            let worker = RegistrationCodeWorker(email: email)
             let presenter = RegistrationCodePresenter(viewController: viewController)
-            let interactor = RegistrationCodeInteractor(worker: worker,
+            let interactor = RegistrationCodeInteractor(email: email,
                                                         presenter: presenter,
                                                         router: router,
                                                         delegate: delegate)

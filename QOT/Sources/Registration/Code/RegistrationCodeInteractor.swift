@@ -25,11 +25,12 @@ private enum URLActions: String {
 final class RegistrationCodeInteractor {
 
     // MARK: - Properties
-    private let worker: RegistrationCodeWorker
     private let presenter: RegistrationCodePresenterInterface
     private let router: RegistrationCodeRouterInterface
+    private lazy var worker = RegistrationCodeWorker()
     private weak var delegate: RegistrationDelegate?
     private var termsAccepted: Bool = false
+    private let email: String
 
     private lazy var linkAttributes: [NSAttributedStringKey: Any] = {
         return [.font: UIFont.sfProtextSemibold(ofSize: 14), .foregroundColor: UIColor.accent]
@@ -40,11 +41,11 @@ final class RegistrationCodeInteractor {
     var errorMessage: String?
 
     // MARK: - Init
-    init(worker: RegistrationCodeWorker,
-        presenter: RegistrationCodePresenterInterface,
-        router: RegistrationCodeRouterInterface,
-        delegate: RegistrationDelegate) {
-        self.worker = worker
+    init(email: String,
+         presenter: RegistrationCodePresenterInterface,
+         router: RegistrationCodeRouterInterface,
+         delegate: RegistrationDelegate) {
+        self.email = email
         self.presenter = presenter
         self.router = router
         self.delegate = delegate
@@ -56,11 +57,7 @@ final class RegistrationCodeInteractor {
     }
 
     var description: String {
-        return worker.description
-    }
-
-    var descriptionEmail: String {
-        return worker.email
+        return worker.description + " "
     }
 
     var preCode: String {
@@ -148,7 +145,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
             return
         }
         presenter.presentActivity(state: .inProgress)
-        worker.validate(code: code, for: worker.email, forLogin: false) { [weak self] (result, error) in
+        worker.validate(code: code, for: email, forLogin: false) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
             if case .codeValid = result.code {
                 self?.delegate?.didVerifyCode(code)
@@ -173,7 +170,7 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
 
     func resendCode() {
         presenter.presentActivity(state: .inProgress)
-        worker.requestCode(for: worker.email) { [weak self] (result, error) in
+        worker.requestCode(for: email) { [weak self] (result, error) in
             if let error = error {
                 log("Error when resending code: \(error)", level: .debug)
                 self?.hasCodeError = true
@@ -187,6 +184,10 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
 
     func showFAQScreen() {
         router.showFAQScreen(category: .FAQBeforeLogin)
+    }
+
+    func getEmail() -> String {
+        return email
     }
 }
 

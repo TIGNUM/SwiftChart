@@ -117,7 +117,7 @@ extension RegistrationCodeViewController: RegistrationCodeViewControllerInterfac
         ThemeText.registrationCodeTitle.apply(interactor.title, to: titleLabel)
         let description = NSMutableAttributedString(attributedString:
             ThemeText.registrationCodeDescription.attributedString(interactor.description))
-        description.append(ThemeText.registrationCodeDescriptionEmail.attributedString(interactor.descriptionEmail))
+        description.append(ThemeText.registrationCodeDescriptionEmail.attributedString(interactor.getEmail()))
         descriptionLabel.attributedText = description
 
         ThemeText.registrationCodePreCode.apply(interactor.preCode, to: preCodeLabel)
