@@ -13,7 +13,7 @@ disabled_rules:
   - shorthand_operator
   - vertical_parameter_alignment
   - type_body_length
-  - line_length  
+  - line_length 
   - notification_center_detachment
   - redundant_optional_initialization
 
