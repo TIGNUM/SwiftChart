@@ -194,6 +194,10 @@ final class QuestionnaireViewController: BaseViewController, ScreenZLevel3 {
         return questionIdentifier ?? NSNotFound
     }
 
+    public func currentAnswerIndex() -> Int {
+        return currentIndex
+    }
+
     override func showTransitionBackButton() -> Bool {
         return false
     }
@@ -615,7 +619,10 @@ extension QuestionnaireViewController {
         case .customize:
             return [dismissNavigationItem()]
         case .dailyCheckin:
-            return [dismissNavigationItemLight()]
+            guard let pageController = parent as? UIPageViewController, let targetVC = pageController.parent else {
+                return nil
+            }
+            return targetVC.bottomNavigationLeftBarItems()
         default:
             return nil
         }
@@ -631,6 +638,11 @@ extension QuestionnaireViewController {
                                              backgroundColor: .clear,
                                              borderColor: .accent)]
             }
+        case .dailyCheckin:
+            guard let pageController = parent as? UIPageViewController, let targetVC = pageController.parent else {
+                return nil
+            }
+            return targetVC.bottomNavigationRightBarItems()
         default:
             break
         }
