@@ -11,11 +11,15 @@ import Foundation
 protocol DailyCheckinQuestionsViewControllerInterface: class {
     func setupView()
     func showQuestions()
+    func showLoadingDots()
+    func hideLoadingDots()
 }
 
 protocol DailyCheckinQuestionsPresenterInterface {
     func setupView()
     func showQuestions()
+    func showLoadingDots()
+    func hideLoadingDots()
 }
 
 protocol DailyCheckinQuestionsInteractorInterface: Interactor {
@@ -23,7 +27,8 @@ protocol DailyCheckinQuestionsInteractorInterface: Interactor {
     var answeredQuestionCount: Int { get }
     func dismiss()
     func saveAnswers()
-    func loadQuestions(dots: DotsLoadingView?)
+    func viewWillAppear()
+    func viewDidAppear()
 }
 
 protocol DailyCheckinQuestionsRouterInterface {

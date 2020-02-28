@@ -25,6 +25,14 @@ final class DailyCheckinQuestionsPresenter {
 
 extension DailyCheckinQuestionsPresenter: DailyCheckinQuestionsPresenterInterface {
 
+    func hideLoadingDots() {
+        viewController?.hideLoadingDots()
+    }
+
+    func showLoadingDots() {
+        viewController?.showLoadingDots()
+    }
+
     func setupView() {
         viewController?.setupView()
     }

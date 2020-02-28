@@ -32,13 +32,13 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        showLoadingDots()
+        interactor?.viewWillAppear()
         setStatusBar(color: .sand)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        interactor?.loadQuestions(dots: loadingDots)
+        interactor?.viewDidAppear()
         trackPage()
     }
 
@@ -174,6 +174,10 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         dots.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
         loadingDots = dots
         loadingDots?.animate()
+    }
+
+    func hideLoadingDots() {
+        loadingDots?.stopAnimation()
     }
 
     @objc override public func didTapDismissButton() {
