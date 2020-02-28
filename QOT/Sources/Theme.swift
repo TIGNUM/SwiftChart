@@ -899,7 +899,7 @@ enum ThemeText {
             }
         case .bespokeTitle, .onboardingInputText, .onboardingInputPlaceholder:
             return Fonts.fontRegular18
-        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader, .dailyBriefFromTignumTitle:
+        case .sprintName, .performanceBucketTitle, .myDataHeatMapCellDateText, .tbvQuestionMedium, .resultListHeader, .dailyQuestion, .dailyBriefFromTignumTitle:
             return Fonts.fontMedium16
         case .articleCategoryNotScaled, .qotToolsSectionSubtitle, .audioFullScreenCategory:
             return Fonts.fontMedium12
@@ -930,7 +930,7 @@ enum ThemeText {
              .resultTitle, .resultHeader2, .dailyBriefLevelTitle, .strategySubHeader, .tbvQuestionLight,
              .coachSubtitle, .coachHeaderSubtitle, .dailyBriefLevelContent, .qotTools, .qotToolsSubtitle,
              .syncedCalendarRowTitle, .accountDetailEmail, .accountDetailAge, .resultClosingText,
-             .myLibraryItemsItemName, .dailyQuestion, .mySprintsCellTitle, .mySprintDetailsDescription,
+             .myLibraryItemsItemName, .mySprintsCellTitle, .mySprintDetailsDescription,
              .mySprintDetailsTextRegular, .mySprintDetailsTextActive, .mySprintDetailsTextInfo,
              .mySensorsDescriptionTitle, .mySensorsSensorTitle, .tbvCustomizeBody, .insightsTBVText, .insightsSHPIText,
              .insightsTBVSentence, .shpiContent, .dailyInsightsTbvAdvice, .baseHeaderSubtitle, .suggestionMyBest:
