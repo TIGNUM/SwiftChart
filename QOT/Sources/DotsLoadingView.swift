@@ -25,7 +25,7 @@ final class DotsLoadingView: UIView {
     }
 
     // MARK: - Actions
-    func startAnimation() {
+    func animate() {
         if self.superview == nil {
             return
         }
@@ -36,7 +36,7 @@ final class DotsLoadingView: UIView {
     }
 
     func startAnimation(withDuration duration: TimeInterval, _ completion: (() -> Void)? = nil) {
-        startAnimation()
+        animate()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
             self?.stopAnimation(completion)
         }

@@ -23,6 +23,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
     private var pageController: UIPageViewController?
     private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
+    private var loadingDots: DotsLoadingView?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +32,7 @@ final class DailyCheckinQuestionsViewController: BaseViewController, ScreenZLeve
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor?.viewWillAppear()
         setStatusBar(color: .sand)
     }
 
@@ -175,7 +177,6 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         self.addChildViewController(pageController)
         view.insertSubview(pageController.view, belowSubview: pageContainerView)
         pageController.view.clipsToBounds = false
-
     }
 
     func showQuestions() {
@@ -183,6 +184,23 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         if let viewController = questionnaireViewController(with: interactor?.questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
+    }
+
+    func showLoadingDots() {
+        let dots = DotsLoadingView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+        dots.configure(dotsColor: .carbon60)
+        dots.translatesAutoresizingMaskIntoConstraints = false
+        self.view.addSubview(dots)
+        dots.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
+        dots.widthAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        dots.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        loadingDots = dots
+        loadingDots?.animate()
+    }
+
+    func hideLoadingDots() {
+        loadingDots?.stopAnimation()
     }
 
     @objc override public func didTapDismissButton() {

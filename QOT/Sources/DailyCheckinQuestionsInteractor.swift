@@ -33,10 +33,15 @@ final class DailyCheckinQuestionsInteractor {
         presenter.setupView()
     }
 
+    func viewWillAppear() {
+        presenter.showLoadingDots()
+    }
+
     func viewDidAppear() {
         worker.checkHealthDataAndGetQuestions { [weak self] (questions) in
             guard let questions = questions else { return }
             self?._questions = questions
+            self?.presenter.hideLoadingDots()
             self?.presenter.showQuestions()
         }
     }
