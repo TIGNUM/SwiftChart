@@ -11,21 +11,6 @@ import qot_dal
 
 final class RegistrationCodeWorker: BaseSigningWorker {
 
-    // MARK: - Properties
-
-    let email: String
-
-    // MARK: - Init
-
-    init(email: String,
-         _ sessionService: SessionService = SessionService.main,
-         _ userService: UserService = UserService.main) {
-        self.email = email
-        super.init(sessionService, userService)
-    }
-
-    // Texts
-
     lazy var title: String = {
         return AppTextService.get(.onboarding_sign_up_code_verification_section_header_title)
     }()

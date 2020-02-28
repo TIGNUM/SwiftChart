@@ -24,7 +24,6 @@ protocol RegistrationCodePresenterInterface {
 protocol RegistrationCodeInteractorInterface: Interactor {
     var title: String { get }
     var description: String { get }
-    var descriptionEmail: String { get }
     var preCode: String { get }
     var disclaimerError: String { get }
     var disclaimer: NSAttributedString { get }
@@ -33,6 +32,7 @@ protocol RegistrationCodeInteractorInterface: Interactor {
     var hasCodeError: Bool { get }
     var errorMessage: String? { get }
 
+    func getEmail() -> String
     func didTapBack()
     func handleURLAction(url: URL)
     func toggleTermsOfUse(accepted: Bool)
