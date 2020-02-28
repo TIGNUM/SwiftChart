@@ -297,9 +297,13 @@ extension QuestionnaireViewController {
             attributedQuestion = ThemeText.tbvBody.attributedString(AppTextService.get(.daily_brief_customize_sleep_amount_section_question_question))
         case .dailyCheckin:
             if let question = questionHtml {
-                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.string.trimmed,
+                                                                              lineSpacing: nil, lineHeight: nil,
+                                                                              alignment: .center)
             } else if let question = questionText {
-                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.trimmed)
+                attributedQuestion = ThemeText.dailyQuestion.attributedString(question.trimmed,
+                                                                              lineSpacing: nil, lineHeight: nil,
+                                                                              alignment: .center)
             }
         case .vision:
             if let question = questionText {

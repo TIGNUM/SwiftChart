@@ -1156,7 +1156,10 @@ enum ThemeText {
         }
     }
 
-    func attributedString(_ input: String?, lineSpacing: CGFloat? = nil, lineHeight: CGFloat? = nil) -> NSAttributedString {
+    func attributedString(_ input: String?,
+                          lineSpacing: CGFloat? = nil,
+                          lineHeight: CGFloat? = nil,
+                          alignment: NSTextAlignment? = nil) -> NSAttributedString {
         let text = input != nil ? input! : ""
         let string: NSAttributedString
 
@@ -1170,19 +1173,29 @@ enum ThemeText {
              .myLibraryGroupName, .myLibraryGroupDescription, .myLibraryItemsTitle, .myLibraryItemsItemDescription,
              .paymentReminderCellTitle, .paymentReminderCellSubtitle,
              .mySprintsTitle, .mySprintsCellStatus, .paymentReminderHeaderTitle, .paymentReminderHeaderSubtitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.4, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .navigationBarHeader, .customAlertAction, .customAlertDestructiveAction:
-            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .center)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.4, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .center)
         case .articleTitle, .articleTitleNotScaled, .audioFullScreenTitleDark, .audioFullScreenTitle, .performanceSections, .audioLabel, .bespokeTitle, .audioPlayerTitleDark, .audioPlayerTitleLight:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .strategyHeader:
-            string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .performanceStaticTitle, .fromCoachTitle, .resultDate:
-            string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .bucketTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody, .tvbTimeSinceTitle, .tbvTrackerAnswer, .qotTools,
              .resultTitle, .resultListHeader, .resultHeader1, .resultHeader2, .resultList, .coachHeaderSubtitle, .coachSubtitle, .dailyInsightsTbvAdvice,
              .qotToolsSubtitle, .syncedCalendarRowSubtitle, .accountDetailEmail, .accountDetailAge, .tbvCustomizeBody, .shpiQuestion, .shpiContent, .strategyTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .onboardingInputPlaceholder, .onboardingInputText, .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage,
              .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage, .registrationEmailTitle,
@@ -1192,124 +1205,189 @@ enum ThemeText {
              .weatherDescription, .weatherLocation, .weatherLastUpdate, .weatherTitle, .weatherBody, .mySensorsSensorTitle,
              .mySensorsTitle, .mySensorsNoDataInfoLabel, .mySensorsDescriptionTitle, .mySensorsDescriptionBody,
              .insightsTBVText, .insightsSHPIText, .insightsTBVSentence:
-            string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .strategySubHeader,
              .mySprintsTableHeader:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .questionHintLabel, .questionHintLabelDark, .questionHintLabelRed,
              .mySprintDetailsProgress, .mySprintDetailsCta, .mySprintDetailsCtaHighlight:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center)
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .center)
         case .articleAudioBar, .audioBar, .quotation, .aboutMeContent, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText,
              .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader, .syncedCalendarDescription, .dailyBriefImpactReadinessRolling,
              .mySprintsCellProgress, .mySprintDetailsHeader, .trackedDays, .asterixText:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .articleRelatedTitle, .articleStrategyTitle, .articleRelatedTitleInStrategy, .articleStrategyRead, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult, .dailyBriefLevelTitle, .dailyBriefFromTignumTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .articleBullet, .sectionHeader,
              .dailyBriefLevelContent,
              .weatherIntro,
              .mySprintsCellTitle, .mySprintDetailsDescription, .mySprintDetailsTextRegular, .mySprintDetailsTextInfo, .mySprintDetailsTextActive:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .articleRelatedDetail, .articleRelatedDetailInStrategy, .articleRelatedDetailInStrategyRead, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
              .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent, .tbvQuestionLight, .dailyQuestion, .tbvQuestionMedium:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
-            string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
+                                        textColor: self.color, alignment: alignment ?? .left)
         case .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight:
             let lSpace = lineSpacing != nil ? lineSpacing! : 0.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
-            string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
+                                        textColor: self.color, alignment: alignment ?? .left)
         case .articleNavigationTitle, .article, .articleTag, .articleTagSelected, .version, .articleTagNight,
              .articleTagTitle, .articleMediaDescription, .calendarNoAccess, .placeholder:
             let lSpace = lineSpacing != nil ? lineSpacing! : 2.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
-            string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
+                                        textColor: self.color, alignment: alignment ?? .left)
         case .articleQuote:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
-            string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .right)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
+                                        textColor: self.color, alignment: alignment ?? .right)
         case .articleQuestion, .articleSub, .articleNum:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
-            string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .center)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: lSpace, font: self.font, lineSpacing: lHeight,
+                                        textColor: self.color, alignment: alignment ?? .center)
         case .chatButton, .chatButtonEnabled:
-            string = NSAttributedString(string: text, font: self.font, lineSpacing: 2.0, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text, font: self.font, lineSpacing: 2.0, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .settingsTitle, .settingsTitleFade, .myQOTProfileName, .accountDetail, .myQOTPrepCellTitle, .myQOTSectionHeader, .accountHeaderTitle,
              .tvbCounter, .tbvTrackerBody:
-            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        font: self.font, textColor: self.color, alignment: alignment ?? .left)
         case .qotAlertTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .tbvHeader, .tbvVisionHeader:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 3, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.2, font: self.font, lineSpacing: 3, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .tbvVision, .tbvVisionBody, .resultClosingText:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.5, font: self.font, lineSpacing: 10, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .qotAlertMessage, .syncedCalendarTableHeader:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color,
+                                        alignment: alignment ?? .left)
         case .searchSuggestionHeader, .tbvButton, .tbvTrackerRating, .quotationSmall:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .tbvTrackerRatingDigits, .tbvTrackerRatingDigitsSelected:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .center, lineBreakMode: nil)
         case .baseHeaderTitle, .baseHeaderSubtitle, .myDataMonthYearTitle, .myDataChartValueLabels, .myDataExplanationCellSubtitle,
              .myDataHeatMapDetailCellDate, .myDataHeatMapCellDateText, .myDataHeatMapCellDateHighlighted, .myDataChartIRAverageLabel,
              .registrationCodeDescription, .registrationCodeDescriptionEmail, .registrationAgeDescription, .registrationAgeRestriction,
              .locationPermissionMessage, .walkthroughMessage, .registrationCodeTermsAndPrivacy, .registrationCodeInfoActions,
              .loginSeparator, .dailyBriefSubtitle, .suggestionMyBest:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataWeekdaysHighlighted(let centered), .myDataWeekdaysNotHighlighted(let centered):
-            var alignment: NSTextAlignment = .left
+            var alignment: NSTextAlignment = alignment ?? .left
             if centered {
                 alignment = .center
             }
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: alignment, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color,
+                                        alignment: alignment, lineBreakMode: nil)
         case .myDataParameterLegendText, .myDataHeatMapLegendText:
-            string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.17, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterSelectionTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataParameterExplanationTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.29, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .myDataHeatMapDetailCellValue, .weatherHourlyLabels, .weatherHourlyLabelNow, .coachMarkTitle, .coachMarkSubtitle:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color, alignment: .center, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .center, lineBreakMode: nil)
         case .createAccountMessage:
-            string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.71, font: self.font, lineSpacing: 6, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .registrationCodeLink(let url):
             string = NSAttributedString(string: text,
                                         attributes: [.font: self.font, .foregroundColor: self.color, .link: url])
         case .articleContactSupportInfoTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 10,
+                                        textColor: self.color, alignment: alignment ?? .left, lineBreakMode: nil)
         case .articleContactSupportLink(let url):
-            let urlString = NSMutableAttributedString(string: text, letterSpacing: 0.71, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
-            urlString.addAttributes([.font: self.font, .foregroundColor: self.color, .link: url], range: NSRange(location: 0, length: text.count))
+            let urlString = NSMutableAttributedString(string: text,
+                                                      letterSpacing: 0.71, font: self.font, lineSpacing: 10,
+                                                      textColor: self.color, alignment: alignment ?? .left,
+                                                      lineBreakMode: nil)
+            urlString.addAttributes([.font: self.font, .foregroundColor: self.color, .link: url],
+                                    range: NSRange(location: 0, length: text.count))
             string = urlString
         case .chatbotButton, .resultCounter, .resultCounterMax, .chatbotProgress:
-            string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
+            string = NSAttributedString(string: text,
+                                        font: self.font, textColor: self.color, alignment: alignment ?? .left)
         case .trackSelectionMessage:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0, font: self.font, lineSpacing: 4, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .askPermissionMessage:
-            string = NSAttributedString(string: text, letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0, font: self.font, lineSpacing: 7, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .onboardingInfoTitle:
             string = NSAttributedString(string: text,
                                         letterSpacing: -0.21,
                                         font: self.font,
                                         lineSpacing: 0,
                                         textColor: self.color,
-                                        alignment: .center,
+                                        alignment: alignment ?? .center,
                                         lineBreakMode: nil)
         case .onboardingInfoBody:
-            string = NSAttributedString(string: text, letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: -0.18, font: self.font, lineSpacing: 7, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .myLibraryItemsItemName:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: .byTruncatingTail)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: .byTruncatingTail)
         case .mySprintDetailsTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.4, font: self.font, lineSpacing: 10, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .syncedCalendarRowTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: .byTruncatingTail)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.5, font: self.font, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: .byTruncatingTail)
         case .registerIntroTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.18, font: self.font, lineSpacing: 3, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.18, font: self.font, lineSpacing: 3, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .registerIntroBody:
-            string = NSAttributedString(string: text, letterSpacing: 0.23, font: self.font, lineSpacing: 7, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text, letterSpacing: 0.23,
+                                        font: self.font, lineSpacing: 7, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         case .registerIntroNoteTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.63, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left, lineBreakMode: nil)
+            string = NSAttributedString(string: text,
+                                        letterSpacing: 0.63, font: self.font, lineSpacing: 4, textColor: self.color,
+                                        alignment: alignment ?? .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
