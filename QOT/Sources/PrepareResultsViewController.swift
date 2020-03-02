@@ -135,9 +135,7 @@ private extension PrepareResultsViewController {
         }
         let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
             self?.interactor.updatePreparation { (_) in
-                if self?.interactor.getResultType == .prepareDecisionTree {
-                   self?.interactor.didTapDismissView()
-                }
+                self?.interactor.didTapDismissView()
             }
         }
         QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
