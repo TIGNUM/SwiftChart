@@ -35,7 +35,7 @@ final class WeatherCell: BaseDailyBriefCell {
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
-    private let formatter =  MeasurementFormatter()
+    private let formatter = MeasurementFormatter()
     private let numberFormatter = NumberFormatter()
 
     // MARK: - Lifecycle
@@ -226,12 +226,10 @@ final class WeatherCell: BaseDailyBriefCell {
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-//            accessImageView.image = R.image.location_permission()
         default:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
             accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-//            accessImageView.image = R.image.location_permission()
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
