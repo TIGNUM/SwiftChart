@@ -115,7 +115,6 @@ private extension PrepareResultsViewController {
             showAlert()
         } else {
             interactor.didClickSaveAndContinue()
-            interactor.presentFeedback()
         }
     }
 
@@ -131,19 +130,13 @@ private extension PrepareResultsViewController {
         let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
             self?.interactor.setReminder = true
             self?.interactor.updatePreparation { (_) in
-                if self?.interactor.getResultType == .prepareDecisionTree {
-                    self?.interactor.presentFeedback()
-                } else {
-                    self?.interactor.didTapDismissView()
-                }
+                self?.interactor.didTapDismissView()
             }
         }
         let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
             self?.interactor.updatePreparation { (_) in
                 if self?.interactor.getResultType == .prepareDecisionTree {
-                    self?.interactor.presentFeedback()
-                } else {
-                    self?.interactor.didTapDismissView()
+                   self?.interactor.didTapDismissView()
                 }
             }
         }
