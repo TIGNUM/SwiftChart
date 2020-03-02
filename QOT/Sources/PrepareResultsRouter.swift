@@ -46,4 +46,12 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
         controller.delegate = prepareResultsViewController
         viewController?.present(controller, animated: true)
     }
+
+    func presentMyPreps() {
+        let launcher = LaunchHandler()
+        launcher.showFirstLevelScreen(page: .myQot)
+        if let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
+            launcher.process(url: launchURL)
+        }
+    }
 }

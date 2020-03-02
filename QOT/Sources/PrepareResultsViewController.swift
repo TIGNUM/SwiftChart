@@ -131,6 +131,7 @@ private extension PrepareResultsViewController {
             self?.interactor.setReminder = true
             self?.interactor.updatePreparation { (_) in
                 self?.interactor.didTapDismissView()
+                self?.interactor.presentMyPreps()
             }
         }
         let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
