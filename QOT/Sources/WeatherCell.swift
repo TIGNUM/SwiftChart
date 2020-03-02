@@ -35,7 +35,7 @@ final class WeatherCell: BaseDailyBriefCell {
 
     private var viewModel: WeatherViewModel?
     weak var delegate: DailyBriefViewControllerDelegate?
-    private let formatter = MeasurementFormatter()
+    private let formatter =  MeasurementFormatter()
     private let numberFormatter = NumberFormatter()
 
     // MARK: - Lifecycle
@@ -88,6 +88,7 @@ final class WeatherCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
+        let isCelsius: Bool
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
                 forecastModel.date != nil &&
@@ -105,6 +106,8 @@ final class WeatherCell: BaseDailyBriefCell {
             } else if let value = formatTemperature(value: relevantForecastModels.first?.currentTempInCelcius, shortStyle: false) {
                 temperature = value
             }
+            isCelsius = checkIfCelsius(value: weather.currentTempInCelcius?.rounded())
+            accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
             ThemeText.weatherLastUpdate.apply(weatherModel.updatedTimeString, to: lastUpdateLabel)
@@ -170,6 +173,17 @@ final class WeatherCell: BaseDailyBriefCell {
         return nil
     }
 
+    private func checkIfCelsius(value: Double?) -> Bool {
+        if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
+            let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
+            let localTemperature = formatter.string(from: measurement)
+            let isCelsius =  localTemperature.contains("C") ? true : false
+            return isCelsius
+        }
+        return false
+    }
+
+
     private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
         guard let weatherModel = viewModel?.domainModel?.weather else { return }
 
@@ -212,12 +226,12 @@ final class WeatherCell: BaseDailyBriefCell {
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
+//            accessImageView.image = R.image.location_permission()
         default:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
             accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
+//            accessImageView.image = R.image.location_permission()
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
