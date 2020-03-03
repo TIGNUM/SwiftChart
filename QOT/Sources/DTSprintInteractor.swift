@@ -55,7 +55,7 @@ final class DTSprintInteractor: DTInteractor {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
         if selection.question?.key == Sprint.QuestionKey.Selection {
             let contentId = selection.selectedAnswers.first?.decisions.filter { $0.targetType == TargetType.content }.first?.targetTypeId ?? 0
-            ContentService.main.getContentCollectionById(101999) { [weak self] (content) in
+            sprintWorker?.getContent(contentId: contentId, completion: { [weak self] (content) in
                 if let presentationModel = self?.createPresentationModel(selection: selection,
                                                                          questions: self?.questions ?? [],
                                                                          content: content) {
@@ -65,7 +65,7 @@ final class DTSprintInteractor: DTInteractor {
                                     titleUpdate: presentationModel.questionUpdate)
                     self?.presentedNodes.append(node)
                 }
-            }
+            })
         } else {
             let presentationModel = createPresentationModel(selection: selection, questions: questions, content: nil)
             presenter?.showNextQuestion(presentationModel, isDark: isDark)
