@@ -48,6 +48,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func presentMyPreps() {
+        AppDelegate.current.launchHandler.dismissChatBotFlow()
         if let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
