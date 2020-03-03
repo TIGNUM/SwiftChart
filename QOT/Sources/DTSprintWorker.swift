@@ -67,6 +67,17 @@ extension DTSprintWorker {
             }
         }
     }
+
+    func getUpdatedTitle(contentId: Int, completion: @escaping (String?) -> Void) {
+        ContentService.main.getContentCollectionById(contentId) { (content) in
+            let filteredItems = content?.contentItems.filter { $0.searchTags.contains(obj: "sprint_task_day_") }
+            var result = ""
+            filteredItems?.compactMap { $0.valueText }.forEach { (title) in
+                result.append(title)
+            }
+            completion(result)
+        }
+    }
 }
 
 // MARK: - Notifications
