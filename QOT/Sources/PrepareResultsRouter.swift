@@ -48,10 +48,8 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func presentMyPreps() {
-        let launcher = LaunchHandler()
-        launcher.showFirstLevelScreen(page: .myQot)
         if let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
-            launcher.process(url: launchURL)
+            AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
 }
