@@ -15,6 +15,8 @@ enum CoachSection: Int, CaseIterable {
     case sprint
     case event
     case challenge
+    case mindset
+    case recovery
 }
 
 struct CoachModel {

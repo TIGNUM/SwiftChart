@@ -53,6 +53,14 @@ extension CoachRouter: CoachRouterInterface {
             let configurator = DTSolveConfigurator.make()
             let controller = DTSolveViewController(configure: configurator)
             viewController?.present(controller, animated: true)
+        case .mindset:
+            let configurator = DTMindsetConfigurator.make()
+            let controller = DTMindsetViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
+        case .recovery:
+            let configurator = DTRecoveryConfigurator.make()
+            let controller = DTRecoveryViewController(configure: configurator)
+            viewController?.present(controller, animated: true)
         }
     }
 }

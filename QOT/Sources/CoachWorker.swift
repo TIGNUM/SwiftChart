@@ -40,6 +40,10 @@ final class CoachWorker {
             return AppTextService.get(.coach_section_prepare_title)
         case .challenge:
             return AppTextService.get(.coach_section_solve_title)
+        case .mindset:
+            return AppTextService.get(.coach_section_mindset_title)
+        case .recovery:
+            return AppTextService.get(.coach_section_recovery_title)
         }
     }
 
@@ -55,6 +59,10 @@ final class CoachWorker {
             return AppTextService.get(.coach_section_prepare_subtitle)
         case .challenge:
             return AppTextService.get(.coach_section_solve_subtitle)
+        case .mindset:
+            return AppTextService.get(.coach_section_mindset_subtitle)
+        case .recovery:
+            return AppTextService.get(.coach_section_recovery_subtitle)
         }
     }
 }
