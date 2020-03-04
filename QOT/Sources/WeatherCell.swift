@@ -88,6 +88,7 @@ final class WeatherCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
+
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
                 forecastModel.date != nil &&
@@ -170,6 +171,13 @@ final class WeatherCell: BaseDailyBriefCell {
         return nil
     }
 
+    private func checkIfCelsius() -> Bool {
+        let measurement = Measurement(value: 911, unit: UnitTemperature.celsius)
+        let localTemperature = formatter.string(from: measurement)
+        let isCelsius =  localTemperature.uppercased().contains("C") ? true : false
+        return isCelsius
+    }
+
     private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
         guard let weatherModel = viewModel?.domainModel?.weather else { return }
 
@@ -200,6 +208,8 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     private func setupUIAccordingToLocationPermissions() {
+        let isCelsius = self.checkIfCelsius()
+        self.accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
@@ -212,12 +222,10 @@ final class WeatherCell: BaseDailyBriefCell {
             accessTitle = viewModel?.deniedLocationPermissionDescription ?? ""
             accessButtonTitle = viewModel?.deniedLocationPermissionButtonTitle ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
         default:
             accessButtonTitle = viewModel?.requestLocationPermissionButtonTitle ?? ""
             accessTitle = viewModel?.requestLocationPermissionDescription ?? ""
             accessButtonHeight = ThemeButton.accent40.defaultHeight
-            accessImageView.image = R.image.location_permission()
         }
         ThemeText.weatherTitle.apply(accessTitle, to: accessLabel)
         accessButton.setTitle(accessButtonTitle, for: .normal)
