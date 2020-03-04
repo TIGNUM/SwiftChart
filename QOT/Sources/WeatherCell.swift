@@ -178,7 +178,6 @@ final class WeatherCell: BaseDailyBriefCell {
         return isCelsius
     }
 
-
     private func populateHourlyViews(relevantForecastModels: [QDMForecast]) {
         guard let weatherModel = viewModel?.domainModel?.weather else { return }
 
