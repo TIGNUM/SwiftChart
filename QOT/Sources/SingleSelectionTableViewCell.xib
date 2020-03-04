@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="104" id="Thd-Gv-bn7" customClass="SingleSelectionTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="362" height="104"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="61" id="Thd-Gv-bn7" customClass="SingleSelectionTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="60"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Thd-Gv-bn7" id="xSF-EM-MGz">
-                <rect key="frame" x="0.0" y="0.0" width="362" height="103.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="362" height="60"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1uI-Lm-6yH" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="142" y="61" width="86" height="40"/>
+                        <rect key="frame" x="142" y="10" width="86" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="4IB-4z-ZU2"/>
                         </constraints>
@@ -31,7 +29,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Hzj-rc-XMw" customClass="AnswerButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="252" y="61" width="86" height="40"/>
+                        <rect key="frame" x="252" y="10" width="86" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="6dg-aQ-h3S"/>
                         </constraints>
@@ -44,11 +42,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstAttribute="bottomMargin" secondItem="1uI-Lm-6yH" secondAttribute="bottom" constant="24" id="8vY-Sf-sH8"/>
-                    <constraint firstItem="Hzj-rc-XMw" firstAttribute="top" secondItem="xSF-EM-MGz" secondAttribute="topMargin" constant="50" id="Fpi-Md-Aor"/>
+                    <constraint firstAttribute="bottom" secondItem="1uI-Lm-6yH" secondAttribute="bottom" constant="10" id="8vY-Sf-sH8"/>
+                    <constraint firstItem="Hzj-rc-XMw" firstAttribute="centerY" secondItem="1uI-Lm-6yH" secondAttribute="centerY" id="EYU-wS-sFd"/>
                     <constraint firstAttribute="trailing" secondItem="Hzj-rc-XMw" secondAttribute="trailing" constant="24" id="KlW-Ww-8Cn"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Hzj-rc-XMw" secondAttribute="bottom" constant="24" id="duK-uf-bew"/>
-                    <constraint firstItem="1uI-Lm-6yH" firstAttribute="top" secondItem="xSF-EM-MGz" secondAttribute="topMargin" constant="50" id="gx9-1g-Hqj"/>
+                    <constraint firstItem="1uI-Lm-6yH" firstAttribute="top" secondItem="xSF-EM-MGz" secondAttribute="top" constant="10" id="hY8-EN-o8a"/>
                     <constraint firstItem="Hzj-rc-XMw" firstAttribute="leading" secondItem="1uI-Lm-6yH" secondAttribute="trailing" constant="24" id="xeO-ln-Xla"/>
                 </constraints>
             </tableViewCellContentView>
@@ -58,7 +55,7 @@
                 <outlet property="leftOptionButton" destination="1uI-Lm-6yH" id="2Dv-w4-FOT"/>
                 <outlet property="rightOptionButton" destination="Hzj-rc-XMw" id="zeT-1w-xts"/>
             </connections>
-            <point key="canvasLocation" x="89.599999999999994" y="74.662668665667169"/>
+            <point key="canvasLocation" x="89.599999999999994" y="59.370314842578715"/>
         </tableViewCell>
     </objects>
 </document>

@@ -5,7 +5,7 @@
 //  Created by karmic on 07.09.19.
 //  Copyright (c) 2019 Tignum. All rights reserved.
 //
-
+import Foundation
 import UIKit
 import qot_dal
 
@@ -39,8 +39,13 @@ final class DTSprintInteractor: DTInteractor {
             selectedSprintContentId = firstSelectedAnswer?.targetId(.content) ?? 0
             selectedSprintTargetQuestionId = firstSelectedAnswer?.targetId(.question) ?? 0
             selectedSprintTitle = firstSelectedAnswer?.title ?? ""
+            var result = ""
             if questionKey == Sprint.QuestionKey.Schedule {
-                
+                let title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText
+                result.append("Sprint:" + " " + (title ?? "") + "\n")
+                let filteredItems = content?.contentItems.filter { $0.format == .title }
+                filteredItems?.reversed().forEach { result.append("\n" + "\n" + $0.valueText) }
+                return result
             }
             return firstSelectedAnswer?.title
         } else if

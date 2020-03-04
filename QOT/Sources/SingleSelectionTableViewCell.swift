@@ -19,6 +19,7 @@ final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
     weak var delegate: SingleSelectionCellDelegate?
     private var rightAnswer: DTViewModel.Answer?
     private var leftAnswer: DTViewModel.Answer?
+    @IBOutlet weak var buttonToTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var rightOptionButton: AnswerButton!
     @IBOutlet private weak var leftOptionButton: AnswerButton!
 }
