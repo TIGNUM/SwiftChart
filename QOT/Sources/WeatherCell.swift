@@ -88,7 +88,7 @@ final class WeatherCell: BaseDailyBriefCell {
         ThemeText.dailyBriefTitle.apply(viewModel?.bucketTitle?.uppercased(), to: baseHeaderView?.titleLabel)
         ThemeText.weatherIntro.apply(viewModel?.intro, to: baseHeaderView?.subtitleTextView)
         var relevantForecastModels = [QDMForecast]()
-        let isCelsius: Bool
+
         if let weatherModel = viewModel?.domainModel?.weather {
             for forecastModel in weatherModel.forecast ?? [] where
                 forecastModel.date != nil &&
@@ -106,8 +106,6 @@ final class WeatherCell: BaseDailyBriefCell {
             } else if let value = formatTemperature(value: relevantForecastModels.first?.currentTempInCelcius, shortStyle: false) {
                 temperature = value
             }
-            isCelsius = checkIfCelsius(value: weather.currentTempInCelcius?.rounded())
-            accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
             let temperatureDescription = "\(weather.shortDescription ?? "") \(temperature)"
             ThemeText.weatherDescription.apply(temperatureDescription, to: weatherDescriptionLabel)
             ThemeText.weatherLastUpdate.apply(weatherModel.updatedTimeString, to: lastUpdateLabel)
@@ -173,14 +171,11 @@ final class WeatherCell: BaseDailyBriefCell {
         return nil
     }
 
-    private func checkIfCelsius(value: Double?) -> Bool {
-        if let numberValue = numberFormatter.number(from: numberFormatter.string(for: value) ?? "") as? Double {
-            let measurement = Measurement(value: numberValue, unit: UnitTemperature.celsius)
-            let localTemperature = formatter.string(from: measurement)
-            let isCelsius =  localTemperature.contains("C") ? true : false
-            return isCelsius
-        }
-        return false
+    private func checkIfCelsius() -> Bool {
+        let measurement = Measurement(value: 911, unit: UnitTemperature.celsius)
+        let localTemperature = formatter.string(from: measurement)
+        let isCelsius =  localTemperature.uppercased().contains("C") ? true : false
+        return isCelsius
     }
 
 
@@ -214,6 +209,8 @@ final class WeatherCell: BaseDailyBriefCell {
     }
 
     private func setupUIAccordingToLocationPermissions() {
+        let isCelsius = self.checkIfCelsius()
+        self.accessImageView.image = isCelsius ? R.image.location_permission_C() : R.image.location_permission()
         var accessTitle = ""
         var accessButtonTitle = ""
         var accessButtonHeight: CGFloat = 0
