@@ -41,8 +41,9 @@ final class DTSprintInteractor: DTInteractor {
             selectedSprintTitle = firstSelectedAnswer?.title ?? ""
             var result = ""
             if questionKey == Sprint.QuestionKey.Schedule {
-                let title = content?.contentItems.filter { $0.format == .header1 }.first?.valueText
-                result.append("Sprint:" + " " + (title ?? "") + "\n")
+                let sprintTitle = content?.contentItems.filter { $0.format == .header1 }.first?.valueText ?? ""
+                let title = (content?.contentCategoryTitle ?? "") + ": " + sprintTitle + "\n"
+                result.append(title)
                 let filteredItems = content?.contentItems.filter { $0.format == .title }
                 filteredItems?.reversed().forEach { result.append("\n" + "\n" + $0.valueText) }
                 return result
