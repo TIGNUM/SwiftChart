@@ -130,7 +130,6 @@ class DTInteractor: DTInteractorInterface {
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
         let answerFilter = getAnswerFilter(questionKey: question?.key,
                                            answerFilter: selection.answerFilter)
-
         return DTPresentationModel(question: question,
                                    questionUpdate: questionUpdate,
                                    answerFilter: answerFilter,
