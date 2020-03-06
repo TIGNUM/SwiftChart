@@ -46,4 +46,12 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
         controller.delegate = prepareResultsViewController
         viewController?.present(controller, animated: true)
     }
+
+    func presentMyPreps() {
+        dismissChatBotFlow()
+        if !(baseRootViewController?.navigationController?.viewControllers.last is MyPrepsViewController),
+            let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
+    }
 }

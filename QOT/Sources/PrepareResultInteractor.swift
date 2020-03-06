@@ -90,6 +90,10 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         }
     }
 
+    func presentMyPreps() {
+        router.presentMyPreps()
+    }
+
     func updateStrategies(selectedIds: [Int]) {
        worker.updateStrategies(selectedIds: selectedIds)
     }
@@ -111,6 +115,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didClickSaveAndContinue() {
+        router.presentMyPreps()
         updatePreparation { _ in }
     }
 }
