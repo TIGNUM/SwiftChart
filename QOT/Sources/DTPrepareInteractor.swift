@@ -36,14 +36,6 @@ final class DTPrepareInteractor: DTInteractor {
         }
     }
 
-    override func loadNextQuestion(selection: DTSelectionModel) {
-        if selection.question?.key == Prepare.QuestionKey.Intro {
-            checkCalendarPermissionForSelection(selection)
-        } else {
-            loadNext(selection)
-        }
-    }
-
     override func getTBV(questionAnswerType: String?, questionKey: String?) -> QDMToBeVision? {
         return questionKey == Prepare.QuestionKey.ShowTBV ? tbv : nil
     }
@@ -178,17 +170,13 @@ private extension DTPrepareInteractor {
             default:
                 workerCalendar?.hasSyncedCalendars { [weak self] available in
                     if available == true {
-                        self?.loadNext(selection)
+                        self?.loadNextQuestion(selection: selection)
                     } else {
                         self?.preparePresenter?.presentCalendarSettings()
                     }
                 }
             }
         }
-    }
-
-    func loadNext(_ selection: DTSelectionModel) {
-        super.loadNextQuestion(selection: selection)
     }
 }
 
