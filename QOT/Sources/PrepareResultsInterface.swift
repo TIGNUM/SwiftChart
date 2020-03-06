@@ -28,16 +28,18 @@ protocol PrepareResultsInteractorInterface: Interactor {
     var sectionCount: Int { get }
     func rowCount(in section: Int) -> Int
     func item(at indexPath: IndexPath) -> PrepareResultsType?
+
     func presentRelatedArticle(readMoreID: Int)
     func presentEditStrategyView()
     func presentEditIntentions(_ key: Prepare.Key)
     func presentEditBenefits(benefits: String?)
+    func presentMyPreps()
+
     func updateStrategies(selectedIds: [Int])
     func updateIntentions(_ answersIds: [Int])
     func updateBenefits(_ benefits: String)
     func didClickSaveAndContinue()
     func didTapDismissView()
-    func presentFeedback()
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
 }
@@ -47,5 +49,5 @@ protocol PrepareResultsRouterInterface: BaseRouterInterface {
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)
-    func presentFeedback()
+    func presentMyPreps()
 }

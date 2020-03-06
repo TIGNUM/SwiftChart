@@ -14,7 +14,7 @@ final class ShifterResultViewController: BaseViewController, ScreenZLevel3 {
     // MARK: - Properties
     private lazy var router: ShifterResultRouterInterface? = ShifterResultRouter(viewController: self)
     var interactor: ShifterResultInteractorInterface?
-    var resultDelegate: DTRouterInterface?
+    var baseRouter: DTRouterInterface?
     private var rightBarItems: [UIBarButtonItem] = []
     private var model: MindsetResult?
     @IBOutlet private weak var tableView: UITableView!
@@ -76,7 +76,7 @@ private extension ShifterResultViewController {
     @objc func didTapCancel() {
         trackUserEvent(.CANCEL, action: .TAP)
         interactor?.deleteMindsetShifter()
-        resultDelegate?.goBackToSolveResult()
+        baseRouter?.goBackToSolveResult()
     }
 
     func setupBarButtonItems(resultType: ResultType) {

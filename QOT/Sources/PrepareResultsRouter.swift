@@ -47,10 +47,11 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
         viewController?.present(controller, animated: true)
     }
 
-    func presentFeedback() {
-        guard let controller = R.storyboard.resultsFeedback().instantiateInitialViewController() as? ResultsFeedbackViewController else { return }
-        viewController?.present(controller, animated: true)
-        controller.configure(text: AppTextService.get(.coach_prepare_questionnaire_section_body_body_last_step))
-        viewController?.removeBottomNavigation()
+    func presentMyPreps() {
+        dismissChatBotFlow()
+        if !(baseRootViewController?.navigationController?.viewControllers.last is MyPrepsViewController),
+            let launchURL = URLScheme.myPreps.launchURLWithParameterValue("") {
+            AppDelegate.current.launchHandler.process(url: launchURL)
+        }
     }
 }
