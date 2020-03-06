@@ -298,6 +298,8 @@
 		389BBC8C235EE68B0009FA02 /* CoachMarksConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */; };
 		389BBC8E235EE8900009FA02 /* CoachMark.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 389BBC8D235EE8900009FA02 /* CoachMark.storyboard */; };
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
+		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
+		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1543,6 +1545,8 @@
 		389BBC84235EE68B0009FA02 /* CoachMarksConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachMarksConfigurator.swift; sourceTree = "<group>"; };
 		389BBC8D235EE8900009FA02 /* CoachMark.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CoachMark.storyboard; sourceTree = "<group>"; };
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
+		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
+		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -2976,11 +2980,13 @@
 			isa = PBXGroup;
 			children = (
 				369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */,
-				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
 				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
-				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
 				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
+				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
+				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
 				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
+				38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */,
+				38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5540,6 +5546,7 @@
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				BBDDAD4C232C0118009E0FBB /* NavigationButton.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
+				38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
 				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
@@ -6184,6 +6191,7 @@
 				F902CF5522DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift in Sources */,
 				F91A2D1D22D3864200C35121 /* ThoughtsCell.swift in Sources */,
 				3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */,
+				38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */,
 				369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */,
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
