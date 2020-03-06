@@ -102,10 +102,6 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         worker.updateBenefits(benefits)
     }
 
-    func presentFeedback() {
-        router.presentFeedback()
-    }
-
     func deletePreparation() {
         worker.deletePreparation()
     }

@@ -37,7 +37,6 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func updateBenefits(_ benefits: String)
     func didClickSaveAndContinue()
     func didTapDismissView()
-    func presentFeedback()
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
 }
@@ -47,5 +46,4 @@ protocol PrepareResultsRouterInterface: BaseRouterInterface {
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int])
     func presentEditIntentions(_ viewModel: DTViewModel, question: QDMQuestion?)
     func presentEditBenefits(benefits: String?, questionID: Int)
-    func presentFeedback()
 }
