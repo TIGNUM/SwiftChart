@@ -300,6 +300,14 @@
 		38D44E4A2331C1AF0040CE8D /* QDMUserPreparation+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */; };
 		38E5A07F24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */; };
 		38E5A08024128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */; };
+		38E5A08A2412B06C008FCF8F /* CalendarEventSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0822412B06C008FCF8F /* CalendarEventSelectionPresenter.swift */; };
+		38E5A08B2412B06C008FCF8F /* CalendarEventSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */; };
+		38E5A08C2412B06C008FCF8F /* CalendarEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */; };
+		38E5A08D2412B06C008FCF8F /* CalendarEventSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0852412B06C008FCF8F /* CalendarEventSelectionInterface.swift */; };
+		38E5A08E2412B06C008FCF8F /* CalendarEventSelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0862412B06C008FCF8F /* CalendarEventSelectionViewController.swift */; };
+		38E5A08F2412B06C008FCF8F /* CalendarEventSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0872412B06C008FCF8F /* CalendarEventSelectionInteractor.swift */; };
+		38E5A0902412B06C008FCF8F /* CalendarEventSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0882412B06C008FCF8F /* CalendarEventSelectionModel.swift */; };
+		38E5A0912412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38E5A0892412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -1547,6 +1555,14 @@
 		38D44E492331C1AF0040CE8D /* QDMUserPreparation+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserPreparation+Ext.swift"; sourceTree = "<group>"; };
 		38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsAddToCalendarTableViewCell.swift; sourceTree = "<group>"; };
 		38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsAddToCalendarTableViewCell.xib; sourceTree = "<group>"; };
+		38E5A0822412B06C008FCF8F /* CalendarEventSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionPresenter.swift; sourceTree = "<group>"; };
+		38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionWorker.swift; sourceTree = "<group>"; };
+		38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionRouter.swift; sourceTree = "<group>"; };
+		38E5A0852412B06C008FCF8F /* CalendarEventSelectionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionInterface.swift; sourceTree = "<group>"; };
+		38E5A0862412B06C008FCF8F /* CalendarEventSelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionViewController.swift; sourceTree = "<group>"; };
+		38E5A0872412B06C008FCF8F /* CalendarEventSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionInteractor.swift; sourceTree = "<group>"; };
+		38E5A0882412B06C008FCF8F /* CalendarEventSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionModel.swift; sourceTree = "<group>"; };
+		38E5A0892412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventSelectionConfigurator.swift; sourceTree = "<group>"; };
 		3D5D38914F9360DAF8EBC4DD /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		5D2F517F0A68C796F3C9C214 /* Pods-QOT.novartis.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.novartis.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.novartis.xcconfig"; sourceTree = "<group>"; };
 		5E0AA401352EFE1E6AFC5136 /* Pods-QOT.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.appstore.xcconfig"; path = "Target Support Files/Pods-QOT/Pods-QOT.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -2944,6 +2960,7 @@
 		3693539822983A78008BBB72 /* ResultsPrepare */ = {
 			isa = PBXGroup;
 			children = (
+				38E5A0812412B011008FCF8F /* CalendarEventSelection */,
 				36CB720422B855E400C99AFC /* Core */,
 				36CB720322B855D100C99AFC /* Cells */,
 				36CB720222B855B800C99AFC /* Views */,
@@ -3124,6 +3141,21 @@
 				38532AAE236AFBB100155643 /* CoachMarkCollectionViewCell.xib */,
 			);
 			name = Walkthrough;
+			sourceTree = "<group>";
+		};
+		38E5A0812412B011008FCF8F /* CalendarEventSelection */ = {
+			isa = PBXGroup;
+			children = (
+				38E5A0892412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift */,
+				38E5A0872412B06C008FCF8F /* CalendarEventSelectionInteractor.swift */,
+				38E5A0852412B06C008FCF8F /* CalendarEventSelectionInterface.swift */,
+				38E5A0882412B06C008FCF8F /* CalendarEventSelectionModel.swift */,
+				38E5A0822412B06C008FCF8F /* CalendarEventSelectionPresenter.swift */,
+				38E5A0842412B06C008FCF8F /* CalendarEventSelectionRouter.swift */,
+				38E5A0862412B06C008FCF8F /* CalendarEventSelectionViewController.swift */,
+				38E5A0832412B06C008FCF8F /* CalendarEventSelectionWorker.swift */,
+			);
+			name = CalendarEventSelection;
 			sourceTree = "<group>";
 		};
 		5F360731228C1EBA0074FEC4 /* MyQotCalendars */ = {
@@ -6161,6 +6193,7 @@
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				8DF7870722FEB50800CDE0A9 /* RegistrationCodeWorker.swift in Sources */,
+				38E5A08D2412B06C008FCF8F /* CalendarEventSelectionInterface.swift in Sources */,
 				B474CA932398F85F00A829B5 /* RegisterIntroModel.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
 				3876051023A266D30034B451 /* BaseRouter.swift in Sources */,
@@ -6232,10 +6265,13 @@
 				8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */,
 				F902CF4F22DE0FC700FFC836 /* DailyCheckinSHPICell.swift in Sources */,
 				DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */,
+				38E5A08C2412B06C008FCF8F /* CalendarEventSelectionRouter.swift in Sources */,
 				F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */,
 				75DC687022C11D5D00FF183D /* MyToBeVisionRateWorker.swift in Sources */,
 				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
 				8D8AA76522FDCB6700B59A81 /* RegistrationEmailPresenter.swift in Sources */,
+				38E5A0912412B06C008FCF8F /* CalendarEventSelectionConfigurator.swift in Sources */,
+				38E5A08A2412B06C008FCF8F /* CalendarEventSelectionPresenter.swift in Sources */,
 				363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */,
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */,
@@ -6266,6 +6302,7 @@
 				389BBC85235EE68B0009FA02 /* CoachMarksPresenter.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
+				38E5A0902412B06C008FCF8F /* CalendarEventSelectionModel.swift in Sources */,
 				B86E744A22A9519900B0AE75 /* MyLibraryCategoryListWorker.swift in Sources */,
 				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
 				8D6E058B22D7466E00EC2AEF /* MyLibraryNotesInterface.swift in Sources */,
@@ -6379,6 +6416,7 @@
 				B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */,
 				B49AC28F233BA3E6009AC1CF /* PaymentSwitchAccountTableViewCell.swift in Sources */,
 				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
+				38E5A08B2412B06C008FCF8F /* CalendarEventSelectionWorker.swift in Sources */,
 				8D8AA76022FDCB6700B59A81 /* RegistrationPresenter.swift in Sources */,
 				F9A5C94822B7D06300AB2E94 /* PaymentReminderModel.swift in Sources */,
 				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
@@ -6564,6 +6602,7 @@
 				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
 				8D204C2322F06F1000DF6A76 /* MySprintNotesRouter.swift in Sources */,
 				8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */,
+				38E5A08E2412B06C008FCF8F /* CalendarEventSelectionViewController.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				9C24237E22F0999C00B911E6 /* MeAtMyBestCell.swift in Sources */,
 				5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */,
@@ -6644,6 +6683,7 @@
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
+				38E5A08F2412B06C008FCF8F /* CalendarEventSelectionInteractor.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3655F2D62326EBD600334719 /* DTMindsetInterface.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,

@@ -10,7 +10,7 @@ import UIKit
 import EventKit
 import qot_dal
 
-final class PrepareResultsWorker {
+class PrepareResultsWorker {
 
     // MARK: - Properties
     typealias ListItems = [Int: [PrepareResultsType]]
@@ -21,6 +21,10 @@ final class PrepareResultsWorker {
     weak var delegate: PrepareResultsDelegatge?
     private var currentEditKey: Prepare.Key?
     private let resultType: ResultType
+
+    //FIXME: https://tignum.atlassian.net/browse/QOT-2688
+    static let ADD_TO_CALENDAR_TITLE = "CONNECT TO CALENDAR"
+    static let ADD_TO_CALENDAR_SUBTITLE = "Add this preparation to an event in your calendar to get timely reminders."
 
     // MARK: - Init
     init(_ contentId: Int) {

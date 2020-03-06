@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class PrepareResultsAddToCalendarTableViewCell: UITableViewCell {
+final class PrepareResultsAddToCalendarTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Private
     @IBOutlet private weak var titleLabel: UILabel!
@@ -21,8 +21,15 @@ final class PrepareResultsAddToCalendarTableViewCell: UITableViewCell {
     }
 
     // MARK: - Configure
-    func configure(title: NSAttributedString, subtitle: NSAttributedString) {
-        titleLabel.attributedText = title
-        subtitleLabel.attributedText = subtitle
+    func configure(title: String, subtitle: String) {
+        //FIXME: https://tignum.atlassian.net/browse/QOT-2688
+        titleLabel.attributedText = NSAttributedString(string: title,
+                                                       font: UIFont.sfProtextMedium(ofSize: 24),
+                                                       textColor: .carbon,
+                                                       alignment: .left)
+        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
+                                                          font: UIFont.sfProtextRegular(ofSize: 12),
+                                                          textColor: .accent,
+                                                          alignment: .left)
     }
 }

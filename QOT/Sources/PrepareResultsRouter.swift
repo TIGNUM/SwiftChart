@@ -54,4 +54,23 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
             AppDelegate.current.launchHandler.process(url: launchURL)
         }
     }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind, delegate: AskPermissionDelegate) {
+         guard let controller = R.storyboard.askPermission().instantiateInitialViewController() as?
+             AskPermissionViewController else { return }
+         AskPermissionConfigurator.make(viewController: controller, type: permissionType, delegate: delegate)
+         viewController?.present(controller, animated: true, completion: nil)
+     }
+
+    func presentCalendarSettings(delegate: SyncedCalendarsDelegate) {
+        guard let controller = R.storyboard.myQot.syncedCalendarsViewController() else { return }
+        SyncedCalendarsConfigurator.configure(viewController: controller,
+                                              isInitialCalendarSelection: true,
+                                              delegate: delegate)
+        viewController?.present(controller, animated: true)
+    }
+
+    func presentCalendarEventSelectionView() {
+        
+    }
 }

@@ -12,9 +12,11 @@ import qot_dal
 final class PrepareResultInteractor {
 
     // MARK: - Properties
+    private lazy var workerCalendar = WorkerCalendar()
     private let worker: PrepareResultsWorker
     private let presenter: PrepareResultsPresenterInterface
     private let router: PrepareResultsRouterInterface
+    private var events: [QDMUserCalendarEvent] = []
 
     // MARK: - Init
     init(worker: PrepareResultsWorker,
@@ -27,8 +29,23 @@ final class PrepareResultInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        workerCalendar.hasSyncedCalendars { [weak self] available in
+            self?.workerCalendar.getCalendarEvents { [weak self] events in
+                self?.setUserCalendarEvents(events)
+            }
+        }
         presenter.registerTableViewCell(worker.getType)
         presenter.setupView()
+    }
+}
+
+// MARK: - Private
+private extension PrepareResultInteractor {
+    func setUserCalendarEvents(_ events: [QDMUserCalendarEvent]) {
+        self.events.removeAll()
+        self.events = events.sorted(by: { (lhs, rhs) -> Bool in
+            return lhs.startDate?.compare(rhs.startDate ?? Date()) == .orderedAscending
+        }).unique
     }
 }
 
@@ -117,5 +134,43 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     func didClickSaveAndContinue() {
         router.presentMyPreps()
         updatePreparation { _ in }
+    }
+
+    func presentCalendarPermission(_ permissionType: AskPermission.Kind) {
+        router.presentCalendarPermission(permissionType, delegate: self)
+    }
+
+    func checkSyncedCalendars() {
+        workerCalendar.hasSyncedCalendars { [weak self] (available) in
+            guard let strongSelf = self else { return }
+            if available == true {
+//                self?.loadNext(selection)
+            } else {
+                strongSelf.router.presentCalendarSettings(delegate: strongSelf)
+            }
+        }
+    }
+}
+
+// MARK: - AskPermissionDelegate
+extension PrepareResultInteractor: AskPermissionDelegate {
+    func didFinishAskingForPermission(type: AskPermission.Kind, granted: Bool) {
+        if granted {
+            router.presentCalendarSettings(delegate: self)
+        } else {
+//            resetSelectedAnswers()
+        }
+    }
+}
+
+// MARK: - SyncedCalendarsDelegate
+extension PrepareResultInteractor: SyncedCalendarsDelegate {
+    func didFinishSyncingCalendars(qdmEvents: [QDMUserCalendarEvent]) {
+        if qdmEvents.isEmpty {
+//            resetSelectedAnswers()
+        } else {
+//            prepareInteractor?.setUserCalendarEvents(qdmEvents)
+//            loadNextQuestion()
+        }
     }
 }

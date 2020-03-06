@@ -83,6 +83,52 @@ private extension PrepareResultsViewController {
         cell.delegate = self
         return cell
     }
+
+    func addToCalendarCell(title: String,
+                           subtitle: String,
+                           indexPath: IndexPath) -> PrepareResultsAddToCalendarTableViewCell {
+        let cell: PrepareResultsAddToCalendarTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: title, subtitle: subtitle)
+        return cell
+    }
+
+    func getSelector(_ buttonItem: ButtonItem) -> Selector {
+        switch buttonItem {
+        case .cancel: return #selector(didTapCancel)
+        case .done: return #selector(didTapDone)
+        case .save: return #selector(didTapSave)
+        }
+    }
+
+    func showAlert() {
+        let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
+            self?.interactor.setReminder = true
+            self?.interactor.updatePreparation { (_) in
+                self?.interactor.didTapDismissView()
+                self?.interactor.presentMyPreps()
+            }
+        }
+        let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
+            self?.interactor.updatePreparation { (_) in
+                self?.interactor.didTapDismissView()
+                self?.interactor.presentMyPreps()
+            }
+        }
+        QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
+                      message: AppTextService.get(.coach_prepare_alert_activate_reminder_body),
+                      bottomItems: [confirm, decline])
+    }
+
+    func checkCalendarPermission() {
+        switch CalendarPermission().authorizationStatus {
+        case .notDetermined:
+            interactor.presentCalendarPermission(.calendar)
+        case .denied, .restricted:
+            interactor.presentCalendarPermission(.calendarOpenSettings)
+        default:
+            interactor.checkSyncedCalendars()
+        }
+    }
 }
 
 // MARK: - Actions
@@ -117,33 +163,6 @@ private extension PrepareResultsViewController {
             interactor.didClickSaveAndContinue()
         }
     }
-
-    func getSelector(_ buttonItem: ButtonItem) -> Selector {
-        switch buttonItem {
-        case .cancel: return #selector(didTapCancel)
-        case .done: return #selector(didTapDone)
-        case .save: return #selector(didTapSave)
-        }
-    }
-
-    func showAlert() {
-        let confirm = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_yes)) { [weak self] (_) in
-            self?.interactor.setReminder = true
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        let decline = QOTAlertAction(title: AppTextService.get(.coach_prepare_alert_activate_reminder_button_no)) { [weak self] (_) in
-            self?.interactor.updatePreparation { (_) in
-                self?.interactor.didTapDismissView()
-                self?.interactor.presentMyPreps()
-            }
-        }
-        QOTAlert.show(title: AppTextService.get(.coach_prepare_alert_activate_reminder_title),
-                      message: AppTextService.get(.coach_prepare_alert_activate_reminder_body),
-                      bottomItems: [confirm, decline])
-    }
 }
 
 // MARK: - PrepareResultsViewControllerInterface
@@ -160,6 +179,7 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
             tableView.registerDequeueable(PrepareEventTableViewCell.self)
             tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
             tableView.registerDequeueable(ReminderTableViewCell.self)
+            tableView.registerDequeueable(PrepareResultsAddToCalendarTableViewCell.self)
         case .LEVEL_ON_THE_GO:
             tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
         default: return
@@ -218,6 +238,9 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             return contentItemCell(format: .listitem,
                                    title: benefits,
                                    indexPath: indexPath)
+        case .addToCalendar(let title, let subtitle):
+            return addToCalendarCell(title: title, subtitle: subtitle, indexPath: indexPath)
+
         }
     }
 
@@ -246,6 +269,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
                 removeBottomNavigation()
                 interactor.presentEditStrategyView()
             }
+        case .addToCalendar:
+            checkCalendarPermission()
         default:
             return
         }
