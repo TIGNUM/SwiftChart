@@ -17,6 +17,8 @@ final class PrepareResultInteractor {
     private let presenter: PrepareResultsPresenterInterface
     private let router: PrepareResultsRouterInterface
     private var events: [QDMUserCalendarEvent] = []
+    private var selectedEvent: QDMUserCalendarEvent?
+    private var createdEVent: EKEvent?
 
     // MARK: - Init
     init(worker: PrepareResultsWorker,
@@ -176,5 +178,15 @@ extension PrepareResultInteractor: SyncedCalendarsDelegate {
 //            prepareInteractor?.setUserCalendarEvents(qdmEvents)
 //            loadNextQuestion()
         }
+    }
+}
+
+extension PrepareResultInteractor: CalendarEventSelectionDelegate {
+    func didSelectEvent(_ event: QDMUserCalendarEvent) {
+        selectedEvent = event
+    }
+
+    func didCreateEvent(_ event: EKEvent?) {
+        createdEVent = event
     }
 }

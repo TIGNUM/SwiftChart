@@ -13,6 +13,7 @@ import EventKit
 final class CalendarEventSelectionViewController: BaseWithGroupedTableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
+    weak var delegate: CalendarEventSelectionDelegate?
     var interactor: CalendarEventSelectionInteractorInterface!
     private lazy var router: CalendarEventSelectionRouterInterface = CalendarEventSelectionRouter(viewController: self)
 
@@ -96,6 +97,8 @@ extension CalendarEventSelectionViewController: EKEventEditViewDelegate {
             controller.dismiss(animated: true)
         case .saved:
             DispatchQueue.main.async { [weak self] in
+                let event = controller.event
+                self?.delegate?.didCreateEvent(<#T##event: CalendarEvent##CalendarEvent#>)
                 self?.router.dismiss()
                 //                self?.interactor.setCreatedCalendarEvent(controller.event) { [weak self] (success) in65
                 //                    controller.dismiss(animated: true) { [weak self] in

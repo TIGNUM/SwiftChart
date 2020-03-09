@@ -29,3 +29,8 @@ protocol CalendarEventSelectionRouterInterface {
     func dismiss()
     func presentEditEventController(_ calendarToggleIdentifiers: [String])
 }
+
+protocol CalendarEventSelectionDelegate: class {
+    func didSelectEvent(_ event: QDMUserCalendarEvent)
+    func didCreateEvent(_ event: EKEvent?)
+}

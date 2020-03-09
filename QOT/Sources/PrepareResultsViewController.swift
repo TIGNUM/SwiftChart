@@ -46,6 +46,20 @@ final class PrepareResultsViewController: BaseWithGroupedTableViewController, Sc
     }
 }
 
+// MARK: - Bottom Navigation
+extension PrepareResultsViewController {
+    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if interactor.getType == .LEVEL_ON_THE_GO {
+            return [doneButtonItem(#selector(didTapDismiss))]
+        }
+        return rightBarItems
+    }
+}
+
 // MARK: - Private
 private extension PrepareResultsViewController {
     func contentItemCell(format: ContentFormat,
@@ -342,19 +356,5 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 
     func dismiss(_ viewController: UIViewController) {
         viewController.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - Bottom Navigation
-extension PrepareResultsViewController {
-    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if interactor.getType == .LEVEL_ON_THE_GO {
-            return [doneButtonItem(#selector(didTapDismiss))]
-        }
-        return rightBarItems
     }
 }
