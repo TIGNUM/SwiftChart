@@ -148,20 +148,22 @@ extension MySprintDetailsWorker {
         guard let sprint = sprint else { return }
         // if it is completed sprint. Create new sprint with same content and start the created sprint.
         if sprint.completedAt != nil {
-            UserService.main.createSprint(title: sprint.title ?? "",
-                                          subTitle: sprint.subtitle ?? "",
-                                          sprintContentId: sprint.contentCollectionId ?? 0,
-                                          relatedContentIds: sprint.relatedContentIds,
-                                          taskItemIds: sprint.taskItems.compactMap({ $0.remoteID }),
-                                          planItemIds: sprint.planItems.compactMap({ $0.remoteID })) { (newSprint, error) in
-                                            guard let sprintToStart = newSprint, error == nil else {
-                                                completion(error)
-                                                return
-                                            }
+            var model = CreateSprintModel()
+            model.sprintContentId = sprint.contentCollectionId ?? 0
+            model.relatedContentIds = sprint.relatedContentIds
+            model.title = sprint.title ?? ""
+            model.subTitle = sprint.subtitle ?? ""
+            model.taskItemIds = sprint.taskItems.compactMap({ $0.remoteID })
+            model.planItemIds = sprint.planItems.compactMap({ $0.remoteID })
+            UserService.main.createSprint(data: model) { (newSprint, error) in
+                guard let sprintToStart = newSprint, error == nil else {
+                    completion(error)
+                    return
+                }
 
-                                            UserService.main.startSprint(sprintToStart) { [weak self] (startedSprint, error) in
-                                                self?.updateSprint(startedSprint, error: error, completion: completion)
-                                            }
+                UserService.main.startSprint(sprintToStart) { [weak self] (startedSprint, error) in
+                    self?.updateSprint(startedSprint, error: error, completion: completion)
+                }
             }
         } else {
             UserService.main.startSprint(sprint) { [weak self] (sprint, error) in
