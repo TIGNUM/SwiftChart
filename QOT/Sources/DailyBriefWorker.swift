@@ -132,14 +132,6 @@ extension DailyBriefWorker {
 // MARK: - Whats Hot
 extension DailyBriefWorker {
 
-    func didPressGotItSprint(sprint: QDMSprint) {
-        userService.markAsDoneForToday(sprint, { (sprint, error) in
-            if let error = error {
-                log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-            }
-        })
-    }
-
     func isNew(_ collection: QDMContentCollection) -> Bool {
         var isNewArticle = collection.viewedAt == nil
         if let firstInstallTimeStamp = self.firstInstallTimeStamp {

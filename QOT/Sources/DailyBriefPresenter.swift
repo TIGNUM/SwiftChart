@@ -35,10 +35,4 @@ extension DailyBriefPresenter: DailyBriefPresenterInterface {
         viewController?.scrollToSection(at: at)
     }
 
-    func showSprintCompletedAlert() {
-        let actionDone = QOTAlertAction(title: AppTextService.get(.generic_view_button_done))
-        QOTAlert.show(title: AppTextService.get(.daily_brief_sprint_challenge_alert_title),
-                      message: AppTextService.get(.daily_brief_sprint_challenge_alert_body),
-                      bottomItems: [actionDone])
-    }
 }

@@ -17,10 +17,9 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
     var sprintInfo: String?
     var sprintStepNumber: Int?
     var sprint: QDMSprint
-    var relatedStrategiesModels: [RelatedStrategiesModel]
-    var relatedLinksModel: [RelatedLinksModel]
+    var relatedStrategiesModels: [RelatedItemsModel]
 
-    struct RelatedStrategiesModel {
+    struct RelatedItemsModel {
         var title: String?
         var durationString: String?
         var contentId: Int?
@@ -28,6 +27,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         var section: ContentSection?
         var format: ContentFormat?
         var numberOfItems: Int?
+        var link: QDMAppLink?
 
         init() {}
 
@@ -37,7 +37,8 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
              _ contentItemId: Int?,
              _ section: ContentSection?,
              _ format: ContentFormat?,
-             _ numberOfItems: Int?) {
+             _ numberOfItems: Int?,
+             _ link: QDMAppLink?) {
             self.title = title
             self.durationString = durationString
             self.contentId = contentId
@@ -45,18 +46,6 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
             self.section = section
             self.format = format
             self.numberOfItems = numberOfItems
-        }
-    }
-
-    struct RelatedLinksModel {
-        var description: String?
-        var link: QDMAppLink?
-
-        init() {}
-
-        init(_ description: String?,
-             _ link: QDMAppLink) {
-            self.description = description
             self.link = link
         }
     }
@@ -66,8 +55,7 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
          sprintTitle: String?,
          sprintInfo: String?,
          sprintStepNumber: Int?,
-         relatedStrategiesModels: [RelatedStrategiesModel],
-         relatedLinksModel: [RelatedLinksModel],
+         relatedStrategiesModels: [RelatedItemsModel],
          domainModel: QDMDailyBriefBucket?,
          sprint: QDMSprint) {
 
@@ -77,7 +65,6 @@ final class SprintChallengeViewModel: BaseDailyBriefViewModel {
         self.sprint = sprint
         self.sprintStepNumber = sprintStepNumber
         self.relatedStrategiesModels = relatedStrategiesModels
-        self.relatedLinksModel = relatedLinksModel
         super.init(domainModel)
     }
 

@@ -17,23 +17,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet private weak var sprintStepNumber: UILabel!
     @IBOutlet weak var outOf5Label: UILabel!
-    @IBOutlet weak var gotItButton: AnimatedButton!
     @IBOutlet weak var showMoreButton: AnimatedButton!
     @IBOutlet weak var constraintContainerHeight: NSLayoutConstraint!
-    @IBOutlet weak var gotItButtonHeight: NSLayoutConstraint!
 
     weak var delegate: DailyBriefViewControllerDelegate?
     private var currentSprint: QDMSprint?
     private var observers: [NSKeyValueObservation] = []
-    var relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel]()
+    var relatedItemsModels = [SprintChallengeViewModel.RelatedItemsModel]()
     var showMore = false
-
-    @IBAction func gotItTapped(_ sender: Any) {
-        ThemeView.audioPlaying.apply(gotItButton)
-        gotItButton.layer.borderWidth = 0
-        gotItButton.isEnabled = false
-        delegate?.didPressGotItSprint(sprint: currentSprint!)
-    }
 
     @IBAction func showMoreButton(_ sender: Any) {
         showMore = !showMore
@@ -49,18 +40,14 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         contentView.backgroundColor = .carbon
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
         self.sprintInfo?.lineBreakMode = .byWordWrapping
-        ThemeBorder.accent.apply(gotItButton)
-        updateGotItButton()
         tableView.setNeedsLayout()
         observers = [tableView.observe(\.contentSize, options: [.new]) { [weak self] (tableView, change) in
             self?.checkScroll()
             }
         ]
-        ThemeBorder.accent.apply(gotItButton)
         skeletonManager.addSubtitle(sprintTitle)
         skeletonManager.addSubtitle(sprintInfo)
         skeletonManager.addOtherView(tableView)
-        skeletonManager.addOtherView(gotItButton)
         skeletonManager.addOtherView(sprintStepNumber)
         skeletonManager.addOtherView(outOf5Label)
         skeletonManager.addOtherView(showMoreButton)
@@ -72,7 +59,7 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
     func configure(with viewModel: SprintChallengeViewModel?) {
         guard let model = viewModel else { return }
         skeletonManager.hide()
-        self.relatedStrategiesModels = model.relatedStrategiesModels
+        self.relatedItemsModels = model.relatedStrategiesModels
         self.currentSprint = model.sprint
         if model.relatedStrategiesModels.isEmpty == true {
             constraintContainerHeight.constant = 0
@@ -82,8 +69,6 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         ThemeText.sprintName.apply(model.sprintTitle, to: sprintTitle)
         ThemeText.sprintText.apply(model.sprintInfo, to: sprintInfo)
         ThemeText.quotation.apply(String(model.sprintStepNumber ?? 0), to: sprintStepNumber)
-        gotItButton.setTitle(AppTextService.get(.daily_brief_section_sprint_challenge_button_got_it), for: .normal)
-        updateGotItButton()
     }
 
     private func checkScroll() {
@@ -91,33 +76,21 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
         tableView.setNeedsUpdateConstraints()
     }
 
-    private func updateGotItButton() {
-        if currentSprint?.doneForToday == true {
-            ThemeView.audioPlaying.apply(gotItButton)
-            gotItButton.layer.borderWidth = 0
-            gotItButton.isEnabled = false
-        } else {
-            ThemeBorder.accent.apply(gotItButton)
-            ThemeView.sprints.apply(gotItButton)
-            gotItButton.isEnabled = true
-        }
-    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return relatedStrategiesModels.count
+        return relatedItemsModels.count 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
+        let relatedItem = relatedItemsModels.at(index: indexPath.row)
         let cell: SprintChallengeTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.selectedBackgroundView = backgroundView
         cell.setSelectedColor(.accent, alphaComponent: 0.1)
-        cell.configure(title: relatedStrategy?.title,
-                       durationString: relatedStrategy?.durationString,
-                       remoteID: relatedStrategy?.contentId ?? relatedStrategiesModels[indexPath.row].contentItemId,
-                       section: relatedStrategy?.section,
-                       format: relatedStrategy?.format,
-                       numberOfItems: relatedStrategy?.numberOfItems ?? 0)
+        cell.configure(title: relatedItem?.title,
+                       durationString: relatedItem?.durationString,
+                       remoteID: relatedItem?.contentId ?? relatedItemsModels[indexPath.row].contentItemId,
+                       section: relatedItem?.section,
+                       format: relatedItem?.format,
+                       numberOfItems: relatedItem?.numberOfItems ?? 0)
         cell.accessoryView = UIImageView(image: R.image.ic_disclosure_accent())
         cell.delegate = self.delegate
         return cell
@@ -125,18 +98,20 @@ final class SprintChallengeCell: BaseDailyBriefCell, UITableViewDelegate, UITabl
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard relatedStrategiesModels.count > indexPath.row else { return }
-        let relatedStrategy = relatedStrategiesModels.at(index: indexPath.row)
-        if let contentItemId = relatedStrategy?.contentItemId,
+        guard relatedItemsModels.count > indexPath.row else { return }
+        let relatedItem = relatedItemsModels.at(index: indexPath.row)
+        if let contentItemId = relatedItem?.contentItemId,
             let launchURL = URLScheme.contentItem.launchURLWithParameterValue(String(contentItemId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
-        } else if let contentCollectionId = relatedStrategy?.contentId {
-            if relatedStrategy?.section == .LearnStrategies {
+        } else if let contentCollectionId = relatedItem?.contentId {
+            if relatedItem?.section == .LearnStrategies {
                 delegate?.presentStrategyList(strategyID: contentCollectionId)
-            } else if relatedStrategy?.section == .QOTLibrary {
+            } else if relatedItem?.section == .QOTLibrary {
                 delegate?.openTools(toolID: contentCollectionId)
             } else if let launchURL = URLScheme.randomContent.launchURLWithParameterValue(String(contentCollectionId)) {
                 UIApplication.shared.open(launchURL, options: [:], completionHandler: nil)
+            } else if relatedItem?.link !=  nil {
+                relatedItem?.link?.launch()
             }
         }
     }
