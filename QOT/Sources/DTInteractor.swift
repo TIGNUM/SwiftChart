@@ -70,7 +70,7 @@ class DTInteractor: DTInteractorInterface {
 
     func loadNextQuestion(selection: DTSelectionModel) {
         selectedAnswers.append(SelectedAnswer(question: selection.question, answers: selection.selectedAnswers))
-        let presentationModel = createPresentationModel(selection: selection, questions: questions)
+        let presentationModel = createPresentationModel(selection: selection, questions: questions, content: nil)
         presenter?.showNextQuestion(presentationModel, isDark: isDark)
         let node = Node(questionId: presentationModel.question?.remoteID,
                         answerFilter: selection.answerFilter,
@@ -119,9 +119,12 @@ class DTInteractor: DTInteractorInterface {
                                    preparations: preparations)
     }
 
-    func createPresentationModel(selection: DTSelectionModel, questions: [QDMQuestion]) -> DTPresentationModel {
+    func createPresentationModel(selection: DTSelectionModel,
+                                 questions: [QDMQuestion],
+                                 content: QDMContentCollection?) -> DTPresentationModel {
         let question = getNextQuestion(selection: selection, questions: questions)
-        let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers, questionKey: question?.key)
+        let questionUpdate = getTitleUpdate(selectedAnswers: selection.selectedAnswers,
+                                            questionKey: question?.key, content: content)
         let tbv = getTBV(questionAnswerType: question?.answerType, questionKey: question?.key)
         let events = getEvents(questionKey: question?.key)
         let preparations = getPreparations(answerKeys: selection.selectedAnswers.first?.keys)
@@ -141,7 +144,9 @@ class DTInteractor: DTInteractorInterface {
         return questions.filter { $0.remoteID == targetQuestionId }.first
     }
 
-    func getTitleUpdate(selectedAnswers: [DTViewModel.Answer], questionKey: String?) -> String? {
+    func getTitleUpdate(selectedAnswers: [DTViewModel.Answer],
+                        questionKey: String?,
+                        content: QDMContentCollection?) -> String? {
         return nil
     }
 
