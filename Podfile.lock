@@ -27,7 +27,7 @@ PODS:
   - SVProgressHUD (2.2.5)
   - SwiftChart (1.0.1)
   - SwiftyBeaver (1.8.4)
-  - UrbanAirship-iOS-SDK (11.1.2)
+  - UrbanAirship-iOS-SDK (12.1.2)
 
 DEPENDENCIES:
   - AppCenter
@@ -52,12 +52,12 @@ SPEC REPOS:
     - R.swift.Library
     - RSKImageCropper
     - SVProgressHUD
-    - UrbanAirship-iOS-SDK
   trunk:
     - AppCenter
     - Buglife
     - KeychainAccess
     - SwiftyBeaver
+    - UrbanAirship-iOS-SDK
 
 EXTERNAL SOURCES:
   qot_dal:
@@ -67,7 +67,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   qot_dal:
-    :commit: 2f5c56f8e6fd35367c617abacee0ae5d5b098aab
+    :commit: 0456f96ac1aee4a500b779fbe2a75f4ad6bfa1ca
     :git: "git@github.com:TIGNUM/qot_dal.git"
   SwiftChart:
     :commit: e2065f8ec39df3748bfdd2b39120663786f68e26
@@ -87,7 +87,7 @@ SPEC CHECKSUMS:
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: f9a9aba96a6a6166e21682377804d728b0d20b95
-  UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
+  UrbanAirship-iOS-SDK: bc0d7363f62ac572211ba0191ddeac712d4d4b1f
 
 PODFILE CHECKSUM: 836f2b17450f24ad8f18f2bbc5c4dc2c38d921be
 
