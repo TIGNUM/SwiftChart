@@ -43,7 +43,7 @@ protocol PrepareResultsInteractorInterface: Interactor {
     func deletePreparation()
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void)
     func presentCalendarPermission(_ permissionType: AskPermission.Kind)
-    func checkSyncedCalendars()
+    func checkSyncedCalendars()    
 }
 
 protocol PrepareResultsRouterInterface: BaseRouterInterface {
@@ -54,5 +54,5 @@ protocol PrepareResultsRouterInterface: BaseRouterInterface {
     func presentMyPreps()
     func presentCalendarPermission(_ permissionType: AskPermission.Kind, delegate: AskPermissionDelegate)
     func presentCalendarSettings(delegate: SyncedCalendarsDelegate)
-    func presentCalendarEventSelectionView()
+    func presentCalendarEventSelection()
 }

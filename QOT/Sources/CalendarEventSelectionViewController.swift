@@ -12,7 +12,7 @@ final class CalendarEventSelectionViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: CalendarEventSelectionInteractorInterface!
-    private weak var router: CalendarEventSelectionRouterInterface = CalendarEventSelectionRouter(viewController: self)
+    private lazy var router: CalendarEventSelectionRouterInterface = CalendarEventSelectionRouter(viewController: self)
 
     // MARK: - Init
     init(configure: Configurator<CalendarEventSelectionViewController>) {

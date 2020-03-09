@@ -111,6 +111,10 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         router.presentMyPreps()
     }
 
+    func presentCalendarEventSelection() {
+        router.presentCalendarEventSelection()
+    }
+
     func updateStrategies(selectedIds: [Int]) {
        worker.updateStrategies(selectedIds: selectedIds)
     }
@@ -144,7 +148,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         workerCalendar.hasSyncedCalendars { [weak self] (available) in
             guard let strongSelf = self else { return }
             if available == true {
-//                self?.loadNext(selection)
+                strongSelf.router.presentCalendarEventSelection()
             } else {
                 strongSelf.router.presentCalendarSettings(delegate: strongSelf)
             }

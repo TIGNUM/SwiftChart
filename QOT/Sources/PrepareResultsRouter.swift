@@ -70,7 +70,9 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
         viewController?.present(controller, animated: true)
     }
 
-    func presentCalendarEventSelectionView() {
-        
+    func presentCalendarEventSelection() {
+        let configurator = CalendarEventSelectionConfigurator.make()
+        let controller = CalendarEventSelectionViewController(configure: configurator)
+        viewController?.present(controller, animated: true)
     }
 }

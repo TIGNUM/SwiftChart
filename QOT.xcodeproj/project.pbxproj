@@ -2996,14 +2996,14 @@
 		36CB720322B855D100C99AFC /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */,
 				369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */,
 				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
 				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
+				38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */,
 				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
 				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
 				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
-				38E5A07D24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.swift */,
-				38E5A07E24128A1B008FCF8F /* PrepareResultsAddToCalendarTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
